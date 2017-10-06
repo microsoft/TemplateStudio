@@ -267,7 +267,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             else
             {
-                MainViewModel.Current.ProjectTemplates.AddTemplateAndDependencies((NewTemplateName, Template), false);
+                SaveItem();
                 UpdateTemplateAvailability(MainViewModel.Current.ProjectTemplates.IsTemplateAlreadyDefined(Template.Identity));
             }
         }
@@ -276,10 +276,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (IsValidName)
             {
-                MainViewModel.Current.ProjectTemplates.AddTemplateAndDependencies((NewTemplateName, Template), false);
+                SaveItem();
                 CloseEdition();
                 UpdateTemplateAvailability(MainViewModel.Current.ProjectTemplates.IsTemplateAlreadyDefined(Template.Identity));
             }
+        }
+
+        private void SaveItem()
+        {
+            UserSelectionService.AddTemplateAndDependencies((NewTemplateName, Template), MainViewModel.Current.ProjectTemplates.ContextFramework.Name, false);
+            MainViewModel.Current.ProjectTemplates.UpdateTemplatesAvailability();
+            MainViewModel.Current.ProjectTemplates.UpdateSummaryTemplates();
+            MainViewModel.Current.ProjectTemplates.UpdateHasPagesAndHasFeatures();
         }
     }
 }

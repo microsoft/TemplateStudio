@@ -12,14 +12,21 @@ using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Services
 {
-    public class OrderingService
+    public static class OrderingService
     {
-        public StackPanel Panel { get; set; }
+        public static StackPanel Panel { get; set; }
 
-        private SavedTemplateViewModel _dragginItem;
-        private SavedTemplateViewModel _dropTarget;
+        private static Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> _getSavedPages;
 
-        public void AddList(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
+        private static SavedTemplateViewModel _dragginItem;
+        private static SavedTemplateViewModel _dropTarget;
+
+        public static void Initialize(Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> getSavedPages)
+        {
+            _getSavedPages = getSavedPages;
+        }
+
+        public static void AddList(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
         {
             if (Panel != null)
             {
@@ -41,9 +48,9 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        public void SetDropTarget(SavedTemplateViewModel savedTemplate) => _dropTarget = savedTemplate;
+        public static void SetDropTarget(SavedTemplateViewModel savedTemplate) => _dropTarget = savedTemplate;
 
-        public bool SetDrag(SavedTemplateViewModel savedTemplate)
+        public static bool SetDrag(SavedTemplateViewModel savedTemplate)
         {
             if (_dragginItem == null)
             {
@@ -54,13 +61,12 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        public bool SetDrop(SavedTemplateViewModel savedTemplate)
+        public static bool SetDrop(SavedTemplateViewModel savedTemplate)
         {
             if (_dragginItem != null && _dropTarget != null && _dragginItem.ItemName != _dropTarget.ItemName)
             {
-                var savedPages = MainViewModel.Current.ProjectTemplates.SavedPages;
-                var newIndex = savedPages.First().IndexOf(_dropTarget);
-                var oldIndex = savedPages.First().IndexOf(_dragginItem);
+                var newIndex = _getSavedPages().First().IndexOf(_dropTarget);
+                var oldIndex = _getSavedPages().First().IndexOf(_dragginItem);
                 Drop(null, new DragAndDropEventArgs<SavedTemplateViewModel>(null, _dropTarget, oldIndex, newIndex));
                 _dragginItem = null;
                 _dropTarget = null;
@@ -69,7 +75,7 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        public bool ClearDraggin()
+        public static bool ClearDraggin()
         {
             if (_dragginItem != null)
             {
@@ -81,12 +87,11 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private void Drop(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
+        private static void Drop(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
         {
-            var savedPages = MainViewModel.Current.ProjectTemplates.SavedPages;
-            if (savedPages.Count > 0 && savedPages.Count >= e.ItemData.GenGroup + 1)
+            if (_getSavedPages().Count > 0 && _getSavedPages().Count >= e.ItemData.GenGroup + 1)
             {
-                var items = savedPages[e.ItemData.GenGroup];
+                var items = _getSavedPages()[e.ItemData.GenGroup];
                 if (items.Count > 1)
                 {
                     if (e.NewIndex == 0)
@@ -96,7 +101,7 @@ namespace Microsoft.Templates.UI.Services
 
                     if (e.OldIndex > -1)
                     {
-                        savedPages[e.ItemData.GenGroup].Move(e.OldIndex, e.NewIndex);
+                        _getSavedPages()[e.ItemData.GenGroup].Move(e.OldIndex, e.NewIndex);
                     }
 
                     MainViewModel.Current.ProjectTemplates.SetHomePage(items.First());

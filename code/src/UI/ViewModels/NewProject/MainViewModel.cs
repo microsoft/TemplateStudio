@@ -37,7 +37,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
-        public OrderingService Ordering { get; } = new OrderingService();
 
         public MainViewModel()
             : base()
@@ -56,7 +55,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
             NavigationService.Initialize(stepFrame, new ProjectSetupView());
-            Ordering.Panel = summaryPageGroups;
+            OrderingService.Panel = summaryPageGroups;
             await BaseInitializeAsync();
         }
 
@@ -141,7 +140,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 if (_needRestartConfiguration)
                 {
                     ResetSelection();
-                    Ordering.Panel.Children.Clear();
+                    OrderingService.Panel.Children.Clear();
                     CleanStatus();
                 }
 
@@ -184,7 +183,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         protected override async Task OnNewTemplatesAvailableAsync()
         {
             ResetSelection();
-            Ordering.Panel.Children.Clear();
+            OrderingService.Panel.Children.Clear();
             NavigationService.Navigate(new ProjectSetupView());
             await ProjectSetup.InitializeAsync(true);
         }
