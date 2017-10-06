@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 using Microsoft.Templates.UI.Views.NewProject;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -70,7 +71,7 @@ namespace Microsoft.Templates.UI.Controls
             UpdateOpenStatus();
         }
 
-        private void OnMainGridGotFocus(object sender, RoutedEventArgs e) => MainViewModel.Current.Ordering.SetDropTarget(TogglePanelContent as SavedTemplateViewModel);
+        private void OnMainGridGotFocus(object sender, RoutedEventArgs e) => OrderingService.SetDropTarget(TogglePanelContent as SavedTemplateViewModel);
 
         private static void OnIsOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -89,13 +90,13 @@ namespace Microsoft.Templates.UI.Controls
             }
             if (e.Key == Key.Space && mainGrid.IsFocused)
             {
-                if (MainViewModel.Current.Ordering.SetDrag(TogglePanelContent as SavedTemplateViewModel))
+                if (OrderingService.SetDrag(TogglePanelContent as SavedTemplateViewModel))
                 {
                     dragAndDropShadowBorder.Opacity = 1;
                 }
                 else
                 {
-                    MainViewModel.Current.Ordering.SetDrop(TogglePanelContent as SavedTemplateViewModel);
+                    OrderingService.SetDrop(TogglePanelContent as SavedTemplateViewModel);
                 }
             }
             if (e.Key == Key.Escape)
