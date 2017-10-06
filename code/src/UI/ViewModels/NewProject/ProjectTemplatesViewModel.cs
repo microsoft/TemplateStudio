@@ -111,6 +111,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     firstPage.IsHome = true;
                 }
             }
+
             CloseAllEditions();
             await Task.CompletedTask;
         }
