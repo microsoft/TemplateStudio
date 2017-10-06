@@ -181,7 +181,7 @@ namespace Microsoft.Templates.Test
 
         private bool AlreadyAdded(UserSelection userSelection, ITemplateInfo item)
         {
-            return (userSelection.Pages.Any(p => p.template.Identity == item.Identity) || userSelection.Features.Any(f => f.template.Identity == item.Identity));
+            return userSelection.Pages.Any(p => p.template.Identity == item.Identity) || userSelection.Features.Any(f => f.template.Identity == item.Identity);
         }
 
         public static string GetDefaultName(ITemplateInfo template)

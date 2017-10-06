@@ -197,7 +197,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             else
             {
-                return (v.Major > WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor > WizardVersion.Minor)));
+                return v.Major > WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor > WizardVersion.Minor));
             }
         }
 
@@ -209,7 +209,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             else
             {
-                return (v.Major < WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor < WizardVersion.Minor)));
+                return v.Major < WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor < WizardVersion.Minor));
             }
         }
 

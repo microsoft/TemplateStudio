@@ -318,7 +318,7 @@ namespace Microsoft.Templates.Core.Packaging
             var status = PackageDigitalSignatureManager.VerifyCertificate(cert);
             AppHealth.Current.Verbose.TrackAsync(string.Format(StringRes.TemplatePackageVerifyCertificateMessage, cert.Subject, status.ToString())).FireAndForget();
 
-            return (status == X509ChainStatusFlags.NoError);
+            return status == X509ChainStatusFlags.NoError;
         }
 
         private static bool VerifyAllowedPublicKey(X509Certificate cert)

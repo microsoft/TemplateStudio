@@ -419,7 +419,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     using (var client = new System.Net.WebClient())
                     {
                         var ncsi = client.DownloadString("http://www.msftncsi.com/ncsi.txt");
-                        internet = (ncsi == "Microsoft NCSI");
+                        internet = ncsi == "Microsoft NCSI";
                     }
                 }
                 catch

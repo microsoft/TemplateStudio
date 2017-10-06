@@ -998,7 +998,7 @@ namespace Microsoft.Templates.UI.Controls
 
                         break;
                     case '\t':
-                        int width = (_tabWidth - (line.Length % _tabWidth));
+                        int width = _tabWidth - (line.Length % _tabWidth);
                         for (int k = 0; k < width; k++)
                         {
                             line.Append(' ');

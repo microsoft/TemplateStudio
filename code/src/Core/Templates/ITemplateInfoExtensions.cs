@@ -349,7 +349,7 @@ namespace Microsoft.Templates.Core
 
         public static bool GetItemNameEditable(this ITemplateInfo ti)
         {
-            return (ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance());
+            return ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance();
         }
 
         private static string GetConfigDir(ITemplateInfo ti)

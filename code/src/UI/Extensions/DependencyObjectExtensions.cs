@@ -19,7 +19,7 @@ namespace Microsoft.Templates.UI
             {
                 var current = VisualTreeHelper.GetChild(dObject, i);
 
-                if ((current.GetType()).Equals(typeof(T)) || (includeInheritance && current.GetType().GetTypeInfo().IsSubclassOf(typeof(T))))
+                if (current.GetType().Equals(typeof(T)) || (includeInheritance && current.GetType().GetTypeInfo().IsSubclassOf(typeof(T))))
                 {
                     yield return current as T;
                 }
