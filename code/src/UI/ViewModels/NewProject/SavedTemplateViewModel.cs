@@ -20,8 +20,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class SavedTemplateViewModel : Observable
     {
-        #region TemplatesProperties
-
         private ITemplateInfo _template;
 #pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         public (string name, ITemplateInfo template) UserSelection => (ItemName, _template);
@@ -151,9 +149,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 return !IsHome;
             }
         }
-        #endregion
 
-        #region UISummaryProperties
         private DispatcherTimer colorTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(2) };
 
         private bool _isEditionEnabled;
@@ -247,7 +243,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private ICommand _cancelRenameCommand;
         public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(() => CancelRename()));
-        #endregion
 
         public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled)
         {
