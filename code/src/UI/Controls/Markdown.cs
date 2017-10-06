@@ -165,10 +165,13 @@ namespace Microsoft.Templates.UI.Controls
                 throw new ArgumentNullException("text");
             }
 
-            return DoHeaders(text,
-                s1 => DoHorizontalRules(s1,
-                    s2 => DoLists(s2,
-                    sn => FormParagraphs(sn))));
+            return DoHeaders(
+                text,
+                s1 => DoHorizontalRules(
+                    s1,
+                    s2 => DoLists(
+                        s2,
+                        sn => FormParagraphs(sn))));
 
             // text = DoCodeBlocks(text);
             // text = DoBlockQuotes(text);
@@ -194,11 +197,15 @@ namespace Microsoft.Templates.UI.Controls
                 throw new ArgumentNullException("text");
             }
 
-            return DoCodeSpans(text,
-                s0 => DoImages(s0,
-                s1 => DoAnchors(s1,
-                s2 => DoItalicsAndBold(s2,
-                s3 => DoText(s3)))));
+            return DoCodeSpans(
+                text,
+                s0 => DoImages(
+                    s0,
+                    s1 => DoAnchors(
+                        s1,
+                        s2 => DoItalicsAndBold(
+                            s2,
+                            s3 => DoText(s3)))));
 
             // text = EscapeSpecialCharsWithinTagAttributes(text);
             // text = EscapeBackslashes(text);
@@ -254,7 +261,8 @@ namespace Microsoft.Templates.UI.Controls
             if (_nestedBracketsPattern == null)
             {
                 _nestedBracketsPattern =
-                    RepeatString(@"
+                    RepeatString(
+                        @"
                     (?>              # Atomic matching
                        [^\[\]]+      # Anything other than brackets
                      |
@@ -281,7 +289,8 @@ namespace Microsoft.Templates.UI.Controls
             if (_nestedParensPattern == null)
             {
                 _nestedParensPattern =
-                    RepeatString(@"
+                    RepeatString(
+                        @"
                     (?>              # Atomic matching
                        [^()\s]+      # Anything other than parens or whitespace
                      |
@@ -308,7 +317,8 @@ namespace Microsoft.Templates.UI.Controls
             if (_nestedParensPatternWithWhiteSpace == null)
             {
                 _nestedParensPatternWithWhiteSpace =
-                    RepeatString(@"
+                    RepeatString(
+                        @"
                     (?>              # Atomic matching
                        [^()]+      # Anything other than parens
                      |
@@ -322,7 +332,9 @@ namespace Microsoft.Templates.UI.Controls
             return _nestedParensPatternWithWhiteSpace;
         }
 
-        private static Regex _imageInline = new Regex(string.Format(@"
+        private static Regex _imageInline = new Regex(
+            string.Format(
+            @"
                 (                           # wrap whole match in $1
                     !\[
                         ({0})               # link text = $2
@@ -338,10 +350,14 @@ namespace Microsoft.Templates.UI.Controls
                         #[ ]*                # ignore any spaces between closing quote and )
                         )?                  # title is optional
                     \)
-                )", GetNestedBracketsPattern(), GetNestedParensPatternWithWhiteSpace()),
-                  RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+                )",
+                    GetNestedBracketsPattern(),
+                    GetNestedParensPatternWithWhiteSpace()),
+                    RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
-        private static Regex _anchorInline = new Regex(string.Format(@"
+        private static Regex _anchorInline = new Regex(
+            string.Format(
+                @"
                 (                           # wrap whole match in $1
                     \[
                         ({0})               # link text = $2
@@ -357,8 +373,10 @@ namespace Microsoft.Templates.UI.Controls
                         [ ]*                # ignore any spaces between closing quote and )
                         )?                  # title is optional
                     \)
-                )", GetNestedBracketsPattern(), GetNestedParensPattern()),
-                  RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+                )",
+                GetNestedBracketsPattern(),
+                GetNestedParensPattern()),
+                RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
         /// <summary>
         /// Turn Markdown images into images
@@ -475,7 +493,8 @@ namespace Microsoft.Templates.UI.Controls
             return result;
         }
 
-        private static Regex _headerSetext = new Regex(@"
+        private static Regex _headerSetext = new Regex(
+            @"
                 ^(.+?)
                 [ ]*
                 \n
@@ -484,7 +503,8 @@ namespace Microsoft.Templates.UI.Controls
                 \n+",
     RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
-        private static Regex _headerAtx = new Regex(@"
+        private static Regex _headerAtx = new Regex(
+            @"
                 ^(\#{1,6})  # $1 = string of #'s
                 [ ]*
                 (.+?)       # $2 = Header text
@@ -516,7 +536,10 @@ namespace Microsoft.Templates.UI.Controls
                 throw new ArgumentNullException("text");
             }
 
-            return Evaluate<Block>(text, _headerSetext, m => SetextHeaderEvaluator(m),
+            return Evaluate<Block>(
+                text,
+                _headerSetext,
+                m => SetextHeaderEvaluator(m),
                 s => Evaluate<Block>(s, _headerAtx, m => AtxHeaderEvaluator(m), defaultHandler));
         }
 
@@ -593,7 +616,8 @@ namespace Microsoft.Templates.UI.Controls
             return block;
         }
 
-        private static Regex _horizontalRules = new Regex(@"
+        private static Regex _horizontalRules = new Regex(
+            @"
             ^[ ]{0,3}         # Leading space
                 ([-*_])       # $1: First marker
                 (?>           # Repeated marker group
@@ -645,7 +669,8 @@ namespace Microsoft.Templates.UI.Controls
             return container;
         }
 
-        private static string _wholeList = string.Format(@"
+        private static string _wholeList = string.Format(
+            @"
             (                               # $1 = whole list
               (                             # $2
                 [ ]{{0,{1}}}
@@ -663,12 +688,16 @@ namespace Microsoft.Templates.UI.Controls
                     {0}[ ]+
                   )
               )
-            )", string.Format("(?:{0}|{1})", _markerUL, _markerOL), _tabWidth - 1);
+            )",
+            string.Format("(?:{0}|{1})", _markerUL, _markerOL),
+            _tabWidth - 1);
 
-        private static Regex _listNested = new Regex(@"^" + _wholeList,
+        private static Regex _listNested = new Regex(
+            @"^" + _wholeList,
             RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
-        private static Regex _listTopLevel = new Regex(@"(?:(?<=\n\n)|\A\n?)" + _wholeList,
+        private static Regex _listTopLevel = new Regex(
+            @"(?:(?<=\n\n)|\A\n?)" + _wholeList,
             RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
         /// <summary>
@@ -784,7 +813,8 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private static Regex _codeSpan = new Regex(@"
+        private static Regex _codeSpan = new Regex(
+            @"
                     (?<!\\)   # Character before opening ` can't be a backslash
                     (`+)      # $1 = Opening run of `
                     (.+?)     # $2 = The code block
@@ -847,14 +877,18 @@ namespace Microsoft.Templates.UI.Controls
             return result;
         }
 
-        private static Regex _bold = new Regex(@"(\*\*|__) (?=\S) (.+?[*_]*) (?<=\S) \1",
+        private static Regex _bold = new Regex(
+            @"(\*\*|__) (?=\S) (.+?[*_]*) (?<=\S) \1",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
-        private static Regex _strictBold = new Regex(@"([\W_]|^) (\*\*|__) (?=\S) ([^\r]*?\S[\*_]*) \2 ([\W_]|$)",
+        private static Regex _strictBold = new Regex(
+            @"([\W_]|^) (\*\*|__) (?=\S) ([^\r]*?\S[\*_]*) \2 ([\W_]|$)",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
-        private static Regex _italic = new Regex(@"(\*|_) (?=\S) (.+?) (?<=\S) \1",
+        private static Regex _italic = new Regex(
+            @"(\*|_) (?=\S) (.+?) (?<=\S) \1",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
-        private static Regex _strictItalic = new Regex(@"([\W_]|^) (\*|_) (?=\S) ([^\r\*_]*?\S) \2 ([\W_]|$)",
+        private static Regex _strictItalic = new Regex(
+            @"([\W_]|^) (\*|_) (?=\S) ([^\r\*_]*?\S) \2 ([\W_]|$)",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
@@ -870,15 +904,19 @@ namespace Microsoft.Templates.UI.Controls
             // <strong> must go first, then <em>
             if (StrictBoldItalic)
             {
-                return Evaluate<Inline>(text, _strictBold, m => BoldEvaluator(m, 3),
-                    s1 => Evaluate<Inline>(s1, _strictItalic, m => ItalicEvaluator(m, 3),
-                    s2 => defaultHandler(s2)));
+                return Evaluate<Inline>(
+                    text,
+                    _strictBold,
+                    m => BoldEvaluator(m, 3),
+                    s1 => Evaluate<Inline>(s1, _strictItalic, m => ItalicEvaluator(m, 3), s2 => defaultHandler(s2)));
             }
             else
             {
-                return Evaluate<Inline>(text, _bold, m => BoldEvaluator(m, 2),
-                   s1 => Evaluate<Inline>(s1, _italic, m => ItalicEvaluator(m, 2),
-                   s2 => defaultHandler(s2)));
+                return Evaluate<Inline>(
+                    text,
+                    _bold,
+                    m => BoldEvaluator(m, 2),
+                   s1 => Evaluate<Inline>(s1, _italic, m => ItalicEvaluator(m, 2), s2 => defaultHandler(s2)));
             }
         }
 

@@ -7,7 +7,9 @@ namespace Localization.Options
 {
     public class VerifyOptions
     {
-        [Option('s', "source",
+        [Option(
+            's',
+            "source",
             HelpText = "path to the folder that contains source files for verify (it's root project folder).",
             Required = true)]
         public string SourceDirectory { get; set; }

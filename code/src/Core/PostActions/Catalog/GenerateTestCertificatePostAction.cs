@@ -65,9 +65,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             // Specify the hashing algorithm
             var hashobj = new CObjectId();
 
-            hashobj.InitializeFromAlgorithmName(ObjectIdGroupId.XCN_CRYPT_HASH_ALG_OID_GROUP_ID,
+            hashobj.InitializeFromAlgorithmName(
+                ObjectIdGroupId.XCN_CRYPT_HASH_ALG_OID_GROUP_ID,
                 ObjectIdPublicKeyFlags.XCN_CRYPT_OID_INFO_PUBKEY_ANY,
-                AlgorithmFlags.AlgorithmFlagsNone, "SHA256");
+                AlgorithmFlags.AlgorithmFlagsNone,
+                "SHA256");
 
             cert.HashAlgorithm = hashobj;
             cert.Encode();

@@ -128,11 +128,7 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetFrameworkList();
-            Assert.Collection(result,
-                e1 =>
-                {
-                    e1.Equals("fx1");
-                });
+            Assert.Collection(result, e1 => e1.Equals("fx1"));
         }
 
         [Theory]
@@ -254,7 +250,8 @@ namespace Microsoft.Templates.Core.Test
             var result = target.GetLicenses().ToList();
             Assert.NotNull(result);
 
-            Assert.Collection(result,
+            Assert.Collection(
+                result,
                 e1 =>
                 {
                     Assert.Equal("text1", e1.Text);
@@ -288,7 +285,8 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetLayout().ToList();
-            Assert.Collection(result,
+            Assert.Collection(
+                result,
                 e1 =>
                 {
                     Assert.Equal("Item1", e1.Name);
