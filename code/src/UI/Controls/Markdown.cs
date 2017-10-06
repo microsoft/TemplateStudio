@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -18,6 +19,9 @@ using System.Windows.Shapes;
 
 namespace Microsoft.Templates.UI.Controls
 {
+    [SuppressMessage("StyleCop", "SA1611", Justification = "The code is external and contains xml documentation")]
+    [SuppressMessage("StyleCop", "SA1615", Justification = "The code is external and contains xml documentation")]
+    [SuppressMessage("StyleCop", "SA1623", Justification = "The code is external and contains xml documentation")]
     /// <summary>
     /// This code has been taken from https://github.com/theunrepentantgeek/Markdown.XAML
     /// Authored by Bevan Arps under MIT license
@@ -240,7 +244,7 @@ namespace Microsoft.Templates.UI.Controls
             }
 
             // split on two or more newlines
-            string[] grafs = _newlinesMultiple.Split(_newlinesLeadingTrailing.Replace(text, ""));
+            string[] grafs = _newlinesMultiple.Split(_newlinesLeadingTrailing.Replace(text, string.Empty));
 
             foreach (var g in grafs)
             {
@@ -865,8 +869,8 @@ namespace Microsoft.Templates.UI.Controls
             }
 
             string span = match.Groups[2].Value;
-            span = Regex.Replace(span, @"^[ ]*", ""); // leading whitespace
-            span = Regex.Replace(span, @"[ ]*$", ""); // trailing whitespace
+            span = Regex.Replace(span, @"^[ ]*", string.Empty); // leading whitespace
+            span = Regex.Replace(span, @"[ ]*$", string.Empty); // trailing whitespace
 
             var result = new Run(span);
             if (CodeStyle != null)
@@ -949,7 +953,7 @@ namespace Microsoft.Templates.UI.Controls
         /// </summary>
         private string Outdent(string block)
         {
-            return _outDent.Replace(block, "");
+            return _outDent.Replace(block, string.Empty);
         }
 
         /// <summary>
