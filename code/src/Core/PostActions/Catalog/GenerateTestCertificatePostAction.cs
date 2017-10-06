@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private static void RemoveFromStore(string base64Encoded)
         {
-            var certificate = new X509Certificate2(Convert.FromBase64String(base64Encoded), "");
+            var certificate = new X509Certificate2(Convert.FromBase64String(base64Encoded), string.Empty);
             var store = new X509Store(StoreLocation.CurrentUser);
 
             store.Open(OpenFlags.ReadWrite);
@@ -82,9 +82,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             var request = enrollment.CreateRequest();
 
-            enrollment.InstallResponse(InstallResponseRestrictionFlags.AllowUntrustedCertificate, request, EncodingType.XCN_CRYPT_STRING_BASE64, "");
+            enrollment.InstallResponse(InstallResponseRestrictionFlags.AllowUntrustedCertificate, request, EncodingType.XCN_CRYPT_STRING_BASE64, string.Empty);
 
-            var base64Encoded = enrollment.CreatePFX("", PFXExportOptions.PFXExportChainWithRoot);
+            var base64Encoded = enrollment.CreatePFX(string.Empty, PFXExportOptions.PFXExportChainWithRoot);
 
             return base64Encoded;
         }
@@ -145,7 +145,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             // Create the self signing request
             var cert = new CX509CertificateRequestCertificate();
 
-            cert.InitializeFromPrivateKey(X509CertificateEnrollmentContext.ContextUser, privateKey, "");
+            cert.InitializeFromPrivateKey(X509CertificateEnrollmentContext.ContextUser, privateKey, string.Empty);
             cert.Subject = dn;
             cert.Issuer = dn;
             cert.NotBefore = DateTime.Now.Date.AddDays(-1);

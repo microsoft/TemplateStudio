@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private static void AddToMergeDictionary(string originalFilePath)
         {
-            var relPath = originalFilePath.Replace(GenContext.Current.OutputPath, "").Replace(@"\", @"/");
+            var relPath = originalFilePath.Replace(GenContext.Current.OutputPath, string.Empty).Replace(@"\", @"/");
             var postactionContent = MergeDictionaryPattern.Replace("{filePath}", relPath);
             var mergeDictionaryName = Path.GetFileNameWithoutExtension(originalFilePath);
             File.WriteAllText(GenContext.Current.OutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);

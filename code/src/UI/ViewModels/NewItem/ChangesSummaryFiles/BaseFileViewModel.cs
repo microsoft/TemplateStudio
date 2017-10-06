@@ -29,7 +29,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 if (FileStatus == FileStatus.ConflictingStylesFile)
                 {
-                    var name = Subject.Replace(".xaml", "");
+                    var name = Subject.Replace(".xaml", string.Empty);
                     return Path.Combine(GenContext.Current.OutputPath, $"{name}_failedpostaction.xaml");
                 }
 

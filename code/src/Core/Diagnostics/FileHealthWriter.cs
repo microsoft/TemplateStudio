@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
 
             var sb = new StringBuilder();
-            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\t{StringRes.ExceptionTrackedString}. {message ?? ""}");
+            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\t{StringRes.ExceptionTrackedString}. {message ?? string.Empty}");
 
             if (ex != null)
             {

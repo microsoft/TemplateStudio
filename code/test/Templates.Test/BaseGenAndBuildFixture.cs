@@ -195,7 +195,7 @@ namespace Microsoft.Templates.Test
         {
             for (int i = 0; i < 10; i++)
             {
-                var randomName = Path.GetRandomFileName().Replace(".", "");
+                var randomName = Path.GetRandomFileName().Replace(".", string.Empty);
                 if (Naming.Validate(randomName, new List<Validator>()).IsValid)
                 {
                     return randomName;

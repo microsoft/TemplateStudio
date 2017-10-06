@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             if (!string.IsNullOrEmpty(prefix))
             {
                 localName = prefix + ":" + localName;
-                prefix = "";
+                prefix = string.Empty;
             }
 
             base.WriteStartElement(prefix, localName, ns);
@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             WriteComments(e);
             WriteRaw(Intend);
-            WriteStartElement(e.GetPrefixOfNamespace(e.Name.Namespace), e.Name.LocalName, "");
+            WriteStartElement(e.GetPrefixOfNamespace(e.Name.Namespace), e.Name.LocalName, string.Empty);
             WriteAttributes(e);
             if (e.Descendants().Count() > 0)
             {
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 WriteRaw(Intend);
                 WriteRaw(Intend);
-                WriteStartElement(e.GetPrefixOfNamespace(n.Name.Namespace), n.Name.LocalName, "");
+                WriteStartElement(e.GetPrefixOfNamespace(n.Name.Namespace), n.Name.LocalName, string.Empty);
                 WriteAttributes(n);
                 WriteEndElement();
                 WriteNewLine();

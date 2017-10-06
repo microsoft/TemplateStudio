@@ -250,7 +250,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             var inFile = @"Packaging\SampleContent.txt";
             var outFile = @"ToExtract.package";
-            var extractionDir = "";
+            var extractionDir = string.Empty;
 
             TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 

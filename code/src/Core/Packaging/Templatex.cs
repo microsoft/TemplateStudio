@@ -415,7 +415,7 @@ namespace Microsoft.Templates.Core.Packaging
 
             if (!Path.IsPathRooted(source))
             {
-                uriString = Path.GetDirectoryName(Path.GetFullPath(source)).Replace(source, "");
+                uriString = Path.GetDirectoryName(Path.GetFullPath(source)).Replace(source, string.Empty);
                 if (!File.Exists(source))
                 {
                     uriString = uriString + Path.DirectorySeparatorChar;
