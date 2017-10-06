@@ -14,15 +14,18 @@ namespace Microsoft.Templates.Core.Packaging
         {
         }
 
-        public SignCertNotFoundException(string message) : base(message)
+        public SignCertNotFoundException(string message)
+            : base(message)
         {
         }
 
-        public SignCertNotFoundException(string message, Exception innerException) : base(message, innerException)
+        public SignCertNotFoundException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
 
-        protected SignCertNotFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected SignCertNotFoundException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

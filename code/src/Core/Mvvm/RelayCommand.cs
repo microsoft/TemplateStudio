@@ -12,7 +12,8 @@ namespace Microsoft.Templates.Core.Mvvm
         private readonly Action _execute;
         private readonly Func<bool> _canExecute;
 
-        public RelayCommand(Action execute) : this(execute, null)
+        public RelayCommand(Action execute)
+            : this(execute, null)
         {
         }
 

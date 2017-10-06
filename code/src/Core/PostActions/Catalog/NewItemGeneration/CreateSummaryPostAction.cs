@@ -16,7 +16,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class CreateSummaryPostAction : PostAction<TempGenerationResult>
     {
-        public CreateSummaryPostAction(TempGenerationResult config) : base(config)
+        public CreateSummaryPostAction(TempGenerationResult config)
+            : base(config)
         {
         }
 

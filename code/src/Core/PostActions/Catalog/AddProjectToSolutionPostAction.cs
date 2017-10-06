@@ -14,7 +14,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config) : base(config)
+        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config)
+            : base(config)
         {
         }
 

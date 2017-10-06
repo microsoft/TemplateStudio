@@ -11,7 +11,8 @@ namespace Microsoft.Templates.Core.Composition
     [Serializable]
     public class QueryablePropertyDictionary : Dictionary<string, QueryableProperty>
     {
-        protected QueryablePropertyDictionary(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected QueryablePropertyDictionary(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 

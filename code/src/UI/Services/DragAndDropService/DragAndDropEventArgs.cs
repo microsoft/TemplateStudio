@@ -8,7 +8,8 @@ using System.Windows;
 
 namespace Microsoft.Templates.UI.Services
 {
-    public class DragAndDropEventArgs<T> : EventArgs where T : class
+    public class DragAndDropEventArgs<T> : EventArgs
+        where T : class
     {
         public ObservableCollection<T> Items { get; }
         public T ItemData { get; }

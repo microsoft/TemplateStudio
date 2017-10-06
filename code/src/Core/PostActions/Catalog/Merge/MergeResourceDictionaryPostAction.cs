@@ -24,7 +24,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     <!--}]}-->
 </ResourceDictionary.MergedDictionaries>";
 
-        public MergeResourceDictionaryPostAction(MergeConfiguration config) : base(config)
+        public MergeResourceDictionaryPostAction(MergeConfiguration config)
+            : base(config)
         {
         }
 

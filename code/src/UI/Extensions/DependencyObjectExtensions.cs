@@ -11,7 +11,8 @@ namespace Microsoft.Templates.UI
 {
     public static class DependencyObjectExtensions
     {
-        public static IEnumerable<T> ChildrenOfType<T>(this DependencyObject dObject, bool includeInheritance = false) where T : DependencyObject
+        public static IEnumerable<T> ChildrenOfType<T>(this DependencyObject dObject, bool includeInheritance = false)
+            where T : DependencyObject
         {
             int count = VisualTreeHelper.GetChildrenCount(dObject);
 

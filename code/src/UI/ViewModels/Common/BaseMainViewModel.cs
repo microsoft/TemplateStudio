@@ -250,7 +250,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             NextCommand.OnCanExecuteChanged();
         }
 
-        public T FindResource<T>(string resourceKey) where T : class
+        public T FindResource<T>(string resourceKey)
+            where T : class
         {
             if (_mainView != null)
             {

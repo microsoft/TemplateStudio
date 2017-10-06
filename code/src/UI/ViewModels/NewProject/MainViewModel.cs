@@ -39,7 +39,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
         public OrderingService Ordering { get; } = new OrderingService();
 
-        public MainViewModel() : base()
+        public MainViewModel()
+            : base()
         {
             Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
             Current = this;

@@ -15,16 +15,19 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private TextWriter writer;
         private const string Intend = "    ";
 
-        public ResourceDictionaryWriter(TextWriter w) : base(w)
+        public ResourceDictionaryWriter(TextWriter w)
+            : base(w)
         {
             writer = w;
         }
 
-        public ResourceDictionaryWriter(Stream w, Encoding encoding) : base(w, encoding)
+        public ResourceDictionaryWriter(Stream w, Encoding encoding)
+            : base(w, encoding)
         {
         }
 
-        public ResourceDictionaryWriter(string filename, Encoding encoding) : base(filename, encoding)
+        public ResourceDictionaryWriter(string filename, Encoding encoding)
+            : base(filename, encoding)
         {
         }
 

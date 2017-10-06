@@ -34,7 +34,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
-        public MainViewModel() : base()
+        public MainViewModel()
+            : base()
         {
             Current = this;
         }

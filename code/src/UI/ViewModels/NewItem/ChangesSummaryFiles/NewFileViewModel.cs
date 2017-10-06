@@ -9,7 +9,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class NewFileViewModel : BaseFileViewModel
     {
-        public NewFileViewModel(NewItemGenerationFileInfo generationInfo) : base(generationInfo, FileStatus.NewFile)
+        public NewFileViewModel(NewItemGenerationFileInfo generationInfo)
+            : base(generationInfo, FileStatus.NewFile)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleNewFiles;
             DetailDescription = StringRes.ChangesSummaryDetailDescriptionNewFiles;

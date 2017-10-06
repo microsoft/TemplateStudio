@@ -28,12 +28,14 @@ namespace Microsoft.Templates.Core.Locations
 
         protected string FinalDestination { get; set; }
 
-        public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0", true)
+        public LocalTemplatesSource()
+            : this("0.0.0.0", "0.0.0.0", true)
         {
             _id = Configuration.Current.Environment;
         }
 
-        public LocalTemplatesSource(string id) : this("0.0.0.0", "0.0.0.0", true)
+        public LocalTemplatesSource(string id)
+            : this("0.0.0.0", "0.0.0.0", true)
         {
             _id = id;
         }

@@ -16,7 +16,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class GenerateTestCertificatePostAction : PostAction<string>
     {
-        public GenerateTestCertificatePostAction(string config) : base(config)
+        public GenerateTestCertificatePostAction(string config)
+            : base(config)
         {
         }
 

@@ -12,7 +12,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public class GetMergeFilesFromProjectPostAction : PostAction<string>
     {
-        public GetMergeFilesFromProjectPostAction(string config) : base(config)
+        public GetMergeFilesFromProjectPostAction(string config)
+            : base(config)
         {
         }
 

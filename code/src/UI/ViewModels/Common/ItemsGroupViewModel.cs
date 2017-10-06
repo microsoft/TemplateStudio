@@ -12,7 +12,8 @@ using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
-    public class ItemsGroupViewModel<T> : Observable where T : class
+    public class ItemsGroupViewModel<T> : Observable
+        where T : class
     {
         private Action<ItemsGroupViewModel<T>> _onItemChanged;
 
