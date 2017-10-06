@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Packaging
     {
         public const string DefaultExtension = ".mstx";
 
-        private const int bufSize = 0x1000;
+        private const int BufSize = 0x1000;
         private const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/securecontent";
 
         private static string CreateSourcePath(string source)
@@ -373,10 +373,10 @@ namespace Microsoft.Templates.Core.Packaging
 
         private static void CopyStream(Stream source, Stream target)
         {
-            var buf = new byte[bufSize];
+            var buf = new byte[BufSize];
             int bytesRead = 0;
 
-            while ((bytesRead = source.Read(buf, 0, bufSize)) > 0)
+            while ((bytesRead = source.Read(buf, 0, BufSize)) > 0)
             {
                 target.Write(buf, 0, bytesRead);
             }

@@ -13,7 +13,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     public class ResourceDictionaryWriter : XmlTextWriter
     {
         private TextWriter writer;
-        private const string intend = "    ";
+        private const string Intend = "    ";
 
         public ResourceDictionaryWriter(TextWriter w) : base(w)
         {
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private void WriteElement(XElement e)
         {
             WriteComments(e);
-            WriteRaw(intend);
+            WriteRaw(Intend);
             WriteStartElement(e.GetPrefixOfNamespace(e.Name.Namespace), e.Name.LocalName, "");
             WriteAttributes(e);
             if (e.Descendants().Count() > 0)
@@ -103,7 +103,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             if (e.PreviousNode != null && e.PreviousNode.NodeType == XmlNodeType.Comment)
             {
-                WriteRaw(intend);
+                WriteRaw(Intend);
                 WriteComment((e.PreviousNode as XComment).Value);
                 WriteNewLine();
             }
@@ -114,15 +114,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             WriteNewLine();
             foreach (var n in e.Descendants())
             {
-                WriteRaw(intend);
-                WriteRaw(intend);
+                WriteRaw(Intend);
+                WriteRaw(Intend);
                 WriteStartElement(e.GetPrefixOfNamespace(n.Name.Namespace), n.Name.LocalName, "");
                 WriteAttributes(n);
                 WriteEndElement();
                 WriteNewLine();
             }
 
-            WriteRaw(intend);
+            WriteRaw(Intend);
         }
 
         private void WriteAttributes(XElement e)

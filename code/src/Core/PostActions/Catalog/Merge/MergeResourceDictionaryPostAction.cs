@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public class MergeResourceDictionaryPostAction : MergePostAction
     {
-        private const string mergeDictionaryPattern = @"<ResourceDictionary.MergedDictionaries>
+        private const string MergeDictionaryPattern = @"<ResourceDictionary.MergedDictionaries>
     <!--^^-->
     <!--{[{-->
     <ResourceDictionary Source=""{filePath}""/>
@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private static void AddToMergeDictionary(string originalFilePath)
         {
             var relPath = originalFilePath.Replace(GenContext.Current.OutputPath, "").Replace(@"\", @"/");
-            var postactionContent = mergeDictionaryPattern.Replace("{filePath}", relPath);
+            var postactionContent = MergeDictionaryPattern.Replace("{filePath}", relPath);
             var mergeDictionaryName = Path.GetFileNameWithoutExtension(originalFilePath);
             File.WriteAllText(GenContext.Current.OutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);
         }
