@@ -65,7 +65,6 @@ namespace Microsoft.Templates.Test
 
             return resultPath;
         }
-
         protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework)
         {
             var info = ProjectConfigInfo.ReadProjectConfiguration();
@@ -111,13 +110,37 @@ namespace Microsoft.Templates.Test
             int emptyProjecFileCount = Directory.GetFiles(project, "*.*", SearchOption.AllDirectories).Count();
             Assert.True(emptyProjecFileCount > 2);
 
-            // Add new items
             var rightClickTemplates = _fixture.Templates().Where(
-                                            t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
-                                              && t.GetFrameworkList().Contains(framework)
-                                              && !t.GetIsHidden()
-                                              && t.GetRightClickEnabled());
+                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
+                                             && t.GetFrameworkList().Contains(framework)
+                                             && !t.GetIsHidden()
+                                             && t.GetRightClickEnabled());
 
+            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, language);
+
+            var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
+            int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
+
+            if (emptyProject)
+            {
+                Assert.True(finalProjectFileCount > emptyProjecFileCount);
+            }
+            else
+            {
+                Assert.True(finalProjectFileCount == emptyProjecFileCount);
+            }
+            // Clean
+            if (cleanGeneration)
+            {
+                Fs.SafeDeleteDirectory(finalProjectPath);
+            }
+
+            return finalProjectPath;
+        }
+
+        protected async Task AddRightClickTemplatesAsync(IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string language)
+        {
+            // Add new items
             foreach (var item in rightClickTemplates)
             {
                 OutputPath = GenContext.GetTempGenerationPath(projectName);
@@ -137,26 +160,6 @@ namespace Microsoft.Templates.Test
 
                 NewItemGenController.Instance.UnsafeFinishGeneration(newUserSelection);
             }
-
-            var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
-            int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
-
-            if (emptyProject)
-            {
-                Assert.True(finalProjectFileCount > emptyProjecFileCount);
-            }
-            else
-            {
-                Assert.True(finalProjectFileCount == emptyProjecFileCount);
-            }
-
-            // Clean
-            if (cleanGeneration)
-            {
-                Fs.SafeDeleteDirectory(finalProjectPath);
-            }
-
-            return finalProjectPath;
         }
 
         protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language, bool cleanGeneration = true)
@@ -248,6 +251,9 @@ namespace Microsoft.Templates.Test
                     result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetProjectTemplatesAsync(framework));
                     break;
 
+                case "LegacyFrameworks":
+                    result = context.Factory.Run(() => BuildRightClickWithLegacyFixture.GetProjectTemplatesAsync());
+                    break;
                 default:
                     result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync());
                     break;
@@ -281,7 +287,6 @@ namespace Microsoft.Templates.Test
                     result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetPageAndFeatureTemplatesAsync(framework));
                     break;
             }
-
             return result;
         }
     }

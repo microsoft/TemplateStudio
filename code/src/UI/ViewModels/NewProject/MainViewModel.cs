@@ -70,7 +70,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CheckProjectSetupChanged())
             {
-                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName), true, 5));
+                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName), true));
                 _needRestartConfiguration = true;
             }
             else

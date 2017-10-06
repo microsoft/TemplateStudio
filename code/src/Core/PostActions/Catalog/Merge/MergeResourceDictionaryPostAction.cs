@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private string GetKey(XElement node)
         {
             XNamespace ns = node.GetNamespaceOfPrefix("x");
-            return node.Attribute(ns + "Key").Value;
+            return node.Attribute(ns + "Key")?.Value;
         }
 
         private IEnumerable<XElement> GetNodesToMerge(XElement rootNode)
