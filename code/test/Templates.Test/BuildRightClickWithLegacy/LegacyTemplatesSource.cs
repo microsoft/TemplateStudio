@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Test
 
         private readonly string _cdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-        public override bool ForcedAcquisition => false;
+        public override bool ForcedAcquisition => true;
 
         public override string Id => "TestBuildLegacy";
 
