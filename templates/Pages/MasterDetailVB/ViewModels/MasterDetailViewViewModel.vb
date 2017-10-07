@@ -7,7 +7,7 @@ Imports Param_ItemNamespace.Services
 
 Namespace ViewModels
     Public Class MasterDetailViewViewModel
-        Implements System.ComponentModel.INotifyPropertyChanged
+        Inherits System.ComponentModel.INotifyPropertyChanged
 
         Private _selected As SampleOrder
 
