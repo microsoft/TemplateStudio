@@ -22,7 +22,7 @@
     },
     {
       "path": ".\\Views\\wts.ItemNameExamplePage.xaml.vb"
-    },
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

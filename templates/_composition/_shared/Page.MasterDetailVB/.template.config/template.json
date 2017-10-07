@@ -3,17 +3,24 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Settings.AddInitialization_TabbedPivot.VB",
+  "name": "Page.MasterDetail.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == TabbedPivot & identity == wts.Page.Settings.VB"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind & identity == wts.Page.MasterDetail.VB|wts.Page.MasterDetail.CodeBehind.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [],
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\wts.ItemNameDetailControl.xaml"
+    },
+    {
+      "path": ".\\Views\\wts.ItemNameDetailControl.xaml.vb"
+    }
+  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",

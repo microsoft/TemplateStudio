@@ -18,32 +18,17 @@
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true" 
   },
-  "sourceName": "MasterDetail",
+  "sourceName": "MasterDetailView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\MasterDetailPage.xaml"
+      "path": ".\\Views\\MasterDetailViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailPage.xaml.vb"
+      "path": ".\\Views\\MasterDetailViewPage.xaml.vb"
     },
     {
-      "path": ".\\Views\\MasterDetailDetailPage.xaml"
-    },
-    {
-      "path": ".\\Views\\MasterDetailDetailPage.xaml.vb"
-    },
-    {
-      "path": ".\\Views\\MasterDetailDetailControl.xaml"
-    },
-    {
-      "path": ".\\Views\\MasterDetailDetailControl.xaml.vb"
-    },
-    {
-      "path": ".\\ViewModels\\MasterDetailViewModel.vb"
-    },
-    {
-      "path": ".\\ViewModels\\MasterDetailDetailViewModel.vb"
+      "path": ".\\ViewModels\\MasterDetailViewViewModel.vb"
     }
   ],
   "symbols": {

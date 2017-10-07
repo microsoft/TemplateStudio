@@ -3,17 +3,18 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Settings.AddInitialization_TabbedPivot.VB",
+  "name": "CodeBehind.Page.AddINotifyPropertyChanged_ImageGallery.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == TabbedPivot & identity == wts.Page.Settings.VB"
+    "wts.compositionFilter": "identity == wts.Page.ImageGallery.CodeBehind.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [],
+  "PrimaryOutputs": [
+  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",

@@ -3,17 +3,18 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Settings.AddInitialization_TabbedPivot.VB",
+  "name": "Project.SplitView.Page.AddAdaptiveTriggerForPageTitle_Blank_Settings_TabbedPivot_ImageGallery.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == TabbedPivot & identity == wts.Page.Settings.VB"
+    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.Blank.VB|wts.Page.Settings.VB|wts.Page.TabbedPivot.VB|wts.Page.Chart.VB|wts.Page.MasterDetail.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [],
+  "PrimaryOutputs": [
+  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",

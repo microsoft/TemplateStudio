@@ -185,7 +185,7 @@ namespace Microsoft.Templates.Test
 
             finalName = Naming.Infer(finalName, validators);
 
-            var projectName = $"{projectType}{framework}{finalName}";
+            var projectName = $"{projectType}{framework}{finalName}{ShortLanguageName(language)}";
 
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
@@ -298,7 +298,8 @@ namespace Microsoft.Templates.Test
                     "wts.Page.Blank.CodeBehind", "wts.Page.Settings.CodeBehind", "wts.Page.Chart.CodeBehind",
                     "wts.Page.Grid.CodeBehind", "wts.Page.WebView.CodeBehind", "wts.Page.MediaPlayer.CodeBehind",
                     "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind",
-                    "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile"
+                    "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
+                    "wts.Feat.UriScheme",
                 };
             }
             else if (framework == CodeBehind)

@@ -27,7 +27,7 @@
     },
     {
       "path": ".\\Assets\\Logo.png"
-    },
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {
