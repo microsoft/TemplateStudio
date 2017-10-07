@@ -61,21 +61,18 @@ namespace Microsoft.Templates.Test
         [Fact]
         public void EnsureVisualBasicCodeDoesNotIncludeCommonPortingIssues()
         {
+            var foundErrors = new List<string>();
+
             // Build tests will fail if these are included but this test is quicker than building everything
             void CheckStringNotIncluded(string toSearchFor)
             {
                 var result = CodeIsNotUsed(toSearchFor, ".vb");
 
-                Assert.True(result.Item1, result.Item2);
+                if (!result.Item1)
+                {
+                     foundErrors.Add(result.Item2);
+                }
             }
-
-            CheckStringNotIncluded("Namespace Param_RootNamespace."); // Root namespace is included by default in VB
-            CheckStringNotIncluded("Namespace Param_ItemNamespace."); // Root namespace is included by default in VB
-            CheckStringNotIncluded(";");
-            CheckStringNotIncluded("var "); // May be in commented our code included in template as an example
-            CheckStringNotIncluded("Key ."); // Output by converter as part of object initializers
-            CheckStringNotIncluded("yield Return"); // Return not needed but converter includes it
-            CheckStringNotIncluded("wts__"); // temporary placeholder used during conversion
 
             void IfLineIncludes(string ifIncludes, string itMustAlsoInclude, string unlessItContains = "DeFaUlTvAlUeThAtWoNtMaTcHaNyThInG")
             {
@@ -87,14 +84,24 @@ namespace Microsoft.Templates.Test
                         {
                             if (!line.Contains(unlessItContains))
                             {
-                                Assert.True(false, $"The file '{file}' contains '{ifIncludes}' but doesn't also include '{itMustAlsoInclude}'.");
+                                foundErrors.Add($"The file '{file}' contains '{ifIncludes}' but doesn't also include '{itMustAlsoInclude}'.");
                             }
                         }
                     }
                 }
             }
 
+            CheckStringNotIncluded("Namespace Param_RootNamespace."); // Root namespace is included by default in VB
+            CheckStringNotIncluded("Namespace Param_ItemNamespace."); // Root namespace is included by default in VB
+            CheckStringNotIncluded(";");
+            CheckStringNotIncluded("var "); // May be in commented our code included in template as an example
+            CheckStringNotIncluded("Key ."); // Output by converter as part of object initializers
+            CheckStringNotIncluded("yield Return"); // Return not needed but converter includes it
+            CheckStringNotIncluded("wts__"); // temporary placeholder used during conversion
+
             IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: " MustOverride ");
+
+            Assert.True(foundErrors.Count == 0, string.Join(Environment.NewLine, foundErrors));
         }
 
         private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeinTheFile, string fileExtension)
