@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Test
                      && !t.GetIsHidden()
                      && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}{framework}Wack";
+            var projectName = $"{projectType}{framework}Wack{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetDefaultName, false);
 
@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Test
 
             // Create APPXBundle
             // NOTE. This is very slow. (i.e. ~10+ mins) as it does a full release build including all .net native compilation
-            var bundleResult = _fixture.BuildAppxBundle(projectName, projectPath);
+            var bundleResult = _fixture.BuildAppxBundle(projectName, projectPath, GetProjectExtension(language));
 
             Assert.True(bundleResult.exitCode.Equals(0), $"Failed to create AppxBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(bundleResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(bundleResult.outputFile)} for more details.");
 

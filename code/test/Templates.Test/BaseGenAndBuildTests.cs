@@ -35,6 +35,11 @@ namespace Microsoft.Templates.Test
             return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
         }
 
+        protected static string GetProjectExtension(string language)
+        {
+            return language == ProgrammingLanguages.CSharp ? "csproj" : "vbproj";
+        }
+
         protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
             await SetUpFixtureForTestingAsync(language);

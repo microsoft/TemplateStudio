@@ -121,12 +121,12 @@ namespace Microsoft.Templates.Test
         }
 
         [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
-        public (int exitCode, string outputFile) BuildAppxBundle(string projectName, string outputPath)
+        public (int exitCode, string outputFile) BuildAppxBundle(string projectName, string outputPath, string projectExtension)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{projectName}.txt");
 
             var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
-            var projectFile = Path.GetFullPath(outputPath + @"\" + projectName + @"\" + projectName + ".csproj");
+            var projectFile = Path.GetFullPath(outputPath + @"\" + projectName + @"\" + projectName + $".{projectExtension}");
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
