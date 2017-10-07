@@ -23,9 +23,14 @@ namespace wts.DefaultProject
             InitializeComponent();
         }
 
+        protected override void ConfigureContainer()
+        {
+            base.ConfigureContainer();
+            Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
+        }
+
         protected override Task OnInitializeAsync(IActivatedEventArgs args)
         {
-            Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
             return base.OnInitializeAsync(args);
         }
     }

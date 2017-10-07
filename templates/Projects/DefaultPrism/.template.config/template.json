@@ -10,7 +10,7 @@
     "type": "project",
     "wts.type": "project",
     "wts.framework": "Prism",
-    "wts.projecttype":"Blank|SplitView|TabbedPivot",
+    "wts.projecttype":"Blank",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1"
   },

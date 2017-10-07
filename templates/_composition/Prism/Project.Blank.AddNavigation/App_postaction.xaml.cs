@@ -10,21 +10,19 @@ using System.Globalization;
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
             NavigationService.Navigate(PageTokens.Param_HomeNamePage, null);
-            return Task.FromResult(true);
+            return Task.CompletedTask;
         }
 //}]}
 
         protected override Task OnInitializeAsync(IActivatedEventArgs args)
         {
-            Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
 //{[{
             // We are remapping the default ViewNamePage->ViewNamePageViewModel naming to ViewNamePage->ViewNameViewModel to 
             // gain better code reuse with other frameworks and pages within Windows Template Studio
             ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver((viewType) =>
             {
                 var viewModelTypeName = string.Format(CultureInfo.InvariantCulture, "Param_RootNamespace.ViewModels.{0}ViewModel, Param_RootNamespace", viewType.Name.Replace("Page",String.Empty));
-                var viewModelType = Type.GetType(viewModelTypeName);
-                return viewModelType;
+                return Type.GetType(viewModelTypeName);
             });
 //}]}
             return base.OnInitializeAsync(args);
