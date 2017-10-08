@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == Prism & identity == wts.Page.Chart"
+    "wts.compositionFilter": "$framework == Prism & identity == wts.Page.Chart.Prism"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -5,7 +5,7 @@
   ],
   "name": "Chart",
   "groupIdentity": "wts.Page.Chart",
-  "identity": "wts.Page.Prism.Chart",
+  "identity": "wts.Page.Chart.Prism",
   "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",
   "tags": {
     "language": "C#",
