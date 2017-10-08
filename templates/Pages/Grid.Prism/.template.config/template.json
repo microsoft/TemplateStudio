@@ -3,33 +3,33 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Chart",
-  "groupIdentity": "wts.Page.Chart",
-  "identity": "wts.Page.Prism.Chart",
-  "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",
+  "name": "Grid",
+  "groupIdentity": "wts.Page.Grid",
+  "identity": "wts.Page.Prism.Grid",
+  "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "page",
     "wts.framework": "Prism",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "7",
+    "wts.displayOrder": "6",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
     "wts.dependencies": "wts.Feat.SampleDataService",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true" 
   },
-  "sourceName": "ChartView",
+  "sourceName": "GridView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\ChartViewPage.xaml"
+      "path": ".\\Views\\GridViewPage.xaml"
     },
     {
-      "path": ".\\Views\\ChartViewPage.xaml.cs"
+      "path": ".\\Views\\GridViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\ChartViewViewModel.cs"
+      "path": ".\\ViewModels\\GridViewViewModel.cs"
     }
   ],
   "symbols": {
