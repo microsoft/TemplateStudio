@@ -70,11 +70,11 @@ namespace Microsoft.Templates.Test
 
                 if (!result.Item1)
                 {
-                     foundErrors.Add(result.Item2);
+                    foundErrors.Add(result.Item2);
                 }
             }
 
-            void IfLineIncludes(string ifIncludes, string itMustAlsoInclude, string unlessItContains = "DeFaUlTvAlUeThAtWoNtMaTcHaNyThInG")
+            void IfLineIncludes(string ifIncludes, string itMustAlsoInclude, params string[] unlessItContains)
             {
                 foreach (var file in GetFiles(TemplatesRoot, ".vb"))
                 {
@@ -82,7 +82,21 @@ namespace Microsoft.Templates.Test
                     {
                         if (line.Contains(ifIncludes) && !line.Contains(itMustAlsoInclude))
                         {
-                            if (!line.Contains(unlessItContains))
+                            var foundException = false;
+
+                            if (unlessItContains != null)
+                            {
+                                foreach (var unless in unlessItContains)
+                                {
+                                    if (line.Contains(unless))
+                                    {
+                                        foundException = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (!foundException)
                             {
                                 foundErrors.Add($"The file '{file}' contains '{ifIncludes}' but doesn't also include '{itMustAlsoInclude}'.");
                             }
@@ -100,7 +114,7 @@ namespace Microsoft.Templates.Test
             CheckStringNotIncluded("wts__"); // temporary placeholder used during conversion
             CheckStringNotIncluded("'''/");
 
-            IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: " MustOverride ");
+            IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: new[] { " MustOverride ", "Function RunAsync(", "Function RunAsyncInternal(", " FireAndForget(" });
 
             Assert.True(foundErrors.Count == 0, string.Join(Environment.NewLine, foundErrors));
         }
