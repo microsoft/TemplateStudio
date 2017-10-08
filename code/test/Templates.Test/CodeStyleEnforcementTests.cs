@@ -98,6 +98,7 @@ namespace Microsoft.Templates.Test
             CheckStringNotIncluded("Key ."); // Output by converter as part of object initializers
             CheckStringNotIncluded("yield Return"); // Return not needed but converter includes it
             CheckStringNotIncluded("wts__"); // temporary placeholder used during conversion
+            CheckStringNotIncluded("'''/");
 
             IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: " MustOverride ");
 

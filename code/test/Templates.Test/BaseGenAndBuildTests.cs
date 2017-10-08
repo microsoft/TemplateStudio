@@ -305,6 +305,7 @@ namespace Microsoft.Templates.Test
                     "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind",
                     "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                     "wts.Feat.UriScheme", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
+                    "wts.Feat.ToastNotifications",
                 };
             }
             else if (framework == CodeBehind)
