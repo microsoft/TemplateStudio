@@ -1,19 +1,22 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Services (MCS)",
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Grid.AddSampleData",
+  "name": "Prism.Feature.SampleDataService.AddInterface", 
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism  & identity == wts.Page.Grid|wts.Page.Grid.CodeBehind"
- },
+    "wts.compositionFilter": "$framework == Prism & identity == wts.Feat.SampleDataService"
+  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\ISampleDataService.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {
@@ -23,10 +26,6 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
-    },
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
     }
   }
 }

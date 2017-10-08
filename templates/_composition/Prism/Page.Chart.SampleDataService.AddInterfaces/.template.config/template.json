@@ -3,17 +3,20 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Grid.AddSampleData",
+  "name": "Prism.Page.Chart.AddSampleData",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism  & identity == wts.Page.Grid|wts.Page.Grid.CodeBehind"
+    "wts.compositionFilter": "$framework == Prism & identity == wts.Page.Chart"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": ".\\Models\\DataPoint.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {
