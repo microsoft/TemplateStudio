@@ -329,6 +329,7 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     fileInfo.Delete();
                 }
+                Fs.EnsureFolder(CurrentTemplatesFolder);
                 File.WriteAllText(fileInfo.FullName, "Instance syncing");
             }
             catch (Exception ex)
