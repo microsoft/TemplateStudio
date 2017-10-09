@@ -22,7 +22,6 @@ namespace Microsoft.Templates.Test
 {
     [Collection("BuildMVVMLightCollection")]
     [Trait("ExecutionSet", "BuildMVVMLight")]
-    [Trait("ExecutionSet", "Build")]
     public class BuildMVVMLightProjectTests : BaseGenAndBuildTests
     {
         public BuildMVVMLightProjectTests(BuildMVVMLightFixture fixture)
@@ -73,7 +72,6 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimum")]
-
         public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =

@@ -38,6 +38,7 @@ namespace Param_ItemNamespace.ViewModels
                     _switchThemeCommand = new RelayCommand<ElementTheme>(
                         async (param) =>
                         {
+                            ElementTheme = param;
                             await ThemeSelectorService.SetThemeAsync(param);
                         });
                 }

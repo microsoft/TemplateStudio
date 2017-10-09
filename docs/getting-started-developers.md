@@ -98,10 +98,11 @@ The following list shows which tests are executed in which build. Within the Tem
     * ExecutionSet=BuildCaliburnMicro
     * ExecutionSet=BuildStyleCop
     * ExecutionSet=TemplateValidation
+    * ExecutionSet=BuildRightClickWithLegacy
 
 * VSO 'Templates.Test.Wack'	Build (Wack Tests):
   * Templates.Test
-    * ExecutionSet=ManualOnly
+    * ExecutionSet=LongRunning
 
 To shorten test execution time traits in Templates.Test are run parallel using this [script](../_build/ParallelTestExecution.ps1).
 To execute this script locally use the following powershell command:

@@ -22,8 +22,6 @@ namespace Param_ItemNamespace.ViewModels
             var data = await SampleDataService.GetSampleModelDataAsync();
 
             Items.AddRange(data.Select(d => new MasterDetailViewDetailViewModel(d)));
-
-            ActiveItem = Items.First();
         }
     }
 }
