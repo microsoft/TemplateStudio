@@ -14,6 +14,8 @@ using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
 
+using VsThreading = Microsoft.VisualStudio.Shell;
+
 namespace Microsoft.Templates.UI.VisualStudio
 {
     public abstract class SolutionWizard : IWizard, IContextProvider
@@ -64,10 +66,15 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
         }
 
-        public async void RunFinished()
+        public void RunFinished()
         {
             AppHealth.Current.Info.TrackAsync(StringRes.SolutionWizardRunFinishedMessage).FireAndForget();
-            await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
+            VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
+            {
+                await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
+            });
+
             AppHealth.Current.Info.TrackAsync(StringRes.GenerationFinishedString).FireAndForget();
 
             PostGenerationActions();

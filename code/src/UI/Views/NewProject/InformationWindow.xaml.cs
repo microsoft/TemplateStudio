@@ -77,6 +77,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
             {
                 Width = mainWindow.Width * 0.6;
             }
+
             if (mainWindow.Height < 700)
             {
                 Height = mainWindow.Height * 0.8;

@@ -26,6 +26,7 @@ namespace Microsoft.Templates.UI.Services
                 {
                     projectTypes.Add(projectType);
                 }
+
                 return true;
             }
             else
@@ -48,6 +49,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 frameworks.Add(item);
             }
+
             return frameworks.Any();
         }
 
@@ -60,6 +62,7 @@ namespace Microsoft.Templates.UI.Services
                 templatesGroups.AddRange(groups);
                 return templates.Count();
             }
+
             return 0;
         }
     }

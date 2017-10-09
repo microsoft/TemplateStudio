@@ -25,6 +25,8 @@ using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.Core.Diagnostics;
 
+using VsThreading = Microsoft.VisualStudio.Shell;
+
 namespace Microsoft.Templates.VsEmulator.Main
 {
     public class MainViewModel : Observable, IContextProvider
@@ -149,14 +151,22 @@ namespace Microsoft.Templates.VsEmulator.Main
             SolutionName = null;
         }
 
-        private async void NewCSharpProject()
+        private void NewCSharpProject()
         {
-           await NewProjectAsync(ProgrammingLanguages.CSharp);
+            VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
+            {
+                await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await NewProjectAsync(ProgrammingLanguages.CSharp);
+            });
         }
 
-        private async void NewVisualBasicProject()
+        private void NewVisualBasicProject()
         {
-            await NewProjectAsync(ProgrammingLanguages.VisualBasic);
+            VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
+            {
+                await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await NewProjectAsync(ProgrammingLanguages.VisualBasic);
+            });
         }
 
         private async Task NewProjectAsync(string language)
@@ -410,9 +420,9 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddLog(string message)
         {
             Log += message + Environment.NewLine;
-
-            _host.Dispatcher.Invoke(() =>
+            VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
             {
+                await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                 _host.logScroll.ScrollToEnd();
             });
         }
@@ -428,6 +438,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             CleanUpNotUsedContentVersions();
         }
 
+        [SuppressMessage(
+            "Usage",
+            "VSTHRD001:Use Await JoinableTaskFactory.SwitchToMainThreadAsync() to switch to the UI thread",
+            Justification = "Identified during async/await audit but needs further review.")]
         public void DoEvents()
         {
             var frame = new DispatcherFrame(true);

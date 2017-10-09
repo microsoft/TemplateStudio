@@ -39,14 +39,14 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         {
             var source = Path.GetFullPath(@".\TestData\Merge\Style.xaml");
             var postaction = Path.GetFullPath(@".\TestData\Merge\Style_postaction.xaml");
-            var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml").Replace("\r\n", "").Replace("\n", "");
+            var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml").Replace("\r\n", string.Empty).Replace("\n", string.Empty);
 
             var config = new MergeConfiguration(postaction, true);
 
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction(config);
             mergeResourceDictionaryPostAction.Execute();
 
-            var result = File.ReadAllText(source).Replace("\r\n", "").Replace("\n", "");
+            var result = File.ReadAllText(source).Replace("\r\n", string.Empty).Replace("\n", string.Empty);
 
             Assert.Equal(result, expected);
         }

@@ -43,6 +43,7 @@ namespace Microsoft.UI.Test
             // Default configuration: SplitView, CodeBehind, Blank page
             var viewModel = new MainViewModel();
             await viewModel.ProjectSetup.InitializeAsync();
+
             // Update project to Blank and framework to MVVM Light
             viewModel.ProjectSetup.SelectedProjectType = viewModel.ProjectSetup.ProjectTypes.First(pt => pt.Name == "Blank");
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == "MVVMLight");
@@ -146,12 +147,15 @@ namespace Microsoft.UI.Test
             settingsPage.SaveItemCommand.Execute(null);
 
             var blankPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Blank");
+
             // Add Blank 1
             blankPage.AddItemCommand.Execute(null);
             blankPage.SaveItemCommand.Execute(null);
+
             // Add Blank 2
             blankPage.AddItemCommand.Execute(null);
             blankPage.SaveItemCommand.Execute(null);
+
             // Add Blank 3
             blankPage.AddItemCommand.Execute(null);
             blankPage.SaveItemCommand.Execute(null);
@@ -200,6 +204,7 @@ namespace Microsoft.UI.Test
                     }
                 }
             }
+
             return null;
         }
     }

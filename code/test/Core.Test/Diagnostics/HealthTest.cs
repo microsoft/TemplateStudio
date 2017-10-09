@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 
     public class HealthTest
     {
-        TestHealthWriter _testWriter = null;
+        private TestHealthWriter _testWriter = null;
         public HealthTest()
         {
             _testWriter = new TestHealthWriter();

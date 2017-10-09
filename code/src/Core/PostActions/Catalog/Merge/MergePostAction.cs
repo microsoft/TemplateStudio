@@ -16,7 +16,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public class MergePostAction : PostAction<MergeConfiguration>
     {
-        public MergePostAction(MergeConfiguration config) : base(config)
+        public MergePostAction(MergeConfiguration config)
+            : base(config)
         {
         }
 

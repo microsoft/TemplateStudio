@@ -39,7 +39,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _featuresHeader, value);
         }
 
-        // public string HomeName { get; set; }
+        //// public string HomeName { get; set; }
 
         public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> PagesGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
         public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> FeatureGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
@@ -111,6 +111,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     firstPage.IsHome = true;
                 }
             }
+
             CloseAllEditions();
             await Task.CompletedTask;
         }

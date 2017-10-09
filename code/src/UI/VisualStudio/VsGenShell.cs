@@ -30,10 +30,24 @@ namespace Microsoft.Templates.UI.VisualStudio
         private Lazy<DTE> _dte = new Lazy<DTE>(() => ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE, true);
         private DTE Dte => _dte.Value;
 
-        private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
+        private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(
+            () =>
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                return ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell;
+            },
+            true);
+
         private IVsUIShell UIShell => _uiShell.Value;
 
-        private Lazy<IVsSolution> _vssolution = new Lazy<IVsSolution>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution, true);
+        private Lazy<IVsSolution> _vssolution = new Lazy<IVsSolution>(
+            () =>
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                return ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
+            },
+            true);
+
         private IVsSolution VSSolution => _vssolution.Value;
 
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
@@ -100,6 +114,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     }
                 }
             }
+
             return false;
         }
 
@@ -157,6 +172,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void ShowModal(System.Windows.Window dialog)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             // get the owner of this dialog
             UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
 
@@ -189,6 +206,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override string GetActiveProjectGuid()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var p = GetActiveProject();
 
             if (p != null)
@@ -215,6 +233,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     return Path.GetDirectoryName(item.Project.FullName);
                 }
+
                 if (item.ProjectItem != null)
                 {
                     string fullPath = $"{item.ProjectItem.Properties.GetSafeValue("FullPath")}";
@@ -369,6 +388,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override Guid GetVsProjectId()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             var project = GetActiveProject();
             Guid projectGuid = Guid.Empty;
             try
@@ -392,6 +412,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 projectGuid = Guid.Empty;
             }
+
             return projectGuid;
         }
 
@@ -416,7 +437,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     using (var client = new System.Net.WebClient())
                     {
                         var ncsi = client.DownloadString("http://www.msftncsi.com/ncsi.txt");
-                        internet = (ncsi == "Microsoft NCSI");
+                        internet = ncsi == "Microsoft NCSI";
                     }
                 }
                 catch
@@ -424,6 +445,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     internet = false;
                 }
             }
+
             return internet;
         }
 
@@ -447,6 +469,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         {
                             Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
                         }
+
                         break;
                 }
             }

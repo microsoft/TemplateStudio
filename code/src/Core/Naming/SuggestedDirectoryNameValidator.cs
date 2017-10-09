@@ -10,7 +10,8 @@ namespace Microsoft.Templates.Core
     public class SuggestedDirectoryNameValidator : Validator<string>
     {
         // config should be the path of an existing folder
-        public SuggestedDirectoryNameValidator(string config) : base(config)
+        public SuggestedDirectoryNameValidator(string config)
+            : base(config)
         {
         }
 

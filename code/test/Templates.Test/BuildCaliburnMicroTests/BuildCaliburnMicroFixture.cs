@@ -56,6 +56,7 @@ namespace Microsoft.Templates.Test
                     }
                 }
             }
+
             return result;
         }
 
@@ -93,6 +94,7 @@ namespace Microsoft.Templates.Test
                     }
                 }
             }
+
             return result;
         }
 
