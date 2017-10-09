@@ -164,7 +164,7 @@ namespace Microsoft.Templates.Test
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge
                 };
 
-                _fixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
+                _fixture.AddItem(newUserSelection, item, BaseGenAndBuildFixture.GetDefaultName);
 
                 await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
 
@@ -305,7 +305,7 @@ namespace Microsoft.Templates.Test
                     "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind",
                     "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                     "wts.Feat.UriScheme", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
-                    "wts.Feat.ToastNotifications",
+                    "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications"
                 };
             }
             else if (framework == CodeBehind)
