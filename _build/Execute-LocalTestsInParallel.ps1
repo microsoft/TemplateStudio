@@ -14,12 +14,11 @@ if (-not (Test-Path $outputDir))
     New-Item $outputDir -type Directory 
 }
 
-
  . $testrunnerPath $coreTestLibraryPath 
 
  . $testrunnerPath $uiTestLibraryPath 
 
- . $scriptPath $testrunnerPath $testLibraryPath $traits $outputDir
+ . $scriptPath $testrunnerPath $templateTestLibraryPath $traits $outputDir
 
 Write-Host $rootPath
 Write-Host $scriptPath
