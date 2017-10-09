@@ -105,6 +105,7 @@ namespace Microsoft.Templates.UI.Services
                     {
                         _getSavedPages()[e.ItemData.GenGroup].Move(e.OldIndex, e.NewIndex);
                     }
+
                     _setHome(items.First());
                 }
             }

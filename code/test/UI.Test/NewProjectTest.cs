@@ -147,12 +147,15 @@ namespace Microsoft.UI.Test
             settingsPage.SaveItemCommand.Execute(null);
 
             var blankPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Blank");
+
             // Add Blank 1
             blankPage.AddItemCommand.Execute(null);
             blankPage.SaveItemCommand.Execute(null);
+
             // Add Blank 2
             blankPage.AddItemCommand.Execute(null);
             blankPage.SaveItemCommand.Execute(null);
+
             // Add Blank 3
             blankPage.AddItemCommand.Execute(null);
             blankPage.SaveItemCommand.Execute(null);

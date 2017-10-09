@@ -16,12 +16,14 @@ namespace Microsoft.Templates.UI.Services
             _mainView = mainWindow;
         }
 
-        public static T FindResource<T>(string resourceKey) where T : class
+        public static T FindResource<T>(string resourceKey)
+            where T : class
         {
             if (_mainView != null)
             {
                 return _mainView.FindResource(resourceKey) as T;
             }
+
             return default(T);
         }
     }
