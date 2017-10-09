@@ -18,6 +18,11 @@ namespace Microsoft.Templates.UI.Services
     {
         private static Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> _getSavedPages;
         private static Func<ObservableCollection<SavedTemplateViewModel>> _getSavedFeatures;
+
+        public static MetadataInfoViewModel SelectedProjectType;
+        public static MetadataInfoViewModel SelectedFramework;
+        public static string HomeName;
+
         public static void Initialize(Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> getSavedPages, Func<ObservableCollection<SavedTemplateViewModel>> getSavedFeatures)
         {
             _getSavedPages = getSavedPages;
@@ -48,7 +53,6 @@ namespace Microsoft.Templates.UI.Services
                 var dependencyItem = new SavedTemplateViewModel((dependencyTemplate.GetDefaultName(), dependencyTemplate), isRemoveEnabled);
                 SaveNewTemplate(dependencyItem);
             }
-            MainViewModel.Current.RebuildLicenses();
         }
 
         public static bool SaveNewTemplate(SavedTemplateViewModel newItem)
@@ -100,7 +104,6 @@ namespace Microsoft.Templates.UI.Services
                 }
 
                 TryRemoveHiddenDependencies(item);
-                MainViewModel.Current.RebuildLicenses();
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
             }
             return dependency;
@@ -157,6 +160,20 @@ namespace Microsoft.Templates.UI.Services
             }
 
             return dependencyItem;
+        }
+
+        public static UserSelection CreateUserSelection()
+        {
+            var userSelection = new UserSelection()
+            {
+                ProjectType = SelectedProjectType?.Name,
+                Framework = SelectedFramework?.Name,
+                HomeName = HomeName
+            };
+            _getSavedPages().ToList().ForEach(spg => userSelection.Pages.AddRange(spg.Select(sp => sp.UserSelection)));
+            userSelection.Features.AddRange(_getSavedFeatures().Select(sf => sf.UserSelection));
+
+            return userSelection;
         }
     }
 }

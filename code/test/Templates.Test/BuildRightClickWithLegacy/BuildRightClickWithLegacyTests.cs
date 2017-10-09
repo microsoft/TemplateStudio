@@ -23,8 +23,10 @@ namespace Microsoft.Templates.Test
     [Collection("BuildRightClickWithLegacyCollection")]
     public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests
     {
-        // Excluded wts.Page.WebView from this test as webview requires creator update as min target version
-        private string[] excludedTemplates = { "wts.Page.WebView" };
+        // Excluded wts.Page.WebView from this test as webview requires creator update as min target version due to conditional xaml
+        // Excluded wts.Page.Camera from this test as Camera requires anniversary update as min target version due to binding a boolean property to Visibility
+
+        private string[] excludedTemplates = { "wts.Page.WebView", "wts.Page.Camera" };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
         {
