@@ -18,13 +18,10 @@ namespace Microsoft.Templates.Core.Locations
 
         protected override bool VerifyPackageSignatures => false;
 
-        public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
         private string _id;
         public override string Id { get => _id; }
-
-        private object lockObject = new object();
 
         protected string FinalDestination { get; set; }
 

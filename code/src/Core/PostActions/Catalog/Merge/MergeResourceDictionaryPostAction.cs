@@ -74,7 +74,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     var writer = new ResourceDictionaryWriter(writeFile);
                     writer.WriteResourceDictionary(sourceRoot);
                     writer.Flush();
-                    writer.Close();
                 }
             }
 
