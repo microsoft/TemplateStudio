@@ -22,8 +22,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class ProjectTemplatesViewModel : Observable
     {
-        public MetadataInfoViewModel ContextFramework { get; set; }
-        public MetadataInfoViewModel ContextProjectType { get; set; }
+        public MetadataInfoViewModel ContextFramework { get; private set; }
+        public MetadataInfoViewModel ContextProjectType { get; private set; }
 
         private string _pagesHeader;
         public string PagesHeader
@@ -39,7 +39,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _featuresHeader, value);
         }
 
-        public string HomeName { get; set; }
+        // public string HomeName { get; set; }
 
         public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> PagesGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
         public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> FeatureGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
@@ -67,11 +67,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             SavedPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedPages)); };
             ValidationService.Initialize(GetNames);
             UserSelectionService.Initialize(GetSavedPages, GetSavedFeatures);
-            OrderingService.Initialize(GetSavedPages);
+            OrderingService.Initialize(GetSavedPages, SetHomePage);
         }
 
         private ObservableCollection<SavedTemplateViewModel> GetSavedFeatures() => SavedFeatures;
-        private ObservableCollection<ObservableCollection<SavedTemplateViewModel>> GetSavedPages() => SavedPages;
+        public ObservableCollection<ObservableCollection<SavedTemplateViewModel>> GetSavedPages() => SavedPages;
 
         private IEnumerable<string> GetNames()
         {
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 if (HasSavedPages)
                 {
                     var firstPage = SavedPages.First().First();
-                    HomeName = firstPage.ItemName;
+                    UserSelectionService.HomeName = firstPage.ItemName;
                     firstPage.IsHome = true;
                 }
             }
@@ -125,12 +125,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
 
                 item.IsHome = true;
-                HomeName = item.ItemName;
+                UserSelectionService.HomeName = item.ItemName;
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.SetHome).FireAndForget();
             }
         }
-
-        public void UpdateHomePageName(string name) => HomeName = name;
 
         public bool IsTemplateAlreadyDefined(string identity)
         {

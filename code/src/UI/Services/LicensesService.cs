@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 using Microsoft.Templates.Core;
@@ -13,9 +12,9 @@ namespace Microsoft.Templates.UI.Services
 {
     public static class LicensesService
     {
-        public static void RebuildLicenses(UserSelection userSelection, IList<SummaryLicenseViewModel> licenses)
+        public static void RebuildLicenses(IList<SummaryLicenseViewModel> licenses)
         {
-            var getLicenses = GenComposer.GetAllLicences(userSelection);
+            var getLicenses = GenComposer.GetAllLicences(UserSelectionService.CreateUserSelection());
             SyncLicenses(getLicenses, licenses);
         }
 
