@@ -14,6 +14,10 @@ namespace Microsoft.Templates.Core.Test
     {
         public TemplatesRepository Repository { get; private set; }
         private bool _syncExecuted = false;
+        [SuppressMessage(
+            "Usage",
+            "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
+            Justification = "Required por unit testing.")]
         public void InitializeFixture(string language)
         {
             var source = new UnitTestsTemplatesSource();

@@ -31,9 +31,3 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Microsoft.Design", "CA1009:DeclareEventHandlersCorrectly", Scope = "member", Target = "Microsoft.Templates.Core.Locations.TemplatesSynchronization.#SyncStatusChanged", Justification = "Using an Action<object, SyncStatusEventArgs> does not allow the required notation")]
 
 [assembly: SuppressMessage("Potential Code Quality Issues", "RECS0022:A catch clause that catches System.Exception and has an empty body", Justification = "Review if ccan be more specific in the error or handle it in a different way. And/or add better comments to the exception.", Scope = "member", Target = "~M:Microsoft.Templates.UI.VisualStudio.VsGenShell.GetActiveProject~EnvDTE.Project")]
-
-[assembly: SuppressMessage("Usage", "VSTHRD001:Use Await JoinableTaskFactory.SwitchToMainThreadAsync() to switch to the UI thread", Justification = "Identified during async/await audit but needs further review.")]
-[assembly: SuppressMessage("Usage", "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks", Justification = "Identified during async/await audit but needs further review.")]
-[assembly: SuppressMessage("Usage", "VSTHRD010:Use VS services from UI thread", Justification = "Identified during async/await audit but needs further review.")]
-[assembly: SuppressMessage("Usage", "VSTHRD100:Async Void methods NOT used as asynchronous event handlers", Justification = "Identified during async/await audit but needs further review.")]
-[assembly: SuppressMessage("Usage", "VSTHRD101:Avoid using async lambda for a void returning delegate type", Justification = "Identified during async/await audit but needs further review.")]

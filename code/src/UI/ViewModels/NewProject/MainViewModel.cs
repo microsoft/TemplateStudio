@@ -2,8 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +14,8 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewProject;
+
+using VsThreading = Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MainView.Close();
         }
 
-        protected override async void OnNext()
+        protected override void OnNext()
         {
             base.OnNext();
             if (CurrentStep == 1)
@@ -145,7 +145,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
 
                 WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
-                await ProjectTemplates.InitializeAsync();
+                VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
+                {
+                    await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    await ProjectTemplates.InitializeAsync();
+                });
+
                 NavigationService.Navigate(new ProjectPagesView());
             }
             else if (CurrentStep == 2)

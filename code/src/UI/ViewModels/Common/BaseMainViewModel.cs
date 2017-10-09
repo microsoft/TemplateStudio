@@ -5,17 +5,16 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
+
+using VsThreading = Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -48,8 +47,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand BackCommand => _backCommand ?? (_backCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, (parameter) => !_hasValidationErrors && _canFinish));
-        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(async () => await OnCheckUpdatesAsync(), () => _canCheckingUpdates));
-        public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(async () => await OnRefreshTemplatesAsync()));
+        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(
+            () => VsThreading.ThreadHelper.JoinableTaskFactory.RunAsync(async () => await OnCheckUpdatesAsync()),
+            () => _canCheckingUpdates));
+
+        public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(
+            () => VsThreading.ThreadHelper.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
 
         public BaseMainViewModel()
         {
@@ -161,9 +164,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private async void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
         {
-            _mainView.Dispatcher.Invoke(() =>
+            VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
             {
-                WizardStatus.SetStatus(status.Status.GetStatusViewModel());
+                    await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    WizardStatus.SetStatus(status.Status.GetStatusViewModel());
             });
 
             if (status.Status == SyncStatus.Updated)
@@ -179,16 +183,18 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
             if (status.Status == SyncStatus.OverVersionNoContent)
             {
-                _mainView.Dispatcher.Invoke(() =>
+                VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
                 {
+                    await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                     UpdateTemplatesAvailable(true);
                 });
             }
 
             if (status.Status == SyncStatus.UnderVersion)
             {
-                _mainView.Dispatcher.Invoke(() =>
+                VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
                 {
+                    await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                     UpdateTemplatesAvailable(false);
                 });
             }
