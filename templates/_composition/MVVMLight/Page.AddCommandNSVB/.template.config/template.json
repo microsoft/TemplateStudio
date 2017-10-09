@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Page.Settings.MVVMLight.VB|wts.Page.Camera.VB"
+    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Page.Settings.VB|wts.Page.Camera.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
