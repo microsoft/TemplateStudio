@@ -325,11 +325,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isNewAdded)
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue");
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlue");
                 }
                 else
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlack");
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlack");
                 }
             }
         }
@@ -344,11 +344,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isNewAdded)
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue");
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlue");
                 }
                 else
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIGray");
+                    return ResourceService.FindResource<SolidColorBrush>("UIGray");
                 }
             }
         }
@@ -386,6 +386,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
                 MainViewModel.Current.ProjectTemplates.UpdateTemplatesAvailability();
                 MainViewModel.Current.ProjectTemplates.UpdateHasPagesAndHasFeatures();
+                MainViewModel.Current.RebuildLicenses();
             }
         }
 
@@ -403,7 +404,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 if (IsHome)
                 {
-                    MainViewModel.Current.ProjectTemplates.UpdateHomePageName(ItemName);
+                    UserSelectionService.HomeName = ItemName;
                 }
 
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Rename).FireAndForget();

@@ -17,13 +17,15 @@ namespace Microsoft.Templates.UI.Services
         public static StackPanel Panel { get; set; }
 
         private static Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> _getSavedPages;
+        private static Action<SavedTemplateViewModel> _setHome;
 
         private static SavedTemplateViewModel _dragginItem;
         private static SavedTemplateViewModel _dropTarget;
 
-        public static void Initialize(Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> getSavedPages)
+        public static void Initialize(Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> getSavedPages, Action<SavedTemplateViewModel> setHome)
         {
             _getSavedPages = getSavedPages;
+            _setHome = setHome;
         }
 
         public static void AddList(ObservableCollection<SavedTemplateViewModel> items, bool allowDragAndDrop)
@@ -33,10 +35,10 @@ namespace Microsoft.Templates.UI.Services
                 var listView = new ListView()
                 {
                     ItemsSource = items,
-                    Style = MainViewModel.Current.FindResource<Style>("SummaryListViewStyle"),
+                    Style = ResourceService.FindResource<Style>("SummaryListViewStyle"),
                     Tag = "AllowRename",
                     Focusable = false,
-                    ItemTemplate = MainViewModel.Current.FindResource<DataTemplate>("ProjectTemplatesSummaryItemTemplate")
+                    ItemTemplate = ResourceService.FindResource<DataTemplate>("ProjectTemplatesSummaryItemTemplate")
                 };
                 if (allowDragAndDrop)
                 {
@@ -96,15 +98,14 @@ namespace Microsoft.Templates.UI.Services
                 {
                     if (e.NewIndex == 0)
                     {
-                        MainViewModel.Current.ProjectTemplates.SetHomePage(e.ItemData);
+                        _setHome(e.ItemData);
                     }
 
                     if (e.OldIndex > -1)
                     {
                         _getSavedPages()[e.ItemData.GenGroup].Move(e.OldIndex, e.NewIndex);
                     }
-
-                    MainViewModel.Current.ProjectTemplates.SetHomePage(items.First());
+                    _setHome(items.First());
                 }
             }
         }

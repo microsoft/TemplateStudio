@@ -2,13 +2,13 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         internal void RebuildLicenses()
         {
-            LicensesService.RebuildLicenses(CreateUserSelection(), Licenses);
+            LicensesService.RebuildLicenses(Licenses);
             HasLicenses = Licenses.Any();
         }
 
@@ -178,7 +178,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CurrentStep == 2)
             {
-                MainView.Result = CreateUserSelection();
+                MainView.Result = UserSelectionService.CreateUserSelection();
                 base.OnFinish(parameter);
             }
         }
@@ -191,21 +191,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             OrderingService.Panel.Children.Clear();
             NavigationService.Navigate(new ProjectSetupView());
             await ProjectSetup.InitializeAsync(true);
-        }
-
-        public override UserSelection CreateUserSelection()
-        {
-            var userSelection = new UserSelection()
-            {
-                ProjectType = ProjectSetup.SelectedProjectType?.Name,
-                Framework = ProjectSetup.SelectedFramework?.Name,
-                HomeName = ProjectTemplates.HomeName
-            };
-
-            ProjectTemplates.SavedPages.ToList().ForEach(spg => userSelection.Pages.AddRange(spg.Select(sp => sp.UserSelection)));
-            userSelection.Features.AddRange(ProjectTemplates.SavedFeatures.Select(sf => sf.UserSelection));
-
-            return userSelection;
         }
 
         private bool CheckProjectSetupChanged()

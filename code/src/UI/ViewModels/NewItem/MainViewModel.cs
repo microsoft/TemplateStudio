@@ -212,7 +212,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             await Task.CompletedTask;
         }
 
-        public override UserSelection CreateUserSelection()
+        public UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection()
             {

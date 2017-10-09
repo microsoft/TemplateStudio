@@ -248,11 +248,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isEnabled)
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlack");
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlack");
                 }
                 else
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIMiddleLightGray");
+                    return ResourceService.FindResource<SolidColorBrush>("UIMiddleLightGray");
                 }
             }
         }
@@ -285,6 +285,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private void SaveItem()
         {
             UserSelectionService.AddTemplateAndDependencies((NewTemplateName, Template), MainViewModel.Current.ProjectTemplates.ContextFramework.Name, false);
+            MainViewModel.Current.RebuildLicenses();
             MainViewModel.Current.ProjectTemplates.UpdateTemplatesAvailability();
             MainViewModel.Current.ProjectTemplates.UpdateSummaryTemplates();
             MainViewModel.Current.ProjectTemplates.UpdateHasPagesAndHasFeatures();
