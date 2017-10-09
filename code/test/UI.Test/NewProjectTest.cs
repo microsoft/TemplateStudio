@@ -162,7 +162,7 @@ namespace Microsoft.UI.Test
             OrderingService.SetDrop(viewModel.ProjectTemplates.SavedPages.First().ElementAt(0));
 
             // Check that Page1 is in position 0 and is the current Home Page
-            Assert.True(viewModel.ProjectTemplates.HomeName == "Blank");
+            Assert.True(UserSelectionService.HomeName == "Blank");
             Assert.True(viewModel.ProjectTemplates.SavedPages.First().ElementAt(0).ItemName == "Blank");
         }
 
