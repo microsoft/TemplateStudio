@@ -291,9 +291,7 @@ namespace Microsoft.Templates.Test
             yield return new object[] { TabsAndPivot, MvvmLight };
         }
 
-        /// <summary>
-        /// Gets a list of partial identities for page and feature templates supported by C# and VB
-        /// </summary>
+        // Gets a list of partial identities for page and feature templates supported by C# and VB
         protected static IEnumerable<string> GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(string projectType, string framework)
         {
             // Hardcoding the response lists is necessary while there are different pages & features available for different combinations of projecttype and framework
