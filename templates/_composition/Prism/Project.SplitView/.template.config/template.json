@@ -3,16 +3,31 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Prism.Project.Blank.AddNavigation",
+  "name": "Prism.Project.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == Prism & $projectType == Blank|SplitView & wts.type == project"
+    "wts.compositionFilter": "$framework == Prism & $projectType == SplitView & wts.type == project",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)"    
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\ViewModels\\ShellNavigationItem.cs"
+    },
+    {
+      "path": ".\\ViewModels\\ShellViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\ShellPage.xaml"
+    },
+    {
+      "path": ".\\Views\\ShellPage.xaml.cs"
+    }
+  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",
