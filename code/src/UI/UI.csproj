@@ -327,6 +327,7 @@
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
     <Compile Include="Services\LicensesService.cs" />
+    <Compile Include="Services\ResourceService.cs" />
     <Compile Include="Services\SystemService.cs" />
     <Compile Include="Services\UserSelectionService.cs" />
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />

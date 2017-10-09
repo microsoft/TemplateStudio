@@ -64,7 +64,8 @@ namespace Microsoft.UI.Test
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             await viewModel.ProjectTemplates.InitializeAsync();
             var settingsPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings");
-            UserSelectionService.AddTemplateAndDependencies(("Settings", settingsPage.Template), testFrameworkName);
+            settingsPage.AddItemCommand.Execute(null);
+            settingsPage.SaveItemCommand.Execute(null);
 
             Assert.True(viewModel.ProjectTemplates.SavedPages.Count == 2, "Non expected result: two page groups");
             Assert.True(viewModel.ProjectTemplates.SavedPages.ElementAt(0).Count == 1, "Non expected result: One blank page");
@@ -81,7 +82,8 @@ namespace Microsoft.UI.Test
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             await viewModel.ProjectTemplates.InitializeAsync();
             var settingsPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings");
-            UserSelectionService.AddTemplateAndDependencies(("Settings", settingsPage.Template), testFrameworkName);
+            settingsPage.AddItemCommand.Execute(null);
+            settingsPage.SaveItemCommand.Execute(null);
             Assert.True(viewModel.Licenses.Count == 2, "Non expected result: two licenses Microsoft.Toolkit.Uwp and Newtonsoft.Json");
         }
 
@@ -95,8 +97,9 @@ namespace Microsoft.UI.Test
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             await viewModel.ProjectTemplates.InitializeAsync();
             var settingsPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings");
-            UserSelectionService.AddTemplateAndDependencies(("Settings", settingsPage.Template), testFrameworkName);
-            UserSelectionService.RemoveTemplate(viewModel.ProjectTemplates.SavedFeatures.First());
+            settingsPage.AddItemCommand.Execute(null);
+            settingsPage.SaveItemCommand.Execute(null);
+            viewModel.ProjectTemplates.SavedFeatures.First().RemoveCommand.Execute(null);
 
             // SettingsStorage can not be removed because Settings page depends on it
             Assert.True(viewModel.ProjectTemplates.SavedFeatures.Count == 1, "Settings page has been removed");
@@ -113,17 +116,19 @@ namespace Microsoft.UI.Test
             await viewModel.ProjectTemplates.InitializeAsync();
 
             var gridPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Grid");
-            UserSelectionService.AddTemplateAndDependencies(("Grid", gridPage.Template), testFrameworkName);
+            gridPage.AddItemCommand.Execute(null);
+            gridPage.SaveItemCommand.Execute(null);
             Assert.True(viewModel.ProjectTemplates.SavedFeatures.Count == 1, "Non expected result: Sample data filter");
 
             var chartPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Chart");
-            UserSelectionService.AddTemplateAndDependencies(("Chart", chartPage.Template), testFrameworkName);
+            chartPage.AddItemCommand.Execute(null);
+            chartPage.SaveItemCommand.Execute(null);
             Assert.True(viewModel.ProjectTemplates.SavedFeatures.Count == 1, "Non expected result: Sample data filter");
 
-            UserSelectionService.RemoveTemplate(viewModel.ProjectTemplates.SavedPages.First()[1]);
+            viewModel.ProjectTemplates.SavedPages.First()[1].RemoveCommand.Execute(null);
             Assert.True(viewModel.ProjectTemplates.SavedFeatures.Count == 1, "Non expected result: Sample data filter");
 
-            UserSelectionService.RemoveTemplate(viewModel.ProjectTemplates.SavedPages.First()[1]);
+            viewModel.ProjectTemplates.SavedPages.First()[1].RemoveCommand.Execute(null);
             Assert.True(viewModel.ProjectTemplates.SavedFeatures.Count == 0, "No features expected");
         }
 
@@ -134,12 +139,22 @@ namespace Microsoft.UI.Test
             var testFrameworkName = "MVVMBasic";
             var viewModel = new MainViewModel();
             await viewModel.ProjectSetup.InitializeAsync();
-            viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == "MVVMBasic");
+            viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             await viewModel.ProjectTemplates.InitializeAsync();
             var settingsPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings");
-            UserSelectionService.AddTemplateAndDependencies(("Page1", FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Blank").Template), testFrameworkName);
-            UserSelectionService.AddTemplateAndDependencies(("Page2", FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Blank").Template), testFrameworkName);
-            UserSelectionService.AddTemplateAndDependencies(("Page3", FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Blank").Template), testFrameworkName);
+            settingsPage.AddItemCommand.Execute(null);
+            settingsPage.SaveItemCommand.Execute(null);
+
+            var blankPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Blank");
+            // Add Blank 1
+            blankPage.AddItemCommand.Execute(null);
+            blankPage.SaveItemCommand.Execute(null);
+            // Add Blank 2
+            blankPage.AddItemCommand.Execute(null);
+            blankPage.SaveItemCommand.Execute(null);
+            // Add Blank 3
+            blankPage.AddItemCommand.Execute(null);
+            blankPage.SaveItemCommand.Execute(null);
 
             // Drag Page1 in position 1 to Main in position 0
             OrderingService.SetDrag(viewModel.ProjectTemplates.SavedPages.First().ElementAt(1));
@@ -147,8 +162,8 @@ namespace Microsoft.UI.Test
             OrderingService.SetDrop(viewModel.ProjectTemplates.SavedPages.First().ElementAt(0));
 
             // Check that Page1 is in position 0 and is the current Home Page
-            Assert.True(viewModel.ProjectTemplates.HomeName == "Page1");
-            Assert.True(viewModel.ProjectTemplates.SavedPages.First().ElementAt(0).ItemName == "Page1");
+            Assert.True(viewModel.ProjectTemplates.HomeName == "Blank");
+            Assert.True(viewModel.ProjectTemplates.SavedPages.First().ElementAt(0).ItemName == "Blank");
         }
 
         [Fact]
@@ -162,11 +177,14 @@ namespace Microsoft.UI.Test
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             Assert.True(viewModel.Licenses.Count() == 2); // Added MVVMLight lib
             await viewModel.ProjectTemplates.InitializeAsync();
-            UserSelectionService.AddTemplateAndDependencies(("Settings", FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings").Template), testFrameworkName);
+            var settingsPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings");
+            settingsPage.AddItemCommand.Execute(null);
+            settingsPage.SaveItemCommand.Execute(null);
             Assert.True(viewModel.Licenses.Count() == 3); // Added Newtonsoft.Json
-            UserSelectionService.AddTemplateAndDependencies(("HubNotifications", FindTemplate(viewModel.ProjectTemplates.FeatureGroups, "wts.Feat.HubNotifications").Template), testFrameworkName);
+            var hubNotifications = FindTemplate(viewModel.ProjectTemplates.FeatureGroups, "wts.Feat.HubNotifications");
+            hubNotifications.AddItemCommand.Execute(null);
             Assert.True(viewModel.Licenses.Count() == 4); // Added WindowsAzure.Messaging.Managed
-            UserSelectionService.RemoveTemplate(viewModel.ProjectTemplates.SavedFeatures.First(sf => sf.Identity == "wts.Feat.HubNotifications"));
+            viewModel.ProjectTemplates.SavedFeatures.First(sf => sf.Identity == "wts.Feat.HubNotifications").RemoveCommand.Execute(null);
             Assert.True(viewModel.Licenses.Count() == 3); // Deleted WindowsAzure.Messaging.Managed
         }
 

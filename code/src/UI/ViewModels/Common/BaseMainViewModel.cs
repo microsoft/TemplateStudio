@@ -58,6 +58,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public virtual void SetView(Window window)
         {
             _mainView = window;
+            ResourceService.Initialize(_mainView);
         }
 
         protected abstract void OnCancel();
@@ -114,8 +115,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             WizardStatus.SetStatus(new StatusViewModel(statusType, errorMessage));
             UpdateHasValidationErrors(true);
         }
-
-        public abstract UserSelection CreateUserSelection();
 
         public void CleanStatus(bool cleanValidationError = false)
         {
@@ -242,15 +241,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             _templatesAvailable = value;
             NextCommand.OnCanExecuteChanged();
-        }
-
-        public T FindResource<T>(string resourceKey) where T : class
-        {
-            if (_mainView != null)
-            {
-                return _mainView.FindResource(resourceKey) as T;
-            }
-            return default(T);
         }
     }
 }
