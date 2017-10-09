@@ -37,7 +37,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 if (item.Template != null)
                 {
-                    AddTemplateAndDependencies((item.Layout.name, item.Template), frameworkName, !item.Layout.@readonly);
+                    AddTemplateAndDependencies((item.Layout.Name, item.Template), frameworkName, !item.Layout.Readonly);
                 }
             }
         }
@@ -61,6 +61,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 return false;
             }
+
             var identities = new List<string>();
             _getSavedPages().ToList().ForEach(spg => identities.AddRange(spg.Select(sp => sp.Identity)));
             identities.AddRange(_getSavedFeatures().Select(sf => sf.Identity));
@@ -69,6 +70,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 return false;
             }
+
             if (newItem.TemplateType == TemplateType.Page)
             {
                 while (_getSavedPages().Count < newItem.GenGroup + 1)
@@ -77,12 +79,14 @@ namespace Microsoft.Templates.UI.Services
                     _getSavedPages().Add(items);
                     OrderingService.AddList(items, _getSavedPages().Count == 1);
                 }
+
                 _getSavedPages()[newItem.GenGroup].Add(newItem);
             }
             else if (newItem.TemplateType == TemplateType.Feature)
             {
                 _getSavedFeatures().Add(newItem);
             }
+
             return true;
         }
 
@@ -106,6 +110,7 @@ namespace Microsoft.Templates.UI.Services
                 TryRemoveHiddenDependencies(item);
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
             }
+
             return dependency;
         }
 

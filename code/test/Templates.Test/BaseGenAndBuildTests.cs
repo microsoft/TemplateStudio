@@ -75,6 +75,7 @@ namespace Microsoft.Templates.Test
 
             return resultPath;
         }
+
         protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework)
         {
             var info = ProjectConfigInfo.ReadProjectConfiguration();
@@ -139,6 +140,7 @@ namespace Microsoft.Templates.Test
             {
                 Assert.True(finalProjectFileCount == emptyProjecFileCount);
             }
+
             // Clean
             if (cleanGeneration)
             {
@@ -159,7 +161,7 @@ namespace Microsoft.Templates.Test
                 {
                     ProjectType = projectType,
                     Framework = framework,
-                    HomeName = "",
+                    HomeName = string.Empty,
                     Language = language,
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge
                 };
@@ -382,6 +384,7 @@ namespace Microsoft.Templates.Test
                     result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetPageAndFeatureTemplatesAsync(framework));
                     break;
             }
+
             return result;
         }
     }

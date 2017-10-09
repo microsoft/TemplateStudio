@@ -13,9 +13,11 @@ namespace Microsoft.Templates.Test
 {
     public class StyleCopPlusLocalTemplatesSource : LocalTemplatesSource
     {
-        public StyleCopPlusLocalTemplatesSource() : base("BuildStyleCop")
+        public StyleCopPlusLocalTemplatesSource()
+            : base("BuildStyleCop")
         {
         }
+
         public override void Extract(string source, string targetFolder)
         {
             base.Extract(source, targetFolder);
@@ -30,6 +32,7 @@ namespace Microsoft.Templates.Test
             {
                 Fs.SafeDeleteDirectory(targetStyleCopFeaturePath);
             }
+
             Fs.CopyRecursive(@".\TestData\StyleCop", targetStyleCopFeaturePath, true);
         }
     }

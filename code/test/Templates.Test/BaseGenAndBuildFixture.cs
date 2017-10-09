@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Test
                 }
                 else
                 {
-                    AddItem(userSelection, item.Layout.name, item.Template);
+                    AddItem(userSelection, item.Layout.Name, item.Template);
                 }
             }
 
@@ -92,6 +92,7 @@ namespace Microsoft.Templates.Test
                 {
                     validators.Add(new DefaultNamesValidator());
                 }
+
                 itemName = Naming.Infer(itemName, validators);
                 AddItem(userSelection, itemName, template);
             }
@@ -180,7 +181,7 @@ namespace Microsoft.Templates.Test
 
         private bool AlreadyAdded(UserSelection userSelection, ITemplateInfo item)
         {
-            return (userSelection.Pages.Any(p => p.template.Identity == item.Identity) || userSelection.Features.Any(f => f.template.Identity == item.Identity));
+            return userSelection.Pages.Any(p => p.template.Identity == item.Identity) || userSelection.Features.Any(f => f.template.Identity == item.Identity);
         }
 
         public static string GetDefaultName(ITemplateInfo template)
@@ -194,7 +195,7 @@ namespace Microsoft.Templates.Test
         {
             for (int i = 0; i < 10; i++)
             {
-                var randomName = Path.GetRandomFileName().Replace(".", "");
+                var randomName = Path.GetRandomFileName().Replace(".", string.Empty);
                 if (Naming.Validate(randomName, new List<Validator>()).IsValid)
                 {
                     return randomName;

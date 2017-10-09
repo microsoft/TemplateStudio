@@ -88,6 +88,7 @@ namespace Microsoft.Templates.Core.Locations
                     }
                 }
             }
+
             return result;
         }
 
@@ -165,6 +166,7 @@ namespace Microsoft.Templates.Core.Locations
                 Fs.SafeDeleteDirectory(tempFolder);
                 removedFolders.Add(tempFolder);
             }
+
             foreach (string folder in removedFolders)
             {
                 _tempFoldersUsed.Remove(folder);

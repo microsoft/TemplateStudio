@@ -4,7 +4,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
@@ -36,6 +36,10 @@ namespace Microsoft.UI.Test
 
         public TemplatesRepository Repository { get; private set; }
 
+        [SuppressMessage(
+        "Usage",
+        "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
+        Justification = "Required por unit testing.")]
         public void InitializeFixture(string language)
         {
             var source = new LocalTemplatesSource();
@@ -50,6 +54,7 @@ namespace Microsoft.UI.Test
             {
                 GenContext.ToolBox.Repo.RefreshAsync().Wait();
             }
+
             Repository = GenContext.ToolBox.Repo;
         }
     }

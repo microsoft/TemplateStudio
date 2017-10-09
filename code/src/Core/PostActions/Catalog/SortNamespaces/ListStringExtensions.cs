@@ -56,6 +56,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
             {
                 orderedUsings.Add(string.Empty);
             }
+
             var orderedKeys = GetOrderedNs(usings.Select(u => u.Key)).ToList();
 
             foreach (var key in orderedKeys)

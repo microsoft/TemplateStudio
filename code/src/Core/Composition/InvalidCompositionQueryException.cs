@@ -14,15 +14,18 @@ namespace Microsoft.Templates.Core.Composition
         {
         }
 
-        public InvalidCompositionQueryException(string message) : base(message)
+        public InvalidCompositionQueryException(string message)
+            : base(message)
         {
         }
 
-        public InvalidCompositionQueryException(string message, Exception innerException) : base(message, innerException)
+        public InvalidCompositionQueryException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
 
-        protected InvalidCompositionQueryException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected InvalidCompositionQueryException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

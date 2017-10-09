@@ -12,7 +12,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class FailedStyleMergesFileViewModel : BaseFileViewModel
     {
-        public FailedStyleMergesFileViewModel(FailedMergePostAction warning) : base(warning.FailedFileName, FileStatus.ConflictingStylesFile)
+        public FailedStyleMergesFileViewModel(FailedMergePostAction warning)
+            : base(warning.FailedFileName, FileStatus.ConflictingStylesFile)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleFailedStyleMerges;
 

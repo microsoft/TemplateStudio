@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI.Controls
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
+
         public static readonly DependencyProperty CommandProperty = DependencyProperty.Register(nameof(Command), typeof(ICommand), typeof(InformationButton), new PropertyMetadata(null));
 
         public InformationButton()

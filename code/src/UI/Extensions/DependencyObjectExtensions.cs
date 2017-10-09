@@ -11,7 +11,8 @@ namespace Microsoft.Templates.UI
 {
     public static class DependencyObjectExtensions
     {
-        public static IEnumerable<T> ChildrenOfType<T>(this DependencyObject dObject, bool includeInheritance = false) where T : DependencyObject
+        public static IEnumerable<T> ChildrenOfType<T>(this DependencyObject dObject, bool includeInheritance = false)
+            where T : DependencyObject
         {
             int count = VisualTreeHelper.GetChildrenCount(dObject);
 
@@ -19,7 +20,7 @@ namespace Microsoft.Templates.UI
             {
                 var current = VisualTreeHelper.GetChild(dObject, i);
 
-                if ((current.GetType()).Equals(typeof(T)) || (includeInheritance && current.GetType().GetTypeInfo().IsSubclassOf(typeof(T))))
+                if (current.GetType().Equals(typeof(T)) || (includeInheritance && current.GetType().GetTypeInfo().IsSubclassOf(typeof(T))))
                 {
                     yield return current as T;
                 }

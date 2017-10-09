@@ -14,15 +14,18 @@ namespace Microsoft.Templates.Core.Packaging
         {
         }
 
-        public InvalidSignatureException(string message) : base(message)
+        public InvalidSignatureException(string message)
+            : base(message)
         {
         }
 
-        public InvalidSignatureException(string message, Exception innerException) : base(message, innerException)
+        public InvalidSignatureException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
 
-        protected InvalidSignatureException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected InvalidSignatureException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

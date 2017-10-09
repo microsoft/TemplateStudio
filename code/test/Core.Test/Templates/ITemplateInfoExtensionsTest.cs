@@ -125,11 +125,7 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetFrameworkList();
-            Assert.Collection(result,
-                e1 =>
-                {
-                    e1.Equals("fx1");
-                });
+            Assert.Collection(result, e1 => e1.Equals("fx1"));
         }
 
         [Theory]
@@ -250,7 +246,8 @@ namespace Microsoft.Templates.Core.Test
             var result = target.GetLicenses().ToList();
             Assert.NotNull(result);
 
-            Assert.Collection(result,
+            Assert.Collection(
+                result,
                 e1 =>
                 {
                     Assert.Equal("text1", e1.Text);
@@ -284,18 +281,19 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetLayout().ToList();
-            Assert.Collection(result,
+            Assert.Collection(
+                result,
                 e1 =>
                 {
-                    Assert.Equal("Item1", e1.name);
-                    Assert.Equal("Microsoft.UWPTemplates.Test.ProjectTemplate", e1.templateGroupIdentity);
-                    Assert.Equal(true, e1.@readonly);
+                    Assert.Equal("Item1", e1.Name);
+                    Assert.Equal("Microsoft.UWPTemplates.Test.ProjectTemplate", e1.TemplateGroupIdentity);
+                    Assert.Equal(true, e1.Readonly);
                 },
                 e2 =>
                 {
-                    Assert.Equal("Item2", e2.name);
-                    Assert.Equal("Microsoft.UWPTemplates.Test.PageTemplate", e2.templateGroupIdentity);
-                    Assert.Equal(false, e2.@readonly);
+                    Assert.Equal("Item2", e2.Name);
+                    Assert.Equal("Microsoft.UWPTemplates.Test.PageTemplate", e2.TemplateGroupIdentity);
+                    Assert.Equal(false, e2.Readonly);
                 });
         }
 
@@ -366,6 +364,7 @@ namespace Microsoft.Templates.Core.Test
             {
                 throw new ArgumentException($"There is no template with name '{templateName}'. Number of templates: '{allTemplates.Count()}'");
             }
+
             return target;
         }
 
@@ -390,6 +389,7 @@ namespace Microsoft.Templates.Core.Test
             {
                 throw new ArgumentException($"There is no template with identity '{templateIdentity}'. Number of templates: '{allTemplates.Count()}'");
             }
+
             return target;
         }
     }

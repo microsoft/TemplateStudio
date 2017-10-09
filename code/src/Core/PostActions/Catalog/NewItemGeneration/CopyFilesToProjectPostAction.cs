@@ -14,7 +14,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class CopyFilesToProjectPostAction : PostAction<TempGenerationResult>
     {
-        public CopyFilesToProjectPostAction(TempGenerationResult config) : base(config)
+        public CopyFilesToProjectPostAction(TempGenerationResult config)
+            : base(config)
         {
         }
 

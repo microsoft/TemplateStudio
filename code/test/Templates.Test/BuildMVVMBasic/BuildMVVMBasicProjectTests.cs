@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -20,17 +20,17 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [Collection("BuildMVVMLightCollection")]
-    [Trait("ExecutionSet", "BuildMVVMLight")]
-    public class BuildMVVMLightProjectTests : BaseGenAndBuildTests
+    [Collection("BuildMVVMBasicCollection")]
+    [Trait("ExecutionSet", "BuildMVVMBasic")]
+    public class BuildMVVMBasicProjectTests : BaseGenAndBuildTests
     {
-        public BuildMVVMLightProjectTests(BuildMVVMLightFixture fixture)
+        public BuildMVVMBasicProjectTests(BuildMVVMBasicFixture fixture)
         {
             _fixture = fixture;
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMBasic")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string language)
         {
@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMBasic")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMBasic")]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "VBQuickCheck")]
@@ -90,7 +90,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMBasic")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMBasic")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
@@ -114,9 +114,9 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesForBuildAsync", "MVVMLight")]
-        [Trait("Type", "BuildOneByOneMVVMLight")]
-        public async Task BuildMVVMLightOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        [MemberData("GetPageAndFeatureTemplatesForBuildAsync", "MVVMBasic")]
+        [Trait("Type", "BuildOneByOneMVVMBasic")]
+        public async Task BuildMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
 

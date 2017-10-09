@@ -17,14 +17,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public class MergeResourceDictionaryPostAction : MergePostAction
     {
-        private const string mergeDictionaryPattern = @"<ResourceDictionary.MergedDictionaries>
+        private const string MergeDictionaryPattern = @"<ResourceDictionary.MergedDictionaries>
     <!--^^-->
     <!--{[{-->
     <ResourceDictionary Source=""{filePath}""/>
     <!--}]}-->
 </ResourceDictionary.MergedDictionaries>";
 
-        public MergeResourceDictionaryPostAction(MergeConfiguration config) : base(config)
+        public MergeResourceDictionaryPostAction(MergeConfiguration config)
+            : base(config)
         {
         }
 
@@ -73,7 +74,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     var writer = new ResourceDictionaryWriter(writeFile);
                     writer.WriteResourceDictionary(sourceRoot);
                     writer.Flush();
-                    writer.Close();
                 }
             }
 
@@ -82,8 +82,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private static void AddToMergeDictionary(string originalFilePath)
         {
-            var relPath = originalFilePath.Replace(GenContext.Current.OutputPath, "").Replace(@"\", @"/");
-            var postactionContent = mergeDictionaryPattern.Replace("{filePath}", relPath);
+            var relPath = originalFilePath.Replace(GenContext.Current.OutputPath, string.Empty).Replace(@"\", @"/");
+            var postactionContent = MergeDictionaryPattern.Replace("{filePath}", relPath);
             var mergeDictionaryName = Path.GetFileNameWithoutExtension(originalFilePath);
             File.WriteAllText(GenContext.Current.OutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);
         }

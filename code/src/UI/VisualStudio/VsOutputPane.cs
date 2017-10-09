@@ -15,7 +15,7 @@ using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
-    class VsOutputPane
+    internal class VsOutputPane
     {
         private const string TemplatesPaneGuid = "45480fff-0658-42e1-97f0-82cac23603aa";
         private OutputWindowPane _pane;
@@ -29,6 +29,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 _pane.Activate();
             }
         }
+
         public void Write(string data)
         {
             _pane.OutputString(data);
@@ -61,7 +62,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static void CreateUwpPane(Guid paneGuid, bool visible, bool clearWithSolution, string title)
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             IVsOutputWindow output = ServiceProvider.GlobalProvider.GetService(typeof(SVsOutputWindow)) as IVsOutputWindow;
+
             // Create a new pane.
             int createRetVal = output.CreatePane(
                 ref paneGuid,

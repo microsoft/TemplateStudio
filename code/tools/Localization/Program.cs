@@ -9,13 +9,13 @@ using Localization.Options;
 
 namespace Localization
 {
-    class Program
+    public class Program
     {
-        private const string separator = "**********************************************************************";
-        private const string argumentNewLine = "\r\n\t\t\t\t   ";
+        private const string Separator = "**********************************************************************";
+        private const string ArgumentNewLine = "\r\n\t\t\t\t   ";
 
         [STAThread]
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var options = new CommandLineOptions();
             var parser = new Parser(s => s.MutuallyExclusive = true);
@@ -29,6 +29,7 @@ namespace Localization
             }))
             {
                 ShowHelp(verb, args);
+
                 // TO-DO: Use options.GetUsage(verb) to auto-generate help
                 // Console.WriteLine(options.GetUsage(verb));
                 ExitWithError();
@@ -69,6 +70,7 @@ namespace Localization
                         {
                             ExitWithError();
                         }
+
                         break;
                 }
             }
@@ -100,13 +102,13 @@ namespace Localization
                         Console.WriteLine();
                         Console.WriteLine("Localization ext -s \"sourceDirectory\" -d \"destinationDirectory\" [-c \"commitSHA\"] [-t \"tagName\"]");
                         Console.WriteLine();
-                        Console.WriteLine($"\tsourceDirectory\t\t - path to the folder that contains{argumentNewLine}source files for data extraction{argumentNewLine}(it's root project folder).");
+                        Console.WriteLine($"\tsourceDirectory\t\t - path to the folder that contains{ArgumentNewLine}source files for data extraction{ArgumentNewLine}(it's root project folder).");
                         Console.WriteLine();
-                        Console.WriteLine($"\tdestinationDirectory\t - path to the folder in which will be{argumentNewLine}saved all extracted items.");
+                        Console.WriteLine($"\tdestinationDirectory\t - path to the folder in which will be{ArgumentNewLine}saved all extracted items.");
                         Console.WriteLine();
-                        Console.WriteLine($"\tcommitSHA (optional)\t - commit from where to look {argumentNewLine}for modified files");
+                        Console.WriteLine($"\tcommitSHA (optional)\t - commit from where to look {ArgumentNewLine}for modified files");
                         Console.WriteLine();
-                        Console.WriteLine($"\ttagName (optional)\t - indicate the tag name which marks {argumentNewLine}the commit from where to look {argumentNewLine}for modified files");
+                        Console.WriteLine($"\ttagName (optional)\t - indicate the tag name which marks {ArgumentNewLine}the commit from where to look {ArgumentNewLine}for modified files");
                         Console.WriteLine();
                         Console.WriteLine("Example:");
                         Console.WriteLine();
@@ -120,9 +122,9 @@ namespace Localization
                         Console.WriteLine();
                         Console.WriteLine("Localization gen -s \"sourceDirectory\" -d \"destinationDirectory\"");
                         Console.WriteLine();
-                        Console.WriteLine($"\tsourceDirectory\t\t - path to the folder that contains{argumentNewLine}source files for Project Templates{argumentNewLine}(it's root project folder).");
+                        Console.WriteLine($"\tsourceDirectory\t\t - path to the folder that contains{ArgumentNewLine}source files for Project Templates{ArgumentNewLine}(it's root project folder).");
                         Console.WriteLine();
-                        Console.WriteLine($"\tdestinationDirectory\t - path to the folder in which will be{argumentNewLine}saved all localized Project{argumentNewLine}Templates (parent for CSharp.UWP.{argumentNewLine}2017.Solution directory).");
+                        Console.WriteLine($"\tdestinationDirectory\t - path to the folder in which will be{ArgumentNewLine}saved all localized Project{ArgumentNewLine}Templates (parent for CSharp.UWP.{ArgumentNewLine}2017.Solution directory).");
                         Console.WriteLine();
                         Console.WriteLine("Example:");
                         Console.WriteLine();
@@ -134,7 +136,7 @@ namespace Localization
                         Console.WriteLine();
                         Console.WriteLine("Localization verify -s \"sourceDirectory\"");
                         Console.WriteLine();
-                        Console.WriteLine($"\tsourceDirectory\t\t - path to the folder that contains{argumentNewLine}source files for verify{argumentNewLine}(it's root project folder).");
+                        Console.WriteLine($"\tsourceDirectory\t\t - path to the folder that contains{ArgumentNewLine}source files for verify{ArgumentNewLine}(it's root project folder).");
                         Console.WriteLine();
                         Console.WriteLine("Example:");
                         Console.WriteLine();

@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Fakes
 
         public void AddItem(string itemPath)
         {
-            var itemRelativePath = itemPath.Replace($@"{Path.GetDirectoryName(_path)}\", "").Replace(@".\", "");
+            var itemRelativePath = itemPath.Replace($@"{Path.GetDirectoryName(_path)}\", string.Empty).Replace(@".\", string.Empty);
             if (ItemExists(itemRelativePath))
             {
                 return;
@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Fakes
         public void AddProjectReference(string projectPath, string projguid, string projectName)
         {
             var container = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
-            string itemRelativePath = "..\\" + projectPath.Replace($@"{Path.GetDirectoryName(Path.GetDirectoryName(_path))}\", "");
+            string itemRelativePath = "..\\" + projectPath.Replace($@"{Path.GetDirectoryName(Path.GetDirectoryName(_path))}\", string.Empty);
             XElement element = GetProjectReferenceXElement(itemRelativePath, projguid, projectName);
             ApplyNs(element);
             container.Add(element);
@@ -126,6 +126,7 @@ namespace Microsoft.Templates.Fakes
                     {
                         returnType = VsItemType.Compiled;
                     }
+
                     break;
                 case ".vb":
                     if (fileName.EndsWith(".xaml.vb", true, CultureInfo.InvariantCulture))
@@ -136,6 +137,7 @@ namespace Microsoft.Templates.Fakes
                     {
                         returnType = VsItemType.Compiled;
                     }
+
                     break;
                 case ".xaml":
                     returnType = VsItemType.XamlPage;

@@ -51,19 +51,22 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void InitializeCommands()
         {
-            addPageCommand = new RelayCommand(this,
+            addPageCommand = new RelayCommand(
+                 this,
                  PackageIds.AddPageCommand,
                  PackageGuids.GuidRelayCommandPackageCmdSet,
                  AddPage,
                  RightClickAvailable);
 
-            addFeatureCommand = new RelayCommand(this,
+            addFeatureCommand = new RelayCommand(
+                this,
                 PackageIds.AddFeatureCommand,
                 PackageGuids.GuidRelayCommandPackageCmdSet,
                 AddFeature,
                 RightClickAvailable);
 
-            openTempFolderCommand = new RelayCommand(this,
+            openTempFolderCommand = new RelayCommand(
+                this,
                 PackageIds.OpenTempFolder,
                 PackageGuids.GuidRelayCommandPackageCmdSet,
                 OpenTempFolder,

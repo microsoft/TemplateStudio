@@ -13,6 +13,7 @@ namespace Localization.Extensions
             Console.WriteLine(string.Concat(value));
             Console.ResetColor();
         }
+
         public static void WriteWarning(string value)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;

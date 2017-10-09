@@ -88,12 +88,12 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
+    <Compile Include="Extensions\ConsoleExt.cs" />
     <Compile Include="Logic\ProjectTemplateGeneratorConfig.cs" />
     <Compile Include="Options\ExtractOptions.cs" />
     <Compile Include="Options\GenerationOptions.cs" />
     <Compile Include="Options\CommandLineOptions.cs" />
     <Compile Include="Options\VerifyOptions.cs" />
-    <Compile Include="Extensions\ConsoleExtensions.cs" />
     <Compile Include="Logic\CSharpProjectTemplateGenerator.cs" />
     <Compile Include="Logic\ExtractorMode.cs" />
     <Compile Include="Logic\LocalizableItemsExtractor.cs" />
