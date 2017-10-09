@@ -11,8 +11,8 @@ namespace ToastNotificationSample.ViewModels
 
         public string ActivationSource
         {
-            get => _activationSource;
-            set => Set(ref _activationSource, value);
+            get { return _activationSource; }
+            set { Set(ref _activationSource, value); }
         }
 
         public ActivatedFromToastViewModel()
@@ -21,12 +21,15 @@ namespace ToastNotificationSample.ViewModels
 
         public void Initialize(ToastNotificationActivatedEventArgs args)
         {
+            // args.Argument contains information specified on Toast notification creation in file ToastNotificationsService.Samples.cs
             if (args.Argument == "ToastButtonActivationArguments")
             {
+                // The application was launched by clicking on OK button of Toast Notification
                 ActivationSource = "ActivationSourceButtonOk".GetLocalized();
             }
             else if(args.Argument == "ToastContentActivationParams")
             {
+                // The application was launched by clicking on the main body of Toast Notification
                 ActivationSource = "ActivationSourceContent".GetLocalized();
             }
         }

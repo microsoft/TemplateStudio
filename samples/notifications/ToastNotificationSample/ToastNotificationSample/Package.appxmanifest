@@ -50,8 +50,8 @@
 
   <genTemplate:Metadata>
     <genTemplate:Item Name="generator" Value="Windows Template Studio"/>
-    <genTemplate:Item Name="wizardVersion" Version="0.0.0.0" />
-    <genTemplate:Item Name="templatesVersion" Version="0.0.0.0" />
+    <genTemplate:Item Name="wizardVersion" Version="0.14.17282.65001" />
+    <genTemplate:Item Name="templatesVersion" Version="0.14.17282.1" />
     <genTemplate:Item Name="projectType" Value="Blank" />
     <genTemplate:Item Name="framework" Value="MVVMBasic" />
   </genTemplate:Metadata>
