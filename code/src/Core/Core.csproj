@@ -188,15 +188,12 @@
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
     <Compile Include="Mvvm\Observable.cs" />
-    <Compile Include="Mvvm\RelayCommand`1.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
-    <Compile Include="Naming\Validator`1.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\ResourceDictionaryWriter.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\ListStringExtensions.cs" />
-    <Compile Include="PostActions\PostAction`1.cs" />
     <Compile Include="ProgrammingLanguages.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidator.cs" />
     <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />
