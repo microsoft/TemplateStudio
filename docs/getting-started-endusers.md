@@ -7,6 +7,7 @@ The final generated code is the result of a project configuration (project type 
 
 - [Application activation](activation.md)
 - [Navigation between pages](navigation.md)
+- [LiveTiles](livetiles.md)
 
 ## Understanding concepts for Windows Template Studio
 
