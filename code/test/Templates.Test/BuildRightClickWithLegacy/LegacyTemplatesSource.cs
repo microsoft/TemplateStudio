@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Test
 
         public override bool ForcedAcquisition => true;
 
-        public override string Id => "TestBuildLegacy" + GetAgentName();
+        public override string Id => "TestLegacy" + GetAgentName();
 
         protected override string AcquireMstx()
         {
