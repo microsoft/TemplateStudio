@@ -3,20 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.ComponentModel.Design;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.OLE.Interop;
+
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Win32;
 using Microsoft.Templates.UI.VisualStudio;
+using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.Extension.Commands
 {
@@ -42,7 +35,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             InitializeCommands();
 
