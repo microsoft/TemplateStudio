@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Packaging
     {
         public const string DefaultExtension = ".mstx";
 
-        private const int bufSize = 0x1000;
+        private const int BufSize = 0x1000;
         private const string TemplatesContentRelationshipType = "http://schemas.microsoft.com/opc/2006/06/templates/securecontent";
 
         private static string CreateSourcePath(string source)
@@ -74,6 +74,7 @@ namespace Microsoft.Templates.Core.Packaging
 
             return outFile;
         }
+
         public static void Pack(string source, string outFile, string mimeMediaType)
         {
             if (string.IsNullOrWhiteSpace(source))
@@ -245,7 +246,9 @@ namespace Microsoft.Templates.Core.Packaging
         private static bool ValidateSignatures(Package package)
         {
             if (package == null)
+            {
                 throw new ArgumentNullException("ValidateSignatures(package)");
+            }
 
             var dsm = new PackageDigitalSignatureManager(package);
             bool result = dsm.IsSigned;
@@ -315,7 +318,7 @@ namespace Microsoft.Templates.Core.Packaging
             var status = PackageDigitalSignatureManager.VerifyCertificate(cert);
             AppHealth.Current.Verbose.TrackAsync(string.Format(StringRes.TemplatePackageVerifyCertificateMessage, cert.Subject, status.ToString())).FireAndForget();
 
-            return (status == X509ChainStatusFlags.NoError);
+            return status == X509ChainStatusFlags.NoError;
         }
 
         private static bool VerifyAllowedPublicKey(X509Certificate cert)
@@ -331,10 +334,14 @@ namespace Microsoft.Templates.Core.Packaging
         private static void SignAllParts(Package package, X509Certificate cert)
         {
             if (package == null)
+            {
                 throw new ArgumentNullException("SignAllParts(package)");
+            }
 
             if (cert == null)
+            {
                 throw new ArgumentNullException("SignAllParts(cert)");
+            }
 
             var dsm = new PackageDigitalSignatureManager(package)
             {
@@ -366,14 +373,15 @@ namespace Microsoft.Templates.Core.Packaging
 
         private static void CopyStream(Stream source, Stream target)
         {
-            var buf = new byte[bufSize];
+            var buf = new byte[BufSize];
             int bytesRead = 0;
 
-            while ((bytesRead = source.Read(buf, 0, bufSize)) > 0)
+            while ((bytesRead = source.Read(buf, 0, BufSize)) > 0)
             {
                 target.Write(buf, 0, bytesRead);
             }
         }
+
         private static void EnsureDirectory(string dir)
         {
             if (!string.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
@@ -407,7 +415,7 @@ namespace Microsoft.Templates.Core.Packaging
 
             if (!Path.IsPathRooted(source))
             {
-                uriString = Path.GetDirectoryName(Path.GetFullPath(source)).Replace(source, "");
+                uriString = Path.GetDirectoryName(Path.GetFullPath(source)).Replace(source, string.Empty);
                 if (!File.Exists(source))
                 {
                     uriString = uriString + Path.DirectorySeparatorChar;

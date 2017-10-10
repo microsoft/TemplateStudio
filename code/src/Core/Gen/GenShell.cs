@@ -65,6 +65,7 @@ namespace Microsoft.Templates.Core.Gen
                     result = fileContent.Contains("genTemplate:Metadata");
                 }
             }
+
             return result;
         }
     }

@@ -14,7 +14,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config) : base(config)
+        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config)
+            : base(config)
         {
         }
 
@@ -29,6 +30,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     GenContext.ToolBox.Shell.AddProjectToSolution(projectPath);
                 }
             }
+
             chrono.Stop();
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
         }

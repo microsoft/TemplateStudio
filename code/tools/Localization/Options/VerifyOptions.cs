@@ -7,11 +7,9 @@ namespace Localization.Options
 {
     public class VerifyOptions
     {
-        // [Option('w', "nowarn",
-        //    HelpText = "Do not show warnings.")]
-        // public bool NoWarnings { get; set; }
-
-        [Option('s', "source",
+        [Option(
+            's',
+            "source",
             HelpText = "path to the folder that contains source files for verify (it's root project folder).",
             Required = true)]
         public string SourceDirectory { get; set; }

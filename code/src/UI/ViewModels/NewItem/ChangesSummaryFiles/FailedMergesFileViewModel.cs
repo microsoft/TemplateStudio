@@ -12,7 +12,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class FailedMergesFileViewModel : BaseFileViewModel
     {
-        public FailedMergesFileViewModel(FailedMergePostAction warning) : base(warning.FailedFileName, FileStatus.WarningFile)
+        public FailedMergesFileViewModel(FailedMergePostAction warning)
+            : base(warning.FailedFileName, FileStatus.WarningFile)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleFailedMerges;
 

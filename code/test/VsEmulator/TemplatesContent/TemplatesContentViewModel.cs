@@ -25,7 +25,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             _host = host;
             _useWizardVersion = wizardVersion;
             _useTemplatesVersion = templateVersion;
-            _isWizardVersionReconfigurable = (wizardVersion == "0.0.0.0");
+            _isWizardVersionReconfigurable = wizardVersion == "0.0.0.0";
 
             AvailableContent = new ObservableCollection<string>();
         }

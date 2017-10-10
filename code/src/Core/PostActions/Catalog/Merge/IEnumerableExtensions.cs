@@ -135,7 +135,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 // VB uses a single character (') to start the comment, C# uses two (//)
                 int commentIndicatorLength = mergeString[startIndex - 1] == '\'' ? 1 : 2;
 
-                var toRemove = mergeString.Substring((startIndex - commentIndicatorLength) + (MacroStartDelete.Length + commentIndicatorLength),
+                var toRemove = mergeString.Substring(
+                    (startIndex - commentIndicatorLength) + (MacroStartDelete.Length + commentIndicatorLength),
                     (endIndex - commentIndicatorLength) - (startIndex - commentIndicatorLength) - (MacroStartDelete.Length + commentIndicatorLength));
 
                 sourceString = sourceString.Replace(toRemove, string.Empty);
@@ -184,6 +185,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     return insertionBuffer.Count;
                 }
             }
+
             return 0;
         }
 

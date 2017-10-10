@@ -15,6 +15,8 @@ using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewProject;
 
+using VsThreading = Microsoft.VisualStudio.Shell;
+
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
@@ -36,7 +38,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
-        public MainViewModel() : base()
+        public MainViewModel()
+            : base()
         {
             Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
             Current = this;
@@ -82,6 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 return;
             }
+
             if (button?.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
             {
                 return;
@@ -128,7 +132,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MainView.Close();
         }
 
-        protected override async void OnNext()
+        protected override void OnNext()
         {
             base.OnNext();
             if (CurrentStep == 1)
@@ -139,8 +143,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     OrderingService.Panel.Children.Clear();
                     CleanStatus();
                 }
+
                 WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
-                await ProjectTemplates.InitializeAsync();
+                VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
+                {
+                    await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    await ProjectTemplates.InitializeAsync();
+                });
+
                 NavigationService.Navigate(new ProjectPagesView());
             }
             else if (CurrentStep == 2)
