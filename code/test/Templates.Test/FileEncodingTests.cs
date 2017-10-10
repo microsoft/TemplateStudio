@@ -42,9 +42,10 @@ namespace Microsoft.Templates.Test
                 {
                     if (!IsEncodedCodedCorrectly(file))
                     {
-                        if (File.ReadAllText(file).Contains(' '))
+                        // Non breaking space leads to wrong characters saving with bom
+                        if (File.ReadAllText(file).Contains('\u00A0'))
                         {
-                            Assert.True(false, $"File ({file}) contains non breaking whitespaces, please remove them before running the encoding script.'");
+                            Assert.True(false, $"File ({file}) contains non breaking whitespaces, please remove them before running the encoding script. '");
                         }
 
                         // Throw an assertion failure here and stop checking other files.
