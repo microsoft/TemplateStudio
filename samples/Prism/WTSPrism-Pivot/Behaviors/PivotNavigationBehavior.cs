@@ -29,14 +29,14 @@ namespace WTSPrism.Behaviors
 
         private void AssociatedObject_PivotItemLoading(Pivot sender, PivotItemEventArgs args)
         {
-            var navAwarePivot = ((args.Item.Content as Frame).Content as FrameworkElement).DataContext as IPivotNavigationAware;
-            navAwarePivot?.OnPivotNavigatedTo();
+            var navAwarePivot = ((args.Item.Content as Frame).Content as FrameworkElement).DataContext as INavigationAware;
+            navAwarePivot?.OnNavigatedTo(null, null);
         }
 
         private void AssociatedObject_PivotItemUnloading(Pivot sender, PivotItemEventArgs args)
         {
-            var navAwarePivot = ((args.Item.Content as Frame).Content as FrameworkElement).DataContext as IPivotNavigationAware;
-            navAwarePivot?.OnPivotNavigatedFrom();
+            var navAwarePivot = ((args.Item.Content as Frame).Content as FrameworkElement).DataContext as INavigationAware;
+            navAwarePivot?.OnNavigatingFrom(null, null,false);
         }
 
         protected override void OnDetaching()

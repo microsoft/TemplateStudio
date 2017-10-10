@@ -17,10 +17,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Prism;
 using WTSPrism.Behaviors;
+using WTSPrism.Constants;
 
 namespace WTSPrism.ViewModels
 {
-    public class MasterDetailPageViewModel : ViewModelBase, IPivotNavigationAware
+    public class MasterDetailPageViewModel : ViewModelBase
     {
         private readonly INavigationService navigationService;
         private readonly ISampleDataService sampleDataService;
@@ -39,11 +40,11 @@ namespace WTSPrism.ViewModels
             SetInitialStateCommand = new DelegateCommand<VisualState>(SetInitialState);
         }
 
-        private Order selected;
+        private Order _selected;
         public Order Selected
         {
-            get => selected;
-            set => SetProperty(ref selected, value);
+            get { return _selected; }
+            set { SetProperty(ref _selected, value); }
         }
 
         public ICommand ItemClickCommand { get; private set; }
@@ -52,9 +53,14 @@ namespace WTSPrism.ViewModels
 
         public ObservableCollection<Order> SampleItems { get; private set; } = new ObservableCollection<Order>();
 
-        public async Task LoadDataAsync(VisualState currentState)
+        public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            this.currentState = currentState;
+            base.OnNavigatedTo(e, viewModelState);
+            await LoadDataAsync();
+        }
+
+        public async Task LoadDataAsync()
+        {
             SampleItems.Clear();
 
             var data = await sampleDataService.GetSampleModelDataAsync();
@@ -83,7 +89,7 @@ namespace WTSPrism.ViewModels
             {
                 if (currentState?.Name == NarrowStateName)
                 {
-                    navigationService.Navigate("MasterDetailDetail", item.OrderId);
+                    navigationService.Navigate(PageTokens.MasterDetailDetailPage, item.OrderId);
                 }
                 else
                 {
@@ -94,12 +100,12 @@ namespace WTSPrism.ViewModels
 
         public void OnPivotNavigatedFrom()
         {
-            
+
         }
 
         public async void OnPivotNavigatedTo()
         {
-            await LoadDataAsync(currentState);
+            await LoadDataAsync();
         }
     }
 }
