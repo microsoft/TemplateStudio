@@ -142,6 +142,7 @@
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />
     <Compile Include="CodeStyleEnforcementTests.cs" />
+    <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
     <Compile Include="BaseGenAndBuildFixture.cs" />

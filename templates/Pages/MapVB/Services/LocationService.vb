@@ -6,14 +6,8 @@ Namespace Services
     Public Class LocationService
         Private geolocator As Geolocator
 
-        ''' <summary>
-        ''' Raised when the current position is updated.
-        ''' </summary>
         Public Event PositionChanged As EventHandler(Of Geoposition)
 
-        ''' <summary>
-        ''' Gets the last known recorded position.
-        ''' </summary>
         Public Property CurrentPosition As Geoposition
             Get
                 Return m_CurrentPosition
@@ -25,29 +19,14 @@ Namespace Services
 
         Private m_CurrentPosition As Geoposition
 
-        ''' <summary>
-        ''' Initializes the location service with a default accuracy (100 meters) and movement threshold.
-        ''' </summary>
-        ''' <returns>True if the initialization was successful and the service can be used.</returns>
         Public Async Function InitializeAsync() As Task(Of Boolean)
             Return Await InitializeAsync(100)
         End Function
 
-        ''' <summary>
-        ''' Initializes the location service with the specified accuracy and default movement threshold.
-        ''' </summary>
-        ''' <param name="desiredAccuracyInMeters">The desired accuracy at which the service provides location updates.</param>
-        ''' <returns>True if the initialization was successful and the service can be used.</returns>
         Public Async Function InitializeAsync(desiredAccuracyInMeters As UInteger) As Task(Of Boolean)
             Return Await InitializeAsync(desiredAccuracyInMeters, CDbl(desiredAccuracyInMeters) / 2)
         End Function
 
-        ''' <summary>
-        ''' Initializes the location service with the specified accuracy and movement threshold.
-        ''' </summary>
-        ''' <param name="desiredAccuracyInMeters">The desired accuracy at which the service provides location updates.</param>
-        ''' <param name="movementThreshold">The distance of movement, in meters, that is required for the service to raise the PositionChanged event.</param>
-        ''' <returns>True if the initialization was successful and the service can be used.</returns>
         Public Async Function InitializeAsync(desiredAccuracyInMeters As UInteger, movementThreshold As Double) As Task(Of Boolean)
             ' to find out more about getting location, go to https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location
             If geolocator IsNot Nothing Then
@@ -76,10 +55,6 @@ Namespace Services
             Return result
         End Function
 
-        ''' <summary>
-        ''' Starts the service listening for location updates.
-        ''' </summary>
-        ''' <returns>An object that is used to manage the asynchronous operation.</returns>
         Public Async Function StartListeningAsync() As Task
             If geolocator Is Nothing Then
                 Throw New InvalidOperationException("ExceptionLocationServiceStartListeningCanNotBeCalled".GetLocalized())
@@ -90,9 +65,6 @@ Namespace Services
             CurrentPosition = Await geolocator.GetGeopositionAsync()
         End Function
 
-        ''' <summary>
-        ''' Stops the service listening for location updates.
-        ''' </summary>
         Public Sub StopListening()
             If geolocator Is Nothing Then
                 Return

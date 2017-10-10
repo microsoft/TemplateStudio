@@ -43,7 +43,7 @@ Namespace Services
             ' Dim secondaryTileArguments = args.Arguments
 
             ' If app is launched from a LiveTile notification update, TileContent arguments property is contained in args.TileActivatedInfo.RecentlyShownNotifications
-            ' Dim tileUpdatesArguments = args.TileActivatedInfo.RecentlyShownNotificatio
+            ' Dim tileUpdatesArguments = args.TileActivatedInfo.RecentlyShownNotifications
             Await Task.CompletedTask
         End Function
 
