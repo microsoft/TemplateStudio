@@ -38,12 +38,12 @@ namespace Localization
         internal static string VsixManifestFile = "source.extension.vsixmanifest";
         internal static string VsixLangpackFile = "Extension.vsixlangpack";
         internal static string VsixLangpackContent = @"<?xml version=""1.0"" encoding=""utf-8"" ?>  
-            <VsixLanguagePack Version = ""1.0.0"" xmlns=""http://schemas.microsoft.com/developer/vsx-schema-lp/2010"" >  
-              <LocalizedName>{0}</LocalizedName>  
-              <LocalizedDescription>{1}</LocalizedDescription>  
-              <License>..\Content\EULA.{2}.rtf</License>
-              <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
-            </VsixLanguagePack> ";
+<VsixLanguagePack Version = ""1.0.0"" xmlns=""http://schemas.microsoft.com/developer/vsx-schema-lp/2010"" >  
+  <LocalizedName>{0}</LocalizedName>
+  <LocalizedDescription>{1}</LocalizedDescription>  
+  <License>..\Content\EULA.{2}.rtf</License>
+  <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
+</VsixLanguagePack>";
 
         internal static string ResourcesFilePath = "StringRes.resx";
         internal static string ResourcesFilePathPattern = "StringRes.{0}.resx";
