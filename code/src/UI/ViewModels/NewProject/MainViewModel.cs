@@ -166,6 +166,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (CurrentStep == 0)
             {
                 WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
+                _needRestartConfiguration = false;
             }
             else if (CurrentStep == 1)
             {
