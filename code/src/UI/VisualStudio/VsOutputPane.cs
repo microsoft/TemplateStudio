@@ -8,8 +8,10 @@ using System.Reflection;
 
 using EnvDTE;
 using EnvDTE80;
+
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
 
@@ -62,7 +64,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static void CreateUwpPane(Guid paneGuid, bool visible, bool clearWithSolution, string title)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             IVsOutputWindow output = ServiceProvider.GlobalProvider.GetService(typeof(SVsOutputWindow)) as IVsOutputWindow;
 
             // Create a new pane.
