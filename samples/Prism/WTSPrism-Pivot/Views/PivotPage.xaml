@@ -17,22 +17,22 @@
             <i:Interaction.Behaviors>
                 <b:PivotNavigationBehavior />
             </i:Interaction.Behaviors>
-            <PivotItem x:Uid="PivotItem_Main" Header="Mainpage">
+            <PivotItem x:Uid="PivotItem_Main">
                 <Frame>
                     <views:MainPage/>
                 </Frame>
             </PivotItem>
-            <PivotItem x:Uid="PivotItem_Blank" Header="BlankPage">
+            <PivotItem x:Uid="PivotItem_Blank">
                 <Frame>
                     <views:BlankPage/>
                 </Frame>
             </PivotItem>
-            <PivotItem x:Uid="PivotItem_WebView" Header="WebView">
+            <PivotItem x:Uid="PivotItem_WebView">
                 <Frame>
                     <views:WebViewPage/>
                 </Frame>
             </PivotItem>
-            <PivotItem x:Uid="PivotItem_MediaPlayer" Header="MediaPlayer">
+            <PivotItem x:Uid="PivotItem_MediaPlayer">
                 <Frame>
                     <views:MediaPlayerPage/>
                 </Frame>

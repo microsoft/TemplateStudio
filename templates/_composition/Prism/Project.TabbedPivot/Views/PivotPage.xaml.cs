@@ -1,13 +1,13 @@
+﻿using System;
+using wts.ItemName.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-using WTSPrism.ViewModels;
-
-namespace WTSPrism.Views
+namespace wts.ItemName.Views
 {
     public sealed partial class PivotPage : Page
     {
-        private PivotPageViewModel ViewModel => DataContext as PivotPageViewModel;
+        private PivotViewModel ViewModel => DataContext as PivotViewModel;
 
         public PivotPage()
         {

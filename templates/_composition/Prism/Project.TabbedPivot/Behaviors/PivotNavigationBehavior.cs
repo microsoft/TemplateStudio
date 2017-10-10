@@ -1,4 +1,4 @@
-﻿using Microsoft.Xaml.Interactivity;
+using Microsoft.Xaml.Interactivity;
 using Prism.Windows.Navigation;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace WTSPrism.Behaviors
+namespace wts.ItemName.Behaviors
 {
     public class PivotNavigationBehavior : Behavior<Pivot>
     {
