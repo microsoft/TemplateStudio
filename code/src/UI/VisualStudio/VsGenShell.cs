@@ -19,8 +19,10 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 
 using NuGet.VisualStudio;
-using Microsoft.VisualStudio;
+
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Threading;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Setup.Configuration;
 
 namespace Microsoft.Templates.UI.VisualStudio
@@ -33,7 +35,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(
             () =>
             {
-                ThreadHelper.ThrowIfNotOnUIThread();
+                SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 return ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell;
             },
             true);
@@ -43,7 +45,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private Lazy<IVsSolution> _vssolution = new Lazy<IVsSolution>(
             () =>
             {
-                ThreadHelper.ThrowIfNotOnUIThread();
+                SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 return ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
             },
             true);
@@ -172,7 +174,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void ShowModal(System.Windows.Window dialog)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             // get the owner of this dialog
             UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
@@ -206,7 +208,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override string GetActiveProjectGuid()
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             var p = GetActiveProject();
 
             if (p != null)
@@ -388,7 +391,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override Guid GetVsProjectId()
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             var project = GetActiveProject();
             Guid projectGuid = Guid.Empty;
             try

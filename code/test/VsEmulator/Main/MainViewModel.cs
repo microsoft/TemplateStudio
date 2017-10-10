@@ -19,13 +19,12 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.Core.Diagnostics;
-
-using VsThreading = Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -153,18 +152,18 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void NewCSharpProject()
         {
-            VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
+            SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 await NewProjectAsync(ProgrammingLanguages.CSharp);
             });
         }
 
         private void NewVisualBasicProject()
         {
-            VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
+            SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 await NewProjectAsync(ProgrammingLanguages.VisualBasic);
             });
         }
@@ -420,9 +419,9 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddLog(string message)
         {
             Log += message + Environment.NewLine;
-            VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
+            SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 _host.logScroll.ScrollToEnd();
             });
         }
@@ -441,7 +440,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         [SuppressMessage(
             "Usage",
             "VSTHRD001:Use Await JoinableTaskFactory.SwitchToMainThreadAsync() to switch to the UI thread",
-            Justification = "Identified during async/await audit but needs further review.")]
+            Justification = "Not applying this rule to this method as it was specifically desgned as is.")]
         public void DoEvents()
         {
             var frame = new DispatcherFrame(true);
