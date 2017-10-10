@@ -58,8 +58,23 @@ namespace Param_RootNamespace.Helpers
             }
         }
 
-        public static PhotoOrientation ToPhotoOrientation(this SimpleOrientation orientation)
+        public static PhotoOrientation ToPhotoOrientation(this SimpleOrientation orientation, bool isFlipped)
         {
+            if (isFlipped)
+            {
+                switch (orientation)
+                {
+                    case SimpleOrientation.Rotated90DegreesCounterclockwise:
+                        return PhotoOrientation.Transverse;
+                    case SimpleOrientation.Rotated180DegreesCounterclockwise:
+                        return PhotoOrientation.FlipVertical;
+                    case SimpleOrientation.Rotated270DegreesCounterclockwise:
+                        return PhotoOrientation.Transpose;
+                    default:
+                        return PhotoOrientation.FlipHorizontal;
+                }
+            }
+
             switch (orientation)
             {
                 case SimpleOrientation.Rotated90DegreesCounterclockwise:
