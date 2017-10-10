@@ -1,5 +1,7 @@
 using Prism.Windows.Mvvm;
+using Prism.Windows.Navigation;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
@@ -12,7 +14,7 @@ using WTSPrism.Services;
 
 namespace WTSPrism.ViewModels
 {
-    public class MapPageViewModel : ViewModelBase, IPivotNavigationAware
+    public class MapPageViewModel : ViewModelBase
     {
         // TODO WTS: Set your preferred default zoom level
         private const double defaultZoomLevel = 17;
@@ -64,6 +66,12 @@ namespace WTSPrism.ViewModels
             MapServiceToken = "";
         }
 
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        {
+            base.OnNavigatedTo(e, viewModelState);
+            await NavigateTo();
+        }
+
         private async Task NavigateTo()
         {
             if (locationService != null)
@@ -98,6 +106,12 @@ namespace WTSPrism.ViewModels
             MapIcons.Add(mapIcon);
         }
 
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        {
+            base.OnNavigatingFrom(e, viewModelState, suspending);
+            NavigateAway();
+        }
+
         private void NavigateAway()
         {
             if (locationService != null)
@@ -113,16 +127,6 @@ namespace WTSPrism.ViewModels
             {
                 Center = geoposition.Coordinate.Point;
             }
-        }
-
-        public void OnPivotNavigatedFrom()
-        {
-            NavigateAway();
-        }
-
-        public async void OnPivotNavigatedTo()
-        {
-            await NavigateTo();
         }
     }
 }
