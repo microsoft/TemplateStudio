@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Test
 
         public override bool ForcedAcquisition => true;
 
-        public override string Id => "TestBuildLegacy";
+        public override string Id => "TestBuildLegacy" + GetAgentName();
 
         protected override string AcquireMstx()
         {
@@ -42,6 +42,20 @@ namespace Microsoft.Templates.Test
             var wc = new WebClient();
 
             wc.DownloadFile(sourceUrl, file);
+        }
+
+        private static string GetAgentName()
+        {
+            // If running tests in VSTS concurrently in different agents avoids the collison in templates folders
+            string agentName = Environment.GetEnvironmentVariable("AGENT_NAME");
+            if (string.IsNullOrEmpty(agentName))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return $"-{agentName}";
+            }
         }
     }
 }

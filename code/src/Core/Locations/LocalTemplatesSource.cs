@@ -28,13 +28,13 @@ namespace Microsoft.Templates.Core.Locations
         public LocalTemplatesSource()
             : this("0.0.0.0", "0.0.0.0", true)
         {
-            _id = Configuration.Current.Environment;
+            _id = Configuration.Current.Environment + GetAgentName();
         }
 
         public LocalTemplatesSource(string id)
             : this("0.0.0.0", "0.0.0.0", true)
         {
-            _id = id;
+            _id = id + GetAgentName();
         }
 
         public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Core.Locations
             LocalWizardVersion = wizardVersion;
             if (string.IsNullOrEmpty(_id))
             {
-                _id = Configuration.Current.Environment;
+                _id = Configuration.Current.Environment + GetAgentName();
             }
         }
 
@@ -74,6 +74,20 @@ namespace Microsoft.Templates.Core.Locations
             if (!Directory.Exists(FinalDestination))
             {
                 Fs.CopyRecursive(sourcePath, FinalDestination, true);
+            }
+        }
+
+        private static string GetAgentName()
+        {
+            // If running tests in VSTS concurrently in different agents avoids the collison in templates folders
+            string agentName = Environment.GetEnvironmentVariable("AGENT_NAME");
+            if (string.IsNullOrEmpty(agentName))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return $"-{agentName}";
             }
         }
     }
