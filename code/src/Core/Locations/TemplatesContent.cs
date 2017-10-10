@@ -107,6 +107,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 AppHealth.Current.Verbose.TrackAsync($"{StringRes.CurrentContentExpirationString}: {expiration.ToString()}").FireAndForget();
             }
+
             return expired;
         }
 
@@ -196,7 +197,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             else
             {
-                return (v.Major > WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor > WizardVersion.Minor)));
+                return v.Major > WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor > WizardVersion.Minor));
             }
         }
 
@@ -208,7 +209,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             else
             {
-                return (v.Major < WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor < WizardVersion.Minor)));
+                return v.Major < WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor < WizardVersion.Minor));
             }
         }
 

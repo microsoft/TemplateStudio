@@ -14,9 +14,9 @@ Namespace Services
         End Sub
 
         Protected Overrides Async Function HandleInternalAsync(args As ToastNotificationActivatedEventArgs) As Task
-            ''' TODO WTS: Handle activation from toast notification,
-            ''' for more info on handling activation see
-            ''' Documentation: https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
+            ' TODO WTS: Handle activation from toast notification,
+            ' for more info on handling activation see
+            ' Documentation: https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
 
             Await Task.CompletedTask
         End Function

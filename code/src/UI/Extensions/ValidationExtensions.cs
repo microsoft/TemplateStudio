@@ -16,6 +16,7 @@ namespace Microsoft.Templates.UI.Extensions
             {
                 resourceString = StringRes.UndefinedErrorString;
             }
+
             return resourceString;
         }
     }

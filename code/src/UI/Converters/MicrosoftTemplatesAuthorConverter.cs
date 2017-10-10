@@ -17,6 +17,7 @@ namespace Microsoft.Templates.UI.Converters
             {
                 return parameter == null ? Visibility.Collapsed : Visibility.Visible;
             }
+
             return parameter == null ? Visibility.Visible : Visibility.Collapsed;
         }
 

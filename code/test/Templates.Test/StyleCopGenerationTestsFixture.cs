@@ -44,6 +44,7 @@ namespace Microsoft.Templates.Test
             {
                 await GenContext.ToolBox.Repo.RefreshAsync();
             }
+
             Templates = GenContext.ToolBox.Repo.GetAll();
         }
 
@@ -90,6 +91,7 @@ namespace Microsoft.Templates.Test
                     }
                 }
             }
+
             return result;
         }
 
@@ -110,6 +112,7 @@ namespace Microsoft.Templates.Test
                     {
                         validators.Add(new DefaultNamesValidator());
                     }
+
                     itemName = Naming.Infer(itemName, validators);
                     AddItem(userSelection, itemName, template);
                 }

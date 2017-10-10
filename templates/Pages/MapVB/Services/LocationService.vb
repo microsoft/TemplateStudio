@@ -46,7 +46,6 @@ Namespace Services
                     }
                     result = True
                     Exit Select
-                ' Case GeolocationAccessStatus.Unspecified, GeolocationAccessStatus.Denied
                 Case Else
                     result = False
                     Exit Select

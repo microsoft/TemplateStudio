@@ -27,6 +27,7 @@ namespace Microsoft.Templates.UI.Controls
         public TextBoxEx()
         {
             FocusManager.AddGotFocusHandler(this, GotFocusHandler);
+
             // FocusManager.AddLostFocusHandler(this, LostFocusHandler);
         }
 

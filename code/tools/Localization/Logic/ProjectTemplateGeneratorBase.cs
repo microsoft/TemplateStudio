@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Localization
 {
-    abstract class ProjectTemplateGeneratorBase
+    internal abstract class ProjectTemplateGeneratorBase
     {
         private ProjectTemplateGeneratorConfig _config;
         private DirectoryInfo _sourceDir;

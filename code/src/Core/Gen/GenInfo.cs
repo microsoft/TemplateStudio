@@ -21,6 +21,7 @@ namespace Microsoft.Templates.Core.Gen
             {
                 return Parameters[GenParams.Username];
             }
+
             return string.Empty;
         }
 

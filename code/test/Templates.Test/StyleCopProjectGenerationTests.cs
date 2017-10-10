@@ -79,7 +79,6 @@ namespace Microsoft.Templates.Test
 
             // Clean
             Fs.SafeDeleteDirectory(outputPath);
-            // Directory.Delete(outputPath, true);
         }
 
         public static IEnumerable<object[]> GetProjectTemplatesForStyleCopAsync()
@@ -104,7 +103,7 @@ namespace Microsoft.Templates.Test
 
             foreach (var item in layouts)
             {
-                _fixture.AddItem(userSelection, item.Layout.name, item.Template);
+                _fixture.AddItem(userSelection, item.Layout.Name, item.Template);
             }
         }
     }

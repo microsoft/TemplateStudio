@@ -22,8 +22,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class SavedTemplateViewModel : Observable
     {
-        #region TemplatesProperties
-
         private ITemplateInfo _template;
 #pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         public (string name, ITemplateInfo template) UserSelection => (ItemName, _template);
@@ -49,6 +47,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 colorTimer.Start();
             }
         }
+
         private string _newItemName;
         public string NewItemName
         {
@@ -71,6 +70,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                         throw new Exception(ErrorMessage);
                     }
                 }
+
                 MainViewModel.Current.CleanStatus(true);
             }
         }
@@ -158,9 +158,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 return !IsHome;
             }
         }
-        #endregion
 
-        #region UISummaryProperties
         private DispatcherTimer colorTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(2) };
 
         private bool _isEditionEnabled;
@@ -240,7 +238,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public string DisplayText => CanChooseItemName ? $"{ItemName} [{TemplateName}]" : ItemName;
 
-        private ICommand _openCommand { get; set; }
+        private ICommand _openCommand;
         public ICommand OpenCommand => _openCommand ?? (_openCommand = new RelayCommand(OnOpen));
 
         private ICommand _removeCommand;
@@ -254,7 +252,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private ICommand _cancelRenameCommand;
         public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(() => CancelRename()));
-        #endregion
 
         public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled)
         {
@@ -328,11 +325,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isNewAdded)
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue");
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlue");
                 }
                 else
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlack");
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlack");
                 }
             }
         }
@@ -347,11 +344,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isNewAdded)
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue");
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlue");
                 }
                 else
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIGray");
+                    return ResourceService.FindResource<SolidColorBrush>("UIGray");
                 }
             }
         }
@@ -389,6 +386,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
                 MainViewModel.Current.ProjectTemplates.UpdateTemplatesAvailability();
                 MainViewModel.Current.ProjectTemplates.UpdateHasPagesAndHasFeatures();
+                MainViewModel.Current.RebuildLicenses();
             }
         }
 
@@ -406,7 +404,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 if (IsHome)
                 {
-                    MainViewModel.Current.ProjectTemplates.UpdateHomePageName(ItemName);
+                    UserSelectionService.HomeName = ItemName;
                 }
 
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Rename).FireAndForget();
@@ -415,6 +413,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 NewItemName = ItemName;
             }
+
             IsEditionEnabled = false;
             MainViewModel.Current.CleanStatus(true);
         }

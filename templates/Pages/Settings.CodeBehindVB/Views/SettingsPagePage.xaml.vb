@@ -53,7 +53,7 @@ Namespace Views
         Private Async Sub ThemeChanged_CheckedAsync(sender As Object, e As RoutedEventArgs)
             Dim param = TryCast(sender, RadioButton)
 
-            If param IsNot Nothing and param.CommandParameter IsNot Nothing Then
+            If param IsNot Nothing AndAlso param.CommandParameter IsNot Nothing Then
                 Await ThemeSelectorService.SetThemeAsync(DirectCast(param.CommandParameter, ElementTheme))
             End If
         End Sub

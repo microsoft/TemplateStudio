@@ -410,8 +410,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void EnsureAllDefinedGuidsAreUsed(ValidationTemplateInfo template, string templateRoot,
-            List<string> results)
+        private static void EnsureAllDefinedGuidsAreUsed(ValidationTemplateInfo template, string templateRoot, List<string> results)
         {
             if (template.Guids != null)
             {
@@ -445,8 +444,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void EnsureAllDefinedPrimaryOutputsExist(ValidationTemplateInfo template, string templateRoot,
-            List<string> results)
+        private static void EnsureAllDefinedPrimaryOutputsExist(ValidationTemplateInfo template, string templateRoot, List<string> results)
         {
             if (template.PrimaryOutputs != null)
             {
@@ -484,8 +482,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void EnsureVisualBasicTemplatesAreIdentifiedAppropriately(ValidationTemplateInfo template,
-            string filePath, List<string> results)
+        private static void EnsureVisualBasicTemplatesAreIdentifiedAppropriately(ValidationTemplateInfo template, string filePath, List<string> results)
         {
             var isVbTemplate = filePath.Contains("VB\\");
 

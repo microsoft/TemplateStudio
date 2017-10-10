@@ -29,7 +29,7 @@
     },
     {
       "path": ".\\Views\\FirstRunDialog.xaml.vb"
-    },
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

@@ -146,7 +146,7 @@ Namespace ViewModels
                 navigationitem = PrimaryItems.FirstOrDefault(Function(i as ShellNavigationItem) i.PageType.Equals(e.SourcePageType))
             End If
 
-            If navigationItem Is Nothing And SecondaryItems IsNot Nothing Then
+            If navigationItem Is Nothing AndAlso SecondaryItems IsNot Nothing Then
                 navigationItem = SecondaryItems.FirstOrDefault(Function(i as ShellNavigationItem) i.PageType.Equals(e.SourcePageType))
             End If
 

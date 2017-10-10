@@ -210,6 +210,10 @@ namespace Microsoft.Templates.Test
                     {
                         "This module holds sample data used by some generated pages to show how they can be used.",
                         "This class holds sample data used by some generated pages to show how they can be used."
+                    },
+                    {
+                        "Await Singleton(Of HubNotificationsService).Instance.InitializeAsync()",
+                        "await Singleton<HubNotificationsService>.Instance.InitializeAsync();"
                     }
                 };
 

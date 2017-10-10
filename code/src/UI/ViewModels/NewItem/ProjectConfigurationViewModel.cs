@@ -76,6 +76,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             _window.DialogResult = true;
             _window.Close();
         }
+
         private void Cancel()
         {
             _window.DialogResult = false;

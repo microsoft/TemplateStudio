@@ -22,7 +22,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class TemplateInfoViewModel : CommonInfoViewModel
     {
-        #region TemplateProperties
         private string _templateName;
         public string TemplateName
         {
@@ -67,9 +66,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<DependencyInfoViewModel> DependencyItems { get; } = new ObservableCollection<DependencyInfoViewModel>();
         public ITemplateInfo Template { get; set; }
-        #endregion
 
-        #region UIProperties
         private bool _isEditionEnabled;
         public bool IsEditionEnabled
         {
@@ -135,6 +132,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                         MainViewModel.Current.SetValidationErrors(ErrorMessage);
                         throw new Exception(ErrorMessage);
                     }
+
                     MainViewModel.Current.CleanStatus(true);
                 }
             }
@@ -165,7 +163,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private ICommand _showItemInfoCommand;
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
-        #endregion
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {
@@ -202,6 +199,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 MainViewModel.Current.CleanStatus(true);
                 return true;
             }
+
             return false;
         }
 
@@ -250,11 +248,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isEnabled)
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlack");
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlack");
                 }
                 else
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIMiddleLightGray");
+                    return ResourceService.FindResource<SolidColorBrush>("UIMiddleLightGray");
                 }
             }
         }
@@ -287,6 +285,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private void SaveItem()
         {
             UserSelectionService.AddTemplateAndDependencies((NewTemplateName, Template), MainViewModel.Current.ProjectTemplates.ContextFramework.Name, false);
+            MainViewModel.Current.RebuildLicenses();
             MainViewModel.Current.ProjectTemplates.UpdateTemplatesAvailability();
             MainViewModel.Current.ProjectTemplates.UpdateSummaryTemplates();
             MainViewModel.Current.ProjectTemplates.UpdateHasPagesAndHasFeatures();

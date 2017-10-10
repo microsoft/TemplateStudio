@@ -18,24 +18,25 @@ namespace Microsoft.Templates.Core.Locations
 
         protected override bool VerifyPackageSignatures => false;
 
-        public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
         private string _id;
         public override string Id { get => _id; }
 
-        private object lockObject = new object();
-
         protected string FinalDestination { get; set; }
 
-        public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0", true)
+        public LocalTemplatesSource()
+            : this("0.0.0.0", "0.0.0.0", true)
         {
             _id = Configuration.Current.Environment;
         }
-        public LocalTemplatesSource(string id) : this("0.0.0.0", "0.0.0.0", true)
+
+        public LocalTemplatesSource(string id)
+            : this("0.0.0.0", "0.0.0.0", true)
         {
             _id = id;
         }
+
         public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
             ForcedAcquisition = forcedAdquisition;

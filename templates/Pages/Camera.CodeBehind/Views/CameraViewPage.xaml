@@ -5,12 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Param_ItemNamespace.Controls"
-    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
     mc:Ignorable="d">
-    <Page.Resources>
-        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-    </Page.Resources>
-            
+
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
@@ -26,8 +22,8 @@
             Style="{StaticResource PageTitleStyle}" />
 
         <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-          <controls:CameraControl 
-                x:Uid="CameraViewPage_CameraControl" 
+          <controls:CameraControl
+                x:Uid="CameraViewPage_CameraControl"
                 PhotoTaken="CameraControl_PhotoTaken" />
 
           <Image
@@ -39,6 +35,6 @@
               HorizontalAlignment="Right"
               VerticalAlignment="Bottom"/>
         </Grid>
-        
+
     </Grid>
 </Page>

@@ -28,6 +28,7 @@ namespace Microsoft.Templates.UI.Controls
             get => GetValue(ItemProperty);
             set => SetValue(ItemProperty, value);
         }
+
         public static readonly DependencyProperty ItemProperty = DependencyProperty.Register(nameof(Item), typeof(object), typeof(CodeViewer), new PropertyMetadata(true, OnItemChanged));
 
         public double CodeFontSize
@@ -35,6 +36,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (double)GetValue(CodeFontSizeProperty);
             set => SetValue(CodeFontSizeProperty, value);
         }
+
         public static readonly DependencyProperty CodeFontSizeProperty = DependencyProperty.Register(nameof(CodeFontSize), typeof(double), typeof(CodeViewer), new PropertyMetadata(SystemService.Instance.GetCodeFontSize(), OnItemChanged));
 
         public CodeViewer()
@@ -73,13 +75,14 @@ namespace Microsoft.Templates.UI.Controls
                 patternText = patternText
                     .Replace("##code##", fileText);
             }
+
             if (!string.IsNullOrEmpty(patternText))
             {
                 var language = GetLanguage(original);
                 patternText = patternText.Replace("##language##", language);
                 patternText = patternText
                     .Replace("##ExecutingDirectory##", executingDirectory)
-                    .Replace("##renderSideBySide##", (renderSideBySide.ToString().ToLower()))
+                    .Replace("##renderSideBySide##", renderSideBySide.ToString().ToLower())
                     .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty)
                     .Replace("##fontSize##", $"fontSize: {CodeFontSize},");
                 if (_currentHtml != patternText)
@@ -128,6 +131,7 @@ namespace Microsoft.Templates.UI.Controls
                 fileText = updateTextAction(fileText);
                 return HttpUtility.JavaScriptStringEncode(fileText);
             }
+
             return string.Empty;
         }
 

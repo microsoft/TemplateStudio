@@ -75,6 +75,7 @@ namespace Microsoft.Templates.Test
 
             return resultPath;
         }
+
         protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework)
         {
             var info = ProjectConfigInfo.ReadProjectConfiguration();
@@ -139,6 +140,7 @@ namespace Microsoft.Templates.Test
             {
                 Assert.True(finalProjectFileCount == emptyProjecFileCount);
             }
+
             // Clean
             if (cleanGeneration)
             {
@@ -159,12 +161,12 @@ namespace Microsoft.Templates.Test
                 {
                     ProjectType = projectType,
                     Framework = framework,
-                    HomeName = "",
+                    HomeName = string.Empty,
                     Language = language,
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge
                 };
 
-                _fixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
+                _fixture.AddItem(newUserSelection, item, BaseGenAndBuildFixture.GetDefaultName);
 
                 await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
 
@@ -289,15 +291,13 @@ namespace Microsoft.Templates.Test
             yield return new object[] { TabsAndPivot, MvvmLight };
         }
 
-        /// <summary>
-        /// Gets a list of partial identities for page and feature templates supported by C# and VB
-        /// </summary>
+        // Gets a list of partial identities for page and feature templates supported by C# and VB
+#pragma warning disable RECS0154 // Parameter is never used - projectType can be used when all options aren't supported on all platforms
         protected static IEnumerable<string> GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(string projectType, string framework)
+#pragma warning restore RECS0154 // Parameter is never used
         {
-            // Hardcoding the response lists is necessary while there are different pages & features available for different combinations of projecttype and framework
-            if (projectType == NavigationPanel && framework == CodeBehind)
+            if (framework == CodeBehind)
             {
-                // These are the items being built out for first public trial
                 return new[]
                 {
                     "wts.Page.Blank.CodeBehind", "wts.Page.Settings.CodeBehind", "wts.Page.Chart.CodeBehind",
@@ -305,18 +305,22 @@ namespace Microsoft.Templates.Test
                     "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind",
                     "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                     "wts.Feat.UriScheme", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
-                    "wts.Feat.ToastNotifications",
+                    "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
+                    "wts.Feat.StoreNotifications"
                 };
-            }
-            else if (framework == CodeBehind)
-            {
-                // Every combination supports these
-                return new[] { "wts.Page.Blank.CodeBehind", "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume" };
             }
             else
             {
-                // Every combination supports these
-                return new[] { "wts.Page.Blank", "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume" };
+                return new[]
+                {
+                    "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
+                    "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
+                    "wts.Page.TabbedPivot", "wts.Page.Map",
+                    "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
+                    "wts.Feat.UriScheme", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
+                    "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
+                    "wts.Feat.StoreNotifications"
+                };
             }
         }
 
@@ -381,6 +385,7 @@ namespace Microsoft.Templates.Test
                     result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetPageAndFeatureTemplatesAsync(framework));
                     break;
             }
+
             return result;
         }
     }

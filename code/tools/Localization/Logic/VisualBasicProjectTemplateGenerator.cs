@@ -8,7 +8,8 @@ namespace Localization
 {
     internal class VisualBasicProjectTemplateGenerator : ProjectTemplateGeneratorBase
     {
-        public VisualBasicProjectTemplateGenerator(string sourceDirPath, string destinationDirPath) : base(GetConfig(sourceDirPath, destinationDirPath))
+        public VisualBasicProjectTemplateGenerator(string sourceDirPath, string destinationDirPath)
+            : base(GetConfig(sourceDirPath, destinationDirPath))
         {
         }
 
