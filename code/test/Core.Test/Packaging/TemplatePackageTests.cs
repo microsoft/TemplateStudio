@@ -10,6 +10,8 @@ using System.Net.Mime;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Threading;
 
 using Microsoft.Templates.Core.Locations;
 
@@ -332,15 +334,8 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public void TestRemoteSource()
         {
-            // Bug #333
-            // Location will give access to temp location.
-            // code base won't if they are on diff drives
-            //
-            // If someone has a temp dir that is different than their extention
-            // move will fail, you need to copy / delete
-            // string drive = Path.GetPathRoot(Assembly.GetExecutingAssembly().Location);
             string drive = Path.GetPathRoot(new Uri(typeof(TemplatePackageTests).Assembly.CodeBase).LocalPath);
-            string targetFolder = Path.Combine(drive, @"Temp\TestRts");
+            string targetFolder = Path.Combine(drive, $@"Temp\TestRts{Process.GetCurrentProcess().Id}_{Thread.CurrentThread.ManagedThreadId}");
 
             try
             {

@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Test
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\LEG\\{testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new LegacyTemplatesSource();
-        public TemplatesSource LocalSource => new LocalTemplatesSource("BuildRightClickWithLegacy");
+        public TemplatesSource LocalSource => new LocalTemplatesSource("BldRClickLegacy");
 
         private static bool syncExecuted;
 
