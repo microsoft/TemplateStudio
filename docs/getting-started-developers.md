@@ -76,16 +76,16 @@ Following are described the contents for each folder:
 
 The following list shows which tests are executed in which build. Within the Templates.Test project we use the trait ExecutionSet to specify which tests are run. 
 
-* AppVeyor 'CIBuild' Build (CI):	
-  * Core.Tests	
-  *	UI.Test	
-  *	Templates.Tests	
+* AppVeyor 'CIBuild' Build (CI):	
+  * Core.Tests	
+  * UI.Test	
+  * Templates.Tests	
     * ExecutionSet=BuildMinimum
-    * ExecutionSet=BuildStyleCop
+    * ExecutionSet=BuildStyleCop
     * ExecutionSet=TemplateValidation
 		
 * VSO 'Templates.Test.Gen' Build (Gen Tests):	
-  *	Templates.Test 
+  * Templates.Test 
     * ExecutionSet=Generation
 
 * VSO 'Templates.Test.Full'	Build (Full Tests):
