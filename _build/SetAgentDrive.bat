@@ -1,0 +1,10 @@
+ECHO "BEFORE"
+ECHO %AGENT_DRIVE%
+ECHO %Agent.Drive%
+
+SET Agent.Drive=%CD:~0,3%
+SET AGENT_DRIVE=%CD:~0,3%
+
+ECHO "AFTER"
+ECHO %AGENT_DRIVE%
+ECHO %Agent.Drive%
