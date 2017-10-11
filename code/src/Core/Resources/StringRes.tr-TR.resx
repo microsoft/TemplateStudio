@@ -372,4 +372,19 @@ The following changes could not be integrated: {2}
   <data name="SyncSummaryProjectFile" xml:space="preserve">
     <value>ProjectFile</value>
   </data>
+  <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
+    <value>Other instance is syncing templates... Waiting 5 seconds.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnCreatingLockFileMessage" xml:space="preserve">
+    <value>Error creating the instance locking file.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnDeletingLockFileMessage" xml:space="preserve">
+    <value>Error deleting the instance locking file.</value>
+  </data>
+  <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
+    <value>Error reading the instance locking file.</value>
+  </data>
+  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
+    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project.</value>
+  </data>
 </root>
