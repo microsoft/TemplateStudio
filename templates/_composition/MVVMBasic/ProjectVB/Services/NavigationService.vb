@@ -28,13 +28,13 @@ Namespace Services
             End Set
         End Property
 
-        Public Property CanGoBack As Boolean
+        Public ReadOnly Property CanGoBack As Boolean
             Get
                 Return Frame.CanGoBack
             End Get
         End Property
 
-        Public Property CanGoForward As Boolean
+        Public ReadOnly Property CanGoForward As Boolean
             Get
                 Return Frame.CanGoForward
             End Get

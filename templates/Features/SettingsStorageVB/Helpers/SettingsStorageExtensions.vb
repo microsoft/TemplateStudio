@@ -36,11 +36,11 @@ Namespace Helpers
 
         <Extension>
         Public Async Function SaveAsync(Of T)(settings As ApplicationDataContainer, key As String, value As T) As Task
-            settings.SaveString(key, Await Json.StringifyAsync(value)
+            settings.SaveString(key, Await Json.StringifyAsync(value))
         End Function
 
         <Extension>
-        Public Shared Sub SaveString(settings As ApplicationDataContainer, key As String, value As String)
+        Public Sub SaveString(settings As ApplicationDataContainer, key As String, value As String)
             settings.Values(key) = value
         End Sub
 

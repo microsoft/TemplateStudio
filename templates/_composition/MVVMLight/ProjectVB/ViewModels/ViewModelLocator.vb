@@ -19,7 +19,7 @@ Namespace ViewModels
 
         Public Sub Register(Of VM As Class, V)()
             SimpleIoc.[Default].Register(Of VM)()
-            _navigationService.Configure(GetType(VM).FullName, GetType(V))
+            NavigationService.Configure(GetType(VM).FullName, GetType(V))
         End Sub
     End Class
 End Namespace
