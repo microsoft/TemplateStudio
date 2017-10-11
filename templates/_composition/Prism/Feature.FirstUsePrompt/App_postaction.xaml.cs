@@ -18,7 +18,7 @@ namespace Param_RootNamespace
             NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();
 //{[{
-            await WhatsNewDisplayService.ShowIfAppropriateAsync();
+            await FirstRunDisplayService.ShowIfAppropriateAsync();
 //}]}
         }
     }

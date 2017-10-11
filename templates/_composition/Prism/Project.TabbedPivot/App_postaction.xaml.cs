@@ -15,6 +15,7 @@ using System.Globalization;
         private async Task LaunchApplication(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);
+            Window.Current.Activate();
             await Task.CompletedTask;
         }
 //}]}
