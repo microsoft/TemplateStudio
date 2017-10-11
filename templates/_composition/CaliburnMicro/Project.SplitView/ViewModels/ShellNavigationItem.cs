@@ -80,7 +80,7 @@ namespace wts.ItemName.ViewModels
                 Set(ref _isSelected, value);
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
                 SelectedForeground = value
-                    ? Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush
+                    ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
                     : GetStandardTextColorBrush();
             }
         }
