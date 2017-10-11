@@ -56,11 +56,11 @@ Namespace Helpers
         <Extension>
         Public Async Function SaveFileAsync(folder As StorageFolder, content As Byte(), fileName As String, Optional options As CreationCollisionOption = CreationCollisionOption.ReplaceExisting) As Task(Of StorageFile)
             If content Is Nothing Then
-                Throw New ArgumentNullException("content")
+                Throw New ArgumentNullException(NameOf(content))
             End If
 
             If String.IsNullOrEmpty(fileName) Then
-                Throw New ArgumentException("File name is null or empty. Specify a valid file name", "fileName")
+                Throw New ArgumentException("File name is null or empty. Specify a valid file name", NameOf(fileName))
             End If
 
             Dim storageFile = Await folder.CreateFileAsync(fileName, options)

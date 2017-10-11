@@ -7,6 +7,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     public enum MergeFailureType
     {
         FileNotFound,
-        LineNotFound
+        LineNotFound,
+        KeyAlreadyDefined
     }
 }

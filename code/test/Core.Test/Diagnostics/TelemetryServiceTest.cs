@@ -12,9 +12,11 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Diagnostics
 {
+    [Trait("ExecutionSet", "Minimum")]
+
     public class TelemetryServiceTest : IClassFixture<TelemetryFixture>
     {
-        TelemetryFixture _fixture;
+        private TelemetryFixture _fixture;
 
         public TelemetryServiceTest(TelemetryFixture fixture)
         {

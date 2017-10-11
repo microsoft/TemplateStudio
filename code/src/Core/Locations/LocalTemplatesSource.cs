@@ -4,12 +4,13 @@
 
 using System.IO;
 using System.Text;
+using System;
 
 using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public sealed class LocalTemplatesSource : TemplatesSource
+    public class LocalTemplatesSource : TemplatesSource
     {
         public string LocalTemplatesVersion { get; private set; }
 
@@ -17,39 +18,77 @@ namespace Microsoft.Templates.Core.Locations
 
         protected override bool VerifyPackageSignatures => false;
 
-        public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
-        private object lockObject = new object();
+        private string _id;
+        public override string Id { get => _id; }
 
-        public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0")
+        protected string FinalDestination { get; set; }
+
+        public LocalTemplatesSource()
+            : this("0.0.0.0", "0.0.0.0", true)
         {
-            base.ForcedAcquisition = true;
+            _id = Configuration.Current.Environment + GetAgentName();
+        }
+
+        public LocalTemplatesSource(string id)
+            : this("0.0.0.0", "0.0.0.0", true)
+        {
+            _id = id + GetAgentName();
         }
 
         public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
-            base.ForcedAcquisition = forcedAdquisition;
+            ForcedAcquisition = forcedAdquisition;
             LocalTemplatesVersion = templatesVersion;
             LocalWizardVersion = wizardVersion;
+            if (string.IsNullOrEmpty(_id))
+            {
+                _id = Configuration.Current.Environment + GetAgentName();
+            }
         }
 
         protected override string AcquireMstx()
         {
-            // Compress Content adding version return TemplatePackage path.
-            var tempFolder = Path.Combine(GetTempFolder(), SourceFolderName);
-
-            Copy(Origin, tempFolder);
-
-            File.WriteAllText(Path.Combine(tempFolder, "version.txt"), LocalTemplatesVersion, Encoding.UTF8);
-
-            return TemplatePackage.Pack(tempFolder);
+            return Origin;
         }
 
-        private void Copy(string sourceFolder, string targetFolder)
+        public override void Extract(string source, string targetFolder)
         {
-            Fs.SafeDeleteDirectory(targetFolder);
-            Fs.CopyRecursive(sourceFolder, targetFolder);
+            if (source.ToLower().EndsWith("mstx"))
+            {
+                base.Extract(source, targetFolder);
+            }
+            else
+            {
+                SetLocalContent(source, targetFolder, new Version(LocalTemplatesVersion));
+            }
+        }
+
+        private void SetLocalContent(string sourcePath, string finalTargetFolder, Version version)
+        {
+            Version ver = version;
+
+            FinalDestination = PrepareFinalDestination(finalTargetFolder, ver);
+
+            if (!Directory.Exists(FinalDestination))
+            {
+                Fs.CopyRecursive(sourcePath, FinalDestination, true);
+            }
+        }
+
+        private static string GetAgentName()
+        {
+            // If running tests in VSTS concurrently in different agents avoids the collison in templates folders
+            string agentName = Environment.GetEnvironmentVariable("AGENT_NAME");
+            if (string.IsNullOrEmpty(agentName))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return $"-{agentName}";
+            }
         }
     }
 }

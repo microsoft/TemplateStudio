@@ -13,6 +13,7 @@ namespace Microsoft.Templates.Test
     [Collection("StyleCopCollection")]
     [Trait("Type", "CodeStyle")]
     [Trait("ExecutionSet", "Minimum")]
+    [Trait("ExecutionSet", "TemplateValidation")]
     public class CodeStyleEnforcementTests
     {
         [Fact]
@@ -21,6 +22,36 @@ namespace Microsoft.Templates.Test
             var result = CodeIsNotUsed("this.", ".cs");
 
             Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
+        public void EnsureCSharpCodeDoesNotUseTabs()
+        {
+            var result = CodeIsNotUsed('\t'.ToString(), ".cs");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
+        public void EnsureVisualbasicCodeDoesNotUseTabs()
+        {
+            var result = CodeIsNotUsed('\t'.ToString(), ".vb");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
+        public void EnsureCodeDoesNotUseOldTodoCommentIdentifier()
+        {
+            void EnsureUwpTemplatesNotUsed(string fileExtension)
+            {
+                var result = CodeIsNotUsed("UWPTemplates", fileExtension);
+
+                Assert.True(result.Item1, result.Item2);
+            }
+
+            EnsureUwpTemplatesNotUsed("*.cs");
+            EnsureUwpTemplatesNotUsed("*.vb");
         }
 
         private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeinTheFile, string fileExtension)

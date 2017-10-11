@@ -151,6 +151,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The style with key &apos;{0}&apos; is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project..
+        /// </summary>
+        internal static string FailedMergePostActionKeyAlreadyDefined {
+            get {
+                return ResourceManager.GetString("FailedMergePostActionKeyAlreadyDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find the expected line `{0}` in file &apos;{1}&apos;. Please merge the content from the postaction file manually..
         /// </summary>
         internal static string FailedMergePostActionLineNotFound {
@@ -654,6 +663,42 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string TemplatesSynchronizationPurgeContentAsyncMessage {
             get {
                 return ResourceManager.GetString("TemplatesSynchronizationPurgeContentAsyncMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other instance is syncing templates... Waiting 5 seconds..
+        /// </summary>
+        internal static string TemplatesSynchronizationWaitingOtherInstanceMessage {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationWaitingOtherInstanceMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating the instance locking file..
+        /// </summary>
+        internal static string TemplatesSynchronizationWarnCreatingLockFileMessage {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationWarnCreatingLockFileMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error deleting the instance locking file..
+        /// </summary>
+        internal static string TemplatesSynchronizationWarnDeletingLockFileMessage {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationWarnDeletingLockFileMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error reading the instance locking file..
+        /// </summary>
+        internal static string TemplatesSynchronizationWarnReadingLockFileMessage {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationWarnReadingLockFileMessage", resourceCulture);
             }
         }
     }

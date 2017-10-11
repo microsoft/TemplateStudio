@@ -16,7 +16,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class CreateSummaryPostAction : PostAction<TempGenerationResult>
     {
-        public CreateSummaryPostAction(TempGenerationResult config) : base(config)
+        public CreateSummaryPostAction(TempGenerationResult config)
+            : base(config)
         {
         }
 
@@ -110,6 +111,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     sb.AppendLine();
                     sb.AppendLine($"* {failedMergePostAction.Description}");
                 }
+
                 return sb.ToString();
             }
         }
@@ -179,6 +181,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 return $"[{fileName}]({fileName})";
             }
         }
+
         private static string FormatFilePath(string filePath)
         {
             return $"about:/{filePath.Replace(" ", "%20").Replace(@"\", "/")}";

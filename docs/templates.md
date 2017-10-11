@@ -4,10 +4,10 @@ Templates are used to generate the code. In Windows Template Studio we have the 
 
 For example, consider the following samples:
 
-* **Sample #1**: you want to generate a project to create a target app which use the Split View (hamburger) menu, based on MVVM Light framework, with some pages (Home, Products -a master detail page-, Find Us -a map page-, etc. ) and including some extra features like local storage handling, background execution...
+* **Sample #1**: you want to generate a project to create a target app which uses the Split View (hamburger) menu, is based on MVVM Light framework, with some pages (Home, Products -a master detail page-, Find Us -a map page-, etc. ) and including some extra features like local storage handling, background execution...
 * **Sample #2** you want to create as in *Sample #1* but avoiding to depend on an external framework and adding Live Tiles support.
 
-The Window Template Studio allow you to combine different templates at your own convenience to generate the project you want, using your preferred framework and using the features you most like. Moreover, the templates available in Windows Template Studio are extensible.
+The Window Template Studio allow you to combine different templates to generate the project you want, using your preferred framework and using the features you most like. Moreover, the templates available in Windows Template Studio are extensible.
 
 ## Interested in contributing
 
@@ -17,7 +17,7 @@ Do you want to contribute? Here are our [contribution guidelines](../CONTRIBUTIN
 
 ### The MxN Issue
 
-Windows Template Studio works as a shopping basket where a developer can choose one of the available Frameworks and one of the available projects Project Types and then add the Pages and Features wanted for the target application. This leads to a complexity issue. Consider we have 3 frameworks (Fx) and 3 project types (Pj), then we will have 9 combinations, that is *Fx x Pj* app configurations. Now, consider we want to have 6 different types of Pages (P), all supported among the different app configurations, so we will need to maintain 9x6 = 54 pages, that is, *Fx x Pj x P* pages, with basically the same code. The same happens for Features (F), considering 6 types of features, we will have 9x6 = 54 features to maintain.
+Windows Template Studio works as a shopping basket where a developer can choose one of the available Frameworks, one of the available projects Project Types, and then add the Pages and Features wanted for the target application. This leads to a complexity issue. Consider we have 3 frameworks (Fx) and 3 project types (Pj), then we will have 9 combinations, that is *Fx x Pj* app configurations. Now, consider we want to have 6 different types of Pages (P), all supported among the different app configurations, so we will need to maintain 9x6 = 54 pages, that is, *Fx x Pj x P* pages, with basically the same code. The same happens for Features (F), considering 6 types of features, we will have 9x6 = 54 features to maintain.
 
 Creating templates linearly is unmanageable, we would require to maintain Fx x Pj x (P + F) *[3 x 3 x (6 + 6) = 108]* different templates just to be able to combine all together under our preferences, but if the page types and/or features grow, then the number templates to maintain grow faster. This is what we call **The MxN issue**.
 
@@ -30,17 +30,18 @@ We follow these principles for template authoring:
 1. **Templates are composable**. In general, the templates should be composable with the existing frameworks and project types. That is, a certain page template should be available to be generated no matter the target framework and project type.
 1. **Reduce code duplication as much as possible**. As far as possible, avoid to have templates with the same code for different frameworks and/or project types.
 1. **Balance between maintainability and complexity.** Avoiding code duplication benefits the maintainability in long term and is always a benefit. At the same time, reducing code duplication leads to more complexity to handle the composition and the required actions to finish a proper generation. We need to ensure that advanced developers are able to contribute authoring templates so, we need to ensure the right balance between code reusability and templates complexity.
+1. **Output takes priority over template simplicity.** When authoring templates it can be tempting to make compromises over the generated project output because it makes the templates simpler. Avoid this. The final output in the generated project is the most important thing and it is always better to put more effort into template construction if it leads to higher quality code being generated.
 
 ## Templates repository structure
 
-Basically, a template is just code (some source files and folders structure) with some metadata which drives how the code is generated. The template metadata contains informational data (name, description, licensing, remarks, programming language, type, guids, etc.) as well as replacement data, used to replace matching text in the source content by the actual values (think of a class name). The templates definition is based on [dotnet Template Engine](https://github.com/dotnet/templating), you can visit their repo for a deep understanding on how the Template Engine works.
+A template is just code (some source files and folders structure) with some metadata which drives how the code is generated. The template metadata contains informational data (name, description, licensing, remarks, programming language, type, guids, etc.) as well as data used to replace matching text in the source content by the actual values (think of a class name). The templates definition is based on [dotnet Template Engine](https://github.com/dotnet/templating), you can visit their repo for a deep understanding on how the Template Engine works.
 
 The [Templates Repository](../templates) has the following structure:
 
 * [_catalog](../templates/_catalog): this folder contains the catalog of available Frameworks and Project Types, including the required information and metadata (descriptions, icons, images, etc.) to be displayed in the Wizard. You can consider all the content within the *_catalog* folder as metadata for frameworks and project types.
 * [_composition](../templates/_composition): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
 * [Projects](../templates/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
-* [Pages](../templates/Pages): Page templates which define the source files needed to create a page of a certain type.
+* [Pages](../templates/Pages): Page templates define the source files needed to create a page of a certain type.
 * [Features](../templates/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
 
 ## Anatomy of templates
@@ -100,7 +101,7 @@ The replacements are done based on the configuration established in the `templat
   ],
   "name": "Blank",                                //This is the displayed name in the wizard.
   "groupIdentity": "wts.Page.Blank",              //Used for filtering and grouping in the wizard
-  "identity": "wts.Page.Blank",
+  "identity": "wts.Page.Blank",                   //Must be unique
   "description": "This is the most basic page.",  //This is the short description displayed in the wizard.
   "tags": {                                       //Tags are used to filter and handled the composition
     "language": "C#",
@@ -108,7 +109,7 @@ The replacements are done based on the configuration established in the `templat
     "wts.type": "page",
     "wts.framework": "MVVMBasic|MVVMLight",       //Frameworks where this template can be used.
     "wts.version": "1.0.0",
-    "wts.order": "1",
+    "wts.displayOrder": "1",                      //This tag is used to order the templates in the wizard.
     "wts.rightClickEnabled":"true",               //If set to 'true' then this feature or page is available from right click on an existing project.
     "wts.isHidden": "false"                       //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
   },
@@ -146,6 +147,8 @@ The replacements are done based on the configuration established in the `templat
 }
 ```
 
+Further documentation on the contents of the `template.json` file can be found on the [dotnet templating wiki](https://github.com/dotnet/templating/wiki/%22Runnable-Project%22-Templates#identity-optional)
+
 ### Template Layouts
 
 Project templates can define a default layout of pages to be considered in the wizard. To do so, you need to add a `Layout.json` file within the `.template.config` folder.
@@ -166,7 +169,7 @@ Layout.json
 
 ### Export Parameters
 
-A template can define an "export parameter" that will be handled by the `Composer` by extracting the replacemente parameter value from one template) and providing it as parameter to the following templates. Here is a sample of how an export parameter is defined:
+A template can define an "export parameter" that will be handled by the `Composer` by extracting the replacement parameter value from one template) and providing it as parameter to the following templates. Here is a sample of how an export parameter is defined:
 
 ``` json
   "tags": {
@@ -180,18 +183,18 @@ A template can define an "export parameter" that will be handled by the `Compose
   },
 ```
 
-This template is defining two export parameters **baseclass** and **setter**. Those params will be provided to the following templates. Those export parameter allow to have the same code base for MVVMLight and MVVMBasic in that case.
+This template is defining two export parameters **baseclass** and **setter**. Those parameters will be provided to other templates where they will be used as the values for symbol replacements.
 
 ## Composable Templates
 
-As we already have mentioned, templates can be composed to maximize the code reutilization. Consider a certain page (the Blank page, for example), the page source code will remain the same no matter the project type where it is embedded in. Moreover, there will be very few changes in the page source code depending on which framework we rely on. The idea behind having composable templates is to reuse as much as possible the existing code for a certain page or feature no matter the project type or framework used.
+As we already have mentioned, templates can be composed to maximize the code reusability. Consider, for example,the Blank page template, the page's source code will remain the same no matter the project type it is used in. Moreover, there will be very few changes in the page source code depending on which framework we rely on. The idea behind having composable templates is to reuse as much as possible the existing code for a certain page or feature no matter the project type or framework used.
 
 Creating composable templates is like when you are developing software and try to generalize something; it fits within the 80-20 rule, meaning that the 80% of the code is common among the callers and easy to be generalized, but the 20% have more dependencies, specific details, etc. and, by the way, it is more complex to be generalized. Considering this, we have two groups of templates in the repository:
 
 1. **Standard templates**: *the 80 part*, these templates are the common part of the source code, corresponding with the shared source code for projects, pages and features. This templates live in the `Projects`, `Pages` or `Features` folders of our Templates repository. Through the wizard, a user can select which project type, which pages and which features wants, those selections can be shown as a user adding items to a "generation basket".
-1. **Composition templates**: *the 20 part*, these templates are thought to include the specific details required by a concrete template (a page or feature) which is going to be generated in a certain context. The context is determined by the combination of project type and framework selected by the user. Required composition templates are added to the "generation basket" automatically by the `Composer`. The composition templates lives in the project `_composition` folder of our Templates repository.
+1. **Composition templates**: *the 20 part*, these templates are thought to include the specific details required by a concrete template (a page or feature) which is going to be generated in a certain context. The context is determined by the combination of project type and framework selected by the user. Required composition templates are added to the "generation basket" automatically by the `Composer`. The composition templates live in the project `_composition` folder of the Templates repository.
 
-The structure of files and folders within the `_composition` folder is just for organization, to exactly determine which *composition templates* are required to be added to the generation basket, the `Composer` evaluates all the templates available in the `_composition` folder, applying the **composition filter** defined in the `template.json` file (tag `wts.compositionFilter`). All the templates with composition filters resulting in positive matching will be added to generation basket. The following is a sample of composition filter.
+The structure of files and folders within the `_composition` folder is just for organization, to exactly determine which *composition templates* are required to be added to the generation basket, the `Composer` evaluates all the templates available in the `_composition` folder, applying the **composition filter** defined in the `template.json` file (tag `wts.compositionFilter`). All the templates with composition filters resulting in positive matches are added to the generation basket. The following is a sample of composition filter.
 
 ``` json
   "tags": {
@@ -199,7 +202,8 @@ The structure of files and folders within the `_composition` folder is just for 
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Proj.Blank"
+    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Proj.Blank",
+    "wts.compositionOrder" : "1"
  },
  ```
 
@@ -208,6 +212,7 @@ In this case, the template which have this configuration will be added to the ge
 * There is a template within the generation basket whose `identity` property is "wts.Proj.Blank".
 
 In other words, this template is designed to be added to the generation basket when we are generating a Blank Project Type with the CodeBehind or MVVMBasic framework.
+The wts.compositionOrder can be used to establish the order in which of composition templates are generated where necessary.
 
 We have a basic pseudo-language to define the composition filters. The composition filters must match the following structure:
 
@@ -233,7 +238,7 @@ Where
 
 ```
 
-Finally, all the templates, the *Standard* and the *Composition*, are generated by using the [dotnet Template Engine](https://github.com/dotnet/templating) standard generation. The standard generation does not support merging code from multiple files to one. In that case, we need to take advantage of other mechanism: the **Post-Actions**.
+Finally, all the templates (*Standard* and *Composition*) are generated using the [dotnet Template Engine](https://github.com/dotnet/templating) standard generation. The standard generation does not support merging code from multiple files to one. For this, we need to take advantage of another mechanism: **Post-Actions**.
 
 ## Post Actions
 
@@ -241,7 +246,7 @@ Post-Actions are designed to complement the standard generation enabling certain
 
 Currently we support the following types of [Post-Actions](../code/src/Core/PostActions):
 * **Merge**: merges the source code from one file into another. This Post-Action requires a special (_postaction) configuration in the templates files.
-* **Sort Usings**: this post action re-orders the `using` stements in the generated source files.
+* **Sort Namespaces**: this post action re-orders the `using` statements at the top of the generated C# source files and the `import` statements in VB files.
 * **Add Item To Project**: this post-action is executed to add the "PrimaryOutputs" to the target Visual Studio project (.csproj). The "PrimaryOutputs" are defined in the template.json file.
 * **Add Project To Solution**: this post-action is executed to add the a generated project to the current Visual Studio solution.
 * **Generate Test Certificate**: generate the test certificate for the UWP application and configure it in the application manifest.
@@ -249,9 +254,9 @@ Currently we support the following types of [Post-Actions](../code/src/Core/Post
 
 ### Merge Post-Action
 
-If a template generates source files with the **_postaction** suffix, this means that the Post-Action engine needs to appear in the scene to finish the generation.
+If a template includes source files with the **_postaction** suffix, the Post-Action engine will process these files at the end of generation of that template.
 
-For example, consider we are creating a SplitView project type with MVVM Basic framework, we add several pages to the project. At the end, all the pages must be registered in the navigation and added to the navigation menu, some of the final  generated code will look like:
+For example, consider a SplitView project type with MVVM Basic framework, and adding several pages to the project. At the end, all the pages must be registered in the navigation and added to the navigation menu, some of the final generated code will look like:
 
 ```csharp
 
@@ -275,9 +280,10 @@ For example, consider we are creating a SplitView project type with MVVM Basic f
 
 ```
 
-During the generation, each page must add the required code to register itself in the *navigation items*, even the SettingsPage knows that it must be added to the `_secondaryItems` collection instead of the `_primaryItems`. To achieve this, we relay on the Merge Post-Action, which after the generation, identify files that must be merged to generate the code we have above. Let see the details of the composition template defined for that purpose.
+During the generation, each page must add the required code to register itself in the *navigation items*, even the SettingsPage knows that it must be added to the `_secondaryItems` collection instead of the `_primaryItems`. To achieve this, we rely on the Merge Post-Action to identify files that must be merged to generate the code above. Let see the details of the composition template defined for that purpose.
 
 The `template.json` is defined as follows:
+
 ```json
 
 {
@@ -335,17 +341,18 @@ The merge post action will do the following:
 1. Locate a file called "ShellViewModel.cs" within the generated code.
 1. Using a basic source code matching, the post-action will locate content in the `_postaction` file that is not included in the `ShellViewModel.cs` file and will insert it in the correct place. In this case:
     * Locate the namespace for the item (matching with the generated namespace for the item)
-    * Then a class with the name ShellViewModel inhering from Observable
+    * Then a class with the name ShellViewModel inheriting from Observable
     * Then the private method called PopularNavItems
     * The symbols `//^^` indicates that the merge must be done at the end, just before the closing `}`, without this directive the line would be inserted just below the opening `{`.
-1. Once located the exactly place. The code contained between {[{ and }]} is added in to the original source file.
-2. If any of the above directives are not found the merge is aborted and an merge failure is reported as the file is not as expected. 
+1. Once the place to insert the code has been found, the content contained between `{[{` and `}]}` is added in to the original source file.
+1. If any of the above directives are not found the merge is aborted and an merge failure is reported.
 
 ### Global Merge Post-Action
-The global merge postactions work as the normal merge postaction, with the only difference that they are executed once the generation is finished. 
-You have to use global postactions whenever you need to include changes from various elements into one item generated in the same generation. 
-A sample would be the BackgroundTaskService.
-We use the same strategy to integrate methods from Chart and Grid Page into the SampleData Service from right click. 
+
+The global merge postactions work as the normal merge postaction, with the only difference that they are executed once the generation is finished.
+You have to use global postactions whenever you need to include changes from various elements into one item generated at the same time.
+An example is the `BackgroundTaskService`.
+We use the same strategy to integrate methods from Chart and Grid Page into the SampleData Service from right click.
 
 The format for global postactions is `<DestinationFileName>$<FeatureName>_gpostaction.<DestinationFileExtension>` (for example: BackgroundTaskService$BackgroundTaskFeature_gpostaction.cs).
 This allows generation of 1 gpostaction file per BackgroundTask selected and merge of all files once the generation has finished.
@@ -357,8 +364,47 @@ There are different merge directives to drive the code merging. Currently:
 * MacroBeforeMode `//^^`: Insert before the next match, instead of after the last match
 * MacroStartGroup `//{[{` and MarcoEndGroup `}]}`: The content between `{[{` and `}]}` is inserted.
 * MacroStartDelete `//{--{` and MacroEndDelete = `//}--}`: The content between the directives will be removed if it exists within the merge target. If the content does not exist (or has already been deleted as part of merging another file) this will be silently ignored. Note that the merge must be exact, including white space and line breaks. *This directive can be used with C# files only.*
-* MacroStartDocumentation `//{**` and MacroEndDocumentation `//**}`: The content between `{**` and `**}` is not inserted but shown in the _postaction file. This can be used give the user feedback about was the postaction intended to do when the postaction fails or when integrating right click output manually. 
+* MacroStartDocumentation `//{**` and MacroEndDocumentation `//**}`: The content between `{**` and `**}` is not inserted but shown in the _postaction file. This can be used give the user feedback about was the postaction intended to do when the postaction fails or when integrating right click output manually.
 
+_The above merge directives all use the C# comment form (`//`) but if included in a VB file should use the VB equivalent (`'`)_
+
+### Merge Resource Dictionary PostActions
+
+When the _postaction file contains a resource dictionary instead of the *basic* merge postaction a resource dictionary postaction is executed. 
+This postaction does not work with directives but based on the x:keys contained in the soure and _postaction file.
+
+The postaction works in three steps: 
+1. Locate the source resource dictionary file. (Imagine the postaction file is called Styles/Button_postaction.xaml, the source file would be Styles/Button.xaml)
+2. If the file is not found the whole resource dictionary contained in the postaction file is copied to the source file. 
+3. If the file is found, each element from _postaction file is copied if not already there. In case the key is already defined in the source resource dictionary and the elements are different, a warning is shown.
+
+## Testing and verifying template contents
+
+The tool **TemplateValidator.exe** exists to help template authors verify their templates are correctly structured and to identify common errors. It can verify the contents of an individual `template.json` file or the contents of multiple directories containing templates.
+It's use is encouraged to help avoid any problems or unintended consequences that may be missed during manual testing of a new template. It is not a substitute for thorough manual testing of new templates and the automated tests for generating and building projects using all templates.
+
+### Testing individual template.json files
+
+TemplateValidator must be passed the `-f` flag to put it in file mode and then the path to the file you wish to validate.
+When validating an individual template file it will look for missing required elements, invalid values, and common typos.
+
+![TemplateValidator used in file mode](./resources/tools/templateValidator-f.png)
+
+If, as in the above image the file contains no issues the message "All looks good." will be displayed. If any issues are identified these will be listed. 
+
+### Testing directories containing template files
+
+TemplateValidator must be passed the `-d` flag to put it in directory mode and then the paths to one or more directories containing templates.
+When validating template directories, the contents of templates are analyzed individually and collectively. This allows for the identification of missing files, values reused across templates that should be unique, and missing dependencies.
+
+![TemplateValidator used in directory mode](./resources/tools/templateValidator-d.png)
+
+The above image shows the use of the tool to look at two root directories. It lists the values it was passed and any issues it finds or the "All looks good." message.
+Any issues that start with "WARNING" are recommendations that should be addressed in any new templates.
+
+### Automated testing of template validation
+
+The Templates.Test project includes tests to run all the checks from the TemplateValidator tool as part of the automated tests for the solution.
 
 ## Table of Contents
 

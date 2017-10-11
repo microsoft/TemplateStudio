@@ -3,10 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Templates.Extension.Commands
 {
@@ -17,6 +14,7 @@ namespace Microsoft.Templates.Extension.Commands
         public const int OpenTempFolder = 0x600;
     }
 
+    [SuppressMessage("StyleCop", "SA1402", Justification = "This class does not have implementation. Used for constants.")]
     internal class PackageGuids
     {
         /// <summary>
