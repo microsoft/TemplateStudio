@@ -18,6 +18,11 @@ using System.Globalization;
             Window.Current.Activate();
             await Task.CompletedTask;
         }
+        
+        protected override Task OnActivateApplicationAsync(IActivatedEventArgs args)
+        {
+            return Task.CompletedTask;
+        }
 //}]}
 
         protected override Task OnInitializeAsync(IActivatedEventArgs args)

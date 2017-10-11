@@ -14,9 +14,10 @@ namespace Param_RootNamespace
         {
             InitializeComponent();
         }
-//{[{
+
         protected override Task OnActivateApplicationAsync(IActivatedEventArgs args)
         {
+//{[{
             if (args.Kind == ActivationKind.Protocol && args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 var protocolArgs = args as ProtocolActivatedEventArgs;
@@ -49,8 +50,8 @@ namespace Param_RootNamespace
                     OnLaunchApplicationAsync(args as LaunchActivatedEventArgs);
                 }
             }
+//}]}
             return Task.CompletedTask;
         }
-//}]}
     }
 }
