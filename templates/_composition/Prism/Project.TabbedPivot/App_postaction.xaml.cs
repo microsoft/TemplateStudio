@@ -9,7 +9,12 @@ using System.Globalization;
 //{[{
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            NavigationService.Navigate(PageTokens.PivotPage, null);
+            return LaunchApplication(PageTokens.PivotPage, null);
+        }
+
+        private Task LaunchApplication(string page, object launchParam)
+        {
+            NavigationService.Navigate(page, launchParam);
             return Task.CompletedTask;
         }
 //}]}

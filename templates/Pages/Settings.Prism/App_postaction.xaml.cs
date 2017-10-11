@@ -7,7 +7,8 @@ namespace Param_RootNamespace
 {
     public sealed partial class App : PrismUnityApplication
     {
-        protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
+
+        private Task LaunchApplication(string page, object launchParam)
         {
 //{[{
             Services.ThemeSelectorService.SetRequestedTheme();

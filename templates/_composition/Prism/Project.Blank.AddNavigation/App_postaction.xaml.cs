@@ -9,7 +9,12 @@ using System.Globalization;
 //{[{
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            NavigationService.Navigate(PageTokens.Param_HomeNamePage, null);
+            return LaunchApplication(PageTokens.Param_HomeNamePage, null);
+        }
+
+        private Task LaunchApplication(string page, object launchParam)
+        {
+            NavigationService.Navigate(page, launchParam);
             return Task.CompletedTask;
         }
 //}]}
