@@ -12,10 +12,10 @@ using System.Globalization;
             return LaunchApplication(PageTokens.Param_HomeNamePage, null);
         }
 
-        private Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplication(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 //}]}
 
