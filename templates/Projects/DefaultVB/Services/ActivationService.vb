@@ -35,9 +35,9 @@ Namespace Services
                     AddHandler NavigationService.NavigationFailed, Function(sender, e)
                         Throw e.Exception
                                                                 End Function
-                    AddHandler NavigationService.Navigated, AddressOf OnFrameNavigated
+                    AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
                     If SystemNavigationManager.GetForCurrentView() IsNot Nothing Then
-                        AddHandler SystemNavigationManager.GetForCurrentView().BackRequested, AddressOf OnAppViewBackButtonRequested
+                        AddHandler SystemNavigationManager.GetForCurrentView().BackRequested, AddressOf ActivationService_BackRequested
                     End If
                 End If
             End If
@@ -79,11 +79,11 @@ Namespace Services
             Return TypeOf args Is IActivatedEventArgs
         End Function
 
-        Private Sub OnFrameNavigated(sender As Object, e As NavigationEventArgs)
+        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = If((NavigationService.CanGoBack), AppViewBackButtonVisibility.Visible, AppViewBackButtonVisibility.Collapsed)
         End Sub
 
-        Private Sub OnAppViewBackButtonRequested(sender As Object, e As BackRequestedEventArgs)
+        Private Sub ActivationService_BackRequested(sender As Object, e As BackRequestedEventArgs)
             If NavigationService.CanGoBack Then
                 NavigationService.GoBack()
                 e.Handled = True

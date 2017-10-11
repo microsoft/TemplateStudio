@@ -17,13 +17,13 @@
 
         Public Property Symbol As String
 
-        Public ReadOnly Property SymbolAsChar() As Char
+        Public ReadOnly Property SymbolAsChar As Char
             Get
                 Return CChar(Symbol)
             End Get
         End Property
 
-        Public ReadOnly Property HashIdentIcon() As String
+        Public ReadOnly Property HashIdentIcon As String
             Get
                 Return GetHashCode().ToString() + "-icon"
             End Get
@@ -34,5 +34,9 @@
                 Return GetHashCode().ToString() + "-title"
             End Get
         End Property
+
+        Public Overrides Function ToString() As String
+            Return $"{Company} {Status}"
+        End Function
     End Class
 End Namespace

@@ -34,13 +34,17 @@ Namespace Services
             End Set
         End Property
 
-        Public Function CanGoBack() As Boolean
-            Return Frame.CanGoBack
-        End Function
+        Public Property CanGoBack As Boolean
+            Get
+                Return Frame.CanGoBack
+            End Get
+        End Property
 
-        Public Function CanGoForward() As Boolean
-            Return Frame.CanGoForward
-        End Function
+        Public Property CanGoForward As Boolean
+            Get
+                Return Frame.CanGoForward
+            End Get
+        End Property
 
         Public Sub GoBack()
             Frame.GoBack()

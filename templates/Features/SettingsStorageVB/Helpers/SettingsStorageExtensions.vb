@@ -36,8 +36,13 @@ Namespace Helpers
 
         <Extension>
         Public Async Function SaveAsync(Of T)(settings As ApplicationDataContainer, key As String, value As T) As Task
-            settings.Values(key) = Await Json.StringifyAsync(value)
+            settings.SaveString(key, Await Json.StringifyAsync(value)
         End Function
+
+        <Extension>
+        Public Shared Sub SaveString(settings As ApplicationDataContainer, key As String, value As String)
+            settings.Values(key) = value
+        End Sub
 
         <Extension>
         Public Async Function ReadAsync(Of T)(settings As ApplicationDataContainer, key As String) As Task(Of T)

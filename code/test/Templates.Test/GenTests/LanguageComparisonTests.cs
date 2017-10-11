@@ -39,7 +39,8 @@ namespace Microsoft.Templates.Test
             EnsureResourceStringsAreIdenticalAndAllUsed(csResultPath, csProjectName, vbResultPath, vbProjectName);
             EnsureContentsOfAssetsFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
             EnsureContentsOfStylesFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
-            EnsureFileCommentsAreIdentical(csResultPath, vbResultPath);
+            EnsureFileCommentsAreIdentical(vbResultPath);
+            EnsureFileContainIdenticalPropertiesAndMethods(vbResultPath);
 
             Fs.SafeDeleteDirectory(csResultPath);
             Fs.SafeDeleteDirectory(vbResultPath);
@@ -132,7 +133,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        private void EnsureFileCommentsAreIdentical(string csResultPath, string vbResultPath)
+        private void EnsureFileCommentsAreIdentical(string vbResultPath)
         {
             var allVbFiles = new DirectoryInfo(vbResultPath).GetFiles("*.vb", SearchOption.AllDirectories).ToList();
 
@@ -219,6 +220,60 @@ namespace Microsoft.Templates.Test
 
                 return codeCommentExceptions.ContainsKey(vbComment) && codeCommentExceptions[vbComment] == csComment;
             }
+        }
+
+        private void EnsureFileContainIdenticalPropertiesAndMethods(string vbResultPath)
+        {
+            var failures = new List<string>();
+
+            var allVbFiles = new DirectoryInfo(vbResultPath).GetFiles("*.vb", SearchOption.AllDirectories).Select(f => f.FullName).ToList();
+
+            foreach (var vbFile in allVbFiles)
+            {
+                var csFile = VbFileToCsEquivalent(vbFile);
+
+                var csCode = new StreamReader(csFile).ReadToEnd();
+                var csTree = Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree.ParseText(csCode);
+                var csRoot = (Microsoft.CodeAnalysis.CSharp.Syntax.CompilationUnitSyntax)csTree.GetRoot();
+                var csProperties = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax>().Select(p => p.Identifier.Text).ToList();
+                var csMethods = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>().Select(m => m.Identifier.Text).ToList();
+
+                var vbCode = new StreamReader(vbFile).ReadToEnd();
+                var vbTree = Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxTree.ParseText(vbCode);
+                var vbRoot = (Microsoft.CodeAnalysis.VisualBasic.Syntax.CompilationUnitSyntax)vbTree.GetRoot();
+                var vbProperties = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.PropertyStatementSyntax>().Select(p => p.Identifier.Text).ToList();
+                var vbMethods = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.MethodStatementSyntax>().Select(m => m.Identifier.Text.Replace("[", string.Empty).Replace("]", string.Empty)).ToList();
+
+                foreach (var csProp in csProperties)
+                {
+                    if (vbProperties.Contains(csProp))
+                    {
+                        vbProperties.Remove(csProp);
+                    }
+                    else
+                    {
+                        failures.Add($"'{csFile}' includes property '{csProp}' which isn't in the VB equivalent.");
+                    }
+                }
+
+                failures.AddRange(vbProperties.Select(vbProp => $"'{vbFile}' includes property '{vbProp}' which isn't in the C# equivalent."));
+
+                foreach (var csMethod in csMethods)
+                {
+                    if (vbMethods.Contains(csMethod))
+                    {
+                        vbMethods.Remove(csMethod);
+                    }
+                    else
+                    {
+                        failures.Add($"'{csFile}' includes method '{csMethod}' which isn't in the VB equivalent.");
+                    }
+                }
+
+                failures.AddRange(vbMethods.Where(m => m != "InlineAssignHelper").Select(vbMethod => $"'{vbFile}' includes method '{vbMethod}' which isn't in the C# equivalent."));
+            }
+
+            Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));
         }
 
         private static string VbFileToCsEquivalent(string vbFilePath)
