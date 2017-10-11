@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             TelemetryService.SetConfiguration(config);
         }
 
-        public async Task TrackWizardCompletedAsync(WizardTypeEnum wizardType, WizardActionEnum wizardAction)
+        public async Task TrackWizardCompletedAsync(WizardTypeEnum wizardType, WizardActionEnum wizardAction, string vsProductVersion)
         {
             var properties = new Dictionary<string, string>()
             {
@@ -32,10 +32,11 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.EventName, TelemetryEvents.Wizard }
             };
 
+            TelemetryService.Current.SetContentVsProductVersionToContext(vsProductVersion);
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
 
-        public async Task TrackWizardCancelledAsync(WizardTypeEnum wizardType)
+        public async Task TrackWizardCancelledAsync(WizardTypeEnum wizardType, string vsProductVersion)
         {
             var properties = new Dictionary<string, string>()
             {
@@ -44,6 +45,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.EventName, TelemetryEvents.Wizard }
             };
 
+            TelemetryService.Current.SetContentVsProductVersionToContext(vsProductVersion);
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
 

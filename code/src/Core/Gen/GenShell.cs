@@ -52,6 +52,11 @@ namespace Microsoft.Templates.Core.Gen
             return "0.0.0.0";
         }
 
+        public virtual string GetVsVersionAndInstance()
+        {
+            return "0.0.0.0-i";
+        }
+
         public bool GetActiveProjectIsWts()
         {
             bool result = false;
