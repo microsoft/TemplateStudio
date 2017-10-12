@@ -6,9 +6,9 @@ using Windows.ApplicationModel;
 
 namespace Param_ItemNamespace.Services
 {
-    public static class FirstRunDisplayService
+    public class FirstRunDisplayService : IFirstRunDisplayService
     {
-        internal static async Task ShowIfAppropriateAsync()
+        public async Task ShowIfAppropriateAsync()
         {
             bool hasShownFirstRun = false;
             hasShownFirstRun = await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<bool>(nameof(hasShownFirstRun));

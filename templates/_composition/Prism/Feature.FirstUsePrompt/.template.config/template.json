@@ -25,6 +25,8 @@
       "path": ".\\Services\\FirstRunDisplayService.cs"
     },
     {
+      "path": ".\\Services\\IFirstRunDisplayService.cs"
+    },    {
       "path": ".\\Views\\FirstRunDialog.xaml"
     },
     {

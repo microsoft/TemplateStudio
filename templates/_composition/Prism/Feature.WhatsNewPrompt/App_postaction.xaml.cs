@@ -8,9 +8,12 @@ namespace Param_RootNamespace
 {
     public sealed partial class App : PrismUnityApplication
     {
-        public App()
+        protected override void ConfigureContainer()
         {
-            InitializeComponent();
+            base.ConfigureContainer();
+//{[{
+            Container.RegisterInstance<IWhatsNewDisplayService>(new WhatsNewDisplayService());
+//}]}
         }
 
         private async Task LaunchApplication(string page, object launchParam)
@@ -18,7 +21,7 @@ namespace Param_RootNamespace
             NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();
 //{[{
-            await WhatsNewDisplayService.ShowIfAppropriateAsync();
+            await Container.Resolve<IWhatsNewDisplayService>().ShowIfAppropriateAsync();
 //}]}
         }
     }

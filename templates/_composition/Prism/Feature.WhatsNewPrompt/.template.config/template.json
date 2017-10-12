@@ -29,8 +29,10 @@
     },
     {
       "path": ".\\Services\\WhatsNewDisplayService.cs"
-    }
-  ],
+    },
+    {
+      "path": ".\\Services\\IWhatsNewDisplayService.cs"
+    }  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",

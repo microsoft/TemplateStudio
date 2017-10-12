@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IToastNotificationsService>(new ToastNotificationsService());
+            Container.RegisterInstance<IStoreNotificationsService>(new StoreNotificationsService());
 //}]}
         }
 
@@ -26,7 +26,7 @@ namespace Param_RootNamespace
             NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();
 //{[{
-            Container.Resolve<IToastNotificationsService>().ShowToastNotificationSample();
+            await Container.Resolve<IStoreNotificationsService>().InitializeAsync();
 //}]}
             await Task.CompletedTask;
         }
@@ -36,7 +36,7 @@ namespace Param_RootNamespace
 //{[{
             if (args.Kind == ActivationKind.ToastNotification && args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
-                // Handle a toast notification here
+                // Handle a dev center notification here
                 // Since dev center, toast, and Azure notification hub will all active with an ActivationKind.ToastNotification
                 // you may have to parse the toast data to determine where it came from and what action you want to take
                 // If the app isn't running then launch the app here

@@ -7,9 +7,9 @@ using Windows.ApplicationModel;
 namespace Param_ItemNamespace.Services
 {
     // For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/tree/master/docs/features/whats-new-prompt.md
-    public static class WhatsNewDisplayService
+    public class WhatsNewDisplayService : IWhatsNewDisplayService
     {
-        internal static async Task ShowIfAppropriateAsync()
+        public async Task ShowIfAppropriateAsync()
         {
             var currentVersion = PackageVersionToReadableString(Package.Current.Id.Version);
 
