@@ -50,9 +50,12 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public void AddWriter(IHealthWriter newWriter)
         {
-            if (newWriter.AllowMultipleInstances() || !HealthWriters.Available.Where(w => w.GetType() == newWriter.GetType()).Any())
+            if (newWriter != null)
             {
-                HealthWriters.Available.Add(newWriter);
+                if (newWriter.AllowMultipleInstances() || !HealthWriters.Available.Where(w => w.GetType() == newWriter.GetType()).Any())
+                {
+                    HealthWriters.Available.Add(newWriter);
+                }
             }
         }
 
