@@ -25,7 +25,7 @@ using System.Globalization;
         }
 //}]}
 
-        protected override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
         {
 //{[{
             // We are remapping the default ViewNamePage->ViewNamePageViewModel naming to ViewNamePage->ViewNameViewModel to 
@@ -36,7 +36,7 @@ using System.Globalization;
                 return Type.GetType(viewModelTypeName);
             });
 //}]}
-            return base.OnInitializeAsync(args);
+            await base.OnInitializeAsync(args);
         }
 
     }

@@ -31,12 +31,12 @@ namespace Param_RootNamespace
             await Task.CompletedTask;
         }
 
-        protected override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
         {
 //{[{
-            Container.Resolve<ILiveTileService>().EnableQueueAsync();
+            await Container.Resolve<ILiveTileService>().EnableQueueAsync().ConfigureAwait(false);;
 //}]}
-            return base.OnInitializeAsync(args);
+            await base.OnInitializeAsync(args);
         }
     }
 }

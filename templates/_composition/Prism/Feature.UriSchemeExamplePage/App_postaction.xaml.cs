@@ -21,7 +21,7 @@ namespace Param_RootNamespace
             if (args.Kind == ActivationKind.Protocol && args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 var protocolArgs = args as ProtocolActivatedEventArgs;
-                if (protocolArgs.Uri.AbsolutePath.ToLowerInvariant().Equals("sample"))
+                if (protocolArgs.Uri.AbsolutePath.Equals("sample", StringComparison.OrdinalIgnoreCase))
                 {
                     var secret = "<<I-HAVE-NO-SECRETS>>";
 

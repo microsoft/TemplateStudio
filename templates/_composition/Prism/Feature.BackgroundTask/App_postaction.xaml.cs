@@ -33,12 +33,12 @@ namespace Param_RootNamespace
             Container.Resolve<IBackgroundTaskService>().Start(args.TaskInstance);
         }
 //}]}
-        protected override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
         {
 //{[{
             Container.Resolve<IBackgroundTaskService>().RegisterBackgroundTasks();
 //}]}
-            return base.OnInitializeAsync(args);
+            await base.OnInitializeAsync(args);
         }
     }
 }

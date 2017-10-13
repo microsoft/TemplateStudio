@@ -29,9 +29,9 @@ namespace wts.DefaultProject
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
         }
 
-        protected override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
         {
-            return base.OnInitializeAsync(args);
+            await base.OnInitializeAsync(args);
         }
     }
 }
