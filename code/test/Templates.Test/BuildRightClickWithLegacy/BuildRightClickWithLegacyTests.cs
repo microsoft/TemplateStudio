@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Test
         [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("Type", "BuildRightClickLegacy")]
-        public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
             var projectName = $"{projectType}{framework}Legacy";
 
