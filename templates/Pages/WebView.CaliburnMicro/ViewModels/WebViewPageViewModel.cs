@@ -105,7 +105,7 @@ namespace Param_ItemNamespace.ViewModels
 
         public void GoBack() => _webView?.GoBack();
 
-        public bool CanGoBack => _webView?.CanGoBack ?? false;
+        public bool CanGoBack => _webView == null ? false : _webView.CanGoBack;
 
         public void GoForward() => _webView?.GoForward();
 
