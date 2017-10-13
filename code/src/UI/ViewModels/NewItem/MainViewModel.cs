@@ -13,8 +13,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewItem;
-
-using VsThreading = Microsoft.VisualStudio.Shell;
+using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -141,9 +140,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 UpdateCanGoForward(false);
 
-                VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                     var output = await CleanupAndGenerateNewItemAsync();
                     if (output.HasChangesToApply)
                     {

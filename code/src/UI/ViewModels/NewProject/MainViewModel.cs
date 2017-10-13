@@ -14,8 +14,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewProject;
-
-using VsThreading = Microsoft.VisualStudio.Shell;
+using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -145,9 +144,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
 
                 WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
-                VsThreading.ThreadHelper.JoinableTaskFactory.Run(async () =>
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    await VsThreading.ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                     await ProjectTemplates.InitializeAsync();
                 });
 
@@ -167,6 +166,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             if (CurrentStep == 0)
             {
                 WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
+                _needRestartConfiguration = false;
             }
             else if (CurrentStep == 1)
             {

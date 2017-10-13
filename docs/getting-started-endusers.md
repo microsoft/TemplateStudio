@@ -8,6 +8,8 @@ The final generated code is the result of a project configuration (project type 
 - [Application activation](activation.md)
 - [Navigation between pages](navigation.md)
 - [LiveTiles](livetiles.md)
+- [Notifications in Windows Template Studio](notifications.md)
+
 
 ## Understanding concepts for Windows Template Studio
 
@@ -70,7 +72,6 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Uri Scheme | Add the ability to launch and deep link into the app with a custom URI scheme.|
 
 ## Table of Contents
-
 * [Installing / Using the extension](getting-started-extension.md)
 * [**Using and extending your file->new**](getting-started-endusers.md)
 * [Concepts of Windows Template Studio](readme.md)
