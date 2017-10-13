@@ -40,6 +40,9 @@ namespace Param_ItemNamespace.Behaviors
 
         private void OnMapIconsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            if (AssociatedObject == null)
+                return;
+                
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
                 foreach (var mapIcon in e.NewItems)
