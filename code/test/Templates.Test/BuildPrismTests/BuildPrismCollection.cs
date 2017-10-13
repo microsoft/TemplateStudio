@@ -7,7 +7,7 @@ using Xunit;
 namespace Microsoft.Templates.Test
 {
     [CollectionDefinition("BuildPrismCollection")]
-    public class BuildPrismCollection : ICollectionFixture<BuildCaliburnMicroFixture>
+    public class BuildPrismCollection : ICollectionFixture<BuildPrismFixture>
     {
     }
 }

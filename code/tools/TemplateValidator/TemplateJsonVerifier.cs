@@ -325,7 +325,7 @@ namespace TemplateValidator
             // This tag may contain a single value or multiple ones separated by the pipe character
             foreach (var frameworkValue in tag.Value.Split('|'))
             {
-                if (!new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro" }.Contains(frameworkValue))
+                if (!new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro","Prism" }.Contains(frameworkValue))
                 {
                     results.Add($"Invalid value '{tag.Value}' specified in the wts.type tag.");
                 }

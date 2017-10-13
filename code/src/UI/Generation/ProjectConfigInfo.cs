@@ -22,6 +22,7 @@ namespace Microsoft.Templates.UI.Generation
         public const string FxMVVMLight = "MVVMLight";
         public const string FxCodeBehid = "CodeBehind";
         public const string FxCaliburnMicro = "CaliburnMicro";
+        public const string FxPrism = "Prism";
 
         public const string ProjTypeBlank = "Blank";
         public const string ProjTypeSplitView = "SplitView";
@@ -122,6 +123,10 @@ namespace Microsoft.Templates.UI.Generation
             {
                 return FxCaliburnMicro;
             }
+            else if (IsPrism())
+            {
+                return FxPrism;
+            }
             else
             {
                 return string.Empty;
@@ -195,6 +200,22 @@ namespace Microsoft.Templates.UI.Generation
                 foreach (string file in files)
                 {
                     if (File.ReadAllText(file).Contains("<PackageReference Include=\"Caliburn.Micro\">"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private static bool IsPrism()
+        {
+            if (ExistsFileInProjectPath("Constants", "PageTokens.cs"))
+            {
+                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                foreach (string file in files)
+                {
+                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"Prism.Unity\">"))
                     {
                         return true;
                     }
