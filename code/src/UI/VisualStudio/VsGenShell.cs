@@ -32,6 +32,9 @@ namespace Microsoft.Templates.UI.VisualStudio
         private Lazy<DTE> _dte = new Lazy<DTE>(() => ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE, true);
         private DTE Dte => _dte.Value;
 
+        private string _vsVersionInstance = string.Empty;
+        private string _vsProductVersion = string.Empty;
+
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(
             () =>
             {
@@ -484,13 +487,30 @@ namespace Microsoft.Templates.UI.VisualStudio
             return Dte.Debugger.CurrentMode != dbgDebugMode.dbgDesignMode;
         }
 
+        public override string GetVsVersionAndInstance()
+        {
+            if (string.IsNullOrEmpty(_vsVersionInstance))
+            {
+                ISetupConfiguration configuration = new SetupConfiguration() as ISetupConfiguration;
+                ISetupInstance instance = configuration.GetInstanceForCurrentProcess();
+                string version = instance.GetInstallationVersion();
+                string instanceId = instance.GetInstanceId();
+                _vsVersionInstance = $"{version}-{instanceId}";
+            }
+
+            return _vsVersionInstance;
+        }
+
         public override string GetVsVersion()
         {
-            ISetupConfiguration configuration = new SetupConfiguration() as ISetupConfiguration;
-            ISetupInstance instance = configuration.GetInstanceForCurrentProcess();
-            string version = instance.GetInstallationVersion();
-            string instanceId = instance.GetInstanceId();
-            return $"{version}-{instanceId}";
+            if (string.IsNullOrEmpty(_vsProductVersion))
+            {
+                ISetupConfiguration configuration = new SetupConfiguration() as ISetupConfiguration;
+                ISetupInstance instance = configuration.GetInstanceForCurrentProcess();
+                _vsProductVersion = instance.GetInstallationVersion();
+            }
+
+            return _vsProductVersion;
         }
     }
 }

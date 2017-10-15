@@ -42,7 +42,7 @@
         <TextBlock
             x:Uid="MasterDetailView_Title"
             x:Name="TitlePage"
-            Margin="24,12"
+            Margin="12,0,12,7"
             Style="{StaticResource PageTitleStyle}" />
 
         <controls:MasterDetailsView

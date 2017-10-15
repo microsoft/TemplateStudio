@@ -177,7 +177,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
 
             _client.Context.Properties.Add(TelemetryProperties.VisualStudioEdition, vsEdition);
-            _client.Context.Properties.Add(TelemetryProperties.VisualStudioVersion, vsVersion);
+            _client.Context.Properties.Add(TelemetryProperties.VisualStudioExeVersion, vsVersion);
             _client.Context.Properties.Add(TelemetryProperties.VisualStudioCulture, vsCulture);
             _client.Context.Properties.Add(TelemetryProperties.VisualStudioManifestId, vsManifestId);
             return result;
@@ -221,6 +221,21 @@ namespace Microsoft.Templates.Core.Diagnostics
                 else
                 {
                     _client.Context.Properties[TelemetryProperties.WizardContentVersion] = wizardContentVersion.ToString();
+                }
+            }
+        }
+
+        public void SetContentVsProductVersionToContext(string vsProductVersion)
+        {
+            if (!string.IsNullOrEmpty(vsProductVersion) && _client != null && _client.Context != null && _client.Context.Properties != null)
+            {
+                if (!_client.Context.Properties.ContainsKey(TelemetryProperties.VisualStudioProductVersion))
+                {
+                    _client.Context.Properties.Add(TelemetryProperties.VisualStudioProductVersion, vsProductVersion);
+                }
+                else
+                {
+                    _client.Context.Properties[TelemetryProperties.VisualStudioProductVersion] = vsProductVersion;
                 }
             }
         }

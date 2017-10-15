@@ -12,6 +12,7 @@
     <DefaultName>App</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
     <AppIdFilter>blend</AppIdFilter>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
   </TemplateData>
   <TemplateContent>
     <CustomParameters>
