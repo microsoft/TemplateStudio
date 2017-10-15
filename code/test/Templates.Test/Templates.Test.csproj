@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props')" />
+  <Import Project="..\..\packages\xunit.runner.visualstudio.2.3.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.3.0\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Microsoft.Templates.Test</RootNamespace>
     <AssemblyName>Microsoft.Templates.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
@@ -100,8 +100,8 @@
     <Reference Include="System.Runtime.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -127,20 +127,24 @@
     <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroFixture.cs" />
     <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroProjectTests.cs" />
     <Compile Include="BuildCodeBehindTests\BuildCodeBehindCollection.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindProjectTests.cs" />
     <Compile Include="BuildMVVMBasic\BuildMVVMBasicCollection.cs" />
     <Compile Include="BuildMVVMBasic\BuildMVVMBasicFixture.cs" />
-    <Compile Include="BuildMVVMBasic\BuildMVVMBasicProjectsTests.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicProjectTests.cs" />
     <Compile Include="BuildMVVMLightTests\BuildMVVMLightCollection.cs" />
     <Compile Include="BuildMVVMLightTests\BuildMVVMLightFixture.cs" />
-    <Compile Include="BuildMVVMLightTests\BuildMVVMLightProjectsTests.cs" />
-    <Compile Include="BuildCodeBehindTests\BuildCodeBehindProjectsTests.cs" />
     <Compile Include="BuildCodeBehindTests\BuildCodeBehindFixture.cs" />
     <Compile Include="BuildFixture.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightProjectTests.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyCollection.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyFixture.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyTests.cs" />
+    <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSource.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
-    <Compile Include="GenTests\GenProjectsTests.cs" />
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />
     <Compile Include="CodeStyleEnforcementTests.cs" />
+    <Compile Include="GenTests\GenProjectTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
     <Compile Include="BaseGenAndBuildFixture.cs" />
@@ -244,6 +248,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props'))" />
+    <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.2.3.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.3.0\build\net20\xunit.runner.visualstudio.props'))" />
   </Target>
 </Project>

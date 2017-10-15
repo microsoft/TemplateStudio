@@ -48,6 +48,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     MainViewModel.Current.SetValidationErrors(errorMessage);
                     throw new Exception(errorMessage);
                 }
+
                 MainViewModel.Current.CleanStatus(true);
             }
         }
@@ -81,6 +82,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 TemplateGroups.AddRange(groups);
                 UpdateHeader(templates.Count());
             }
+
             if (TemplateGroups.Any())
             {
                 MainViewModel.Current.WizardStatus.HasContent = true;

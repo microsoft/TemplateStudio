@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
-                .Where(f => Regex.IsMatch(f, MergePostAction.PostactionRegex))
+                .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GetMergeFilesFromProjectPostAction(f)));
         }
@@ -43,7 +44,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
-                .Where(f => Regex.IsMatch(f, MergePostAction.PostactionRegex))
+                .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GenerateMergeInfoPostAction(f)));
         }
@@ -71,7 +72,7 @@ namespace Microsoft.Templates.Core.PostActions
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError))));
+                .ForEach(f => AddMergePostAction(postActions, failOnError, f));
         }
 
         internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
@@ -88,6 +89,23 @@ namespace Microsoft.Templates.Core.PostActions
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
                 .ForEach(f => postActions.Add(new SearchAndReplacePostAction(f)));
+        }
+
+        private static void AddMergePostAction(List<PostAction> postActions, bool failOnError, string f)
+        {
+            if (IsResourceDictionaryPostaction(f))
+            {
+                postActions.Add(new MergeResourceDictionaryPostAction(new MergeConfiguration(f, failOnError)));
+            }
+            else
+            {
+                postActions.Add(new MergePostAction(new MergeConfiguration(f, failOnError)));
+            }
+        }
+
+        private static bool IsResourceDictionaryPostaction(string f)
+        {
+            return Path.GetExtension(f).ToLower() == ".xaml" & File.ReadAllText(f).StartsWith(MergeConfiguration.ResourceDictionaryMatch);
         }
     }
 }

@@ -12,7 +12,8 @@ namespace TemplateValidator
         {
         }
 
-        public VerifierResult(bool success, List<string> messages) : this()
+        public VerifierResult(bool success, List<string> messages)
+            : this()
         {
             Success = success;
             Messages = messages;

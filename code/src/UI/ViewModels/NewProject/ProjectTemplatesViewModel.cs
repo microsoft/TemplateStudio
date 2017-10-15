@@ -22,8 +22,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class ProjectTemplatesViewModel : Observable
     {
-        public MetadataInfoViewModel ContextFramework { get; set; }
-        public MetadataInfoViewModel ContextProjectType { get; set; }
+        public MetadataInfoViewModel ContextFramework { get; private set; }
+        public MetadataInfoViewModel ContextProjectType { get; private set; }
 
         private string _pagesHeader;
         public string PagesHeader
@@ -39,7 +39,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _featuresHeader, value);
         }
 
-        public string HomeName { get; set; }
+        //// public string HomeName { get; set; }
 
         public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> PagesGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
         public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> FeatureGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
@@ -51,14 +51,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public bool HasSavedPages
         {
             get => _hasSavedPages;
-            private set => SetProperty(ref _hasSavedPages, value);
+            set => SetProperty(ref _hasSavedPages, value);
         }
 
         private bool _hasSavedFeatures;
         public bool HasSavedFeatures
         {
             get => _hasSavedFeatures;
-            private set => SetProperty(ref _hasSavedFeatures, value);
+            set => SetProperty(ref _hasSavedFeatures, value);
         }
 
         public ProjectTemplatesViewModel()
@@ -66,7 +66,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             SavedFeatures.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedFeatures)); };
             SavedPages.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(SavedPages)); };
             ValidationService.Initialize(GetNames);
+            UserSelectionService.Initialize(GetSavedPages, GetSavedFeatures);
+            OrderingService.Initialize(GetSavedPages, SetHomePage);
         }
+
+        private ObservableCollection<SavedTemplateViewModel> GetSavedFeatures() => SavedFeatures;
+        public ObservableCollection<ObservableCollection<SavedTemplateViewModel>> GetSavedPages() => SavedPages;
 
         private IEnumerable<string> GetNames()
         {
@@ -74,17 +79,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             SavedPages.ToList().ForEach(spg => names.AddRange(spg.Select(sp => sp.ItemName)));
             names.AddRange(SavedFeatures.Select(sf => sf.ItemName));
             return names;
-        }
-
-        public IEnumerable<string> Identities
-        {
-            get
-            {
-                var identities = new List<string>();
-                SavedPages.ToList().ForEach(spg => identities.AddRange(spg.Select(sp => sp.Identity)));
-                identities.AddRange(SavedFeatures.Select(sf => sf.Identity));
-                return identities;
-            }
         }
 
         public async Task InitializeAsync()
@@ -101,14 +95,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var totalFeatures = DataService.LoadTemplatesGroups(FeatureGroups, TemplateType.Feature, ContextFramework.Name);
             if (totalFeatures > 0)
             {
-                PagesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, totalFeatures);
+                FeaturesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, totalFeatures);
             }
 
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)
             {
-                SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
-                MainViewModel.Current.RebuildLicenses();
+                UserSelectionService.SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
+                UpdateTemplatesAvailability();
+                UpdateSummaryTemplates();
+                UpdateHasPagesAndHasFeatures();
+                if (HasSavedPages)
+                {
+                    var firstPage = SavedPages.First().First();
+                    UserSelectionService.HomeName = firstPage.ItemName;
+                    firstPage.IsHome = true;
+                }
             }
+
             CloseAllEditions();
             await Task.CompletedTask;
         }
@@ -123,107 +126,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
 
                 item.IsHome = true;
-                HomeName = item.ItemName;
+                UserSelectionService.HomeName = item.ItemName;
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.SetHome).FireAndForget();
             }
         }
-        public void UpdateHomePageName(string name) => HomeName = name;
 
-        public void RemoveTemplate(SavedTemplateViewModel item, bool showErrors)
+        public bool IsTemplateAlreadyDefined(string identity)
         {
-            // Look if is there any templates that depends on item
-            if (AnySavedTemplateDependsOnItem(item, showErrors))
-            {
-                return;
-            }
-
-            // Remove template
-            if (SavedPages[item.GenGroup].Contains(item))
-            {
-                SavedPages[item.GenGroup].Remove(item);
-                HasSavedPages = SavedPages.Any(g => g.Any());
-            }
-            else if (SavedFeatures.Contains(item))
-            {
-                SavedFeatures.Remove(item);
-                HasSavedFeatures = SavedFeatures.Any();
-            }
-
-            TryRemoveHiddenDependencies(item);
-
-            MainViewModel.Current.FinishCommand.OnCanExecuteChanged();
-            UpdateTemplatesAvailability();
-            MainViewModel.Current.RebuildLicenses();
-
-            AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
+            var identities = new List<string>();
+            SavedPages.ToList().ForEach(spg => identities.AddRange(spg.Select(sp => sp.Identity)));
+            identities.AddRange(SavedFeatures.Select(sf => sf.Identity));
+            return identities.Any(i => i == identity);
         }
 
-        private bool AnySavedTemplateDependsOnItem(SavedTemplateViewModel item, bool showErrors)
-        {
-            SavedTemplateViewModel dependencyItem = null;
-            foreach (var group in SavedPages)
-            {
-                dependencyItem = group.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
-                if (dependencyItem != null)
-                {
-                    break;
-                }
-            }
-
-            if (dependencyItem == null)
-            {
-                dependencyItem = SavedFeatures.FirstOrDefault(st => st.DependencyList.Any(d => d == item.Identity));
-            }
-
-            if (dependencyItem != null)
-            {
-                if (showErrors)
-                {
-                    string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, item.TemplateName, dependencyItem.TemplateName, dependencyItem.TemplateType);
-                    MainViewModel.Current.WizardStatus.SetStatus(StatusViewModel.Warning(message, false, 5));
-                }
-                return true;
-            }
-
-            return false;
-        }
-
-        private void TryRemoveHiddenDependencies(SavedTemplateViewModel item)
-        {
-            foreach (var identity in item.DependencyList)
-            {
-                var dependency = SavedFeatures.FirstOrDefault(sf => sf.Identity == identity);
-                if (dependency == null)
-                {
-                    foreach (var pageGroup in SavedPages)
-                    {
-                        dependency = pageGroup.FirstOrDefault(sf => sf.Identity == identity);
-                        if (dependency != null)
-                        {
-                            break;
-                        }
-                    }
-                }
-
-                if (dependency != null)
-                {
-                    // If the template is not hidden we can not remove it because it could be added in wizard
-                    if (dependency.IsHidden)
-                    {
-                        // Look if there are another saved template that depends on it.
-                        // For example, if it's added two different chart pages, when remove the first one SampleDataService can not be removed, but if no saved templates use SampleDataService, it can be removed.
-                        if (!SavedFeatures.Any(sf => sf.DependencyList.Any(d => d == dependency.Identity)) || SavedPages.Any(spg => spg.Any(sp => sp.DependencyList.Any(d => d == dependency.Identity))))
-                        {
-                            RemoveTemplate(dependency, false);
-                        }
-                    }
-                }
-            }
-        }
-
-        public bool IsTemplateAlreadyDefined(string identity) => Identities.Any(i => i == identity);
-
-        private void UpdateTemplatesAvailability()
+        public void UpdateTemplatesAvailability()
         {
             PagesGroups.ToList().ForEach(g => g.Templates.ToList().ForEach(t =>
             {
@@ -238,70 +154,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }));
         }
 
-        private void UpdateSummaryTemplates()
+        public void UpdateSummaryTemplates()
         {
             foreach (var spg in SavedPages)
             {
                 spg.ToList().ForEach(sp => sp.UpdateAllowDragAndDrop(SavedPages[0].Count));
             }
-        }
-
-        private void SetupTemplatesFromLayout(string projectTypeName, string frameworkName)
-        {
-            var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName);
-
-            foreach (var item in layout)
-            {
-                if (item.Template != null)
-                {
-                    AddTemplateAndDependencies((item.Layout.name, item.Template), !item.Layout.@readonly);
-                }
-            }
-        }
-
-        public void AddTemplateAndDependencies((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
-        {
-            SaveNewTemplate(item, isRemoveEnabled);
-
-            foreach (var dependencyTemplate in GenComposer.GetAllDependencies(item.template, ContextFramework.Name))
-            {
-                SaveNewTemplate((dependencyTemplate.GetDefaultName(), dependencyTemplate), isRemoveEnabled);
-            }
-
-            MainViewModel.Current.RebuildLicenses();
-        }
-
-        private void SaveNewTemplate((string name, ITemplateInfo template) item, bool isRemoveEnabled = true)
-        {
-            if (item.template.GetMultipleInstance() == false && IsTemplateAlreadyDefined(item.template.Identity))
-            {
-                return;
-            }
-            var newItem = new SavedTemplateViewModel(item, isRemoveEnabled);
-
-            if (item.template.GetTemplateType() == TemplateType.Page)
-            {
-                if (SavedPages.Count == 0)
-                {
-                    HomeName = item.name;
-                    newItem.IsHome = true;
-                }
-                while (SavedPages.Count < newItem.GenGroup + 1)
-                {
-                    var items = new ObservableCollection<SavedTemplateViewModel>();
-                    SavedPages.Add(items);
-                    MainViewModel.Current.Ordering.AddList(items, SavedPages.Count == 1);
-                }
-                SavedPages[newItem.GenGroup].Add(newItem);
-                HasSavedPages = true;
-            }
-            else if (item.template.GetTemplateType() == TemplateType.Feature)
-            {
-                SavedFeatures.Add(newItem);
-                HasSavedFeatures = true;
-            }
-            UpdateTemplatesAvailability();
-            UpdateSummaryTemplates();
         }
 
         // UI Changes
@@ -344,6 +202,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 target.Close();
             }
+        }
+
+        public void UpdateHasPagesAndHasFeatures()
+        {
+            HasSavedPages = SavedPages.Any(g => g.Any());
+            HasSavedFeatures = SavedFeatures.Any();
         }
     }
 }

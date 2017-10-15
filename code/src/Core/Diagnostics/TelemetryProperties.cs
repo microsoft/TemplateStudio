@@ -21,7 +21,8 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string LastStep { get; private set; } = TelemetryEvents.Prefix + "LastStep";
         public static string EventName { get; private set; } = TelemetryEvents.Prefix + "EventName";
         public static string Language { get; internal set; } = TelemetryEvents.Prefix + "Language";
-        public static string VisualStudioVersion { get; private set; } = TelemetryEvents.Prefix + "VsVersion";
+        public static string VisualStudioExeVersion { get; private set; } = TelemetryEvents.Prefix + "VsExeVersion";
+        public static string VisualStudioProductVersion { get; private set; } = TelemetryEvents.Prefix + "VsProductVersion";
         public static string VisualStudioEdition { get; private set; } = TelemetryEvents.Prefix + "VsEdition";
         public static string VisualStudioCulture { get; private set; } = TelemetryEvents.Prefix + "VsCulture";
         public static string VisualStudioManifestId { get; private set; } = TelemetryEvents.Prefix + "VsManifestId";

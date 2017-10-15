@@ -12,9 +12,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class FailedMergesFileViewModel : BaseFileViewModel
     {
-        public override FileStatus FileStatus => FileStatus.WarningFile;
-
-        public FailedMergesFileViewModel(FailedMergePostAction warning) : base(warning.FailedFileName)
+        public FailedMergesFileViewModel(FailedMergePostAction warning)
+            : base(warning.FailedFileName, FileStatus.WarningFile)
         {
             DetailTitle = StringRes.ChangesSummaryDetailTitleFailedMerges;
 
@@ -22,7 +21,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             sb.AppendLine(StringRes.ChangesSummaryDetailDescriptionFailedMerges);
             if (!string.IsNullOrEmpty(warning.Description))
             {
-                sb.AppendLine(warning.Description);
+                sb.Append(warning.Description);
             }
 
             DetailDescription = sb.ToString();

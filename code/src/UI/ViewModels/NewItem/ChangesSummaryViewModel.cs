@@ -15,6 +15,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -60,20 +61,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             UpdateFontSizeCommand = new RelayCommand<string>(OnUpdateFontSize);
         }
 
-        public async Task InitializeAsync()
+        public void Initialize(NewItemGenerationResult output)
         {
-            MainViewModel.Current.WizardStatus.IsLoading = true;
-            MainViewModel.Current.MainView.Result = MainViewModel.Current.CreateUserSelection();
-            NewItemGenController.Instance.CleanupTempGeneration();
-            await NewItemGenController.Instance.GenerateNewItemAsync(MainViewModel.Current.ConfigTemplateType, MainViewModel.Current.MainView.Result);
-
-            var output = NewItemGenController.Instance.CompareOutputAndProject();
-            var warnings = GenContext.Current.FailedMergePostActions.Select(w => new FailedMergesFileViewModel(w));
+            var warnings = GenContext.Current.FailedMergePostActions
+                .Where(w => w.MergeFailureType == MergeFailureType.FileNotFound || w.MergeFailureType == MergeFailureType.LineNotFound)
+                .Select(w => new FailedMergesFileViewModel(w));
+            var failedStyleMerges = GenContext.Current.FailedMergePostActions
+                .Where(w => w.MergeFailureType == MergeFailureType.KeyAlreadyDefined)
+                .Select(w => new FailedStyleMergesFileViewModel(w));
             HasChangesToApply = output.HasChangesToApply;
 
             FileGroups.Clear();
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryConflictingFiles, output.ConflictingFiles.Select(cf => new ConflictingFileViewModel(cf)), OnItemChanged));
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryFailedMerges, warnings, OnItemChanged));
+            FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryFailedStyleMerges, failedStyleMerges, OnItemChanged));
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategotyModifiedFiles, output.ModifiedFiles.Select(mf => new ModifiedFileViewModel(mf)), OnItemChanged));
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryNewFiles, output.NewFiles.Select(nf => new NewFileViewModel(nf)), OnItemChanged));
             FileGroups.Add(new ItemsGroupViewModel<BaseFileViewModel>(StringRes.ChangesSummaryCategoryUnchangedFiles, output.UnchangedFiles.Select(nf => new UnchangedFileViewModel(nf)), OnItemChanged));
@@ -92,6 +93,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 group.SelectedItem = group.Templates.First();
             }
+
             MainViewModel.Current.UpdateCanFinish(true);
             MainViewModel.Current.WizardStatus.IsLoading = false;
         }
@@ -125,6 +127,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     item.CleanSelected();
                 }
             }
+
             SelectedFile = group.SelectedItem;
         }
     }

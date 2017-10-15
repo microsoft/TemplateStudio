@@ -14,6 +14,7 @@ namespace Localization
         internal static string ProjectTemplateFileNamePatternVB = "VBNet.UWP.VS2017.Solution.{0}.vstemplate";
 
         internal static string CommandTemplateRootDirPath = "code\\src\\Installer.2017\\Commands";
+        internal static string RelayCommandFile = "RelayCommandPackage.en-US.vsct";
         internal static string RelayCommandFileNamePattern = "RelayCommandPackage.{0}.vsct";
         internal static string VspackageFileNamePattern = "VSPackage.{0}.resx";
 
@@ -33,15 +34,16 @@ namespace Localization
         internal static string WtsFrameworks = "frameworks";
 
         internal static string VsixRootDirPath = "code\\src\\Installer.2017";
+        internal static string VsixLangDirPattern = "{0}\\Extension.vsixlangpack";
         internal static string VsixManifestFile = "source.extension.vsixmanifest";
         internal static string VsixLangpackFile = "Extension.vsixlangpack";
         internal static string VsixLangpackContent = @"<?xml version=""1.0"" encoding=""utf-8"" ?>  
-            <VsixLanguagePack Version = ""1.0.0"" xmlns=""http://schemas.microsoft.com/developer/vsx-schema-lp/2010"" >  
-              <LocalizedName>{0}</LocalizedName>  
-              <LocalizedDescription>{1}</LocalizedDescription>  
-              <License>..\Content\EULA.{2}.rtf</License>
-              <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
-            </VsixLanguagePack> ";
+<VsixLanguagePack Version = ""1.0.0"" xmlns=""http://schemas.microsoft.com/developer/vsx-schema-lp/2010"" >  
+  <LocalizedName>{0}</LocalizedName>
+  <LocalizedDescription>{1}</LocalizedDescription>  
+  <License>..\Content\EULA.{2}.rtf</License>
+  <MoreInfoUrl>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfoUrl>  
+</VsixLanguagePack>";
 
         internal static string ResourcesFilePath = "StringRes.resx";
         internal static string ResourcesFilePathPattern = "StringRes.{0}.resx";

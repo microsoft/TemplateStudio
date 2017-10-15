@@ -146,6 +146,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     stringBuilder.AppendLine($"{license.Text} {license.Url}");
                 }
             }
+
             if (DependencyItems != null && DependencyItems.Any())
             {
                 stringBuilder.AppendLine($"{StringRes.InfoModalDependencies}");
@@ -154,6 +155,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     stringBuilder.AppendLine($"{dependency.Name}");
                 }
             }
+
             stringBuilder.AppendLine($"{InformationMD}");
             HelpText = stringBuilder.ToString();
         }
@@ -178,6 +180,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
+
             ComposeHelpText();
         }
 
@@ -201,6 +204,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
+
             ComposeHelpText();
         }
 
@@ -220,6 +224,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
+
             ComposeHelpText();
         }
 

@@ -63,7 +63,7 @@ namespace Param_RootNamespace.Services
                     {
                         NavigationService.NavigationFailed += (sender, e) =>
                         {
-                            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+                            throw e.Exception;
                         };
 
                         NavigationService.Navigated += OnFrameNavigated;

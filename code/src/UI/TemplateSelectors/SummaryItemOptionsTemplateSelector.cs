@@ -29,6 +29,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
                     return FeatureOptionsTemplate;
                 }
             }
+
             return base.SelectTemplate(item, container);
         }
     }

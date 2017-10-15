@@ -55,10 +55,10 @@ namespace Microsoft.Templates.Core.Composition
 
             foreach (Match m in queryMatches)
             {
-                sb.Append(m.Value.Replace(" ", "").Trim());
+                sb.Append(m.Value.Replace(" ", string.Empty).Trim());
             }
 
-            return sb.ToString() == rawQuery.Replace(" ", "").Trim();
+            return sb.ToString() == rawQuery.Replace(" ", string.Empty).Trim();
         }
 
         public static CompositionQuery Parse(IEnumerable<string> rawQuery)

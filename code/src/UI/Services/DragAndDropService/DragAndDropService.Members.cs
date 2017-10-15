@@ -142,6 +142,6 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        bool ShowDragAdornerLayerResolved => _showDragAdornerLayer && _dragAdornerLayerOpacity > 0.0;
+        private bool ShowDragAdornerLayerResolved => _showDragAdornerLayer && _dragAdornerLayerOpacity > 0.0;
     }
 }

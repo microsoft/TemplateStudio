@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.PostActions
             var postActions = new List<PostAction>();
 
             AddPredefinedActions(genInfo, genResult, postActions);
-            AddMergeActions(postActions, $"*{MergePostAction.Extension}*", true);
+            AddMergeActions(postActions, $"*{MergeConfiguration.Extension}*", true);
             AddSearchAndReplaceActions(postActions, $"*{SearchAndReplacePostAction.Extension}*");
 
             return postActions;
@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             var postActions = new List<PostAction>();
 
-            AddGlobalMergeActions(postActions, $"*{MergePostAction.GlobalExtension}*", true);
+            AddGlobalMergeActions(postActions, $"*{MergeConfiguration.GlobalExtension}*", true);
             postActions.Add(new SortUsingsPostAction());
             postActions.Add(new SortImportsPostAction());
             postActions.Add(new AddContextItemsToProjectPostAction());

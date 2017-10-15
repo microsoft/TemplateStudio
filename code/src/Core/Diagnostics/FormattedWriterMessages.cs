@@ -16,6 +16,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             get { return exHeader; }
         }
+
         public const string ExFooter = "----------------------------------------------------------";
         public static string LogEntryStart
         {
