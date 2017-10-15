@@ -37,7 +37,7 @@
                         <RadioButton 
                             x:Uid="SettingsPage_Theme_Light" 
                             GroupName="AppTheme" 
-                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=TwoWay}"
+                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
                             Command="{Binding SwitchThemeCommand}">
                             <RadioButton.CommandParameter>
                                 <xaml:ElementTheme>Light</xaml:ElementTheme>
@@ -46,7 +46,7 @@
                         <RadioButton 
                             x:Uid="SettingsPage_Theme_Dark" 
                             GroupName="AppTheme"
-                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=TwoWay}"
+                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
                             Command="{Binding SwitchThemeCommand}">
                             <RadioButton.CommandParameter>
                                 <xaml:ElementTheme>Dark</xaml:ElementTheme>
@@ -55,7 +55,7 @@
                         <RadioButton 
                             x:Uid="SettingsPage_Theme_Default"
                             GroupName="AppTheme"
-                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=TwoWay}"
+                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
                             Command="{Binding SwitchThemeCommand}">
                             <RadioButton.CommandParameter>
                                 <xaml:ElementTheme>Default</xaml:ElementTheme>

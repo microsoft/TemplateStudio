@@ -123,43 +123,5 @@
                 x:Name="DetailControl"
                 MasterMenuItem="{x:Bind ViewModel.Selected, Mode=OneWay}"/>
         </Grid>
-
-        <!--  Adaptive triggers  -->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="WindowStates">
-                <i:Interaction.Behaviors>
-                    <ic:EventTriggerBehavior EventName="CurrentStateChanged">
-                        <ic:InvokeCommandAction Command="{x:Bind ViewModel.StateChangedCommand}"/>
-                    </ic:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="640"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ContentArea.Padding" Value="12,0,12,0"/>
-                        <Setter Target="MasterColumn.Width" Value="296" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
-                        <Setter Target="TitleRow.Height" Value="48"/>
-                        <Setter Target="MasterRow.Height" Value="Auto"/>
-                        <Setter Target="TitlePage.Visibility" Value="Visible"/>
-                        <Setter Target="Title.Visibility" Value="Collapsed"/>
-                        <Setter Target="ContentArea.Padding" Value="12,0,12,0"/>
-                        <Setter Target="MasterColumn.Width" Value="*" />
-                        <Setter Target="DetailColumn.Width" Value="0" />
-                        <Setter Target="MasterListView.SelectionMode" Value="None" />
-                        <Setter Target="MasterArea.Background" Value="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
-                        <Setter Target="MasterListView.Margin" Value="-12,0"/>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

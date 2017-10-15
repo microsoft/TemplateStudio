@@ -5,11 +5,15 @@
     xmlns:prismUnity="using:Prism.Unity.Windows"
     RequestedTheme="Light">
 
-    <Application.Resources>
+    <prismUnity:PrismUnityApplication.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/_Colors.xaml"/>
+                <ResourceDictionary Source="/Styles/_FontSizes.xaml"/>
+                <ResourceDictionary Source="/Styles/_Thickness.xaml"/>
+
                 <ResourceDictionary Source="/Styles/TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Application.Resources>
+    </prismUnity:PrismUnityApplication.Resources>
 </prismUnity:PrismUnityApplication>

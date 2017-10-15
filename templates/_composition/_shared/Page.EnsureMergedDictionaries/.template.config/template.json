@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page"
+    "wts.compositionFilter": "$framework != Prism & wts.type == page"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
