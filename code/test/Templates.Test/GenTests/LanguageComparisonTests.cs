@@ -179,8 +179,7 @@ namespace Microsoft.Templates.Test
 
                         if (!commentsMatch)
                         {
-                            failures.Add(
-                                $"File '{allVbFiles[i].FullName}' does not have comments matching its C# equivalent.");
+                            failures.Add($"File '{allVbFiles[i].FullName}' does not have comments matching its C# equivalent.");
                             break;
                         }
                     }
