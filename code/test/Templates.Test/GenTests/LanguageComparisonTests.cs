@@ -87,8 +87,7 @@ namespace Microsoft.Templates.Test
                 }
             }
 
-            foreach (var vbFile in new DirectoryInfo(Path.Combine(vbResultPath, vbProjectName)).GetFiles("*.vb",
-                SearchOption.AllDirectories))
+            foreach (var vbFile in new DirectoryInfo(Path.Combine(vbResultPath, vbProjectName)).GetFiles("*.vb", SearchOption.AllDirectories))
             {
                 var vbFileContents = File.ReadAllText(vbFile.FullName);
 

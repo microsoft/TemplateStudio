@@ -23,14 +23,12 @@ namespace Microsoft.Templates.Test
             _fixture = fixture;
         }
 
-        /// <summary>
-        /// *** WARNING ***
-        /// Running this requires:
-        /// - Lots of time (as .Net Native compilation is slow)
-        /// - Lots of disk space (as the artifacts of each test may use >2GB)
-        /// - Running a Administrator (for the WACK tests or you'll get UAC prompts)
-        /// - Control of the machine (as WACK tests will launch and try and control the generated app. If you're doing other things it may cause the test to fail incorrectly)
-        /// </summary>
+        //// *** WARNING ***
+        //// Running this requires:
+        //// - Lots of time (as .Net Native compilation is slow)
+        //// - Lots of disk space (as the artifacts of each test may use >2GB)
+        //// - Running a Administrator (for the WACK tests or you'll get UAC prompts)
+        //// - Control of the machine (as WACK tests will launch and try and control the generated app. If you're doing other things it may cause the test to fail incorrectly)
         [Theory]
         [MemberData("GetProjectTemplatesForBuildAsync", "")]
         public async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string language)
