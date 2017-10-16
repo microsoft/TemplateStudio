@@ -25,13 +25,13 @@
 
         Public ReadOnly Property HashIdentIcon As String
             Get
-                Return GetHashCode().ToString() + "-icon"
+                Return GetHashCode().ToString() & "-icon"
             End Get
         End Property
 
         Public ReadOnly Property HashIdentTitle() As String
             Get
-                Return GetHashCode().ToString() + "-title"
+                Return GetHashCode().ToString() & "-title"
             End Get
         End Property
 

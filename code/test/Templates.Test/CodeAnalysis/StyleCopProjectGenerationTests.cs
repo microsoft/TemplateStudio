@@ -43,6 +43,7 @@ namespace Microsoft.Templates.Test
 
             var targetProjectTemplate = StyleCopGenerationTestsFixture.Templates
                 .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
+                                     && t.GetLanguage() == ProgrammingLanguages.CSharp
                                   && t.GetProjectTypeList().Contains(projectType)
                                   && t.GetFrameworkList().Contains(framework));
 

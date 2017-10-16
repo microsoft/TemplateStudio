@@ -189,8 +189,7 @@ namespace Microsoft.Templates.UI.Generation
             {
                 if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
                 {
-                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"),
-                                                            "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
                     if (!string.IsNullOrEmpty(codebehindFile))
                     {
                         var fileContent = File.ReadAllText(codebehindFile);
@@ -203,8 +202,7 @@ namespace Microsoft.Templates.UI.Generation
             {
                 if (ExistsFileInProjectPath("Services", "ActivationService.vb"))
                 {
-                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"),
-                                                            "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
                     if (!string.IsNullOrEmpty(codebehindFile))
                     {
                         var fileContent = File.ReadAllText(codebehindFile);

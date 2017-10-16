@@ -215,6 +215,10 @@
     <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyFixture.cs" />
     <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyTests.cs" />
     <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSource.cs" />
+    <Compile Include="CodeAnalysis\SonarLintCollection.cs" />
+    <Compile Include="CodeAnalysis\SonarLintGenerationTestsFixture.cs" />
+    <Compile Include="CodeAnalysis\SonarLintPlusLocalTemplatesSource.cs" />
+    <Compile Include="CodeAnalysis\SonarLintProjectGenerationTests.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />
@@ -224,13 +228,13 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
     <Compile Include="BaseGenAndBuildFixture.cs" />
-    <Compile Include="StyleCopCollection.cs" />
-    <Compile Include="StyleCopGenerationTestsFixture.cs" />
-    <Compile Include="StyleCopProjectGenerationTests.cs" />
+    <Compile Include="CodeAnalysis\StyleCopCollection.cs" />
+    <Compile Include="CodeAnalysis\StyleCopGenerationTestsFixture.cs" />
+    <Compile Include="CodeAnalysis\StyleCopProjectGenerationTests.cs" />
     <Compile Include="BuildCollection.cs" />
     <Compile Include="GenTests\GenerationFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StyleCopPlusLocalTemplatesSource.cs" />
+    <Compile Include="CodeAnalysis\StyleCopPlusLocalTemplatesSource.cs" />
     <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
@@ -242,6 +246,12 @@
     </None>
     <None Include="RestoreAndBuildAppx.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SonarLintVB\.template.config\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SonarLintVB\WTSVBRules.ruleset">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestData\StyleCop\GlobalSuppressions.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -317,6 +327,12 @@
     <Content Include="TestData\NonDefaultAssets\Wide310x150Logo.scale-200.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="TestData\SonarLintVB\_searchreplace.vbproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SonarLintVB\_postaction.vbproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
