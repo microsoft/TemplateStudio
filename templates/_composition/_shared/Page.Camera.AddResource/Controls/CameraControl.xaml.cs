@@ -281,7 +281,7 @@ namespace Param_ItemNamespace.Controls
             {
                 var decoder = await BitmapDecoder.CreateAsync(inputStream);
 
-                var file = await Package.Current.InstalledLocation.CreateFileAsync("photo.jpeg", CreationCollisionOption.GenerateUniqueName);
+                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("photo.jpeg", CreationCollisionOption.GenerateUniqueName);
 
                 using (var outputStream = await file.OpenAsync(FileAccessMode.ReadWrite))
                 {
