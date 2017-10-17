@@ -8,7 +8,8 @@ namespace Localization
 {
     internal class CSharpProjectTemplateGenerator : ProjectTemplateGeneratorBase
     {
-        public CSharpProjectTemplateGenerator(string sourceDirPath, string destinationDirPath) : base(GetConfig(sourceDirPath, destinationDirPath))
+        public CSharpProjectTemplateGenerator(string sourceDirPath, string destinationDirPath)
+            : base(GetConfig(sourceDirPath, destinationDirPath))
         {
         }
 

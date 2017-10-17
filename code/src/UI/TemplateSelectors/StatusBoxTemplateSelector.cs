@@ -34,6 +34,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
                         return ErrorStatusTemplate;
                 }
             }
+
             return base.SelectTemplate(item, container);
         }
     }

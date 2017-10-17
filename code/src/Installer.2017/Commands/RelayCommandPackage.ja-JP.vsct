@@ -6,7 +6,7 @@
 
   <!--This header contains the command ids for the menus provided by the shell. -->
   <Extern href="vsshlids.h"/>
-
+  
   <VisibilityConstraints>
     <VisibilityItem guid="guidRelayCommandPackageCmdSet"
                         id="AddPageCommand" context="UICONTEXT_SolutionHasSingleProject" />

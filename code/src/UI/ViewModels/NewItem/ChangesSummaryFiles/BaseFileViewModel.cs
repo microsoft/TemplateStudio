@@ -29,12 +29,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 if (FileStatus == FileStatus.ConflictingStylesFile)
                 {
-                    var name = Subject.Replace(".xaml", "");
+                    var name = Subject.Replace(".xaml", string.Empty);
                     return Path.Combine(GenContext.Current.OutputPath, $"{name}_failedpostaction.xaml");
                 }
+
                 return string.Empty;
             }
         }
+
         public string TempFile => Path.Combine(GenContext.Current.OutputPath, Subject);
         public string ProjectFile => Path.Combine(GenContext.Current.ProjectPath, Subject);
 
@@ -89,17 +91,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             switch (FileStatus)
             {
                 case FileStatus.NewFile:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIGreen") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIGreen") as SolidColorBrush;
                 case FileStatus.ModifiedFile:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlue") as SolidColorBrush;
                 case FileStatus.ConflictingFile:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIRed") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIRed") as SolidColorBrush;
                 case FileStatus.ConflictingStylesFile:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
                 case FileStatus.WarningFile:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
                 case FileStatus.Unchanged:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIDarkBlue");
+                    return ResourceService.FindResource<SolidColorBrush>("UIDarkBlue");
                 default:
                     return new SolidColorBrush(Colors.Transparent);
             }

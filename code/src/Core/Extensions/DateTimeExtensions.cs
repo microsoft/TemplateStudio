@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core
 
         public static string FormatAsDateHoursMinutes(this DateTime date)
         {
-            return date.ToString("dd_HHmm");
+            return date.ToString("ddHHmmss");
         }
     }
 }

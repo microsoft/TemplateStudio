@@ -10,7 +10,6 @@ namespace Microsoft.Templates.Core.Test
 {
     [Collection("Unit Test Templates")]
     [Trait("ExecutionSet", "Minimum")]
-
     public class NamingTests
     {
         private TemplatesFixture _fixture;
@@ -117,7 +116,7 @@ namespace Microsoft.Templates.Core.Test
         {
             SetUpFixtureForTesting(language);
 
-            var result = Naming.Validate("", new List<Validator>());
+            var result = Naming.Validate(string.Empty, new List<Validator>());
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.Empty, result.ErrorType);

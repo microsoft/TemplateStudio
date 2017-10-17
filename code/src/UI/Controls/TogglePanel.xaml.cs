@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 using Microsoft.Templates.UI.Views.NewProject;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -19,6 +20,7 @@ namespace Microsoft.Templates.UI.Controls
             get => GetValue(TogglePanelContentProperty);
             set => SetValue(TogglePanelContentProperty, value);
         }
+
         public static readonly DependencyProperty TogglePanelContentProperty = DependencyProperty.Register(nameof(TogglePanelContent), typeof(object), typeof(TogglePanel), new PropertyMetadata(null));
 
         public DataTemplate MainViewTemplate
@@ -26,6 +28,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (DataTemplate)GetValue(MainViewTemplateProperty);
             set => SetValue(MainViewTemplateProperty, value);
         }
+
         public static readonly DependencyProperty MainViewTemplateProperty = DependencyProperty.Register(nameof(MainViewTemplate), typeof(DataTemplate), typeof(TogglePanel), new PropertyMetadata(null));
 
         public DataTemplate SecondaryViewTemplate
@@ -33,6 +36,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (DataTemplate)GetValue(SecondaryViewTemplateProperty);
             set => SetValue(SecondaryViewTemplateProperty, value);
         }
+
         public static readonly DependencyProperty SecondaryViewTemplateProperty = DependencyProperty.Register(nameof(SecondaryViewTemplate), typeof(DataTemplate), typeof(TogglePanel), new PropertyMetadata(null));
 
         public DataTemplate OpenButtonTemplate
@@ -40,6 +44,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (DataTemplate)GetValue(OpenButtonTemplateProperty);
             set => SetValue(OpenButtonTemplateProperty, value);
         }
+
         public static readonly DependencyProperty OpenButtonTemplateProperty = DependencyProperty.Register(nameof(OpenButtonTemplate), typeof(DataTemplate), typeof(TogglePanel), new PropertyMetadata(null));
 
         public DataTemplate CloseButtonTemplate
@@ -47,6 +52,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (DataTemplate)GetValue(CloseButtonTemplateProperty);
             set => SetValue(CloseButtonTemplateProperty, value);
         }
+
         public static readonly DependencyProperty CloseButtonTemplateProperty = DependencyProperty.Register(nameof(CloseButtonTemplate), typeof(DataTemplate), typeof(TogglePanel), new PropertyMetadata(null));
 
         public bool IsOpen
@@ -54,6 +60,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (bool)GetValue(IsOpenProperty);
             set => SetValue(IsOpenProperty, value);
         }
+
         public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register(nameof(IsOpen), typeof(bool), typeof(TogglePanel), new PropertyMetadata(false, OnIsOpenPropertyChanged));
 
         public bool AllowDragAndDrop
@@ -61,6 +68,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (bool)GetValue(AllowDragAndDropProperty);
             set => SetValue(AllowDragAndDropProperty, value);
         }
+
         public static readonly DependencyProperty AllowDragAndDropProperty = DependencyProperty.Register(nameof(AllowDragAndDrop), typeof(bool), typeof(TogglePanel), new PropertyMetadata(false));
 
         public TogglePanel()
@@ -70,7 +78,7 @@ namespace Microsoft.Templates.UI.Controls
             UpdateOpenStatus();
         }
 
-        private void OnMainGridGotFocus(object sender, RoutedEventArgs e) => MainViewModel.Current.Ordering.SetDropTarget(TogglePanelContent as SavedTemplateViewModel);
+        private void OnMainGridGotFocus(object sender, RoutedEventArgs e) => OrderingService.SetDropTarget(TogglePanelContent as SavedTemplateViewModel);
 
         private static void OnIsOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -87,17 +95,19 @@ namespace Microsoft.Templates.UI.Controls
             {
                 return;
             }
+
             if (e.Key == Key.Space && mainGrid.IsFocused)
             {
-                if (MainViewModel.Current.Ordering.SetDrag(TogglePanelContent as SavedTemplateViewModel))
+                if (OrderingService.SetDrag(TogglePanelContent as SavedTemplateViewModel))
                 {
                     dragAndDropShadowBorder.Opacity = 1;
                 }
                 else
                 {
-                    MainViewModel.Current.Ordering.SetDrop(TogglePanelContent as SavedTemplateViewModel);
+                    OrderingService.SetDrop(TogglePanelContent as SavedTemplateViewModel);
                 }
             }
+
             if (e.Key == Key.Escape)
             {
                 dragAndDropShadowBorder.Opacity = 0;

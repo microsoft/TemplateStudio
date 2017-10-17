@@ -9,7 +9,8 @@ namespace Microsoft.Templates.Core
 {
     public class FileExistsValidator : Validator<string>
     {
-        public FileExistsValidator(string config) : base(config)
+        public FileExistsValidator(string config)
+            : base(config)
         {
         }
 

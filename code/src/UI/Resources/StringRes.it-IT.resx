@@ -655,4 +655,13 @@
   <data name="NewItemHasNoChanges" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another {1}.</value>
   </data>
+  <data name="ChangesSummaryCategoryFailedStyleMerges" xml:space="preserve">
+    <value>Failed style merges</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleFailedStyleMerges" xml:space="preserve">
+    <value>Failed style merge</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
+    <value>We are not able to introduce the styles in the resource dictionary.</value>
+  </data>
 </root>

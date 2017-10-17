@@ -43,12 +43,14 @@ namespace Microsoft.Templates.Core
                 {
                     Directory.CreateDirectory(destFolder);
                 }
+
                 var destFile = Path.Combine(destFolder, Path.GetFileName(sourceFile));
 
                 if (File.Exists(destFile))
                 {
                     EnsureFileEditable(destFile);
                 }
+
                 File.Copy(sourceFile, destFile, overwrite);
             }
             catch (Exception ex)

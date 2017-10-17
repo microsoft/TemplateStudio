@@ -56,9 +56,9 @@ namespace Param_ItemNamespace.ViewModels
             ZoomLevel = DefaultZoomLevel;
         }
 
-        protected override async void OnActivate()
+        protected override async void OnInitialize()
         {
-            base.OnActivate();
+            base.OnInitialize();
 
             if (locationService != null)
             {

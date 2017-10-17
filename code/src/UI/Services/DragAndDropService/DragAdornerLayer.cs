@@ -15,7 +15,8 @@ namespace Microsoft.Templates.UI.Services
         private double _offsetLeft = 0;
         private double _offsetTop = 0;
 
-        public DragAdornerLayer(UIElement adornedElement, Size size, Brush brush) : base(adornedElement)
+        public DragAdornerLayer(UIElement adornedElement, Size size, Brush brush)
+            : base(adornedElement)
         {
             Rectangle rect = new Rectangle()
             {

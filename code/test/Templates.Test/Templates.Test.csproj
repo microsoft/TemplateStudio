@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\xunit.runner.visualstudio.2.3.0-beta5-build3769\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.3.0-beta5-build3769\build\net20\xunit.runner.visualstudio.props')" />
+  <Import Project="..\..\packages\xunit.runner.visualstudio.2.3.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.3.0\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -124,20 +124,24 @@
     <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroFixture.cs" />
     <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroProjectTests.cs" />
     <Compile Include="BuildCodeBehindTests\BuildCodeBehindCollection.cs" />
+    <Compile Include="BuildCodeBehindTests\BuildCodeBehindProjectTests.cs" />
     <Compile Include="BuildMVVMBasic\BuildMVVMBasicCollection.cs" />
     <Compile Include="BuildMVVMBasic\BuildMVVMBasicFixture.cs" />
-    <Compile Include="BuildMVVMBasic\BuildMVVMBasicProjectsTests.cs" />
+    <Compile Include="BuildMVVMBasic\BuildMVVMBasicProjectTests.cs" />
     <Compile Include="BuildMVVMLightTests\BuildMVVMLightCollection.cs" />
     <Compile Include="BuildMVVMLightTests\BuildMVVMLightFixture.cs" />
-    <Compile Include="BuildMVVMLightTests\BuildMVVMLightProjectsTests.cs" />
-    <Compile Include="BuildCodeBehindTests\BuildCodeBehindProjectsTests.cs" />
     <Compile Include="BuildCodeBehindTests\BuildCodeBehindFixture.cs" />
     <Compile Include="BuildFixture.cs" />
+    <Compile Include="BuildMVVMLightTests\BuildMVVMLightProjectTests.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyCollection.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyFixture.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyTests.cs" />
+    <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSource.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
-    <Compile Include="GenTests\GenProjectsTests.cs" />
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />
     <Compile Include="CodeStyleEnforcementTests.cs" />
+    <Compile Include="GenTests\GenProjectTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
     <Compile Include="BaseGenAndBuildFixture.cs" />
@@ -241,6 +245,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.2.3.0-beta5-build3769\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.3.0-beta5-build3769\build\net20\xunit.runner.visualstudio.props'))" />
+    <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.2.3.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.3.0\build\net20\xunit.runner.visualstudio.props'))" />
   </Target>
 </Project>

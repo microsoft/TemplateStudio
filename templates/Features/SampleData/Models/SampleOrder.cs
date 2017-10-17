@@ -36,5 +36,10 @@ namespace Param_ItemNamespace.Models
         {
             get { return GetHashCode().ToString() + "-title"; }
         }
+
+        public override string ToString()
+        {
+            return $"{Company} {Status}";
+        }
     }
 }

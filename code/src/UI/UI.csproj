@@ -297,6 +297,7 @@
       <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\DragAndDropService\DragAndDropEventArgs`1.cs" />
     <Compile Include="Services\OrderingService.cs" />
     <Compile Include="Services\DragAndDropService\DragAndDropService.Members.cs" />
     <Compile Include="Services\DragAndDropService\DragAdornerLayer.cs" />
@@ -327,15 +328,18 @@
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
     <Compile Include="Services\LicensesService.cs" />
+    <Compile Include="Services\ResourceService.cs" />
     <Compile Include="Services\SystemService.cs" />
+    <Compile Include="Services\UserSelectionService.cs" />
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\StatusBoxTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
-    <Compile Include="Services\DragAndDropService\DragAndDropEventArgs.cs" />
+    <Compile Include="Threading\SafeThreading.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="ViewModels\Common\FileExtension.cs" />
     <Compile Include="ViewModels\Common\FileStatus.cs" />
+    <Compile Include="ViewModels\Common\ItemsGroupViewModel`1.cs" />
     <Compile Include="ViewModels\Common\WizardStatus.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\FailedStyleMergesFileViewModel.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryFiles\UnchangedFileViewModel.cs" />
@@ -369,7 +373,6 @@
     </Compile>
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\Common\ErrorViewModel.cs" />
-    <Compile Include="ViewModels\Common\ItemsGroupViewModel.cs" />
     <Compile Include="ViewModels\Common\InformationViewModel.cs" />
     <Compile Include="ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="ViewModels\NewProject\MetadataInfoViewModel.cs" />

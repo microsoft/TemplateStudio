@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Test
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CM\\{testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LocalTemplatesSource("TestBuildCaliburnMicro");
+        public TemplatesSource Source => new LocalTemplatesSource("TstBldCaliburn");
 
         private static bool syncExecuted;
 
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TestBuildCaliburnMicro"), language);
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldCaliburn"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);
@@ -56,6 +56,7 @@ namespace Microsoft.Templates.Test
                     }
                 }
             }
+
             return result;
         }
 
@@ -64,7 +65,7 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TestBuildCaliburnMicro"), language);
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldCaliburn"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                          && t.GetLanguage() == language);
@@ -93,6 +94,7 @@ namespace Microsoft.Templates.Test
                     }
                 }
             }
+
             return result;
         }
 

@@ -117,6 +117,7 @@ namespace Microsoft.Templates.Core.Locations
                 await ExtractInstalledContentAsync();
             }
         }
+
         private async Task<bool> CheckMandatoryAcquireContentAsync()
         {
             return await AcquireContentAsync(_source.ForcedAcquisition || _content.ExistUnderVersion());
@@ -136,6 +137,7 @@ namespace Microsoft.Templates.Core.Locations
                 acquireContentCalled = true;
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
             }
+
             return await Task.FromResult<bool>(acquireContentCalled);
         }
 
@@ -282,11 +284,13 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     return false;
                 }
+
                 SetInstanceSyncLock();
                 SyncInProgress = true;
                 return SyncInProgress;
             }
         }
+
         private void UnlockSync()
         {
             lock (syncLock)
@@ -295,6 +299,7 @@ namespace Microsoft.Templates.Core.Locations
                 RemoveInstanceSyncLock();
             }
         }
+
         private async Task EnsureVsInstancesSyncingAsync()
         {
             while (IsOtherInstanceSyncing())
@@ -329,6 +334,8 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     fileInfo.Delete();
                 }
+
+                Fs.EnsureFolder(CurrentTemplatesFolder);
                 File.WriteAllText(fileInfo.FullName, "Instance syncing");
             }
             catch (Exception ex)
@@ -336,6 +343,7 @@ namespace Microsoft.Templates.Core.Locations
                 AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationWarnCreatingLockFileMessage, ex).FireAndForget();
             }
         }
+
         private void RemoveInstanceSyncLock()
         {
             try
