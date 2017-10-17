@@ -13,6 +13,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -64,10 +65,15 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
         }
 
-        public async void RunFinished()
+        public void RunFinished()
         {
             AppHealth.Current.Info.TrackAsync(StringRes.SolutionWizardRunFinishedMessage).FireAndForget();
-            await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
+            });
+
             AppHealth.Current.Info.TrackAsync(StringRes.GenerationFinishedString).FireAndForget();
 
             PostGenerationActions();

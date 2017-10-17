@@ -93,6 +93,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 group.SelectedItem = group.Templates.First();
             }
+
             MainViewModel.Current.UpdateCanFinish(true);
             MainViewModel.Current.WizardStatus.IsLoading = false;
         }
@@ -126,6 +127,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     item.CleanSelected();
                 }
             }
+
             SelectedFile = group.SelectedItem;
         }
     }

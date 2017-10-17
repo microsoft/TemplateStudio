@@ -13,6 +13,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewItem;
+using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -34,7 +35,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
-        public MainViewModel() : base()
+        public MainViewModel()
+            : base()
         {
             Current = this;
         }
@@ -132,27 +134,31 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             CleanStatus();
         }
 
-        protected async override void OnNext()
+        protected override void OnNext()
         {
             if (CurrentStep == 0)
             {
                 UpdateCanGoForward(false);
 
-                var output = await CleanupAndGenerateNewItemAsync();
-                if (output.HasChangesToApply)
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
-                    base.OnNext();
-                    await EnsureCodeViewerInitializedAsync();
-                    WizardStatus.HasOverlayBox = false;
-                    NewItemSetup.EditionVisibility = Visibility.Collapsed;
-                    SetChangesSummaryTitle();
-                    NavigationService.Navigate(new ChangesSummaryView(output));
-                }
-                else
-                {
-                    UpdateCanGoForward(true);
-                    WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.NewItemHasNoChanges, NewItemSetup.ItemName, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower()), true, 5));
-                }
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    var output = await CleanupAndGenerateNewItemAsync();
+                    if (output.HasChangesToApply)
+                    {
+                        base.OnNext();
+                        await EnsureCodeViewerInitializedAsync();
+                        WizardStatus.HasOverlayBox = false;
+                        NewItemSetup.EditionVisibility = Visibility.Collapsed;
+                        SetChangesSummaryTitle();
+                        NavigationService.Navigate(new ChangesSummaryView(output));
+                    }
+                    else
+                    {
+                        UpdateCanGoForward(true);
+                        WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.NewItemHasNoChanges, NewItemSetup.ItemName, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower()), true, 5));
+                    }
+                });
             }
         }
 
@@ -185,6 +191,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 return activeGroup.SelectedItem as TemplateInfoViewModel;
             }
+
             return null;
         }
 
@@ -204,7 +211,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             await Task.CompletedTask;
         }
 
-        public override UserSelection CreateUserSelection()
+        public UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection()
             {
@@ -227,6 +234,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     AddTemplate(userSelection, dependencyTemplate.GetDefaultName(), dependencyTemplate, dependencyTemplate.GetTemplateType());
                 }
             }
+
             return userSelection;
         }
 

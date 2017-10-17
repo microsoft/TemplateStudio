@@ -28,6 +28,7 @@ namespace Microsoft.Templates.Fakes
                 {
                     return Path.Combine(Path.GetDirectoryName(GenContext.Current.ProjectPath), $"{GenContext.Current.ProjectName}.sln");
                 }
+
                 return null;
             }
         }
@@ -176,6 +177,7 @@ namespace Microsoft.Templates.Fakes
         public override void OpenItems(params string[] itemsFullPath)
         {
         }
+
         public override bool IsDebuggerEnabled()
         {
             return false;

@@ -20,7 +20,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + @")\.";
 
-        public SearchAndReplacePostAction(string config) : base(config)
+        public SearchAndReplacePostAction(string config)
+            : base(config)
         {
         }
 
@@ -86,7 +87,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 var path = Regex.Replace(_config, PostactionRegex, ".");
 
-                return (File.Exists(path) ? path : string.Empty);
+                return File.Exists(path) ? path : string.Empty;
             }
         }
     }

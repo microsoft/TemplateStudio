@@ -52,6 +52,7 @@ namespace Microsoft.Templates.UI
 
                 ExecutePostActions(genInfo, result);
             }
+
             chrono.Stop();
             CalculateGenerationTime(chrono.Elapsed.TotalSeconds);
 

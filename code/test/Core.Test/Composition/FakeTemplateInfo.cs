@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.Test.Composition
 
         public void AddTag(string key, string value)
         {
-            var cacheTag = new CacheTag("", new Dictionary<string, string>(), value);
+            var cacheTag = new CacheTag(string.Empty, new Dictionary<string, string>(), value);
             _tags.Add(key, cacheTag);
         }
 

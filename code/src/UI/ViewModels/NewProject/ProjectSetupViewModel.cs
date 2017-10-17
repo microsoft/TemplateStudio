@@ -46,12 +46,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     {
                         SelectedFramework = Frameworks.FirstOrDefault();
                     }
+
                     var hasChanged = _selectedProjectType != null && _selectedProjectType.Name != value.Name;
                     SetProperty(ref _selectedProjectType, value);
+                    UserSelectionService.SelectedProjectType = value;
                     if (hasChanged)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
+
                     MainViewModel.Current.UpdateCanGoForward(true);
                     MainViewModel.Current.RebuildLicenses();
                 }
@@ -68,10 +71,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 {
                     bool hasChanged = _selectedFramework != null && _selectedFramework.Name != value.Name;
                     SetProperty(ref _selectedFramework, value);
+                    UserSelectionService.SelectedFramework = value;
                     if (hasChanged)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
+
                     MainViewModel.Current.RebuildLicenses();
                 }
             }

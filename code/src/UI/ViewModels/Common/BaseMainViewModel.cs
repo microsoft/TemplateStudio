@@ -5,17 +5,15 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -48,8 +46,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public RelayCommand BackCommand => _backCommand ?? (_backCommand = new RelayCommand(OnGoBack, () => _canGoBack));
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
         public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, (parameter) => !_hasValidationErrors && _canFinish));
-        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(async () => await OnCheckUpdatesAsync(), () => _canCheckingUpdates));
-        public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(async () => await OnRefreshTemplatesAsync()));
+        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(
+            () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnCheckUpdatesAsync()),
+            () => _canCheckingUpdates));
+
+        public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(
+            () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
 
         public BaseMainViewModel()
         {
@@ -58,6 +60,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public virtual void SetView(Window window)
         {
             _mainView = window;
+            ResourceService.Initialize(_mainView);
         }
 
         protected abstract void OnCancel();
@@ -69,12 +72,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             CurrentStep--;
             UpdateCanGoBack(CurrentStep > 0);
         }
+
         protected virtual void OnNext()
         {
             UpdateCanGoBack(true);
             WizardStatus.IsOverlayBoxVisible = false;
             CurrentStep++;
         }
+
         protected virtual void OnFinish(string parameter)
         {
             _mainView.DialogResult = true;
@@ -86,17 +91,20 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             _canGoBack = canGoBack;
             BackCommand.OnCanExecuteChanged();
         }
+
         public void UpdateCanGoForward(bool canGoForward)
         {
             _canGoForward = canGoForward;
             NextCommand.OnCanExecuteChanged();
         }
+
         public void UpdateCanFinish(bool canFinish)
         {
             _canFinish = canFinish;
             FinishCommand.OnCanExecuteChanged();
             WizardStatus.ShowFinishButton = canFinish;
         }
+
         private void UpdateCanCheckUpdates(bool value)
         {
             _canCheckingUpdates = value;
@@ -109,13 +117,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             NextCommand.OnCanExecuteChanged();
             FinishCommand.OnCanExecuteChanged();
         }
+
         public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
         {
             WizardStatus.SetStatus(new StatusViewModel(statusType, errorMessage));
             UpdateHasValidationErrors(true);
         }
-
-        public abstract UserSelection CreateUserSelection();
 
         public void CleanStatus(bool cleanValidationError = false)
         {
@@ -155,9 +162,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private async void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
         {
-            _mainView.Dispatcher.Invoke(() =>
+            SafeThreading.JoinableTaskFactory.Run(async () =>
             {
-                WizardStatus.SetStatus(status.Status.GetStatusViewModel());
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    WizardStatus.SetStatus(status.Status.GetStatusViewModel());
             });
 
             if (status.Status == SyncStatus.Updated)
@@ -173,16 +181,18 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
             if (status.Status == SyncStatus.OverVersionNoContent)
             {
-                _mainView.Dispatcher.Invoke(() =>
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                     UpdateTemplatesAvailable(true);
                 });
             }
 
             if (status.Status == SyncStatus.UnderVersion)
             {
-                _mainView.Dispatcher.Invoke(() =>
+                SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                     UpdateTemplatesAvailable(false);
                 });
             }
@@ -242,15 +252,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             _templatesAvailable = value;
             NextCommand.OnCanExecuteChanged();
-        }
-
-        public T FindResource<T>(string resourceKey) where T : class
-        {
-            if (_mainView != null)
-            {
-                return _mainView.FindResource(resourceKey) as T;
-            }
-            return default(T);
         }
     }
 }

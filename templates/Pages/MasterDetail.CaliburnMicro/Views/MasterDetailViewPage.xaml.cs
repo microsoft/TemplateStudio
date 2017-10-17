@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 
 namespace Param_ItemNamespace.Views
 {
@@ -8,6 +11,14 @@ namespace Param_ItemNamespace.Views
         public MasterDetailViewPage()
         {
             InitializeComponent();
+        }
+
+        private void MasterDetailsViewControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
+            {
+                ViewModel.ActiveItem = ViewModel.Items.First();
+            }
         }
     }
 }

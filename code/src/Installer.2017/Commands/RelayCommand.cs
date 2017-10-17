@@ -31,6 +31,7 @@ namespace Microsoft.Templates.Extension.Commands
                 {
                     menuItem.BeforeQueryStatus += beforeQueryStatus.Invoke;
                 }
+
                 commandService.AddCommand(menuItem);
             }
         }
