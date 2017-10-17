@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Core.Gen
                 AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
                 AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
-                string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
+                string hostVersion = $"{shell.GetVsVersion()}-{wizardVersion.Major}.{wizardVersion.Minor}";
 
                 CodeGen.Initialize(source.Id, hostVersion);
                 var repository = new TemplatesRepository(source, wizardVersion, language);

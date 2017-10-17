@@ -151,6 +151,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The style with key &apos;{0}&apos; is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project..
+        /// </summary>
+        internal static string FailedMergePostActionKeyAlreadyDefined {
+            get {
+                return ResourceManager.GetString("FailedMergePostActionKeyAlreadyDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find the expected line `{0}` in file &apos;{1}&apos;. Please merge the content from the postaction file manually..
         /// </summary>
         internal static string FailedMergePostActionLineNotFound {

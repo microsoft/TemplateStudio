@@ -23,8 +23,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public FileExtension FileExtension { get; private set; }
         public Func<string, string> UpdateTextAction { get; }
 
-        public string TempFile { get; set; }
-        public string ProjectFile { get; set; }
+        public string FailedPostaction
+        {
+            get
+            {
+                if (FileStatus == FileStatus.ConflictingStylesFile)
+                {
+                    var name = Subject.Replace(".xaml", "");
+                    return Path.Combine(GenContext.Current.OutputPath, $"{name}_failedpostaction.xaml");
+                }
+                return string.Empty;
+            }
+        }
+        public string TempFile => Path.Combine(GenContext.Current.OutputPath, Subject);
+        public string ProjectFile => Path.Combine(GenContext.Current.ProjectPath, Subject);
 
         private double _codeFontSize;
         public double CodeFontSize
@@ -33,25 +45,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _codeFontSize, value);
         }
 
-        public abstract FileStatus FileStatus { get; }
+        public FileStatus FileStatus { get; }
 
         public virtual string UpdateText(string fileText) => fileText;
 
-        // TODO: Review constructor to remove this suppresion. Important
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BaseFileViewModel(string name)
+        public BaseFileViewModel(string name, FileStatus fileStatus)
         {
             Subject = name;
+            FileStatus = fileStatus;
             LoadFile();
             UpdateTextAction = fileText => UpdateText(fileText);
             CodeFontSize = SystemService.Instance.GetCodeFontSize();
         }
 
-        // TODO: Review constructor to remove this suppresion. Important
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BaseFileViewModel(NewItemGenerationFileInfo generationInfo)
+        public BaseFileViewModel(NewItemGenerationFileInfo generationInfo, FileStatus fileStatus)
         {
             Subject = generationInfo.Name;
+            FileStatus = fileStatus;
             LoadFile();
             UpdateTextAction = fileText => UpdateText(fileText);
             CodeFontSize = SystemService.Instance.GetCodeFontSize();
@@ -59,8 +69,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void LoadFile()
         {
-            TempFile = Path.Combine(GenContext.Current.OutputPath, Subject);
-            ProjectFile = Path.Combine(GenContext.Current.ProjectPath, Subject);
             FileExtension = GetFileExtension();
             Icon = GetIcon();
             CircleColor = GetCircleColor();
@@ -86,6 +94,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue") as SolidColorBrush;
                 case FileStatus.ConflictingFile:
                     return MainViewModel.Current.FindResource<SolidColorBrush>("UIRed") as SolidColorBrush;
+                case FileStatus.ConflictingStylesFile:
+                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
                 case FileStatus.WarningFile:
                     return MainViewModel.Current.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
                 case FileStatus.Unchanged:

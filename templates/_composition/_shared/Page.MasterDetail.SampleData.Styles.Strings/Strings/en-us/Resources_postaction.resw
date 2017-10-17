@@ -1,0 +1,17 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the MasterDetailPage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="wts.ItemName_Title.Text" xml:space="preserve">
+    <value>wts.ItemName</value>
+    <comment>Page title for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_NoSelection.Text" xml:space="preserve">
+    <value>Select an item from the list.</value>
+    <comment>No selection text for wts.ItemName</comment>
+  </data>
+  <!--}]}-->
+</root>
