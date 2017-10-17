@@ -56,9 +56,10 @@ namespace Param_RootNamespace.Services
             {
                 if (!_pages.TryGetValue(pageKey, out page))
                 {
-                    throw new ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", "pageKey");
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey));
                 }
             }
+            
             var navigationResult = Frame.Navigate(page, parameter, infoOverride);
             return navigationResult;
         }
