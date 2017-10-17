@@ -59,7 +59,7 @@ namespace Param_RootNamespace.Services
                     throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey));
                 }
             }
-            
+
             var navigationResult = Frame.Navigate(page, parameter, infoOverride);
             return navigationResult;
         }
