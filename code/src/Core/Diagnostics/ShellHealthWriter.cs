@@ -3,10 +3,11 @@
 // See the LICENSE file in the project root for more information.
 using System;
 using System.Diagnostics;
-using SystemTasks = System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Resources;
+
+using SystemTasks = System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
