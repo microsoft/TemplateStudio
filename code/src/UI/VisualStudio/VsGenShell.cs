@@ -314,6 +314,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception)
             {
                 // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                p = null;
             }
 
             return p;

@@ -27,5 +27,3 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1652:EnableXmlDocumentationOutput", Justification = "We follow the C# Core Coding Style and will we not include documentation")]
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1009:DeclareEventHandlersCorrectly", Scope = "member", Target = "Microsoft.Templates.Core.Locations.TemplatesSynchronization.#SyncStatusChanged", Justification = "Using an Action<object, SyncStatusEventArgs> does not allow the required notation")]
-
-[assembly: SuppressMessage("Potential Code Quality Issues", "RECS0022:A catch clause that catches System.Exception and has an empty body", Justification = "Review if ccan be more specific in the error or handle it in a different way. And/or add better comments to the exception.", Scope = "member", Target = "~M:Microsoft.Templates.UI.VisualStudio.VsGenShell.GetActiveProject~EnvDTE.Project")]
