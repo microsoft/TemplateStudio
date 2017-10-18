@@ -321,11 +321,17 @@ namespace Microsoft.Templates.Core.Packaging
         private static bool VerifyAllowedPublicKey(X509Certificate cert)
         {
             var pubKeyCert = cert.GetPublicKeyString();
+
             var pubKeyPin = pubKeyCert.ObfuscateSHA();
 
             AppHealth.Current.Verbose.TrackAsync($"{StringRes.PackageCertificateString} {cert.Subject}").FireAndForget();
+            AppHealth.Current.Verbose.TrackAsync($"Key: {pubKeyCert}").FireAndForget();
+            AppHealth.Current.Verbose.TrackAsync($"Pin: {pubKeyPin}").FireAndForget();
 
-            return Configuration.Current.AllowedPublicKeysPins.Where(allowedPin => allowedPin.Equals(pubKeyPin)).Any();
+            bool pinAllowed = Configuration.Current.AllowedPublicKeysPins.Where(allowedPin => allowedPin.Equals(pubKeyPin)).Any();
+            AppHealth.Current.Verbose.TrackAsync($"Pin is allowed: {pinAllowed}").FireAndForget();
+
+            return pinAllowed;
         }
 
         private static void SignAllParts(Package package, X509Certificate cert)
