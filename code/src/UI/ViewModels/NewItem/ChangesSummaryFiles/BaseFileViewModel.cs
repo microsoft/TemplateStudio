@@ -8,8 +8,8 @@ using System.Windows.Media;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {

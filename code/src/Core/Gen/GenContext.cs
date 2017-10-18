@@ -10,8 +10,8 @@ using System.Linq;
 using System.Reflection;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Gen
 {

@@ -6,11 +6,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewProject;
 
 using Xunit;
-using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.UI.Test
 {

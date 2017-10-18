@@ -9,12 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
-using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {

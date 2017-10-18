@@ -8,9 +8,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Resources;
+
+using Localization.Extensions;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Localization.Extensions;
 
 namespace Localization
 {
