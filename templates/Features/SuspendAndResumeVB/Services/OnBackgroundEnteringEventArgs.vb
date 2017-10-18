@@ -7,7 +7,6 @@
         Public Property Target As Type
 
         Public Sub New(suspensionState As SuspensionState, target As Type)
-            MyBase.New()
             SuspensionState = suspensionState
             Target = target
         End Sub

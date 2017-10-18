@@ -64,12 +64,55 @@ Following are described the contents for each folder:
   * [Core](../code/src/core): Core VS Project for the solution Core classes, i.e.: enable the generation of code wrapping the "Template Engine generator", deals with templates source location and synchronization, provide the diagnostics infrastructure, etc .
   * [Installer.2017](../code/src/Installer.2017): This is the Visual Studio Extension project. Enables the installation of the extension to enable the access to the Windows Template Studio Project Template and ensures that all required assets are deployed with it.
   * [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience. There are separate templates for the C# and Visual basic versions of the template.
-  * [Wizard](../code/src/Wizard): This project handles the generation as well as the UI dialogs required by the generation workflow.
+  * [UI](../code/src/UI): This project handles the generation as well as the UI dialogs required by the generation workflow.
 * [test](../code/test)
   * [Artifacts](../code/test/Artifacts): Common test elements.
   * [Core.Test](../code/test/Core.Test): Contains unit test for Core assembly.
   * [Templates.Test](../code/test/Templates.Test): Contains integration automated test for the Templates. This project scans the Templates folder and ensure that every template is generating and building properly.
+  * [UI.Test] (../code/test/UI.Test): Contains unit test for UI assembly.
   * [VsEmulator](../code/test/VsEmulator): test application able to run End-To-End the generation using the local templates repository without deploying the VSIX to VS Experimental instance.
+
+## Test execution
+
+The following list shows which tests are executed in which build. Within the Templates.Test project we use the trait ExecutionSet to specify which tests are run. 
+
+* AppVeyor 'CIBuild' Build (CI):	
+  * Core.Tests	
+  * UI.Test	
+  * Templates.Tests	
+    * ExecutionSet=BuildMinimum
+    * ExecutionSet=BuildStyleCop
+    * ExecutionSet=TemplateValidation
+		
+* VSO 'Templates.Test.Gen' Build (Gen Tests):	
+  * Templates.Test 
+    * ExecutionSet=Generation
+
+* VSO 'Templates.Test.Full'	Build (Full Tests):
+  * Core.Tests	
+  *	UI.Tests	
+  *	Templates.Test
+    * ExecutionSet=BuildMVVMBasic
+    * ExecutionSet=BuildCodeBehind 
+    * ExecutionSet=BuildMVVMLight
+    * ExecutionSet=BuildCaliburnMicro
+    * ExecutionSet=BuildStyleCop
+    * ExecutionSet=TemplateValidation
+    * ExecutionSet=BuildRightClickWithLegacy
+
+* VSO 'Templates.Test.Wack'	Build (Wack Tests):
+  * Templates.Test
+    * ExecutionSet=LongRunning
+
+To shorten test execution time traits in Templates.Test are run parallel using this [script](../_build/ParallelTestExecution.ps1).
+To execute this script locally use the following powershell command:
+
+`<wts directory>\_build\ParallelTestExecution.ps1 -testRunner <wts directory>\Code\packages\xunit.runner.console.2.2.0\tools\xunit.console.exe -testLibrary <wts directory>\Code\test\Templates.Test\bin\Analyze\Microsoft.Templates.Test.dll -traits 'ExecutionSet=BuildMinimum', 'ExecutionSet=BuildStyleCop', 'ExecutionSet=TemplateValidation' -outputDir <output directory>`
+
+where
+
+* `<wts directory>` : Directory where WTS is cloned
+* `<output directory>`: Directory where test xml result files will be generated
 
 ## Table of Contents
 

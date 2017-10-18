@@ -99,6 +99,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 System.Diagnostics.Process.Start(tempPath);
             }
         }
+
         public bool TempFolderAvailable()
         {
             return HasContent(GetTempGenerationFolder());

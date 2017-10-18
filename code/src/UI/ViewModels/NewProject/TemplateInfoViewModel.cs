@@ -16,12 +16,12 @@ using Microsoft.Templates.UI.Views.NewProject;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class TemplateInfoViewModel : CommonInfoViewModel
     {
-        #region TemplateProperties
         private string _templateName;
         public string TemplateName
         {
@@ -66,9 +66,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<DependencyInfoViewModel> DependencyItems { get; } = new ObservableCollection<DependencyInfoViewModel>();
         public ITemplateInfo Template { get; set; }
-        #endregion
 
-        #region UIProperties
         private bool _isEditionEnabled;
         public bool IsEditionEnabled
         {
@@ -125,7 +123,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SetProperty(ref _newTemplateName, value);
                 if (CanChooseItemName)
                 {
-                    _validateTemplateName?.Invoke(this);
+                    var validationResult = ValidationService.ValidateTemplateName(NewTemplateName, CanChooseItemName, true);
+                    IsValidName = validationResult.IsValid;
+                    ErrorMessage = string.Empty;
+                    if (!IsValidName)
+                    {
+                        ErrorMessage = validationResult.ErrorType.GetResourceString();
+                        MainViewModel.Current.SetValidationErrors(ErrorMessage);
+                        throw new Exception(ErrorMessage);
+                    }
+
+                    MainViewModel.Current.CleanStatus(true);
                 }
             }
         }
@@ -144,8 +152,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _titleForeground, value);
         }
 
-        public RelayCommand<TemplateInfoViewModel> AddItemCommand { get; private set; }
-        public RelayCommand<TemplateInfoViewModel> SaveItemCommand { get; private set; }
+        private ICommand _addItemCommand;
+        public ICommand AddItemCommand => _addItemCommand ?? (_addItemCommand = new RelayCommand(OnAddItem));
+
+        private ICommand _saveItemCommand;
+        public ICommand SaveItemCommand => _saveItemCommand ?? (_saveItemCommand = new RelayCommand(OnSaveItem));
 
         private ICommand _closeEditionCommand;
         public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(() => CloseEdition()));
@@ -153,10 +164,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private ICommand _showItemInfoCommand;
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
 
-        private Action<TemplateInfoViewModel> _validateTemplateName;
-        #endregion
-
-        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies, RelayCommand<TemplateInfoViewModel> addItemCommand, RelayCommand<TemplateInfoViewModel> saveItemCommand, Action<TemplateInfoViewModel> validateTemplateName)
+        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {
             Author = template.Author;
             CanChooseItemName = template.GetItemNameEditable();
@@ -167,20 +175,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             MultipleInstances = template.GetMultipleInstance();
             GenGroup = template.GetGenGroup();
             Name = template.Name;
-            Order = template.GetOrder();
+            Order = template.GetDisplayOrder();
             Summary = template.Description;
             TemplateType = template.GetTemplateType();
             Template = template;
             Version = template.GetVersion();
 
             TitleForeground = GetTitleForeground(true);
-            AddItemCommand = addItemCommand;
-            SaveItemCommand = saveItemCommand;
-            _validateTemplateName = validateTemplateName;
 
             if (dependencies != null && dependencies.Any())
             {
-                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name), AddItemCommand, SaveItemCommand, validateTemplateName))));
+                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name)))));
 
                 Dependencies = string.Join(",", dependencies.Select(d => d.Name));
             }
@@ -194,6 +199,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 MainViewModel.Current.CleanStatus(true);
                 return true;
             }
+
             return false;
         }
 
@@ -218,11 +224,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void ShowItemInfo()
         {
-            MainViewModel.Current.InfoShapeVisibility = Visibility.Visible;
+            MainViewModel.Current.WizardStatus.InfoShapeVisibility = Visibility.Visible;
             var infoView = new InformationWindow(this, MainViewModel.Current.MainView);
 
             infoView.ShowDialog();
-            MainViewModel.Current.InfoShapeVisibility = Visibility.Collapsed;
+            MainViewModel.Current.WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
         }
 
         private SolidColorBrush GetTitleForeground(bool isEnabled)
@@ -242,13 +248,47 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isEnabled)
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIBlack") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlack");
                 }
                 else
                 {
-                    return MainViewModel.Current.MainView.FindResource("UIMiddleLightGray") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIMiddleLightGray");
                 }
             }
+        }
+
+        private void OnAddItem()
+        {
+            NewTemplateName = ValidationService.InferTemplateName(Template.GetDefaultName(), CanChooseItemName, CanChooseItemName);
+            if (CanChooseItemName)
+            {
+                MainViewModel.Current.ProjectTemplates.CloseAllEditions();
+                IsEditionEnabled = true;
+            }
+            else
+            {
+                SaveItem();
+                UpdateTemplateAvailability(MainViewModel.Current.ProjectTemplates.IsTemplateAlreadyDefined(Template.Identity));
+            }
+        }
+
+        private void OnSaveItem()
+        {
+            if (IsValidName)
+            {
+                SaveItem();
+                CloseEdition();
+                UpdateTemplateAvailability(MainViewModel.Current.ProjectTemplates.IsTemplateAlreadyDefined(Template.Identity));
+            }
+        }
+
+        private void SaveItem()
+        {
+            UserSelectionService.AddTemplateAndDependencies((NewTemplateName, Template), MainViewModel.Current.ProjectTemplates.ContextFramework.Name, false);
+            MainViewModel.Current.RebuildLicenses();
+            MainViewModel.Current.ProjectTemplates.UpdateTemplatesAvailability();
+            MainViewModel.Current.ProjectTemplates.UpdateSummaryTemplates();
+            MainViewModel.Current.ProjectTemplates.UpdateHasPagesAndHasFeatures();
         }
     }
 }

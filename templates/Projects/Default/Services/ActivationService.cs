@@ -41,7 +41,7 @@ namespace wts.DefaultProject.Services
                     Window.Current.Content = _shell;
                     NavigationService.NavigationFailed += (sender, e) =>
                     {
-                        throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+                        throw e.Exception;
                     };
                     NavigationService.Navigated += Frame_Navigated;
                     if (SystemNavigationManager.GetForCurrentView() != null)

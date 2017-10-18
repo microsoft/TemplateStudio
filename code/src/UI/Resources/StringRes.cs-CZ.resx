@@ -213,10 +213,6 @@
     <value>Select project type and framework</value>
     <comment>Wizard new project tiltle for step 1</comment>
   </data>
-  <data name="ProjectTemplatesTitle" xml:space="preserve">
-    <value>Select pages and features</value>
-    <comment>Wizard new project tiltle for step 2</comment>
-  </data>
   <data name="ResetSelection" xml:space="preserve">
     <value>You have changed your project type or framework selection. Pages and feature selections will be lost if you continue. Your prior selections were: {0} and {1}.</value>
     <comment>Wizard new project reset selection error message</comment>
@@ -517,7 +513,7 @@
     <comment>Category name of new files</comment>
   </data>
   <data name="ConflictingDetailDescription_SF" xml:space="preserve">
-    <value>The file {0} already exists. By continuing this file will be replaced.</value>
+    <value>This file already exists. By continuing this file will be replaced.</value>
     <comment>Detail description for conflicting files.</comment>
   </data>
   <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
@@ -541,7 +537,7 @@
     <comment>New Item title for failed merges.</comment>
   </data>
   <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
-    <value>The file '{0}' will be added as new file to your project.</value>
+    <value>This file will be added as new file to your project.</value>
     <comment>New Item description for new files.</comment>
   </data>
   <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
@@ -549,7 +545,7 @@
     <comment>New Item title for new files.</comment>
   </data>
   <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
-    <value>The file '{0}' will be modified to include required content.</value>
+    <value>This file will be modified to include required content.</value>
     <comment>New Item description for modified files.</comment>
   </data>
   <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
@@ -557,11 +553,11 @@
     <comment>New Item title for modified files.</comment>
   </data>
   <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
-    <value>The file '{0}' already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
+    <value>This file already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
     <comment>New Item description for conflicting files.</comment>
   </data>
   <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
-    <value>The file '{0}' already exists in your project and no further action is necessary. The file will remain unchanged.</value>
+    <value>This file already exists in your project and no further action is necessary. The file will remain unchanged.</value>
     <comment>New Item description for unchanged files.</comment>
   </data>
   <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
@@ -635,5 +631,37 @@
   <data name="ButtonCloseStatusButton" xml:space="preserve">
     <value>Close status box</value>
     <comment>Status bar close button name</comment>
+  </data>
+  <data name="ZoomInButtonTooltip" xml:space="preserve">
+    <value>Zoom in</value>
+    <comment>Zoom in button tooltip on changes summary view</comment>
+  </data>
+  <data name="ZoomOutButtonTooltip" xml:space="preserve">
+    <value>Zoom out</value>
+    <comment>Zoom out button tooltip on changes summary view</comment>
+  </data>
+  <data name="ProjectFeaturesTitle" xml:space="preserve">
+    <value>Select features</value>
+    <comment>New Project Wizard title for features</comment>
+  </data>
+  <data name="ProjectPagesTitle" xml:space="preserve">
+    <value>Select pages</value>
+    <comment>New Project Wizard title for pages</comment>
+  </data>
+  <data name="ExceptionDependencyMissing" xml:space="preserve">
+    <value>Dependency template {0} not found on user selection</value>
+    <comment>Log text for misssing dependency exception.</comment>
+  </data>
+  <data name="NewItemHasNoChanges" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another {1}.</value>
+  </data>
+  <data name="ChangesSummaryCategoryFailedStyleMerges" xml:space="preserve">
+    <value>Failed style merges</value>
+  </data>
+  <data name="ChangesSummaryDetailTitleFailedStyleMerges" xml:space="preserve">
+    <value>Failed style merge</value>
+  </data>
+  <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
+    <value>We are not able to introduce the styles in the resource dictionary.</value>
   </data>
 </root>

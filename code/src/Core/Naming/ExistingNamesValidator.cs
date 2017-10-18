@@ -9,7 +9,8 @@ namespace Microsoft.Templates.Core
 {
     public class ExistingNamesValidator : Validator<IEnumerable<string>>
     {
-        public ExistingNamesValidator(IEnumerable<string> config) : base(config)
+        public ExistingNamesValidator(IEnumerable<string> config)
+            : base(config)
         {
         }
 

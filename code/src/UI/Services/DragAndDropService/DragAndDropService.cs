@@ -14,7 +14,8 @@ using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Services
 {
-    public partial class DragAndDropService<T> where T : class
+    public partial class DragAndDropService<T>
+        where T : class
     {
         public DragAndDropService(ListView listView)
         {
@@ -185,6 +186,7 @@ namespace Microsoft.Templates.UI.Services
                                 {
                                     itemsSource.Insert(newIndex, data);
                                 }
+
                                 e.Effects = DragDropEffects.Move;
                             }
                         }
@@ -221,6 +223,7 @@ namespace Microsoft.Templates.UI.Services
                     break;
                 }
             }
+
             return index;
         }
 
@@ -230,6 +233,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 return null;
             }
+
             return _listView.ItemContainerGenerator.ContainerFromItem(dataItem) as ListViewItem;
         }
 

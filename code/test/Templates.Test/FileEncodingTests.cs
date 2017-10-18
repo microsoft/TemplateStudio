@@ -13,6 +13,7 @@ namespace Microsoft.Templates.Test
     [Collection("StyleCopCollection")]
     [Trait("Type", "CodeStyle")]
     [Trait("ExecutionSet", "Minimum")]
+    [Trait("ExecutionSet", "TemplateValidation")]
     public class FileEncodingTests
     {
         [Fact]
@@ -41,6 +42,12 @@ namespace Microsoft.Templates.Test
                 {
                     if (!IsEncodedCodedCorrectly(file))
                     {
+                        // Non breaking space leads to wrong characters saving with bom
+                        if (File.ReadAllText(file).Contains('\u00A0'))
+                        {
+                            Assert.True(false, $"File ({file}) contains non breaking whitespaces, please remove them before running the encoding script. '");
+                        }
+
                         // Throw an assertion failure here and stop checking other files.
                         // We don't need to check every file if at least one fails as all can be fixed at once.
                         Assert.True(false, $"At least one file ({file}) is not encoded correctly. Ensure all template files are encoded correctly with the script at '_utils/Set-All-Text-File-Template-Encodings.ps1'");

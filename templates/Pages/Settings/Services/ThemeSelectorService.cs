@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 
 using Windows.Storage;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 
 using Param_RootNamespace.Helpers;
 
@@ -13,16 +12,7 @@ namespace Param_RootNamespace.Services
     {
         private const string SettingsKey = "RequestedTheme";
 
-        public static event EventHandler<ElementTheme> OnThemeChanged = (sender, args) => { };
-
         public static ElementTheme Theme { get; set; } = ElementTheme.Default;
-
-        private static readonly SolidColorBrush _baseBrush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
-
-        public static SolidColorBrush GetSystemControlForegroundForTheme()
-        {
-            return _baseBrush;
-        }
 
         public static async Task InitializeAsync()
         {
@@ -35,8 +25,6 @@ namespace Param_RootNamespace.Services
 
             SetRequestedTheme();
             await SaveThemeInSettingsAsync(Theme);
-
-            OnThemeChanged(null, Theme);
         }
 
         public static void SetRequestedTheme()

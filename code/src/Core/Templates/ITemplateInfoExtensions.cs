@@ -83,7 +83,10 @@ namespace Microsoft.Templates.Core
             var configDir = GetConfigDir(ti);
             var descriptionFile = Directory.EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md").FirstOrDefault();
             if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
+            {
                 descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
+            }
+
             if (!string.IsNullOrEmpty(descriptionFile))
             {
                 return File.ReadAllText(descriptionFile);
@@ -212,9 +215,24 @@ namespace Microsoft.Templates.Core
             return GetValueFromTag(ti, TagPrefix + "version");
         }
 
-        public static int GetOrder(this ITemplateInfo ti)
+        public static int GetDisplayOrder(this ITemplateInfo ti)
         {
-            var rawOrder = GetValueFromTag(ti, TagPrefix + "order");
+            var rawOrder = GetValueFromTag(ti, TagPrefix + "displayOrder");
+
+            if (!string.IsNullOrEmpty(rawOrder))
+            {
+                if (int.TryParse(rawOrder, out int order))
+                {
+                    return order;
+                }
+            }
+
+            return int.MaxValue;
+        }
+
+        public static int GetCompositionOrder(this ITemplateInfo ti)
+        {
+            var rawOrder = GetValueFromTag(ti, TagPrefix + "compositionOrder");
 
             if (!string.IsNullOrEmpty(rawOrder))
             {
@@ -331,7 +349,7 @@ namespace Microsoft.Templates.Core
 
         public static bool GetItemNameEditable(this ITemplateInfo ti)
         {
-            return (ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance());
+            return ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance();
         }
 
         private static string GetConfigDir(ITemplateInfo ti)

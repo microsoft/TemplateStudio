@@ -9,10 +9,26 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 
 ## Build Status
 
-|Env|CI           |Templates Publishing |Extension Publishing |Full Templates Tests|
-|:-----|:--------:|:-------------------:|:-------------------:|:------------------:|
-|dev|![CI Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/121/badge) | ![Templates Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/123/badge) | ![Extension Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/122/badge)|![Full Templates Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/128/badge)|
-|pre-release|![CI Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/125/badge)|![Templates Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/124/badge)|![Extension Publishing Build](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/126/badge)|![Full Templates Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/129/badge)|
+
+|Branch   |CI                |Test Version|Version|
+|:--------|:----------------:|:---------------:|:---------------:|
+|master|[![Build status](https://ci.appveyor.com/api/projects/status/nf8r35r45o4yqbqs/branch/master?svg=true)](https://ci.appveyor.com/project/ralarcon/windowstemplatestudio/branch/master)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
+|dev|[![Build status](https://ci.appveyor.com/api/projects/status/nf8r35r45o4yqbqs/branch/dev?svg=true)](https://ci.appveyor.com/project/ralarcon/windowstemplatestudio/branch/dev)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
+
+
+
+|Branch   |Gen Tests        |Full Tests       |WACK Tests       |
+|:--------|:---------------:|:---------------:|:---------------:|
+|master|[![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/141/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=141)|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/129/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=129)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/144/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=144)
+|dev|[![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/135/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=135)|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/128/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=128)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/142/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=142)
+
+
+
+> The builds include test verifications to validate the contributions:
+> * *CI Build*: Includes all unit test + minimum integration verifications (minumum generation + build + code style rules). Runs every PR requested / PR accepted.
+> * *Gen Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view. Runs every PR accepted and takes a bit to complete.
+> * *Full Tests*: Includes `Gen Tests` and actually builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed. 
+> * *Wack Tests*: Includes tests that run the App Certification Kit against the generated projects to ensure there are no issues blocking a submission to the store. Runs once nightly and takes quite a while to complete. 
 
 ## Features
 

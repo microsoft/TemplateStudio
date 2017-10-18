@@ -13,7 +13,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddItemToContextPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddItemToContextPostAction(IReadOnlyList<ICreationPath> config) : base(config)
+        public AddItemToContextPostAction(IReadOnlyList<ICreationPath> config)
+            : base(config)
         {
         }
 

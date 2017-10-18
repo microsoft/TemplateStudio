@@ -8,9 +8,6 @@ using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
-    /// <summary>
-    /// Interaction logic for ProjectSetupView.xaml
-    /// </summary>
     public partial class ProjectSetupView : Page
     {
         public MainViewModel ViewModel { get; }

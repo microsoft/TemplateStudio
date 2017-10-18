@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Core.Gen
                 AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
                 AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
-                string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
+                string hostVersion = $"{shell.GetVsVersionAndInstance()}-{wizardVersion.Major}.{wizardVersion.Minor}";
 
                 CodeGen.Initialize(source.Id, hostVersion);
                 var repository = new TemplatesRepository(source, wizardVersion, language);
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.Gen
 
             Fs.EnsureFolder(projectTempFolder);
             var tempGenerationName = $"{projectName}_{DateTime.Now.FormatAsShortDateTime()}";
-            var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(projectTempFolder) }, "_");
+            var inferredName = Naming.Infer(tempGenerationName, new List<Validator> { new SuggestedDirectoryNameValidator(projectTempFolder) }, "_");
 
             return Path.Combine(projectTempFolder, inferredName);
         }

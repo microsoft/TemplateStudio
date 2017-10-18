@@ -16,22 +16,23 @@ using Microsoft.Templates.Core;
 
 namespace Microsoft.Templates.UI.Generation
 {
-    internal class ProjectConfigInfo
+    public class ProjectConfigInfo
     {
-        const string FxMVVMBasic = "MVVMBasic";
-        const string FxMVVMLight = "MVVMLight";
-        const string FxCodeBehid = "CodeBehind";
+        private const string FxMVVMBasic = "MVVMBasic";
+        private const string FxMVVMLight = "MVVMLight";
+        private const string FxCodeBehid = "CodeBehind";
+        private const string FxCaliburnMicro = "CaliburnMicro";
 
-        const string ProjTypeBlank = "Blank";
-        const string ProjTypeSplitView = "SplitView";
-        const string ProjTypeTabbedPivot = "TabbedPivot";
+        private const string ProjTypeBlank = "Blank";
+        private const string ProjTypeSplitView = "SplitView";
+        private const string ProjTypeTabbedPivot = "TabbedPivot";
 
-        const string ProjectTypeLiteral = "projectType";
-        const string FrameworkLiteral = "framework";
-        const string MetadataLiteral = "Metadata";
-        const string NameAttribLiteral = "Name";
-        const string ValueAttribLiteral = "Value";
-        const string ItemLiteral = "Item";
+        private const string ProjectTypeLiteral = "projectType";
+        private const string FrameworkLiteral = "framework";
+        private const string MetadataLiteral = "Metadata";
+        private const string NameAttribLiteral = "Name";
+        private const string ValueAttribLiteral = "Value";
+        private const string ItemLiteral = "Item";
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
         public static (string ProjectType, string Framework) ReadProjectConfiguration()
@@ -59,9 +60,11 @@ namespace Microsoft.Templates.UI.Generation
                         {
                             SaveProjectConfiguration(inferredConfig.ProjectType, inferredConfig.Framework);
                         }
+
                         return inferredConfig;
                     }
                 }
+
                 return (string.Empty, string.Empty);
             }
             catch (Exception ex)
@@ -117,6 +120,10 @@ namespace Microsoft.Templates.UI.Generation
             {
                 return FxCodeBehid;
             }
+            else if (IsCaliburnMicro())
+            {
+                return FxCaliburnMicro;
+            }
             else
             {
                 return string.Empty;
@@ -152,6 +159,7 @@ namespace Microsoft.Templates.UI.Generation
                     }
                 }
             }
+
             return false;
         }
 
@@ -179,6 +187,24 @@ namespace Microsoft.Templates.UI.Generation
                         fileContent.Contains("public event PropertyChangedEventHandler PropertyChanged;");
                 }
             }
+
+            return false;
+        }
+
+        private static bool IsCaliburnMicro()
+        {
+            if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
+            {
+                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                foreach (string file in files)
+                {
+                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"Caliburn.Micro\">"))
+                    {
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 

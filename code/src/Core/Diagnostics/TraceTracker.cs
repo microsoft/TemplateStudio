@@ -32,7 +32,10 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             try
             {
-                await writer.WriteTraceAsync(_traceEventType, message, ex).ConfigureAwait(false);
+                if (writer != null)
+                {
+                    await writer.WriteTraceAsync(_traceEventType, message, ex).ConfigureAwait(false);
+                }
             }
             catch (Exception exception)
             {

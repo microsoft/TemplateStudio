@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -27,14 +26,16 @@ namespace Microsoft.Templates.UI.Controls
             get { return (StatusViewModel)GetValue(StatusProperty); }
             set { SetValue(StatusProperty, value); }
         }
-        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register("Status", typeof(StatusViewModel), typeof(StatusBox), new PropertyMetadata(null, OnStatusPropertyChanged));
+
+        public static readonly DependencyProperty StatusProperty = DependencyProperty.Register(nameof(Status), typeof(StatusViewModel), typeof(StatusBox), new PropertyMetadata(null, OnStatusPropertyChanged));
 
         public ICommand CloseCommand
         {
             get { return (ICommand)GetValue(CloseCommandProperty); }
             private set { SetValue(CloseCommandProperty, value); }
         }
-        public static readonly DependencyProperty CloseCommandProperty = DependencyProperty.Register("CloseCommand", typeof(ICommand), typeof(StatusBox), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty CloseCommandProperty = DependencyProperty.Register(nameof(CloseCommand), typeof(ICommand), typeof(StatusBox), new PropertyMetadata(null));
 
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -57,9 +58,7 @@ namespace Microsoft.Templates.UI.Controls
 
         private void OnHideTimerTick(object sender, EventArgs e)
         {
-            this.FadeOut();
-            Panel.SetZIndex(this, 0);
-            closeButton.Focusable = false;
+            HideStatus();
             _hideTimer.Stop();
         }
 
@@ -73,6 +72,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (isVisible)
             {
+                Visibility = Visibility.Visible;
                 Panel.SetZIndex(this, 2);
                 closeButton.Focusable = true;
                 if (autoHideSeconds > 0)
@@ -80,14 +80,25 @@ namespace Microsoft.Templates.UI.Controls
                     _hideTimer.Interval = TimeSpan.FromSeconds(autoHideSeconds);
                     _hideTimer.Start();
                 }
+                else
+                {
+                    _hideTimer.Stop();
+                }
+
                 this.FadeIn();
             }
             else
             {
-                Panel.SetZIndex(this, 0);
-                closeButton.Focusable = false;
-                this.FadeOut(0);
+                HideStatus();
             }
+        }
+
+        private void HideStatus()
+        {
+            this.FadeOut(0);
+            Panel.SetZIndex(this, 0);
+            closeButton.Focusable = false;
+            Visibility = Visibility.Collapsed;
         }
     }
 }
