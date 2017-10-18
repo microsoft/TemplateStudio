@@ -3,14 +3,14 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Collections.Generic;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Packaging;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {

@@ -6,8 +6,8 @@ using System.Windows;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Views.NewProject;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {

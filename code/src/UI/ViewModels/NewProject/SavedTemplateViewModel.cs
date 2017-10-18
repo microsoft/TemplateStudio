@@ -5,17 +5,17 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
-using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject

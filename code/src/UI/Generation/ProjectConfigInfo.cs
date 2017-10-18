@@ -3,16 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.UI.Generation
 {

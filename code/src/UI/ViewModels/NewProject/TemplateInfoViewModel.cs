@@ -7,16 +7,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Input;
+using System.Windows.Media;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.Views.NewProject;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {

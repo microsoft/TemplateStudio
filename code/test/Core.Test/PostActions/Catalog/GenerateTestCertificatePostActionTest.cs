@@ -6,12 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 using Xunit;
-using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
