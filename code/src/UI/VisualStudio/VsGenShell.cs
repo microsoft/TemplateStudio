@@ -13,17 +13,16 @@ using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Threading;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 
 using NuGet.VisualStudio;
-
-using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Threading;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Setup.Configuration;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -315,6 +314,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception)
             {
                 // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                p = null;
             }
 
             return p;

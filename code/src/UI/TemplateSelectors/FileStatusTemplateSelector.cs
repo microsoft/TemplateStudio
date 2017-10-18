@@ -5,8 +5,8 @@
 using System.Windows;
 using System.Windows.Controls;
 
-using Microsoft.Templates.UI.ViewModels.NewItem;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.TemplateSelectors
 {

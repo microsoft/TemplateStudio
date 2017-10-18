@@ -11,9 +11,9 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewItem;
-using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {

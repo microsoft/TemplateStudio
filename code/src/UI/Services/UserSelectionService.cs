@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.UI.ViewModels.NewProject;
-using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.UI.Services
 {

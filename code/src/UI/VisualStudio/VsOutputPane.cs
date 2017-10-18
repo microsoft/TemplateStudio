@@ -12,8 +12,8 @@ using EnvDTE80;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
-using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {

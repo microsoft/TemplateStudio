@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Threading;
 
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
@@ -24,7 +25,6 @@ using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
-using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
