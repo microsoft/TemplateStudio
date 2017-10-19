@@ -55,7 +55,7 @@ Namespace Services
         End Sub
 
         Public Function Navigate(pageKey As String, Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
-            Dim page As Type
+            Dim page As Type = Nothing
             SyncLock _pages
                 If Not _pages.TryGetValue(pageKey, page) Then
                     Throw New ArgumentException("Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", NameOf(pageKey))
