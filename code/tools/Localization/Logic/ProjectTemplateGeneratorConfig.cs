@@ -7,10 +7,15 @@ namespace Localization
     internal class ProjectTemplateGeneratorConfig
     {
         internal string SourceDir { get; set; }
+
         internal string SourceDirNamePattern { get; set; }
+
         internal string SourceFileNamePattern { get; set; }
+
         internal string DestinationDirNamePattern { get; set; }
+
         internal string DestinationFileNamePattern { get; set; }
+
         internal string DestinationDirPath { get; set; }
     }
 }

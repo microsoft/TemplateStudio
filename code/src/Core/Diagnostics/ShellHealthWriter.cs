@@ -14,6 +14,7 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class ShellHealthWriter : IHealthWriter
     {
         private GenShell _shell;
+
         public ShellHealthWriter(GenShell shell)
         {
             _shell = shell;

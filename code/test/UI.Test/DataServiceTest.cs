@@ -15,6 +15,7 @@ namespace Microsoft.UI.Test
     public class DataServiceTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;
+
         public DataServiceTest(TemplatesFixture fixture)
         {
             _fixture = fixture;

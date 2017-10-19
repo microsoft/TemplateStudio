@@ -13,7 +13,9 @@ namespace Microsoft.Templates.Core.Test
     public class TemplatesFixture
     {
         public TemplatesRepository Repository { get; private set; }
+
         private bool _syncExecuted = false;
+
         [SuppressMessage(
             "Usage",
             "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",

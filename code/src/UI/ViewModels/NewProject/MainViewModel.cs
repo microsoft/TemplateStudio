@@ -21,7 +21,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     public class MainViewModel : BaseMainViewModel
     {
         private bool _needRestartConfiguration = false;
+
         public static MainViewModel Current;
+
         public MainView MainView;
 
         public ProjectSetupViewModel ProjectSetup { get; } = new ProjectSetupViewModel();
@@ -29,6 +31,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public ProjectTemplatesViewModel ProjectTemplates { get; } = new ProjectTemplatesViewModel();
 
         private bool _hasLicenses;
+
         public bool HasLicenses
         {
             get => _hasLicenses;

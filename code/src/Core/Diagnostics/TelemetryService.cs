@@ -23,6 +23,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         private bool vsTelemAvailable = false;
 
         private static TelemetryService _current;
+
         public static TelemetryService Current
         {
             get

@@ -14,7 +14,9 @@ namespace Microsoft.Templates.Core.Test.Locations
         private string _localVersion = "0.0.0.0";
 
         public override string Id => "UnitTest" + GetAgentName();
+
         protected override bool VerifyPackageSignatures => false;
+
         public override bool ForcedAcquisition => true;
 
         protected override string AcquireMstx()

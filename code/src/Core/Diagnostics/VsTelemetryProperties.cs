@@ -7,7 +7,9 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class VsTelemetryProperties
     {
         public const string Prefix = "Wts.";
+
         public static string Pages { get; private set; } = Prefix + "Pages";
+
         public static string Features { get; private set; } = Prefix + "Features";
     }
 }

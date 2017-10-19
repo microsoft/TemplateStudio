@@ -11,13 +11,19 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class AppHealth : IDisposable
     {
         public TraceTracker Verbose { get; private set; }
+
         public TraceTracker Info { get; private set; }
+
         public TraceTracker Warning { get; private set; }
+
         public TraceTracker Error { get; private set; }
+
         public ExceptionTracker Exception { get; private set; }
+
         public TelemetryTracker Telemetry { get; private set; }
 
         private static AppHealth _current;
+
         public static AppHealth Current
         {
             get

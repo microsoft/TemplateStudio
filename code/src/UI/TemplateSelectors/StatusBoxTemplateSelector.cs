@@ -13,8 +13,11 @@ namespace Microsoft.Templates.UI.TemplateSelectors
     public class StatusBoxTemplateSelector : DataTemplateSelector
     {
         public DataTemplate EmptyStatusTemplate { get; set; }
+
         public DataTemplate InformationStatusTemplate { get; set; }
+
         public DataTemplate WarningStatusTemplate { get; set; }
+
         public DataTemplate ErrorStatusTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)

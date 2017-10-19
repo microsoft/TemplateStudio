@@ -27,6 +27,7 @@ namespace Microsoft.Templates.UI
     public class NewItemGenController : GenController
     {
         private static Lazy<NewItemGenController> _instance = new Lazy<NewItemGenController>(Initialize);
+
         public static NewItemGenController Instance => _instance.Value;
 
         private static NewItemGenController Initialize()

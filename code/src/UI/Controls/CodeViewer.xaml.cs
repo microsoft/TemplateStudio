@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewItem;
+
 namespace Microsoft.Templates.UI.Controls
 {
     /// <summary>

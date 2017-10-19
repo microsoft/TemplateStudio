@@ -13,10 +13,15 @@ namespace Microsoft.Templates.UI.TemplateSelectors
     public class FileStatusTemplateSelector : DataTemplateSelector
     {
         public DataTemplate NewFileTemplate { get; set; }
+
         public DataTemplate ModifiedFileTemplate { get; set; }
+
         public DataTemplate ConflictingFileTemplate { get; set; }
+
         public DataTemplate ConflictingStylesFileTemplate { get; set; }
+
         public DataTemplate WarningFileTemplate { get; set; }
+
         public DataTemplate UnchangedFileTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
