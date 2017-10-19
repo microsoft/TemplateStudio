@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core
 
         public override ValidationResult Validate(string suggestedName)
         {
-            if (_config.Contains(suggestedName))
+            if (Config.Contains(suggestedName))
             {
                 return new ValidationResult()
                 {

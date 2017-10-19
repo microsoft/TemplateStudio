@@ -100,7 +100,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _newVersionAvailable, value);
         }
 
-        protected bool _showFinishButton;
+        private bool _showFinishButton;
 
         public bool ShowFinishButton
         {

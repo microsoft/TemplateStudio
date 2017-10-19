@@ -22,9 +22,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     {
         private bool _needRestartConfiguration = false;
 
-        public static MainViewModel Current;
+        public static MainViewModel Current { get; private set; }
 
-        public MainView MainView;
+        public MainView MainView { get; private set; }
 
         public ProjectSetupViewModel ProjectSetup { get; } = new ProjectSetupViewModel();
 

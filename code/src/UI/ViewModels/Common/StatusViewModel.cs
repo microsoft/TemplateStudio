@@ -14,7 +14,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
     public class StatusViewModel
     {
-        public static StatusViewModel EmptyStatus = new StatusViewModel(StatusType.Empty);
+        public static StatusViewModel EmptyStatus { get; } = new StatusViewModel(StatusType.Empty);
 
         public StatusType Status { get; set; }
 

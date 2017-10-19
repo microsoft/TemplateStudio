@@ -32,7 +32,7 @@ namespace Microsoft.Templates.UI
 
         private NewProjectGenController(PostActionFactory postactionFactory)
         {
-            _postactionFactory = postactionFactory;
+            PostactionFactory = postactionFactory;
         }
 
         public UserSelection GetUserSelection()

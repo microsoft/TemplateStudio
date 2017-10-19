@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             try
             {
-                var publisherName = _config;
+                var publisherName = Config;
                 var pfx = CreateCertificate(publisherName);
 
                 AddToProject(pfx);

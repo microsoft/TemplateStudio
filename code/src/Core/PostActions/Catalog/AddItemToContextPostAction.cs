@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
-            var itemsToAdd = _config
+            var itemsToAdd = Config
                                 .Where(o => !string.IsNullOrWhiteSpace(o.Path))
                                 .Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, o.Path)))
                                 .ToList();

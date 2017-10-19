@@ -17,7 +17,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class InformationViewModel : Observable
     {
-        public static InformationViewModel Current;
+        private static InformationViewModel _current;
 
         private Views.NewProject.InformationWindow _infoWindow;
 
@@ -110,7 +110,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public InformationViewModel(Views.NewProject.InformationWindow infoWindow)
         {
             _infoWindow = infoWindow;
-            Current = this;
+            _current = this;
         }
 
         public InformationViewModel(NewItem.TemplateInfoViewModel template)

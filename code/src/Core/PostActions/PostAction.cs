@@ -18,11 +18,11 @@ namespace Microsoft.Templates.Core.PostActions
 
     public abstract class PostAction<TConfig> : PostAction
     {
-        protected readonly TConfig _config;
+        protected TConfig Config { get; }
 
         public PostAction(TConfig config)
         {
-            _config = config;
+            Config = config;
         }
     }
 }

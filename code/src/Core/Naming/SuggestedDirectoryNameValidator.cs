@@ -19,12 +19,12 @@ namespace Microsoft.Templates.Core
         public override ValidationResult Validate(string suggestedName)
         {
             // if the config directory doesn't exist then there's definitely not anything already in it with the suggested name
-            var suggestedDirectoryExists = Directory.Exists(_config);
+            var suggestedDirectoryExists = Directory.Exists(Config);
 
             if (suggestedDirectoryExists)
             {
                 // Does a subdirectory with the suggested name already exist?
-                var existingSubdirectories = Directory.EnumerateDirectories(_config)
+                var existingSubdirectories = Directory.EnumerateDirectories(Config)
                                                       .Select(d => new DirectoryInfo(d).Name)
                                                       .ToList();
 

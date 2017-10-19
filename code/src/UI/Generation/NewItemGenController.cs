@@ -37,7 +37,7 @@ namespace Microsoft.Templates.UI
 
         private NewItemGenController(PostActionFactory postactionFactory)
         {
-            _postactionFactory = postactionFactory;
+            PostactionFactory = postactionFactory;
         }
 
         public UserSelection GetUserSelectionNewFeature()
@@ -306,7 +306,7 @@ namespace Microsoft.Templates.UI
 
         private void ExecuteSyncGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = _postactionFactory.FindSyncGenerationPostActions(result);
+            var postActions = PostactionFactory.FindSyncGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
@@ -316,7 +316,7 @@ namespace Microsoft.Templates.UI
 
         private void ExecuteOutputGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = _postactionFactory.FindOutputGenerationPostActions(result);
+            var postActions = PostactionFactory.FindOutputGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
