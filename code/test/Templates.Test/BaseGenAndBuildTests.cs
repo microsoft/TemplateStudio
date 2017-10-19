@@ -157,12 +157,9 @@ namespace Microsoft.Templates.Test
             {
                 OutputPath = GenContext.GetTempGenerationPath(projectName);
 
-                var newUserSelection = new UserSelection
+                var newUserSelection = new UserSelection(projectType, framework, language)
                 {
-                    ProjectType = projectType,
-                    Framework = framework,
                     HomeName = string.Empty,
-                    Language = language,
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge
                 };
 

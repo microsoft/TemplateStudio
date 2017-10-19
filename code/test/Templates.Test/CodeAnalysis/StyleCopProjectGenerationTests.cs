@@ -53,11 +53,8 @@ namespace Microsoft.Templates.Test
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             OutputPath = ProjectPath;
 
-            var userSelection = new UserSelection
+            var userSelection = new UserSelection(projectType, framework, ProgrammingLanguages.CSharp)
             {
-                Framework = framework,
-                ProjectType = projectType,
-                Language = ProgrammingLanguages.CSharp,
                 HomeName = "Main"
             };
 

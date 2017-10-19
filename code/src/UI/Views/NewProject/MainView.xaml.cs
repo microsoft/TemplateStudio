@@ -18,10 +18,10 @@ namespace Microsoft.Templates.UI.Views.NewProject
         public MainViewModel ViewModel { get; private set; }
         public UserSelection Result { get; set; }
 
-        public MainView()
+        public MainView(string language)
         {
             Current = this;
-            ViewModel = new MainViewModel();
+            ViewModel = new MainViewModel(language);
             ViewModel.SetView(this);
             DataContext = ViewModel;
 

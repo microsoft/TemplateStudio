@@ -25,6 +25,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
     public class MainViewModel : BaseMainViewModel
     {
+        private readonly string _language;
         public static MainViewModel Current;
         public MainView MainView;
 
@@ -35,9 +36,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
-        public MainViewModel()
+        public MainViewModel(string language)
             : base()
         {
+            _language = language;
             Current = this;
         }
 
@@ -213,12 +215,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection()
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _language)
             {
-                Framework = ConfigFramework,
-                ProjectType = ConfigProjectType,
                 HomeName = string.Empty
             };
+
             var template = GetActiveTemplate();
             if (template != null)
             {

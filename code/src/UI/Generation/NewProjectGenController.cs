@@ -34,9 +34,9 @@ namespace Microsoft.Templates.UI
             _postactionFactory = postactionFactory;
         }
 
-        public UserSelection GetUserSelection()
+        public UserSelection GetUserSelection(string language)
         {
-            var mainView = new Views.NewProject.MainView();
+            var mainView = new Views.NewProject.MainView(language);
 
             try
             {

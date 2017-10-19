@@ -43,12 +43,7 @@ namespace Microsoft.Templates.Test
 
         public UserSelection SetupProject(string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null)
         {
-            var userSelection = new UserSelection
-            {
-                Framework = framework,
-                ProjectType = projectType,
-                Language = language,
-            };
+            var userSelection = new UserSelection(projectType, framework, language);
 
             var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework);
 
