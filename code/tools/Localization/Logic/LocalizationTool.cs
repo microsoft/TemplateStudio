@@ -14,6 +14,7 @@ namespace Localization
     internal class LocalizationTool
     {
         private List<string> cultures = new List<string> { "cs-CZ", "de-DE", "es-ES", "fr-FR", "it-IT", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "ru-RU", "tr-TR", "zh-CN", "zh-TW" };
+
         public LocalizationTool()
         {
         }

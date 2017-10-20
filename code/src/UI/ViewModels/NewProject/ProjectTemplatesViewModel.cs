@@ -23,9 +23,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     public class ProjectTemplatesViewModel : Observable
     {
         public MetadataInfoViewModel ContextFramework { get; private set; }
+
         public MetadataInfoViewModel ContextProjectType { get; private set; }
 
         private string _pagesHeader;
+
         public string PagesHeader
         {
             get => _pagesHeader;
@@ -33,6 +35,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _featuresHeader;
+
         public string FeaturesHeader
         {
             get => _featuresHeader;
@@ -42,12 +45,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         //// public string HomeName { get; set; }
 
         public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> PagesGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
+
         public ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> FeatureGroups { get; } = new ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>>();
 
         public ObservableCollection<ObservableCollection<SavedTemplateViewModel>> SavedPages { get; } = new ObservableCollection<ObservableCollection<SavedTemplateViewModel>>();
+
         public ObservableCollection<SavedTemplateViewModel> SavedFeatures { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
         private bool _hasSavedPages;
+
         public bool HasSavedPages
         {
             get => _hasSavedPages;
@@ -55,6 +61,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _hasSavedFeatures;
+
         public bool HasSavedFeatures
         {
             get => _hasSavedFeatures;
@@ -71,6 +78,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private ObservableCollection<SavedTemplateViewModel> GetSavedFeatures() => SavedFeatures;
+
         public ObservableCollection<ObservableCollection<SavedTemplateViewModel>> GetSavedPages() => SavedPages;
 
         private IEnumerable<string> GetNames()

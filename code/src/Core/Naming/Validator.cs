@@ -17,11 +17,11 @@ namespace Microsoft.Templates.Core
         Justification = "For simplicity we're allowing generic and non-generic versions in one file.")]
     public abstract class Validator<TConfig> : Validator
     {
-        protected readonly TConfig _config;
+        public TConfig Config { get; }
 
         public Validator(TConfig config)
         {
-            _config = config;
+            Config = config;
         }
     }
 }

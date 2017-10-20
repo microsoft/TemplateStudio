@@ -15,8 +15,11 @@ namespace Microsoft.Templates.Core.Test.Composition
         private readonly Dictionary<string, ICacheTag> _tags = new Dictionary<string, ICacheTag>();
 
         public string Identity { get; set; }
+
         public string Name { get; set; }
+
         public IReadOnlyDictionary<string, ICacheTag> Tags => _tags;
+
         public string GroupIdentity { get; set; }
 
         public void AddTag(string key, string value)

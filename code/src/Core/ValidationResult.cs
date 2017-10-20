@@ -7,6 +7,7 @@ namespace Microsoft.Templates.Core
     public class ValidationResult
     {
         public bool IsValid { get; set; }
+
         public ValidationErrorType ErrorType { get; set; }
     }
 }

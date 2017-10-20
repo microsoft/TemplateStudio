@@ -15,6 +15,7 @@ namespace Microsoft.UI.Test
     public class ValidationServiceTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;
+
         public ValidationServiceTest(TemplatesFixture fixture)
         {
             _fixture = fixture;

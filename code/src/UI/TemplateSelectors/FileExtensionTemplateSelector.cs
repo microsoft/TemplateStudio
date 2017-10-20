@@ -12,6 +12,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
     public class FileExtensionTemplateSelector : DataTemplateSelector
     {
         public DataTemplate CodeFileTemplate { get; set; }
+
         public DataTemplate ImageFileTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)

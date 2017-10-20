@@ -25,7 +25,7 @@
         <FlipView
             x:Name="flipView"
             Visibility="Collapsed"
-            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
+            ItemsSource="{x:Bind ViewModel.Source}"
             SelectedItem="{x:Bind ViewModel.SelectedImage, Mode=TwoWay}">
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">

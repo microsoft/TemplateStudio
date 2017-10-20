@@ -35,9 +35,11 @@ namespace Microsoft.Templates.Fakes
         private const string ProjectTemplateCS = @"Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""{name}"", ""{name}\{name}.csproj"", ""{id}""
 EndProject
 ";
+
         private const string ProjectTemplateVB = @"Project(""{7CF740F7-735F-48EA-8B7B-3FFA4902371C}"") = ""{name}"", ""{name}\{name}.vbproj"", ""{id}""
 EndProject
 ";
+
         private readonly string _path;
 
         private FakeSolution(string path)

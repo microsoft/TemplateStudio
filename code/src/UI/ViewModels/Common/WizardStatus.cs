@@ -13,6 +13,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public class WizardStatus : Observable
     {
         private bool _isOverlayBoxVisible;
+
         public bool IsOverlayBoxVisible
         {
             get => _isOverlayBoxVisible;
@@ -20,6 +21,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private bool _isLoading;
+
         public bool IsLoading
         {
             get => _isLoading;
@@ -27,6 +29,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _wizardTitle;
+
         public string WizardTitle
         {
             get => _wizardTitle;
@@ -34,6 +37,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _wizardVersion;
+
         public string WizardVersion
         {
             get => _wizardVersion;
@@ -41,6 +45,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _templatesVersion;
+
         public string TemplatesVersion
         {
             get => _templatesVersion;
@@ -48,6 +53,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private bool _hasOverlayBox = true;
+
         public bool HasOverlayBox
         {
             get => _hasOverlayBox;
@@ -55,6 +61,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private Visibility _infoShapeVisibility = Visibility.Collapsed;
+
         public Visibility InfoShapeVisibility
         {
             get => _infoShapeVisibility;
@@ -62,6 +69,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private bool _hasContent;
+
         public bool HasContent
         {
             get => _hasContent;
@@ -69,6 +77,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private StatusViewModel _status = StatusViewModel.EmptyStatus;
+
         public StatusViewModel Status
         {
             get => _status;
@@ -76,6 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private StatusViewModel _overlayStatus = StatusViewModel.EmptyStatus;
+
         public StatusViewModel OverlayStatus
         {
             get => _overlayStatus;
@@ -83,13 +93,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private bool _newVersionAvailable;
+
         public bool NewVersionAvailable
         {
             get => _newVersionAvailable;
             set => SetProperty(ref _newVersionAvailable, value);
         }
 
-        protected bool _showFinishButton;
+        private bool _showFinishButton;
+
         public bool ShowFinishButton
         {
             get => _showFinishButton;
@@ -97,7 +109,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         public double Width { get; }
+
         public double Height { get; }
+
         public WizardStatus()
         {
             IsLoading = true;
