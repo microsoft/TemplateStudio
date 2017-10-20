@@ -12,6 +12,7 @@ namespace Microsoft.Templates.UI.Threading
     public static class SafeThreading
     {
         public static JoinableTaskFactory JoinableTaskFactory { get; set; }
+
         static SafeThreading()
         {
             try

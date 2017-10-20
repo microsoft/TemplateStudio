@@ -23,11 +23,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     public class SavedTemplateViewModel : Observable
     {
         private ITemplateInfo _template;
+
 #pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         public (string name, ITemplateInfo template) UserSelection => (ItemName, _template);
 #pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
         private string _identity;
+
         public string Identity
         {
             get => _identity;
@@ -35,6 +37,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _itemName;
+
         public string ItemName
         {
             get => _itemName;
@@ -49,12 +52,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _newItemName;
+
         public string NewItemName
         {
             get
             {
                 return _newItemName;
             }
+
             set
             {
                 SetProperty(ref _newItemName, value);
@@ -76,6 +81,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _canChooseItemName;
+
         public bool CanChooseItemName
         {
             get => _canChooseItemName;
@@ -83,6 +89,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _isHidden;
+
         public bool IsHidden
         {
             get => _isHidden;
@@ -90,6 +97,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _multipleInstance;
+
         public bool MultipleInstance
         {
             get => _multipleInstance;
@@ -97,6 +105,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _templateName;
+
         public string TemplateName
         {
             get => _templateName;
@@ -104,6 +113,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private List<string> _dependencyList;
+
         public List<string> DependencyList
         {
             get => _dependencyList;
@@ -111,6 +121,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _author;
+
         public string Author
         {
             get => _author;
@@ -118,6 +129,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private int _genGroup;
+
         public int GenGroup
         {
             get => _genGroup;
@@ -125,6 +137,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private TemplateType _templateType;
+
         public TemplateType TemplateType
         {
             get => _templateType;
@@ -132,6 +145,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _isRemoveEnabled;
+
         public bool IsRemoveEnabled
         {
             get => _isRemoveEnabled;
@@ -139,6 +153,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _isHome;
+
         public bool IsHome
         {
             get => _isHome;
@@ -162,6 +177,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private DispatcherTimer colorTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(2) };
 
         private bool _isEditionEnabled;
+
         public bool IsEditionEnabled
         {
             get => _isEditionEnabled;
@@ -174,6 +190,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private Visibility _noEditingContentVisibility = Visibility.Visible;
+
         public Visibility NoEditingContentVisibility
         {
             get => _noEditingContentVisibility;
@@ -181,6 +198,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private Visibility _editingContentVisibility = Visibility.Collapsed;
+
         public Visibility EditingContentVisibility
         {
             get => _editingContentVisibility;
@@ -188,6 +206,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _isValidName;
+
         public bool IsValidName
         {
             get => _isValidName;
@@ -195,6 +214,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _errorMessage;
+
         public string ErrorMessage
         {
             get => _errorMessage;
@@ -202,6 +222,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private FontWeight _itemFontWeight = FontWeights.Normal;
+
         public FontWeight ItemFontWeight
         {
             get => _itemFontWeight;
@@ -209,6 +230,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _allowDragAndDrop;
+
         public bool AllowDragAndDrop
         {
             get => _allowDragAndDrop;
@@ -216,6 +238,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _isOpen;
+
         public bool IsOpen
         {
             get => _isOpen;
@@ -223,6 +246,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private Brush _itemForeground;
+
         public Brush ItemForeground
         {
             get => _itemForeground;
@@ -230,6 +254,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private Brush _authorForeground;
+
         public Brush AuthorForeground
         {
             get => _authorForeground;
@@ -239,18 +264,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public string DisplayText => CanChooseItemName ? $"{ItemName} [{TemplateName}]" : ItemName;
 
         private ICommand _openCommand;
+
         public ICommand OpenCommand => _openCommand ?? (_openCommand = new RelayCommand(OnOpen));
 
         private ICommand _removeCommand;
+
         public ICommand RemoveCommand => _removeCommand ?? (_removeCommand = new RelayCommand(OnRemove));
 
         private ICommand _renameCommand;
+
         public ICommand RenameCommand => _renameCommand ?? (_renameCommand = new RelayCommand(OnRename));
 
         private ICommand _confirmRenameCommand;
+
         public ICommand ConfirmRenameCommand => _confirmRenameCommand ?? (_confirmRenameCommand = new RelayCommand(OnConfirmRename));
 
         private ICommand _cancelRenameCommand;
+
         public ICommand CancelRenameCommand => _cancelRenameCommand ?? (_cancelRenameCommand = new RelayCommand(() => CancelRename()));
 
         public SavedTemplateViewModel((string name, ITemplateInfo template) item, bool isRemoveEnabled)

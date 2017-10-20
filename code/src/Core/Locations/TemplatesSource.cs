@@ -17,9 +17,11 @@ namespace Microsoft.Templates.Core.Locations
     public abstract class TemplatesSource
     {
         protected const string SourceFolderName = "Templates";
+
         private const string VersionFileName = "version.txt";
 
         private List<string> _tempFoldersUsed = new List<string>();
+
         public virtual bool ForcedAcquisition { get; protected set; }
 
         protected virtual bool VerifyPackageSignatures { get => true; }

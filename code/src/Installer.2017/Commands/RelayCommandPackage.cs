@@ -23,6 +23,7 @@ namespace Microsoft.Templates.Extension.Commands
     public sealed class RelayCommandPackage : AsyncPackage
     {
         private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
+
         private RightClickActions RightClickActions => _rightClickActions.Value;
 
         private RelayCommand addPageCommand;

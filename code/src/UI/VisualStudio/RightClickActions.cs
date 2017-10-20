@@ -23,12 +23,19 @@ namespace Microsoft.Templates.UI.VisualStudio
         private static VsGenShell _shell;
 
         public string ProjectName { get; private set; }
+
         public string OutputPath { get; private set; }
+
         public string ProjectPath { get; private set; }
+
         public List<string> ProjectItems { get; private set; }
+
         public List<string> FilesToOpen { get; private set; }
+
         public List<FailedMergePostAction> FailedMergePostActions { get; private set; }
+
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; private set; }
+
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; }
 
         public RightClickActions()

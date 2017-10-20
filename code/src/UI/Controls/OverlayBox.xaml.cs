@@ -20,6 +20,7 @@ namespace Microsoft.Templates.UI.Controls
     public partial class OverlayBox : UserControl
     {
         private DispatcherTimer _hideTimer;
+
         private DispatcherTimer HideTimer
         {
             get

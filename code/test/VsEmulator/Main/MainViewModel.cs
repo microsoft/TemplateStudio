@@ -42,10 +42,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         public string ProjectName { get; private set; }
+
         public string OutputPath { get; private set; }
+
         public string ProjectPath { get; private set; }
 
         private bool _forceLocalTemplatesRefresh = true;
+
         public bool ForceLocalTemplatesRefresh
         {
             get => _forceLocalTemplatesRefresh;
@@ -63,18 +66,27 @@ namespace Microsoft.Templates.VsEmulator.Main
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
 
         public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
+
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
+
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
+
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
+
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
+
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
+
         public RelayCommand OpenTempInExplorerCommand => new RelayCommand(OpenTempInExplorer);
+
         public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
+
         public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
         public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
 
         private string _state;
+
         public string State
         {
             get => _state;
@@ -82,6 +94,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _log;
+
         public string Log
         {
             get => _log;
@@ -89,6 +102,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private Visibility _isProjectLoaded;
+
         public Visibility IsProjectLoaded
         {
             get => _isProjectLoaded;
@@ -96,6 +110,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private Visibility _isWtsProject;
+
         public Visibility IsWtsProject
         {
             get => _isWtsProject;
@@ -111,6 +126,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _wizardVersion;
+
         public string WizardVersion
         {
             get => _wizardVersion;
@@ -118,6 +134,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _templatesVersion;
+
         public string TemplatesVersion
         {
             get => _templatesVersion;
@@ -125,6 +142,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _solutionName;
+
         public string SolutionName
         {
             get => _solutionName;

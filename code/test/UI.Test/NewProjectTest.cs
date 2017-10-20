@@ -19,6 +19,7 @@ namespace Microsoft.UI.Test
     public class NewProjectTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;
+
         public NewProjectTest(TemplatesFixture fixture)
         {
             _fixture = fixture;

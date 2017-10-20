@@ -28,8 +28,11 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         public string ProjectName { get; set; }
+
         public string OutputPath { get; set; }
+
         public string ProjectPath { get; set; }
+
         public List<string> ProjectItems { get; } = new List<string>();
 
         public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();

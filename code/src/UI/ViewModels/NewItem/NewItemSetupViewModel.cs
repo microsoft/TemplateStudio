@@ -20,6 +20,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     public class NewItemSetupViewModel : Observable
     {
         private string _header;
+
         public string Header
         {
             get => _header;
@@ -27,6 +28,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private Visibility _editionVisibility = Visibility.Collapsed;
+
         public Visibility EditionVisibility
         {
             get => _editionVisibility;
@@ -34,6 +36,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private string _itemName;
+
         public string ItemName
         {
             get => _itemName;
@@ -53,6 +56,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private InformationViewModel _information;
+
         public InformationViewModel Information
         {
             get => _information;

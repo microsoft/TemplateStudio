@@ -14,8 +14,10 @@ namespace Microsoft.Templates.UI.Views.NewProject
 {
     public partial class MainView : Window
     {
-        public static MainView Current;
+        public static MainView Current { get; private set; }
+
         public MainViewModel ViewModel { get; private set; }
+
         public UserSelection Result { get; set; }
 
         public MainView()
