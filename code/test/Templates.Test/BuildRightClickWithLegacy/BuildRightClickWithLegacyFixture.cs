@@ -35,8 +35,13 @@ namespace Microsoft.Templates.Test
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync()
         {
             List<object[]> result = new List<object[]>();
-            foreach (var language in ProgrammingLanguages.GetAllLanguages())
+
+            // TODO: X-Ref https://github.com/Microsoft/WindowsTemplateStudio/issues/1325
+            // Re-enable for all languages
+            ////foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
+                const string language = ProgrammingLanguages.CSharp;
+
                 await InitializeTemplatesForLanguageAsync(new LegacyTemplatesSource(), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
