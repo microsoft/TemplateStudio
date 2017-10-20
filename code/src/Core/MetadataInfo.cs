@@ -13,15 +13,25 @@ namespace Microsoft.Templates.Core
     public class MetadataInfo
     {
         public string Name { get; set; }
+
         public string DisplayName { get; set; }
+
         public string Icon { get; set; }
+
         public string Summary { get; set; }
+
         public string Description { get; set; }
+
         public string Author { get; set; }
+
         public int Order { get; set; }
+
         public string MetadataType { get; set; }
+
         public string Licenses { get; set; }
+
         public IEnumerable<TemplateLicense> LicenseTerms { get; set; }
+
         public IEnumerable<string> Languages { get; set; }
     }
 }

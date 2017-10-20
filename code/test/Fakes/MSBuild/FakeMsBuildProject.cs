@@ -14,10 +14,13 @@ namespace Microsoft.Templates.Fakes
     public class FakeMsBuildProject
     {
         private const string MsBuildNs = "http://schemas.microsoft.com/developer/msbuild/2003";
+
         private string _path;
+
         private XElement _root;
 
         public string Name { get; }
+
         public string Namespace
         {
             get

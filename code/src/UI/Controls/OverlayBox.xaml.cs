@@ -4,22 +4,23 @@
 
 using System;
 using System.Diagnostics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Text;
 using System.Windows.Threading;
 
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Extensions;
-using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Controls
 {
     public partial class OverlayBox : UserControl
     {
         private DispatcherTimer _hideTimer;
+
         private DispatcherTimer HideTimer
         {
             get

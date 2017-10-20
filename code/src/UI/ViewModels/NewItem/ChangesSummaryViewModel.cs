@@ -13,18 +13,20 @@ using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class ChangesSummaryViewModel : Observable
     {
         public ObservableCollection<ItemsGroupViewModel<BaseFileViewModel>> FileGroups { get; } = new ObservableCollection<ItemsGroupViewModel<BaseFileViewModel>>();
+
         public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
         private BaseFileViewModel _selectedFile;
+
         public BaseFileViewModel SelectedFile
         {
             get => _selectedFile;
@@ -32,6 +34,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private bool _hasLicenses;
+
         public bool HasLicenses
         {
             get => _hasLicenses;
@@ -39,6 +42,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private bool _doNotMerge;
+
         public bool DoNotMerge
         {
             get => _doNotMerge;
@@ -46,6 +50,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private bool _hasChangesToApply;
+
         public bool HasChangesToApply
         {
             get => _hasChangesToApply;
@@ -53,6 +58,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         public ICommand MoreDetailsCommand { get; }
+
         public ICommand UpdateFontSizeCommand { get; }
 
         public ChangesSummaryViewModel()
@@ -107,6 +113,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private void OnMoreDetails() => Process.Start($"{Configuration.Current.GitHubDocsUrl}newitem.md");
+
         private void OnUpdateFontSize(string points)
         {
             foreach (var group in FileGroups)

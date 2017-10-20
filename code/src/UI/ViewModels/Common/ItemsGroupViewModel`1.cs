@@ -3,9 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
@@ -18,6 +18,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private Action<ItemsGroupViewModel<T>> _onItemChanged;
 
         private bool _hasItems;
+
         public bool HasItems
         {
             get => _hasItems;
@@ -25,6 +26,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _name;
+
         public string Name
         {
             get => _name;
@@ -32,6 +34,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _title;
+
         public string Title
         {
             get => _title;
@@ -41,6 +44,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public ObservableCollection<T> Templates { get; } = new ObservableCollection<T>();
 
         private T _selectedItem;
+
         public T SelectedItem
         {
             get => _selectedItem;

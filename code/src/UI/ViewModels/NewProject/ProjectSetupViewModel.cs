@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     public class ProjectSetupViewModel : Observable
     {
         private string _projectTypesHeader;
+
         public string ProjectTypesHeader
         {
             get => _projectTypesHeader;
@@ -22,6 +23,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _frameworkHeader;
+
         public string FrameworkHeader
         {
             get => _frameworkHeader;
@@ -29,6 +31,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private MetadataInfoViewModel _selectedProjectType;
+
         public MetadataInfoViewModel SelectedProjectType
         {
             get => _selectedProjectType;
@@ -62,6 +65,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private MetadataInfoViewModel _selectedFramework;
+
         public MetadataInfoViewModel SelectedFramework
         {
             get => _selectedFramework;
@@ -83,6 +87,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         public ObservableCollection<MetadataInfoViewModel> ProjectTypes { get; } = new ObservableCollection<MetadataInfoViewModel>();
+
         public ObservableCollection<MetadataInfoViewModel> Frameworks { get; } = new ObservableCollection<MetadataInfoViewModel>();
 
         public async Task InitializeAsync(bool force = false)

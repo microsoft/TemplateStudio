@@ -29,6 +29,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private ICommand _navigateCommand;
+
         public ICommand NavigateCommand => _navigateCommand ?? (_navigateCommand = new RelayCommand(Navigate));
 
         private void Navigate()
@@ -40,6 +41,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _text;
+
         public string Text
         {
             get => _text;
@@ -47,6 +49,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _url;
+
         public string Url
         {
             get => _url;

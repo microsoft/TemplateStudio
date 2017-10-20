@@ -4,11 +4,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Globalization;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Template;
@@ -22,15 +22,23 @@ namespace Microsoft.Templates.Core
     public class TemplatesRepository
     {
         private readonly string _language;
+
         private const string Separator = "|";
+
         private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
+
         private const string Catalog = "_catalog";
+
         private static readonly string[] SupportedIconTypes = { ".jpg", ".jpeg", ".png", ".xaml" };
 
         public TemplatesSynchronization Sync { get; private set; }
+
         public string WizardVersion { get; private set; }
+
         public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
+
         public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? string.Empty; }
+
         public bool SyncInProgress { get => TemplatesSynchronization.SyncInProgress; }
 
         public TemplatesRepository(TemplatesSource source, Version wizardVersion, string language)

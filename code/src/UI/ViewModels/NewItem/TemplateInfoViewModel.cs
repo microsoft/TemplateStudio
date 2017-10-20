@@ -15,10 +15,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     public class TemplateInfoViewModel : CommonInfoViewModel
     {
         public ITemplateInfo Template { get; set; }
+
         public bool IsItemNameEditable { get; set; }
+
         public string DefaultName { get; set; }
+
         public string Group { get; set; }
+
         public string Identity { get; set; }
+
         public TemplateType TemplateType { get; set; }
 
         public ObservableCollection<DependencyInfoViewModel> DependencyItems { get; } = new ObservableCollection<DependencyInfoViewModel>();

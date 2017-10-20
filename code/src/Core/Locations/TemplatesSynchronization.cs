@@ -4,9 +4,8 @@
 
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using System.Reflection;
-using System.Threading;
+using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;

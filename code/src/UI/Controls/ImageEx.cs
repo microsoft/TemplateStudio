@@ -110,6 +110,7 @@ namespace Microsoft.Templates.UI.Controls
         }
 
         public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(ImageEx), new PropertyMetadata(Stretch.Uniform));
+
         public Stretch Stretch
         {
             get => (Stretch)GetValue(StretchProperty);
@@ -117,6 +118,7 @@ namespace Microsoft.Templates.UI.Controls
         }
 
         public static readonly DependencyProperty SourcePathProperty = DependencyProperty.Register("SourcePath", typeof(string), typeof(ImageEx), new PropertyMetadata(null));
+
         public string SourcePath
         {
             get => (string)GetValue(SourcePathProperty);
@@ -124,6 +126,7 @@ namespace Microsoft.Templates.UI.Controls
         }
 
         public static readonly DependencyProperty FallbackImageProperty = DependencyProperty.Register("FallbackImage", typeof(ImageSource), typeof(ImageEx), new PropertyMetadata(null));
+
         public ImageSource FallbackImage
         {
             get => (ImageSource)GetValue(FallbackImageProperty);
