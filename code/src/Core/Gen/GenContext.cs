@@ -18,10 +18,13 @@ namespace Microsoft.Templates.Core.Gen
     public class GenContext
     {
         private static IContextProvider _currentContext;
+
         private static string _tempGenerationFolder = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
 
         public static GenToolBox ToolBox { get; private set; }
+
         public static string InitializedLanguage { get; private set; }
+
         public static bool ContextInitialized => _currentContext != null;
 
         public static IContextProvider Current

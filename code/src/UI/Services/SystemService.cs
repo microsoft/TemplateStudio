@@ -12,6 +12,7 @@ namespace Microsoft.Templates.UI.Services
     public class SystemService : DependencyObject
     {
         private static SystemService _instance;
+
         public static SystemService Instance => _instance ?? (_instance = new SystemService());
 
         private SystemService()
@@ -28,6 +29,7 @@ namespace Microsoft.Templates.UI.Services
         }
 
         public static readonly DependencyProperty IsHighContrastProperty = DependencyProperty.Register("IsHighContrast", typeof(bool), typeof(SystemService), new PropertyMetadata(SystemParameters.HighContrast));
+
         public bool IsHighContrast
         {
             get => (bool)GetValue(IsHighContrastProperty);

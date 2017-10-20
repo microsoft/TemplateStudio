@@ -11,6 +11,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public class DependencyInfoViewModel : Observable
     {
         private string _name;
+
         public string Name
         {
             get => _name;
@@ -18,9 +19,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private ICommand _showInfoCommand;
+
         public ICommand ShowInfoCommand => _showInfoCommand ?? (_showInfoCommand = new RelayCommand(OnItemClick));
 
         private NewProject.TemplateInfoViewModel _newProjectTemplateItem;
+
         private NewItem.TemplateInfoViewModel _newItemTemplateItem;
 
         public DependencyInfoViewModel(NewProject.TemplateInfoViewModel item)

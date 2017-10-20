@@ -17,13 +17,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     public class ProjectConfigurationViewModel : Observable
     {
         private ProjectConfigurationWindow _window;
+
         public ICommand OkCommand => new RelayCommand(OnOkCommand);
+
         public ICommand CancelCommand => new RelayCommand(Cancel);
 
         public ObservableCollection<MetadataInfo> ProjectTypes { get; } = new ObservableCollection<MetadataInfo>();
+
         public ObservableCollection<MetadataInfo> Frameworks { get; } = new ObservableCollection<MetadataInfo>();
 
         private MetadataInfo _selectedProjectType;
+
         public MetadataInfo SelectedProjectType
         {
             get => _selectedProjectType;
@@ -35,6 +39,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private MetadataInfo _selectedFramework;
+
         public MetadataInfo SelectedFramework
         {
             get => _selectedFramework;

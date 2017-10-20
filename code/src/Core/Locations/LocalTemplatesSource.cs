@@ -18,6 +18,7 @@ namespace Microsoft.Templates.Core.Locations
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
         private string _id;
+
         public override string Id { get => _id; }
 
         protected string FinalDestination { get; set; }

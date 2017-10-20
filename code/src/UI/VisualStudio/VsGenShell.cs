@@ -29,9 +29,11 @@ namespace Microsoft.Templates.UI.VisualStudio
     public class VsGenShell : GenShell
     {
         private Lazy<DTE> _dte = new Lazy<DTE>(() => ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE, true);
+
         private DTE Dte => _dte.Value;
 
         private string _vsVersionInstance = string.Empty;
+
         private string _vsProductVersion = string.Empty;
 
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(
@@ -55,6 +57,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private IVsSolution VSSolution => _vssolution.Value;
 
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
+
         private VsOutputPane OutputPane => _outputPane.Value;
 
         public override void AddItems(params string[] itemsFullPath)

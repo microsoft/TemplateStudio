@@ -21,6 +21,7 @@ namespace Microsoft.Templates.Extension.Commands
         /// RelayCommandPackage GUID string.
         /// </summary>
         public const string PackageGuidString = "ae1b4c32-9c93-45b8-a36b-8734f4b120dd";
-        public static Guid GuidRelayCommandPackageCmdSet = Guid.Parse("caa4fb82-0dca-40fe-bae0-081e0f96226f");
+
+        public static Guid GuidRelayCommandPackageCmdSet { get; } = Guid.Parse("caa4fb82-0dca-40fe-bae0-081e0f96226f");
     }
 }

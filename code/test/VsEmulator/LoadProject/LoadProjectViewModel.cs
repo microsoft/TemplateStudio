@@ -20,10 +20,13 @@ namespace Microsoft.Templates.VsEmulator.LoadProject
         }
 
         public RelayCommand CloseCommand => new RelayCommand(_host.Close);
+
         public RelayCommand OkCommand => new RelayCommand(SetSelection, CanSelect);
+
         public RelayCommand BrowseCommand => new RelayCommand(ShowFileDialog);
 
         private string _solutionpath;
+
         public string SolutionPath
         {
             get => _solutionpath;

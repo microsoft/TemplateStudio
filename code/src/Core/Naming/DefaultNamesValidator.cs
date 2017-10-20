@@ -12,6 +12,7 @@ namespace Microsoft.Templates.Core
     public class DefaultNamesValidator : Validator
     {
         private static readonly Lazy<string[]> _defaultNames = new Lazy<string[]>(() => GetDefaultNames());
+
         public static string[] DefaultNames => _defaultNames.Value;
 
         private static string[] GetDefaultNames()

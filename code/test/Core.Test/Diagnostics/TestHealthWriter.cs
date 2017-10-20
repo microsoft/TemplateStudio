@@ -13,8 +13,9 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 {
     public class TestHealthWriter : IHealthWriter
     {
-        public readonly List<string> Events = new List<string>();
-        public List<Exception> Exceptions = new List<Exception>();
+        public List<string> Events { get; set; } = new List<string>();
+
+        public List<Exception> Exceptions { get; set; } = new List<Exception>();
 
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {

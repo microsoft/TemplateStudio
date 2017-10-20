@@ -19,9 +19,11 @@ namespace Microsoft.Templates.UI.Services
         private static Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> _getSavedPages;
         private static Func<ObservableCollection<SavedTemplateViewModel>> _getSavedFeatures;
 
-        public static MetadataInfoViewModel SelectedProjectType;
-        public static MetadataInfoViewModel SelectedFramework;
-        public static string HomeName;
+        public static MetadataInfoViewModel SelectedProjectType { get; set; }
+
+        public static MetadataInfoViewModel SelectedFramework { get; set; }
+
+        public static string HomeName { get; set; }
 
         public static void Initialize(Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> getSavedPages, Func<ObservableCollection<SavedTemplateViewModel>> getSavedFeatures)
         {

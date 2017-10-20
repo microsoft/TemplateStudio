@@ -27,6 +27,7 @@ namespace Microsoft.Templates.UI
     public class NewItemGenController : GenController
     {
         private static Lazy<NewItemGenController> _instance = new Lazy<NewItemGenController>(Initialize);
+
         public static NewItemGenController Instance => _instance.Value;
 
         private static NewItemGenController Initialize()
@@ -36,7 +37,7 @@ namespace Microsoft.Templates.UI
 
         private NewItemGenController(PostActionFactory postactionFactory)
         {
-            _postactionFactory = postactionFactory;
+            PostactionFactory = postactionFactory;
         }
 
         public UserSelection GetUserSelectionNewFeature(string language)
@@ -305,7 +306,7 @@ namespace Microsoft.Templates.UI
 
         private void ExecuteSyncGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = _postactionFactory.FindSyncGenerationPostActions(result);
+            var postActions = PostactionFactory.FindSyncGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
@@ -315,7 +316,7 @@ namespace Microsoft.Templates.UI
 
         private void ExecuteOutputGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = _postactionFactory.FindOutputGenerationPostActions(result);
+            var postActions = PostactionFactory.FindOutputGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {

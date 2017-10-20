@@ -26,14 +26,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     public class MainViewModel : BaseMainViewModel
     {
         private readonly string _language;
-        public static MainViewModel Current;
-        public MainView MainView;
+
+        public static MainViewModel Current { get; private set; }
+
+        public MainView MainView { get; private set; }
 
         // Configuration
-        public TemplateType ConfigTemplateType;
-        public string ConfigFramework;
-        public string ConfigProjectType;
+        public TemplateType ConfigTemplateType { get; private set; }
+
+        public string ConfigFramework { get; private set; }
+
+        public string ConfigProjectType { get; private set; }
+
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
+
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
         public MainViewModel(string language)

@@ -16,11 +16,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
     public abstract class BaseFileViewModel : Observable
     {
         public string DetailTitle { get; protected set; }
+
         public string DetailDescription { get; protected set; }
+
         public string Subject { get; protected set; }
+
         public string Icon { get; private set; }
+
         public SolidColorBrush CircleColor { get; private set; }
+
         public FileExtension FileExtension { get; private set; }
+
         public Func<string, string> UpdateTextAction { get; }
 
         public string FailedPostaction
@@ -38,9 +44,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         public string TempFile => Path.Combine(GenContext.Current.OutputPath, Subject);
+
         public string ProjectFile => Path.Combine(GenContext.Current.ProjectPath, Subject);
 
         private double _codeFontSize;
+
         public double CodeFontSize
         {
             get => _codeFontSize;
