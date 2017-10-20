@@ -23,8 +23,11 @@ namespace Microsoft.Templates.Test
             _fixture = fixture;
         }
 
+        // This test is manual only as it will fail when C# templates are updated but their VB equivalents haven't been.
+        // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the VB changes are made.
         [Theory]
         [MemberData("GetMultiLanguageProjectsAndFrameworks")]
+        [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationLanguageComparison")]
         public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework)
         {
@@ -79,7 +82,7 @@ namespace Microsoft.Templates.Test
             var nodes = resourceXml.GetElementsByTagName("data");
             for (int i = 0; i < nodes.Count; i++)
             {
-                // Assume resources containing dots are Uids
+                // Assume resources containing dots are Uids and so ignore them
                 var resourceName = nodes[i].Attributes.GetNamedItem("name").Value;
                 if (!resourceName.Contains("."))
                 {
