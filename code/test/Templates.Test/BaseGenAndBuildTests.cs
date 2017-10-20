@@ -189,7 +189,7 @@ namespace Microsoft.Templates.Test
 
             finalName = Naming.Infer(finalName, validators);
 
-            var projectName = $"{projectType}{framework}{finalName}{ShortLanguageName(language)}";
+            var projectName = $"{projectType}{finalName}{ShortLanguageName(language)}";
 
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
