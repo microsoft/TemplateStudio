@@ -11,7 +11,6 @@ namespace Microsoft.Templates.Test
     [Collection("Unit Test Templates")]
     [Trait("ExecutionSet", "TemplateValidation")]
     [Trait("ExecutionSet", "Minimum")]
-    [Trait("ExecutionSet", "VBQuickCheck")]
     public class TemplateFolderValidationTests
     {
         // Perform checks based on the entirety of the templates folder

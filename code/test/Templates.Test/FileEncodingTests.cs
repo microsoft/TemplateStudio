@@ -13,7 +13,6 @@ namespace Microsoft.Templates.Test
     [Collection("StyleCopCollection")]
     [Trait("Type", "CodeStyle")]
     [Trait("ExecutionSet", "Minimum")]
-    [Trait("ExecutionSet", "VBQuickCheck")]
     [Trait("ExecutionSet", "TemplateValidation")]
     public class FileEncodingTests
     {

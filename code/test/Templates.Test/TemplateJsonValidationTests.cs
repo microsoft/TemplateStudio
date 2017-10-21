@@ -14,7 +14,6 @@ namespace Microsoft.Templates.Test
     [Collection("Unit Test Templates")]
     [Trait("Type", "TemplateValidation")]
     [Trait("ExecutionSet", "Minimum")]
-    [Trait("ExecutionSet", "VBQuickCheck")]
     [Trait("ExecutionSet", "TemplateValidation")]
     public class TemplateJsonValidationTests
     {

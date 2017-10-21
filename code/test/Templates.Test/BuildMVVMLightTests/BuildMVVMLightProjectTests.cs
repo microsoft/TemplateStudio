@@ -71,7 +71,6 @@ namespace Microsoft.Templates.Test
         [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
-        [Trait("ExecutionSet", "VBQuickCheck")]
         [Trait("ExecutionSet", "BuildMinimum")]
         public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {

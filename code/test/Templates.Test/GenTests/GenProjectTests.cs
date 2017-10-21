@@ -119,7 +119,6 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRandomNames")]
-        [Trait("ExecutionSet", "VBQuickCheck")]
         public async Task GenAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =

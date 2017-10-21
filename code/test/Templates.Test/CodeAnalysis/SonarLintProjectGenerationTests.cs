@@ -18,7 +18,6 @@ namespace Microsoft.Templates.Test
     [Collection("SonarLintCollection")]
     [Trait("ExecutionSet", "Minimum")]
     [Trait("ExecutionSet", "BuildStyleCop")]
-    [Trait("ExecutionSet", "VBQuickCheck")]
     public class SonarLintProjectGenerationTests : BaseTestContextProvider
     {
         private readonly SonarLintGenerationTestsFixture _fixture;

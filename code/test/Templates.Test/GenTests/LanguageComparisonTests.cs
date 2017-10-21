@@ -15,7 +15,6 @@ using Xunit;
 namespace Microsoft.Templates.Test
 {
     [Collection("GenerationCollection")]
-    [Trait("ExecutionSet", "VBQuickCheck")]
     public class LanguageComparisonTests : BaseGenAndBuildTests
     {
         public LanguageComparisonTests(GenerationFixture fixture)
