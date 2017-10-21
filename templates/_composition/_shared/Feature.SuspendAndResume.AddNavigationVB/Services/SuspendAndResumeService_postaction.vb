@@ -7,7 +7,7 @@ Namespace Services
         Private Async Function RestoreStateAsync() As Task
             '^^
             '{[{
-            If saveState.Target IsNot Nothing AndAlso GetType(Page).IsAssignableFrom(saveState.Target) Then
+            If saveState?.Target IsNot Nothing AndAlso GetType(Page).IsAssignableFrom(saveState.Target) Then
                 NavigationService.Navigate(saveState.Target, saveState.SuspensionState)
             End If
             '}]}
