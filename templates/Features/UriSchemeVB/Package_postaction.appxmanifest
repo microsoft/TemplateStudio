@@ -11,17 +11,17 @@
     <Application Id="App"
       Executable="$targetnametoken$.exe"
       EntryPoint="Param_RootNamespace.App">
+      <Extensions>
       <!--^^-->
       <!--{[{-->
-      <Extensions>
         <uap:Extension Category="windows.protocol">
           <uap:Protocol Name="wtsapp">
             <uap:Logo>Assets\Icon.png</uap:Logo>
             <uap:DisplayName>Param_RootNamespace</uap:DisplayName>
           </uap:Protocol>
         </uap:Extension>
-      </Extensions>
       <!--}]}-->
+      </Extensions>
     </Application>
   </Applications>
 
