@@ -58,7 +58,7 @@ Namespace Services
             Dim page As Type = Nothing
             SyncLock _pages
                 If Not _pages.TryGetValue(pageKey, page) Then
-                    Throw New ArgumentException("Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", NameOf(pageKey))
+                    Throw New ArgumentException(String.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey))
                 End If
             End SyncLock
             Dim navigationResult = Frame.Navigate(page, parameter, infoOverride)
