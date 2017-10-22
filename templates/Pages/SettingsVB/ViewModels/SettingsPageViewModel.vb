@@ -28,7 +28,7 @@ Namespace ViewModels
             End Get
 
             Set
-                [Set](_versionDescription, value)
+                [Set](_versionDescription, newValue := value)
             End Set
         End Property
 
