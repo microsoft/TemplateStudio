@@ -20,7 +20,7 @@ Namespace Views
         Private Const PanoramicStateMinWindowWidth As Double = 1024
 
         Private _isPaneOpen As Boolean
-        Public Property IsPaneOpen() As Boolean
+        Public Property IsPaneOpen As Boolean
             Get
                 Return _isPaneOpen
             End Get
@@ -30,7 +30,7 @@ Namespace Views
         End Property
 
         Private _displayMode As SplitViewDisplayMode = SplitViewDisplayMode.CompactInline
-        Public Property DisplayMode() As SplitViewDisplayMode
+        Public Property DisplayMode As SplitViewDisplayMode
             Get
                 Return _displayMode
             End Get

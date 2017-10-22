@@ -13,7 +13,7 @@ Namespace ViewModels
 
         Private _source As IMediaPlaybackSource
 
-        Public Property Source() As IMediaPlaybackSource
+        Public Property Source As IMediaPlaybackSource
             Get
                 Return _source
             End Get
@@ -24,7 +24,7 @@ Namespace ViewModels
 
         Private _posterSource As String
 
-        Public Property PosterSource() As String
+        Public Property PosterSource As String
             Get
                 Return _posterSource
             End Get

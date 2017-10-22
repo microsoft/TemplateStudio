@@ -22,7 +22,7 @@ Namespace ViewModels
 
         Private _versionDescription As String
 
-        Public Property VersionDescription() As String
+        Public Property VersionDescription As String
             Get
                 Return _versionDescription
             End Get
