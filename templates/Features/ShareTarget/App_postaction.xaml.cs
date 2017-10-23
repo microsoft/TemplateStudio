@@ -13,6 +13,11 @@ namespace Param_RootNamespace
 
         protected override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
         {
+            // See more about configure share target in UWP
+            // https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
+            // See also how to share data from you App
+            // https://docs.microsoft.com/en-us/windows/uwp/app-to-app/share-data
+
             var rootFrame = Window.Current.Content as Frame;
             if (rootFrame == null)
             {
