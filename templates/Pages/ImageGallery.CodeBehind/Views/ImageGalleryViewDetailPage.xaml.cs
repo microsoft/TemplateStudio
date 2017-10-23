@@ -57,8 +57,11 @@ namespace Param_ItemNamespace.Views
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            previewImage.Visibility = Visibility.Visible;
-            ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewPage.ImageGalleryViewAnimationClose, previewImage);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                previewImage.Visibility = Visibility.Visible;
+                ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewPage.ImageGalleryViewAnimationClose, previewImage);
+            }
         }
     }
 }
