@@ -17,7 +17,6 @@ namespace Param_RootNamespace
             // https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
             // See also how to share data from you App
             // https://docs.microsoft.com/en-us/windows/uwp/app-to-app/share-data
-
             var rootFrame = Window.Current.Content as Frame;
             if (rootFrame == null)
             {
