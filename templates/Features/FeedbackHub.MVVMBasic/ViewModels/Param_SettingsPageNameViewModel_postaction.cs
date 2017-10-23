@@ -3,7 +3,7 @@
 //**}
 namespace Param_ItemNamespace.ViewModels
 {
-    public class SettingsPageViewModel : ViewModelBase
+    public class Param_SettingsPageNameViewModel : Observable
     {
         //{[{
         public Visibility FeedbackLinkVisibility => Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported() ? Visibility.Visible : Visibility.Collapsed;

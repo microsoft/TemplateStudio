@@ -299,18 +299,6 @@ namespace Microsoft.Templates.Core
             return result;
         }
 
-        public static bool HasAnyFileNameSearchTags(this ITemplateInfo ti)
-        {
-            return ti.Tags != null &&  ti.Tags.Any(t => t.Key.StartsWith(TagPrefix + "fileNameSearch", StringComparison.Ordinal));
-        }
-
-        public static string GetFileNameSearch(this ITemplateInfo ti, string numeral)
-        {
-            var result = GetValueFromTag(ti, TagPrefix + "fileNameSearch" + numeral);
-
-            return result;
-        }
-
         public static bool GetMultipleInstance(this ITemplateInfo ti)
         {
             var result = GetValueFromTag(ti, TagPrefix + "multipleInstance");

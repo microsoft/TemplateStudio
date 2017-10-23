@@ -3,7 +3,7 @@
 //**}
 namespace Param_ItemNamespace.Views
 {
-    public sealed partial class SettingsPagePage : Page, INotifyPropertyChanged
+    public sealed partial class Param_SettingsPageNamePage : Page, INotifyPropertyChanged
     {
         private void Initialize()
         {

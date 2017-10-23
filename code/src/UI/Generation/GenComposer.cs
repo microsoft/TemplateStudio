@@ -173,6 +173,15 @@ namespace Microsoft.Templates.UI
                     AddDependencyTemplates(selectionItem, genQueue, userSelection);
                     var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
                     genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
+
+                    foreach (var dependency in genInfo?.Template.GetDependencyList())
+                    {
+                        if (genInfo.Template.Parameters.Any(p => p.Name == dependency))
+                        {
+                            var dependencyName = genQueue.FirstOrDefault(t => t.Template.Identity == dependency).Name;
+                            genInfo.Parameters.Add(dependency, dependencyName);
+                        }
+                    }
                 }
             }
         }

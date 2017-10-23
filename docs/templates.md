@@ -368,19 +368,6 @@ There are different merge directives to drive the code merging. Currently:
 
 _The above merge directives all use the C# comment form (`//`) but if included in a VB file should use the VB equivalent (`'`)_
 
-### Merging with files of unknown names
-
-Sometimes it may be necessary to merge with a file that has it's name defined by the user. For example, you may want to merge with the Settings page but this may have been renamed via the wizard.
-
-To create a file that can be merged in this scenario requires two steps.
-
-1. Create the file with the name "$SEARCH[0-9]$" and an extension that matches the file you wish to merge with. e.g. `$SEARCH1$.xaml` Put this file in the same directory as the one to merge with.
-1. Add a tag to the template config file with the name "wts.fileNameSearch[0-9]" (e.g. `"wts.fileNameSearch1"`) and a value that is some text within the file you wish to merge with. This search text should be unique to the file to merge with and should not contain anything dependent upon the name of the file.
-
-Because it may be necessary for a template to include multiple files of unknown names that need to be merged, these can be specified by including a different number in the values above. The number in the file name will be matched with the tags containing the same number. e.g. `$SEARCH2$` will be matched with `wts.fileSearchName2`, etc.
-
-Follow the above steps and the file will be merged with the one that contains the search text. An example of this functionality in use can be found in the FeedbackHub feature.
-
 ### Merge Resource Dictionary PostActions
 
 When the _postaction file contains a resource dictionary instead of the *basic* merge postaction a resource dictionary postaction is executed.

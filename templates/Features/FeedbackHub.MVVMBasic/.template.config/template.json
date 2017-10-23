@@ -17,9 +17,7 @@
     "wts.multipleInstance": "false",
     "wts.rightClickEnabled":"false",
     "wts.defaultInstance": "FeedbackHubFeature",
-    "wts.licenses": "[Microsoft Store Services SDK](https://marketplace.visualstudio.com/items?itemName=AdMediator.MicrosoftStoreServicesSDK)",
-    "wts.fileNameSearch1": "SettingsSubheaderMargin",
-    "wts.fileNameSearch2": "private ElementTheme _elementTheme = ThemeSelectorService.Theme;"
+    "wts.licenses": "[Microsoft Store Services SDK](https://marketplace.visualstudio.com/items?itemName=AdMediator.MicrosoftStoreServicesSDK)"
   },
   "sourceName": "FeedbackHubFeature",
   "preferNameDirectory": true,
@@ -33,6 +31,11 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
+    },
+    "wts.Page.Settings": {
+      "type": "parameter",
+      "replaces": "Param_SettingsPageName",
+      "fileRename": "Param_SettingsPageName" 
     }
   }
 }

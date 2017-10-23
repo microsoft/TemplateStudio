@@ -129,8 +129,8 @@ namespace TemplateValidator
 
             // The explicit values here are the ones that are currently in use.
             // In theory any string could be exported and used as a symbol but currently it's only these
-            // If lots of tempaltes start exporting new symbols it might be necessary to change how symbol keys are verified
-            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter" };
+            // If lots of templates start exporting new symbols it might be necessary to change how symbol keys are verified
+            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings.MVVMLight", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.CaliburnMicro" };
 
             foreach (var symbol in template.Symbols)
             {
@@ -209,24 +209,9 @@ namespace TemplateValidator
                         VerifyWtsIshiddenTagValue(tag, results);
                         break;
                     default:
-                        if (tag.Key.StartsWith("wts.fileNameSearch", StringComparison.Ordinal))
-                        {
-                            VerifyWtsFileNameSearchTagValue(tag, results);
-                        }
-                        else
-                        {
-                            results.Add($"Unknown tag '{tag.Value}' specified in the file.");
-                        }
+                        results.Add($"Unknown tag '{tag.Value}' specified in the file.");
                         break;
                 }
-            }
-        }
-
-        private static void VerifyWtsFileNameSearchTagValue(KeyValuePair<string, string> tag, List<string> results)
-        {
-            if (string.IsNullOrWhiteSpace(tag.Value))
-            {
-                results.Add($"The tag '{tag.Key}' cannot be blank if specified.");
             }
         }
 

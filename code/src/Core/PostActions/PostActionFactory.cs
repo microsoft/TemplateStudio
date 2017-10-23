@@ -75,17 +75,6 @@ namespace Microsoft.Templates.Core.PostActions
                 .ForEach(f => AddMergePostAction(postActions, failOnError, f));
         }
 
-        internal void AddFileNameSearchActions(GenInfo genInfo, List<PostAction> postActions)
-        {
-            if (genInfo.Template.HasAnyFileNameSearchTags())
-            {
-                Directory
-                    .EnumerateFiles(GenContext.Current.OutputPath, FileNameSearchPostAction.FileNamePattern, SearchOption.AllDirectories)
-                    .ToList()
-                    .ForEach(file => postActions.Add(new FileNameSearchPostAction(file, genInfo.Template)));
-            }
-        }
-
         internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
