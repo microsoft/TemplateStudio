@@ -3,10 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.Templates.Extension.Commands
 {
@@ -17,12 +14,14 @@ namespace Microsoft.Templates.Extension.Commands
         public const int OpenTempFolder = 0x600;
     }
 
+    [SuppressMessage("StyleCop", "SA1402", Justification = "This class does not have implementation. Used for constants.")]
     internal class PackageGuids
     {
         /// <summary>
         /// RelayCommandPackage GUID string.
         /// </summary>
         public const string PackageGuidString = "ae1b4c32-9c93-45b8-a36b-8734f4b120dd";
-        public static Guid GuidRelayCommandPackageCmdSet = Guid.Parse("caa4fb82-0dca-40fe-bae0-081e0f96226f");
+
+        public static Guid GuidRelayCommandPackageCmdSet { get; } = Guid.Parse("caa4fb82-0dca-40fe-bae0-081e0f96226f");
     }
 }

@@ -3,12 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Collections.Generic;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Packaging;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
@@ -16,9 +17,11 @@ namespace Microsoft.Templates.Core.Locations
     public abstract class TemplatesSource
     {
         protected const string SourceFolderName = "Templates";
+
         private const string VersionFileName = "version.txt";
 
         private List<string> _tempFoldersUsed = new List<string>();
+
         public virtual bool ForcedAcquisition { get; protected set; }
 
         protected virtual bool VerifyPackageSignatures { get => true; }
@@ -32,7 +35,7 @@ namespace Microsoft.Templates.Core.Locations
             Extract(mstxFilePath, targetFolder);
         }
 
-        public void Extract(string mstxFilePath, string targetFolder)
+        public virtual void Extract(string mstxFilePath, string targetFolder)
         {
             string extractedContent = ExtractMstx(mstxFilePath);
 
@@ -87,6 +90,7 @@ namespace Microsoft.Templates.Core.Locations
                     }
                 }
             }
+
             return result;
         }
 
@@ -94,7 +98,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                Templatex.Extract(file, tempFolder, VerifyPackageSignatures);
+                TemplatePackage.Extract(file, tempFolder, VerifyPackageSignatures);
                 AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {tempFolder}.").FireAndForget();
             }
             catch (Exception ex)
@@ -118,7 +122,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private static string PrepareFinalDestination(string finalTargetFolder, Version ver)
+        protected static string PrepareFinalDestination(string finalTargetFolder, Version ver)
         {
             Fs.EnsureFolder(finalTargetFolder);
 
@@ -132,7 +136,7 @@ namespace Microsoft.Templates.Core.Locations
             return finalDestination;
         }
 
-        private static Version GetVersionFromFile(string versionFilePath)
+        protected static Version GetVersionFromFile(string versionFilePath)
         {
             var version = "0.0.0.0";
 
@@ -156,7 +160,7 @@ namespace Microsoft.Templates.Core.Locations
             return tempFolder;
         }
 
-        private void CleanUpTemps()
+        protected void CleanUpTemps()
         {
             List<string> removedFolders = new List<string>();
             foreach (string tempFolder in _tempFoldersUsed)
@@ -164,6 +168,7 @@ namespace Microsoft.Templates.Core.Locations
                 Fs.SafeDeleteDirectory(tempFolder);
                 removedFolders.Add(tempFolder);
             }
+
             foreach (string folder in removedFolders)
             {
                 _tempFoldersUsed.Remove(folder);

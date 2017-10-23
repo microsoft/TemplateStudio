@@ -13,32 +13,20 @@
     "wts.type": "page",
     "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
-    "wts.order": "5",
+    "wts.displayOrder": "5",
     "wts.dependencies": "wts.Feat.SampleDataService",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true" 
   },
-  "sourceName": "MasterDetail",
+  "sourceName": "MasterDetailView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\MasterDetailPage.xaml"
+      "path": ".\\Views\\MasterDetailViewPage.xaml"
     },
     {
-      "path": ".\\Views\\MasterDetailPage.xaml.cs"
-    },
-    {
-      "path": ".\\Views\\MasterDetailDetailPage.xaml"
-    },
-    {
-      "path": ".\\Views\\MasterDetailDetailPage.xaml.cs"
-    },
-    {
-      "path": ".\\Views\\MasterDetailDetailControl.xaml"
-    },
-    {
-      "path": ".\\Views\\MasterDetailDetailControl.xaml.cs"
-    }   
+      "path": ".\\Views\\MasterDetailViewPage.xaml.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

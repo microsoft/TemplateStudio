@@ -9,9 +9,9 @@
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
-    "wts.order": "5",
+    "wts.displayOrder": "5",
     "wts.group": "UserInteraction",
     "wts.dependencies":"wts.Feat.SettingsStorage",
     "wts.multipleInstance": "false",
@@ -29,7 +29,7 @@
     },
     {
       "path": ".\\Views\\FirstRunDialog.xaml.cs"
-    },
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

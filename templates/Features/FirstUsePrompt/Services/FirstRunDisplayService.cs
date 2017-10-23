@@ -6,7 +6,7 @@ using Windows.ApplicationModel;
 
 namespace Param_ItemNamespace.Services
 {
-    public class FirstRunDisplayService
+    public static class FirstRunDisplayService
     {
         internal static async Task ShowIfAppropriateAsync()
         {

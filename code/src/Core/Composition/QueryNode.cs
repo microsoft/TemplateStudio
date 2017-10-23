@@ -9,8 +9,11 @@ namespace Microsoft.Templates.Core.Composition
         private const string ContextPrefix = "$";
 
         public string Field { get; set; }
+
         public QueryOperator Operator { get; set; }
+
         public string Value { get; set; }
+
         public bool IsContext { get; }
 
         public QueryNode(string field, string @operator, string value)

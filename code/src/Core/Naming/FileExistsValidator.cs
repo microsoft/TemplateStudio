@@ -9,13 +9,14 @@ namespace Microsoft.Templates.Core
 {
     public class FileExistsValidator : Validator<string>
     {
-        public FileExistsValidator(string config) : base(config)
+        public FileExistsValidator(string config)
+            : base(config)
         {
         }
 
         public override ValidationResult Validate(string suggestedName)
         {
-            var existing = Directory.EnumerateFiles(_config)
+            var existing = Directory.EnumerateFiles(Config)
                                             .Select(f => Path.GetFileNameWithoutExtension(f))
                                             .ToList();
 

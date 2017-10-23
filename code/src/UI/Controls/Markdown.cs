@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -18,6 +19,10 @@ using System.Windows.Shapes;
 
 namespace Microsoft.Templates.UI.Controls
 {
+    [SuppressMessage("StyleCop", "SA1611", Justification = "The code is external and contains xml documentation")]
+    [SuppressMessage("StyleCop", "SA1615", Justification = "The code is external and contains xml documentation")]
+    [SuppressMessage("StyleCop", "SA1623", Justification = "The code is external and contains xml documentation")]
+
     /// <summary>
     /// This code has been taken from https://github.com/theunrepentantgeek/Markdown.XAML
     /// Authored by Bevan Arps under MIT license
@@ -53,6 +58,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(DocumentStyleProperty);
             set => SetValue(DocumentStyleProperty, value);
         }
+
         public static readonly DependencyProperty DocumentStyleProperty = DependencyProperty.Register("DocumentStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading1Style
@@ -60,6 +66,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(Heading1StyleProperty);
             set => SetValue(Heading1StyleProperty, value);
         }
+
         public static readonly DependencyProperty Heading1StyleProperty = DependencyProperty.Register("Heading1Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading2Style
@@ -67,6 +74,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(Heading2StyleProperty);
             set => SetValue(Heading2StyleProperty, value);
         }
+
         public static readonly DependencyProperty Heading2StyleProperty = DependencyProperty.Register("Heading2Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading3Style
@@ -74,6 +82,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(Heading3StyleProperty);
             set => SetValue(Heading3StyleProperty, value);
         }
+
         public static readonly DependencyProperty Heading3StyleProperty = DependencyProperty.Register("Heading3Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style Heading4Style
@@ -81,6 +90,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(Heading4StyleProperty);
             set => SetValue(Heading4StyleProperty, value);
         }
+
         public static readonly DependencyProperty Heading4StyleProperty = DependencyProperty.Register("Heading4Style", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style CodeStyle
@@ -88,6 +98,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(CodeStyleProperty);
             set => SetValue(CodeStyleProperty, value);
         }
+
         public static readonly DependencyProperty CodeStyleProperty = DependencyProperty.Register("CodeStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style LinkStyle
@@ -95,6 +106,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(LinkStyleProperty);
             set => SetValue(LinkStyleProperty, value);
         }
+
         public static readonly DependencyProperty LinkStyleProperty = DependencyProperty.Register("LinkStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style ImageStyle
@@ -102,6 +114,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(ImageStyleProperty);
             set => SetValue(ImageStyleProperty, value);
         }
+
         public static readonly DependencyProperty ImageStyleProperty = DependencyProperty.Register("ImageStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public Style SeparatorStyle
@@ -109,6 +122,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (Style)GetValue(SeparatorStyleProperty);
             set => SetValue(SeparatorStyleProperty, value);
         }
+
         public static readonly DependencyProperty SeparatorStyleProperty = DependencyProperty.Register("SeparatorStyle", typeof(Style), typeof(Markdown), new PropertyMetadata(null));
 
         public string AssetPathRoot
@@ -156,10 +170,13 @@ namespace Microsoft.Templates.UI.Controls
                 throw new ArgumentNullException("text");
             }
 
-            return DoHeaders(text,
-                s1 => DoHorizontalRules(s1,
-                    s2 => DoLists(s2,
-                    sn => FormParagraphs(sn))));
+            return DoHeaders(
+                text,
+                s1 => DoHorizontalRules(
+                    s1,
+                    s2 => DoLists(
+                        s2,
+                        sn => FormParagraphs(sn))));
 
             // text = DoCodeBlocks(text);
             // text = DoBlockQuotes(text);
@@ -185,11 +202,15 @@ namespace Microsoft.Templates.UI.Controls
                 throw new ArgumentNullException("text");
             }
 
-            return DoCodeSpans(text,
-                s0 => DoImages(s0,
-                s1 => DoAnchors(s1,
-                s2 => DoItalicsAndBold(s2,
-                s3 => DoText(s3)))));
+            return DoCodeSpans(
+                text,
+                s0 => DoImages(
+                    s0,
+                    s1 => DoAnchors(
+                        s1,
+                        s2 => DoItalicsAndBold(
+                            s2,
+                            s3 => DoText(s3)))));
 
             // text = EscapeSpecialCharsWithinTagAttributes(text);
             // text = EscapeBackslashes(text);
@@ -224,7 +245,7 @@ namespace Microsoft.Templates.UI.Controls
             }
 
             // split on two or more newlines
-            string[] grafs = _newlinesMultiple.Split(_newlinesLeadingTrailing.Replace(text, ""));
+            string[] grafs = _newlinesMultiple.Split(_newlinesLeadingTrailing.Replace(text, string.Empty));
 
             foreach (var g in grafs)
             {
@@ -243,8 +264,10 @@ namespace Microsoft.Templates.UI.Controls
             // in other words [this] and [this[also]] and [this[also[too]]]
             // up to _nestDepth
             if (_nestedBracketsPattern == null)
+            {
                 _nestedBracketsPattern =
-                    RepeatString(@"
+                    RepeatString(
+                        @"
                     (?>              # Atomic matching
                        [^\[\]]+      # Anything other than brackets
                      |
@@ -253,6 +276,8 @@ namespace Microsoft.Templates.UI.Controls
                     @" \]
                     )*",
                     _nestDepth);
+            }
+
             return _nestedBracketsPattern;
         }
 
@@ -267,8 +292,10 @@ namespace Microsoft.Templates.UI.Controls
             // in other words (this) and (this(also)) and (this(also(too)))
             // up to _nestDepth
             if (_nestedParensPattern == null)
+            {
                 _nestedParensPattern =
-                    RepeatString(@"
+                    RepeatString(
+                        @"
                     (?>              # Atomic matching
                        [^()\s]+      # Anything other than parens or whitespace
                      |
@@ -277,6 +304,8 @@ namespace Microsoft.Templates.UI.Controls
                     @" \)
                     )*",
                     _nestDepth);
+            }
+
             return _nestedParensPattern;
         }
 
@@ -291,8 +320,10 @@ namespace Microsoft.Templates.UI.Controls
             // in other words (this) and (this(also)) and (this(also(too)))
             // up to _nestDepth
             if (_nestedParensPatternWithWhiteSpace == null)
+            {
                 _nestedParensPatternWithWhiteSpace =
-                    RepeatString(@"
+                    RepeatString(
+                        @"
                     (?>              # Atomic matching
                        [^()]+      # Anything other than parens
                      |
@@ -301,10 +332,14 @@ namespace Microsoft.Templates.UI.Controls
                     @" \)
                     )*",
                     _nestDepth);
+            }
+
             return _nestedParensPatternWithWhiteSpace;
         }
 
-        private static Regex _imageInline = new Regex(string.Format(@"
+        private static Regex _imageInline = new Regex(
+            string.Format(
+            @"
                 (                           # wrap whole match in $1
                     !\[
                         ({0})               # link text = $2
@@ -320,10 +355,14 @@ namespace Microsoft.Templates.UI.Controls
                         #[ ]*                # ignore any spaces between closing quote and )
                         )?                  # title is optional
                     \)
-                )", GetNestedBracketsPattern(), GetNestedParensPatternWithWhiteSpace()),
-                  RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+                )",
+                    GetNestedBracketsPattern(),
+                    GetNestedParensPatternWithWhiteSpace()),
+                    RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
-        private static Regex _anchorInline = new Regex(string.Format(@"
+        private static Regex _anchorInline = new Regex(
+            string.Format(
+                @"
                 (                           # wrap whole match in $1
                     \[
                         ({0})               # link text = $2
@@ -339,8 +378,10 @@ namespace Microsoft.Templates.UI.Controls
                         [ ]*                # ignore any spaces between closing quote and )
                         )?                  # title is optional
                     \)
-                )", GetNestedBracketsPattern(), GetNestedParensPattern()),
-                  RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+                )",
+                GetNestedBracketsPattern(),
+                GetNestedParensPattern()),
+                RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
         /// <summary>
         /// Turn Markdown images into images
@@ -457,7 +498,8 @@ namespace Microsoft.Templates.UI.Controls
             return result;
         }
 
-        private static Regex _headerSetext = new Regex(@"
+        private static Regex _headerSetext = new Regex(
+            @"
                 ^(.+?)
                 [ ]*
                 \n
@@ -466,7 +508,8 @@ namespace Microsoft.Templates.UI.Controls
                 \n+",
     RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
-        private static Regex _headerAtx = new Regex(@"
+        private static Regex _headerAtx = new Regex(
+            @"
                 ^(\#{1,6})  # $1 = string of #'s
                 [ ]*
                 (.+?)       # $2 = Header text
@@ -498,7 +541,10 @@ namespace Microsoft.Templates.UI.Controls
                 throw new ArgumentNullException("text");
             }
 
-            return Evaluate<Block>(text, _headerSetext, m => SetextHeaderEvaluator(m),
+            return Evaluate<Block>(
+                text,
+                _headerSetext,
+                m => SetextHeaderEvaluator(m),
                 s => Evaluate<Block>(s, _headerAtx, m => AtxHeaderEvaluator(m), defaultHandler));
         }
 
@@ -544,6 +590,7 @@ namespace Microsoft.Templates.UI.Controls
                     {
                         block.Style = Heading1Style;
                     }
+
                     break;
 
                 case 2:
@@ -551,6 +598,7 @@ namespace Microsoft.Templates.UI.Controls
                     {
                         block.Style = Heading2Style;
                     }
+
                     break;
 
                 case 3:
@@ -558,6 +606,7 @@ namespace Microsoft.Templates.UI.Controls
                     {
                         block.Style = Heading3Style;
                     }
+
                     break;
 
                 case 4:
@@ -565,13 +614,15 @@ namespace Microsoft.Templates.UI.Controls
                     {
                         block.Style = Heading4Style;
                     }
+
                     break;
             }
 
             return block;
         }
 
-        private static Regex _horizontalRules = new Regex(@"
+        private static Regex _horizontalRules = new Regex(
+            @"
             ^[ ]{0,3}         # Leading space
                 ([-*_])       # $1: First marker
                 (?>           # Repeated marker group
@@ -623,7 +674,8 @@ namespace Microsoft.Templates.UI.Controls
             return container;
         }
 
-        private static string _wholeList = string.Format(@"
+        private static string _wholeList = string.Format(
+            @"
             (                               # $1 = whole list
               (                             # $2
                 [ ]{{0,{1}}}
@@ -641,12 +693,16 @@ namespace Microsoft.Templates.UI.Controls
                     {0}[ ]+
                   )
               )
-            )", string.Format("(?:{0}|{1})", _markerUL, _markerOL), _tabWidth - 1);
+            )",
+            string.Format("(?:{0}|{1})", _markerUL, _markerOL),
+            _tabWidth - 1);
 
-        private static Regex _listNested = new Regex(@"^" + _wholeList,
+        private static Regex _listNested = new Regex(
+            @"^" + _wholeList,
             RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
-        private static Regex _listTopLevel = new Regex(@"(?:(?<=\n\n)|\A\n?)" + _wholeList,
+        private static Regex _listTopLevel = new Regex(
+            @"(?:(?<=\n\n)|\A\n?)" + _wholeList,
             RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
         /// <summary>
@@ -661,10 +717,8 @@ namespace Microsoft.Templates.UI.Controls
 
             // We use a different prefix before nested lists than top-level lists.
             // See extended comment in _ProcessListItems().
-            if (_listLevel > 0)
-                return Evaluate(text, _listNested, ListEvaluator, defaultHandler);
-            else
-                return Evaluate(text, _listTopLevel, ListEvaluator, defaultHandler);
+            var list = _listLevel > 0 ? _listNested : _listTopLevel;
+            return Evaluate(text, list, ListEvaluator, defaultHandler);
         }
 
         private Block ListEvaluator(Match match)
@@ -694,26 +748,26 @@ namespace Microsoft.Templates.UI.Controls
         /// </summary>
         private IEnumerable<ListItem> ProcessListItems(string list, string marker)
         {
-            // The listLevel global keeps track of when we're inside a list.
-            // Each time we enter a list, we increment it; when we leave a list,
-            // we decrement. If it's zero, we're not in a list anymore.
+            //// The listLevel global keeps track of when we're inside a list.
+            //// Each time we enter a list, we increment it; when we leave a list,
+            //// we decrement. If it's zero, we're not in a list anymore.
 
-            // We do this because when we're not inside a list, we want to treat
-            // something like this:
+            //// We do this because when we're not inside a list, we want to treat
+            //// something like this:
 
-            // I recommend upgrading to version
-            // 8. Oops, now this line is treated
-            // as a sub-list.
+            //// I recommend upgrading to version
+            //// 8. Oops, now this line is treated
+            //// as a sub-list.
 
-            // As a single paragraph, despite the fact that the second line starts
-            // with a digit-period-space sequence.
+            //// As a single paragraph, despite the fact that the second line starts
+            //// with a digit-period-space sequence.
 
-            // Whereas when we're inside a list (or sub-list), that line will be
-            // treated as the start of a sub-list. What a kludge, huh? This is
-            // an aspect of Markdown's syntax that's hard to parse perfectly
-            // without resorting to mind-reading. Perhaps the solution is to
-            // change the syntax rules such that sub-lists must start with a
-            // starting cardinal number; e.g. "1." or "a.".
+            //// Whereas when we're inside a list (or sub-list), that line will be
+            //// treated as the start of a sub-list. What a kludge, huh? This is
+            //// an aspect of Markdown's syntax that's hard to parse perfectly
+            //// without resorting to mind-reading. Perhaps the solution is to
+            //// change the syntax rules such that sub-lists must start with a
+            //// starting cardinal number; e.g. "1." or "a.".
 
             _listLevel++;
             try
@@ -764,7 +818,8 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private static Regex _codeSpan = new Regex(@"
+        private static Regex _codeSpan = new Regex(
+            @"
                     (?<!\\)   # Character before opening ` can't be a backslash
                     (`+)      # $1 = Opening run of `
                     (.+?)     # $2 = The code block
@@ -815,8 +870,8 @@ namespace Microsoft.Templates.UI.Controls
             }
 
             string span = match.Groups[2].Value;
-            span = Regex.Replace(span, @"^[ ]*", ""); // leading whitespace
-            span = Regex.Replace(span, @"[ ]*$", ""); // trailing whitespace
+            span = Regex.Replace(span, @"^[ ]*", string.Empty); // leading whitespace
+            span = Regex.Replace(span, @"[ ]*$", string.Empty); // trailing whitespace
 
             var result = new Run(span);
             if (CodeStyle != null)
@@ -827,14 +882,20 @@ namespace Microsoft.Templates.UI.Controls
             return result;
         }
 
-        private static Regex _bold = new Regex(@"(\*\*|__) (?=\S) (.+?[*_]*) (?<=\S) \1",
-            RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
-        private static Regex _strictBold = new Regex(@"([\W_]|^) (\*\*|__) (?=\S) ([^\r]*?\S[\*_]*) \2 ([\W_]|$)",
+        private static Regex _bold = new Regex(
+            @"(\*\*|__) (?=\S) (.+?[*_]*) (?<=\S) \1",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
-        private static Regex _italic = new Regex(@"(\*|_) (?=\S) (.+?) (?<=\S) \1",
+        private static Regex _strictBold = new Regex(
+            @"([\W_]|^) (\*\*|__) (?=\S) ([^\r]*?\S[\*_]*) \2 ([\W_]|$)",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
-        private static Regex _strictItalic = new Regex(@"([\W_]|^) (\*|_) (?=\S) ([^\r\*_]*?\S) \2 ([\W_]|$)",
+
+        private static Regex _italic = new Regex(
+            @"(\*|_) (?=\S) (.+?) (?<=\S) \1",
+            RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        private static Regex _strictItalic = new Regex(
+            @"([\W_]|^) (\*|_) (?=\S) ([^\r\*_]*?\S) \2 ([\W_]|$)",
             RegexOptions.IgnorePatternWhitespace | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
@@ -850,15 +911,19 @@ namespace Microsoft.Templates.UI.Controls
             // <strong> must go first, then <em>
             if (StrictBoldItalic)
             {
-                return Evaluate<Inline>(text, _strictBold, m => BoldEvaluator(m, 3),
-                    s1 => Evaluate<Inline>(s1, _strictItalic, m => ItalicEvaluator(m, 3),
-                    s2 => defaultHandler(s2)));
+                return Evaluate<Inline>(
+                    text,
+                    _strictBold,
+                    m => BoldEvaluator(m, 3),
+                    s1 => Evaluate<Inline>(s1, _strictItalic, m => ItalicEvaluator(m, 3), s2 => defaultHandler(s2)));
             }
             else
             {
-                return Evaluate<Inline>(text, _bold, m => BoldEvaluator(m, 2),
-                   s1 => Evaluate<Inline>(s1, _italic, m => ItalicEvaluator(m, 2),
-                   s2 => defaultHandler(s2)));
+                return Evaluate<Inline>(
+                    text,
+                    _bold,
+                    m => BoldEvaluator(m, 2),
+                   s1 => Evaluate<Inline>(s1, _italic, m => ItalicEvaluator(m, 2), s2 => defaultHandler(s2)));
             }
         }
 
@@ -891,7 +956,7 @@ namespace Microsoft.Templates.UI.Controls
         /// </summary>
         private string Outdent(string block)
         {
-            return _outDent.Replace(block, "");
+            return _outDent.Replace(block, string.Empty);
         }
 
         /// <summary>
@@ -917,7 +982,10 @@ namespace Microsoft.Templates.UI.Controls
                 {
                     case '\n':
                         if (valid)
+                        {
                             output.Append(line);
+                        }
+
                         output.Append('\n');
                         line.Length = 0;
                         valid = false;
@@ -926,29 +994,42 @@ namespace Microsoft.Templates.UI.Controls
                         if ((i < text.Length - 1) && (text[i + 1] != '\n'))
                         {
                             if (valid)
+                            {
                                 output.Append(line);
+                            }
+
                             output.Append('\n');
                             line.Length = 0;
                             valid = false;
                         }
+
                         break;
                     case '\t':
-                        int width = (_tabWidth - line.Length % _tabWidth);
+                        int width = _tabWidth - (line.Length % _tabWidth);
                         for (int k = 0; k < width; k++)
+                        {
                             line.Append(' ');
+                        }
+
                         break;
                     case '\x1A':
                         break;
                     default:
                         if (!valid && text[i] != ' ')
+                        {
                             valid = true;
+                        }
+
                         line.Append(text[i]);
                         break;
                 }
             }
 
             if (valid)
+            {
                 output.Append(line);
+            }
+
             output.Append('\n');
 
             // add two newlines to the end before return
@@ -967,7 +1048,10 @@ namespace Microsoft.Templates.UI.Controls
 
             var sb = new StringBuilder(text.Length * count);
             for (int i = 0; i < count; i++)
+            {
                 sb.Append(text);
+            }
+
             return sb.ToString();
         }
 

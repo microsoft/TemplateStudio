@@ -20,7 +20,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + @")\.";
 
-        public SearchAndReplacePostAction(string config) : base(config)
+        public SearchAndReplacePostAction(string config)
+            : base(config)
         {
         }
 
@@ -30,11 +31,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             if (string.IsNullOrEmpty(originalFilePath))
             {
-                throw new FileNotFoundException($"There is no merge target for file '{_config}'");
+                throw new FileNotFoundException($"There is no merge target for file '{Config}'");
             }
 
             var source = File.ReadAllLines(originalFilePath).ToList();
-            var instructions = File.ReadAllLines(_config).ToList();
+            var instructions = File.ReadAllLines(Config).ToList();
 
             var search = new List<string>();
             var replace = new List<string>();
@@ -64,10 +65,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             result = result.Replace(string.Join(Environment.NewLine, search), string.Join(Environment.NewLine, replace));
 
             File.WriteAllLines(originalFilePath, result.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
-            File.Delete(_config);
+            File.Delete(Config);
 
             // REFRESH PROJECT TO UN-DIRTY IT
-            if (Path.GetExtension(_config).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
+            if (Path.GetExtension(Config).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
             {
                 Gen.GenContext.ToolBox.Shell.RefreshProject();
             }
@@ -75,18 +76,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(_config).StartsWith(Extension))
+            if (Path.GetFileName(Config).StartsWith(Extension))
             {
-                var extension = Path.GetExtension(_config);
-                var directory = Path.GetDirectoryName(_config);
+                var extension = Path.GetExtension(Config);
+                var directory = Path.GetDirectoryName(Config);
 
                 return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(Suffix));
             }
             else
             {
-                var path = Regex.Replace(_config, PostactionRegex, ".");
+                var path = Regex.Replace(Config, PostactionRegex, ".");
 
-                return (File.Exists(path) ? path : string.Empty);
+                return File.Exists(path) ? path : string.Empty;
             }
         }
     }

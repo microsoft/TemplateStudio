@@ -20,7 +20,7 @@ Namespace Views
         Private Const PanoramicStateMinWindowWidth As Double = 1024
 
         Private _isPaneOpen As Boolean
-        Public Property IsPaneOpen() As Boolean
+        Public Property IsPaneOpen As Boolean
             Get
                 Return _isPaneOpen
             End Get
@@ -30,7 +30,7 @@ Namespace Views
         End Property
 
         Private _displayMode As SplitViewDisplayMode = SplitViewDisplayMode.CompactInline
-        Public Property DisplayMode() As SplitViewDisplayMode
+        Public Property DisplayMode As SplitViewDisplayMode
             Get
                 Return _displayMode
             End Get
@@ -42,23 +42,17 @@ Namespace Views
         Private _lastSelectedItem As Object
 
         Private _primaryItems As New ObservableCollection(Of ShellNavigationItem)()
-        Public Property PrimaryItems() As ObservableCollection(Of ShellNavigationItem)
+        Public ReadOnly Property PrimaryItems() As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _primaryItems
             End Get
-            Set
-                [Set](_primaryItems, value)
-            End Set
         End Property
 
         Private _secondaryItems As New ObservableCollection(Of ShellNavigationItem)()
-        Public Property SecondaryItems() As ObservableCollection(Of ShellNavigationItem)
+        Public ReadOnly Property SecondaryItems() As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _secondaryItems
             End Get
-            Set
-                [Set](_secondaryItems, value)
-            End Set
         End Property
 
         Public Sub New()
@@ -69,7 +63,7 @@ Namespace Views
 
         Private Sub Initialize()
             NavigationService.Frame = shellFrame
-            AddHandler NavigationService.Frame.Navigated, AddressOf NavigationService_Navigated
+            AddHandler NavigationService.Frame.Navigated, AddressOf Frame_Navigated
             PopulateNavItems()
 
             InitializeState(Window.Current.Bounds.Width)
@@ -89,18 +83,20 @@ Namespace Views
             _primaryItems.Clear()
             _secondaryItems.Clear()
 
+            ' TODO WTS: Change the symbols for each item as appropriate for your app
             ' More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
+            ' Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             ' Edit String/en-US/Resources.resw: Add a menu item title for each page
         End Sub
 
-        Private Sub NavigationService_Navigated(sender As Object, e As NavigationEventArgs)
+        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             Dim navigationItem = Nothing
             
             If PrimaryItems IsNot Nothing
                 navigationitem = PrimaryItems.FirstOrDefault(Function(i as ShellNavigationItem) i.PageType.Equals(e.SourcePageType))
             End If
             
-            If navigationItem Is Nothing And SecondaryItems IsNot Nothing Then
+            If navigationItem Is Nothing AndAlso SecondaryItems IsNot Nothing Then
                 navigationItem = SecondaryItems.FirstOrDefault(Function(i as ShellNavigationItem) i.PageType.Equals(e.SourcePageType))
             End If
 

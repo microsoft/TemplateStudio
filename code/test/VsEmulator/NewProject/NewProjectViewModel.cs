@@ -25,10 +25,13 @@ namespace Microsoft.Templates.VsEmulator.NewProject
         }
 
         public RelayCommand CloseCommand => new RelayCommand(_host.Close);
+
         public RelayCommand OkCommand => new RelayCommand(SetSelection, CanSelect);
+
         public RelayCommand BrowseCommand => new RelayCommand(ShowFileDialog);
 
         private string _name;
+
         public string Name
         {
             get => _name;
@@ -36,6 +39,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
         }
 
         private string _location;
+
         public string Location
         {
             get => _location;
@@ -43,6 +47,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
         }
 
         private string _solutionName;
+
         public string SolutionName
         {
             get => _solutionName;
@@ -50,6 +55,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
         }
 
         private bool _createDirectory;
+
         public bool CreateDirectory
         {
             get => _createDirectory;
@@ -83,7 +89,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
         {
             var validator = new List<Validator>()
             {
-                new DirectoryExistsValidator(path)
+                new SuggestedDirectoryNameValidator(path)
             };
 
             return Naming.Infer(DefaultName, validator);

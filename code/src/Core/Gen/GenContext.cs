@@ -10,18 +10,22 @@ using System.Linq;
 using System.Reflection;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Gen
 {
     public class GenContext
     {
         private static IContextProvider _currentContext;
+
         private static string _tempGenerationFolder = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
 
         public static GenToolBox ToolBox { get; private set; }
+
         public static string InitializedLanguage { get; private set; }
+
+        public static bool ContextInitialized => _currentContext != null;
 
         public static IContextProvider Current
         {
@@ -53,7 +57,7 @@ namespace Microsoft.Templates.Core.Gen
                 AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
                 AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
-                string hostVersion = $"{wizardVersion.Major}.{wizardVersion.Minor}";
+                string hostVersion = $"{shell.GetVsVersionAndInstance()}-{wizardVersion.Major}.{wizardVersion.Minor}";
 
                 CodeGen.Initialize(source.Id, hostVersion);
                 var repository = new TemplatesRepository(source, wizardVersion, language);
@@ -76,12 +80,14 @@ namespace Microsoft.Templates.Core.Gen
 
         public static string GetTempGenerationPath(string projectName)
         {
-            Fs.EnsureFolder(_tempGenerationFolder);
+            string projectGuid = ToolBox.Shell.GetVsProjectId().ToString();
+            var projectTempFolder = Path.Combine(_tempGenerationFolder, projectGuid);
 
+            Fs.EnsureFolder(projectTempFolder);
             var tempGenerationName = $"{projectName}_{DateTime.Now.FormatAsShortDateTime()}";
-            var inferredName = Naming.Infer(tempGenerationName, new List<Validator>() { new DirectoryExistsValidator(_tempGenerationFolder) }, "_");
+            var inferredName = Naming.Infer(tempGenerationName, new List<Validator> { new SuggestedDirectoryNameValidator(projectTempFolder) }, "_");
 
-            return Path.Combine(_tempGenerationFolder, inferredName);
+            return Path.Combine(projectTempFolder, inferredName);
         }
 
         private static void PurgeTempGenerations(int daysToKeep)
@@ -89,18 +95,18 @@ namespace Microsoft.Templates.Core.Gen
             if (Directory.Exists(_tempGenerationFolder))
             {
                 var di = new DirectoryInfo(_tempGenerationFolder);
-                var toBeDeleted = di.GetDirectories().Where(d => d.CreationTimeUtc.AddDays(daysToKeep) < DateTime.UtcNow);
+
+                var toBeDeleted = di.GetDirectories()
+                    .Where(d => Guid.TryParse(d.Name, out Guid guidID))
+                    .SelectMany(d => d.GetDirectories())
+                    .Where(d => d.CreationTimeUtc.AddDays(daysToKeep) < DateTime.UtcNow);
 
                 foreach (var d in toBeDeleted)
                 {
-                    try
+                    Fs.SafeDeleteDirectory(d.FullName);
+                    if (!d.Parent.GetDirectories().Any())
                     {
-                        d.Delete(true);
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine($"Error removing old temp generation directory '{d.FullName}'. Skipped. Exception:\n\r{ex.ToString()}");
-                        Trace.TraceError($"Error removing old temp generation directory '{d.FullName}'. Skipped. Exception:\n\r{ex.ToString()}");
+                        Fs.SafeDeleteDirectory(d.Parent.FullName);
                     }
                 }
             }

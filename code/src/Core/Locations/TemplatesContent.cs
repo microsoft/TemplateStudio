@@ -14,9 +14,11 @@ namespace Microsoft.Templates.Core.Locations
     public class TemplatesContent
     {
         private const string TemplatesFolderName = "Templates";
+
         private string _defaultContentFolder;
 
         public string TemplatesFolder { get; private set; }
+
         public Version WizardVersion { get; private set; }
 
         public string LatestContentFolder => GetLatestContentFolder(true);
@@ -107,6 +109,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 AppHealth.Current.Verbose.TrackAsync($"{StringRes.CurrentContentExpirationString}: {expiration.ToString()}").FireAndForget();
             }
+
             return expired;
         }
 
@@ -122,7 +125,7 @@ namespace Microsoft.Templates.Core.Locations
 
                     if (!v.IsZero() && v < GetVersionFromFolder(currentContent))
                     {
-                        Fs.SafeDeleteDirectory(sdi.FullName);
+                        Fs.SafeDeleteDirectory(sdi.FullName, false);
                     }
                 }
             }
@@ -196,7 +199,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             else
             {
-                return (v.Major > WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor > WizardVersion.Minor)));
+                return v.Major > WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor > WizardVersion.Minor));
             }
         }
 
@@ -208,7 +211,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             else
             {
-                return (v.Major < WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor < WizardVersion.Minor)));
+                return v.Major < WizardVersion.Major || (v.Major == WizardVersion.Major && (v.Minor < WizardVersion.Minor));
             }
         }
 

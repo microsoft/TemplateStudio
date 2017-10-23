@@ -9,10 +9,11 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.Composition
 {
+    [Trait("ExecutionSet", "Minimum")]
     public class CompositionQueryTest
     {
         [Fact]
-        public void ParseIvalidQueries()
+        public void ParseInvalidQueries()
         {
             var query1 = "wts.framework = framework & wts.type != Page&$name == Map";
 
@@ -49,7 +50,8 @@ namespace Microsoft.Templates.Core.Test.Composition
             var query = "wts.framework == framework & wts.type != Page&$name == Map";
             var result = CompositionQuery.Parse(query);
 
-            Assert.Collection(result.Items,
+            Assert.Collection(
+                result.Items,
                 r1 =>
                 {
                     Assert.Equal(r1.Field, "wts.framework");
@@ -85,7 +87,8 @@ namespace Microsoft.Templates.Core.Test.Composition
 
             var result = CompositionQuery.Parse(query);
 
-            Assert.Collection(result.Items,
+            Assert.Collection(
+                result.Items,
                 r1 =>
                 {
                     Assert.Equal(r1.Field, "wts.framework");

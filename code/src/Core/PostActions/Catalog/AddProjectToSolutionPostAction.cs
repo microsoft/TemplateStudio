@@ -3,22 +3,26 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config) : base(config)
+        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config)
+            : base(config)
         {
         }
 
         public override void Execute()
         {
-            foreach (var output in _config)
+            var chrono = Stopwatch.StartNew();
+            foreach (var output in Config)
             {
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
@@ -26,6 +30,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     GenContext.ToolBox.Shell.AddProjectToSolution(projectPath);
                 }
             }
+
+            chrono.Stop();
+            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
         }
     }
 }

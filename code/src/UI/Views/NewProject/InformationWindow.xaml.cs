@@ -3,14 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
-using Microsoft.Templates.UI.ViewModels.Common;
+
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
-    /// <summary>
-    /// Interaction logic for InformationWindow.xaml
-    /// </summary>
     public partial class InformationWindow : Window
     {
         public InformationViewModel ViewModel { get; private set; }
@@ -42,11 +40,6 @@ namespace Microsoft.Templates.UI.Views.NewProject
             Loaded += (sender, e) =>
             {
                 IntilizeViewModel(info);
-            };
-
-            Unloaded += (sender, e) =>
-            {
-                ViewModel.UnsuscribeEventHandlers();
             };
 
             InitializeComponent();
@@ -84,6 +77,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
             {
                 Width = mainWindow.Width * 0.6;
             }
+
             if (mainWindow.Height < 700)
             {
                 Height = mainWindow.Height * 0.8;

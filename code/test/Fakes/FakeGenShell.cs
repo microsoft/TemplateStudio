@@ -28,6 +28,7 @@ namespace Microsoft.Templates.Fakes
                 {
                     return Path.Combine(Path.GetDirectoryName(GenContext.Current.ProjectPath), $"{GenContext.Current.ProjectName}.sln");
                 }
+
                 return null;
             }
         }
@@ -78,6 +79,10 @@ namespace Microsoft.Templates.Fakes
         public override string GetActiveProjectNamespace()
         {
             return GenContext.Current.ProjectName;
+        }
+
+        public override void CleanSolution()
+        {
         }
 
         public override void SaveSolution()
@@ -165,11 +170,17 @@ namespace Microsoft.Templates.Fakes
 
         public override Guid GetVsProjectId()
         {
-            return Guid.Empty;
+            Guid.TryParse(GetActiveProjectGuid(), out Guid guid);
+            return guid;
         }
 
         public override void OpenItems(params string[] itemsFullPath)
         {
+        }
+
+        public override bool IsDebuggerEnabled()
+        {
+            return false;
         }
     }
 }

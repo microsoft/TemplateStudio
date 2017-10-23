@@ -17,10 +17,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class InformationViewModel : Observable
     {
-        public static InformationViewModel Current;
+        private static InformationViewModel _current;
+
         private Views.NewProject.InformationWindow _infoWindow;
 
         private Visibility _informationVisibility = Visibility.Collapsed;
+
         public Visibility InformationVisibility
         {
             get => _informationVisibility;
@@ -28,6 +30,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _name;
+
         public string Name
         {
             get => _name;
@@ -35,6 +38,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _informationType;
+
         public string InformationType
         {
             get => _informationType;
@@ -42,6 +46,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _version;
+
         public string Version
         {
             get => _version;
@@ -49,6 +54,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _author;
+
         public string Author
         {
             get => _author;
@@ -56,6 +62,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _informationMD;
+
         public string InformationMD
         {
             get => _informationMD;
@@ -63,6 +70,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _helpText;
+
         public string HelpText
         {
             get => _helpText;
@@ -72,6 +80,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public ObservableCollection<SummaryLicenseViewModel> LicenseTerms { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
         private Visibility _licensesVisibility = Visibility.Collapsed;
+
         public Visibility LicensesVisibility
         {
             get => _licensesVisibility;
@@ -79,6 +88,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private Visibility _dependenciesVisibility = Visibility.Collapsed;
+
         public Visibility DependenciesVisibility
         {
             get => _dependenciesVisibility;
@@ -86,9 +96,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private ICommand _okCommand;
+
         public ICommand OkCommand => _okCommand ?? (_okCommand = new RelayCommand(OnOk));
 
         private IEnumerable<DependencyInfoViewModel> _dependencyItems;
+
         public IEnumerable<DependencyInfoViewModel> DependencyItems
         {
             get => _dependencyItems;
@@ -98,7 +110,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public InformationViewModel(Views.NewProject.InformationWindow infoWindow)
         {
             _infoWindow = infoWindow;
-            Current = this;
+            _current = this;
         }
 
         public InformationViewModel(NewItem.TemplateInfoViewModel template)
@@ -146,6 +158,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     stringBuilder.AppendLine($"{license.Text} {license.Url}");
                 }
             }
+
             if (DependencyItems != null && DependencyItems.Any())
             {
                 stringBuilder.AppendLine($"{StringRes.InfoModalDependencies}");
@@ -154,6 +167,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     stringBuilder.AppendLine($"{dependency.Name}");
                 }
             }
+
             stringBuilder.AppendLine($"{InformationMD}");
             HelpText = stringBuilder.ToString();
         }
@@ -178,6 +192,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
+
             ComposeHelpText();
         }
 
@@ -201,6 +216,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
+
             ComposeHelpText();
         }
 
@@ -220,11 +236,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 LicensesVisibility = Visibility.Collapsed;
             }
-            ComposeHelpText();
-        }
 
-        public void UnsuscribeEventHandlers()
-        {
+            ComposeHelpText();
         }
 
         private void OnOk()

@@ -12,7 +12,9 @@ namespace Microsoft.Templates.Core.Gen
     public class GenInfo
     {
         public string Name { get; set; }
+
         public ITemplateInfo Template { get; set; }
+
         public Dictionary<string, string> Parameters { get; } = new Dictionary<string, string>();
 
         public string GetUserName()
@@ -21,6 +23,7 @@ namespace Microsoft.Templates.Core.Gen
             {
                 return Parameters[GenParams.Username];
             }
+
             return string.Empty;
         }
 

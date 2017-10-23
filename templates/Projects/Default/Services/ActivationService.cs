@@ -39,14 +39,14 @@ namespace wts.DefaultProject.Services
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
                     Window.Current.Content = _shell;
-                    NavigationService.Frame.NavigationFailed += (sender, e) =>
+                    NavigationService.NavigationFailed += (sender, e) =>
                     {
-                        throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+                        throw e.Exception;
                     };
-                    NavigationService.Frame.Navigated += OnFrameNavigated;
+                    NavigationService.Navigated += Frame_Navigated;
                     if (SystemNavigationManager.GetForCurrentView() != null)
                     {
-                        SystemNavigationManager.GetForCurrentView().BackRequested += OnAppViewBackButtonRequested;
+                        SystemNavigationManager.GetForCurrentView().BackRequested += ActivationService_BackRequested;
                     }
                 }
             }
@@ -95,13 +95,13 @@ namespace wts.DefaultProject.Services
             return args is IActivatedEventArgs;
         }
 
-        private void OnFrameNavigated(object sender, NavigationEventArgs e)
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ?
                 AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
 
-        private void OnAppViewBackButtonRequested(object sender, BackRequestedEventArgs e)
+        private void ActivationService_BackRequested(object sender, BackRequestedEventArgs e)
         {
             if (NavigationService.CanGoBack)
             {

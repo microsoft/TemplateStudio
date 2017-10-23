@@ -13,12 +13,14 @@ using System.Windows;
 using System.Windows.Threading;
 
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
@@ -40,10 +42,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         public string ProjectName { get; private set; }
+
         public string OutputPath { get; private set; }
+
         public string ProjectPath { get; private set; }
 
         private bool _forceLocalTemplatesRefresh = true;
+
         public bool ForceLocalTemplatesRefresh
         {
             get => _forceLocalTemplatesRefresh;
@@ -58,19 +63,30 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> FilesToOpen { get; } = new List<string>();
 
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
+
         public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
+
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
+
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
+
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
+
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
+
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
+
         public RelayCommand OpenTempInExplorerCommand => new RelayCommand(OpenTempInExplorer);
+
         public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
+
         public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
         public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
 
         private string _state;
+
         public string State
         {
             get => _state;
@@ -78,6 +94,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _log;
+
         public string Log
         {
             get => _log;
@@ -85,6 +102,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private Visibility _isProjectLoaded;
+
         public Visibility IsProjectLoaded
         {
             get => _isProjectLoaded;
@@ -92,6 +110,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private Visibility _isWtsProject;
+
         public Visibility IsWtsProject
         {
             get => _isWtsProject;
@@ -107,6 +126,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _wizardVersion;
+
         public string WizardVersion
         {
             get => _wizardVersion;
@@ -114,6 +134,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _templatesVersion;
+
         public string TemplatesVersion
         {
             get => _templatesVersion;
@@ -121,6 +142,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _solutionName;
+
         public string SolutionName
         {
             get => _solutionName;
@@ -148,12 +170,20 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void NewCSharpProject()
         {
-           Task.Run(async () => await NewProjectAsync(ProgrammingLanguages.CSharp));
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await NewProjectAsync(ProgrammingLanguages.CSharp);
+            });
         }
 
         private void NewVisualBasicProject()
         {
-            Task.Run(async () => await NewProjectAsync(ProgrammingLanguages.VisualBasic));
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await NewProjectAsync(ProgrammingLanguages.VisualBasic);
+            });
         }
 
         private async Task NewProjectAsync(string language)
@@ -171,7 +201,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     GenContext.Current = this;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection();
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
 
                     if (userSelection != null)
                     {
@@ -182,14 +212,13 @@ namespace Microsoft.Templates.VsEmulator.Main
                         ClearContext();
                         SolutionName = null;
 
-                        userSelection.Language = _language;
-
                         await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
 
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
                         SolutionName = newProjectInfo.name;
                         SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
+                        OnPropertyChanged(nameof(TempFolderAvailable));
                     }
                 }
             }
@@ -212,11 +241,12 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature();
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.InitializedLanguage);
 
                 if (userSelection != null)
                 {
                     NewItemGenController.Instance.FinishGeneration(userSelection);
+                    OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -246,11 +276,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage();
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.InitializedLanguage);
 
                 if (userSelection != null)
                 {
                     NewItemGenController.Instance.FinishGeneration(userSelection);
+                    OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
             }
@@ -287,6 +318,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProjectPath = Path.GetDirectoryName(projFile);
                 OutputPath = ProjectPath;
                 IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
+                OnPropertyChanged(nameof(TempFolderAvailable));
                 ClearContext();
             }
         }
@@ -343,7 +375,15 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private static string GetTempGenerationFolder()
         {
-            return Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+            if (GenContext.ToolBox == null || GenContext.ToolBox.Shell == null)
+            {
+                return string.Empty;
+            }
+
+            var path = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
+
+            Guid guid = GenContext.ToolBox.Shell.GetVsProjectId();
+            return Path.Combine(path, guid.ToString());
         }
 
         private static bool HasContent(string tempPath)
@@ -395,9 +435,9 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddLog(string message)
         {
             Log += message + Environment.NewLine;
-
-            _host.Dispatcher.Invoke(() =>
+            SafeThreading.JoinableTaskFactory.Run(async () =>
             {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 _host.logScroll.ScrollToEnd();
             });
         }
@@ -413,6 +453,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             CleanUpNotUsedContentVersions();
         }
 
+        [SuppressMessage(
+            "Usage",
+            "VSTHRD001:Use Await JoinableTaskFactory.SwitchToMainThreadAsync() to switch to the UI thread",
+            Justification = "Not applying this rule to this method as it was specifically desgned as is.")]
         public void DoEvents()
         {
             var frame = new DispatcherFrame(true);

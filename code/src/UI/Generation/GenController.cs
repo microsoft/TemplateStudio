@@ -4,8 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
-
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -18,12 +18,13 @@ namespace Microsoft.Templates.UI
 {
     public abstract class GenController
     {
-        internal PostActionFactory _postactionFactory;
+        public PostActionFactory PostactionFactory { get; internal set; }
 
         internal async Task<Dictionary<string, TemplateCreationResult>> GenerateItemsAsync(IEnumerable<GenInfo> genItems)
         {
             var genResults = new Dictionary<string, TemplateCreationResult>();
 
+            var chrono = Stopwatch.StartNew();
             foreach (var genInfo in genItems)
             {
                 if (genInfo.Template == null)
@@ -52,15 +53,29 @@ namespace Microsoft.Templates.UI
                 ExecutePostActions(genInfo, result);
             }
 
+            chrono.Stop();
+            CalculateGenerationTime(chrono.Elapsed.TotalSeconds);
+
             ExecuteGlobalPostActions();
 
             return genResults;
         }
 
+        private static void CalculateGenerationTime(double totalTime)
+        {
+            var generationTime = totalTime;
+            if (GenContext.Current.ProjectMetrics.ContainsKey(ProjectMetricsEnum.AddProjectToSolution))
+            {
+                generationTime = totalTime - GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution];
+            }
+
+            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.Generation] = generationTime;
+        }
+
         internal void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
             // Get post actions from template
-            var postActions = _postactionFactory.FindPostActions(genInfo, generationResult);
+            var postActions = PostactionFactory.FindPostActions(genInfo, generationResult);
 
             foreach (var postAction in postActions)
             {
@@ -70,7 +85,7 @@ namespace Microsoft.Templates.UI
 
         internal void ExecuteGlobalPostActions()
         {
-            var postActions = _postactionFactory.FindGlobalPostActions();
+            var postActions = PostactionFactory.FindGlobalPostActions();
 
             foreach (var postAction in postActions)
             {

@@ -12,6 +12,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
+    [Trait("ExecutionSet", "Minimum")]
     public class MergeTest
     {
         [Fact]
@@ -22,7 +23,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var expected = File.ReadAllText(@".\TestData\Merge\Source_expected.cs");
             var result = source.Merge(merge, out string errorLine);
 
-            Assert.Equal(expected, string.Join(Environment.NewLine, result.ToArray()));
+            // Remove all new line chars to avoid differentiation with the new line characters
+            expected = expected.Replace("\r\n", string.Empty).Replace("\n", string.Empty);
+
+            Assert.Equal(expected, string.Join(string.Empty, result.ToArray()));
             Assert.Equal(errorLine, string.Empty);
         }
     }

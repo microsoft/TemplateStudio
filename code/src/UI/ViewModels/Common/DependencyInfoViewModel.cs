@@ -11,6 +11,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public class DependencyInfoViewModel : Observable
     {
         private string _name;
+
         public string Name
         {
             get => _name;
@@ -18,9 +19,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private ICommand _showInfoCommand;
+
         public ICommand ShowInfoCommand => _showInfoCommand ?? (_showInfoCommand = new RelayCommand(OnItemClick));
 
         private NewProject.TemplateInfoViewModel _newProjectTemplateItem;
+
         private NewItem.TemplateInfoViewModel _newItemTemplateItem;
 
         public DependencyInfoViewModel(NewProject.TemplateInfoViewModel item)
@@ -44,10 +47,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
             else if (_newItemTemplateItem != null)
             {
-                NewItem.MainViewModel.Current.InfoShapeVisibility = System.Windows.Visibility.Visible;
+                NewItem.MainViewModel.Current.WizardStatus.InfoShapeVisibility = System.Windows.Visibility.Visible;
                 var infoView = new Views.NewProject.InformationWindow(_newItemTemplateItem, NewItem.MainViewModel.Current.MainView);
                 infoView.ShowDialog();
-                NewItem.MainViewModel.Current.InfoShapeVisibility = System.Windows.Visibility.Collapsed;
+                NewItem.MainViewModel.Current.WizardStatus.InfoShapeVisibility = System.Windows.Visibility.Collapsed;
             }
         }
     }

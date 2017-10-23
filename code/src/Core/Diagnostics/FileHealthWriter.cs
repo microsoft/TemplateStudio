@@ -18,11 +18,13 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class FileHealthWriter : IHealthWriter
     {
         private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
+
         private string _workingFolder;
 
         public string LogFileName { get; private set; }
 
         private static FileHealthWriter _current;
+
         public static FileHealthWriter Current
         {
             get
@@ -35,6 +37,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 return _current;
             }
         }
+
         private FileHealthWriter()
         {
             _workingFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), Configuration.Current.LogFileFolderPath);
@@ -57,6 +60,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             await WriteAndFlushAsync(sb.ToString());
         }
+
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
             if (ex == null)
@@ -65,7 +69,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             }
 
             var sb = new StringBuilder();
-            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\t{StringRes.ExceptionTrackedString}. {(message ?? "")}");
+            sb.AppendLine($"{FormattedWriterMessages.LogEntryStart}\t{TraceEventType.Critical.ToString():11}\t{StringRes.ExceptionTrackedString}. {message ?? string.Empty}");
 
             if (ex != null)
             {

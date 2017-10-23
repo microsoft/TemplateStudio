@@ -19,12 +19,12 @@ namespace Microsoft.Templates.Core
 {
     public class CodeGen
     {
-        public const string BaseName = "BaseName";
-
         public static CodeGen Instance { get; private set; }
 
         public TemplateCreator Creator { get; }
+
         public EngineEnvironmentSettings Settings { get; }
+
         public TemplateCache Cache
         {
             get
@@ -46,18 +46,13 @@ namespace Microsoft.Templates.Core
             Instance.Init();
         }
 
-        ////public static void Initialize(string locationId)
-        ////{
-        ////    Initialize(locationId, GetHostVersion());
-        ////}
-
-        public string GetCurrentContentSource(string workingFolder)
+        public string GetCurrentContentSource(string workingFolder, string sourceId)
         {
             var result = string.Empty;
 
             foreach (var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {
-                if (Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place))
+                if (mp != null && Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place) && (mp.Place.IndexOf(sourceId, StringComparison.InvariantCultureIgnoreCase) != -1))
                 {
                     result = mp.Place;
                 }
@@ -97,16 +92,7 @@ namespace Microsoft.Templates.Core
 
         private static ITemplateEngineHost CreateHost(string locationId, string hostVersion)
         {
-            return new DefaultTemplateEngineHost($"{BaseName}_{locationId}", hostVersion, CultureInfo.CurrentUICulture.Name, new Dictionary<string, string>());
+            return new DefaultTemplateEngineHost($"{locationId}", hostVersion, CultureInfo.CurrentUICulture.Name, new Dictionary<string, string>());
         }
-
-        ////private static string GetHostVersion()
-        ////{
-        ////    string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-        ////    var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
-        ////    Version.TryParse(versionInfo.FileVersion, out Version v);
-
-        ////    return $"{v.Major}.{v.Minor}";
-        ////}
     }
 }

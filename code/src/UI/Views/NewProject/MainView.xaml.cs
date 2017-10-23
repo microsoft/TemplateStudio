@@ -5,24 +5,26 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
-    /// <summary>
-    /// Interaction logic for MainView.xaml
-    /// </summary>
     public partial class MainView : Window
     {
-        public static MainView Current;
+        public static MainView Current { get; private set; }
+
         public MainViewModel ViewModel { get; private set; }
+
         public UserSelection Result { get; set; }
 
-        public MainView()
+        public MainView(string language)
         {
             Current = this;
-            ViewModel = new MainViewModel(this);
+            ViewModel = new MainViewModel(language);
+            ViewModel.SetView(this);
             DataContext = ViewModel;
 
             Loaded += async (sender, e) =>
@@ -48,14 +50,14 @@ namespace Microsoft.Templates.UI.Views.NewProject
         private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             var element = e.Source as FrameworkElement;
-            ViewModel.TryHideOverlayBox(element);
+            ViewModel.WizardStatus.TryHideOverlayBox(element);
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
-                if (!ViewModel.ProjectTemplates.CloseTemplatesEdition() && !ViewModel.ClearCurrentDragginTemplate())
+                if (!ViewModel.ProjectTemplates.CloseAllEditions() && !OrderingService.ClearDraggin())
                 {
                     Close();
                 }

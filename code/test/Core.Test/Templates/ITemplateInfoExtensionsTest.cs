@@ -8,15 +8,14 @@ using System.IO;
 using System.Linq;
 
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Test.Locations;
-using Microsoft.Templates.Fakes;
 
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test
 {
     [Collection("Unit Test Templates")]
+    [Trait("ExecutionSet", "Minimum")]
+    [Trait("Type", "ProjectGeneration")]
     public class ITemplateInfoExtensionsTest
     {
         private readonly TemplatesFixture _fixture;
@@ -28,7 +27,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetTemplateType_project(string language)
         {
             SetUpFixtureForTesting(language);
@@ -52,7 +50,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetTemplateType_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -65,7 +62,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetIcon(string language)
         {
             SetUpFixtureForTesting(language);
@@ -86,7 +82,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetIcon_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -99,7 +94,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetRichDescription(string language)
         {
             SetUpFixtureForTesting(language);
@@ -112,7 +106,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetRichDescription_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -125,7 +118,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetFramework(string language)
         {
             SetUpFixtureForTesting(language);
@@ -133,16 +125,11 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetFrameworkList();
-            Assert.Collection(result,
-                e1 =>
-                {
-                    e1.Equals("fx1");
-                });
+            Assert.Collection(result, e1 => e1.Equals("fx1"));
         }
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetFramework_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -155,7 +142,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetVersion(string language)
         {
             SetUpFixtureForTesting(language);
@@ -168,7 +154,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetVersion_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -181,7 +166,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetGroup(string language)
         {
             SetUpFixtureForTesting(language);
@@ -194,7 +178,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetGroup_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -205,35 +188,55 @@ namespace Microsoft.Templates.Core.Test
             Assert.Null(result);
         }
 
-        [Theory]
-        [MemberData("GetAllLanguages")]
+        [Fact]
         [Trait("Type", "ProjectGeneration")]
-        public void GetOrder(string language)
+        public void GetDisplayOrder()
         {
-            SetUpFixtureForTesting(language);
+            SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
-            var target = GetTargetByName("ProjectTemplate");
+            var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
 
-            var result = target.GetOrder();
+            var result = target.GetDisplayOrder();
             Assert.Equal(1, result);
         }
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
-        public void GetOrder_unspecified(string language)
+        public void GetDisplayOrder_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
 
             var target = GetTargetByName("UnspecifiedTemplate");
 
-            var result = target.GetOrder();
+            var result = target.GetDisplayOrder();
+            Assert.Equal(int.MaxValue, result);
+        }
+
+        [Fact]
+        public void GetCompositionOrder()
+        {
+            SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
+
+            var target = GetTargetByName("CompositionTemplate");
+
+            var result = target.GetCompositionOrder();
+            Assert.Equal(1, result);
+        }
+
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void GetCompositionOrder_unspecified(string language)
+        {
+            SetUpFixtureForTesting(language);
+
+            var target = GetTargetByName("UnspecifiedTemplate");
+
+            var result = target.GetCompositionOrder();
             Assert.Equal(int.MaxValue, result);
         }
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetLicenses(string language)
         {
             SetUpFixtureForTesting(language);
@@ -243,7 +246,8 @@ namespace Microsoft.Templates.Core.Test
             var result = target.GetLicenses().ToList();
             Assert.NotNull(result);
 
-            Assert.Collection(result,
+            Assert.Collection(
+                result,
                 e1 =>
                 {
                     Assert.Equal("text1", e1.Text);
@@ -258,7 +262,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetLicenses_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -271,7 +274,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetLayout(string language)
         {
             SetUpFixtureForTesting(language);
@@ -279,24 +281,24 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetLayout().ToList();
-            Assert.Collection(result,
+            Assert.Collection(
+                result,
                 e1 =>
                 {
-                    Assert.Equal("Item1", e1.name);
-                    Assert.Equal("Microsoft.UWPTemplates.Test.ProjectTemplate", e1.templateGroupIdentity);
-                    Assert.Equal(true, e1.@readonly);
+                    Assert.Equal("Item1", e1.Name);
+                    Assert.Equal("Microsoft.UWPTemplates.Test.ProjectTemplate", e1.TemplateGroupIdentity);
+                    Assert.Equal(true, e1.Readonly);
                 },
                 e2 =>
                 {
-                    Assert.Equal("Item2", e2.name);
-                    Assert.Equal("Microsoft.UWPTemplates.Test.PageTemplate", e2.templateGroupIdentity);
-                    Assert.Equal(false, e2.@readonly);
+                    Assert.Equal("Item2", e2.Name);
+                    Assert.Equal("Microsoft.UWPTemplates.Test.PageTemplate", e2.TemplateGroupIdentity);
+                    Assert.Equal(false, e2.Readonly);
                 });
         }
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetLayout_NoLayout(string language)
         {
             SetUpFixtureForTesting(language);
@@ -309,7 +311,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetDefaultName(string language)
         {
             SetUpFixtureForTesting(language);
@@ -345,7 +346,6 @@ namespace Microsoft.Templates.Core.Test
 
         [Theory]
         [MemberData("GetAllLanguages")]
-        [Trait("Type", "ProjectGeneration")]
         public void GetDefaultName_unspecified(string language)
         {
             SetUpFixtureForTesting(language);
@@ -364,13 +364,13 @@ namespace Microsoft.Templates.Core.Test
             {
                 throw new ArgumentException($"There is no template with name '{templateName}'. Number of templates: '{allTemplates.Count()}'");
             }
+
             return target;
         }
 
         private void SetUpFixtureForTesting(string language)
         {
             _fixture.InitializeFixture(language);
-            GenContext.Bootstrap(new UnitTestsTemplatesSource(), new FakeGenShell(language), language);
         }
 
         public static IEnumerable<object[]> GetAllLanguages()
@@ -389,6 +389,7 @@ namespace Microsoft.Templates.Core.Test
             {
                 throw new ArgumentException($"There is no template with identity '{templateIdentity}'. Number of templates: '{allTemplates.Count()}'");
             }
+
             return target;
         }
     }

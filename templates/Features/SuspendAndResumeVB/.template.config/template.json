@@ -3,7 +3,7 @@
   "classifications": ["Universal"],
   "name": "Suspend and Resume",
   "groupIdentity": "wts.Feat.SuspendAndResume.VB",
-  "identity": "wts.Feat.SuspendAndResume",
+  "identity": "wts.Feat.SuspendAndResume.VB",
   "description": "A simple service you can hook into to handle when a user leaves and returns to the app.",
   "tags": {
     "language": "VisualBasic",
@@ -11,7 +11,7 @@
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.version": "1.0.0",
-    "wts.order": "2",
+    "wts.displayOrder": "2",
     "wts.group": "ApplicationLifecycle",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "SuspendAndResume",
@@ -21,7 +21,6 @@
   },
   "sourceName": "SuspendAndResumeFeature",
   "preferNameDirectory": true,
-  "guids": [ "5b9d2eee-b648-4ca1-837e-9abb8f3dffdd" ],
   "PrimaryOutputs": [
     {
       "path": ".\\Services\\SuspendAndResumeService.vb"

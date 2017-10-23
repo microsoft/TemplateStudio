@@ -9,6 +9,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         NewFile,
         ModifiedFile,
         ConflictingFile,
+        ConflictingStylesFile,
         WarningFile,
         Unchanged,
     }

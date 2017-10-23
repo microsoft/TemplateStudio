@@ -29,7 +29,7 @@ namespace wts.ItemName.ViewModels
             get { return (char)Symbol; }
         }
 
-        private IconElement _iconElement = null;
+        private readonly IconElement _iconElement = null;
 
         public IconElement Icon
         {
@@ -52,7 +52,7 @@ namespace wts.ItemName.ViewModels
 
                 var fontIcon = new FontIcon { FontSize = 16, Glyph = SymbolAsChar.ToString() };
 
-                BindingOperations.SetBinding(fontIcon, FontIcon.ForegroundProperty, foregroundBinding);
+                BindingOperations.SetBinding(fontIcon, IconElement.ForegroundProperty, foregroundBinding);
 
                 return fontIcon;
             }
@@ -74,7 +74,7 @@ namespace wts.ItemName.ViewModels
                 SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
 
                 SelectedForeground = IsSelected
-                    ? Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush
+                    ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
                     : GetStandardTextColorBrush();
             }
         }

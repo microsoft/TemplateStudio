@@ -1,0 +1,10 @@
+﻿<!--{**-->
+<!--This xml block adds the location capability to your project.-->
+<!--**}-->
+
+<Capabilities>
+  <Capability Name="internetClient" />
+  <!--{[{-->
+  <DeviceCapability Name="location" />
+  <!--}]}-->
+</Capabilities>

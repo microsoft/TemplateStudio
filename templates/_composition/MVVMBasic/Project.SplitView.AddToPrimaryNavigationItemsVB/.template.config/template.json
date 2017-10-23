@@ -9,8 +9,8 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.order": "1",
-    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings & $framework == MVVMBasic & $projectType == SplitView"
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.VB & $framework == MVVMBasic & $projectType == SplitView",
+    "wts.compositionOrder": "1"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

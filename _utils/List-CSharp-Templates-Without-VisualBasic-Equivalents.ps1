@@ -26,7 +26,8 @@ Foreach ($t in $allTemplates)
         }
 
         # Output the name of the template that needs a VB equivalent
-        if (-not $hasVbEquivalent)
+        # Exclude CaliburnMicro templates while not supporting VB (yet)
+        if (-not $hasVbEquivalent -and $t -notmatch "Caliburn")
         {
             # This will be the path of the folder that needs a VB version
             $templateName = $t -replace "\\.template.config\\template.json", ""

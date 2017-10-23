@@ -42,7 +42,12 @@ namespace Param_ItemNamespace.Helpers
 
         public static async Task SaveAsync<T>(this ApplicationDataContainer settings, string key, T value)
         {
-            settings.Values[key] = await Json.StringifyAsync(value);
+            settings.SaveString(key, await Json.StringifyAsync(value));
+        }
+
+        public static void SaveString(this ApplicationDataContainer settings, string key, string value)
+        {
+            settings.Values[key] = value;
         }
 
         public static async Task<T> ReadAsync<T>(this ApplicationDataContainer settings, string key)
@@ -61,12 +66,12 @@ namespace Param_ItemNamespace.Helpers
         {
             if (content == null)
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             if (string.IsNullOrEmpty(fileName))
             {
-                throw new ArgumentException("File name is null or empty. Specify a valid file name", "fileName");
+                throw new ArgumentException("ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty".GetLocalized(), nameof(fileName));
             }
 
             var storageFile = await folder.CreateFileAsync(fileName, options);

@@ -12,11 +12,12 @@
     <Tags>Windows Template Studio UWP XAML MVVM</Tags>
   </Metadata>
   <Installation AllUsers="true">
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,15.3)" />
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,16.0)" />
   </Installation>
   <Dependencies>
-    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.6.2,)" d:InstallSource="Download" Location="https://www.microsoft.com/download/details.aspx?id=53345" />
-    <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0]" />
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework 4.7 or higher" d:Source="Manual" Version="[4.7,)" d:InstallSource="Download" Location="http://go.microsoft.com/fwlink/?LinkId=825319" />
+    <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0,16.0)" />
+    <Dependency d:Source="Installed" Version="[15.0.26730,16.0)" d:InstallSource="Download" Id="8EAF6C8E-1283-4EEE-AB6E-F0F087BFCBFD" DisplayName="Visual Studio 2017 Update 3 or higher" Location="https://www.visualstudio.com/downloads" />
   </Dependencies>
   <Prerequisites>
     <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
@@ -24,9 +25,9 @@
   </Prerequisites>
   <Assets>
     <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Core" Path="|Core|" AssemblyName="|Core;AssemblyName|" />
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.UWP.VS2017.Solution" d:TargetPath="|CSharp.UWP.VS2017.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
     <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="UI" Path="|UI|" AssemblyName="|UI;AssemblyName|" />
     <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.UWP.VS2017.Solution" d:TargetPath="|CSharp.UWP.VS2017.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="VBNet.UWP.VS2017.Solution" d:TargetPath="|VBNet.UWP.VS2017.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
   </Assets>
 </PackageManifest>

@@ -4,7 +4,7 @@ Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Media
 
 Namespace ViewModels
-    Public Class ShellNavigationItem
+    Public NotInheritable Class ShellNavigationItem
         Inherits Observable
 
         Public Property Label As String
@@ -13,14 +13,15 @@ Namespace ViewModels
 
         Public Property Symbol As Symbol
 
-        Public ReadOnly Property SymbolAsChar() As Char
+        Public ReadOnly Property SymbolAsChar As Char
             Get
                 Return Convert.ToChar(Symbol)
             End Get
         End Property
 
-        Private _iconElement As IconElement = Nothing
-        Public ReadOnly Property Icon() As IconElement
+        Private ReadOnly _iconElement As IconElement = Nothing
+
+        Public ReadOnly Property Icon As IconElement
             Get
                 Dim foregroundBinding = New Binding() With {
                     .Source = Me,
@@ -40,17 +41,15 @@ Namespace ViewModels
                     .Glyph = SymbolAsChar.ToString()
                 }
 
-                BindingOperations.SetBinding(fontIcon, FontIcon.ForegroundProperty, foregroundBinding)
+                BindingOperations.SetBinding(fontIcon, IconElement.ForegroundProperty, foregroundBinding)
 
                 Return fontIcon
             End Get
         End Property
 
-        Private _isSelected As Boolean
-
         Private _selectedVis As Visibility = Visibility.Collapsed
 
-        Public Property SelectedVis() As Visibility
+        Public Property SelectedVis As Visibility
             Get
                 Return _selectedVis
             End Get
@@ -59,18 +58,9 @@ Namespace ViewModels
             End Set
         End Property
 
-        Private _selectedForeground As SolidColorBrush = Nothing
+        Private _isSelected As Boolean
 
-        Public Property SelectedForeground() As SolidColorBrush
-            Get
-                Return If(_selectedForeground, (InlineAssignHelper(_selectedForeground, GetStandardTextColorBrush())))
-            End Get
-            Set
-                [Set](_selectedForeground, value)
-            End Set
-        End Property
-
-        Public Property IsSelected() As Boolean
+        Public Property IsSelected As Boolean
             Get
                 Return _isSelected
             End Get
@@ -82,30 +72,53 @@ Namespace ViewModels
         End Property
 
         Private Function GetStandardTextColorBrush() As SolidColorBrush
-            Dim brush = TryCast(Application.Current.Resources("SystemControlForegroundBaseHighBrush"), SolidColorBrush)
+            Dim brush = TryCast(Application.Current.Resources("ThemeControlForegroundBaseHighBrush"), SolidColorBrush)
 
             Return brush
         End Function
 
-        Private Sub New(name As String, symbol As Symbol, pageType As Type)
-            Me.Label = name
+        Private _selectedForeground As SolidColorBrush = Nothing
+
+        Public Property SelectedForeground As SolidColorBrush
+            Get
+                Return If(_selectedForeground, (InlineAssignHelper(_selectedForeground, GetStandardTextColorBrush())))
+            End Get
+            Set
+                [Set](_selectedForeground, value)
+            End Set
+        End Property
+
+        Private Sub New(label As String, symbol As Symbol, pageType As Type)
+            Me.New(label, pageType)
             Me.Symbol = symbol
-            Me.PageType = pageType
         End Sub
 
-        Private Sub New(name As String, icon As IconElement, pageType As Type)
-            Me.Label = name
+        Private Sub New(label As String, icon As IconElement, pageType As Type)
+            Me.New(label, pageType)
             Me._iconElement = icon
+        End Sub
+
+        Private Sub New(label As String, pageType As Type)
+            Me.Label = label
             Me.PageType = pageType
         End Sub
 
-        Public Shared Function FromType(Of T As Page)(name As String, symbol As Symbol) As ShellNavigationItem
-            Return New ShellNavigationItem(name, symbol, GetType(T))
+        Public Shared Function FromType(Of T As Page)(label As String, symbol As Symbol) As ShellNavigationItem
+            Return New ShellNavigationItem(label, symbol, GetType(T))
+        End Function
+
+        Public Shared Function FromType(Of T As Page)(label As String, icon As IconElement) As ShellNavigationItem
+            Return New ShellNavigationItem(label, icon, GetType(T))
+        End Function
+
+        Public Overrides Function ToString() As String
+            Return Label
         End Function
 
         Private Shared Function InlineAssignHelper(Of T)(ByRef target As T, value As T) As T
             target = value
             Return value
         End Function
+
     End Class
 End Namespace

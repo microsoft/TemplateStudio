@@ -1,0 +1,34 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": [ "Universal" ],
+  "name": "Share Target",
+  "groupIdentity": "wts.Feat.ShareTarget",
+  "identity": "wts.Feat.ShareTarget",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "6",
+    "wts.group": "UserInteraction",
+    "wts.multipleInstance": "false",
+    "wts.defaultInstance": "ShareTarget",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "ShareTargetFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

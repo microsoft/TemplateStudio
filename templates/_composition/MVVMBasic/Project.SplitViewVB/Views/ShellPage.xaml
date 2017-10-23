@@ -11,7 +11,7 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
-            <Grid Width="320" Height="40">
+            <Grid Width="320" Height="40" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />

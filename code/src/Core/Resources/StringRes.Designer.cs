@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class StringRes {
@@ -147,6 +147,15 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string FailedMergePostActionFileNotFound {
             get {
                 return ResourceManager.GetString("FailedMergePostActionFileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The style with key &apos;{0}&apos; is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project..
+        /// </summary>
+        internal static string FailedMergePostActionKeyAlreadyDefined {
+            get {
+                return ResourceManager.GetString("FailedMergePostActionKeyAlreadyDefined", resourceCulture);
             }
         }
         
@@ -541,6 +550,96 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid digital signatures in &apos;{0}&apos;. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue..
+        /// </summary>
+        internal static string TemplatePackageExtractMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageExtractMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found {0} certificates matching the thumbprint {1} in the store {2}.
+        /// </summary>
+        internal static string TemplatePackageFindCertificateFoundMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageFindCertificateFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The certificate found does not have private key..
+        /// </summary>
+        internal static string TemplatePackageFindCertificateNoPkMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageFindCertificateNoPkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More than one certificate found matching the thumbrint. Returning the first one..
+        /// </summary>
+        internal static string TemplatePackageFindCertificateNotOneMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageFindCertificateNotOneMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified source &apos;{0}&apos; is invalid, the file does not exist, or the folder is empty..
+        /// </summary>
+        internal static string TemplatePackageGetSourceFilesMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageGetSourceFilesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No certificate found matching the thumbrint {0}. Searched on CurrentUser/My and LocalMachine/My stores..
+        /// </summary>
+        internal static string TemplatePackageLoadCertMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageLoadCertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The certificate with thumbprint {0} can&apos;t be found in CurrentUser/My or LocalMachine/My..
+        /// </summary>
+        internal static string TemplatePackagePackAndSignMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackagePackAndSignMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error signing package..
+        /// </summary>
+        internal static string TemplatePackageSignAllPartsMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageSignAllPartsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Package signature certificate validation not passed..
+        /// </summary>
+        internal static string TemplatePackageValidatePackageCertificatesMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageValidatePackageCertificatesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certificate &apos;{0}&apos; verification finished with status &apos;{1}&apos;.
+        /// </summary>
+        internal static string TemplatePackageVerifyCertificateMessage {
+            get {
+                return ResourceManager.GetString("TemplatePackageVerifyCertificateMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Templates extracted to.
         /// </summary>
         internal static string TemplatesContentExtractedToString {
@@ -568,92 +667,38 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid digital signatures in &apos;{0}&apos;. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue..
+        ///   Looks up a localized string similar to Other instance is syncing templates... Waiting 5 seconds..
         /// </summary>
-        internal static string TemplatexExtractMessage {
+        internal static string TemplatesSynchronizationWaitingOtherInstanceMessage {
             get {
-                return ResourceManager.GetString("TemplatexExtractMessage", resourceCulture);
+                return ResourceManager.GetString("TemplatesSynchronizationWaitingOtherInstanceMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Found {0} certificates matching the thumbprint {1} in the store {2}.
+        ///   Looks up a localized string similar to Error creating the instance locking file..
         /// </summary>
-        internal static string TemplatexFindCertificateFoundMessage {
+        internal static string TemplatesSynchronizationWarnCreatingLockFileMessage {
             get {
-                return ResourceManager.GetString("TemplatexFindCertificateFoundMessage", resourceCulture);
+                return ResourceManager.GetString("TemplatesSynchronizationWarnCreatingLockFileMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The certificate found does not have private key..
+        ///   Looks up a localized string similar to Error deleting the instance locking file..
         /// </summary>
-        internal static string TemplatexFindCertificateNoPkMessage {
+        internal static string TemplatesSynchronizationWarnDeletingLockFileMessage {
             get {
-                return ResourceManager.GetString("TemplatexFindCertificateNoPkMessage", resourceCulture);
+                return ResourceManager.GetString("TemplatesSynchronizationWarnDeletingLockFileMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to More than one certificate found matching the thumbrint. Returning the first one..
+        ///   Looks up a localized string similar to Error reading the instance locking file..
         /// </summary>
-        internal static string TemplatexFindCertificateNotOneMessage {
+        internal static string TemplatesSynchronizationWarnReadingLockFileMessage {
             get {
-                return ResourceManager.GetString("TemplatexFindCertificateNotOneMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The specified source &apos;{0}&apos; is invalid, the file does not exist, or the folder is empty..
-        /// </summary>
-        internal static string TemplatexGetSourceFilesMessage {
-            get {
-                return ResourceManager.GetString("TemplatexGetSourceFilesMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No certificate found matching the thumbrint {0}. Searched on CurrentUser/My and LocalMachine/My stores..
-        /// </summary>
-        internal static string TemplatexLoadCertMessage {
-            get {
-                return ResourceManager.GetString("TemplatexLoadCertMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The certificate with thumbprint {0} can&apos;t be found in CurrentUser/My or LocalMachine/My..
-        /// </summary>
-        internal static string TemplatexPackAndSignMessage {
-            get {
-                return ResourceManager.GetString("TemplatexPackAndSignMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error signing package..
-        /// </summary>
-        internal static string TemplatexSignAllPartsMessage {
-            get {
-                return ResourceManager.GetString("TemplatexSignAllPartsMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Package signature certificate validation not passed..
-        /// </summary>
-        internal static string TemplatexValidatePackageCertificatesMessage {
-            get {
-                return ResourceManager.GetString("TemplatexValidatePackageCertificatesMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Certificate &apos;{0}&apos; verification finished with status &apos;{1}&apos;.
-        /// </summary>
-        internal static string TemplatexVerifyCertificateMessage {
-            get {
-                return ResourceManager.GetString("TemplatexVerifyCertificateMessage", resourceCulture);
+                return ResourceManager.GetString("TemplatesSynchronizationWarnReadingLockFileMessage", resourceCulture);
             }
         }
     }

@@ -20,18 +20,18 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        public static void CopyRecursive(string sourceDir, string targetDir)
+        public static void CopyRecursive(string sourceDir, string targetDir, bool overwrite = false)
         {
             Directory.CreateDirectory(targetDir);
 
             foreach (var file in Directory.GetFiles(sourceDir))
             {
-                File.Copy(file, Path.Combine(targetDir, Path.GetFileName(file)));
+                File.Copy(file, Path.Combine(targetDir, Path.GetFileName(file)), overwrite);
             }
 
             foreach (var directory in Directory.GetDirectories(sourceDir))
             {
-                CopyRecursive(directory, Path.Combine(targetDir, Path.GetFileName(directory)));
+                CopyRecursive(directory, Path.Combine(targetDir, Path.GetFileName(directory)), overwrite);
             }
         }
 
@@ -43,12 +43,14 @@ namespace Microsoft.Templates.Core
                 {
                     Directory.CreateDirectory(destFolder);
                 }
+
                 var destFile = Path.Combine(destFolder, Path.GetFileName(sourceFile));
 
                 if (File.Exists(destFile))
                 {
                     EnsureFileEditable(destFile);
                 }
+
                 File.Copy(sourceFile, destFile, overwrite);
             }
             catch (Exception ex)
@@ -105,7 +107,7 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        public static void SafeDeleteDirectory(string dir)
+        public static void SafeDeleteDirectory(string dir, bool warnOnFailure = true)
         {
             try
             {
@@ -116,7 +118,10 @@ namespace Microsoft.Templates.Core
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeDeleteDirectoryMessage, dir, ex.Message), ex).FireAndForget();
+                if (warnOnFailure)
+                {
+                    AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeDeleteDirectoryMessage, dir, ex.Message), ex).FireAndForget();
+                }
             }
         }
     }

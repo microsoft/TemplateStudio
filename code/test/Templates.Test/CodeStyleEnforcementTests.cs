@@ -10,8 +10,15 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
+    [Collection("StyleCopCollection")]
+    [Trait("Type", "CodeStyle")]
+    [Trait("ExecutionSet", "Minimum")]
+    [Trait("ExecutionSet", "TemplateValidation")]
     public class CodeStyleEnforcementTests
     {
+        // This is the relative path from where the test assembly will run from
+        private const string TemplatesRoot = "..\\..\\..\\..\\..\\Templates";
+
         [Fact]
         public void EnsureCSharpCodeDoesNotUseThis()
         {
@@ -20,12 +27,100 @@ namespace Microsoft.Templates.Test
             Assert.True(result.Item1, result.Item2);
         }
 
+        [Fact]
+        public void EnsureTemplatesDoNotUseTabsInWhitespace()
+        {
+            // Some of the merge functionality includes whitespace in string comparisons.
+            // Ensuring all whitespace is spaces avoids issues where strings differ due to different whitespace (which can be hard to spot)
+            void EnsureTabsNotUsed(string fileExtension)
+            {
+                var result = CodeIsNotUsed('\t'.ToString(), fileExtension);
+
+                Assert.True(result.Item1, result.Item2);
+            }
+
+            EnsureTabsNotUsed("*.cs");
+            EnsureTabsNotUsed("*.vb");
+        }
+
+        [Fact]
+        public void EnsureCodeDoesNotUseOldTodoCommentIdentifier()
+        {
+            void EnsureUwpTemplatesNotUsed(string fileExtension)
+            {
+                var result = CodeIsNotUsed("UWPTemplates", fileExtension);
+
+                Assert.True(result.Item1, result.Item2);
+            }
+
+            EnsureUwpTemplatesNotUsed("*.cs");
+            EnsureUwpTemplatesNotUsed("*.vb");
+        }
+
+        [Fact]
+        public void EnsureVisualBasicCodeDoesNotIncludeCommonPortingIssues()
+        {
+            var foundErrors = new List<string>();
+
+            // Build tests will fail if these are included but this test is quicker than building everything
+            void CheckStringNotIncluded(string toSearchFor)
+            {
+                var result = CodeIsNotUsed(toSearchFor, ".vb");
+
+                if (!result.Item1)
+                {
+                    foundErrors.Add(result.Item2);
+                }
+            }
+
+            void IfLineIncludes(string ifIncludes, string itMustAlsoInclude, params string[] unlessItContains)
+            {
+                foreach (var file in GetFiles(TemplatesRoot, ".vb"))
+                {
+                    foreach (var line in File.ReadAllLines(file))
+                    {
+                        if (line.Contains(ifIncludes) && !line.Contains(itMustAlsoInclude))
+                        {
+                            var foundException = false;
+
+                            if (unlessItContains != null)
+                            {
+                                foreach (var unless in unlessItContains)
+                                {
+                                    if (line.Contains(unless))
+                                    {
+                                        foundException = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (!foundException)
+                            {
+                                foundErrors.Add($"The file '{file}' contains '{ifIncludes}' but doesn't also include '{itMustAlsoInclude}'.");
+                            }
+                        }
+                    }
+                }
+            }
+
+            CheckStringNotIncluded("Namespace Param_RootNamespace."); // Root namespace is included by default in VB
+            CheckStringNotIncluded("Namespace Param_ItemNamespace."); // Root namespace is included by default in VB
+            CheckStringNotIncluded(";");
+            CheckStringNotIncluded("var "); // May be in commented our code included in template as an example
+            CheckStringNotIncluded("Key ."); // Output by converter as part of object initializers
+            CheckStringNotIncluded("yield Return"); // Return not needed but converter includes it
+            CheckStringNotIncluded("wts__"); // temporary placeholder used during conversion
+            CheckStringNotIncluded("'''/");
+
+            IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: new[] { " MustOverride ", "Function RunAsync(", "Function RunAsyncInternal(", " FireAndForget(" });
+
+            Assert.True(foundErrors.Count == 0, string.Join(Environment.NewLine, foundErrors));
+        }
+
         private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeinTheFile, string fileExtension)
         {
-            // This is the relative path from where the test assembly will run from
-            const string templatesRoot = "..\\..\\..\\..\\..\\Templates";
-
-            foreach (var file in GetFiles(templatesRoot, fileExtension))
+            foreach (var file in GetFiles(TemplatesRoot, fileExtension))
             {
                 if (File.ReadAllText(file).Contains(textThatShouldNotBeinTheFile))
                 {
