@@ -8,8 +8,8 @@ using System.Linq;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Composition;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI
@@ -31,11 +31,11 @@ namespace Microsoft.Templates.UI
 
             foreach (var item in layout)
             {
-                var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.templateGroupIdentity && t.GetFrameworkList().Contains(framework));
+                var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.TemplateGroupIdentity && t.GetFrameworkList().Contains(framework));
 
                 if (template == null)
                 {
-                    LogOrAlertException(string.Format(StringRes.ExceptionLayoutNotFound, item.templateGroupIdentity, framework));
+                    LogOrAlertException(string.Format(StringRes.ExceptionLayoutNotFound, item.TemplateGroupIdentity, framework));
                 }
                 else
                 {
@@ -232,6 +232,7 @@ namespace Microsoft.Templates.UI
                         AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
                     }
                 }
+
                 combinedQueue.AddRange(compositionQueue.OrderBy(g => g.Template.GetCompositionOrder()));
             }
 

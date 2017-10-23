@@ -4,22 +4,23 @@
 
 using System;
 using System.Diagnostics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Text;
 using System.Windows.Threading;
 
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Extensions;
-using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Controls
 {
     public partial class OverlayBox : UserControl
     {
         private DispatcherTimer _hideTimer;
+
         private DispatcherTimer HideTimer
         {
             get
@@ -32,6 +33,7 @@ namespace Microsoft.Templates.UI.Controls
                     };
                     _hideTimer.Tick += OnHideTimerTick;
                 }
+
                 return _hideTimer;
             }
         }
@@ -41,6 +43,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (bool)GetValue(VisibleProperty);
             set => SetValue(VisibleProperty, value);
         }
+
         public static readonly DependencyProperty VisibleProperty = DependencyProperty.Register(nameof(Visible), typeof(bool), typeof(OverlayBox), new PropertyMetadata(true, OnVisiblePropertyChanged));
 
         public string WizardVersion
@@ -48,6 +51,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (string)GetValue(WizardVersionProperty);
             set => SetValue(WizardVersionProperty, value);
         }
+
         public static readonly DependencyProperty WizardVersionProperty = DependencyProperty.Register(nameof(WizardVersion), typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty, OnVersionPropertiesChanged));
 
         public string TemplatesVersion
@@ -55,6 +59,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (string)GetValue(TemplatesVersionProperty);
             set => SetValue(TemplatesVersionProperty, value);
         }
+
         public static readonly DependencyProperty TemplatesVersionProperty = DependencyProperty.Register(nameof(TemplatesVersion), typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty, OnVersionPropertiesChanged));
 
         private static void OnVersionPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -68,6 +73,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (string)GetValue(VersionsTextProperty);
             set => SetValue(VersionsTextProperty, value);
         }
+
         public static readonly DependencyProperty VersionsTextProperty = DependencyProperty.Register(nameof(VersionsText), typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty));
 
         public bool NewVersionAvailable
@@ -75,12 +81,14 @@ namespace Microsoft.Templates.UI.Controls
             get => (bool)GetValue(NewVersionAvailableProperty);
             set => SetValue(NewVersionAvailableProperty, value);
         }
+
         public static readonly DependencyProperty NewVersionAvailableProperty = DependencyProperty.Register(nameof(NewVersionAvailable), typeof(bool), typeof(OverlayBox), new PropertyMetadata(true));
 
         public ICommand OpenUrlCommand
         {
             get => (ICommand)GetValue(OpenUrlCommandProperty);
         }
+
         public static readonly DependencyProperty OpenUrlCommandProperty = DependencyProperty.Register(nameof(OpenUrlCommand), typeof(ICommand), typeof(OverlayBox), new PropertyMetadata(new RelayCommand<string>(OpenUrl)));
 
         public string StatusText
@@ -88,6 +96,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (string)GetValue(StatusTextProperty);
             set => SetValue(StatusTextProperty, value);
         }
+
         public static readonly DependencyProperty StatusTextProperty = DependencyProperty.Register(nameof(StatusText), typeof(string), typeof(OverlayBox), new PropertyMetadata(string.Empty));
 
         public StatusViewModel Status
@@ -95,6 +104,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (StatusViewModel)GetValue(StatusProperty);
             set => SetValue(StatusProperty, value);
         }
+
         public static readonly DependencyProperty StatusProperty = DependencyProperty.Register(nameof(Status), typeof(StatusViewModel), typeof(OverlayBox), new PropertyMetadata(null, OnStatusPropertyChanged));
 
         private static void OnStatusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -111,6 +121,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (ICommand)GetValue(CheckForUpdatesCommandProperty);
             set => SetValue(CheckForUpdatesCommandProperty, value);
         }
+
         public static readonly DependencyProperty CheckForUpdatesCommandProperty = DependencyProperty.Register(nameof(CheckForUpdatesCommand), typeof(ICommand), typeof(OverlayBox), new PropertyMetadata(null));
 
         public ICommand RefreshCommand
@@ -118,6 +129,7 @@ namespace Microsoft.Templates.UI.Controls
             get => (ICommand)GetValue(RefreshCommandProperty);
             set => SetValue(RefreshCommandProperty, value);
         }
+
         public static readonly DependencyProperty RefreshCommandProperty = DependencyProperty.Register(nameof(RefreshCommand), typeof(ICommand), typeof(OverlayBox), new PropertyMetadata(null));
 
         private static void OpenUrl(string url)

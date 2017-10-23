@@ -3,20 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.ComponentModel.Design;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.OLE.Interop;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Win32;
+
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.VisualStudio;
+using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.Extension.Commands
 {
@@ -30,6 +23,7 @@ namespace Microsoft.Templates.Extension.Commands
     public sealed class RelayCommandPackage : AsyncPackage
     {
         private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
+
         private RightClickActions RightClickActions => _rightClickActions.Value;
 
         private RelayCommand addPageCommand;
@@ -42,7 +36,7 @@ namespace Microsoft.Templates.Extension.Commands
 
         protected override async System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             InitializeCommands();
 
@@ -51,19 +45,22 @@ namespace Microsoft.Templates.Extension.Commands
 
         private void InitializeCommands()
         {
-            addPageCommand = new RelayCommand(this,
+            addPageCommand = new RelayCommand(
+                 this,
                  PackageIds.AddPageCommand,
                  PackageGuids.GuidRelayCommandPackageCmdSet,
                  AddPage,
                  RightClickAvailable);
 
-            addFeatureCommand = new RelayCommand(this,
+            addFeatureCommand = new RelayCommand(
+                this,
                 PackageIds.AddFeatureCommand,
                 PackageGuids.GuidRelayCommandPackageCmdSet,
                 AddFeature,
                 RightClickAvailable);
 
-            openTempFolderCommand = new RelayCommand(this,
+            openTempFolderCommand = new RelayCommand(
+                this,
                 PackageIds.OpenTempFolder,
                 PackageGuids.GuidRelayCommandPackageCmdSet,
                 OpenTempFolder,

@@ -7,6 +7,7 @@ The final generated code is the result of a project configuration (project type 
 
 - [Application activation](activation.md)
 - [Navigation between pages](navigation.md)
+- [Notifications in Windows Template Studio](notifications.md)
 
 ## Understanding concepts for Windows Template Studio
 
@@ -35,15 +36,17 @@ Windows Template Studio approaches UWP app creation using the following four att
 
 | Page        | Description |
 |------------:|:------------|
-| Blank       | This is the most basic page. A blank canvas to mold into whatever you wish. |
-| Map         | The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location. |
-| Master/Detail | The master-detail page has a master pane and a details pane for content. |
-| Settings | The [settings page](pages/settings.md) is the page where we recommend putting the configuration settings for your app. |
-| Tabbed | The tabbed page is used for navigating frequently accessed, distinct content categories. |
+| Blank       | This is the most basic page.  A blank canvas to mold into whatever you wish.  The blank page leaves pretty much everything up to you. |
+| Settings | The settings page is the page where we recommend putting the configuration settings for your application such as setting a dark / light theme. This could also include any licenses, version number and your privacy terms.|
 | Web View | The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine. |
-| Media Player| A page for showing video with system media controls enabled. |
-| Grid | A page displaying a simple grid, powered by Telerik UI controls for UWP. |
-| Chart | A page displaying a simple chart, powered by Telerik UI controls for UWP. |
+| Media Player | A page for displaying video. It includes the MediaPlayer and has the default Media Transport controls enabled.|
+| Master/Detail | The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books. |
+| Grid | A page displaying a [RadDataGrid control](http://www.telerik.com/universal-windows-platform-ui/grid), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP). A native, rich and powerful rid with unmatched performance. The grid offers advanced UI virtualization, customizable columns, single and multi-column sorting, data editing, selection and filtering.|
+| Chart | A page displaying a [RadChart control](http://www.telerik.com/universal-windows-platform-ui/chart), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP). RadChart control for Windows 10 apps features a rich set of chart series from Bar, Line, Area, Pie, Scatter and Polar charts to different financial series.|
+| Tabbed | The tabbed page is used for navigating frequently accessed, distinct content categories. |
+| Map | The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location. |
+| Camera | A page for capturing a photo from the camera. Includes handling previewing, mirroring, and orientation.|
+| Image Gallery | A page displaying a image gallery and allows user to navigate between gallery and image detail.|
 
 ### Features
 
@@ -58,16 +61,15 @@ Windows Template Studio approaches UWP app creation using the following four att
 
 | User Interactions  | Feature Description |
 |-------------------:|:------------|
-| Azure Notification Hubs | [Azure Notification Hubs](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview) provide an easy-to-use, multi-platform way to push targeted notifications at Scale. |
-| Live tiles | Enables modification and updates to your app's presence on the Windows 10 Start Menu, providing the ability to change the app's visual state and provide additional context or information. |
 | Toast Notification | Adaptive and interactive toast notifications let you create flexible pop-up notifications that provide users with content, optional inline images, and optional user interactions. You can use pictures, buttons, text inputs, actions, and more. |
+| Azure Notification Hubs | [Azure Notification Hubs](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview) provide an easy-to-use, multi-platform way to push targeted notifications at Scale. |
 | Dev Center Notification | Register your app to receive notifications from the store and handle them being used to launch the app. |
+| Live Tile | Enables modification and updates to your app's presence on the Windows 10 Start Menu, providing the ability to change the app's visual state and provide additional context or information. |
 | First Run Prompt | Display a prompt when the app is used for the first time. |
 | What's New Prompt | Display a prompt when the app is first used after an update. |
-| Uri Scheme | Add the ability to launch and deep link into the app with a custom URI scheme. |
+| Uri Scheme | Add the ability to launch and deep link into the app with a custom URI scheme.|
 
 ## Table of Contents
-
 * [Installing / Using the extension](getting-started-extension.md)
 * [**Using and extending your file->new**](getting-started-endusers.md)
 * [Concepts of Windows Template Studio](readme.md)

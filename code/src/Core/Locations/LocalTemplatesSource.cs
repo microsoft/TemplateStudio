@@ -2,11 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.IO;
-using System.Text;
 using System;
-
-using Microsoft.Templates.Core.Packaging;
+using System.IO;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -18,24 +15,26 @@ namespace Microsoft.Templates.Core.Locations
 
         protected override bool VerifyPackageSignatures => false;
 
-        public override bool ForcedAcquisition { get => base.ForcedAcquisition; protected set => base.ForcedAcquisition = value; }
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
         private string _id;
-        public override string Id { get => _id; }
 
-        private object lockObject = new object();
+        public override string Id { get => _id; }
 
         protected string FinalDestination { get; set; }
 
-        public LocalTemplatesSource() : this("0.0.0.0", "0.0.0.0", true)
+        public LocalTemplatesSource()
+            : this("0.0.0.0", "0.0.0.0", true)
         {
-            _id = Configuration.Current.Environment;
+            _id = Configuration.Current.Environment + GetAgentName();
         }
-        public LocalTemplatesSource(string id) : this("0.0.0.0", "0.0.0.0", true)
+
+        public LocalTemplatesSource(string id)
+            : this("0.0.0.0", "0.0.0.0", true)
         {
-            _id = id;
+            _id = id + GetAgentName();
         }
+
         public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
             ForcedAcquisition = forcedAdquisition;
@@ -43,7 +42,7 @@ namespace Microsoft.Templates.Core.Locations
             LocalWizardVersion = wizardVersion;
             if (string.IsNullOrEmpty(_id))
             {
-                _id = Configuration.Current.Environment;
+                _id = Configuration.Current.Environment + GetAgentName();
             }
         }
 
@@ -73,6 +72,20 @@ namespace Microsoft.Templates.Core.Locations
             if (!Directory.Exists(FinalDestination))
             {
                 Fs.CopyRecursive(sourcePath, FinalDestination, true);
+            }
+        }
+
+        private static string GetAgentName()
+        {
+            // If running tests in VSTS concurrently in different agents avoids the collison in templates folders
+            string agentName = Environment.GetEnvironmentVariable("AGENT_NAME");
+            if (string.IsNullOrEmpty(agentName))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return $"-{agentName}";
             }
         }
     }

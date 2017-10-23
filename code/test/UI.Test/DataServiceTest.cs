@@ -4,10 +4,9 @@
 
 using System.Threading.Tasks;
 
-using Xunit;
-
 using Microsoft.Templates.UI.ViewModels.NewProject;
-using Microsoft.Templates.UI.Services;
+
+using Xunit;
 
 namespace Microsoft.UI.Test
 {
@@ -16,6 +15,7 @@ namespace Microsoft.UI.Test
     public class DataServiceTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;
+
         public DataServiceTest(TemplatesFixture fixture)
         {
             _fixture = fixture;

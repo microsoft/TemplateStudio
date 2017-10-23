@@ -9,21 +9,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class CreateSummaryPostAction : PostAction<TempGenerationResult>
     {
-        public CreateSummaryPostAction(TempGenerationResult config) : base(config)
+        public CreateSummaryPostAction(TempGenerationResult config)
+            : base(config)
         {
         }
 
         public override void Execute()
         {
             var fileName = GetFileName();
-            if (_config.SyncGeneration)
+            if (Config.SyncGeneration)
             {
                 var newFiles = BuildNewFilesSection(StringRes.SyncSummarySectionNewFiles);
 
@@ -51,7 +52,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private string GetFileName()
         {
-            if (_config.SyncGeneration)
+            if (Config.SyncGeneration)
             {
                 return Path.Combine(GenContext.Current.OutputPath, StringRes.SyncSummaryFileName);
             }
@@ -110,15 +111,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     sb.AppendLine();
                     sb.AppendLine($"* {failedMergePostAction.Description}");
                 }
+
                 return sb.ToString();
             }
         }
 
         private string BuildNewFilesSection(string sectionTemplate)
         {
-            if (_config.NewFiles.Any())
+            if (Config.NewFiles.Any())
             {
-                return string.Format(sectionTemplate, GetFileList(_config.NewFiles));
+                return string.Format(sectionTemplate, GetFileList(Config.NewFiles));
             }
             else
             {
@@ -128,9 +130,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private string BuildUnchangedFilesSection(string sectionTemplate)
         {
-            if (_config.UnchangedFiles.Any())
+            if (Config.UnchangedFiles.Any())
             {
-                return string.Format(sectionTemplate, GetFileList(_config.UnchangedFiles));
+                return string.Format(sectionTemplate, GetFileList(Config.UnchangedFiles));
             }
             else
             {
@@ -140,10 +142,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private string BuildConflictingFilesSection(string sectionTemplate)
         {
-            if (_config.ConflictingFiles.Any())
+            if (Config.ConflictingFiles.Any())
             {
                 var sb = new StringBuilder();
-                foreach (var conflictFile in _config.ConflictingFiles)
+                foreach (var conflictFile in Config.ConflictingFiles)
                 {
                     sb.AppendLine(GetCompareLink(conflictFile));
                 }
@@ -169,7 +171,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private string GetLinkToFile(string fileName)
         {
-            if (_config.SyncGeneration)
+            if (Config.SyncGeneration)
             {
                 var filePath = Path.Combine(GenContext.Current.ProjectPath, fileName);
                 return $"[{fileName}]({FormatFilePath(filePath)})";
@@ -179,6 +181,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 return $"[{fileName}]({fileName})";
             }
         }
+
         private static string FormatFilePath(string filePath)
         {
             return $"about:/{filePath.Replace(" ", "%20").Replace(@"\", "/")}";

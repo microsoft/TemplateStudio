@@ -4,8 +4,8 @@
 
 using System.Windows;
 
-using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
@@ -77,6 +77,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
             {
                 Width = mainWindow.Width * 0.6;
             }
+
             if (mainWindow.Height < 700)
             {
                 Height = mainWindow.Height * 0.8;

@@ -3,20 +3,23 @@
 // See the LICENSE file in the project root for more information.
 using System;
 using System.Diagnostics;
-using SystemTasks = System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Resources;
+
+using SystemTasks = System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class ShellHealthWriter : IHealthWriter
     {
-        GenShell _shell;
+        private GenShell _shell;
+
         public ShellHealthWriter(GenShell shell)
         {
             _shell = shell;
         }
+
         public async SystemTasks.Task WriteExceptionAsync(Exception ex, string message = null)
         {
             if (_shell != null)

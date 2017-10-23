@@ -22,6 +22,7 @@ namespace Microsoft.Templates.UI
     public class NewProjectGenController : GenController
     {
         private static Lazy<NewProjectGenController> _instance = new Lazy<NewProjectGenController>(Initialize);
+
         public static NewProjectGenController Instance => _instance.Value;
 
         private static NewProjectGenController Initialize()
@@ -31,7 +32,7 @@ namespace Microsoft.Templates.UI
 
         private NewProjectGenController(PostActionFactory postactionFactory)
         {
-            _postactionFactory = postactionFactory;
+            PostactionFactory = postactionFactory;
         }
 
         public UserSelection GetUserSelection()
@@ -45,13 +46,13 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.ShowModal(mainView);
                 if (mainView.Result != null)
                 {
-                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject, WizardActionEnum.GenerateProject).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject, WizardActionEnum.GenerateProject, GenContext.ToolBox.Shell.GetVsVersion()).FireAndForget();
 
                     return mainView.Result;
                 }
                 else
                 {
-                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject, GenContext.ToolBox.Shell.GetVsVersion()).FireAndForget();
                 }
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))

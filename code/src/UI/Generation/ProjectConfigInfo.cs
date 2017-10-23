@@ -3,36 +3,33 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.UI.Generation
 {
     public class ProjectConfigInfo
     {
-        public const string FxMVVMBasic = "MVVMBasic";
-        public const string FxMVVMLight = "MVVMLight";
-        public const string FxCodeBehid = "CodeBehind";
-        public const string FxCaliburnMicro = "CaliburnMicro";
+        private const string FxMVVMBasic = "MVVMBasic";
+        private const string FxMVVMLight = "MVVMLight";
+        private const string FxCodeBehid = "CodeBehind";
+        private const string FxCaliburnMicro = "CaliburnMicro";
 
-        public const string ProjTypeBlank = "Blank";
-        public const string ProjTypeSplitView = "SplitView";
-        public const string ProjTypeTabbedPivot = "TabbedPivot";
+        private const string ProjTypeBlank = "Blank";
+        private const string ProjTypeSplitView = "SplitView";
+        private const string ProjTypeTabbedPivot = "TabbedPivot";
 
-        const string ProjectTypeLiteral = "projectType";
-        const string FrameworkLiteral = "framework";
-        const string MetadataLiteral = "Metadata";
-        const string NameAttribLiteral = "Name";
-        const string ValueAttribLiteral = "Value";
-        const string ItemLiteral = "Item";
+        private const string ProjectTypeLiteral = "projectType";
+        private const string FrameworkLiteral = "framework";
+        private const string MetadataLiteral = "Metadata";
+        private const string NameAttribLiteral = "Name";
+        private const string ValueAttribLiteral = "Value";
+        private const string ItemLiteral = "Item";
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
         public static (string ProjectType, string Framework) ReadProjectConfiguration()
@@ -60,9 +57,11 @@ namespace Microsoft.Templates.UI.Generation
                         {
                             SaveProjectConfiguration(inferredConfig.ProjectType, inferredConfig.Framework);
                         }
+
                         return inferredConfig;
                     }
                 }
+
                 return (string.Empty, string.Empty);
             }
             catch (Exception ex)
@@ -157,6 +156,7 @@ namespace Microsoft.Templates.UI.Generation
                     }
                 }
             }
+
             return false;
         }
 
@@ -184,6 +184,7 @@ namespace Microsoft.Templates.UI.Generation
                         fileContent.Contains("public event PropertyChangedEventHandler PropertyChanged;");
                 }
             }
+
             return false;
         }
 
@@ -200,6 +201,7 @@ namespace Microsoft.Templates.UI.Generation
                     }
                 }
             }
+
             return false;
         }
 

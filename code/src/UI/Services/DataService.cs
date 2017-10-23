@@ -2,14 +2,13 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI.ViewModels.NewProject;
-using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -26,6 +25,7 @@ namespace Microsoft.Templates.UI.Services
                 {
                     projectTypes.Add(projectType);
                 }
+
                 return true;
             }
             else
@@ -48,6 +48,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 frameworks.Add(item);
             }
+
             return frameworks.Any();
         }
 
@@ -60,6 +61,7 @@ namespace Microsoft.Templates.UI.Services
                 templatesGroups.AddRange(groups);
                 return templates.Count();
             }
+
             return 0;
         }
     }

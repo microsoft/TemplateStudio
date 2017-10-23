@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 
     public class TelemetryServiceTest : IClassFixture<TelemetryFixture>
     {
-        TelemetryFixture _fixture;
+        private TelemetryFixture _fixture;
 
         public TelemetryServiceTest(TelemetryFixture fixture)
         {

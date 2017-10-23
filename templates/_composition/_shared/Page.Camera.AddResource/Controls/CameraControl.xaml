@@ -3,12 +3,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>            
             <Style x:Key="CameraButtonStyle" TargetType="Button">
                 <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundAltHighBrush}"/>
                 <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -143,7 +142,7 @@
                 FontSize="18"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"/>
-        
+
         <Button x:Uid="CameraControl_CameraButton"
             Click="CaptureButton_Click"
             IsEnabled="{x:Bind IsInitialized, Mode=OneWay}"
@@ -151,7 +150,7 @@
 
         <Button x:Uid="CameraControl_SwitchCameraButton"
         Click="SwitchButton_Click"
-        Visibility="{x:Bind CanSwitch, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"
+        Visibility="{x:Bind CanSwitch, Mode=OneWay}"
         Style="{x:Bind SwitchCameraButtonStyle}"/>
     </Grid>
 </UserControl>

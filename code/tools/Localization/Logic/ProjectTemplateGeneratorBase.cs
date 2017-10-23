@@ -8,34 +8,28 @@ using System.IO;
 
 namespace Localization
 {
-    abstract class ProjectTemplateGeneratorBase
+    internal abstract class ProjectTemplateGeneratorBase
     {
+        private ProjectTemplateGeneratorConfig _config;
         private DirectoryInfo _sourceDir;
         private DirectoryInfo _destinationDir;
 
-        protected virtual string SourceDirRelPath { get; }
-        protected virtual string SourceDirNamePattern { get; }
-        protected virtual string SourceFileNamePattern { get; }
-        protected virtual string DestinationDirNamePattern { get; }
-        protected virtual string DestinationFileNamePattern { get; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        internal ProjectTemplateGeneratorBase(string sourceDirPath, string destinationDirPath)
+        public ProjectTemplateGeneratorBase(ProjectTemplateGeneratorConfig config)
         {
-            sourceDirPath = Path.Combine(sourceDirPath + SourceDirRelPath);
-            _sourceDir = new DirectoryInfo(sourceDirPath);
+            _config = config;
+            _sourceDir = new DirectoryInfo(_config.SourceDir);
 
             if (!_sourceDir.Exists)
             {
-                throw new DirectoryNotFoundException($"Source directory \"{sourceDirPath}\" not found.");
+                throw new DirectoryNotFoundException($"Source directory \"{_config.SourceDir}\" not found.");
             }
 
-            if (_sourceDir.Name.ToLower() != SourceDirNamePattern.ToLower())
+            if (_sourceDir.Name.ToLower() != _config.SourceDirNamePattern.ToLower())
             {
-                throw new Exception($"Source directory \"{_sourceDir.Name}\" is not valid. Directory name should be \"{SourceDirNamePattern}\".");
+                throw new Exception($"Source directory \"{_sourceDir.Name}\" is not valid. Directory name should be \"{_config.SourceDirNamePattern}\".");
             }
 
-            _destinationDir = new DirectoryInfo(destinationDirPath);
+            _destinationDir = new DirectoryInfo(_config.DestinationDirPath);
 
             if (!_destinationDir.Exists)
             {
@@ -45,7 +39,7 @@ namespace Localization
 
         internal void GenerateProjectTemplates(List<string> cultures)
         {
-            DirectoryInfo templateDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, DestinationDirNamePattern));
+            DirectoryInfo templateDirectory = new DirectoryInfo(Path.Combine(_destinationDir.FullName, _config.DestinationDirNamePattern));
 
             if (templateDirectory.Exists)
             {
@@ -54,7 +48,7 @@ namespace Localization
 
             templateDirectory.Create();
 
-            string vstemplateFilePath = Path.Combine(_sourceDir.FullName, SourceFileNamePattern);
+            string vstemplateFilePath = Path.Combine(_sourceDir.FullName, _config.SourceFileNamePattern);
             FileInfo vstemplateFile = new FileInfo(vstemplateFilePath);
 
             if (!vstemplateFile.Exists)
@@ -64,7 +58,7 @@ namespace Localization
 
             foreach (string culture in cultures)
             {
-                vstemplateFile.CopyTo(Path.Combine(templateDirectory.FullName, string.Format(DestinationFileNamePattern, culture)), false);
+                vstemplateFile.CopyTo(Path.Combine(templateDirectory.FullName, string.Format(_config.DestinationFileNamePattern, culture)), false);
             }
         }
     }

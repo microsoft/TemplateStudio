@@ -14,14 +14,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config) : base(config)
+        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config)
+            : base(config)
         {
         }
 
         public override void Execute()
         {
             var chrono = Stopwatch.StartNew();
-            foreach (var output in _config)
+            foreach (var output in Config)
             {
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
@@ -29,6 +30,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     GenContext.ToolBox.Shell.AddProjectToSolution(projectPath);
                 }
             }
+
             chrono.Stop();
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
         }

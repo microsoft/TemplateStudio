@@ -12,6 +12,7 @@ namespace Microsoft.Templates.UI.Services
     public class SystemService : DependencyObject
     {
         private static SystemService _instance;
+
         public static SystemService Instance => _instance ?? (_instance = new SystemService());
 
         private SystemService()
@@ -28,6 +29,7 @@ namespace Microsoft.Templates.UI.Services
         }
 
         public static readonly DependencyProperty IsHighContrastProperty = DependencyProperty.Register("IsHighContrast", typeof(bool), typeof(SystemService), new PropertyMetadata(SystemParameters.HighContrast));
+
         public bool IsHighContrast
         {
             get => (bool)GetValue(IsHighContrastProperty);
@@ -46,8 +48,10 @@ namespace Microsoft.Templates.UI.Services
             {
                 fontSize = 9;
             }
+
             return fontSize;
         }
+
         public(double width, double height) GetMainWindowSize()
         {
             double width = 1277;
@@ -57,6 +61,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 dpi = VisualTreeHelper.GetDpi(Application.Current.MainWindow as Visual).PixelsPerDip;
             }
+
             if (dpi >= 2)
             {
                 return (width / 1.10, height / 1.10);

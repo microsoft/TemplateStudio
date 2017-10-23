@@ -16,7 +16,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class GenerateTestCertificatePostAction : PostAction<string>
     {
-        public GenerateTestCertificatePostAction(string config) : base(config)
+        public GenerateTestCertificatePostAction(string config)
+            : base(config)
         {
         }
 
@@ -24,7 +25,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             try
             {
-                var publisherName = _config;
+                var publisherName = Config;
                 var pfx = CreateCertificate(publisherName);
 
                 AddToProject(pfx);
@@ -46,7 +47,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private static void RemoveFromStore(string base64Encoded)
         {
-            var certificate = new X509Certificate2(Convert.FromBase64String(base64Encoded), "");
+            var certificate = new X509Certificate2(Convert.FromBase64String(base64Encoded), string.Empty);
             var store = new X509Store(StoreLocation.CurrentUser);
 
             store.Open(OpenFlags.ReadWrite);
@@ -65,9 +66,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             // Specify the hashing algorithm
             var hashobj = new CObjectId();
 
-            hashobj.InitializeFromAlgorithmName(ObjectIdGroupId.XCN_CRYPT_HASH_ALG_OID_GROUP_ID,
+            hashobj.InitializeFromAlgorithmName(
+                ObjectIdGroupId.XCN_CRYPT_HASH_ALG_OID_GROUP_ID,
                 ObjectIdPublicKeyFlags.XCN_CRYPT_OID_INFO_PUBKEY_ANY,
-                AlgorithmFlags.AlgorithmFlagsNone, "SHA256");
+                AlgorithmFlags.AlgorithmFlagsNone,
+                "SHA256");
 
             cert.HashAlgorithm = hashobj;
             cert.Encode();
@@ -80,9 +83,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             var request = enrollment.CreateRequest();
 
-            enrollment.InstallResponse(InstallResponseRestrictionFlags.AllowUntrustedCertificate, request, EncodingType.XCN_CRYPT_STRING_BASE64, "");
+            enrollment.InstallResponse(InstallResponseRestrictionFlags.AllowUntrustedCertificate, request, EncodingType.XCN_CRYPT_STRING_BASE64, string.Empty);
 
-            var base64Encoded = enrollment.CreatePFX("", PFXExportOptions.PFXExportChainWithRoot);
+            var base64Encoded = enrollment.CreatePFX(string.Empty, PFXExportOptions.PFXExportChainWithRoot);
 
             return base64Encoded;
         }
@@ -143,7 +146,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             // Create the self signing request
             var cert = new CX509CertificateRequestCertificate();
 
-            cert.InitializeFromPrivateKey(X509CertificateEnrollmentContext.ContextUser, privateKey, "");
+            cert.InitializeFromPrivateKey(X509CertificateEnrollmentContext.ContextUser, privateKey, string.Empty);
             cert.Subject = dn;
             cert.Issuer = dn;
             cert.NotBefore = DateTime.Now.Date.AddDays(-1);

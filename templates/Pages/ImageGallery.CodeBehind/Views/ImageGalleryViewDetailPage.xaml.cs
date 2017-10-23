@@ -51,13 +51,17 @@ namespace Param_ItemNamespace.Views
             SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImage.ID);
             var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewPage.ImageGalleryViewAnimationOpen);
             animation?.TryStart(previewImage);
+            showFlipView.Begin();
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            previewImage.Visibility = Visibility.Visible;
-            ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewPage.ImageGalleryViewAnimationClose, previewImage);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                previewImage.Visibility = Visibility.Visible;
+                ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewPage.ImageGalleryViewAnimationClose, previewImage);
+            }
         }
     }
 }

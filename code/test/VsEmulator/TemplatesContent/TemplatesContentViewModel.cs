@@ -25,7 +25,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
             _host = host;
             _useWizardVersion = wizardVersion;
             _useTemplatesVersion = templateVersion;
-            _isWizardVersionReconfigurable = (wizardVersion == "0.0.0.0");
+            _isWizardVersionReconfigurable = wizardVersion == "0.0.0.0";
 
             AvailableContent = new ObservableCollection<string>();
         }
@@ -37,6 +37,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         public RelayCommand CleanCommand => new RelayCommand(Clean, CanClean);
 
         private string _versionInfo;
+
         public string VersionInfo
         {
             get => _versionInfo;
@@ -44,6 +45,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         }
 
         private string _templatesLocation;
+
         public string TemplatesLocation
         {
             get => _templatesLocation;
@@ -51,6 +53,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         }
 
         private string _useWizardVersion;
+
         public string UseWizardVersion
         {
             get => _useWizardVersion;
@@ -58,6 +61,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         }
 
         private string _useTemplatesVersion;
+
         public string UseTemplatesVersion
         {
             get => _useTemplatesVersion;
@@ -65,6 +69,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         }
 
         private bool _isWizardVersionReconfigurable;
+
         public bool IsWizardVersionReconfigurable
         {
             get => _isWizardVersionReconfigurable;
@@ -75,6 +80,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         public (string WizardVersion, string TemplatesVersion) Result { get; private set; }
 
         private ObservableCollection<string> _availableContent;
+
         public ObservableCollection<string> AvailableContent
         {
             get => _availableContent;

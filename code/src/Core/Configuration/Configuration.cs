@@ -12,26 +12,38 @@ using System.Text;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core
 {
     public class Configuration
     {
         public string Environment { get; set; } = "Local";
+
         public string CdnUrl { get; set; } = "https://wtsrepository.blob.core.windows.net/dev/Latest";
+
         // Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
         public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>";
+
         public string LogFileFolderPath { get; set; } = @"WindowsTemplateStudio\Logs";
+
         public string RepositoryFolderName { get; set; } = @"WindowsTemplateStudio";
+
         public string BackupFolderPath { get; set; } = @"WindowsTemplateStudio\Backups";
+
         public string TempGenerationFolderPath { get; set; } = "WTSTempGeneration";
+
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;
+
         public int DaysToKeepTempGenerations { get; set; } = 5;
+
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
+
         public int VersionCheckingExpirationMinutes { get; set; } = 0;
+
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
+
         public string CustomTelemetryEndpoint { get; set; } = string.Empty;
+
         public string GitHubDocsUrl { get; set; } = "https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/";
 
         public static string LoadedConfigFile { get; private set; }
@@ -39,6 +51,7 @@ namespace Microsoft.Templates.Core
         public const string DefaultJsonConfigFileName = "WindowsTemplateStudio.config.json";
 
         private static Configuration _current;
+
         public static Configuration Current
         {
             get

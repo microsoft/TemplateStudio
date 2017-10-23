@@ -20,6 +20,7 @@ namespace Microsoft.Templates.UI.Controls
         }
 
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(MarkdownBlock), new PropertyMetadata(null));
+
         public string Text
         {
             get => (string)GetValue(TextProperty);

@@ -12,11 +12,14 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class FormattedWriterMessages
     {
         private static string exHeader = $"===================== {StringRes.ExceptionInfoString} =====================";
+
         public static string ExHeader
         {
             get { return exHeader; }
         }
+
         public const string ExFooter = "----------------------------------------------------------";
+
         public static string LogEntryStart
         {
             get

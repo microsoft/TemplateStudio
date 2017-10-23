@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -11,16 +10,17 @@ using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class NewItemSetupViewModel : Observable
     {
         private string _header;
+
         public string Header
         {
             get => _header;
@@ -28,6 +28,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private Visibility _editionVisibility = Visibility.Collapsed;
+
         public Visibility EditionVisibility
         {
             get => _editionVisibility;
@@ -35,6 +36,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private string _itemName;
+
         public string ItemName
         {
             get => _itemName;
@@ -48,11 +50,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     MainViewModel.Current.SetValidationErrors(errorMessage);
                     throw new Exception(errorMessage);
                 }
+
                 MainViewModel.Current.CleanStatus(true);
             }
         }
 
         private InformationViewModel _information;
+
         public InformationViewModel Information
         {
             get => _information;
@@ -81,6 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 TemplateGroups.AddRange(groups);
                 UpdateHeader(templates.Count());
             }
+
             if (TemplateGroups.Any())
             {
                 MainViewModel.Current.WizardStatus.HasContent = true;

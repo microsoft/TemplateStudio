@@ -42,13 +42,13 @@
         <TextBlock
             x:Uid="MasterDetailView_Title"
             x:Name="TitlePage"
-            Margin="24,12"
+            Margin="12,0,12,7"
             Style="{StaticResource PageTitleStyle}" />
 
         <controls:MasterDetailsView
             Grid.Row="1"
             x:Name="MasterDetailsViewControl"
-            ItemsSource="{x:Bind SampleItems, Mode=OneWay}"
+            ItemsSource="{x:Bind SampleItems}"
             SelectedItem="{x:Bind Selected, Mode=OneWay}"
             ItemTemplate="{StaticResource ItemTemplate}"
             DetailsTemplate="{StaticResource DetailsTemplate}"

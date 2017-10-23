@@ -42,10 +42,12 @@ namespace Microsoft.Templates.UI.Services
             {
                 validators.Add(new DefaultNamesValidator());
             }
+
             if (includesExistingNamesValidation)
             {
                 validators.Add(new ExistingNamesValidator(_getNames.Invoke()));
             }
+
             return Naming.Infer(templateName, validators);
         }
     }

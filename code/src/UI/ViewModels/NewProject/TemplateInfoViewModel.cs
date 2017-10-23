@@ -7,23 +7,23 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Input;
+using System.Windows.Media;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.Views.NewProject;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class TemplateInfoViewModel : CommonInfoViewModel
     {
-        #region TemplateProperties
         private string _templateName;
+
         public string TemplateName
         {
             get => _templateName;
@@ -31,6 +31,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _multipleInstances;
+
         public bool MultipleInstances
         {
             get => _multipleInstances;
@@ -38,6 +39,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private int _genGroup;
+
         public int GenGroup
         {
             get => _genGroup;
@@ -45,6 +47,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _group;
+
         public string Group
         {
             get => _group;
@@ -52,6 +55,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _dependencies;
+
         public string Dependencies
         {
             get => _dependencies;
@@ -59,6 +63,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private TemplateType _templateType;
+
         public TemplateType TemplateType
         {
             get => _templateType;
@@ -66,11 +71,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         public ObservableCollection<DependencyInfoViewModel> DependencyItems { get; } = new ObservableCollection<DependencyInfoViewModel>();
-        public ITemplateInfo Template { get; set; }
-        #endregion
 
-        #region UIProperties
+        public ITemplateInfo Template { get; set; }
+
         private bool _isEditionEnabled;
+
         public bool IsEditionEnabled
         {
             get => _isEditionEnabled;
@@ -83,6 +88,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private bool _canChooseItemName;
+
         public bool CanChooseItemName
         {
             get => _canChooseItemName;
@@ -90,6 +96,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private Visibility _noEditingContentVisibility = Visibility.Visible;
+
         public Visibility NoEditingContentVisibility
         {
             get => _noEditingContentVisibility;
@@ -97,6 +104,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private Visibility _editingContentVisibility = Visibility.Collapsed;
+
         public Visibility EditingContentVisibility
         {
             get => _editingContentVisibility;
@@ -104,6 +112,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private Visibility _addingVisibility = Visibility.Visible;
+
         public Visibility AddingVisibility
         {
             get => _addingVisibility;
@@ -111,6 +120,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _errorMessage;
+
         public string ErrorMessage
         {
             get => _errorMessage;
@@ -118,6 +128,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _newTemplateName;
+
         public string NewTemplateName
         {
             get => _newTemplateName;
@@ -135,12 +146,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                         MainViewModel.Current.SetValidationErrors(ErrorMessage);
                         throw new Exception(ErrorMessage);
                     }
+
                     MainViewModel.Current.CleanStatus(true);
                 }
             }
         }
 
         private bool _isValidName;
+
         public bool IsValidName
         {
             get => _isValidName;
@@ -148,6 +161,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private Brush _titleForeground;
+
         public Brush TitleForeground
         {
             get => _titleForeground;
@@ -155,17 +169,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private ICommand _addItemCommand;
+
         public ICommand AddItemCommand => _addItemCommand ?? (_addItemCommand = new RelayCommand(OnAddItem));
 
         private ICommand _saveItemCommand;
+
         public ICommand SaveItemCommand => _saveItemCommand ?? (_saveItemCommand = new RelayCommand(OnSaveItem));
 
         private ICommand _closeEditionCommand;
+
         public ICommand CloseEditionCommand => _closeEditionCommand ?? (_closeEditionCommand = new RelayCommand(() => CloseEdition()));
 
         private ICommand _showItemInfoCommand;
+
         public ICommand ShowItemInfoCommand => _showItemInfoCommand ?? (_showItemInfoCommand = new RelayCommand(ShowItemInfo));
-        #endregion
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {
@@ -202,6 +219,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 MainViewModel.Current.CleanStatus(true);
                 return true;
             }
+
             return false;
         }
 
@@ -250,11 +268,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (isEnabled)
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlack");
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlack");
                 }
                 else
                 {
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIMiddleLightGray");
+                    return ResourceService.FindResource<SolidColorBrush>("UIMiddleLightGray");
                 }
             }
         }
@@ -269,7 +287,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             else
             {
-                MainViewModel.Current.ProjectTemplates.AddTemplateAndDependencies((NewTemplateName, Template), false);
+                SaveItem();
                 UpdateTemplateAvailability(MainViewModel.Current.ProjectTemplates.IsTemplateAlreadyDefined(Template.Identity));
             }
         }
@@ -278,10 +296,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (IsValidName)
             {
-                MainViewModel.Current.ProjectTemplates.AddTemplateAndDependencies((NewTemplateName, Template), false);
+                SaveItem();
                 CloseEdition();
                 UpdateTemplateAvailability(MainViewModel.Current.ProjectTemplates.IsTemplateAlreadyDefined(Template.Identity));
             }
+        }
+
+        private void SaveItem()
+        {
+            UserSelectionService.AddTemplateAndDependencies((NewTemplateName, Template), MainViewModel.Current.ProjectTemplates.ContextFramework.Name, false);
+            MainViewModel.Current.RebuildLicenses();
+            MainViewModel.Current.ProjectTemplates.UpdateTemplatesAvailability();
+            MainViewModel.Current.ProjectTemplates.UpdateSummaryTemplates();
+            MainViewModel.Current.ProjectTemplates.UpdateHasPagesAndHasFeatures();
         }
     }
 }

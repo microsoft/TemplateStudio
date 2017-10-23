@@ -17,14 +17,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public class MergeResourceDictionaryPostAction : MergePostAction
     {
-        private const string mergeDictionaryPattern = @"<ResourceDictionary.MergedDictionaries>
+        private const string MergeDictionaryPattern = @"<ResourceDictionary.MergedDictionaries>
     <!--^^-->
     <!--{[{-->
     <ResourceDictionary Source=""{filePath}""/>
     <!--}]}-->
 </ResourceDictionary.MergedDictionaries>";
 
-        public MergeResourceDictionaryPostAction(MergeConfiguration config) : base(config)
+        public MergeResourceDictionaryPostAction(MergeConfiguration config)
+            : base(config)
         {
         }
 
@@ -33,13 +34,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             string originalFilePath = GetFilePath();
             if (!File.Exists(originalFilePath))
             {
-                File.Copy(_config.FilePath, originalFilePath);
+                File.Copy(Config.FilePath, originalFilePath);
                 GenContext.Current.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath));
                 AddToMergeDictionary(originalFilePath);
             }
             else
             {
-                var mergeRoot = XElement.Load(_config.FilePath);
+                var mergeRoot = XElement.Load(Config.FilePath);
                 var sourceRoot = XElement.Load(originalFilePath);
 
                 foreach (var node in GetNodesToMerge(mergeRoot))
@@ -54,14 +55,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                         if (!XNode.DeepEquals(node, sourceNode))
                         {
                             var errorMessage = string.Format(StringRes.FailedMergePostActionKeyAlreadyDefined, GetKey(node));
-                            if (_config.FailOnError)
+                            if (Config.FailOnError)
                             {
                                 throw new InvalidDataException(errorMessage);
                             }
                             else
                             {
                                 AddFailedMergePostActions(originalFilePath, MergeFailureType.KeyAlreadyDefined, errorMessage);
-                                File.Delete(_config.FilePath);
+                                File.Delete(Config.FilePath);
                                 return;
                             }
                         }
@@ -73,17 +74,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     var writer = new ResourceDictionaryWriter(writeFile);
                     writer.WriteResourceDictionary(sourceRoot);
                     writer.Flush();
-                    writer.Close();
                 }
             }
 
-            File.Delete(_config.FilePath);
+            File.Delete(Config.FilePath);
         }
 
         private static void AddToMergeDictionary(string originalFilePath)
         {
-            var relPath = originalFilePath.Replace(GenContext.Current.OutputPath, "").Replace(@"\", @"/");
-            var postactionContent = mergeDictionaryPattern.Replace("{filePath}", relPath);
+            var relPath = originalFilePath.Replace(GenContext.Current.OutputPath, string.Empty).Replace(@"\", @"/");
+            var postactionContent = MergeDictionaryPattern.Replace("{filePath}", relPath);
             var mergeDictionaryName = Path.GetFileNameWithoutExtension(originalFilePath);
             File.WriteAllText(GenContext.Current.OutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);
         }
@@ -101,7 +101,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private string GetKey(XElement node)
         {
             XNamespace ns = node.GetNamespaceOfPrefix("x");
-            return node.Attribute(ns + "Key").Value;
+            return node.Attribute(ns + "Key")?.Value;
         }
 
         private IEnumerable<XElement> GetNodesToMerge(XElement rootNode)
@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            return Regex.Replace(_config.FilePath, MergeConfiguration.PostactionRegex, ".");
+            return Regex.Replace(Config.FilePath, MergeConfiguration.PostactionRegex, ".");
         }
     }
 }

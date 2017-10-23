@@ -3,23 +3,25 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Collections.Generic;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Packaging;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
     public abstract class TemplatesSource
     {
         protected const string SourceFolderName = "Templates";
+
         private const string VersionFileName = "version.txt";
 
         private List<string> _tempFoldersUsed = new List<string>();
+
         public virtual bool ForcedAcquisition { get; protected set; }
 
         protected virtual bool VerifyPackageSignatures { get => true; }
@@ -88,6 +90,7 @@ namespace Microsoft.Templates.Core.Locations
                     }
                 }
             }
+
             return result;
         }
 
@@ -165,6 +168,7 @@ namespace Microsoft.Templates.Core.Locations
                 Fs.SafeDeleteDirectory(tempFolder);
                 removedFolders.Add(tempFolder);
             }
+
             foreach (string folder in removedFolders)
             {
                 _tempFoldersUsed.Remove(folder);

@@ -7,14 +7,17 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
     public partial class MainView : Window
     {
-        public static MainView Current;
+        public static MainView Current { get; private set; }
+
         public MainViewModel ViewModel { get; private set; }
+
         public UserSelection Result { get; set; }
 
         public MainView()
@@ -54,7 +57,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
         {
             if (e.Key == Key.Escape)
             {
-                if (!ViewModel.ProjectTemplates.CloseAllEditions() && !ViewModel.Ordering.ClearDraggin())
+                if (!ViewModel.ProjectTemplates.CloseAllEditions() && !OrderingService.ClearDraggin())
                 {
                     Close();
                 }

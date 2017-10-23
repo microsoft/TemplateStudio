@@ -13,17 +13,18 @@ using System.Windows;
 using System.Windows.Threading;
 
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
 using Microsoft.VisualStudio.TemplateWizard;
-using Microsoft.Templates.Core.Diagnostics;
 
 namespace Microsoft.Templates.VsEmulator.Main
 {
@@ -41,10 +42,13 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         public string ProjectName { get; private set; }
+
         public string OutputPath { get; private set; }
+
         public string ProjectPath { get; private set; }
 
         private bool _forceLocalTemplatesRefresh = true;
+
         public bool ForceLocalTemplatesRefresh
         {
             get => _forceLocalTemplatesRefresh;
@@ -62,18 +66,27 @@ namespace Microsoft.Templates.VsEmulator.Main
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
 
         public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
+
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
+
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
+
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
+
         public RelayCommand OpenInVsCodeCommand => new RelayCommand(OpenInVsCode);
+
         public RelayCommand OpenInExplorerCommand => new RelayCommand(OpenInExplorer);
+
         public RelayCommand OpenTempInExplorerCommand => new RelayCommand(OpenTempInExplorer);
+
         public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
+
         public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
 
         public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
 
         private string _state;
+
         public string State
         {
             get => _state;
@@ -81,6 +94,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _log;
+
         public string Log
         {
             get => _log;
@@ -88,6 +102,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private Visibility _isProjectLoaded;
+
         public Visibility IsProjectLoaded
         {
             get => _isProjectLoaded;
@@ -95,6 +110,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private Visibility _isWtsProject;
+
         public Visibility IsWtsProject
         {
             get => _isWtsProject;
@@ -110,6 +126,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _wizardVersion;
+
         public string WizardVersion
         {
             get => _wizardVersion;
@@ -117,6 +134,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _templatesVersion;
+
         public string TemplatesVersion
         {
             get => _templatesVersion;
@@ -124,6 +142,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         }
 
         private string _solutionName;
+
         public string SolutionName
         {
             get => _solutionName;
@@ -149,14 +168,22 @@ namespace Microsoft.Templates.VsEmulator.Main
             SolutionName = null;
         }
 
-        private async void NewCSharpProject()
+        private void NewCSharpProject()
         {
-           await NewProjectAsync(ProgrammingLanguages.CSharp);
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await NewProjectAsync(ProgrammingLanguages.CSharp);
+            });
         }
 
-        private async void NewVisualBasicProject()
+        private void NewVisualBasicProject()
         {
-            await NewProjectAsync(ProgrammingLanguages.VisualBasic);
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await NewProjectAsync(ProgrammingLanguages.VisualBasic);
+            });
         }
 
         private async Task NewProjectAsync(string language)
@@ -410,9 +437,9 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddLog(string message)
         {
             Log += message + Environment.NewLine;
-
-            _host.Dispatcher.Invoke(() =>
+            SafeThreading.JoinableTaskFactory.Run(async () =>
             {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 _host.logScroll.ScrollToEnd();
             });
         }
@@ -428,6 +455,10 @@ namespace Microsoft.Templates.VsEmulator.Main
             CleanUpNotUsedContentVersions();
         }
 
+        [SuppressMessage(
+            "Usage",
+            "VSTHRD001:Use Await JoinableTaskFactory.SwitchToMainThreadAsync() to switch to the UI thread",
+            Justification = "Not applying this rule to this method as it was specifically desgned as is.")]
         public void DoEvents()
         {
             var frame = new DispatcherFrame(true);

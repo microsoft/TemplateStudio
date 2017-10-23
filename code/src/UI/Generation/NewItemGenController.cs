@@ -27,6 +27,7 @@ namespace Microsoft.Templates.UI
     public class NewItemGenController : GenController
     {
         private static Lazy<NewItemGenController> _instance = new Lazy<NewItemGenController>(Initialize);
+
         public static NewItemGenController Instance => _instance.Value;
 
         private static NewItemGenController Initialize()
@@ -36,7 +37,7 @@ namespace Microsoft.Templates.UI
 
         private NewItemGenController(PostActionFactory postactionFactory)
         {
-            _postactionFactory = postactionFactory;
+            PostactionFactory = postactionFactory;
         }
 
         public UserSelection GetUserSelectionNewFeature()
@@ -56,7 +57,7 @@ namespace Microsoft.Templates.UI
                 }
                 else
                 {
-                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddFeature).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddFeature, GenContext.ToolBox.Shell.GetVsVersion()).FireAndForget();
                 }
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
@@ -87,7 +88,7 @@ namespace Microsoft.Templates.UI
                 }
                 else
                 {
-                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddPage).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddPage, GenContext.ToolBox.Shell.GetVsVersion()).FireAndForget();
                 }
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
@@ -305,7 +306,7 @@ namespace Microsoft.Templates.UI
 
         private void ExecuteSyncGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = _postactionFactory.FindSyncGenerationPostActions(result);
+            var postActions = PostactionFactory.FindSyncGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
@@ -315,7 +316,7 @@ namespace Microsoft.Templates.UI
 
         private void ExecuteOutputGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = _postactionFactory.FindOutputGenerationPostActions(result);
+            var postActions = PostactionFactory.FindOutputGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
@@ -357,11 +358,11 @@ namespace Microsoft.Templates.UI
             switch (generationType)
             {
                 case ItemGenerationType.Generate:
-                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(wizardType, WizardActionEnum.GenerateItem).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(wizardType, WizardActionEnum.GenerateItem, GenContext.ToolBox.Shell.GetVsVersion()).FireAndForget();
 
                     break;
                 case ItemGenerationType.GenerateAndMerge:
-                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(wizardType, WizardActionEnum.GenerateAndMergeItem).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(wizardType, WizardActionEnum.GenerateAndMergeItem, GenContext.ToolBox.Shell.GetVsVersion()).FireAndForget();
                     break;
                 default:
                     break;

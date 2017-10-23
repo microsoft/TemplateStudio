@@ -18,7 +18,7 @@ namespace Microsoft.Templates.UI
 {
     public abstract class GenController
     {
-        internal PostActionFactory _postactionFactory;
+        public PostActionFactory PostactionFactory { get; internal set; }
 
         internal async Task<Dictionary<string, TemplateCreationResult>> GenerateItemsAsync(IEnumerable<GenInfo> genItems)
         {
@@ -52,6 +52,7 @@ namespace Microsoft.Templates.UI
 
                 ExecutePostActions(genInfo, result);
             }
+
             chrono.Stop();
             CalculateGenerationTime(chrono.Elapsed.TotalSeconds);
 
@@ -74,7 +75,7 @@ namespace Microsoft.Templates.UI
         internal void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
             // Get post actions from template
-            var postActions = _postactionFactory.FindPostActions(genInfo, generationResult);
+            var postActions = PostactionFactory.FindPostActions(genInfo, generationResult);
 
             foreach (var postAction in postActions)
             {
@@ -84,7 +85,7 @@ namespace Microsoft.Templates.UI
 
         internal void ExecuteGlobalPostActions()
         {
-            var postActions = _postactionFactory.FindGlobalPostActions();
+            var postActions = PostactionFactory.FindGlobalPostActions();
 
             foreach (var postAction in postActions)
             {

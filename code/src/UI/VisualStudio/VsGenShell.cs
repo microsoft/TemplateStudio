@@ -13,30 +13,51 @@ using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Threading;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 
 using NuGet.VisualStudio;
-using Microsoft.VisualStudio;
-using Microsoft.Templates.UI.Resources;
-using Microsoft.VisualStudio.Setup.Configuration;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
     public class VsGenShell : GenShell
     {
         private Lazy<DTE> _dte = new Lazy<DTE>(() => ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE, true);
+
         private DTE Dte => _dte.Value;
 
-        private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell, true);
+        private string _vsVersionInstance = string.Empty;
+
+        private string _vsProductVersion = string.Empty;
+
+        private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(
+            () =>
+            {
+                SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                return ServiceProvider.GlobalProvider.GetService(typeof(SVsUIShell)) as IVsUIShell;
+            },
+            true);
+
         private IVsUIShell UIShell => _uiShell.Value;
 
-        private Lazy<IVsSolution> _vssolution = new Lazy<IVsSolution>(() => ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution, true);
+        private Lazy<IVsSolution> _vssolution = new Lazy<IVsSolution>(
+            () =>
+            {
+                SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                return ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
+            },
+            true);
+
         private IVsSolution VSSolution => _vssolution.Value;
 
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
+
         private VsOutputPane OutputPane => _outputPane.Value;
 
         public override void AddItems(params string[] itemsFullPath)
@@ -100,6 +121,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     }
                 }
             }
+
             return false;
         }
 
@@ -128,6 +150,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             return null;
         }
 
+        public override void CleanSolution()
+        {
+            Dte.Solution.SolutionBuild.Clean();
+        }
+
         public override void SaveSolution()
         {
             Dte.Solution.SaveAs(Dte.Solution.FullName);
@@ -152,6 +179,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void ShowModal(System.Windows.Window dialog)
         {
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             // get the owner of this dialog
             UIShell.GetDialogOwnerHwnd(out IntPtr hwnd);
 
@@ -184,6 +213,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override string GetActiveProjectGuid()
         {
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             var p = GetActiveProject();
 
             if (p != null)
@@ -210,6 +241,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     return Path.GetDirectoryName(item.Project.FullName);
                 }
+
                 if (item.ProjectItem != null)
                 {
                     string fullPath = $"{item.ProjectItem.Properties.GetSafeValue("FullPath")}";
@@ -285,6 +317,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception)
             {
                 // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                p = null;
             }
 
             return p;
@@ -364,6 +397,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override Guid GetVsProjectId()
         {
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
             var project = GetActiveProject();
             Guid projectGuid = Guid.Empty;
             try
@@ -387,6 +422,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 projectGuid = Guid.Empty;
             }
+
             return projectGuid;
         }
 
@@ -411,7 +447,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     using (var client = new System.Net.WebClient())
                     {
                         var ncsi = client.DownloadString("http://www.msftncsi.com/ncsi.txt");
-                        internet = (ncsi == "Microsoft NCSI");
+                        internet = ncsi == "Microsoft NCSI";
                     }
                 }
                 catch
@@ -419,6 +455,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     internet = false;
                 }
             }
+
             return internet;
         }
 
@@ -442,6 +479,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         {
                             Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
                         }
+
                         break;
                 }
             }
@@ -452,13 +490,30 @@ namespace Microsoft.Templates.UI.VisualStudio
             return Dte.Debugger.CurrentMode != dbgDebugMode.dbgDesignMode;
         }
 
+        public override string GetVsVersionAndInstance()
+        {
+            if (string.IsNullOrEmpty(_vsVersionInstance))
+            {
+                ISetupConfiguration configuration = new SetupConfiguration() as ISetupConfiguration;
+                ISetupInstance instance = configuration.GetInstanceForCurrentProcess();
+                string version = instance.GetInstallationVersion();
+                string instanceId = instance.GetInstanceId();
+                _vsVersionInstance = $"{version}-{instanceId}";
+            }
+
+            return _vsVersionInstance;
+        }
+
         public override string GetVsVersion()
         {
-            ISetupConfiguration configuration = new SetupConfiguration() as ISetupConfiguration;
-            ISetupInstance instance = configuration.GetInstanceForCurrentProcess();
-            string version = instance.GetInstallationVersion();
-            string instanceId = instance.GetInstanceId();
-            return $"{version}-{instanceId}";
+            if (string.IsNullOrEmpty(_vsProductVersion))
+            {
+                ISetupConfiguration configuration = new SetupConfiguration() as ISetupConfiguration;
+                ISetupInstance instance = configuration.GetInstanceForCurrentProcess();
+                _vsProductVersion = instance.GetInstallationVersion();
+            }
+
+            return _vsProductVersion;
         }
     }
 }

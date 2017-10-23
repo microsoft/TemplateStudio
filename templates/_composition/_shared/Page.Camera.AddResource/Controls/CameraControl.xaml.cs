@@ -177,12 +177,9 @@ namespace Param_ItemNamespace.Controls
             {
                 await _mediaCapture.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
 
-                var photoOrientation = _displayInformation.ToSimpleOrientation(_deviceOrientation, _mirroringPreview).ToPhotoOrientation();
-
-                if (_mirroringPreview)
-                {
-                    photoOrientation = PhotoOrientation.FlipHorizontal;
-                }
+                var photoOrientation = _displayInformation
+                    .ToSimpleOrientation(_deviceOrientation, _mirroringPreview)
+                    .ToPhotoOrientation(_mirroringPreview);
 
                 var photo = await ReencodeAndSavePhotoAsync(stream, photoOrientation);
                 PhotoTaken?.Invoke(this, new CameraControlEventArgs(photo));
@@ -284,7 +281,7 @@ namespace Param_ItemNamespace.Controls
             {
                 var decoder = await BitmapDecoder.CreateAsync(inputStream);
 
-                var file = await Package.Current.InstalledLocation.CreateFileAsync("photo.jpeg", CreationCollisionOption.GenerateUniqueName);
+                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("photo.jpeg", CreationCollisionOption.GenerateUniqueName);
 
                 using (var outputStream = await file.OpenAsync(FileAccessMode.ReadWrite))
                 {

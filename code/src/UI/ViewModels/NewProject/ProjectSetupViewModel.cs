@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     public class ProjectSetupViewModel : Observable
     {
         private string _projectTypesHeader;
+
         public string ProjectTypesHeader
         {
             get => _projectTypesHeader;
@@ -22,6 +23,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _frameworkHeader;
+
         public string FrameworkHeader
         {
             get => _frameworkHeader;
@@ -29,6 +31,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private MetadataInfoViewModel _selectedProjectType;
+
         public MetadataInfoViewModel SelectedProjectType
         {
             get => _selectedProjectType;
@@ -46,12 +49,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     {
                         SelectedFramework = Frameworks.FirstOrDefault();
                     }
+
                     var hasChanged = _selectedProjectType != null && _selectedProjectType.Name != value.Name;
                     SetProperty(ref _selectedProjectType, value);
+                    UserSelectionService.SelectedProjectType = value;
                     if (hasChanged)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
+
                     MainViewModel.Current.UpdateCanGoForward(true);
                     MainViewModel.Current.RebuildLicenses();
                 }
@@ -59,6 +65,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private MetadataInfoViewModel _selectedFramework;
+
         public MetadataInfoViewModel SelectedFramework
         {
             get => _selectedFramework;
@@ -68,16 +75,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 {
                     bool hasChanged = _selectedFramework != null && _selectedFramework.Name != value.Name;
                     SetProperty(ref _selectedFramework, value);
+                    UserSelectionService.SelectedFramework = value;
                     if (hasChanged)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();
                     }
+
                     MainViewModel.Current.RebuildLicenses();
                 }
             }
         }
 
         public ObservableCollection<MetadataInfoViewModel> ProjectTypes { get; } = new ObservableCollection<MetadataInfoViewModel>();
+
         public ObservableCollection<MetadataInfoViewModel> Frameworks { get; } = new ObservableCollection<MetadataInfoViewModel>();
 
         public async Task InitializeAsync(bool force = false)

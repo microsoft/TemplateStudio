@@ -10,18 +10,21 @@ using System.Linq;
 using System.Reflection;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Gen
 {
     public class GenContext
     {
         private static IContextProvider _currentContext;
+
         private static string _tempGenerationFolder = Path.Combine(Path.GetTempPath(), Configuration.Current.TempGenerationFolderPath);
 
         public static GenToolBox ToolBox { get; private set; }
+
         public static string InitializedLanguage { get; private set; }
+
         public static bool ContextInitialized => _currentContext != null;
 
         public static IContextProvider Current
@@ -54,7 +57,7 @@ namespace Microsoft.Templates.Core.Gen
                 AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
                 AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
-                string hostVersion = $"{shell.GetVsVersion()}-{wizardVersion.Major}.{wizardVersion.Minor}";
+                string hostVersion = $"{shell.GetVsVersionAndInstance()}-{wizardVersion.Major}.{wizardVersion.Minor}";
 
                 CodeGen.Initialize(source.Id, hostVersion);
                 var repository = new TemplatesRepository(source, wizardVersion, language);

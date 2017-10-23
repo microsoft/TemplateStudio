@@ -8,9 +8,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Resources;
+
+using Localization.Extensions;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Localization.Extensions;
 
 namespace Localization
 {
@@ -28,7 +30,9 @@ namespace Localization
             _sourceDir = new DirectoryInfo(sourceDir);
 
             if (!_sourceDir.Exists)
+            {
                 throw new DirectoryNotFoundException($"Source directory \"{_sourceDir.FullName}\" not found.");
+            }
 
             _cultures = cultures;
             _errors = new List<string>();

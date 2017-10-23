@@ -25,9 +25,15 @@ namespace Localization
         {
             XmlNodeList nodes = xmlFile.GetElementsByTagName(nodeName);
             if (nodes == null || nodes.Count == 0)
+            {
                 throw new Exception($"Node \"{nodeName}\" not found in XmlDocument.");
+            }
+
             if (nodes.Count > 1)
+            {
                 throw new Exception($"There were more than one \"{nodeName}\" node XmlDocument.");
+            }
+
             return nodes[0];
         }
 

@@ -8,19 +8,25 @@ using System.Windows.Media;
 
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public abstract class BaseFileViewModel : Observable
     {
         public string DetailTitle { get; protected set; }
+
         public string DetailDescription { get; protected set; }
+
         public string Subject { get; protected set; }
+
         public string Icon { get; private set; }
+
         public SolidColorBrush CircleColor { get; private set; }
+
         public FileExtension FileExtension { get; private set; }
+
         public Func<string, string> UpdateTextAction { get; }
 
         public string FailedPostaction
@@ -29,41 +35,43 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 if (FileStatus == FileStatus.ConflictingStylesFile)
                 {
-                    var name = Subject.Replace(".xaml", "");
+                    var name = Subject.Replace(".xaml", string.Empty);
                     return Path.Combine(GenContext.Current.OutputPath, $"{name}_failedpostaction.xaml");
                 }
+
                 return string.Empty;
             }
         }
+
         public string TempFile => Path.Combine(GenContext.Current.OutputPath, Subject);
+
         public string ProjectFile => Path.Combine(GenContext.Current.ProjectPath, Subject);
 
         private double _codeFontSize;
+
         public double CodeFontSize
         {
             get => _codeFontSize;
             set => SetProperty(ref _codeFontSize, value);
         }
 
-        public abstract FileStatus FileStatus { get; }
+        public FileStatus FileStatus { get; }
 
         public virtual string UpdateText(string fileText) => fileText;
 
-        // TODO: Review constructor to remove this suppresion. Important
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BaseFileViewModel(string name)
+        public BaseFileViewModel(string name, FileStatus fileStatus)
         {
             Subject = name;
+            FileStatus = fileStatus;
             LoadFile();
             UpdateTextAction = fileText => UpdateText(fileText);
             CodeFontSize = SystemService.Instance.GetCodeFontSize();
         }
 
-        // TODO: Review constructor to remove this suppresion. Important
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BaseFileViewModel(NewItemGenerationFileInfo generationInfo)
+        public BaseFileViewModel(NewItemGenerationFileInfo generationInfo, FileStatus fileStatus)
         {
             Subject = generationInfo.Name;
+            FileStatus = fileStatus;
             LoadFile();
             UpdateTextAction = fileText => UpdateText(fileText);
             CodeFontSize = SystemService.Instance.GetCodeFontSize();
@@ -91,17 +99,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             switch (FileStatus)
             {
                 case FileStatus.NewFile:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIGreen") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIGreen") as SolidColorBrush;
                 case FileStatus.ModifiedFile:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIBlue") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIBlue") as SolidColorBrush;
                 case FileStatus.ConflictingFile:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIRed") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIRed") as SolidColorBrush;
                 case FileStatus.ConflictingStylesFile:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
                 case FileStatus.WarningFile:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
+                    return ResourceService.FindResource<SolidColorBrush>("UIDarkYellow") as SolidColorBrush;
                 case FileStatus.Unchanged:
-                    return MainViewModel.Current.FindResource<SolidColorBrush>("UIDarkBlue");
+                    return ResourceService.FindResource<SolidColorBrush>("UIDarkBlue");
                 default:
                     return new SolidColorBrush(Colors.Transparent);
             }

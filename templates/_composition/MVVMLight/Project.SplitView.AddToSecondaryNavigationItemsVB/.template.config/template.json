@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & $projectType == SplitView & identity == wts.Page.Settings.MVVMLight",
+    "wts.compositionFilter": "$framework == MVVMLight & $projectType == SplitView & identity == wts.Page.Settings",
     "wts.compositionOrder": "3"
   },
   "sourceName": "wts.ItemName",

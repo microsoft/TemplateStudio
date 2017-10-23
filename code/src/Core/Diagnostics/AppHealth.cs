@@ -11,13 +11,19 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class AppHealth : IDisposable
     {
         public TraceTracker Verbose { get; private set; }
+
         public TraceTracker Info { get; private set; }
+
         public TraceTracker Warning { get; private set; }
+
         public TraceTracker Error { get; private set; }
+
         public ExceptionTracker Exception { get; private set; }
+
         public TelemetryTracker Telemetry { get; private set; }
 
-        static AppHealth _current;
+        private static AppHealth _current;
+
         public static AppHealth Current
         {
             get
@@ -50,11 +56,15 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public void AddWriter(IHealthWriter newWriter)
         {
-            if (newWriter.AllowMultipleInstances() || !HealthWriters.Available.Where(w => w.GetType() == newWriter.GetType()).Any())
+            if (newWriter != null)
             {
-                HealthWriters.Available.Add(newWriter);
+                if (newWriter.AllowMultipleInstances() || !HealthWriters.Available.Where(w => w.GetType() == newWriter.GetType()).Any())
+                {
+                    HealthWriters.Available.Add(newWriter);
+                }
             }
         }
+
         private void InstanceDefaultWriters()
         {
             HealthWriters.Available.Add(FileHealthWriter.Current);
@@ -86,6 +96,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                     }
                 }
             }
+
             // free native resources if any.
         }
     }
