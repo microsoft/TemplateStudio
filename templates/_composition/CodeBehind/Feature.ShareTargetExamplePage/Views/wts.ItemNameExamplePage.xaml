@@ -20,11 +20,11 @@
         <Grid Margin="{StaticResource MediumLeftRightMargin}">
             <TextBlock
                 x:Name="TitlePage"
-                Text="{x:Bind ViewModel.PageTitle}"
+                Text="{x:Bind PageTitle}"
                 Style="{StaticResource PageTitleStyle}" />
         </Grid>
 
-        <ContentControl Grid.Row="1" Content="{x:Bind ViewModel.SharedData, Mode=OneWay}">
+        <ContentControl Grid.Row="1" Content="{x:Bind SharedData, Mode=OneWay}">
             <ContentControl.ContentTemplateSelector>
                 <templateSelectors:SharedContentTemplateSelector>
                     <templateSelectors:SharedContentTemplateSelector.WebLinkTemplate>
@@ -56,6 +56,6 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
             Margin="{StaticResource MediumLeftRightMargin}"
-            Command="{x:Bind ViewModel.CompleteCommand}" />
+            Click="CompleteButton_Click" />
     </Grid>
 </Page>

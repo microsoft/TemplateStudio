@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    xmlns:cm="using:Caliburn.Micro"
     xmlns:templateSelectors="using:Param_ItemNamespace.TemplateSelectors"
     xmlns:models="using:Param_ItemNamespace.Models"
     mc:Ignorable="d">
@@ -56,6 +57,6 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
             Margin="{StaticResource MediumLeftRightMargin}"
-            Command="{x:Bind ViewModel.CompleteCommand}" />
+            cm:Message.Attach="Complete" />
     </Grid>
 </Page>
