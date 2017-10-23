@@ -3,20 +3,20 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Net.Mime;
 using System.Security;
 using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.Packaging;
 
 using Xunit;
-using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {

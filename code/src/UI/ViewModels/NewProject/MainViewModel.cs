@@ -12,23 +12,26 @@ using System.Windows.Controls;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewProject;
-using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
         private bool _needRestartConfiguration = false;
-        public static MainViewModel Current;
-        public MainView MainView;
+
+        public static MainViewModel Current { get; private set; }
+
+        public MainView MainView { get; private set; }
 
         public ProjectSetupViewModel ProjectSetup { get; } = new ProjectSetupViewModel();
 
         public ProjectTemplatesViewModel ProjectTemplates { get; } = new ProjectTemplatesViewModel();
 
         private bool _hasLicenses;
+
         public bool HasLicenses
         {
             get => _hasLicenses;

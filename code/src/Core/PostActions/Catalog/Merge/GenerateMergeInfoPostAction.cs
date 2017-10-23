@@ -25,8 +25,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public override void Execute()
         {
-            var fileName = _config;
-            var postAction = File.ReadAllText(_config).AsUserFriendlyPostAction();
+            var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
             var sourceFile = GetFilePath();
             var mergeType = GetMergeType();
             var relFilePath = sourceFile.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
@@ -41,7 +40,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetMergeType()
         {
-            switch (Path.GetExtension(_config).ToLowerInvariant())
+            switch (Path.GetExtension(Config).ToLowerInvariant())
             {
                 case ".cs":
                     return "csharp";
@@ -58,16 +57,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(_config).StartsWith(Extension))
+            if (Path.GetFileName(Config).StartsWith(Extension))
             {
-                var extension = Path.GetExtension(_config);
-                var directory = Path.GetDirectoryName(_config);
+                var extension = Path.GetExtension(Config);
+                var directory = Path.GetDirectoryName(Config);
 
                 return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(Suffix));
             }
             else
             {
-                var path = Regex.Replace(_config, PostactionRegex, ".");
+                var path = Regex.Replace(Config, PostactionRegex, ".");
 
                 return path;
             }

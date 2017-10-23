@@ -11,6 +11,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public abstract class CommonInfoViewModel : Observable
     {
         private string _name;
+
         public string Name
         {
             get => _name;
@@ -18,6 +19,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _summary;
+
         public string Summary
         {
             get => _summary;
@@ -25,6 +27,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _description;
+
         public string Description
         {
             get => _description;
@@ -32,6 +35,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _icon;
+
         public string Icon
         {
             get => _icon;
@@ -39,6 +43,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _author;
+
         public string Author
         {
             get => _author;
@@ -46,6 +51,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private int _order;
+
         public int Order
         {
             get => _order;
@@ -53,6 +59,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _version;
+
         public string Version
         {
             get => _version;
@@ -60,6 +67,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private IEnumerable<TemplateLicense> _licenseTerms;
+
         public IEnumerable<TemplateLicense> LicenseTerms
         {
             get => _licenseTerms;

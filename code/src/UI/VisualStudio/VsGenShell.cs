@@ -13,26 +13,27 @@ using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Threading;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 
 using NuGet.VisualStudio;
 
-using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Threading;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Setup.Configuration;
-
 namespace Microsoft.Templates.UI.VisualStudio
 {
     public class VsGenShell : GenShell
     {
         private Lazy<DTE> _dte = new Lazy<DTE>(() => ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE, true);
+
         private DTE Dte => _dte.Value;
 
         private string _vsVersionInstance = string.Empty;
+
         private string _vsProductVersion = string.Empty;
 
         private Lazy<IVsUIShell> _uiShell = new Lazy<IVsUIShell>(
@@ -56,6 +57,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private IVsSolution VSSolution => _vssolution.Value;
 
         private Lazy<VsOutputPane> _outputPane = new Lazy<VsOutputPane>(() => new VsOutputPane());
+
         private VsOutputPane OutputPane => _outputPane.Value;
 
         public override void AddItems(params string[] itemsFullPath)
@@ -315,6 +317,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception)
             {
                 // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                p = null;
             }
 
             return p;

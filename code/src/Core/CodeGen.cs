@@ -22,7 +22,9 @@ namespace Microsoft.Templates.Core
         public static CodeGen Instance { get; private set; }
 
         public TemplateCreator Creator { get; }
+
         public EngineEnvironmentSettings Settings { get; }
+
         public TemplateCache Cache
         {
             get

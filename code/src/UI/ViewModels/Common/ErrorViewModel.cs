@@ -14,6 +14,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public class ErrorViewModel : Observable
     {
         private const double HostHeightCollapsed = 250;
+
         private const double HostHeightExpanded = 500;
 
         private readonly Window _host;
@@ -36,9 +37,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         public ICommand CloseCommand => new RelayCommand(() => _host.Close());
+
         public ICommand ToggleDetailVisibleCommand => new RelayCommand(() => ToggleDetailVisible());
 
         private double _hostHeight;
+
         public double HostHeight
         {
             get => _hostHeight;
@@ -46,6 +49,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _toggleButtonIcon;
+
         public string ToggleButtonIcon
         {
             get => _toggleButtonIcon;
@@ -53,6 +57,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _message;
+
         public string Message
         {
             get => _message;
@@ -60,6 +65,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private string _messageDetail;
+
         public string MessageDetail
         {
             get => _messageDetail;
@@ -67,6 +73,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         private Visibility _messageDetailVisibility;
+
         public Visibility MessageDetailVisibility
         {
             get => _messageDetailVisibility;

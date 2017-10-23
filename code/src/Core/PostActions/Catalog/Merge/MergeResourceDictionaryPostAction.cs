@@ -34,13 +34,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             string originalFilePath = GetFilePath();
             if (!File.Exists(originalFilePath))
             {
-                File.Copy(_config.FilePath, originalFilePath);
+                File.Copy(Config.FilePath, originalFilePath);
                 GenContext.Current.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath));
                 AddToMergeDictionary(originalFilePath);
             }
             else
             {
-                var mergeRoot = XElement.Load(_config.FilePath);
+                var mergeRoot = XElement.Load(Config.FilePath);
                 var sourceRoot = XElement.Load(originalFilePath);
 
                 foreach (var node in GetNodesToMerge(mergeRoot))
@@ -55,14 +55,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                         if (!XNode.DeepEquals(node, sourceNode))
                         {
                             var errorMessage = string.Format(StringRes.FailedMergePostActionKeyAlreadyDefined, GetKey(node));
-                            if (_config.FailOnError)
+                            if (Config.FailOnError)
                             {
                                 throw new InvalidDataException(errorMessage);
                             }
                             else
                             {
                                 AddFailedMergePostActions(originalFilePath, MergeFailureType.KeyAlreadyDefined, errorMessage);
-                                File.Delete(_config.FilePath);
+                                File.Delete(Config.FilePath);
                                 return;
                             }
                         }
@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 }
             }
 
-            File.Delete(_config.FilePath);
+            File.Delete(Config.FilePath);
         }
 
         private static void AddToMergeDictionary(string originalFilePath)
@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            return Regex.Replace(_config.FilePath, MergeConfiguration.PostactionRegex, ".");
+            return Regex.Replace(Config.FilePath, MergeConfiguration.PostactionRegex, ".");
         }
     }
 }

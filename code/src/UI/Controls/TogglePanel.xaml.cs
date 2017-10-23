@@ -7,9 +7,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 using Microsoft.Templates.UI.Views.NewProject;
-using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Controls
 {

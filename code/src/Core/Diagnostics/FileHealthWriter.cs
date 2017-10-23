@@ -18,11 +18,13 @@ namespace Microsoft.Templates.Core.Diagnostics
     public class FileHealthWriter : IHealthWriter
     {
         private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
+
         private string _workingFolder;
 
         public string LogFileName { get; private set; }
 
         private static FileHealthWriter _current;
+
         public static FileHealthWriter Current
         {
             get

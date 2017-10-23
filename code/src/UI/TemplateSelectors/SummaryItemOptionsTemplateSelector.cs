@@ -13,6 +13,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
     public class SummaryItemOptionsTemplateSelector : DataTemplateSelector
     {
         public DataTemplate PageOptionsTemplate { get; set; }
+
         public DataTemplate FeatureOptionsTemplate { get; set; }
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)

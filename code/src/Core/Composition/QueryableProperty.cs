@@ -11,6 +11,7 @@ namespace Microsoft.Templates.Core.Composition
         public static QueryableProperty Empty => new QueryableProperty(string.Empty, string.Empty);
 
         public string Name { get; }
+
         public string Value { get; }
 
         public QueryableProperty(string name, string value)
