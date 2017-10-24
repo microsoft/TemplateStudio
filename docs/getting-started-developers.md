@@ -107,7 +107,7 @@ The following list shows which tests are executed in which build. Within the Tem
 To shorten test execution time traits in Templates.Test are run parallel using this [script](../_build/ParallelTestExecution.ps1).
 To execute this script locally use the following powershell command:
 
-`<wts directory>\_build\ParallelTestExecution.ps1 -testRunner <wts directory>\Code\packages\xunit.runner.console.2.2.0\tools\xunit.console.exe -testLibrary <wts directory>\Code\test\Templates.Test\bin\Analyze\Microsoft.Templates.Test.dll -traits 'ExecutionSet=BuildMinimum', 'ExecutionSet=BuildStyleCop', 'ExecutionSet=TemplateValidation' -outputDir <output directory>`
+`<wts directory>\_build\ParallelTestExecution.ps1 -testRunner <wts directory>\Code\packages\xunit.runner.console.2.3.0\tools\net452\xunit.console.exe -testLibrary <wts directory>\Code\test\Templates.Test\bin\Analyze\Microsoft.Templates.Test.dll -traits 'ExecutionSet=BuildMinimum', 'ExecutionSet=BuildStyleCop', 'ExecutionSet=TemplateValidation' -outputDir <output directory>`
 
 where
 
