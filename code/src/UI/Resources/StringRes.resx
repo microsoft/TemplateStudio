@@ -289,6 +289,10 @@
     <value>User Interaction</value>
     <comment>Group header for user interaction templates</comment>
   </data>
+  <data name="TemplateGroup_AppToApp" xml:space="preserve">
+    <value>App to App</value>
+    <comment>Group header for App to App templates</comment>
+  </data>
   <data name="TemplatesVersion" xml:space="preserve">
     <value>Templates:</value>
     <comment>Templates version title</comment>

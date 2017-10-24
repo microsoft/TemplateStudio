@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Storage;
@@ -41,6 +41,9 @@ namespace Param_ItemNamespace.Views
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            // ShareTarget declarations are defined in Package.appxmanifest.
+            // Current declarations allow tho share WebLink and image files with the app.
+            // ShareTarget can be tested sharing the WebLink from Microsoft Edge or sharing images from Windows Photos.
             base.OnNavigatedTo(e);
             _shareOperation = e.Parameter as ShareOperation;
             var newSharedData = new SharedContentModel

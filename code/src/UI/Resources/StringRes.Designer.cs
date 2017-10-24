@@ -1060,6 +1060,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App to App.
+        /// </summary>
+        public static string TemplateGroup_AppToApp {
+            get {
+                return ResourceManager.GetString("TemplateGroup_AppToApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Background Work.
         /// </summary>
         public static string TemplateGroup_BackgroundWork {
