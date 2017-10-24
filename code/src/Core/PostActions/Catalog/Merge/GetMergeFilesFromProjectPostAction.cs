@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             if (Regex.IsMatch(Config, MergeConfiguration.GlobalExtension))
             {

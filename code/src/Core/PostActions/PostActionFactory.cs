@@ -7,11 +7,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces;
+using System.Reflection;
 
 namespace Microsoft.Templates.Core.PostActions
 {
@@ -49,13 +51,22 @@ namespace Microsoft.Templates.Core.PostActions
                 .ForEach(f => postActions.Add(new GenerateMergeInfoPostAction(f)));
         }
 
+        internal void AddTemplateDefinedPostActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
+        {
+            var genCertificatePostAction = genResult.ResultInfo.PostActions.Where(x => x.ActionId == GenerateTestCertificatePostAction.Id).FirstOrDefault();
+            if (genCertificatePostAction != null)
+            {
+                postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName(), genCertificatePostAction.Args, genCertificatePostAction.ContinueOnError));
+            }
+        }
+
         internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
             switch (genInfo.Template.GetTemplateType())
             {
                 case TemplateType.Project:
                     postActions.Add(new AddProjectToSolutionPostAction(genResult.ResultInfo.PrimaryOutputs));
-                    postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName()));
+                    // postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName()));
                     break;
                 case TemplateType.Page:
                 case TemplateType.Feature:

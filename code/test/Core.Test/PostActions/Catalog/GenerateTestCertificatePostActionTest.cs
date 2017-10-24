@@ -56,7 +56,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Directory.CreateDirectory(GenContext.Current.ProjectPath);
             File.Copy(Path.Combine(Environment.CurrentDirectory, "TestData\\TestProject\\Test.csproj"), Path.Combine(GenContext.Current.ProjectPath, "Test.csproj"), true);
 
-            var postAction = new GenerateTestCertificatePostAction("TestUser");
+            var postAction = new GenerateTestCertificatePostAction("TestUser", true);
 
             postAction.Execute();
 

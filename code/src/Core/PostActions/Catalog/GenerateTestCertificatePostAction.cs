@@ -3,38 +3,43 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 
 using CERTENROLLLib;
 
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class GenerateTestCertificatePostAction : PostAction<string>
     {
-        public GenerateTestCertificatePostAction(string config)
+        public static readonly Guid Id = new Guid("65057255-BD7B-443C-8180-5D82B9DA9E22");
+
+        public IReadOnlyDictionary<string, string> Args { get; set; }
+
+        public GenerateTestCertificatePostAction(string config, IReadOnlyDictionary<string, string> args, bool continueOnError)
             : base(config)
         {
+            ContinueOnError = continueOnError;
+            Args = args;
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
-            try
-            {
+            //try
+            //{
                 var publisherName = Config;
                 var pfx = CreateCertificate(publisherName);
 
                 AddToProject(pfx);
                 RemoveFromStore(pfx);
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Warning.TrackAsync(StringRes.GenerateTestCertificatePostActionExecute, ex).FireAndForget();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    AppHealth.Current.Warning.TrackAsync(StringRes.GenerateTestCertificatePostActionExecute, ex).FireAndForget();
+            //}
         }
 
         private void AddToProject(string base64Encoded)

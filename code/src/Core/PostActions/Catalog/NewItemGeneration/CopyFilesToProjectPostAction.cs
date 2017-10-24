@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             foreach (var file in Config.ModifiedFiles)
             {

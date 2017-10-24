@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             string originalFilePath = GetFilePath();
             if (!File.Exists(originalFilePath))

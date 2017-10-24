@@ -4,6 +4,7 @@
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
+    // TODO PROMOTE TO FailedMergePostActionInfo?
     public class FailedMergePostAction
     {
         public MergeFailureType MergeFailureType { get; private set; }

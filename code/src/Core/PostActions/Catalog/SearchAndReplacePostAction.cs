@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             string originalFilePath = GetFilePath();
 

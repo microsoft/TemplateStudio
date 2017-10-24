@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             var itemsToAdd = Config
                                 .Where(o => !string.IsNullOrWhiteSpace(o.Path))
