@@ -8,9 +8,9 @@ namespace Param_RootNamespace
 //^^
 //{[{
 
-        protected override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
+        protected override async void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
         {
-            ActivationService.ActivateFromShareTarget(typeof(Views.ShareTargetFeatureExamplePage), args);
+            await ActivationService.ActivateAsync(args);
         }
 //}]}
     }
