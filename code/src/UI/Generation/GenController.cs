@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
@@ -80,7 +81,7 @@ namespace Microsoft.Templates.UI
             // Get post actions from template
             var postActions = PostactionFactory.FindPostActions(genInfo, generationResult);
 
-            Console.WriteLine($"#*#*#*# {postActions.Count} postActions found");
+            Console.WriteLine($"#*#*#*# {postActions.Count()} postActions found");
 
             foreach (var postAction in postActions)
             {
