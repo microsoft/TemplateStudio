@@ -42,6 +42,9 @@ namespace Param_ItemNamespace.ViewModels
 
         public async Task LoadAsync(ShareOperation shareOperation)
         {
+            // ShareTarget declarations are defined in Package.appxmanifest.
+            // Current declarations allow tho share WebLink and image files with the app.
+            // ShareTarget can be tested sharing the WebLink from Microsoft Edge or sharing images from Windows Photos.
             _shareOperation = shareOperation;
             var newSharedData = new SharedContentModel
             {

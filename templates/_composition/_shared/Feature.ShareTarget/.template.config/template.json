@@ -15,6 +15,9 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
+      "path": ".\\Activation\\ShareTargetActivationHandler.cs"
+    },
+    {
       "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.cs"
     },
     {

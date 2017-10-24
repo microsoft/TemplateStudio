@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.ComponentModel;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
