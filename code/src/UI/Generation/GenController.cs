@@ -50,6 +50,7 @@ namespace Microsoft.Templates.UI
                     throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
                 }
 
+                Console.WriteLine($"#*#*#*# About to call ExecutePostActions({genInfo}, {result})");
                 ExecutePostActions(genInfo, result);
             }
 
@@ -74,11 +75,16 @@ namespace Microsoft.Templates.UI
 
         internal void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
+            Console.WriteLine($"#*#*#*# In ExecutePostActions");
+
             // Get post actions from template
             var postActions = PostactionFactory.FindPostActions(genInfo, generationResult);
 
+            Console.WriteLine($"#*#*#*# {postActions.Count} postActions found");
+
             foreach (var postAction in postActions)
             {
+                Console.WriteLine($"#*#*#*# About to execute {postAction}");
                 postAction.Execute();
             }
         }
