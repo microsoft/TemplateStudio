@@ -48,27 +48,6 @@ namespace Microsoft.Templates.UI
 
                 if (result.Status != CreationResultStatus.Success)
                 {
-                    Console.WriteLine("#=#=#=#=#=#");
-                    Console.WriteLine(result.Status);
-                    Console.WriteLine(result.TemplateFullName);
-                    Console.WriteLine(result.ResultInfo?.ToString() ?? "No ResultInfo");
-                    if (result.ResultInfo?.PrimaryOutputs != null)
-                    {
-                        foreach (var resultInfoPrimaryOutput in result.ResultInfo.PrimaryOutputs)
-                        {
-                            Console.WriteLine(resultInfoPrimaryOutput);
-                        }
-                    }
-
-                    if (result.ResultInfo?.PostActions != null)
-                    {
-                        foreach (var resultInfoPostAction in result.ResultInfo.PostActions)
-                        {
-                            Console.WriteLine(resultInfoPostAction);
-                        }
-                    }
-
-                    Console.WriteLine("#=#=#=#=#=#");
                     throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
                 }
 

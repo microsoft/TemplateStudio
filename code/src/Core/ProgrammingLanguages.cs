@@ -14,7 +14,7 @@ namespace Microsoft.Templates.Core
 
         public static IEnumerable<string> GetAllLanguages()
         {
-            //yield return ProgrammingLanguages.CSharp;
+            yield return ProgrammingLanguages.CSharp;
             yield return ProgrammingLanguages.VisualBasic;
         }
     }
