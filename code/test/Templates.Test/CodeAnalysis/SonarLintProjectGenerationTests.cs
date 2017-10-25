@@ -47,7 +47,6 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}AllSonarLint";
 
-            Console.WriteLine($"#*#*#*# About to generate {projectName}");
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             OutputPath = ProjectPath;

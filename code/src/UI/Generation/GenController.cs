@@ -48,10 +48,24 @@ namespace Microsoft.Templates.UI
 
                 if (result.Status != CreationResultStatus.Success)
                 {
+                    Console.WriteLine("#=#=#=#=#=#");
+                    Console.WriteLine(result.Status);
+                    Console.WriteLine(result.TemplateFullName);
+                    Console.WriteLine(result.ResultInfo);
+                    foreach (var resultInfoPrimaryOutput in result.ResultInfo.PrimaryOutputs)
+                    {
+                        Console.WriteLine(resultInfoPrimaryOutput);
+                    }
+
+                    foreach (var resultInfoPostAction in result.ResultInfo.PostActions)
+                    {
+                        Console.WriteLine(resultInfoPostAction);
+                    }
+
+                    Console.WriteLine("#=#=#=#=#=#");
                     throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
                 }
 
-                Console.WriteLine($"#*#*#*# About to call ExecutePostActions({genInfo}, {result})");
                 ExecutePostActions(genInfo, result);
             }
 
@@ -76,16 +90,11 @@ namespace Microsoft.Templates.UI
 
         internal void ExecutePostActions(GenInfo genInfo, TemplateCreationResult generationResult)
         {
-            Console.WriteLine($"#*#*#*# In ExecutePostActions");
-
             // Get post actions from template
             var postActions = PostactionFactory.FindPostActions(genInfo, generationResult);
 
-            Console.WriteLine($"#*#*#*# {postActions.Count()} postActions found");
-
             foreach (var postAction in postActions)
             {
-                Console.WriteLine($"#*#*#*# About to execute {postAction}");
                 postAction.Execute();
             }
         }
