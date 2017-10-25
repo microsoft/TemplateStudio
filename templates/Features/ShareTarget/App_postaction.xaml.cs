@@ -10,7 +10,7 @@ namespace Param_RootNamespace
 
         protected override async void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
         {
-            await ActivationService.ActivateAsync(args);
+            await ActivationService.ActivateFromShareTargetAsync(args);
         }
 //}]}
     }

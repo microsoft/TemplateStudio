@@ -16,5 +16,17 @@ namespace Param_ItemNamespace.Services
 
             yield break;//}--}
         }
+
+        //^^
+        //{[{
+        internal async Task ActivateFromShareTargetAsync(ShareTargetActivatedEventArgs activationArgs)
+        {
+            var shareTargetHandler = GetActivationHandlers().FirstOrDefault(h => h.CanHandle(activationArgs));
+            if (shareTargetHandler != null)
+            {
+                await shareTargetHandler.HandleAsync(activationArgs);
+            }
+        }
+        //}]}
     }
 }

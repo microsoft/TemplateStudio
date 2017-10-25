@@ -37,10 +37,15 @@ namespace Param_ItemNamespace.ViewModels
 
         public async Task LoadAsync(ShareOperation shareOperation)
         {
-            // ShareTarget declarations are defined in Package.appxmanifest.
-            // Current declarations allow tho share WebLink and image files with the app.
+            // TODO WTS: Configure your Share Target Declaration to allow other data formats.
+            // Share Target declarations are defined in Package.appxmanifest.
+            // Current declarations allow to share WebLink and image files with the app.
             // ShareTarget can be tested sharing the WebLink from Microsoft Edge or sharing images from Windows Photos.
+
+            // ShareOperation contains all the information required to handle the action.
             _shareOperation = shareOperation;
+
+            // TODO WTS: Custom SharedContentModel class adding properties for data that you need to extract from _shareOperation
             var newSharedData = new SharedContentModel
             {
                 Title = _shareOperation.Data.Properties.Title
@@ -78,6 +83,8 @@ namespace Param_ItemNamespace.ViewModels
 
         public void Complete()
         {
+            // TODO WTS: Implement the actions you want with the shared data before compleate the share operation.            
+            // For further details check https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
             _shareOperation.ReportCompleted();
         }
     }

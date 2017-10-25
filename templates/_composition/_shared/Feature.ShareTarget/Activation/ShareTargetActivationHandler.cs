@@ -11,9 +11,11 @@ namespace Param_ItemNamespace.Activation
     {
         protected override async Task HandleInternalAsync(ShareTargetActivatedEventArgs args)
         {
+            // Activation from ShareTarget opens the app as a new modal window which requires a new activation.
             var frame = new Frame();
             Window.Current.Content = frame;
             frame.Navigate(typeof(wts.ItemNameExamplePage), args.ShareOperation);
+            Window.Current.Activate();
 
             await Task.CompletedTask;
         }
