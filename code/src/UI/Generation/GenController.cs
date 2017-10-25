@@ -51,15 +51,21 @@ namespace Microsoft.Templates.UI
                     Console.WriteLine("#=#=#=#=#=#");
                     Console.WriteLine(result.Status);
                     Console.WriteLine(result.TemplateFullName);
-                    Console.WriteLine(result.ResultInfo);
-                    foreach (var resultInfoPrimaryOutput in result.ResultInfo.PrimaryOutputs)
+                    Console.WriteLine(result.ResultInfo?.ToString() ?? "No ResultInfo");
+                    if (result.ResultInfo?.PrimaryOutputs != null)
                     {
-                        Console.WriteLine(resultInfoPrimaryOutput);
+                        foreach (var resultInfoPrimaryOutput in result.ResultInfo.PrimaryOutputs)
+                        {
+                            Console.WriteLine(resultInfoPrimaryOutput);
+                        }
                     }
 
-                    foreach (var resultInfoPostAction in result.ResultInfo.PostActions)
+                    if (result.ResultInfo?.PostActions != null)
                     {
-                        Console.WriteLine(resultInfoPostAction);
+                        foreach (var resultInfoPostAction in result.ResultInfo.PostActions)
+                        {
+                            Console.WriteLine(resultInfoPostAction);
+                        }
                     }
 
                     Console.WriteLine("#=#=#=#=#=#");
