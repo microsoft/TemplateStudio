@@ -12,7 +12,7 @@
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.version": "1.0.0",
     "wts.displayOrder": "6",
-    "wts.group": "UserInteraction",
+    "wts.group": "AppToApp",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "ShareTarget",
     "wts.rightClickEnabled":"true"
