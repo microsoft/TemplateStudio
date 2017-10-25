@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Fakes
         public override void AddProjectToSolution(string projectFullPath)
         {
             var msbuildProj = FakeMsBuildProject.Load(projectFullPath);
-            var solutionFile = FakeSolution.Create(SolutionPath);
+            var solutionFile = FakeSolution.LoadOrCreate(SolutionPath);
 
             solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj", StringComparison.InvariantCultureIgnoreCase));
         }

@@ -10,9 +10,18 @@ namespace Microsoft.Templates.Fakes
 {
     public class FakeSolution
     {
-        private const string GlobalSectionText = "GlobalSection(ProjectConfigurationPlatforms) = postSolution";
+        private const string SolutionConfigurationPlatformsText = "GlobalSection(SolutionConfigurationPlatforms) = preSolution";
 
-        private const string ConfigurationTemplate = @"		{0}.Debug|ARM.ActiveCfg = Debug|ARM
+        private const string ProjectConfigurationPlatformsText = "GlobalSection(ProjectConfigurationPlatforms) = postSolution";
+
+        private const string UwpSolutionConfigurationPlatforms = @"		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86";
+
+        private const string UwpProjectConfigurationTemplate = @"		{0}.Debug|ARM.ActiveCfg = Debug|ARM
 		{0}.Debug|ARM.Build.0 = Debug|ARM
 		{0}.Debug|ARM.Deploy.0 = Debug|ARM
 		{0}.Debug|x64.ActiveCfg = Debug|x64
@@ -47,10 +56,17 @@ EndProject
             _path = path;
         }
 
-        public static FakeSolution Create(string path)
+        public static FakeSolution LoadOrCreate(string path)
         {
-            var solutionTemplate = ReadTemplate();
-            File.WriteAllText(path, solutionTemplate, Encoding.UTF8);
+            if (!File.Exists(path))
+            {
+                var solutionTemplate = ReadTemplate();
+
+                var solutionConfigurationSectionIndex = solutionTemplate.IndexOf(SolutionConfigurationPlatformsText);
+
+                solutionTemplate = solutionTemplate.Insert(solutionConfigurationSectionIndex + SolutionConfigurationPlatformsText.Length + 1, UwpSolutionConfigurationPlatforms);
+                File.WriteAllText(path, solutionTemplate, Encoding.UTF8);
+            }
 
             return new FakeSolution(path);
         }
@@ -69,10 +85,10 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var globalSectionIndex = slnContent.IndexOf(GlobalSectionText);
-                var projectConfigContent = string.Format(ConfigurationTemplate, projectGuid);
+                var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText);
+                var projectConfigContent = string.Format(UwpProjectConfigurationTemplate, projectGuid);
 
-                slnContent = slnContent.Insert(globalSectionIndex + GlobalSectionText.Length + 1, projectConfigContent);
+                slnContent = slnContent.Insert(globalSectionIndex + ProjectConfigurationPlatformsText.Length + 1, projectConfigContent);
             }
 
             File.WriteAllText(_path, slnContent, Encoding.UTF8);
