@@ -17,7 +17,7 @@ using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.Test
 {
-  //  [Collection("StyleCopCollection")]
+   // [Collection("StyleCopCollection")]
    // [Trait("ExecutionSet", "Minimum")]
    // [Trait("ExecutionSet", "BuildStyleCop")]
     public class StyleCopProjectGenerationTests : BaseTestContextProvider
@@ -34,9 +34,9 @@ namespace Microsoft.Templates.Test
             await _fixture.InitializeFixtureAsync(this);
         }
 
-   //     [Theory]
-   //     [MemberData("GetProjectTemplatesForStyleCopAsync")]
-   //     [Trait("Type", "CodeStyle")]
+       // [Theory]
+       // [MemberData("GetProjectTemplatesForStyleCopAsync")]
+       // [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework)
         {
             await SetUpFixtureForTestingAsync();
