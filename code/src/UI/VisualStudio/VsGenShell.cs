@@ -67,19 +67,24 @@ namespace Microsoft.Templates.UI.VisualStudio
                 return;
             }
 
-            var proj = GetActiveProject();
-            if (proj != null && proj.ProjectItems != null)
-            {
-                foreach (var item in itemsFullPath)
-                {
-                    proj.ProjectItems.AddFromFile(item);
-                }
+            var filesByProject = ResolveProjectFiles(itemsFullPath);
 
-                proj.Save();
-            }
-            else
+            foreach (var projectFile in filesByProject)
             {
-                AppHealth.Current.Error.TrackAsync(StringRes.UnableAddItemsToProject).FireAndForget();
+                var proj = GetProjectByPath(projectFile.Key);
+                if (proj != null && proj.ProjectItems != null)
+                {
+                    foreach (var file in projectFile.Value)
+                    {
+                        proj.ProjectItems.AddFromFile(file);
+                    }
+
+                    proj.Save();
+                }
+                else
+                {
+                    AppHealth.Current.Error.TrackAsync(StringRes.UnableAddItemsToProject).FireAndForget();
+                }
             }
         }
 
@@ -318,6 +323,35 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
                 p = null;
+            }
+
+            return p;
+        }
+
+        private Project GetProjectByPath(string projFile)
+        {
+            Project p = null;
+            try
+            {
+                if (_dte != null)
+                {
+                    Projects projects = Dte.Solution.Projects;
+                    if (projects?.Count >= 1)
+                    {
+                        foreach (var proj in projects)
+                        {
+                            if (((Project)proj).FullName == projFile)
+                            {
+                                return (Project)proj;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+               p = null;
             }
 
             return p;
