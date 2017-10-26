@@ -5,12 +5,15 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
+using Microsoft.Templates.Core.Templates;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Views.Common;
 
@@ -50,6 +53,8 @@ namespace Microsoft.Templates.UI
                     throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
                 }
 
+                ReplaceParamsInFilePath();
+
                 ExecutePostActions(genInfo, result);
             }
 
@@ -59,6 +64,39 @@ namespace Microsoft.Templates.UI
             ExecuteGlobalPostActions();
 
             return genResults;
+        }
+
+        private void ReplaceParamsInFilePath()
+        {
+            // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
+            var path = GenContext.Current.OutputPath;
+            var filesToMove = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories)
+                .ToList()
+                .Where(file => FileReplaceParameters.Params.Any(param => file.Contains(param.Key)));
+
+            if (filesToMove != null && filesToMove.Count() > 0)
+            {
+                foreach (var f in filesToMove)
+                {
+                    var file = new FileInfo(f);
+                    var newPath = FileReplaceParameters.ReplaceInPath(f);
+
+                    Fs.EnsureFolder(Directory.GetParent(newPath).FullName);
+                    file.MoveTo(newPath);
+                }
+            }
+
+            var directoriesToDelete = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories)
+                .ToList()
+                .Where(file => FileReplaceParameters.Params.Any(param => file.Contains(param.Key)));
+
+            if (directoriesToDelete != null && directoriesToDelete.Count() > 0)
+            {
+                foreach (var directory in directoriesToDelete)
+                {
+                    Fs.SafeDeleteDirectory(directory, false);
+                }
+            }
         }
 
         private static void CalculateGenerationTime(double totalTime)
