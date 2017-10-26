@@ -3,10 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
-
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 
 using Microsoft.VisualStudio.TemplateWizard;
@@ -48,24 +49,46 @@ namespace Microsoft.Templates.Fakes
                 return;
             }
 
-            var projectFileName = FindProject(GenContext.Current.ProjectPath);
+            var filesByProject = ResolveProjectFiles(itemsFullPath);
 
-            if (string.IsNullOrEmpty(projectFileName))
+            foreach (var projectFile in filesByProject)
             {
-                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
-            }
-
-            var msbuildProj = FakeMsBuildProject.Load(projectFileName);
-
-            if (msbuildProj != null)
-            {
-                foreach (var item in itemsFullPath)
+                var msbuildProj = FakeMsBuildProject.Load(projectFile.Key);
+                if (msbuildProj != null)
                 {
-                    msbuildProj.AddItem(item);
+                    foreach (var file in projectFile.Value)
+                    {
+                        msbuildProj.AddItem(file);
+                    }
+
+                    msbuildProj.Save();
+                }
+            }
+        }
+
+        private static Dictionary<string, List<string>> ResolveProjectFiles(string[] itemsFullPath)
+        {
+            Dictionary<string, List<string>> filesByProject = new Dictionary<string, List<string>>();
+            foreach (var item in itemsFullPath)
+            {
+                var itemDirectory = Directory.GetParent(item).FullName;
+                var projFile = Fs.FindFileAtOrAbove(itemDirectory, "*.*proj");
+                if (string.IsNullOrEmpty(projFile))
+                {
+                    throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
                 }
 
-                msbuildProj.Save();
+                if (!filesByProject.ContainsKey(projFile))
+                {
+                    filesByProject.Add(projFile, new List<string>() { item });
+                }
+                else
+                {
+                    filesByProject[projFile].Add(item);
+                }
             }
+
+            return filesByProject;
         }
 
         public override void AddProjectToSolution(string projectFullPath)
