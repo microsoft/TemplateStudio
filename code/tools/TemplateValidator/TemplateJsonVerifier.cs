@@ -230,7 +230,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportBaseclassTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen" }.Contains(tag.Value))
+            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.baseclass tag.");
             }

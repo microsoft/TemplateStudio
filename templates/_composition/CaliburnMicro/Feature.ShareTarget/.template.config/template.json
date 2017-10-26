@@ -3,22 +3,27 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.ShareTarget",
+  "name": "wts.Feat.ShareTarget.CaliburnMicro",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro & identity == wts.Feat.ShareTarget|wts.Feat.ShareTarget.CodeBehind"
+    "wts.compositionFilter": "$framework == CaliburnMicro & identity == wts.Feat.ShareTarget",
+    "wts.export.baseclass": "PropertyChangedBase",
+    "wts.export.setter": "Set"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\wts.ItemNameActivationHandler.cs"
+      "path": ".\\ViewModels\\wts.ItemNameViewModel.cs"
     },
     {
-    "path": ".\\Helpers\\ShareOperationExtensions.cs"
+      "path": ".\\Views\\wts.ItemNamePage.xaml"
+    },
+    {
+      "path": ".\\Views\\wts.ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {

@@ -10,7 +10,7 @@ namespace Param_ItemNamespace.Services
         private IEnumerable<ActivationHandler> GetActivationHandlers()
         {
 //{[{
-            yield return Singleton<ShareTargetActivationHandler>.Instance;
+            yield return Singleton<wts.ItemNameActivationHandler>.Instance;
 //}]}
 //{--{
 
