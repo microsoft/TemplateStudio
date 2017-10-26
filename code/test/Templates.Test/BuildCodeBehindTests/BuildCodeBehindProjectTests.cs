@@ -3,17 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
-using Microsoft.VisualStudio.Threading;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
@@ -62,28 +54,43 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}All{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProjectAsync(projectPath, projectName);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind", ProgrammingLanguages.CSharp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimum")]
-        public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
+        public async Task BuildAllPagesAndFeaturesRandomNamesCSAsync(string projectType, string framework, string language)
+        {
+            await BuildAllPagesAndFeaturesRandomNamesAsync(projectType, framework, language);
+        }
+
+        [Theory]
+        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind", ProgrammingLanguages.VisualBasic)]
+        [Trait("Type", "BuildRandomNames")]
+        [Trait("ExecutionSet", "Minimum")]
+        [Trait("ExecutionSet", "BuildMinimumVB")]
+        public async Task BuildAllPagesAndFeaturesRandomNamesVBAsync(string projectType, string framework, string language)
+        {
+            await BuildAllPagesAndFeaturesRandomNamesAsync(projectType, framework, language);
+        }
+
+        private async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
-                    && t.GetProjectTypeList().Contains(projectType)
-                    && t.GetFrameworkList().Contains(framework)
-                    && !t.GetIsHidden()
-                    && t.GetLanguage() == language;
+                     && t.GetProjectTypeList().Contains(projectType)
+                     && t.GetFrameworkList().Contains(framework)
+                     && !t.GetIsHidden()
+                     && t.GetLanguage() == language;
 
             var projectName = $"{projectType}{framework}AllRandom{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetRandomName, false);
 
             AssertBuildProjectAsync(projectPath, projectName);
         }
