@@ -14,9 +14,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config)
+        private Dictionary<string, string> _genParameters;
+
+        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
             : base(config)
         {
+            _genParameters = genParameters;
         }
 
         public override void Execute()
@@ -26,7 +29,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
-                    var projectPath = Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, output.GetOutputPath()));
+                    var projectPath = Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, output.GetOutputPath(_genParameters)));
                     GenContext.ToolBox.Shell.AddProjectToSolution(projectPath);
                 }
             }

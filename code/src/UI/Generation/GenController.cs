@@ -53,7 +53,7 @@ namespace Microsoft.Templates.UI
                     throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
                 }
 
-                ReplaceParamsInFilePath();
+                ReplaceParamsInFilePath(genInfo.Parameters);
 
                 ExecutePostActions(genInfo, result);
             }
@@ -66,20 +66,22 @@ namespace Microsoft.Templates.UI
             return genResults;
         }
 
-        private void ReplaceParamsInFilePath()
+        private void ReplaceParamsInFilePath(Dictionary<string, string> parameters)
         {
+            var fileReplacement = new FileReplaceParameters(parameters);
+
             // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
             var path = GenContext.Current.OutputPath;
             var filesToMove = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories)
                 .ToList()
-                .Where(file => FileReplaceParameters.Params.Any(param => file.Contains(param.Key)));
+                .Where(file => fileReplacement.Params.Any(param => file.Contains(param.Key)));
 
             if (filesToMove != null && filesToMove.Count() > 0)
             {
                 foreach (var f in filesToMove)
                 {
                     var file = new FileInfo(f);
-                    var newPath = FileReplaceParameters.ReplaceInPath(f);
+                    var newPath = fileReplacement.ReplaceInPath(f);
 
                     Fs.EnsureFolder(Directory.GetParent(newPath).FullName);
                     file.MoveTo(newPath);
@@ -88,7 +90,7 @@ namespace Microsoft.Templates.UI
 
             var directoriesToDelete = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories)
                 .ToList()
-                .Where(file => FileReplaceParameters.Params.Any(param => file.Contains(param.Key)));
+                .Where(file => fileReplacement.Params.Any(param => file.Contains(param.Key)));
 
             if (directoriesToDelete != null && directoriesToDelete.Count() > 0)
             {
