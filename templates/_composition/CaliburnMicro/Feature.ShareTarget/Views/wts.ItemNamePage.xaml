@@ -6,8 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:cm="using:Caliburn.Micro"
-    xmlns:templateSelectors="using:Param_ItemNamespace.TemplateSelectors"
-    xmlns:viewModels="using:Param_ItemNamespace.ViewModels"
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea">
@@ -25,32 +23,7 @@
                 Style="{StaticResource PageTitleStyle}" />
         </Grid>
 
-        <ContentControl Grid.Row="1" Content="{x:Bind ViewModel.SharedData, Mode=OneWay}">
-            <ContentControl.ContentTemplateSelector>
-                <templateSelectors:SharedContentTemplateSelector>
-                    <templateSelectors:SharedContentTemplateSelector.WebLinkTemplate>
-                        <DataTemplate x:DataType="viewModels:SharedDataWebLinkViewModel">
-                            <Grid Margin="{StaticResource MediumLeftRightMargin}">
-                                <HyperlinkButton
-                                    Content="{x:Bind Title}"
-                                    NavigateUri="{x:Bind Uri}" />
-                            </Grid>                            
-                        </DataTemplate>
-                    </templateSelectors:SharedContentTemplateSelector.WebLinkTemplate>
-                    <templateSelectors:SharedContentTemplateSelector.StorageItemsTemplate>
-                        <DataTemplate x:DataType="viewModels:SharedDataStorageItemsViewModel">
-                            <FlipView ItemsSource="{x:Bind Images}">
-                                <FlipView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding}"/>
-                                    </DataTemplate>
-                                </FlipView.ItemTemplate>
-                            </FlipView>
-                        </DataTemplate>
-                    </templateSelectors:SharedContentTemplateSelector.StorageItemsTemplate>
-                </templateSelectors:SharedContentTemplateSelector>
-            </ContentControl.ContentTemplateSelector>
-        </ContentControl>
+        <ContentControl Grid.Row="1" cm:View.Model="{x:Bind ViewModel.SharedData}" />
         <Button
             Grid.Row="2"
             x:Uid="ShareTarget_CompleteButton"
