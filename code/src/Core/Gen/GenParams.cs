@@ -14,5 +14,6 @@ namespace Microsoft.Templates.Core.Gen
         public const string HomePageName = "wts.homePageName";
         public const string ProjectType = "wts.generationProjectType";
         public const string Framework = "wts.generationFramework";
+        public const string ProjectName = "wts.projectName";
     }
 }

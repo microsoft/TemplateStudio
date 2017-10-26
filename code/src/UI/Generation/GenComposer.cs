@@ -151,6 +151,7 @@ namespace Microsoft.Templates.UI
             genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.TemplatesVersion);
             genProject.Parameters.Add(GenParams.ProjectType, userSelection.ProjectType);
             genProject.Parameters.Add(GenParams.Framework, userSelection.Framework);
+            genProject.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
         }
 
         private static ITemplateInfo GetProjectTemplate(string projectType, string framework)
@@ -170,6 +171,7 @@ namespace Microsoft.Templates.UI
                     AddDependencyTemplates(selectionItem, genQueue, userSelection);
                     var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
                     genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
+                    genInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
                 }
             }
         }
@@ -246,6 +248,7 @@ namespace Microsoft.Templates.UI
 
                 var genInfo = CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
                 genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
+                genInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
             }
         }
 
