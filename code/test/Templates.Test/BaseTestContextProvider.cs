@@ -17,6 +17,10 @@ namespace Microsoft.Templates.Test
 
         public string ProjectPath { get; set; }
 
+        public string SolutionPath { get; set; }
+
+        public string TempGenerationPath { get; set; }
+
         public List<string> ProjectItems { get; } = new List<string>();
 
         public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();

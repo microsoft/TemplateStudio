@@ -279,6 +279,19 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        public override string GetSolutionPath()
+        {
+            var s = GetSolution();
+            if (s != null)
+            {
+                return Path.GetDirectoryName(s.FileName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public override string GetActiveProjectLanguage()
         {
             var p = GetActiveProject();
@@ -355,6 +368,26 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return p;
+        }
+
+        private Solution GetSolution()
+        {
+            Solution s = null;
+
+            try
+            {
+                if (_dte != null)
+                {
+                    s = Dte.Solution;
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                s = null;
+            }
+
+            return s;
         }
 
         private async System.Threading.Tasks.Task ShowTaskListAsync()

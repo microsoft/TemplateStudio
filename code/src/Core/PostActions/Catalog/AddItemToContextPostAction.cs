@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
             var itemsToAdd = Config
                                 .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                                .Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, o.GetOutputPath(_genParameters))))
+                                .Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, o.GetOutputPath(_genParameters))))
                                 .ToList();
 
             GenContext.Current.ProjectItems.AddRange(itemsToAdd);

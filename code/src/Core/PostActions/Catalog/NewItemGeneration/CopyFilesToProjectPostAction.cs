@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             foreach (var file in Config.ModifiedFiles)
             {
                 var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
-                var destFilePath = Path.Combine(GenContext.Current.ProjectPath, file);
+                var destFilePath = Path.Combine(GenContext.Current.SolutionPath, file);
 
                 var destDirectory = Path.GetDirectoryName(destFilePath);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             foreach (var file in Config.NewFiles)
             {
                 var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
-                var destFilePath = Path.Combine(GenContext.Current.ProjectPath, file);
+                var destFilePath = Path.Combine(GenContext.Current.SolutionPath, file);
 
                 var destDirectory = Path.GetDirectoryName(destFilePath);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);

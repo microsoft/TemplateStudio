@@ -352,6 +352,21 @@ namespace Microsoft.Templates.Core
             return ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance();
         }
 
+        public static bool GetOutputToSolution(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "outputToSolution");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (bool.TryParse(result, out bool boolResult))
+                {
+                    return boolResult;
+                }
+            }
+
+            return false;
+        }
+
         private static string GetConfigDir(ITemplateInfo ti)
         {
             CodeGen.Instance.Settings.SettingsLoader.TryGetFileFromIdAndPath(ti.ConfigMountPointId, ti.ConfigPlace, out IFile file, out IMountPoint mountPoint);

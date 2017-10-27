@@ -20,9 +20,13 @@ namespace Microsoft.UI.Test
 
         public string ProjectName => "Test";
 
-        public string OutputPath => string.Empty;
+        public string OutputPath { get; set; }
 
         public string ProjectPath => string.Empty;
+
+        public string SolutionPath => string.Empty;
+
+        public string TempGenerationPath => string.Empty;
 
         public List<string> ProjectItems => null;
 

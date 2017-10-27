@@ -12,9 +12,13 @@ namespace Microsoft.Templates.Core.Gen
     {
         string ProjectName { get; }
 
-        string OutputPath { get; }
+        string OutputPath { get; set; }
 
         string ProjectPath { get; }
+
+        string SolutionPath { get; }
+
+        string TempGenerationPath { get; }
 
         List<string> ProjectItems { get; }
 

@@ -34,17 +34,29 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private void GetFileFromProject()
         {
-            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath)));
-            var relFilePath = filePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, string.Empty);
+            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config.Replace(GenContext.Current.OutputPath, GetReplacementPath())));
+            var relFilePath = filePath.Replace(GenContext.Current.SolutionPath + Path.DirectorySeparatorChar, string.Empty);
 
             if (!GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {
                 GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
                 if (File.Exists(filePath))
                 {
-                    var destFile = filePath.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
+                    var destFile = filePath.Replace(GetReplacementPath(), GenContext.Current.OutputPath);
                     File.Copy(filePath, destFile, true);
                 }
+            }
+        }
+
+        private string GetReplacementPath()
+        {
+            if (GenContext.Current.OutputPath == GenContext.Current.TempGenerationPath)
+            {
+                return GenContext.Current.SolutionPath;
+            }
+            else
+            {
+                return GenContext.Current.ProjectPath;
             }
         }
 

@@ -15,6 +15,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract string GetActiveProjectPath();
 
+        public abstract string GetSolutionPath();
+
         public abstract string GetActiveProjectLanguage();
 
         protected abstract string GetSelectedItemPath();

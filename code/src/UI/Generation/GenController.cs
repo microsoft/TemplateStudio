@@ -23,7 +23,7 @@ namespace Microsoft.Templates.UI
     {
         public PostActionFactory PostactionFactory { get; internal set; }
 
-        internal async Task<Dictionary<string, TemplateCreationResult>> GenerateItemsAsync(IEnumerable<GenInfo> genItems)
+        internal async Task<Dictionary<string, TemplateCreationResult>> GenerateItemsAsync(IEnumerable<GenInfo> genItems, bool isTempGeneration)
         {
             var genResults = new Dictionary<string, TemplateCreationResult>();
 
@@ -41,6 +41,8 @@ namespace Microsoft.Templates.UI
                 {
                     GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
                 }
+
+                SetOutputPath(genInfo.Template.GetOutputToSolution(), isTempGeneration);
 
                 AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
 
@@ -64,6 +66,32 @@ namespace Microsoft.Templates.UI
             ExecuteGlobalPostActions();
 
             return genResults;
+        }
+
+        private void SetOutputPath(bool outputToSolution, bool tempGeneration)
+        {
+            if (!tempGeneration)
+            {
+                if (outputToSolution)
+                {
+                    GenContext.Current.OutputPath = GenContext.Current.SolutionPath;
+                }
+                else
+                {
+                    GenContext.Current.OutputPath = GenContext.Current.ProjectPath;
+                }
+            }
+            else
+            {
+                if (outputToSolution)
+                {
+                    GenContext.Current.OutputPath = GenContext.Current.TempGenerationPath;
+                }
+                else
+                {
+                    GenContext.Current.OutputPath = Path.Combine(GenContext.Current.TempGenerationPath, GenContext.Current.ProjectName);
+                }
+            }
         }
 
         private void ReplaceParamsInFilePath(Dictionary<string, string> genParameters)

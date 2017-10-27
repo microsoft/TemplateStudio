@@ -113,6 +113,11 @@ namespace Microsoft.Templates.Fakes
             return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
         }
 
+        public override string GetSolutionPath()
+        {
+            return (GenContext.Current != null) ? GenContext.Current.SolutionPath : string.Empty;
+        }
+
         public override string GetActiveProjectLanguage()
         {
             return _language;

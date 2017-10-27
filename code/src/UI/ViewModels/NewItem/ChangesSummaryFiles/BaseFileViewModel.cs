@@ -45,7 +45,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public string TempFile => Path.Combine(GenContext.Current.OutputPath, Subject);
 
-        public string ProjectFile => Path.Combine(GenContext.Current.ProjectPath, Subject);
+        public string ProjectFile => Path.Combine(GenContext.Current.SolutionPath, Subject);
 
         private double _codeFontSize;
 
