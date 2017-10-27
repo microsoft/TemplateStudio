@@ -357,7 +357,7 @@ We use the same strategy to integrate methods from Chart and Grid Page into the 
 The format for global postactions is `<DestinationFileName>$<FeatureName>_gpostaction.<DestinationFileExtension>` (for example: BackgroundTaskService$BackgroundTaskFeature_gpostaction.cs).
 This allows generation of 1 gpostaction file per BackgroundTask selected and merge of all files once the generation has finished.
 
-#### Merges Directives
+### Merges Directives
 
 There are different merge directives to drive the code merging. Currently:
 
@@ -370,10 +370,10 @@ _The above merge directives all use the C# comment form (`//`) but if included i
 
 ### Merge Resource Dictionary PostActions
 
-When the _postaction file contains a resource dictionary instead of the *basic* merge postaction a resource dictionary postaction is executed. 
-This postaction does not work with directives but based on the x:keys contained in the soure and _postaction file.
+When the _postaction file contains a resource dictionary instead of the *basic* merge postaction a resource dictionary postaction is executed.
+This postaction does not work with directives but based on the x:keys contained in the source and _postaction files.
 
-The postaction works in three steps: 
+The postaction works in three steps:
 1. Locate the source resource dictionary file. (Imagine the postaction file is called Styles/Button_postaction.xaml, the source file would be Styles/Button.xaml)
 2. If the file is not found the whole resource dictionary contained in the postaction file is copied to the source file. 
 3. If the file is found, each element from _postaction file is copied if not already there. In case the key is already defined in the source resource dictionary and the elements are different, a warning is shown.

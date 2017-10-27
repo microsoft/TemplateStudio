@@ -76,7 +76,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(Config).StartsWith(Extension))
+            if (Path.GetFileName(Config).StartsWith(Extension, StringComparison.Ordinal))
             {
                 var extension = Path.GetExtension(Config);
                 var directory = Path.GetDirectoryName(Config);

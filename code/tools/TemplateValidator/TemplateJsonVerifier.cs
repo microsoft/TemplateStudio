@@ -129,8 +129,8 @@ namespace TemplateValidator
 
             // The explicit values here are the ones that are currently in use.
             // In theory any string could be exported and used as a symbol but currently it's only these
-            // If lots of tempaltes start exporting new symbols it might be necessary to change how symbol keys are verified
-            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter" };
+            // If lots of templates start exporting new symbols it might be necessary to change how symbol keys are verified
+            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.CaliburnMicro" };
 
             foreach (var symbol in template.Symbols)
             {
@@ -208,6 +208,9 @@ namespace TemplateValidator
                     case "wts.isHidden":
                         VerifyWtsIshiddenTagValue(tag, results);
                         break;
+                    default:
+                        results.Add($"Unknown tag '{tag.Value}' specified in the file.");
+                        break;
                 }
             }
         }
@@ -230,7 +233,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportBaseclassTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen" }.Contains(tag.Value))
+            if (!new[] { "Observable", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.baseclass tag.");
             }
@@ -254,7 +257,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "BackgroundWork", "UserInteraction", "ApplicationLifecycle" }.Contains(tag.Value))
+            if (!new[] { "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "AppToApp" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.rightClickEnabled tag.");
             }
@@ -370,7 +373,7 @@ namespace TemplateValidator
                     bool.TryParse(template.TemplateTags["wts.multipleInstance"], out var allowMultipleInstances);
                     if (!allowMultipleInstances)
                     {
-                        if (string.IsNullOrWhiteSpace(template.TemplateTags["wts.defaultInstance"]))
+                        if (!template.TemplateTags.Keys.Contains("wts.defaultInstance") || string.IsNullOrWhiteSpace(template.TemplateTags["wts.defaultInstance"]))
                         {
                             results.Add($"Template must define a valid value for wts.defaultInstance tag as wts.Type is '{tag.Value}' and wts.multipleInstance is 'false'.");
                         }
