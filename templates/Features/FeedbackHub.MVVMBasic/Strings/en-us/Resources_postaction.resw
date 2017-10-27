@@ -1,0 +1,13 @@
+﻿<!--{**-->
+<!--These xml blocks include string resources for the Feedback Hub feature.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="FeedbackHub_Link.Content" xml:space="preserve">
+    <value>Feedback</value>
+    <comment>Displayed as the link to launching the Feedback Hub.</comment>
+  </data>
+  <!--}]}-->
+</root>

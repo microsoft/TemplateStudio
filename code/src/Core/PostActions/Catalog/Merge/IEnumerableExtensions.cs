@@ -119,9 +119,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return result;
         }
 
-        /// <summary>
-        /// Removes anything from the target file that should be deleted.
-        /// </summary>
+        // Removes anything from the target file that should be deleted.
         public static List<string> HandleRemovals(this IEnumerable<string> source, IEnumerable<string> merge)
         {
             var mergeString = string.Join(Environment.NewLine, merge);
@@ -145,9 +143,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return sourceString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
         }
 
-        /// <summary>
-        /// Remove any comments from the merged file that indicate something should be removed.
-        /// </summary>
+        // Remove any comments from the merged file that indicate something should be removed.
         public static List<string> RemoveRemovals(this IEnumerable<string> merge)
         {
             var mergeString = string.Join(Environment.NewLine, merge);

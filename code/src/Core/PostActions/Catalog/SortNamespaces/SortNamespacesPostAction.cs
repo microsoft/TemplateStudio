@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
     {
         public abstract string FilesToSearch { get; }
 
+        public abstract bool SortMethod(List<string> classContent);
+
         public override void Execute()
         {
             var classFiles = Directory
@@ -21,7 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
             foreach (var classFile in classFiles)
             {
                 var fileContent = File.ReadAllLines(classFile).ToList();
-                var sortResult = fileContent.SortUsings();
+                var sortResult = SortMethod(fileContent);
 
                 if (sortResult)
                 {

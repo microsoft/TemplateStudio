@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community Contribution",
+    "name": "Tabbed",
+    "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
+    "identity": "wts.Page.TabbedPivot.VB"
+}

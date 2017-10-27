@@ -8,9 +8,6 @@ using System.IO;
 using System.Linq;
 
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Test.Locations;
-using Microsoft.Templates.Fakes;
 
 using Xunit;
 
@@ -191,11 +188,11 @@ namespace Microsoft.Templates.Core.Test
             Assert.Null(result);
         }
 
-        [Theory]
-        [MemberData("GetAllLanguages")]
-        public void GetDisplayOrder(string language)
+        [Fact]
+        [Trait("Type", "ProjectGeneration")]
+        public void GetDisplayOrder()
         {
-            SetUpFixtureForTesting(language);
+            SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
             var target = GetTargetByIdentity("Microsoft.UWPTemplates.Test.PageTemplate.CSharp");
 
@@ -215,11 +212,10 @@ namespace Microsoft.Templates.Core.Test
             Assert.Equal(int.MaxValue, result);
         }
 
-        [Theory]
-        [MemberData("GetAllLanguages")]
-        public void GetCompositionOrder(string language)
+        [Fact]
+        public void GetCompositionOrder()
         {
-            SetUpFixtureForTesting(language);
+            SetUpFixtureForTesting(ProgrammingLanguages.CSharp);
 
             var target = GetTargetByName("CompositionTemplate");
 

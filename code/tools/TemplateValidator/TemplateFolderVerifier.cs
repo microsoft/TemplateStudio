@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.PostActions.Catalog;
 using Newtonsoft.Json;
 
 namespace TemplateValidator
@@ -59,6 +61,18 @@ namespace TemplateValidator
                         else
                         {
                             allIdentities.Add(template.Identity, templateFilePath);
+                        }
+
+                        // Check that localized files have the same identity
+                        foreach (var localizedFile in new DirectoryInfo(Path.GetDirectoryName(templateFilePath)).EnumerateFiles("*.template.json"))
+                        {
+                            var localizedContents = File.ReadAllText(localizedFile.FullName);
+                            var localizedTemplate = JsonConvert.DeserializeObject<ValidationTemplateInfo>(localizedContents);
+
+                            if (template.Identity != localizedTemplate.Identity)
+                            {
+                                results.Add($"'{localizedFile.FullName}' does not have the correct identity.");
+                            }
                         }
                     }
 
