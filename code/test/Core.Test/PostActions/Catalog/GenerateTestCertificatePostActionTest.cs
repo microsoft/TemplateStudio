@@ -119,7 +119,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Assert.True(postAction.ContinueOnError);
             Assert.NotEqual(inventedIdPostAction.ActionId, GenerateTestCertificatePostAction.Id);
-            Assert.False(postAction.Intialized);
             Assert.Null(postAction.Args);
         }
 

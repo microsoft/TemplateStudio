@@ -16,8 +16,6 @@ namespace Microsoft.Templates.Core.PostActions
 
         public IReadOnlyDictionary<string, string> Args { get; private set; }
 
-        public bool Intialized { get; private set; }
-
         public TemplateDefinedPostAction(IPostAction templateDefinedPostAction)
             : base()
         {
@@ -26,7 +24,6 @@ namespace Microsoft.Templates.Core.PostActions
             if (IsIdsMatch(templateDefinedPostAction))
             {
                 Args = templateDefinedPostAction.Args;
-                Intialized = true;
             }
         }
 

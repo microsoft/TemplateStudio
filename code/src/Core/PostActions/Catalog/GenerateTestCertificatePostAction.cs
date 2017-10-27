@@ -20,33 +20,30 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override Guid ActionId { get => Id; }
 
-        private string _projectName = string.Empty;
+        private string _publisherName;
+        private IReadOnlyList<ICreationPath> _primaryOutputs;
 
-        public GenerateTestCertificatePostAction(string username, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs)
+        public GenerateTestCertificatePostAction(string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs)
             : base(templatePostAction)
         {
-            if (Intialized)
-            {
-                int targetProjectIndex = int.Parse(Args["files"]);
-                _projectName = Path.GetFileNameWithoutExtension(primaryOutputs[targetProjectIndex].Path);
-            }
+            _publisherName = publisherName;
+            _primaryOutputs = primaryOutputs;
         }
 
         internal override void ExecuteInternal()
         {
-            if (Intialized)
-            {
-                var publisherName = string.Empty;
-                var pfx = CreateCertificate(publisherName);
+            int targetProjectIndex = int.Parse(Args["files"]);
+            string projectName = Path.GetFileNameWithoutExtension(_primaryOutputs[targetProjectIndex].Path);
 
-                AddToProject(pfx);
-                RemoveFromStore(pfx);
-            }
+            var pfx = CreateCertificate(_publisherName);
+
+            AddToProject(pfx, projectName);
+            RemoveFromStore(pfx);
         }
 
-        private void AddToProject(string base64Encoded)
+        private void AddToProject(string base64Encoded, string projectName)
         {
-            var filePath = Path.Combine(GenContext.Current.OutputPath, _projectName) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(GenContext.Current.OutputPath, projectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
             GenContext.ToolBox.Shell.AddItems(filePath);
