@@ -19,7 +19,7 @@
     },
     {
       "path": ".\\Views\\wts.ItemNameExamplePage.xaml.cs"
-    },
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

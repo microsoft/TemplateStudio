@@ -201,7 +201,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     GenContext.Current = this;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection();
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
 
                     if (userSelection != null)
                     {
@@ -211,8 +211,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                         ClearContext();
                         SolutionName = null;
-
-                        userSelection.Language = _language;
 
                         await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
 
@@ -243,7 +241,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature();
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.InitializedLanguage);
 
                 if (userSelection != null)
                 {
@@ -278,7 +276,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage();
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.InitializedLanguage);
 
                 if (userSelection != null)
                 {

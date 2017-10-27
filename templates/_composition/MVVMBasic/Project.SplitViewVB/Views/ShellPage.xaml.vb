@@ -5,7 +5,7 @@ Namespace Views
     Public NotInheritable Partial Class ShellPage
       Inherits Page
 
-        Public ReadOnly Property ViewModel() As ShellViewModel = New ShellViewModel
+        Public ReadOnly Property ViewModel As New ShellViewModel
 
         Public Sub New()
             Me.InitializeComponent()

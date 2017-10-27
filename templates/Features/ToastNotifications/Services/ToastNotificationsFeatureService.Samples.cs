@@ -52,7 +52,7 @@ namespace Param_RootNamespace.Services
             // Add the content to the toast
             var toast = new ToastNotification(content.GetXml())
             {
-                // TODO WTS: Gets or sets the unique identifier of this notification within the notification Group. Max length 16 characters.
+                // TODO WTS: Get or set the unique identifier of this notification within the notification Group. Max length 16 characters.
                 // Documentation: https://docs.microsoft.com/uwp/api/windows.ui.notifications.toastnotification
                 Tag = "ToastTag"
             };
