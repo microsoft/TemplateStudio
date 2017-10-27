@@ -82,13 +82,16 @@ namespace Microsoft.Templates.UI
                     {
                         LogOrAlertException(string.Format(StringRes.ExceptionDependencyMultipleInstance, dependencyTemplate.Identity));
                     }
-                    else if (dependencyList.Any(d => d.Identity == template.Identity))
+                    else if (dependencyList.Any(d => d.Identity == template.Identity && d.GetDependencyList().Contains(template.Identity)))
                     {
                         LogOrAlertException(string.Format(StringRes.ExceptionDependencyCircularReference, template.Identity, dependencyTemplate.Identity));
                     }
                     else
                     {
-                        dependencyList.Add(dependencyTemplate);
+                        if (!dependencyList.Contains(dependencyTemplate))
+                        {
+                            dependencyList.Add(dependencyTemplate);
+                        }
 
                         GetDependencies(dependencyTemplate, framework, dependencyList);
                     }
@@ -170,6 +173,15 @@ namespace Microsoft.Templates.UI
                     AddDependencyTemplates(selectionItem, genQueue, userSelection);
                     var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
                     genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
+
+                    foreach (var dependency in genInfo?.Template.GetDependencyList())
+                    {
+                        if (genInfo.Template.Parameters.Any(p => p.Name == dependency))
+                        {
+                            var dependencyName = genQueue.FirstOrDefault(t => t.Template.Identity == dependency).Name;
+                            genInfo.Parameters.Add(dependency, dependencyName);
+                        }
+                    }
                 }
             }
         }
@@ -177,9 +189,11 @@ namespace Microsoft.Templates.UI
         private static void AddDependencyTemplates((string name, ITemplateInfo template) selectionItem, List<GenInfo> genQueue, UserSelection userSelection)
         {
             var dependencies = GetAllDependencies(selectionItem.template, userSelection.Framework);
+
             foreach (var dependencyItem in dependencies)
             {
-                var dependencyTemplate = userSelection.Features.FirstOrDefault(f => f.template.Identity == dependencyItem.Identity);
+                var dependencyTemplate = userSelection.PagesAndFeatures.FirstOrDefault(f => f.template.Identity == dependencyItem.Identity);
+
                 if (dependencyTemplate.template != null)
                 {
                     if (!genQueue.Any(t => t.Name == dependencyTemplate.name && t.Template.Identity == dependencyTemplate.template.Identity))

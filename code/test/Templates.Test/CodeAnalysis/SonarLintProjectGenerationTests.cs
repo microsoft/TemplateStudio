@@ -16,8 +16,7 @@ using Microsoft.VisualStudio.Threading;
 namespace Microsoft.Templates.Test
 {
     [Collection("SonarLintCollection")]
-    [Trait("ExecutionSet", "Minimum")]
-    [Trait("ExecutionSet", "BuildStyleCop")]
+    [Trait("ExecutionSet", "BuildVBStyle")]
     public class SonarLintProjectGenerationTests : BaseTestContextProvider
     {
         private readonly SonarLintGenerationTestsFixture _fixture;

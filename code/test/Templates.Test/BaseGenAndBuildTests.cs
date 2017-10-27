@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Microsoft.VisualStudio.Threading;
 using Microsoft.TemplateEngine.Abstractions;
@@ -321,7 +319,14 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        // Need overload with different number of params to work with XUnit.MemeberData
         public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework)
+        {
+            return GetProjectTemplatesForBuildAsync(framework, string.Empty);
+        }
+
+        // Set a single programming language to stop the fixture using all languages available to it
+        public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework, string programmingLanguage)
         {
             JoinableTaskContext context = new JoinableTaskContext();
             JoinableTaskCollection tasks = context.CreateCollection();
@@ -331,15 +336,15 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case "CodeBehind":
-                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetProjectTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
                 case "MVVMBasic":
-                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetProjectTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
                 case "MVVMLight":
-                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
                 case "CaliburnMicro":

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.PostActions.Catalog;
 using Newtonsoft.Json;
 
 namespace TemplateValidator
