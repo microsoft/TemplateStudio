@@ -23,8 +23,6 @@ namespace Microsoft.Templates.Test
             // This is the relative path from where the test assembly will run from
             const string templatesRoot = "../../../../../Templates";
 
-            // const string templatesRoot = "C:\\Users\\matt\\Documents\\GitHub\\WindowsTemplateStudio\\templates";
-
             // The following excludes the catalog and project folders, but they only contain a single template file each
             var foldersOfInterest = new[] { "_composition", "Features", "Pages" };
 
