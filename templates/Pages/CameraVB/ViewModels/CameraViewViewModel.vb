@@ -5,7 +5,7 @@ Imports Param_ItemNamespace.EventHandlers
 
 Namespace ViewModels
     Public Class CameraViewViewModel
-        Implements System.ComponentModel.INotifyPropertyChanged
+        Inherits System.ComponentModel.INotifyPropertyChanged
 
         Private _photoTakenCommand As ICommand
         Private _photo As BitmapImage

@@ -25,7 +25,7 @@ Namespace Controls
 
       Public Shared ReadOnly CanSwitchProperty As DependencyProperty = DependencyProperty.Register("CanSwitch", GetType(Boolean), GetType(CameraControl), New PropertyMetadata(False))
 
-      Public Shared ReadOnly PanelProperty As DependencyProperty = DependencyProperty.Register("Panel", GetType(Panel), GetType(CameraControl), New PropertyMetadata(Panel.Front, OnPanelChanged))
+      Public Shared ReadOnly PanelProperty As DependencyProperty = DependencyProperty.Register("Panel", GetType(Panel), GetType(CameraControl), New PropertyMetadata(Panel.Front, AddressOf OnPanelChanged))
 
       Public Shared ReadOnly IsInitializedProperty As DependencyProperty = DependencyProperty.Register("IsInitialized", GetType(Boolean), GetType(CameraControl), New PropertyMetadata(False))
 
