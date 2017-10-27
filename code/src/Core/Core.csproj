@@ -199,7 +199,7 @@
     <Compile Include="PostActions\TemplateDefinedPostAction.cs" />
     <Compile Include="ProgrammingLanguages.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidator.cs" />
-    <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\FailedMergePostActionInfo.cs" />
     <Compile Include="Fs.cs" />
     <Compile Include="Gen\TempGenerationResult.cs" />
     <Compile Include="Packaging\InvalidSignatureException.cs" />

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions
 {
@@ -16,8 +17,8 @@ namespace Microsoft.Templates.Core.PostActions
 
         public IReadOnlyDictionary<string, string> Args { get; private set; }
 
-        public TemplateDefinedPostAction(IPostAction templateDefinedPostAction)
-            : base()
+        public TemplateDefinedPostAction(string relatedTemplate, IPostAction templateDefinedPostAction)
+            : base(relatedTemplate)
         {
             ContinueOnError = templateDefinedPostAction.ContinueOnError;
 
@@ -31,7 +32,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             if (templateDefinedPostAction.ActionId != ActionId)
             {
-                string errorMsg = $"The PostAction.ActionId '{templateDefinedPostAction.ActionId.ToString()}' defined in the template does not match with the expected class ActionId '{ActionId.ToString()}'. Can't continue.";
+                string errorMsg = string.Format(StringRes.PostActionIdsNotMatchError, RelatedTemplate, templateDefinedPostAction.ActionId.ToString(), ActionId.ToString());
                 if (!ContinueOnError)
                 {
                     throw new Exception(errorMsg);

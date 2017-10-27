@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions
 {
@@ -13,9 +14,17 @@ namespace Microsoft.Templates.Core.PostActions
     {
         public virtual bool ContinueOnError { get; set; }
 
+        public string RelatedTemplate { get; set; }
+
         public PostAction()
         {
+            RelatedTemplate = "None";
+        }
+
+        public PostAction(string relatedTemplate)
+        {
             ContinueOnError = false;
+            RelatedTemplate = relatedTemplate;
         }
 
         internal abstract void ExecuteInternal();
@@ -34,7 +43,8 @@ namespace Microsoft.Templates.Core.PostActions
                 }
                 else
                 {
-                    AppHealth.Current.Warning.TrackAsync($"Error executing {this.GetType()}. Ignoring the error as Continue on Error is enabled.", ex).FireAndForget();
+                    string msg = string.Format(StringRes.PostActionContinuerOnErrorWarning, this.GetType(), RelatedTemplate);
+                    AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
                 }
             }
         }
@@ -51,6 +61,12 @@ namespace Microsoft.Templates.Core.PostActions
 
         public PostAction(TConfig config)
             : base()
+        {
+            Config = config;
+        }
+
+        public PostAction(string relatedTemplate, TConfig config)
+            : base(relatedTemplate)
         {
             Config = config;
         }

@@ -14,6 +14,21 @@ using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
+    // This is a Template Defined Post-Action with the following configuration in the template.
+    //   "postActions": [
+    //    {
+    //        "description": "Generate Test Certificate",
+    //        "manualInstructions": [ ],
+    //        "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
+    //        "args": {
+    //            "files" : "0"
+    //        },
+    //        "continueOnError": "true"
+    //    }
+    //  ]
+    // Expected args:
+    //    - files -> reference the file index from the primary outputs which is the target project where the certificate will be added
+    // Remarks: this post action can work with single project templates or multi project templates.
     public class GenerateTestCertificatePostAction : TemplateDefinedPostAction
     {
         public static readonly Guid Id = new Guid("65057255-BD7B-443C-8180-5D82B9DA9E22");
@@ -23,8 +38,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         private string _publisherName;
         private IReadOnlyList<ICreationPath> _primaryOutputs;
 
-        public GenerateTestCertificatePostAction(string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs)
-            : base(templatePostAction)
+        public GenerateTestCertificatePostAction(string relatedTemplate, string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs)
+            : base(relatedTemplate, templatePostAction)
         {
             _publisherName = publisherName;
             _primaryOutputs = primaryOutputs;
