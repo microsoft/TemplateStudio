@@ -12,10 +12,9 @@ namespace Microsoft.Templates.Core.Gen
     {
         public static string GetOutputPath(this ICreationPath cp, Dictionary<string, string> parameters)
         {
-            var fileReplacements = new FileReplaceParameters(parameters);
+            var parameterReplacements = new FileRenameParameterReplacements(parameters);
 
-            // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
-            var newPath = fileReplacements.ReplaceInPath(cp.Path);
+            var newPath = parameterReplacements.ReplaceInPath(cp.Path);
 
             return newPath;
         }

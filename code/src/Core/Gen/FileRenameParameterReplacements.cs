@@ -7,13 +7,13 @@ using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.Templates
 {
-    public class FileReplaceParameters
+    public class FileRenameParameterReplacements
     {
-        public Dictionary<string, string> Params { get; }
+        public Dictionary<string, string> FileRenameParams { get; }
 
-        public FileReplaceParameters(Dictionary<string, string> genParameters)
+        public FileRenameParameterReplacements(Dictionary<string, string> genParameters)
         {
-            Params = new Dictionary<string, string>()
+            FileRenameParams = new Dictionary<string, string>()
             {
                 { "Param_ProjectName", genParameters.SafeGet(GenParams.ProjectName) }
             };
@@ -21,9 +21,10 @@ namespace Microsoft.Templates.Core.Templates
 
         public string ReplaceInPath(string filePath)
         {
-            // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
+            // Workaround as template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName,
+            // working from template engine version 2.1.0, remove this workaround when using this version.
             var newPath = filePath;
-            foreach (var param in Params)
+            foreach (var param in FileRenameParams)
             {
                 newPath = newPath.Replace(param.Key, param.Value);
             }

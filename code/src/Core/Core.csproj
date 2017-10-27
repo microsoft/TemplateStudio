@@ -300,7 +300,7 @@
     </Compile>
     <Compile Include="PostActions\NewItemPostActionFactory.cs" />
     <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
-    <Compile Include="Gen\FileReplaceParameters.cs" />
+    <Compile Include="Gen\FileRenameParameterReplacements.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
