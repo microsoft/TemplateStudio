@@ -1,4 +1,4 @@
-using Param_ItemNamespace.ViewModels;
+﻿using Param_ItemNamespace.ViewModels;
 
 namespace Param_ItemNamespace.Views
 {
@@ -6,7 +6,7 @@ namespace Param_ItemNamespace.Views
     {
         public SharedDataWebLinkView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         public SharedDataWebLinkViewModel ViewModel => DataContext as SharedDataWebLinkViewModel;

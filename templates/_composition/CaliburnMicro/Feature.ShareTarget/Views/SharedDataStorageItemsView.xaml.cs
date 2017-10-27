@@ -1,4 +1,4 @@
-using Param_ItemNamespace.ViewModels;
+﻿using Param_ItemNamespace.ViewModels;
 
 namespace Param_ItemNamespace.Views
 {
@@ -6,8 +6,9 @@ namespace Param_ItemNamespace.Views
     {
         public SharedDataStorageItemsView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
+
         public SharedDataStorageItemsViewModel ViewModel => DataContext as SharedDataStorageItemsViewModel;
     }
 }
