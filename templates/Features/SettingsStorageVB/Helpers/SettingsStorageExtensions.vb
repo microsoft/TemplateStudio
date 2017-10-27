@@ -1,7 +1,4 @@
-﻿Imports System.IO
-Imports System.Threading.Tasks
-
-Imports Windows.Storage
+﻿Imports Windows.Storage
 Imports Windows.Storage.Streams
 
 Namespace Helpers
@@ -27,20 +24,25 @@ Namespace Helpers
 
         <Extension>
         Public Async Function ReadAsync(Of T)(folder As StorageFolder, name As String) As Task(Of T)
-            If Not File.Exists(Path.Combine(folder.Path, GetFileName(name))) Then
+            If Not IO.File.Exists(Path.Combine(folder.Path, GetFileName(name))) Then
                 Return Nothing
             End If
 
-            Dim file__1 = Await folder.GetFileAsync("{name}.json")
-            Dim fileContent = Await FileIO.ReadTextAsync(file__1)
+            Dim file = Await folder.GetFileAsync($"{name}.json")
+            Dim fileContent = Await FileIO.ReadTextAsync(file)
 
             Return Await Json.ToObjectAsync(Of T)(fileContent)
         End Function
 
         <Extension>
         Public Async Function SaveAsync(Of T)(settings As ApplicationDataContainer, key As String, value As T) As Task
-            settings.Values(key) = Await Json.StringifyAsync(value)
+            settings.SaveString(key, Await Json.StringifyAsync(value))
         End Function
+
+        <Extension>
+        Public Sub SaveString(settings As ApplicationDataContainer, key As String, value As String)
+            settings.Values(key) = value
+        End Sub
 
         <Extension>
         Public Async Function ReadAsync(Of T)(settings As ApplicationDataContainer, key As String) As Task(Of T)
@@ -60,7 +62,7 @@ Namespace Helpers
             End If
 
             If String.IsNullOrEmpty(fileName) Then
-                Throw New ArgumentException("File name is null or empty. Specify a valid file name", NameOf(fileName))
+                Throw New ArgumentException("ExceptionSettingsStorageExtensionsFileNameIsNullOrEmpty".GetLocalized(), NameOf(fileName))
             End If
 
             Dim storageFile = Await folder.CreateFileAsync(fileName, options)

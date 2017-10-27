@@ -41,15 +41,15 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
+
+      <Extensions>
+      </Extensions>
     </Application>
   </Applications>
 
   <Capabilities>
     <Capability Name="internetClient" />
   </Capabilities>
-
-  <Extensions>
-  </Extensions>
 
   <genTemplate:Metadata>
     <genTemplate:Item Name="generator" Value="Windows Template Studio"/>

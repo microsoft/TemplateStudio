@@ -15,7 +15,6 @@ namespace Microsoft.Templates.Test
     [Trait("Type", "TemplateValidation")]
     [Trait("ExecutionSet", "Minimum")]
     [Trait("ExecutionSet", "TemplateValidation")]
-
     public class TemplateJsonValidationTests
     {
         public static IEnumerable<object[]> GetAllTemplateJsonFiles()

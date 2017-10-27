@@ -62,6 +62,18 @@ namespace TemplateValidator
                         {
                             allIdentities.Add(template.Identity, templateFilePath);
                         }
+
+                        // Check that localized files have the same identity
+                        foreach (var localizedFile in new DirectoryInfo(Path.GetDirectoryName(templateFilePath)).EnumerateFiles("*.template.json"))
+                        {
+                            var localizedContents = File.ReadAllText(localizedFile.FullName);
+                            var localizedTemplate = JsonConvert.DeserializeObject<ValidationTemplateInfo>(localizedContents);
+
+                            if (template.Identity != localizedTemplate.Identity)
+                            {
+                                results.Add($"'{localizedFile.FullName}' does not have the correct identity.");
+                            }
+                        }
                     }
 
                     // Get list of dependencies while the file is open. These are all checked later
