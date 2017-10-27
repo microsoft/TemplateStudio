@@ -40,9 +40,9 @@ namespace Microsoft.Templates.UI
             PostactionFactory = postactionFactory;
         }
 
-        public UserSelection GetUserSelectionNewFeature()
+        public UserSelection GetUserSelectionNewFeature(string language)
         {
-            var newItem = new Views.NewItem.MainView(TemplateType.Feature);
+            var newItem = new Views.NewItem.MainView(TemplateType.Feature, language);
 
             try
             {
@@ -71,9 +71,9 @@ namespace Microsoft.Templates.UI
             return null;
         }
 
-        public UserSelection GetUserSelectionNewPage()
+        public UserSelection GetUserSelectionNewPage(string language)
         {
-            var newItem = new Views.NewItem.MainView(TemplateType.Page);
+            var newItem = new Views.NewItem.MainView(TemplateType.Page, language);
 
             try
             {

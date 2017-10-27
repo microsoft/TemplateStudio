@@ -169,12 +169,10 @@ namespace Microsoft.Templates.UI.Services
             return dependencyItem;
         }
 
-        public static UserSelection CreateUserSelection()
+        public static UserSelection CreateUserSelection(string language)
         {
-            var userSelection = new UserSelection()
+            var userSelection = new UserSelection(SelectedProjectType?.Name, SelectedFramework?.Name, language)
             {
-                ProjectType = SelectedProjectType?.Name,
-                Framework = SelectedFramework?.Name,
                 HomeName = HomeName
             };
             _getSavedPages().ToList().ForEach(spg => userSelection.Pages.AddRange(spg.Select(sp => sp.UserSelection)));

@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,19 +21,47 @@ namespace Microsoft.Templates.UI
 
     public class UserSelection
     {
+        public UserSelection(string projectType, string framework, string language)
+        {
+            if (string.IsNullOrWhiteSpace(language))
+            {
+                throw new ArgumentNullException(nameof(language));
+            }
+
+            ProjectType = projectType;
+            Framework = framework;
+            Language = language;
+        }
+
         public string ProjectType { get; set; }
 
         public string Framework { get; set; }
 
         public string HomeName { get; set; }
 
-        public string Language { get; set; }
+        public string Language { get; private set; }
 
         public ItemGenerationType ItemGenerationType { get; set; } = ItemGenerationType.None;
 
         public List<(string name, ITemplateInfo template)> Pages { get; } = new List<(string name, ITemplateInfo template)>();
 
         public List<(string name, ITemplateInfo template)> Features { get; } = new List<(string name, ITemplateInfo template)>();
+
+        public IEnumerable<(string name, ITemplateInfo template)> PagesAndFeatures
+        {
+            get
+            {
+                foreach (var page in Pages)
+                {
+                    yield return page;
+                }
+
+                foreach (var feature in Features)
+                {
+                    yield return feature;
+                }
+            }
+        }
 
         public override string ToString()
         {

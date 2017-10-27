@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Page.Settings.CodeBehind & $projectType == SplitView",
+    "wts.compositionFilter": "identity == wts.Page.Settings.CodeBehind.VB & $projectType == SplitView",
     "wts.compositionOrder": "2"
  },
   "sourceName": "wts.ItemName",

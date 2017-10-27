@@ -4,16 +4,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -31,15 +25,24 @@ namespace Microsoft.Templates.Test
 
         private static bool syncExecuted;
 
-        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync(string frameworkFilter)
+        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync(string frameworkFilter, string programmingLanguage)
         {
             List<object[]> result = new List<object[]>();
-            foreach (var language in ProgrammingLanguages.GetAllLanguages())
+
+            var languagesOfInterest = ProgrammingLanguages.GetAllLanguages().ToList();
+
+            if (!string.IsNullOrWhiteSpace(programmingLanguage))
+            {
+                languagesOfInterest.Clear();
+                languagesOfInterest.Add(programmingLanguage);
+            }
+
+            foreach (var language in languagesOfInterest)
             {
                 await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldMVVML"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
-                                                         && t.GetLanguage() == language);
+                                                                                && t.GetLanguage() == language);
 
                 foreach (var projectTemplate in projectTemplates)
                 {
@@ -68,7 +71,7 @@ namespace Microsoft.Templates.Test
                 await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldMVVML"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
-                                                         && t.GetLanguage() == language);
+                                                                                && t.GetLanguage() == language);
 
                 foreach (var projectTemplate in projectTemplates)
                 {

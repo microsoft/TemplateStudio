@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Fakes
 EndProject
 ";
 
-        private const string ProjectTemplateVB = @"Project(""{7CF740F7-735F-48EA-8B7B-3FFA4902371C}"") = ""{name}"", ""{name}\{name}.vbproj"", ""{id}""
+        private const string ProjectTemplateVB = @"Project(""{F184B08F-C81C-45F6-A57F-5ABD9991F28F}"") = ""{name}"", ""{name}\{name}.vbproj"", ""{id}""
 EndProject
 ";
 

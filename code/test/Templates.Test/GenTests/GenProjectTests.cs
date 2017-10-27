@@ -5,10 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -115,7 +113,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}All";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetDefaultName);
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetDefaultName);
         }
 
         [Theory]
@@ -132,7 +130,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}AllRandom";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName);
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetRandomName);
         }
 
         [Theory]

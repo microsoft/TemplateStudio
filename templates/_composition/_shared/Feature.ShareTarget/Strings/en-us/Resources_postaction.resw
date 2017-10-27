@@ -5,17 +5,17 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="ShareTargetExample_CompleteButton.Content" xml:space="preserve">
+  <data name="wts.ItemName_CompleteButton.Content" xml:space="preserve">
     <value>Complete</value>
-    <comment>Complete button content text in ShareTargetExample</comment>
+    <comment>Complete button content text in wts.ItemName page</comment>
   </data>
-  <data name="ShareTargetExample_ImagesTitle" xml:space="preserve">
+  <data name="wts.ItemName_ImagesTitle" xml:space="preserve">
     <value>Images shared with the application</value>
-    <comment>Page title for ShareTargetExample when images are shared</comment>
+    <comment>Page title for wts.ItemName when images are shared</comment>
   </data>
-  <data name="ShareTargetExample_WebLinkTitle" xml:space="preserve">
+  <data name="wts.ItemName_WebLinkTitle" xml:space="preserve">
     <value>Web link shared with the application</value>
-    <comment>Page title for ShareTargetExample when web link is shared</comment>
+    <comment>Page title for wts.ItemName when web link is shared</comment>
   </data>
   <!--}]}-->
 </root>
