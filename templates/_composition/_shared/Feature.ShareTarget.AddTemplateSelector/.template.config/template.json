@@ -3,22 +3,19 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.ShareTarget",
+  "name": "Feature.ShareTarget.AddTemplateSelector",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro & identity == wts.Feat.ShareTarget|wts.Feat.ShareTarget.CodeBehind"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & identity == wts.Feat.ShareTarget"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\wts.ItemNameActivationHandler.cs"
-    },
-    {
-    "path": ".\\Helpers\\ShareOperationExtensions.cs"
+      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.cs"
     }
   ],
   "symbols": {

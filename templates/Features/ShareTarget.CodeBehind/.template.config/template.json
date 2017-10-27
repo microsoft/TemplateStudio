@@ -3,13 +3,13 @@
   "classifications": [ "Universal" ],
   "name": "Share Target",
   "groupIdentity": "wts.Feat.ShareTarget",
-  "identity": "wts.Feat.ShareTarget",
+  "identity": "wts.Feat.ShareTarget.CodeBehind",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CaliburnMicro",
+    "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
     "wts.displayOrder": "6",
     "wts.group": "AppToApp",
@@ -21,13 +21,22 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\ViewModels\\SharedDataStorageItemsViewModel.cs"
+      "path": ".\\Models\\SharedDataStorageItemsModel.cs"
     },
     {
-      "path": ".\\ViewModels\\SharedDataViewModelBase.cs"
+      "path": ".\\Models\\SharedDataModelBase.cs"
     },
     {
-      "path": ".\\ViewModels\\SharedDataWebLinkViewModel.cs"
+      "path": ".\\Models\\SharedDataWebLinkModel.cs"
+    },
+    {
+      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.cs"
+    },
+    {
+      "path": ".\\Views\\ShareTargetFeaturePage.xaml"
+    },
+    {
+      "path": ".\\Views\\ShareTargetFeaturePage.xaml.cs"
     }
   ],
   "symbols": {
