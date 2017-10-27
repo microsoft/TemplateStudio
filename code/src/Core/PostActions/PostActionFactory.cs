@@ -56,7 +56,7 @@ namespace Microsoft.Templates.Core.PostActions
             var genCertificatePostAction = genResult.ResultInfo.PostActions.Where(x => x.ActionId == GenerateTestCertificatePostAction.Id).FirstOrDefault();
             if (genCertificatePostAction != null)
             {
-                postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName(), genCertificatePostAction.Args, genCertificatePostAction.ContinueOnError));
+                postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs));
             }
         }
 
@@ -66,7 +66,6 @@ namespace Microsoft.Templates.Core.PostActions
             {
                 case TemplateType.Project:
                     postActions.Add(new AddProjectToSolutionPostAction(genResult.ResultInfo.PrimaryOutputs));
-                    // postActions.Add(new GenerateTestCertificatePostAction(genInfo.GetUserName()));
                     break;
                 case TemplateType.Page:
                 case TemplateType.Feature:

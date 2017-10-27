@@ -9,42 +9,44 @@ using System.Security.Cryptography.X509Certificates;
 
 using CERTENROLLLib;
 
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class GenerateTestCertificatePostAction : PostAction<string>
+    public class GenerateTestCertificatePostAction : TemplateDefinedPostAction
     {
         public static readonly Guid Id = new Guid("65057255-BD7B-443C-8180-5D82B9DA9E22");
 
-        public IReadOnlyDictionary<string, string> Args { get; set; }
+        public override Guid ActionId { get => Id; }
 
-        public GenerateTestCertificatePostAction(string config, IReadOnlyDictionary<string, string> args, bool continueOnError)
-            : base(config)
+        private string _projectName = string.Empty;
+
+        public GenerateTestCertificatePostAction(string username, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs)
+            : base(templatePostAction)
         {
-            ContinueOnError = continueOnError;
-            Args = args;
+            if (Intialized)
+            {
+                int targetProjectIndex = int.Parse(Args["files"]);
+                _projectName = Path.GetFileNameWithoutExtension(primaryOutputs[targetProjectIndex].Path);
+            }
         }
 
         internal override void ExecuteInternal()
         {
-            //try
-            //{
-                var publisherName = Config;
+            if (Intialized)
+            {
+                var publisherName = string.Empty;
                 var pfx = CreateCertificate(publisherName);
 
                 AddToProject(pfx);
                 RemoveFromStore(pfx);
-            //}
-            //catch (Exception ex)
-            //{
-            //    AppHealth.Current.Warning.TrackAsync(StringRes.GenerateTestCertificatePostActionExecute, ex).FireAndForget();
-            //}
+            }
         }
 
         private void AddToProject(string base64Encoded)
         {
-            var filePath = Path.Combine(GenContext.Current.ProjectPath, GenContext.Current.ProjectName) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(GenContext.Current.OutputPath, _projectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
             GenContext.ToolBox.Shell.AddItems(filePath);

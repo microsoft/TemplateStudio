@@ -1,0 +1,52 @@
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using System;
+using System.Collections.Generic;
+
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core.Diagnostics;
+
+namespace Microsoft.Templates.Core.PostActions
+{
+    public abstract class TemplateDefinedPostAction : PostAction
+    {
+        public abstract Guid ActionId { get; }
+
+        public IReadOnlyDictionary<string, string> Args { get; private set; }
+
+        public bool Intialized { get; private set; }
+
+        public TemplateDefinedPostAction(IPostAction templateDefinedPostAction)
+            : base()
+        {
+            ContinueOnError = templateDefinedPostAction.ContinueOnError;
+
+            if (IsIdsMatch(templateDefinedPostAction))
+            {
+                Args = templateDefinedPostAction.Args;
+                Intialized = true;
+            }
+        }
+
+        private bool IsIdsMatch(IPostAction templateDefinedPostAction)
+        {
+            if (templateDefinedPostAction.ActionId != ActionId)
+            {
+                string errorMsg = $"The PostAction.ActionId '{templateDefinedPostAction.ActionId.ToString()}' defined in the template does not match with the expected class ActionId '{ActionId.ToString()}'. Can't continue.";
+                if (!ContinueOnError)
+                {
+                    throw new Exception(errorMsg);
+                }
+                else
+                {
+                    AppHealth.Current.Error.TrackAsync(errorMsg).FireAndForget();
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+}

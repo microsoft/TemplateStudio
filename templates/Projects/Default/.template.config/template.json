@@ -66,9 +66,7 @@
       "manualInstructions": [ ],
       "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
       "args": {
-        "username": "wts.userName",
-        "executable": "setup.cmd",
-        "args": ""
+        "files" : "0"
       },
       "continueOnError": "true"
     }
