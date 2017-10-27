@@ -304,6 +304,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error executing &apos;{0}&apos;. Related template: {1}..
+        /// </summary>
+        internal static string PostActionException {
+            get {
+                return ResourceManager.GetString("PostActionException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The PostAction.ActionId &apos;{0}&apos; defined in the template does not match with the expected class ActionId &apos;{1}&apos;. Can&apos;t continue. Related template: {2}..
         /// </summary>
         internal static string PostActionIdsNotMatchError {

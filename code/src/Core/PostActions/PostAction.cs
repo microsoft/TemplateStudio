@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Core.PostActions
             {
                 if (!ContinueOnError)
                 {
-                    throw ex;
+                    throw new Exception(string.Format(StringRes.PostActionException, this.GetType(), RelatedTemplate), ex);
                 }
                 else
                 {

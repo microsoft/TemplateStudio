@@ -390,6 +390,9 @@ The following changes could not be integrated: {2}
   <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
     <value>Error executing '{0}'. Ignoring the error as Continue on Error is enabled. Related template: {1}.</value>
   </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Error executing '{0}'. Related template: {1}.</value>
+  </data>
   <data name="PostActionIdsNotMatchError" xml:space="preserve">
     <value>The PostAction.ActionId '{0}' defined in the template does not match with the expected class ActionId '{1}'. Can't continue. Related template: {2}.</value>
   </data>
