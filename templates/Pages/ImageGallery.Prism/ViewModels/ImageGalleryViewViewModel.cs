@@ -19,6 +19,9 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class ImageGalleryViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        private readonly INavigationService navigationService;
+        private readonly ISampleDataService sampleDataService;
+
         public const string ImageGalleryViewSelectedImageId = "ImageGalleryViewSelectedImageId";
         public const string ImageGalleryViewAnimationOpen = "ImageGalleryView_AnimationOpen";
         public const string ImageGalleryViewAnimationClose = "ImageGalleryView_AnimationClose";
@@ -26,10 +29,6 @@ namespace Param_ItemNamespace.ViewModels
         private ObservableCollection<SampleImage> _source;
         private ICommand _itemSelectedCommand;
         private GridView _imagesGridView;
-
-        private readonly INavigationService navigationService;
-        private readonly ISampleDataService sampleDataService;
-
 
         public ObservableCollection<SampleImage> Source
         {

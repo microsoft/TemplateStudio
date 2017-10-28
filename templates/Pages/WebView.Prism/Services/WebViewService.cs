@@ -14,25 +14,25 @@ namespace Param_ItemNamespace.Services
         public WebViewService(WebView webView)
         {
             this.webView = webView;
-            this.webView.NavigationCompleted += webView_NavigationCompleted;
-            this.webView.NavigationFailed += webView_NavigationFailed;
+            this.webView.NavigationCompleted += WebView_NavigationCompleted;
+            this.webView.NavigationFailed += WebView_NavigationFailed;
         }
 
         public void Detatch()
         {
             if (webView != null)
             {
-                webView.NavigationCompleted -= webView_NavigationCompleted;
-                webView.NavigationFailed += webView_NavigationFailed;
+                webView.NavigationCompleted -= WebView_NavigationCompleted;
+                webView.NavigationFailed += WebView_NavigationFailed;
             }
         }
 
-        private void webView_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
+        private void WebView_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
         {
             NavigationFailed?.Invoke(sender, e);
         }
 
-        private void webView_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs e)
+        private void WebView_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs e)
         {
             NavigationComplete?.Invoke(sender, e);
         }

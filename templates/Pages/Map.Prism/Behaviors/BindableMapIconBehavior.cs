@@ -41,8 +41,10 @@ namespace Param_ItemNamespace.Behaviors
         private void OnMapIconsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (AssociatedObject == null)
+            {
                 return;
-                
+            }
+
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
                 foreach (var mapIcon in e.NewItems)
@@ -50,6 +52,7 @@ namespace Param_ItemNamespace.Behaviors
                     AssociatedObject.MapElements.Add(mapIcon as MapIcon);
                 }
             }
+
             if (e.Action == NotifyCollectionChangedAction.Remove)
             {
                 foreach (var mapIcon in e.OldItems)

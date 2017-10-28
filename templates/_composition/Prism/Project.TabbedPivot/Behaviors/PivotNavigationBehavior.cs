@@ -29,7 +29,7 @@ namespace wts.ItemName.Behaviors
         private void AssociatedObject_PivotItemUnloading(Pivot sender, PivotItemEventArgs args)
         {
             var navAwarePivot = ((args.Item.Content as Frame).Content as FrameworkElement).DataContext as INavigationAware;
-            navAwarePivot?.OnNavigatingFrom(null, null,false);
+            navAwarePivot?.OnNavigatingFrom(null, null, false);
         }
 
         protected override void OnDetaching()

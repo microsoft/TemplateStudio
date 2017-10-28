@@ -18,7 +18,7 @@ namespace Param_RootNamespace
 
         private async Task LaunchApplication(string page, object launchParam)
         {
-            NavigationService.Navigate(page, launchParam);            
+            NavigationService.Navigate(page, launchParam);
             Window.Current.Activate();
 //{[{
             await Container.Resolve<IFirstRunDisplayService>().ShowIfAppropriateAsync();

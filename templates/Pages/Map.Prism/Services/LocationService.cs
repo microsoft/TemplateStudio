@@ -84,8 +84,10 @@ namespace Param_ItemNamespace.Services
         public async Task StartListeningAsync()
         {
             if (geolocator == null)
+            {
                 throw new InvalidOperationException(
                     "The StartListening method cannot be called before the InitializeAsync method is called and returns true.");
+            }
 
             geolocator.PositionChanged += GeolocatorOnPositionChanged;
 
@@ -97,14 +99,20 @@ namespace Param_ItemNamespace.Services
         /// </summary>
         public void StopListening()
         {
-            if (geolocator == null) return;
+            if (geolocator == null)
+            {
+                return;
+            }
 
             geolocator.PositionChanged -= GeolocatorOnPositionChanged;
         }
 
         private async void GeolocatorOnPositionChanged(Geolocator sender, PositionChangedEventArgs args)
         {
-            if (args == null) return;
+            if (args == null)
+            {
+                return;
+            }
 
             CurrentPosition = args.Position;
 

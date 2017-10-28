@@ -28,6 +28,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private Uri source;
+
         public Uri Source
         {
             get { return source; }
@@ -35,21 +36,35 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private bool isLoading;
+
         public bool IsLoading
         {
-            get { return isLoading; }
+            get
+            {
+                 return isLoading;
+            }
+
             set
             {
-                if (value) IsShowingFailedMessage = false;
+                if (value)
+                {
+                    IsShowingFailedMessage = false;
+                }
+
                 SetProperty(ref isLoading, value);
                 IsLoadingVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
         private Visibility isLoadingVisibility;
+
         public Visibility IsLoadingVisibility
         {
-            get { return isLoadingVisibility; }
+            get
+            {
+                return isLoadingVisibility;
+            }
+
             set
             {
                 SetProperty(ref isLoadingVisibility, value);
@@ -57,21 +72,35 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private bool isShowingFailedMessage;
+
         public bool IsShowingFailedMessage
         {
-            get { return isShowingFailedMessage; }
+            get
+            {
+                return isShowingFailedMessage;
+            }
+
             set
             {
-                if (value) IsLoading = false;
+                if (value)
+                {
+                    IsLoading = false;
+                }
+
                 SetProperty(ref isShowingFailedMessage, value);
                 FailedMesageVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
         private Visibility failedMessageVisibility;
+
         public Visibility FailedMesageVisibility
         {
-            get { return failedMessageVisibility; }
+            get
+            {
+                return failedMessageVisibility;
+            }
+
             set
             {
                 SetProperty(ref failedMessageVisibility, value);
@@ -79,9 +108,14 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private IWebViewService webViewService;
+
         public IWebViewService WebViewService
         {
-            get { return webViewService; }
+            get
+            {
+                return webViewService;
+            }
+
             // the WebViewService is set from within the view (instead of IoC) because it needs a reference to the control
             set
             {
@@ -90,6 +124,7 @@ namespace Param_ItemNamespace.ViewModels
                     webViewService.NavigationComplete -= WebViewService_NavigationComplete;
                     webViewService.NavigationFailed -= WebViewService_NavigationFailed;
                 }
+
                 webViewService = value;
                 webViewService.NavigationComplete += WebViewService_NavigationComplete;
                 webViewService.NavigationFailed += WebViewService_NavigationFailed;
@@ -97,11 +132,14 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         public ICommand BrowserBackCommand { get; }
-        public ICommand BrowserForwardCommand { get; }
-        public ICommand RefreshCommand { get; }
-        public ICommand RetryCommand { get; }
-        public ICommand OpenInBrowserCommand { get; }
 
+        public ICommand BrowserForwardCommand { get; }
+
+        public ICommand RefreshCommand { get; }
+
+        public ICommand RetryCommand { get; }
+
+        public ICommand OpenInBrowserCommand { get; }
 
         private void WebViewService_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
         {

@@ -2,7 +2,7 @@
 
 namespace Param_RootNamespace.Services
 {
-    internal interface IStoreNotificationsService
+    internal interface IStoreNotificationsFeatureService
     {
         Task InitializeAsync();
     }

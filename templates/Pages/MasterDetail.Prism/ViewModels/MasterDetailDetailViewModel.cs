@@ -13,8 +13,8 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class MasterDetailDetailViewModel : ViewModelBase
     {
-        const string NarrowStateName = "NarrowState";
-        const string WideStateName = "WideState";
+        private const string NarrowStateName = "NarrowState";
+        private const string WideStateName = "WideState";
 
         private readonly INavigationService navigationService;
         private readonly ISampleDataService sampleDataService;
@@ -22,6 +22,7 @@ namespace Param_ItemNamespace.ViewModels
         public ICommand StateChangedCommand { get; }
 
         private SampleOrder item;
+
         public SampleOrder Item
         {
             get { return item; }

@@ -12,8 +12,13 @@ namespace Param_ItemNamespace.Services
         event EventHandler<Geoposition> PositionChanged;
 
         Task<bool> InitializeAsync();
+
         Task<bool> InitializeAsync(uint desiredAccuracyInMeters);
+
         Task<bool> InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold);
+
         Task StartListeningAsync();
+
         void StopListening();
-    }}
+    }
+}

@@ -5,7 +5,7 @@ using Microsoft.Services.Store.Engagement;
 
 namespace Param_RootNamespace.Services
 {
-    internal class StoreNotificationsService : IStoreNotificationsService
+    internal class StoreNotificationsFeatureService : IStoreNotificationsFeatureService
     {
         public async Task InitializeAsync()
         {

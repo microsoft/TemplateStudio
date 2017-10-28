@@ -7,7 +7,6 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class ChartViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-
         private readonly ISampleDataService sampleDataService;
 
         public ChartViewViewModel(ISampleDataService sampleDataService)

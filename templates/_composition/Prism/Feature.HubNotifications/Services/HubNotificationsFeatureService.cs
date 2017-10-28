@@ -11,7 +11,7 @@ namespace Param_RootNamespace.Services
     {
         public async Task InitializeAsync()
         {
-            // The code below will throw an exception until it had correct parameters added to it. 
+            // The code below will throw an exception until it had correct parameters added to it.
             // Once that is done the try/catch can be removed if desired.
             try
             {
@@ -36,8 +36,8 @@ namespace Param_RootNamespace.Services
                 // You can also send push notifications from Windows Developer Center targeting your app consumers
                 // Documentation: https://docs.microsoft.com/windows/uwp/publish/send-push-notifications-to-your-apps-customers
             }
-            catch(Exception) 
-            { 
+            catch (Exception)
+            {
                 // Until a valid accessSignature and hubName are provided this code will throw an ArgumentNull Exception.
             }
         }

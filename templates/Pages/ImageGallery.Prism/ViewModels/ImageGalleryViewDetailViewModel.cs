@@ -17,11 +17,10 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class ImageGalleryViewDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        private readonly ISampleDataService sampleDataService;
         private static UIElement _image;
         private object _selectedImage;
         private ObservableCollection<SampleImage> _source;
-        private readonly ISampleDataService sampleDataService;
-
 
         public object SelectedImage
         {

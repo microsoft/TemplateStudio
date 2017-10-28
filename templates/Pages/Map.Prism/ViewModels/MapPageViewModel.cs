@@ -15,7 +15,7 @@ namespace Param_ItemNamespace.ViewModels
     public class MapPageViewModel : System.ComponentModel.INotifyPropertyChanged
     {
          // TODO WTS: Set your preferred default zoom level
-        private const double defaultZoomLevel = 17;
+        private const double DefaultZoomLevel = 17;
 
         private readonly ILocationService locationService;
 
@@ -27,6 +27,7 @@ namespace Param_ItemNamespace.ViewModels
         };
 
         private string mapServiceToken;
+
         public string MapServiceToken
         {
             get { return mapServiceToken; }
@@ -34,6 +35,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private double zoomLevel;
+
         public double ZoomLevel
         {
             get { return zoomLevel; }
@@ -41,6 +43,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private Geopoint center;
+
         public Geopoint Center
         {
             get { return center; }
@@ -48,6 +51,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private ObservableCollection<MapIcon> mapIcons = new ObservableCollection<MapIcon>();
+
         public ObservableCollection<MapIcon> MapIcons
         {
             get { return mapIcons; }
@@ -58,10 +62,10 @@ namespace Param_ItemNamespace.ViewModels
         {
             this.locationService = locationService;
             Center = new Geopoint(defaultPosition);
-            ZoomLevel = defaultZoomLevel;
+            ZoomLevel = DefaultZoomLevel;
 
-            // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
-            MapServiceToken = "";
+            // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/
+            MapServiceToken = string.Empty;
         }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)

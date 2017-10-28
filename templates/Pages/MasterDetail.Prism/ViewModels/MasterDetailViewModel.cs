@@ -16,11 +16,11 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class MasterDetailViewModel : ViewModelBase
     {
+        private const string NarrowStateName = "NarrowState";
+        private const string WideStateName = "WideState";
+
         private readonly INavigationService navigationService;
         private readonly ISampleDataService sampleDataService;
-
-        const string NarrowStateName = "NarrowState";
-        const string WideStateName = "WideState";
 
         private VisualState currentState;
 
@@ -34,6 +34,7 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         private SampleOrder selected;
+
         public SampleOrder Selected
         {
             get => selected;
@@ -41,7 +42,9 @@ namespace Param_ItemNamespace.ViewModels
         }
 
         public ICommand ItemClickCommand { get; }
+
         public ICommand StateChangedCommand { get; }
+
         public ICommand LoadedCommand { get; }
 
         public ObservableCollection<SampleOrder> SampleItems { get; } = new ObservableCollection<SampleOrder>();
@@ -63,6 +66,7 @@ namespace Param_ItemNamespace.ViewModels
             {
                 SampleItems.Add(item);
             }
+
             Selected = SampleItems.First();
         }
 
