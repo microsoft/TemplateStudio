@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == Blank|SplitView & identity == wts.Page.Settings.VB|wts.Page.Settings.MVVMLight.VB"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == Blank|SplitView & identity == wts.Page.Settings.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
