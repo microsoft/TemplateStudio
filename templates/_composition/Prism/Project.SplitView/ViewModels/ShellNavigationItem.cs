@@ -12,6 +12,7 @@ namespace wts.ItemName.ViewModels
         private bool _isSelected;
 
         private Visibility _selectedVis = Visibility.Collapsed;
+
         public Visibility SelectedVis
         {
             get { return _selectedVis; }
@@ -19,11 +20,20 @@ namespace wts.ItemName.ViewModels
         }
 
         public string Label { get; set; }
+
         public Symbol Symbol { get; set; }
-        public char SymbolAsChar { get { return (char)Symbol; } }
+
+        public char SymbolAsChar 
+        { 
+            get 
+            { return (char)Symbol; 
+            } 
+        }
+
         public string PageIdentifier { get; set; }
 
         private IconElement _iconElement = null;
+
         public IconElement Icon
         {
             get
@@ -53,7 +63,11 @@ namespace wts.ItemName.ViewModels
 
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get 
+            { 
+                return _isSelected; 
+            }
+
             set
             {
                 SetProperty(ref _isSelected, value);
@@ -72,13 +86,18 @@ namespace wts.ItemName.ViewModels
         }
 
         private SolidColorBrush _selectedForeground = null;
+
         public SolidColorBrush SelectedForeground
         {
             get
             {
                 return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush());
             }
-            set { SetProperty(ref _selectedForeground, value); }
+
+            set 
+            { 
+                SetProperty(ref _selectedForeground, value); 
+            }
         }
 
         public ShellNavigationItem(string name, Symbol symbol, string pageIdentifier)

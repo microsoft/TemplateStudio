@@ -5,6 +5,8 @@
     {
 //^^
 //{[{
-
         ObservableCollection<SampleImage> GetGallerySampleData();
+
 //}]}
+    }
+}

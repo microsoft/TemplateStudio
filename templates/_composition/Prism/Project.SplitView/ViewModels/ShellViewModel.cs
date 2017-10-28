@@ -34,6 +34,7 @@ namespace wts.ItemName.ViewModels
         }
 
         private bool isPaneOpen;
+ 
         public bool IsPaneOpen
         {
             get { return isPaneOpen; }
@@ -41,6 +42,7 @@ namespace wts.ItemName.ViewModels
         }
 
         private SplitViewDisplayMode displayMode = SplitViewDisplayMode.CompactInline;
+
         public SplitViewDisplayMode DisplayMode
         {
             get { return displayMode; }
@@ -50,6 +52,7 @@ namespace wts.ItemName.ViewModels
         private object _lastSelectedItem;
 
         private ObservableCollection<ShellNavigationItem> primaryItems = new ObservableCollection<ShellNavigationItem>();
+
         public ObservableCollection<ShellNavigationItem> PrimaryItems
         {
             get { return primaryItems; }
@@ -57,6 +60,7 @@ namespace wts.ItemName.ViewModels
         }
 
         private ObservableCollection<ShellNavigationItem> secondaryItems = new ObservableCollection<ShellNavigationItem>();
+
         public ObservableCollection<ShellNavigationItem> SecondaryItems
         {
             get { return secondaryItems; }
@@ -64,7 +68,9 @@ namespace wts.ItemName.ViewModels
         }
 
         public ICommand OpenPaneCommand { get; }
+
         public ICommand ItemSelectedCommand { get; }
+        
         public ICommand StateChangedCommand { get; }
 
         private void GoToState(string stateName)
@@ -127,6 +133,7 @@ namespace wts.ItemName.ViewModels
             {
                 IsPaneOpen = false;
             }
+
             Navigate(args.ClickedItem);
         }
 
@@ -134,7 +141,7 @@ namespace wts.ItemName.ViewModels
         {
             if (e != null)
             {
-                var vm = e.SourcePageType.ToString().Split('.').Last().Replace("Page",String.Empty);
+                var vm = e.SourcePageType.ToString().Split('.').Last().Replace("Page", string.Empty);
                 var navigationItem = PrimaryItems?.FirstOrDefault(i => i.PageIdentifier == vm);
                 if (navigationItem == null)
                 {

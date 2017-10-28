@@ -20,7 +20,7 @@ namespace Param_RootNamespace
         public void SetNavigationFrame(Frame frame)
         {
             var sessionStateService = Container.Resolve<ISessionStateService>();
-            base.CreateNavigationService(new FrameFacadeAdapter(frame), sessionStateService);
+            CreateNavigationService(new FrameFacadeAdapter(frame), sessionStateService);
         }
 
         protected override UIElement CreateShell(Frame rootFrame)

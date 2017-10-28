@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IStoreNotificationsService>(new StoreNotificationsService());
+            Container.RegisterInstance<IStoreNotificationsFeatureService>(new StoreNotificationsFeatureService());
 //}]}
         }
 
@@ -26,7 +26,7 @@ namespace Param_RootNamespace
             NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();
 //{[{
-            await Container.Resolve<IStoreNotificationsService>().InitializeAsync();
+            await Container.Resolve<IStoreNotificationsFeatureService>().InitializeAsync();
 //}]}
             await Task.CompletedTask;
         }
