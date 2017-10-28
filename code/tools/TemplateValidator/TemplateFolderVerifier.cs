@@ -82,7 +82,7 @@ namespace TemplateValidator
                         allDependencies.Add(templateFilePath, template.TemplateTags["wts.dependencies"]);
                     }
 
-                    // Get list of dependencies while the file is open. These are all checked later
+                    // Get list of filters while the file is open. These are all checked later
                     if (template.TemplateTags.ContainsKey("wts.compositionFilter"))
                     {
                         allCompFilters.Add(templateFilePath, template.TemplateTags["wts.compositionFilter"]);
