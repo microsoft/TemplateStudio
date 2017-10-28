@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IHubNotificationsService>(new HubNotificationsService());
+            Container.RegisterInstance<IHubNotificationsFeatureService>(new HubNotificationsFeatureService());
 //}]}
         }
 
@@ -26,7 +26,7 @@ namespace Param_RootNamespace
             NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();
 //{[{
-            await Container.Resolve<IHubNotificationsService>().InitializeAsync();
+            await Container.Resolve<IHubNotificationsFeatureService>().InitializeAsync();
 //}]}
             await Task.CompletedTask;
         }

@@ -42,7 +42,7 @@ namespace Param_RootNamespace
                     }
 
                     // It's also possible to have logic here to navigate to different pages. e.g. if you have logic based on the URI used to launch
-                    return LaunchApplication(PageTokens.UriSchemePage, secret);
+                    return LaunchApplication(PageTokens.UriSchemeExamplePage, secret);
                 }
                 else if (args.PreviousExecutionState != ApplicationExecutionState.Running)
                 {

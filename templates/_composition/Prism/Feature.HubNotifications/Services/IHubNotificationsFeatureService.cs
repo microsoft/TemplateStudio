@@ -2,7 +2,7 @@
 
 namespace Param_RootNamespace.Services
 {
-    internal interface IHubNotificationsService
+    internal interface IHubNotificationsFeatureService
     {
         Task InitializeAsync();
     }

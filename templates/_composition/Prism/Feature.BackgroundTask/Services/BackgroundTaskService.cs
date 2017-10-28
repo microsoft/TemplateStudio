@@ -44,7 +44,6 @@ namespace Param_ItemNamespace.Services
         {
             var backgroundTasks = new List<BackgroundTask>();
 
-            backgroundTasks.Add(new BackgroundTask1());
             return backgroundTasks;
         }
     }

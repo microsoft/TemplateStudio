@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IToastNotificationsService>(new ToastNotificationsService());
+            Container.RegisterInstance<IToastNotificationsFeatureService>(new ToastNotificationsFeatureService());
 //}]}
         }
 
@@ -26,7 +26,7 @@ namespace Param_RootNamespace
             NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();
 //{[{
-            Container.Resolve<IToastNotificationsService>().ShowToastNotificationSample();
+            Container.Resolve<IToastNotificationsFeatureService>().ShowToastNotificationSample();
 //}]}
             await Task.CompletedTask;
         }

@@ -39,7 +39,7 @@ namespace Param_ItemNamespace.ViewModels
             set => SetProperty(ref _source, value);
         }
 
-        public ImageGalleryDetailViewModel(ISampleDataService sampleDataService)
+        public ImageGalleryViewDetailViewModel(ISampleDataService sampleDataService)
         {
             // TODO WTS: Replace this with your actual data
             this.sampleDataService = sampleDataService;

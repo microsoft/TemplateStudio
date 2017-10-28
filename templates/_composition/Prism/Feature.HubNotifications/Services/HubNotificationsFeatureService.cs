@@ -7,7 +7,7 @@ using Windows.Networking.PushNotifications;
 
 namespace Param_RootNamespace.Services
 {
-    internal class HubNotificationsFeatureService : IHubNotificationsService
+    internal class HubNotificationsFeatureService : IHubNotificationsFeatureService
     {
         public async Task InitializeAsync()
         {
