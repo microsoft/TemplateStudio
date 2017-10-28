@@ -278,7 +278,6 @@ namespace TemplateValidator
         {
             try
             {
-                // Use a linked copy of this (and related files) as can't reference the core lib directly
                 CompositionQuery.Parse(tag.Value);
             }
             catch (InvalidCompositionQueryException ex)
@@ -289,7 +288,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsCompositionFilterLogic(ValidationTemplateInfo template, KeyValuePair<string, string> tag, List<string> results)
         {
-            // Ensure VB tempaltes refere to VB identities
+            // Ensure VB templates refer to VB identities
             if (template.TemplateTags["language"] == ProgrammingLanguages.VisualBasic)
             {
                 // This can't catch everything but is better than nothing
