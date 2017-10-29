@@ -28,7 +28,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                 var destDirectory = Path.GetDirectoryName(destFilePath);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
-                if (Path.GetExtension(file).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
+                if (Path.GetExtension(file).Equals(".csproj", StringComparison.OrdinalIgnoreCase)
+                 || Path.GetExtension(file).Equals(".vbproj", StringComparison.OrdinalIgnoreCase))
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                     GenContext.ToolBox.Shell.SaveSolution();
