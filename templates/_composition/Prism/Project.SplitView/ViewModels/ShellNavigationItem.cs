@@ -23,11 +23,12 @@ namespace wts.ItemName.ViewModels
 
         public Symbol Symbol { get; set; }
 
-        public char SymbolAsChar 
-        { 
-            get 
-            { return (char)Symbol; 
-            } 
+        public char SymbolAsChar
+        {
+            get
+            {
+                return (char)Symbol;
+            }
         }
 
         public string PageIdentifier { get; set; }
@@ -63,9 +64,9 @@ namespace wts.ItemName.ViewModels
 
         public bool IsSelected
         {
-            get 
-            { 
-                return _isSelected; 
+            get
+            {
+                return _isSelected;
             }
 
             set
@@ -81,7 +82,6 @@ namespace wts.ItemName.ViewModels
         private SolidColorBrush GetStandardTextColorBrush()
         {
             var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
-    
             return brush;
         }
 
@@ -94,9 +94,9 @@ namespace wts.ItemName.ViewModels
                 return _selectedForeground ?? (_selectedForeground = GetStandardTextColorBrush());
             }
 
-            set 
-            { 
-                SetProperty(ref _selectedForeground, value); 
+            set
+            {
+                SetProperty(ref _selectedForeground, value);
             }
         }
 

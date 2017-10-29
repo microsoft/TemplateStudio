@@ -176,8 +176,9 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsTabbedPivot()
         {
-            return ExistsFileInProjectPath("Services", "ActivationService.cs")
-                && ExistsFileInProjectPath("Views", "PivotPage.xaml");
+            return (ExistsFileInProjectPath("Services", "ActivationService.cs")
+                && ExistsFileInProjectPath("Views", "PivotPage.xaml")) || (ExistsFileInProjectPath("Constants", "PageTokens.cs")
+                && ExistsFileInProjectPath("Views", "PivotPage.xaml"));
         }
 
         private static bool IsCodeBehind()
@@ -231,14 +232,26 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsSplitView()
         {
-            return ExistsFileInProjectPath("Services", "ActivationService.cs")
+            return (ExistsFileInProjectPath("Services", "ActivationService.cs")
                 && ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs"));
+                && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs")))
+                || (ExistsFileInProjectPath("Views", "ShellPage.xaml") && ExistsFileInProjectPath("Constants", "PageTokens.cs") && ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs"));
         }
 
         private static bool ExistsFileInProjectPath(string subPath, string fileName)
         {
-            return Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, subPath), fileName, SearchOption.TopDirectoryOnly).Count() > 0;
+            try
+            {
+                return Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, subPath), fileName, SearchOption.TopDirectoryOnly).Count() > 0;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return false;
+            }
+            catch (FileNotFoundException)
+            {
+                return false;
+            }
         }
     }
 }

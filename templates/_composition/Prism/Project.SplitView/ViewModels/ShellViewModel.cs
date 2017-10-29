@@ -34,7 +34,7 @@ namespace wts.ItemName.ViewModels
         }
 
         private bool isPaneOpen;
- 
+
         public bool IsPaneOpen
         {
             get { return isPaneOpen; }
@@ -70,7 +70,7 @@ namespace wts.ItemName.ViewModels
         public ICommand OpenPaneCommand { get; }
 
         public ICommand ItemSelectedCommand { get; }
-        
+
         public ICommand StateChangedCommand { get; }
 
         private void GoToState(string stateName)
