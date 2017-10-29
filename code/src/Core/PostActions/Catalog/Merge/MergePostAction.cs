@@ -61,9 +61,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
 
                 // REFRESH PROJECT TO UN-DIRTY IT
-                if ((Path.GetExtension(Config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase)
-                   || Path.GetExtension(Config.FilePath).Equals(".vbproj", StringComparison.OrdinalIgnoreCase))
-                  && (GenContext.Current.OutputPath == GenContext.Current.ProjectPath))
+                if (Path.GetExtension(Config.FilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
+                 && GenContext.Current.OutputPath == GenContext.Current.ProjectPath)
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                 }
