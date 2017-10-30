@@ -1,1 +1,1 @@
-﻿The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.
+﻿La page Plan s'appuie sur la commande Plan.  Le code inclut l'ajout d'une icône Plan et la définition de l'emplacement.

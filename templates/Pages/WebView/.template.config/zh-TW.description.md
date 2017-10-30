@@ -1,3 +1,3 @@
-﻿The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine. Hyperlinks can also appear and function in a web view control.  You can use a web view control to display richly formatted HTML content from a remote web server, dynamically generated code, or content files in your app package. Rich content can also contain script code and communicate between the script and your app's code.
+﻿網頁檢視頁面會將檢視內嵌在您的應用程式中，該應用程式使用 Microsoft Edge 轉譯引擎來轉譯網頁內容。超連結也可以在網頁檢視控制項中顯示及運作。您可以使用網頁檢視控制項來顯示遠端網頁伺服器中格式豐富的 HTML 內容、動態產生的程式碼或是您應用程式封裝中的內容檔案。豐富內容也可以包含指令碼，並在指令碼與您的應用程式碼之間溝通。
 
-To find out more if this is a good solution for you, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/web-view).
+若要深入了解這是否為適合您的解決方案，請前往 [docs.microsoft.com](https://docs.microsoft.com/zh-tw/windows/uwp/controls-and-patterns/web-view)。

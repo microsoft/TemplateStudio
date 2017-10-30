@@ -1,5 +1,5 @@
-﻿After you update your app it's important to tell the people using it about the changes you make. This feature will display a message to the person using it when the app is updated.
+﻿更新了应用后，你必须就所做的更改告知该应用的使用者。此功能将会在应用更新时向该应用的使用者显示一则消息。
 
-The message displayed is fully customizable and can be used to give details about new features or bugs that have been fixed.
+显示的消息可完全自定义，并用于提供有关新功能或已修复的 Bug 的详细信息。
 
-Add this feature now so that it will be able to tell when it has been updated.
+立即添加此功能，以便在应用更新时可以发出通知。

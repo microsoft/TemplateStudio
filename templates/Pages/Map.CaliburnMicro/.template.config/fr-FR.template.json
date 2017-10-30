@@ -1,6 +1,6 @@
 ﻿{
   "author": "Nigel Sampson",
   "name": "Map",
-  "description": "The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location.",
+  "description": "La page Plans s'appuie sur la commande Plan de Windows. Le code inclut l'ajout d'une icône Plan et une fonction de géolocalisation.",
   "identity": "wts.Page.Map.CaliburnMicro"
 }

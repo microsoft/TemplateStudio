@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community Contribution",
   "name": "Blank",
-  "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
+  "description": "Toto je nejzákladnější stránka. Obsahuje prázdné plátno, které můžete přetvářet libovolným požadovaným způsobem.",
   "identity": "wts.Page.Blank.CodeBehind.VB"
 }

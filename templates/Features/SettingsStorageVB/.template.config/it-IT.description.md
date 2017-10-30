@@ -1,11 +1,11 @@
-﻿Setting storage is a class to simplify storing your application data.  It handles loading, saving, serializing your data and easy access to your application's data.
+﻿L'impostazione dell'archiviazione è una classe per semplificare l'archiviazione dei dati applicazione.  Gestisce carico, salvataggio, serializzazione dei dati e facile accesso ai dati applicazione.
 
-These are the main types of app data:
+Di seguito sono indicati i principali tipi di dati dell'app:
 
-* Local: stored on the device, backed up in the cloud, and persists across updates
-* LocalCache: persistent data that exists on the current device, not backed up, and persists across updates
-* SharedLocal: persistent across all app users
-* Roaming: exists on all devices where the user has installed the app
-* Temporary: can be deleted by the system at any time
+* Local: sono archiviati sul dispositivo, ne viene eseguito il backup nel cloud e vengono mantenuti tra gli aggiornamenti
+* LocalCache: sono dati persistenti presenti nel dispositivo corrente, non ne viene eseguito il backup e vengono mantenuti tra gli aggiornamenti
+* SharedLocal: sono dati persistenti tra tutti gli utenti dell'app
+* Roaming: sono presenti su tutti i dispositivi in cui l'utente ha installato l'app
+* Temporary: possono essere eliminati dal sistema in qualsiasi momento
 
-To find out more about storage, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).
+Per ulteriori informazioni sull'archiviazione, visita [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).

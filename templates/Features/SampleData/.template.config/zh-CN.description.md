@@ -1,3 +1,3 @@
-﻿The SampleDataService is a central repository for data used by generated pages. It is filled with basic data to provide a realistic viewpoint on data.  The data is also static to prevent any differences between runs.
+﻿SampleDataService 是存储已生成页面所用数据的中央存储库。该库存储基本数据，以就数据提出实际的观点。该数据也可以是静态的，以防止运行之间存在任何差异。
 
-The data provided should be treated as temporary and removed once you have changed the generated pages to use your own data.
+所提供的数据应视为临时数据，这些数据会在你更改已生成页面后删除，以使用你自己的数据。

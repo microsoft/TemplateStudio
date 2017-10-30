@@ -1,11 +1,11 @@
-﻿Setting storage is a class to simplify storing your application data.  It handles loading, saving, serializing your data and easy access to your application's data.
+﻿设置存储是一个用于简化应用程序数据存储的类。它可以加载、保存和序列化数据，并轻松访问应用程序数据。
 
-These are the main types of app data:
+下面是应用数据的主要类型:
 
-* Local: stored on the device, backed up in the cloud, and persists across updates
-* LocalCache: persistent data that exists on the current device, not backed up, and persists across updates
-* SharedLocal: persistent across all app users
-* Roaming: exists on all devices where the user has installed the app
-* Temporary: can be deleted by the system at any time
+* 本地:在设备上存储，在云中备份，并跨更新永久保留
+* LocalCache:位于当前设备上、未备份且跨更新永久保留的永久性数据
+* SharedLocal:跨所有应用用户永久保留
+* 漫游:位于用户已安装应用的所有设备上
+* 临时:可随时由系统删除
 
-To find out more about storage, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).
+若要了解有关存储的更多信息，请访问 [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata)。

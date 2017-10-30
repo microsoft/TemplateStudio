@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Settings Storage",
-  "description": "Setting storage helps simplify storing data inside your application data folder.",
+  "description": "Ayar deposu, verilerinizi uygulama verileri klasörünüzde depolamanızı kolaylaştırır.",
   "identity": "wts.Feat.SettingsStorage"
 }

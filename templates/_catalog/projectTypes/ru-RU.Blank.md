@@ -1,3 +1,3 @@
-﻿This basic project is a blank canvas upon which to build your app.
+﻿Этот базовый проект является пустым холстом, на котором можно создать приложение.
 
-It provides no scaffolding and leaves everything up to you.
+Он не предоставляет возможность формирования шаблонов, и вы можете сделать все самостоятельно.

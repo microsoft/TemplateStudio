@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community Contribution",
   "name": "First Run Prompt",
-  "description": "Display a prompt when the app is used for the first time.",
+  "description": "Afficher une invite lorsque l'application est utilisée pour la première fois.",
   "identity": "wts.Feat.FirstRunPrompt"
 }

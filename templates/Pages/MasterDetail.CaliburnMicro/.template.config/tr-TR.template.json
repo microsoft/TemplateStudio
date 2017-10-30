@@ -1,6 +1,6 @@
 ﻿{
   "author": "Nigel Sampson",
   "name": "Master/Detail",
-  "description": "The master-detail page has a master pane and a details pane for content.",
+  "description": "Ana ayrıntı sayfasında bir ana bölme ve içeriğe ilişkin ayrıntılar bölmesi bulunmaktadır.",
   "identity": "wts.Page.MasterDetail.CaliburnMicro"
 }

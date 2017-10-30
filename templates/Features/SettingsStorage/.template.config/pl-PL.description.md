@@ -1,11 +1,11 @@
-﻿Setting storage is a class to simplify storing your application data.  It handles loading, saving, serializing your data and easy access to your application's data.
+﻿Pamięć ustawienia to klasa ułatwiająca zapisywanie danych aplikacji.  Obsługuje procesy ładowania, zapisu, szeregowania danych oraz ułatwia dostęp do danych aplikacji.
 
-These are the main types of app data:
+Oto główne typy danych aplikacji:
 
-* Local: stored on the device, backed up in the cloud, and persists across updates
-* LocalCache: persistent data that exists on the current device, not backed up, and persists across updates
-* SharedLocal: persistent across all app users
-* Roaming: exists on all devices where the user has installed the app
-* Temporary: can be deleted by the system at any time
+* Local: zapisane na urządzeniu z kopią zapasową w chmurze i takie same we wszystkich aktualizacjach
+* LocalCache: dane trwałe, które istnieją w bieżącym urządzeniu bez kopii zapasowej i takie same we wszystkich aktualizacjach
+* SharedLocal: dane trwałe dla wszystkich użytkowników aplikacji
+* Roaming: dostępne na wszystkich urządzeniach, na których użytkownik ma zainstalowaną aplikację
+* Temporary: mogą być usunięte przez system w dowolnym momencie
 
-To find out more about storage, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).
+Aby dowiedzieć się więcej o pamięci magazynowej, przejdź na stronę [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).

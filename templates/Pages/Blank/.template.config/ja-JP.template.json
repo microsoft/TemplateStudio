@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Blank",
-  "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
+  "description": "これは、最も基本的なページです。自由自在に変更できる、まっさらのキャンバスです。",
   "identity": "wts.Page.Blank"
 }
