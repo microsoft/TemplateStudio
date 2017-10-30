@@ -1,5 +1,5 @@
-﻿MVVM Light is a popular, 3rd party framework based on the [Model-View-ViewModel pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)  by Laurent Bugnion. The MVVM Light Toolkit helps you to separate your View from your Model which creates applications that are cleaner and easier to maintain and extend. It also creates testable applications and allows you to have a much thinner user interface layer (which is more difficult to test automatically).
+﻿MVVM Light es un framework de terceros popular basado en el [patrón Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) de Laurent Bugnion. El kit de herramientas de MVVM Light te ayuda a separar la Vista del Modelo, lo cual crea aplicaciones más limpias y más fáciles de mantener y extender. También crea aplicaciones de prueba y te permite tener un nivel de interfaz de usuario mucho más fino (que es más difícil de probar automáticamente).
 
-This toolkit puts a special emphasis on the "blend ability" of the created application (i.e. the ability to open and edit the user interface into Blend), including the creation of design-time data to enable the Blend users to "see something" when they work with data controls.
+Este kit de herramientas pone un énfasis especial en la "capacidad de fusión" de la aplicación creada (por ejemplo, la capacidad de abrir y editar la interfaz de usuario en Blend), incluida la creación de datos de tiempo de diseño para permitir que los usuarios de Blend "vean algo" cuando trabajen con controles de datos.
 
-You can find more out at [MVVM Light's homepage](http://www.mvvmlight.net/)
+Puedes obtener más información en la [página principal de MVVM Light](http://www.mvvmlight.net/)

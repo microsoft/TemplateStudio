@@ -1,3 +1,3 @@
-﻿This basic project is a blank canvas upon which to build your app.
+﻿Bu temel proje, uygulamanız için temel olarak kullanabileceğiniz boş bir tuvaldir.
 
-It provides no scaffolding and leaves everything up to you.
+Yönlendirici destek sunmaz ve her şeyi size bırakır.

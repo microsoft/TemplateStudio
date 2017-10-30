@@ -2,16 +2,16 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "This basic project is a blank canvas upon which to build your app."
+    "summary": "Este proyecto básico en un lienzo en blanco en el que puedes compilar tu aplicación."
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages."
+    "summary": "Se incluye un panel de navegación (o 'menú de hamburguesa') para poder navegar entre las páginas."
   },
   {
     "name": "TabbedPivot",
     "displayName": "Pivot and Tabs",
-    "summary": "Tabs across the top allow for quickly navigating between pages."
+    "summary": "Las pestañas que aparecen en la parte superior permiten navegar rápidamente entre las páginas."
   }
 ]

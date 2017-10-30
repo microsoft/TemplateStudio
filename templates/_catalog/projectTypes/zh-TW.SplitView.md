@@ -1,5 +1,5 @@
-﻿This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages.
+﻿此專案在螢幕的一側包含瀏覽窗格 (或「漢堡功能表」)，好讓您在不同頁面之間導覽。
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed.
+此樣式在行動應用程式中十分普遍，但也適用於較大的螢幕。當空間有限或者不需要此功能表時，可以將它隱藏。
 
-The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen.
+此功能表會顯示有圖示和文字的項目。此功能表可完全隱藏、只顯示圖示或顯示圖示和文字。使用者可選擇顯示完整功能表，只要輕觸一下按鈕即可。此功能表也會根據螢幕大小自動調整。

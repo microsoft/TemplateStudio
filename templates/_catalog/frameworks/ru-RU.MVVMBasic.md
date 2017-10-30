@@ -1,12 +1,12 @@
-﻿This is a generic version of a MVVM pattern.  The [Model-View-ViewModel pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) can be used on all XAML platforms. Its intent is to provide a clean separation of concerns between the user interface controls and their logic.
+﻿Это универсальная версия шаблона MVVM.  [Шаблон Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) можно использовать на всех платформах XAML. Он предназначен для четкого разделения вопросов, связанных с элементами пользовательского интерфейса и их логикой.
 
-There are three core components in the MVVM pattern: the model, the view, and the view model. Each serves a distinct and separate role.
+В шаблоне MVVM есть три основных компонента: модель, представление и модель представления. Каждая имеет свое особое предназначение.
 
-MVVM Basic is not a framework but provides the minimum functionality to create an app using the Model-View-ViewModel (MVVM) pattern.
-Use it if you can't or don't want to use a 3rd party MVVM Framework.
+MVVM Basic не является платформой (framework), но предлагает необходимый минимум функций для создания приложения на базе шаблона Model-View-ViewModel (MVVM).
+Используйте это решение, если вы не можете или не хотите использовать сторонний Framework для MVVM.
 
-MVVM Basic is not intended to be a fully features MVVM Framework and does not include some features that other frameworks do. ViewModel-first navigation, IOC, and messaging being the most obvious ones. If you want these features then choose a framework that supports them.
+MVVM Basic не является заменой полнофункциональному Framework для MVVM и не включает некоторые возможности других framework'ов. Наиболее очевидные из них: навигация в первую очередь по ViewModel, IOC и обмен сообщениями. Если вам нужны эти функции, выберите framework, который их поддерживает.
 
-Projects created with MVVM Basic contain two important classes, `Observable` and `RelayCommand`.
-**Observable** contains an implementation of the `INotifyPropertyChanged` interface and is used as a base class for all view models. This makes it easy to update bound properties on the View.
-**RelayCommand** contains an implementation of the `ICommand` interface to make it easy to have the View call commands on the ViewModel, rather than handle UI events directly.
+Проекты, созданные с помощью MVVM Basic, включают два важных класса: Observable и RelayCommand.
+**Observable** содержит реализацию интерфейса "NotifyPropertyChanged" и используется как базовый класс для всех моделей представлений. Это позволяет легко обновлять привязанные свойства в представлении.
+**RelayCommand** содержит реализацию интерфейса "ICommand", позволяющую легко распространить команды вызова представления на модель представления, не обрабатывая события пользовательского интерфейса напрямую.

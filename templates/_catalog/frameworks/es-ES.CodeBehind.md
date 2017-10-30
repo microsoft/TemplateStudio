@@ -1,1 +1,1 @@
-﻿Code-behind is a term used to describe the code that is coupled with a XAML file.  If you developed in WinForms and feel comfortable with that style of development, this could be a great option for you.
+﻿Code-behind es un término usado para describir el código que está emparejado con un archivo XAML.  Si has desarrollado en WinForms y te sientes cómodo con ese estilo de desarrollo, esta podría ser una opción estupenda para ti.

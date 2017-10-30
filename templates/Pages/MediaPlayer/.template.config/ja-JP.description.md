@@ -1,3 +1,3 @@
-﻿A page for displaying video. It includes the MediaPlayer and has the default Media Transport controls enabled.
+﻿ビデオを表示するためのページです。MediaPlayer を含み、既定の Media Transport コントロールが有効化されています。
 
-More details on using the Media Player can be found in the [official docs](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback).
+Media Player の使用に関する詳細については、[公式マニュアル](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback) を参照してください。
