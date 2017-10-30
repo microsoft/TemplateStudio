@@ -18,12 +18,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public const string Extension = "_" + Suffix + ".";
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
 
-        public GenerateMergeInfoPostAction(string config)
-            : base(config)
+        public GenerateMergeInfoPostAction(string relatedTemplate, string config)
+            : base(relatedTemplate, config)
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
             var sourceFile = GetFilePath();

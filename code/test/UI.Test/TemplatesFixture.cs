@@ -28,7 +28,7 @@ namespace Microsoft.UI.Test
 
         public List<string> FilesToOpen => null;
 
-        public List<FailedMergePostAction> FailedMergePostActions => null;
+        public List<FailedMergePostActionInfo> FailedMergePostActions => null;
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => null;
 

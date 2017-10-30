@@ -145,10 +145,13 @@
     <value>Exception Tracked</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. </value>
+    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: '{1}'.</value>
+  </data>
+  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
+    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project. Related Template: '{1}'.</value>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
+    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually. Related Template: '{2}'.</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>The folder {0} can't be copied to {1}. Error: {2}</value>
@@ -178,10 +181,10 @@
     <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>There is no merge target for file '{0}'</value>
+    <value>There is no merge target for file '{0}'. Related Template: '{1}'.</value>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Line {0} not found in file '{1}'</value>
+    <value>Line {0} not found in file '{1}'. Related Template: '{2}'.</value>
   </data>
   <data name="MergePostActionExecuteMessage" xml:space="preserve">
     <value>There is no merge target for file '{0}'</value>
@@ -191,6 +194,18 @@
   </data>
   <data name="PackageCertificateString" xml:space="preserve">
     <value>Package certificate</value>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Error executing '{0}'. Ignoring the error as Continue on Error is enabled. Related template: {1}.</value>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Error executing '{0}'. Related template: {1}.</value>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>The PostAction.ActionId '{0}' defined in the template does not match with the expected class ActionId '{1}'. Can't continue. Related template: {2}.</value>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>None</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>Error downloading from {0}. Internet connection is required to download template updates.</value>
@@ -263,6 +278,12 @@ You can find all referenced files in the temporary generation folder: {0}
 Preview the changes in: {2}</value>
     <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
   </data>
+  <data name="SyncSummaryFileName" xml:space="preserve">
+    <value>GenerationSummary.md</value>
+  </data>
+  <data name="SyncSummaryProjectFile" xml:space="preserve">
+    <value>ProjectFile</value>
+  </data>
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
     <value>## Conflicting files:
 These files already exist in your project and were also generated as part of the new item.
@@ -270,24 +291,16 @@ Please compare and make sure everything is in the right place.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
-  <data name="SyncSummaryFileName" xml:space="preserve">
-    <value>GenerationSummary.md</value>
+  <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
+    <value>## Failed changes in files:
+Merges in the following files failed:
+{0}</value>
   </data>
   <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
     <value>## Modified files:
 The following changes have been applied:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncSummaryTemplateModifiedFiles)</comment>
-  </data>
-  <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
-    <value>
-### Changes in file '{0}':
-See the final result: {2}
-
-{1}</value>
-    <comment>{0}:FileName, 
-{1}: Postaction Code,
-{2}:MergeResult,</comment>
   </data>
   <data name="SyncSummarySectionNewFiles" xml:space="preserve">
     <value>## New files:
@@ -316,14 +329,24 @@ You can find the files from the generation in the temporary generation folder: {
 {3}: Failed Merge Files, 
 {4}: Conflicting Files</comment>
   </data>
-  <data name="TemplatesContentExtractedToString" xml:space="preserve">
-    <value>Templates extracted to</value>
+  <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
+    <value>
+### Changes in file '{0}':
+The following changes could not be integrated: {2}
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
   </data>
-  <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
-    <value>The templates can't be extracted.</value>
-  </data>
-  <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
-    <value>Unable to purge old content.</value>
+  <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
+    <value>
+### Changes in file '{0}':
+See the final result: {2}
+
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>Invalid digital signatures in '{0}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.</value>
@@ -355,22 +378,14 @@ You can find the files from the generation in the temporary generation folder: {
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
     <value>Certificate '{0}' verification finished with status '{1}'</value>
   </data>
-  <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
-    <value>## Failed changes in files:
-Merges in the following files failed:
-{0}</value>
+  <data name="TemplatesContentExtractedToString" xml:space="preserve">
+    <value>Templates extracted to</value>
   </data>
-  <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
-    <value>
-### Changes in file '{0}':
-The following changes could not be integrated: {2}
-{1}</value>
-    <comment>{0}:FileName, 
-{1}: Postaction Code,
-{2}:MergeResult,</comment>
+  <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
+    <value>The templates can't be extracted.</value>
   </data>
-  <data name="SyncSummaryProjectFile" xml:space="preserve">
-    <value>ProjectFile</value>
+  <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
+    <value>Unable to purge old content.</value>
   </data>
   <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
     <value>Other instance is syncing templates... Waiting 5 seconds.</value>
@@ -383,8 +398,5 @@ The following changes could not be integrated: {2}
   </data>
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
     <value>Error reading the instance locking file.</value>
-  </data>
-  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project.</value>
   </data>
 </root>

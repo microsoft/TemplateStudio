@@ -24,12 +24,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     <!--}]}-->
 </ResourceDictionary.MergedDictionaries>";
 
-        public MergeResourceDictionaryPostAction(MergeConfiguration config)
-            : base(config)
+        public MergeResourceDictionaryPostAction(string relatedTemplate, MergeConfiguration config)
+            : base(relatedTemplate, config)
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             string originalFilePath = GetFilePath();
             if (!File.Exists(originalFilePath))
@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     {
                         if (!XNode.DeepEquals(node, sourceNode))
                         {
-                            var errorMessage = string.Format(StringRes.FailedMergePostActionKeyAlreadyDefined, GetKey(node));
+                            var errorMessage = string.Format(StringRes.FailedMergePostActionKeyAlreadyDefined, GetKey(node), RelatedTemplate);
                             if (Config.FailOnError)
                             {
                                 throw new InvalidDataException(errorMessage);

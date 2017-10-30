@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.Gen
 
         List<string> FilesToOpen { get; }
 
-        List<FailedMergePostAction> FailedMergePostActions { get; }
+        List<FailedMergePostActionInfo> FailedMergePostActions { get; }
 
         Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
 

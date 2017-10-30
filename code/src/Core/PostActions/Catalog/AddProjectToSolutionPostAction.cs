@@ -14,12 +14,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config)
-            : base(config)
+        public AddProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config)
+            : base(relatedTemplate, config)
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             var chrono = Stopwatch.StartNew();
             foreach (var output in Config)

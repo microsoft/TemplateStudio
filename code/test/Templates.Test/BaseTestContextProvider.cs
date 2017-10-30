@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Test
 
         public List<string> ProjectItems { get; } = new List<string>();
 
-        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
+        public List<FailedMergePostActionInfo> FailedMergePostActions { get; } = new List<FailedMergePostActionInfo>();
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
