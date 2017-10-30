@@ -19,7 +19,8 @@ namespace Microsoft.Templates.Fakes
 		Debug|x86 = Debug|x86
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
-		Release|x86 = Release|x86";
+		Release|x86 = Release|x86
+";
 
         private const string UwpProjectConfigurationTemplate = @"		{0}.Debug|ARM.ActiveCfg = Debug|ARM
 		{0}.Debug|ARM.Build.0 = Debug|ARM
