@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddFeatureAction" xml:space="preserve">
-    <value>Add Feature</value>
+    <value>Özellik Ekle</value>
   </data>
   <data name="AddPageAction" xml:space="preserve">
-    <value>Add Page</value>
+    <value>Sayfa Ekle</value>
   </data>
   <data name="AddProjectAction" xml:space="preserve">
-    <value>Add Project</value>
+    <value>Proje Ekle</value>
   </data>
   <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Windows Template Studio: {0}</value>
+    <value>Windows Şablon Stüdyosu: {0}</value>
     <comment>Generic MessageBox Title</comment>
   </data>
   <data name="UIStatusMsgPattern" xml:space="preserve">
-    <value>Windows Template Studio: {0}</value>
+    <value>Windows Şablon Stüdyosu: {0}</value>
   </data>
   <data name="UnexpectedExPattern" xml:space="preserve">
-    <value>Unexpected Exception.\n{0}</value>
+    <value>Beklenmeyen Özel Durum.\n{0}</value>
   </data>
 </root>

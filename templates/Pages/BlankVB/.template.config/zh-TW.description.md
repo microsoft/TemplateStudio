@@ -1,1 +1,1 @@
-﻿This is the most basic page.  A blank canvas to mold into whatever you wish.  The blank page leaves pretty much everything up to you.
+﻿這是最基本的頁面。空白畫布，可讓您塑造成您想要的任何東西。此空白頁面幾乎可讓您自己決定一切。

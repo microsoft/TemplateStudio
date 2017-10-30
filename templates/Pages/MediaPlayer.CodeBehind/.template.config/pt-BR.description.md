@@ -1,3 +1,3 @@
-﻿A page for displaying video. It includes the MediaPlayer and has the default Media Transport controls enabled.
+﻿Uma página para exibir vídeo. Ela inclui o MediaPlayer e tem os controles de Transporte de Mídia padrão habilitados.
 
-More details on using the Media Player can be found in the [official docs](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback).
+Mais detalhes sobre como usar o Media Player podem ser encontrados na [documentação oficial](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback).

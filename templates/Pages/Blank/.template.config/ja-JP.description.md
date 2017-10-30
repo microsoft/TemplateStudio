@@ -1,1 +1,1 @@
-﻿This is the most basic page.  A blank canvas to mold into whatever you wish.  The blank page leaves pretty much everything up to you.
+﻿これは、最も基本的なページです。自由自在に変更できる、まっさらのキャンバスです。この空白のページで想像力をおおいに膨らませてください。

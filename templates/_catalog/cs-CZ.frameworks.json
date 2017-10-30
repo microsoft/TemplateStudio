@@ -2,21 +2,21 @@
   {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
-    "summary": "This is a generic version of a MVVM pattern. The Model-View-ViewModel pattern can be used on all XAML platforms."
+    "summary": "Toto je obecná verze vzoru MVVM. Vzor Model-View-ViewModel je možné používat na všech platformách XAML."
   },
   {
     "name": "MVVMLight",
     "displayName": "MVVM Light",
-    "summary": "MVVM Light is a popular, 3rd party framework based on the Model-View-ViewModel pattern."
+    "summary": "MVVM Light je oblíbený rámec (framework) třetí strany, založený na vzoru Model-View-ViewModel."
   },
   {
     "name": "CodeBehind",
     "displayName": "Code Behind",
-    "summary": "This is the traditional model for an application where logic is handled in the code-behind.  For a quick application, this is a great option."
+    "summary": "Jde o tradiční model pro aplikace, ve kterých se logika zpracovává v kódu na pozadí (code-behind).  Představuje tak skvělou volbu pro rychlé aplikace."
   },
   {
     "name": "CaliburnMicro",
     "displayName": "Caliburn.Micro",
-    "summary": "Caliburn.Micro is a popular MVVM framework emphasising conventions and composability."
+    "summary": "Caliburn.Micro je oblíbený rámec (framework) MVVM, který klade důraz na konvence a uspořadatelnost."
   }
 ]

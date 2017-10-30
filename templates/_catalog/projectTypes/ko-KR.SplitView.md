@@ -1,5 +1,5 @@
-﻿This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages.
+﻿이 프로젝트에는 탐색 창(또는 햄버거 메뉴)을 페이지의 옆에 페이지 간 탐색을 위해 제공합니다.
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed.
+모바일 앱에서 이 스타일이 널리 사용되지만, 더 큰 화면에서도 잘 작동합니다. 공간 제한이 있으면 메뉴를 숨기거나 필요치 않습니다.
 
-The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen.
+메뉴는 아이콘과 텍스트가 있는 항목을 표시합니다. 메뉴 전체를 숨기거나 아이콘만 표시하거나 아이콘과 텍스트 둘 다 표시할 수 있습니다. 사용자는 버튼을 누르는 위치에 전체 메뉴를 표시하도록 선택할 수 있습니다. 또한 메뉴는 화면 크기로 자동 조정됩니다.

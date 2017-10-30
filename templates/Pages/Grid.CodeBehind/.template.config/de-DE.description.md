@@ -1,5 +1,5 @@
-﻿A page displaying a [RadDataGrid control](http://www.telerik.com/universal-windows-platform-ui/grid), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP).
+﻿Eine Seite mit einem [RadDataGrid-Steuerelement](http://www.telerik.com/universal-windows-platform-ui/grid), unterstützt von [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui), das sowohl [kommerziell](http://www.telerik.com/purchase/universal-windows-platform) als auch als [Open Source](https://github.com/telerik/UI-For-UWP) verfügbar ist.
 
-A native, rich and powerful rid with unmatched performance. The grid offers advanced UI virtualization, customizable columns, single and multi-column sorting, data editing, selection and filtering.
+Ein systemeigenes, umfassendes und leistungsfähiges Raster mit unerreichter Leistung. Das Raster bietet eine erweiterte Benutzeroberflächenvirtualisierung, anpassbare Spalten, Sortierung nach einer oder mehreren Spalten, Datenbearbeitung, Auswahl und Filterung.
 
-More details on using this control can be found in [the official getting started documentation](http://docs.telerik.com/windows-universal/controls/raddatagrid/gettingstarted).
+Weitere Details zur Verwendung dieses Steuerelements finden Sie in der [offiziellen Dokumentation für die ersten Schritte] (http://docs.telerik.com/windows-universal/controls/raddatagrid/gettingstarted).

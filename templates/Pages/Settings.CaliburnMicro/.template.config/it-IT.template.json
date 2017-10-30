@@ -1,6 +1,6 @@
 ﻿{
   "author": "Nigel Sampson",
   "name": "Settings",
-  "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
+  "description": "La pagina delle impostazioni è destinata a contenere le impostazioni di configurazione per l'app.",
   "identity": "wts.Page.Settings.CaliburnMicro"
 }

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Settings Storage",
-  "description": "Setting storage helps simplify storing data inside your application data folder.",
+  "description": "La définition du stockage permet de simplifier le stockage des données à l'intérieur du dossier des données de votre application.",
   "identity": "wts.Feat.SettingsStorage"
 }

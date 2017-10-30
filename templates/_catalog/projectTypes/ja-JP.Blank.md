@@ -1,3 +1,3 @@
-﻿This basic project is a blank canvas upon which to build your app.
+﻿この基本的なページは、アプリを構築するための空白のキャンバスです。
 
-It provides no scaffolding and leaves everything up to you.
+開発者が自由自在に構築できるように、枠組みは提供されません。

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community Contribution",
   "name": "Media Player",
-  "description": "A page for showing video with system media controls enabled.",
+  "description": "Страница для отображения видео с включенными системными элементами управления мультимедиа.",
   "identity": "wts.Page.MediaPlayer.CodeBehind"
 }

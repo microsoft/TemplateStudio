@@ -1,3 +1,3 @@
-﻿Tabs across the top allow for quickly navigating between pages.
+﻿Karty u góry umożliwiają szybkie przechodzenie między stronami.
 
-The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.
+Kontrolka elementu przestawnego ułatwia nawigację między powiązanymi lub często używanymi stronami. Użytkownik może przechodzić między okienkami (stronami) przestawnymi, wybierając między nagłówkami tekstowymi, które są zawsze wyświetlane.

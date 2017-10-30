@@ -1,3 +1,3 @@
-﻿This basic project is a blank canvas upon which to build your app.
+﻿Tento základní projekt obsahuje prázdné plátno, na kterém můžete vytvořit aplikaci.
 
-It provides no scaffolding and leaves everything up to you.
+Neposkytuje generování uživatelského rozhraní a nechává všechno na vás.

@@ -1,3 +1,3 @@
-﻿The SampleDataService is a central repository for data used by generated pages. It is filled with basic data to provide a realistic viewpoint on data.  The data is also static to prevent any differences between runs.
+﻿SampleDataService je centrální úložiště pro data využívaná generovanými stránkami. Obsahuje základní data, která poskytují realistický pohled na data.  Data jsou také statická, aby nedocházelo k žádným odlišnostem mezi jednotlivými spuštěními.
 
-The data provided should be treated as temporary and removed once you have changed the generated pages to use your own data.
+S poskytnutými daty je třeba nakládat jako s dočasnými a musíte je odebrat, jakmile změníte generované stránky a budete chtít používat vlastní data.

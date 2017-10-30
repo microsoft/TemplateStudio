@@ -1,1 +1,1 @@
-﻿A page displaying a image gallery and allows user to navigate between gallery and image detail.
+﻿用來顯示圖像圖庫的頁面，而且可讓使用者導覽圖庫和影像詳細資料。
