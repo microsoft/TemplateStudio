@@ -240,7 +240,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             ConfigureGenContext(ForceLocalTemplatesRefresh);
 
-            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            TempGenerationPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
 
             try
@@ -276,7 +276,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             ConfigureGenContext(ForceLocalTemplatesRefresh);
 
-            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            TempGenerationPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
             try
             {
