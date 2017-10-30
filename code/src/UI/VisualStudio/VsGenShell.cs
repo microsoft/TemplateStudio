@@ -353,7 +353,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     {
                         foreach (var proj in projects)
                         {
-                            if (((Project)proj).FullName == projFile)
+                            if (((Project)proj).FullName.Equals(projFile, StringComparison.OrdinalIgnoreCase))
                             {
                                 return (Project)proj;
                             }

@@ -15,13 +15,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     {
         private Dictionary<string, string> _genParameters;
 
-        public AddItemToContextPostAction(IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
-            : base(config)
+        public AddItemToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
+            : base(relatedTemplate, config)
         {
             _genParameters = genParameters;
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
             var itemsToAdd = Config

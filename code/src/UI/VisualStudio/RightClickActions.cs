@@ -36,7 +36,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public List<string> FilesToOpen { get; private set; }
 
-        public List<FailedMergePostAction> FailedMergePostActions { get; private set; }
+        public List<FailedMergePostActionInfo> FailedMergePostActions { get; private set; }
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; private set; }
 
@@ -128,7 +128,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 TempGenerationPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
-                FailedMergePostActions = new List<FailedMergePostAction>();
+                FailedMergePostActions = new List<FailedMergePostActionInfo>();
                 MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
                 ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>();
 

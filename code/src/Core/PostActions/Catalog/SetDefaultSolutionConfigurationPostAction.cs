@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         private const string Configuration = "Debug";
         private const string Platform = "x86";
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             GenContext.ToolBox.Shell.SetActiveConfigurationAndPlatform(Configuration, Platform);
         }

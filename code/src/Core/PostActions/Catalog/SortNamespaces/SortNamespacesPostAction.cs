@@ -15,7 +15,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 
         public abstract bool SortMethod(List<string> classContent);
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             var classFiles = Directory
                 .EnumerateFiles(Gen.GenContext.Current.OutputPath, FilesToSearch, SearchOption.AllDirectories)

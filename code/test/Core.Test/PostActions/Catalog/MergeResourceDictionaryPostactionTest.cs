@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public List<string> FilesToOpen => new List<string>();
 
-        public List<FailedMergePostAction> FailedMergePostActions => new List<FailedMergePostAction>();
+        public List<FailedMergePostActionInfo> FailedMergePostActions => new List<FailedMergePostActionInfo>();
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => new Dictionary<string, List<MergeInfo>>();
 
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var config = new MergeConfiguration(postaction, true);
 
-            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction(config);
+            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("Test", config);
             mergeResourceDictionaryPostAction.Execute();
 
             var result = File.ReadAllText(source).Replace("\r\n", string.Empty).Replace("\n", string.Empty);
@@ -65,10 +65,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = this;
             var config = new MergeConfiguration(postaction, true);
 
-            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction(config);
+            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("TestTemplate", config);
 
-            Exception ex = Assert.Throws<InvalidDataException>(() => mergeResourceDictionaryPostAction.Execute());
-            Assert.Equal($"The style with key 'PageTitleStyle' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project.", ex.Message);
+            Exception ex = Assert.Throws<Exception>(() => mergeResourceDictionaryPostAction.Execute());
+            Assert.NotNull(ex.InnerException);
+            Assert.Equal(typeof(System.IO.InvalidDataException), ex.InnerException.GetType());
+            Assert.Equal($"Error executing 'Microsoft.Templates.Core.PostActions.Catalog.Merge.MergeResourceDictionaryPostAction'. Related template: TestTemplate.", ex.Message);
+            Assert.Equal($"The style with key 'PageTitleStyle' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project. Related Template: 'TestTemplate'.", ex.InnerException.Message);
         }
     }
 }

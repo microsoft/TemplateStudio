@@ -16,13 +16,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     {
         private Dictionary<string, string> _genParameters;
 
-        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
-            : base(config)
+        public AddProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
+            : base(relatedTemplate, config)
         {
             _genParameters = genParameters;
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             var chrono = Stopwatch.StartNew();
             foreach (var output in Config)

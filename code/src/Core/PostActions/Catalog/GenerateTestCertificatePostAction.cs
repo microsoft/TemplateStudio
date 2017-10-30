@@ -3,43 +3,62 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 
 using CERTENROLLLib;
 
-using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class GenerateTestCertificatePostAction : PostAction<string>
+    // This is a Template Defined Post-Action with the following configuration in the template.
+    //   "postActions": [
+    //    {
+    //        "description": "Generate Test Certificate",
+    //        "manualInstructions": [ ],
+    //        "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
+    //        "args": {
+    //            "files" : "0"
+    //        },
+    //        "continueOnError": "true"
+    //    }
+    //  ]
+    // Expected args:
+    //    - files -> reference the file index from the primary outputs which is the target project where the certificate will be added
+    // Remarks: this post action can work with single project templates or multi project templates.
+    public class GenerateTestCertificatePostAction : TemplateDefinedPostAction
     {
-        public GenerateTestCertificatePostAction(string config)
-            : base(config)
+        public static readonly Guid Id = new Guid("65057255-BD7B-443C-8180-5D82B9DA9E22");
+
+        public override Guid ActionId { get => Id; }
+
+        private string _publisherName;
+        private IReadOnlyList<ICreationPath> _primaryOutputs;
+
+        public GenerateTestCertificatePostAction(string relatedTemplate, string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs)
+            : base(relatedTemplate, templatePostAction)
         {
+            _publisherName = publisherName;
+            _primaryOutputs = primaryOutputs;
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
-            try
-            {
-                var publisherName = Config;
-                var pfx = CreateCertificate(publisherName);
+            int targetProjectIndex = int.Parse(Args["files"]);
+            string projectName = Path.GetFileNameWithoutExtension(_primaryOutputs[targetProjectIndex].Path);
 
-                AddToProject(pfx);
-                RemoveFromStore(pfx);
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Warning.TrackAsync(StringRes.GenerateTestCertificatePostActionExecute, ex).FireAndForget();
-            }
+            var pfx = CreateCertificate(_publisherName);
+
+            AddToProject(pfx, projectName);
+            RemoveFromStore(pfx);
         }
 
-        private void AddToProject(string base64Encoded)
+        private void AddToProject(string base64Encoded, string projectName)
         {
-            var filePath = Path.Combine(GenContext.Current.ProjectPath, GenContext.Current.ProjectName) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(GenContext.Current.OutputPath, projectName) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
             GenContext.ToolBox.Shell.AddItems(filePath);

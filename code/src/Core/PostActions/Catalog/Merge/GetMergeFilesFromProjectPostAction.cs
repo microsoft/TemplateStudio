@@ -13,12 +13,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public class GetMergeFilesFromProjectPostAction : PostAction<string>
     {
-        public GetMergeFilesFromProjectPostAction(string config)
-            : base(config)
+        public GetMergeFilesFromProjectPostAction(string relatedTemplate, string config)
+            : base(relatedTemplate, config)
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             if (Regex.IsMatch(Config, MergeConfiguration.GlobalExtension))
             {

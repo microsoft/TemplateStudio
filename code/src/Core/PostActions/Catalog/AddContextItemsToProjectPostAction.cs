@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddContextItemsToProjectPostAction : PostAction
     {
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingItems);
             var chrono = Stopwatch.StartNew();

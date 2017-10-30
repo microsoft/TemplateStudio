@@ -13,7 +13,7 @@ namespace Microsoft.Templates.Core.Test.Locations
     {
         private string _localVersion = "0.0.0.0";
 
-        public override string Id => "UnitTest" + GetAgentName();
+        public override string Id => "UnitT_" + System.Threading.Thread.CurrentThread.ManagedThreadId + GetAgentName();
 
         protected override bool VerifyPackageSignatures => false;
 

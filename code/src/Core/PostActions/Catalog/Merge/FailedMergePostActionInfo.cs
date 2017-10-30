@@ -4,7 +4,7 @@
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-    public class FailedMergePostAction
+    public class FailedMergePostActionInfo
     {
         public MergeFailureType MergeFailureType { get; private set; }
 
@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public string Description { get; private set; }
 
-        public FailedMergePostAction(string fileName, string filePath, string failedFileName, string description, MergeFailureType mergeFailureType)
+        public FailedMergePostActionInfo(string fileName, string filePath, string failedFileName, string description, MergeFailureType mergeFailureType)
         {
             FileName = fileName;
             FilePath = filePath;
