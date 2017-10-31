@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "name": "Map",
   "description": "Страница карты основана на Windows Map Control. Код включает добавление значка карты и получение местоположения.",
   "identity": "wts.Page.Map.CaliburnMicro"

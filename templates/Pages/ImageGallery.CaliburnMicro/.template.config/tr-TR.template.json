@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "name": "ImageGallery",
   "description": "Görüntü galerisinin görüntülendiği ve kullanıcının galeri ile görüntü ayrıntısı arasında gezinmesine olanak tanıyan sayfa.",
   "identity": "wts.Page.ImageGallery.CaliburnMicro"

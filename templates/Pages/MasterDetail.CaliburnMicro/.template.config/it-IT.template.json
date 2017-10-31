@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "name": "Master/Detail",
   "description": "La pagina master-dettagli ha un riquadro master e un riquadro dettagli per il contenuto.",
   "identity": "wts.Page.MasterDetail.CaliburnMicro"

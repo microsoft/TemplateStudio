@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "name": "ImageGallery",
   "description": "Strona wyświetlająca galerię obrazów i umożliwiająca użytkownikowi przechodzenie między galerią i szczegółami obrazu.",
   "identity": "wts.Page.ImageGallery.CaliburnMicro"
