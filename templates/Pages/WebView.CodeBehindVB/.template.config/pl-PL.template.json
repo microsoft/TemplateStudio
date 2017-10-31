@@ -1,5 +1,5 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Web View",
     "description": "Strona widoku sieci Web pozwala wyświetlić w aplikacji treści internetowe za pomocą aparatu renderowania programu Microsoft Edge.",
     "identity": "wts.Page.WebView.CodeBehind.VB"
