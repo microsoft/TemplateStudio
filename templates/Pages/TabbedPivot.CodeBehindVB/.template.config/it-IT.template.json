@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community Contribution",
     "name": "Tabbed",
-    "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
+    "description": "La pagina a schede è utilizzata per navigare tra categorie di contenuto distinte a cui si accede di frequente.",
     "identity": "wts.Page.TabbedPivot.CodeBehind.VB"
 }

@@ -1,3 +1,3 @@
-﻿A page for displaying video. It includes the MediaPlayer and has the default Media Transport controls enabled.
+﻿用於顯示視訊的頁面。包括媒體播放器並且已啟用預設媒體傳輸控制項。
 
-More details on using the Media Player can be found in the [official docs](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback).
+您可以在以下網頁找到有關使用媒體播放器的更多詳細資訊：[官方文件](https://docs.microsoft.com/zh-tw/windows/uwp/controls-and-patterns/media-playback)。

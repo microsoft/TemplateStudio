@@ -1,1 +1,1 @@
-﻿The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting a location from the Location Service and setting the map's center point.
+﻿La page Plans s'appuie sur la commande Plan de Windows. Le code inclut l'ajout d'une icône Plan, la géolocalisation à partir des services de localisation et la définition du point central de la carte.

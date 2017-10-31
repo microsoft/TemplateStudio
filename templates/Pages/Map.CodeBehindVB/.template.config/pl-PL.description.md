@@ -1,1 +1,1 @@
-﻿The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.
+﻿Strona mapy opiera się na kontrolce mapy.  Kod obejmuje dodawanie ikony mapy i ustawianie lokalizacji.

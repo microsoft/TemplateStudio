@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community Contribution",
     "name": "Master/Detail",
-    "description": "The master-detail page has a master pane and a details pane for content.",
+    "description": "大纲-细节页面包含与内容相关的大纲窗格和细节窗格。",
     "identity": "wts.Page.MasterDetail.VB"
 }

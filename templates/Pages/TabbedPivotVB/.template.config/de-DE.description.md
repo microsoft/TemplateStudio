@@ -1,3 +1,3 @@
-﻿The tabbed page is used for navigating frequently accessed, distinct content categories. Pivots allow for navigation between two or more content panes and relies on text headers to articulate the different sections of content.
+﻿Die Registerkartenseite wird für die Navigation in häufig verwendeten, jedoch unterschiedlichen Inhaltskategorien verwendet. Pivots ermöglichen die Navigation zwischen zwei oder mehr Inhaltsbereichen. Sie sind von Textkopfzeilen abhängig, um die unterschiedlichen Inhaltsabschnitte zu gliedern.
 
-To find out more if this is a good solution for you, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot).
+Informationen dazu, ob dies für Sie eine gute Lösung ist, finden Sie auf [docs.microsoft.com] (https://docs.microsoft.com/de-de/windows/uwp/controls-and-patterns/tabs-pivot).

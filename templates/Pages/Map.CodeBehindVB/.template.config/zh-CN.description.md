@@ -1,1 +1,1 @@
-﻿The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.
+﻿地图页面基于地图控件。代码包括添加地图图标和设置位置。
