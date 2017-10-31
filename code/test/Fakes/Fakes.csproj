@@ -94,7 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Solution\SolutionTemplate.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

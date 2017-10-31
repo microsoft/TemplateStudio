@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Test
             ProjectName = projectName;
 
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            OutputPath = ProjectPath;
+            SolutionPath = Path.Combine(_fixture.TestProjectsPath, projectName);
 
             var userSelection = _fixture.SetupProject(projectType, framework, language, getName);
 
@@ -100,7 +100,7 @@ namespace Microsoft.Templates.Test
 
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
-            OutputPath = ProjectPath;
+            SolutionPath = Path.Combine(_fixture.TestNewItemPath, projectName);
 
             var userSelection = _fixture.SetupProject(projectType, framework, language);
 
@@ -153,7 +153,7 @@ namespace Microsoft.Templates.Test
             // Add new items
             foreach (var item in rightClickTemplates)
             {
-                OutputPath = GenContext.GetTempGenerationPath(projectName);
+                TempGenerationPath = GenContext.GetTempGenerationPath(projectName);
 
                 var newUserSelection = new UserSelection(projectType, framework, language)
                 {

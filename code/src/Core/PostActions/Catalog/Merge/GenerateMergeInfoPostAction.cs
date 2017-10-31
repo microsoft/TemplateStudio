@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
             var sourceFile = GetFilePath();
             var mergeType = GetMergeType();
-            var relFilePath = sourceFile.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
+            var relFilePath = sourceFile.Replace(GenContext.Current.TempGenerationPath + Path.DirectorySeparatorChar, string.Empty);
 
             if (GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {

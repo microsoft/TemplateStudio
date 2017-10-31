@@ -43,9 +43,13 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string ProjectName { get; private set; }
 
-        public string OutputPath { get; private set; }
+        public string OutputPath { get;  set; }
 
         public string ProjectPath { get; private set; }
+
+        public string SolutionPath { get; private set; }
+
+        public string TempGenerationPath { get; private set; }
 
         private bool _forceLocalTemplatesRefresh = true;
 
@@ -161,7 +165,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        public string SolutionPath { get; set; }
+        public string SolutionFilePath { get; set; }
 
         public void Initialize()
         {
@@ -217,7 +221,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
                         SolutionName = newProjectInfo.name;
-                        SolutionPath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
+                        SolutionFilePath = ((FakeGenShell)GenContext.ToolBox.Shell).SolutionPath;
                         OnPropertyChanged(nameof(TempFolderAvailable));
                     }
                 }
@@ -236,7 +240,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             ConfigureGenContext(ForceLocalTemplatesRefresh);
 
-            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            TempGenerationPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
 
             try
@@ -272,7 +276,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             ConfigureGenContext(ForceLocalTemplatesRefresh);
 
-            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            TempGenerationPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
             try
             {
@@ -301,12 +305,12 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             if (!string.IsNullOrEmpty(loadProjectInfo))
             {
-                SolutionPath = loadProjectInfo;
-                SolutionName = Path.GetFileNameWithoutExtension(SolutionPath);
+                SolutionFilePath = loadProjectInfo;
+                SolutionName = Path.GetFileNameWithoutExtension(SolutionFilePath);
 
-                var solutionDirectory = Path.GetDirectoryName(SolutionPath);
-                var projFile = Directory.EnumerateFiles(solutionDirectory, "*.csproj", SearchOption.AllDirectories)
-                        .Union(Directory.EnumerateFiles(solutionDirectory, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
+                SolutionPath = Path.GetDirectoryName(SolutionFilePath);
+                var projFile = Directory.EnumerateFiles(SolutionPath, "*.csproj", SearchOption.AllDirectories)
+                        .Union(Directory.EnumerateFiles(SolutionPath, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
                 _language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
 
@@ -342,17 +346,17 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void OpenInVs()
         {
-            if (!string.IsNullOrEmpty(SolutionPath))
+            if (!string.IsNullOrEmpty(SolutionFilePath))
             {
-                System.Diagnostics.Process.Start(SolutionPath);
+                System.Diagnostics.Process.Start(SolutionFilePath);
             }
         }
 
         private void OpenInVsCode()
         {
-            if (!string.IsNullOrEmpty(SolutionPath))
+            if (!string.IsNullOrEmpty(SolutionFilePath))
             {
-                System.Diagnostics.Process.Start("code", $@"--new-window ""{Path.GetDirectoryName(SolutionPath)}""");
+                System.Diagnostics.Process.Start("code", $@"--new-window ""{Path.GetDirectoryName(SolutionFilePath)}""");
             }
         }
 
@@ -360,7 +364,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             if (!string.IsNullOrEmpty(SolutionPath))
             {
-                System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(SolutionPath));
+                System.Diagnostics.Process.Start(SolutionPath);
             }
         }
 
@@ -411,7 +415,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private string ShowLoadProjectDialog()
         {
-            var dialog = new LoadProjectView(SolutionPath)
+            var dialog = new LoadProjectView(SolutionFilePath)
             {
                 Owner = _host
             };

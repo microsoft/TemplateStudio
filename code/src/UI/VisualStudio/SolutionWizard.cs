@@ -29,7 +29,11 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string ProjectPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
-        public string OutputPath => ProjectPath;
+        public string SolutionPath => new DirectoryInfo(_replacementsDictionary["$solutiondirectory$"]).FullName;
+
+        public string OutputPath { get; set; }
+
+        public string TempGenerationPath => string.Empty;
 
         public List<string> ProjectItems { get; } = new List<string>();
 
@@ -104,10 +108,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (WizardBackoutException)
             {
-                var projectDirectory = replacementsDictionary["$destinationdirectory$"];
-                var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
-
-                CleanupDirectories(projectDirectory, solutionDirectory);
+                CleanupDirectories(ProjectPath, SolutionPath);
 
                 throw;
             }

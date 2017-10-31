@@ -24,9 +24,13 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string ProjectName { get; private set; }
 
-        public string OutputPath { get; private set; }
+        public string OutputPath { get; set; }
 
         public string ProjectPath { get; private set; }
+
+        public string SolutionPath { get; private set; }
+
+        public string TempGenerationPath { get; private set; }
 
         public List<string> ProjectItems { get; private set; }
 
@@ -119,8 +123,9 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (GenContext.InitializedLanguage == _shell.GetActiveProjectLanguage())
             {
                 ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
+                SolutionPath = GenContext.ToolBox.Shell.GetSolutionPath();
                 ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-                OutputPath = GenContext.GetTempGenerationPath(ProjectName);
+                TempGenerationPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostActionInfo>();

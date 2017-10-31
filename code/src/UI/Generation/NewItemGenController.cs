@@ -121,7 +121,7 @@ namespace Microsoft.Templates.UI
             var genItems = GenComposer.ComposeNewItem(userSelection).ToList();
             var chrono = Stopwatch.StartNew();
 
-            var genResults = await GenerateItemsAsync(genItems);
+            var genResults = await GenerateItemsAsync(genItems, true);
 
             chrono.Stop();
 
@@ -138,10 +138,10 @@ namespace Microsoft.Templates.UI
 
             foreach (var file in files)
             {
-                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.SolutionPath);
                 var fileName = file.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
-                var projectFileName = Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, fileName));
+                var projectFileName = Path.GetFullPath(Path.Combine(GenContext.Current.SolutionPath, fileName));
 
                 if (File.Exists(projectFileName))
                 {
@@ -183,31 +183,34 @@ namespace Microsoft.Templates.UI
 
         public NewItemGenerationResult CompareOutputAndProject()
         {
+            // Put outputpath back to solution level
+            GenContext.Current.OutputPath = GenContext.Current.TempGenerationPath;
+
             var compareResult = CompareTempGenerationWithProject();
             var result = new NewItemGenerationResult();
             result.NewFiles.AddRange(compareResult.NewFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                         n,
                         Path.Combine(GenContext.Current.OutputPath, n),
-                        Path.Combine(GenContext.Current.ProjectPath, n))));
+                        Path.Combine(GenContext.Current.SolutionPath, n))));
 
             result.ConflictingFiles.AddRange(compareResult.ConflictingFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                         n,
                         Path.Combine(GenContext.Current.OutputPath, n),
-                        Path.Combine(GenContext.Current.ProjectPath, n))));
+                        Path.Combine(GenContext.Current.SolutionPath, n))));
 
             result.ModifiedFiles.AddRange(compareResult.ModifiedFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                       n,
                       Path.Combine(GenContext.Current.OutputPath, n),
-                      Path.Combine(GenContext.Current.ProjectPath, n))));
+                      Path.Combine(GenContext.Current.SolutionPath, n))));
 
             result.UnchangedFiles.AddRange(compareResult.UnchangedFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                      n,
                      Path.Combine(GenContext.Current.OutputPath, n),
-                     Path.Combine(GenContext.Current.ProjectPath, n))));
+                     Path.Combine(GenContext.Current.SolutionPath, n))));
 
             result.HasChangesToApply = result.NewFiles.Any() || result.ModifiedFiles.Any() ? true : false;
             return result;
@@ -233,6 +236,9 @@ namespace Microsoft.Templates.UI
 
         public void UnsafeFinishGeneration(UserSelection userSelection)
         {
+            // Put outputpath back to solution level
+            GenContext.Current.OutputPath = GenContext.Current.TempGenerationPath;
+
             var compareResult = CompareTempGenerationWithProject();
             if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
             {
@@ -252,7 +258,7 @@ namespace Microsoft.Templates.UI
             GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
 
-            var directory = GenContext.Current.OutputPath;
+            var directory = GenContext.Current.TempGenerationPath;
             try
             {
                 if (directory.Contains(Path.GetTempPath()))

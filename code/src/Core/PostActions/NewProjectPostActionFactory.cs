@@ -18,8 +18,8 @@ namespace Microsoft.Templates.Core.PostActions
         {
             var postActions = new List<PostAction>();
 
-            AddTemplateDefinedPostActions(genInfo, genResult, postActions);
             AddPredefinedActions(genInfo, genResult, postActions);
+            AddTemplateDefinedPostActions(genInfo, genResult, postActions);
             AddMergeActions(genInfo, postActions, $"*{MergeConfiguration.Extension}*", true);
             AddSearchAndReplaceActions(genInfo, postActions, $"*{SearchAndReplacePostAction.Extension}*");
 

@@ -87,7 +87,7 @@ namespace Microsoft.Templates.UI
             var genItems = GenComposer.Compose(userSelection).ToList();
             var chrono = Stopwatch.StartNew();
 
-            var genResults = await GenerateItemsAsync(genItems);
+            var genResults = await GenerateItemsAsync(genItems, false);
 
             chrono.Stop();
 

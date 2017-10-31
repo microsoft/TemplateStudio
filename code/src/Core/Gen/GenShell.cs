@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
@@ -13,6 +14,8 @@ namespace Microsoft.Templates.Core.Gen
         public abstract string GetActiveProjectName();
 
         public abstract string GetActiveProjectPath();
+
+        public abstract string GetSolutionPath();
 
         public abstract string GetActiveProjectLanguage();
 
@@ -87,6 +90,31 @@ namespace Microsoft.Templates.Core.Gen
             }
 
             return result;
+        }
+
+        protected static Dictionary<string, List<string>> ResolveProjectFiles(string[] itemsFullPath)
+        {
+            Dictionary<string, List<string>> filesByProject = new Dictionary<string, List<string>>();
+            foreach (var item in itemsFullPath)
+            {
+                var itemDirectory = Directory.GetParent(item).FullName;
+                var projFile = Fs.FindFileAtOrAbove(itemDirectory, "*.*proj");
+                if (string.IsNullOrEmpty(projFile))
+                {
+                    throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
+                }
+
+                if (!filesByProject.ContainsKey(projFile))
+                {
+                    filesByProject.Add(projFile, new List<string>() { item });
+                }
+                else
+                {
+                    filesByProject[projFile].Add(item);
+                }
+            }
+
+            return filesByProject;
         }
     }
 }

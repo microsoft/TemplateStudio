@@ -6,7 +6,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
-
 using Microsoft.Templates.Core.Gen;
 
 using Microsoft.VisualStudio.TemplateWizard;
@@ -48,30 +47,27 @@ namespace Microsoft.Templates.Fakes
                 return;
             }
 
-            var projectFileName = FindProject(GenContext.Current.ProjectPath);
+            var filesByProject = ResolveProjectFiles(itemsFullPath);
 
-            if (string.IsNullOrEmpty(projectFileName))
+            foreach (var projectFile in filesByProject)
             {
-                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
-            }
-
-            var msbuildProj = FakeMsBuildProject.Load(projectFileName);
-
-            if (msbuildProj != null)
-            {
-                foreach (var item in itemsFullPath)
+                var msbuildProj = FakeMsBuildProject.Load(projectFile.Key);
+                if (msbuildProj != null)
                 {
-                    msbuildProj.AddItem(item);
-                }
+                    foreach (var file in projectFile.Value)
+                    {
+                        msbuildProj.AddItem(file);
+                    }
 
-                msbuildProj.Save();
+                    msbuildProj.Save();
+                }
             }
         }
 
         public override void AddProjectToSolution(string projectFullPath)
         {
             var msbuildProj = FakeMsBuildProject.Load(projectFullPath);
-            var solutionFile = FakeSolution.Create(SolutionPath);
+            var solutionFile = FakeSolution.LoadOrCreate(SolutionPath);
 
             solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj", StringComparison.InvariantCultureIgnoreCase));
         }
@@ -115,6 +111,11 @@ namespace Microsoft.Templates.Fakes
         public override string GetActiveProjectPath()
         {
             return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
+        }
+
+        public override string GetSolutionPath()
+        {
+            return (GenContext.Current != null) ? GenContext.Current.SolutionPath : string.Empty;
         }
 
         public override string GetActiveProjectLanguage()

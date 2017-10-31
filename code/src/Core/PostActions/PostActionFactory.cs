@@ -63,12 +63,12 @@ namespace Microsoft.Templates.Core.PostActions
             switch (genInfo.Template.GetTemplateType())
             {
                 case TemplateType.Project:
-                    postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs));
+                    postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
                     break;
                 case TemplateType.Page:
                 case TemplateType.Feature:
                 case TemplateType.Composition:
-                    postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs));
+                    postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
                     break;
                 default:
                     break;

@@ -67,19 +67,24 @@ namespace Microsoft.Templates.UI.VisualStudio
                 return;
             }
 
-            var proj = GetActiveProject();
-            if (proj != null && proj.ProjectItems != null)
-            {
-                foreach (var item in itemsFullPath)
-                {
-                    proj.ProjectItems.AddFromFile(item);
-                }
+            var filesByProject = ResolveProjectFiles(itemsFullPath);
 
-                proj.Save();
-            }
-            else
+            foreach (var projectFile in filesByProject)
             {
-                AppHealth.Current.Error.TrackAsync(StringRes.UnableAddItemsToProject).FireAndForget();
+                var proj = GetProjectByPath(projectFile.Key);
+                if (proj != null && proj.ProjectItems != null)
+                {
+                    foreach (var file in projectFile.Value)
+                    {
+                        proj.ProjectItems.AddFromFile(file);
+                    }
+
+                    proj.Save();
+                }
+                else
+                {
+                    AppHealth.Current.Error.TrackAsync(StringRes.UnableAddItemsToProject).FireAndForget();
+                }
             }
         }
 
@@ -274,6 +279,19 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        public override string GetSolutionPath()
+        {
+            var s = GetSolution();
+            if (s != null)
+            {
+                return Path.GetDirectoryName(s.FileName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public override string GetActiveProjectLanguage()
         {
             var p = GetActiveProject();
@@ -321,6 +339,55 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return p;
+        }
+
+        private Project GetProjectByPath(string projFile)
+        {
+            Project p = null;
+            try
+            {
+                if (_dte != null)
+                {
+                    Projects projects = Dte.Solution.Projects;
+                    if (projects?.Count >= 1)
+                    {
+                        foreach (var proj in projects)
+                        {
+                            if (((Project)proj).FullName.Equals(projFile, StringComparison.OrdinalIgnoreCase))
+                            {
+                                return (Project)proj;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+               p = null;
+            }
+
+            return p;
+        }
+
+        private Solution GetSolution()
+        {
+            Solution s = null;
+
+            try
+            {
+                if (_dte != null)
+                {
+                    s = Dte.Solution;
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                s = null;
+            }
+
+            return s;
         }
 
         private async System.Threading.Tasks.Task ShowTaskListAsync()

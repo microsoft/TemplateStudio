@@ -20,9 +20,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     {
         public string ProjectName => "TestResourceDictionaryPostAction";
 
-        public string OutputPath => Directory.GetCurrentDirectory();
+        public string OutputPath { get; set; }
 
         public string ProjectPath => Directory.GetCurrentDirectory();
+
+        public string SolutionPath => string.Empty;
+
+        public string TempGenerationPath => string.Empty;
 
         public List<string> ProjectItems => new List<string>();
 

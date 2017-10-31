@@ -34,6 +34,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string ProjectPath { get; set; }
 
+        public string SolutionPath { get; set; }
+
+        public string TempGenerationPath { get; set; }
+
         public List<string> ProjectItems { get; } = new List<string>();
 
         public List<FailedMergePostActionInfo> FailedMergePostActions { get; } = new List<FailedMergePostActionInfo>();
