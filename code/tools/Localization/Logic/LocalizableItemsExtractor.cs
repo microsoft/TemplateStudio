@@ -217,7 +217,6 @@ namespace Localization
 
         private void ExtractWtsTemplateSubfolderFiles(string routeType)
         {
-            var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
             var srcDirectory = new DirectoryInfo(Path.Combine(_sourceDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
 
             var srcFile = GetFile(srcDirectory.FullName + ".json");
@@ -225,13 +224,18 @@ namespace Localization
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
             var projectNames = content.Select(json => json.GetValue("name").Value<string>());
 
-            foreach (string culture in _cultures)
+            foreach (var name in projectNames)
             {
-                foreach (var name in projectNames)
+                var mdFilePath = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType, name + ".md");
+                if (_validator.HasChanges(mdFilePath))
                 {
-                    var mdFilePath = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType, name + ".md");
-                    var mdFile = new FileInfo(Path.Combine(_sourceDir.FullName, mdFilePath));
-                    mdFile.CopyTo(Path.Combine(desDirectory.FullName, culture + "." + name + ".md"), true);
+                    var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
+
+                    foreach (string culture in _cultures)
+                    {
+                        var mdFile = new FileInfo(Path.Combine(_sourceDir.FullName, mdFilePath));
+                        mdFile.CopyTo(Path.Combine(desDirectory.FullName, culture + "." + name + ".md"), true);
+                    }
                 }
             }
         }
