@@ -75,7 +75,6 @@ namespace ShareSourceSample.ViewModels
         private void OnShareApplicationLink()
         {
             ShareService.ShareApplicationLink(new Uri("my-app-sharesourcesample:navigate?page=MainPage"), "Share application link", "We are sharing application link");
-            //ShareService.ShareApplicationLink(new Uri("picturesLibrary"), "Share application link", "We are sharing application link");
         }
 
         private async Task<object> GetDeferredImageAsync()

@@ -11,6 +11,9 @@ namespace ShareSourceSample.Services
 {
     public static class ShareService
     {
+        // See more documentation about how to share data from your app
+        // https://docs.microsoft.com/windows/uwp/app-to-app/share-data
+
         private static Action<DataRequestedEventArgs> FillShareContentAction;
         private static DataTransferManager dataTransferManager;
 
@@ -48,8 +51,17 @@ namespace ShareSourceSample.Services
 
         public static void ShareApplicationLink(Uri applicationLinkToShare, string title, string description = null)
         {
-            // applicationLinkToShare must to be added to Package.appxmanifest in Declarations/protocol
-            // i.e. <uap:Protocol Name="my-app-name"></uap:Protocol>
+            // TODO WTS: If you want to share a link to your application be sure of the following
+            //
+            // Protocol must be added in Package.appxmanifest in Declarations/protocol
+            // i.e.
+            // <uap:Protocol Name="my-app-name">
+            //      <uap:Logo>Assets\smallTile-sdk.png</uap:Logo>
+            //      < uap:DisplayName > ShareSourceSample </ uap:DisplayName >
+            // </uap:Protocol>
+            //
+            // applicationLinkToShare must belong to the registered protocol
+            // new Uri("my-app-sharesourcesample:navigate?page=MainPage")
             FillShareContentAction = (args) =>
             {
                 var requestData = args.Request.Data;
