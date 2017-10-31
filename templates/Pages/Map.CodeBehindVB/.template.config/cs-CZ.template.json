@@ -1,5 +1,5 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Map",
     "description": "Stránka mapy je založena na ovládacím prvku Mapa. Kód zahrnuje přidání ikony Mapa a nastavení vaší polohy.",
     "identity": "wts.Page.Map.CodeBehind.VB"

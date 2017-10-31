@@ -1,5 +1,5 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Sample Data",
     "description": "SampleDataService enthält Beispieldaten, die von der generierten Version einiger Seiten verwendet werden.",
     "identity": "wts.Feat.SampleDataService.VB"

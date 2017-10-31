@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Uri Scheme",
   "description": "Agrega la capacidad de iniciar y crear un vínculo profundo en la aplicación con un esquema URI personalizado.",
   "identity": "wts.Feat.UriScheme"

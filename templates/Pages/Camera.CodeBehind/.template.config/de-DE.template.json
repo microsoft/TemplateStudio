@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Camera",
   "description": "Eine Seite für die Erfassung und Anzeige eines Bilds aus der Kamera.",
   "identity": "wts.Page.Camera.CodeBehind"

@@ -1,5 +1,5 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Map",
     "description": "Страница карты основана на Map Control. Код включает добавление значка карты и задание местоположения.",
     "identity": "wts.Page.Map.CodeBehind.VB"
