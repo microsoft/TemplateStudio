@@ -1,5 +1,5 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Dev Center Notifications",
     "description": "Inscrivez votre application pour recevoir des notifications de la part du Microsoft Store et les gérer dans le cadre du lancement de l\u0027application.",
     "identity": "wts.Feat.StoreNotifications.VB"

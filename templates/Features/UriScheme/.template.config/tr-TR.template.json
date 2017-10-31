@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Uri Scheme",
   "description": "Özel bir URl düzeniyle, başlatma ve ayrıntılı bağlantı verme özelliklerini uygulamanıza ekleyin.",
   "identity": "wts.Feat.UriScheme"

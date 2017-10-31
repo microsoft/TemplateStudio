@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Uri Scheme",
   "description": "Umožňuje přidat schopnost spouštět aplikaci a přímo na ni odkazovat pomocí vlastního schématu identifikátoru URI.",
   "identity": "wts.Feat.UriScheme"

@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Camera",
   "description": "一个用于捕获并显示来自相机的图片的页面。",
   "identity": "wts.Page.Camera"

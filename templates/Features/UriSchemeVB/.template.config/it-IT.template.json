@@ -1,5 +1,5 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Uri Scheme",
     "description": "Aggiungi la capacità di avviare e stabilire un collegamento diretto con l\u0027app con uno schema URI personalizzato.",
     "identity": "wts.Feat.UriScheme.VB"
