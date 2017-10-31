@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community Contribution",
     "name": "Settings",
-    "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
+    "description": "設定頁面是我們建議放置您應用程式組態設定的頁面。",
     "identity": "wts.Page.Settings.CodeBehind.VB"
 }

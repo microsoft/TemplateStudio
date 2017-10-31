@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community Contribution",
     "name": "Master/Detail",
-    "description": "The master-detail page has a master pane and a details pane for content.",
+    "description": "Stránka hlavní-podrobnosti obsahuje podokno hlavních položek a podokno podrobností pro obsah.",
     "identity": "wts.Page.MasterDetail.VB"
 }

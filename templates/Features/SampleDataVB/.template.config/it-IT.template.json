@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community Contribution",
     "name": "Sample Data",
-    "description": "SampleDataService holds sample data used by the generated version of some pages.",
+    "description": "SampleDataService contiene i dati di esempio usati dalla versione generata di alcune pagine.",
     "identity": "wts.Feat.SampleDataService.VB"
 }

@@ -1,1 +1,1 @@
-﻿The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.
+﻿Harita sayfası, Harita Denetimi'ni esas alır.  Kod bir Harita Simgesi ekleme ve konumu ayarlama işlevlerini içerir.

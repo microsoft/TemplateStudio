@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community Contribution",
     "name": "Chart",
-    "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",
+    "description": "UWP 向け Telerik UI コントロールを利用したシンプルなチャートを表示するページです。",
     "identity": "wts.Page.Chart.CodeBehind.VB"
 }

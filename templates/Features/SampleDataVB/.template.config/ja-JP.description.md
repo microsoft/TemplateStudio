@@ -1,3 +1,3 @@
-﻿The SampleDataService is a central repository for data used by generated pages. It is filled with basic data to provide a realistic viewpoint on data.  The data is also static to prevent any differences between runs.
+﻿SampleDataService は、生成されたページが使用するデータのセントラル レポジトリです。ここには、データの現実的な見方を提供する基礎的なデータが保管されています。実行間で差異が発生することを防ぐために、データはスタティックです。
 
-The data provided should be treated as temporary and removed once you have changed the generated pages to use your own data.
+提供されたデータは、一時的なものとして取り扱う必要があります。生成したページを変更したあと削除して、開発者自身のデータを使用します。

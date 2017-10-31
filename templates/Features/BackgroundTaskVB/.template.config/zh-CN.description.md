@@ -1,3 +1,3 @@
-﻿This creates an in-process background task. This will allow you to run code even while the app is not in the foreground. The in-process model enhances the application lifecycle with improved notifications for when your app is in the foreground or in the background.
+﻿此时将创建进程内后台任务。这样，即使应用不在前台，你也可以运行代码。进程内模型延长了应用程序生命周期，并提供了有关应用在前台或后台的时间的改进通知。
 
-To find out more about in-process background tasks, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task).
+若要了解有关进程内后台任务的更多信息，请访问 [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task)。
