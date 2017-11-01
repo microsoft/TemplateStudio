@@ -197,12 +197,21 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 UpdateCanCheckUpdates(true);
             }
 
-            if (status.Status == SyncStatus.OverVersionNoContent)
+            if (status.Status == SyncStatus.OverVersion)
             {
                 SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                     UpdateTemplatesAvailable(true);
+                });
+            }
+
+            if (status.Status == SyncStatus.OverVersionNoContent)
+            {
+                SafeThreading.JoinableTaskFactory.Run(async () =>
+                {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    UpdateTemplatesAvailable(false);
                 });
             }
 
