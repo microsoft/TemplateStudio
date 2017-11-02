@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,8 +14,7 @@ namespace Param_ItemNamespace.Services
     {
         // See more documentation about how to share data from your app
         // https://docs.microsoft.com/windows/uwp/app-to-app/share-data
-
-        private static Action<DataRequestedEventArgs> FillShareContentAction;
+        private static Action<DataRequestedEventArgs> _fillShareContentAction;
         private static DataTransferManager dataTransferManager;
 
         public static void Initialize()
@@ -26,7 +25,7 @@ namespace Param_ItemNamespace.Services
 
         public static void ShareText(string textToShare, string title, string description = null)
         {
-            FillShareContentAction = (args) =>
+            _fillShareContentAction = (args) =>
             {
                 var requestData = args.Request.Data;
 
@@ -39,7 +38,7 @@ namespace Param_ItemNamespace.Services
 
         public static void ShareWebLink(Uri uriToShare, string title, string description = null)
         {
-            FillShareContentAction = (args) =>
+            _fillShareContentAction = (args) =>
             {
                 var requestData = args.Request.Data;
 
@@ -63,7 +62,7 @@ namespace Param_ItemNamespace.Services
             //
             // applicationLinkToShare must belong to the registered protocol
             // new Uri("my-app-name:navigate?page=MainPage")
-            FillShareContentAction = (args) =>
+            _fillShareContentAction = (args) =>
             {
                 var requestData = args.Request.Data;
 
@@ -76,7 +75,7 @@ namespace Param_ItemNamespace.Services
 
         public static void ShareHtml(string htmlToShare, string title, string description = null)
         {
-            FillShareContentAction = (args) =>
+            _fillShareContentAction = (args) =>
             {
                 var requestData = args.Request.Data;
 
@@ -90,7 +89,7 @@ namespace Param_ItemNamespace.Services
 
         public static void ShareImage(StorageFile imageToShare, string title, string description = null)
         {
-            FillShareContentAction = (args) =>
+            _fillShareContentAction = (args) =>
             {
                 var requestData = args.Request.Data;
 
@@ -116,7 +115,8 @@ namespace Param_ItemNamespace.Services
             {
                 throw new ArgumentNullException(nameof(getDeferredDataAsync));
             }
-            FillShareContentAction = (args) =>
+
+            _fillShareContentAction = (args) =>
             {
                 var requestData = args.Request.Data;
 
@@ -148,12 +148,12 @@ namespace Param_ItemNamespace.Services
         private static void OnDataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             // This event will be fired when share operation starts.
-            // We need to add data on DataRequestedEventArgs throw the FillShareContentAction
+            // We need to add data on DataRequestedEventArgs throw the _fillShareContentAction
             args.Request.Data.ShareCompleted += OnShareCompleted;
             var deferral = args.Request.GetDeferral();
             try
             {
-                FillShareContentAction?.Invoke(args);
+                _fillShareContentAction?.Invoke(args);
             }
             finally
             {
