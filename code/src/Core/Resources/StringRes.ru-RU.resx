@@ -387,4 +387,7 @@
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>Для стиля с ключом "{0}" уже задано другое значение или другие элементы в файле. Ознакомьтесь со стилями, чтобы включить изменения вручную там, где они нужны в проекте.</value>
   </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
 </root>

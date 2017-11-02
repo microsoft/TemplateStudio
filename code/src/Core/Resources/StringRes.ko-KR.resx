@@ -387,4 +387,7 @@
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>'{0}' 키가 있는 스타일은 이미 파일에서 다른 값이나 다른 요소로 정의되어 있습니다. 스타일을 검토하고 필요한 변경 사항을 프로젝트에 수동으로 추가하십시오.</value>
   </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
 </root>

@@ -387,4 +387,7 @@ Nemohly být integrovány následující změny: {2}
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>Styl s klíčem {0} je v tomto souboru už definován s odlišnou hodnotou nebo odlišnými elementy. Projděte styly a na místech, kde to projekt vyžaduje, vložte změny ručně.</value>
   </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
 </root>
