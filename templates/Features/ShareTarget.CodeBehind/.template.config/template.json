@@ -11,7 +11,7 @@
     "wts.type": "feature",
     "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "6",
+    "wts.displayOrder": "1",
     "wts.group": "AppToApp",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "ShareTarget",
