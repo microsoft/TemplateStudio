@@ -1,4 +1,4 @@
-using Windows.ApplicationModel.Background;
+﻿using Windows.ApplicationModel.Background;
 
 namespace Param_ItemNamespace.Services
 {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Windows.Mvvm;

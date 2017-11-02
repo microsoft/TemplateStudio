@@ -1,4 +1,4 @@
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.Views

@@ -1,4 +1,4 @@
-using Microsoft.Xaml.Interactivity;
+﻿using Microsoft.Xaml.Interactivity;
 using Prism.Windows.Navigation;
 using System;
 using System.Collections.Generic;

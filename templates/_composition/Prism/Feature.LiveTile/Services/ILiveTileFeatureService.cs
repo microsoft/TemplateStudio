@@ -1,4 +1,4 @@
-using Windows.UI.Notifications;
+﻿using Windows.UI.Notifications;
 using System.Threading.Tasks;
 using Windows.UI.StartScreen;
 using Windows.ApplicationModel.Activation;
