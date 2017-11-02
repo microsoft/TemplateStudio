@@ -1,19 +1,20 @@
 ﻿using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 
-namespace WebToAppLink.Activation
+namespace Param_ItemNamespace.Activation
 {
-    internal class WebToAppActivationHandler : ActivationHandler<ProtocolActivatedEventArgs>
+    internal class WebToAppLinkActivationHandler : ActivationHandler<ProtocolActivatedEventArgs>
     {
+        // See detailed documentation about Web to App link
         // https://docs.microsoft.com/en-us/windows/uwp/launch-resume/web-to-app-linking
-        // TODO WTS: Set the same Host Uri on Package.appxmanifest
+        // TODO WTS: You must to update the Host Uri also on Package.appxmanifest
         private const string Host = "myapp.website.com";
         private const string Section1 = "/MySection1";
         private const string Section2 = "/MySection2";
 
         protected override async Task HandleInternalAsync(ProtocolActivatedEventArgs args)
         {
-            // TODO WTS: Use args.Uri.AbsolutePath to determinate the page you want to launch the application.            
+            // TODO WTS: Use args.Uri.AbsolutePath to determinate the page you want to launch the application.
             switch (args.Uri.AbsolutePath)
             {
                 // Open the page in app that is equivalent to the section on the website.
@@ -28,6 +29,7 @@ namespace WebToAppLink.Activation
                     // Use NavigationService to Navigate to MainPage
                     break;
             }
+
             await Task.CompletedTask;
         }
 

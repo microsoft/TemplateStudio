@@ -46,7 +46,7 @@
       <Extensions>
         <uap3:Extension Category="windows.appUriHandler">
           <uap3:AppUriHandler>
-            <uap3:Host Name="developer.microsoft.com"/>
+            <uap3:Host Name="myapp.website.com"/>
           </uap3:AppUriHandler>
         </uap3:Extension>
       </Extensions>
