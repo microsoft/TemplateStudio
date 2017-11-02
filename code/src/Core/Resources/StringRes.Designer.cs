@@ -658,6 +658,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error acquiring content..
+        /// </summary>
+        internal static string TemplatesSynchronizationErrorAcquiring {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationErrorAcquiring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to purge old content..
         /// </summary>
         internal static string TemplatesSynchronizationPurgeContentAsyncMessage {
