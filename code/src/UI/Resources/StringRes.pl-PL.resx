@@ -664,4 +664,8 @@
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>Nie możemy wprowadzić stylów w słowniku zasobów.</value>
   </data>
+  <data name="TemplateGroup_AppToApp" xml:space="preserve">
+    <value>App to App</value>
+    <comment>Group header for App to App templates</comment>
+  </data>
 </root>

@@ -664,4 +664,8 @@
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>Die Formatvorlagen konnten nicht in das Ressourcenverzeichnis eingeführt werden.</value>
   </data>
+  <data name="TemplateGroup_AppToApp" xml:space="preserve">
+    <value>App to App</value>
+    <comment>Group header for App to App templates</comment>
+  </data>
 </root>
