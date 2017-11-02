@@ -387,4 +387,7 @@ Nie można zinterpretować następujących zmian: {2}
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>Styl z kluczem „{0}” jest już zdefiniowany z inną wartością lub innymi elementami w tym pliku. Sprawdź style, aby wprowadzić zmiany ręcznie, tam, gdzie jest to wymagane w projekcie.</value>
   </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
 </root>

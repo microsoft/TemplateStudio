@@ -387,4 +387,7 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>Diese Formatvorlage mit dem Schlüssel „{0}“ wurde bereits mit einem anderen Wert oder anderen Elementen in dieser Datei definiert. Überprüfen Sie die Formatvorlagen, um die Änderungen manuell zu integrieren, wenn für Ihr Projekt erforderlich.</value>
   </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
 </root>

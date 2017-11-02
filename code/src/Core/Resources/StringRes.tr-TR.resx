@@ -387,4 +387,7 @@ Aşağıdaki değişiklikler tümleştirilemedi: {2}
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>"{0}" anahtarına sahip stil bu dosyada farklı değer veya öğelerle zaten tanımlanmış. Lütfen gerektiğinde projenize değişiklikleri el ile dahil etmek için stilleri gözden geçirin.</value>
   </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
 </root>

@@ -387,4 +387,7 @@ Impossibile integrare le seguenti modifiche: {2}
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>Lo stile con la chiave '{0}' è già definito con valore o elementi diversi in questo file. Rivedi gli stili per includere le modifiche manualmente ove richiesto nel progetto.</value>
   </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
 </root>
