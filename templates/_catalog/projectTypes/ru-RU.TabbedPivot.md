@@ -1,3 +1,3 @@
-﻿Tabs across the top allow for quickly navigating between pages.
+﻿Вкладки наверху позволяют быстро перемещаться по страницам.
 
-The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.
+Элемент управления "Сводка" полезен для навигации между связанными или часто посещаемыми страницами. Пользователь может перемещаться по панелям сводки (страницам), выбирая текстовые заголовки, которые отображаются всегда.

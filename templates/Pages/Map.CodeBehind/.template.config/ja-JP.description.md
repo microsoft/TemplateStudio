@@ -1,1 +1,1 @@
-﻿The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.
+﻿このマップ ページは、マップ コントロールに基づきます。コードには、マップ アイコンの追加や場所の設定が含まれます。

@@ -1,12 +1,12 @@
-﻿This is a generic version of a MVVM pattern.  The [Model-View-ViewModel pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) can be used on all XAML platforms. Its intent is to provide a clean separation of concerns between the user interface controls and their logic.
+﻿Bu, MVVM deseninin genel bir sürümü.  [Model-View-ViewModel deseni](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) tüm XAML platformlarında kullanılabilir. Bunun amacı, kullanıcı arabirimi denetimleri ve bunların mantığı arasındaki endişeleri açık bir şekilde ayırmaktır.
 
-There are three core components in the MVVM pattern: the model, the view, and the view model. Each serves a distinct and separate role.
+MVVM deseninde üç temel bileşen bulunmaktadır: model, görünüm ve görünüm modeli. Her biri farklı bir rol oynar.
 
-MVVM Basic is not a framework but provides the minimum functionality to create an app using the Model-View-ViewModel (MVVM) pattern.
-Use it if you can't or don't want to use a 3rd party MVVM Framework.
+MVVM Basic bir framework değildir ancak Model-View-ViewModel (MVVM) deseni kullanarak bir uygulama oluşturmak için minimum işlevsellik sağlar.
+Üçüncü taraf MVVM Framework kullanamıyorsanız veya kullanmak istemiyorsanız bunu kullanabilirsiniz.
 
-MVVM Basic is not intended to be a fully features MVVM Framework and does not include some features that other frameworks do. ViewModel-first navigation, IOC, and messaging being the most obvious ones. If you want these features then choose a framework that supports them.
+MVVM Basic tam özellikli bir MVVM Framework olarak tasarlanmamıştır ve diğer framework'lerde bulunan bazı özellikleri içermez. Bu özelliklerin başlıcaları ViewModel öncelikli gezinti, IOC ve mesajlaşmadır. Bu özellikleri istiyorsanız bunları destekleyen bir framework seçin.
 
-Projects created with MVVM Basic contain two important classes, `Observable` and `RelayCommand`.
-**Observable** contains an implementation of the `INotifyPropertyChanged` interface and is used as a base class for all view models. This makes it easy to update bound properties on the View.
-**RelayCommand** contains an implementation of the `ICommand` interface to make it easy to have the View call commands on the ViewModel, rather than handle UI events directly.
+MVVM Basic ile oluşturulan projeler "Observable" ve "RelayCommand" olmak üzere iki önemli sınıf içerir.
+**Observable**, "INotifyPropertyChanged" arabiriminin bir uygulamasını içerir ve tüm görüntüleme modelleri için temel sınıf olarak kullanılır. Bu da Görünüm üzerindeki bağlı özellikleri güncelleştirmeyi kolaylaştırır.
+**RelayCommand** kullanıcı arabirimi olaylarını doğrudan işlemek yerine, ViewModel üzerinde Görünüm çağrı komutlarını bulundurmayı kolaylaştıran "ICommand" arabirimi uygulamasını içerir.

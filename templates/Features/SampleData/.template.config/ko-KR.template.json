@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Sample Data",
-  "description": "SampleDataService holds sample data used by the generated version of some pages.",
+  "description": "SampleDataService는 생성된 버전의 일부 페이지에 사용된 샘플 데이터를 가지고 있습니다.",
   "identity": "wts.Feat.SampleDataService"
 }

@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Blank",
-  "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
+  "description": "这是最基本的页面。一张空白画布，可塑造成任何你想要得到的内容。",
   "identity": "wts.Page.Blank.CodeBehind.VB"
 }

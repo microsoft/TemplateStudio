@@ -1,3 +1,3 @@
-﻿This feature will display a message to the person using it when the app is used for the first time. You can use this to provide useful instructions or information to a person who hasn't used the app before.
+﻿При первом запуске приложения эта функция покажет пользователю сообщение. Вы можете предоставить пользователю, который впервые открыл приложение, полезные инструкции или сведения.
 
-The message displayed is fully customizable and can display text, images, or anything else.
+Сообщение можно полностью настроить: в него может входить текст, изображения и многое другое.

@@ -1,6 +1,6 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Media Player",
-    "description": "A page for showing video with system media controls enabled.",
+    "description": "Une page pour afficher la vidéo avec les commandes médias du système activées.",
     "identity": "wts.Page.MediaPlayer.VB"
 }

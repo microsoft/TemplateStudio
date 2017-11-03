@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Settings Storage",
-  "description": "Setting storage helps simplify storing data inside your application data folder.",
+  "description": "Pamięć ustawienia pomaga uprościć zapisywanie danych w folderze danych aplikacji.",
   "identity": "wts.Feat.SettingsStorage.VB"
 }

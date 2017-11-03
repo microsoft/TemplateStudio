@@ -1,6 +1,6 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Web View",
-    "description": "The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine.",
+    "description": "この Web ビュー ページは、Microsoft Edge レンダリング エンジンを使用して Web コンテンツをレンダリングするアプリにビューを埋め込みます。",
     "identity": "wts.Page.WebView.CodeBehind.VB"
 }

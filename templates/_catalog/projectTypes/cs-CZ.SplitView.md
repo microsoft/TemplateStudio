@@ -1,5 +1,5 @@
-﻿This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages.
+﻿Tento projekt obsahuje navigační podokno (nebo nabídku typu „hamburger“), které se nachází na boční straně obrazovky a umožňuje navigovat mezi stránkami.
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed.
+Tento styl je oblíbený u mobilních aplikací, ale je také vhodný pro větší obrazovky. Pokud není nabídka potřebná nebo je k dispozici jenom omezený prostor, lze ji skrýt.
 
-The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen.
+Položky nabídky se zobrazují formou ikon a textu. Nabídku lze zcela skrýt nebo je možné zobrazit jenom ikonu, případně ikonu a text. Uživatel může zvolit zobrazení celé nabídky dotykem tlačítka. Nabídka se také automaticky přizpůsobuje velikosti obrazovky.

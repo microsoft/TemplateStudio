@@ -1,3 +1,3 @@
-﻿The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿Strona wzorzec-szczegóły zawiera okienko wzorca i okienko szczegółów treści. Gdy zostanie wybrany element na liście wzorca, okienko szczegółów jest aktualizowane. Ten wzorzec jest często używany do obsługi poczty e-mail i książek adresowych.
 
-More information about the master-detail pattern can be found [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details).
+Więcej informacji na temat strony wzorzec-szczegóły można znaleźć na stronie [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details).

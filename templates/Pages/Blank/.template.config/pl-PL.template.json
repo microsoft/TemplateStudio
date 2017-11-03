@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Blank",
-  "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
+  "description": "To jest najbardziej podstawowa strona. Jest to pusta przestrzeń, którą możesz dowolnie kształtować.",
   "identity": "wts.Page.Blank"
 }

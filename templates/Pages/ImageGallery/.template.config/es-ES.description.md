@@ -1,1 +1,1 @@
-﻿A page displaying a image gallery and allows user to navigate between gallery and image detail.
+﻿Una página que muestra una galería de imágenes y permite a los usuarios navegar entre la galería y detalles de las imágenes.

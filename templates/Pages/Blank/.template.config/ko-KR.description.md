@@ -1,1 +1,1 @@
-﻿This is the most basic page.  A blank canvas to mold into whatever you wish.  The blank page leaves pretty much everything up to you.
+﻿가장 기본 페이지입니다.  빈 캔버스에 원하는 대로 만들어 보십시오.  페이지 구성은 개발자의 손에 달렸습니다.
