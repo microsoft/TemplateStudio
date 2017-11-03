@@ -456,8 +456,12 @@
     <value>閉じる</value>
     <comment>New project wizard summary template open menu</comment>
   </data>
-  <data name="NewItemTitle_SF" xml:space="preserve">
-    <value>新しい {0} の追加</value>
+  <data name="NewItemTitlePage" xml:space="preserve">
+    <value>新しいページ</value>
+    <comment>New item wizard title string format</comment>
+  </data>
+  <data name="NewItemTitleFeature" xml:space="preserve">
+    <value>新しい機能</value>
     <comment>New item wizard title string format</comment>
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">
