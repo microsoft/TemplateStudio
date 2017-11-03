@@ -667,6 +667,24 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error extracting installed templates content...
+        /// </summary>
+        internal static string TemplatesSynchronizationErrorExtracting {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationErrorExtracting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error updating templates content..
+        /// </summary>
+        internal static string TemplatesSynchronizationErrorUpdating {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationErrorUpdating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to purge old content..
         /// </summary>
         internal static string TemplatesSynchronizationPurgeContentAsyncMessage {
