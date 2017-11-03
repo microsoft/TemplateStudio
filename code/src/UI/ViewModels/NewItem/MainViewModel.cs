@@ -93,7 +93,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 WizardStatus.WizardTitle = StringRes.NewItemTitlePage;
             }
-            else if(ConfigTemplateType == TemplateType.Feature)
+            else if (ConfigTemplateType == TemplateType.Feature)
             {
                 WizardStatus.WizardTitle = StringRes.NewItemTitleFeature;
             }
