@@ -87,7 +87,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             ConfigProjectType = configInfo.ProjectType;
         }
 
-        public void SetNewItemSetupTitle() => WizardStatus.WizardTitle = string.Format(StringRes.NewItemTitle_SF, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower());
+        public void SetNewItemSetupTitle()
+        {
+            if (ConfigTemplateType == TemplateType.Page)
+            {
+                WizardStatus.WizardTitle = StringRes.NewItemTitlePage;
+            }
+            else if(ConfigTemplateType == TemplateType.Feature)
+            {
+                WizardStatus.WizardTitle = StringRes.NewItemTitleFeature;
+            }
+        }
 
         private string GetLocalizedTemplateTypeName(TemplateType templateType)
         {

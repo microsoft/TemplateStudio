@@ -456,8 +456,12 @@
     <value>Kapat</value>
     <comment>New project wizard summary template open menu</comment>
   </data>
-  <data name="NewItemTitle_SF" xml:space="preserve">
-    <value>Yeni {0} ekle</value>
+  <data name="NewItemTitlePage" xml:space="preserve">
+    <value>Yeni sayfa</value>
+    <comment>New item wizard title string format</comment>
+  </data>
+  <data name="NewItemTitleFeature" xml:space="preserve">
+    <value>Yeni özellik</value>
     <comment>New item wizard title string format</comment>
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">

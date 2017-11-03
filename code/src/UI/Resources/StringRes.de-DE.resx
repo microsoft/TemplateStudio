@@ -456,8 +456,12 @@
     <value>Schließen</value>
     <comment>New project wizard summary template open menu</comment>
   </data>
-  <data name="NewItemTitle_SF" xml:space="preserve">
-    <value>Neues {0} hinzufügen</value>
+  <data name="NewItemTitlePage" xml:space="preserve">
+    <value>Neue Seite</value>
+    <comment>New item wizard title string format</comment>
+  </data>
+  <data name="NewItemTitleFeature" xml:space="preserve">
+    <value>Neues Feature</value>
     <comment>New item wizard title string format</comment>
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">
