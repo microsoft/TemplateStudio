@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Web to app link",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "description": "Adds the ability to open your app from a link in a website.",
   "identity": "wts.Feat.WebToAppLink"
 }
