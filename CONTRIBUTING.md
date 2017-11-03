@@ -6,7 +6,7 @@ A developer should be able to quickly and easily add features, pages, and have a
 
 That's why many of the guidelines of this document are obvious and serve only one purpose: **Simplicity.**
 
-Also remeber that the Pull Requests must be done aganist the **[dev branch](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev)**.
+Also remember that the Pull Requests must be done aganist the **[dev branch](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev)**.
 
 ## Before you begin
 
