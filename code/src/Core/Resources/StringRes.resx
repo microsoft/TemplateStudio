@@ -391,12 +391,9 @@ The following changes could not be integrated: {2}
     <value>Error acquiring content.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Error extracting delivered templates content.</value>
+    <value>Error extracting installed templates content..</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Error updating templates content.</value>
-  </data>
-  <data name="TemplatesSynchronizationErrorUpdating1" xml:space="preserve">
     <value>Error updating templates content.</value>
   </data>
 </root>

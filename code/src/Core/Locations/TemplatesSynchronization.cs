@@ -162,7 +162,7 @@ namespace Microsoft.Templates.Core.Locations
             catch (Exception ex)
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
-                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorAcquiring, ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorExtracting, ex).FireAndForget();
             }
         }
 
@@ -212,7 +212,7 @@ namespace Microsoft.Templates.Core.Locations
             catch (Exception ex)
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
-                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorAcquiring, ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorUpdating, ex).FireAndForget();
             }
         }
 

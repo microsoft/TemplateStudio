@@ -667,7 +667,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error extracting delivered templates content..
+        ///   Looks up a localized string similar to Error extracting installed templates content...
         /// </summary>
         internal static string TemplatesSynchronizationErrorExtracting {
             get {
@@ -681,15 +681,6 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string TemplatesSynchronizationErrorUpdating {
             get {
                 return ResourceManager.GetString("TemplatesSynchronizationErrorUpdating", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error updating templates content..
-        /// </summary>
-        internal static string TemplatesSynchronizationErrorUpdating1 {
-            get {
-                return ResourceManager.GetString("TemplatesSynchronizationErrorUpdating1", resourceCulture);
             }
         }
         
