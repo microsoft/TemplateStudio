@@ -13,7 +13,7 @@
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "2",
+    "wts.displayOrder": "4",
     "wts.group": "AppToApp",
     "wts.defaultInstance": "WebToAppLink",
     "wts.multipleInstance": "false",
