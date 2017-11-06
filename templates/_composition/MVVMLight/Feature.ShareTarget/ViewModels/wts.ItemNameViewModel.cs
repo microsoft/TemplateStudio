@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
-using Windows.Storage;
-using Windows.UI.Xaml.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
@@ -36,7 +34,8 @@ namespace Param_ItemNamespace.ViewModels
             // Share Target declarations are defined in Package.appxmanifest.
             // Current declarations allow to share WebLink and image files with the app.
             // ShareTarget can be tested sharing the WebLink from Microsoft Edge or sharing images from Windows Photos.
-            // ShareOperation contains all the information required to handle the action.
+
+            // TODO WTS: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
             _shareOperation = shareOperation;
             if (shareOperation.Data.Contains(StandardDataFormats.StorageItems))
             {
@@ -53,7 +52,7 @@ namespace Param_ItemNamespace.ViewModels
 
         private void OnComplete()
         {
-            // TODO WTS: Implement the actions you want with the shared data before compleate the share operation.
+            // TODO WTS: Implement the actions you want to realize with the shared data before compleate the share operation.
             // For further details check https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
             _shareOperation.ReportCompleted();
         }
