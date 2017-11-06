@@ -709,11 +709,20 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new {0}.
+        ///   Looks up a localized string similar to New feature.
         /// </summary>
-        public static string NewItemTitle_SF {
+        public static string NewItemTitleFeature {
             get {
-                return ResourceManager.GetString("NewItemTitle_SF", resourceCulture);
+                return ResourceManager.GetString("NewItemTitleFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New page.
+        /// </summary>
+        public static string NewItemTitlePage {
+            get {
+                return ResourceManager.GetString("NewItemTitlePage", resourceCulture);
             }
         }
         

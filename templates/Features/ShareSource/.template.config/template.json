@@ -4,7 +4,7 @@
   "name": "Share Source",
   "groupIdentity": "wts.Feat.ShareSource",
   "identity": "wts.Feat.ShareSource",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "description": "Helps supporting the share contract in your UWP app to share data from your app with others.",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -456,8 +456,12 @@
     <value>닫기</value>
     <comment>New project wizard summary template open menu</comment>
   </data>
-  <data name="NewItemTitle_SF" xml:space="preserve">
-    <value>새 {0} 추가</value>
+  <data name="NewItemTitlePage" xml:space="preserve">
+    <value>새 페이지</value>
+    <comment>New item wizard title string format</comment>
+  </data>
+  <data name="NewItemTitleFeature" xml:space="preserve">
+    <value>새 기능</value>
     <comment>New item wizard title string format</comment>
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">
