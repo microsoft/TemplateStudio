@@ -7,7 +7,6 @@ using System.Windows;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Services;
-using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
