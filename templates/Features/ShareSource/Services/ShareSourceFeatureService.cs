@@ -4,15 +4,14 @@ using System.Threading.Tasks;
 
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
-using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
 namespace Param_ItemNamespace.Services
 {
-    public static class ShareSource
+    public static class ShareSourceFeature
     {
-        // See more documentation about how to share data from your app
+        // TODO WTS: See more documentation about how to share data from your app
         // https://docs.microsoft.com/windows/uwp/app-to-app/share-data
         private static Action<DataRequestedEventArgs> _fillShareContentAction;
         private static DataTransferManager dataTransferManager;
@@ -51,7 +50,8 @@ namespace Param_ItemNamespace.Services
 
         public static void ShareApplicationLink(Uri applicationLinkToShare, string title, string description = null)
         {
-            // TODO WTS: If you want to share a link to your application be sure of the following
+            // TODO WTS: If you want to share a link to your application be sure
+            // to do the following to configure activation by uri
             //
             // Protocol must be added in Package.appxmanifest in Declarations/protocol
             // i.e.
@@ -108,7 +108,7 @@ namespace Param_ItemNamespace.Services
 
         public static void ShareDeferredContent(string formatId, Func<Task<object>> getDeferredDataAsync, string title, string description = null)
         {
-            // Use this method to share content when you want not process the data until the target app actually requests it.
+            // TODO WTS: Use this method to share content when you do not want to process the data until the target app actually requests it.
             // formatId must be a const value from StandardDataFormats class.
             // getDeferredDataAsync is the function that returns the object you want to share.
             if (getDeferredDataAsync == null)
@@ -147,8 +147,8 @@ namespace Param_ItemNamespace.Services
 
         private static void OnDataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
-            // This event will be fired when share operation starts.
-            // We need to add data on DataRequestedEventArgs throw the _fillShareContentAction
+            // This event will be fired when the share operation starts.
+            // We need to add data to DataRequestedEventArgs throw the _fillShareContentAction
             args.Request.Data.ShareCompleted += OnShareCompleted;
             var deferral = args.Request.GetDeferral();
             try
