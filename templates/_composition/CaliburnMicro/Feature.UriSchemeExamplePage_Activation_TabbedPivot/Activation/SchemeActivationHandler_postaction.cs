@@ -45,7 +45,7 @@ namespace Param_ItemNamespace.Activation
             else if (args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 // If the app isn't running and not navigating to a specific page based on the URI, navigate to the home page
-                _navigationService.For<Param_HomeNameViewModel>().Navigate();
+                _navigationService.For<PivotViewModel>().Navigate();
             }
 
             await Task.CompletedTask;
