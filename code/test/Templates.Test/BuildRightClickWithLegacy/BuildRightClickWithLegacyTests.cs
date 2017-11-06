@@ -23,10 +23,7 @@ namespace Microsoft.Templates.Test
     [Collection("BuildRightClickWithLegacyCollection")]
     public class BuildRightClickWithLegacyTests : BaseGenAndBuildTests
     {
-        //// Excluded wts.Page.WebView from this test as webview requires creator update as min target version due to conditional xaml
-        //// Excluded wts.Page.Camera from this test as Camera requires anniversary update as min target version due to binding a boolean property to Visibility
-
-        private string[] excludedTemplates = { "wts.Page.WebView", "wts.Page.Camera" };
+        private string[] excludedTemplates = { };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
         {
@@ -68,6 +65,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
         [Trait("ExecutionSet", "ManualOnly")]
+        ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
         public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
             var projectName = $"{projectType}{framework}AllLegacy";
