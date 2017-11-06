@@ -9,7 +9,7 @@ using Windows.Storage.Streams;
 
 namespace Param_ItemNamespace.Services
 {
-    public static class ShareSourceFeature
+    public static class ShareSourceFeatureService
     {
         // TODO WTS: See more documentation about how to share data from your app
         // https://docs.microsoft.com/windows/uwp/app-to-app/share-data
