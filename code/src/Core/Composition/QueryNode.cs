@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.Composition
 
         public QueryNode(string field, string @operator, string value)
         {
-            IsContext = field.StartsWith(ContextPrefix, StringComparison.InvariantCulture);
+            IsContext = field.StartsWith(ContextPrefix, StringComparison.Ordinal);
             Field = field?.Replace(ContextPrefix, string.Empty);
             Operator = ParseOperator(@operator);
             Value = value;

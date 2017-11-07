@@ -160,7 +160,7 @@ namespace Localization
             var filePath = Path.Combine(_sourceDir.FullName, Routes.WtsTemplatesRootDirPath, fileName);
             var fileContent = File.ReadAllText(filePath);
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
-            var wtsItems = content.Select(json => json.GetValue("name", StringComparison.InvariantCulture).Value<string>());
+            var wtsItems = content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
 
             var wtsItemDirectory = Path.Combine(Routes.WtsTemplatesRootDirPath, wtsTemplateName);
 

@@ -129,8 +129,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var mergeString = string.Join(Environment.NewLine, merge);
             var sourceString = string.Join(Environment.NewLine, source);
 
-            var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.InvariantCultureIgnoreCase);
-            var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.InvariantCultureIgnoreCase);
+            var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.OrdinalIgnoreCase);
+            var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.OrdinalIgnoreCase);
 
             if (startIndex > 0 && endIndex > startIndex)
             {
@@ -152,8 +152,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             var mergeString = string.Join(Environment.NewLine, merge);
 
-            var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.InvariantCultureIgnoreCase);
-            var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.InvariantCultureIgnoreCase);
+            var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.OrdinalIgnoreCase);
+            var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.OrdinalIgnoreCase);
 
             if (startIndex > 0 && endIndex > startIndex)
             {
@@ -162,7 +162,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 var lengthOfDeletion = endIndex - startIndex + MacroStartDelete.Length + commentIndicatorLength;
 
-                if (mergeString.Substring(startIndex + lengthOfDeletion - commentIndicatorLength).StartsWith(Environment.NewLine, StringComparison.InvariantCultureIgnoreCase))
+                if (mergeString.Substring(startIndex + lengthOfDeletion - commentIndicatorLength).StartsWith(Environment.NewLine, StringComparison.OrdinalIgnoreCase))
                 {
                     lengthOfDeletion += Environment.NewLine.Length;
                 }
@@ -227,7 +227,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private static bool NextLineIsComment(List<string> result, int insertIndex)
         {
-            return insertIndex < result.Count - 1 && (result[insertIndex].Trim().StartsWith(CSharpComment, StringComparison.InvariantCulture) || result[insertIndex].Trim().StartsWith(VBComment, StringComparison.InvariantCulture));
+            return insertIndex < result.Count - 1 && (result[insertIndex].Trim().StartsWith(CSharpComment, StringComparison.Ordinal) || result[insertIndex].Trim().StartsWith(VBComment, StringComparison.Ordinal));
         }
 
         private static bool BlockExists(IEnumerable<string> blockBuffer, IEnumerable<string> target, int skip)

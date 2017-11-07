@@ -121,7 +121,7 @@ namespace Microsoft.Templates.Fakes
             switch (Path.GetExtension(fileName).ToLowerInvariant())
             {
                 case ".cs":
-                    if (fileName.EndsWith(".xaml.cs", true, CultureInfo.InvariantCulture))
+                    if (fileName.EndsWith(".xaml.cs", StringComparison.OrdinalIgnoreCase))
                     {
                         returnType = VsItemType.CompiledWithDependant;
                     }
@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Fakes
 
                     break;
                 case ".vb":
-                    if (fileName.EndsWith(".xaml.vb", true, CultureInfo.InvariantCulture))
+                    if (fileName.EndsWith(".xaml.vb", StringComparison.OrdinalIgnoreCase))
                     {
                         returnType = VsItemType.CompiledWithDependant;
                     }

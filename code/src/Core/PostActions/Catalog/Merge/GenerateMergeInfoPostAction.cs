@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(Config).StartsWith(Extension, StringComparison.InvariantCultureIgnoreCase))
+            if (Path.GetFileName(Config).StartsWith(Extension, StringComparison.OrdinalIgnoreCase))
             {
                 var extension = Path.GetExtension(Config);
                 var directory = Path.GetDirectoryName(Config);

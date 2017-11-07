@@ -60,9 +60,9 @@ EndProject
         {
             var slnContent = File.ReadAllText(_path);
 
-            if (slnContent.IndexOf(projectName, StringComparison.InvariantCultureIgnoreCase) == -1)
+            if (slnContent.IndexOf(projectName, StringComparison.Ordinal) == -1)
             {
-                var globalIndex = slnContent.IndexOf("Global", StringComparison.InvariantCulture);
+                var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
                 var projectTemplate = isCSharp ? ProjectTemplateCS : ProjectTemplateVB;
                 var projectContent = projectTemplate
                                             .Replace("{name}", projectName)
@@ -70,7 +70,7 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var globalSectionIndex = slnContent.IndexOf(GlobalSectionText, StringComparison.InvariantCulture);
+                var globalSectionIndex = slnContent.IndexOf(GlobalSectionText, StringComparison.Ordinal);
                 var projectConfigContent = string.Format(ConfigurationTemplate, projectGuid);
 
                 slnContent = slnContent.Insert(globalSectionIndex + GlobalSectionText.Length + 1, projectConfigContent);
