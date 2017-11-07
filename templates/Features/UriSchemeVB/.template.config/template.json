@@ -13,8 +13,8 @@
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "3",
-    "wts.group": "AppToApp",
+    "wts.displayOrder": "1",
+    "wts.group": "ApplicationLaunching",
     "wts.defaultInstance": "UriScheme",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0"
