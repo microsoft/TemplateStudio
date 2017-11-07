@@ -35,6 +35,7 @@ namespace Microsoft.Templates.Core.Locations
             _id = id + GetAgentName();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Used to override the default value for this property in the local (test) source")]
         public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
             ForcedAcquisition = forcedAdquisition;
@@ -53,7 +54,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public override void Extract(string source, string targetFolder)
         {
-            if (source.ToLower().EndsWith("mstx"))
+            if (source.ToLowerInvariant().EndsWith("mstx"))
             {
                 base.Extract(source, targetFolder);
             }

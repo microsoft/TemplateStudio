@@ -118,7 +118,7 @@ namespace Microsoft.Templates.Fakes
         {
             VsItemType returnType = VsItemType.Content;
 
-            switch (Path.GetExtension(fileName).ToLower())
+            switch (Path.GetExtension(fileName).ToLowerInvariant())
             {
                 case ".cs":
                     if (fileName.EndsWith(".xaml.cs", true, CultureInfo.InvariantCulture))

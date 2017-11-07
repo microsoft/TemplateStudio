@@ -40,7 +40,7 @@ namespace Localization
 
         private static void ShowHelp(string verb, string[] args)
         {
-            if (!string.IsNullOrEmpty(verb) && verb.ToLower() == "help" && args?.Count() > 1 && args[1] != null)
+            if (!string.IsNullOrEmpty(verb) && verb.ToLowerInvariant() == "help" && args?.Count() > 1 && args[1] != null)
             {
                 PrintHelp(args[1]);
             }
@@ -95,7 +95,7 @@ namespace Localization
             }
             else
             {
-                switch (verb.ToUpper())
+                switch (verb.ToUpperInvariant())
                 {
                     case "EXT":
                         Console.WriteLine("Extract localizable items for different cultures.");
