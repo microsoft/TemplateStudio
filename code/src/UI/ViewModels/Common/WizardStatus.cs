@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
-
+using System.Windows.Input;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Services;
