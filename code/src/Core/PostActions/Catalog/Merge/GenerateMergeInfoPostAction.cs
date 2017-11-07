@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -57,7 +58,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(Config).StartsWith(Extension))
+            if (Path.GetFileName(Config).StartsWith(Extension, StringComparison.InvariantCultureIgnoreCase))
             {
                 var extension = Path.GetExtension(Config);
                 var directory = Path.GetDirectoryName(Config);

@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public override void Extract(string source, string targetFolder)
         {
-            if (source.ToLowerInvariant().EndsWith("mstx"))
+            if (source.EndsWith("mstx", StringComparison.InvariantCultureIgnoreCase))
             {
                 base.Extract(source, targetFolder);
             }

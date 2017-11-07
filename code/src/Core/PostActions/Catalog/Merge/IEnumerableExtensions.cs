@@ -227,7 +227,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private static bool NextLineIsComment(List<string> result, int insertIndex)
         {
-            return insertIndex < result.Count - 1 && (result[insertIndex].Trim().StartsWith(CSharpComment) || result[insertIndex].Trim().StartsWith(VBComment));
+            return insertIndex < result.Count - 1 && (result[insertIndex].Trim().StartsWith(CSharpComment, StringComparison.InvariantCulture) || result[insertIndex].Trim().StartsWith(VBComment, StringComparison.InvariantCulture));
         }
 
         private static bool BlockExists(IEnumerable<string> blockBuffer, IEnumerable<string> target, int skip)

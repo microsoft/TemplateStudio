@@ -2,11 +2,13 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -143,10 +145,10 @@ namespace Localization
                     string filePath = Path.Combine(desDirectory.FullName, culture + "." + Routes.TemplateJsonFile);
                     var con = new
                     {
-                        author = metadata.GetValue("author").Value<string>(),
-                        name = metadata.GetValue("name").Value<string>(),
-                        description = metadata.GetValue("description").Value<string>(),
-                        identity = metadata.GetValue("identity").Value<string>()
+                        author = metadata.GetValue("author", StringComparison.InvariantCulture).Value<string>(),
+                        name = metadata.GetValue("name", StringComparison.InvariantCulture).Value<string>(),
+                        description = metadata.GetValue("description", StringComparison.InvariantCulture).Value<string>(),
+                        identity = metadata.GetValue("identity", StringComparison.InvariantCulture).Value<string>()
                     };
                     string content = JsonConvert.SerializeObject(con, Newtonsoft.Json.Formatting.Indented);
                     File.WriteAllText(filePath, content, Encoding.UTF8);
@@ -201,9 +203,9 @@ namespace Localization
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
             var projects = content.Select(json => new
             {
-                name = json.GetValue("name").Value<string>(),
-                displayName = json.GetValue("displayName").Value<string>(),
-                summary = json.GetValue("summary").Value<string>()
+                name = json.GetValue("name", StringComparison.InvariantCulture).Value<string>(),
+                displayName = json.GetValue("displayName", StringComparison.InvariantCulture).Value<string>(),
+                summary = json.GetValue("summary", StringComparison.InvariantCulture).Value<string>()
             });
 
             var data = JsonConvert.SerializeObject(projects, Newtonsoft.Json.Formatting.Indented);
@@ -222,7 +224,7 @@ namespace Localization
             var srcFile = GetFile(srcDirectory.FullName + ".json");
             var fileContent = File.ReadAllText(srcFile.FullName);
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
-            var projectNames = content.Select(json => json.GetValue("name").Value<string>());
+            var projectNames = content.Select(json => json.GetValue("name", StringComparison.InvariantCulture).Value<string>());
 
             foreach (var name in projectNames)
             {
