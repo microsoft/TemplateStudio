@@ -4,9 +4,8 @@
 
 using System;
 using System.IO;
-using System.Threading.Tasks;
 using System.Reflection;
-using System.Threading;
+using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
@@ -126,16 +125,25 @@ namespace Microsoft.Templates.Core.Locations
         private async Task<bool> AcquireContentAsync(bool force = false)
         {
             bool acquireContentCalled = false;
-            if (force || _content.IsExpired(CurrentContentFolder))
-            {
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
-                await Task.Run(() =>
+            try
+            {
+                if (force || _content.IsExpired(CurrentContentFolder))
                 {
-                    AcquireContent();
-                });
-                acquireContentCalled = true;
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
+
+                    await Task.Run(() =>
+                    {
+                        AcquireContent();
+                    });
+                    acquireContentCalled = true;
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
+                }
+            }
+            catch (Exception ex)
+            {
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorAcquiring, ex).FireAndForget();
             }
 
             return await Task.FromResult<bool>(acquireContentCalled);

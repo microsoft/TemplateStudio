@@ -3,8 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
@@ -13,8 +13,9 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
 {
     public class TestHealthWriter : IHealthWriter
     {
-        public List<string> Events = new List<string>();
-        public List<Exception> Exceptions = new List<Exception>();
+        public List<string> Events { get; set; } = new List<string>();
+
+        public List<Exception> Exceptions { get; set; } = new List<Exception>();
 
         public async Task WriteTraceAsync(TraceEventType eventType, string message, Exception ex = null)
         {

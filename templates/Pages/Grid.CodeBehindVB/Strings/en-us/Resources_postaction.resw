@@ -1,0 +1,13 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the GridViewPage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="GridView_Title.Text" xml:space="preserve">
+    <value>GridView</value>
+    <comment>Page title for GridView</comment>
+  </data>
+  <!--}]}-->
+</root>

@@ -5,8 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
@@ -21,6 +19,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private const string MacroStartDelete = "{--{";
         private const string MacroEndDelete = "}--}";
+
+        private const string OpeningBrace = "{";
+        private const string ClosingBrace = "}";
+
+        private const string CSharpComment = "// ";
+        private const string VBComment = "' ";
 
         public static int SafeIndexOf(this IEnumerable<string> source, string item, int skip)
         {
@@ -119,9 +123,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return result;
         }
 
-        /// <summary>
-        /// Removes anything from the target file that should be deleted.
-        /// </summary>
+        // Removes anything from the target file that should be deleted.
         public static List<string> HandleRemovals(this IEnumerable<string> source, IEnumerable<string> merge)
         {
             var mergeString = string.Join(Environment.NewLine, merge);
@@ -147,9 +149,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             return sourceString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
         }
 
-        /// <summary>
-        /// Remove any comments from the merged file that indicate something should be removed.
-        /// </summary>
+        // Remove any comments from the merged file that indicate something should be removed.
         public static List<string> RemoveRemovals(this IEnumerable<string> merge)
         {
             var mergeString = string.Join(Environment.NewLine, merge);
@@ -185,12 +185,53 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 if (insertIndex < result.Count)
                 {
+                    EnsureNoWhiteLinesNextToBraces(insertionBuffer, result, insertIndex);
+
+                    EnsureWhiteLineBeforeComment(insertionBuffer, result, insertIndex);
+
                     result.InsertRange(insertIndex, insertionBuffer);
                     return insertionBuffer.Count;
                 }
             }
 
             return 0;
+        }
+
+        private static void EnsureNoWhiteLinesNextToBraces(List<string> insertionBuffer, List<string> result, int insertIndex)
+        {
+            if (LastLineIsOpeningBrace(result, insertIndex) && insertionBuffer.First().Trim() == string.Empty)
+            {
+                insertionBuffer.RemoveAt(0);
+            }
+
+            if (NextLineIsClosingBrace(result, insertIndex) && insertionBuffer.Last().Trim() == string.Empty)
+            {
+                insertionBuffer.RemoveAt(insertionBuffer.Count - 1);
+            }
+        }
+
+        private static void EnsureWhiteLineBeforeComment(List<string> insertionBuffer, List<string> result, int insertIndex)
+        {
+            if (NextLineIsComment(result, insertIndex) && insertionBuffer.Last().Trim() != string.Empty)
+            {
+                insertionBuffer.Add(string.Empty);
+            }
+        }
+
+        private static bool LastLineIsOpeningBrace(List<string> result, int insertIndex)
+        {
+            var lastLineIndex = insertIndex - 1;
+            return insertIndex > 0 && result[lastLineIndex].Trim() == OpeningBrace;
+        }
+
+        private static bool NextLineIsClosingBrace(List<string> result, int insertIndex)
+        {
+            return insertIndex < result.Count - 1 && result[insertIndex].Trim() == ClosingBrace;
+        }
+
+        private static bool NextLineIsComment(List<string> result, int insertIndex)
+        {
+            return insertIndex < result.Count - 1 && (result[insertIndex].Trim().StartsWith(CSharpComment) || result[insertIndex].Trim().StartsWith(VBComment));
         }
 
         private static bool BlockExists(IEnumerable<string> blockBuffer, IEnumerable<string> target, int skip)

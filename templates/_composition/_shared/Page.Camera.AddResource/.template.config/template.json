@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Page.Camera|wts.Page.Camera.CodeBehind|wts.Page.Camera.Prism"
+    "wts.compositionFilter": "identity == wts.Page.Camera|wts.Page.Camera.CodeBehind|wts.Page.Camera.CaliburnMicro|wts.Page.Camera.Prism"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

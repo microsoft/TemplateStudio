@@ -1,3 +1,3 @@
-﻿Tabs across the top allow for quickly navigating between pages.
+﻿Üstteki sekmeler, sayfalar arasında hızlı gezinti olanağı sağlar.
 
-The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.
+Özet denetimi ilgili veya sıklıkla erişilen sayfalar arasında gezinti için kullanışlıdır. Kullanıcı her zaman görüntülenen metin başlıklarını seçerek özet bölmeler (sayfalar) arasında gezinebilir.

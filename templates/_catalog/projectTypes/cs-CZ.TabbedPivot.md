@@ -1,3 +1,3 @@
-﻿Tabs across the top allow for quickly navigating between pages.
+﻿Záložky podél horního okraje zajišťují rychlou navigaci mezi stránkami.
 
-The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.
+Ovládací prvek Pivot je užitečný pro navigaci mezi souvisejícími nebo často používanými stránkami. Uživatel může jeho prostřednictvím navigovat mezi podokny (stránkami) výběrem v textových záhlavích, která jsou vždy zobrazená.

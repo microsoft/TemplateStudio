@@ -11,22 +11,37 @@ namespace Microsoft.Templates.Core.Gen
     public abstract class GenShell
     {
         public abstract string GetActiveProjectName();
+
         public abstract string GetActiveProjectPath();
+
         public abstract string GetActiveProjectLanguage();
+
         protected abstract string GetSelectedItemPath();
 
         public abstract bool SetActiveConfigurationAndPlatform(string configurationName, string platformName);
+
         public abstract void ShowStatusBarMessage(string message);
+
         public abstract void AddProjectToSolution(string projectFullPath);
+
         public abstract void AddItems(params string[] itemsFullPath);
+
         public abstract void CleanSolution();
+
         public abstract void SaveSolution();
+
         public abstract string GetActiveProjectNamespace();
+
         public abstract void ShowTaskList();
+
         public abstract void ShowModal(Window dialog);
+
         public abstract void CancelWizard(bool back = true);
+
         public abstract void WriteOutput(string data);
+
         public abstract void CloseSolution();
+
         public abstract bool IsDebuggerEnabled();
 
         public abstract Guid GetVsProjectId();

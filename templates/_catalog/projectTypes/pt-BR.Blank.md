@@ -1,3 +1,3 @@
-﻿This basic project is a blank canvas upon which to build your app.
+﻿Este projeto básico é uma tela em branco na qual criar seu aplicativo.
 
-It provides no scaffolding and leaves everything up to you.
+Não fornece scaffolding, e a escolha é inteiramente sua.

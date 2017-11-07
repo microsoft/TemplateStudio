@@ -1,5 +1,5 @@
-﻿This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages.
+﻿此项目在屏幕的侧面提供了一个导航窗格（或“汉堡菜单”），用于在页面之间进行导航。
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed.
+此样式不但常见于移动应用，而且还非常适用于较大屏幕。如果空间有限，或者不需要菜单，可能会隐藏该菜单。
 
-The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen.
+菜单会显示包含图标和文本的项。菜单可以完全隐藏，仅显示图标，或显示图标和文本。用户可以选择通过点击按钮显示完整菜单。菜单还可自动适应屏幕的大小。

@@ -6,8 +6,8 @@ using System.Windows;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Views.NewProject;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -16,6 +16,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private MetadataInfo _metadataInfo;
 
         private string _displayName;
+
         public string DisplayName
         {
             get => _displayName;
@@ -23,6 +24,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private string _metadataType;
+
         public string MetadataType
         {
             get => _metadataType;
@@ -30,6 +32,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         private RelayCommand _showInfoCommand;
+
         public RelayCommand ShowInfoCommand => _showInfoCommand ?? (_showInfoCommand = new RelayCommand(() => { OnShowInfo(); }));
 
         private void OnShowInfo()

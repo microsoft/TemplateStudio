@@ -8,6 +8,7 @@ Windows Template Studio installs into your existing Windows 10 app development e
 
 * Visual Studio 2017 Update 3 or higher (any edition)
 * Windows 10 Creators Update SDK (version 10.0.15063.0 or later)
+* .Net Framework 4.7
 * Windows Template Studio extension.  You have two ways of aquiring the extension.
    * Inside Visual Studio. Select Tools→ Extensions & Updates.  Select the 'Online' node and search for Windows Template Studio then click **Download**
    * Direct link and manually install.  [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)
@@ -15,7 +16,10 @@ Windows Template Studio installs into your existing Windows 10 app development e
 ## Public Release instructions
 
 1. Install the Visual Studio Extension for Windows Template Studio by downloading the VSIX from the [Visual Studio Gallery](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio).
-1. Once installed, open Visual Studio 2017 and select File→ New Project→ C# → Windows Universal and you should see Windows Template Studio as an option.
+2. Once installed, open Visual Studio 2017 and select File→ New Project→ C# → Windows Universal and you should see Windows Template Studio as an option.
+3. To add pages and features to an existing Windows Template Studio project, select the project and choose Windows Template Studio → New page or New feature from the context menu. For more info on adding new items see [here](newitem.md).
+![Add new Page/Feature](resources/vsix/addNewItem.PNG)
+
 
 ## Nightly / Pre-release feeds for Windows Template Studio
 

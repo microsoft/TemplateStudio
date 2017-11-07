@@ -27,6 +27,7 @@ namespace Microsoft.Templates.UI
     public class NewItemGenController : GenController
     {
         private static Lazy<NewItemGenController> _instance = new Lazy<NewItemGenController>(Initialize);
+
         public static NewItemGenController Instance => _instance.Value;
 
         private static NewItemGenController Initialize()
@@ -36,12 +37,12 @@ namespace Microsoft.Templates.UI
 
         private NewItemGenController(PostActionFactory postactionFactory)
         {
-            _postactionFactory = postactionFactory;
+            PostactionFactory = postactionFactory;
         }
 
-        public UserSelection GetUserSelectionNewFeature()
+        public UserSelection GetUserSelectionNewFeature(string language)
         {
-            var newItem = new Views.NewItem.MainView(TemplateType.Feature);
+            var newItem = new Views.NewItem.MainView(TemplateType.Feature, language);
 
             try
             {
@@ -70,9 +71,9 @@ namespace Microsoft.Templates.UI
             return null;
         }
 
-        public UserSelection GetUserSelectionNewPage()
+        public UserSelection GetUserSelectionNewPage(string language)
         {
-            var newItem = new Views.NewItem.MainView(TemplateType.Page);
+            var newItem = new Views.NewItem.MainView(TemplateType.Page, language);
 
             try
             {
@@ -305,17 +306,24 @@ namespace Microsoft.Templates.UI
 
         private void ExecuteSyncGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = _postactionFactory.FindSyncGenerationPostActions(result);
+            var postActions = PostactionFactory.FindSyncGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
                 postAction.Execute();
             }
+
+            // New files aren't listed as project file modifications so any modifications should be new package references, etc.
+            if (result.ModifiedFiles.Any(f => Path.GetExtension(f).EndsWith("proj", StringComparison.InvariantCultureIgnoreCase)))
+            {
+                // Forcing a package restore so don't get warnings in the designer once addition is complete
+                GenContext.ToolBox.Shell.RestorePackages();
+            }
         }
 
         private void ExecuteOutputGenerationPostActions(TempGenerationResult result)
         {
-            var postActions = _postactionFactory.FindOutputGenerationPostActions(result);
+            var postActions = PostactionFactory.FindOutputGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {

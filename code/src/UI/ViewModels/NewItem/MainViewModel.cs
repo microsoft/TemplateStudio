@@ -11,9 +11,9 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewItem;
-using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -25,19 +25,27 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
     public class MainViewModel : BaseMainViewModel
     {
-        public static MainViewModel Current;
-        public MainView MainView;
+        private readonly string _language;
+
+        public static MainViewModel Current { get; private set; }
+
+        public MainView MainView { get; private set; }
 
         // Configuration
-        public TemplateType ConfigTemplateType;
-        public string ConfigFramework;
-        public string ConfigProjectType;
+        public TemplateType ConfigTemplateType { get; private set; }
+
+        public string ConfigFramework { get; private set; }
+
+        public string ConfigProjectType { get; private set; }
+
         public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
+
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
-        public MainViewModel()
+        public MainViewModel(string language)
             : base()
         {
+            _language = language;
             Current = this;
         }
 
@@ -213,12 +221,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection()
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _language)
             {
-                Framework = ConfigFramework,
-                ProjectType = ConfigProjectType,
                 HomeName = string.Empty
             };
+
             var template = GetActiveTemplate();
             if (template != null)
             {

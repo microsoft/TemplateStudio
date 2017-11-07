@@ -2,16 +2,16 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "This basic project is a blank canvas upon which to build your app."
+    "summary": "이 기본 프로젝트는 앱을 구축할 빈 캔버스입니다."
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages."
+    "summary": "탐색 창(또는 햄버거 메뉴)은 페이지 간 탐색을 위해 제공됩니다."
   },
   {
     "name": "TabbedPivot",
     "displayName": "Pivot and Tabs",
-    "summary": "Tabs across the top allow for quickly navigating between pages."
+    "summary": "상단의 탭은 이용하면 페이지 간에 빠르게 탐색할 수 있습니다."
   }
 ]

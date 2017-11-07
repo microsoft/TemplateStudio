@@ -12,9 +12,13 @@ namespace Microsoft.Templates.UI.Services
         where T : class
     {
         public ObservableCollection<T> Items { get; }
+
         public T ItemData { get; }
+
         public int OldIndex { get; }
+
         public int NewIndex { get; }
+
         public DragDropEffects Effects { get; }
 
         public DragAndDropEventArgs(ObservableCollection<T> items, T dataItem, int oldIndex, int newIndex, DragDropEffects effects = DragDropEffects.None)

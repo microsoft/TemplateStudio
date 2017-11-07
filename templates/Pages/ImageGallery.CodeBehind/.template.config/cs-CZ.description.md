@@ -1,1 +1,1 @@
-﻿A page displaying a image gallery and allows user to navigate between gallery and image detail.
+﻿Na této stránce se zobrazuje galerie obrázků a uživatel může navigovat mezi galerií a detaily obrázku.

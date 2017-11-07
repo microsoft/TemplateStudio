@@ -1,3 +1,3 @@
-﻿A page for displaying video. It includes the MediaPlayer and has the default Media Transport controls enabled.
+﻿Na této stránce se zobrazuje video. Stránka obsahuje MediaPlayer a má povolené výchozí ovládací prvky Přenos médií.
 
-More details on using the Media Player can be found in the [official docs](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback).
+Podrobnější informace o použití Media Playeru najdete v [oficiální dokumentaci](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback).

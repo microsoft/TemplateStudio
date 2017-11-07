@@ -2,16 +2,16 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "This basic project is a blank canvas upon which to build your app."
+    "summary": "Tento základní projekt obsahuje prázdné plátno, na kterém můžete vytvořit aplikaci."
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages."
+    "summary": "Zahrnuje také navigační podokno (nebo nabídku typu „hamburger“) pro navigaci mezi stránkami."
   },
   {
     "name": "TabbedPivot",
     "displayName": "Pivot and Tabs",
-    "summary": "Tabs across the top allow for quickly navigating between pages."
+    "summary": "Záložky podél horního okraje zajišťují rychlou navigaci mezi stránkami."
   }
 ]

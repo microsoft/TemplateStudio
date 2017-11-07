@@ -5,12 +5,13 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-
-using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewProject;
 
 using Xunit;
-using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.UI.Test
 {
@@ -19,17 +20,18 @@ namespace Microsoft.UI.Test
     public class NewProjectTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;
+
         public NewProjectTest(TemplatesFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixture("C#");
+            _fixture.InitializeFixture(ProgrammingLanguages.CSharp);
         }
 
         [Fact]
         public async Task ProjectInitDefaultAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel();
+            var viewModel = new MainViewModel(GenContext.InitializedLanguage);
             await viewModel.ProjectSetup.InitializeAsync();
             await viewModel.ProjectTemplates.InitializeAsync();
             Assert.True(viewModel.ProjectTemplates.SavedPages.Count == 1);
@@ -41,7 +43,7 @@ namespace Microsoft.UI.Test
         public async Task ProjectInitUpdatedConfigurationAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel();
+            var viewModel = new MainViewModel(GenContext.InitializedLanguage);
             await viewModel.ProjectSetup.InitializeAsync();
 
             // Update project to Blank and framework to MVVM Light
@@ -60,7 +62,7 @@ namespace Microsoft.UI.Test
         {
             // Default configuration: SplitView, CodeBehind, Blank page
             var testFrameworkName = "MVVMBasic";
-            var viewModel = new MainViewModel();
+            var viewModel = new MainViewModel(GenContext.InitializedLanguage);
             await viewModel.ProjectSetup.InitializeAsync();
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             await viewModel.ProjectTemplates.InitializeAsync();
@@ -78,7 +80,7 @@ namespace Microsoft.UI.Test
         {
             // Default configuration: SplitView, CodeBehind, Blank page
             var testFrameworkName = "MVVMBasic";
-            var viewModel = new MainViewModel();
+            var viewModel = new MainViewModel(GenContext.InitializedLanguage);
             await viewModel.ProjectSetup.InitializeAsync();
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             await viewModel.ProjectTemplates.InitializeAsync();
@@ -93,7 +95,7 @@ namespace Microsoft.UI.Test
         {
             // Default configuration: SplitView, CodeBehind, Blank page
             var testFrameworkName = "MVVMBasic";
-            var viewModel = new MainViewModel();
+            var viewModel = new MainViewModel(GenContext.InitializedLanguage);
             await viewModel.ProjectSetup.InitializeAsync();
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             await viewModel.ProjectTemplates.InitializeAsync();
@@ -111,7 +113,7 @@ namespace Microsoft.UI.Test
         {
             // Default configuration: SplitView, CodeBehind, Blank page
             var testFrameworkName = "MVVMBasic";
-            var viewModel = new MainViewModel();
+            var viewModel = new MainViewModel(GenContext.InitializedLanguage);
             await viewModel.ProjectSetup.InitializeAsync();
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             await viewModel.ProjectTemplates.InitializeAsync();
@@ -138,7 +140,7 @@ namespace Microsoft.UI.Test
         {
             // Configuration: SplitView, MVVM Basic, Blank page
             var testFrameworkName = "MVVMBasic";
-            var viewModel = new MainViewModel();
+            var viewModel = new MainViewModel(GenContext.InitializedLanguage);
             await viewModel.ProjectSetup.InitializeAsync();
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             await viewModel.ProjectTemplates.InitializeAsync();
@@ -175,7 +177,7 @@ namespace Microsoft.UI.Test
         {
             // Default configuration: SplitView, Code Behind, Blank page - 0 Licenses
             var testFrameworkName = "MVVMLight";
-            var viewModel = new MainViewModel();
+            var viewModel = new MainViewModel(GenContext.InitializedLanguage);
             await viewModel.ProjectSetup.InitializeAsync();
             Assert.True(viewModel.Licenses.Count() == 1); // Microsoft.Toolkit.Uwp (CodeBehind)
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);

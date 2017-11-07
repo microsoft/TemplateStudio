@@ -21,14 +21,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override void Execute()
         {
-            foreach (var file in _config.ModifiedFiles)
+            foreach (var file in Config.ModifiedFiles)
             {
                 var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
                 var destFilePath = Path.Combine(GenContext.Current.ProjectPath, file);
 
                 var destDirectory = Path.GetDirectoryName(destFilePath);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
-                if (Path.GetExtension(file).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
+
+                if (Path.GetExtension(file).EndsWith("proj", StringComparison.OrdinalIgnoreCase))
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                     GenContext.ToolBox.Shell.SaveSolution();
@@ -36,7 +37,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 }
             }
 
-            foreach (var file in _config.NewFiles)
+            foreach (var file in Config.NewFiles)
             {
                 var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
                 var destFilePath = Path.Combine(GenContext.Current.ProjectPath, file);

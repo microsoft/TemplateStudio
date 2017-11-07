@@ -33,7 +33,7 @@
       <Menu guid="guidRelayCommandPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
         <Strings>
           <CommandName>Windows Template Studio (local)</CommandName>
-          <ButtonText>Windows Template Studio (local)</ButtonText>
+          <ButtonText>Windows Template Studio (로컬)</ButtonText>
           <MenuText>Windows Template Studio (local)</MenuText>
           <ToolTipText>Windows Template Studio (local)</ToolTipText>
         </Strings>
@@ -47,7 +47,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpPage1" />
         <Strings>
-          <ButtonText>New page...</ButtonText>
+          <ButtonText>새 페이지...</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
@@ -56,7 +56,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpFeature1" />
         <Strings>
-          <ButtonText>New feature...</ButtonText>
+          <ButtonText>새 기능...</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidRelayCommandPackageCmdSet" id="OpenTempFolder" priority="0x0300" type="Button">
@@ -65,7 +65,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <Icon guid="guidImages" id="bmpOpenTemp" />
         <Strings>
-          <ButtonText>Open generation folder</ButtonText>
+          <ButtonText>생성 폴더 열기</ButtonText>
         </Strings>
       </Button>
     </Buttons>

@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Azure Notifications",
+    "description": "Inscrivez-vous pour recevoir et gérer des messages de la part de Notification Hubs d\u0027Azure.",
+    "identity": "wts.Feat.HubNotifications.VB"
+}

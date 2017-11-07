@@ -12,23 +12,27 @@ using System.Windows.Controls;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.NewProject;
-using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
+        private readonly string _language;
         private bool _needRestartConfiguration = false;
-        public static MainViewModel Current;
-        public MainView MainView;
+
+        public static MainViewModel Current { get; private set; }
+
+        public MainView MainView { get; private set; }
 
         public ProjectSetupViewModel ProjectSetup { get; } = new ProjectSetupViewModel();
 
         public ProjectTemplatesViewModel ProjectTemplates { get; } = new ProjectTemplatesViewModel();
 
         private bool _hasLicenses;
+
         public bool HasLicenses
         {
             get => _hasLicenses;
@@ -37,9 +41,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
-        public MainViewModel()
+        public MainViewModel(string language)
             : base()
         {
+            _language = language;
             Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
             Current = this;
         }
@@ -60,7 +65,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         internal void RebuildLicenses()
         {
-            LicensesService.RebuildLicenses(Licenses);
+            LicensesService.RebuildLicenses(Licenses, _language);
             HasLicenses = Licenses.Any();
         }
 
@@ -178,7 +183,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CurrentStep == 2)
             {
-                MainView.Result = UserSelectionService.CreateUserSelection();
+                MainView.Result = UserSelectionService.CreateUserSelection(_language);
                 base.OnFinish(parameter);
             }
         }

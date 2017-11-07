@@ -14,9 +14,11 @@ namespace Microsoft.Templates.Core.Locations
     public class TemplatesContent
     {
         private const string TemplatesFolderName = "Templates";
+
         private string _defaultContentFolder;
 
         public string TemplatesFolder { get; private set; }
+
         public Version WizardVersion { get; private set; }
 
         public string LatestContentFolder => GetLatestContentFolder(true);

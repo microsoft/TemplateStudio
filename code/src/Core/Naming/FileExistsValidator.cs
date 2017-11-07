@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core
 
         public override ValidationResult Validate(string suggestedName)
         {
-            var existing = Directory.EnumerateFiles(_config)
+            var existing = Directory.EnumerateFiles(Config)
                                             .Select(f => Path.GetFileNameWithoutExtension(f))
                                             .ToList();
 

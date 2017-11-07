@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.UI.ViewModels.NewProject;
-using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -19,9 +19,11 @@ namespace Microsoft.Templates.UI.Services
         private static Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> _getSavedPages;
         private static Func<ObservableCollection<SavedTemplateViewModel>> _getSavedFeatures;
 
-        public static MetadataInfoViewModel SelectedProjectType;
-        public static MetadataInfoViewModel SelectedFramework;
-        public static string HomeName;
+        public static MetadataInfoViewModel SelectedProjectType { get; set; }
+
+        public static MetadataInfoViewModel SelectedFramework { get; set; }
+
+        public static string HomeName { get; set; }
 
         public static void Initialize(Func<ObservableCollection<ObservableCollection<SavedTemplateViewModel>>> getSavedPages, Func<ObservableCollection<SavedTemplateViewModel>> getSavedFeatures)
         {
@@ -167,12 +169,10 @@ namespace Microsoft.Templates.UI.Services
             return dependencyItem;
         }
 
-        public static UserSelection CreateUserSelection()
+        public static UserSelection CreateUserSelection(string language)
         {
-            var userSelection = new UserSelection()
+            var userSelection = new UserSelection(SelectedProjectType?.Name, SelectedFramework?.Name, language)
             {
-                ProjectType = SelectedProjectType?.Name,
-                Framework = SelectedFramework?.Name,
                 HomeName = HomeName
             };
             _getSavedPages().ToList().ForEach(spg => userSelection.Pages.AddRange(spg.Select(sp => sp.UserSelection)));

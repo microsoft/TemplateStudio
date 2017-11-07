@@ -1,3 +1,3 @@
-﻿Tabs across the top allow for quickly navigating between pages.
+﻿Registerkarten oben auf der Seite ermöglichen die schnelle Navigation zwischen Seiten.
 
-The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.
+Das Pivotsteuerelement ist für die Navigation zwischen verwandten oder häufig aufgerufenen Seiten nützlich. Der Benutzer kann zwischen Pivotbereichen (Seiten) navigieren, indem er eine der Textkopfzeilen auswählt, die bereits angezeigt werden.

@@ -1,0 +1,37 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": [ "Universal" ],
+  "name": "Share Source",
+  "groupIdentity": "wts.Feat.ShareSource",
+  "identity": "wts.Feat.ShareSource",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "3",
+    "wts.group": "AppToApp",
+    "wts.multipleInstance": "false",
+    "wts.defaultInstance": "ShareSource",
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "ShareSource",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\ShareSource.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

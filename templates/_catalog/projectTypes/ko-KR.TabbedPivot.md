@@ -1,3 +1,3 @@
-﻿Tabs across the top allow for quickly navigating between pages.
+﻿상단의 탭은 이용하면 페이지 간에 빠르게 탐색할 수 있습니다.
 
-The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.
+피벗 컨트롤은 다른 관련 페이지와 자주 이용하는 페이지 탐색에 유용합니다. 사용자는 텍스트 헤더에서 선택하여 피벗 창(페이지) 간에 이동할 수 있습니다. 텍스트 헤더는 항상 표시됩니다.

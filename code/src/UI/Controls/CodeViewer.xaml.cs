@@ -5,13 +5,14 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Web;
 using System.Windows;
 using System.Windows.Controls;
-using System.Web;
 
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewItem;
+
 namespace Microsoft.Templates.UI.Controls
 {
     /// <summary>

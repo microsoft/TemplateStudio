@@ -51,16 +51,17 @@ namespace Param_RootNamespace.Services
 
         public bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null)
         {
+            Type page;
             lock (_pages)
             {
-                if (!_pages.ContainsKey(pageKey))
+                if (!_pages.TryGetValue(pageKey, out page))
                 {
                     throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey));
                 }
-
-                var navigationResult = Frame.Navigate(_pages[pageKey], parameter, infoOverride);
-                return navigationResult;
             }
+
+            var navigationResult = Frame.Navigate(page, parameter, infoOverride);
+            return navigationResult;
         }
 
         public void Configure(string key, Type pageType)

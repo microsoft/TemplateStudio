@@ -3,9 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
-
+using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Services;
-
 using Xunit;
 
 namespace Microsoft.UI.Test
@@ -15,10 +14,11 @@ namespace Microsoft.UI.Test
     public class ValidationServiceTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;
+
         public ValidationServiceTest(TemplatesFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixture("C#");
+            _fixture.InitializeFixture(ProgrammingLanguages.CSharp);
         }
 
         [Fact]

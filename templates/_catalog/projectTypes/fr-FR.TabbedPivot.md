@@ -1,3 +1,3 @@
-﻿Tabs across the top allow for quickly navigating between pages.
+﻿Les onglets figurant sur la partie supérieure permettent de naviguer rapidement entre les pages.
 
-The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.
+La commande Pivot permet de naviguer entre les pages associées ou fréquemment visitées. L'utilisateur peut naviguer entre les volets pivot (pages) en sélectionnant les en-têtes textuels affichés en permanence.

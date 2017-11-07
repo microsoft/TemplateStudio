@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         public override void Execute()
         {
             var chrono = Stopwatch.StartNew();
-            foreach (var output in _config)
+            foreach (var output in Config)
             {
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
