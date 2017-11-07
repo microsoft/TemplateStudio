@@ -14,7 +14,7 @@
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
     "wts.displayOrder": "2",
-    "wts.group": "AppToApp",
+    "wts.group": "ApplicationLaunching",
     "wts.defaultInstance": "WebToAppLink",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
