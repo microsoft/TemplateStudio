@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Web to app link",
+  "name": "Web to App link",
   "groupIdentity": "wts.Feat.WebToAppLink",
   "identity": "wts.Feat.WebToAppLink",
   "description": "Adds the ability to open your app from a link in a website.",
@@ -25,9 +25,6 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Activation\\WebToAppLinkActivationHandler.cs"
-    },
-    {
-      "path": ".\\Assets\\Logo.png"
     }
   ],
   "symbols": {

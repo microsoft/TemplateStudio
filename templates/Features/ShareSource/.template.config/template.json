@@ -17,11 +17,11 @@
     "wts.defaultInstance": "ShareSource",
     "wts.rightClickEnabled":"true"
   },
-  "sourceName": "ShareSource",
+  "sourceName": "ShareSourceFeature",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ShareSource.cs"
+      "path": ".\\Services\\ShareSourceFeatureService.cs"
     }
   ],
   "symbols": {
