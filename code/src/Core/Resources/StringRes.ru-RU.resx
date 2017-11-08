@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Строка {0} не найдена в файле "{1}".</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>Нет целевого объекта объединения для файла "{0}".</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Не удалось определить имя. Слишком много итераций</value>
   </data>

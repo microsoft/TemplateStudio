@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>La línea {0} no se encontró en el archivo '{1}'</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>No hay destino de combinación para el archivo '{0}'</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>No se puede inferir un nombre. Demasiadas iteraciones</value>
   </data>
