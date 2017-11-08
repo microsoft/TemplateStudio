@@ -20,10 +20,10 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         public UserSelection Result { get; set; }
 
-        public MainView()
+        public MainView(string language)
         {
             Current = this;
-            ViewModel = new MainViewModel();
+            ViewModel = new MainViewModel(language);
             ViewModel.SetView(this);
             DataContext = ViewModel;
 
@@ -49,8 +49,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private void OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var element = e.Source as FrameworkElement;
-            ViewModel.WizardStatus.TryHideOverlayBox(element);
+            ViewModel.WizardStatus.TryHideOverlayBox(e);
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)

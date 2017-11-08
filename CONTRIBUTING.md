@@ -6,7 +6,7 @@ A developer should be able to quickly and easily add features, pages, and have a
 
 That's why many of the guidelines of this document are obvious and serve only one purpose: **Simplicity.**
 
-Also remeber that the Pull Requests must be done aganist the **[dev branch](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev)**.
+Also remember that the Pull Requests must be done aganist the **[dev branch](https://github.com/Microsoft/WindowsTemplateStudio/tree/dev)**.
 
 ## Before you begin
 
@@ -28,6 +28,9 @@ Every contribution has to come with:
 * If you've changed the UI: 
   - Be sure you are including screenshots to show the changes
   - Be sure you have reviewed the [accesibility checklist](docs/accessibility.md)
+  
+* If you've included a new template: 
+  - Be sure you reviewed the [Template Verification Checklist](https://github.com/Microsoft/WindowsTemplateStudio/wiki/Template-Verification-Checklist)
 
 * You tested your code with two most recent Windows 10 SDKs. (Build 14393 and 15063)
 * PR has to target dev branch

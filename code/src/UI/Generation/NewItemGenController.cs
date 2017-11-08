@@ -40,9 +40,9 @@ namespace Microsoft.Templates.UI
             PostactionFactory = postactionFactory;
         }
 
-        public UserSelection GetUserSelectionNewFeature()
+        public UserSelection GetUserSelectionNewFeature(string language)
         {
-            var newItem = new Views.NewItem.MainView(TemplateType.Feature);
+            var newItem = new Views.NewItem.MainView(TemplateType.Feature, language);
 
             try
             {
@@ -71,9 +71,9 @@ namespace Microsoft.Templates.UI
             return null;
         }
 
-        public UserSelection GetUserSelectionNewPage()
+        public UserSelection GetUserSelectionNewPage(string language)
         {
-            var newItem = new Views.NewItem.MainView(TemplateType.Page);
+            var newItem = new Views.NewItem.MainView(TemplateType.Page, language);
 
             try
             {
@@ -251,6 +251,8 @@ namespace Microsoft.Templates.UI
         {
             GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
+            GenContext.Current.ProjectItems.Clear();
+            GenContext.Current.FilesToOpen.Clear();
 
             var directory = GenContext.Current.OutputPath;
             try
@@ -311,6 +313,13 @@ namespace Microsoft.Templates.UI
             foreach (var postAction in postActions)
             {
                 postAction.Execute();
+            }
+
+            // New files aren't listed as project file modifications so any modifications should be new package references, etc.
+            if (result.ModifiedFiles.Any(f => Path.GetExtension(f).EndsWith("proj", StringComparison.OrdinalIgnoreCase)))
+            {
+                // Forcing a package restore so don't get warnings in the designer once addition is complete
+                GenContext.ToolBox.Shell.RestorePackages();
             }
         }
 

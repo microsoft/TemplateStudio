@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,6 +26,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
     public class MainViewModel : BaseMainViewModel
     {
+        private readonly string _language;
+
         public static MainViewModel Current { get; private set; }
 
         public MainView MainView { get; private set; }
@@ -40,9 +43,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
-        public MainViewModel()
+        public MainViewModel(string language)
             : base()
         {
+            _language = language;
             Current = this;
         }
 
@@ -84,7 +88,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             ConfigProjectType = configInfo.ProjectType;
         }
 
-        public void SetNewItemSetupTitle() => WizardStatus.WizardTitle = string.Format(StringRes.NewItemTitle_SF, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower());
+        public void SetNewItemSetupTitle()
+        {
+            if (ConfigTemplateType == TemplateType.Page)
+            {
+                WizardStatus.WizardTitle = StringRes.NewItemTitlePage;
+            }
+            else if (ConfigTemplateType == TemplateType.Feature)
+            {
+                WizardStatus.WizardTitle = StringRes.NewItemTitleFeature;
+            }
+        }
 
         private string GetLocalizedTemplateTypeName(TemplateType templateType)
         {
@@ -106,11 +120,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var template = GetActiveTemplate();
             if (template.IsItemNameEditable)
             {
-                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, NewItemSetup.ItemName, template.TemplateType.ToString().ToLower());
+                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, NewItemSetup.ItemName, template.TemplateType.ToString().ToLower(CultureInfo.CurrentCulture));
             }
             else
             {
-                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower());
+                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower(CultureInfo.CurrentCulture));
             }
         }
 
@@ -218,12 +232,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection()
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _language)
             {
-                Framework = ConfigFramework,
-                ProjectType = ConfigProjectType,
                 HomeName = string.Empty
             };
+
             var template = GetActiveTemplate();
             if (template != null)
             {

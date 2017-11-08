@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Microsoft.VisualStudio.Threading;
 using Microsoft.TemplateEngine.Abstractions;
@@ -28,6 +26,16 @@ namespace Microsoft.Templates.Test
         private async Task SetUpFixtureForTestingAsync(string language)
         {
             await _fixture.InitializeFixtureAsync(language, this);
+        }
+
+        protected static string ShortLanguageName(string language)
+        {
+            return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
+        }
+
+        protected static string GetProjectExtension(string language)
+        {
+            return language == ProgrammingLanguages.CSharp ? "csproj" : "vbproj";
         }
 
         protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
@@ -98,7 +106,7 @@ namespace Microsoft.Templates.Test
 
             if (!emptyProject)
             {
-                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework), GenerationFixture.GetDefaultName);
+                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework), BaseGenAndBuildFixture.GetDefaultName);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
@@ -147,16 +155,13 @@ namespace Microsoft.Templates.Test
             {
                 OutputPath = GenContext.GetTempGenerationPath(projectName);
 
-                var newUserSelection = new UserSelection
+                var newUserSelection = new UserSelection(projectType, framework, language)
                 {
-                    ProjectType = projectType,
-                    Framework = framework,
                     HomeName = string.Empty,
-                    Language = language,
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge
                 };
 
-                _fixture.AddItem(newUserSelection, item, GenerationFixture.GetDefaultName);
+                _fixture.AddItem(newUserSelection, item, BaseGenAndBuildFixture.GetDefaultName);
 
                 await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
 
@@ -182,7 +187,7 @@ namespace Microsoft.Templates.Test
 
             finalName = Naming.Infer(finalName, validators);
 
-            var projectName = $"{projectType}{framework}{finalName}";
+            var projectName = $"{projectType}{finalName}{ShortLanguageName(language)}";
 
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
@@ -190,7 +195,7 @@ namespace Microsoft.Templates.Test
 
             var userSelection = _fixture.SetupProject(projectType, framework, language);
 
-            _fixture.AddItem(userSelection, itemTemplate, GenerationFixture.GetDefaultName);
+            _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
@@ -219,6 +224,38 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
+        protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities)
+        {
+            await SetUpFixtureForTestingAsync(language);
+
+            var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
+
+            ProjectName = $"{projectType}{framework}Compare{language.Replace("#", "S")}";
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
+            OutputPath = ProjectPath;
+
+            var userSelection = _fixture.SetupProject(projectType, framework, language);
+
+            foreach (var identity in genIdentities)
+            {
+                var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity.Contains(identity)
+                                                                         && t.GetFrameworkList().Contains(framework));
+                _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
+
+                // Add multiple pages if supported to check these are handled the same
+                if (itemTemplate.GetMultipleInstance())
+                {
+                    _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
+                }
+            }
+
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
+
+            var resultPath = Path.Combine(_fixture.TestProjectsPath, ProjectName);
+
+            return (resultPath, ProjectName);
+        }
+
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGenerationAsync(string framework)
         {
             JoinableTaskContext context = new JoinableTaskContext();
@@ -228,7 +265,68 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
+        private const string NavigationPanel = "SplitView";
+        private const string Blank = "Blank";
+        private const string TabsAndPivot = "TabbedPivot";
+        private const string MvvmBasic = "MVVMBasic";
+        private const string MvvmLight = "MVVMLight";
+        private const string CodeBehind = "CodeBehind";
+
+        // This returns a list of project types and frameworks supported by BOTH C# and VB
+        public static IEnumerable<object[]> GetMultiLanguageProjectsAndFrameworks()
+        {
+            yield return new object[] { NavigationPanel, CodeBehind };
+            yield return new object[] { NavigationPanel, MvvmBasic };
+            yield return new object[] { NavigationPanel, MvvmLight };
+            yield return new object[] { Blank, CodeBehind };
+            yield return new object[] { Blank, MvvmBasic };
+            yield return new object[] { Blank, MvvmLight };
+            yield return new object[] { TabsAndPivot, CodeBehind };
+            yield return new object[] { TabsAndPivot, MvvmBasic };
+            yield return new object[] { TabsAndPivot, MvvmLight };
+        }
+
+        // Gets a list of partial identities for page and feature templates supported by C# and VB
+#pragma warning disable RECS0154 // Parameter is never used - projectType can be used when all options aren't supported on all platforms
+        protected static IEnumerable<string> GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(string projectType, string framework)
+#pragma warning restore RECS0154 // Parameter is never used
+        {
+            if (framework == CodeBehind)
+            {
+                return new[]
+                {
+                    "wts.Page.Blank.CodeBehind", "wts.Page.Settings.CodeBehind", "wts.Page.Chart.CodeBehind",
+                    "wts.Page.Grid.CodeBehind", "wts.Page.WebView.CodeBehind", "wts.Page.MediaPlayer.CodeBehind",
+                    "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind",
+                    "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
+                    "wts.Feat.UriScheme", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
+                    "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
+                    "wts.Feat.StoreNotifications"
+                };
+            }
+            else
+            {
+                return new[]
+                {
+                    "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
+                    "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
+                    "wts.Page.TabbedPivot", "wts.Page.Map",
+                    "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
+                    "wts.Feat.UriScheme", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
+                    "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
+                    "wts.Feat.StoreNotifications"
+                };
+            }
+        }
+
+        // Need overload with different number of params to work with XUnit.MemeberData
         public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework)
+        {
+            return GetProjectTemplatesForBuildAsync(framework, string.Empty);
+        }
+
+        // Set a single programming language to stop the fixture using all languages available to it
+        public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework, string programmingLanguage)
         {
             JoinableTaskContext context = new JoinableTaskContext();
             JoinableTaskCollection tasks = context.CreateCollection();
@@ -238,15 +336,15 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case "CodeBehind":
-                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetProjectTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
                 case "MVVMBasic":
-                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetProjectTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
                 case "MVVMLight":
-                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
                 case "CaliburnMicro":

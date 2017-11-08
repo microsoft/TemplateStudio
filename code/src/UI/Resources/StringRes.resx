@@ -289,9 +289,9 @@
     <value>User Interaction</value>
     <comment>Group header for user interaction templates</comment>
   </data>
-  <data name="TemplateGroup_AppToApp" xml:space="preserve">
-    <value>App to App</value>
-    <comment>Group header for App to App templates</comment>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Application Launching</value>
+    <comment>Group header for Application Launching templates</comment>
   </data>
   <data name="TemplatesVersion" xml:space="preserve">
     <value>Templates:</value>
@@ -460,8 +460,12 @@
     <value>Close</value>
     <comment>New project wizard summary template open menu</comment>
   </data>
-  <data name="NewItemTitle_SF" xml:space="preserve">
-    <value>Add new {0}</value>
+  <data name="NewItemTitlePage" xml:space="preserve">
+    <value>New page</value>
+    <comment>New item wizard title string format</comment>
+  </data>
+  <data name="NewItemTitleFeature" xml:space="preserve">
+    <value>New feature</value>
     <comment>New item wizard title string format</comment>
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">
@@ -667,5 +671,9 @@
   </data>
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>We are not able to introduce the styles in the resource dictionary.</value>
+  </data>
+  <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
+    <value>Connected Experiences</value>
+    <comment>Group header for Connected Experiences templates</comment>
   </data>
 </root>

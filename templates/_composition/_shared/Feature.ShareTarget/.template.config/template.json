@@ -1,30 +1,24 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.Feature.ShareTarget",
+  "name": "Feature.ShareTarget",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic|MVVMLight|CaliburnMicro & identity == wts.Feat.ShareTarget|wts.Feat.ShareTarget.CaliburnMicro"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro & identity == wts.Feat.ShareTarget|wts.Feat.ShareTarget.CodeBehind"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Activation\\ShareTargetActivationHandler.cs"
+      "path": ".\\Activation\\wts.ItemNameActivationHandler.cs"
     },
     {
-      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.cs"
-    },
-    {
-      "path": ".\\Models\\SharedContentModel.cs"
-    },
-    {
-      "path": ".\\Helpers\\ShareOperationExtensions.cs"
+    "path": ".\\Helpers\\ShareOperationExtensions.cs"
     }
   ],
   "symbols": {

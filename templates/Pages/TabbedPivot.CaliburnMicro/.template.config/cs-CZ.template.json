@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "name": "Tabbed",
-  "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
+  "description": "Stránka s kartami se používá pro navigaci mezi často používanými kategoriemi s odlišným obsahem.",
   "identity": "wts.Page.TabbedPivot.CaliburnMicro"
 }

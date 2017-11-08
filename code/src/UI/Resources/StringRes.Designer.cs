@@ -709,11 +709,20 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new {0}.
+        ///   Looks up a localized string similar to New feature.
         /// </summary>
-        public static string NewItemTitle_SF {
+        public static string NewItemTitleFeature {
             get {
-                return ResourceManager.GetString("NewItemTitle_SF", resourceCulture);
+                return ResourceManager.GetString("NewItemTitleFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New page.
+        /// </summary>
+        public static string NewItemTitlePage {
+            get {
+                return ResourceManager.GetString("NewItemTitlePage", resourceCulture);
             }
         }
         
@@ -1051,6 +1060,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application Launching.
+        /// </summary>
+        public static string TemplateGroup_ApplicationLaunching {
+            get {
+                return ResourceManager.GetString("TemplateGroup_ApplicationLaunching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application Lifecycle.
         /// </summary>
         public static string TemplateGroup_ApplicationLifecycle {
@@ -1060,20 +1078,20 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to App to App.
-        /// </summary>
-        public static string TemplateGroup_AppToApp {
-            get {
-                return ResourceManager.GetString("TemplateGroup_AppToApp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Background Work.
         /// </summary>
         public static string TemplateGroup_BackgroundWork {
             get {
                 return ResourceManager.GetString("TemplateGroup_BackgroundWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connected Experiences.
+        /// </summary>
+        public static string TemplateGroup_ConnectedExperiences {
+            get {
+                return ResourceManager.GetString("TemplateGroup_ConnectedExperiences", resourceCulture);
             }
         }
         

@@ -7,8 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.PostActions.Catalog;
+using Microsoft.Templates.Core.Composition;
 using Newtonsoft.Json;
 
 namespace TemplateValidator
@@ -45,6 +44,7 @@ namespace TemplateValidator
                 var allIdentities = new Dictionary<string, string>();   // identity, filepath
                 var allDependencies = new Dictionary<string, string>(); // filepath, dependency
                 var allFileHashes = new Dictionary<string, string>();   // filehash, filepath
+                var allCompFilters = new Dictionary<string, string>();  // filepath, filter
 
                 foreach (var templateFilePath in allTemplateFilePaths)
                 {
@@ -62,12 +62,41 @@ namespace TemplateValidator
                         {
                             allIdentities.Add(template.Identity, templateFilePath);
                         }
+
+                        // Check that localized files have the same identity
+                        foreach (var localizedFile in new DirectoryInfo(Path.GetDirectoryName(templateFilePath)).EnumerateFiles("*.template.json"))
+                        {
+                            var localizedContents = File.ReadAllText(localizedFile.FullName);
+                            var localizedTemplate = JsonConvert.DeserializeObject<ValidationTemplateInfo>(localizedContents);
+
+                            if (template.Identity != localizedTemplate.Identity)
+                            {
+                                results.Add($"'{localizedFile.FullName}' does not have the correct identity.");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (allIdentities.ContainsKey(template.Name))
+                        {
+                            results.Add($"Duplicate Identity detected in: '{templateFilePath}' & '{allIdentities[template.Name]}'");
+                        }
+                        else
+                        {
+                            allIdentities.Add(template.Name, templateFilePath);
+                        }
                     }
 
                     // Get list of dependencies while the file is open. These are all checked later
                     if (template.TemplateTags.ContainsKey("wts.dependencies"))
                     {
                         allDependencies.Add(templateFilePath, template.TemplateTags["wts.dependencies"]);
+                    }
+
+                    // Get list of filters while the file is open. These are all checked later
+                    if (template.TemplateTags.ContainsKey("wts.compositionFilter"))
+                    {
+                        allCompFilters.Add(templateFilePath, template.TemplateTags["wts.compositionFilter"]);
                     }
 
                     var templateRoot = templateFilePath.Replace("\\.template.config\\template.json", string.Empty);
@@ -118,6 +147,25 @@ namespace TemplateValidator
                         if (!allIdentities.ContainsKey(dependency))
                         {
                             results.Add($"'{dependencies.Key}' contains dependency '{dependency}' that does not exist.");
+                        }
+                    }
+                }
+
+                foreach (var compFilter in allCompFilters)
+                {
+                    var query = CompositionQuery.Parse(compFilter.Value);
+
+                    foreach (var queryItem in query.Items)
+                    {
+                        if (queryItem.Field == "identity")
+                        {
+                            foreach (var templateIdentity in queryItem.Value.Split('|'))
+                            {
+                                if (!allIdentities.Keys.Contains(templateIdentity))
+                                {
+                                    results.Add($"'{compFilter.Key}' contains composition filter identity '{templateIdentity}' that does not exist.");
+                                }
+                            }
                         }
                     }
                 }

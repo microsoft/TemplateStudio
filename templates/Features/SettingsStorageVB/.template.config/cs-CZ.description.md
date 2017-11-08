@@ -1,11 +1,11 @@
-﻿Setting storage is a class to simplify storing your application data.  It handles loading, saving, serializing your data and easy access to your application's data.
+﻿Uložiště nastavení je třída, která zjednodušuje ukládání dat vaší aplikace.  Zvládne načítání, ukládání a serializaci dat a poskytuje snadný přístup k datům vaší aplikace.
 
-These are the main types of app data:
+Existují hlavní typy dat aplikace:
 
-* Local: stored on the device, backed up in the cloud, and persists across updates
-* LocalCache: persistent data that exists on the current device, not backed up, and persists across updates
-* SharedLocal: persistent across all app users
-* Roaming: exists on all devices where the user has installed the app
-* Temporary: can be deleted by the system at any time
+* Místní: Data jsou uložená v zařízení, zálohovaná v cloudu a zachovávají se při aktualizacích.
+* LocalCache: Jedná se o trvalá data, která se vyskytují na aktuálním zařízení, nezálohovaná a zachovávaná při aktualizacích.
+* SharedLocal: Data jsou trvalá pro všechny uživatele aplikace.
+* Roaming: Data se vyskytují na všech zařízeních, na která uživatel nainstaloval příslušnou aplikaci.
+* Dočasná: Systém je může kdykoli odstranit.
 
-To find out more about storage, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).
+Další informace o úložišti najdete na webu [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).

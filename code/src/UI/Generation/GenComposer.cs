@@ -150,8 +150,8 @@ namespace Microsoft.Templates.UI
             var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
 
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
-            genProject.Parameters.Add(GenParams.WizardVersion, GenContext.ToolBox.WizardVersion);
-            genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.TemplatesVersion);
+            genProject.Parameters.Add(GenParams.WizardVersion, string.Concat("v", GenContext.ToolBox.WizardVersion));
+            genProject.Parameters.Add(GenParams.TemplatesVersion, string.Concat("v", GenContext.ToolBox.TemplatesVersion));
             genProject.Parameters.Add(GenParams.ProjectType, userSelection.ProjectType);
             genProject.Parameters.Add(GenParams.Framework, userSelection.Framework);
         }
@@ -227,7 +227,8 @@ namespace Microsoft.Templates.UI
 
                 foreach (var compositionItem in compositionCatalog)
                 {
-                    if (compositionItem.query.Match(genItem.Template, context))
+                    if (compositionItem.template.GetLanguage() == userSelection.Language
+                     && compositionItem.query.Match(genItem.Template, context))
                     {
                         AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
                     }

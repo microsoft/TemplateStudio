@@ -31,7 +31,7 @@ namespace Localization
                 throw new DirectoryNotFoundException($"Source directory \"{sourceDirPath}\" not found.");
             }
 
-            if (_sourceDir.Name.ToLower() != SourceDirNamePattern.ToLower())
+            if (_sourceDir.Name.ToLowerInvariant() != SourceDirNamePattern.ToLowerInvariant())
             {
                 throw new Exception($"Source directory \"{_sourceDir.Name}\" is not valid. Directory name should be \"{SourceDirNamePattern}\".");
             }

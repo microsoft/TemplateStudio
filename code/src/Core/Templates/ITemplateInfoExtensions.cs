@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Core
         public static TemplateType GetTemplateType(this ITemplateInfo ti)
         {
             var type = GetValueFromTag(ti, TagPrefix + "type");
-            switch (type?.ToLower())
+            switch (type?.ToLowerInvariant())
             {
                 case "project":
                     return TemplateType.Project;
@@ -151,9 +151,9 @@ namespace Microsoft.Templates.Core
 
             if (ti != null)
             {
-                properties.Add(new QueryableProperty(nameof(ti.Name).ToLower(), ti.Name));
-                properties.Add(new QueryableProperty(nameof(ti.Identity).ToLower(), ti.Identity));
-                properties.Add(new QueryableProperty(nameof(ti.GroupIdentity).ToLower(), ti.GroupIdentity));
+                properties.Add(new QueryableProperty(nameof(ti.Name).ToLowerInvariant(), ti.Name));
+                properties.Add(new QueryableProperty(nameof(ti.Identity).ToLowerInvariant(), ti.Identity));
+                properties.Add(new QueryableProperty(nameof(ti.GroupIdentity).ToLowerInvariant(), ti.GroupIdentity));
 
                 foreach (var t in ti.Tags)
                 {

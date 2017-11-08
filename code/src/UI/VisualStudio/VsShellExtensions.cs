@@ -52,7 +52,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public static string RemoveTailDirectorySparator(this string target)
         {
-            if (target.EndsWith(Path.DirectorySeparatorChar.ToString()))
+            if (target.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal))
             {
                 return target.Substring(0, target.Length - 1);
             }
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public static string RemoveStartDirectorySparator(this string target)
         {
-            if (target.StartsWith(Path.DirectorySeparatorChar.ToString()))
+            if (target.StartsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal))
             {
                 return target.Substring(1, target.Length - 1);
             }

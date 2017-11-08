@@ -16,9 +16,9 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         public UserSelection Result { get; set; }
 
-        public MainView(TemplateType templateType)
+        public MainView(TemplateType templateType, string language)
         {
-            ViewModel = new MainViewModel();
+            ViewModel = new MainViewModel(language);
             ViewModel.SetView(this);
 
             DataContext = ViewModel;
@@ -39,8 +39,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         private void OnPreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var element = e.Source as FrameworkElement;
-            ViewModel.WizardStatus.TryHideOverlayBox(element);
+            ViewModel.WizardStatus.TryHideOverlayBox(e);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

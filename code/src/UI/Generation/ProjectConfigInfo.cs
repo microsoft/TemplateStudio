@@ -145,7 +145,7 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsMVVMLight()
         {
-            if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
+            if (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
             {
                 var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
                 foreach (string file in files)
@@ -162,26 +162,50 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsMVVMBasic()
         {
-            return ExistsFileInProjectPath("Services", "ActivationService.cs")
-                && ExistsFileInProjectPath("Helpers", "Observable.cs");
+            if (IsCSharpProject())
+            {
+                return ExistsFileInProjectPath("Services", "ActivationService.cs")
+                    && ExistsFileInProjectPath("Helpers", "Observable.cs");
+            }
+            else
+            {
+                return ExistsFileInProjectPath("Services", "ActivationService.vb")
+                       && ExistsFileInProjectPath("Helpers", "Observable.vb");
+            }
         }
 
         private static bool IsTabbedPivot()
         {
-            return ExistsFileInProjectPath("Services", "ActivationService.cs")
+            return (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
                 && ExistsFileInProjectPath("Views", "PivotPage.xaml");
         }
 
         private static bool IsCodeBehind()
         {
-            if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
+            if (IsCSharpProject())
             {
-                var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
-                if (!string.IsNullOrEmpty(codebehindFile))
+                if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
                 {
-                    var fileContent = File.ReadAllText(codebehindFile);
-                    return fileContent.Contains($"INotifyPropertyChanged") &&
-                        fileContent.Contains("public event PropertyChangedEventHandler PropertyChanged;");
+                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                    if (!string.IsNullOrEmpty(codebehindFile))
+                    {
+                        var fileContent = File.ReadAllText(codebehindFile);
+                        return fileContent.Contains("INotifyPropertyChanged") &&
+                               fileContent.Contains("public event PropertyChangedEventHandler PropertyChanged;");
+                    }
+                }
+            }
+            else
+            {
+                if (ExistsFileInProjectPath("Services", "ActivationService.vb"))
+                {
+                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                    if (!string.IsNullOrEmpty(codebehindFile))
+                    {
+                        var fileContent = File.ReadAllText(codebehindFile);
+                        return fileContent.Contains("INotifyPropertyChanged") &&
+                               fileContent.Contains("Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged");
+                    }
                 }
             }
 
@@ -190,7 +214,7 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsCaliburnMicro()
         {
-            if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
+            if (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
             {
                 var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
                 foreach (string file in files)
@@ -207,14 +231,28 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsSplitView()
         {
-            return ExistsFileInProjectPath("Services", "ActivationService.cs")
-                && ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs"));
+            if (IsCSharpProject())
+            {
+                return ExistsFileInProjectPath("Services", "ActivationService.cs")
+                    && ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                    && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs"));
+            }
+            else
+            {
+                return ExistsFileInProjectPath("Services", "ActivationService.vb")
+                    && ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                    && (ExistsFileInProjectPath("Views", "ShellNavigationItem.vb") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.vb"));
+            }
+        }
+
+        private static bool IsCSharpProject()
+        {
+            return Directory.GetFiles(GenContext.Current.ProjectPath, "*.csproj", SearchOption.TopDirectoryOnly).Any();
         }
 
         private static bool ExistsFileInProjectPath(string subPath, string fileName)
         {
-            return Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, subPath), fileName, SearchOption.TopDirectoryOnly).Count() > 0;
+            return Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, subPath), fileName, SearchOption.TopDirectoryOnly).Any();
         }
     }
 }

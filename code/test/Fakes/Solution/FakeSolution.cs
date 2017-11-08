@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace Microsoft.Templates.Fakes
 EndProject
 ";
 
-        private const string ProjectTemplateVB = @"Project(""{7CF740F7-735F-48EA-8B7B-3FFA4902371C}"") = ""{name}"", ""{name}\{name}.vbproj"", ""{id}""
+        private const string ProjectTemplateVB = @"Project(""{F184B08F-C81C-45F6-A57F-5ABD9991F28F}"") = ""{name}"", ""{name}\{name}.vbproj"", ""{id}""
 EndProject
 ";
 
@@ -59,9 +60,9 @@ EndProject
         {
             var slnContent = File.ReadAllText(_path);
 
-            if (slnContent.IndexOf(projectName) == -1)
+            if (slnContent.IndexOf(projectName, StringComparison.Ordinal) == -1)
             {
-                var globalIndex = slnContent.IndexOf("Global");
+                var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
                 var projectTemplate = isCSharp ? ProjectTemplateCS : ProjectTemplateVB;
                 var projectContent = projectTemplate
                                             .Replace("{name}", projectName)
@@ -69,7 +70,7 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var globalSectionIndex = slnContent.IndexOf(GlobalSectionText);
+                var globalSectionIndex = slnContent.IndexOf(GlobalSectionText, StringComparison.Ordinal);
                 var projectConfigContent = string.Format(ConfigurationTemplate, projectGuid);
 
                 slnContent = slnContent.Insert(globalSectionIndex + GlobalSectionText.Length + 1, projectConfigContent);

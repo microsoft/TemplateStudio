@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Map",
+    "description": "La page Plan s\u0027appuie sur la commande Plan. Le code inclut l\u0027ajout d\u0027une icône Plan et la définition de votre emplacement.",
+    "identity": "wts.Page.Map.CodeBehind.VB"
+}

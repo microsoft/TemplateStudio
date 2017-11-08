@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Chart",
+    "description": "UWP için Telerik UI denetimleri tarafından desteklenen basit bir grafiğin gösterildiği sayfa.",
+    "identity": "wts.Page.Chart.VB"
+}

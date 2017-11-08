@@ -61,9 +61,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
 
                 // REFRESH PROJECT TO UN-DIRTY IT
-                if ((Path.GetExtension(Config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase)
-                   || Path.GetExtension(Config.FilePath).Equals(".vbproj", StringComparison.OrdinalIgnoreCase))
-                  && (GenContext.Current.OutputPath == GenContext.Current.ProjectPath))
+                if (Path.GetExtension(Config.FilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
+                 && GenContext.Current.OutputPath == GenContext.Current.ProjectPath)
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                 }
@@ -116,7 +115,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(Config.FilePath).StartsWith(MergeConfiguration.Extension, StringComparison.InvariantCultureIgnoreCase))
+            if (Path.GetFileName(Config.FilePath).StartsWith(MergeConfiguration.Extension, StringComparison.OrdinalIgnoreCase))
             {
                 var extension = Path.GetExtension(Config.FilePath);
                 var directory = Path.GetDirectoryName(Config.FilePath);

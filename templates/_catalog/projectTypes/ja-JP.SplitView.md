@@ -1,5 +1,5 @@
-﻿This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages.
+﻿このプロジェクトでは、ウィンドウ間を移動するために、画面の横にナビゲーション ウィンドウ (通称「ハンバーガー メニュー」) が表示されます。
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed.
+このスタイルは、モバイル アプリでよく使用されますが、大きな画面でも役に立ちます。不必要な場合や、スペースが限られている場合は、メニューを非表示にすることができます。
 
-The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen.
+メニューには、項目がアイコンとテキストで表示されます。アイコンだけを表示したり、アイコンとテキストを表示したり、完全に非表示にすることができます。ユーザーは、ボタンに触れるだけでメニュー全体を表示することができます。メニューは、画面のサイズに合わせて自動的に変化します。

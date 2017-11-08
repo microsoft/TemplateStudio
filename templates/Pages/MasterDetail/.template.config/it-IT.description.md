@@ -1,3 +1,3 @@
-﻿The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿La pagina master-dettagli ha un riquadro master e un riquadro dettagli per il contenuto. Quando si seleziona un elemento nell'elenco master, viene aggiornato il riquadro dettagli. Questo schema viene utilizzato di frequente per la posta elettronica e le rubriche.
 
-More information about the master-detail pattern can be found [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details).
+Per ulteriori informazioni sullo schema master-dettagli, visita [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details).

@@ -20,6 +20,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
+        private readonly string _language;
         private bool _needRestartConfiguration = false;
 
         public static MainViewModel Current { get; private set; }
@@ -40,9 +41,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
-        public MainViewModel()
+        public MainViewModel(string language)
             : base()
         {
+            _language = language;
             Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
             Current = this;
         }
@@ -63,7 +65,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         internal void RebuildLicenses()
         {
-            LicensesService.RebuildLicenses(Licenses);
+            LicensesService.RebuildLicenses(Licenses, _language);
             HasLicenses = Licenses.Any();
         }
 
@@ -181,7 +183,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CurrentStep == 2)
             {
-                MainView.Result = UserSelectionService.CreateUserSelection();
+                MainView.Result = UserSelectionService.CreateUserSelection(_language);
                 base.OnFinish(parameter);
             }
         }
