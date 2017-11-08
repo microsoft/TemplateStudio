@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Core
 
             foreach (var chunk in valueChunks)
             {
-                result.Append(string.Concat(char.ToUpper(chunk[0]), chunk.Substring(1), string.Empty));
+                result.Append(string.Concat(char.ToUpperInvariant(chunk[0]), chunk.Substring(1), string.Empty));
             }
 
             return result.ToString();

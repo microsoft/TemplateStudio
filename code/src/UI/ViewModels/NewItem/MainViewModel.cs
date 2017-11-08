@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -119,11 +120,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var template = GetActiveTemplate();
             if (template.IsItemNameEditable)
             {
-                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, NewItemSetup.ItemName, template.TemplateType.ToString().ToLower());
+                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, NewItemSetup.ItemName, template.TemplateType.ToString().ToLower(CultureInfo.CurrentCulture));
             }
             else
             {
-                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower());
+                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower(CultureInfo.CurrentCulture));
             }
         }
 

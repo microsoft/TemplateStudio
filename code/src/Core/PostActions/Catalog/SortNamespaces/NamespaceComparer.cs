@@ -20,12 +20,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
             var xNs = ExtractNs(x);
             var yNs = ExtractNs(y);
 
-            return string.Compare(xNs, yNs, StringComparison.InvariantCultureIgnoreCase);
+            return string.Compare(xNs, yNs, StringComparison.OrdinalIgnoreCase);
         }
 
         public string ExtractNs(string rawValue)
         {
-            if (rawValue.StartsWith(Keyword, StringComparison.InvariantCultureIgnoreCase))
+            if (rawValue.StartsWith(Keyword, StringComparison.OrdinalIgnoreCase))
             {
                 var ns = rawValue.Substring(Keyword.Length + 1);
 
