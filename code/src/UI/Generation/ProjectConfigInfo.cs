@@ -248,6 +248,7 @@ namespace Microsoft.Templates.UI.Generation
                     }
                 }
             }
+
             return false;
         }
 
@@ -255,9 +256,9 @@ namespace Microsoft.Templates.UI.Generation
         {
             if (IsCSharpProject())
             {
-                return ExistsFileInProjectPath("Services", "ActivationService.cs")
-                    && ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                    && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs"));
+                return (ExistsFileInProjectPath("Services", "ActivationService.cs") && ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                    && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs")))
+                    || (ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs") && ExistsFileInProjectPath("Constants", "PageTokens.cs"));
             }
             else
             {

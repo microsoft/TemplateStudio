@@ -16,8 +16,8 @@ namespace wts.ItemName.Behaviors
         protected override void OnAttached()
         {
             base.OnAttached();
-            this.AssociatedObject.PivotItemUnloading += AssociatedObject_PivotItemUnloading;
-            this.AssociatedObject.PivotItemLoading += AssociatedObject_PivotItemLoading;
+            AssociatedObject.PivotItemUnloading += AssociatedObject_PivotItemUnloading;
+            AssociatedObject.PivotItemLoading += AssociatedObject_PivotItemLoading;
         }
 
         private void AssociatedObject_PivotItemLoading(Pivot sender, PivotItemEventArgs args)
@@ -35,8 +35,8 @@ namespace wts.ItemName.Behaviors
         protected override void OnDetaching()
         {
             base.OnDetaching();
-            this.AssociatedObject.PivotItemUnloading -= AssociatedObject_PivotItemUnloading;
-            this.AssociatedObject.PivotItemLoading -= AssociatedObject_PivotItemLoading;
+            AssociatedObject.PivotItemUnloading -= AssociatedObject_PivotItemUnloading;
+            AssociatedObject.PivotItemLoading -= AssociatedObject_PivotItemLoading;
         }
     }
 }

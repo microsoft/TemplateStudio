@@ -38,12 +38,12 @@ namespace Param_ItemNamespace.ViewModels
 
         public ICommand ItemSelectedCommand => _itemSelectedCommand ?? (_itemSelectedCommand = new DelegateCommand<ItemClickEventArgs>(OnsItemSelected));
 
-        public ImageGalleryViewViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
+        public ImageGalleryViewViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
         {
-            this.navigationService = navigationService;
+            navigationService = navigationServiceInstance;
 
             // TODO WTS: Replace this with your actual data
-            this.sampleDataService = sampleDataService;
+            sampleDataService = sampleDataServiceInstance;
             Source = sampleDataService.GetGallerySampleData();
         }
 

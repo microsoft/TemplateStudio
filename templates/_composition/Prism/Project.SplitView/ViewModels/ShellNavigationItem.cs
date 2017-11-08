@@ -102,16 +102,16 @@ namespace wts.ItemName.ViewModels
 
         public ShellNavigationItem(string name, Symbol symbol, string pageIdentifier)
         {
-            this.Label = name;
-            this.Symbol = symbol;
-            this.PageIdentifier = pageIdentifier;
+            Label = name;
+            Symbol = symbol;
+            PageIdentifier = pageIdentifier;
         }
 
         public ShellNavigationItem(string name, IconElement icon, string pageIdentifier)
         {
-            this.Label = name;
-            this._iconElement = icon;
-            this.PageIdentifier = pageIdentifier;
+            Label = name;
+            _iconElement = icon;
+            PageIdentifier = pageIdentifier;
         }
      }
 }

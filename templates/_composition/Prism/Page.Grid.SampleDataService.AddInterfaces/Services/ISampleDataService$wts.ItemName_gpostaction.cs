@@ -5,8 +5,8 @@
     {
 //^^
 //{[{
-        ObservableCollection<SampleOrder> GetGridSampleData();
 
+        ObservableCollection<SampleOrder> GetGridSampleData();
 //}]}
     }
 }

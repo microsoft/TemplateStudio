@@ -11,11 +11,11 @@ namespace Param_ItemNamespace.Services
     {
         private WebView webView;
 
-        public WebViewService(WebView webView)
+        public WebViewService(WebView webViewInstance)
         {
-            this.webView = webView;
-            this.webView.NavigationCompleted += WebView_NavigationCompleted;
-            this.webView.NavigationFailed += WebView_NavigationFailed;
+            webView = webViewInstance;
+            webView.NavigationCompleted += WebView_NavigationCompleted;
+            webView.NavigationFailed += WebView_NavigationFailed;
         }
 
         public void Detatch()

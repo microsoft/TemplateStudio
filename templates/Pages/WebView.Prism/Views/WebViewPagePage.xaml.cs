@@ -16,7 +16,7 @@ namespace Param_ItemNamespace.Views
             // In this case teh WebViewService isn't a traditional Service but more of a shim to provide to better
             // separation of View and ViewModel and unit testing of a ViewModel that uses the WebViewService since the
             // WebViewService implements the IWebViewService interface that allows for mocking of the service.
-            ViewModel.WebViewService = new WebViewService(this.webView);
+            ViewModel.WebViewService = new WebViewService(webView);
         }
     }
 }

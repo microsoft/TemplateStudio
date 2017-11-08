@@ -9,9 +9,9 @@ namespace Param_ItemNamespace.ViewModels
     {
         private readonly ISampleDataService sampleDataService;
 
-        public GridViewViewModel(ISampleDataService sampleDataService)
+        public GridViewViewModel(ISampleDataService sampleDataServiceInstance)
         {
-            this.sampleDataService = sampleDataService;
+            sampleDataService = sampleDataServiceInstance;
         }
 
         public ObservableCollection<SampleOrder> Source => sampleDataService.GetGridSampleData();

@@ -24,10 +24,10 @@ namespace Param_ItemNamespace.ViewModels
 
         private VisualState currentState;
 
-        public MasterDetailViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
+        public MasterDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
         {
-            this.navigationService = navigationService;
-            this.sampleDataService = sampleDataService;
+            navigationService = navigationServiceInstance;
+            sampleDataService = sampleDataServiceInstance;
             ItemClickCommand = new DelegateCommand<ItemClickEventArgs>(OnItemClick);
             StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
             LoadedCommand = new DelegateCommand<VisualState>(OnLoaded);
@@ -55,9 +55,9 @@ namespace Param_ItemNamespace.ViewModels
             await LoadDataAsync(currentState);
         }
 
-        public async Task LoadDataAsync(VisualState currentState)
+        public async Task LoadDataAsync(VisualState currentStateValue)
         {
-            this.currentState = currentState;
+            currentState = currentStateValue;
             SampleItems.Clear();
 
             var data = await sampleDataService.GetSampleModelDataAsync();

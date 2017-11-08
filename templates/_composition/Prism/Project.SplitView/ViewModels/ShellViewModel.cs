@@ -24,9 +24,9 @@ namespace wts.ItemName.ViewModels
         private const double PanoramicStateMinWindowWidth = 1024;
         private readonly INavigationService navigationService;
 
-        public ShellViewModel(INavigationService navigationService)
+        public ShellViewModel(INavigationService navigationServiceInstance)
         {
-            this.navigationService = navigationService;
+            navigationService = navigationServiceInstance;
 
             OpenPaneCommand = new DelegateCommand(() => IsPaneOpen = !isPaneOpen);
             ItemSelectedCommand = new DelegateCommand<ItemClickEventArgs>(ItemSelected);

@@ -260,3 +260,5 @@ templates/_composition/_shared/Page.Chart.SampleDataService/Services/SampleDataS
 /code/SynchronizeFilesUsedByVisualBasicTemplates.ps1
 /code/PrismTests.playlist
 /code/AllButWhack.playlist
+/code/tools/Localization/Localization.sln
+/code/FinalTests.playlist

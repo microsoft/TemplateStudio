@@ -58,9 +58,9 @@ namespace Param_ItemNamespace.ViewModels
             set { SetProperty(ref mapIcons, value); }
         }
 
-        public MapPageViewModel(ILocationService locationService)
+        public MapPageViewModel(ILocationService locationServiceInstance)
         {
-            this.locationService = locationService;
+            locationService = locationServiceInstance;
             Center = new Geopoint(defaultPosition);
             ZoomLevel = DefaultZoomLevel;
 

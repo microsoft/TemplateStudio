@@ -9,9 +9,9 @@ namespace Param_ItemNamespace.ViewModels
     {
         private readonly ISampleDataService sampleDataService;
 
-        public ChartViewViewModel(ISampleDataService sampleDataService)
+        public ChartViewViewModel(ISampleDataService sampleDataServiceInstance)
         {
-            this.sampleDataService = sampleDataService;
+            sampleDataService = sampleDataServiceInstance;
         }
 
         public ObservableCollection<DataPoint> Source

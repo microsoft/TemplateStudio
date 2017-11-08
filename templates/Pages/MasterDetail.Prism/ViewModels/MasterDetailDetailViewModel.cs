@@ -29,10 +29,10 @@ namespace Param_ItemNamespace.ViewModels
             set { SetProperty(ref item, value); }
         }
 
-        public MasterDetailDetailViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
+        public MasterDetailDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
         {
-            this.navigationService = navigationService;
-            this.sampleDataService = sampleDataService;
+            navigationService = navigationServiceInstance;
+            sampleDataService = sampleDataServiceInstance;
             StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
         }
 
