@@ -118,13 +118,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public void SetChangesSummaryTitle()
         {
             var template = GetActiveTemplate();
-            if (template.IsItemNameEditable)
+
+            switch (template.TemplateType)
             {
-                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, NewItemSetup.ItemName, template.TemplateType.ToString().ToLower(CultureInfo.CurrentCulture));
-            }
-            else
-            {
-                WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitle_SF, template.Name, template.TemplateType.ToString().ToLower(CultureInfo.CurrentCulture));
+                case TemplateType.Page:
+                    WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitlePage, template.IsItemNameEditable ? NewItemSetup.ItemName : template.Name);
+                    break;
+                case TemplateType.Feature:
+                    WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitleFeature, template.IsItemNameEditable ? NewItemSetup.ItemName : template.Name);
+                    break;
             }
         }
 
@@ -175,7 +177,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     else
                     {
                         UpdateCanGoForward(true);
-                        WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.NewItemHasNoChanges, NewItemSetup.ItemName, GetLocalizedTemplateTypeName(ConfigTemplateType).ToLower()), true, 5));
+                        switch (ConfigTemplateType)
+                        {
+                            case TemplateType.Page:
+                                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.NewItemHasNoChangesPage, NewItemSetup.ItemName), true, 5));
+                                break;
+                            case TemplateType.Feature:
+                                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.NewItemHasNoChangesFeature, NewItemSetup.ItemName), true, 5));
+                                break;
+                        }
                     }
                 });
             }
