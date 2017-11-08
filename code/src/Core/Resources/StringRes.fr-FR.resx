@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Ligne {0} introuvable dans le fichier « {1} »</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>Aucune cible de fusion pour le fichier « {0} »</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Impossible de déduire un nom. Trop d'itérations</value>
   </data>

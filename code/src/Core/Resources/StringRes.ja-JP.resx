@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>ファイル '{1}' に行 {0} が見つかりません</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>ファイル '{0}' のマージ ターゲットがありません</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>名前を推測できません。反復が多すぎます。</value>
   </data>

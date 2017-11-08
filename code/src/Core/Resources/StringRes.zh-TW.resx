@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>檔案 '{1}' 中找不到行 {0}</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>檔案 '{0}' 沒有合併目標</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>無法推斷名稱。有太多反覆項目</value>
   </data>

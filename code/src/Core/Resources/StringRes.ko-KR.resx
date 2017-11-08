@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>'{1}'파일에 {0}줄이 없음</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>'{0}' 파일에 병합 대상이 없습니다.</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>이름을 유추할 수 없습니다. 반복 횟수가 너무 많습니다</value>
   </data>

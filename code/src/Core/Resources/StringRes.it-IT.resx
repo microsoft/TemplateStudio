@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Riga {0} non trovata nel file '{1}'</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>Nessuna destinazione di unione per il file '{0}'</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Impossibile dedurre un nome. Troppe iterazioni</value>
   </data>
