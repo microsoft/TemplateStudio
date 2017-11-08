@@ -231,10 +231,10 @@ namespace Localization
             }
         }
 
-        private void Execute(Action action, string message)
+        private void Execute(Action action, string actionInfo)
         {
             Console.WriteLine();
-            Console.Write(message);
+            Console.Write(actionInfo);
 
             _errors.Clear();
             action.Invoke();

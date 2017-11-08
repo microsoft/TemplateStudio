@@ -396,4 +396,8 @@ The following changes could not be integrated: {2}
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Error updating templates content.</value>
   </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
 </root>

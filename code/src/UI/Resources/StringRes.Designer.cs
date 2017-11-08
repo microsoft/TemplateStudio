@@ -1150,6 +1150,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exception tracking telemetry during generation..
+        /// </summary>
+        public static string TrackTelemetryException {
+            get {
+                return ResourceManager.GetString("TrackTelemetryException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Windows Template Studio: {0}.
         /// </summary>
         public static string UIMessageBoxTitlePattern {

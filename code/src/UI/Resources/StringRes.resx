@@ -459,7 +459,7 @@
   <data name="SummaryOpenMenuClose" xml:space="preserve">
     <value>Close</value>
     <comment>New project wizard summary template open menu</comment>
-  </data>  
+  </data>
   <data name="NewItemTitlePage" xml:space="preserve">
     <value>New page</value>
     <comment>New item wizard title string format</comment>
@@ -671,5 +671,8 @@
   </data>
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>We are not able to introduce the styles in the resource dictionary.</value>
+  </data>
+  <data name="TrackTelemetryException" xml:space="preserve">
+    <value>Exception tracking telemetry during generation.</value>
   </data>
 </root>

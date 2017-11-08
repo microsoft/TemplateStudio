@@ -169,6 +169,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot remove readonly protection from file {0}.
+        /// </summary>
+        internal static string FsEnsureFileEditableException {
+            get {
+                return ResourceManager.GetString("FsEnsureFileEditableException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The folder {0} can&apos;t be copied to {1}. Error: {2}.
         /// </summary>
         internal static string FsSafeCopyFileMessage {
