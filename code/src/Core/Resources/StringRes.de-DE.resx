@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Die Zeile {0} wurde in der Datei „{1}“ nicht gefunden.</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>Es gibt kein Zusammenführungsziel für die Datei „{0}“.</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Es ist nicht möglich, einen Namen abzuleiten. Es gibt zu viele Iterationen.</value>
   </data>

@@ -12,7 +12,7 @@
     "wts.framework": "MVVMBasic|MVVMLight|CaliburnMicro",
     "wts.version": "1.0.0",
     "wts.displayOrder": "2",
-    "wts.group": "AppToApp",
+    "wts.group": "ConnectedExperiences",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "ShareTarget",
     "wts.rightClickEnabled":"true"

@@ -313,10 +313,6 @@
     <value>Windows Template Studio</value>
     <comment>Wizard header title</comment>
   </data>
-  <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Windows Template Studio：{0}</value>
-    <comment>Generic Message Box Title</comment>
-  </data>
   <data name="ValidationError_AlreadyExists" xml:space="preserve">
     <value>名稱已經存在</value>
     <comment>Template name validation error message for already exists</comment>
@@ -326,7 +322,7 @@
     <comment>Template name validation error message for bad format</comment>
   </data>
   <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
-    <value>您不可移除 {0} 因為 {1} {2} 與它相依。</value>
+    <value>您不可移除 {0} 因為 {1} 與它相依。</value>
     <comment>Template name validation error message for can not remove template string format</comment>
   </data>
   <data name="ValidationError_Empty" xml:space="preserve">
@@ -496,10 +492,6 @@
     <value>檢查新的範本</value>
     <comment>check for templates updates button content on overlay box control</comment>
   </data>
-  <data name="ChangesSummaryTitle_SF" xml:space="preserve">
-    <value>變更摘要：新增 {0} {1}</value>
-    <comment>New item wizard title string format</comment>
-  </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>合併失敗</value>
     <comment>Category name of failed merges</comment>
@@ -656,9 +648,6 @@
     <value>在使用者的選擇中找不到相依性範本 {0}</value>
     <comment>Log text for misssing dependency exception.</comment>
   </data>
-  <data name="NewItemHasNoChanges" xml:space="preserve">
-    <value>{0} 已經是您專案的一部分。請選擇另一個 {1}。</value>
-  </data>
   <data name="ChangesSummaryCategoryFailedStyleMerges" xml:space="preserve">
     <value>樣式合併失敗</value>
   </data>
@@ -668,8 +657,28 @@
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>我們無法導入資源字典中的樣式。</value>
   </data>
-  <data name="TemplateGroup_AppToApp" xml:space="preserve">
-    <value>App to App</value>
-    <comment>Group header for App to App templates</comment>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Application Launching</value>
+    <comment>Group header for Application Launching templates</comment>
+  </data>
+  <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
+    <value>Connected Experiences</value>
+    <comment>Group header for Connected Experiences templates</comment>
+  </data>
+  <data name="ChangesSummaryTitleFeature" xml:space="preserve">
+    <value>Changes summary: Add feature '{0}'</value>
+    <comment>New item wizard title for features {0}: Feature/Template name</comment>
+  </data>
+  <data name="ChangesSummaryTitlePage" xml:space="preserve">
+    <value>Changes summary: Add page '{0}' </value>
+    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
+  </data>
+  <data name="NewItemHasNoChangesFeature" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another feature.</value>
+    <comment>{0}:Feature name.</comment>
+  </data>
+  <data name="NewItemHasNoChangesPage" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another page.</value>
+    <comment>{0}:Page name.</comment>
   </data>
 </root>

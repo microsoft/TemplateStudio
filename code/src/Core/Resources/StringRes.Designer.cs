@@ -277,15 +277,6 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no merge target for file &apos;{0}&apos;.
-        /// </summary>
-        internal static string MergePostActionExecuteMessage {
-            get {
-                return ResourceManager.GetString("MergePostActionExecuteMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unable to infer a name. Too many iterations.
         /// </summary>
         internal static string NamingInferMessage {

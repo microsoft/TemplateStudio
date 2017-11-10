@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Nebyl nalezen řádek {0} v souboru {1}.</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>Není dostupný cíl sloučení pro soubor {0}.</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Nelze odvodit název. Příliš mnoho iterací.</value>
   </data>

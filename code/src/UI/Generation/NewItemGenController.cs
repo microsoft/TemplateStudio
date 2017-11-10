@@ -252,6 +252,8 @@ namespace Microsoft.Templates.UI
         {
             GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
+            GenContext.Current.ProjectItems.Clear();
+            GenContext.Current.FilesToOpen.Clear();
 
             var directory = GenContext.Current.OutputPath;
             try

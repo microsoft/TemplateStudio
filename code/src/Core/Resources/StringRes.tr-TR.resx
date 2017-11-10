@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>"{1}" dosyasında {0} satırı bulunamadı</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>"{0}" dosyası için birleştirme hedefi yok</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Ad çıkarılamıyor. Çok fazla yineleme var</value>
   </data>

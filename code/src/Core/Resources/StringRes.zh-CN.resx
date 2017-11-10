@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>在文件“{1}”中找不到行 {0}</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>没有文件“{0}”的合并目标</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>无法推断名称。迭代太多</value>
   </data>

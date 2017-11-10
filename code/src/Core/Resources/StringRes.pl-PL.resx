@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Nie znaleziono wiersza {0} w pliku „{1}”</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>Nie ma miejsca docelowego scalenia pliku „{0}”</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Nie można wywnioskować nazwy. Za dużo iteracji</value>
   </data>
