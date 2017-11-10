@@ -26,15 +26,15 @@ namespace Microsoft.Templates.Core
         public static TemplateType GetTemplateType(this ITemplateInfo ti)
         {
             var type = GetValueFromTag(ti, TagPrefix + "type");
-            switch (type?.ToLowerInvariant())
+            switch (type?.ToUpperInvariant())
             {
-                case "project":
+                case "PROJECT":
                     return TemplateType.Project;
-                case "page":
+                case "PAGE":
                     return TemplateType.Page;
-                case "feature":
+                case "FEATURE":
                     return TemplateType.Feature;
-                case "composition":
+                case "COMPOSITION":
                     return TemplateType.Composition;
                 default:
                     return TemplateType.Unspecified;

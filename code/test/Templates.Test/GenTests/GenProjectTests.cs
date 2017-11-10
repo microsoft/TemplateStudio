@@ -76,8 +76,8 @@ namespace Microsoft.Templates.Test
             string expectedFxText = $"Name=\"framework\" Value=\"{framework}\"";
             string expectedPtText = $"Name=\"projectType\" Value=\"{projectType}\"";
 
-            Assert.Contains(expectedFxText, content, StringComparison.InvariantCulture);
-            Assert.Contains(expectedPtText, content, StringComparison.InvariantCulture);
+            Assert.Contains(expectedFxText, content, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains(expectedPtText, content, StringComparison.OrdinalIgnoreCase);
         }
 
         private void RemoveProjectConfigInfoFromProject()

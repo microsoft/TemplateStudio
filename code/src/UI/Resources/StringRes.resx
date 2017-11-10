@@ -669,6 +669,9 @@
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>We are not able to introduce the styles in the resource dictionary.</value>
   </data>
+  <data name="TrackTelemetryException" xml:space="preserve">
+    <value>Exception tracking telemetry during generation.</value>
+  </data>
   <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
     <value>Connected Experiences</value>
     <comment>Group header for Connected Experiences templates</comment>

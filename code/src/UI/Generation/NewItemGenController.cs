@@ -19,6 +19,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
 using Newtonsoft.Json;
 
@@ -358,7 +359,7 @@ namespace Microsoft.Templates.UI
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Exception.TrackAsync(ex, "Exception tracking telemetry for Template Generation.").FireAndForget();
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.TrackTelemetryException).FireAndForget();
             }
         }
 

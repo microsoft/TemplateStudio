@@ -1039,17 +1039,17 @@ namespace Microsoft.Templates.UI.Controls
         /// <summary>
         /// this is to emulate what's evailable in PHP
         /// </summary>
-        private static string RepeatString(string text, int count)
+        private static string RepeatString(string data, int count)
         {
-            if (text == null)
+            if (data == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException("data");
             }
 
-            var sb = new StringBuilder(text.Length * count);
+            var sb = new StringBuilder(data.Length * count);
             for (int i = 0; i < count; i++)
             {
-                sb.Append(text);
+                sb.Append(data);
             }
 
             return sb.ToString();
