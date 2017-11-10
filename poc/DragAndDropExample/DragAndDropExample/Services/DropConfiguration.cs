@@ -40,6 +40,10 @@ namespace DragAndDropExample.Services
             DependencyProperty.Register("DropDataViewCommand", typeof(ICommand),
                 typeof(DropConfiguration), new PropertyMetadata(null));
 
+        public static readonly DependencyProperty DragOverCommandProperty =
+            DependencyProperty.Register("DragOverCommand", typeof(ICommand),
+                typeof(DropConfiguration), new PropertyMetadata(null));
+
         public ICommand DropBitmapCommand
         {
             get { return (ICommand)GetValue(DropBitmapCommandProperty); }
@@ -88,10 +92,11 @@ namespace DragAndDropExample.Services
             set { SetValue(DropDataViewCommandProperty, value); }
         }
 
-        
-
-
-        public DataPackageOperation AcceptedOperation { get; set; } = DataPackageOperation.Copy;
+        public ICommand DragOverCommand
+        {
+            get { return (ICommand)GetValue(DragOverCommandProperty); }
+            set { SetValue(DragOverCommandProperty, value); }
+        }
 
         public async Task ProcessComandsAsync(DataPackageView dataview)
         {

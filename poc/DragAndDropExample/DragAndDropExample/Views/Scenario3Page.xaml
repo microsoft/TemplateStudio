@@ -60,8 +60,9 @@
                     <services:DragDropService.Configuration>
                     <services:ListViewDropConfiguration                        
                         DragItemsStartingCommand="{x:Bind ViewModel.DragItemStartingCommand}"
+                        DragOverCommand="{x:Bind ViewModel.DragOverCommand}"
                         DropStorageItemsCommand="{x:Bind ViewModel.GetPrimaryItemsCommand}"
-                        DropTextCommand="{x:Bind ViewModel.GetPrimaryIdsCommand}"/>
+                        DropTextCommand="{x:Bind ViewModel.GetPrimaryIdsCommand}" />
                     </services:DragDropService.Configuration>
                 </ListView>
 
@@ -72,6 +73,7 @@
                 <services:DragDropService.Configuration>
                     <services:ListViewDropConfiguration
                         DragItemsStartingCommand="{x:Bind ViewModel.DragItemStartingCommand}"
+                        DragOverCommand="{x:Bind ViewModel.DragOverCommand}"
                         DropStorageItemsCommand="{x:Bind ViewModel.GetSecondaryItemsCommand}"
                         DropTextCommand="{x:Bind ViewModel.GetSecondaryIdsCommand}" />
                 </services:DragDropService.Configuration>

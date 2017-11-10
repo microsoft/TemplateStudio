@@ -62,24 +62,15 @@ namespace DragAndDropExample.Services
 
         private static void ConfigureUIElement(UIElement element, DropConfiguration configuration)
         {
-            element.DragStarting += (sender, args) =>
-            {
-            };
-
-            element.DragEnter += (sender, args) =>
-            {
-            };
-
             element.DragOver += (sender, args) =>
             {
-                //TO-DO : Accepted operation needs to be calculated
-                args.AcceptedOperation = configuration.AcceptedOperation;
+                //Operation is copy by default
+                args.AcceptedOperation = DataPackageOperation.Copy;
 
-                //Patch to move text data
-                if (args.DataView.Contains(StandardDataFormats.Text))
-                {
-                    args.AcceptedOperation = DataPackageOperation.Move;
-                }
+                var data = new DragOverData { AcceptedOperation = args.AcceptedOperation, DataView = args.DataView };
+                configuration.DragOverCommand?.Execute(data);
+
+                args.AcceptedOperation = data.AcceptedOperation;                
             };
 
             element.Drop += async (sender, args) =>
