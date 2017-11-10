@@ -109,6 +109,7 @@
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\StorageFileHelper.cs" />
     <Compile Include="Models\CustomItem.cs" />
+    <Compile Include="Models\DragDropCompletedData.cs" />
     <Compile Include="Models\DragDropStartingData.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />

@@ -10,5 +10,6 @@ namespace DragAndDropExample.Services
     class ListViewDropConfiguration : DropConfiguration
     {
         public ICommand OnDragItemsStartingCommand { get; set; }
+        public ICommand OnDragItemsCompletedCommand { get; set; }
     }
 }

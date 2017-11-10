@@ -34,6 +34,7 @@
         <Grid.RowDefinitions>
             <RowDefinition x:Name="TitleRow" Height="48"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock
@@ -54,7 +55,8 @@
                 <services:DragDropService.Configuration>
                     <services:ListViewDropConfiguration
                         OnDropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}"
-                        OnDragItemsStartingCommand="{x:Bind ViewModel.DragItemStartingCommand}" />
+                        OnDragItemsStartingCommand="{x:Bind ViewModel.DragItemStartingCommand}"
+                        OnDragItemsCompletedCommand="{x:Bind ViewModel.DragItemCompletedCommand}" />
                 </services:DragDropService.Configuration>
 
                 <services:DragDropService.VisualConfiguration>
@@ -63,9 +65,12 @@
                             DropOverImage="ms-appx:///Assets/copy_icon.png"
                             IsCaptionVisible="False"/>
                 </services:DragDropService.VisualConfiguration>
-
             </ListView>
         </Grid>
+        <TextBlock Grid.Row="2"  Margin="10" >
+                <Run Text="Allow drop: "/>
+                <Run Text="{x:Bind ViewModel.AllowDrop, Mode=OneWay}"/>
+        </TextBlock>
     </Grid>
 </Page>
 

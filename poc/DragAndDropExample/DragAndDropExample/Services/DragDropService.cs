@@ -1,13 +1,7 @@
 ﻿using DragAndDropExample.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace DragAndDropExample.Services
@@ -100,6 +94,12 @@ namespace DragAndDropExample.Services
             {
                 var data = new DragDropStartingData { Data = args.Data, Items = args.Items };
                 configuration.OnDragItemsStartingCommand?.Execute(data);
+            };
+
+            listview.DragItemsCompleted += (sender, args) =>
+            {
+                var data = new DragDropCompletedData {DropResult = args.DropResult, Items = args.Items };
+                configuration.OnDragItemsCompletedCommand?.Execute(data);
             };
         }
 
