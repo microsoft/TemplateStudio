@@ -93,13 +93,13 @@ namespace DragAndDropExample.Services
             listview.DragItemsStarting += (sender, args) =>
             {
                 var data = new DragDropStartingData { Data = args.Data, Items = args.Items };
-                configuration.OnDragItemsStartingCommand?.Execute(data);
+                configuration.DragItemsStartingCommand?.Execute(data);
             };
 
             listview.DragItemsCompleted += (sender, args) =>
             {
                 var data = new DragDropCompletedData {DropResult = args.DropResult, Items = args.Items };
-                configuration.OnDragItemsCompletedCommand?.Execute(data);
+                configuration.DragItemsCompletedCommand?.Execute(data);
             };
         }
 
@@ -112,7 +112,7 @@ namespace DragAndDropExample.Services
             {
                 if (configuration.DropOverImage != null)
                 {
-                    args.DragUI.SetContentFromBitmapImage(configuration.StartingDragImage as BitmapImage);
+                    args.DragUI.SetContentFromBitmapImage(configuration.DragStartingImage as BitmapImage);
                 }
             };
 

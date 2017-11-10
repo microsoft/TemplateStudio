@@ -54,14 +54,14 @@
 
                 <services:DragDropService.Configuration>
                     <services:ListViewDropConfiguration
-                        OnDropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}"
-                        OnDragItemsStartingCommand="{x:Bind ViewModel.DragItemStartingCommand}"
-                        OnDragItemsCompletedCommand="{x:Bind ViewModel.DragItemCompletedCommand}" />
+                        DropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}"
+                        DragItemsStartingCommand="{x:Bind ViewModel.DragItemStartingCommand}"
+                        DragItemsCompletedCommand="{x:Bind ViewModel.DragItemCompletedCommand}" />
                 </services:DragDropService.Configuration>
 
                 <services:DragDropService.VisualConfiguration>
                     <services:VisualDropConfiguration
-                            StartingDragImage ="ms-appx:///Assets/share_icon.png" 
+                            DragStartingImage ="ms-appx:///Assets/share_icon.png" 
                             DropOverImage="ms-appx:///Assets/copy_icon.png"
                             IsCaptionVisible="False"/>
                 </services:DragDropService.VisualConfiguration>

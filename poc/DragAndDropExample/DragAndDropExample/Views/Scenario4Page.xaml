@@ -47,7 +47,7 @@
 
             <services:DragDropService.Configuration>
                 <services:DropConfiguration
-                            OnDropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}" />
+                            DropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}" />
             </services:DragDropService.Configuration>
 
             <ListView

@@ -1,15 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using Windows.UI.Xaml;
 
 namespace DragAndDropExample.Services
 {
-    class ListViewDropConfiguration : DropConfiguration
+    public class ListViewDropConfiguration : DropConfiguration
     {
-        public ICommand OnDragItemsStartingCommand { get; set; }
-        public ICommand OnDragItemsCompletedCommand { get; set; }
+        public static readonly DependencyProperty DragItemsStartingCommandProperty =
+            DependencyProperty.Register("DragItemsStartingCommand", typeof(ICommand),
+                typeof(DropConfiguration), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty DragItemsCompletedCommandProperty =
+            DependencyProperty.Register("DragItemsCompletedCommand", typeof(ICommand),
+                typeof(DropConfiguration), new PropertyMetadata(null));
+
+        public ICommand DragItemsStartingCommand
+        {
+            get { return (ICommand)GetValue(DragItemsStartingCommandProperty); }
+            set { SetValue(DragItemsStartingCommandProperty, value); }
+        }
+
+        public ICommand DragItemsCompletedCommand
+        {
+            get { return (ICommand)GetValue(DragItemsCompletedCommandProperty); }
+            set { SetValue(DragItemsCompletedCommandProperty, value); }
+        }
     }
 }
