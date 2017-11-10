@@ -57,7 +57,7 @@ namespace Microsoft.Templates.UI.Services
             if (!templatesGroups.Any())
             {
                 var templates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == templateType && t.GetFrameworkList().Contains(frameworkName) && !t.GetIsHidden()).Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, frameworkName)));
-                var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Title);
+                var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Name);
                 templatesGroups.AddRange(groups);
                 return templates.Count();
             }
