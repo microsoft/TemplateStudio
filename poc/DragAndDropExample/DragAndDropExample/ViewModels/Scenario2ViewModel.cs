@@ -18,42 +18,53 @@ namespace DragAndDropExample.ViewModels
         public ObservableCollection<CustomItem> Items { get; set; } = new ObservableCollection<CustomItem>();
 
         private ICommand _getStorageItemsCommand;
+        private ICommand _dragItemStartingCommand;
+        private ICommand _dragItemCompletedCommand;
 
         public ICommand GetStorageItemsCommand => _getStorageItemsCommand ?? (_getStorageItemsCommand = new RelayCommand<IReadOnlyList<IStorageItem>>(OnGetStorageItem));
+        public ICommand DragItemStartingCommand => _dragItemStartingCommand ?? (_dragItemStartingCommand = new RelayCommand<DragDropStartingData>(OnDragItemStarting));
+        public ICommand DragItemCompletedCommand => _dragItemCompletedCommand ?? (_dragItemCompletedCommand = new RelayCommand<DragDropCompletedData>(OnDragItemCompleted));
 
         public Scenario2ViewModel()
         {
+            AllowDrop = true;
         }
 
         private async void OnGetStorageItem(IReadOnlyList<IStorageItem> items)
         {
-            //TODO con los items
             foreach (StorageFile item in items)
             {
-                var dropItem = new CustomItem
-                {
-                    Path = item.Path,
-                    FileName = item.Name,
-                    Image = await GetImageOrDefaultAsync(item),
-                    OriginalStorageItem = item
-                };
+                Items.Add(await CustomItemFactory.Create(item));
+            }
+            AllowDrop = !Items.Any();
+        }
 
-                Items.Add(dropItem);
+        private void OnDragItemStarting(DragDropStartingData startingData)
+        {
+            var items = startingData.Items.Cast<CustomItem>().Select(i => i.OriginalStorageItem);
+            startingData.Data.SetStorageItems(items);
+            startingData.Data.RequestedOperation = DataPackageOperation.Copy;
+        }
+
+        private void OnDragItemCompleted(DragDropCompletedData completedData)
+        {
+            if(completedData.DropResult != DataPackageOperation.None)
+            {
+                var draggedItems = completedData.Items.Cast<CustomItem>();
+                foreach(var item in draggedItems)
+                {
+                    Items.Remove(item);
+                }
+
+                AllowDrop = !Items.Any();
             }
         }
 
-        private async Task<BitmapImage> GetImageOrDefaultAsync(StorageFile item)
+        private bool _allowDrop;
+        public bool AllowDrop
         {
-            try
-            {
-                var bitmapImage = new BitmapImage();
-                await bitmapImage.SetSourceAsync(await item.OpenReadAsync());
-                return bitmapImage;
-            }
-            catch (Exception)
-            {
-                return new BitmapImage(new Uri("ms-appx:///Assets/StoreLogo.png"));
-            }
+            get => _allowDrop;
+            set => Set(ref _allowDrop, value);
         }
     }
 }

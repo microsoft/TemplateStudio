@@ -34,6 +34,7 @@
         <Grid.RowDefinitions>
             <RowDefinition x:Name="TitleRow" Height="48"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock
@@ -46,20 +47,30 @@
             Grid.Row="1" 
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <ListView
-                    AllowDrop="True"
+                    AllowDrop="{x:Bind ViewModel.AllowDrop, Mode=TwoWay}"
                     CanDragItems="True"
-                    DragItemsStarting="ListView_DragItemsStarting"
                     ItemsSource="{x:Bind ViewModel.Items}"
                     ItemTemplate="{StaticResource DropItemDataTemplate}">
+
                 <services:DragDropService.Configuration>
-                    <services:DropConfiguration
-                            OnDropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}"
-                            DropOverImage="ms-appx:///Assets/copy_icon.png"
-                            IsCaptionVisible="False"
-                            IsGlyphVisible="False"  />
+                    <services:ListViewDropConfiguration
+                        DropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}"
+                        DragItemsStartingCommand="{x:Bind ViewModel.DragItemStartingCommand}"
+                        DragItemsCompletedCommand="{x:Bind ViewModel.DragItemCompletedCommand}" />
                 </services:DragDropService.Configuration>
+
+                <services:DragDropService.VisualConfiguration>
+                    <services:VisualDropConfiguration
+                            DragStartingImage ="ms-appx:///Assets/share_icon.png" 
+                            DropOverImage="ms-appx:///Assets/copy_icon.png"
+                            IsCaptionVisible="False"/>
+                </services:DragDropService.VisualConfiguration>
             </ListView>
         </Grid>
+        <TextBlock Grid.Row="2"  Margin="10" >
+                <Run Text="Allow drop: "/>
+                <Run Text="{x:Bind ViewModel.AllowDrop, Mode=OneWay}"/>
+        </TextBlock>
     </Grid>
 </Page>
 
