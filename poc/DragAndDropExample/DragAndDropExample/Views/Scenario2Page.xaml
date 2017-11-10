@@ -46,18 +46,24 @@
             Grid.Row="1" 
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <ListView
-                    AllowDrop="True"
+                    AllowDrop="{x:Bind ViewModel.AllowDrop, Mode=TwoWay}"
                     CanDragItems="True"
-                    DragItemsStarting="ListView_DragItemsStarting"
                     ItemsSource="{x:Bind ViewModel.Items}"
                     ItemTemplate="{StaticResource DropItemDataTemplate}">
+
                 <services:DragDropService.Configuration>
-                    <services:DropConfiguration
-                            OnDropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}"
-                            DropOverImage="ms-appx:///Assets/copy_icon.png"
-                            IsCaptionVisible="False"
-                            IsGlyphVisible="False"  />
+                    <services:ListViewDropConfiguration
+                        OnDropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}"
+                        OnDragItemsStartingCommand="{x:Bind ViewModel.DragItemStartingCommand}" />
                 </services:DragDropService.Configuration>
+
+                <services:DragDropService.VisualConfiguration>
+                    <services:VisualDropConfiguration
+                            StartingDragImage ="ms-appx:///Assets/share_icon.png" 
+                            DropOverImage="ms-appx:///Assets/copy_icon.png"
+                            IsCaptionVisible="False"/>
+                </services:DragDropService.VisualConfiguration>
+
             </ListView>
         </Grid>
     </Grid>

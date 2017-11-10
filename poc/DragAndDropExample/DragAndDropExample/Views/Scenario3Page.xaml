@@ -54,11 +54,12 @@
                 <ListView  Background="LightSkyBlue"
                     AllowDrop="True" 
                     CanDragItems="True"
-                    DragItemsStarting="ListView_DragItemsStarting"
                     ItemsSource="{x:Bind ViewModel.PrimaryItems}"
                     ItemTemplate="{StaticResource DropItemDataTemplate}">
+                    
                     <services:DragDropService.Configuration>
-                        <services:DropConfiguration
+                    <services:ListViewDropConfiguration                        
+                        OnDragItemsStartingCommand="{x:Bind ViewModel.DragItemStartingCommand}"
                         OnDropStorageItemsCommand="{x:Bind ViewModel.GetPrimaryItemsCommand}"
                         OnDropTextCommand="{x:Bind ViewModel.GetPrimaryIdsCommand}"/>
                     </services:DragDropService.Configuration>
@@ -66,11 +67,11 @@
 
             <ListView Grid.Column="2" AllowDrop="True" Background="LightSeaGreen"
                     CanDragItems="True"
-                    DragItemsStarting="ListView_DragItemsStarting"
                     ItemsSource="{x:Bind ViewModel.SecondaryItems}"
                     ItemTemplate="{StaticResource DropItemDataTemplate}"  >
                 <services:DragDropService.Configuration>
-                    <services:DropConfiguration
+                    <services:ListViewDropConfiguration
+                        OnDragItemsStartingCommand="{x:Bind ViewModel.DragItemStartingCommand}"
                         OnDropStorageItemsCommand="{x:Bind ViewModel.GetSecondaryItemsCommand}"
                         OnDropTextCommand="{x:Bind ViewModel.GetSecondaryIdsCommand}" />
                 </services:DragDropService.Configuration>

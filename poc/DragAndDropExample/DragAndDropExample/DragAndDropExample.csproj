@@ -109,11 +109,14 @@
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\StorageFileHelper.cs" />
     <Compile Include="Models\CustomItem.cs" />
+    <Compile Include="Models\DragDropStartingData.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\DragDropService.cs" />
     <Compile Include="Services\DropConfiguration.cs" />
+    <Compile Include="Services\ListViewDropConfiguration.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\VisualDropConfiguration.cs" />
     <Compile Include="ViewModels\Scenario1ViewModel.cs" />
     <Compile Include="ViewModels\Scenario2ViewModel.cs" />
     <Compile Include="ViewModels\Scenario3ViewModel.cs" />

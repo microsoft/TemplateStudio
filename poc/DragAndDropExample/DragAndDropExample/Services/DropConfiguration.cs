@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Storage;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace DragAndDropExample.Services
 {
@@ -23,18 +15,59 @@ namespace DragAndDropExample.Services
         public ICommand OnDropApplicationLinkCommand { get; set; }
         public ICommand OnDropWebLinkCommand { get; set; }
 
-
         public ICommand OnDropDataViewCommand { get; set; }
-
 
         public DataPackageOperation AcceptedOperation { get; set; } = DataPackageOperation.Copy;
 
-        public string Caption { get; set; } = string.Empty;
-        public bool IsCaptionVisible { get; set; } = true;
-        public bool IsContentVisible { get; set; } = true;
-        public bool IsGlyphVisible { get; set; } = true;
-        public ImageSource StartingDragImage { get; set; }
-        public ImageSource DropOverImage { get; set; }
+        public async Task ProcessComandsAsync(DataPackageView dataview)
+        {
+            if (OnDropDataViewCommand != null)
+            {
+                OnDropDataViewCommand.Execute(dataview);
+            }
 
+
+            if (dataview.Contains(StandardDataFormats.ApplicationLink) && OnDropApplicationLinkCommand != null)
+            {
+                var uri = await dataview.GetApplicationLinkAsync();
+                OnDropApplicationLinkCommand.Execute(uri);
+            }
+
+            if (dataview.Contains(StandardDataFormats.Bitmap) && OnDropBitmapCommand != null)
+            {
+                var stream = await dataview.GetBitmapAsync();
+                OnDropBitmapCommand.Execute(stream);
+            }
+
+            if (dataview.Contains(StandardDataFormats.Html) && OnDropHtmlCommand != null)
+            {
+                var html = await dataview.GetHtmlFormatAsync();
+                OnDropHtmlCommand.Execute(html);
+            }
+
+            if (dataview.Contains(StandardDataFormats.Rtf) && OnDropRtfCommand != null)
+            {
+                var rtf = await dataview.GetRtfAsync();
+                OnDropRtfCommand.Execute(rtf);
+            }
+
+            if (dataview.Contains(StandardDataFormats.StorageItems) && OnDropStorageItemsCommand != null)
+            {
+                var storageItems = await dataview.GetStorageItemsAsync();
+                OnDropStorageItemsCommand.Execute(storageItems);
+            }
+
+            if (dataview.Contains(StandardDataFormats.Text) && OnDropTextCommand != null)
+            {
+                var text = await dataview.GetTextAsync();
+                OnDropTextCommand.Execute(text);
+            }
+
+            if (dataview.Contains(StandardDataFormats.WebLink) && OnDropWebLinkCommand != null)
+            {
+                var uri = await dataview.GetWebLinkAsync();
+                OnDropWebLinkCommand.Execute(uri);
+            }
+        }
     }
 }

@@ -23,14 +23,14 @@ namespace DragAndDropExample.ViewModels
         private ICommand _getSecondaryItemsCommand;
         private ICommand _getPrimaryIdsCommand;
         private ICommand _getSecondaryIdsCommand;
+        private ICommand _dragItemStartingCommand;
 
         public ICommand GetPrimaryItemsCommand => _getPrimaryItemsCommand ?? (_getPrimaryItemsCommand = new RelayCommand<IReadOnlyList<IStorageItem>>(OnGetPrimaryItems));
         public ICommand GetSecondaryItemsCommand => _getSecondaryItemsCommand ?? (_getSecondaryItemsCommand = new RelayCommand<IReadOnlyList<IStorageItem>>(OnGetSecondaryItems));
         public ICommand GetPrimaryIdsCommand => _getPrimaryIdsCommand ?? (_getPrimaryIdsCommand = new RelayCommand<string>(OnGetPrimaryIds));
         public ICommand GetSecondaryIdsCommand => _getSecondaryIdsCommand ?? (_getSecondaryIdsCommand = new RelayCommand<string>(OnGetSecondaryIds));
+        public ICommand DragItemStartingCommand => _dragItemStartingCommand ?? (_dragItemStartingCommand = new RelayCommand<DragDropStartingData>(OnDragItemStarting));
 
-
-        
         public Scenario3ViewModel()
         {
         }
@@ -39,13 +39,7 @@ namespace DragAndDropExample.ViewModels
         {
             foreach (StorageFile item in items)
             {
-                PrimaryItems.Add(new CustomItem
-                {
-                    Path = item.Path,
-                    FileName = item.Name,
-                    Image = await GetImageOrDefaultAsync(item),
-                    OriginalStorageItem = item
-                });
+                PrimaryItems.Add(await CustomItemFactory.Create(item));
             }
         }
 
@@ -53,13 +47,7 @@ namespace DragAndDropExample.ViewModels
         {
             foreach (StorageFile item in items)
             {
-                SecondaryItems.Add(new CustomItem
-                {
-                    Path = item.Path,
-                    FileName = item.Name,
-                    Image = await GetImageOrDefaultAsync(item),
-                    OriginalStorageItem = item
-                });
+                SecondaryItems.Add(await CustomItemFactory.Create(item));
             }
         }
         
@@ -87,19 +75,11 @@ namespace DragAndDropExample.ViewModels
             }
         }
 
-
-        private async Task<BitmapImage> GetImageOrDefaultAsync(StorageFile item)
+        private void OnDragItemStarting(DragDropStartingData startingData)
         {
-            try
-            {
-                var bitmapImage = new BitmapImage();
-                await bitmapImage.SetSourceAsync(await item.OpenReadAsync());
-                return bitmapImage;
-            }
-            catch (Exception)
-            {
-                return new BitmapImage(new Uri("ms-appx:///Assets/StoreLogo.png"));
-            }
+            var items = string.Join(",", startingData.Items.Cast<CustomItem>().Select(i => i.Id));
+            startingData.Data.SetText(items);
+            startingData.Data.RequestedOperation = DataPackageOperation.Move;
         }
     }
 }
