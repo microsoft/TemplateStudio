@@ -29,7 +29,7 @@ namespace DragAndDropExample.ViewModels
         public ICommand GetPrimaryIdsCommand => _getPrimaryIdsCommand ?? (_getPrimaryIdsCommand = new RelayCommand<string>(OnGetPrimaryIds));
         public ICommand GetSecondaryIdsCommand => _getSecondaryIdsCommand ?? (_getSecondaryIdsCommand = new RelayCommand<string>(OnGetSecondaryIds));
         public ICommand DragItemStartingCommand => _dragItemStartingCommand ?? (_dragItemStartingCommand = new RelayCommand<DragDropStartingData>(OnDragItemStarting));
-        public ICommand DragOverCommand => _dragOverCommand ?? (_dragOverCommand = new RelayCommand<DragOverData>(OnDragOver));
+        public ICommand DragOverCommand => _dragOverCommand ?? (_dragOverCommand = new RelayCommand<DragDropData>(OnDragOver));
 
         public Scenario3ViewModel()
         {
@@ -82,7 +82,7 @@ namespace DragAndDropExample.ViewModels
             startingData.Data.RequestedOperation = DataPackageOperation.Move;
         }
 
-        private void OnDragOver(DragOverData overData)
+        private void OnDragOver(DragDropData overData)
         {
             overData.AcceptedOperation = overData.DataView.Contains(StandardDataFormats.Text)
                 ? DataPackageOperation.Move

@@ -2,7 +2,7 @@
 
 namespace DragAndDropExample.Models
 {
-    public class DragOverData
+    public class DragDropData
     { 
         public DataPackageOperation AcceptedOperation { get; set; }
 

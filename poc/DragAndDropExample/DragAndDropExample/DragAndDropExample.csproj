@@ -111,7 +111,7 @@
     <Compile Include="Models\CustomItem.cs" />
     <Compile Include="Models\DragDropCompletedData.cs" />
     <Compile Include="Models\DragDropStartingData.cs" />
-    <Compile Include="Models\DragOverData.cs" />
+    <Compile Include="Models\DragDropData.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\DragDropService.cs" />

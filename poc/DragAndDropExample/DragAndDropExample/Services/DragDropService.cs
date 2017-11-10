@@ -62,21 +62,34 @@ namespace DragAndDropExample.Services
 
         private static void ConfigureUIElement(UIElement element, DropConfiguration configuration)
         {
-            element.DragOver += (sender, args) =>
+            element.DragEnter += (sender, args) =>
             {
                 //Operation is copy by default
                 args.AcceptedOperation = DataPackageOperation.Copy;
 
-                var data = new DragOverData { AcceptedOperation = args.AcceptedOperation, DataView = args.DataView };
-                configuration.DragOverCommand?.Execute(data);
+                var data = new DragDropData { AcceptedOperation = args.AcceptedOperation, DataView = args.DataView };
+                configuration.DragEnterCommand?.Execute(data);
+                args.AcceptedOperation = data.AcceptedOperation;
+            };
 
-                args.AcceptedOperation = data.AcceptedOperation;                
+            element.DragOver += (sender, args) =>
+            {
+                var data = new DragDropData { AcceptedOperation = args.AcceptedOperation, DataView = args.DataView };
+                configuration.DragOverCommand?.Execute(data);
+                args.AcceptedOperation = data.AcceptedOperation;
+            };
+
+            element.DragLeave += (sender, args) =>
+            {
+                var data = new DragDropData { AcceptedOperation = args.AcceptedOperation, DataView = args.DataView };
+                configuration.DragLeaveCommand?.Execute(data);
             };
 
             element.Drop += async (sender, args) =>
             {
                 await configuration.ProcessComandsAsync(args.DataView);
             };
+
         }
 
         private static void ConfigureListView(ListViewBase listview, ListViewDropConfiguration configuration)
