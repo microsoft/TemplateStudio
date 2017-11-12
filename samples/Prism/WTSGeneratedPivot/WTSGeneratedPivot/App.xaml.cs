@@ -34,10 +34,10 @@ namespace WTSGeneratedPivot
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            return LaunchApplication(PageTokens.PivotPage, null);
+            return LaunchApplicationAsync(PageTokens.PivotPage, null);
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             Services.ThemeSelectorService.SetRequestedTheme();
             NavigationService.Navigate(page, launchParam);
@@ -50,7 +50,7 @@ namespace WTSGeneratedPivot
             return Task.CompletedTask;
         }
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
             await ThemeSelectorService.InitializeAsync().ConfigureAwait(false);
 

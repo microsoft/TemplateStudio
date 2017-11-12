@@ -21,7 +21,7 @@ namespace Param_RootNamespace
 //}]}
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();
@@ -31,7 +31,7 @@ namespace Param_RootNamespace
             await Task.CompletedTask;
         }
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
 //{[{
             await Container.Resolve<ILiveTileFeatureService>().EnableQueueAsync().ConfigureAwait(false);

@@ -44,10 +44,10 @@ namespace WTSGeneratedNavigation
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            return LaunchApplication(PageTokens.MainPage, null);
+            return LaunchApplicationAsync(PageTokens.MainPage, null);
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             Services.ThemeSelectorService.SetRequestedTheme();
             NavigationService.Navigate(page, launchParam);
@@ -132,7 +132,7 @@ namespace WTSGeneratedNavigation
             Container.Resolve<IBackgroundTaskService>().Start(args.TaskInstance);
         }
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
             await Container.Resolve<ILiveTileService>().EnableQueueAsync().ConfigureAwait(false);
             Container.Resolve<IBackgroundTaskService>().RegisterBackgroundTasks();
