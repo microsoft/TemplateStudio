@@ -29,10 +29,10 @@ namespace WTSGeneratedBlank
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            return LaunchApplication(PageTokens.MainPage, null);
+            return LaunchApplicationAsync(PageTokens.MainPage, null);
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);
             Window.Current.Activate();

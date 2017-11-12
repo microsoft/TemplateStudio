@@ -8,7 +8,7 @@ namespace Param_RootNamespace
     public sealed partial class App : PrismUnityApplication
     {
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
 //{[{
             Services.ThemeSelectorService.SetRequestedTheme();

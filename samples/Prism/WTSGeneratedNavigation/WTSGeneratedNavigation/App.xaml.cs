@@ -87,7 +87,7 @@ namespace WTSGeneratedNavigation
                     }
 
                     // It's also possible to have logic here to navigate to different pages. e.g. if you have logic based on the URI used to launch
-                    return LaunchApplication(PageTokens.UriSchemePage, secret);
+                    return LaunchApplicationAsync(PageTokens.UriSchemePage, secret);
                 }
                 else if (args.PreviousExecutionState != ApplicationExecutionState.Running)
                 {
