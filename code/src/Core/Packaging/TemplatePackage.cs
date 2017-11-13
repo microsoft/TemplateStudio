@@ -390,7 +390,7 @@ namespace Microsoft.Templates.Core.Packaging
 
         private static void EnsureDirectory(string dir)
         {
-            if (!string.IsNullOrEmpty(dir) && dir.ToLowerInvariant() != Environment.CurrentDirectory.ToLowerInvariant())
+            if (!string.IsNullOrEmpty(dir) && dir.Equals(Environment.CurrentDirectory, StringComparison.OrdinalIgnoreCase))
             {
                 if (!Directory.Exists(dir))
                 {
