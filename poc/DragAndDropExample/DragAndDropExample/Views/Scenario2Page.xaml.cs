@@ -16,13 +16,5 @@ namespace DragAndDropExample.Views
         {
             InitializeComponent();
         }
-
-        //This is listview event, cannot use in uielement service
-        private void ListView_DragItemsStarting(object sender, DragItemsStartingEventArgs e)
-        {
-            var items = e.Items.Cast<CustomItem>().Select(i => i.OriginalStorageItem);
-            e.Data.SetStorageItems(items);
-            e.Data.RequestedOperation = DataPackageOperation.Copy;
-        }
     }
 }

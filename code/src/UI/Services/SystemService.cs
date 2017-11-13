@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
+using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -20,8 +21,9 @@ namespace Microsoft.Templates.UI.Services
             SystemParameters.StaticPropertyChanged += OnStaticPropertyChanged;
         }
 
-        private void OnStaticPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private async void OnStaticPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             if (e.PropertyName == "HighContrast")
             {
                 Instance.IsHighContrast = SystemParameters.HighContrast;

@@ -27,33 +27,9 @@ namespace DragAndDropExample.ViewModels
 
         private async void OnGetStorageItem(IReadOnlyList<IStorageItem> items)
         {
-            //TODO con los items
             foreach (StorageFile item in items)
             {
-                var dropItem = new CustomItem
-                {
-                    Path = item.Path,
-                    FileName = item.Name,
-                    Image = await GetImageOrDefaultAsync(item),
-                    OriginalStorageItem = item
-                };
-
-                Items.Add(dropItem);
-            }
-
-        }
-
-        private async Task<BitmapImage> GetImageOrDefaultAsync(StorageFile item)
-        {
-            try
-            {
-                var bitmapImage = new BitmapImage();
-                await bitmapImage.SetSourceAsync(await item.OpenReadAsync());
-                return bitmapImage;
-            }
-            catch (Exception)
-            {
-                return new BitmapImage(new Uri("ms-appx:///Assets/StoreLogo.png"));
+                Items.Add(await CustomItemFactory.Create(item));
             }
         }
     }   

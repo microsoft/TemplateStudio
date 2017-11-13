@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using DragAndDropExample.Models;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace DragAndDropExample.Services
@@ -19,6 +14,11 @@ namespace DragAndDropExample.Services
         typeof(DragDropService),
         new PropertyMetadata(null, OnConfigurationPropertyChanged));
 
+        private static DependencyProperty VisualConfigurationProperty = DependencyProperty.RegisterAttached(
+        "VisualConfiguration",
+        typeof(VisualDropConfiguration),
+        typeof(DragDropService),
+        new PropertyMetadata(null, OnVisualConfigurationPropertyChanged));
 
         public static void SetConfiguration(DependencyObject dependencyObject, DropConfiguration value)
         {
@@ -33,98 +33,105 @@ namespace DragAndDropExample.Services
             return (DropConfiguration)dependencyObject.GetValue(ConfigurationProperty);
         }
 
-        private static void OnConfigurationPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        public static void SetVisualConfiguration(DependencyObject dependencyObject, VisualDropConfiguration value)
         {
-            if (dependencyObject is UIElement element)
+            if (dependencyObject != null)
             {
-                var configuration = GetConfiguration(element);
-
-                element.DragStarting += (sender, args) =>
-                {
-                    if(configuration.StartingDragImage != null)
-                    {
-                        args.DragUI.SetContentFromBitmapImage(configuration.StartingDragImage as BitmapImage);
-                    }
-                };
-
-                element.DragOver += (sender, args) =>
-                {
-                    //TO-DO : Accepted operation needs to be calculated
-                    args.AcceptedOperation = configuration.AcceptedOperation;
-
-                    //Patch to move text data
-                    if (args.DataView.Contains(StandardDataFormats.Text))
-                    {
-                        args.AcceptedOperation = DataPackageOperation.Move;
-                    }
-
-                    args.DragUIOverride.Caption = configuration.Caption;
-                    args.DragUIOverride.IsCaptionVisible = configuration.IsCaptionVisible;
-                    args.DragUIOverride.IsContentVisible = configuration.IsContentVisible;
-                    args.DragUIOverride.IsGlyphVisible = configuration.IsGlyphVisible;
-                    if (configuration.DropOverImage != null)
-                    {
-                        args.DragUIOverride.SetContentFromBitmapImage(configuration.DropOverImage as BitmapImage);
-                    }
-                };
-
-                element.Drop += async (sender, args) =>
-                {
-                    await ProcessComandsAsync(configuration, args.DataView);
-                    args.Handled = true;
-                };
+                dependencyObject.SetValue(VisualConfigurationProperty, value);
             }
         }
 
-        private static async Task ProcessComandsAsync(DropConfiguration configuration, DataPackageView dataview)
+        public static VisualDropConfiguration GetVisualConfiguration(DependencyObject dependencyObject)
         {
-            if(configuration.OnDropDataViewCommand != null)
-            {
-                configuration.OnDropDataViewCommand.Execute(dataview);
-            }
+            return (VisualDropConfiguration)dependencyObject.GetValue(VisualConfigurationProperty);
+        }
 
+        private static void OnConfigurationPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        {
+            var element = dependencyObject as UIElement;
+            var configuration = GetConfiguration(element);
+            ConfigureUIElement(element, configuration);
 
-            if (dataview.Contains(StandardDataFormats.ApplicationLink) && configuration.OnDropApplicationLinkCommand != null)
+            var listview = element as ListViewBase;
+            var listviewconfig = configuration as ListViewDropConfiguration;
+            if(listview != null && listviewconfig != null)
             {
-                var uri = await dataview.GetApplicationLinkAsync();
-                configuration.OnDropApplicationLinkCommand.Execute(uri);
+                ConfigureListView(listview, listviewconfig);
             }
+        }
 
-            if (dataview.Contains(StandardDataFormats.Bitmap) && configuration.OnDropBitmapCommand != null)
+        private static void ConfigureUIElement(UIElement element, DropConfiguration configuration)
+        {
+            element.DragEnter += (sender, args) =>
             {
-                var stream = await dataview.GetBitmapAsync();
-                configuration.OnDropBitmapCommand.Execute(stream);
-            }
+                //Operation is copy by default
+                args.AcceptedOperation = DataPackageOperation.Copy;
 
-            if (dataview.Contains(StandardDataFormats.Html) && configuration.OnDropHtmlCommand != null)
-            {
-                var html = await dataview.GetHtmlFormatAsync();
-                configuration.OnDropHtmlCommand.Execute(html);
-            }
+                var data = new DragDropData { AcceptedOperation = args.AcceptedOperation, DataView = args.DataView };
+                configuration.DragEnterCommand?.Execute(data);
+                args.AcceptedOperation = data.AcceptedOperation;
+            };
 
-            if (dataview.Contains(StandardDataFormats.Rtf) && configuration.OnDropRtfCommand != null)
+            element.DragOver += (sender, args) =>
             {
-                var rtf = await dataview.GetRtfAsync();
-                configuration.OnDropRtfCommand.Execute(rtf);
-            }
+                var data = new DragDropData { AcceptedOperation = args.AcceptedOperation, DataView = args.DataView };
+                configuration.DragOverCommand?.Execute(data);
+                args.AcceptedOperation = data.AcceptedOperation;
+            };
 
-            if (dataview.Contains(StandardDataFormats.StorageItems) && configuration.OnDropStorageItemsCommand != null)
+            element.DragLeave += (sender, args) =>
             {
-                var storageItems = await dataview.GetStorageItemsAsync();
-                configuration.OnDropStorageItemsCommand.Execute(storageItems);
-            }
+                var data = new DragDropData { AcceptedOperation = args.AcceptedOperation, DataView = args.DataView };
+                configuration.DragLeaveCommand?.Execute(data);
+            };
 
-            if (dataview.Contains(StandardDataFormats.Text) && configuration.OnDropTextCommand != null)
+            element.Drop += async (sender, args) =>
             {
-                var text = await dataview.GetTextAsync();
-                configuration.OnDropTextCommand.Execute(text);
-            }
+                await configuration.ProcessComandsAsync(args.DataView);
+            };
 
-            if (dataview.Contains(StandardDataFormats.WebLink) && configuration.OnDropWebLinkCommand != null)
+        }
+
+        private static void ConfigureListView(ListViewBase listview, ListViewDropConfiguration configuration)
+        {
+            listview.DragItemsStarting += (sender, args) =>
             {
-                var uri = await dataview.GetWebLinkAsync();
-                configuration.OnDropWebLinkCommand.Execute(uri);
-            }
+                var data = new DragDropStartingData { Data = args.Data, Items = args.Items };
+                configuration.DragItemsStartingCommand?.Execute(data);
+            };
+
+            listview.DragItemsCompleted += (sender, args) =>
+            {
+                var data = new DragDropCompletedData {DropResult = args.DropResult, Items = args.Items };
+                configuration.DragItemsCompletedCommand?.Execute(data);
+            };
+        }
+
+        private static void OnVisualConfigurationPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
+        {
+            var element = dependencyObject as UIElement;
+            var configuration = GetVisualConfiguration(element);
+
+            element.DragStarting += (sender, args) =>
+            {
+                if (configuration.DropOverImage != null)
+                {
+                    args.DragUI.SetContentFromBitmapImage(configuration.DragStartingImage as BitmapImage);
+                }
+            };
+
+            element.DragOver += (sender, args) =>
+            {
+                args.DragUIOverride.Caption = configuration.Caption;
+                args.DragUIOverride.IsCaptionVisible = configuration.IsCaptionVisible;
+                args.DragUIOverride.IsContentVisible = configuration.IsContentVisible;
+                args.DragUIOverride.IsGlyphVisible = configuration.IsGlyphVisible;
+
+                if (configuration.DropOverImage != null)
+                {
+                    args.DragUIOverride.SetContentFromBitmapImage(configuration.DropOverImage as BitmapImage);
+                }
+            };
         }
     }
 }
