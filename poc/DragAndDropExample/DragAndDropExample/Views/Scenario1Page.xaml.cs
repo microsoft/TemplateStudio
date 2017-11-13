@@ -1,6 +1,4 @@
-﻿using System;
-
-using DragAndDropExample.ViewModels;
+﻿using DragAndDropExample.ViewModels;
 
 using Windows.UI.Xaml.Controls;
 

@@ -1,13 +1,11 @@
-﻿using System;
-
-using DragAndDropExample.Helpers;
-using System.Windows.Input;
+﻿using DragAndDropExample.Helpers;
+using DragAndDropExample.Models;
 using System.Collections.Generic;
-using Windows.Storage;
 using System.Collections.ObjectModel;
 using System.Linq;
-using DragAndDropExample.Models;
+using System.Windows.Input;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
 
 namespace DragAndDropExample.ViewModels
 {
