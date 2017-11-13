@@ -556,7 +556,7 @@ namespace Microsoft.Templates.UI.Controls
             }
 
             string header = match.Groups[1].Value;
-            int level = match.Groups[2].Value.StartsWith("=") ? 1 : 2;
+            int level = match.Groups[2].Value.StartsWith("=", StringComparison.Ordinal) ? 1 : 2;
 
             // TODO: Style the paragraph based on the header level
             return CreateHeader(level, RunSpanGamut(header.Trim()));
@@ -1039,17 +1039,17 @@ namespace Microsoft.Templates.UI.Controls
         /// <summary>
         /// this is to emulate what's evailable in PHP
         /// </summary>
-        private static string RepeatString(string text, int count)
+        private static string RepeatString(string data, int count)
         {
-            if (text == null)
+            if (data == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException("data");
             }
 
-            var sb = new StringBuilder(text.Length * count);
+            var sb = new StringBuilder(data.Length * count);
             for (int i = 0; i < count; i++)
             {
-                sb.Append(text);
+                sb.Append(data);
             }
 
             return sb.ToString();

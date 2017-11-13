@@ -1,11 +1,11 @@
-﻿Setting storage is a class to simplify storing your application data.  It handles loading, saving, serializing your data and easy access to your application's data.
+﻿Ayar deposu, uygulama verilerinizi depolamayı kolaylaştıran bir sınıftır.  Verilerinizin yüklenmesini, kaydedilmesini ve seri hale getirilmesini sağlar ve uygulamanızın verilerine erişimi kolaylaştırır.
 
-These are the main types of app data:
+Ana uygulama verisi türleri şunlardır:
 
-* Local: stored on the device, backed up in the cloud, and persists across updates
-* LocalCache: persistent data that exists on the current device, not backed up, and persists across updates
-* SharedLocal: persistent across all app users
-* Roaming: exists on all devices where the user has installed the app
-* Temporary: can be deleted by the system at any time
+* Local: Cihazda depolanır, bulutta yedeklenir ve güncelleştirmelere karşı dayanıklıdır
+* LocalCache: Geçerli cihaz üzerindeki kalıcı veriler, yedeklenmez ve güncelleştirmelere karşı dayanıklıdır
+* SharedLocal: Tüm uygulama kullanıcıları için kalıcıdır
+* Roaming: Kullanıcının uygulamayı yüklediği tüm cihazlarda bulunur
+* Temporary: Sistem tarafından herhangi bir zaman silinebilir
 
-To find out more about storage, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).
+Depolama hakkında daha fazla bilgi için [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata) adresine gidin.

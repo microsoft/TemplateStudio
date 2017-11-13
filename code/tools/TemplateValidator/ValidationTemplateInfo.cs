@@ -17,7 +17,7 @@ namespace TemplateValidator
     /// </summary>
     public class ValidationTemplateInfo : ITemplateInfo
     {
-        [ApiAnalysisValidValues("Microsoft", "Microsoft Community Contribution", "Laurent Bugnion", "Laurent Bugnion + Community Contribution", "Nigel Sampson")]
+        [ApiAnalysisValidValues("Microsoft", "Microsoft Community", "Laurent Bugnion", "Laurent Bugnion + Community Contribution", "Nigel Sampson")]
         public string Author { get; set; }
 
         [ApiAnalysisOptional]

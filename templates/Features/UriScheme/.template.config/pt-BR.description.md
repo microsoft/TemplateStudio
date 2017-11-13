@@ -1,3 +1,3 @@
-﻿Handle the launch of your app with a custom URI Scheme. The generated code also shows how to handle different values being passed to the app this way.
+﻿Lide com a inicialização de seu aplicativo com um Esquema de URI personalizado. O código gerado também mostra como lidar com diferentes valores que são passados para o aplicativo dessa forma.
 
-To find out more about handling the launch of an app from a URI, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/handle-uri-activation). 
+Para saber mais sobre como lidar com a inicialização de um aplicativo por meio de um URI, acesse [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/handle-uri-activation). 

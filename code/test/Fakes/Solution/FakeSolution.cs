@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -76,9 +77,9 @@ EndProject
         {
             var slnContent = File.ReadAllText(_path);
 
-            if (slnContent.IndexOf(projectName) == -1)
+            if (slnContent.IndexOf(projectName, StringComparison.Ordinal) == -1)
             {
-                var globalIndex = slnContent.IndexOf("Global");
+                var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
                 var projectTemplate = isCSharp ? ProjectTemplateCS : ProjectTemplateVB;
                 var projectContent = projectTemplate
                                             .Replace("{name}", projectName)
@@ -86,7 +87,7 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText);
+                var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
                 var projectConfigContent = string.Format(UwpProjectConfigurationTemplate, projectGuid);
 
                 slnContent = slnContent.Insert(globalSectionIndex + ProjectConfigurationPlatformsText.Length + 1, projectConfigContent);

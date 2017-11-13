@@ -1,5 +1,5 @@
-﻿After you update your app it's important to tell the people using it about the changes you make. This feature will display a message to the person using it when the app is updated.
+﻿Uygulamanızı güncelleştirdikten sonra yaptığınız değişiklikleri kullanıcılara bildirmeniz önemlidir. Bu özellik, uygulama güncelleştirildiğinde kullanıcı için bir ileti görüntüler.
 
-The message displayed is fully customizable and can be used to give details about new features or bugs that have been fixed.
+Görüntülenen ileti tamamen özelleştirilebilir ve yeni özellikler veya düzeltilen hatalar hakkında bilgi vermek için kullanılabilir.
 
-Add this feature now so that it will be able to tell when it has been updated.
+Uygulamanın güncelleştirildiğini bildirmesi için bu özelliği hemen ekleyin.

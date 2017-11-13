@@ -1,1 +1,1 @@
-﻿This is the most basic page. A blank canvas to mold into whatever you wish. The blank page leaves pretty much everything up to you.
+﻿Esta é a página mais básica. Uma tela em branco para incluir o que você quiser. Com a página em branco, a escolha é inteiramente sua.

@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Media Player",
-  "description": "A page for showing video with system media controls enabled.",
+  "description": "시스템의 미디어 컨트롤을 통해 지원되는 비디오 재생 페이지입니다.",
   "identity": "wts.Page.MediaPlayer"
 }

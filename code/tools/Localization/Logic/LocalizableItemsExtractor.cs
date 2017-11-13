@@ -2,11 +2,13 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -143,10 +145,10 @@ namespace Localization
                     string filePath = Path.Combine(desDirectory.FullName, culture + "." + Routes.TemplateJsonFile);
                     var con = new
                     {
-                        author = metadata.GetValue("author").Value<string>(),
-                        name = metadata.GetValue("name").Value<string>(),
-                        description = metadata.GetValue("description").Value<string>(),
-                        identity = metadata.GetValue("identity").Value<string>()
+                        author = metadata.GetValue("author", StringComparison.Ordinal).Value<string>(),
+                        name = metadata.GetValue("name", StringComparison.Ordinal).Value<string>(),
+                        description = metadata.GetValue("description", StringComparison.Ordinal).Value<string>(),
+                        identity = metadata.GetValue("identity", StringComparison.Ordinal).Value<string>()
                     };
                     string content = JsonConvert.SerializeObject(con, Newtonsoft.Json.Formatting.Indented);
                     File.WriteAllText(filePath, content, Encoding.UTF8);
@@ -201,9 +203,9 @@ namespace Localization
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
             var projects = content.Select(json => new
             {
-                name = json.GetValue("name").Value<string>(),
-                displayName = json.GetValue("displayName").Value<string>(),
-                summary = json.GetValue("summary").Value<string>()
+                name = json.GetValue("name", StringComparison.Ordinal).Value<string>(),
+                displayName = json.GetValue("displayName", StringComparison.Ordinal).Value<string>(),
+                summary = json.GetValue("summary", StringComparison.Ordinal).Value<string>()
             });
 
             var data = JsonConvert.SerializeObject(projects, Newtonsoft.Json.Formatting.Indented);
@@ -217,21 +219,25 @@ namespace Localization
 
         private void ExtractWtsTemplateSubfolderFiles(string routeType)
         {
-            var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
             var srcDirectory = new DirectoryInfo(Path.Combine(_sourceDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
 
             var srcFile = GetFile(srcDirectory.FullName + ".json");
             var fileContent = File.ReadAllText(srcFile.FullName);
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
-            var projectNames = content.Select(json => json.GetValue("name").Value<string>());
+            var projectNames = content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
 
-            foreach (string culture in _cultures)
+            foreach (var name in projectNames)
             {
-                foreach (var name in projectNames)
+                var mdFilePath = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType, name + ".md");
+                if (_validator.HasChanges(mdFilePath))
                 {
-                    var mdFilePath = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType, name + ".md");
-                    var mdFile = new FileInfo(Path.Combine(_sourceDir.FullName, mdFilePath));
-                    mdFile.CopyTo(Path.Combine(desDirectory.FullName, culture + "." + name + ".md"), true);
+                    var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
+
+                    foreach (string culture in _cultures)
+                    {
+                        var mdFile = new FileInfo(Path.Combine(_sourceDir.FullName, mdFilePath));
+                        mdFile.CopyTo(Path.Combine(desDirectory.FullName, culture + "." + name + ".md"), true);
+                    }
                 }
             }
         }

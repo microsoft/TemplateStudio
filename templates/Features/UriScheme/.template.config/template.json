@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
@@ -11,10 +11,10 @@
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "7",
-    "wts.group": "UserInteraction",
+    "wts.displayOrder": "1",
+    "wts.group": "ApplicationLaunching",
     "wts.defaultInstance": "UriScheme",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0"

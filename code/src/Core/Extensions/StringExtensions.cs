@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core
                 result = GetHash(md5Hash, b64data);
             }
 
-            return result.ToUpper();
+            return result.ToUpperInvariant();
         }
 
         public static string ObfuscateSHA(this string data)
@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core
                 result = GetHash(sha2, b64data);
             }
 
-            return result.ToUpper();
+            return result.ToUpperInvariant();
         }
 
         private static string GetHash(HashAlgorithm md5Hash, byte[] inputData)

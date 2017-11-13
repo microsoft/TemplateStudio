@@ -1,6 +1,6 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Tabbed",
-    "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
+    "description": "La page à tabulations permet de naviguer entre différentes catégories de contenus fréquemment visitées.",
     "identity": "wts.Page.TabbedPivot.CodeBehind.VB"
 }

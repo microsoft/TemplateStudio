@@ -1,3 +1,3 @@
-﻿Tabs across the top allow for quickly navigating between pages.
+﻿上方的索引標籤可讓您在不同頁面之間快速導覽。
 
-The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.
+樞紐控制項對於導覽相關頁面或經常存取的頁面非常實用。使用者可選取永遠顯示的文字標頭，在不同的樞紐窗格 (頁面) 之間導覽。

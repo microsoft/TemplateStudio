@@ -1,11 +1,11 @@
-﻿Setting storage is a class to simplify storing your application data.  It handles loading, saving, serializing your data and easy access to your application's data.
+﻿ストレージの設定は、アプリケーション データの保存を簡素化するためのクラスです。データの読み込み、保存、シリアル化を処理し、アプリケーションのデータへの簡単なアクセスを実現します。
 
-These are the main types of app data:
+アプリ データの主な種類は以下のとおりです。
 
-* Local: stored on the device, backed up in the cloud, and persists across updates
-* LocalCache: persistent data that exists on the current device, not backed up, and persists across updates
-* SharedLocal: persistent across all app users
-* Roaming: exists on all devices where the user has installed the app
-* Temporary: can be deleted by the system at any time
+* Local: デバイスに保存され、クラウドにバックアップされ、アップデート後も残ります。
+* LocalCache: 現在のデバイスに存在する永続的なデータで、バックアップされません。アップデート後も残ります。
+* SharedLocal: すべてのアプリ ユーザーに対して永続的に存在します。
+* Roaming: ユーザーがアプリをインストールしたすべてのデバイスに存在します。
+* Temporary: システムによっていつでも削除できます。
 
-To find out more about storage, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).
+ストレージの詳細については、[docs.microsoft.com] (https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata) を参照してください。

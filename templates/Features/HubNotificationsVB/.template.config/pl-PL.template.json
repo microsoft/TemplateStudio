@@ -1,6 +1,6 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Azure Notifications",
-    "description": "Register to receive and handle messages from Azure Notification Hubs.",
+    "description": "Zarejestruj się, aby otrzymywać i obsługiwać wiadomości z Azure Notification Hubs.",
     "identity": "wts.Feat.HubNotifications.VB"
 }

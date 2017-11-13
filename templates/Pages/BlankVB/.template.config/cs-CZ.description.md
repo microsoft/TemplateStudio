@@ -1,1 +1,1 @@
-﻿This is the most basic page.  A blank canvas to mold into whatever you wish.  The blank page leaves pretty much everything up to you.
+﻿Toto je nejzákladnější stránka.  Obsahuje prázdné plátno, které můžete přetvářet libovolným požadovaným způsobem.  Prázdná stránka ponechává do značné míry všechno na vás.

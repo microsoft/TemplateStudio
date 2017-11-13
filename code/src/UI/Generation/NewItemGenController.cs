@@ -19,6 +19,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
 using Newtonsoft.Json;
 
@@ -257,6 +258,8 @@ namespace Microsoft.Templates.UI
         {
             GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
+            GenContext.Current.ProjectItems.Clear();
+            GenContext.Current.FilesToOpen.Clear();
 
             var directory = GenContext.Current.TempGenerationPath;
             try
@@ -318,6 +321,13 @@ namespace Microsoft.Templates.UI
             {
                 postAction.Execute();
             }
+
+            // New files aren't listed as project file modifications so any modifications should be new package references, etc.
+            if (result.ModifiedFiles.Any(f => Path.GetExtension(f).EndsWith("proj", StringComparison.OrdinalIgnoreCase)))
+            {
+                // Forcing a package restore so don't get warnings in the designer once addition is complete
+                GenContext.ToolBox.Shell.RestorePackages();
+            }
         }
 
         private void ExecuteOutputGenerationPostActions(TempGenerationResult result)
@@ -355,7 +365,7 @@ namespace Microsoft.Templates.UI
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Exception.TrackAsync(ex, "Exception tracking telemetry for Template Generation.").FireAndForget();
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.TrackTelemetryException).FireAndForget();
             }
         }
 
