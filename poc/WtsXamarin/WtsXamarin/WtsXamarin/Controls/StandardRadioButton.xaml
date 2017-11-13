@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WtsXamarin.Controls.StandardRadioButton">
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding Command}"
+                              CommandParameter="{Binding Value}"/>
+    </ContentView.GestureRecognizers>
+
+    <StackLayout Orientation="Horizontal">
+        <Label Text="&#x25CB;">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding IsSelected}"
+                             Value="True">
+                    <Setter Property="Text" Value="&#x25C9;" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+
+        <Label Text="{Binding Name}" />
+    </StackLayout>
+</ContentView>

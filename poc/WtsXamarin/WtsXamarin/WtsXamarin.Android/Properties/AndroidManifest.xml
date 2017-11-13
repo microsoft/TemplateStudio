@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2" android:versionName="2.2" package="com.companyname.WtsXamarin" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="15" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<application android:label="WtsXamarin.Android">
+    <provider android:name="android.support.v4.content.FileProvider"
+				      android:authorities="com.yourcompany.wtsxamarin.fileprovider"
+				      android:exported="false"
+				      android:grantUriPermissions="true">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+			          android:resource="@xml/file_paths"></meta-data>
+    </provider>
+  </application>
+</manifest>
