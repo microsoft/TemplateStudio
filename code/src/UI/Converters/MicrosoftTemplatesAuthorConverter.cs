@@ -13,7 +13,7 @@ namespace Microsoft.Templates.UI.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && value.ToString().ToLower() == "microsoft")
+            if (value != null && value.ToString().ToUpperInvariant() == "MICROSOFT")
             {
                 return parameter == null ? Visibility.Collapsed : Visibility.Visible;
             }

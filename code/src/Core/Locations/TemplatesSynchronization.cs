@@ -125,16 +125,25 @@ namespace Microsoft.Templates.Core.Locations
         private async Task<bool> AcquireContentAsync(bool force = false)
         {
             bool acquireContentCalled = false;
-            if (force || _content.IsExpired(CurrentContentFolder))
-            {
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
-                await Task.Run(() =>
+            try
+            {
+                if (force || _content.IsExpired(CurrentContentFolder))
                 {
-                    AcquireContent();
-                });
-                acquireContentCalled = true;
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
+
+                    await Task.Run(() =>
+                    {
+                        AcquireContent();
+                    });
+                    acquireContentCalled = true;
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
+                }
+            }
+            catch (Exception ex)
+            {
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorAcquiring, ex).FireAndForget();
             }
 
             return await Task.FromResult<bool>(acquireContentCalled);
@@ -142,11 +151,19 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task ExtractInstalledContentAsync()
         {
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing });
+            try
+            {
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing });
 
-            await Task.Run(() => ExtractInstalledContent());
+                await Task.Run(() => ExtractInstalledContent());
 
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });
+            }
+            catch (Exception ex)
+            {
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorExtracting, ex).FireAndForget();
+            }
         }
 
         private void AcquireContent()
@@ -184,11 +201,19 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task UpdateTemplatesCacheAsync()
         {
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updating });
+            try
+            {
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updating });
 
-            await Task.Run(() => UpdateTemplatesCache());
+                await Task.Run(() => UpdateTemplatesCache());
 
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updated });
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updated });
+            }
+            catch (Exception ex)
+            {
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorUpdating, ex).FireAndForget();
+            }
         }
 
         private async Task CheckContentOverVersionAsync()

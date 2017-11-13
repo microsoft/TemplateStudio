@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
@@ -82,7 +83,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetMergeFileFromDirectory(string directory)
         {
-            if (Path.GetFileName(Config).StartsWith(MergeConfiguration.Extension))
+            if (Path.GetFileName(Config).StartsWith(MergeConfiguration.Extension, StringComparison.OrdinalIgnoreCase))
             {
                 var extension = Path.GetExtension(Config);
 

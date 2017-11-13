@@ -1,3 +1,3 @@
-﻿A user can suspend your app at any time and your app should be ready for it. This is a simple service you can hook into to handle when a user leaves and returns to the app to help you in bringing your app back to the state it was before!
+﻿Użytkownik może w każdej chwili zawiesić Twoją aplikację i powinna ona być na to gotowa. Jest to prosta usługa, dzięki której użytkownik, który zamknął aplikację, może ją później otworzyć dokładnie w tym samym miejscu.
 
-See these three great topics for more information about [application lifecycle](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle), [resuming an app](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/resume-an-app) and [suspending an app](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/suspend-an-app).
+Dowiedz się więcej o [cyklu życia aplikacji](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle), [wznawianiu aplikacji](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/resume-an-app) i [zawieszaniu aplikacji](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/suspend-an-app).

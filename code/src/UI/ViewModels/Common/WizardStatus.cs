@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
-
+using System.Windows.Input;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Services;
@@ -148,13 +148,24 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
-        public void TryHideOverlayBox(FrameworkElement element)
+        public void TryHideOverlayBox(MouseButtonEventArgs args)
         {
+            if (args == null || args.Source == null)
+            {
+                return;
+            }
+
+            var element = args.Source as FrameworkElement;
+            var originalSource = args.OriginalSource as FrameworkElement;
             if (element is OverlayBox)
             {
                 return;
             }
-            else if (element?.Tag != null && element.Tag.ToString() == "AllowOverlay")
+            else if (element?.Tag != null && element.Tag?.ToString() == "AllowOverlay")
+            {
+                return;
+            }
+            else if (originalSource?.Tag != null && originalSource.Tag?.ToString() == "AllowOverlay")
             {
                 return;
             }

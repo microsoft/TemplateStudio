@@ -94,8 +94,12 @@ namespace TemplateValidator
                 {
                     EnsureAdequateDescription(template, results);
 
-                    // Composition templates don't need identities
-                    EnsureVisualBasicTemplatesAreIdentifiedAppropriately(template, filePath, results);
+                    // Composition templates don't need identities, but need unique names
+                    EnsureVisualBasicTemplatesAreIdentifiedAppropriately(template, filePath, results, false);
+                }
+                else
+                {
+                    EnsureVisualBasicTemplatesAreIdentifiedAppropriately(template, filePath, results, true);
                 }
 
                 EnsureClassificationAsExpected(template, results);
@@ -131,7 +135,7 @@ namespace TemplateValidator
             // The explicit values here are the ones that are currently in use.
             // In theory any string could be exported and used as a symbol but currently it's only these
             // If lots of templates start exporting new symbols it might be necessary to change how symbol keys are verified
-            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.CaliburnMicro" };
+            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.CaliburnMicro", "wts.Page.Settings.VB", "wts.Page.Settings.CodeBehind.VB" };
 
             foreach (var symbol in template.Symbols)
             {
@@ -259,7 +263,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "AppToApp" }.Contains(tag.Value))
+            if (!new[] { "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.rightClickEnabled tag.");
             }
@@ -278,7 +282,6 @@ namespace TemplateValidator
         {
             try
             {
-                // Use a linked copy of this (and related files) as can't reference the core lib directly
                 CompositionQuery.Parse(tag.Value);
             }
             catch (InvalidCompositionQueryException ex)
@@ -289,7 +292,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsCompositionFilterLogic(ValidationTemplateInfo template, KeyValuePair<string, string> tag, List<string> results)
         {
-            // Ensure VB tempaltes refere to VB identities
+            // Ensure VB templates refer to VB identities
             if (template.TemplateTags["language"] == ProgrammingLanguages.VisualBasic)
             {
                 // This can't catch everything but is better than nothing
@@ -485,11 +488,11 @@ namespace TemplateValidator
             }
         }
 
-        private static void EnsureVisualBasicTemplatesAreIdentifiedAppropriately(ValidationTemplateInfo template, string filePath, List<string> results)
+        private static void EnsureVisualBasicTemplatesAreIdentifiedAppropriately(ValidationTemplateInfo template, string filePath, List<string> results, bool isCompositionTemplate)
         {
             var isVbTemplate = filePath.Contains("VB\\");
 
-            if (string.IsNullOrWhiteSpace(template.Identity))
+            if (!isCompositionTemplate && string.IsNullOrWhiteSpace(template.Identity))
             {
                 results.Add("The template is missing an identity.");
             }
@@ -497,16 +500,21 @@ namespace TemplateValidator
             {
                 if (isVbTemplate)
                 {
-                    if (!template.Identity.EndsWith("VB", StringComparison.CurrentCulture))
+                    if (isCompositionTemplate && !template.Name.EndsWith("VB", StringComparison.CurrentCulture))
+                    {
+                        results.Add("The name of templates for VisualBasic should end with 'VB'.");
+                    }
+
+                    if (!isCompositionTemplate && !template.Identity.EndsWith("VB", StringComparison.CurrentCulture))
                     {
                         results.Add("The identity of templates for VisualBasic should end with 'VB'.");
                     }
                 }
                 else
                 {
-                    if (template.Identity.EndsWith("VB", StringComparison.CurrentCulture))
+                    if ((isCompositionTemplate && template.Name.EndsWith("VB", StringComparison.CurrentCulture)) || (!isCompositionTemplate && template.Identity.EndsWith("VB", StringComparison.CurrentCulture)))
                     {
-                        results.Add("Only VisualBasic templates should end with 'VB'.");
+                        results.Add("Only VisualBasic templates identities and names should end with 'VB'.");
                     }
                 }
             }

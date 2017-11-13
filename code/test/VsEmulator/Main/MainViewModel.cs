@@ -485,7 +485,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     var dirs = Directory.EnumerateDirectories(templatesFolder);
                     foreach (var dir in dirs)
                     {
-                        if (!dir.EndsWith("0.0.0.0", StringComparison.InvariantCultureIgnoreCase))
+                        if (!dir.EndsWith("0.0.0.0", StringComparison.OrdinalIgnoreCase))
                         {
                             Fs.SafeDeleteDirectory(dir);
                         }

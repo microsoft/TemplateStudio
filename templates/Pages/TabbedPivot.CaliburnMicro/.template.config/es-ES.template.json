@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "name": "Tabbed",
-  "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
+  "description": "La página con pestañas se usa para navegar entre las categorías de contenido únicas a las que se accede con frecuencia.",
   "identity": "wts.Page.TabbedPivot.CaliburnMicro"
 }

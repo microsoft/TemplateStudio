@@ -1,3 +1,3 @@
-﻿The tabbed page is used for navigating frequently accessed, distinct content categories. Pivots allow for navigation between two or more content panes and relies on text headers to articulate the different sections of content.
+﻿La page à tabulations permet de naviguer entre différentes catégories de contenus fréquemment visitées. Les pivots permettent de naviguer entre deux volets de contenu ou plus et s'appuient sur les en-têtes textuels pour articuler les différentes sections du contenu.
 
-To find out more if this is a good solution for you, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot).
+Pour savoir s'il s'agit d'une solution adaptée à vos projets, accédez au site [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot).

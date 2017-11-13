@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             if (templateDefinedPostAction.ActionId != ActionId)
             {
-                string errorMsg = string.Format(StringRes.PostActionIdsNotMatchError, RelatedTemplate, templateDefinedPostAction.ActionId.ToString(), ActionId.ToString());
+                string errorMsg = string.Format(StringRes.PostActionIdsNotMatchError, templateDefinedPostAction.ActionId.ToString(), ActionId.ToString(), RelatedTemplate);
                 if (!ContinueOnError)
                 {
                     throw new Exception(errorMsg);

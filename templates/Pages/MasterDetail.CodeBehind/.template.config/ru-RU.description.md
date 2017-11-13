@@ -1,3 +1,3 @@
-﻿The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿На странице "Основной/подробности" доступна главная панель и панель сведений для содержимого. При выборе элемента в главном списке обновляется панель сведений. Этот шаблон часто используется для электронной почты и адресных книг.
 
-More information about the master-detail pattern can be found [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details).
+Дополнительные сведения о шаблоне "Основной/подробности": [docs.microsoft.com](https://docs.microsoft.com/ru-ru/windows/uwp/controls-and-patterns/master-details).

@@ -1,1 +1,1 @@
-﻿The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.
+﻿지도 페이지는 지도 컨트롤에 기반합니다.  지도 아이콘을 추가하고 위치를 설정하는 코드를 제공합니다.

@@ -542,7 +542,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         break;
 
                     default:
-                        if (!item.EndsWith(".xaml.cs", StringComparison.InvariantCultureIgnoreCase))
+                        if (!item.EndsWith(".xaml.cs", StringComparison.OrdinalIgnoreCase))
                         {
                             Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
                         }

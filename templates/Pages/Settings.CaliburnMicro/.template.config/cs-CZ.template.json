@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "name": "Settings",
-  "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
+  "description": "Stránka nastavení je stránka, na kterou doporučujeme umístit konfigurační nastavení pro vaši aplikaci.",
   "identity": "wts.Page.Settings.CaliburnMicro"
 }

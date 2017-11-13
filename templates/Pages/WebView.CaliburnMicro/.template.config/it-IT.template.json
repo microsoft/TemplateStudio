@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "name": "Web View",
-  "description": "The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine.",
+  "description": "La pagina della visualizzazione Web incorpora una vista dell'app che esegue il rendering del contenuto Web utilizzando il motore di rendering Microsoft Edge.",
   "identity": "wts.Page.WebView.CaliburnMicro"
 }

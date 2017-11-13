@@ -1,3 +1,3 @@
-﻿The SampleDataService is a central repository for data used by generated pages. It is filled with basic data to provide a realistic viewpoint on data.  The data is also static to prevent any differences between runs.
+﻿El SampleDataService es un repositorio central para datos utilizados por las páginas generadas. Esta lleno de datos básicos que proporcionan un punto de vista realista sobre los datos.  Los datos también son estáticos para evitar que haya diferencias entre las ejecuciones.
 
-The data provided should be treated as temporary and removed once you have changed the generated pages to use your own data.
+Los datos proporcionados deben tratarse como temporales y deben eliminarse cuando cambies las páginas generadas para usar tus propios datos.

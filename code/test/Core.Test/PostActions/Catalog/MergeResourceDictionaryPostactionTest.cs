@@ -70,8 +70,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Exception ex = Assert.Throws<Exception>(() => mergeResourceDictionaryPostAction.Execute());
             Assert.NotNull(ex.InnerException);
             Assert.Equal(typeof(System.IO.InvalidDataException), ex.InnerException.GetType());
-            Assert.Equal($"Error executing 'Microsoft.Templates.Core.PostActions.Catalog.Merge.MergeResourceDictionaryPostAction'. Related template: TestTemplate.", ex.Message);
-            Assert.Equal($"The style with key 'PageTitleStyle' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project. Related Template: 'TestTemplate'.", ex.InnerException.Message);
+            Assert.Equal(string.Format(Resources.StringRes.PostActionException, "Microsoft.Templates.Core.PostActions.Catalog.Merge.MergeResourceDictionaryPostAction", "TestTemplate"), ex.Message);
         }
     }
 }

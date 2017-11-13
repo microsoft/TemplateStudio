@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro  & identity == wts.Page.MasterDetail.VB|wts.Page.MasterDetail.CodeBehind.VB|wts.Page.MasterDetail.CaliburnMicro.VB"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind  & identity == wts.Page.MasterDetail.VB|wts.Page.MasterDetail.CodeBehind.VB"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

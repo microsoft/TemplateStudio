@@ -111,6 +111,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "public void SomeMethod()",
                 "{",
                 "    // Merge2",
+                string.Empty,
                 "    // Merge1",
                 "}"
             };
@@ -269,6 +270,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 "Public Sub SomeMethod()",
                 "    ' Merge2",
+                string.Empty,
                 "    ' Merge1",
                 "End Sub"
             };
