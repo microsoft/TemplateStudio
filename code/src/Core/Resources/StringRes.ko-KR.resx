@@ -151,7 +151,7 @@
     <value>'{1}' 파일에서 '{0}' 줄을 찾을 수 없습니다. postaction 파일의 콘텐츠를 수동으로 병합하십시오.</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>{0} 폴더를 {1}로 복사할 수 없습니다. 오류: {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>{0} 폴더를 삭제할 수 없습니다. 오류: {1}</value>
@@ -392,5 +392,9 @@
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>
