@@ -151,7 +151,7 @@
     <value>Nebyl nalezen očekávaný řádek {0} v souboru {1}. Slučte obsah z následně vytvořeného souboru ručně.</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>Složku {0} nelze zkopírovat do {1}. Chyba: {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Složku {0} nelze odstranit. Chyba: {1}</value>
@@ -392,5 +392,9 @@ Nemohly být integrovány následující změny: {2}
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>

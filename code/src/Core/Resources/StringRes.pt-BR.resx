@@ -151,7 +151,7 @@
     <value>Não foi possível localizar a linha esperada `{0}` no arquivo '{1}'. Mescle o conteúdo do arquivo de pós-ação manualmente.</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>A pasta {0} não pode ser copiada para {1}. Erro: {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>A pasta {0} não pode ser excluída. Erro: {1}</value>
@@ -392,5 +392,9 @@ As seguintes alterações não puderam ser integradas: {2}
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>
