@@ -17,7 +17,7 @@ namespace WTSGeneratedNavigation.ViewModels
 {
     public class ImageGalleryDetailViewModel : ViewModelBase
     {
-        private readonly ISampleDataService sampleDataService;
+        private readonly ISampleDataService _sampleDataService;
         private static UIElement _image;
         private object _selectedImage;
         private ObservableCollection<SampleImage> _source;
@@ -41,8 +41,8 @@ namespace WTSGeneratedNavigation.ViewModels
         public ImageGalleryDetailViewModel(ISampleDataService sampleDataServiceInstance)
         {
             // TODO WTS: Replace this with your actual data
-            sampleDataService = sampleDataServiceInstance;
-            Source = sampleDataService.GetGallerySampleData();
+            _sampleDataService = sampleDataServiceInstance;
+            Source = _sampleDataService.GetGallerySampleData();
         }
 
         public void SetImage(UIElement image) => _image = image;

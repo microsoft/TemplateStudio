@@ -20,51 +20,51 @@ namespace WTSGeneratedNavigation.ViewModels
          // TODO WTS: Set your preferred default zoom level
         private const double DefaultZoomLevel = 17;
 
-        private readonly ILocationService locationService;
+        private readonly ILocationService _locationService;
 
         // TODO WTS: Set your preferred default location if a geolock can't be found.
-        private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
+        private readonly BasicGeoposition _defaultPosition = new BasicGeoposition()
         {
             Latitude = 47.609425,
             Longitude = -122.3417
         };
 
-        private string mapServiceToken;
+        private string _mapServiceToken;
 
         public string MapServiceToken
         {
-            get { return mapServiceToken; }
-            set { SetProperty(ref mapServiceToken, value); }
+            get { return _mapServiceToken; }
+            set { SetProperty(ref _mapServiceToken, value); }
         }
 
-        private double zoomLevel;
+        private double _zoomLevel;
 
         public double ZoomLevel
         {
-            get { return zoomLevel; }
-            set { SetProperty(ref zoomLevel, value); }
+            get { return _zoomLevel; }
+            set { SetProperty(ref _zoomLevel, value); }
         }
 
-        private Geopoint center;
+        private Geopoint _center;
 
         public Geopoint Center
         {
-            get { return center; }
-            set { SetProperty(ref center, value); }
+            get { return _center; }
+            set { SetProperty(ref _center, value); }
         }
 
-        private ObservableCollection<MapIcon> mapIcons = new ObservableCollection<MapIcon>();
+        private ObservableCollection<MapIcon> _mapIcons = new ObservableCollection<MapIcon>();
 
         public ObservableCollection<MapIcon> MapIcons
         {
-            get { return mapIcons; }
-            set { SetProperty(ref mapIcons, value); }
+            get { return _mapIcons; }
+            set { SetProperty(ref _mapIcons, value); }
         }
 
         public MapViewModel(ILocationService locationServiceInstance)
         {
-            locationService = locationServiceInstance;
-            Center = new Geopoint(defaultPosition);
+            _locationService = locationServiceInstance;
+            Center = new Geopoint(_defaultPosition);
             ZoomLevel = DefaultZoomLevel;
 
             // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/
@@ -74,24 +74,24 @@ namespace WTSGeneratedNavigation.ViewModels
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            if (locationService != null)
+            if (_locationService != null)
             {
-                locationService.PositionChanged += LocationServicePositionChanged;
+                _locationService.PositionChanged += LocationServicePositionChanged;
 
-                var initializationSuccessful = await locationService.InitializeAsync();
+                var initializationSuccessful = await _locationService.InitializeAsync();
 
                 if (initializationSuccessful)
                 {
-                    await locationService.StartListeningAsync();
+                    await _locationService.StartListeningAsync();
                 }
 
-                if (initializationSuccessful && locationService.CurrentPosition != null)
+                if (initializationSuccessful && _locationService.CurrentPosition != null)
                 {
-                    Center = locationService.CurrentPosition.Coordinate.Point;
+                    Center = _locationService.CurrentPosition.Coordinate.Point;
                 }
                 else
                 {
-                    Center = new Geopoint(defaultPosition);
+                    Center = new Geopoint(_defaultPosition);
                 }
             }
 
@@ -109,10 +109,10 @@ namespace WTSGeneratedNavigation.ViewModels
         public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
         {
             base.OnNavigatingFrom(e, viewModelState, suspending);
-            if (locationService != null)
+            if (_locationService != null)
             {
-                locationService.PositionChanged -= LocationServicePositionChanged;
-                locationService.StopListening();
+                _locationService.PositionChanged -= LocationServicePositionChanged;
+                _locationService.StopListening();
             }
         }
 

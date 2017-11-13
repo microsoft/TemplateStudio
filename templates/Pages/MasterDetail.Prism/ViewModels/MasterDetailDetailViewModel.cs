@@ -16,23 +16,23 @@ namespace Param_ItemNamespace.ViewModels
         private const string NarrowStateName = "NarrowState";
         private const string WideStateName = "WideState";
 
-        private readonly INavigationService navigationService;
-        private readonly ISampleDataService sampleDataService;
+        private readonly INavigationService _navigationService;
+        private readonly ISampleDataService _sampleDataService;
 
         public ICommand StateChangedCommand { get; }
 
-        private SampleOrder item;
+        private SampleOrder _item;
 
         public SampleOrder Item
         {
-            get { return item; }
-            set { SetProperty(ref item, value); }
+            get { return _item; }
+            set { SetProperty(ref _item, value); }
         }
 
         public MasterDetailDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
         {
-            navigationService = navigationServiceInstance;
-            sampleDataService = sampleDataServiceInstance;
+            _navigationService = navigationServiceInstance;
+            _sampleDataService = sampleDataServiceInstance;
             StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
         }
 
@@ -40,7 +40,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             base.OnNavigatedTo(e, viewModelState);
             long orderId = (long)e.Parameter;
-            var data = await sampleDataService.GetSampleModelDataAsync();
+            var data = await _sampleDataService.GetSampleModelDataAsync();
             Item = data.FirstOrDefault(x => x.OrderId == orderId);
         }
 
@@ -48,7 +48,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             if (args.OldState.Name == NarrowStateName && args.NewState.Name == WideStateName)
             {
-                navigationService.GoBack();
+                _navigationService.GoBack();
             }
         }
     }

@@ -9,21 +9,21 @@ namespace Param_ItemNamespace.Services
 {
     public class WebViewService : IWebViewService
     {
-        private WebView webView;
+        private WebView _webView;
 
         public WebViewService(WebView webViewInstance)
         {
-            webView = webViewInstance;
-            webView.NavigationCompleted += WebView_NavigationCompleted;
-            webView.NavigationFailed += WebView_NavigationFailed;
+            _webView = webViewInstance;
+            _webView.NavigationCompleted += WebView_NavigationCompleted;
+            _webView.NavigationFailed += WebView_NavigationFailed;
         }
 
         public void Detatch()
         {
-            if (webView != null)
+            if (_webView != null)
             {
-                webView.NavigationCompleted -= WebView_NavigationCompleted;
-                webView.NavigationFailed += WebView_NavigationFailed;
+                _webView.NavigationCompleted -= WebView_NavigationCompleted;
+                _webView.NavigationFailed += WebView_NavigationFailed;
             }
         }
 
@@ -39,22 +39,22 @@ namespace Param_ItemNamespace.Services
 
         public void Refresh()
         {
-            webView?.Refresh();
+            _webView?.Refresh();
         }
 
         public void GoForward()
         {
-            webView?.GoForward();
+            _webView?.GoForward();
         }
 
         public void GoBack()
         {
-            webView?.GoBack();
+            _webView?.GoBack();
         }
 
-        public bool CanGoForward => webView?.CanGoForward == true;
+        public bool CanGoForward => _webView?.CanGoForward == true;
 
-        public bool CanGoBack => webView?.CanGoBack == true;
+        public bool CanGoBack => _webView?.CanGoBack == true;
 
         public event EventHandler<WebViewNavigationCompletedEventArgs> NavigationComplete;
 

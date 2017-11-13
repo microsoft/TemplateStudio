@@ -7,11 +7,11 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class ChartViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private readonly ISampleDataService sampleDataService;
+        private readonly ISampleDataService _sampleDataService;
 
         public ChartViewViewModel(ISampleDataService sampleDataServiceInstance)
         {
-            sampleDataService = sampleDataServiceInstance;
+            _sampleDataService = sampleDataServiceInstance;
         }
 
         public ObservableCollection<DataPoint> Source
@@ -19,7 +19,7 @@ namespace Param_ItemNamespace.ViewModels
             get
             {
                 // TODO WTS: Replace this with your actual data
-                return sampleDataService.GetChartSampleData();
+                return _sampleDataService.GetChartSampleData();
             }
         }
     }

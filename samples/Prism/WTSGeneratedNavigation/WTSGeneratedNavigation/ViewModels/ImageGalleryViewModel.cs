@@ -21,8 +21,8 @@ namespace WTSGeneratedNavigation.ViewModels
 {
     public class ImageGalleryViewModel : ViewModelBase
     {
-        private readonly INavigationService navigationService;
-        private readonly ISampleDataService sampleDataService;
+        private readonly INavigationService _navigationService;
+        private readonly ISampleDataService _sampleDataService;
 
         public const string ImageGallerySelectedImageId = "ImageGallerySelectedImageId";
         public const string ImageGalleryAnimationOpen = "ImageGallery_AnimationOpen";
@@ -42,11 +42,11 @@ namespace WTSGeneratedNavigation.ViewModels
 
         public ImageGalleryViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
         {
-            navigationService = navigationServiceInstance;
+            _navigationService = navigationServiceInstance;
 
             // TODO WTS: Replace this with your actual data
-            sampleDataService = sampleDataServiceInstance;
-            Source = sampleDataService.GetGallerySampleData();
+            _sampleDataService = sampleDataServiceInstance;
+            Source = _sampleDataService.GetGallerySampleData();
         }
 
         public async Task LoadAnimationAsync(GridView imagesGridView)
@@ -71,7 +71,7 @@ namespace WTSGeneratedNavigation.ViewModels
         {
             var selected = args.ClickedItem as SampleImage;
             _imagesGridView.PrepareConnectedAnimation(ImageGalleryAnimationOpen, selected, "galleryImage");
-            navigationService.Navigate(PageTokens.ImageGalleryDetailPage, args.ClickedItem);
+            _navigationService.Navigate(PageTokens.ImageGalleryDetailPage, args.ClickedItem);
         }
     }
 }

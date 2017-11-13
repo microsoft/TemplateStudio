@@ -19,8 +19,8 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class ImageGalleryViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private readonly INavigationService navigationService;
-        private readonly ISampleDataService sampleDataService;
+        private readonly INavigationService _navigationService;
+        private readonly ISampleDataService _sampleDataService;
 
         public const string ImageGalleryViewSelectedImageId = "ImageGalleryViewSelectedImageId";
         public const string ImageGalleryViewAnimationOpen = "ImageGalleryView_AnimationOpen";
@@ -40,11 +40,11 @@ namespace Param_ItemNamespace.ViewModels
 
         public ImageGalleryViewViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
         {
-            navigationService = navigationServiceInstance;
+            _navigationService = navigationServiceInstance;
 
             // TODO WTS: Replace this with your actual data
-            sampleDataService = sampleDataServiceInstance;
-            Source = sampleDataService.GetGallerySampleData();
+            _sampleDataService = sampleDataServiceInstance;
+            Source = _sampleDataService.GetGallerySampleData();
         }
 
         public async Task LoadAnimationAsync(GridView imagesGridView)

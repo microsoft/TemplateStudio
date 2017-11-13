@@ -9,7 +9,7 @@ namespace WTSGeneratedNavigation.Services
 {
     public class LocationService : ILocationService
     {
-        private Geolocator geolocator;
+        private Geolocator _geolocator;
 
         /// <summary>
         /// Raised when the current position is updated.
@@ -49,10 +49,10 @@ namespace WTSGeneratedNavigation.Services
         public async Task<bool> InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold)
         {
             // to find out more about getting location, go to https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location
-            if (geolocator != null)
+            if (_geolocator != null)
             {
-                geolocator.PositionChanged -= GeolocatorOnPositionChanged;
-                geolocator = null;
+                _geolocator.PositionChanged -= GeolocatorOnPositionChanged;
+                _geolocator = null;
             }
 
             var access = await Geolocator.RequestAccessAsync();
@@ -62,7 +62,7 @@ namespace WTSGeneratedNavigation.Services
             switch (access)
             {
                 case GeolocationAccessStatus.Allowed:
-                    geolocator = new Geolocator
+                    _geolocator = new Geolocator
                     {
                         DesiredAccuracyInMeters = desiredAccuracyInMeters,
                         MovementThreshold = movementThreshold
@@ -85,15 +85,15 @@ namespace WTSGeneratedNavigation.Services
         /// <returns>An object that is used to manage the asynchronous operation.</returns>
         public async Task StartListeningAsync()
         {
-            if (geolocator == null)
+            if (_geolocator == null)
             {
                 throw new InvalidOperationException(
                     "The StartListening method cannot be called before the InitializeAsync method is called and returns true.");
             }
 
-            geolocator.PositionChanged += GeolocatorOnPositionChanged;
+            _geolocator.PositionChanged += GeolocatorOnPositionChanged;
 
-            CurrentPosition = await geolocator.GetGeopositionAsync();
+            CurrentPosition = await _geolocator.GetGeopositionAsync();
         }
 
         /// <summary>
@@ -101,12 +101,12 @@ namespace WTSGeneratedNavigation.Services
         /// </summary>
         public void StopListening()
         {
-            if (geolocator == null)
+            if (_geolocator == null)
             {
                 return;
             }
 
-            geolocator.PositionChanged -= GeolocatorOnPositionChanged;
+            _geolocator.PositionChanged -= GeolocatorOnPositionChanged;
         }
 
         private async void GeolocatorOnPositionChanged(Geolocator sender, PositionChangedEventArgs args)
