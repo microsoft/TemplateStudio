@@ -239,7 +239,7 @@ namespace Microsoft.Templates.Core.Packaging
         {
             using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                var res = new List<(X509Certificate cert, string pin, X509ChainStatusFlags status)>();
+                var res = new List<(X509Certificate2 cert, string pin, X509ChainStatusFlags status)>();
                 var dsm = new PackageDigitalSignatureManager(package);
                 var certs = GetPackageCertificates(dsm);
                 foreach (X509Certificate cert in certs.Values)
