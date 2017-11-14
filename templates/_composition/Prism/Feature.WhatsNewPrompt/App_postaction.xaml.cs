@@ -12,7 +12,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IWhatsNewDisplayService>(new WhatsNewDisplayService());
+            Container.RegisterType<IWhatsNewDisplayService, WhatsNewDisplayService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 

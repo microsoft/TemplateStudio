@@ -29,13 +29,13 @@ namespace WTSGeneratedNavigation
         protected override void ConfigureContainer()
         {
             base.ConfigureContainer();
-            Container.RegisterInstance<IWhatsNewDisplayService>(new WhatsNewDisplayService());
-            Container.RegisterInstance<IFirstRunDisplayService>(new FirstRunDisplayService());
-            Container.RegisterInstance<ILiveTileService>(new LiveTileService());
-            Container.RegisterInstance<IStoreNotificationsService>(new StoreNotificationsService());
-            Container.RegisterInstance<IHubNotificationsService>(new HubNotificationsService());
-            Container.RegisterInstance<IToastNotificationsService>(new ToastNotificationsService());
-            Container.RegisterInstance<IBackgroundTaskService>(new BackgroundTaskService());
+            Container.RegisterType<IWhatsNewDisplayService, WhatsNewDisplayService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IFirstRunDisplayService, FirstRunDisplayService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<ILiveTileService, LiveTileService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IStoreNotificationsService, StoreNotificationsService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IHubNotificationsService, HubNotificationsService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IToastNotificationsService, ToastNotificationsService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IBackgroundTaskService, BackgroundTaskService>(new ContainerControlledLifetimeManager());
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
             Container.RegisterType<IWebViewService, WebViewService>();
             Container.RegisterType<ISampleDataService, SampleDataService>();

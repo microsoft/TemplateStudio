@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IBackgroundTaskService>(new BackgroundTaskService());
+            Container.RegisterType<IBackgroundTaskService, BackgroundTaskService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 

@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<ILiveTileFeatureService>(new LiveTileFeatureService());
+            Container.RegisterType<ILiveTileFeatureService, LiveTileFeatureService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 

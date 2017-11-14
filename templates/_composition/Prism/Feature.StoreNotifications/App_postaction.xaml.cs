@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IStoreNotificationsFeatureService>(new StoreNotificationsFeatureService());
+            Container.RegisterType<IStoreNotificationsFeatureService, StoreNotificationsFeatureService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 

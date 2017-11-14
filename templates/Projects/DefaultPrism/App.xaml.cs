@@ -18,6 +18,7 @@ namespace wts.DefaultProject
 
         protected override void ConfigureContainer()
         {
+            // register a singleton using Container.RegisterType<IInterface, Type>(new ContainerControlledLifetimeManager());
             base.ConfigureContainer();
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
         }

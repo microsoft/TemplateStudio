@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IHubNotificationsFeatureService>(new HubNotificationsFeatureService());
+            Container.RegisterType<IHubNotificationsFeatureService, HubNotificationsFeatureService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 

@@ -12,7 +12,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IFirstRunDisplayService>(new FirstRunDisplayService());
+            Container.RegisterType<IFirstRunDisplayService, FirstRunDisplayService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 

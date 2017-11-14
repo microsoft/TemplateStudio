@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IToastNotificationsFeatureService>(new ToastNotificationsFeatureService());
+            Container.RegisterType<IToastNotificationsFeatureService, ToastNotificationsFeatureService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 
