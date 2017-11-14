@@ -5,18 +5,23 @@ using System.Text;
 
 namespace TemplatesSourceTool.CommandOptions
 {
+    public enum PackageAction
+    {
+        Info,
+        Extract,
+        Create
+    }
+
     [Verb("package", HelpText = "Operations with template package file (.mstx)")]
     public class PackageOptions
     {
+        [Option('a', "action", Required = true, HelpText = "Defines the action to perform with the package file or directory specified. Values: Info, Extract or Create")]
+        public PackageAction Action { get; set; }
 
-        [Option('i', "info", Required = false, HelpText = "Gets info from the package file specified.", SetName = "Out")]
-        public string Info { get; set; }
+        [Option('s', "source", Required = true, HelpText = "Defines the source (file or directory) to perform the action. Info and Extract only works with a templates package file (*.mstx). Create only work with a directory as target")]
+        public string Source { get; set; }
 
-        [Option('x', "extract", Required = false, HelpText = "Extract templates package content to the specified directory.", SetName = "Out")]
-        public string Extract { get; set; }
-
-        [Option('c', "create", Required = false, HelpText = "Create a templates package with the content existing in the the specified directory.", SetName = "In")]
-        public string Create { get; set; }
-
+        [Option('c', "cert", Required = false, HelpText = "Certificate thumbprint to be used in the package creation")]
+        public string CertThumbprint { get; set; }
     }
 }
