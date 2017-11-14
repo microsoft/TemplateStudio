@@ -1,5 +1,5 @@
 ﻿using System;
-
+using WtsXamarin.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,14 +22,9 @@ namespace WtsXamarin.Views.Navigation
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as MasterDetailPageMenuItem;
-            if (item == null)
-                return;
+            var menuItem = e.SelectedItem as MasterDetailPageMenuItem;
+            NavigationService.Instance.NavigateTo(menuItem);
 
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
-
-            Detail = new NavigationPage(page);
             IsPresented = false;
         }
     }

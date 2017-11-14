@@ -2,28 +2,34 @@
 
 namespace WtsXamarin
 {
-	public partial class App : Application
-	{
-		public App ()
-		{
-			InitializeComponent();
+    public partial class App : Application
+    {
+        public static NavigationPage NavPage = null;
 
-			MainPage = new Views.Navigation.MasterDetailPage();
-		}
+        public App()
+        {
+            InitializeComponent();
 
-		protected override void OnStart ()
-		{
-			// Handle when your app starts
-		}
+            NavPage = new NavigationPage(new Views.MainPage());
+            MainPage = new Views.Navigation.MasterDetailPage()
+            {
+                Detail = NavPage
+            };
+        }
 
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
+        protected override void OnStart()
+        {
+            // Handle when your app starts
+        }
 
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
-		}
-	}
+        protected override void OnSleep()
+        {
+            // Handle when your app sleeps
+        }
+
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
+        }
+    }
 }
