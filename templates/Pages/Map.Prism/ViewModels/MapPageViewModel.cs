@@ -26,12 +26,12 @@ namespace Param_ItemNamespace.ViewModels
             Longitude = -122.3417
         };
 
-        private string _defaultPosition;
+        private string _mapServiceToken;
 
         public string MapServiceToken
         {
-            get { return _defaultPosition; }
-            set { SetProperty(ref _defaultPosition, value); }
+            get { return _mapServiceToken; }
+            set { SetProperty(ref _mapServiceToken, value); }
         }
 
         private double _zoomLevel;
