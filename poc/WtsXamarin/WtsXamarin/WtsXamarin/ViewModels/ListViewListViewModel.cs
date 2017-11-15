@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using WtsXamarin.Helpers;
 using WtsXamarin.Models;
 using WtsXamarin.Services;
-using WtsXamarin.Views;
-using Xamarin.Forms;
 
 namespace WtsXamarin.ViewModels
 {
-    public class ListViewMasterViewModel : Observable
+    public class ListViewListViewModel : Observable
     {
         private ObservableCollection<SampleOrder> _sampleData;
 
-        public ListViewMasterViewModel()
+        public ListViewListViewModel()
         {
             SampleData = SampleDataService.GetGridSampleData();
         }
@@ -28,7 +23,7 @@ namespace WtsXamarin.ViewModels
         public SampleOrder SelectedItem
         {
             get => null;
-            set => NavigationService.Instance.NavigateTo<ListViewDetailViewModel>(value);
+            set => NavigationService.Instance.NavigateToAsync<ListViewItemViewModel>(value);
         }
     }
 }
