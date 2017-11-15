@@ -24,6 +24,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
             Loaded += (o, e) =>
             {
                 ViewModel.Initialize();
+                okButton.Focus();
             };
         }
 

@@ -24,6 +24,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             Loaded += (o, e) =>
             {
                 ViewModel.Initialize();
+                newCsharpButton.Focus();
             };
         }
 

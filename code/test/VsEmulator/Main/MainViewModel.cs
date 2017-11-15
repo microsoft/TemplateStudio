@@ -21,6 +21,7 @@ using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
 using Microsoft.Templates.VsEmulator.TemplatesContent;
@@ -450,6 +451,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 new Version(WizardVersion),
                 _language);
 
+            var colorP = new FakeStyleValuesProvider();
+            UIStylesService.Instance.Initialize(colorP);
             CleanUpNotUsedContentVersions();
         }
 
