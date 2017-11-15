@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Test
         [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("Type", "BuildRightClickLegacy")]
-        public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{projectType}{framework}Legacy";
 
@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Test
                    && !t.GetIsHidden()
                    && t.GetLanguage() == language;
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, string.Empty, language, null, false);
 
             var fixture = _fixture as BuildRightClickWithLegacyFixture;
             await fixture.ChangeTemplatesSourceAsync(fixture.LocalSource, language);
@@ -57,7 +57,7 @@ namespace Microsoft.Templates.Test
                                             && !t.GetIsHidden()
                                             && t.GetRightClickEnabled());
 
-            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, language);
+            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, platform, language);
 
             AssertBuildProjectAsync(projectPath, projectName);
         }
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Test
         [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
         [Trait("ExecutionSet", "ManualOnly")]
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
-        public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string language)
+        public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{projectType}{framework}AllLegacy";
 
@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Test
                    && !t.GetIsHidden()
                    && t.GetLanguage() == language;
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName, false);
         }
     }
 }

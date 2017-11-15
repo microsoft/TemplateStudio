@@ -103,7 +103,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection(GenContext.InitializedLanguage);
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection(_replacementsDictionary["$wts.platform$"], GenContext.InitializedLanguage);
                 }
             }
             catch (WizardBackoutException)

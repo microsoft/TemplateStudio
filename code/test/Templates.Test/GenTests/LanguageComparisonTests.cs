@@ -33,8 +33,8 @@ namespace Microsoft.Templates.Test
             var genIdentities = GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(projectType, framework).ToList();
 
 #pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - C#7.0 feature StyleCop can't handle
-            var (csResultPath, csProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
-            var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
+            var (csResultPath, csProjectName) = await SetUpComparisonProjectAsync(Platforms.Uwp, ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
+            var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(Platforms.Uwp, ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
 #pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
             EnsureAllEquivalentFileNamesAreUsed(csResultPath, vbResultPath);

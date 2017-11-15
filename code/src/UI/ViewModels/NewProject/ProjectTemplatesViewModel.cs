@@ -22,6 +22,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class ProjectTemplatesViewModel : Observable
     {
+        public string Platform { get; private set; }
+
         public MetadataInfoViewModel ContextFramework { get; private set; }
 
         public MetadataInfoViewModel ContextProjectType { get; private set; }
@@ -89,18 +91,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return names;
         }
 
-        public async Task InitializeAsync()
+        public async Task InitializeAsync(string platform)
         {
+            Platform = platform;
             ContextProjectType = MainViewModel.Current.ProjectSetup.SelectedProjectType;
             ContextFramework = MainViewModel.Current.ProjectSetup.SelectedFramework;
 
-            var totalPages = DataService.LoadTemplatesGroups(PagesGroups, TemplateType.Page, ContextFramework.Name);
+            var totalPages = DataService.LoadTemplatesGroups(PagesGroups, TemplateType.Page, ContextFramework.Name, platform);
             if (totalPages > 0)
             {
                 PagesHeader = string.Format(StringRes.GroupPagesHeader_SF, totalPages);
             }
 
-            var totalFeatures = DataService.LoadTemplatesGroups(FeatureGroups, TemplateType.Feature, ContextFramework.Name);
+            var totalFeatures = DataService.LoadTemplatesGroups(FeatureGroups, TemplateType.Feature, ContextFramework.Name, platform);
             if (totalFeatures > 0)
             {
                 FeaturesHeader = string.Format(StringRes.GroupFeaturesHeader_SF, totalFeatures);
@@ -108,7 +111,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             if (SavedPages.Count == 0 && SavedFeatures.Count == 0)
             {
-                UserSelectionService.SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name);
+                UserSelectionService.SetupTemplatesFromLayout(ContextProjectType.Name, ContextFramework.Name, platform);
                 UpdateTemplatesAvailability();
                 UpdateSummaryTemplates();
                 UpdateHasPagesAndHasFeatures();

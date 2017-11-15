@@ -59,7 +59,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void LoadFrameworks()
         {
-            var projectFrameworks = GenComposer.GetSupportedFx(SelectedProjectType.Name);
+            // TODO: Change this
+            var projectFrameworks = GenComposer.GetSupportedFx(SelectedProjectType.Name, "Uwp");
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
                                                                 .Where(tf => projectFrameworks.Contains(tf.Name))
                                                                 .ToList();

@@ -69,9 +69,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
 
-        public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
+        public RelayCommand NewUwpCSharpProjectCommand => new RelayCommand(NewUwpCSharpProject);
 
-        public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
+        public RelayCommand NewUwpVisualBasicProjectCommand => new RelayCommand(NewUwpVisualBasicProject);
 
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
 
@@ -172,25 +172,25 @@ namespace Microsoft.Templates.VsEmulator.Main
             SolutionName = null;
         }
 
-        private void NewCSharpProject()
+        private void NewUwpCSharpProject()
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectAsync(ProgrammingLanguages.CSharp);
+                await NewProjectAsync("Uwp", ProgrammingLanguages.CSharp);
             });
         }
 
-        private void NewVisualBasicProject()
+        private void NewUwpVisualBasicProject()
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectAsync(ProgrammingLanguages.VisualBasic);
+                await NewProjectAsync("Uwp", ProgrammingLanguages.VisualBasic);
             });
         }
 
-        private async Task NewProjectAsync(string language)
+        private async Task NewProjectAsync(string platform, string language)
         {
             _language = language;
             ConfigureGenContext(ForceLocalTemplatesRefresh);
@@ -202,16 +202,18 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+                    var solutionPath = Path.Combine(newProjectInfo.location, newProjectInfo.name);
 
                     GenContext.Current = this;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection(platform, _language);
 
                     if (userSelection != null)
                     {
                         ProjectName = newProjectInfo.name;
                         ProjectPath = projectPath;
                         OutputPath = projectPath;
+                        SolutionPath = solutionPath;
 
                         ClearContext();
                         SolutionName = null;
@@ -245,7 +247,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.InitializedLanguage);
+                // TODO: Get platform from project
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature("Uwp", GenContext.InitializedLanguage);
 
                 if (userSelection != null)
                 {
@@ -280,7 +283,8 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.InitializedLanguage);
+                // TODO: Get platform from project
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage("Uwp", GenContext.InitializedLanguage);
 
                 if (userSelection != null)
                 {

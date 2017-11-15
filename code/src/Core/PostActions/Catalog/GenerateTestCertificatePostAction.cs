@@ -48,17 +48,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         internal override void ExecuteInternal()
         {
             int targetProjectIndex = int.Parse(Args["files"]);
-            string projectName = Path.GetFileNameWithoutExtension(_primaryOutputs[targetProjectIndex].Path);
+            var projectFile = _primaryOutputs[targetProjectIndex].Path;
+            string projectFileWithoutExtension = projectFile.Replace(Path.GetExtension(projectFile), string.Empty);
 
             var pfx = CreateCertificate(_publisherName);
 
-            AddToProject(pfx, projectName);
+            AddToProject(pfx, projectFileWithoutExtension);
             RemoveFromStore(pfx);
         }
 
-        private void AddToProject(string base64Encoded, string projectName)
+        private void AddToProject(string base64Encoded, string projectFileWithoutExtension)
         {
-            var filePath = Path.Combine(GenContext.Current.OutputPath, projectName) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(GenContext.Current.OutputPath, projectFileWithoutExtension) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
             GenContext.ToolBox.Shell.AddItems(filePath);

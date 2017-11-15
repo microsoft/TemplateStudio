@@ -30,8 +30,8 @@ namespace Microsoft.Templates.Test
         //// - Running a Administrator (for the WACK tests or you'll get UAC prompts)
         //// - Control of the machine (as WACK tests will launch and try and control the generated app. If you're doing other things it may cause the test to fail incorrectly)
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "")]
-        public async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string language)
+        [MemberData("GetProjectTemplatesForBuildAsync", "", "Uwp")]
+        public async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}Wack{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, GenerationFixture.GetDefaultName, false);
 
             // Replace the default assets in the generated project or they will cause WACK to fail
             foreach (var assetFile in new DirectoryInfo("./TestData/NonDefaultAssets").GetFiles("*.png"))

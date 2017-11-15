@@ -21,7 +21,7 @@ namespace Microsoft.Templates.UI
 
     public class UserSelection
     {
-        public UserSelection(string projectType, string framework, string language)
+        public UserSelection(string projectType, string framework, string platform, string language)
         {
             if (string.IsNullOrWhiteSpace(language))
             {
@@ -30,6 +30,7 @@ namespace Microsoft.Templates.UI
 
             ProjectType = projectType;
             Framework = framework;
+            Platform = platform;
             Language = language;
         }
 
@@ -38,6 +39,8 @@ namespace Microsoft.Templates.UI
         public string Framework { get; set; }
 
         public string HomeName { get; set; }
+
+        public string Platform { get; private set; }
 
         public string Language { get; private set; }
 

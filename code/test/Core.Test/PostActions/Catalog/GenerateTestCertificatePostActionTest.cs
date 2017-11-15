@@ -105,16 +105,17 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             postAction.Execute();
 
-            var expectedCertFilePath = Path.Combine(GenContext.Current.OutputPath, $"{projectName}_TemporaryKey.pfx");
+            var expectedCertFilePath = Path.Combine(GenContext.Current.ProjectPath, $"{projectName}_TemporaryKey.pfx");
 
             Assert.True(File.Exists(expectedCertFilePath));
 
-            Fs.SafeDeleteDirectory(@".\TestData\tmp");
+            Fs.SafeDeleteDirectory(ProjectPath);
         }
 
         [Fact]
         public void BadInstantiation_ContinueOnError()
         {
+            ProjectName = "test3";
             Dictionary<string, string> testArgs = new Dictionary<string, string>();
             testArgs.Add("myArg", "myValue");
             IPostAction inventedIdPostAction = new FakeTemplateDefinedPostAction(Guid.NewGuid(), testArgs, true);
@@ -129,6 +130,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         [Fact]
         public void BadInstantiation_NoContinueOnError()
         {
+            ProjectName = "test4";
             Assert.Throws<Exception>(() =>
                {
                    Dictionary<string, string> testArgs = new Dictionary<string, string>();

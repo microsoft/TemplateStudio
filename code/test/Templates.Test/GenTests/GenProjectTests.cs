@@ -31,35 +31,37 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationProjects")]
-        public async Task GenEmptyProjectAsync(string projectType, string framework, string language)
+        public async Task GenEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
                     && t.GetProjectTypeList().Contains(projectType)
                     && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
             var projectName = $"{projectType}{framework}";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language);
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language);
         }
 
         [Theory]
         [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationProjects")]
-        public async Task GenEmptyProjectCorrectInferProjectConfigInfoAsync(string projectType, string framework, string language)
+        public async Task GenEmptyProjectCorrectInferProjectConfigInfoAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
                     && t.GetProjectTypeList().Contains(projectType)
                     && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
             var projectName = $"{projectType}{framework}";
 
-            string projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
+            string projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, false);
 
             // Remove configuration from the manifest
             RemoveProjectConfigInfoFromProject();
@@ -102,89 +104,91 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationAllPagesAndFeatures")]
-        public async Task GenAllPagesAndFeaturesAsync(string projectType, string framework, string language)
+        public async Task GenAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
                     && t.GetProjectTypeList().Contains(projectType)
                     && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
             var projectName = $"{projectType}{framework}All";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetDefaultName);
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName);
         }
 
         [Theory]
         [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRandomNames")]
-        public async Task GenAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
+        public async Task GenAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
                     && t.GetProjectTypeList().Contains(projectType)
                     && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
             var projectName = $"{projectType}{framework}AllRandom";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetRandomName);
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetRandomName);
         }
 
         [Theory]
         [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRightClick")]
-        public async Task GenEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        public async Task GenEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{projectType}{framework}AllRightClick";
             var projectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
-            await AssertGenerateRightClickAsync(projectName, projectType, framework, language, true);
+            await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true);
         }
 
         [Theory]
         [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRightClick")]
-        public async Task GenCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        public async Task GenCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
             var projectName = $"{projectType}{framework}AllRightClick2";
             var projectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
-            await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false);
+            await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false);
         }
 
         [Theory]
         [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "MVVMLight")]
         [Trait("Type", "GenerationOneByOneMVVMLight")]
-        public async Task GenMVVMLightOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        public async Task GenMVVMLightOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language);
+            await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language);
         }
 
         [Theory]
         [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "CaliburnMicro")]
         [Trait("Type", "GenerationOneByOneCaliburnMicro")]
-        public async Task GenCaliburnMicroOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        public async Task GenCaliburnMicroOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language);
+            await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language);
         }
 
         [Theory]
         [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "MVVMBasic")]
         [Trait("Type", "GenerationOneByOneMVVMBasic")]
-        public async Task GenMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        public async Task GenMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language);
+            await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language);
         }
 
         [Theory]
         [MemberData("GetPageAndFeatureTemplatesForGenerationAsync", "CodeBehind")]
         [Trait("Type", "GenerationOneByOneCodeBehind")]
-        public async Task GenCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        public async Task GenCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language);
+            await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language);
         }
     }
 }

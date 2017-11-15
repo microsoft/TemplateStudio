@@ -35,6 +35,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         // Configuration
         public TemplateType ConfigTemplateType { get; private set; }
 
+        public string ConfigPlatform { get; private set; }
+
         public string ConfigFramework { get; private set; }
 
         public string ConfigProjectType { get; private set; }
@@ -43,9 +45,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
-        public MainViewModel(string language)
+        public MainViewModel(string platform, string language)
             : base()
         {
+            ConfigPlatform = platform;
             _language = language;
             Current = this;
         }
@@ -148,7 +151,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override void OnGoBack()
         {
             base.OnGoBack();
-            NewItemSetup.Initialize(false);
+            NewItemSetup.Initialize(ConfigPlatform, false);
             WizardStatus.HasOverlayBox = true;
             ChangesSummary.ResetSelection();
             SetNewItemSetupTitle();
@@ -227,7 +230,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override async Task OnTemplatesAvailableAsync()
         {
             SetProjectConfigInfo();
-            NewItemSetup.Initialize(true);
+
+            NewItemSetup.Initialize(ConfigPlatform, true);
 
             await Task.CompletedTask;
         }
@@ -235,14 +239,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override async Task OnNewTemplatesAvailableAsync()
         {
             NavigationService.Navigate(new NewItemSetupView());
-            NewItemSetup.Initialize(true);
+
+            // TODO: Change this to resolve from project
+            NewItemSetup.Initialize("Uwp",  true);
 
             await Task.CompletedTask;
         }
 
         public UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _language)
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, _language)
             {
                 HomeName = string.Empty
             };
@@ -250,7 +256,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var template = GetActiveTemplate();
             if (template != null)
             {
-                var dependencies = GenComposer.GetAllDependencies(template.Template, ConfigFramework);
+                var dependencies = GenComposer.GetAllDependencies(template.Template, ConfigFramework, "Uwp");
 
                 userSelection.Pages.Clear();
                 userSelection.Features.Clear();

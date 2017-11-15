@@ -6,6 +6,7 @@
         "author": "Microsoft",
         "order": "2",
         "licenses": "",
+        "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {
@@ -15,6 +16,7 @@
         "author": "Microsoft",
         "order": "1",
         "licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",
+        "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {
@@ -24,6 +26,7 @@
         "author": "Microsoft",
         "order": "3",
         "licenses": "",
+        "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     }
 ]

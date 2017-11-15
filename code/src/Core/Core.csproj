@@ -201,6 +201,7 @@
     <Compile Include="PostActions\Catalog\Merge\ResourceDictionaryWriter.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\ListStringExtensions.cs" />
     <Compile Include="PostActions\TemplateDefinedPostAction.cs" />
+    <Compile Include="Platforms.cs" />
     <Compile Include="ProgrammingLanguages.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidator.cs" />
     <Compile Include="PostActions\Catalog\Merge\FailedMergePostActionInfo.cs" />

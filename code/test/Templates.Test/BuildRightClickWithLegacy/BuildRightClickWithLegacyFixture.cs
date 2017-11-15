@@ -44,21 +44,23 @@ namespace Microsoft.Templates.Test
 
                 await InitializeTemplatesForLanguageAsync(new LegacyTemplatesSource(), language);
 
-                var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
-                                                         && t.GetLanguage() == language);
+                // TODO: Re-enable for all platforms
+                ////foreach (var language in Platforms.GetAllPlarforms())
+                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes()
+                            .Where(m => !string.IsNullOrEmpty(m.Description))
+                            .Select(m => m.Name);
 
-                foreach (var projectTemplate in projectTemplates)
+                foreach (var projectType in projectTypes)
                 {
-                    var projectTypeList = projectTemplate.GetProjectTypeList();
+                    var projectFrameworks = GenComposer.GetSupportedFx(projectType, string.Empty);
 
-                    foreach (var projectType in projectTypeList)
+                    var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
+                                                .Where(m => projectFrameworks.Contains(m.Name))
+                                                .Select(m => m.Name).ToList();
+
+                    foreach (var framework in targetFrameworks)
                     {
-                        var frameworks = GenComposer.GetSupportedFx(projectType);
-
-                        foreach (var framework in frameworks)
-                        {
-                            result.Add(new object[] { projectType, framework, language });
-                        }
+                        result.Add(new object[] { projectType, framework, Platforms.Uwp, language });
                     }
                 }
             }
