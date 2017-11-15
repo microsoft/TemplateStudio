@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
@@ -68,7 +67,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             File.Delete(Config);
 
             // REFRESH PROJECT TO UN-DIRTY IT
-            if (Path.GetExtension(Config).Equals(".csproj", StringComparison.OrdinalIgnoreCase))
+            if (Path.GetExtension(Config).EndsWith("proj", StringComparison.OrdinalIgnoreCase))
             {
                 Gen.GenContext.ToolBox.Shell.RefreshProject();
             }

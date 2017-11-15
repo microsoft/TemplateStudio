@@ -131,7 +131,7 @@ namespace TemplateValidator
             // The explicit values here are the ones that are currently in use.
             // In theory any string could be exported and used as a symbol but currently it's only these
             // If lots of templates start exporting new symbols it might be necessary to change how symbol keys are verified
-            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.CaliburnMicro" };
+            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.CaliburnMicro", "wts.Page.Settings.VB", "wts.Page.Settings.CodeBehind.VB" };
 
             foreach (var symbol in template.Symbols)
             {
@@ -278,7 +278,6 @@ namespace TemplateValidator
         {
             try
             {
-                // Use a linked copy of this (and related files) as can't reference the core lib directly
                 CompositionQuery.Parse(tag.Value);
             }
             catch (InvalidCompositionQueryException ex)
@@ -289,7 +288,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsCompositionFilterLogic(ValidationTemplateInfo template, KeyValuePair<string, string> tag, List<string> results)
         {
-            // Ensure VB tempaltes refere to VB identities
+            // Ensure VB templates refer to VB identities
             if (template.TemplateTags["language"] == ProgrammingLanguages.VisualBasic)
             {
                 // This can't catch everything but is better than nothing
