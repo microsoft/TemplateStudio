@@ -18,11 +18,12 @@ namespace wts.DefaultProject
 
         protected override void ConfigureContainer()
         {
+            // register a singleton using Container.RegisterType<IInterface, Type>(new ContainerControlledLifetimeManager());
             base.ConfigureContainer();
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
         }
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
             await base.OnInitializeAsync(args);
         }

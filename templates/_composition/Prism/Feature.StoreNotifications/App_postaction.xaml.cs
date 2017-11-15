@@ -17,11 +17,11 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IStoreNotificationsFeatureService>(new StoreNotificationsFeatureService());
+            Container.RegisterType<IStoreNotificationsFeatureService, StoreNotificationsFeatureService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();

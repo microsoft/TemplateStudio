@@ -10,11 +10,11 @@ namespace WTSGeneratedNavigation.ViewModels
 {
     public class ChartViewModel : ViewModelBase
     {
-        private readonly ISampleDataService sampleDataService;
+        private readonly ISampleDataService _sampleDataService;
 
         public ChartViewModel(ISampleDataService sampleDataServiceInstance)
         {
-            sampleDataService = sampleDataServiceInstance;
+            _sampleDataService = sampleDataServiceInstance;
         }
 
         public ObservableCollection<DataPoint> Source
@@ -22,7 +22,7 @@ namespace WTSGeneratedNavigation.ViewModels
             get
             {
                 // TODO WTS: Replace this with your actual data
-                return sampleDataService.GetChartSampleData();
+                return _sampleDataService.GetChartSampleData();
             }
         }
     }

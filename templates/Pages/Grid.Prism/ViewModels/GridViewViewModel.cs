@@ -7,13 +7,13 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class GridViewViewModel : ViewModelBase
     {
-        private readonly ISampleDataService sampleDataService;
+        private readonly ISampleDataService _sampleDataService;
 
         public GridViewViewModel(ISampleDataService sampleDataServiceInstance)
         {
-            sampleDataService = sampleDataServiceInstance;
+            _sampleDataService = sampleDataServiceInstance;
         }
 
-        public ObservableCollection<SampleOrder> Source => sampleDataService.GetGridSampleData();
+        public ObservableCollection<SampleOrder> Source => _sampleDataService.GetGridSampleData();
     }
 }

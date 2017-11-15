@@ -9,10 +9,14 @@ using System.Globalization;
 //{[{
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            return LaunchApplication(PageTokens.Param_HomeNamePage, null);
+            return LaunchApplicationAsync(PageTokens.Param_HomeNamePage, null);
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        /// <summary>
+        /// Application-code (e.g. setting the theme and initial page navigation) to be executed 
+        /// when the application is launched (e.g. through the Start menu) or activated (e.g. through URI scheme activation). 
+        /// </summary> 
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);
             Window.Current.Activate();
@@ -25,7 +29,7 @@ using System.Globalization;
         }
 //}]}
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
 //{[{
 

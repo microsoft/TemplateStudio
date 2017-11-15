@@ -29,13 +29,13 @@ namespace WTSGeneratedNavigation
         protected override void ConfigureContainer()
         {
             base.ConfigureContainer();
-            Container.RegisterInstance<IWhatsNewDisplayService>(new WhatsNewDisplayService());
-            Container.RegisterInstance<IFirstRunDisplayService>(new FirstRunDisplayService());
-            Container.RegisterInstance<ILiveTileService>(new LiveTileService());
-            Container.RegisterInstance<IStoreNotificationsService>(new StoreNotificationsService());
-            Container.RegisterInstance<IHubNotificationsService>(new HubNotificationsService());
-            Container.RegisterInstance<IToastNotificationsService>(new ToastNotificationsService());
-            Container.RegisterInstance<IBackgroundTaskService>(new BackgroundTaskService());
+            Container.RegisterType<IWhatsNewDisplayService, WhatsNewDisplayService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IFirstRunDisplayService, FirstRunDisplayService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<ILiveTileService, LiveTileService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IStoreNotificationsService, StoreNotificationsService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IHubNotificationsService, HubNotificationsService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IToastNotificationsService, ToastNotificationsService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IBackgroundTaskService, BackgroundTaskService>(new ContainerControlledLifetimeManager());
             Container.RegisterInstance<IResourceLoader>(new ResourceLoaderAdapter(new ResourceLoader()));
             Container.RegisterType<IWebViewService, WebViewService>();
             Container.RegisterType<ISampleDataService, SampleDataService>();
@@ -44,10 +44,10 @@ namespace WTSGeneratedNavigation
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            return LaunchApplication(PageTokens.MainPage, null);
+            return LaunchApplicationAsync(PageTokens.MainPage, null);
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             Services.ThemeSelectorService.SetRequestedTheme();
             NavigationService.Navigate(page, launchParam);
@@ -87,7 +87,7 @@ namespace WTSGeneratedNavigation
                     }
 
                     // It's also possible to have logic here to navigate to different pages. e.g. if you have logic based on the URI used to launch
-                    return LaunchApplication(PageTokens.UriSchemePage, secret);
+                    return LaunchApplicationAsync(PageTokens.UriSchemePage, secret);
                 }
                 else if (args.PreviousExecutionState != ApplicationExecutionState.Running)
                 {
@@ -132,7 +132,7 @@ namespace WTSGeneratedNavigation
             Container.Resolve<IBackgroundTaskService>().Start(args.TaskInstance);
         }
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
             await Container.Resolve<ILiveTileService>().EnableQueueAsync().ConfigureAwait(false);
             Container.Resolve<IBackgroundTaskService>().RegisterBackgroundTasks();

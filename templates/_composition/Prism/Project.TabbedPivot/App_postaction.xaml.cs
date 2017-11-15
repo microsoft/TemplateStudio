@@ -9,10 +9,10 @@ using System.Globalization;
 //{[{
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            return LaunchApplication(PageTokens.PivotPage, null);
+            return LaunchApplicationAsync(PageTokens.PivotPage, null);
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);
             Window.Current.Activate();
@@ -25,7 +25,7 @@ using System.Globalization;
         }
 //}]}
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
 //{[{
 

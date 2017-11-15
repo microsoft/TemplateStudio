@@ -23,49 +23,49 @@ namespace WTSGeneratedNavigation.ViewModels
         private const string NarrowStateName = "NarrowState";
         private const double WideStateMinWindowWidth = 640;
         private const double PanoramicStateMinWindowWidth = 1024;
-        private readonly INavigationService navigationService;
+        private readonly INavigationService _navigationService;
 
         public ShellViewModel(INavigationService navigationServiceInstance)
         {
-            navigationService = navigationServiceInstance;
+            _navigationService = navigationServiceInstance;
 
-            OpenPaneCommand = new DelegateCommand(() => IsPaneOpen = !isPaneOpen);
+            OpenPaneCommand = new DelegateCommand(() => IsPaneOpen = !_isPaneOpen);
             ItemSelectedCommand = new DelegateCommand<ItemClickEventArgs>(ItemSelected);
             StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(args => GoToState(args.NewState.Name));
         }
 
-        private bool isPaneOpen;
+        private bool _isPaneOpen;
 
         public bool IsPaneOpen
         {
-            get { return isPaneOpen; }
-            set { SetProperty(ref isPaneOpen, value); }
+            get { return _isPaneOpen; }
+            set { SetProperty(ref _isPaneOpen, value); }
         }
 
-        private SplitViewDisplayMode displayMode = SplitViewDisplayMode.CompactInline;
+        private SplitViewDisplayMode _displayMode = SplitViewDisplayMode.CompactInline;
 
         public SplitViewDisplayMode DisplayMode
         {
-            get { return displayMode; }
-            set { SetProperty(ref displayMode, value); }
+            get { return _displayMode; }
+            set { SetProperty(ref _displayMode, value); }
         }
 
         private object _lastSelectedItem;
 
-        private ObservableCollection<ShellNavigationItem> primaryItems = new ObservableCollection<ShellNavigationItem>();
+        private ObservableCollection<ShellNavigationItem> _primaryItems = new ObservableCollection<ShellNavigationItem>();
 
         public ObservableCollection<ShellNavigationItem> PrimaryItems
         {
-            get { return primaryItems; }
-            set { SetProperty(ref primaryItems, value); }
+            get { return _primaryItems; }
+            set { SetProperty(ref _primaryItems, value); }
         }
 
-        private ObservableCollection<ShellNavigationItem> secondaryItems = new ObservableCollection<ShellNavigationItem>();
+        private ObservableCollection<ShellNavigationItem> _secondaryItems = new ObservableCollection<ShellNavigationItem>();
 
         public ObservableCollection<ShellNavigationItem> SecondaryItems
         {
-            get { return secondaryItems; }
-            set { SetProperty(ref secondaryItems, value); }
+            get { return _secondaryItems; }
+            set { SetProperty(ref _secondaryItems, value); }
         }
 
         public ICommand OpenPaneCommand { get; }
@@ -119,8 +119,8 @@ namespace WTSGeneratedNavigation.ViewModels
 
         private void PopulateNavItems()
         {
-            primaryItems.Clear();
-            secondaryItems.Clear();
+            _primaryItems.Clear();
+            _secondaryItems.Clear();
 
             // TODO WTS: Change the symbols for each item as appropriate for your app
             // More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
@@ -186,7 +186,7 @@ namespace WTSGeneratedNavigation.ViewModels
             var navigationItem = item as ShellNavigationItem;
             if (navigationItem != null)
             {
-                navigationService.Navigate(navigationItem.PageIdentifier, null);
+                _navigationService.Navigate(navigationItem.PageIdentifier, null);
             }
         }
     }

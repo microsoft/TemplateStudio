@@ -12,11 +12,11 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IWhatsNewDisplayService>(new WhatsNewDisplayService());
+            Container.RegisterType<IWhatsNewDisplayService, WhatsNewDisplayService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();

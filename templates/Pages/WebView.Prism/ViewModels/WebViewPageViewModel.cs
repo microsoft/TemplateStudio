@@ -18,30 +18,30 @@ namespace Param_ItemNamespace.ViewModels
             IsLoading = true;
             Source = new Uri(DefaultUrl);
 
-            BrowserBackCommand = new DelegateCommand(() => webViewService?.GoBack(), () => webViewService?.CanGoBack ?? false);
-            BrowserForwardCommand = new DelegateCommand(() => webViewService?.GoForward(), () => webViewService?.CanGoForward ?? false);
-            RefreshCommand = new DelegateCommand(() => webViewService?.Refresh());
+            BrowserBackCommand = new DelegateCommand(() => _webViewService?.GoBack(), () => _webViewService?.CanGoBack ?? false);
+            BrowserForwardCommand = new DelegateCommand(() => _webViewService?.GoForward(), () => _webViewService?.CanGoForward ?? false);
+            RefreshCommand = new DelegateCommand(() => _webViewService?.Refresh());
             RetryCommand = new DelegateCommand(Retry);
             OpenInBrowserCommand = new DelegateCommand(async () => await Windows.System.Launcher.LaunchUriAsync(Source));
 
             // Note that the WebViewService is set from within the view because it needs a reference to the WebView control
         }
 
-        private Uri source;
+        private Uri _source;
 
         public Uri Source
         {
-            get { return source; }
-            set { SetProperty(ref source, value); }
+            get { return _source; }
+            set { SetProperty(ref _source, value); }
         }
 
-        private bool isLoading;
+        private bool _isLoading;
 
         public bool IsLoading
         {
             get
             {
-                 return isLoading;
+                 return _isLoading;
             }
 
             set
@@ -51,33 +51,33 @@ namespace Param_ItemNamespace.ViewModels
                     IsShowingFailedMessage = false;
                 }
 
-                SetProperty(ref isLoading, value);
+                SetProperty(ref _isLoading, value);
                 IsLoadingVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
-        private Visibility isLoadingVisibility;
+        private Visibility _isLoadingVisibility;
 
         public Visibility IsLoadingVisibility
         {
             get
             {
-                return isLoadingVisibility;
+                return _isLoadingVisibility;
             }
 
             set
             {
-                SetProperty(ref isLoadingVisibility, value);
+                SetProperty(ref _isLoadingVisibility, value);
             }
         }
 
-        private bool isShowingFailedMessage;
+        private bool _isShowingFailedMessage;
 
         public bool IsShowingFailedMessage
         {
             get
             {
-                return isShowingFailedMessage;
+                return _isShowingFailedMessage;
             }
 
             set
@@ -87,47 +87,47 @@ namespace Param_ItemNamespace.ViewModels
                     IsLoading = false;
                 }
 
-                SetProperty(ref isShowingFailedMessage, value);
+                SetProperty(ref _isShowingFailedMessage, value);
                 FailedMesageVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
-        private Visibility failedMessageVisibility;
+        private Visibility _failedMessageVisibility;
 
         public Visibility FailedMesageVisibility
         {
             get
             {
-                return failedMessageVisibility;
+                return _failedMessageVisibility;
             }
 
             set
             {
-                SetProperty(ref failedMessageVisibility, value);
+                SetProperty(ref _failedMessageVisibility, value);
             }
         }
 
-        private IWebViewService webViewService;
+        private IWebViewService _webViewService;
 
         public IWebViewService WebViewService
         {
             get
             {
-                return webViewService;
+                return _webViewService;
             }
 
             // the WebViewService is set from within the view (instead of IoC) because it needs a reference to the control
             set
             {
-                if (webViewService != null)
+                if (_webViewService != null)
                 {
-                    webViewService.NavigationComplete -= WebViewService_NavigationComplete;
-                    webViewService.NavigationFailed -= WebViewService_NavigationFailed;
+                    _webViewService.NavigationComplete -= WebViewService_NavigationComplete;
+                    _webViewService.NavigationFailed -= WebViewService_NavigationFailed;
                 }
 
-                webViewService = value;
-                webViewService.NavigationComplete += WebViewService_NavigationComplete;
-                webViewService.NavigationFailed += WebViewService_NavigationFailed;
+                _webViewService = value;
+                _webViewService.NavigationComplete += WebViewService_NavigationComplete;
+                _webViewService.NavigationFailed += WebViewService_NavigationFailed;
             }
         }
 
@@ -169,7 +169,7 @@ namespace Param_ItemNamespace.ViewModels
             IsShowingFailedMessage = false;
             IsLoading = true;
 
-            webViewService?.Refresh();
+            _webViewService?.Refresh();
         }
     }
 }

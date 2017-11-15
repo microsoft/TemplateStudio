@@ -29,10 +29,10 @@ namespace WTSGeneratedBlank
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            return LaunchApplication(PageTokens.MainPage, null);
+            return LaunchApplicationAsync(PageTokens.MainPage, null);
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);
             Window.Current.Activate();
@@ -44,7 +44,7 @@ namespace WTSGeneratedBlank
             return Task.CompletedTask;
         }
 
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
             // We are remapping the default ViewNamePage and ViewNamePageViewModel naming to ViewNamePage and ViewNameViewModel to
             // gain better code reuse with other frameworks and pages within Windows Template Studio

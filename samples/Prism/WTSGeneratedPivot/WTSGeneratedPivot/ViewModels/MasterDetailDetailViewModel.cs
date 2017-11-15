@@ -39,7 +39,7 @@ namespace WTSGeneratedPivot.ViewModels
             StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
         }
 
-        public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
             long orderId = (long)e.Parameter;

@@ -9,13 +9,13 @@ namespace WTSGeneratedNavigation.ViewModels
 {
     public class GridViewModel : ViewModelBase
     {
-        private readonly ISampleDataService sampleDataService;
+        private readonly ISampleDataService _sampleDataService;
 
         public GridViewModel(ISampleDataService sampleDataServiceInstance)
         {
-            sampleDataService = sampleDataServiceInstance;
+            _sampleDataService = sampleDataServiceInstance;
         }
 
-        public ObservableCollection<SampleOrder> Source => sampleDataService.GetGridSampleData();
+        public ObservableCollection<SampleOrder> Source => _sampleDataService.GetGridSampleData();
     }
 }

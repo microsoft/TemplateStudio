@@ -17,11 +17,11 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IHubNotificationsFeatureService>(new HubNotificationsFeatureService());
+            Container.RegisterType<IHubNotificationsFeatureService, HubNotificationsFeatureService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 
-        private async Task LaunchApplication(string page, object launchParam)
+        private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);            
             Window.Current.Activate();

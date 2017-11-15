@@ -17,7 +17,7 @@ namespace Param_RootNamespace
         {
             base.ConfigureContainer();
 //{[{
-            Container.RegisterInstance<IBackgroundTaskService>(new BackgroundTaskService());
+            Container.RegisterType<IBackgroundTaskService, BackgroundTaskService>(new ContainerControlledLifetimeManager());
 //}]}
         }
 
@@ -33,7 +33,7 @@ namespace Param_RootNamespace
             Container.Resolve<IBackgroundTaskService>().Start(args.TaskInstance);
         }
 //}]}
-        protected async override Task OnInitializeAsync(IActivatedEventArgs args)
+        protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
 //{[{
             Container.Resolve<IBackgroundTaskService>().RegisterBackgroundTasks();

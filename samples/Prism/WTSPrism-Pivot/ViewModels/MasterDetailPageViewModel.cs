@@ -53,7 +53,7 @@ namespace WTSPrism.ViewModels
 
         public ObservableCollection<Order> SampleItems { get; private set; } = new ObservableCollection<Order>();
 
-        public async override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
             await LoadDataAsync();

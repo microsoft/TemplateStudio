@@ -19,26 +19,26 @@ namespace Param_ItemNamespace.ViewModels
         private const string NarrowStateName = "NarrowState";
         private const string WideStateName = "WideState";
 
-        private readonly INavigationService navigationService;
-        private readonly ISampleDataService sampleDataService;
+        private readonly INavigationService _navigationService;
+        private readonly ISampleDataService _sampleDataService;
 
-        private VisualState currentState;
+        private VisualState _currentState;
 
         public MasterDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
         {
-            navigationService = navigationServiceInstance;
-            sampleDataService = sampleDataServiceInstance;
+            _navigationService = navigationServiceInstance;
+            _sampleDataService = sampleDataServiceInstance;
             ItemClickCommand = new DelegateCommand<ItemClickEventArgs>(OnItemClick);
             StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(OnStateChanged);
             LoadedCommand = new DelegateCommand<VisualState>(OnLoaded);
         }
 
-        private SampleOrder selected;
+        private SampleOrder _selected;
 
         public SampleOrder Selected
         {
-            get => selected;
-            set => SetProperty(ref selected, value);
+            get => _selected;
+            set => SetProperty(ref _selected, value);
         }
 
         public ICommand ItemClickCommand { get; }
@@ -52,15 +52,15 @@ namespace Param_ItemNamespace.ViewModels
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            await LoadDataAsync(currentState);
+            await LoadDataAsync(_currentState);
         }
 
         public async Task LoadDataAsync(VisualState currentStateValue)
         {
-            currentState = currentStateValue;
+            _currentState = currentStateValue;
             SampleItems.Clear();
 
-            var data = await sampleDataService.GetSampleModelDataAsync();
+            var data = await _sampleDataService.GetSampleModelDataAsync();
 
             foreach (var item in data)
             {
@@ -72,21 +72,21 @@ namespace Param_ItemNamespace.ViewModels
 
         private void OnLoaded(VisualState state)
         {
-            currentState = state;
+            _currentState = state;
         }
 
         private void OnStateChanged(VisualStateChangedEventArgs args)
         {
-            currentState = args.NewState;
+            _currentState = args.NewState;
         }
 
         private void OnItemClick(ItemClickEventArgs args)
         {
             if (args?.ClickedItem is SampleOrder item)
             {
-                if (currentState?.Name == NarrowStateName)
+                if (_currentState?.Name == NarrowStateName)
                 {
-                    navigationService.Navigate(PageTokens.MasterDetailDetailPage, item.OrderId);
+                    _navigationService.Navigate(PageTokens.MasterDetailDetailPage, item.OrderId);
                 }
                 else
                 {
