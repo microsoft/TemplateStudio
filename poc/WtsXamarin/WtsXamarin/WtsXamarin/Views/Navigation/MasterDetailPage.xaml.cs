@@ -22,10 +22,18 @@ namespace WtsXamarin.Views.Navigation
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var menuItem = e.SelectedItem as MasterDetailPageMenuItem;
-            NavigationService.Instance.NavigateTo(menuItem);
+            if (e.SelectedItem != null)
+            {
+                var menuItem = e.SelectedItem as MasterDetailPageMenuItem;
 
-            IsPresented = false;
+                var page = (Page)Activator.CreateInstance(menuItem.TargetType);
+                var navPage = new NavigationPage(page);
+                Detail = navPage;
+
+                IsPresented = false;
+            }
+
+            (sender as ListView).SelectedItem = null;
         }
     }
 }

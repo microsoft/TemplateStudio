@@ -19,7 +19,7 @@ namespace WtsXamarin.ViewModels.Navigation
             new MasterDetailPageMenuItem { Id = 2, Title = "WebView", TargetType = typeof(WebViewPage), IconSource = "blank.png"},
             new MasterDetailPageMenuItem { Id = 3, Title = "ListView", TargetType = typeof(ListViewPage), IconSource = "blank.png"},
             new MasterDetailPageMenuItem { Id = 4, Title = "Camera", TargetType = typeof(CameraPage), IconSource = "blank.png"},
-            new MasterDetailPageMenuItem { Id = 6, Title = "ListView Master", TargetType = typeof(ListViewMasterPage), IconSource = "blank.png"},
+            new MasterDetailPageMenuItem { Id = 6, Title = "ListView List", TargetType = typeof(ListViewListPage), IconSource = "blank.png"},
             new MasterDetailPageMenuItem { Id = 99, Title = "Settings", TargetType = typeof(SettingsPage), IconSource = "settings.png" },
         };
     }
