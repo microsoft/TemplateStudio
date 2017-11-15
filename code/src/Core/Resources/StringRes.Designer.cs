@@ -169,7 +169,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The folder {0} can&apos;t be copied to {1}. Error: {2}.
+        ///   Looks up a localized string similar to The file {0} can&apos;t be copied to {1}. Error: {2}.
         /// </summary>
         internal static string FsSafeCopyFileMessage {
             get {
@@ -264,15 +264,6 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string MergeLineNotFoundExceptionMessage {
             get {
                 return ResourceManager.GetString("MergeLineNotFoundExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There is no merge target for file &apos;{0}&apos;.
-        /// </summary>
-        internal static string MergePostActionExecuteMessage {
-            get {
-                return ResourceManager.GetString("MergePostActionExecuteMessage", resourceCulture);
             }
         }
         
@@ -663,6 +654,24 @@ namespace Microsoft.Templates.Core.Resources {
         internal static string TemplatesSynchronizationErrorAcquiring {
             get {
                 return ResourceManager.GetString("TemplatesSynchronizationErrorAcquiring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error extracting installed templates content...
+        /// </summary>
+        internal static string TemplatesSynchronizationErrorExtracting {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationErrorExtracting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error updating templates content..
+        /// </summary>
+        internal static string TemplatesSynchronizationErrorUpdating {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationErrorUpdating", resourceCulture);
             }
         }
         

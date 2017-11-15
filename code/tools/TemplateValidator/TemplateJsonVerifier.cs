@@ -94,8 +94,12 @@ namespace TemplateValidator
                 {
                     EnsureAdequateDescription(template, results);
 
-                    // Composition templates don't need identities
-                    EnsureVisualBasicTemplatesAreIdentifiedAppropriately(template, filePath, results);
+                    // Composition templates don't need identities, but need unique names
+                    EnsureVisualBasicTemplatesAreIdentifiedAppropriately(template, filePath, results, false);
+                }
+                else
+                {
+                    EnsureVisualBasicTemplatesAreIdentifiedAppropriately(template, filePath, results, true);
                 }
 
                 EnsureClassificationAsExpected(template, results);
@@ -259,7 +263,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "AppToApp" }.Contains(tag.Value))
+            if (!new[] { "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.rightClickEnabled tag.");
             }
@@ -484,11 +488,11 @@ namespace TemplateValidator
             }
         }
 
-        private static void EnsureVisualBasicTemplatesAreIdentifiedAppropriately(ValidationTemplateInfo template, string filePath, List<string> results)
+        private static void EnsureVisualBasicTemplatesAreIdentifiedAppropriately(ValidationTemplateInfo template, string filePath, List<string> results, bool isCompositionTemplate)
         {
             var isVbTemplate = filePath.Contains("VB\\");
 
-            if (string.IsNullOrWhiteSpace(template.Identity))
+            if (!isCompositionTemplate && string.IsNullOrWhiteSpace(template.Identity))
             {
                 results.Add("The template is missing an identity.");
             }
@@ -496,16 +500,21 @@ namespace TemplateValidator
             {
                 if (isVbTemplate)
                 {
-                    if (!template.Identity.EndsWith("VB", StringComparison.CurrentCulture))
+                    if (isCompositionTemplate && !template.Name.EndsWith("VB", StringComparison.CurrentCulture))
+                    {
+                        results.Add("The name of templates for VisualBasic should end with 'VB'.");
+                    }
+
+                    if (!isCompositionTemplate && !template.Identity.EndsWith("VB", StringComparison.CurrentCulture))
                     {
                         results.Add("The identity of templates for VisualBasic should end with 'VB'.");
                     }
                 }
                 else
                 {
-                    if (template.Identity.EndsWith("VB", StringComparison.CurrentCulture))
+                    if ((isCompositionTemplate && template.Name.EndsWith("VB", StringComparison.CurrentCulture)) || (!isCompositionTemplate && template.Identity.EndsWith("VB", StringComparison.CurrentCulture)))
                     {
-                        results.Add("Only VisualBasic templates should end with 'VB'.");
+                        results.Add("Only VisualBasic templates identities and names should end with 'VB'.");
                     }
                 }
             }

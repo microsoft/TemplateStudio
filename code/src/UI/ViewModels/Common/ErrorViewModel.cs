@@ -91,6 +91,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     HostHeight = HostHeightCollapsed;
                     ToggleButtonIcon = "\xE015";
                 }
+
+                _host.Top = (SystemParameters.PrimaryScreenHeight - HostHeight) / 2;
             }
         }
 

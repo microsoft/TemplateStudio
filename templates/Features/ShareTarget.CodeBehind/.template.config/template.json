@@ -4,15 +4,15 @@
   "name": "Share Target",
   "groupIdentity": "wts.Feat.ShareTarget",
   "identity": "wts.Feat.ShareTarget.CodeBehind",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+  "description": "Allows you to receive data shared by other apps using the share contract in your UWP app.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
     "wts.framework": "CodeBehind",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
-    "wts.group": "AppToApp",
+    "wts.displayOrder": "2",
+    "wts.group": "ConnectedExperiences",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "ShareTarget",
     "wts.rightClickEnabled":"true"

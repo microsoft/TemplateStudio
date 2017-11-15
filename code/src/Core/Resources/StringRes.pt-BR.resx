@@ -183,9 +183,6 @@
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Linha {0} não encontrada no arquivo '{1}'</value>
   </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>Não há destino de mesclagem para o arquivo '{0}'</value>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Não é possível inferir um nome. Muitas iterações</value>
   </data>
@@ -389,5 +386,11 @@ As seguintes alterações não puderam ser integradas: {2}
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>Error acquiring content.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
+    <value>Error extracting installed templates content..</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
+    <value>Error updating templates content.</value>
   </data>
 </root>

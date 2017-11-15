@@ -313,10 +313,6 @@
     <value>Windows Template Studio</value>
     <comment>Wizard header title</comment>
   </data>
-  <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Windows Template Studio:{0}</value>
-    <comment>Generic Message Box Title</comment>
-  </data>
   <data name="ValidationError_AlreadyExists" xml:space="preserve">
     <value>名称已存在</value>
     <comment>Template name validation error message for already exists</comment>
@@ -326,7 +322,7 @@
     <comment>Template name validation error message for bad format</comment>
   </data>
   <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
-    <value>不能删除 {0}，因为 {1} {2} 依赖于它。</value>
+    <value>不能删除 {0}，因为 {1} 依赖于它。</value>
     <comment>Template name validation error message for can not remove template string format</comment>
   </data>
   <data name="ValidationError_Empty" xml:space="preserve">
@@ -456,8 +452,12 @@
     <value>关闭</value>
     <comment>New project wizard summary template open menu</comment>
   </data>
-  <data name="NewItemTitle_SF" xml:space="preserve">
-    <value>添加新的 {0}</value>
+  <data name="NewItemTitlePage" xml:space="preserve">
+    <value>新页面</value>
+    <comment>New item wizard title string format</comment>
+  </data>
+  <data name="NewItemTitleFeature" xml:space="preserve">
+    <value>新功能</value>
     <comment>New item wizard title string format</comment>
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">
@@ -491,10 +491,6 @@
   <data name="CheckForUpdates" xml:space="preserve">
     <value>检查新模板</value>
     <comment>check for templates updates button content on overlay box control</comment>
-  </data>
-  <data name="ChangesSummaryTitle_SF" xml:space="preserve">
-    <value>更改摘要:添加 {0} {1}</value>
-    <comment>New item wizard title string format</comment>
   </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>失败的合并</value>
@@ -652,9 +648,6 @@
     <value>在用户所选内容中未找到依赖项模板 {0}</value>
     <comment>Log text for misssing dependency exception.</comment>
   </data>
-  <data name="NewItemHasNoChanges" xml:space="preserve">
-    <value>{0} 已是项目的一部分。请选择另一个 {1}。</value>
-  </data>
   <data name="ChangesSummaryCategoryFailedStyleMerges" xml:space="preserve">
     <value>失败的样式合并</value>
   </data>
@@ -664,8 +657,28 @@
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>我们无法将样式引入资源字典中。</value>
   </data>
-  <data name="TemplateGroup_AppToApp" xml:space="preserve">
-    <value>App to App</value>
-    <comment>Group header for App to App templates</comment>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Application Launching</value>
+    <comment>Group header for Application Launching templates</comment>
+  </data>
+  <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
+    <value>Connected Experiences</value>
+    <comment>Group header for Connected Experiences templates</comment>
+  </data>
+  <data name="ChangesSummaryTitleFeature" xml:space="preserve">
+    <value>Changes summary: Add feature '{0}'</value>
+    <comment>New item wizard title for features {0}: Feature/Template name</comment>
+  </data>
+  <data name="ChangesSummaryTitlePage" xml:space="preserve">
+    <value>Changes summary: Add page '{0}' </value>
+    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
+  </data>
+  <data name="NewItemHasNoChangesFeature" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another feature.</value>
+    <comment>{0}:Feature name.</comment>
+  </data>
+  <data name="NewItemHasNoChangesPage" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another page.</value>
+    <comment>{0}:Page name.</comment>
   </data>
 </root>

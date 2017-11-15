@@ -4,24 +4,24 @@
   "name": "Share Source",
   "groupIdentity": "wts.Feat.ShareSource",
   "identity": "wts.Feat.ShareSource",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  "description": "Helps supporting the share contract in your UWP app to share data from your app with others.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "3",
-    "wts.group": "AppToApp",
+    "wts.displayOrder": "1",
+    "wts.group": "ConnectedExperiences",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "ShareSource",
     "wts.rightClickEnabled":"true"
   },
-  "sourceName": "ShareSource",
+  "sourceName": "ShareSourceFeature",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\ShareSource.cs"
+      "path": ".\\Services\\ShareSourceFeatureService.cs"
     }
   ],
   "symbols": {

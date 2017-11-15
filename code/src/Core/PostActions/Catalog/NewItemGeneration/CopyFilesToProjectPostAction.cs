@@ -14,6 +14,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class CopyFilesToProjectPostAction : PostAction<TempGenerationResult>
     {
+        private List<string> excludeFromOpeningExtensions = new List<string>() { ".png", ".jpg", ".bmp", ".ico" };
+
         public CopyFilesToProjectPostAction(TempGenerationResult config)
             : base(config)
         {
@@ -47,7 +49,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                 // Add to projectItems to add to project later
                 GenContext.Current.ProjectItems.Add(destFilePath);
-                GenContext.Current.FilesToOpen.Add(destFilePath);
+
+                if (!excludeFromOpeningExtensions.Contains(Path.GetExtension(destFilePath)))
+                {
+                    GenContext.Current.FilesToOpen.Add(destFilePath);
+                }
             }
         }
     }

@@ -3,10 +3,10 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Web to app link",
+  "name": "Web to App link",
   "groupIdentity": "wts.Feat.WebToAppLink",
   "identity": "wts.Feat.WebToAppLink",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "description": "Adds the ability to open your app from a link in a website.",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -14,7 +14,7 @@
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
     "wts.displayOrder": "2",
-    "wts.group": "AppToApp",
+    "wts.group": "ApplicationLaunching",
     "wts.defaultInstance": "WebToAppLink",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
@@ -25,9 +25,6 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Activation\\WebToAppLinkActivationHandler.cs"
-    },
-    {
-      "path": ".\\Assets\\Logo.png"
     }
   ],
   "symbols": {

@@ -83,7 +83,7 @@ namespace Microsoft.Templates.UI.Controls
                 patternText = patternText.Replace("##language##", language);
                 patternText = patternText
                     .Replace("##ExecutingDirectory##", executingDirectory)
-                    .Replace("##renderSideBySide##", renderSideBySide.ToString().ToLower())
+                    .Replace("##renderSideBySide##", renderSideBySide.ToString().ToLowerInvariant())
                     .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty)
                     .Replace("##fontSize##", $"fontSize: {CodeFontSize},");
                 if (_currentHtml != patternText)
