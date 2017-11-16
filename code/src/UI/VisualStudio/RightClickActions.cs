@@ -55,8 +55,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 try
                 {
-                    // TODO: Get platform from project
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage("Uwp", _shell.GetActiveProjectLanguage());
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage());
 
                     if (userSelection != null)
                     {
@@ -78,8 +77,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 SetContext();
                 try
                 {
-                    // TODO: Get platform from project
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature("Uwp", _shell.GetActiveProjectLanguage());
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage());
 
                     if (userSelection != null)
                     {

@@ -67,19 +67,21 @@ namespace Microsoft.Templates.Test
             RemoveProjectConfigInfoFromProject();
 
             // Now the configuration must be inferred and should be as expected
-            AssertCorrectProjectConfigInfo(projectType, framework);
+            AssertCorrectProjectConfigInfo(projectType, framework, platform);
 
-            AssertProjectConfigInfoRecreated(projectType, framework);
+            AssertProjectConfigInfoRecreated(projectType, framework, platform);
         }
 
-        private static void AssertProjectConfigInfoRecreated(string projectType, string framework)
+        private static void AssertProjectConfigInfoRecreated(string projectType, string framework, string platform)
         {
             string content = File.ReadAllText(Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest"));
             string expectedFxText = $"Name=\"framework\" Value=\"{framework}\"";
             string expectedPtText = $"Name=\"projectType\" Value=\"{projectType}\"";
+            string expectedPfText = $"Name=\"platform\" Value=\"{platform}\"";
 
             Assert.Contains(expectedFxText, content, StringComparison.OrdinalIgnoreCase);
             Assert.Contains(expectedPtText, content, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains(expectedPfText, content, StringComparison.OrdinalIgnoreCase);
         }
 
         private void RemoveProjectConfigInfoFromProject()

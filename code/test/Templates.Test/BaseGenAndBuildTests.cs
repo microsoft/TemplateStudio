@@ -63,7 +63,7 @@ namespace Microsoft.Templates.Test
             // Assert
             Assert.True(Directory.Exists(resultPath));
             Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
-            AssertCorrectProjectConfigInfo(projectType, framework);
+            AssertCorrectProjectConfigInfo(projectType, framework, platform);
 
             // Clean
             if (cleanGeneration)
@@ -74,12 +74,13 @@ namespace Microsoft.Templates.Test
             return resultPath;
         }
 
-        protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework)
+        protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework, string expectedPlatform)
         {
             var info = ProjectConfigInfo.ReadProjectConfiguration();
 
             Assert.Equal(expectedProjectType, info.ProjectType);
             Assert.Equal(expectedFramework, info.Framework);
+            Assert.Equal(expectedPlatform, info.Platform);
         }
 
         protected void AssertBuildProjectAsync(string projectPath, string projectName)

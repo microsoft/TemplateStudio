@@ -790,6 +790,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select platform.
+        /// </summary>
+        public static string ProjectConfigurationSelectPlatform {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectPlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select project type.
         /// </summary>
         public static string ProjectConfigurationSelectProjectType {

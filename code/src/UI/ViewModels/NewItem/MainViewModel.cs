@@ -45,10 +45,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
 
-        public MainViewModel(string platform, string language)
+        public MainViewModel(string language)
             : base()
         {
-            ConfigPlatform = platform;
             _language = language;
             Current = this;
         }
@@ -70,7 +69,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private void SetProjectConfigInfo()
         {
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
-            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
                 WizardStatus.InfoShapeVisibility = Visibility.Visible;
                 ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow(MainView);
@@ -79,6 +78,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 {
                     configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
                     configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
+                    configInfo.Platform = projectConfig.ViewModel.SelectedPlatform;
+
                     WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
                 }
                 else
@@ -89,6 +90,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
             ConfigFramework = configInfo.Framework;
             ConfigProjectType = configInfo.ProjectType;
+            ConfigPlatform = configInfo.Platform;
         }
 
         public void SetNewItemSetupTitle()
@@ -151,7 +153,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override void OnGoBack()
         {
             base.OnGoBack();
-            NewItemSetup.Initialize(ConfigPlatform, false);
+            NewItemSetup.Initialize(false);
             WizardStatus.HasOverlayBox = true;
             ChangesSummary.ResetSelection();
             SetNewItemSetupTitle();
@@ -231,7 +233,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             SetProjectConfigInfo();
 
-            NewItemSetup.Initialize(ConfigPlatform, true);
+            NewItemSetup.Initialize(true);
 
             await Task.CompletedTask;
         }
@@ -240,8 +242,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             NavigationService.Navigate(new NewItemSetupView());
 
-            // TODO: Change this to resolve from project
-            NewItemSetup.Initialize("Uwp",  true);
+            NewItemSetup.Initialize(true);
 
             await Task.CompletedTask;
         }
@@ -256,7 +257,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var template = GetActiveTemplate();
             if (template != null)
             {
-                var dependencies = GenComposer.GetAllDependencies(template.Template, ConfigFramework, "Uwp");
+                var dependencies = GenComposer.GetAllDependencies(template.Template, ConfigFramework, ConfigPlatform);
 
                 userSelection.Pages.Clear();
                 userSelection.Features.Clear();

@@ -52,6 +52,11 @@
       "type": "parameter",
       "replaces": "Param_Framework"
     },
+    "wts.generationPlatform":
+    {
+      "type": "parameter",
+      "replaces": "Param_Platform"
+    },
     "copyrightYear": {
         "type": "generated",
         "generator": "now",

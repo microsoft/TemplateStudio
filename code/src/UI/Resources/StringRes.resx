@@ -684,4 +684,8 @@
     <value>{0} is already part of your project. Please choose another feature.</value>
     <comment>{0}:Feature name.</comment>
   </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Select platform</value>
+    <comment>Project configuration window select platform title</comment>
+  </data>
 </root>

@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -22,6 +23,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ICommand CancelCommand => new RelayCommand(Cancel);
 
+        public ObservableCollection<string> Platforms { get; } = new ObservableCollection<string>();
+
         public ObservableCollection<MetadataInfo> ProjectTypes { get; } = new ObservableCollection<MetadataInfo>();
 
         public ObservableCollection<MetadataInfo> Frameworks { get; } = new ObservableCollection<MetadataInfo>();
@@ -34,7 +37,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set
             {
                 SetProperty(ref _selectedProjectType, value);
-                LoadFrameworks();
+                if (_selectedProjectType != null)
+                {
+                    LoadFrameworks();
+                }
             }
         }
 
@@ -46,6 +52,33 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _selectedFramework, value);
         }
 
+        private string _selectedPlatform;
+
+        public string SelectedPlatform
+        {
+            get => _selectedPlatform;
+            set
+            {
+                SetProperty(ref _selectedPlatform, value);
+                if (_selectedPlatform != null)
+                {
+                    LoadProjectTypes();
+                }
+            }
+        }
+
+        private void LoadProjectTypes()
+        {
+            var projectTypes = GenComposer.GetSupportedProjectTypes(SelectedPlatform);
+            var targetProjectTypes = GenContext.ToolBox.Repo.GetProjectTypes(SelectedPlatform)
+                                                                .Where(pt => projectTypes.Contains(pt.Name))
+                                                                .ToList();
+            ProjectTypes.Clear();
+            Frameworks.Clear();
+            ProjectTypes.AddRange(targetProjectTypes);
+            SelectedProjectType = ProjectTypes.FirstOrDefault();
+        }
+
         public ProjectConfigurationViewModel(ProjectConfigurationWindow window)
         {
             _window = window;
@@ -53,14 +86,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public void Initialize()
         {
-            ProjectTypes.AddRange(GenContext.ToolBox.Repo.GetProjectTypes());
-            SelectedProjectType = ProjectTypes.FirstOrDefault();
+            Platforms.AddRange(Core.Platforms.GetAllPlatforms());
+            SelectedPlatform = Platforms.FirstOrDefault();
         }
 
         private void LoadFrameworks()
         {
-            // TODO: Change this
-            var projectFrameworks = GenComposer.GetSupportedFx(SelectedProjectType.Name, "Uwp");
+            var projectFrameworks = GenComposer.GetSupportedFx(SelectedProjectType.Name, SelectedPlatform);
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
                                                                 .Where(tf => projectFrameworks.Contains(tf.Name))
                                                                 .ToList();
@@ -74,7 +106,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void OnOkCommand()
         {
-            ProjectConfigInfo.SaveProjectConfiguration(SelectedProjectType.Name, SelectedFramework.Name);
+            ProjectConfigInfo.SaveProjectConfiguration(SelectedProjectType.Name, SelectedFramework.Name, SelectedPlatform);
             _window.DialogResult = true;
             _window.Close();
         }

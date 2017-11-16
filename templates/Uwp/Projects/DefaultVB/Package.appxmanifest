@@ -57,5 +57,6 @@
     <genTemplate:Item Name="templatesVersion" Version="Param_Templates.Version" />
     <genTemplate:Item Name="projectType" Value="Param_ProjectType" />
     <genTemplate:Item Name="framework" Value="Param_Framework" />
+    <genTemplate:Item Name="platform" Value="Param_Platform" />
   </genTemplate:Metadata>
 </Package>

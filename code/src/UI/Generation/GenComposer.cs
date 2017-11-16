@@ -165,6 +165,7 @@ namespace Microsoft.Templates.UI
             genProject.Parameters.Add(GenParams.TemplatesVersion, string.Concat("v", GenContext.ToolBox.TemplatesVersion));
             genProject.Parameters.Add(GenParams.ProjectType, userSelection.ProjectType);
             genProject.Parameters.Add(GenParams.Framework, userSelection.Framework);
+            genProject.Parameters.Add(GenParams.Platform, userSelection.Platform);
             genProject.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
         }
 

@@ -16,9 +16,9 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         public UserSelection Result { get; set; }
 
-        public MainView(TemplateType templateType, string platform, string language)
+        public MainView(TemplateType templateType, string language)
         {
-            ViewModel = new MainViewModel(platform, language);
+            ViewModel = new MainViewModel(language);
             ViewModel.SetView(this);
 
             DataContext = ViewModel;

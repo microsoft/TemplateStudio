@@ -247,8 +247,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                // TODO: Get platform from project
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature("Uwp", GenContext.InitializedLanguage);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.InitializedLanguage);
 
                 if (userSelection != null)
                 {
@@ -283,8 +282,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                // TODO: Get platform from project
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage("Uwp", GenContext.InitializedLanguage);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.InitializedLanguage);
 
                 if (userSelection != null)
                 {
