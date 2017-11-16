@@ -112,7 +112,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildOneByOneCaliburnMicro")]
         public async Task BuildCaliburnMicroOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, platform, language, false);
+            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId,  language, false);
 
             AssertBuildProjectAsync(result.ProjectPath, result.ProjecName);
         }
