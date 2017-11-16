@@ -13,7 +13,7 @@
     "wts.projecttype":"Blank",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
-    "wts.outputToSolution": true
+    "wts.outputToSolution": "true"
   },
   "sourceName": "wts.DefaultProject",
   "preferNameDirectory": true,
