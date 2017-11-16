@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using WtsXamarin.Models;
 using WtsXamarin.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,12 +10,14 @@ using Xamarin.Forms.Xaml;
 namespace WtsXamarin.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListViewDetailPage : ContentPage
+    public partial class ListViewListPage : ContentPage
     {
-        public ListViewDetailPage(object parameter)
+        public ObservableCollection<string> Items { get; set; }
+
+        public ListViewListPage()
         {
             InitializeComponent();
-            BindingContext = new ListViewDetailViewModel(parameter as SampleOrder);
+            BindingContext = new ListViewListViewModel();
         }
     }
 }

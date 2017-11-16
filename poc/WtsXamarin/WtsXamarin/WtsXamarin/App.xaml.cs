@@ -1,20 +1,17 @@
-﻿using Xamarin.Forms;
+﻿using WtsXamarin.Services;
+using WtsXamarin.ViewModels;
+using WtsXamarin.Views;
+using Xamarin.Forms;
 
 namespace WtsXamarin
 {
     public partial class App : Application
     {
-        public static NavigationPage NavPage = null;
-
         public App()
         {
             InitializeComponent();
-
-            NavPage = new NavigationPage(new Views.MainPage());
-            MainPage = new Views.Navigation.MasterDetailPage()
-            {
-                Detail = NavPage
-            };
+            RegisterNavigationPages();
+            MainPage = new Views.Navigation.MasterDetailPage();
         }
 
         protected override void OnStart()
@@ -30,6 +27,20 @@ namespace WtsXamarin
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        private void RegisterNavigationPages()
+        {
+            var navigationService = NavigationService.Instance;
+
+            navigationService.Register<MainViewModel>(typeof(MainPage));
+            navigationService.Register<BlankViewModel>(typeof(BlankPage));
+            navigationService.Register<WebViewViewModel>(typeof(WebViewPage));
+            navigationService.Register<ListViewViewModel>(typeof(ListViewPage));
+            navigationService.Register<CameraViewModel>(typeof(CameraPage));
+            navigationService.Register<ListViewListViewModel>(typeof(ListViewListPage));
+            navigationService.Register<ListViewItemViewModel>(typeof(ListViewItemPage));
+            navigationService.Register<SettingsViewModel>(typeof(SettingsPage));
         }
     }
 }
