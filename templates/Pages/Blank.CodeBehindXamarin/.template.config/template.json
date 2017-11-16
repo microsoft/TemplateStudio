@@ -22,10 +22,10 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\BlankViewPage.xaml"
+      "path": ".\\Param_ProjectName\\Views\\BlankViewPage.xaml"
     },
     {
-      "path": ".\\Views\\BlankViewPage.xaml.cs"
+      "path": ".\\Param_ProjectName\\Views\\BlankViewPage.xaml.cs"
     }
   ],
   "symbols": {

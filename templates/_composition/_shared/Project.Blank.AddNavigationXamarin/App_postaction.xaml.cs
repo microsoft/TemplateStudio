@@ -8,7 +8,7 @@
             //^^
             //{[{
             MainPage = new NavigationPage(new Param_HomeNamePage());
-            //}]}            
+            //}]}
         }
     }
 }
