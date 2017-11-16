@@ -12,7 +12,8 @@
     "wts.framework": "CodeBehind",
     "wts.projecttype":"Blank",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1"
+    "wts.displayOrder": "1",
+    "wts.outputToSolution": true
   },
   "sourceName": "wts.DefaultProject",
   "preferNameDirectory": true,
@@ -25,7 +26,10 @@
               "18E93540-F89F-42D6-9D2E-EBDA91F2D5C6"],//UWP Project
   "PrimaryOutputs":
   [
-    { "path": "wts.DefaultProject.vbproj" }
+    { "path": "wts.DefaultProject/wts.DefaultProject.shproj" }, //shared project
+    { "path": "wts.DefaultProject.Android/wts.DefaultProject.Android.csproj" }, // Android project
+    { "path": "wts.DefaultProject.iOS/wts.DefaultProject.iOS.csproj" }, // iOS project
+    { "path": "wts.DefaultProject.UWP/wts.DefaultProject.UWP.csproj" } //UWP project
   ],
   "symbols":
   {
@@ -72,7 +76,7 @@
       "manualInstructions": [ ],
       "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
       "args": {
-        "files" : "0"
+        "files" : "3"
       },
       "continueOnError": "true"
     }
