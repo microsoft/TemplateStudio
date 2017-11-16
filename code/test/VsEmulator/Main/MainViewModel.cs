@@ -202,6 +202,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+                    var solutionPath = Path.Combine(newProjectInfo.location, newProjectInfo.name);
 
                     GenContext.Current = this;
 
@@ -212,6 +213,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         ProjectName = newProjectInfo.name;
                         ProjectPath = projectPath;
                         OutputPath = projectPath;
+                        SolutionPath = solutionPath;
 
                         ClearContext();
                         SolutionName = null;
