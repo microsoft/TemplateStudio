@@ -35,12 +35,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override Guid ActionId { get => Id; }
 
+        private Dictionary<string, string> _parameters;
         private string _publisherName;
         private IReadOnlyList<ICreationPath> _primaryOutputs;
 
-        public GenerateTestCertificatePostAction(string relatedTemplate, string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs)
+        public GenerateTestCertificatePostAction(string relatedTemplate, string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters)
             : base(relatedTemplate, templatePostAction)
         {
+            _parameters = parameters;
             _publisherName = publisherName;
             _primaryOutputs = primaryOutputs;
         }
@@ -48,17 +50,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         internal override void ExecuteInternal()
         {
             int targetProjectIndex = int.Parse(Args["files"]);
-            string projectName = Path.GetFileNameWithoutExtension(_primaryOutputs[targetProjectIndex].Path);
+            var projectFile = _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters);
+            string projectFileWithoutExtension = projectFile.Replace(Path.GetExtension(projectFile), string.Empty);
 
             var pfx = CreateCertificate(_publisherName);
 
-            AddToProject(pfx, projectName);
+            AddToProject(pfx, projectFileWithoutExtension);
             RemoveFromStore(pfx);
         }
 
-        private void AddToProject(string base64Encoded, string projectName)
+        private void AddToProject(string base64Encoded, string projectFileWithoutExtension)
         {
-            var filePath = Path.Combine(GenContext.Current.OutputPath, projectName) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(GenContext.Current.OutputPath, projectFileWithoutExtension) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
             GenContext.ToolBox.Shell.AddItems(filePath);
