@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.OrdinalIgnoreCase);
             var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.OrdinalIgnoreCase);
 
-            if (startIndex > 0 && endIndex > startIndex)
+            while (startIndex > 0 && endIndex > startIndex)
             {
                 // VB uses a single character (') to start the comment, C# uses two (//)
                 int commentIndicatorLength = mergeString[startIndex - 1] == '\'' ? 1 : 2;
