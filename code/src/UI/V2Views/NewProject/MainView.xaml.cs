@@ -20,10 +20,6 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
         public MainView(string language)
         {
             DataContext = ViewModel;
-            Loaded += (sender, args) =>
-            {
-                ViewModel.LoadData();
-            };
             InitializeComponent();
         }
 

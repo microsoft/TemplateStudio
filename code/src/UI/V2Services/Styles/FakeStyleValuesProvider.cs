@@ -6,22 +6,137 @@ using System;
 using System.Windows.Media;
 
 using Microsoft.Templates.UI.Extensions;
-using Microsoft.VisualStudio.PlatformUI;
-using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.UI.V2Services
 {
     public class FakeStyleValuesProvider : IStyleValuesProvider
     {
-        public Brush GetColor(ThemeResourceKey themeResourceKey)
+        private static Brush _color_FFFFFF = "FFFFFF".AsBrush();
+        private static Brush _color_CCCEDB = "CCCEDB".AsBrush();
+        private static Brush _color_1E1E1E = "1E1E1E".AsBrush();
+        private static Brush _color_0E70C0 = "0E70C0".AsBrush();
+        private static Brush _color_007ACC = "007ACC".AsBrush();
+        private static Brush _color_A2A4A5 = "A2A4A5".AsBrush();
+        private static Brush _color_C9DEF5 = "C9DEF5".AsBrush();
+        private static Brush _color_000000 = "000000".AsBrush();
+        private static Brush _color_EFEFF2 = "EFEFF2".AsBrush();
+        private static Brush _color_717171 = "717171".AsBrush();
+
+        private double _baseFontSize = 12;
+
+        public Brush GetColor(string className, string memberName)
         {
-            if (themeResourceKey == EnvironmentColors.EnvironmentBackgroundColorKey)
+            if (memberName == "WindowPanelColorKey")
             {
-                return "#FABADA".AsBrush();
+                return _color_FFFFFF;
+            }
+            else if (memberName == "WindowBorderColorKey")
+            {
+                return _color_CCCEDB;
+            }
+            else if (memberName == "HeaderTextColorKey")
+            {
+                return _color_1E1E1E;
+            }
+            else if (memberName == "HyperlinkColorKey")
+            {
+                return _color_0E70C0;
+            }
+            else if (memberName == "HyperlinkHoverColorKey")
+            {
+                return _color_007ACC;
+            }
+            else if (memberName == "HyperlinkPressedColorKey")
+            {
+                return _color_0E70C0;
+            }
+            else if (memberName == "HyperlinkDisabledColorKey")
+            {
+                return _color_A2A4A5;
+            }
+            else if (memberName == "SelectedItemActiveColorKey")
+            {
+                return _color_007ACC;
+            }
+            else if (memberName == "SelectedItemInactiveColorKey")
+            {
+                return _color_CCCEDB;
+            }
+            else if (memberName == "ListItemMouseOverColorKey")
+            {
+                return _color_C9DEF5;
+            }
+            else if (memberName == "ListItemDisabledTextColorKey")
+            {
+                return _color_A2A4A5;
+            }
+            else if (memberName == "GridHeadingBackgroundColorKey")
+            {
+                return _color_000000;
+            }
+            else if (memberName == "GridHeadingHoverBackgroundColorKey")
+            {
+                return _color_000000;
+            }
+            else if (memberName == "GridHeadingTextColorKey")
+            {
+                return _color_717171;
+            }
+            else if (memberName == "GridHeadingHoverTextColorKey")
+            {
+                return _color_1E1E1E;
+            }
+            else if (memberName == "GridLineColorKey")
+            {
+                return _color_CCCEDB;
+            }
+            else if (memberName == "SectionDividerColorKey")
+            {
+                return _color_CCCEDB;
+            }
+            else if (memberName == "WindowButtonColorKey")
+            {
+                return _color_000000;
+            }
+            else if (memberName == "WindowButtonHoverColorKey")
+            {
+                return _color_C9DEF5;
+            }
+            else if (memberName == "WindowButtonDownColorKey")
+            {
+                return _color_007ACC;
+            }
+            else if (memberName == "WindowButtonBorderColorKey")
+            {
+                return _color_000000;
+            }
+            else if (memberName == "WindowButtonHoverBorderColorKey")
+            {
+                return _color_C9DEF5;
+            }
+            else if (memberName == "WindowButtonDownBorderColorKey")
+            {
+                return _color_007ACC;
+            }
+            else if (memberName == "WindowButtonGlyphColorKey")
+            {
+                return _color_1E1E1E;
+            }
+            else if (memberName == "WindowButtonHoverGlyphColorKey")
+            {
+                return _color_1E1E1E;
+            }
+            else if (memberName == "WindowButtonDownGlyphColorKey")
+            {
+                return _color_FFFFFF;
+            }
+            else if (memberName == "WizardFooterColorKey")
+            {
+                return _color_EFEFF2;
             }
             else
             {
-                return new SolidColorBrush(Colors.Red);
+                throw new Exception($"The Ccolor key value '{memberName}' is not found");
             }
         }
 
@@ -30,33 +145,28 @@ namespace Microsoft.Templates.UI.V2Services
             switch (fontSizeResourceKey)
             {
                 case "EnvironmentFontSize":
-                    return GetScaledFontSize(1.0);
+                    return _baseFontSize * 1.0;
                 case "Environment111PercentFontSize":
-                    return GetScaledFontSize(1.11);
+                    return _baseFontSize * 1.11;
                 case "Environment122PercentFontSize":
-                    return GetScaledFontSize(1.22);
+                    return _baseFontSize * 1.22;
                 case "Environment133PercentFontSize":
-                    return GetScaledFontSize(1.33);
+                    return _baseFontSize * 1.33;
                 case "Environment155PercentFontSize":
-                    return GetScaledFontSize(1.55);
+                    return _baseFontSize * 1.55;
                 case "Environment200PercentFontSize":
-                    return GetScaledFontSize(2.0);
+                    return _baseFontSize * 2.0;
                 case "Environment310PercentFontSize":
-                    return GetScaledFontSize(3.1);
+                    return _baseFontSize * 3.1;
                 case "Environment330PercentFontSize":
-                    return GetScaledFontSize(3.3);
+                    return _baseFontSize * 3.3;
                 case "Environment375PercentFontSize":
-                    return GetScaledFontSize(3.75);
+                    return _baseFontSize * 3.75;
                 case "Environment90PercentFontSize":
-                    return GetScaledFontSize(0.9);
+                    return _baseFontSize * 0.9;
                 default:
-                    return 12;
+                    throw new Exception($"The font size value '{fontSizeResourceKey}' is not found");
             }
-        }
-
-        private double GetScaledFontSize(double percent)
-        {
-            return 12 * percent;
         }
     }
 }

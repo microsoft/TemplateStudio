@@ -26,20 +26,6 @@
             <Setter Property="Margin" Value="12" />
         </Style>
 
-        <DataTemplate x:Key="ColorItemTemplate">
-
-
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <Border BorderBrush="Black" BorderThickness="1">
-                    <Grid Width="150" Height="75" Background="{Binding Background}" />
-                </Border>
-                <StackPanel VerticalAlignment="Center" Margin="12,0,0,0">
-                    <TextBlock Text="{Binding FullName}" />
-                    <TextBlock Text="{Binding Code}" Margin="0,6,0,0" />
-                </StackPanel>
-            </StackPanel>
-        </DataTemplate>
-
     </Window.Resources>
     <ScrollViewer>
         <StackPanel x:Name="mainGrid">
@@ -155,14 +141,140 @@
                 </StackPanel>
 
             </StackPanel>
-            
-            <Expander Header="FF FFFFFF" IsExpanded="False" Margin="12">
-                <ItemsControl ItemsSource="{Binding ColorItems_FF_FFFFFF}" ItemTemplate="{StaticResource ColorItemTemplate}" />
-            </Expander>
 
-            <Expander Header="ColorItems Tests" IsExpanded="False" Margin="12">
-                <ItemsControl ItemsSource="{Binding ColorItems_Tests}" ItemTemplate="{StaticResource ColorItemTemplate}" />
-            </Expander>
+            <StackPanel>
+                
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowPanel, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowPanel" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowBorder, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowBorder" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding HeaderText, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="HeaderText" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding Hyperlink, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="Hyperlink" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding HyperlinkHover, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="HyperlinkHover" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding HyperlinkPressed, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="HyperlinkPressed" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding SelectedItemActive, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="SelectedItemActive" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding SelectedItemInactive, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="SelectedItemInactive" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding ListItemMouseOver, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="ListItemMouseOver" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding ListItemDisabledText, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="ListItemDisabledText" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding GridHeadingBackground, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="GridHeadingBackground" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding GridHeadingHoverBackground, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="GridHeadingHoverBackground" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding GridHeadingText, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="GridHeadingText" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding GridHeadingHoverText, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="GridHeadingHoverText" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding GridLine, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="GridLine" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding SectionDivider, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="SectionDivider" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButton, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButton" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonHover, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonHover" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonDown, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonDown" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonBorder, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonBorder" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonHoverBorder, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonHoverBorder" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonDownBorder, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonDownBorder" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonGlyph, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonGlyph" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonHoverGlyph, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonHoverGlyph" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonDownGlyph, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonDownGlyph" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WizardFooter, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WizardFooter" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Window>

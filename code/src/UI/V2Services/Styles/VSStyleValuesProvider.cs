@@ -2,9 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
-
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 
@@ -12,6 +14,30 @@ namespace Microsoft.Templates.UI.V2Services
 {
     public class VSStyleValuesProvider : IStyleValuesProvider
     {
+        public Brush GetColor(string className, string memberName)
+        {
+            Type classType = null;
+            if (className == "ThemedDialogColors")
+            {
+                classType = typeof(ThemedDialogColors);
+            }
+
+            if (classType != null)
+            {
+                MemberInfo[] findMembers = classType.GetMember(memberName);
+
+                if (findMembers.Any())
+                {
+                    MemberInfo member = findMembers.First();
+                    PropertyInfo propertyInfo = member as PropertyInfo;
+                    ThemeResourceKey themeResourceKey = propertyInfo.GetMethod.Invoke(null, null) as ThemeResourceKey;
+                    return GetColor(themeResourceKey);
+                }
+            }
+
+            throw new Exception($"Class name not recognized '{className}'");
+        }
+
         public Brush GetColor(ThemeResourceKey themeResourceKey)
         {
             var themeColor = VSColorTheme.GetThemedColor(themeResourceKey);
@@ -49,7 +75,7 @@ namespace Microsoft.Templates.UI.V2Services
                 case "Environment90PercentFontSize":
                     return GetVSFontSize(VsFonts.Environment90PercentFontSizeKey);
                 default:
-                    return 12;
+                    throw new Exception($"The font size value '{fontSizeResourceKey}' is not found");
             }
         }
 
@@ -61,7 +87,7 @@ namespace Microsoft.Templates.UI.V2Services
                 return (double)font;
             }
 
-            return 12;
+            throw new Exception($"The font size is not valid.");
         }
     }
 }

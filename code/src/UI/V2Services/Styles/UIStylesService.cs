@@ -4,8 +4,6 @@
 
 using System.Windows;
 
-using Microsoft.VisualStudio.PlatformUI;
-
 namespace Microsoft.Templates.UI.V2Services
 {
     public partial class UIStylesService : DependencyObject
@@ -18,13 +16,13 @@ namespace Microsoft.Templates.UI.V2Services
 
         public UIStylesService()
         {
-            VSColorTheme.ThemeChanged += OnThemeChanged;
+            //VSColorTheme.ThemeChanged += OnThemeChanged;
         }
 
-        private void OnThemeChanged(ThemeChangedEventArgs e)
-        {
-            SetStyles();
-        }
+        //private void OnThemeChanged(ThemeChangedEventArgs e)
+        //{
+        //    SetStyles();
+        //}
 
         public void Initialize(IStyleValuesProvider stylesProvider)
         {
@@ -35,9 +33,33 @@ namespace Microsoft.Templates.UI.V2Services
         private void SetStyles()
         {
             // Colors
-            EnvironmentBackgroundColor = _stylesProvider.GetColor(EnvironmentColors.EnvironmentBackgroundColorKey);
-            EnvironmentBackgroundTexture1Color = _stylesProvider.GetColor(EnvironmentColors.EnvironmentBackgroundTexture1ColorKey);
-            EnvironmentBackgroundTexture2Color = _stylesProvider.GetColor(EnvironmentColors.EnvironmentBackgroundTexture2ColorKey);
+            WindowPanel = _stylesProvider.GetColor("ThemedDialogColors", "WindowPanelColorKey");
+            WindowBorder = _stylesProvider.GetColor("ThemedDialogColors", "WindowBorderColorKey");
+            HeaderText = _stylesProvider.GetColor("ThemedDialogColors", "HeaderTextColorKey");
+            Hyperlink = _stylesProvider.GetColor("ThemedDialogColors", "HyperlinkColorKey");
+            HyperlinkHover = _stylesProvider.GetColor("ThemedDialogColors", "HyperlinkHoverColorKey");
+            HyperlinkPressed = _stylesProvider.GetColor("ThemedDialogColors", "HyperlinkPressedColorKey");
+            HyperlinkDisabled = _stylesProvider.GetColor("ThemedDialogColors", "HyperlinkDisabledColorKey");
+            SelectedItemActive = _stylesProvider.GetColor("ThemedDialogColors", "SelectedItemActiveColorKey");
+            SelectedItemInactive = _stylesProvider.GetColor("ThemedDialogColors", "SelectedItemInactiveColorKey");
+            ListItemMouseOver = _stylesProvider.GetColor("ThemedDialogColors", "ListItemMouseOverColorKey");
+            ListItemDisabledText = _stylesProvider.GetColor("ThemedDialogColors", "ListItemDisabledTextColorKey");
+            GridHeadingBackground = _stylesProvider.GetColor("ThemedDialogColors", "GridHeadingBackgroundColorKey");
+            GridHeadingHoverBackground = _stylesProvider.GetColor("ThemedDialogColors", "GridHeadingHoverBackgroundColorKey");
+            GridHeadingText = _stylesProvider.GetColor("ThemedDialogColors", "GridHeadingTextColorKey");
+            GridHeadingHoverText = _stylesProvider.GetColor("ThemedDialogColors", "GridHeadingHoverTextColorKey");
+            GridLine = _stylesProvider.GetColor("ThemedDialogColors", "GridLineColorKey");
+            SectionDivider = _stylesProvider.GetColor("ThemedDialogColors", "SectionDividerColorKey");
+            WindowButton = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonColorKey");
+            WindowButtonHover = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonHoverColorKey");
+            WindowButtonDown = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonDownColorKey");
+            WindowButtonBorder = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonBorderColorKey");
+            WindowButtonHoverBorder = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonHoverBorderColorKey");
+            WindowButtonDownBorder = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonDownBorderColorKey");
+            WindowButtonGlyph = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonGlyphColorKey");
+            WindowButtonHoverGlyph = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonHoverGlyphColorKey");
+            WindowButtonDownGlyph = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonDownGlyphColorKey");
+            WizardFooter = _stylesProvider.GetColor("ThemedDialogColors", "WizardFooterColorKey");
 
             // FontSizes
             Environment90PercentFontSize = _stylesProvider.GetFontSize("Environment90PercentFontSize");

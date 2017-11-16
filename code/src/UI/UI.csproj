@@ -364,8 +364,6 @@
     <Compile Include="V2Services\Styles\VSStyleValuesProvider.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
-    <Compile Include="V2ViewModels\NewProject\ColorComparer.cs" />
-    <Compile Include="V2ViewModels\NewProject\ColorItem.cs" />
     <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="V2Views\NewProject\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
