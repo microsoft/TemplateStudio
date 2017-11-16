@@ -36,7 +36,6 @@ namespace WtsXamarin.ViewModels
         {
             get => _takePhotoCommand ?? (_takePhotoCommand = new Command(async () => await OnTakePhoto(), () => _isCameraAvailable));
         }
-
         
         private async Task OnTakePhoto()
         {
@@ -61,7 +60,6 @@ namespace WtsXamarin.ViewModels
                 }
             }
         }
-
 
         private async void InitializeCamera()
         {

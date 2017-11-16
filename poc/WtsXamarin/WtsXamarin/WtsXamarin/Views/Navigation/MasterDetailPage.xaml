@@ -4,9 +4,9 @@
              x:Class="WtsXamarin.Views.Navigation.MasterDetailPage"
              xmlns:pages="clr-namespace:WtsXamarin.Views"
              xmlns:navigationpages="clr-namespace:WtsXamarin.Views.Navigation">
-  <MasterDetailPage.Master>
-      <navigationpages:MasterDetailPageMaster x:Name="MasterPage" />
-  </MasterDetailPage.Master>
+    <MasterDetailPage.Master>
+        <navigationpages:MasterDetailPageMaster x:Name="MasterPage" />
+    </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
