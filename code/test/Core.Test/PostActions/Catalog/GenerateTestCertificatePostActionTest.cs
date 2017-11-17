@@ -65,11 +65,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Dictionary<string, string> testArgs = new Dictionary<string, string>();
             testArgs.Add("files", "0");
+
             List<FakeCreationPath> testPrimaryOutputs = new List<FakeCreationPath>();
             testPrimaryOutputs.Add(new FakeCreationPath() { Path = projectFile });
             IPostAction templateDefinedPostAction = new FakeTemplateDefinedPostAction(GenerateTestCertificatePostAction.Id, testArgs, true);
 
-            var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs as IReadOnlyList<ICreationPath>);
+            var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs as IReadOnlyList<ICreationPath>, new Dictionary<string, string>());
 
             postAction.Execute();
 
@@ -101,11 +102,11 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             testPrimaryOutputs.Add(new FakeCreationPath() { Path = projectFile });
             IPostAction templateDefinedPostAction = new FakeTemplateDefinedPostAction(GenerateTestCertificatePostAction.Id, testArgs, true);
 
-            var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs as IReadOnlyList<ICreationPath>);
+            var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs as IReadOnlyList<ICreationPath>, new Dictionary<string, string>());
 
             postAction.Execute();
 
-            var expectedCertFilePath = Path.Combine(GenContext.Current.OutputPath, $"{projectName}_TemporaryKey.pfx");
+            var expectedCertFilePath = Path.Combine(GenContext.Current.ProjectPath, $"{projectName}_TemporaryKey.pfx");
 
             Assert.True(File.Exists(expectedCertFilePath));
 
@@ -119,7 +120,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             testArgs.Add("myArg", "myValue");
             IPostAction inventedIdPostAction = new FakeTemplateDefinedPostAction(Guid.NewGuid(), testArgs, true);
 
-            var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", inventedIdPostAction, null);
+            var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", inventedIdPostAction, null, new Dictionary<string, string>());
 
             Assert.True(postAction.ContinueOnError);
             Assert.NotEqual(inventedIdPostAction.ActionId, GenerateTestCertificatePostAction.Id);
@@ -134,7 +135,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                    Dictionary<string, string> testArgs = new Dictionary<string, string>();
                    testArgs.Add("myArg", "myValue");
                    IPostAction inventedIdPostAction = new FakeTemplateDefinedPostAction(Guid.NewGuid(), testArgs, false);
-                   var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", inventedIdPostAction, null);
+                   var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", inventedIdPostAction, null, new Dictionary<string, string>());
                });
         }
     }
