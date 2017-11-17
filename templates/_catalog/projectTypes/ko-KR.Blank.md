@@ -1,3 +1,3 @@
-﻿This basic project is a blank canvas upon which to build your app.
+﻿이 기본 프로젝트는 앱을 구축할 빈 캔버스입니다.
 
-It provides no scaffolding and leaves everything up to you.
+모든 것은 사용자의 선택에 달려 있습니다.

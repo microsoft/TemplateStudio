@@ -143,9 +143,9 @@ namespace Microsoft.Templates.Test
             for (var i = 0; i < allVbFiles.Count; i++)
             {
                 var vbLines = File.ReadAllLines(allVbFiles[i].FullName);
-                var vbCommentLines = vbLines.Where(l => l.TrimStart().StartsWith("'", StringComparison.InvariantCulture)).ToArray();
+                var vbCommentLines = vbLines.Where(l => l.TrimStart().StartsWith("'", StringComparison.Ordinal)).ToArray();
                 var csLines = File.ReadAllLines(VbFileToCsEquivalent(allVbFiles[i].FullName));
-                var csCommentLines = csLines.Where(l => l.TrimStart().StartsWith("/", StringComparison.InvariantCulture)).ToArray();
+                var csCommentLines = csLines.Where(l => l.TrimStart().StartsWith("/", StringComparison.Ordinal)).ToArray();
 
                 if (vbCommentLines.Length != csCommentLines.Length)
                 {

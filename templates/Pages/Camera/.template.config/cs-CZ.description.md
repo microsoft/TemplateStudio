@@ -1,3 +1,3 @@
-﻿A page for capturing a photo from the camera. Includes handling previewing, mirroring, and orientation.
+﻿Účelem této stránky je zachytit fotografii z fotoaparátu. Umožňuje zobrazit náhled, překlopit snímek a změnit jeho orientaci.
 
-More details on using the MediaCapture class can be found in the [official docs](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture).
+Podrobnější informace o použití třídy MediaCapture najdete v [oficiální dokumentaci](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture).

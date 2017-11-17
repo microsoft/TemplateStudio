@@ -1,3 +1,3 @@
-﻿Tabs across the top allow for quickly navigating between pages.
+﻿Guias na parte superior permitem a navegação rápida entre as páginas.
 
-The Pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers which are always displayed.
+O controle de Tabela Dinâmica é útil para navegar entre páginas relacionadas ou acessadas com frequência. O usuário pode navegar entre painéis de tabelas dinâmicas (páginas) selecionando os cabeçalhos de texto que sempre são exibidos.

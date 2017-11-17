@@ -1,5 +1,5 @@
-﻿After you update your app it's important to tell the people using it about the changes you make. This feature will display a message to the person using it when the app is updated.
+﻿アプリを更新した後、変更についてユーザーに知らせることが重要です。この機能により、アプリを更新したとき、ユーザーにメッセージが表示されます。
 
-The message displayed is fully customizable and can be used to give details about new features or bugs that have been fixed.
+表示するメッセージは完全にカスタマイズ可能で、新機能や修正したバグの詳細を知らせるために使用することができます。
 
-Add this feature now so that it will be able to tell when it has been updated.
+いつ更新されたのかを知らせることができるように、この機能を今すぐ追加してください。

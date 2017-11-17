@@ -222,7 +222,7 @@ namespace Microsoft.Templates.Core.Packaging
         {
             string stringPart = packagePart.Uri.ToString().TrimStart('/');
             var partUri = new Uri(stringPart, UriKind.Relative);
-            string dir = targetDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()) ? targetDirectory : targetDirectory + Path.DirectorySeparatorChar;
+            string dir = targetDirectory.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.OrdinalIgnoreCase) ? targetDirectory : targetDirectory + Path.DirectorySeparatorChar;
             var uriFullPartPath = new Uri(new Uri(dir, UriKind.Absolute), partUri);
 
             // When packing, directories are automatically converted when turned into a URI
@@ -390,7 +390,7 @@ namespace Microsoft.Templates.Core.Packaging
 
         private static void EnsureDirectory(string dir)
         {
-            if (!string.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
+            if (!string.IsNullOrEmpty(dir) && !dir.Equals(Environment.CurrentDirectory, StringComparison.OrdinalIgnoreCase))
             {
                 if (!Directory.Exists(dir))
                 {

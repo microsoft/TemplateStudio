@@ -17,24 +17,24 @@ namespace Microsoft.Templates.Core.Diagnostics
             _traceEventType = eventType;
         }
 
-        public async Task TrackAsync(string message, Exception ex = null)
+        public async Task TrackAsync(string traceToTrack, Exception ex = null)
         {
             if (IsTraceEnabled())
             {
                 foreach (IHealthWriter writer in HealthWriters.Available)
                 {
-                    await SafeTrackAsync(message, ex, writer);
+                    await SafeTrackAsync(traceToTrack, ex, writer);
                 }
             }
         }
 
-        private async Task SafeTrackAsync(string message, Exception ex, IHealthWriter writer)
+        private async Task SafeTrackAsync(string traceToTrack, Exception ex, IHealthWriter writer)
         {
             try
             {
                 if (writer != null)
                 {
-                    await writer.WriteTraceAsync(_traceEventType, message, ex).ConfigureAwait(false);
+                    await writer.WriteTraceAsync(_traceEventType, traceToTrack, ex).ConfigureAwait(false);
                 }
             }
             catch (Exception exception)

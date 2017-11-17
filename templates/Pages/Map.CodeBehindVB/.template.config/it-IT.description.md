@@ -1,1 +1,1 @@
-﻿The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.
+﻿La pagina della mappa è basata su Controllo mappa.  Il codice include l'aggiunta di un'icona mappa e l'impostazione dell'itinerario.

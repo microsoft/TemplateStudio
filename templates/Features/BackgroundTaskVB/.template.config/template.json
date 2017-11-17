@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Background Task",
   "groupIdentity": "wts.Feat.BackgroundTask",

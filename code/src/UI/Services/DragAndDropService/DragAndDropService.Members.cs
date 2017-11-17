@@ -54,6 +54,11 @@ namespace Microsoft.Templates.UI.Services
                 }
 
                 var listViewItem = _listView.GetListViewItem(_indexToSelect);
+                if (listViewItem == null)
+                {
+                    return false;
+                }
+
                 var bounds = VisualTreeHelper.GetDescendantBounds(listViewItem);
                 var ptInItem = _listView.TranslatePoint(_mouseDownPosition, listViewItem);
 

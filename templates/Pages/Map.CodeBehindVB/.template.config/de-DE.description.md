@@ -1,1 +1,1 @@
-﻿The map page is based around the Map Control.  Code includes adding a Map Icon and setting the location.
+﻿Die Kartenseite basiert auf dem Kartensteuerelement.  Der Code umfasst die Hinzufügung eines Kartensymbols und die Festlegung des Standorts.

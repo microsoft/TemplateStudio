@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Suspend and Resume",
-  "description": "A simple service you can hook into to handle when a user leaves and returns to the app.",
+  "description": "Un servicio sencillo al que puedes acceder para administrar cuando un usuario deja y vuelve a la aplicación.",
   "identity": "wts.Feat.SuspendAndResume.VB"
 }

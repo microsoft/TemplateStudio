@@ -13,7 +13,10 @@ using Param_ItemNamespace.Models;
 
 namespace Param_ItemNamespace.Views
 {
-    // TODO WTS: This page exists purely as an example of how to launch a specific page in response to a protocol launch and pass it a value. It is expected that you will delete this page once you have changed the handling of a protocol launch to meet your needs and redirected to another of your pages.
+    // TODO WTS: This page exists purely as an example of how to launch a specific page in
+    // response to a protocol launch and pass it a value. It is expected that you will
+    // delete this page once you have changed the handling of a protocol launch to meet your
+    // needs and redirected to another of your pages.
     public sealed partial class ShareTargetFeaturePage : Page, INotifyPropertyChanged
     {
         private ShareOperation _shareOperation;
@@ -41,7 +44,7 @@ namespace Param_ItemNamespace.Views
             // ShareOperation contains all the information required to handle the action.
             base.OnNavigatedTo(e);
 
-            // TODO WTS: Custom SharedContentModel class adding properties for data that you need to extract from _shareOperation
+            // TODO WTS: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
             _shareOperation = e.Parameter as ShareOperation;
 
             if (_shareOperation.Data.Contains(StandardDataFormats.WebLink))
@@ -100,7 +103,7 @@ namespace Param_ItemNamespace.Views
 
         private void CompleteButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO WTS: Implement the actions you want with the shared data before compleate the share operation.
+            // TODO WTS: Implement the actions you want to realize with the shared data before compleate the share operation.
             // For further details check https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
             _shareOperation.ReportCompleted();
         }

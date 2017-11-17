@@ -75,6 +75,17 @@ namespace TemplateValidator
                             }
                         }
                     }
+                    else
+                    {
+                        if (allIdentities.ContainsKey(template.Name))
+                        {
+                            results.Add($"Duplicate Identity detected in: '{templateFilePath}' & '{allIdentities[template.Name]}'");
+                        }
+                        else
+                        {
+                            allIdentities.Add(template.Name, templateFilePath);
+                        }
+                    }
 
                     // Get list of dependencies while the file is open. These are all checked later
                     if (template.TemplateTags.ContainsKey("wts.dependencies"))

@@ -8,9 +8,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Resources;
-
+using System.Text.RegularExpressions;
 using Localization.Extensions;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -161,7 +160,7 @@ namespace Localization
             var filePath = Path.Combine(_sourceDir.FullName, Routes.WtsTemplatesRootDirPath, fileName);
             var fileContent = File.ReadAllText(filePath);
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
-            var wtsItems = content.Select(json => json.GetValue("name").Value<string>());
+            var wtsItems = content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
 
             var wtsItemDirectory = Path.Combine(Routes.WtsTemplatesRootDirPath, wtsTemplateName);
 
@@ -176,47 +175,66 @@ namespace Localization
         private void VerifyResourceContent(string directory, string fileName)
         {
             var resxFile = Path.Combine(_sourceDir.FullName, directory, fileName);
-            var resNames = GetResourceNamesByFile(resxFile);
+            var resources = GetResourcesByFile(resxFile);
 
             foreach (var culture in _cultures)
             {
-                var languageFile = new FileInfo(Path.Combine(_sourceDir.FullName, directory, string.Format(Routes.ResourcesFilePathPattern, culture)));
+                var cultureFile = new FileInfo(Path.Combine(_sourceDir.FullName, directory, string.Format(Routes.ResourcesFilePathPattern, culture)));
 
-                if (languageFile.Exists)
+                if (cultureFile.Exists)
                 {
-                    var cultureNames = GetResourceNamesByFile(languageFile.FullName);
-
-                    resNames.Except(cultureNames)
-                        .ToList()
-                        .ForEach(name =>
-                        _errors.Add(string.Format("{0} not contain \"{1}\" resource name", languageFile.FullName, name)));
-
-                    cultureNames.Except(resNames)
-                        .ToList()
-                        .ForEach(name =>
-                        _warnings.Add(string.Format("{0} contain \"{1}\" resource name but not in {2}", languageFile.FullName, name, resxFile)));
+                    var cultureResources = GetResourcesByFile(cultureFile.FullName);
+                    VerifyResourceValues(resources.Keys, cultureResources.Keys, resxFile, cultureFile.FullName);
+                    VerifyResourcesFormat(resources, cultureResources, resxFile, cultureFile.FullName);
                 }
             }
         }
 
-        private IEnumerable<string> GetResourceNamesByFile(string filePath)
+        private void VerifyResourceValues(IEnumerable<string> originalValues, IEnumerable<string> cultureValues, string resxFile, string cultureFile)
+        {
+            originalValues.Except(cultureValues)
+                        .ToList()
+                        .ForEach(name =>
+                        _errors.Add(string.Format("Missing resource: {0} not contain \"{1}\" resource name", cultureFile, name)));
+
+            cultureValues.Except(originalValues)
+                .ToList()
+                .ForEach(name =>
+                _warnings.Add(string.Format("Missing resource: {0} contain \"{1}\" resource name but not in {2}", cultureFile, name, resxFile)));
+        }
+
+        private void VerifyResourcesFormat(Dictionary<string, string> resources, Dictionary<string, string> cultureResources, string resxFile, string cultureFile)
+        {
+            string pattern = @"([.^{^}]*(?<p>{\d+}))+";
+
+            var resWithStringFormat = resources.Select(r => new { r.Key, Regex.Matches(r.Value, pattern).Count });
+            var resCultureWithStringFormat = cultureResources.Select(r => new { r.Key, Regex.Matches(r.Value, pattern).Count });
+            var resWithDistinctFormats = resWithStringFormat.Where(r => resCultureWithStringFormat.Any(c => c.Key == r.Key && c.Count != r.Count));
+
+            foreach (var res in resWithDistinctFormats)
+            {
+                _errors.Add($"Format Error: {cultureFile} contains distint string format that default.");
+            }
+        }
+
+        private Dictionary<string, string> GetResourcesByFile(string filePath)
         {
             if (!File.Exists(filePath))
             {
-                 return Enumerable.Empty<string>();
+                return new Dictionary<string, string>();
             }
 
             using (var resx = new ResXResourceReader(filePath))
             {
-                resx.UseResXDataNodes = true;
-                return resx.Cast<DictionaryEntry>().Select(x => x.Key as string);
+                return resx.Cast<DictionaryEntry>()
+                            .ToDictionary(k => k.Key.ToString(), v => v.Value.ToString());
             }
         }
 
-        private void Execute(Action action, string message)
+        private void Execute(Action action, string actionInfo)
         {
             Console.WriteLine();
-            Console.Write(message);
+            Console.Write(actionInfo);
 
             _errors.Clear();
             action.Invoke();

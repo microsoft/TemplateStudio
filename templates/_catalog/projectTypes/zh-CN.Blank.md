@@ -1,3 +1,3 @@
-﻿This basic project is a blank canvas upon which to build your app.
+﻿此基本项目是空白画布，你的应用要基于该画布构建。
 
-It provides no scaffolding and leaves everything up to you.
+它不提供任何基架，所有内容均由你来安排。

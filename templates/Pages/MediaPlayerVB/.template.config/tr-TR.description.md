@@ -1,3 +1,3 @@
-﻿A page for displaying video. It includes the MediaPlayer and has the default Media Transport controls enabled.
+﻿Video görüntülemek için kullanılan sayfa. MediaPlayer içerir ve varsayılan Medya Aktarımı denetimleri etkinleştirilmiştir.
 
-More details on using the Media Player can be found in the [official docs](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback).
+Medya Oynatıcısı'nı kullanma hakkında daha fazla bilgi için [resmi belgelere](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback) bakın.

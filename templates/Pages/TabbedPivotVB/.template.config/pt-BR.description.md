@@ -1,3 +1,3 @@
-﻿The tabbed page is used for navigating frequently accessed, distinct content categories. Pivots allow for navigation between two or more content panes and relies on text headers to articulate the different sections of content.
+﻿A página com guias é usada para navegar em categorias de conteúdo distintas com acesso frequente. As tabelas dinâmicas permitem a navegação entre dois ou mais painéis de conteúdo e usam cabeçalhos de texto para articular as diferentes seções de conteúdo.
 
-To find out more if this is a good solution for you, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot).
+Para saber mais se essa é uma boa solução para você, acesse [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot).

@@ -1,3 +1,3 @@
-﻿Caliburn.Micro is a popular, 3rd party framework based on the [Model-View-ViewModel pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel). The framework helps you to separate your View from your Model which creates applications that are cleaner and easier to maintain and extend. It also creates testable applications and allows you to have a much thinner user interface layer (which is more difficult to test automatically).
+﻿Caliburn.Micro, [Model-View-ViewModel desenini](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) temel alan popüler bir üçüncü taraf framework'tür. Bu framework, koruması ve genişletmesi daha rahat ve kolay olan uygulamalar oluşturabilmeniz için Görünümünüzü Modelinizden ayırmanıza yardımcı olur. Ayrıca test edilebilir uygulamalar oluşturur ve (otomatik olarak test edilmesi daha zor olan) çok daha ince bir kullanıcı arabirimi kullanmanıza olanak tanır.
 
-You can find more out at [Caliburn.Micro's homepage](http://caliburnmicro.com/)
+Daha fazla bilgiye [Caliburn.Micro'nun ana sayfasından](http://caliburnmicro.com/) ulaşabilirsiniz.

@@ -1,11 +1,11 @@
-﻿Setting storage is a class to simplify storing your application data.  It handles loading, saving, serializing your data and easy access to your application's data.
+﻿설정 저장소는 애플리케이션의 데이터 저장을 단순화해주는 클래스입니다.  여기에서는 데이터를 로딩하여 저장하고 직렬화하며 애플리케이션의 데이터에 쉽게 액세스합니다.
 
-These are the main types of app data:
+다음은 앱 데이터의 주요 유형입니다:
 
-* Local: stored on the device, backed up in the cloud, and persists across updates
-* LocalCache: persistent data that exists on the current device, not backed up, and persists across updates
-* SharedLocal: persistent across all app users
-* Roaming: exists on all devices where the user has installed the app
-* Temporary: can be deleted by the system at any time
+* Local: 장치에 저장된 데이터로 클라우드에 백업되어 업데이트 후에도 유지됩니다.
+* LocalCache: 백업되지 않으며 기존의 장치에 저장된 데이터로 업데이트 후에도 유지됩니다.
+* SharedLocal: 모든 앱 사용자에게 유지되는 데이터입니다.
+* Roaming: 앱이 설치된 장치에 저장된 데이터입니다.
+* Temporary: 언제라도 시스템에서 삭제 가능한 데이터입니다.
 
-To find out more about storage, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata).
+저장소에 대한 자세한 내용은 [docs.microsoft.com]에서 알아보십시오. (https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata)

@@ -1,9 +1,9 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "Page.EnsureMergedDictionaries",
+  "name": "Page.EnsureMergedDictionaries.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

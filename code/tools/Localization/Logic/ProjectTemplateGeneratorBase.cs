@@ -24,7 +24,7 @@ namespace Localization
                 throw new DirectoryNotFoundException($"Source directory \"{_config.SourceDir}\" not found.");
             }
 
-            if (_sourceDir.Name.ToLower() != _config.SourceDirNamePattern.ToLower())
+            if (_sourceDir.Name.ToLowerInvariant() != _config.SourceDirNamePattern.ToLowerInvariant())
             {
                 throw new Exception($"Source directory \"{_sourceDir.Name}\" is not valid. Directory name should be \"{_config.SourceDirNamePattern}\".");
             }

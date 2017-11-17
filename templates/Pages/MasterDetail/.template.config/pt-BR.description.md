@@ -1,3 +1,3 @@
-﻿The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿A página de detalhes mestra tem um painel mestre e um painel de detalhes para o conteúdo. Quando um item na lista mestra é selecionado, o painel de detalhes é atualizado. Esse padrão é frequentemente usado para email e catálogos de endereços.
 
-More information about the master-detail pattern can be found [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details).
+Mais informações sobre o padrão de detalhes mestre podem ser encontradas em [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details).

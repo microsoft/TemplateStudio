@@ -1,3 +1,3 @@
-﻿A user can suspend your app at any time and your app should be ready for it. This is a simple service you can hook into to handle when a user leaves and returns to the app to help you in bringing your app back to the state it was before!
+﻿ユーザーはいつでもアプリを中断することができ、アプリはこれに対応できなければなりません。これは、ユーザーがアプリを離れて戻ってくる際の処理を行うために組み込むことができる簡単なサービスです。アプリを元の状態に戻す際に役立ちます。
 
-See these three great topics for more information about [application lifecycle](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle), [resuming an app](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/resume-an-app) and [suspending an app](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/suspend-an-app).
+3 つの役に立つトピック、[アプリケーションのライフサイクル](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/app-lifecycle)、[アプリの再開](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/resume-an-app) および [アプリの中断](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/suspend-an-app) についてご確認ください。
