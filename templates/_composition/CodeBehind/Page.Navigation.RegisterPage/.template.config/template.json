@@ -1,22 +1,19 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Project.Blank.AddNavigation.Xamarin",
-  "tags": {
+  "name": "CodeBehind.Page.Navigation.RegisterPage",
+   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & $projectType == Blank & wts.type == project"
- },
+    "wts.compositionFilter": "$framework == CodeBehind & wts.type == page"
+  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Services\\NavigationService.cs"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {
@@ -26,10 +23,6 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
-    },
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
     }
   }
 }
