@@ -18,7 +18,7 @@ namespace Param_RootNamespace
         protected override Task OnActivateApplicationAsync(IActivatedEventArgs args)
         {
 //{[{
-            if (args.Kind == ActivationKind.Protocol && args.PreviousExecutionState != ApplicationExecutionState.Running)
+            if (args.Kind == ActivationKind.Protocol && ((ProtocolActivatedEventArgs)args)?.Uri == null && args.PreviousExecutionState != ApplicationExecutionState.Running)
             {
                 var protocolArgs = args as ProtocolActivatedEventArgs;
                 if (protocolArgs.Uri.AbsolutePath.Equals("sample", StringComparison.OrdinalIgnoreCase))
@@ -44,7 +44,7 @@ namespace Param_RootNamespace
                     // It's also possible to have logic here to navigate to different pages. e.g. if you have logic based on the URI used to launch
                     return LaunchApplicationAsync(PageTokens.UriSchemeExamplePage, secret);
                 }
-                else if (args.PreviousExecutionState != ApplicationExecutionState.Running)
+                else
                 {
                     // If the app isn't running and not navigating to a specific page based on the URI, navigate to the home page
                     OnLaunchApplicationAsync(args as LaunchActivatedEventArgs);
