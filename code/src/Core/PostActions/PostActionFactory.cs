@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Core.PostActions
             var genCertificatePostAction = genResult.ResultInfo.PostActions.Where(x => x.ActionId == GenerateTestCertificatePostAction.Id).FirstOrDefault();
             if (genCertificatePostAction != null)
             {
-                postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs));
+                postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
             }
         }
 
