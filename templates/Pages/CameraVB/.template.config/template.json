@@ -4,7 +4,7 @@
     "Universal"
   ],
   "name": "Camera",
-  "groupIdentity": "wts.Page.Camera",
+  "groupIdentity": "wts.Page.Camera.VB",
   "identity": "wts.Page.Camera.VB",
   "description": "A page for capturing and displaying an image from the camera.",
   "tags": {

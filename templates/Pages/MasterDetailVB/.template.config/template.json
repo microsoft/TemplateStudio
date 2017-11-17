@@ -4,7 +4,7 @@
     "Universal"
   ],
   "name": "Master/Detail",
-  "groupIdentity": "wts.Page.MasterDetail",
+  "groupIdentity": "wts.Page.MasterDetail.VB",
   "identity": "wts.Page.MasterDetail.VB",
   "description": "The master-detail page has a master pane and a details pane for content.",
   "tags": {
