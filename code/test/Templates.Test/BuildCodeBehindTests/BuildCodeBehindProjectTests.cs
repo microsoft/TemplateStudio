@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind", "", ProgrammingLanguages.CSharp)]
+        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind", ProgrammingLanguages.CSharp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimum")]
@@ -72,7 +72,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind", "", ProgrammingLanguages.VisualBasic)]
+        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind", ProgrammingLanguages.VisualBasic)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimumVB")]

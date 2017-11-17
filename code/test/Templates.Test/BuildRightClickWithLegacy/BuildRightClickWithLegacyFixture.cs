@@ -52,10 +52,9 @@ namespace Microsoft.Templates.Test
 
                 foreach (var projectType in projectTypes)
                 {
-                    var projectFrameworks = GenComposer.GetSupportedFx(projectType, string.Empty);
-
+                    // TODO: Re-enable for all platforms
+                    // var projectFrameworks = GenComposer.GetSupportedFx(projectType, string.Empty);
                     var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
-                                                .Where(m => projectFrameworks.Contains(m.Name))
                                                 .Select(m => m.Name).ToList();
 
                     foreach (var framework in targetFrameworks)

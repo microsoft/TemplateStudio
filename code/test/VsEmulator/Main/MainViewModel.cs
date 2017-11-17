@@ -177,7 +177,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectAsync("Uwp", ProgrammingLanguages.CSharp);
+                await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.CSharp);
             });
         }
 
@@ -186,7 +186,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectAsync("Uwp", ProgrammingLanguages.VisualBasic);
+                await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.VisualBasic);
             });
         }
 

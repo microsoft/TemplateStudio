@@ -31,9 +31,9 @@ namespace Microsoft.UI.Test
         public async Task ProjectInitDefaultAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel("Uwp", GenContext.InitializedLanguage);
-            await viewModel.ProjectSetup.InitializeAsync("Uwp");
-            await viewModel.ProjectTemplates.InitializeAsync("Uwp");
+            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.InitializedLanguage);
+            await viewModel.ProjectSetup.InitializeAsync(Platforms.Uwp);
+            await viewModel.ProjectTemplates.InitializeAsync(Platforms.Uwp);
             Assert.True(viewModel.ProjectTemplates.SavedPages.Count == 1);
             Assert.True(viewModel.ProjectTemplates.SavedPages.First().Count == 1);
             Assert.True(viewModel.ProjectTemplates.SavedFeatures.Count == 0);
@@ -43,13 +43,13 @@ namespace Microsoft.UI.Test
         public async Task ProjectInitUpdatedConfigurationAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel("Uwp", GenContext.InitializedLanguage);
-            await viewModel.ProjectSetup.InitializeAsync("Uwp");
+            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.InitializedLanguage);
+            await viewModel.ProjectSetup.InitializeAsync(Platforms.Uwp);
 
             // Update project to Blank and framework to MVVM Light
             viewModel.ProjectSetup.SelectedProjectType = viewModel.ProjectSetup.ProjectTypes.First(pt => pt.Name == "Blank");
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == "MVVMLight");
-            await viewModel.ProjectTemplates.InitializeAsync("Uwp");
+            await viewModel.ProjectTemplates.InitializeAsync(Platforms.Uwp);
 
             Assert.True(viewModel.ProjectTemplates.SavedPages.Count == 1);
             Assert.True(viewModel.ProjectTemplates.SavedPages.First().Count == 1);
@@ -62,10 +62,10 @@ namespace Microsoft.UI.Test
         {
             // Default configuration: SplitView, CodeBehind, Blank page
             var testFrameworkName = "MVVMBasic";
-            var viewModel = new MainViewModel("Uwp", GenContext.InitializedLanguage);
-            await viewModel.ProjectSetup.InitializeAsync("Uwp");
+            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.InitializedLanguage);
+            await viewModel.ProjectSetup.InitializeAsync(Platforms.Uwp);
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
-            await viewModel.ProjectTemplates.InitializeAsync("Uwp");
+            await viewModel.ProjectTemplates.InitializeAsync(Platforms.Uwp);
             var settingsPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings");
             settingsPage.AddItemCommand.Execute(null);
             settingsPage.SaveItemCommand.Execute(null);
@@ -80,10 +80,10 @@ namespace Microsoft.UI.Test
         {
             // Default configuration: SplitView, CodeBehind, Blank page
             var testFrameworkName = "MVVMBasic";
-            var viewModel = new MainViewModel("Uwp", GenContext.InitializedLanguage);
-            await viewModel.ProjectSetup.InitializeAsync("Uwp");
+            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.InitializedLanguage);
+            await viewModel.ProjectSetup.InitializeAsync(Platforms.Uwp);
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
-            await viewModel.ProjectTemplates.InitializeAsync("Uwp");
+            await viewModel.ProjectTemplates.InitializeAsync(Platforms.Uwp);
             var settingsPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings");
             settingsPage.AddItemCommand.Execute(null);
             settingsPage.SaveItemCommand.Execute(null);
@@ -95,10 +95,10 @@ namespace Microsoft.UI.Test
         {
             // Default configuration: SplitView, CodeBehind, Blank page
             var testFrameworkName = "MVVMBasic";
-            var viewModel = new MainViewModel("Uwp", GenContext.InitializedLanguage);
-            await viewModel.ProjectSetup.InitializeAsync("Uwp");
+            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.InitializedLanguage);
+            await viewModel.ProjectSetup.InitializeAsync(Platforms.Uwp);
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
-            await viewModel.ProjectTemplates.InitializeAsync("Uwp");
+            await viewModel.ProjectTemplates.InitializeAsync(Platforms.Uwp);
             var settingsPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings");
             settingsPage.AddItemCommand.Execute(null);
             settingsPage.SaveItemCommand.Execute(null);
@@ -113,10 +113,10 @@ namespace Microsoft.UI.Test
         {
             // Default configuration: SplitView, CodeBehind, Blank page
             var testFrameworkName = "MVVMBasic";
-            var viewModel = new MainViewModel("Uwp", GenContext.InitializedLanguage);
-            await viewModel.ProjectSetup.InitializeAsync("Uwp");
+            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.InitializedLanguage);
+            await viewModel.ProjectSetup.InitializeAsync(Platforms.Uwp);
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
-            await viewModel.ProjectTemplates.InitializeAsync("Uwp");
+            await viewModel.ProjectTemplates.InitializeAsync(Platforms.Uwp);
 
             var gridPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Grid");
             gridPage.AddItemCommand.Execute(null);
@@ -140,10 +140,11 @@ namespace Microsoft.UI.Test
         {
             // Configuration: SplitView, MVVM Basic, Blank page
             var testFrameworkName = "MVVMBasic";
-            var viewModel = new MainViewModel("Uwp", GenContext.InitializedLanguage);
-            await viewModel.ProjectSetup.InitializeAsync("Uwp");
+            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.InitializedLanguage);
+            await viewModel.ProjectSetup.InitializeAsync(Platforms.Uwp);
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
-            await viewModel.ProjectTemplates.InitializeAsync("Uwp");
+
+            await viewModel.ProjectTemplates.InitializeAsync(Platforms.Uwp);
             var settingsPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings");
             settingsPage.AddItemCommand.Execute(null);
             settingsPage.SaveItemCommand.Execute(null);
@@ -177,12 +178,12 @@ namespace Microsoft.UI.Test
         {
             // Default configuration: SplitView, Code Behind, Blank page - 0 Licenses
             var testFrameworkName = "MVVMLight";
-            var viewModel = new MainViewModel("Uwp", GenContext.InitializedLanguage);
-            await viewModel.ProjectSetup.InitializeAsync("Uwp");
+            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.InitializedLanguage);
+            await viewModel.ProjectSetup.InitializeAsync(Platforms.Uwp);
             Assert.True(viewModel.Licenses.Count() == 1); // Microsoft.Toolkit.Uwp (CodeBehind)
             viewModel.ProjectSetup.SelectedFramework = viewModel.ProjectSetup.Frameworks.First(pt => pt.Name == testFrameworkName);
             Assert.True(viewModel.Licenses.Count() == 2); // Added MVVMLight lib
-            await viewModel.ProjectTemplates.InitializeAsync("Uwp");
+            await viewModel.ProjectTemplates.InitializeAsync(Platforms.Uwp);
             var settingsPage = FindTemplate(viewModel.ProjectTemplates.PagesGroups, "wts.Page.Settings");
             settingsPage.AddItemCommand.Execute(null);
             settingsPage.SaveItemCommand.Execute(null);

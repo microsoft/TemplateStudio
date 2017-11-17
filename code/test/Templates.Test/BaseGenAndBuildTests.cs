@@ -320,19 +320,14 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        // Need overload with different number of params to work with XUnit.MemeberData
         public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework)
         {
-            return GetProjectTemplatesForBuildAsync(framework, "Uwp", string.Empty);
-        }
-
-        // Need overload with different number of params to work with XUnit.MemeberData
-        public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework, string platform)
-        {
-            return GetProjectTemplatesForBuildAsync(framework, platform, string.Empty);
+            return GetProjectTemplatesForBuildAsync(framework, string.Empty);
         }
 
         // Set a single programming language to stop the fixture using all languages available to it
-        public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework, string platformFilter, string programmingLanguage)
+        public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework, string programmingLanguage)
         {
             JoinableTaskContext context = new JoinableTaskContext();
             JoinableTaskCollection tasks = context.CreateCollection();
@@ -361,7 +356,7 @@ namespace Microsoft.Templates.Test
                     result = context.Factory.Run(() => BuildRightClickWithLegacyFixture.GetProjectTemplatesAsync());
                     break;
                 default:
-                    result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync(platformFilter));
+                    result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync());
                     break;
             }
 

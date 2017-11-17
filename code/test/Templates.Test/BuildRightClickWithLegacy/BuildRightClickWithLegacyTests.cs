@@ -45,7 +45,9 @@ namespace Microsoft.Templates.Test
                    && !t.GetIsHidden()
                    && t.GetLanguage() == language;
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, string.Empty, language, null, false);
+            // var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, string.Empty, language, null, false);
+            // Temp workaround to be able to generate project from template without platform
+            var projectPath = await AssertGenerateProjectWithOutPlatformAsync(selector, projectName, projectType, framework, language, null, false);
 
             var fixture = _fixture as BuildRightClickWithLegacyFixture;
             await fixture.ChangeTemplatesSourceAsync(fixture.LocalSource, language);
@@ -54,6 +56,7 @@ namespace Microsoft.Templates.Test
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                             && t.GetFrameworkList().Contains(framework)
                                             && !excludedTemplates.Contains(t.GroupIdentity)
+                                            && t.GetPlatform() == platform
                                             && !t.GetIsHidden()
                                             && t.GetRightClickEnabled());
 
@@ -77,7 +80,49 @@ namespace Microsoft.Templates.Test
                    && !t.GetIsHidden()
                    && t.GetLanguage() == language;
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName, false);
+            // var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName, false);
+            // Temp workaround to be able to generate project from template without platform
+            var projectPath = await AssertGenerateProjectWithOutPlatformAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetDefaultName, false);
+        }
+
+        protected async Task<string> AssertGenerateProjectWithOutPlatformAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
+        {
+            await _fixture.InitializeFixtureAsync(language, this);
+
+            var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
+
+            ProjectName = projectName;
+
+            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            SolutionPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+
+            var userSelection = _fixture.SetupProject(projectType, framework, string.Empty, language, getName);
+
+            if (getName != null)
+            {
+                _fixture.AddItems(userSelection, GetTemplates(framework), getName);
+            }
+
+            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
+
+            var resultPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+
+            // Assert
+            Assert.True(Directory.Exists(resultPath));
+            Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
+
+            // Clean
+            if (cleanGeneration)
+            {
+                Fs.SafeDeleteDirectory(resultPath);
+            }
+
+            return resultPath;
+        }
+
+        public IEnumerable<ITemplateInfo> GetTemplates(string framework)
+        {
+            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework));
         }
     }
 }

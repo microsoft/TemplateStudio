@@ -91,10 +91,10 @@ namespace Microsoft.Templates.UI
 
             chrono.Stop();
 
-            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Language);
+            TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform, userSelection.Language);
         }
 
-        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string language)
+        private static void TrackTelemery(IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string appPlatform, string language)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace Microsoft.Templates.UI
 
                     if (genInfo.Template.GetTemplateType() == TemplateType.Project)
                     {
-                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appProjectType, appFx, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), language, pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent, GenContext.Current.ProjectMetrics).FireAndForget();
+                        AppHealth.Current.Telemetry.TrackProjectGenAsync(genInfo.Template, appProjectType, appFx, appPlatform, genResults[resultsKey], GenContext.ToolBox.Shell.GetVsProjectId(), language, pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent, GenContext.Current.ProjectMetrics).FireAndForget();
                     }
                     else
                     {
