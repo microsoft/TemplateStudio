@@ -3,19 +3,27 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.ShareTarget.AddTemplateSelector",
+  "name": "wts.Feat.ShareTarget.Prism.Composition",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|Prism & identity == wts.Feat.ShareTarget|wts.Feat.ShareTarget.Prism"
+    "wts.compositionFilter": "$framework == Prism & identity == wts.Feat.ShareTarget.Prism",
+    "wts.export.baseclass": "Observable",
+    "wts.export.setter": "Set"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.cs"
+      "path": ".\\ViewModels\\wts.ItemNameViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\wts.ItemNamePage.xaml"
+    },
+    {
+      "path": ".\\Views\\wts.ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {
