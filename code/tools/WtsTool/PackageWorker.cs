@@ -76,11 +76,12 @@ namespace WtsTool
                 if (File.Exists(inputPath))
                 {
                     output.WriteCommandText($"Is signed: {TemplatePackage.IsSigned(inputPath).ToString()}");
-                    output.WriteLine();
 
                     WriteSignatureValidationsInfo(inputPath, output);
 
                     WriteCertificatesInfo(inputPath, output);
+
+                    WriteCurrentPinConfiguration(output);
                 }
             }
             catch (Exception ex)
@@ -92,6 +93,7 @@ namespace WtsTool
         private static void WriteCertificatesInfo(string inputPath, TextWriter output)
         {
             var certsInfo = TemplatePackage.GetCertsInfo(inputPath);
+            output.WriteLine();
             output.WriteCommandText($"Found {certsInfo.Count} certificates in the package.");
             foreach (var info in certsInfo)
             {
@@ -111,29 +113,37 @@ namespace WtsTool
                 output.WriteCommandText($" {info.pin}");
                 output.WriteLine();
                 output.WriteCommandText("--");
-                output.WriteLine();
             }
         }
 
         private static void WriteSignatureValidationsInfo(string inputPath, TextWriter output)
         {
-            var allowedPins = Microsoft.Templates.Core.Configuration.Current.AllowedPublicKeysPins;
-            output.WriteCommandText($"WtsTool certificate pins: {allowedPins.Count}");
-            foreach (var pin in allowedPins)
-            {
-                output.WriteCommandText(pin);
-            }
-
             output.WriteLine();
             output.WriteCommandText($"WTS is valid signature: {TemplatePackage.ValidateSignatures(inputPath)}");
+        }
+
+        private static void WriteCurrentPinConfiguration(TextWriter output)
+        {
+            var allowedPins = Microsoft.Templates.Core.Configuration.Current.AllowedPublicKeysPins;
+
+            output.WriteLine();
+
             var validationType = "Cert Chain";
             if (allowedPins.Count > 0)
             {
+                output.WriteCommandText($"Cert pins configured in the tool ({allowedPins.Count}):");
                 validationType = "Cert Pins";
+                foreach (var pin in allowedPins)
+                {
+                    output.WriteCommandText(pin);
+                }
+            }
+            else
+            {
+                output.WriteCommandText($"No cert pins configured pins in the tool.");
             }
 
             output.WriteCommandText($"Signature validation type: {validationType}");
-            output.WriteLine();
         }
     }
 }

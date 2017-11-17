@@ -63,9 +63,8 @@
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=8.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WindowsAzure.Storage.8.6.0\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -107,16 +106,19 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="CommandOptions\CommonOptions.cs" />
-    <Compile Include="CommandOptions\ListOptions.cs" />
+    <Compile Include="CommandOptions\RemoteSourceCommonOptions.cs" />
+    <Compile Include="CommandOptions\RemoteSourceListOptions.cs" />
     <Compile Include="CommandOptions\PackageOptions.cs" />
-    <Compile Include="CommandOptions\DownloadOptions.cs" />
-    <Compile Include="CommandOptions\PublishOptions.cs" />
+    <Compile Include="CommandOptions\RemoteSourceDownloadOptions.cs" />
+    <Compile Include="CommandOptions\RemoteSourcePublishOptions.cs" />
     <Compile Include="PackageWorker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemotePackageInfo.cs" />
+    <Compile Include="RemoteSourceVersionsInfo.cs" />
     <Compile Include="RunCommand.cs" />
-    <Compile Include="Storage.cs" />
-    <Compile Include="StorageWorker.cs" />
+    <Compile Include="RemoteSource.cs" />
+    <Compile Include="RemoteSourceWorker.cs" />
     <Compile Include="TextWriterExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

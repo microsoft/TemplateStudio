@@ -37,22 +37,34 @@ namespace WtsTool
             return 0;
         }
 
-        public static int Publish(PublishOptions publishOpts, TextWriter output, TextWriter error)
+        public static int Publish(RemoteSourcePublishOptions publishOpts, TextWriter output, TextWriter error)
         {
             output.WriteCommandHeader("Publish");
             return 0;
         }
 
-        public static int Download(DownloadOptions downloadOpts, TextWriter output, TextWriter error)
+        public static int Download(RemoteSourceDownloadOptions downloadOpts, TextWriter output, TextWriter error)
         {
             output.WriteCommandHeader("Download");
             return 0;
         }
 
-        public static int List(ListOptions listOpts, TextWriter output, TextWriter error)
+        public static int List(RemoteSourceListOptions listOpts, TextWriter output, TextWriter error)
         {
-            output.WriteCommandHeader("List");
-            StorageWorker.ListSummaryInfo(listOpts, output, error);
+            if (listOpts.Summary && !(listOpts.Main | listOpts.Detailed))
+            {
+                RemoteSourceWorker.ListSummaryInfo(listOpts, output, error);
+            }
+
+            if (listOpts.Main)
+            {
+                RemoteSourceWorker.ListMainVersions(listOpts, output, error);
+            }
+
+            if (listOpts.Detailed)
+            {
+                RemoteSourceWorker.ListDetailedVersions(listOpts, output, error);
+            }
             return 0;
         }
 

@@ -11,23 +11,9 @@ using CommandLine;
 
 namespace WtsTool.CommandOptions
 {
-    public enum EnvEnum
-    {
-        Pro,
-        Pre,
-        Dev,
-        Test
-    }
-
     public class CommonOptions
     {
-        [Option('a', "storage-account", Required = true, HelpText = "Storage account for remote templates source operation.", Default = "wtsrepository")]
-        public string StorageAccount { get; set; }
-
-        [Option('e', "env", Required = true, HelpText = "Environment. Valid values: Pro, Pre, Dev or Test", Default = EnvEnum.Dev)]
-        public EnvEnum Env { get; set; }
-
-        [Option('k', "storage-key", Required = true, HelpText = "Storage Account key to be used")]
-        public string AccountKey { get; set; }
+        [Option("verbose", HelpText = "Show verbose error info.", Default = false)]
+        public bool Verbose { get; set; }
     }
 }

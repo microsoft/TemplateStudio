@@ -13,8 +13,11 @@ using CommandLine;
 namespace WtsTool.CommandOptions
 {
     [Verb("publish", Hidden = false, HelpText = "Publish a templates package to the specified environment.")]
-    public class PublishOptions : CommonOptions
+    public class RemoteSourcePublishOptions : RemoteSourceCommonOptions
     {
+        [Option('k', "storage-key", Required = true, HelpText = "Storage Account key to be used for package publishing.")]
+        public string AccountKey { get; set; }
+
         [Option('f', "file", Required = true, HelpText = "Mstx file to publish.")]
         public bool File { get; set; }
 

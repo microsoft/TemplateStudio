@@ -18,7 +18,7 @@ namespace WtsTool.CommandOptions
     }
 
     [Verb("package", Hidden = false, HelpText = "Operations with template package file (.mstx)")]
-    public class PackageOptions
+    public class PackageOptions : CommonOptions
     {
         [Option('i', "info", Required = true, HelpText = "Gets the information from the package file specified.", SetName = "Info")]
         public string Info { get; set; }

@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,17 +17,20 @@ namespace WtsTool
     {
         public static void Main(string[] args)
         {
+            var chrono = Stopwatch.StartNew();
+
             Console.Out.WriteHeader("Wts Tool v1.0.0.0");
 
-            Parser.Default.ParseArguments<PackageOptions, ListOptions, DownloadOptions, PublishOptions>(args)
+            Parser.Default.ParseArguments<PackageOptions, RemoteSourceListOptions, RemoteSourceDownloadOptions, RemoteSourcePublishOptions>(args)
+            .WithParsed<CommonOptions>(opts => TextWriterExtensions.Verbose = opts.Verbose)
             .MapResult(
                 (PackageOptions packOpts) => { return RunCommand.Package(packOpts, Console.Out, Console.Error); },
-                (ListOptions listOpts) => { return RunCommand.List(listOpts, Console.Out, Console.Error); },
-                (DownloadOptions downloadOpts) => { return RunCommand.Download(downloadOpts, Console.Out, Console.Error); },
-                (PublishOptions publishOpts) => { return RunCommand.Publish(publishOpts, Console.Out, Console.Error); },
+                (RemoteSourceListOptions listOpts) => { return RunCommand.List(listOpts, Console.Out, Console.Error); },
+                (RemoteSourceDownloadOptions downloadOpts) => { return RunCommand.Download(downloadOpts, Console.Out, Console.Error); },
+                (RemoteSourcePublishOptions publishOpts) => { return RunCommand.Publish(publishOpts, Console.Out, Console.Error); },
                 errs => 1);
 
-            Console.Out.WriteFooter();
+            Console.Out.WriteFooter($"{chrono.Elapsed.TotalSeconds} sec.");
         }
     }
 }

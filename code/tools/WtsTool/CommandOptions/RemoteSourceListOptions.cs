@@ -11,8 +11,8 @@ using CommandLine;
 
 namespace WtsTool.CommandOptions
 {
-    [Verb("list", Hidden = false, HelpText = "List the available versions / templates packages for the specified environment.")]
-    public class ListOptions : CommonOptions
+    [Verb("list-versions", Hidden = false, HelpText = "List the available versions / templates packages for the specified environment.")]
+    public class RemoteSourceListOptions : RemoteSourceCommonOptions
     {
         [Option('s', "summary", HelpText = "Shows summary info.", Default = true, SetName = "Summary")]
         public bool Summary { get; set; }
@@ -20,7 +20,7 @@ namespace WtsTool.CommandOptions
         [Option('d', "detailed", HelpText = "Shows detailed versions info.", Default= false, SetName = "Detailed")]
         public bool Detailed { get; set; }
 
-        [Option('r', "reduced", HelpText = "Shows detailed versions info.", Default = false, SetName = "Reduced")]
-        public bool Reduced { get; set; }
+        [Option('m', "main", HelpText = "Shows main versions info.", Default = false, SetName = "Main")]
+        public bool Main { get; set; }
     }
 }

@@ -12,12 +12,12 @@ using CommandLine;
 namespace WtsTool.CommandOptions
 {
     [Verb("download", Hidden = false, HelpText = "Download a templates package from the specified environment.")]
-    public class DownloadOptions : CommonOptions
+    public class RemoteSourceDownloadOptions : RemoteSourceCommonOptions
     {
         [Option('l', "latest", Required = true, HelpText = "Download the latest available version of templates package for the specified environment.", Default = "true", SetName = "Version")]
         public bool Latest { get; set; }
 
-        [Option('v', "version", Required = true, HelpText = "Download a concrete version of templates package for the specified environment.", SetName = "Version")]
+        [Option('v', "version", Required = true, HelpText = "Download a concrete version of templates package for the specified environment Downloads the most recent matching version.", SetName = "Version")]
         public string Version { get; set; }
     }
 }
