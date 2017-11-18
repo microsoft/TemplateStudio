@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Grid",
   "description": "Pagina contenente una semplice griglia con i controlli dell'interfaccia utente Telerik per UWP.",
   "identity": "wts.Page.Grid.CodeBehind"

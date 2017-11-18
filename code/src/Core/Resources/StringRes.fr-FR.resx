@@ -151,7 +151,7 @@
     <value>Impossible de trouver la rangée « {0} » prévue dans le fichier « {1} ». Veuillez fusionner le contenu depuis le fichier de post-action manuellement.</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>Le dossier {0} ne peut pas être copié vers {1}. Erreur : {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Le dossier {0} ne peut pas être supprimé. Erreur : {1}</value>
@@ -182,9 +182,6 @@
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Ligne {0} introuvable dans le fichier « {1} »</value>
-  </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>Aucune cible de fusion pour le fichier « {0} »</value>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Impossible de déduire un nom. Trop d'itérations</value>
@@ -386,5 +383,18 @@ Les modifications suivantes n'ont pu être intégrées : {2}
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>Le style doté de la clé « {0} » a déjà été défini avec une valeur ou des éléments différents dans ce fichier. Veuillez passer en revue les styles pour inclure les modifications manuellement lorsque cela est nécessaire dans le cadre de votre projet.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
+    <value>Error extracting installed templates content..</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
+    <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>

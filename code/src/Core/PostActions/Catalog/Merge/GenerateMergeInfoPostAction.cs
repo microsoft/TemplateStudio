@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -40,16 +41,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetMergeType()
         {
-            switch (Path.GetExtension(Config).ToLowerInvariant())
+            switch (Path.GetExtension(Config).ToUpperInvariant())
             {
-                case ".cs":
-                    return "csharp";
-                case ".vb":
-                    return "vb.net";
-                case ".csproj":
-                case ".vbproj":
-                case ".xaml":
-                    return "xml";
+                case ".CS":
+                    return "CSHARP";
+                case ".VB":
+                    return "VB.NET";
+                case ".CSPROJ":
+                case ".VBPROJ":
+                case ".XAML":
+                    return "XML";
                 default:
                     return string.Empty;
             }
@@ -57,7 +58,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(Config).StartsWith(Extension))
+            if (Path.GetFileName(Config).StartsWith(Extension, StringComparison.OrdinalIgnoreCase))
             {
                 var extension = Path.GetExtension(Config);
                 var directory = Path.GetDirectoryName(Config);

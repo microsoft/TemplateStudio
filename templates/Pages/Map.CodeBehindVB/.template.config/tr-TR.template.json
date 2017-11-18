@@ -1,6 +1,6 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Map",
-    "description": "The map page is based around the Map Control. Code includes adding a Map Icon and setting your location.",
+    "description": "Harita sayfası, Harita Denetimi\u0027ni esas alır. Kod bir Harita Simgesi ekleme ve konumunuzu ayarlama işlevlerini içerir.",
     "identity": "wts.Page.Map.CodeBehind.VB"
 }

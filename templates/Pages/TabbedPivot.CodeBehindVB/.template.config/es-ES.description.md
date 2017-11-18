@@ -1,3 +1,3 @@
-﻿The tabbed page is used for navigating frequently accessed, distinct content categories. Pivots allow for navigation between two or more content panes and relies on text headers to articulate the different sections of content.
+﻿La página con pestañas se usa para navegar entre las categorías de contenido únicas a las que se accede con frecuencia. Los pivots permiten la navegación entre dos o más paneles de contenido y se basan en encabezados de texto para articular las diferentes secciones de contenido.
 
-To find out more if this is a good solution for you, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot).
+Para saber si esta es una buena solución para ti, dirígete a [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot).

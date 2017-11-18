@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "name": "Map",
   "description": "Harita sayfası, Windows Harita Denetimi'ni esas alır. Kod bir Harita Simgesi ekleme ve konumunuzu alma işlevlerini içerir.",
   "identity": "wts.Page.Map.CaliburnMicro"

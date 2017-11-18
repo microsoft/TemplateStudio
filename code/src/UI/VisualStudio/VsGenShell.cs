@@ -468,14 +468,14 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             foreach (var item in itemsFullPath)
             {
-                switch (Path.GetExtension(item).ToLowerInvariant())
+                switch (Path.GetExtension(item).ToUpperInvariant())
                 {
-                    case ".xaml":
+                    case ".XAML":
                         Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindDesigner);
                         break;
 
                     default:
-                        if (!item.EndsWith(".xaml.cs", StringComparison.InvariantCultureIgnoreCase))
+                        if (!item.EndsWith(".xaml.cs", StringComparison.OrdinalIgnoreCase))
                         {
                             Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindPrimary);
                         }

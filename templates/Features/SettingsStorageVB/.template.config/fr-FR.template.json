@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "name": "Settings Storage",
   "description": "La définition du stockage permet de simplifier le stockage des données à l'intérieur du dossier des données de votre application.",
   "identity": "wts.Feat.SettingsStorage.VB"

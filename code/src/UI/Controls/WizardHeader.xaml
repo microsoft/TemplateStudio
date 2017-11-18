@@ -47,13 +47,14 @@
                 Background="{StaticResource UIMiddleDarkGray}"
                 Visibility="{Binding IsOverlayBoxVisible, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:WizardHeader}}}" />
             <Button
+                Tag="AllowOverlay"
                 Style="{StaticResource TopBarMenuStyle}"
                 Command="{Binding ShowOverlayMenuCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:WizardHeader}}}">
                 <Button.Content>
-                    <Grid>
+                    <Grid Tag="AllowOverlay">
                         <TextBlock Text="&#xEC42;" Style="{StaticResource IconButtonTextStyle}" FontSize="24" Margin="{StaticResource Margin_M_All}" Tag="AllowOverlay" />
                         <Ellipse
-                            Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0"
+                            Width="12" Height="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,8,5,0" Tag="AllowOverlay"
                             Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:WizardHeader}}}"
                             Fill="{StaticResource UIDarkYellow}" />
                     </Grid>

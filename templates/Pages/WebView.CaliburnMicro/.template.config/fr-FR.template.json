@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "name": "Web View",
   "description": "La page Vue web intègre une vue de votre application qui fournit un rendu du contenu Web à l'aide du moteur de rendu Microsoft Edge.",
   "identity": "wts.Page.WebView.CaliburnMicro"

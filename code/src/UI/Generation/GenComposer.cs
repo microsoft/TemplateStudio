@@ -150,8 +150,8 @@ namespace Microsoft.Templates.UI
             var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
 
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
-            genProject.Parameters.Add(GenParams.WizardVersion, GenContext.ToolBox.WizardVersion);
-            genProject.Parameters.Add(GenParams.TemplatesVersion, GenContext.ToolBox.TemplatesVersion);
+            genProject.Parameters.Add(GenParams.WizardVersion, string.Concat("v", GenContext.ToolBox.WizardVersion));
+            genProject.Parameters.Add(GenParams.TemplatesVersion, string.Concat("v", GenContext.ToolBox.TemplatesVersion));
             genProject.Parameters.Add(GenParams.ProjectType, userSelection.ProjectType);
             genProject.Parameters.Add(GenParams.Framework, userSelection.Framework);
         }

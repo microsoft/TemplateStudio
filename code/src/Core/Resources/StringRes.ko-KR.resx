@@ -151,7 +151,7 @@
     <value>'{1}' 파일에서 '{0}' 줄을 찾을 수 없습니다. postaction 파일의 콘텐츠를 수동으로 병합하십시오.</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>{0} 폴더를 {1}로 복사할 수 없습니다. 오류: {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>{0} 폴더를 삭제할 수 없습니다. 오류: {1}</value>
@@ -182,9 +182,6 @@
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>'{1}'파일에 {0}줄이 없음</value>
-  </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>'{0}' 파일에 병합 대상이 없습니다.</value>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>이름을 유추할 수 없습니다. 반복 횟수가 너무 많습니다</value>
@@ -386,5 +383,18 @@
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>'{0}' 키가 있는 스타일은 이미 파일에서 다른 값이나 다른 요소로 정의되어 있습니다. 스타일을 검토하고 필요한 변경 사항을 프로젝트에 수동으로 추가하십시오.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
+    <value>Error extracting installed templates content..</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
+    <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>

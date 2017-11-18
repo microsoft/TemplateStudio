@@ -1,64 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
-Microsoft ResX Schema 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
 
-Version 2.0
-
-The primary goals of this format is to allow a simple XML format 
-that is mostly human readable. The generation and parsing of the 
-various data types are done through the TypeConverter classes 
-associated with the data types.
-
-Example:
-
-... ado.net/XML headers & schema ...
-<resheader name="resmimetype">text/microsoft-resx</resheader>
-<resheader name="version">2.0</resheader>
-<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-<data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-<value>[base64 mime encoded serialized .NET Framework object]</value>
-</data>
-<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-<value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-<comment>This is a comment</comment>
-</data>
-
-There are any number of "resheader" rows that contain simple 
-name/value pairs.
-
-Each data row contains a name, and value. The row also contains a 
-type or mimetype. Type corresponds to a .NET class that support 
-text/value conversion through the TypeConverter architecture. 
-Classes that don't support this are serialized and stored with the 
-mimetype set.
-
-The mimetype is used for serialized objects, and tells the 
-ResXResourceReader how to depersist the object. This is currently not 
-extensible. For a given mimetype the value must be set accordingly:
-
-Note - application/x-microsoft.net.object.binary.base64 is the format 
-that the ResXResourceWriter will generate, however the reader can 
-read any of the formats listed below.
-
-mimetype: application/x-microsoft.net.object.binary.base64
-value   : The object must be serialized with 
-: System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-: and then encoded with base64 encoding.
-
-mimetype: application/x-microsoft.net.object.soap.base64
-value   : The object must be serialized with 
-: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-: and then encoded with base64 encoding.
-
-mimetype: application/x-microsoft.net.object.bytearray.base64
-value   : The object must be serialized into a byte array 
-: using a System.ComponentModel.TypeConverter
-: and then encoded with base64 encoding.
--->
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -151,7 +151,7 @@ value   : The object must be serialized into a byte array
     <value>在檔案 '{1}' 中找不到預期的行 `{0}`。請手動合併 postaction 檔案中的內容。</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>資料夾 {0} 無法複製到 {1}。錯誤：{2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>無法刪除資料夾 {0}。錯誤：{1}</value>
@@ -182,9 +182,6 @@ value   : The object must be serialized into a byte array
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>檔案 '{1}' 中找不到行 {0}</value>
-  </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>檔案 '{0}' 沒有合併目標</value>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>無法推斷名稱。有太多反覆項目</value>
@@ -386,5 +383,18 @@ value   : The object must be serialized into a byte array
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>這個檔案中已經有包含金鑰 '{0}' 的樣式定義了不同的值或元素。請檢閱要在您的專案所需的地方手動加入變更的樣式。</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
+    <value>Error extracting installed templates content..</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
+    <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>

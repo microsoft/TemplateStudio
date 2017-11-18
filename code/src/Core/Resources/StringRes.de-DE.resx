@@ -151,7 +151,7 @@
     <value>Die erwartete Zeile „{0}“ konnte in der Datei „{1}“ nicht gefunden werden. Führen Sie die Inhalte aus der Postaktionsdatei manuell zusammen.</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>Der Ordner {0} kann nicht zu {1} kopiert werden. Fehler: {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Der Ordner {0} kann nicht gelöscht werden. Fehler: {1}</value>
@@ -182,9 +182,6 @@
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Die Zeile {0} wurde in der Datei „{1}“ nicht gefunden.</value>
-  </data>
-  <data name="MergePostActionExecuteMessage" xml:space="preserve">
-    <value>Es gibt kein Zusammenführungsziel für die Datei „{0}“.</value>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Es ist nicht möglich, einen Namen abzuleiten. Es gibt zu viele Iterationen.</value>
@@ -386,5 +383,18 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>Diese Formatvorlage mit dem Schlüssel „{0}“ wurde bereits mit einem anderen Wert oder anderen Elementen in dieser Datei definiert. Überprüfen Sie die Formatvorlagen, um die Änderungen manuell zu integrieren, wenn für Ihr Projekt erforderlich.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Error acquiring content.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
+    <value>Error extracting installed templates content..</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
+    <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>

@@ -1,6 +1,6 @@
 ﻿{
-    "author": "Microsoft Community Contribution",
+    "author": "Microsoft Community",
     "name": "Tabbed",
-    "description": "The tabbed page is used for navigating frequently accessed, distinct content categories.",
+    "description": "Die Registerkartenseite wird für die Navigation in häufig verwendeten, jedoch unterschiedlichen Inhaltskategorien verwendet.",
     "identity": "wts.Page.TabbedPivot.CodeBehind.VB"
 }

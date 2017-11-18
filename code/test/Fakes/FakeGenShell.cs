@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Fakes
             var msbuildProj = FakeMsBuildProject.Load(projectFullPath);
             var solutionFile = FakeSolution.Create(SolutionPath);
 
-            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj", StringComparison.InvariantCultureIgnoreCase));
+            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj", StringComparison.OrdinalIgnoreCase));
         }
 
         public override string GetActiveProjectNamespace()

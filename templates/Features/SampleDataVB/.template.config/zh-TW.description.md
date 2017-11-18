@@ -1,3 +1,3 @@
-﻿The SampleDataService is a central repository for data used by generated pages. It is filled with basic data to provide a realistic viewpoint on data.  The data is also static to prevent any differences between runs.
+﻿SampleDataService 是中央儲存機制，適用於產生的頁面所使用的資料。它會填入基本資料，以提供有關資料的實際觀點。資料也是靜態的，以免不同的執行之間有任何差異。
 
-The data provided should be treated as temporary and removed once you have changed the generated pages to use your own data.
+提供的資料應該視為暫時性，而且在您已變更產生的頁面來使用自己的資料時就會將其移除。

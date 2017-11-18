@@ -408,7 +408,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var dependency = UserSelectionService.RemoveTemplate(this);
             if (dependency != null)
             {
-                string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, this.TemplateName, dependency.TemplateName, dependency.TemplateType);
+                string message = string.Format(StringRes.ValidationError_CanNotRemoveTemplate_SF, this.TemplateName, dependency.TemplateName);
                 MainViewModel.Current.WizardStatus.SetStatus(StatusViewModel.Warning(message, false, 5));
             }
             else
