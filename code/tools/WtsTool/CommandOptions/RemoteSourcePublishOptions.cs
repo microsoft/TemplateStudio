@@ -19,7 +19,7 @@ namespace WtsTool.CommandOptions
         public string AccountKey { get; set; }
 
         [Option('f', "file", Required = true, HelpText = "Mstx file to publish.")]
-        public bool File { get; set; }
+        public string File { get; set; }
 
         [Option('v', "version", Required = true, HelpText = "Version number for the templates package to be published.")]
         public string Version { get; set; }

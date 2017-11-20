@@ -62,6 +62,22 @@ namespace WtsTool
             }
         }
 
+        public static void PublishContent(RemoteSourcePublishOptions options, TextWriter output, TextWriter error)
+        {
+            try
+            {
+                output.WriteCommandHeader($"Publishing {options.File} for environment {options.Env.ToString()} ({options.StorageAccount})");
+                output.WriteCommandText("Sending content...");
+                var result = RemoteSource.PublishContent(options.StorageAccount, options.AccountKey, options.Env.ToString().ToLowerInvariant(), options.File, options.Version);
+                output.WriteCommandText(result);
+                output.WriteCommandText("Operation finished.");
+            }
+            catch (Exception ex)
+            {
+                error.WriteException(ex, $"Unable to publish the file {options.File} content to the specified environment container.");
+            }
+        }
+
         private static void WriteSummary(RemoteSourceVersionsInfo versionsInfo, TextWriter output)
         {
             output.WriteCommandText($"Templates Package count: {versionsInfo.PackageCount}");

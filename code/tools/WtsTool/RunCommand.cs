@@ -39,7 +39,7 @@ namespace WtsTool
 
         public static int Publish(RemoteSourcePublishOptions publishOpts, TextWriter output, TextWriter error)
         {
-            output.WriteCommandHeader("Publish");
+            RemoteSourceWorker.PublishContent(publishOpts, output, error);
             return 0;
         }
 

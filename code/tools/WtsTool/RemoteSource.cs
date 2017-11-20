@@ -12,6 +12,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using WtsTool.CommandOptions;
+using System.IO;
 
 namespace WtsTool
 {
@@ -39,6 +40,35 @@ namespace WtsTool
                 Versions = remotePackageInfoItems
             };
             return summary;
+        }
+
+        public static string PublishContent(string storageAccount, string key, string env, string sourceFile, string version)
+        {
+            if (!File.Exists(sourceFile))
+            {
+                throw new ArgumentException($"Invalid parameter '{nameof(sourceFile)}' value. The file '{sourceFile}' does not exists.");
+            }
+
+            if (string.IsNullOrWhiteSpace(sourceFile))
+            {
+                throw new ArgumentException($"Parameter '{nameof(sourceFile)}' can not be null, empty or whitespace.");
+            }
+
+            Version specifedVersion;
+            if (!Version.TryParse(version, out specifedVersion))
+            {
+                throw new ArgumentException($"The value '{version}' is not valid for parameter '{nameof(version)}'.");
+            }
+
+            Version versionInFile = ParseVersion(sourceFile);
+            if (versionInFile != null && versionInFile != specifedVersion)
+            {
+                throw new ArgumentException($"Parameter '{nameof(sourceFile)}' (with value '{sourceFile}') contains a version that do not match with the value specified in the parameter '{nameof(version)}' (with value '{version}').");
+            }
+
+            string blobName = (versionInFile == null) ? $"{Path.GetFileNameWithoutExtension(sourceFile)}_{version}.mstx" : sourceFile;
+            var container = GetContainer(storageAccount, key, env);
+            return UploadElement(container, sourceFile, blobName);
         }
 
         private static IEnumerable<RemotePackageInfo> GetAvailableVersions(this IEnumerable<RemotePackageInfo> remotePackageInfoItems)
@@ -103,7 +133,7 @@ namespace WtsTool
             return blobContainer;
         }
 
-        public static IEnumerable<CloudBlockBlob> GetAllElements(CloudBlobContainer container)
+        private static IEnumerable<CloudBlockBlob> GetAllElements(CloudBlobContainer container)
         {
             BlobContinuationToken token = new BlobContinuationToken();
 
@@ -117,6 +147,30 @@ namespace WtsTool
             return result;
         }
 
+        private static string UploadElement(CloudBlobContainer container, string sourceFile, string blobName)
+        {
+            CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
+            using (var fileStreame = File.Open(sourceFile, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                BlobRequestOptions options = new BlobRequestOptions();
+                options.ParallelOperationThreadCount = 4;
+
+                OperationContext context = new OperationContext();
+
+                blob.UploadFromStream(fileStreame, null, options, context);
+
+                float bytes = 0;
+                foreach (var result in context.RequestResults)
+                {
+                    bytes += result.EgressBytes;
+                }
+
+                TimeSpan elapsed = context.EndTime - context.StartTime;
+
+                return $"Uploaded {(bytes / 1024f) / 1024f} mbytes in {elapsed.TotalSeconds} seconds.";
+            }
+        }
+
         private static IEnumerable<CloudBlockBlob> GetElements(CloudBlobContainer container, ref BlobContinuationToken token)
         {
             if (!container.Exists())
@@ -125,6 +179,7 @@ namespace WtsTool
             }
 
             BlobResultSegment result = container.ListBlobsSegmented(token);
+
             token = result.ContinuationToken;
             return result.Results.Select((i) => i as CloudBlockBlob);
         }
