@@ -1,11 +1,10 @@
-﻿using System;
-
+﻿using DragAndDropExample.Models;
 using DragAndDropExample.ViewModels;
-
-using Windows.UI.Xaml.Controls;
-using Windows.ApplicationModel.DataTransfer;
-using DragAndDropExample.Models;
+using System;
 using System.Linq;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Xaml.Controls;
+
 namespace DragAndDropExample.Views
 {
     public sealed partial class Scenario5Page : Page

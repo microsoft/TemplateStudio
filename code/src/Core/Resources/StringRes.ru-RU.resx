@@ -151,7 +151,7 @@
     <value>Не удалось найти ожидаемую строку "{0}" в файле "{1}". Объедините содержимое из файла завершающего действия вручную.</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>Папку {0} невозможно скопировать в {1}. Ошибка: {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Папку {0} невозможно удалить. Ошибка: {1}</value>
@@ -392,5 +392,9 @@
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>

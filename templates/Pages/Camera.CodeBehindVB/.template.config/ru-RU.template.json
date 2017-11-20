@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Camera",
+    "description": "Страница для записи и отображения фото с камеры.",
+    "identity": "wts.Page.Camera.CodeBehind.VB"
+}

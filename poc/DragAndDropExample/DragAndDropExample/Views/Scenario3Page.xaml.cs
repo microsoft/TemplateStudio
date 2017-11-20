@@ -1,10 +1,6 @@
-﻿using System;
-using System.Linq;
-using DragAndDropExample.ViewModels;
+﻿using DragAndDropExample.ViewModels;
 
 using Windows.UI.Xaml.Controls;
-using DragAndDropExample.Models;
-using Windows.ApplicationModel.DataTransfer;
 
 namespace DragAndDropExample.Views
 {
