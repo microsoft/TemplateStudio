@@ -2,7 +2,7 @@
   "author": "Microsoft Community",
   "classifications": [ "Universal" ],
   "name": "Feedback Hub Link",
-  "groupIdentity": "wts.Feat.FeedbackHub",
+  "groupIdentity": "wts.Feat.FeedbackHub.VB",
   "identity": "wts.Feat.FeedbackHub.MVVMBasic.VB",
   "description": "Add a link, on the settings page, to the Feedback Hub.",
   "tags": {

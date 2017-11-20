@@ -35,12 +35,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public override Guid ActionId { get => Id; }
 
+        private Dictionary<string, string> _parameters;
         private string _publisherName;
         private IReadOnlyList<ICreationPath> _primaryOutputs;
 
-        public GenerateTestCertificatePostAction(string relatedTemplate, string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs)
+        public GenerateTestCertificatePostAction(string relatedTemplate, string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters)
             : base(relatedTemplate, templatePostAction)
         {
+            _parameters = parameters;
             _publisherName = publisherName;
             _primaryOutputs = primaryOutputs;
         }
@@ -48,7 +50,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         internal override void ExecuteInternal()
         {
             int targetProjectIndex = int.Parse(Args["files"]);
-            var projectFile = _primaryOutputs[targetProjectIndex].Path;
+            var projectFile = _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters);
             string projectFileWithoutExtension = projectFile.Replace(Path.GetExtension(projectFile), string.Empty);
 
             var pfx = CreateCertificate(_publisherName);

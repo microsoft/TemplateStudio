@@ -4,7 +4,7 @@
     "Universal"
   ],
   "name": "Live Tile",
-  "groupIdentity": "wts.Feat.LiveTile",
+  "groupIdentity": "wts.Feat.LiveTile.VB",
   "identity": "wts.Feat.LiveTile.VB",
   "description": "Adds a sample to show updating the tile as well as code for working with multiple tiles.",
   "tags": {
