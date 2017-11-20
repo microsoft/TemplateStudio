@@ -150,7 +150,7 @@
     <comment>Log text for Circular Reference exception</comment>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>잘못된 종속성 항목 {0}. 종속성은 multpleInstance = false로 구성되어야 합니다.</value>
+    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
     <comment>Log text for Multiple Instance exception</comment>
   </data>
   <data name="ExceptionDependencyNotFound" xml:space="preserve">

@@ -63,6 +63,7 @@
                     <services:VisualDropConfiguration
                             DragStartingImage ="ms-appx:///Assets/share_icon.png" 
                             DropOverImage="ms-appx:///Assets/copy_icon.png"
+                            IsGlyphVisible="False"
                             IsCaptionVisible="False"/>
                 </services:DragDropService.VisualConfiguration>
             </ListView>

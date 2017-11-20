@@ -150,7 +150,7 @@
     <comment>Log text for Circular Reference exception</comment>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Ungültiges Abhängigkeitsobjekt {0}. Abhängigkeiten müssen als multpleInstance = false konfiguriert werden.</value>
+    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
     <comment>Log text for Multiple Instance exception</comment>
   </data>
   <data name="ExceptionDependencyNotFound" xml:space="preserve">

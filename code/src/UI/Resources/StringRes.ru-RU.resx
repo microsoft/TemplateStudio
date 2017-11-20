@@ -150,7 +150,7 @@
     <comment>Log text for Circular Reference exception</comment>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Недопустимый элемент зависимости {0}. Зависимости нужно настроить с параметром multpleInstance = false.</value>
+    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
     <comment>Log text for Multiple Instance exception</comment>
   </data>
   <data name="ExceptionDependencyNotFound" xml:space="preserve">
