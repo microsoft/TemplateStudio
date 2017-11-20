@@ -25,6 +25,7 @@ namespace Microsoft.Templates.UI.Generation
         private const string ProjTypeTabbedPivot = "TabbedPivot";
 
         private const string PlUwp = "Uwp";
+        private const string PlXamarin = "Xamarin";
 
         private const string ProjectTypeLiteral = "projectType";
         private const string FrameworkLiteral = "framework";
@@ -57,7 +58,7 @@ namespace Microsoft.Templates.UI.Generation
                     }
                     else
                     {
-                        var inferredConfig = InferProjectConfiguration();
+                        var inferredConfig = InferProjectConfiguration(projectType, framework, platform);
                         if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework) && !string.IsNullOrEmpty(inferredConfig.Platform))
                         {
                             SaveProjectConfiguration(inferredConfig.ProjectType, inferredConfig.Framework, inferredConfig.Platform);
@@ -113,13 +114,30 @@ namespace Microsoft.Templates.UI.Generation
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
-        private static (string ProjectType, string Framework, string Platform) InferProjectConfiguration()
+        private static (string ProjectType, string Framework, string Platform) InferProjectConfiguration(string projectType, string framework, string platform)
         {
-            var projectType = InferProjectType();
-            var framework = InferFramework();
-            var platform = InferPlatform();
+            if (string.IsNullOrEmpty(platform))
+            {
+                platform = InferPlatform();
+            }
 
-            return (projectType, framework, platform);
+            if (platform == PlUwp)
+            {
+                if (string.IsNullOrEmpty(projectType))
+                {
+                    projectType = InferProjectType();
+                }
+
+                if (string.IsNullOrEmpty(framework))
+                {
+                    framework = InferFramework();
+                }
+
+                return (projectType, framework, platform);
+            }
+
+            // TODO: Infer projectType y framework for Xamarin forms
+            return (string.Empty, string.Empty, string.Empty);
         }
 
         private static string InferFramework()
@@ -148,7 +166,11 @@ namespace Microsoft.Templates.UI.Generation
 
         private static string InferPlatform()
         {
-            if (IsUwp())
+            if (IsXamarin())
+            {
+                return PlXamarin;
+            }
+            else if (IsUwp())
             {
                 return PlUwp;
             }
@@ -160,6 +182,7 @@ namespace Microsoft.Templates.UI.Generation
 
         private static string InferProjectType()
         {
+
             if (IsSplitView())
             {
                 return ProjTypeSplitView;
@@ -274,6 +297,24 @@ namespace Microsoft.Templates.UI.Generation
                     && ExistsFileInProjectPath("Views", "ShellPage.xaml")
                     && (ExistsFileInProjectPath("Views", "ShellNavigationItem.vb") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.vb"));
             }
+        }
+
+        private static bool IsXamarin()
+        {
+            string[] fileExtensions = { ".json", ".config", ".csproj" };
+
+            var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*", SearchOption.AllDirectories)
+                    .Where(f => fileExtensions.Contains(Path.GetExtension(f)));
+
+            foreach (string file in files)
+            {
+                if (File.ReadAllText(file).Contains("Xamarin.Forms"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private static bool IsUwp()
