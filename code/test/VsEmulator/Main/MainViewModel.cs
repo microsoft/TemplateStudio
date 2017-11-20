@@ -69,9 +69,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
 
-        public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
+        public RelayCommand NewUwpCSharpProjectCommand => new RelayCommand(NewUwpCSharpProject);
 
-        public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
+        public RelayCommand NewUwpVisualBasicProjectCommand => new RelayCommand(NewUwpVisualBasicProject);
 
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
 
@@ -172,25 +172,25 @@ namespace Microsoft.Templates.VsEmulator.Main
             SolutionName = null;
         }
 
-        private void NewCSharpProject()
+        private void NewUwpCSharpProject()
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectAsync(ProgrammingLanguages.CSharp);
+                await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.CSharp);
             });
         }
 
-        private void NewVisualBasicProject()
+        private void NewUwpVisualBasicProject()
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectAsync(ProgrammingLanguages.VisualBasic);
+                await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.VisualBasic);
             });
         }
 
-        private async Task NewProjectAsync(string language)
+        private async Task NewProjectAsync(string platform, string language)
         {
             _language = language;
             ConfigureGenContext(ForceLocalTemplatesRefresh);
@@ -206,7 +206,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     GenContext.Current = this;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection(platform, _language);
 
                     if (userSelection != null)
                     {

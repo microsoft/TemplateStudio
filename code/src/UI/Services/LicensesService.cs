@@ -12,9 +12,9 @@ namespace Microsoft.Templates.UI.Services
 {
     public static class LicensesService
     {
-        public static void RebuildLicenses(IList<SummaryLicenseViewModel> licenses, string language)
+        public static void RebuildLicenses(IList<SummaryLicenseViewModel> licenses, string platform, string language)
         {
-            var getLicenses = GenComposer.GetAllLicences(UserSelectionService.CreateUserSelection(language));
+            var getLicenses = GenComposer.GetAllLicences(UserSelectionService.CreateUserSelection(platform, language));
             SyncLicenses(getLicenses, licenses);
         }
 

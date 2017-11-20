@@ -150,12 +150,8 @@
     <comment>Log text for Circular Reference exception</comment>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Bağımlılık öğesi {0} geçersiz. Bağımlılıkların multpleInstance = yanlış olarak yapılandırılması gerekir.</value>
+    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
     <comment>Log text for Multiple Instance exception</comment>
-  </data>
-  <data name="ExceptionDependencyNotFound" xml:space="preserve">
-    <value>framework {1} için {0} bağımlılık şablonu bulunamadı.</value>
-    <comment>Log text for Not Found exception</comment>
   </data>
   <data name="ExceptionDependencyType" xml:space="preserve">
     <value>Bağımlılık öğesi {0} geçersiz. Bağımlılık öğeleri Sayfa veya Özellik türünde olmalıdır.</value>
@@ -164,10 +160,6 @@
   <data name="ExceptionGenerating" xml:space="preserve">
     <value>"{0}" şablonu, ad: "{1}", neden: '{2}'</value>
     <comment>Log text for Generating exception</comment>
-  </data>
-  <data name="ExceptionLayoutNotFound" xml:space="preserve">
-    <value>framework {1} için {0} düzen şablonu bulunamadı.</value>
-    <comment>Log text for Layout Not Found exception</comment>
   </data>
   <data name="ExceptionLayoutType" xml:space="preserve">
     <value>Düzen öğesi {0} geçersiz. Düzen öğeleri Sayfa veya Özellik türünde olmalıdır.</value>
@@ -683,5 +675,17 @@
   </data>
   <data name="TrackTelemetryException" xml:space="preserve">
     <value>Exception tracking telemetry during generation.</value>
+  </data>
+  <data name="ExceptionLayoutNotFound" xml:space="preserve">
+    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Log text for Layout Not Found exception. {0}:Layout group identity, {1}:Framework, {2}: Platform</comment>
+  </data>
+  <data name="ExceptionDependencyNotFound" xml:space="preserve">
+    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Log text for Not Found exception. {0}: Dependency template id, {1}: Framework, {2}: Platform</comment>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Select platform</value>
+    <comment>Project configuration window select platform title</comment>
   </data>
 </root>

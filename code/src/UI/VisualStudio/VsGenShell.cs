@@ -19,6 +19,7 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Flavor;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 
@@ -230,6 +231,28 @@ namespace Microsoft.Templates.UI.VisualStudio
                     hierarchy.GetGuidProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ProjectIDGuid, out Guid projectGuid);
 
                     return projectGuid.ToString();
+                }
+            }
+
+            return string.Empty;
+        }
+
+        public override string GetActiveProjectTypeGuids()
+        {
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            var p = GetActiveProject();
+
+            if (p != null)
+            {
+                VSSolution.GetProjectOfUniqueName(p.FullName, out IVsHierarchy hierarchy);
+
+                var aggregatableProject = hierarchy as IVsAggregatableProjectCorrected;
+                if (aggregatableProject != null)
+                {
+                    aggregatableProject.GetAggregateProjectTypeGuids(out string projTypeGuids);
+
+                    return projTypeGuids;
                 }
             }
 
@@ -535,9 +558,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             foreach (var item in itemsFullPath)
             {
-                switch (Path.GetExtension(item).ToLowerInvariant())
+                switch (Path.GetExtension(item).ToUpperInvariant())
                 {
-                    case ".xaml":
+                    case ".XAML":
                         Dte.ItemOperations.OpenFile(item, EnvDTE.Constants.vsViewKindDesigner);
                         break;
 

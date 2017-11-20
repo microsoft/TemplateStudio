@@ -43,7 +43,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             Version = template.GetVersion();
             TemplateType = template.GetTemplateType();
             Description = template.GetRichDescription();
-            DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ConfigFramework)))));
+            DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ConfigFramework, MainViewModel.Current.ConfigPlatform)))));
             LicenseTerms = template.GetLicenses();
         }
 

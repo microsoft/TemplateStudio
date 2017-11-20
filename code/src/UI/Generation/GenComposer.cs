@@ -16,22 +16,33 @@ namespace Microsoft.Templates.UI
 {
     public class GenComposer
     {
-        public static IEnumerable<string> GetSupportedFx(string projectType)
+        public static IEnumerable<string> GetSupportedProjectTypes(string platform)
         {
             return GenContext.ToolBox.Repo.GetAll()
-                .Where(t => t.GetProjectTypeList().Contains(projectType))
+                .Where(t => t.GetTemplateType() == TemplateType.Project
+                                && t.GetPlatform() == platform)
+                .SelectMany(t => t.GetProjectTypeList())
+                .Distinct();
+        }
+
+        public static IEnumerable<string> GetSupportedFx(string projectType, string platform)
+        {
+            return GenContext.ToolBox.Repo.GetAll()
+                .Where(t => t.GetTemplateType() == TemplateType.Project
+                                && t.GetProjectTypeList().Contains(projectType)
+                                && t.GetPlatform() == platform)
                 .SelectMany(t => t.GetFrameworkList())
                 .Distinct();
         }
 
-        public static IEnumerable<(LayoutItem Layout, ITemplateInfo Template)> GetLayoutTemplates(string projectType, string framework)
+        public static IEnumerable<(LayoutItem Layout, ITemplateInfo Template)> GetLayoutTemplates(string projectType, string framework, string platform)
         {
-            var projectTemplate = GetProjectTemplate(projectType, framework);
+            var projectTemplate = GetProjectTemplate(projectType, framework, platform);
             var layout = projectTemplate?.GetLayout();
 
             foreach (var item in layout)
             {
-                var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.TemplateGroupIdentity && t.GetFrameworkList().Contains(framework));
+                var template = GenContext.ToolBox.Repo.Find(t => t.GroupIdentity == item.TemplateGroupIdentity && t.GetFrameworkList().Contains(framework) && t.GetPlatform() == platform);
 
                 if (template == null)
                 {
@@ -53,22 +64,22 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        public static IEnumerable<ITemplateInfo> GetAllDependencies(ITemplateInfo template, string framework)
+        public static IEnumerable<ITemplateInfo> GetAllDependencies(ITemplateInfo template, string framework, string platform)
         {
-            return GetDependencies(template, framework, new List<ITemplateInfo>());
+            return GetDependencies(template, framework, platform, new List<ITemplateInfo>());
         }
 
-        private static IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo template, string framework, IList<ITemplateInfo> dependencyList)
+        private static IEnumerable<ITemplateInfo> GetDependencies(ITemplateInfo template, string framework, string platform, IList<ITemplateInfo> dependencyList)
         {
             var dependencies = template.GetDependencyList();
 
             foreach (var dependency in dependencies)
             {
-                var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency && t.GetFrameworkList().Contains(framework));
+                var dependencyTemplate = GenContext.ToolBox.Repo.Find(t => t.Identity == dependency && t.GetFrameworkList().Contains(framework) && t.GetPlatform() == platform);
 
                 if (dependencyTemplate == null)
                 {
-                    LogOrAlertException(string.Format(StringRes.ExceptionDependencyNotFound, dependency, framework));
+                    LogOrAlertException(string.Format(StringRes.ExceptionDependencyNotFound, dependency, framework, platform));
                 }
                 else
                 {
@@ -93,7 +104,7 @@ namespace Microsoft.Templates.UI
                             dependencyList.Add(dependencyTemplate);
                         }
 
-                        GetDependencies(dependencyTemplate, framework, dependencyList);
+                        GetDependencies(dependencyTemplate, framework, platform, dependencyList);
                     }
                 }
             }
@@ -146,7 +157,7 @@ namespace Microsoft.Templates.UI
 
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
-            var projectTemplate = GetProjectTemplate(userSelection.ProjectType, userSelection.Framework);
+            var projectTemplate = GetProjectTemplate(userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
             var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
 
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
@@ -154,15 +165,17 @@ namespace Microsoft.Templates.UI
             genProject.Parameters.Add(GenParams.TemplatesVersion, string.Concat("v", GenContext.ToolBox.TemplatesVersion));
             genProject.Parameters.Add(GenParams.ProjectType, userSelection.ProjectType);
             genProject.Parameters.Add(GenParams.Framework, userSelection.Framework);
+            genProject.Parameters.Add(GenParams.Platform, userSelection.Platform);
             genProject.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
         }
 
-        private static ITemplateInfo GetProjectTemplate(string projectType, string framework)
+        private static ITemplateInfo GetProjectTemplate(string projectType, string framework, string platform)
         {
             return GenContext.ToolBox.Repo
                                     .Find(t => t.GetTemplateType() == TemplateType.Project
                                             && t.GetProjectTypeList().Any(p => p == projectType)
-                                            && t.GetFrameworkList().Any(f => f == framework));
+                                            && t.GetFrameworkList().Any(f => f == framework)
+                                            && t.GetPlatform() == platform);
         }
 
         private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> templates, List<GenInfo> genQueue, UserSelection userSelection)
@@ -190,7 +203,7 @@ namespace Microsoft.Templates.UI
 
         private static void AddDependencyTemplates((string name, ITemplateInfo template) selectionItem, List<GenInfo> genQueue, UserSelection userSelection)
         {
-            var dependencies = GetAllDependencies(selectionItem.template, userSelection.Framework);
+            var dependencies = GetAllDependencies(selectionItem.template, userSelection.Framework, userSelection.Platform);
 
             foreach (var dependencyItem in dependencies)
             {
@@ -213,7 +226,7 @@ namespace Microsoft.Templates.UI
 
         private static List<GenInfo> AddInCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection)
         {
-            var compositionCatalog = GetCompositionCatalog().ToList();
+            var compositionCatalog = GetCompositionCatalog(userSelection.Platform).ToList();
             var context = new QueryablePropertyDictionary
             {
                 new QueryableProperty("projectType", userSelection.ProjectType),
@@ -242,10 +255,10 @@ namespace Microsoft.Templates.UI
             return combinedQueue;
         }
 
-        private static IEnumerable<(CompositionQuery query, ITemplateInfo template)> GetCompositionCatalog()
+        private static IEnumerable<(CompositionQuery query, ITemplateInfo template)> GetCompositionCatalog(string platform)
         {
             return GenContext.ToolBox.Repo
-                                        .Get(t => t.GetTemplateType() == TemplateType.Composition)
+                                        .Get(t => t.GetTemplateType() == TemplateType.Composition && t.GetPlatform() == platform)
 #pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
                                         .Select(t => (CompositionQuery.Parse(t.GetCompositionFilter()), t))
 #pragma warning restore SA1008 // Opening parenthesis must be spaced correctly

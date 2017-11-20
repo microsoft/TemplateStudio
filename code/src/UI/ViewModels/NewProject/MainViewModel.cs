@@ -21,6 +21,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     public class MainViewModel : BaseMainViewModel
     {
         private readonly string _language;
+        private readonly string _platform;
         private bool _needRestartConfiguration = false;
 
         public static MainViewModel Current { get; private set; }
@@ -41,10 +42,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
 
-        public MainViewModel(string language)
+        public MainViewModel(string platform, string language)
             : base()
         {
             _language = language;
+            _platform = platform;
             Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
             Current = this;
         }
@@ -65,7 +67,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         internal void RebuildLicenses()
         {
-            LicensesService.RebuildLicenses(Licenses, _language);
+            LicensesService.RebuildLicenses(Licenses, _platform, _language);
             HasLicenses = Licenses.Any();
         }
 
@@ -152,7 +154,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    await ProjectTemplates.InitializeAsync();
+                    await ProjectTemplates.InitializeAsync(_platform);
                 });
 
                 NavigationService.Navigate(new ProjectPagesView());
@@ -183,19 +185,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             if (CurrentStep == 2)
             {
-                MainView.Result = UserSelectionService.CreateUserSelection(_language);
+                MainView.Result = UserSelectionService.CreateUserSelection(_platform, _language);
                 base.OnFinish(parameter);
             }
         }
 
-        protected override async Task OnTemplatesAvailableAsync() => await ProjectSetup.InitializeAsync();
+        protected override async Task OnTemplatesAvailableAsync() => await ProjectSetup.InitializeAsync(_platform);
 
         protected override async Task OnNewTemplatesAvailableAsync()
         {
             ResetSelection();
             OrderingService.Panel.Children.Clear();
             NavigationService.Navigate(new ProjectSetupView());
-            await ProjectSetup.InitializeAsync(true);
+            await ProjectSetup.InitializeAsync(_platform, true);
         }
 
         private bool CheckProjectSetupChanged()

@@ -20,10 +20,10 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         public UserSelection Result { get; set; }
 
-        public MainView(string language)
+        public MainView(string platform, string language)
         {
             Current = this;
-            ViewModel = new MainViewModel(language);
+            ViewModel = new MainViewModel(platform, language);
             ViewModel.SetView(this);
             DataContext = ViewModel;
 

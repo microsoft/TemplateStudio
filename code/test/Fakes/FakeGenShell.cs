@@ -103,6 +103,19 @@ namespace Microsoft.Templates.Fakes
             return msbuildProj.Guid;
         }
 
+        public override string GetActiveProjectTypeGuids()
+        {
+            var projectFileName = FindProject(GenContext.Current.ProjectPath);
+
+            if (string.IsNullOrEmpty(projectFileName))
+            {
+                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
+            }
+
+            var msbuildProj = FakeMsBuildProject.Load(projectFileName);
+            return msbuildProj.ProjectTypeGuids;
+        }
+
         public override string GetActiveProjectName()
         {
             return GenContext.Current.ProjectName;

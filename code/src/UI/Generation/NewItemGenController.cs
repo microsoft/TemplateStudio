@@ -126,7 +126,7 @@ namespace Microsoft.Templates.UI
 
             chrono.Stop();
 
-            TrackTelemery(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
+            TrackTelemery(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
         }
 
         private TempGenerationResult CompareTempGenerationWithProject()
@@ -340,7 +340,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void TrackTelemery(TemplateType templateType, IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx)
+        private static void TrackTelemery(TemplateType templateType, IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string appPlatform)
         {
             try
             {
@@ -349,7 +349,7 @@ namespace Microsoft.Templates.UI
                 var pageIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Select(t => t.Template.Identity));
                 var featureIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Select(t => t.Template.Identity));
 
-                AppHealth.Current.Telemetry.TrackNewItemAsync(templateType, appProjectType, appFx, GenContext.ToolBox.Shell.GetVsProjectId(), pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
+                AppHealth.Current.Telemetry.TrackNewItemAsync(templateType, appProjectType, appFx, appPlatform, GenContext.ToolBox.Shell.GetVsProjectId(), pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
 
                 foreach (var genInfo in genItems)
                 {

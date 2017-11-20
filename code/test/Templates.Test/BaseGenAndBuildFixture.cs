@@ -36,16 +36,16 @@ namespace Microsoft.Templates.Test
 
         public IEnumerable<ITemplateInfo> Templates() => GenContext.ToolBox.Repo.GetAll();
 
-        public IEnumerable<ITemplateInfo> GetTemplates(string framework)
+        public IEnumerable<ITemplateInfo> GetTemplates(string framework, string platform)
         {
-            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework));
+            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework) && t.GetPlatform() == platform);
         }
 
-        public UserSelection SetupProject(string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null)
+        public UserSelection SetupProject(string projectType, string framework, string platform, string language, Func<ITemplateInfo, string> getName = null)
         {
-            var userSelection = new UserSelection(projectType, framework, language);
+            var userSelection = new UserSelection(projectType, framework, platform, language);
 
-            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework);
+            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
 
             foreach (var item in layouts)
             {
@@ -105,7 +105,7 @@ namespace Microsoft.Templates.Test
                     break;
             }
 
-            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework);
+            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework, userSelection.Platform);
 
             foreach (var item in dependencies)
             {

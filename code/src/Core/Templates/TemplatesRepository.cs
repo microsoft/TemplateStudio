@@ -96,9 +96,19 @@ namespace Microsoft.Templates.Core
             return GetMetadataInfo("projectTypes");
         }
 
+        public IEnumerable<MetadataInfo> GetProjectTypes(string platform)
+        {
+            return GetProjectTypes().Where(m => m.Platforms.Contains(platform));
+        }
+
         public IEnumerable<MetadataInfo> GetFrameworks()
         {
             return GetMetadataInfo("frameworks");
+        }
+
+        public IEnumerable<MetadataInfo> GetFrameworks(string platform)
+        {
+            return GetFrameworks().Where(m => m.Platforms.Contains(platform));
         }
 
         private IEnumerable<MetadataInfo> GetMetadataInfo(string type)

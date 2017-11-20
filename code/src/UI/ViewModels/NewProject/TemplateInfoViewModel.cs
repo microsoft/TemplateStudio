@@ -205,7 +205,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             if (dependencies != null && dependencies.Any())
             {
-                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name)))));
+                DependencyItems.AddRange(dependencies.Select(d => new DependencyInfoViewModel(new TemplateInfoViewModel(d, GenComposer.GetAllDependencies(d, MainViewModel.Current.ProjectSetup.SelectedFramework.Name, MainViewModel.Current.ProjectSetup.Platform)))));
 
                 Dependencies = string.Join(",", dependencies.Select(d => d.Name));
             }
@@ -304,7 +304,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void SaveItem()
         {
-            UserSelectionService.AddTemplateAndDependencies((NewTemplateName, Template), MainViewModel.Current.ProjectTemplates.ContextFramework.Name, false);
+            UserSelectionService.AddTemplateAndDependencies((NewTemplateName, Template), MainViewModel.Current.ProjectTemplates.ContextFramework.Name, MainViewModel.Current.ProjectTemplates.Platform, false);
             MainViewModel.Current.RebuildLicenses();
             MainViewModel.Current.ProjectTemplates.UpdateTemplatesAvailability();
             MainViewModel.Current.ProjectTemplates.UpdateSummaryTemplates();
