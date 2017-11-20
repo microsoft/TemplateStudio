@@ -6,7 +6,7 @@
         xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
         xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"    
         mc:Ignorable="d"
-        Title="ProjectConfigurationWindow" Height="360" Width="500"
+        Title="ProjectConfigurationWindow" Height="450" Width="500"
         ResizeMode="NoResize"
         ShowInTaskbar="False"
         ShowActivated="True"
