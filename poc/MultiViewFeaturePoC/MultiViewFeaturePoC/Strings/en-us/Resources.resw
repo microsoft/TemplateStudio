@@ -153,4 +153,20 @@
     <value>Video</value>
     <comment>Pivot item header for Video</comment>
   </data>
+  <data name="Scenario2Secondary_Title.Text" xml:space="preserve">
+    <value>Scenario2Secondary</value>
+    <comment>Page title for Scenario2Secondary</comment>
+  </data>
+  <data name="PivotItem_Scenario2Secondary.Header" xml:space="preserve">
+    <value>Scenario2Secondary</value>
+    <comment>Pivot item header for Scenario2Secondary</comment>
+  </data>
+  <data name="Scenario3Secondary_Title.Text" xml:space="preserve">
+    <value>Scenario3Secondary</value>
+    <comment>Page title for Scenario3Secondary</comment>
+  </data>
+  <data name="PivotItem_Scenario3Secondary.Header" xml:space="preserve">
+    <value>Scenario3Secondary</value>
+    <comment>Pivot item header for Scenario3Secondary</comment>
+  </data>
 </root>
