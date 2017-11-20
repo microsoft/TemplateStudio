@@ -182,7 +182,6 @@ namespace Microsoft.Templates.UI.Generation
 
         private static string InferProjectType()
         {
-
             if (IsSplitView())
             {
                 return ProjTypeSplitView;
