@@ -12,6 +12,7 @@
     "type": "item",
     "wts.type": "page",
     "wts.framework": "CodeBehind",
+    "wts.platform" : "Xamarin",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.genGroup": "0",

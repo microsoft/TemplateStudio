@@ -8,6 +8,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
+    "wts.platform" : "Xamarin",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "$framework == CodeBehind & wts.type == page"
   },
