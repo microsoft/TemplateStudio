@@ -185,6 +185,10 @@
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1028</Culture>
     </VSTemplate>
+    <VSTemplate Include="CSharp.Xamarin.VS2017.Solution.vstemplate">
+      <SubType>Designer</SubType>
+      <OutputSubPath>Cross-Platform</OutputSubPath>
+    </VSTemplate>
     <Content Include="windowsTemplateStudio_Logo_256x256.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
