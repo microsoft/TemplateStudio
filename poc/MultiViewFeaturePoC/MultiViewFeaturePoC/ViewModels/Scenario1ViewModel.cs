@@ -1,8 +1,9 @@
 ﻿using System;
 
+using Windows.UI.Core;
+
 using MultiViewFeaturePoC.Helpers;
 using MultiViewFeaturePoC.Services;
-using Windows.UI.Core;
 using MultiViewFeaturePoC.Views;
 
 namespace MultiViewFeaturePoC.ViewModels
@@ -12,12 +13,13 @@ namespace MultiViewFeaturePoC.ViewModels
         public static Scenario1ViewModel Current;
         private const string SecondaryViewTitle = "Scenario1 secondary view";
 
+        private ViewLifetimeControl _viewControl;
+
         private RelayCommand _openCommand;
         private RelayCommand _updateCommand;
         private string _timeString = "not jet!";
-        private ViewLifetimeControl _viewControl;
 
-        public RelayCommand OpenCommand => _openCommand ?? (_openCommand = new RelayCommand(OnOpen));
+        public RelayCommand OpenCommand => _openCommand ?? (_openCommand = new RelayCommand(OnOpen, OnCanOpen));
 
         public RelayCommand UpdateCommand => _updateCommand ?? (_updateCommand = new RelayCommand(OnUpdate, OnCanUpdate));
 
@@ -37,21 +39,24 @@ namespace MultiViewFeaturePoC.ViewModels
             await _viewControl.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Scenario1SecondaryViewModel.Current.TimeString = DateTime.Now.ToString();
-            });            
+            });
         }
 
-        private bool OnCanUpdate() => WindowManagerService.IsWindowOpen(SecondaryViewTitle);
+        private bool OnCanOpen() => !WindowManagerService.Current.IsWindowOpen(SecondaryViewTitle);
+        private bool OnCanUpdate() => WindowManagerService.Current.IsWindowOpen(SecondaryViewTitle);
 
         private async void OnOpen()
         {
-            _viewControl = await WindowManagerService.TryShowAsStandaloneAsync(SecondaryViewTitle, typeof(Scenario1SecondaryPage), null, OnClose);
+            _viewControl = await WindowManagerService.Current.TryShowAsStandaloneAsync(SecondaryViewTitle, typeof(Scenario1SecondaryPage));
+            _viewControl.Released += _viewControl_Released;
             OpenCommand.OnCanExecuteChanged();
             UpdateCommand.OnCanExecuteChanged();
         }
 
-        private async void OnClose()
+        private async void _viewControl_Released(object sender, EventArgs e)
         {
-            await WindowManagerService.RunOnMainThreadAsync(CoreDispatcherPriority.Normal, () =>
+            ((ViewLifetimeControl)sender).Released -= _viewControl_Released;
+            await WindowManagerService.Current.MainDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OpenCommand.OnCanExecuteChanged();
                 UpdateCommand.OnCanExecuteChanged();

@@ -191,6 +191,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModels\Scenario3SecondaryViewModel.cs" />
     <Compile Include="Views\PivotPage.xaml.cs">
       <DependentUpon>PivotPage.xaml</DependentUpon>
     </Compile>
@@ -261,12 +262,19 @@
     <Compile Include="ViewModels\VideoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Scenario3SecondaryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\VideoPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\Scenario3SecondaryPage.xaml.cs">
+      <DependentUpon>Scenario3SecondaryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VideoPage.xaml.cs">
       <DependentUpon>VideoPage.xaml</DependentUpon>
     </Compile>

@@ -83,6 +83,8 @@ namespace MultiViewFeaturePoC.Services
 
         private async Task StartupAsync()
         {
+            //((App)App.Current).InitializeMultiView();
+            WindowManagerService.Current.Initialize();
             await Task.CompletedTask;
         }
 
