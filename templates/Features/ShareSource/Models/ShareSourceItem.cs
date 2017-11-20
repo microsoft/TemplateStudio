@@ -6,7 +6,7 @@ using Windows.Storage;
 
 namespace Param_ItemNamespace.Models
 {
-    internal enum ShareSourceFeatureItemType
+    internal enum ShareSourceItemType
     {
         Text = 0,
         WebLink = 1,
@@ -17,9 +17,9 @@ namespace Param_ItemNamespace.Models
         DeferredContent = 6
     }
 
-    internal class ShareSourceFeatureItem
+    internal class ShareSourceItem
     {
-        public ShareSourceFeatureItemType DataType { get; }
+        public ShareSourceItemType DataType { get; }
 
         public string Text { get; private set; }
 
@@ -37,62 +37,62 @@ namespace Param_ItemNamespace.Models
 
         public Func<Task<object>> GetDeferredDataAsyncFunc { get; private set; }
 
-        private ShareSourceFeatureItem(ShareSourceFeatureItemType dataType)
+        private ShareSourceItem(ShareSourceItemType dataType)
         {
             DataType = dataType;
         }
 
-        internal static ShareSourceFeatureItem FromText(string text)
+        internal static ShareSourceItem FromText(string text)
         {
-            return new ShareSourceFeatureItem(ShareSourceFeatureItemType.Text)
+            return new ShareSourceItem(ShareSourceItemType.Text)
             {
                 Text = text
             };
         }
 
-        internal static ShareSourceFeatureItem FromWebLink(Uri webLink)
+        internal static ShareSourceItem FromWebLink(Uri webLink)
         {
-            return new ShareSourceFeatureItem(ShareSourceFeatureItemType.WebLink)
+            return new ShareSourceItem(ShareSourceItemType.WebLink)
             {
                 WebLink = webLink
             };
         }
 
-        internal static ShareSourceFeatureItem FromApplicationLink(Uri applicationLink)
+        internal static ShareSourceItem FromApplicationLink(Uri applicationLink)
         {
-            return new ShareSourceFeatureItem(ShareSourceFeatureItemType.ApplicationLink)
+            return new ShareSourceItem(ShareSourceItemType.ApplicationLink)
             {
                 ApplicationLink = applicationLink
             };
         }
 
-        internal static ShareSourceFeatureItem FromHtml(string html)
+        internal static ShareSourceItem FromHtml(string html)
         {
-            return new ShareSourceFeatureItem(ShareSourceFeatureItemType.Html)
+            return new ShareSourceItem(ShareSourceItemType.Html)
             {
                 Html = html
             };
         }
 
-        internal static ShareSourceFeatureItem FromImage(StorageFile image)
+        internal static ShareSourceItem FromImage(StorageFile image)
         {
-            return new ShareSourceFeatureItem(ShareSourceFeatureItemType.Image)
+            return new ShareSourceItem(ShareSourceItemType.Image)
             {
                 Image = image
             };
         }
 
-        internal static ShareSourceFeatureItem FromStorageItems(IEnumerable<IStorageItem> storageItems)
+        internal static ShareSourceItem FromStorageItems(IEnumerable<IStorageItem> storageItems)
         {
-            return new ShareSourceFeatureItem(ShareSourceFeatureItemType.StorageItems)
+            return new ShareSourceItem(ShareSourceItemType.StorageItems)
             {
                 StorageItems = storageItems
             };
         }
 
-        internal static ShareSourceFeatureItem FromDeferredContent(string deferredDataFormatId, Func<Task<object>> getDeferredDataAsyncFunc)
+        internal static ShareSourceItem FromDeferredContent(string deferredDataFormatId, Func<Task<object>> getDeferredDataAsyncFunc)
         {
-            return new ShareSourceFeatureItem(ShareSourceFeatureItemType.DeferredContent)
+            return new ShareSourceItem(ShareSourceItemType.DeferredContent)
             {
                 DeferredDataFormatId = deferredDataFormatId,
                 GetDeferredDataAsyncFunc = getDeferredDataAsyncFunc

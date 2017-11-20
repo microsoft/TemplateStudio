@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Param_ItemNamespace.Views
 {
@@ -10,6 +11,18 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
 
             Loaded += (s, e) => ViewModel.Initialize(webView);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.RegisterEvents();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            ViewModel.UnregisterEvents();
         }
     }
 }
