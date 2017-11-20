@@ -11,15 +11,6 @@ using CommandLine;
 
 namespace WtsTool.CommandOptions
 {
-    public enum EnvEnum
-    {
-        Pro,
-        Pre,
-        Dev,
-        Test,
-        Unknown
-    }
-
     public class RemoteSourceCommonOptions : CommonOptions
     {
         [Option('a', "storage-account", HelpText = "Storage account for remote templates source operation.", Default = "wtsrepository")]

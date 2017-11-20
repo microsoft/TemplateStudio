@@ -20,13 +20,13 @@ namespace WtsTool
 
             switch (action)
             {
-                case PackageAction.Create:
+                case PackageTask.Create:
                     PackageWorker.Create(options.CreateNew, options.OutFile, options.CertThumbprint, output, error);
                     break;
-                case PackageAction.Extract:
+                case PackageTask.Extract:
                     PackageWorker.Extract(options.Extract, options.OutPath, output, error);
                     break;
-                case PackageAction.Info:
+                case PackageTask.Info:
                     PackageWorker.GetInfo(options.Info, output, error);
                     break;
                 default:
@@ -72,17 +72,17 @@ namespace WtsTool
         {
             if (!string.IsNullOrEmpty(options.Info))
             {
-                return PackageAction.Info;
+                return PackageTask.Info;
             }
 
             if (!string.IsNullOrEmpty(options.CreateNew))
             {
-                return PackageAction.Create;
+                return PackageTask.Create;
             }
 
             if (!string.IsNullOrEmpty(options.Extract))
             {
-                return PackageAction.Extract;
+                return PackageTask.Extract;
             }
 
             return PackageAction.None;

@@ -127,22 +127,24 @@ namespace WtsTool
             var allowedPins = Microsoft.Templates.Core.Configuration.Current.AllowedPublicKeysPins;
 
             output.WriteLine();
+            output.WriteLine("TOOL CONFIG:");
 
             var validationType = "Cert Chain";
             if (allowedPins.Count > 0)
             {
-                output.WriteCommandText($"Cert pins configured in the tool ({allowedPins.Count}):");
+
+                output.WriteCommandText($"Pins configured ({allowedPins.Count}):");
                 validationType = "Cert Pins";
-                foreach (var pin in allowedPins)
+                for (int i = 0; i < allowedPins.Count; i++)
                 {
-                    output.WriteCommandText(pin);
+                    output.WriteCommandText($"{(char)('A' + i)}) {allowedPins[i]}");
                 }
             }
             else
             {
                 output.WriteCommandText($"No cert pins configured pins in the tool.");
             }
-
+            output.WriteLine();
             output.WriteCommandText($"Signature validation type: {validationType}");
         }
     }

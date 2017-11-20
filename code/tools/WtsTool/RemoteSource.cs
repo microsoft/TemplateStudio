@@ -13,6 +13,7 @@ using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using WtsTool.CommandOptions;
 using System.IO;
+using System.Net;
 
 namespace WtsTool
 {
@@ -60,15 +61,66 @@ namespace WtsTool
                 throw new ArgumentException($"The value '{version}' is not valid for parameter '{nameof(version)}'.");
             }
 
-            Version versionInFile = ParseVersion(sourceFile);
+            Version versionInFile = ParseVersion(Path.GetFileName(sourceFile));
             if (versionInFile != null && versionInFile != specifedVersion)
             {
-                throw new ArgumentException($"Parameter '{nameof(sourceFile)}' (with value '{sourceFile}') contains a version that do not match with the value specified in the parameter '{nameof(version)}' (with value '{version}').");
+                throw new ArgumentException($"Parameter '{nameof(sourceFile)}' (with value '{sourceFile}') contains the version {versionInFile.ToString()} that do not match with the value specified in the parameter '{nameof(version)}' (with value '{version}').");
             }
 
             string blobName = (versionInFile == null) ? $"{Path.GetFileNameWithoutExtension(sourceFile)}_{version}.mstx" : sourceFile;
             var container = GetContainer(storageAccount, key, env);
             return UploadElement(container, sourceFile, blobName);
+        }
+
+        public static void DownloadContent(RemoteSourceVersionsInfo versionsInfo, string downloadDirectory)
+        {
+            if (versionsInfo.LatestVersionInfo != null)
+            {
+                DownloadContent(versionsInfo.LatestVersionInfo, downloadDirectory);
+            }
+            else
+            {
+                throw new ArgumentException($"The parameter '{nameof(versionsInfo)}' provided does not have a vaild '{nameof(versionsInfo.LatestVersionInfo)}' (is null).");
+            }
+        }
+
+        public static void DownloadContent(RemoteSourceVersionsInfo versionsInfo, int major, int minor, string downloadDirectory)
+        {
+            var math = versionsInfo.AvailableVersions.Where(p => p.Version.Major == major && p.Version.Minor == minor)
+                .OrderByDescending(p => p.Date).FirstOrDefault();
+            if (math != null)
+            {
+                DownloadElement(math, downloadDirectory);
+            }
+            else
+            {
+                throw new ArgumentException($"The parameter '{nameof(versionsInfo)}' provided does not contains a templates content package matching the version '{major.ToString()}.{minor.ToString()}'.");
+            }
+        }
+
+        public static void DownloadContent(RemoteSourceVersionsInfo versionsInfo, Version v, string downloadDirectory)
+        {
+            var math = versionsInfo.AvailableVersions.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor && p.Version.Build == v.Build && p.Version.Revision == v.Revision)
+                .OrderByDescending(p => p.Date).FirstOrDefault();
+
+            if (math != null)
+            {
+                DownloadElement(math, downloadDirectory);
+            }
+            else
+            {
+                throw new ArgumentException($"The parameter '{nameof(versionsInfo)}' provided does not contains a templates content package matching the version '{v.ToString()}'.");
+            }
+        }
+
+        public static void DownloadContent(RemotePackageInfo packageInfo, string downloadDirectory)
+        {
+            if (packageInfo == null)
+            {
+                throw new ArgumentNullException(nameof(packageInfo));
+            }
+
+            DownloadElement(packageInfo, downloadDirectory);
         }
 
         private static IEnumerable<RemotePackageInfo> GetAvailableVersions(this IEnumerable<RemotePackageInfo> remotePackageInfoItems)
@@ -147,6 +199,19 @@ namespace WtsTool
             return result;
         }
 
+        private static IEnumerable<CloudBlockBlob> GetElements(CloudBlobContainer container, ref BlobContinuationToken token)
+        {
+            if (!container.Exists())
+            {
+                throw new ArgumentException($"The container {container.Uri} does not exists or is not public.");
+            }
+
+            BlobResultSegment result = container.ListBlobsSegmented(token);
+
+            token = result.ContinuationToken;
+            return result.Results.Select((i) => i as CloudBlockBlob);
+        }
+
         private static string UploadElement(CloudBlobContainer container, string sourceFile, string blobName)
         {
             CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
@@ -167,21 +232,19 @@ namespace WtsTool
 
                 TimeSpan elapsed = context.EndTime - context.StartTime;
 
-                return $"Uploaded {(bytes / 1024f) / 1024f} mbytes in {elapsed.TotalSeconds} seconds.";
+                return $"Uploaded {Math.Round(bytes / 1024f, 2)} Kbytes in {elapsed.TotalSeconds} seconds.";
             }
         }
 
-        private static IEnumerable<CloudBlockBlob> GetElements(CloudBlobContainer container, ref BlobContinuationToken token)
+        private static void DownloadElement(RemotePackageInfo packageInfo, string downloadDirectory)
         {
-            if (!container.Exists())
-            {
-                throw new ArgumentException($"The container {container.Uri} does not exists or is not public.");
-            }
+            string cdnUrl = Environments.CdnUrls[packageInfo.Env];
 
-            BlobResultSegment result = container.ListBlobsSegmented(token);
+            Uri cdnUri = new Uri(Environments.CdnUrls[packageInfo.Env]);
+            Uri elementUri = new Uri(cdnUri, packageInfo.Name);
 
-            token = result.ContinuationToken;
-            return result.Results.Select((i) => i as CloudBlockBlob);
+            var wc = new WebClient();
+            wc.DownloadFile(elementUri, Path.Combine(downloadDirectory, packageInfo.Name));
         }
     }
 }

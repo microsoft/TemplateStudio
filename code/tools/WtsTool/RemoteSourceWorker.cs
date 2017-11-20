@@ -69,12 +69,28 @@ namespace WtsTool
                 output.WriteCommandHeader($"Publishing {options.File} for environment {options.Env.ToString()} ({options.StorageAccount})");
                 output.WriteCommandText("Sending content...");
                 var result = RemoteSource.PublishContent(options.StorageAccount, options.AccountKey, options.Env.ToString().ToLowerInvariant(), options.File, options.Version);
+                output.WriteLine();
                 output.WriteCommandText(result);
-                output.WriteCommandText("Operation finished.");
             }
             catch (Exception ex)
             {
                 error.WriteException(ex, $"Unable to publish the file {options.File} content to the specified environment container.");
+            }
+        }
+
+        public static void DownloadContent(RemoteSourceDownloadOptions options, TextWriter output, TextWriter error)
+        {
+            try
+            {
+                output.WriteCommandHeader($"Downloading for environment {options.Env.ToString()} ({options.StorageAccount})");
+                output.WriteCommandText("Sending content...");
+                //RemoteSource.DownloadContent();
+                output.WriteLine();
+                output.WriteCommandText(" ");
+            }
+            catch (Exception ex)
+            {
+                error.WriteException(ex, $"Unable to download the file {} content to the specified environment container.");
             }
         }
 
