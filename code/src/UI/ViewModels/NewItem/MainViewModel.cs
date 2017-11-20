@@ -35,6 +35,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         // Configuration
         public TemplateType ConfigTemplateType { get; private set; }
 
+        public string ConfigPlatform { get; private set; }
+
         public string ConfigFramework { get; private set; }
 
         public string ConfigProjectType { get; private set; }
@@ -67,7 +69,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private void SetProjectConfigInfo()
         {
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
-            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
                 WizardStatus.InfoShapeVisibility = Visibility.Visible;
                 ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow(MainView);
@@ -76,6 +78,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 {
                     configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
                     configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
+                    configInfo.Platform = projectConfig.ViewModel.SelectedPlatform;
+
                     WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
                 }
                 else
@@ -86,6 +90,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
             ConfigFramework = configInfo.Framework;
             ConfigProjectType = configInfo.ProjectType;
+            ConfigPlatform = configInfo.Platform;
         }
 
         public void SetNewItemSetupTitle()
@@ -227,6 +232,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override async Task OnTemplatesAvailableAsync()
         {
             SetProjectConfigInfo();
+
             NewItemSetup.Initialize(true);
 
             await Task.CompletedTask;
@@ -235,6 +241,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override async Task OnNewTemplatesAvailableAsync()
         {
             NavigationService.Navigate(new NewItemSetupView());
+
             NewItemSetup.Initialize(true);
 
             await Task.CompletedTask;
@@ -242,7 +249,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _language)
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, _language)
             {
                 HomeName = string.Empty
             };
@@ -250,7 +257,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var template = GetActiveTemplate();
             if (template != null)
             {
-                var dependencies = GenComposer.GetAllDependencies(template.Template, ConfigFramework);
+                var dependencies = GenComposer.GetAllDependencies(template.Template, ConfigFramework, ConfigPlatform);
 
                 userSelection.Pages.Clear();
                 userSelection.Features.Clear();

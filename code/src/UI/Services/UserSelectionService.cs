@@ -31,25 +31,25 @@ namespace Microsoft.Templates.UI.Services
             _getSavedFeatures = getSavedFeatures;
         }
 
-        public static void SetupTemplatesFromLayout(string projectTypeName, string frameworkName)
+        public static void SetupTemplatesFromLayout(string projectTypeName, string frameworkName, string platformName)
         {
-            var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName);
+            var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName, platformName);
 
             foreach (var item in layout)
             {
                 if (item.Template != null)
                 {
-                    AddTemplateAndDependencies((item.Layout.Name, item.Template), frameworkName, !item.Layout.Readonly);
+                    AddTemplateAndDependencies((item.Layout.Name, item.Template), frameworkName, platformName, !item.Layout.Readonly);
                 }
             }
         }
 
-        public static void AddTemplateAndDependencies((string name, ITemplateInfo template) item, string frameworkName, bool isRemoveEnabled = true)
+        public static void AddTemplateAndDependencies((string name, ITemplateInfo template) item, string frameworkName, string platformName, bool isRemoveEnabled = true)
         {
             var newItem = new SavedTemplateViewModel(item, isRemoveEnabled);
             SaveNewTemplate(newItem);
 
-            var dependencies = GenComposer.GetAllDependencies(item.template, frameworkName);
+            var dependencies = GenComposer.GetAllDependencies(item.template, frameworkName, platformName);
             foreach (var dependencyTemplate in dependencies)
             {
                 var dependencyItem = new SavedTemplateViewModel((dependencyTemplate.GetDefaultName(), dependencyTemplate), isRemoveEnabled);
@@ -169,9 +169,9 @@ namespace Microsoft.Templates.UI.Services
             return dependencyItem;
         }
 
-        public static UserSelection CreateUserSelection(string language)
+        public static UserSelection CreateUserSelection(string platform, string language)
         {
-            var userSelection = new UserSelection(SelectedProjectType?.Name, SelectedFramework?.Name, language)
+            var userSelection = new UserSelection(SelectedProjectType?.Name, SelectedFramework?.Name, platform, language)
             {
                 HomeName = HomeName
             };

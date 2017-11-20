@@ -153,10 +153,6 @@
     <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
     <comment>Log text for Multiple Instance exception</comment>
   </data>
-  <data name="ExceptionDependencyNotFound" xml:space="preserve">
-    <value>Modello di dipendenza {0} non trovato per il framework {1}.</value>
-    <comment>Log text for Not Found exception</comment>
-  </data>
   <data name="ExceptionDependencyType" xml:space="preserve">
     <value>Elemento dipendenza non valido {0}. Gli elementi dipendenza devono essere di tipo Pagina o Funzionalità.</value>
     <comment>Log text for Type exception</comment>
@@ -164,10 +160,6 @@
   <data name="ExceptionGenerating" xml:space="preserve">
     <value>Modello '{0}', nome: '{1}', motivo: '{2}'</value>
     <comment>Log text for Generating exception</comment>
-  </data>
-  <data name="ExceptionLayoutNotFound" xml:space="preserve">
-    <value>Modello layout {0} non trovato per il framework {1}.</value>
-    <comment>Log text for Layout Not Found exception</comment>
   </data>
   <data name="ExceptionLayoutType" xml:space="preserve">
     <value>Elemento layout non valido {0}. Gli elementi layout devono essere di tipo Pagina o Funzionalità.</value>
@@ -683,5 +675,17 @@
   </data>
   <data name="TrackTelemetryException" xml:space="preserve">
     <value>Exception tracking telemetry during generation.</value>
+  </data>
+  <data name="ExceptionLayoutNotFound" xml:space="preserve">
+    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Log text for Layout Not Found exception. {0}:Layout group identity, {1}:Framework, {2}: Platform</comment>
+  </data>
+  <data name="ExceptionDependencyNotFound" xml:space="preserve">
+    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Log text for Not Found exception. {0}: Dependency template id, {1}: Framework, {2}: Platform</comment>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Select platform</value>
+    <comment>Project configuration window select platform title</comment>
   </data>
 </root>

@@ -1,0 +1,38 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "MVVMBasic.Project.TabbedPivot.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == MVVMBasic & $projectType == TabbedPivot & wts.type == project"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\ViewModels\\PivotViewModel.vb"
+    },
+    {
+      "path": ".\\Views\\PivotPage.xaml"
+    },
+    {
+      "path": ".\\Views\\PivotPage.xaml.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

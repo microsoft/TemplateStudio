@@ -66,7 +66,7 @@ EndProject
 
                 var solutionConfigurationSectionIndex = solutionTemplate.IndexOf(SolutionConfigurationPlatformsText);
 
-                solutionTemplate = solutionTemplate.Insert(solutionConfigurationSectionIndex + SolutionConfigurationPlatformsText.Length + 1, UwpSolutionConfigurationPlatforms);
+                solutionTemplate = solutionTemplate.Insert(solutionConfigurationSectionIndex + SolutionConfigurationPlatformsText.Length + 2, UwpSolutionConfigurationPlatforms);
                 File.WriteAllText(path, solutionTemplate, Encoding.UTF8);
             }
 
@@ -90,7 +90,7 @@ EndProject
                 var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
                 var projectConfigContent = string.Format(UwpProjectConfigurationTemplate, projectGuid);
 
-                slnContent = slnContent.Insert(globalSectionIndex + ProjectConfigurationPlatformsText.Length + 1, projectConfigContent);
+                slnContent = slnContent.Insert(globalSectionIndex + ProjectConfigurationPlatformsText.Length + 2, projectConfigContent);
             }
 
             File.WriteAllText(_path, slnContent, Encoding.UTF8);

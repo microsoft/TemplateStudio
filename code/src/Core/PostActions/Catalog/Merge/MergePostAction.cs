@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private void AddFailedMergePostActionsAddLineNotFound(string originalFilePath, string errorLine)
         {
-            var description = string.Format(StringRes.FailedMergePostActionLineNotFound, errorLine.Trim(), GetRelativePath(originalFilePath));
+            var description = string.Format(StringRes.FailedMergePostActionLineNotFound, errorLine.Trim(), GetRelativePath(originalFilePath), RelatedTemplate);
             AddFailedMergePostActions(originalFilePath, MergeFailureType.LineNotFound, description);
         }
 

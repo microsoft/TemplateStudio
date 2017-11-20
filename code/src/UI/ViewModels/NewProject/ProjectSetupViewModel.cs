@@ -30,6 +30,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             private set => SetProperty(ref _frameworkHeader, value);
         }
 
+        public string Platform { get; private set; }
+
         private MetadataInfoViewModel _selectedProjectType;
 
         public MetadataInfoViewModel SelectedProjectType
@@ -39,7 +41,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (value != null)
                 {
-                    DataService.LoadFrameworks(Frameworks, value.Name);
+                    DataService.LoadFrameworks(Frameworks, value.Name, Platform);
                     FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
                     if (_selectedFramework != null)
                     {
@@ -90,11 +92,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<MetadataInfoViewModel> Frameworks { get; } = new ObservableCollection<MetadataInfoViewModel>();
 
-        public async Task InitializeAsync(bool force = false)
+        public async Task InitializeAsync(string platform, bool force = false)
         {
+            Platform = platform;
             if (SelectedProjectType == null || force)
             {
-                if (DataService.LoadProjectTypes(ProjectTypes))
+                if (DataService.LoadProjectTypes(ProjectTypes, platform))
                 {
                     SelectedProjectType = ProjectTypes.First();
                     MainViewModel.Current.WizardStatus.HasContent = true;

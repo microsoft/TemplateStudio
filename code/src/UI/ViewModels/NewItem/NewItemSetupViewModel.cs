@@ -75,9 +75,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 var templates = GenContext.ToolBox.Repo.Get(t => t.GetFrameworkList().Contains(MainViewModel.Current.ConfigFramework)
                                                                  && t.GetTemplateType() == MainViewModel.Current.ConfigTemplateType
+                                                                 && t.GetPlatform() == MainViewModel.Current.ConfigPlatform
                                                                  && t.GetRightClickEnabled()
                                                                  && !t.GetIsHidden())
-                                                       .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, MainViewModel.Current.ConfigFramework)));
+                                                       .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, MainViewModel.Current.ConfigFramework, MainViewModel.Current.ConfigPlatform)));
 
                 var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order), OnSelectedItemChanged)).OrderBy(gr => gr.Title);
 

@@ -244,7 +244,8 @@
     </AdditionalFiles>
     <Compile Include="TemplateFolderValidationTests.cs" />
     <Compile Include="TemplateJsonValidationTests.cs" />
-    <Compile Include="WindowsAppCertKitTests.cs" />
+    <Compile Include="WACK\WindowsAppCertKitFixture.cs" />
+    <Compile Include="WACK\WindowsAppCertKitTests.cs" />
     <None Include="RunWackTest.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

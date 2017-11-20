@@ -153,10 +153,6 @@
     <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
     <comment>Log text for Multiple Instance exception</comment>
   </data>
-  <data name="ExceptionDependencyNotFound" xml:space="preserve">
-    <value>找不到framework {1} 的相依性範本 {0}。</value>
-    <comment>Log text for Not Found exception</comment>
-  </data>
   <data name="ExceptionDependencyType" xml:space="preserve">
     <value>相依性項目 {0} 無效。相依性項目的類型必須是頁面或功能。</value>
     <comment>Log text for Type exception</comment>
@@ -164,10 +160,6 @@
   <data name="ExceptionGenerating" xml:space="preserve">
     <value>範本 '{0}'，名稱：'{1}'，原因：'{2}'</value>
     <comment>Log text for Generating exception</comment>
-  </data>
-  <data name="ExceptionLayoutNotFound" xml:space="preserve">
-    <value>找不到framework {1} 的配置範本 {0}。</value>
-    <comment>Log text for Layout Not Found exception</comment>
   </data>
   <data name="ExceptionLayoutType" xml:space="preserve">
     <value>配置項目 {0} 無效。配置項目的類型必須是頁面或功能。</value>
@@ -683,5 +675,17 @@
   </data>
   <data name="TrackTelemetryException" xml:space="preserve">
     <value>Exception tracking telemetry during generation.</value>
+  </data>
+  <data name="ExceptionLayoutNotFound" xml:space="preserve">
+    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Log text for Layout Not Found exception. {0}:Layout group identity, {1}:Framework, {2}: Platform</comment>
+  </data>
+  <data name="ExceptionDependencyNotFound" xml:space="preserve">
+    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Log text for Not Found exception. {0}: Dependency template id, {1}: Framework, {2}: Platform</comment>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Select platform</value>
+    <comment>Project configuration window select platform title</comment>
   </data>
 </root>

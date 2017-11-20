@@ -39,6 +39,15 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
+        public string ProjectTypeGuids
+        {
+            get
+            {
+                var nsElement = _root.Descendants().FirstOrDefault(e => e.Name.LocalName == "ProjectTypeGuids");
+                return nsElement?.Value;
+            }
+        }
+
         private FakeMsBuildProject(string path)
         {
             _path = path;

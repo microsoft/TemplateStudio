@@ -192,6 +192,11 @@ namespace Microsoft.Templates.Core
             return result;
         }
 
+        public static string GetPlatform(this ITemplateInfo ti)
+        {
+            return GetValueFromTag(ti, TagPrefix + "platform") ?? string.Empty;
+        }
+
         public static List<string> GetDependencyList(this ITemplateInfo ti)
         {
             var dependencies = GetValueFromTag(ti, TagPrefix + "dependencies");

@@ -153,10 +153,6 @@
     <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
     <comment>Log text for Multiple Instance exception</comment>
   </data>
-  <data name="ExceptionDependencyNotFound" xml:space="preserve">
-    <value>{1}framework프레임워크에서 {0}종속성 템플릿을 찾을 수 없습니다.</value>
-    <comment>Log text for Not Found exception</comment>
-  </data>
   <data name="ExceptionDependencyType" xml:space="preserve">
     <value>잘못된 종속성 항목 {0}. 종속성의 유형은 페이지 또는 기능이어야 합니다.</value>
     <comment>Log text for Type exception</comment>
@@ -164,10 +160,6 @@
   <data name="ExceptionGenerating" xml:space="preserve">
     <value>템플릿 '{0}', 이름: {1}, 이유: '{2}'</value>
     <comment>Log text for Generating exception</comment>
-  </data>
-  <data name="ExceptionLayoutNotFound" xml:space="preserve">
-    <value>{1}framework 프레임워크에 대한 {0} 레이아웃 템플릿이 없습니다.</value>
-    <comment>Log text for Layout Not Found exception</comment>
   </data>
   <data name="ExceptionLayoutType" xml:space="preserve">
     <value>잘못된 레이아웃 항목 {0}. 레이아웃 유형은 페이지 또는 기능이어야 합니다.</value>
@@ -683,5 +675,17 @@
   </data>
   <data name="TrackTelemetryException" xml:space="preserve">
     <value>Exception tracking telemetry during generation.</value>
+  </data>
+  <data name="ExceptionLayoutNotFound" xml:space="preserve">
+    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Log text for Layout Not Found exception. {0}:Layout group identity, {1}:Framework, {2}: Platform</comment>
+  </data>
+  <data name="ExceptionDependencyNotFound" xml:space="preserve">
+    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Log text for Not Found exception. {0}: Dependency template id, {1}: Framework, {2}: Platform</comment>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Select platform</value>
+    <comment>Project configuration window select platform title</comment>
   </data>
 </root>
