@@ -20,11 +20,11 @@
                     <views:Scenario2Page/>
                 </Frame>
             </PivotItem>
-            <!--<PivotItem x:Uid="PivotItem_Scenario3">
+            <PivotItem x:Uid="PivotItem_Scenario3">
                 <Frame>
                     <views:Scenario3Page/>
                 </Frame>
-            </PivotItem>-->
+            </PivotItem>            
         </Pivot>
     </Grid>
 </Page>

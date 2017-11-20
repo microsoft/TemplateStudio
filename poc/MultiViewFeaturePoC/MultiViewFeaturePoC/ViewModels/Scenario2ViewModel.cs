@@ -23,23 +23,21 @@ namespace MultiViewFeaturePoC.ViewModels
 
         private async void OnOpen()
         {
-            _viewControl = await WindowManagerService.TryShowAsViewModeAsync(SecondaryViewTitle, typeof(VideoPage), null, ApplicationViewMode.CompactOverlay ,OnClose);
+            _viewControl = await WindowManagerService.Current.TryShowAsViewModeAsync(SecondaryViewTitle, typeof(VideoPage), ApplicationViewMode.CompactOverlay);
+            _viewControl.Released += _viewControl_Released;
             OpenCommand.OnCanExecuteChanged();
         }
 
-        private bool OnCanOpen() => !WindowManagerService.IsWindowOpen(SecondaryViewTitle);
-
-        private async void OnClose()
+        private async void _viewControl_Released(object sender, EventArgs e)
         {
-            await _viewControl.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                VideoPage.Current.Pause();
-            });            
-
-            await WindowManagerService.RunOnMainThreadAsync(CoreDispatcherPriority.Normal, () =>
+            ((ViewLifetimeControl)sender).Released -= _viewControl_Released;
+            VideoPage.Current.Pause();
+            await WindowManagerService.Current.MainDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OpenCommand.OnCanExecuteChanged();
             });
         }
+
+        private bool OnCanOpen() => !WindowManagerService.Current.IsWindowOpen(SecondaryViewTitle);
     }
 }
