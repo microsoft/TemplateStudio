@@ -111,7 +111,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="Xamarin\CSharp.UWP.VS2017.Solution.vstemplate">
+    <VSTemplate Include="UWP\CSharp.UWP.VS2017.Solution.vstemplate">
       <OutputSubPath>Windows UAP</OutputSubPath>
       <SubType>Designer</SubType>
     </VSTemplate>
@@ -246,6 +246,7 @@
     <VSTemplate Include="Xamarin\CSharp.Xamarin.VS2017.Solution.zh-TW.vstemplate">
       <SubType>Designer</SubType>
       <OutputSubPath>Cross-Platform</OutputSubPath>
+      <Culture>1028</Culture>
     </VSTemplate>
     <VSTemplate Include="Xamarin\CSharp.Xamarin.VS2017.Solution.zh-CN.vstemplate">
       <SubType>Designer</SubType>
