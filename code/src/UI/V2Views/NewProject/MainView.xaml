@@ -1,0 +1,280 @@
+﻿<Window
+    x:Class="Microsoft.Templates.UI.V2Views.NewProject.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources"
+    xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
+    xmlns:v2services="clr-namespace:Microsoft.Templates.UI.V2Services"
+    Width="{Binding WizardStatus.Width}"
+    Height="{Binding WizardStatus.Height}"
+    Title="{x:Static strings:StringRes.Title}"
+    WindowStartupLocation="CenterScreen"
+    KeyDown="OnKeyDown"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+
+        <Style TargetType="Grid" x:Key="MyGridStyle">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="75"/>
+            <Setter Property="Margin" Value="12"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="MyTextBlockStyle">
+            <Setter Property="Margin" Value="12" />
+        </Style>
+
+    </Window.Resources>
+    <ScrollViewer>
+        <StackPanel x:Name="mainGrid">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Environment FontSize 90%"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment90PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                    <TextBlock
+                        Text="{Binding Environment90PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment90PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Environment FontSize 100%"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding EnvironmentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                    <TextBlock
+                        Text="{Binding EnvironmentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding EnvironmentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Environment FontSize 111%"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment111PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                    <TextBlock
+                        Text="{Binding Environment111PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment111PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Environment FontSize 122%"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment122PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                    <TextBlock
+                        Text="{Binding Environment122PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment122PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Environment FontSize 133%"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment133PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                    <TextBlock
+                        Text="{Binding Environment133PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment133PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Environment FontSize 155%"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment155PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                    <TextBlock
+                        Text="{Binding Environment155PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment155PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Environment FontSize 200%"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment200PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                    <TextBlock
+                        Text="{Binding Environment200PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment200PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Environment FontSize 310%"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment310PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                    <TextBlock
+                        Text="{Binding Environment310PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment310PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Environment FontSize 330%"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment330PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                    <TextBlock
+                        Text="{Binding Environment330PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment330PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Text="Environment FontSize 375%"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment375PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                    <TextBlock
+                        Text="{Binding Environment375PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Style="{StaticResource MyTextBlockStyle}"
+                        FontSize="{Binding Environment375PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel>
+                
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowPanel, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowPanel" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowBorder, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowBorder" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding HeaderText, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="HeaderText" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding Hyperlink, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="Hyperlink" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding HyperlinkHover, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="HyperlinkHover" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding HyperlinkPressed, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="HyperlinkPressed" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding SelectedItemActive, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="SelectedItemActive" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding SelectedItemInactive, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="SelectedItemInactive" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding ListItemMouseOver, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="ListItemMouseOver" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding ListItemDisabledText, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="ListItemDisabledText" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding GridHeadingBackground, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="GridHeadingBackground" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding GridHeadingHoverBackground, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="GridHeadingHoverBackground" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding GridHeadingText, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="GridHeadingText" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding GridHeadingHoverText, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="GridHeadingHoverText" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding GridLine, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="GridLine" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding SectionDivider, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="SectionDivider" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButton, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButton" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonHover, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonHover" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonDown, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonDown" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonBorder, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonBorder" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonHoverBorder, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonHoverBorder" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonDownBorder, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonDownBorder" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonGlyph, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonGlyph" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonHoverGlyph, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonHoverGlyph" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WindowButtonDownGlyph, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WindowButtonDownGlyph" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="12">
+                    <Border Background="{Binding WizardFooter, Source={x:Static v2services:UIStylesService.Instance}}" Width="120" Height="80" BorderThickness="1" BorderBrush="Black" />
+                    <TextBlock Text="WizardFooter" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
