@@ -3,8 +3,8 @@
             Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" 
             xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Windows Template Studio (Universal Windows; local)</Name>
-    <Description>Windows Template Studio quickly builds a UWP app, using a wizard-based UI to turn your needs into a foundation of Windows 10 patterns and best practices.</Description>
+    <Name>Windows Template Studio (Xamarin; local)</Name>
+    <Description>Windows Template Studio quickly builds a Xamarin-Forms app, using a wizard-based UI to turn your needs into a foundation of Xamarin Forms patterns and best practices.</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.ico</Icon>
     <ProjectType>CSharp</ProjectType>
     <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
@@ -19,7 +19,7 @@
   <TemplateContent>
     <CustomParameters>
       <CustomParameter Name="$wts.platform$" Value="Xamarin"/>
-      <CustomParameter Name="$wts.category$" Value="Windows Universal"/>
+      <CustomParameter Name="$wts.category$" Value="Cross-Platform"/>
       <CustomParameter Name="$wts.version$" Value="1.0.0.0"/>
     </CustomParameters>
   </TemplateContent>
