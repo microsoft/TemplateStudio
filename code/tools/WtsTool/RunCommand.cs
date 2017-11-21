@@ -51,7 +51,7 @@ namespace WtsTool
 
         public static int List(RemoteSourceListOptions listOpts, TextWriter output, TextWriter error)
         {
-            if (listOpts.Summary && !(listOpts.Main | listOpts.Detailed))
+            if (listOpts.Summary && !(listOpts.Main | listOpts.Detailed | listOpts.ConfigFromStorage | listOpts.ConfigFromCdn))
             {
                 RemoteSourceWorker.ListSummaryInfo(listOpts, output, error);
             }
@@ -65,6 +65,17 @@ namespace WtsTool
             {
                 RemoteSourceWorker.ListDetailedVersions(listOpts, output, error);
             }
+
+            if (listOpts.ConfigFromStorage)
+            {
+                RemoteSource.DownloadConfigStorage(listOpts.Env);
+            }
+
+            if (listOpts.ConfigFromCdn)
+            {
+                RemoteSource.DownloadConfigCdn(listOpts.Env);
+            }
+
             return 0;
         }
 
@@ -85,7 +96,7 @@ namespace WtsTool
                 return PackageTask.Extract;
             }
 
-            return PackageAction.None;
+            return PackageTask.None;
         }
     }
 }

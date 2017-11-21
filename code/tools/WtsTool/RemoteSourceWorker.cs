@@ -90,7 +90,7 @@ namespace WtsTool
             }
             catch (Exception ex)
             {
-                error.WriteException(ex, $"Unable to download the file {} content to the specified environment container.");
+                error.WriteException(ex, $"Unable to download the file content to the specified environment container.");
             }
         }
 

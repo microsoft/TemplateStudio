@@ -22,7 +22,15 @@ namespace WtsTool
             { EnvEnum.Test, "https://wtsrepository.blob.core.windows.net/test" },
             { EnvEnum.Dev, "https://wtsrepository.blob.core.windows.net/dev" },
             { EnvEnum.Pre, "https://wtsrepository.blob.core.windows.net/pre" },
-            { EnvEnum.Dev, "https://wts2.azureedge.net" }
+            { EnvEnum.Pro, "https://wts2.azureedge.net" }
+        };
+
+        public static Dictionary<EnvEnum, string> StorageUrls => new Dictionary<EnvEnum, string>()
+        {
+            { EnvEnum.Test, "https://wtsrepository.blob.core.windows.net/test" },
+            { EnvEnum.Dev, "https://wtsrepository.blob.core.windows.net/dev" },
+            { EnvEnum.Pre, "https://wtsrepository.blob.core.windows.net/pre" },
+            { EnvEnum.Pro, "https://wtsrepository.blob.core.windows.net/pro" }
         };
     }
 }

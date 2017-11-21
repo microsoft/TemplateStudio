@@ -4,7 +4,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,8 +14,6 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using WtsTool.CommandOptions;
-using System.IO;
-using System.Net;
 
 namespace WtsTool
 {
@@ -238,13 +238,28 @@ namespace WtsTool
 
         private static void DownloadElement(RemotePackageInfo packageInfo, string downloadDirectory)
         {
-            string cdnUrl = Environments.CdnUrls[packageInfo.Env];
-
-            Uri cdnUri = new Uri(Environments.CdnUrls[packageInfo.Env]);
-            Uri elementUri = new Uri(cdnUri, packageInfo.Name);
+            Uri elementUri = new Uri($"{Environments.CdnUrls[packageInfo.Env]}/{packageInfo.Name}");
 
             var wc = new WebClient();
             wc.DownloadFile(elementUri, Path.Combine(downloadDirectory, packageInfo.Name));
+        }
+
+        public static void DownloadConfigCdn(EnvEnum env)
+        {
+            Uri elementUri = new Uri($"{Environments.CdnUrls[env]}/config.txt");
+
+            Console.Out.Write($"Downloading {elementUri.ToString()}");
+            var wc = new WebClient();
+            wc.DownloadFile(elementUri, Path.Combine(@"C:\temp", "config.txt"));
+        }
+
+        public static void DownloadConfigStorage(EnvEnum env)
+        {
+            Uri elementUri = new Uri($"{Environments.StorageUrls[env]}/config.txt");
+
+            Console.Out.Write($"Downloading {elementUri.ToString()}");
+            var wc = new WebClient();
+            wc.DownloadFile(elementUri, Path.Combine(@"C:\temp", "config.txt"));
         }
     }
 }
