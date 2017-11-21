@@ -1,37 +1,63 @@
 ﻿using System;
+using System.ComponentModel;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
+
 namespace MultiViewFeaturePoC.Services
 {
     public delegate void ViewReleasedHandler(Object sender, EventArgs e);
-
-    public sealed class ViewLifetimeControl
+    
+    public sealed class ViewLifetimeControl : INotifyPropertyChanged
     {
-        private bool _released = false;
-        private int _refCount = 0;
-        private bool consolidated = true;
-        private event ViewReleasedHandler _internalReleased;
-
-        public readonly ApplicationView View;
-
-        public readonly CoreWindow Window;
-
-        public readonly CoreDispatcher Dispatcher;
-
-        public string Title { get; set; }
-
-        public int ViewId { get; private set; }
-
-        public Action OnCloseAction;
+        CoreDispatcher dispatcher;
+        CoreWindow window;
+        string title;
+        int refCount = 0;
+        int viewId;
+        bool released = false;
+        bool consolidated = true;
+        event ViewReleasedHandler InternalReleased;
 
         private ViewLifetimeControl(CoreWindow newWindow)
         {
-            Dispatcher = newWindow.Dispatcher;
-            Window = newWindow;
-            View = ApplicationView.GetForCurrentView();
-            ViewId = View.Id;
-            // ApplicationView.GetApplicationViewIdForWindow(Window);
+            dispatcher = newWindow.Dispatcher;
+            window = newWindow;
+            viewId = ApplicationView.GetApplicationViewIdForWindow(window);
             RegisterForEvents();
+        }
+
+        private void RegisterForEvents()
+        {
+            ApplicationView.GetForCurrentView().Consolidated += ViewConsolidated;
+        }
+
+        private void UnregisterForEvents()
+        {
+            ApplicationView.GetForCurrentView().Consolidated -= ViewConsolidated;
+        }
+
+        private void ViewConsolidated(ApplicationView sender, ApplicationViewConsolidatedEventArgs e)
+        {
+            StopViewInUse();
+        }
+
+        private void FinalizeRelease()
+        {
+            bool justReleased = false;
+            lock (this)
+            {
+                if (refCount == 0)
+                {
+                    justReleased = true;
+                    released = true;
+                }
+            }
+
+            if (justReleased)
+            {
+                UnregisterForEvents();
+                InternalReleased(this, null);
+            }
         }
 
         public static ViewLifetimeControl CreateForCurrentView()
@@ -39,17 +65,49 @@ namespace MultiViewFeaturePoC.Services
             return new ViewLifetimeControl(CoreWindow.GetForCurrentThread());
         }
 
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                if (title != value)
+                {
+                    title = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
+                }
+            }
+        }
+
+        public CoreDispatcher Dispatcher
+        {
+            get
+            {
+                return dispatcher;
+            }
+        }
+
+        public int Id
+        {
+            get
+            {
+                return viewId;
+            }
+        }
+
         public int StartViewInUse()
         {
             bool releasedCopy = false;
             int refCountCopy = 0;
+
             lock (this)
             {
-                releasedCopy = _released;
-                if (!_released)
+                releasedCopy = this.released;
+                if (!released)
                 {
-                    _refCount++;
-                    refCountCopy = _refCount;
+                    refCountCopy = ++refCount;
                 }
             }
 
@@ -68,14 +126,13 @@ namespace MultiViewFeaturePoC.Services
 
             lock (this)
             {
-                releasedCopy = this._released;
-                if (!_released)
+                releasedCopy = this.released;
+                if (!released)
                 {
-                    _refCount--;
-                    refCountCopy = _refCount;
+                    refCountCopy = --refCount;
                     if (refCountCopy == 0)
                     {
-                        var task = Dispatcher.RunAsync(CoreDispatcherPriority.Low, FinalizeRelease);
+                        var task = dispatcher.RunAsync(CoreDispatcherPriority.Low, FinalizeRelease);
                     }
                 }
             }
@@ -87,6 +144,7 @@ namespace MultiViewFeaturePoC.Services
             return refCountCopy;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
         public event ViewReleasedHandler Released
         {
             add
@@ -94,10 +152,10 @@ namespace MultiViewFeaturePoC.Services
                 bool releasedCopy = false;
                 lock (this)
                 {
-                    releasedCopy = _released;
-                    if (!_released)
+                    releasedCopy = released;
+                    if (!released)
                     {
-                        _internalReleased += value;
+                        InternalReleased += value;
                     }
                 }
 
@@ -111,39 +169,8 @@ namespace MultiViewFeaturePoC.Services
             {
                 lock (this)
                 {
-                    _internalReleased -= value;
+                    InternalReleased -= value;
                 }
-            }
-        }
-
-        private void RegisterForEvents()
-        {
-            ApplicationView.GetForCurrentView().Consolidated += ViewConsolidated;
-        }
-
-        private void UnregisterForEvents()
-        {
-            ApplicationView.GetForCurrentView().Consolidated -= ViewConsolidated;
-        }
-
-        private void ViewConsolidated(ApplicationView sender, ApplicationViewConsolidatedEventArgs e) => StopViewInUse();
-
-        private void FinalizeRelease()
-        {
-            bool justReleased = false;
-            lock (this)
-            {
-                if (_refCount == 0)
-                {
-                    justReleased = true;
-                    _released = true;
-                }
-            }
-            if (justReleased)
-            {
-                UnregisterForEvents();
-                _internalReleased?.Invoke(this, null);
-                OnCloseAction?.Invoke();
             }
         }
     }
