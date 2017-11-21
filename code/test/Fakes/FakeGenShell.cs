@@ -14,6 +14,7 @@ namespace Microsoft.Templates.Fakes
 {
     public class FakeGenShell : GenShell
     {
+        private readonly string _platform;
         private readonly string _language;
         private readonly Action<string> _changeStatus;
         private readonly Action<string> _addLog;
@@ -32,8 +33,9 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public FakeGenShell(string language, Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
+        public FakeGenShell(string platform, string language, Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
         {
+            _platform = platform;
             _language = language;
             _changeStatus = changeStatus;
             _addLog = addLog;
@@ -67,9 +69,11 @@ namespace Microsoft.Templates.Fakes
         public override void AddProjectToSolution(string projectFullPath)
         {
             var msbuildProj = FakeMsBuildProject.Load(projectFullPath);
-            var solutionFile = FakeSolution.LoadOrCreate(SolutionPath);
+            var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
-            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj", StringComparison.OrdinalIgnoreCase));
+            var projectRelativeToSolutionPath = projectFullPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
+
+            solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath);
         }
 
         public override string GetActiveProjectNamespace()
@@ -143,7 +147,7 @@ namespace Microsoft.Templates.Fakes
 
         private static string FindProject(string path)
         {
-            return Directory.EnumerateFiles(path, "*proj").FirstOrDefault();
+            return Directory.EnumerateFiles(path, "*proj", SearchOption.AllDirectories).FirstOrDefault();
         }
 
         public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)

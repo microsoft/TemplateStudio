@@ -35,10 +35,10 @@ namespace Microsoft.Templates.Test
         {
             List<object[]> result = new List<object[]>();
 
-            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldCaliburn"), ProgrammingLanguages.CSharp);
-
             foreach (var platform in Platforms.GetAllPlatforms())
             {
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldCaliburn"), platform, ProgrammingLanguages.CSharp);
+
                 var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
                 var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
@@ -68,10 +68,10 @@ namespace Microsoft.Templates.Test
         {
             List<object[]> result = new List<object[]>();
 
-            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldCaliburn"), ProgrammingLanguages.CSharp);
-
             foreach (var platform in Platforms.GetAllPlatforms())
             {
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldCaliburn"), platform, ProgrammingLanguages.CSharp);
+
                 var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
                 var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
@@ -105,9 +105,9 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source, string language)
+        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source, string platform, string language)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
 
             if (!syncExecuted)
             {
@@ -120,11 +120,11 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public override async Task InitializeFixtureAsync(string language, IContextProvider contextProvider)
+        public override async Task InitializeFixtureAsync(string platform, string language, IContextProvider contextProvider)
         {
             GenContext.Current = contextProvider;
 
-            await InitializeTemplatesForLanguageAsync(Source, language);
+            await InitializeTemplatesForLanguageAsync(Source, platform, language);
         }
     }
 }

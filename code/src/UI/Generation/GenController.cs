@@ -78,6 +78,8 @@ namespace Microsoft.Templates.UI
                 }
                 else
                 {
+                    var name = GenContext.ToolBox.Shell.GetActiveProjectPath();
+
                     GenContext.Current.OutputPath = GenContext.Current.ProjectPath;
                 }
             }
