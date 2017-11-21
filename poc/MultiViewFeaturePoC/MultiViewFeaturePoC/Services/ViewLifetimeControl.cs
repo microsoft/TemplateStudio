@@ -4,18 +4,25 @@ using Windows.UI.ViewManagement;
 
 namespace MultiViewFeaturePoC.Services
 {
+    // A custom event that fires whenever the secondary view is ready to be closed. You should
+    // clean up any state (including deregistering for events) then close the window in this handler
     public delegate void ViewReleasedHandler(Object sender, EventArgs e);
-    
+
+    //Whenever the main view is about to interact with the secondary view, it should call
+    // StartViewInUse on this object. When finished interacting, it should call StopViewInUse.
     public sealed class ViewLifetimeControl
     {
+        // Window for this particular view. Used to register and unregister for events
         private CoreWindow _window;
         private int _refCount = 0;
         private bool _released = false;
         private bool _consolidated = true;
         private event ViewReleasedHandler InternalReleased;
 
+        // Necessary to communicate with the window
         public CoreDispatcher Dispatcher { get; private set; }
 
+        // This id is used in all of the ApplicationViewSwitcher and ProjectionManager APIs
         public int Id { get; private set; }
 
         public string Title { get; set; }
@@ -62,6 +69,8 @@ namespace MultiViewFeaturePoC.Services
             return new ViewLifetimeControl(CoreWindow.GetForCurrentThread());
         }
 
+        // Signals that the view is being interacted with by another view,
+        // so it shouldn't be closed even if it becomes "consolidated"
         public int StartViewInUse()
         {
             bool releasedCopy = false;
@@ -84,6 +93,8 @@ namespace MultiViewFeaturePoC.Services
             return refCountCopy;
         }
 
+        // Should come after any call to StartViewInUse
+        // Signals that the another view has finished interacting with the view tracked by this object
         public int StopViewInUse()
         {
             int refCountCopy = 0;

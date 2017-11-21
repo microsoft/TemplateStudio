@@ -15,9 +15,12 @@ namespace MultiViewFeaturePoC.Services
 
     public class WindowManagerService
     {
+        // TODO WTS: See more details about showing multiple views for an app
+        // https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views
         private static WindowManagerService _current;
         public static WindowManagerService Current => _current ?? (_current = new WindowManagerService());
 
+        // Contains all the opened secondary views.
         public readonly ObservableCollection<ViewLifetimeControl> SecondaryViews = new ObservableCollection<ViewLifetimeControl>();
 
         public int MainViewId { get; private set; }
@@ -30,6 +33,8 @@ namespace MultiViewFeaturePoC.Services
             MainDispatcher = Window.Current.Dispatcher;
         }
 
+        // TODO WTS: Displays a view as a standalone
+        // You can use the resulting ViewLifeTileControl to interact with the new window.
         public async Task<ViewLifetimeControl> TryShowAsStandaloneAsync(string windowTitle, Type pageType)
         {
             ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType);
@@ -40,6 +45,8 @@ namespace MultiViewFeaturePoC.Services
             return viewControl;
         }
 
+
+        // Displays a view as a standalone view in the desired view mode
         public async Task<ViewLifetimeControl> TryShowAsViewModeAsync(string windowTitle, Type pageType, ApplicationViewMode viewMode = ApplicationViewMode.Default)
         {
             ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType);

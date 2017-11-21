@@ -15,8 +15,6 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "3",
     "wts.group": "ApplicationLifecycle",
-    "wts.licenses": "",
-    "wts.dependencies":"",
     "wts.defaultInstance": "MultiView",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
