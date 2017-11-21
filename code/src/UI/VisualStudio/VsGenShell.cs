@@ -75,9 +75,16 @@ namespace Microsoft.Templates.UI.VisualStudio
                 var proj = GetProjectByPath(projectFile.Key);
                 if (proj != null && proj.ProjectItems != null)
                 {
+                    var isSharedProject = Path.GetExtension(proj.FileName).Equals(".shproj", StringComparison.OrdinalIgnoreCase);
                     foreach (var file in projectFile.Value)
                     {
-                        proj.ProjectItems.AddFromFile(file);
+                        var newItem = proj.ProjectItems.AddFromFile(file);
+
+                        if (isSharedProject && Path.GetExtension(file).Equals(".xaml", StringComparison.OrdinalIgnoreCase))
+                        {
+                            newItem.Properties.Item("ItemType").Value = "EmbeddedResource";
+                            newItem.Properties.Item("Generator").Value = "MSBuild:UpdateDesignTimeXaml";
+                        }
                     }
 
                     proj.Save();
