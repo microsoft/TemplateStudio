@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 
-namespace MultiViewFeaturePoC.Services
+namespace Param_ItemNamespace.Services
 {
     public delegate void ViewReleasedHandler(Object sender, EventArgs e);
     

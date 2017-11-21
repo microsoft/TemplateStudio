@@ -1,0 +1,45 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Multi View",
+  "groupIdentity": "wts.Feat.MultiView",
+  "identity": "wts.Feat.MultiView",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "3",
+    "wts.group": "ApplicationLifecycle",
+    "wts.licenses": "",
+    "wts.dependencies":"",
+    "wts.defaultInstance": "MultiView",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"    
+  },
+  "sourceName": "MultiViewFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\ViewLifetimeControl.cs"
+    },
+    {
+      "path": ".\\Services\\WindowManagerService.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}
