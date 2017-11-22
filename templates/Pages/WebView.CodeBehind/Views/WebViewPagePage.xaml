@@ -112,6 +112,9 @@
                 <Button Style="{StaticResource BrowserButtonStyle}" Click="OnOpenInBrowser" x:Uid="WebViewPage_OpenInBrowserButton">
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE774;" />
                 </Button>
+                <Button Style="{StaticResource BrowserButtonStyle}" Click="OnShare" x:Uid="WebViewPage_ShareButton">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;" />
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

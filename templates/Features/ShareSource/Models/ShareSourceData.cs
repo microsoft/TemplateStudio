@@ -7,22 +7,27 @@ using Windows.Storage;
 
 namespace Param_ItemNamespace.Models
 {
-    public class ShareSourceFeatureData
+    public class ShareSourceData
     {
+        // TODO WTS: This configuration class is used in DataRequestExtensions to fill de DataRequest in DataTransferManager share operation.
+        // See more details about share contract in UWP
+        // https://docs.microsoft.com/windows/uwp/app-to-app/share-data
+
+        // Create a new instance of ShareSourceData and set de data you want to share
         public string Title { get; set; }
 
         public string Description { get; set; }
 
-        internal List<ShareSourceFeatureItem> Items { get; }
+        internal List<ShareSourceItem> Items { get; }
 
-        public ShareSourceFeatureData(string title, string desciption = null)
+        public ShareSourceData(string title, string desciption = null)
         {
             if (string.IsNullOrEmpty(title))
             {
                 throw new ArgumentException($"The parameter '{nameof(title)}' can not be null or empty.");
             }
 
-            Items = new List<ShareSourceFeatureItem>();
+            Items = new List<ShareSourceItem>();
             Title = title;
             Description = desciption;
         }
@@ -34,7 +39,7 @@ namespace Param_ItemNamespace.Models
                 throw new ArgumentException($"The parameter {nameof(text)} is null or empty");
             }
 
-            Items.Add(ShareSourceFeatureItem.FromText(text));
+            Items.Add(ShareSourceItem.FromText(text));
         }
 
         public void SetWebLink(Uri webLink)
@@ -44,7 +49,7 @@ namespace Param_ItemNamespace.Models
                 throw new ArgumentNullException(nameof(webLink));
             }
 
-            Items.Add(ShareSourceFeatureItem.FromWebLink(webLink));
+            Items.Add(ShareSourceItem.FromWebLink(webLink));
         }
 
         // TODO WTS: If you want to share a link to your application be sure
@@ -66,7 +71,7 @@ namespace Param_ItemNamespace.Models
                 throw new ArgumentNullException("Application Link to share is null.");
             }
 
-            Items.Add(ShareSourceFeatureItem.FromApplicationLink(applicationLink));
+            Items.Add(ShareSourceItem.FromApplicationLink(applicationLink));
         }
 
         public void SetHtml(string html)
@@ -76,7 +81,7 @@ namespace Param_ItemNamespace.Models
                 throw new ArgumentNullException("Html to share is empty.");
             }
 
-            Items.Add(ShareSourceFeatureItem.FromHtml(html));
+            Items.Add(ShareSourceItem.FromHtml(html));
         }
 
         public void SetImage(StorageFile image)
@@ -86,7 +91,7 @@ namespace Param_ItemNamespace.Models
                 throw new ArgumentNullException("Image to share is null.");
             }
 
-            Items.Add(ShareSourceFeatureItem.FromImage(image));
+            Items.Add(ShareSourceItem.FromImage(image));
         }
 
         public void SetStorageItems(IEnumerable<IStorageItem> storageItems)
@@ -96,7 +101,7 @@ namespace Param_ItemNamespace.Models
                 throw new ArgumentNullException("There are not storage items to share.");
             }
 
-            Items.Add(ShareSourceFeatureItem.FromStorageItems(storageItems));
+            Items.Add(ShareSourceItem.FromStorageItems(storageItems));
         }
 
         // TODO WTS: Use this method add content to share when you do not want to process the data until the target app actually requests it.
@@ -109,7 +114,7 @@ namespace Param_ItemNamespace.Models
                 throw new ArgumentNullException("Deferred data Id to share is empty");
             }
 
-            Items.Add(ShareSourceFeatureItem.FromDeferredContent(deferredDataFormatId, getDeferredDataAsyncFunc));
+            Items.Add(ShareSourceItem.FromDeferredContent(deferredDataFormatId, getDeferredDataAsyncFunc));
         }
     }
 }

@@ -13,7 +13,10 @@ namespace Param_ItemNamespace.Extensions
 {
     public static class DataRequestExtensions
     {
-        public static void SetData(this DataRequest dataRequest, ShareSourceFeatureData config)
+        // TODO WTS: This Extension method helps to fill de DataRequest in DataTransferManager share operation.
+        // See more details about share contract in UWP
+        // https://docs.microsoft.com/windows/uwp/app-to-app/share-data
+        public static void SetData(this DataRequest dataRequest, ShareSourceData config)
         {
             var deferral = dataRequest.GetDeferral();
             try
@@ -30,26 +33,26 @@ namespace Param_ItemNamespace.Extensions
                 {
                     switch (dataItem.DataType)
                     {
-                        case ShareSourceFeatureItemType.Text:
+                        case ShareSourceItemType.Text:
                             requestData.SetText(dataItem.Text);
                             break;
-                        case ShareSourceFeatureItemType.WebLink:
+                        case ShareSourceItemType.WebLink:
                             requestData.SetWebLink(dataItem.WebLink);
                             break;
-                        case ShareSourceFeatureItemType.ApplicationLink:
+                        case ShareSourceItemType.ApplicationLink:
                             requestData.SetApplicationLink(dataItem.ApplicationLink);
                             break;
-                        case ShareSourceFeatureItemType.Html:
+                        case ShareSourceItemType.Html:
                             var htmlFormat = HtmlFormatHelper.CreateHtmlFormat(dataItem.Html);
                             requestData.SetHtmlFormat(htmlFormat);
                             break;
-                        case ShareSourceFeatureItemType.Image:
+                        case ShareSourceItemType.Image:
                             requestData.FillImage(dataItem.Image, storageItems);
                             break;
-                        case ShareSourceFeatureItemType.StorageItems:
+                        case ShareSourceItemType.StorageItems:
                             requestData.FillStorageItems(dataItem.StorageItems, storageItems);
                             break;
-                        case ShareSourceFeatureItemType.DeferredContent:
+                        case ShareSourceItemType.DeferredContent:
                             requestData.FillDeferredContent(dataItem.DeferredDataFormatId, dataItem.GetDeferredDataAsyncFunc);
                             break;
                     }

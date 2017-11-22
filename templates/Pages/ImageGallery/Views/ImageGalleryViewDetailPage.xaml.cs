@@ -19,6 +19,7 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatedTo(e);
             ViewModel.Initialize(e.Parameter as SampleImage);
             showFlipView.Begin();
+            ViewModel.RegisterEvents();
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -29,6 +30,12 @@ namespace Param_ItemNamespace.Views
                 previewImage.Visibility = Visibility.Visible;
                 ViewModel.SetAnimation();
             }
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            ViewModel.UnregisterEvents();
         }
     }
 }

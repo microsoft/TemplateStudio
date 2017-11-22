@@ -49,5 +49,13 @@
     <value>Open in browser</value>
     <comment>Open in browser button automation tooltip property for WebViewPage</comment>
   </data>
+  <data name="WebViewPage_ShareButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Share</value>
+    <comment>Share button automation name property for WebViewPage</comment>
+  </data>
+  <data name="WebViewPage_ShareButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Share</value>
+    <comment>Share button automation tooltip property for WebViewPage</comment>
+  </data>
   <!--}]}-->
 </root>
