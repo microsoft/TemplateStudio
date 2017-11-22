@@ -2,13 +2,13 @@
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 
-namespace MultiViewFeaturePoC.Services
+namespace Param_ItemNamespace.Services
 {
     // A custom event that fires whenever the secondary view is ready to be closed. You should
     // clean up any state (including deregistering for events) then close the window in this handler
-    public delegate void ViewReleasedHandler(Object sender, EventArgs e);
+    public delegate void ViewReleasedHandler(object sender, EventArgs e);
 
-    //Whenever the main view is about to interact with the secondary view, it should call
+    // Whenever the main view is about to interact with the secondary view, it should call
     // StartViewInUse on this object. When finished interacting, it should call StopViewInUse.
     public sealed class ViewLifetimeControl
     {
@@ -16,7 +16,7 @@ namespace MultiViewFeaturePoC.Services
         private CoreWindow _window;
         private int _refCount = 0;
         private bool _released = false;
-        private bool _consolidated = true;
+
         private event ViewReleasedHandler InternalReleased;
 
         // Necessary to communicate with the window
@@ -78,7 +78,7 @@ namespace MultiViewFeaturePoC.Services
 
             lock (this)
             {
-                releasedCopy = this._released;
+                releasedCopy = _released;
                 if (!_released)
                 {
                     refCountCopy = ++_refCount;
@@ -102,7 +102,7 @@ namespace MultiViewFeaturePoC.Services
 
             lock (this)
             {
-                releasedCopy = this._released;
+                releasedCopy = _released;
                 if (!_released)
                 {
                     refCountCopy = --_refCount;
@@ -117,8 +117,9 @@ namespace MultiViewFeaturePoC.Services
             {
                 throw new InvalidOperationException("This view is being disposed");
             }
+
             return refCountCopy;
-        }        
+        }
 
         private void RegisterForEvents()
         {

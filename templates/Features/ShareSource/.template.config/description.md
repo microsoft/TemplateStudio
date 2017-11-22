@@ -1,5 +1,4 @@
-﻿ShareSource provides you with a class that allows you to share data  in a simple and straight-forward manner.
-It allows you to quickly share data, such as:
+﻿ShareSource provides you with a class that allows you to share data  in a simple and straight-forward manner. It allows you to quickly share data, such as:
 
   * Text
   * Links
