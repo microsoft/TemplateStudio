@@ -20,7 +20,7 @@ namespace Microsoft.UI.Test
         public DataServiceTest(TemplatesFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixture(ProgrammingLanguages.CSharp);
+            _fixture.InitializeFixture(Platforms.Uwp, ProgrammingLanguages.CSharp);
         }
 
         [Fact]

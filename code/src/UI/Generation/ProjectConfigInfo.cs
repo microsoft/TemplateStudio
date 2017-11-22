@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -320,7 +321,7 @@ namespace Microsoft.Templates.UI.Generation
         {
             var projectTypeGuids = GenContext.ToolBox.Shell.GetActiveProjectTypeGuids();
 
-            if (projectTypeGuids.ToUpper().Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
+            if (projectTypeGuids.ToUpper(CultureInfo.InvariantCulture).Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
             {
                 return true;
             }

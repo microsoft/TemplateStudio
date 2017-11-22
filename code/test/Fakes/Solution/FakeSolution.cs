@@ -264,7 +264,7 @@ EndProject
                 {
                     var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
 
-                    var endGobalSectionIndex = slnContent.IndexOf("EndGlobalSection", globalSectionIndex);
+                    var endGobalSectionIndex = slnContent.IndexOf("EndGlobalSection", globalSectionIndex, StringComparison.Ordinal);
 
                     var projectConfigContent = string.Format(projectConfigurationTemplate, projectGuid);
 
@@ -274,7 +274,7 @@ EndProject
                 if (platform == Platforms.Xamarin)
                 {
                     var globalSectionIndex = slnContent.IndexOf(XamarinSharedMSBuildProjectFilesText, StringComparison.Ordinal);
-                    var endGobalSectionIndex = slnContent.IndexOf("EndGlobalSection", globalSectionIndex);
+                    var endGobalSectionIndex = slnContent.IndexOf("EndGlobalSection", globalSectionIndex, StringComparison.Ordinal);
 
                     var content = string.Empty;
                     if (Path.GetExtension(projectRelativeToSolutionPath) == ".shproj")
