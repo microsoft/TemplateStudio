@@ -23,9 +23,9 @@ namespace Microsoft.Templates.Test
     {
         protected BaseGenAndBuildFixture _fixture;
 
-        private async Task SetUpFixtureForTestingAsync(string language)
+        private async Task SetUpFixtureForTestingAsync(string platform, string language)
         {
-            await _fixture.InitializeFixtureAsync(language, this);
+            await _fixture.InitializeFixtureAsync(platform, language, this);
         }
 
         protected static string ShortLanguageName(string language)
@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            await SetUpFixtureForTestingAsync(platform, language);
 
             var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
 
@@ -97,7 +97,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string platform, string language, bool emptyProject, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            await SetUpFixtureForTestingAsync(platform, language);
 
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
@@ -172,7 +172,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string platform, string itemId, string language, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            await SetUpFixtureForTestingAsync(platform, language);
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework) && t.GetPlatform() == platform);
             var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity == itemId);
@@ -227,7 +227,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string platform, string language, string projectType, string framework, IEnumerable<string> genIdentities)
         {
-            await SetUpFixtureForTestingAsync(language);
+            await SetUpFixtureForTestingAsync(platform, language);
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
 

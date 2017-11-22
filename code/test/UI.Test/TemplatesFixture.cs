@@ -44,10 +44,10 @@ namespace Microsoft.UI.Test
         "Usage",
         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
         Justification = "Required por unit testing.")]
-        public void InitializeFixture(string language)
+        public void InitializeFixture(string platform, string language)
         {
             var source = new LocalTemplatesSource();
-            GenContext.Bootstrap(source, new FakeGenShell(language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
             GenContext.Current = this;
             if (!syncExecuted)
             {

@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Test
         {
             List<object[]> result = new List<object[]>();
 
-            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldWACK"), ProgrammingLanguages.CSharp);
+            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldWACK"), Platforms.Uwp, ProgrammingLanguages.CSharp);
 
             var templateProjectTypes = GenComposer.GetSupportedProjectTypes(Platforms.Uwp);
 
@@ -61,9 +61,9 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source, string language)
+        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source, string platform, string language)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
 
             if (!syncExecuted)
             {
@@ -76,11 +76,11 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public override async Task InitializeFixtureAsync(string language, IContextProvider contextProvider)
+        public override async Task InitializeFixtureAsync(string language, string platform, IContextProvider contextProvider)
         {
             GenContext.Current = contextProvider;
 
-            await InitializeTemplatesForLanguageAsync(Source, language);
+            await InitializeTemplatesForLanguageAsync(Source, platform, language);
         }
     }
 }

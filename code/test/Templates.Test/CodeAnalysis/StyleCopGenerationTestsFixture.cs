@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Test
 
         private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
             if (Templates == null)
             {
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
