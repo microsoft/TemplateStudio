@@ -6,21 +6,20 @@ using System.Windows;
 using System.Windows.Input;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.NewProject;
-using Microsoft.VisualStudio.PlatformUI;
 
 namespace Microsoft.Templates.UI.V2Views.NewProject
 {
-    public partial class MainView : Window
+    public partial class WizardShell : Window
     {
-        // private BaseColorService _colorService;
         public MainViewModel ViewModel { get; } = new MainViewModel();
 
         public UserSelection Result { get; set; }
 
-        public MainView(string language)
+        public WizardShell(string language)
         {
             DataContext = ViewModel;
             InitializeComponent();
+            NavigationService.Initialize(mainFrame, new MainPage());
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)

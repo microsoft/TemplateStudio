@@ -1,0 +1,14 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services">
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockWizardTitle">
+        <Setter Property="FontSize" Value="{Binding Environment200PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Margin" Value="25,0,0,0" />
+    </Style>
+
+</ResourceDictionary>

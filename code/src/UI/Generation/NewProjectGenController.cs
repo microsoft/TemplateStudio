@@ -39,7 +39,8 @@ namespace Microsoft.Templates.UI
         {
             // TODO mvegaca
             // var mainView = new Views.NewProject.MainView(language);
-            var mainView = new V2Views.NewProject.MainView(language);
+            // var mainView = new V2Views.NewProject.VSStyleValues();
+            var mainView = new V2Views.NewProject.WizardShell(language);
 
             try
             {
