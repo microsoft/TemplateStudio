@@ -3,14 +3,14 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Page.Navigation.RegisterPage",
+  "name": "MVVMBasic.Page.Navigation.RegisterPage",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Xamarin",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & wts.type == page"
+    "wts.compositionFilter": "$framework == MVVMBasic & wts.type == page"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

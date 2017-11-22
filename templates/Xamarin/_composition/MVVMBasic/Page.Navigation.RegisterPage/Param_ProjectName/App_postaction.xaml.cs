@@ -1,5 +1,6 @@
 ﻿//{[{
 using Param_RootNamespace.Views;
+using Param_RootNamespace.ViewModels;
 //}]}
 namespace Param_RootNamespace
 {
@@ -10,7 +11,7 @@ namespace Param_RootNamespace
             var navigationService = NavigationService.Instance;
             //^^
             //{[{
-            navigationService.Register("wts.ItemName", typeof(wts.ItemNamePage));                
+            navigationService.Register<wts.ItemNameViewModel>(typeof(wts.ItemNamePage));                
             //}]}
         }
     }
