@@ -29,7 +29,7 @@
       "path": ".\\Param_ProjectName\\Param_ProjectName\\Views\\BlankViewPage.xaml.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Param_ProjectName\\ViewModels\\BlankViewModel.cs"
+      "path": ".\\Param_ProjectName\\Param_ProjectName\\ViewModels\\BlankViewViewModel.cs"
     }
   ],
   "symbols": {
