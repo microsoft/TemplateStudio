@@ -1177,7 +1177,16 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Unable add project items. Ensure you have the required SDK..
+        ///   Looks up a localized string similar to Exception tracking telemetry during generation..
+        /// </summary>
+        public static string TrackTelemetryException {
+            get {
+                return ResourceManager.GetString("TrackTelemetryException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable add project items. Ensure you have the required SDK..
         /// </summary>
         public static string UnableAddItemsToProject {
             get {

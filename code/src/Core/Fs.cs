@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Core
             }
             catch (Exception ex)
             {
-                var msg = $"Cannot remove readonly protection of file {filePath}";
+                var msg = string.Format(StringRes.FsEnsureFileEditableException, filePath);
                 AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
             }
         }

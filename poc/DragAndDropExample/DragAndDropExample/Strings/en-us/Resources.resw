@@ -134,7 +134,7 @@
     <comment>Pivot item header for Scenario1</comment>
   </data>
   <data name="Scenario2_Title.Text" xml:space="preserve">
-    <value>ListView with drag and drop items</value>
+    <value>ListView with drag and drop items and disable drop if any item</value>
     <comment>Page title for Scenario2</comment>
   </data>
   <data name="PivotItem_Scenario2.Header" xml:space="preserve">

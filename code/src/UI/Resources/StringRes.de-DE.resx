@@ -150,7 +150,7 @@
     <comment>Log text for Circular Reference exception</comment>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Ungültiges Abhängigkeitsobjekt {0}. Abhängigkeiten müssen als multpleInstance = false konfiguriert werden.</value>
+    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
     <comment>Log text for Multiple Instance exception</comment>
   </data>
   <data name="ExceptionDependencyNotFound" xml:space="preserve">
@@ -680,5 +680,8 @@
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another page.</value>
     <comment>{0}:Page name.</comment>
+  </data>
+  <data name="TrackTelemetryException" xml:space="preserve">
+    <value>Exception tracking telemetry during generation.</value>
   </data>
 </root>

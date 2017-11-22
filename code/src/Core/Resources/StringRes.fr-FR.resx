@@ -151,7 +151,7 @@
     <value>Impossible de trouver la rangée « {0} » prévue dans le fichier « {1} ». Veuillez fusionner le contenu depuis le fichier de post-action manuellement.</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>Le dossier {0} ne peut pas être copié vers {1}. Erreur : {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Le dossier {0} ne peut pas être supprimé. Erreur : {1}</value>
@@ -392,5 +392,9 @@ Les modifications suivantes n'ont pu être intégrées : {2}
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>

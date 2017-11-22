@@ -151,7 +151,7 @@
     <value>在文件“{1}”中找不到应有的行 "{0}"。请手动合并操作后文件中的内容。</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>无法将文件夹 {0} 复制到 {1}。错误:{2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>无法删除文件夹 {0}。错误:{1}</value>
@@ -392,5 +392,9 @@
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>

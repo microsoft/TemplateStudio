@@ -20,11 +20,9 @@
             x:Uid="Scenario3_Title"
             Style="{StaticResource PageTitleStyle}" />
 
-        <Grid 
-            Grid.Row="1" 
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="{x:Bind ViewModel.OpenedPages, Mode=OneWay}" />
+            <Button Content="Open secondary view" Margin="0,12,0,0" Command="{x:Bind ViewModel.OpenCommand}" />
+        </StackPanel>
     </Grid>
 </Page>

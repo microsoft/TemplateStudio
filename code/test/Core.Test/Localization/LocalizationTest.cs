@@ -28,6 +28,11 @@ namespace Microsoft.Templates.Core.Test
             _fixture.InitializeFixture(language);
         }
 
+        public void Dispose()
+        {
+            CultureInfo.CurrentUICulture = new CultureInfo("en-US");
+        }
+
         [Fact]
         public void Load_ProjectTemplates_en()
         {

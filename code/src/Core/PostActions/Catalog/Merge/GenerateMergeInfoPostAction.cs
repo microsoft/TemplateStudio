@@ -41,16 +41,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetMergeType()
         {
-            switch (Path.GetExtension(Config).ToLowerInvariant())
+            switch (Path.GetExtension(Config).ToUpperInvariant())
             {
-                case ".cs":
-                    return "csharp";
-                case ".vb":
-                    return "vb.net";
-                case ".csproj":
-                case ".vbproj":
-                case ".xaml":
-                    return "xml";
+                case ".CS":
+                    return "CSHARP";
+                case ".VB":
+                    return "VB.NET";
+                case ".CSPROJ":
+                case ".VBPROJ":
+                case ".XAML":
+                    return "XML";
                 default:
                     return string.Empty;
             }

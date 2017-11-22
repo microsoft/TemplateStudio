@@ -151,7 +151,7 @@
     <value>Nie można znaleźć oczekiwanego wiersza „{0}” w pliku „{1}”. Ręcznie scal zawartość z pliku akcji po operacji.</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>Nie można skopiować folderu {0} do {1}. Błąd: {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Nie można usunąć folderu {0}. Błąd: {1}</value>
@@ -392,5 +392,9 @@ Nie można zinterpretować następujących zmian: {2}
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Error updating templates content.</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Cannot remove readonly protection from file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
 </root>

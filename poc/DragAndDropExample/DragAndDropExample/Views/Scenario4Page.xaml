@@ -41,23 +41,24 @@
             x:Uid="Scenario4_Title"
             Style="{StaticResource PageTitleStyle}" />
 
-        <Grid Margin="20" AllowDrop="True" DragOver="ListView_DragOver" DragLeave="ListView_DragLeave" Drop="ListView_Drop"
+        <Grid Margin="20" AllowDrop="True"
             Grid.Row="1" 
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
 
             <services:DragDropService.Configuration>
                 <services:DropConfiguration
-                            OnDropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}" />
+                    DropStorageItemsCommand="{x:Bind ViewModel.GetStorageItemsCommand}"
+                    DragEnterCommand="{x:Bind ViewModel.DragEnterCommand}" 
+                    DragLeaveCommand="{x:Bind ViewModel.DragLeaveCommand}" />
             </services:DragDropService.Configuration>
 
             <ListView
-                    AllowDrop="True" 
                     ItemsSource="{x:Bind ViewModel.Items}"
-                    ItemTemplate="{StaticResource DropItemDataTemplate}" >
-                
-            </ListView>
+                    ItemTemplate="{StaticResource DropItemDataTemplate}" />
 
-            <RelativePanel x:Name="DragMask" Background="#556ed3ff" Visibility="Collapsed">
+
+
+            <RelativePanel x:Name="DragMask" Background="#556ed3ff" Visibility="{x:Bind ViewModel.ShowDragMask, Mode=OneWay}">
                 <SymbolIcon x:Name="AddSymbol" Symbol="Add" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Foreground="White" RenderTransformOrigin="0.5,0.5">
                     <SymbolIcon.RenderTransform>
                         <CompositeTransform ScaleX="1.5" ScaleY="1.5"/>
