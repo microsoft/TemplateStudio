@@ -268,7 +268,7 @@ EndProject
 
                     var projectConfigContent = string.Format(projectConfigurationTemplate, projectGuid);
 
-                    slnContent = slnContent.Insert(endGobalSectionIndex -1, projectConfigContent);
+                    slnContent = slnContent.Insert(endGobalSectionIndex - 1, projectConfigContent);
                 }
 
                 if (platform == Platforms.Xamarin)
@@ -282,7 +282,6 @@ EndProject
                         content = XamarinSharedMSBuildProjectFilesTemplate
                                 .Replace("{name}", GenContext.Current.ProjectName)
                                 .Replace("{id}", projectGuid);
-
                     }
                     else
                     {
@@ -291,7 +290,7 @@ EndProject
                                 .Replace("{id}", projectGuid);
                     }
 
-                    slnContent = slnContent.Insert(endGobalSectionIndex -1, content);
+                    slnContent = slnContent.Insert(endGobalSectionIndex - 1, content);
                 }
             }
 
@@ -347,6 +346,7 @@ EndProject
                 case Platforms.Xamarin:
                     return File.ReadAllText(@"Solution\XamarinSolutionTemplate.txt");
             }
+
             throw new InvalidDataException(nameof(platform));
         }
     }
