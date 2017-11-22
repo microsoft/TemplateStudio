@@ -19,7 +19,7 @@ namespace wts.DefaultProject.UWP
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             LoadApplication(new wts.DefaultProject.App());
         }
