@@ -87,6 +87,7 @@ namespace Microsoft.Templates.Test
                 t => t.GetTemplateType() == TemplateType.Project
                      && t.GetProjectTypeList().Contains(projectType)
                      && t.GetFrameworkList().Contains(framework)
+                     && t.GetPlatform() == platform
                      && !t.GetIsHidden()
                      && t.GetLanguage() == language;
 

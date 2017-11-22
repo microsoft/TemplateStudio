@@ -127,7 +127,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public override async Task InitializeFixtureAsync(string language, string platform, IContextProvider contextProvider)
+        public override async Task InitializeFixtureAsync(string platform, string language, IContextProvider contextProvider)
         {
             GenContext.Current = contextProvider;
 

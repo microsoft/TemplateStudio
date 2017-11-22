@@ -221,7 +221,7 @@ EndProject
 EndProject
 ";
 
-        private const string ProjectTemplateShared = @"Project(""{D954291E-2A0B-460D-934E-DC6B0785DB48}"") = ""{name}"", ""{path}"", ""{id}""
+        private const string ProjectTemplateShared = @"Project(""{D954291E-2A0B-460D-934E-DC6B0785DB48}"") = ""{name}"", ""{path}"", ""{{id}}""
 EndProject
 ";
 
@@ -305,7 +305,7 @@ EndProject
                     return ProjectTemplateCS;
                 case ".vbproj":
                     return ProjectTemplateVB;
-                    case ".shproj":
+                case ".shproj":
                     return ProjectTemplateShared;
             }
 

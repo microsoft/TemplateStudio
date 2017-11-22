@@ -63,7 +63,13 @@ namespace Microsoft.Templates.Test
             // Assert
             Assert.True(Directory.Exists(resultPath));
             Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
-            AssertCorrectProjectConfigInfo(projectType, framework, platform);
+
+            if (platform == Platforms.Uwp)
+            {
+                AssertCorrectProjectConfigInfo(projectType, framework, platform);
+            }
+
+            // TODO: Assert project config for xamarin once defined where this goes, x-ref (https://github.com/Microsoft/WindowsTemplateStudio/issues/1350)
 
             // Clean
             if (cleanGeneration)
