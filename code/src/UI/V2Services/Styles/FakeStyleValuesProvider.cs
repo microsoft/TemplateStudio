@@ -5,138 +5,121 @@
 using System;
 using System.Windows.Media;
 
-using Microsoft.Templates.UI.Extensions;
-
 namespace Microsoft.Templates.UI.V2Services
 {
     public class FakeStyleValuesProvider : IStyleValuesProvider
     {
-        private static Brush _color_FFFFFF = "FFFFFF".AsBrush();
-        private static Brush _color_CCCEDB = "CCCEDB".AsBrush();
-        private static Brush _color_1E1E1E = "1E1E1E".AsBrush();
-        private static Brush _color_0E70C0 = "0E70C0".AsBrush();
-        private static Brush _color_007ACC = "007ACC".AsBrush();
-        private static Brush _color_A2A4A5 = "A2A4A5".AsBrush();
-        private static Brush _color_C9DEF5 = "C9DEF5".AsBrush();
-        private static Brush _color_000000 = "000000".AsBrush();
-        private static Brush _color_EFEFF2 = "EFEFF2".AsBrush();
-        private static Brush _color_717171 = "717171".AsBrush();
-
         private double _baseFontSize = 12;
+
+        public event EventHandler ThemeChanged;
 
         public Brush GetColor(string className, string memberName)
         {
-            if (memberName == "WindowPanelColorKey")
+            if (className == "ThemedDialogColors")
             {
-                return _color_FFFFFF;
+                switch (memberName)
+                {
+                    case "WindowPanelColorKey":
+                        return LightColorValues.Color_FF_FFFFFF;
+                    case "WindowBorderColorKey":
+                        return LightColorValues.Color_FF_CCCEDB;
+                    case "HeaderTextColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    case "HyperlinkColorKey":
+                        return LightColorValues.Color_FF_0E70C0;
+                    case "HyperlinkHoverColorKey":
+                        return LightColorValues.Color_FF_007ACC;
+                    case "HyperlinkPressedColorKey":
+                        return LightColorValues.Color_FF_0E70C0;
+                    case "HyperlinkDisabledColorKey":
+                        return LightColorValues.Color_FF_A2A4A5;
+                    case "SelectedItemActiveColorKey":
+                        return LightColorValues.Color_FF_007ACC;
+                    case "SelectedItemInactiveColorKey":
+                        return LightColorValues.Color_FF_CCCEDB;
+                    case "ListItemMouseOverColorKey":
+                        return LightColorValues.Color_FF_C9DEF5;
+                    case "ListItemDisabledTextColorKey":
+                        return LightColorValues.Color_FF_A2A4A5;
+                    case "GridHeadingBackgroundColorKey":
+                        return LightColorValues.Color_00_000000;
+                    case "GridHeadingHoverBackgroundColorKey":
+                        return LightColorValues.Color_00_000000;
+                    case "GridHeadingTextColorKey":
+                        return LightColorValues.Color_FF_717171;
+                    case "GridHeadingHoverTextColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    case "GridLineColorKey":
+                        return LightColorValues.Color_FF_CCCEDB;
+                    case "SectionDividerColorKey":
+                        return LightColorValues.Color_FF_CCCEDB;
+                    case "WindowButtonColorKey":
+                        return LightColorValues.Color_00_000000;
+                    case "WindowButtonHoverColorKey":
+                        return LightColorValues.Color_FF_C9DEF5;
+                    case "WindowButtonDownColorKey":
+                        return LightColorValues.Color_FF_007ACC;
+                    case "WindowButtonBorderColorKey":
+                        return LightColorValues.Color_00_000000;
+                    case "WindowButtonHoverBorderColorKey":
+                        return LightColorValues.Color_FF_C9DEF5;
+                    case "WindowButtonDownBorderColorKey":
+                        return LightColorValues.Color_FF_007ACC;
+                    case "WindowButtonGlyphColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    case "WindowButtonHoverGlyphColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    case "WindowButtonDownGlyphColorKey":
+                        return LightColorValues.Color_FF_FFFFFF;
+                    case "WizardFooterColorKey":
+                        return LightColorValues.Color_FF_EFEFF2;
+                    case "HeaderTextSecondaryColorKey":
+                        return LightColorValues.Color_FF_828282;
+                    case "WizardFooterTextColorKey":
+                        return LightColorValues.Color_FF_828282;
+                    default:
+                        throw new Exception($"The color key value '{memberName}' is not found");
+                }
             }
-            else if (memberName == "WindowBorderColorKey")
+            else if (className == "ThemedCardColors")
             {
-                return _color_CCCEDB;
-            }
-            else if (memberName == "HeaderTextColorKey")
-            {
-                return _color_1E1E1E;
-            }
-            else if (memberName == "HyperlinkColorKey")
-            {
-                return _color_0E70C0;
-            }
-            else if (memberName == "HyperlinkHoverColorKey")
-            {
-                return _color_007ACC;
-            }
-            else if (memberName == "HyperlinkPressedColorKey")
-            {
-                return _color_0E70C0;
-            }
-            else if (memberName == "HyperlinkDisabledColorKey")
-            {
-                return _color_A2A4A5;
-            }
-            else if (memberName == "SelectedItemActiveColorKey")
-            {
-                return _color_007ACC;
-            }
-            else if (memberName == "SelectedItemInactiveColorKey")
-            {
-                return _color_CCCEDB;
-            }
-            else if (memberName == "ListItemMouseOverColorKey")
-            {
-                return _color_C9DEF5;
-            }
-            else if (memberName == "ListItemDisabledTextColorKey")
-            {
-                return _color_A2A4A5;
-            }
-            else if (memberName == "GridHeadingBackgroundColorKey")
-            {
-                return _color_000000;
-            }
-            else if (memberName == "GridHeadingHoverBackgroundColorKey")
-            {
-                return _color_000000;
-            }
-            else if (memberName == "GridHeadingTextColorKey")
-            {
-                return _color_717171;
-            }
-            else if (memberName == "GridHeadingHoverTextColorKey")
-            {
-                return _color_1E1E1E;
-            }
-            else if (memberName == "GridLineColorKey")
-            {
-                return _color_CCCEDB;
-            }
-            else if (memberName == "SectionDividerColorKey")
-            {
-                return _color_CCCEDB;
-            }
-            else if (memberName == "WindowButtonColorKey")
-            {
-                return _color_000000;
-            }
-            else if (memberName == "WindowButtonHoverColorKey")
-            {
-                return _color_C9DEF5;
-            }
-            else if (memberName == "WindowButtonDownColorKey")
-            {
-                return _color_007ACC;
-            }
-            else if (memberName == "WindowButtonBorderColorKey")
-            {
-                return _color_000000;
-            }
-            else if (memberName == "WindowButtonHoverBorderColorKey")
-            {
-                return _color_C9DEF5;
-            }
-            else if (memberName == "WindowButtonDownBorderColorKey")
-            {
-                return _color_007ACC;
-            }
-            else if (memberName == "WindowButtonGlyphColorKey")
-            {
-                return _color_1E1E1E;
-            }
-            else if (memberName == "WindowButtonHoverGlyphColorKey")
-            {
-                return _color_1E1E1E;
-            }
-            else if (memberName == "WindowButtonDownGlyphColorKey")
-            {
-                return _color_FFFFFF;
-            }
-            else if (memberName == "WizardFooterColorKey")
-            {
-                return _color_EFEFF2;
+                switch (memberName)
+                {
+                    case "CardTitleTextColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    case "CardDescriptionTextColorKey":
+                        return LightColorValues.Color_FF_717171;
+                    case "CardBackgroundDefaultColorKey":
+                        return LightColorValues.Color_FF_FFFFFF;
+                    case "CardBackgroundFocusColorKey":
+                        return LightColorValues.Color_FF_FFFFFF;
+                    case "CardBackgroundHoverColorKey":
+                        return LightColorValues.Color_FF_EFEFF2;
+                    case "CardBackgroundPressedColorKey":
+                        return LightColorValues.Color_FF_EFEFF2;
+                    case "CardBackgroundSelectedColorKey":
+                        return LightColorValues.Color_FF_FFFFFF;
+                    case "CardBackgroundDisabledColorKey":
+                        return LightColorValues.Color_FF_F5F5F5;
+                    case "CardBorderDefaultColorKey":
+                        return LightColorValues.Color_FF_BFBFBF;
+                    case "CardBorderFocusColorKey":
+                        return LightColorValues.Color_FF_3399FF;
+                    case "CardBorderHoverColorKey":
+                        return LightColorValues.Color_FF_9A9A9A;
+                    case "CardBorderPressedColorKey":
+                        return LightColorValues.Color_FF_007ACC;
+                    case "CardBorderSelectedColorKey":
+                        return LightColorValues.Color_FF_007ACC;
+                    case "CardBorderDisabledColorKey":
+                        return LightColorValues.Color_FF_CCCEDB;
+                    default:
+                        throw new Exception($"The color key value '{memberName}' is not found");
+                }
             }
             else
             {
-                throw new Exception($"The Ccolor key value '{memberName}' is not found");
+                throw new Exception($"Class name not recognized '{className}'");
             }
         }
 
@@ -167,6 +150,11 @@ namespace Microsoft.Templates.UI.V2Services
                 default:
                     throw new Exception($"The font size value '{fontSizeResourceKey}' is not found");
             }
+        }
+
+        private void OnThemeChanged()
+        {
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

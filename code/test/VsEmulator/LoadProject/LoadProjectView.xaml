@@ -26,7 +26,7 @@
         <Button Grid.Row="0" Grid.Column="2" Command="{Binding BrowseCommand}" Content="Browse..." Style="{StaticResource BrowseButton}" />
 
         <StackPanel Grid.Row="1" Grid.Column="3" Style="{StaticResource CommandsContainer}">
-            <Button Content="Ok" Command="{Binding OkCommand}" Style="{StaticResource CommandButton}" />
+            <Button x:Name="okButton" Content="Ok" Command="{Binding OkCommand}" Style="{StaticResource CommandButton}" />
             <Button Content="Cancel" Command="{Binding CloseCommand}" Style="{StaticResource CommandButton}" />
         </StackPanel>
     </Grid>

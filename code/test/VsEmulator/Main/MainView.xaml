@@ -40,7 +40,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <TextBlock>
-                        <Hyperlink Command="{Binding NewCSharpProjectCommand}">
+                        <Hyperlink x:Name="newCSharpProjectButton" Command="{Binding NewCSharpProjectCommand}">
                             <TextBlock Text="New C# project..."/>
                         </Hyperlink>
                     </TextBlock>

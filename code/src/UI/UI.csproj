@@ -234,7 +234,6 @@
     </Compile>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Extensions\ListViewExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\SyncStatusExtensions.cs" />
     <Compile Include="Extensions\ValidationExtensions.cs" />
     <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
@@ -346,6 +345,7 @@
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
     <Compile Include="V2Services\NavigationService.cs" />
+    <Compile Include="V2Services\Styles\LightColorValues.cs" />
     <Compile Include="V2Services\Styles\FakeStyleValuesProvider.cs" />
     <Compile Include="V2Services\Styles\IStyleValuesProvider.cs" />
     <Compile Include="V2Services\Styles\UIStylesService.Colors.cs" />

@@ -3,10 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Linq;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
+
 using Microsoft.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 
@@ -14,28 +13,126 @@ namespace Microsoft.Templates.UI.V2Services
 {
     public class VSStyleValuesProvider : IStyleValuesProvider
     {
+        public VSStyleValuesProvider()
+        {
+            VSColorTheme.ThemeChanged += OnThemeChanged;
+        }
+
+        private void OnThemeChanged(ThemeChangedEventArgs e)
+        {
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public event EventHandler ThemeChanged;
+
         public Brush GetColor(string className, string memberName)
         {
-            Type classType = null;
             if (className == "ThemedDialogColors")
             {
-                classType = typeof(ThemedDialogColors);
-            }
-
-            if (classType != null)
-            {
-                MemberInfo[] findMembers = classType.GetMember(memberName);
-
-                if (findMembers.Any())
+                switch (memberName)
                 {
-                    MemberInfo member = findMembers.First();
-                    PropertyInfo propertyInfo = member as PropertyInfo;
-                    ThemeResourceKey themeResourceKey = propertyInfo.GetMethod.Invoke(null, null) as ThemeResourceKey;
-                    return GetColor(themeResourceKey);
+                    case "WindowPanelColorKey":
+                        return GetColor(ThemedDialogColors.WindowPanelColorKey);
+                    case "WindowBorderColorKey":
+                        return GetColor(ThemedDialogColors.WindowBorderColorKey);
+                    case "HeaderTextColorKey":
+                        return GetColor(ThemedDialogColors.HeaderTextColorKey);
+                    case "HyperlinkColorKey":
+                        return GetColor(ThemedDialogColors.HyperlinkColorKey);
+                    case "HyperlinkHoverColorKey":
+                        return GetColor(ThemedDialogColors.HyperlinkHoverColorKey);
+                    case "HyperlinkPressedColorKey":
+                        return GetColor(ThemedDialogColors.HyperlinkPressedColorKey);
+                    case "HyperlinkDisabledColorKey":
+                        return GetColor(ThemedDialogColors.HyperlinkDisabledColorKey);
+                    case "SelectedItemActiveColorKey":
+                        return GetColor(ThemedDialogColors.SelectedItemActiveColorKey);
+                    case "SelectedItemInactiveColorKey":
+                        return GetColor(ThemedDialogColors.SelectedItemInactiveColorKey);
+                    case "ListItemMouseOverColorKey":
+                        return GetColor(ThemedDialogColors.ListItemMouseOverColorKey);
+                    case "ListItemDisabledTextColorKey":
+                        return GetColor(ThemedDialogColors.ListItemDisabledTextColorKey);
+                    case "GridHeadingBackgroundColorKey":
+                        return GetColor(ThemedDialogColors.GridHeadingBackgroundColorKey);
+                    case "GridHeadingHoverBackgroundColorKey":
+                        return GetColor(ThemedDialogColors.GridHeadingHoverBackgroundColorKey);
+                    case "GridHeadingTextColorKey":
+                        return GetColor(ThemedDialogColors.GridHeadingTextColorKey);
+                    case "GridHeadingHoverTextColorKey":
+                        return GetColor(ThemedDialogColors.GridHeadingHoverTextColorKey);
+                    case "GridLineColorKey":
+                        return GetColor(ThemedDialogColors.GridLineColorKey);
+                    case "SectionDividerColorKey":
+                        return GetColor(ThemedDialogColors.SectionDividerColorKey);
+                    case "WindowButtonColorKey":
+                        return GetColor(ThemedDialogColors.WindowButtonColorKey);
+                    case "WindowButtonHoverColorKey":
+                        return GetColor(ThemedDialogColors.WindowButtonHoverColorKey);
+                    case "WindowButtonDownColorKey":
+                        return GetColor(ThemedDialogColors.WindowButtonDownColorKey);
+                    case "WindowButtonBorderColorKey":
+                        return GetColor(ThemedDialogColors.WindowButtonBorderColorKey);
+                    case "WindowButtonHoverBorderColorKey":
+                        return GetColor(ThemedDialogColors.WindowButtonHoverBorderColorKey);
+                    case "WindowButtonDownBorderColorKey":
+                        return GetColor(ThemedDialogColors.WindowButtonDownBorderColorKey);
+                    case "WindowButtonGlyphColorKey":
+                        return GetColor(ThemedDialogColors.WindowButtonGlyphColorKey);
+                    case "WindowButtonHoverGlyphColorKey":
+                        return GetColor(ThemedDialogColors.WindowButtonHoverGlyphColorKey);
+                    case "WindowButtonDownGlyphColorKey":
+                        return GetColor(ThemedDialogColors.WindowButtonDownGlyphColorKey);
+                    case "WizardFooterColorKey":
+                        return GetColor(ThemedDialogColors.WizardFooterColorKey);
+                    case "HeaderTextSecondaryColorKey":
+                        return LightColorValues.Color_FF_828282; // TODO: Replace this temporary value for a VS Color
+                    case "WizardFooterTextColorKey":
+                        return LightColorValues.Color_FF_828282; // TODO: Replace this temporary value for a VS Color
+                    default:
+                        throw new Exception($"The color key value '{memberName}' is not found");
                 }
             }
-
-            throw new Exception($"Class name not recognized '{className}'");
+            else if (className == "ThemedCardColors")
+            {
+                switch (memberName)
+                {
+                    case "CardTitleTextColorKey":
+                        return LightColorValues.Color_FF_1E1E1E; // TODO: Replace this temporary value for a VS Color
+                    case "CardDescriptionTextColorKey":
+                        return LightColorValues.Color_FF_717171; // TODO: Replace this temporary value for a VS Color
+                    case "CardBackgroundDefaultColorKey":
+                        return LightColorValues.Color_FF_FFFFFF; // TODO: Replace this temporary value for a VS Color
+                    case "CardBackgroundFocusColorKey":
+                        return LightColorValues.Color_FF_FFFFFF; // TODO: Replace this temporary value for a VS Color
+                    case "CardBackgroundHoverColorKey":
+                        return LightColorValues.Color_FF_EFEFF2; // TODO: Replace this temporary value for a VS Color
+                    case "CardBackgroundPressedColorKey":
+                        return LightColorValues.Color_FF_EFEFF2; // TODO: Replace this temporary value for a VS Color
+                    case "CardBackgroundSelectedColorKey":
+                        return LightColorValues.Color_FF_FFFFFF; // TODO: Replace this temporary value for a VS Color
+                    case "CardBackgroundDisabledColorKey":
+                        return LightColorValues.Color_FF_F5F5F5; // TODO: Replace this temporary value for a VS Color
+                    case "CardBorderDefaultColorKey":
+                        return LightColorValues.Color_FF_BFBFBF; // TODO: Replace this temporary value for a VS Color
+                    case "CardBorderFocusColorKey":
+                        return LightColorValues.Color_FF_3399FF; // TODO: Replace this temporary value for a VS Color
+                    case "CardBorderHoverColorKey":
+                        return LightColorValues.Color_FF_9A9A9A; // TODO: Replace this temporary value for a VS Color
+                    case "CardBorderPressedColorKey":
+                        return LightColorValues.Color_FF_007ACC; // TODO: Replace this temporary value for a VS Color
+                    case "CardBorderSelectedColorKey":
+                        return LightColorValues.Color_FF_007ACC; // TODO: Replace this temporary value for a VS Color
+                    case "CardBorderDisabledColorKey":
+                        return LightColorValues.Color_FF_CCCEDB; // TODO: Replace this temporary value for a VS Color
+                    default:
+                        throw new Exception($"The color key value '{memberName}' is not found");
+                }
+            }
+            else
+            {
+                throw new Exception($"Class name not recognized '{className}'");
+            }
         }
 
         public Brush GetColor(ThemeResourceKey themeResourceKey)

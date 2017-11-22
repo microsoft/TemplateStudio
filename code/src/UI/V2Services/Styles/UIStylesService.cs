@@ -16,17 +16,17 @@ namespace Microsoft.Templates.UI.V2Services
 
         public UIStylesService()
         {
-            //VSColorTheme.ThemeChanged += OnThemeChanged;
         }
-
-        //private void OnThemeChanged(ThemeChangedEventArgs e)
-        //{
-        //    SetStyles();
-        //}
 
         public void Initialize(IStyleValuesProvider stylesProvider)
         {
             _stylesProvider = stylesProvider;
+            _stylesProvider.ThemeChanged += StylesProvider_ThemeChanged;
+            SetStyles();
+        }
+
+        private void StylesProvider_ThemeChanged(object sender, System.EventArgs e)
+        {
             SetStyles();
         }
 
@@ -36,6 +36,7 @@ namespace Microsoft.Templates.UI.V2Services
             WindowPanel = _stylesProvider.GetColor("ThemedDialogColors", "WindowPanelColorKey");
             WindowBorder = _stylesProvider.GetColor("ThemedDialogColors", "WindowBorderColorKey");
             HeaderText = _stylesProvider.GetColor("ThemedDialogColors", "HeaderTextColorKey");
+            HeaderTextSecondary = _stylesProvider.GetColor("ThemedDialogColors", "HeaderTextSecondaryColorKey");
             Hyperlink = _stylesProvider.GetColor("ThemedDialogColors", "HyperlinkColorKey");
             HyperlinkHover = _stylesProvider.GetColor("ThemedDialogColors", "HyperlinkHoverColorKey");
             HyperlinkPressed = _stylesProvider.GetColor("ThemedDialogColors", "HyperlinkPressedColorKey");
@@ -60,6 +61,21 @@ namespace Microsoft.Templates.UI.V2Services
             WindowButtonHoverGlyph = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonHoverGlyphColorKey");
             WindowButtonDownGlyph = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonDownGlyphColorKey");
             WizardFooter = _stylesProvider.GetColor("ThemedDialogColors", "WizardFooterColorKey");
+            WizardFooterText = _stylesProvider.GetColor("ThemedDialogColors", "WizardFooterTextColorKey");
+            CardTitleText = _stylesProvider.GetColor("ThemedCardColors", "CardTitleTextColorKey");
+            CardDescriptionText = _stylesProvider.GetColor("ThemedCardColors", "CardDescriptionTextColorKey");
+            CardBackgroundDefault = _stylesProvider.GetColor("ThemedCardColors", "CardBackgroundDefaultColorKey");
+            CardBackgroundFocus = _stylesProvider.GetColor("ThemedCardColors", "CardBackgroundFocusColorKey");
+            CardBackgroundHover = _stylesProvider.GetColor("ThemedCardColors", "CardBackgroundHoverColorKey");
+            CardBackgroundPressed = _stylesProvider.GetColor("ThemedCardColors", "CardBackgroundPressedColorKey");
+            CardBackgroundSelected = _stylesProvider.GetColor("ThemedCardColors", "CardBackgroundSelectedColorKey");
+            CardBackgroundDisabled = _stylesProvider.GetColor("ThemedCardColors", "CardBackgroundDisabledColorKey");
+            CardBorderDefault = _stylesProvider.GetColor("ThemedCardColors", "CardBorderDefaultColorKey");
+            CardBorderFocus = _stylesProvider.GetColor("ThemedCardColors", "CardBorderFocusColorKey");
+            CardBorderHover = _stylesProvider.GetColor("ThemedCardColors", "CardBorderHoverColorKey");
+            CardBorderPressed = _stylesProvider.GetColor("ThemedCardColors", "CardBorderPressedColorKey");
+            CardBorderSelected = _stylesProvider.GetColor("ThemedCardColors", "CardBorderSelectedColorKey");
+            CardBorderDisabled = _stylesProvider.GetColor("ThemedCardColors", "CardBorderDisabledColorKey");
 
             // FontSizes
             Environment90PercentFontSize = _stylesProvider.GetFontSize("Environment90PercentFontSize");
