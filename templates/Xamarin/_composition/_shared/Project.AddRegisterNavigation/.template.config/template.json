@@ -1,9 +1,9 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Project.Xamarin.AddRegisterNavigation",
+  "name": "Project.Xamarin.AddRegisterNavigation.Xamarin",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -30,10 +30,6 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
-    },  
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
     }
   }
 }

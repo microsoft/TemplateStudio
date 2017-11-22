@@ -38,6 +38,6 @@ namespace Param_RootNamespace.Services
         public async Task GoBack()
         {
             await NavPage.PopAsync();
-        }        
+        }
     }
 }

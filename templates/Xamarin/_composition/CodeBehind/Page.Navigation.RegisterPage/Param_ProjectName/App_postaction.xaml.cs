@@ -10,7 +10,7 @@ namespace Param_RootNamespace
             var navigationService = NavigationService.Instance;
             //^^
             //{[{
-            navigationService.Register("wts.ItemName", typeof(wts.ItemNamePage));                
+            navigationService.Register("wts.ItemName", typeof(wts.ItemNamePage));
             //}]}
         }
     }
