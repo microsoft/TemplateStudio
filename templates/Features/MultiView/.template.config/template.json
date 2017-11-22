@@ -3,10 +3,10 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Multi View",
+  "name": "Multiple views",
   "groupIdentity": "wts.Feat.MultiView",
   "identity": "wts.Feat.MultiView",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "description": "Enable your users to view independent parts of your app in separate windows.",
   "tags": {
     "language": "C#",
     "type": "item",
