@@ -2,5 +2,5 @@
   "author": "Microsoft",
   "name": "Web to app link",
   "description": "Adds the ability to open your app from a link in a website.",
-  "identity": "wts.Feat.WebToAppLink"
+  "identity": "wts.Feat.WebToAppLink.Prism"
 }
