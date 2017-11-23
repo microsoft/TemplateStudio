@@ -168,7 +168,7 @@ namespace WtsTool
             Version v = new Version(version);
             if(v.Build != 0 || v.Revision != 0)
             {
-                output.WriteCommandText($"WARN: Downloading main version for version {v.Major}.{v.Minor}, ignoring the version parts build ({v.Build}) and revision ({v.Revision}).");
+                output.WriteCommandText($"WARN: Downloading main version for {v.Major}.{v.Minor}, ignoring the version parts build ({v.Build}) and revision ({v.Revision}).");
             }
             RemoteTemplatesPackage match = config.Versions.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor)
                     .OrderByDescending(p => p.Date).FirstOrDefault();
