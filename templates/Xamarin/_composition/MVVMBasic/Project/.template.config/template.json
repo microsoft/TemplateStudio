@@ -1,22 +1,25 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Project.Blank.AddNavigation.Xamarin",
+  "name": "MVVMBasic.Project.Xamarin",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Xamarin",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & $projectType == Blank & wts.type == project"
+    "wts.compositionFilter": "$framework == MVVMBasic & wts.type == project"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
       "path": ".\\Param_ProjectName\\Services\\NavigationService.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName\\Helpers\\Observable.cs"
     }
   ],
   "symbols": {
@@ -33,10 +36,6 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
-    },  
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
     }
   }
 }

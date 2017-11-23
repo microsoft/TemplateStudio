@@ -3,14 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Page.Navigation.RegisterPage.Xamarin",
+  "name": "MVVMBasic.Page.AddViewModel.Xamarin",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Xamarin",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & wts.type == page"
+    "wts.compositionFilter": "$framework == MVVMBasic & wts.type == page",
+    "wts.export.baseclass": "Observable"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

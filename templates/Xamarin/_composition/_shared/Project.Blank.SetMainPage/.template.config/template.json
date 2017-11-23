@@ -3,21 +3,21 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Page.Navigation.RegisterPage.Xamarin",
+  "name": "Project.Blank.SetMainPage.Xamarin",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Xamarin",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & wts.type == page"
-  },
+    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & $projectType == Blank & wts.type == project"
+ },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],
   "symbols": {
-    "wts.projectName":
+    "wts.projectName": 
     {
       "type": "parameter",
       "replaces": "Param_ProjectName",
@@ -30,6 +30,10 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
     }
   }
 }

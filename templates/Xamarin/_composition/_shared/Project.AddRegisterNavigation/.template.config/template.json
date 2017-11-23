@@ -3,15 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Page.Navigation.RegisterPage.Xamarin",
+  "name": "Project.Xamarin.AddRegisterNavigation.Xamarin",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Xamarin",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & wts.type == page"
-  },
+    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & wts.type == project"
+ },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
