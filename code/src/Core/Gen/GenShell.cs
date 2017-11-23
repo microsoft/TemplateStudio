@@ -106,6 +106,11 @@ namespace Microsoft.Templates.Core.Gen
                     throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
                 }
 
+                if (Path.GetExtension(projFile) == ".shproj")
+                {
+                    projFile = projFile.Replace(".shproj", ".projitems");
+                }
+
                 if (!filesByProject.ContainsKey(projFile))
                 {
                     filesByProject.Add(projFile, new List<string>() { item });

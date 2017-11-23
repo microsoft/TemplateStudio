@@ -201,20 +201,24 @@ namespace Microsoft.Templates.Test
         }
 
         [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
-        public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
+        public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
             // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
 
+            var batFile = platform == Platforms.Xamarin ? "RestoreAndBuildXamarin.bat" : "RestoreAndBuild.bat";
+
+            var batPath = Path.GetDirectoryName(GetPath(batFile));
+
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath("RestoreAndBuild.bat")} \"{solutionFile}\" {Platform} {Config}");
+            Console.Out.Write($"### > Running following command: {GetPath(batFile)} \"{solutionFile}\" {Platform} {Config}");
 
-            var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuild.bat"))
+            var startInfo = new ProcessStartInfo(GetPath(batFile))
             {
-                Arguments = $"\"{solutionFile}\" {Platform} {Config}",
+                Arguments = $"\"{solutionFile}\" {Platform} {Config} {batPath}",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,

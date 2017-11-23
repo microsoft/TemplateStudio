@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Test
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, false);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Test
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName, false);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -95,7 +95,7 @@ namespace Microsoft.Templates.Test
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetRandomName, false);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Test
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true, false);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -119,7 +119,7 @@ namespace Microsoft.Templates.Test
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, false);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -129,7 +129,7 @@ namespace Microsoft.Templates.Test
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 
-            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName);
+            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName, platform);
         }
     }
 }

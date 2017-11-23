@@ -33,6 +33,25 @@ namespace Microsoft.Templates.Test
             return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
         }
 
+        protected static string ShortFramework(string framework)
+        {
+            switch (framework)
+            {
+                case "CodeBehind":
+                    return "CB";
+                case "MVVMBasic":
+                    return "MB";
+                case "MVVMLight":
+                    return "ML";
+                case "CaliburnMicro":
+                    return "CM";
+                case "Prism":
+                    return "P";
+                default:
+                    return framework;
+            }
+        }
+
         protected static string GetProjectExtension(string language)
         {
             return language == ProgrammingLanguages.CSharp ? "csproj" : "vbproj";
@@ -89,10 +108,10 @@ namespace Microsoft.Templates.Test
             Assert.Equal(expectedPlatform, info.Platform);
         }
 
-        protected void AssertBuildProjectAsync(string projectPath, string projectName)
+        protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform)
         {
             // Build solution
-            var result = _fixture.BuildSolution(projectName, projectPath);
+            var result = _fixture.BuildSolution(projectName, projectPath, platform);
 
             // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");

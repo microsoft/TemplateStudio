@@ -10,7 +10,7 @@ namespace Microsoft.Templates.Fakes
 {
     public static class VsItemTypeExtensions
     {
-        public static XElement GetXmlDefinition(this VsItemType itemType, string includePath)
+        public static XElement GetXmlDefinition(this VsItemType itemType, string includePath, bool isprojFile)
         {
             switch (itemType)
             {
@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Fakes
                 case VsItemType.CompiledWithDependant:
                     return GetCompileXElement(includePath, true);
                 case VsItemType.XamlPage:
-                    return GetXamlPageXElement(includePath);
+                    return GetXamlPageXElement(includePath, isprojFile);
                 case VsItemType.Resource:
                     return GetResourceXElement(includePath);
                 case VsItemType.Content:
@@ -54,14 +54,25 @@ namespace Microsoft.Templates.Fakes
             return itemElement;
         }
 
-        private static XElement GetXamlPageXElement(string includePath)
+        private static XElement GetXamlPageXElement(string includePath, bool isprojitemsfile)
         {
             var sb = new StringBuilder();
-            sb.Append($"<Page Include=\"{includePath}\"");
-            sb.AppendLine(">");
-            sb.AppendLine($"<Generator>MSBuild:Compile</Generator>");
-            sb.AppendLine($"<SubType>Designer</SubType>");
-            sb.AppendLine("</Page>");
+            if (!isprojitemsfile)
+            {
+                sb.Append($"<Page Include=\"{includePath}\"");
+                sb.AppendLine(">");
+                sb.AppendLine($"<Generator>MSBuild:Compile</Generator>");
+                sb.AppendLine($"<SubType>Designer</SubType>");
+                sb.AppendLine("</Page>");
+            }
+            else
+            {
+                sb.Append($"<EmbeddedResource Include=\"{includePath}\"");
+                sb.AppendLine(">");
+                sb.AppendLine($"<Generator>MSBuild:UpdateDesignTimeXaml</Generator>");
+                sb.AppendLine($"<SubType>Designer</SubType>");
+                sb.AppendLine("</EmbeddedResource>");
+            }
 
             var sr = new StringReader(sb.ToString());
             var itemElement = XElement.Load(sr);

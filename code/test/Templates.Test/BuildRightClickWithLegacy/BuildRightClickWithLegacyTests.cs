@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
 
             await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, platform, language);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
