@@ -3,12 +3,27 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <Style TargetType="TextBlock" x:Key="WtsTextBlockWizardTitle">
         <Setter Property="FontSize" Value="{Binding Environment200PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Margin" Value="25,0,0,0" />
+        <Setter Property="Margin" Value="{StaticResource Margin_L_Left}" />
+    </Style>
+
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlow">
+        <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_S_LeftTopRightBottom}" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlowSelected" BasedOn="{StaticResource WtsTextBlockSequentialFlow}">
+        <Setter Property="Foreground" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
 </ResourceDictionary>

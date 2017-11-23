@@ -352,5 +352,157 @@ namespace Microsoft.Templates.UI.V2Services
             get { return (Brush)GetValue(CardBorderDisabledProperty); }
             set { SetValue(CardBorderDisabledProperty, value); }
         }
+
+        public static readonly DependencyProperty ListItemTextProperty = DependencyProperty.Register("ListItemText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ListItemText
+        {
+            get { return (Brush)GetValue(ListItemTextProperty); }
+            set { SetValue(ListItemTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty ListItemTextDisabledProperty = DependencyProperty.Register("ListItemTextDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ListItemTextDisabled
+        {
+            get { return (Brush)GetValue(ListItemTextDisabledProperty); }
+            set { SetValue(ListItemTextDisabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonBorderProperty = DependencyProperty.Register("ButtonBorder", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonBorder
+        {
+            get { return (Brush)GetValue(ButtonBorderProperty); }
+            set { SetValue(ButtonBorderProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonProperty = DependencyProperty.Register("Button", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush Button
+        {
+            get { return (Brush)GetValue(ButtonProperty); }
+            set { SetValue(ButtonProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonBorderDefaultProperty = DependencyProperty.Register("ButtonBorderDefault", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonBorderDefault
+        {
+            get { return (Brush)GetValue(ButtonBorderDefaultProperty); }
+            set { SetValue(ButtonBorderDefaultProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonBorderFocusedProperty = DependencyProperty.Register("ButtonBorderFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonBorderFocused
+        {
+            get { return (Brush)GetValue(ButtonBorderFocusedProperty); }
+            set { SetValue(ButtonBorderFocusedProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonBorderHoverProperty = DependencyProperty.Register("ButtonBorderHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonBorderHover
+        {
+            get { return (Brush)GetValue(ButtonBorderHoverProperty); }
+            set { SetValue(ButtonBorderHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonBorderPressedProperty = DependencyProperty.Register("ButtonBorderPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonBorderPressed
+        {
+            get { return (Brush)GetValue(ButtonBorderPressedProperty); }
+            set { SetValue(ButtonBorderPressedProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonDefaultProperty = DependencyProperty.Register("ButtonDefault", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonDefault
+        {
+            get { return (Brush)GetValue(ButtonDefaultProperty); }
+            set { SetValue(ButtonDefaultProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonDefaultTextProperty = DependencyProperty.Register("ButtonDefaultText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonDefaultText
+        {
+            get { return (Brush)GetValue(ButtonDefaultTextProperty); }
+            set { SetValue(ButtonDefaultTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonDisabledProperty = DependencyProperty.Register("ButtonDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonDisabled
+        {
+            get { return (Brush)GetValue(ButtonDisabledProperty); }
+            set { SetValue(ButtonDisabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonDisabledTextProperty = DependencyProperty.Register("ButtonDisabledText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonDisabledText
+        {
+            get { return (Brush)GetValue(ButtonDisabledTextProperty); }
+            set { SetValue(ButtonDisabledTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonFocusedProperty = DependencyProperty.Register("ButtonFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonFocused
+        {
+            get { return (Brush)GetValue(ButtonFocusedProperty); }
+            set { SetValue(ButtonFocusedProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonFocusedTextProperty = DependencyProperty.Register("ButtonFocusedText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonFocusedText
+        {
+            get { return (Brush)GetValue(ButtonFocusedTextProperty); }
+            set { SetValue(ButtonFocusedTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonHoverProperty = DependencyProperty.Register("ButtonHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonHover
+        {
+            get { return (Brush)GetValue(ButtonHoverProperty); }
+            set { SetValue(ButtonHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonHoverTextProperty = DependencyProperty.Register("ButtonHoverText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonHoverText
+        {
+            get { return (Brush)GetValue(ButtonHoverTextProperty); }
+            set { SetValue(ButtonHoverTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonPressedProperty = DependencyProperty.Register("ButtonPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonPressed
+        {
+            get { return (Brush)GetValue(ButtonPressedProperty); }
+            set { SetValue(ButtonPressedProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonPressedTextProperty = DependencyProperty.Register("ButtonPressedText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonPressedText
+        {
+            get { return (Brush)GetValue(ButtonPressedTextProperty); }
+            set { SetValue(ButtonPressedTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty ButtonTextProperty = DependencyProperty.Register("ButtonText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonText
+        {
+            get { return (Brush)GetValue(ButtonTextProperty); }
+            set { SetValue(ButtonTextProperty, value); }
+        }
     }
 }

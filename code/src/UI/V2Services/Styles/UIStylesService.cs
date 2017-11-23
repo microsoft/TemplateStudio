@@ -77,9 +77,30 @@ namespace Microsoft.Templates.UI.V2Services
             CardBorderSelected = _stylesProvider.GetColor("ThemedCardColors", "CardBorderSelectedColorKey");
             CardBorderDisabled = _stylesProvider.GetColor("ThemedCardColors", "CardBorderDisabledColorKey");
 
+            ListItemText = _stylesProvider.GetColor("CommonDocumentColors", "ListItemTextColorKey");
+            ListItemTextDisabled = _stylesProvider.GetColor("CommonDocumentColors", "ListItemTextDisabledColorKey");
+
+            ButtonBorder = _stylesProvider.GetColor("CommonControlColors", "ButtonBorderColorKey");
+            Button = _stylesProvider.GetColor("CommonControlColors", "ButtonColorKey");
+            ButtonBorderDefault = _stylesProvider.GetColor("CommonControlColors", "ButtonBorderDefaultColorKey");
+            ButtonBorderFocused = _stylesProvider.GetColor("CommonControlColors", "ButtonBorderFocusedColorKey");
+            ButtonBorderHover = _stylesProvider.GetColor("CommonControlColors", "ButtonBorderHoverColorKey");
+            ButtonBorderPressed = _stylesProvider.GetColor("CommonControlColors", "ButtonBorderPressedColorKey");
+            ButtonDefault = _stylesProvider.GetColor("CommonControlColors", "ButtonDefaultColorKey");
+            ButtonDefaultText = _stylesProvider.GetColor("CommonControlColors", "ButtonDefaultTextColorKey");
+            ButtonDisabled = _stylesProvider.GetColor("CommonControlColors", "ButtonDisabledColorKey");
+            ButtonDisabledText = _stylesProvider.GetColor("CommonControlColors", "ButtonDisabledTextColorKey");
+            ButtonFocused = _stylesProvider.GetColor("CommonControlColors", "ButtonFocusedColorKey");
+            ButtonFocusedText = _stylesProvider.GetColor("CommonControlColors", "ButtonFocusedTextColorKey");
+            ButtonHover = _stylesProvider.GetColor("CommonControlColors", "ButtonHoverColorKey");
+            ButtonHoverText = _stylesProvider.GetColor("CommonControlColors", "ButtonHoverTextColorKey");
+            ButtonPressed = _stylesProvider.GetColor("CommonControlColors", "ButtonPressedColorKey");
+            ButtonPressedText = _stylesProvider.GetColor("CommonControlColors", "ButtonPressedTextColorKey");
+            ButtonText = _stylesProvider.GetColor("CommonControlColors", "ButtonTextColorKey");
+
             // FontSizes
             Environment90PercentFontSize = _stylesProvider.GetFontSize("Environment90PercentFontSize");
-            EnvironmentFontSize = _stylesProvider.GetFontSize("EnvironmentFontSize");
+            Environment100PercentFontSize = _stylesProvider.GetFontSize("Environment100PercentFontSize");
             Environment111PercentFontSize = _stylesProvider.GetFontSize("Environment111PercentFontSize");
             Environment122PercentFontSize = _stylesProvider.GetFontSize("Environment122PercentFontSize");
             Environment133PercentFontSize = _stylesProvider.GetFontSize("Environment133PercentFontSize");

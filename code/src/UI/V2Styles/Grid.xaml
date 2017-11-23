@@ -3,18 +3,26 @@
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services">
 
     <Style TargetType="Grid" x:Key="WtsGridBasePage">
-        <Setter Property="Background" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}"/>
+        <Setter Property="Background" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
     <Style TargetType="Grid" x:Key="WtsGridMainPage" BasedOn="{StaticResource WtsGridBasePage}">
     </Style>
 
     <Style TargetType="Grid" x:Key="WtsGridMainFooter">
-        <Setter Property="Background" Value="{Binding WizardFooter, Source={x:Static services:UIStylesService.Instance}}"/>
+        <Setter Property="Background" Value="{Binding WizardFooter, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="Grid" x:Key="WtsGridSeparator">
-        <Setter Property="Background" Value="{Binding WizardFooter, Source={x:Static services:UIStylesService.Instance}}"/>
+    <Style TargetType="Grid" x:Key="WtsGridSectionDivider">
+        <Setter Property="Background" Value="{Binding SectionDivider, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
+    <Style TargetType="Grid" x:Key="WtsGridSequentialFlowActive">
+        <Setter Property="Background" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
+    <Style TargetType="Grid" x:Key="WtsGridSequentialFlowInactive">
+        <Setter Property="Background" Value="Transparent" />
     </Style>
 
 </ResourceDictionary>

@@ -354,9 +354,8 @@
     <Compile Include="TemplateSelectors\StatusBoxTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
-    <Compile Include="V2Controls\WizardStep.cs" />
-    <Compile Include="V2Controls\WizardStepsControl.xaml.cs">
-      <DependentUpon>WizardStepsControl.xaml</DependentUpon>
+    <Compile Include="V2Controls\SequentialFlow.xaml.cs">
+      <DependentUpon>SequentialFlow.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Services\NavigationService.cs" />
     <Compile Include="V2Services\Styles\LightColorValues.cs" />
@@ -371,6 +370,9 @@
     <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="V2Views\NewProject\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\TemplateInfoPage.xaml.cs">
+      <DependentUpon>TemplateInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Views\NewProject\VSStyleValues.xaml.cs">
       <DependentUpon>VSStyleValues.xaml</DependentUpon>
@@ -549,11 +551,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Controls\WizardStepsControl.xaml">
+    <Page Include="V2Controls\SequentialFlow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="V2Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\_Thickness.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -570,6 +584,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Views\NewProject\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewProject\TemplateInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

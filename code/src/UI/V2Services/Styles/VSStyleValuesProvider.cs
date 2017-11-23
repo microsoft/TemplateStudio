@@ -93,6 +93,60 @@ namespace Microsoft.Templates.UI.V2Services
                         throw new Exception($"The color key value '{memberName}' is not found");
                 }
             }
+            else if (className == "CommonDocumentColors")
+            {
+                switch (memberName)
+                {
+                    case "ListItemTextColorKey":
+                        return GetColor(CommonDocumentColors.ListItemTextColorKey);
+                    case "ListItemTextDisabledColorKey":
+                        return GetColor(CommonDocumentColors.ListItemTextDisabledColorKey);
+                    default:
+                        throw new Exception($"The color key value '{memberName}' is not found");
+                }
+            }
+            else if (className == "CommonControlColors")
+            {
+                switch (memberName)
+                {
+                    case "ButtonBorderColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderColorKey);
+                    case "ButtonColorKey":
+                        return GetColor(CommonControlsColors.ButtonColorKey);
+                    case "ButtonBorderDefaultColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderDefaultColorKey);
+                    case "ButtonBorderFocusedColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderFocusedColorKey);
+                    case "ButtonBorderHoverColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderHoverColorKey);
+                    case "ButtonBorderPressedColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderPressedColorKey);
+                    case "ButtonDefaultColorKey":
+                        return GetColor(CommonControlsColors.ButtonDefaultColorKey);
+                    case "ButtonDefaultTextColorKey":
+                        return GetColor(CommonControlsColors.ButtonDefaultTextColorKey);
+                    case "ButtonDisabledColorKey":
+                        return GetColor(CommonControlsColors.ButtonDisabledColorKey);
+                    case "ButtonDisabledTextColorKey":
+                        return GetColor(CommonControlsColors.ButtonDisabledTextColorKey);
+                    case "ButtonFocusedColorKey":
+                        return GetColor(CommonControlsColors.ButtonFocusedColorKey);
+                    case "ButtonFocusedTextColorKey":
+                        return GetColor(CommonControlsColors.ButtonFocusedTextColorKey);
+                    case "ButtonHoverColorKey":
+                        return GetColor(CommonControlsColors.ButtonHoverColorKey);
+                    case "ButtonHoverTextColorKey":
+                        return GetColor(CommonControlsColors.ButtonHoverTextColorKey);
+                    case "ButtonPressedColorKey":
+                        return GetColor(CommonControlsColors.ButtonPressedColorKey);
+                    case "ButtonPressedTextColorKey":
+                        return GetColor(CommonControlsColors.ButtonPressedTextColorKey);
+                    case "ButtonTextColorKey":
+                        return GetColor(CommonControlsColors.ButtonTextColorKey);
+                    default:
+                        throw new Exception($"The color key value '{memberName}' is not found");
+                }
+            }
             else if (className == "ThemedCardColors")
             {
                 switch (memberName)
@@ -151,7 +205,7 @@ namespace Microsoft.Templates.UI.V2Services
         {
             switch (fontSizeResourceKey)
             {
-                case "EnvironmentFontSize":
+                case "Environment100PercentFontSize":
                     return GetVSFontSize(VsFonts.EnvironmentFontSizeKey);
                 case "Environment111PercentFontSize":
                     return GetVSFontSize(VsFonts.Environment111PercentFontSizeKey);

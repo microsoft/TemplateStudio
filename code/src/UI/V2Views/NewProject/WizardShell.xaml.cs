@@ -11,13 +11,11 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
 {
     public partial class WizardShell : Window
     {
-        public MainViewModel ViewModel { get; } = new MainViewModel();
-
         public UserSelection Result { get; set; }
 
         public WizardShell(string language)
         {
-            DataContext = ViewModel;
+            DataContext = MainViewModel.Instance;
             InitializeComponent();
             NavigationService.Initialize(mainFrame, new MainPage());
         }

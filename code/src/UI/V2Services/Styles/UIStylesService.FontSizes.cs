@@ -16,12 +16,12 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(Environment90PercentFontSizeProperty, value); }
         }
 
-        public static readonly DependencyProperty EnvironmentFontSizeProperty = DependencyProperty.Register("EnvironmentFontSize", typeof(double), typeof(UIStylesService), new PropertyMetadata(0.0));
+        public static readonly DependencyProperty Environment100PercentFontSizeProperty = DependencyProperty.Register("Environment100PercentFontSize", typeof(double), typeof(UIStylesService), new PropertyMetadata(0.0));
 
-        public double EnvironmentFontSize
+        public double Environment100PercentFontSize
         {
-            get { return (double)GetValue(EnvironmentFontSizeProperty); }
-            set { SetValue(EnvironmentFontSizeProperty, value); }
+            get { return (double)GetValue(Environment100PercentFontSizeProperty); }
+            set { SetValue(Environment100PercentFontSizeProperty, value); }
         }
 
         public static readonly DependencyProperty Environment111PercentFontSizeProperty = DependencyProperty.Register("Environment111PercentFontSize", typeof(double), typeof(UIStylesService), new PropertyMetadata(0.0));

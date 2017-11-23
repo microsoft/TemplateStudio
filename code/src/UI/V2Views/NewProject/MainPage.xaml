@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="MainPage">
@@ -22,11 +23,15 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="2"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1" Style="{StaticResource WtsGridSeparator}" />
+            <controls:SequentialFlow Step="{Binding Step}"/>
+            <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDivider}" />
+            <Grid Grid.Column="2">
+                <Button Content="Open detail" Command="{Binding OpenDetailCommand}"/>
+            </Grid>
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             

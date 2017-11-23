@@ -81,6 +81,60 @@ namespace Microsoft.Templates.UI.V2Services
                         throw new Exception($"The color key value '{memberName}' is not found");
                 }
             }
+            else if (className == "CommonDocumentColors")
+            {
+                switch (memberName)
+                {
+                    case "ListItemTextColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    case "ListItemTextDisabledColorKey":
+                        return LightColorValues.Color_FF_A2A4A5;
+                    default:
+                        throw new Exception($"The color key value '{memberName}' is not found");
+                }
+            }
+            else if (className == "CommonControlColors")
+            {
+                switch (memberName)
+                {
+                    case "ButtonBorderColorKey":
+                        return LightColorValues.Color_FF_ACACAC;
+                    case "ButtonColorKey":
+                        return LightColorValues.Color_FF_ECECF0;
+                    case "ButtonBorderDefaultColorKey":
+                        return LightColorValues.Color_FF_3399FF;
+                    case "ButtonBorderFocusedColorKey":
+                        return LightColorValues.Color_FF_3399FF;
+                    case "ButtonBorderHoverColorKey":
+                        return LightColorValues.Color_FF_3399FF;
+                    case "ButtonBorderPressedColorKey":
+                        return LightColorValues.Color_FF_007ACC;
+                    case "ButtonDefaultColorKey":
+                        return LightColorValues.Color_FF_ECECF0;
+                    case "ButtonDefaultTextColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    case "ButtonDisabledColorKey":
+                        return LightColorValues.Color_FF_F5F5F5;
+                    case "ButtonDisabledTextColorKey":
+                        return LightColorValues.Color_FF_A2A4A5;
+                    case "ButtonFocusedColorKey":
+                        return LightColorValues.Color_FF_C9DEF5;
+                    case "ButtonFocusedTextColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    case "ButtonHoverColorKey":
+                        return LightColorValues.Color_FF_C9DEF5;
+                    case "ButtonHoverTextColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    case "ButtonPressedColorKey":
+                        return LightColorValues.Color_FF_007ACC;
+                    case "ButtonPressedTextColorKey":
+                        return LightColorValues.Color_FF_FFFFFF;
+                    case "ButtonTextColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    default:
+                        throw new Exception($"The color key value '{memberName}' is not found");
+                }
+            }
             else if (className == "ThemedCardColors")
             {
                 switch (memberName)
@@ -127,7 +181,7 @@ namespace Microsoft.Templates.UI.V2Services
         {
             switch (fontSizeResourceKey)
             {
-                case "EnvironmentFontSize":
+                case "Environment100PercentFontSize":
                     return _baseFontSize * 1.0;
                 case "Environment111PercentFontSize":
                     return _baseFontSize * 1.11;

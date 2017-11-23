@@ -59,11 +59,11 @@
                     <TextBlock
                         Text="Environment FontSize 100%"
                         Style="{StaticResource FontSizeTextBlockStyle}"
-                        FontSize="{Binding EnvironmentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                        FontSize="{Binding Environment100PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
                     <TextBlock
-                        Text="{Binding EnvironmentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
+                        Text="{Binding Environment100PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}"
                         Style="{StaticResource FontSizeTextBlockStyle}"
-                        FontSize="{Binding EnvironmentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
+                        FontSize="{Binding Environment100PercentFontSize, Source={x:Static v2services:UIStylesService.Instance}}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">

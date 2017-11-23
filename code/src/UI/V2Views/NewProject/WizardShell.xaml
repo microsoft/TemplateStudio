@@ -28,12 +28,12 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <TextBlock Text="Windows Template Studio" Style="{StaticResource WtsTextBlockWizardTitle}" />
+            <TextBlock Text="New Universal Windows Platform app" Style="{StaticResource WtsTextBlockWizardTitle}" />
         </Grid>
 
-        <Grid Grid.Row="1" Style="{StaticResource WtsGridSeparator}" />
+        <Grid Grid.Row="1" Style="{StaticResource WtsGridSectionDivider}" />
 
-        <Frame Grid.Row="2" x:Name="mainFrame" />
+        <Frame Grid.Row="2" x:Name="mainFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
 
     </Grid>
 
