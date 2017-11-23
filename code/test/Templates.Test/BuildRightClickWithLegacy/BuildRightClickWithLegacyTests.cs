@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Test
             var projectPath = await AssertGenerateProjectWithOutPlatformAsync(selector, projectName, projectType, framework, language, null, false);
 
             var fixture = _fixture as BuildRightClickWithLegacyFixture;
-            await fixture.ChangeTemplatesSourceAsync(fixture.LocalSource, language);
+            await fixture.ChangeTemplatesSourceAsync(fixture.LocalSource, Platforms.Uwp, language);
 
             var rightClickTemplates = _fixture.Templates().Where(
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
 
             await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, platform, language);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<string> AssertGenerateProjectWithOutPlatformAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
-            await _fixture.InitializeFixtureAsync(language, this);
+            await _fixture.InitializeFixtureAsync(Platforms.Uwp, language, this);
 
             var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
 

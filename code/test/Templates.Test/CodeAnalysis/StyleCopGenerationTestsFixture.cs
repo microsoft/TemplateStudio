@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Test
 
         private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
             if (Templates == null)
             {
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
@@ -73,26 +73,26 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             await InitializeTemplatesForLanguageAsync(new StyleCopPlusLocalTemplatesSource());
 
-            foreach (var platform in Platforms.GetAllPlatforms())
+            // TODO: Add Stylecop tests for xamarin
+            // foreach (var platform in Platforms.GetAllPlatforms())
+            var platform = Platforms.Uwp;
+            var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
+
+            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                        .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                        .Select(m => m.Name);
+
+            foreach (var projectType in projectTypes)
             {
-                var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
+                var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                            .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
-                            .Select(m => m.Name);
+                var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
+                                            .Where(m => projectFrameworks.Contains(m.Name))
+                                            .Select(m => m.Name).ToList();
 
-                foreach (var projectType in projectTypes)
+                foreach (var framework in targetFrameworks)
                 {
-                    var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
-
-                    var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
-                                                .Where(m => projectFrameworks.Contains(m.Name))
-                                                .Select(m => m.Name).ToList();
-
-                    foreach (var framework in targetFrameworks)
-                    {
-                        result.Add(new object[] { projectType, framework, platform });
-                    }
+                    result.Add(new object[] { projectType, framework, platform });
                 }
             }
 

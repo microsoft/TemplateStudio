@@ -23,14 +23,33 @@ namespace Microsoft.Templates.Test
     {
         protected BaseGenAndBuildFixture _fixture;
 
-        private async Task SetUpFixtureForTestingAsync(string language)
+        private async Task SetUpFixtureForTestingAsync(string platform, string language)
         {
-            await _fixture.InitializeFixtureAsync(language, this);
+            await _fixture.InitializeFixtureAsync(platform, language, this);
         }
 
         protected static string ShortLanguageName(string language)
         {
             return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
+        }
+
+        protected static string ShortFramework(string framework)
+        {
+            switch (framework)
+            {
+                case "CodeBehind":
+                    return "CB";
+                case "MVVMBasic":
+                    return "MB";
+                case "MVVMLight":
+                    return "ML";
+                case "CaliburnMicro":
+                    return "CM";
+                case "Prism":
+                    return "P";
+                default:
+                    return framework;
+            }
         }
 
         protected static string GetProjectExtension(string language)
@@ -40,7 +59,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            await SetUpFixtureForTestingAsync(platform, language);
 
             var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
 
@@ -63,7 +82,13 @@ namespace Microsoft.Templates.Test
             // Assert
             Assert.True(Directory.Exists(resultPath));
             Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
-            AssertCorrectProjectConfigInfo(projectType, framework, platform);
+
+            if (platform == Platforms.Uwp)
+            {
+                AssertCorrectProjectConfigInfo(projectType, framework, platform);
+            }
+
+            // TODO: Assert project config for xamarin once defined where this goes, x-ref (https://github.com/Microsoft/WindowsTemplateStudio/issues/1350)
 
             // Clean
             if (cleanGeneration)
@@ -83,10 +108,10 @@ namespace Microsoft.Templates.Test
             Assert.Equal(expectedPlatform, info.Platform);
         }
 
-        protected void AssertBuildProjectAsync(string projectPath, string projectName)
+        protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform)
         {
             // Build solution
-            var result = _fixture.BuildSolution(projectName, projectPath);
+            var result = _fixture.BuildSolution(projectName, projectPath, platform);
 
             // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
@@ -97,7 +122,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string platform, string language, bool emptyProject, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            await SetUpFixtureForTestingAsync(platform, language);
 
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
@@ -172,7 +197,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string platform, string itemId, string language, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            await SetUpFixtureForTestingAsync(platform, language);
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework) && t.GetPlatform() == platform);
             var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity == itemId);
@@ -227,7 +252,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string platform, string language, string projectType, string framework, IEnumerable<string> genIdentities)
         {
-            await SetUpFixtureForTestingAsync(language);
+            await SetUpFixtureForTestingAsync(platform, language);
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
 

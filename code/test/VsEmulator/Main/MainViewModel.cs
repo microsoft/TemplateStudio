@@ -20,6 +20,7 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
+using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
@@ -33,6 +34,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private readonly MainView _host;
 
         private string _language;
+        private string _platform;
 
         public MainViewModel(MainView host)
         {
@@ -72,6 +74,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand NewUwpCSharpProjectCommand => new RelayCommand(NewUwpCSharpProject);
 
         public RelayCommand NewUwpVisualBasicProjectCommand => new RelayCommand(NewUwpVisualBasicProject);
+
+        public RelayCommand NewXamarinCSharpProjectCommand => new RelayCommand(NewXamarinCSharpProject);
 
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
 
@@ -190,8 +194,18 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
+        private void NewXamarinCSharpProject()
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await NewProjectAsync(Platforms.Xamarin, ProgrammingLanguages.CSharp);
+            });
+        }
+
         private async Task NewProjectAsync(string platform, string language)
         {
+            _platform = platform;
             _language = language;
             ConfigureGenContext(ForceLocalTemplatesRefresh);
 
@@ -202,6 +216,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+
                     var solutionPath = Path.Combine(newProjectInfo.location, newProjectInfo.name);
 
                     GenContext.Current = this;
@@ -315,7 +330,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                         .Union(Directory.EnumerateFiles(SolutionPath, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
                 _language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
-
+                _platform = ProjectConfigInfo.ReadProjectConfiguration().Platform;
                 ConfigureGenContext(ForceLocalTemplatesRefresh);
 
                 GenContext.Current = this;
@@ -452,7 +467,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             GenContext.Bootstrap(
                 new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
-                new FakeGenShell(_language, msg => SetState(msg), l => AddLog(l), _host),
+                new FakeGenShell(_platform, _language, msg => SetState(msg), l => AddLog(l), _host),
                 new Version(WizardVersion),
                 _language);
 
