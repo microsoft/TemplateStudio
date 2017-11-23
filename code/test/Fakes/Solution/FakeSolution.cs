@@ -281,13 +281,13 @@ EndProject
                     {
                         content = XamarinSharedMSBuildProjectFilesTemplate
                                 .Replace("{name}", GenContext.Current.ProjectName)
-                                .Replace("{id}", projectGuid);
+                                .Replace("{id}", projectGuid.ToLowerInvariant());
                     }
                     else
                     {
                         content = XamarinMSBuildProjectFilesTemplate
                                 .Replace("{name}", GenContext.Current.ProjectName)
-                                .Replace("{id}", projectGuid);
+                                .Replace("{id}", projectGuid.ToLowerInvariant());
                     }
 
                     slnContent = slnContent.Insert(endGobalSectionIndex - 1, content);

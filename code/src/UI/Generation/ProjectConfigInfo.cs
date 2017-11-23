@@ -321,7 +321,7 @@ namespace Microsoft.Templates.UI.Generation
         {
             var projectTypeGuids = GenContext.ToolBox.Shell.GetActiveProjectTypeGuids();
 
-            if (projectTypeGuids.ToUpper(CultureInfo.InvariantCulture).Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
+            if (projectTypeGuids.ToUpperInvariant().Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
             {
                 return true;
             }
