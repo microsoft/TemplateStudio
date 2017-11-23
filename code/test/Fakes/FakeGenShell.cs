@@ -146,7 +146,7 @@ namespace Microsoft.Templates.Fakes
             return Directory.EnumerateFiles(path, "*proj").FirstOrDefault();
         }
 
-        public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
+        public override bool SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectName)
         {
             return true;
         }

@@ -11,7 +11,6 @@ namespace Param_RootNamespace
             //^^
             //{[{
             RegisterNavigationPages();
-            MainPage = new NavigationPage(new Param_HomeNamePage());
             //}]}
         }
         //^^

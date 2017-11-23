@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -117,7 +118,17 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
+        public override bool SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
+        {
+            var defaultProject = GetProjectByGuid(projectGuid);
+
+            SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
+            SetStartupProject(defaultProject);
+
+            return true;
+        }
+
+        private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
         {
             foreach (SolutionConfiguration solConfiguration in Dte.Solution.SolutionBuild.SolutionConfigurations)
             {
@@ -125,7 +136,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     foreach (SolutionContext context in solConfiguration.SolutionContexts)
                     {
-                        if (context.PlatformName == platformName)
+                        if (context.PlatformName == platformName && context.ProjectName == project.UniqueName)
                         {
                             solConfiguration.Activate();
 
@@ -136,6 +147,15 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return false;
+        }
+
+        private void SetStartupProject(Project project)
+        {
+            if (project != null)
+            {
+                var solution = GetSolution();
+                solution.Properties.Item("StartupProject").Value = project.Name;
+            }
         }
 
         public override void AddProjectToSolution(string projectFullPath)
@@ -246,16 +266,19 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override string GetActiveProjectTypeGuids()
         {
+            var project = GetActiveProject();
+            return GetProjectTypeGuid(project);
+        }
+
+        private string GetProjectTypeGuid(Project project)
+        {
             SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
-            var p = GetActiveProject();
-
-            if (p != null)
+            if (project != null)
             {
-                VSSolution.GetProjectOfUniqueName(p.FullName, out IVsHierarchy hierarchy);
+                VSSolution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
 
-                var aggregatableProject = hierarchy as IVsAggregatableProjectCorrected;
-                if (aggregatableProject != null)
+                if (hierarchy is IVsAggregatableProjectCorrected aggregatableProject)
                 {
                     aggregatableProject.GetAggregateProjectTypeGuids(out string projTypeGuids);
 
@@ -264,6 +287,21 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return string.Empty;
+        }
+
+        private Project GetProjectByGuid(string projectTypeGuid)
+        {
+            foreach (var p in Dte?.Solution?.Projects?.Cast<Project>())
+            {
+                var projectGuid = GetProjectTypeGuid(p);
+
+                if (projectGuid.ToUpper().Split(';').Contains($"{{{projectTypeGuid}}}"))
+                {
+                    return p;
+                }
+            }
+
+            return null;
         }
 
         protected override string GetSelectedItemPath()

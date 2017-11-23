@@ -5,13 +5,13 @@
   ],
   "name": "Blank",
   "groupIdentity": "wts.Page.Blank.Xamarin",
-  "identity": "wts.Page.Blank.CodeBehind.Xamarin",
+  "identity": "wts.Page.Blank.Xamarin",
   "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "CodeBehind",
+    "wts.framework": "MVVMBasic",
     "wts.platform" : "Xamarin",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
@@ -27,6 +27,9 @@
     },
     {
       "path": ".\\Param_ProjectName\\Param_ProjectName\\Views\\BlankViewPage.xaml.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName\\Param_ProjectName\\ViewModels\\BlankViewViewModel.cs"
     }
   ],
   "symbols": {
@@ -43,6 +46,10 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
     }
   }
 }
