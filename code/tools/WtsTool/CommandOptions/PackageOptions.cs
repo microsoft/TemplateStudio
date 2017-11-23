@@ -26,7 +26,7 @@ namespace WtsTool.CommandOptions
         [Option('x', "extract", Required = true, HelpText = "Extract the contents from the package specified", SetName = "Extract")]
         public string Extract { get; set; }
 
-        [Option('n', "create-new", Required = true, HelpText = "Creates a new templates package with the contents in the folder specified", SetName = "Create")]
+        [Option('n', "create-new", Required = true, HelpText = "Creates a new templates package with the contents in the folder specified in this option.", SetName = "Create")]
         public string CreateNew { get; set; }
 
         [Option('c', "cert", Required = false, HelpText = "Certificate thumbprint to be used in the package creation", SetName = "Create")]
@@ -35,7 +35,7 @@ namespace WtsTool.CommandOptions
         [Option('f', "out-file", Required = false, HelpText = "Output file name (myfile.mstx) to be used for package creation", SetName = "Create", Default = "Templates.mstx")]
         public string OutFile { get; set; }
 
-        [Option('p', "out-path", Required = false, HelpText = "Output path to be used for extraction", SetName = "Extract", Default = ".")]
-        public string OutPath { get; set; }
+        [Option('d', "destination-dir", Required = false, HelpText = "Destionation directory path to be used for extraction", SetName = "Extract", Default = ".")]
+        public string DestionationDir { get; set; }
     }
 }

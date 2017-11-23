@@ -9,24 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Templates.Core;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using WtsTool.CommandOptions;
-using Microsoft.Templates.Core;
 
 namespace WtsTool
 {
     public static class RemoteSourceWorker
     {
-        public static void ListMainVersions(RemoteSourceCommonOptions options, TextWriter output, TextWriter error)
+        public static void ListSummaryInfo(RemoteSourceListOptions options, TextWriter output, TextWriter error)
         {
             try
             {
-                output.WriteCommandHeader($"Main versions info environment {options.Env.ToString()} ({options.StorageAccount})");
-                RemoteSourceVersionsInfo versionsInfo = RemoteSource.GetVersionsInfo(options.StorageAccount, options.Env.ToString().ToLowerInvariant());
+                output.WriteCommandHeader($"Summary Info for environment {options.Env.ToString()} ({options.StorageAccount})");
+                RemoteTemplatesSourceConfig config = GetConfig(options, output);
+                output.WriteLine();
 
-                WriteSummary(versionsInfo, output);
-                WritePackagesTable(versionsInfo.AvailableVersions, output);
+                WriteSummary(config, output);
             }
             catch (Exception ex)
             {
@@ -34,29 +35,17 @@ namespace WtsTool
             }
         }
 
-        public static void ListDetailedVersions(RemoteSourceCommonOptions options, TextWriter output, TextWriter error)
+        public static void ListDetailedVersions(RemoteSourceListOptions options, TextWriter output, TextWriter error)
         {
             try
             {
-                output.WriteCommandHeader($"Detailed versions info environment {options.Env.ToString()} ({options.StorageAccount})");
-                RemoteSourceVersionsInfo versionsInfo = RemoteSource.GetVersionsInfo(options.StorageAccount, options.Env.ToString().ToLowerInvariant());
+                output.WriteCommandHeader($"Versions for environment {options.Env.ToString()} ({options.StorageAccount})");
 
-                WriteSummary(versionsInfo, output);
-                WritePackagesTable(versionsInfo.Versions, output);
-            }
-            catch (Exception ex)
-            {
-                error.WriteException(ex, $"Unable to list remote source info from enviorment {options.Env.ToString()} (storage account: {options.StorageAccount}).");
-            }
-        }
+                RemoteTemplatesSourceConfig config = GetConfig(options, output);
+                output.WriteLine();
 
-        public static void ListSummaryInfo(RemoteSourceCommonOptions options, TextWriter output, TextWriter error)
-        {
-            try
-            {
-                output.WriteCommandHeader($"List Summary Info for environment {options.Env.ToString()} ({options.StorageAccount})");
-                RemoteSourceVersionsInfo versionsInfo = RemoteSource.GetVersionsInfo(options.StorageAccount, options.Env.ToString().ToLowerInvariant());
-                WriteSummary(versionsInfo, output);
+                WriteSummary(config, output);
+                WritePackagesTable(config.Versions, output);
             }
             catch (Exception ex)
             {
@@ -80,28 +69,52 @@ namespace WtsTool
             }
         }
 
+        public static void PublishConfig(RemoteSourcePublishOptions options, TextWriter output, TextWriter error)
+        {
+            try
+            {
+                output.WriteCommandHeader($"Publishing the config.json file for environment {options.Env.ToString()} ({options.StorageAccount})");
+                PublishUpdatedRemoteSourceConfig(options, output);
+            }
+            catch (Exception ex)
+            {
+                error.WriteException(ex, $"Unable to publish an updated configuration file to specified environment container.");
+            }
+        }
+
         public static void DownloadContent(RemoteSourceDownloadOptions options, TextWriter output, TextWriter error)
         {
             try
             {
                 output.WriteCommandHeader($"Downloading templates content from environment {options.Env.ToString()} ({options.StorageAccount})");
 
-                RemoteSourceVersionsInfo versionsInfo = RemoteSource.GetVersionsInfo(options.StorageAccount, options.Env.ToString().ToLowerInvariant());
-                RemotePackageInfo package = null;
-                if (options.Latest)
+                RemoteTemplatesSourceConfig config = GetConfigFromCdn(options.Env);
+
+                RemoteTemplatesPackage package = null;
+                if (options.Version != null)
                 {
-                    package = versionsInfo.LatestVersionInfo;
+                    package = ResolvePackageForVersion(config, options.Version, output);
                 }
                 else
                 {
-                    package = ResolvePackageForVersion(versionsInfo, options.Version);
+                    package = config.Latest;
                 }
 
-                var result = RemoteSource.DownloadCdnElement(Environments.CdnUrls[options.Env], package.Name, options.Destination);
+                if (package != null)
+                {
+                    Fs.EnsureFolder(options.Destination);
 
-                output.WriteLine();
-                output.WriteCommandText($"Successfully downloaded '{result}'");
-                output.WriteLine();
+                    var result = RemoteSource.DownloadCdnElement(Environments.CdnUrls[options.Env], package.Name, options.Destination);
+                    output.WriteLine();
+                    output.WriteCommandText($"Successfully downloaded '{result}'");
+                    output.WriteLine();
+                }
+                else
+                {
+                    output.WriteLine();
+                    output.WriteCommandText($"Package not found for the version '{options.Version}'");
+                    output.WriteLine();
+                }
             }
             catch (Exception ex)
             {
@@ -127,39 +140,57 @@ namespace WtsTool
             }
         }
 
-        private static RemotePackageInfo ResolvePackageForVersion(RemoteSourceVersionsInfo versionsInfo, string version)
+        private static RemoteTemplatesSourceConfig GetConfig(RemoteSourceListOptions options, TextWriter output)
         {
-            Version v = new Version(version);
-            RemotePackageInfo match = null;
-            if (v.Build == 0 && v.Revision == 0)
+            if (options.Build)
             {
-                match = versionsInfo.AvailableVersions.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor)
-                    .OrderByDescending(p => p.Date).FirstOrDefault();
+                output.WriteCommandText("Building Remote Templates Source Configuration information...");
+                return RemoteSource.GetRemoteTemplatesSourceConfig(options.StorageAccount, options.Env);
             }
             else
             {
-                match = versionsInfo.AvailableVersions.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor && p.Version.Build == v.Build && p.Version.Revision == v.Revision)
-                    .OrderByDescending(p => p.Date).FirstOrDefault();
+                output.WriteCommandText("Getting config file from the CDN (config.json)...");
+                return GetConfigFromCdn(options.Env);
             }
+        }
+
+        private static RemoteTemplatesSourceConfig GetConfigFromCdn(EnvEnum env)
+        {
+            Fs.SafeDeleteFile(Path.Combine(Path.GetTempPath(), "config.json"));
+            string configFile = RemoteSource.DownloadCdnElement(Environments.CdnUrls[env], "config.json", Path.GetTempPath());
+
+            RemoteTemplatesSourceConfig config = RemoteTemplatesSourceConfig.LoadFromFile(configFile);
+            return config;
+        }
+
+        private static RemoteTemplatesPackage ResolvePackageForVersion(RemoteTemplatesSourceConfig config, string version, TextWriter output)
+        {
+            Version v = new Version(version);
+            if(v.Build != 0 || v.Revision != 0)
+            {
+                output.WriteCommandText($"WARN: Downloading main version for version {v.Major}.{v.Minor}, ignoring the version parts build ({v.Build}) and revision ({v.Revision}).");
+            }
+            RemoteTemplatesPackage match = config.Versions.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor)
+                    .OrderByDescending(p => p.Date).FirstOrDefault();
 
             return match;
         }
 
-        private static void WriteSummary(RemoteSourceVersionsInfo versionsInfo, TextWriter output)
+        private static void WriteSummary(RemoteTemplatesSourceConfig config, TextWriter output)
         {
-            output.WriteCommandText($"Templates Package count: {versionsInfo.PackageCount}");
-            output.WriteCommandText($"Latest Version: {versionsInfo.LatestVersionInfo?.MainVersion} ({versionsInfo.LatestVersionInfo.Version?.ToString()})");
-            output.WriteCommandText($"Latest Version Uri: {versionsInfo.LatestVersionInfo.Uri}");
+            output.WriteCommandText($"Templates Package count: {config.VersionCount}");
+            output.WriteCommandText($"Latest Version: {config.Latest?.MainVersion} ({config.Latest.Version?.ToString()})");
+            output.WriteCommandText($"Latest Version Uri: {config.Latest.StorageUri}");
 
             output.WriteLine();
-            output.WriteCommandText($"Available Versions: {string.Join(", ", versionsInfo.AvailableVersions.Select(e => e.MainVersion).ToArray())}");
+            output.WriteCommandText($"Available Versions: {string.Join(", ", config.Versions.Select(e => e.MainVersion).ToArray())}");
         }
 
-        private static void WritePackagesTable(IEnumerable<RemotePackageInfo> packages, TextWriter output)
+        private static void WritePackagesTable(IEnumerable<RemoteTemplatesPackage> packages, TextWriter output)
         {
-            string c1 = nameof(RemotePackageInfo.Version);
-            string c2 = nameof(RemotePackageInfo.Date);
-            string c3 = nameof(RemotePackageInfo.Uri);
+            string c1 = nameof(RemoteTemplatesPackage.Version);
+            string c2 = nameof(RemoteTemplatesPackage.Date);
+            string c3 = nameof(RemoteTemplatesPackage.StorageUri);
 
             output.WriteLine();
             string tableHeader = string.Format("{0,-14}   {1,-24}   {2}", c1, c2, c3);
@@ -170,7 +201,7 @@ namespace WtsTool
 
             foreach (var info in packages)
             {
-                string row = string.Format("{0,-14}   {1,-24}   {2}", info.Version, info.Date, info.Uri);
+                string row = string.Format("{0,-14}   {1,-24}   {2}", info.Version, info.Date, info.StorageUri);
                 output.WriteCommandText(row);
             }
         }
@@ -184,11 +215,16 @@ namespace WtsTool
 
             Fs.SafeDeleteFile(targetFile);
 
-            RemoteSourceVersionsInfo versionsInfo = RemoteSource.GetVersionsInfo(options.StorageAccount, options.Env.ToString().ToLowerInvariant());
+            RemoteTemplatesSourceConfig config = RemoteSource.GetRemoteTemplatesSourceConfig(options.StorageAccount, options.Env);
             using (FileStream fs = new FileStream(targetFile, FileMode.CreateNew, FileAccess.Write))
             {
                 StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
-                string content = JsonConvert.SerializeObject(versionsInfo);
+
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.NullValueHandling = NullValueHandling.Ignore;
+                settings.Converters.Add(new StringEnumConverter());
+                string content = JsonConvert.SerializeObject(config, settings);
+
                 sw.WriteLine(content);
                 sw.Flush();
             }

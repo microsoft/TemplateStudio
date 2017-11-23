@@ -14,16 +14,16 @@ namespace WtsTool.CommandOptions
     [Verb("download", Hidden = false, HelpText = "Download a templates package from the specified environment.")]
     public class RemoteSourceDownloadOptions : RemoteSourceCommonOptions
     {
-        [Option('l', "latest", Required = true, HelpText = "Download the latest available version of templates package for the specified environment.", Default = true, SetName = "Version")]
+        [Option('l', "latest", Default = true, HelpText = "Download the latest available version of templates package for the specified environment.", SetName = "Latest")]
         public bool Latest { get; set; }
 
-        [Option('v', "version", Required = true, HelpText = "Download a concrete version of templates package for the specified environment Downloads the most recent matching version.", SetName = "Version")]
+        [Option('v', "version", Default = null, HelpText = "Download a concrete version of templates package for the specified environment Downloads the most recent matching version.", SetName = "Version")]
         public string Version { get; set; }
 
-        [Option('c', "config", Required = true, HelpText = "Download the configuration file from the CDN.", Default = false, SetName = "Config")]
+        [Option('c', "config", Default = false, HelpText = "Download the configuration file from the CDN.", SetName = "Config")]
         public bool Config { get; set; }
 
-        [Option('d', "destination-dir", Required= false, HelpText = "Destination directory for download.", Default = ".")]
+        [Option('d', "destination-dir", Default = ".", Required= false, HelpText = "Destination directory for download.")]
         public string Destination { get; set; }
     }
 }

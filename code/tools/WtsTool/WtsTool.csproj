@@ -115,8 +115,8 @@
     <Compile Include="PackageWorker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemotePackageInfo.cs" />
-    <Compile Include="RemoteSourceVersionsInfo.cs" />
+    <Compile Include="RemoteTemplatesPackage.cs" />
+    <Compile Include="RemoteTemplatesSourceConfig.cs" />
     <Compile Include="RunCommand.cs" />
     <Compile Include="RemoteSource.cs" />
     <Compile Include="RemoteSourceWorker.cs" />

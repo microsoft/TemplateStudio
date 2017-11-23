@@ -4,7 +4,7 @@
 
 using System;
 using System.IO;
-
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Packaging;
 
 namespace WtsTool
@@ -43,19 +43,21 @@ namespace WtsTool
             }
         }
 
-        internal static void Extract(string inputFile, string outPath, TextWriter output, TextWriter error)
+        internal static void Extract(string inputFile, string destinationDir, TextWriter output, TextWriter error)
         {
             try
             {
                 if (File.Exists(inputFile))
                 {
-                    if (outPath == ".")
+                    if (destinationDir == ".")
                     {
-                        outPath = System.Environment.CurrentDirectory;
+                        destinationDir = System.Environment.CurrentDirectory;
                     }
 
-                    output.WriteCommandHeader($"Extracting {inputFile} to {outPath}...");
-                    TemplatePackage.Extract(inputFile, outPath, true);
+                    Fs.EnsureFolder(destinationDir);
+
+                    output.WriteCommandHeader($"Extracting {inputFile} to {destinationDir}...");
+                    TemplatePackage.Extract(inputFile, destinationDir, true);
                 }
                 else
                 {

@@ -19,28 +19,34 @@ namespace WtsTool
 {
     public static class RemoteSource
     {
-        public static RemoteSourceVersionsInfo GetVersionsInfo(string storageAccount, string env)
+        public static RemoteTemplatesSourceConfig GetRemoteTemplatesSourceConfig(string storageAccount, EnvEnum environment)
         {
+            string env = environment.ToString().ToLowerInvariant();
+
             CloudBlobContainer container = RemoteSource.GetContainerAnonymous(storageAccount, env);
             var remoteElements = RemoteSource.GetAllElements(container);
-            var remotePackageInfoItems = remoteElements.Where(e => e != null && e.Name.StartsWith(env, StringComparison.OrdinalIgnoreCase) && e.Name.EndsWith(".mstx", StringComparison.OrdinalIgnoreCase)).Select((e) =>
-                new RemotePackageInfo()
-                {
-                    Name = e.Name,
-                    Uri = e.Uri,
-                    Date = e.Properties.LastModified.Value.DateTime,
-                    Version = ParseVersion(e.Name),
-                    Env = ParseEnv(e.Name)
-                }).OrderByDescending(info => info.Date);
+            var remotePackages = remoteElements.Where(e => e != null && e.Name.StartsWith(env, StringComparison.OrdinalIgnoreCase) && e.Name.EndsWith(".mstx", StringComparison.OrdinalIgnoreCase))
+                .Select((e) =>
+                    new RemoteTemplatesPackage()
+                    {
+                        Name = e.Name,
+                        StorageUri = e.Uri,
+                        Bytes = e.Properties.Length,
+                        Date = e.Properties.LastModified.Value.DateTime,
+                        Version = ParseVersion(e.Name),
+                    })
+                .OrderByDescending(e => e.Date)
+                .OrderByDescending(e => e.Version)
+                .GroupBy(e => e.MainVersion)
+                .Select(e => e.FirstOrDefault());
 
-            RemoteSourceVersionsInfo summary = new RemoteSourceVersionsInfo()
+            RemoteTemplatesSourceConfig config = new RemoteTemplatesSourceConfig()
             {
-                PackageCount = remotePackageInfoItems.Count(),
-                LatestVersionInfo = remotePackageInfoItems.GetLatestVersion(),
-                AvailableVersions = remotePackageInfoItems.GetAvailableVersions(),
-                Versions = remotePackageInfoItems
+                VersionCount = remotePackages.Count(),
+                Latest = remotePackages.FirstOrDefault(),
+                Versions = remotePackages.ToList()
             };
-            return summary;
+            return config;
         }
 
         public static string UploadTemplatesContent(string storageAccount, string key, string env, string sourceFile, string version)
@@ -55,19 +61,8 @@ namespace WtsTool
                 throw new ArgumentException($"Parameter '{nameof(sourceFile)}' can not be null, empty or whitespace.");
             }
 
-            Version specifedVersion;
-            if (!Version.TryParse(version, out specifedVersion))
-            {
-                throw new ArgumentException($"The value '{version}' is not valid for parameter '{nameof(version)}'.");
-            }
+            string blobName = GetBlobName(env, sourceFile, version);
 
-            Version versionInFile = ParseVersion(Path.GetFileName(sourceFile));
-            if (versionInFile != null && versionInFile != specifedVersion)
-            {
-                throw new ArgumentException($"Parameter '{nameof(sourceFile)}' (with value '{sourceFile}') contains the version {versionInFile.ToString()} that do not match with the value specified in the parameter '{nameof(version)}' (with value '{version}').");
-            }
-
-            string blobName = (versionInFile == null) ? $"{Path.GetFileNameWithoutExtension(sourceFile)}_{version}.mstx" : sourceFile;
             var container = GetContainer(storageAccount, key, env);
             return UploadElement(container, sourceFile, blobName);
         }
@@ -98,16 +93,6 @@ namespace WtsTool
             wc.DownloadFile(elementUri, destFile);
 
             return destFile;
-        }
-
-        private static IEnumerable<RemotePackageInfo> GetAvailableVersions(this IEnumerable<RemotePackageInfo> remotePackageInfoItems)
-        {
-            return remotePackageInfoItems.GroupBy(e => e.MainVersion).Select(e => e.FirstOrDefault()).OrderByDescending(e => e.Version);
-        }
-
-        private static RemotePackageInfo GetLatestVersion(this IEnumerable<RemotePackageInfo> remotePackageInfoItems)
-        {
-            return remotePackageInfoItems?.OrderByDescending(e => e.Date).ThenByDescending(e => e.Version).FirstOrDefault();
         }
 
         private static EnvEnum ParseEnv(string name)
@@ -189,6 +174,31 @@ namespace WtsTool
             return result.Results.Select((i) => i as CloudBlockBlob);
         }
 
+        private static string GetBlobName(string env, string sourceFile, string version)
+        {
+            Version specifedVersion;
+            if (!Version.TryParse(version, out specifedVersion))
+            {
+                throw new ArgumentException($"The value '{version}' is not valid for parameter '{nameof(version)}'.");
+            }
+
+            Version versionInFile = ParseVersion(Path.GetFileName(sourceFile));
+            if (versionInFile != null && versionInFile != specifedVersion)
+            {
+                throw new ArgumentException($"Parameter '{nameof(sourceFile)}' (with value '{sourceFile}') contains the version {versionInFile.ToString()} that do not match with the value specified in the parameter '{nameof(version)}' (with value '{version}').");
+            }
+
+            var envInFile = ParseEnv(Path.GetFileNameWithoutExtension(sourceFile));
+            string prefix = string.Empty;
+            if (!envInFile.ToString().Equals(env, StringComparison.OrdinalIgnoreCase) || envInFile == EnvEnum.Unknown)
+            {
+                prefix = env + ".";
+            }
+
+            string blobName = (versionInFile == null) ? $"{prefix}{Path.GetFileNameWithoutExtension(sourceFile)}_{version}.mstx" : sourceFile;
+            return blobName;
+        }
+
         private static string UploadElement(CloudBlobContainer container, string sourceFile, string blobName)
         {
             CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
@@ -211,18 +221,6 @@ namespace WtsTool
 
                 return $"Uploaded {Math.Round(bytes / 1024f, 2)} Kbytes in {elapsed.TotalSeconds} seconds.";
             }
-        }
-
-        private static string DownloadElement(RemotePackageInfo packageInfo, string destination)
-        {
-            Uri elementUri = new Uri($"{Environments.CdnUrls[packageInfo.Env]}/{packageInfo.Name}");
-
-            string destinationFile = Path.Combine(destination, packageInfo.Name);
-
-            var wc = new WebClient();
-            wc.DownloadFile(elementUri, destinationFile);
-
-            return destinationFile;
         }
     }
 }

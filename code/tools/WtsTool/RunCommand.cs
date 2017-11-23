@@ -24,7 +24,7 @@ namespace WtsTool
                     PackageWorker.Create(options.CreateNew, options.OutFile, options.CertThumbprint, output, error);
                     break;
                 case PackageTask.Extract:
-                    PackageWorker.Extract(options.Extract, options.OutPath, output, error);
+                    PackageWorker.Extract(options.Extract, options.DestionationDir, output, error);
                     break;
                 case PackageTask.Info:
                     PackageWorker.GetInfo(options.Info, output, error);
@@ -39,7 +39,15 @@ namespace WtsTool
 
         public static int Publish(RemoteSourcePublishOptions publishOpts, TextWriter output, TextWriter error)
         {
-            RemoteSourceWorker.PublishContent(publishOpts, output, error);
+            if (publishOpts.Config)
+            {
+                RemoteSourceWorker.PublishConfig(publishOpts, output, error);
+            }
+            else
+            {
+                RemoteSourceWorker.PublishContent(publishOpts, output, error);
+            }
+
             return 0;
         }
 
@@ -59,14 +67,9 @@ namespace WtsTool
 
         public static int List(RemoteSourceListOptions listOpts, TextWriter output, TextWriter error)
         {
-            if (listOpts.Summary && !(listOpts.Main | listOpts.Detailed))
+            if (listOpts.Summary && !listOpts.Detailed)
             {
                 RemoteSourceWorker.ListSummaryInfo(listOpts, output, error);
-            }
-
-            if (listOpts.Main)
-            {
-                RemoteSourceWorker.ListMainVersions(listOpts, output, error);
             }
 
             if (listOpts.Detailed)
