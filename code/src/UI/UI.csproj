@@ -371,6 +371,9 @@
     <Compile Include="V2Views\NewProject\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="V2Views\NewProject\ProjectTypePage.xaml.cs">
+      <DependentUpon>ProjectTypePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="V2Views\NewProject\TemplateInfoPage.xaml.cs">
       <DependentUpon>TemplateInfoPage.xaml</DependentUpon>
     </Compile>
@@ -584,6 +587,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Views\NewProject\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewProject\ProjectTypePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

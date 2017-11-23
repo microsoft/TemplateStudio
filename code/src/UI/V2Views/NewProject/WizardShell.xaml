@@ -31,7 +31,7 @@
             <TextBlock Text="New Universal Windows Platform app" Style="{StaticResource WtsTextBlockWizardTitle}" />
         </Grid>
 
-        <Grid Grid.Row="1" Style="{StaticResource WtsGridSectionDivider}" />
+        <Grid Grid.Row="1" Style="{StaticResource WtsGridSectionDividerHorizontal}" />
 
         <Frame Grid.Row="2" x:Name="mainFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
 

@@ -8,15 +8,14 @@ using Microsoft.Templates.UI.V2ViewModels.NewProject;
 namespace Microsoft.Templates.UI.V2Views.NewProject
 {
     /// <summary>
-    /// Interaction logic for MainPage.xaml
+    /// Interaction logic for ProjectTypePage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class ProjectTypePage : Page
     {
-        public MainPage()
+        public ProjectTypePage()
         {
             DataContext = MainViewModel.Instance;
             InitializeComponent();
-            V2Services.NavigationService.InitializeSecondaryFrame(stepFrame, new ProjectTypePage());
         }
     }
 }

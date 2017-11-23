@@ -24,14 +24,15 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
             <controls:SequentialFlow Step="{Binding Step}"/>
-            <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDivider}" />
-            <Grid Grid.Column="2">
-                <Button Content="Open detail" Command="{Binding OpenDetailCommand}"/>
-            </Grid>
+            <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
+            <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
+            <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             

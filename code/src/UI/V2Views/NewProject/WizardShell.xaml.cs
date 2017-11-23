@@ -17,7 +17,7 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
         {
             DataContext = MainViewModel.Instance;
             InitializeComponent();
-            NavigationService.Initialize(mainFrame, new MainPage());
+            NavigationService.InitializeMainFrame(mainFrame, new MainPage());
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
