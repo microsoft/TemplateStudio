@@ -10,7 +10,6 @@ using CommandLine;
 namespace WtsTool.CommandOptions
 {
     public enum PackageTask
-
     {
         Info,
         Extract,

@@ -132,7 +132,6 @@ namespace WtsTool
             var validationType = "Cert Chain";
             if (allowedPins.Count > 0)
             {
-
                 output.WriteCommandText($"Pins configured ({allowedPins.Count}):");
                 validationType = "Cert Pins";
                 for (int i = 0; i < allowedPins.Count; i++)
@@ -144,6 +143,7 @@ namespace WtsTool
             {
                 output.WriteCommandText($"No cert pins configured pins in the tool.");
             }
+
             output.WriteLine();
             output.WriteCommandText($"Signature validation type: {validationType}");
         }

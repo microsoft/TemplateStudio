@@ -10,7 +10,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Newtonsoft.Json;
 using WtsTool.CommandOptions;
+using Microsoft.Templates.Core;
 
 namespace WtsTool
 {
@@ -67,10 +69,10 @@ namespace WtsTool
             try
             {
                 output.WriteCommandHeader($"Publishing {options.File} for environment {options.Env.ToString()} ({options.StorageAccount})");
-                output.WriteCommandText("Sending content...");
-                var result = RemoteSource.PublishContent(options.StorageAccount, options.AccountKey, options.Env.ToString().ToLowerInvariant(), options.File, options.Version);
-                output.WriteLine();
-                output.WriteCommandText(result);
+                output.WriteCommandText("Uploading template package...");
+                output.WriteCommandText(RemoteSource.UploadTemplatesContent(options.StorageAccount, options.AccountKey, options.Env.ToString().ToLowerInvariant(), options.File, options.Version));
+
+                PublishUpdatedRemoteSourceConfig(options, output);
             }
             catch (Exception ex)
             {
@@ -82,16 +84,65 @@ namespace WtsTool
         {
             try
             {
-                output.WriteCommandHeader($"Downloading for environment {options.Env.ToString()} ({options.StorageAccount})");
-                output.WriteCommandText("Sending content...");
-                //RemoteSource.DownloadContent();
+                output.WriteCommandHeader($"Downloading templates content from environment {options.Env.ToString()} ({options.StorageAccount})");
+
+                RemoteSourceVersionsInfo versionsInfo = RemoteSource.GetVersionsInfo(options.StorageAccount, options.Env.ToString().ToLowerInvariant());
+                RemotePackageInfo package = null;
+                if (options.Latest)
+                {
+                    package = versionsInfo.LatestVersionInfo;
+                }
+                else
+                {
+                    package = ResolvePackageForVersion(versionsInfo, options.Version);
+                }
+
+                var result = RemoteSource.DownloadCdnElement(Environments.CdnUrls[options.Env], package.Name, options.Destination);
+
                 output.WriteLine();
-                output.WriteCommandText(" ");
+                output.WriteCommandText($"Successfully downloaded '{result}'");
+                output.WriteLine();
             }
             catch (Exception ex)
             {
-                error.WriteException(ex, $"Unable to download the file content to the specified environment container.");
+                error.WriteException(ex, $"Unable to download the file content from the specified environment.");
             }
+        }
+
+        public static void DownloadConfig(RemoteSourceDownloadOptions options, TextWriter output, TextWriter error)
+        {
+            try
+            {
+                output.WriteCommandHeader($"Downloading template source config file from environment {options.Env.ToString()} ({options.StorageAccount})");
+                output.WriteLine();
+
+                var result = RemoteSource.DownloadCdnElement(Environments.CdnUrls[options.Env], "config.json", options.Destination);
+
+                output.WriteCommandText($"Successfully downloaded '{result}'");
+                output.WriteLine();
+            }
+            catch (Exception ex)
+            {
+                error.WriteException(ex, $"Unable to download the config file from the specified environment.");
+            }
+        }
+
+        private static RemotePackageInfo ResolvePackageForVersion(RemoteSourceVersionsInfo versionsInfo, string version)
+        {
+            Version v = new Version(version);
+            RemotePackageInfo match = null;
+            if (v.Build == 0 && v.Revision == 0)
+            {
+                match = versionsInfo.AvailableVersions.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor)
+                    .OrderByDescending(p => p.Date).FirstOrDefault();
+            }
+            else
+            {
+                match = versionsInfo.AvailableVersions.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor && p.Version.Build == v.Build && p.Version.Revision == v.Revision)
+                    .OrderByDescending(p => p.Date).FirstOrDefault();
+            }
+
+            return match;
         }
 
         private static void WriteSummary(RemoteSourceVersionsInfo versionsInfo, TextWriter output)
@@ -122,6 +173,28 @@ namespace WtsTool
                 string row = string.Format("{0,-14}   {1,-24}   {2}", info.Version, info.Date, info.Uri);
                 output.WriteCommandText(row);
             }
+        }
+
+        private static void PublishUpdatedRemoteSourceConfig(RemoteSourcePublishOptions options, TextWriter output)
+        {
+            output.WriteLine();
+            output.WriteCommandText("Generating updated configuration file info (config.json)...");
+
+            var targetFile = Path.Combine(Path.Combine(Path.GetTempPath(), "config.json"));
+
+            Fs.SafeDeleteFile(targetFile);
+
+            RemoteSourceVersionsInfo versionsInfo = RemoteSource.GetVersionsInfo(options.StorageAccount, options.Env.ToString().ToLowerInvariant());
+            using (FileStream fs = new FileStream(targetFile, FileMode.CreateNew, FileAccess.Write))
+            {
+                StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
+                string content = JsonConvert.SerializeObject(versionsInfo);
+                sw.WriteLine(content);
+                sw.Flush();
+            }
+
+            output.WriteCommandText("Updating CND configuration file (config.json)...");
+            output.WriteCommandText(RemoteSource.UploadElement(options.StorageAccount, options.AccountKey, options.Env.ToString().ToLowerInvariant(), targetFile));
         }
     }
 }

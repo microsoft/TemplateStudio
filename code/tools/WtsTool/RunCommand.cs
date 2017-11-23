@@ -45,13 +45,21 @@ namespace WtsTool
 
         public static int Download(RemoteSourceDownloadOptions downloadOpts, TextWriter output, TextWriter error)
         {
-            output.WriteCommandHeader("Download");
+            if (downloadOpts.Config)
+            {
+                RemoteSourceWorker.DownloadConfig(downloadOpts, output, error);
+            }
+            else
+            {
+                RemoteSourceWorker.DownloadContent(downloadOpts, output, error);
+            }
+
             return 0;
         }
 
         public static int List(RemoteSourceListOptions listOpts, TextWriter output, TextWriter error)
         {
-            if (listOpts.Summary && !(listOpts.Main | listOpts.Detailed | listOpts.ConfigFromStorage | listOpts.ConfigFromCdn))
+            if (listOpts.Summary && !(listOpts.Main | listOpts.Detailed))
             {
                 RemoteSourceWorker.ListSummaryInfo(listOpts, output, error);
             }
@@ -64,16 +72,6 @@ namespace WtsTool
             if (listOpts.Detailed)
             {
                 RemoteSourceWorker.ListDetailedVersions(listOpts, output, error);
-            }
-
-            if (listOpts.ConfigFromStorage)
-            {
-                RemoteSource.DownloadConfigStorage(listOpts.Env);
-            }
-
-            if (listOpts.ConfigFromCdn)
-            {
-                RemoteSource.DownloadConfigCdn(listOpts.Env);
             }
 
             return 0;

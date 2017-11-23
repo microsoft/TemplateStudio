@@ -14,6 +14,7 @@ namespace WtsTool
         public RemotePackageInfo LatestVersionInfo { get; internal set; }
 
         public IEnumerable<RemotePackageInfo> AvailableVersions { get; internal set; }
+
         public IOrderedEnumerable<RemotePackageInfo> Versions { get; internal set; }
     }
 }

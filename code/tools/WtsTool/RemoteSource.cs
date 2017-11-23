@@ -43,7 +43,7 @@ namespace WtsTool
             return summary;
         }
 
-        public static string PublishContent(string storageAccount, string key, string env, string sourceFile, string version)
+        public static string UploadTemplatesContent(string storageAccount, string key, string env, string sourceFile, string version)
         {
             if (!File.Exists(sourceFile))
             {
@@ -72,55 +72,32 @@ namespace WtsTool
             return UploadElement(container, sourceFile, blobName);
         }
 
-        public static void DownloadContent(RemoteSourceVersionsInfo versionsInfo, string downloadDirectory)
+        public static string UploadElement(string storageAccount, string key, string env, string sourceFile)
         {
-            if (versionsInfo.LatestVersionInfo != null)
+            if (!File.Exists(sourceFile))
             {
-                DownloadContent(versionsInfo.LatestVersionInfo, downloadDirectory);
+                throw new ArgumentException($"Invalid parameter '{nameof(sourceFile)}' value. The file '{sourceFile}' does not exists.");
             }
-            else
+
+            if (string.IsNullOrWhiteSpace(sourceFile))
             {
-                throw new ArgumentException($"The parameter '{nameof(versionsInfo)}' provided does not have a vaild '{nameof(versionsInfo.LatestVersionInfo)}' (is null).");
+                throw new ArgumentException($"Parameter '{nameof(sourceFile)}' can not be null, empty or whitespace.");
             }
+
+            string blobName = Path.GetFileName(sourceFile);
+            var container = GetContainer(storageAccount, key, env);
+            return UploadElement(container, sourceFile, blobName);
         }
 
-        public static void DownloadContent(RemoteSourceVersionsInfo versionsInfo, int major, int minor, string downloadDirectory)
+        public static string DownloadCdnElement(string cndUrl, string elementName, string destination)
         {
-            var math = versionsInfo.AvailableVersions.Where(p => p.Version.Major == major && p.Version.Minor == minor)
-                .OrderByDescending(p => p.Date).FirstOrDefault();
-            if (math != null)
-            {
-                DownloadElement(math, downloadDirectory);
-            }
-            else
-            {
-                throw new ArgumentException($"The parameter '{nameof(versionsInfo)}' provided does not contains a templates content package matching the version '{major.ToString()}.{minor.ToString()}'.");
-            }
-        }
+            Uri elementUri = new Uri($"{cndUrl}/{elementName}");
+            string destFile = Path.Combine(destination, elementName);
 
-        public static void DownloadContent(RemoteSourceVersionsInfo versionsInfo, Version v, string downloadDirectory)
-        {
-            var math = versionsInfo.AvailableVersions.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor && p.Version.Build == v.Build && p.Version.Revision == v.Revision)
-                .OrderByDescending(p => p.Date).FirstOrDefault();
+            var wc = new WebClient();
+            wc.DownloadFile(elementUri, destFile);
 
-            if (math != null)
-            {
-                DownloadElement(math, downloadDirectory);
-            }
-            else
-            {
-                throw new ArgumentException($"The parameter '{nameof(versionsInfo)}' provided does not contains a templates content package matching the version '{v.ToString()}'.");
-            }
-        }
-
-        public static void DownloadContent(RemotePackageInfo packageInfo, string downloadDirectory)
-        {
-            if (packageInfo == null)
-            {
-                throw new ArgumentNullException(nameof(packageInfo));
-            }
-
-            DownloadElement(packageInfo, downloadDirectory);
+            return destFile;
         }
 
         private static IEnumerable<RemotePackageInfo> GetAvailableVersions(this IEnumerable<RemotePackageInfo> remotePackageInfoItems)
@@ -236,30 +213,16 @@ namespace WtsTool
             }
         }
 
-        private static void DownloadElement(RemotePackageInfo packageInfo, string downloadDirectory)
+        private static string DownloadElement(RemotePackageInfo packageInfo, string destination)
         {
             Uri elementUri = new Uri($"{Environments.CdnUrls[packageInfo.Env]}/{packageInfo.Name}");
 
+            string destinationFile = Path.Combine(destination, packageInfo.Name);
+
             var wc = new WebClient();
-            wc.DownloadFile(elementUri, Path.Combine(downloadDirectory, packageInfo.Name));
-        }
+            wc.DownloadFile(elementUri, destinationFile);
 
-        public static void DownloadConfigCdn(EnvEnum env)
-        {
-            Uri elementUri = new Uri($"{Environments.CdnUrls[env]}/config.txt");
-
-            Console.Out.Write($"Downloading {elementUri.ToString()}");
-            var wc = new WebClient();
-            wc.DownloadFile(elementUri, Path.Combine(@"C:\temp", "config.txt"));
-        }
-
-        public static void DownloadConfigStorage(EnvEnum env)
-        {
-            Uri elementUri = new Uri($"{Environments.StorageUrls[env]}/config.txt");
-
-            Console.Out.Write($"Downloading {elementUri.ToString()}");
-            var wc = new WebClient();
-            wc.DownloadFile(elementUri, Path.Combine(@"C:\temp", "config.txt"));
+            return destinationFile;
         }
     }
 }

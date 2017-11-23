@@ -22,11 +22,5 @@ namespace WtsTool.CommandOptions
 
         [Option('m', "main", HelpText = "Shows main versions info.", Default = false, SetName = "Main")]
         public bool Main { get; set; }
-
-        [Option('x', "getstorageconfig", HelpText = "Download the config.txt from the Storage.", Default = false )]
-        public bool ConfigFromStorage { get; set; }
-
-        [Option('z', "getcdnconfig", HelpText = "Download the config.txt from the CDN.", Default = false)]
-        public bool ConfigFromCdn { get; set; }
     }
 }

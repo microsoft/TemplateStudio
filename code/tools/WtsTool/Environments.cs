@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,14 +27,6 @@ namespace WtsTool
             { EnvEnum.Dev, "https://wtsrepository.blob.core.windows.net/dev" },
             { EnvEnum.Pre, "https://wtsrepository.blob.core.windows.net/pre" },
             { EnvEnum.Pro, "https://wts2.azureedge.net" }
-        };
-
-        public static Dictionary<EnvEnum, string> StorageUrls => new Dictionary<EnvEnum, string>()
-        {
-            { EnvEnum.Test, "https://wtsrepository.blob.core.windows.net/test" },
-            { EnvEnum.Dev, "https://wtsrepository.blob.core.windows.net/dev" },
-            { EnvEnum.Pre, "https://wtsrepository.blob.core.windows.net/pre" },
-            { EnvEnum.Pro, "https://wtsrepository.blob.core.windows.net/pro" }
         };
     }
 }
