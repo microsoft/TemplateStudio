@@ -148,6 +148,7 @@ namespace Microsoft.Templates.Test
             var rightClickTemplates = _fixture.Templates().Where(
                                            t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                              && t.GetFrameworkList().Contains(framework)
+                                             && t.GetPlatform() == platform
                                              && !t.GetIsHidden()
                                              && t.GetRightClickEnabled());
 
@@ -217,6 +218,7 @@ namespace Microsoft.Templates.Test
 
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            SolutionPath = Path.Combine(_fixture.TestProjectsPath, projectName);
             OutputPath = ProjectPath;
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
