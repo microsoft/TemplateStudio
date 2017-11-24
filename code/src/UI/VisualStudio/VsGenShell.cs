@@ -295,7 +295,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 var projectGuid = GetProjectTypeGuid(p);
 
-                if (projectGuid.ToUpper().Split(';').Contains($"{{{projectTypeGuid}}}"))
+                if (projectGuid.ToUpperInvariant().Split(';').Contains($"{{{projectTypeGuid}}}"))
                 {
                     return p;
                 }

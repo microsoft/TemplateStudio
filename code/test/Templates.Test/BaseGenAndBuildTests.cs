@@ -350,11 +350,11 @@ namespace Microsoft.Templates.Test
         // Need overload with different number of params to work with XUnit.MemeberData
         public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework)
         {
-            return GetProjectTemplatesForBuildAsync(framework, string.Empty);
+            return GetProjectTemplatesForBuildAsync(framework, string.Empty, string.Empty);
         }
 
         // Set a single programming language to stop the fixture using all languages available to it
-        public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework, string programmingLanguage)
+        public static IEnumerable<object[]> GetProjectTemplatesForBuildAsync(string framework, string programmingLanguage, string platform)
         {
             JoinableTaskContext context = new JoinableTaskContext();
             JoinableTaskCollection tasks = context.CreateCollection();
@@ -364,15 +364,15 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case "CodeBehind":
-                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
+                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetProjectTemplatesAsync(framework, programmingLanguage, platform));
                     break;
 
                 case "MVVMBasic":
-                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
+                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetProjectTemplatesAsync(framework, programmingLanguage, platform));
                     break;
 
                 case "MVVMLight":
-                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
+                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework, programmingLanguage, platform));
                     break;
 
                 case "CaliburnMicro":
