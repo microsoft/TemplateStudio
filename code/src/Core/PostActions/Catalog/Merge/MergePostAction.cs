@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 // REFRESH PROJECT TO UN-DIRTY IT
                 if (Path.GetExtension(Config.FilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
-                 && GenContext.Current.OutputPath == GenContext.Current.ProjectPath)
+                 && GenContext.Current.OutputPath == GenContext.Current.DestinationPath)
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                 }

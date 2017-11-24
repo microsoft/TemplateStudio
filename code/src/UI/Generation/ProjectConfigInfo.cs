@@ -41,7 +41,7 @@ namespace Microsoft.Templates.UI.Generation
         {
             try
             {
-                var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
+                var path = Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest");
                 if (File.Exists(path))
                 {
                     var manifest = XElement.Load(path);
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI.Generation
         {
             try
             {
-                var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
+                var path = Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest");
                 if (File.Exists(path))
                 {
                     var manifest = XElement.Load(path);
@@ -167,18 +167,7 @@ namespace Microsoft.Templates.UI.Generation
 
         private static string InferPlatform()
         {
-            if (IsXamarin())
-            {
-                return PlXamarin;
-            }
-            else if (IsUwp())
-            {
-                return PlUwp;
-            }
-            else
-            {
-                return string.Empty;
-            }
+            return GenContext.ToolBox.Shell.GetPlatform();
         }
 
         private static string InferProjectType()
@@ -201,7 +190,7 @@ namespace Microsoft.Templates.UI.Generation
         {
             if (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
             {
-                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                var files = Directory.GetFiles(GenContext.Current.DestinationPath, "*.*proj", SearchOption.TopDirectoryOnly);
                 foreach (string file in files)
                 {
                     if (File.ReadAllText(file).Contains("<PackageReference Include=\"MvvmLight\">"))
@@ -240,7 +229,7 @@ namespace Microsoft.Templates.UI.Generation
             {
                 if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
                 {
-                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.DestinationPath, "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
                     if (!string.IsNullOrEmpty(codebehindFile))
                     {
                         var fileContent = File.ReadAllText(codebehindFile);
@@ -253,7 +242,7 @@ namespace Microsoft.Templates.UI.Generation
             {
                 if (ExistsFileInProjectPath("Services", "ActivationService.vb"))
                 {
-                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.DestinationPath, "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
                     if (!string.IsNullOrEmpty(codebehindFile))
                     {
                         var fileContent = File.ReadAllText(codebehindFile);
@@ -270,7 +259,7 @@ namespace Microsoft.Templates.UI.Generation
         {
             if (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
             {
-                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                var files = Directory.GetFiles(GenContext.Current.DestinationPath, "*.*proj", SearchOption.TopDirectoryOnly);
                 foreach (string file in files)
                 {
                     if (File.ReadAllText(file).Contains("<PackageReference Include=\"Caliburn.Micro\">"))
@@ -299,46 +288,15 @@ namespace Microsoft.Templates.UI.Generation
             }
         }
 
-        private static bool IsXamarin()
-        {
-            string[] fileExtensions = { ".json", ".config", ".csproj" };
-
-            var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*", SearchOption.AllDirectories)
-                    .Where(f => fileExtensions.Contains(Path.GetExtension(f)));
-
-            foreach (string file in files)
-            {
-                if (File.ReadAllText(file).Contains("Xamarin.Forms"))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private static bool IsUwp()
-        {
-            var projectTypeGuids = GenContext.ToolBox.Shell.GetActiveProjectTypeGuids();
-
-            if (projectTypeGuids.ToUpperInvariant().Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         private static bool IsCSharpProject()
         {
-            return Directory.GetFiles(GenContext.Current.ProjectPath, "*.csproj", SearchOption.TopDirectoryOnly).Any();
+            return Directory.GetFiles(GenContext.Current.DestinationPath, "*.csproj", SearchOption.TopDirectoryOnly).Any();
         }
 
         private static bool ExistsFileInProjectPath(string subPath, string fileName)
         {
-            return Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, subPath), fileName, SearchOption.TopDirectoryOnly).Any();
+            return Directory.GetFiles(Path.Combine(GenContext.Current.DestinationPath, subPath), fileName, SearchOption.TopDirectoryOnly).Any();
         }
     }
 }

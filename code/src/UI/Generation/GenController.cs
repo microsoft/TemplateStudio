@@ -74,11 +74,11 @@ namespace Microsoft.Templates.UI
             {
                 if (outputToSolution)
                 {
-                    GenContext.Current.OutputPath = GenContext.Current.SolutionPath;
+                    GenContext.Current.OutputPath = GenContext.Current.RootPath;
                 }
                 else
                 {
-                    GenContext.Current.OutputPath = GenContext.Current.ProjectPath;
+                    GenContext.Current.OutputPath = GenContext.Current.DestinationPath;
                 }
             }
             else

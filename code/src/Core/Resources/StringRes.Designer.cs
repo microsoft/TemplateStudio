@@ -124,6 +124,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find project file for item {0}.
+        /// </summary>
+        public static string ExceptionProjectNotFound {
+            get {
+                return ResourceManager.GetString("ExceptionProjectNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception.
         /// </summary>
         public static string ExceptionString {
@@ -138,6 +147,15 @@ namespace Microsoft.Templates.Core.Resources {
         public static string ExceptionTrackedString {
             get {
                 return ResourceManager.GetString("ExceptionTrackedString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to resolve platform. .
+        /// </summary>
+        public static string ExceptionUnableResolvePlatform {
+            get {
+                return ResourceManager.GetString("ExceptionUnableResolvePlatform", resourceCulture);
             }
         }
         

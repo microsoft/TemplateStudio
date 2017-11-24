@@ -414,4 +414,11 @@ Aşağıdaki değişiklikler tümleştirilemedi: {2}
     <value>Line {0} not found in file '{1}'. Related Template: '{2}'.</value>
     <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Could not find project file for item {0}</value>
+    <comment>{0}: Filepath</comment>
+  </data>
+  <data name="ExceptionUnableResolvePlatform" xml:space="preserve">
+    <value>Unable to resolve platform. </value>
+  </data>
 </root>

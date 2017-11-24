@@ -173,7 +173,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             if (Config.SyncGeneration)
             {
-                var filePath = Path.Combine(GenContext.Current.SolutionPath, fileName);
+                var filePath = Path.Combine(GenContext.Current.RootPath, fileName);
                 return $"[{fileName}]({FormatFilePath(filePath)})";
             }
             else
@@ -189,7 +189,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private string GetCompareLink(string fileName)
         {
-            var filePath = Path.Combine(GenContext.Current.SolutionPath, fileName);
+            var filePath = Path.Combine(GenContext.Current.RootPath, fileName);
             return $"* {StringRes.SyncSummaryTempGenerationFile}: [{fileName}]({fileName}), {StringRes.SyncSummaryProjectFile}: [{fileName}]({FormatFilePath(filePath)})";
         }
     }

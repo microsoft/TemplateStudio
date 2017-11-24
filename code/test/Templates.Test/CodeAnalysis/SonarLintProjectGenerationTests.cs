@@ -47,8 +47,8 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}AllSonarLint";
 
             ProjectName = projectName;
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            OutputPath = ProjectPath;
+            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            OutputPath = DestinationPath;
 
             var userSelection = new UserSelection(projectType, framework, platform, ProgrammingLanguages.VisualBasic)
             {

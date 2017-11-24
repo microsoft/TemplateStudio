@@ -5,7 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -94,6 +96,21 @@ namespace Microsoft.Templates.Core.Gen
             return result;
         }
 
+        public string GetPlatform()
+        {
+            if (IsXamarin())
+            {
+                return Platforms.Xamarin;
+            }
+
+            if (IsUwp())
+            {
+                return Platforms.Uwp;
+            }
+
+            throw new Exception(StringRes.ExceptionUnableResolvePlatform);
+        }
+
         protected static Dictionary<string, List<string>> ResolveProjectFiles(string[] itemsFullPath)
         {
             Dictionary<string, List<string>> filesByProject = new Dictionary<string, List<string>>();
@@ -103,7 +120,7 @@ namespace Microsoft.Templates.Core.Gen
                 var projFile = Fs.FindFileAtOrAbove(itemDirectory, "*.*proj");
                 if (string.IsNullOrEmpty(projFile))
                 {
-                    throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
+                    throw new FileNotFoundException(string.Format(StringRes.ExceptionProjectNotFound, item));
                 }
 
                 if (Path.GetExtension(projFile) == ".shproj")
@@ -122,6 +139,39 @@ namespace Microsoft.Templates.Core.Gen
             }
 
             return filesByProject;
+        }
+
+        private bool IsXamarin()
+        {
+            var searchPath = new DirectoryInfo(GetActiveProjectPath()).Parent.FullName;
+            string[] fileExtensions = { ".json", ".config", ".csproj" };
+
+            var files = Directory.GetFiles(searchPath, "*.*", SearchOption.AllDirectories)
+                    .Where(f => fileExtensions.Contains(Path.GetExtension(f)));
+
+            foreach (string file in files)
+            {
+                if (File.ReadAllText(file).Contains("Xamarin.Forms"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsUwp()
+        {
+            var projectTypeGuids = GenContext.ToolBox.Shell.GetActiveProjectTypeGuids();
+
+            if (projectTypeGuids.ToUpperInvariant().Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

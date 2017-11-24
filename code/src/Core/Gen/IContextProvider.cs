@@ -14,9 +14,9 @@ namespace Microsoft.Templates.Core.Gen
 
         string OutputPath { get; set; }
 
-        string ProjectPath { get; }
+        string DestinationPath { get; }
 
-        string SolutionPath { get; }
+        string RootPath { get; }
 
         string TempGenerationPath { get; }
 
