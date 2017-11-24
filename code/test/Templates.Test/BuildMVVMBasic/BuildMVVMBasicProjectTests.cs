@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMBasic", ProgrammingLanguages.CSharp)]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMBasic", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimum")]
@@ -72,7 +72,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMBasic", ProgrammingLanguages.VisualBasic)]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMBasic", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimumVB")]

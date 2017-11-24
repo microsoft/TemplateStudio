@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test
 
         private static bool syncExecuted;
 
-        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync(string frameworkFilter, string programmingLanguage)
+        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync(string frameworkFilter, string programmingLanguage, string selectedPlatform)
         {
             List<object[]> result = new List<object[]>();
 
@@ -37,9 +37,17 @@ namespace Microsoft.Templates.Test
                 languagesOfInterest.Add(programmingLanguage);
             }
 
+            var platformsOfInterest = Platforms.GetAllPlatforms().ToList();
+
+            if (!string.IsNullOrWhiteSpace(selectedPlatform))
+            {
+                platformsOfInterest.Clear();
+                platformsOfInterest.Add(selectedPlatform);
+            }
+
             foreach (var language in languagesOfInterest)
             {
-                foreach (var platform in Platforms.GetAllPlatforms())
+                foreach (var platform in platformsOfInterest)
                 {
                     await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldMVVMB"), platform, language);
                     var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);

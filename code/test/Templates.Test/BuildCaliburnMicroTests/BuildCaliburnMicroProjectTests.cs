@@ -88,7 +88,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
-            var projectName = $"{projectType}AllRC ";
+            var projectName = $"{projectType}AllRC";
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true, false);
 
