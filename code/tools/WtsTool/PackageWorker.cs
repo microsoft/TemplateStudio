@@ -4,7 +4,7 @@
 
 using System;
 using System.IO;
-
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Packaging;
 
 namespace WtsTool
@@ -43,19 +43,21 @@ namespace WtsTool
             }
         }
 
-        internal static void Extract(string inputFile, string outPath, TextWriter output, TextWriter error)
+        internal static void Extract(string inputFile, string destinationDir, TextWriter output, TextWriter error)
         {
             try
             {
                 if (File.Exists(inputFile))
                 {
-                    if (outPath == ".")
+                    if (destinationDir == ".")
                     {
-                        outPath = System.Environment.CurrentDirectory;
+                        destinationDir = System.Environment.CurrentDirectory;
                     }
 
-                    output.WriteCommandHeader($"Extracting {inputFile} to {outPath}...");
-                    TemplatePackage.Extract(inputFile, outPath, true);
+                    Fs.EnsureFolder(destinationDir);
+
+                    output.WriteCommandHeader($"Extracting {inputFile} to {destinationDir}...");
+                    TemplatePackage.Extract(inputFile, destinationDir, true);
                 }
                 else
                 {
@@ -127,15 +129,16 @@ namespace WtsTool
             var allowedPins = Microsoft.Templates.Core.Configuration.Current.AllowedPublicKeysPins;
 
             output.WriteLine();
+            output.WriteLine("TOOL CONFIG:");
 
             var validationType = "Cert Chain";
             if (allowedPins.Count > 0)
             {
-                output.WriteCommandText($"Cert pins configured in the tool ({allowedPins.Count}):");
+                output.WriteCommandText($"Pins configured ({allowedPins.Count}):");
                 validationType = "Cert Pins";
-                foreach (var pin in allowedPins)
+                for (int i = 0; i < allowedPins.Count; i++)
                 {
-                    output.WriteCommandText(pin);
+                    output.WriteCommandText($"{(char)('A' + i)}) {allowedPins[i]}");
                 }
             }
             else
@@ -143,6 +146,7 @@ namespace WtsTool
                 output.WriteCommandText($"No cert pins configured pins in the tool.");
             }
 
+            output.WriteLine();
             output.WriteCommandText($"Signature validation type: {validationType}");
         }
     }

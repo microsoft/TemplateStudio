@@ -4,7 +4,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -17,38 +19,80 @@ namespace WtsTool
 {
     public static class RemoteSource
     {
-        public static RemoteSourceVersionsInfo GetVersionsInfo(string storageAccount, string env)
+        public static RemoteTemplatesSourceConfig GetRemoteTemplatesSourceConfig(string storageAccount, EnvEnum environment)
         {
+            string env = environment.ToString().ToLowerInvariant();
+
             CloudBlobContainer container = RemoteSource.GetContainerAnonymous(storageAccount, env);
             var remoteElements = RemoteSource.GetAllElements(container);
-            var remotePackageInfoItems = remoteElements.Where(e => e != null && e.Name.StartsWith(env, StringComparison.OrdinalIgnoreCase) && e.Name.EndsWith(".mstx", StringComparison.OrdinalIgnoreCase)).Select((e) =>
-                new RemotePackageInfo()
-                {
-                    Name = e.Name,
-                    Uri = e.Uri,
-                    Date = e.Properties.LastModified.Value.DateTime,
-                    Version = ParseVersion(e.Name),
-                    Env = ParseEnv(e.Name)
-                }).OrderByDescending(info => info.Date);
+            var remotePackages = remoteElements.Where(e => e != null && e.Name.StartsWith(env, StringComparison.OrdinalIgnoreCase) && e.Name.EndsWith(".mstx", StringComparison.OrdinalIgnoreCase))
+                .Select((e) =>
+                    new RemoteTemplatesPackage()
+                    {
+                        Name = e.Name,
+                        StorageUri = e.Uri,
+                        Bytes = e.Properties.Length,
+                        Date = e.Properties.LastModified.Value.DateTime,
+                        Version = ParseVersion(e.Name),
+                    })
+                .OrderByDescending(e => e.Date)
+                .OrderByDescending(e => e.Version)
+                .GroupBy(e => e.MainVersion)
+                .Select(e => e.FirstOrDefault());
 
-            RemoteSourceVersionsInfo summary = new RemoteSourceVersionsInfo()
+            RemoteTemplatesSourceConfig config = new RemoteTemplatesSourceConfig()
             {
-                PackageCount = remotePackageInfoItems.Count(),
-                LatestVersionInfo = remotePackageInfoItems.GetLatestVersion(),
-                AvailableVersions = remotePackageInfoItems.GetAvailableVersions(),
-                Versions = remotePackageInfoItems
+                VersionCount = remotePackages.Count(),
+                Latest = remotePackages.FirstOrDefault(),
+                Versions = remotePackages.ToList()
             };
-            return summary;
+            return config;
         }
 
-        private static IEnumerable<RemotePackageInfo> GetAvailableVersions(this IEnumerable<RemotePackageInfo> remotePackageInfoItems)
+        public static string UploadTemplatesContent(string storageAccount, string key, string env, string sourceFile, string version)
         {
-            return remotePackageInfoItems.GroupBy(e => e.MainVersion).Select(e => e.FirstOrDefault()).OrderByDescending(e => e.Version);
+            if (!File.Exists(sourceFile))
+            {
+                throw new ArgumentException($"Invalid parameter '{nameof(sourceFile)}' value. The file '{sourceFile}' does not exists.");
+            }
+
+            if (string.IsNullOrWhiteSpace(sourceFile))
+            {
+                throw new ArgumentException($"Parameter '{nameof(sourceFile)}' can not be null, empty or whitespace.");
+            }
+
+            string blobName = GetBlobName(env, sourceFile, version);
+
+            var container = GetContainer(storageAccount, key, env);
+            return UploadElement(container, sourceFile, blobName);
         }
 
-        private static RemotePackageInfo GetLatestVersion(this IEnumerable<RemotePackageInfo> remotePackageInfoItems)
+        public static string UploadElement(string storageAccount, string key, string env, string sourceFile)
         {
-            return remotePackageInfoItems?.OrderByDescending(e => e.Date).ThenByDescending(e => e.Version).FirstOrDefault();
+            if (!File.Exists(sourceFile))
+            {
+                throw new ArgumentException($"Invalid parameter '{nameof(sourceFile)}' value. The file '{sourceFile}' does not exists.");
+            }
+
+            if (string.IsNullOrWhiteSpace(sourceFile))
+            {
+                throw new ArgumentException($"Parameter '{nameof(sourceFile)}' can not be null, empty or whitespace.");
+            }
+
+            string blobName = Path.GetFileName(sourceFile);
+            var container = GetContainer(storageAccount, key, env);
+            return UploadElement(container, sourceFile, blobName);
+        }
+
+        public static string DownloadCdnElement(string cndUrl, string elementName, string destination)
+        {
+            Uri elementUri = new Uri($"{cndUrl}/{elementName}");
+            string destFile = Path.Combine(destination, elementName);
+
+            var wc = new WebClient();
+            wc.DownloadFile(elementUri, destFile);
+
+            return destFile;
         }
 
         private static EnvEnum ParseEnv(string name)
@@ -103,7 +147,7 @@ namespace WtsTool
             return blobContainer;
         }
 
-        public static IEnumerable<CloudBlockBlob> GetAllElements(CloudBlobContainer container)
+        private static IEnumerable<CloudBlockBlob> GetAllElements(CloudBlobContainer container)
         {
             BlobContinuationToken token = new BlobContinuationToken();
 
@@ -125,8 +169,58 @@ namespace WtsTool
             }
 
             BlobResultSegment result = container.ListBlobsSegmented(token);
+
             token = result.ContinuationToken;
             return result.Results.Select((i) => i as CloudBlockBlob);
+        }
+
+        private static string GetBlobName(string env, string sourceFile, string version)
+        {
+            Version specifedVersion;
+            if (!Version.TryParse(version, out specifedVersion))
+            {
+                throw new ArgumentException($"The value '{version}' is not valid for parameter '{nameof(version)}'.");
+            }
+
+            Version versionInFile = ParseVersion(Path.GetFileName(sourceFile));
+            if (versionInFile != null && versionInFile != specifedVersion)
+            {
+                throw new ArgumentException($"Parameter '{nameof(sourceFile)}' (with value '{sourceFile}') contains the version {versionInFile.ToString()} that do not match with the value specified in the parameter '{nameof(version)}' (with value '{version}').");
+            }
+
+            var envInFile = ParseEnv(Path.GetFileNameWithoutExtension(sourceFile));
+            string prefix = string.Empty;
+            if (!envInFile.ToString().Equals(env, StringComparison.OrdinalIgnoreCase) || envInFile == EnvEnum.Unknown)
+            {
+                prefix = env + ".";
+            }
+
+            string blobName = (versionInFile == null) ? $"{prefix}{Path.GetFileNameWithoutExtension(sourceFile)}_{version}.mstx" : sourceFile;
+            return blobName;
+        }
+
+        private static string UploadElement(CloudBlobContainer container, string sourceFile, string blobName)
+        {
+            CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
+            using (var fileStreame = File.Open(sourceFile, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                BlobRequestOptions options = new BlobRequestOptions();
+                options.ParallelOperationThreadCount = 4;
+
+                OperationContext context = new OperationContext();
+
+                blob.UploadFromStream(fileStreame, null, options, context);
+
+                float bytes = 0;
+                foreach (var result in context.RequestResults)
+                {
+                    bytes += result.EgressBytes;
+                }
+
+                TimeSpan elapsed = context.EndTime - context.StartTime;
+
+                return $"Uploaded {Math.Round(bytes / 1024f, 2)} Kbytes in {elapsed.TotalSeconds} seconds.";
+            }
         }
     }
 }

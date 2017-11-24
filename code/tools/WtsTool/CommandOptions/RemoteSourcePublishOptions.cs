@@ -18,10 +18,13 @@ namespace WtsTool.CommandOptions
         [Option('k', "storage-key", Required = true, HelpText = "Storage Account key to be used for package publishing.")]
         public string AccountKey { get; set; }
 
-        [Option('f', "file", Required = true, HelpText = "Mstx file to publish.")]
-        public bool File { get; set; }
+        [Option('f', "file", Required = true, HelpText = "Mstx file to publish.", SetName = "Package")]
+        public string File { get; set; }
 
-        [Option('v', "version", Required = true, HelpText = "Version number for the templates package to be published.")]
+        [Option('v', "version", Required = true, HelpText = "Version number for the templates package to be published.", SetName = "Package")]
         public string Version { get; set; }
+
+        [Option('c', "config", Required = true, HelpText = "Publish an updated configuration file to the CDN.", Default = false, SetName = "Config")]
+        public bool Config { get; set; }
     }
 }

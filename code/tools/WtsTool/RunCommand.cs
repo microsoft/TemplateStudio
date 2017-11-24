@@ -20,13 +20,13 @@ namespace WtsTool
 
             switch (action)
             {
-                case PackageAction.Create:
+                case PackageTask.Create:
                     PackageWorker.Create(options.CreateNew, options.OutFile, options.CertThumbprint, output, error);
                     break;
-                case PackageAction.Extract:
-                    PackageWorker.Extract(options.Extract, options.OutPath, output, error);
+                case PackageTask.Extract:
+                    PackageWorker.Extract(options.Extract, options.DestionationDir, output, error);
                     break;
-                case PackageAction.Info:
+                case PackageTask.Info:
                     PackageWorker.GetInfo(options.Info, output, error);
                     break;
                 default:
@@ -39,32 +39,44 @@ namespace WtsTool
 
         public static int Publish(RemoteSourcePublishOptions publishOpts, TextWriter output, TextWriter error)
         {
-            output.WriteCommandHeader("Publish");
+            if (publishOpts.Config)
+            {
+                RemoteSourceWorker.PublishConfig(publishOpts, output, error);
+            }
+            else
+            {
+                RemoteSourceWorker.PublishContent(publishOpts, output, error);
+            }
+
             return 0;
         }
 
         public static int Download(RemoteSourceDownloadOptions downloadOpts, TextWriter output, TextWriter error)
         {
-            output.WriteCommandHeader("Download");
+            if (downloadOpts.Config)
+            {
+                RemoteSourceWorker.DownloadConfig(downloadOpts, output, error);
+            }
+            else
+            {
+                RemoteSourceWorker.DownloadContent(downloadOpts, output, error);
+            }
+
             return 0;
         }
 
         public static int List(RemoteSourceListOptions listOpts, TextWriter output, TextWriter error)
         {
-            if (listOpts.Summary && !(listOpts.Main | listOpts.Detailed))
+            if (listOpts.Summary && !listOpts.Detailed)
             {
                 RemoteSourceWorker.ListSummaryInfo(listOpts, output, error);
-            }
-
-            if (listOpts.Main)
-            {
-                RemoteSourceWorker.ListMainVersions(listOpts, output, error);
             }
 
             if (listOpts.Detailed)
             {
                 RemoteSourceWorker.ListDetailedVersions(listOpts, output, error);
             }
+
             return 0;
         }
 
@@ -72,20 +84,20 @@ namespace WtsTool
         {
             if (!string.IsNullOrEmpty(options.Info))
             {
-                return PackageAction.Info;
+                return PackageTask.Info;
             }
 
             if (!string.IsNullOrEmpty(options.CreateNew))
             {
-                return PackageAction.Create;
+                return PackageTask.Create;
             }
 
             if (!string.IsNullOrEmpty(options.Extract))
             {
-                return PackageAction.Extract;
+                return PackageTask.Extract;
             }
 
-            return PackageAction.None;
+            return PackageTask.None;
         }
     }
 }
