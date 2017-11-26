@@ -4,7 +4,7 @@
     "Universal"
   ],
   "name": "Dev Center Notifications",
-  "groupIdentity": "wts.Feat.StoreNotifications",
+  "groupIdentity": "wts.Feat.StoreNotifications.VB",
   "identity": "wts.Feat.StoreNotifications.VB",
   "description": "Register your app to receive notifications from the store and handle them being used to launch the app.",
   "tags": {

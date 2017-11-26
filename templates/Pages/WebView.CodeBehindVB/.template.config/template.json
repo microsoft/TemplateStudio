@@ -4,7 +4,7 @@
     "Universal"
   ],
   "name": "Web View",
-  "groupIdentity": "wts.Page.WebView",
+  "groupIdentity": "wts.Page.WebView.VB",
   "identity": "wts.Page.WebView.CodeBehind.VB",
   "description": "The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine.",
   "tags": {
