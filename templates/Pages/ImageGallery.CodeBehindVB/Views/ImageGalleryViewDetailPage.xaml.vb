@@ -32,6 +32,7 @@ Namespace Views
             End Set
         End Property
 
+        Public Property Source As ObservableCollection(Of SampleImage)
             Get
                 Return _source
             End Get

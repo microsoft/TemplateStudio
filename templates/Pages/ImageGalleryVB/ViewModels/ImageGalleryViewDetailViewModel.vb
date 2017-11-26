@@ -12,10 +12,12 @@ Imports Param_ItemNamespace.Services
 
 Namespace ViewModels
     Public Class ImageGalleryViewDetailViewModel
+        Inherits System.ComponentModel.INotifyPropertyChanged
         Private Shared _image As UIElement
         Private _selectedImage As Object
         Private _source As ObservableCollection(Of SampleImage)
 
+        Public Property SelectedImage As Object
             Get
                 Return _selectedImage
             End Get
@@ -25,6 +27,7 @@ Namespace ViewModels
             End Set
         End Property
 
+        Public Property Source As ObservableCollection(Of SampleImage)
             Get
                 Return _source
             End Get

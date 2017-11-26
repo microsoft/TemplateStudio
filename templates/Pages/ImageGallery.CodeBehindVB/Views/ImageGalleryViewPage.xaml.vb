@@ -21,6 +21,7 @@ Namespace Views
 
         Private _source As ObservableCollection(Of SampleImage)
 
+        Public Property Source As ObservableCollection(Of SampleImage)
             Get
                 Return _source
             End Get
@@ -41,6 +42,7 @@ Namespace Views
             NavigationService.Navigate(Of ImageGalleryViewDetailPage)(e.ClickedItem)
         End Sub
 
+        Private Async Sub ImagesGridView_Loaded(sender As Object, e As RoutedEventArgs)
             Dim selectedImageId = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewSelectedImageId)
             If Not String.IsNullOrEmpty(selectedImageId) Then
                 Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose)
