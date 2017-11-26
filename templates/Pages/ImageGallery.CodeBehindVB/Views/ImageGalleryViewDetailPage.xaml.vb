@@ -22,9 +22,9 @@ Namespace Views
         Private _selectedImage As Object
         Private _source As ObservableCollection(Of SampleImage)
 
-        Public Property SelectedImage() As Object
+        Public Property SelectedImage As Object
             Get
-                Return selectedImage
+                Return _selectedImage
             End Get
             Set
                 [Set](_selectedImage, value)
