@@ -96,6 +96,15 @@ namespace Microsoft.Templates.UI.Controls
                     paths.ForEach(p => BindingOperations.SetBinding(p, Shapes.Shape.FillProperty, CreateBinding(this, nameof(Foreground))));
                 }
 
+                var polygons = element
+                                .ChildrenOfType<Shapes.Polygon>()
+                                .ToList();
+
+                if (polygons.Any())
+                {
+                    polygons.ForEach(p => BindingOperations.SetBinding(p, Shapes.Shape.FillProperty, CreateBinding(this, nameof(Foreground))));
+                }
+
                 var shapes = element
                                 .ChildrenOfType<Shapes.Shape>(true)
                                 .ToList();
