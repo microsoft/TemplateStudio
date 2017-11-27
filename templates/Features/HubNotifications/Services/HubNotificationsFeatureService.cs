@@ -37,12 +37,11 @@ namespace Param_RootNamespace.Services
         protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
         {
             // TODO WTS: Handle activation from toast notification,
-            // For more info handling activation see documentation at
-            // https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
+            // Be sure to use the template 'ToastGeneric' in the toast notification configuration XML
+            // to ensure OnActivated is called when launching from a Toast Notification sent from Azure
             //
-            // TODO WTS: Do not forget use the template 'ToastGeneric' in the toast notification configuration XML
-            // to ensure OnActivated is called when launching from Toast Notification
-
+            // For more info handling activation see documentation at
+            // https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast
             await Task.CompletedTask;
         }
     }
