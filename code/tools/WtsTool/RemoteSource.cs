@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -19,18 +20,18 @@ namespace WtsTool
 {
     public static class RemoteSource
     {
-        public static RemoteTemplatesSourceConfig GetRemoteTemplatesSourceConfig(string storageAccount, EnvEnum environment)
+        public static TemplatesSourceConfig GetTemplatesSourceConfig(string storageAccount, EnvEnum environment)
         {
             string env = environment.ToString().ToLowerInvariant();
 
-            CloudBlobContainer container = RemoteSource.GetContainerAnonymous(storageAccount, env);
+            CloudBlobContainer container = GetContainerAnonymous(storageAccount, env);
             var remoteElements = RemoteSource.GetAllElements(container);
             var remotePackages = remoteElements.Where(e => e != null && e.Name.StartsWith(env, StringComparison.OrdinalIgnoreCase) && e.Name.EndsWith(".mstx", StringComparison.OrdinalIgnoreCase))
                 .Select((e) =>
-                    new RemoteTemplatesPackage()
+                    new TemplatesPackageInfo()
                     {
                         Name = e.Name,
-                        StorageUri = e.Uri,
+                        Uri = e.Uri,
                         Bytes = e.Properties.Length,
                         Date = e.Properties.LastModified.Value.DateTime,
                         Version = ParseVersion(e.Name),
@@ -40,7 +41,7 @@ namespace WtsTool
                 .GroupBy(e => e.MainVersion)
                 .Select(e => e.FirstOrDefault());
 
-            RemoteTemplatesSourceConfig config = new RemoteTemplatesSourceConfig()
+            TemplatesSourceConfig config = new TemplatesSourceConfig()
             {
                 VersionCount = remotePackages.Count(),
                 Latest = remotePackages.FirstOrDefault(),

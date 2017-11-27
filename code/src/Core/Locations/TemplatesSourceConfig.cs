@@ -10,19 +10,19 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace WtsTool
+namespace Microsoft.Templates.Core.Locations
 {
-    public class RemoteTemplatesSourceConfig
+    public class TemplatesSourceConfig
     {
-        public RemoteTemplatesPackage Latest { get; set; }
+        public TemplatesPackageInfo Latest { get; set; }
 
         public int VersionCount { get; set; }
 
-        public List<RemoteTemplatesPackage> Versions { get; set; }
+        public List<TemplatesPackageInfo> Versions { get; set; }
 
-        public static RemoteTemplatesSourceConfig LoadFromFile(string filePath)
+        public static TemplatesSourceConfig LoadFromFile(string filePath)
         {
-            RemoteTemplatesSourceConfig result = null;
+            TemplatesSourceConfig result = null;
             try
             {
                 if (File.Exists(filePath))
@@ -32,7 +32,7 @@ namespace WtsTool
                     JsonSerializerSettings settings = new JsonSerializerSettings();
                     settings.NullValueHandling = NullValueHandling.Ignore;
                     settings.Converters.Add(new StringEnumConverter());
-                    result = JsonConvert.DeserializeObject<RemoteTemplatesSourceConfig>(configData, settings);
+                    result = JsonConvert.DeserializeObject<TemplatesSourceConfig>(configData, settings);
                 }
             }
             catch (Exception)

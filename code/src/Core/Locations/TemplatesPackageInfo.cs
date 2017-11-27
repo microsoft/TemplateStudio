@@ -9,17 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage.Blob;
 using Newtonsoft.Json;
-using WtsTool.CommandOptions;
 
-namespace WtsTool
+namespace Microsoft.Templates.Core.Locations
 {
-    public class RemoteTemplatesPackage
+    public class TemplatesPackageInfo
     {
         public string Name { get; set; }
 
-        public Uri StorageUri { get; set; }
+        public Uri Uri { get; set; }
 
         public DateTime Date { get; set; }
 

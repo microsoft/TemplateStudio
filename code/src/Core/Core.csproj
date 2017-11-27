@@ -192,6 +192,8 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Locations\TemplatesPackageInfo.cs" />
+    <Compile Include="Locations\TemplatesSourceConfig.cs" />
     <Compile Include="Mvvm\Observable.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
