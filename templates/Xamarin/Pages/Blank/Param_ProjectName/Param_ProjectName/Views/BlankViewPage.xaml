@@ -4,10 +4,6 @@
              x:Class="Param_ItemNamespace.Views.BlankViewPage"
              Title="BlankView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <!-- Place your content here -->
     </ContentPage.Content>
 </ContentPage>
