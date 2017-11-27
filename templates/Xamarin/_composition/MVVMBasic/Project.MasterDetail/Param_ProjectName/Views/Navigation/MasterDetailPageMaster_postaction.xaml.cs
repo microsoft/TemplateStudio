@@ -1,18 +1,19 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿//^^
+//{[{
+using Param_RootNamespace.ViewModels.Navigation;
+//}]}
 
 namespace Param_RootNamespace.Views.Navigation
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MasterDetailPageMaster : ContentPage
     {
-        public ListView PrimaryListView;
-
         public MasterDetailPageMaster()
         {
             InitializeComponent();
-
-            PrimaryListView = PrimaryMenuItemsListView;
+            //^^
+            //{[{
+            BindingContext = new MasterDetailPageMasterViewModel();
+            //}]}
         }
     }
 }
