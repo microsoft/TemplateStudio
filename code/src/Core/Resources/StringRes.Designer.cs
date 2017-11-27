@@ -124,6 +124,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find project file for item {0}.
+        /// </summary>
+        public static string ExceptionProjectNotFound {
+            get {
+                return ResourceManager.GetString("ExceptionProjectNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception.
         /// </summary>
         public static string ExceptionString {

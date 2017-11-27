@@ -51,9 +51,9 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}AllStyleCop";
 
             ProjectName = projectName;
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            SolutionPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-            OutputPath = ProjectPath;
+            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            OutputPath = DestinationPath;
 
             var userSelection = new UserSelection(projectType, framework, platform, ProgrammingLanguages.CSharp)
             {

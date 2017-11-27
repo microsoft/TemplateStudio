@@ -27,9 +27,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string ProjectName => _replacementsDictionary["$safeprojectname$"];
 
-        public string ProjectPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
+        public string DestinationPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
-        public string SolutionPath => new DirectoryInfo(_replacementsDictionary["$solutiondirectory$"]).FullName;
+        public string DestinationParentPath => new DirectoryInfo(DestinationPath).Parent.FullName;
 
         public string OutputPath { get; set; }
 
@@ -108,7 +108,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (WizardBackoutException)
             {
-                CleanupDirectories(ProjectPath, SolutionPath);
+                CleanupDirectories(DestinationPath);
 
                 throw;
             }
@@ -119,15 +119,16 @@ namespace Microsoft.Templates.UI.VisualStudio
             return true;
         }
 
-        private void CleanupDirectories(string projectDirectory, string solutionDirectory)
+        private void CleanupDirectories(string projectDirectory)
         {
+            var parentDir = new DirectoryInfo(projectDirectory).Parent.FullName;
             Fs.SafeDeleteDirectory(projectDirectory);
 
-            if (Directory.Exists(solutionDirectory)
-                && !Directory.EnumerateDirectories(solutionDirectory).Any()
-                && !Directory.EnumerateFiles(solutionDirectory).Any())
+            if (Directory.Exists(parentDir)
+                && !Directory.EnumerateDirectories(parentDir).Any()
+                && !Directory.EnumerateFiles(parentDir).Any())
             {
-                Fs.SafeDeleteDirectory(solutionDirectory);
+                Fs.SafeDeleteDirectory(parentDir);
             }
         }
     }

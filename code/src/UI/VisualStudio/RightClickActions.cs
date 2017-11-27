@@ -2,17 +2,15 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
 
@@ -26,9 +24,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string OutputPath { get; set; }
 
-        public string ProjectPath { get; private set; }
+        public string DestinationPath { get; private set; }
 
-        public string SolutionPath { get; private set; }
+        public string DestinationParentPath { get; private set; }
 
         public string TempGenerationPath { get; private set; }
 
@@ -122,9 +120,20 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             if (GenContext.InitializedLanguage == _shell.GetActiveProjectLanguage())
             {
-                ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
-                SolutionPath = GenContext.ToolBox.Shell.GetSolutionPath();
-                ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                var projectConfig = ProjectConfigInfo.ReadProjectConfiguration();
+                if (projectConfig.Platform == Platforms.Xamarin)
+                {
+                    DestinationPath = new DirectoryInfo(GenContext.ToolBox.Shell.GetActiveProjectPath()).Parent.FullName;
+                    DestinationParentPath = new DirectoryInfo(DestinationPath).Parent.FullName;
+                    ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                }
+                else
+                {
+                    DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
+                    DestinationParentPath = new DirectoryInfo(DestinationPath).Parent.FullName;
+                    ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                }
+
                 TempGenerationPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
