@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}{framework}{ShortLanguageName(language)}";
+            var projectName = $"{projectType}{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, false);
 
@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}{framework}All{ShortLanguageName(language)}";
+            var projectName = $"{projectType}All{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName, false);
 
@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Test
                      && !t.GetIsHidden()
                      && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}{ShortFramework(framework)}AllRandom{ShortLanguageName(language)}";
+            var projectName = $"{projectType}AllRandom{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetRandomName, false);
 
