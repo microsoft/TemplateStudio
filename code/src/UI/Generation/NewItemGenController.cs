@@ -139,10 +139,10 @@ namespace Microsoft.Templates.UI
 
             foreach (var file in files)
             {
-                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.RootPath);
+                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.DestinationParentPath);
                 var fileName = file.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
-                var projectFileName = Path.GetFullPath(Path.Combine(GenContext.Current.RootPath, fileName));
+                var projectFileName = Path.GetFullPath(Path.Combine(GenContext.Current.DestinationParentPath, fileName));
 
                 if (File.Exists(projectFileName))
                 {
@@ -193,25 +193,25 @@ namespace Microsoft.Templates.UI
                 new NewItemGenerationFileInfo(
                         n,
                         Path.Combine(GenContext.Current.OutputPath, n),
-                        Path.Combine(GenContext.Current.RootPath, n))));
+                        Path.Combine(GenContext.Current.DestinationParentPath, n))));
 
             result.ConflictingFiles.AddRange(compareResult.ConflictingFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                         n,
                         Path.Combine(GenContext.Current.OutputPath, n),
-                        Path.Combine(GenContext.Current.RootPath, n))));
+                        Path.Combine(GenContext.Current.DestinationParentPath, n))));
 
             result.ModifiedFiles.AddRange(compareResult.ModifiedFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                       n,
                       Path.Combine(GenContext.Current.OutputPath, n),
-                      Path.Combine(GenContext.Current.RootPath, n))));
+                      Path.Combine(GenContext.Current.DestinationParentPath, n))));
 
             result.UnchangedFiles.AddRange(compareResult.UnchangedFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                      n,
                      Path.Combine(GenContext.Current.OutputPath, n),
-                     Path.Combine(GenContext.Current.RootPath, n))));
+                     Path.Combine(GenContext.Current.DestinationParentPath, n))));
 
             result.HasChangesToApply = result.NewFiles.Any() || result.ModifiedFiles.Any() ? true : false;
             return result;

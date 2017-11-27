@@ -151,15 +151,6 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to resolve platform. .
-        /// </summary>
-        public static string ExceptionUnableResolvePlatform {
-            get {
-                return ResourceManager.GetString("ExceptionUnableResolvePlatform", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Could not find file &apos;{0}&apos; to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: &apos;{1}&apos;..
         /// </summary>
         public static string FailedMergePostActionFileNotFound {

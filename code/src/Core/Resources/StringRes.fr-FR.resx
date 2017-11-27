@@ -418,7 +418,4 @@ Les modifications suivantes n'ont pu être intégrées : {2}
     <value>Could not find project file for item {0}</value>
     <comment>{0}: Filepath</comment>
   </data>
-  <data name="ExceptionUnableResolvePlatform" xml:space="preserve">
-    <value>Unable to resolve platform. </value>
-  </data>
 </root>

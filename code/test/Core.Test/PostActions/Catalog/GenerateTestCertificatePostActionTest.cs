@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string DestinationPath { get; set; }
 
-        public string RootPath { get; set; }
+        public string DestinationParentPath { get; set; }
 
         public string TempGenerationPath { get; set; }
 

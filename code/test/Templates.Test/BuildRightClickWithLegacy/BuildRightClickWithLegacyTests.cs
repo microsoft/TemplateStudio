@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Test
             ProjectName = projectName;
 
             DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            RootPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
 
             var userSelection = _fixture.SetupProject(projectType, framework, string.Empty, language, getName);
 

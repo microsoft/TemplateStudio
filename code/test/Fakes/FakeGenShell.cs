@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Fakes
 
         public override string GetSolutionPath()
         {
-            return (GenContext.Current != null) ? GenContext.Current.RootPath : string.Empty;
+            return (GenContext.Current != null) ? GenContext.Current.DestinationParentPath : string.Empty;
         }
 
         public override string GetActiveProjectLanguage()

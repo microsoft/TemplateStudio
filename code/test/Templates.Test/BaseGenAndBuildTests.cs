@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Test
             ProjectName = projectName;
 
             DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            RootPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language, getName);
 
@@ -126,7 +126,7 @@ namespace Microsoft.Templates.Test
 
             ProjectName = projectName;
             DestinationPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
-            RootPath = Path.Combine(_fixture.TestNewItemPath, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestNewItemPath, projectName);
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
@@ -218,7 +218,7 @@ namespace Microsoft.Templates.Test
 
             ProjectName = projectName;
             DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            RootPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
             OutputPath = DestinationPath;
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);

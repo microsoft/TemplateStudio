@@ -29,7 +29,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
-        public string RootPath => new DirectoryInfo(DestinationPath).Parent.FullName;
+        public string DestinationParentPath => new DirectoryInfo(DestinationPath).Parent.FullName;
 
         public string OutputPath { get; set; }
 

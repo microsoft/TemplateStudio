@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string DestinationPath => Directory.GetCurrentDirectory();
 
-        public string RootPath => string.Empty;
+        public string DestinationParentPath => string.Empty;
 
         public string TempGenerationPath => string.Empty;
 

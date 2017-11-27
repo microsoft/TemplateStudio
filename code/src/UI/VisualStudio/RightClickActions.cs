@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationPath { get; private set; }
 
-        public string RootPath { get; private set; }
+        public string DestinationParentPath { get; private set; }
 
         public string TempGenerationPath { get; private set; }
 
@@ -120,16 +120,17 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             if (GenContext.InitializedLanguage == _shell.GetActiveProjectLanguage())
             {
-                if (_shell.GetPlatform() == Platforms.Xamarin)
+                var projectConfig = ProjectConfigInfo.ReadProjectConfiguration();
+                if (projectConfig.Platform == Platforms.Xamarin)
                 {
                     DestinationPath = new DirectoryInfo(GenContext.ToolBox.Shell.GetActiveProjectPath()).Parent.FullName;
-                    RootPath = new DirectoryInfo(DestinationPath).Parent.FullName;
+                    DestinationParentPath = new DirectoryInfo(DestinationPath).Parent.FullName;
                     ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
                 }
                 else
                 {
                     DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
-                    RootPath = new DirectoryInfo(DestinationPath).Parent.FullName;
+                    DestinationParentPath = new DirectoryInfo(DestinationPath).Parent.FullName;
                     ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
                 }
 

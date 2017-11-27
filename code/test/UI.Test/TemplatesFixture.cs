@@ -24,7 +24,7 @@ namespace Microsoft.UI.Test
 
         public string DestinationPath => string.Empty;
 
-        public string RootPath => string.Empty;
+        public string DestinationParentPath => string.Empty;
 
         public string TempGenerationPath => string.Empty;
 

@@ -42,7 +42,7 @@ namespace Microsoft.Templates.UI
                     GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
                 }
 
-                SetOutputPath(genInfo.Template.GetOutputToSolution(), isTempGeneration);
+                SetOutputPath(genInfo.Template.GetOutputToParent(), isTempGeneration);
 
                 AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
 
@@ -68,13 +68,13 @@ namespace Microsoft.Templates.UI
             return genResults;
         }
 
-        private void SetOutputPath(bool outputToSolution, bool tempGeneration)
+        private void SetOutputPath(bool outputToParent, bool tempGeneration)
         {
             if (!tempGeneration)
             {
-                if (outputToSolution)
+                if (outputToParent)
                 {
-                    GenContext.Current.OutputPath = GenContext.Current.RootPath;
+                    GenContext.Current.OutputPath = GenContext.Current.DestinationParentPath;
                 }
                 else
                 {
@@ -83,7 +83,7 @@ namespace Microsoft.Templates.UI
             }
             else
             {
-                if (outputToSolution)
+                if (outputToParent)
                 {
                     GenContext.Current.OutputPath = GenContext.Current.TempGenerationPath;
                 }

@@ -41,6 +41,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (value != null)
                 {
+                    var hasChanged = _selectedProjectType != null && _selectedProjectType.Name != value.Name;
+                    SetProperty(ref _selectedProjectType, value);
+                    UserSelectionService.SelectedProjectType = value;
+
                     DataService.LoadFrameworks(Frameworks, value.Name, Platform);
                     FrameworkHeader = string.Format(StringRes.GroupFrameworkHeader_SF, Frameworks.Count);
                     if (_selectedFramework != null)
@@ -52,9 +56,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                         SelectedFramework = Frameworks.FirstOrDefault();
                     }
 
-                    var hasChanged = _selectedProjectType != null && _selectedProjectType.Name != value.Name;
-                    SetProperty(ref _selectedProjectType, value);
-                    UserSelectionService.SelectedProjectType = value;
                     if (hasChanged)
                     {
                         MainViewModel.Current.AlertProjectSetupChanged();

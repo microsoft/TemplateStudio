@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Test
 
             ProjectName = projectName;
             DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            RootPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
             OutputPath = DestinationPath;
 
             var userSelection = new UserSelection(projectType, framework, platform, ProgrammingLanguages.CSharp)

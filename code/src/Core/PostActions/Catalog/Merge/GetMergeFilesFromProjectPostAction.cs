@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private void GetFileFromProject()
         {
             var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config.Replace(GenContext.Current.OutputPath, GetReplacementPath())));
-            var relFilePath = GetRelativePath(filePath, GenContext.Current.RootPath + Path.DirectorySeparatorChar);
+            var relFilePath = GetRelativePath(filePath, GenContext.Current.DestinationParentPath + Path.DirectorySeparatorChar);
 
             if (!GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {
@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             if (GenContext.Current.OutputPath == GenContext.Current.TempGenerationPath)
             {
-                return GenContext.Current.RootPath;
+                return GenContext.Current.DestinationParentPath;
             }
             else
             {
