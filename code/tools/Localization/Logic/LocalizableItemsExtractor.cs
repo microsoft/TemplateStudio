@@ -121,7 +121,8 @@ namespace Localization
         private void ExtractTemplateEngineTemplates(string templatePath)
         {
             var srcDirectory = GetDirectory(Path.Combine(_sourceDir.FullName, templatePath));
-            foreach (var subDirectory in srcDirectory.GetDirectories())
+            var directories = srcDirectory.GetDirectories().Where(d => !d.Name.EndsWith("VB"));
+            foreach (var subDirectory in directories)
             {
                 string pageSrcDirectory = Path.Combine(templatePath, subDirectory.Name, Routes.TemplateConfigDir);
 
