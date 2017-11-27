@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="MainPage">
-    
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -35,7 +35,10 @@
             <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
-            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">
+                <Button Style="{StaticResource wtsButton}" Content="OK" />
+                <Button Style="{StaticResource wtsButton}" Content="Cancel" Margin="8,0,0,0" />
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

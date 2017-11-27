@@ -369,14 +369,7 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(ListItemTextDisabledProperty, value); }
         }
 
-        public static readonly DependencyProperty ButtonBorderProperty = DependencyProperty.Register("ButtonBorder", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush ButtonBorder
-        {
-            get { return (Brush)GetValue(ButtonBorderProperty); }
-            set { SetValue(ButtonBorderProperty, value); }
-        }
-
+        // Button Colors
         public static readonly DependencyProperty ButtonProperty = DependencyProperty.Register("Button", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush Button
@@ -385,38 +378,23 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(ButtonProperty, value); }
         }
 
-        public static readonly DependencyProperty ButtonBorderDefaultProperty = DependencyProperty.Register("ButtonBorderDefault", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty ButtonTextProperty = DependencyProperty.Register("ButtonText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush ButtonBorderDefault
+        public Brush ButtonText
         {
-            get { return (Brush)GetValue(ButtonBorderDefaultProperty); }
-            set { SetValue(ButtonBorderDefaultProperty, value); }
+            get { return (Brush)GetValue(ButtonTextProperty); }
+            set { SetValue(ButtonTextProperty, value); }
         }
 
-        public static readonly DependencyProperty ButtonBorderFocusedProperty = DependencyProperty.Register("ButtonBorderFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty ButtonBorderProperty = DependencyProperty.Register("ButtonBorder", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush ButtonBorderFocused
+        public Brush ButtonBorder
         {
-            get { return (Brush)GetValue(ButtonBorderFocusedProperty); }
-            set { SetValue(ButtonBorderFocusedProperty, value); }
+            get { return (Brush)GetValue(ButtonBorderProperty); }
+            set { SetValue(ButtonBorderProperty, value); }
         }
 
-        public static readonly DependencyProperty ButtonBorderHoverProperty = DependencyProperty.Register("ButtonBorderHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush ButtonBorderHover
-        {
-            get { return (Brush)GetValue(ButtonBorderHoverProperty); }
-            set { SetValue(ButtonBorderHoverProperty, value); }
-        }
-
-        public static readonly DependencyProperty ButtonBorderPressedProperty = DependencyProperty.Register("ButtonBorderPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush ButtonBorderPressed
-        {
-            get { return (Brush)GetValue(ButtonBorderPressedProperty); }
-            set { SetValue(ButtonBorderPressedProperty, value); }
-        }
-
+        // Button Default Colors
         public static readonly DependencyProperty ButtonDefaultProperty = DependencyProperty.Register("ButtonDefault", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush ButtonDefault
@@ -433,8 +411,17 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(ButtonDefaultTextProperty, value); }
         }
 
+        public static readonly DependencyProperty ButtonBorderDefaultProperty = DependencyProperty.Register("ButtonBorderDefault", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonBorderDefault
+        {
+            get { return (Brush)GetValue(ButtonBorderDefaultProperty); }
+            set { SetValue(ButtonBorderDefaultProperty, value); }
+        }
+
         public static readonly DependencyProperty ButtonDisabledProperty = DependencyProperty.Register("ButtonDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
+        // Button Disabled Colors
         public Brush ButtonDisabled
         {
             get { return (Brush)GetValue(ButtonDisabledProperty); }
@@ -449,6 +436,15 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(ButtonDisabledTextProperty, value); }
         }
 
+        public static readonly DependencyProperty ButtonBorderDisabledProperty = DependencyProperty.Register("ButtonBorderDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonBorderDisabled
+        {
+            get { return (Brush)GetValue(ButtonBorderDisabledProperty); }
+            set { SetValue(ButtonBorderDisabledProperty, value); }
+        }
+
+        // Button Focused Colors
         public static readonly DependencyProperty ButtonFocusedProperty = DependencyProperty.Register("ButtonFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush ButtonFocused
@@ -465,6 +461,15 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(ButtonFocusedTextProperty, value); }
         }
 
+        public static readonly DependencyProperty ButtonBorderFocusedProperty = DependencyProperty.Register("ButtonBorderFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonBorderFocused
+        {
+            get { return (Brush)GetValue(ButtonBorderFocusedProperty); }
+            set { SetValue(ButtonBorderFocusedProperty, value); }
+        }
+
+        // Button Hover Colors
         public static readonly DependencyProperty ButtonHoverProperty = DependencyProperty.Register("ButtonHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush ButtonHover
@@ -481,6 +486,15 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(ButtonHoverTextProperty, value); }
         }
 
+        public static readonly DependencyProperty ButtonBorderHoverProperty = DependencyProperty.Register("ButtonBorderHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ButtonBorderHover
+        {
+            get { return (Brush)GetValue(ButtonBorderHoverProperty); }
+            set { SetValue(ButtonBorderHoverProperty, value); }
+        }
+
+        // Button Pressed Colors
         public static readonly DependencyProperty ButtonPressedProperty = DependencyProperty.Register("ButtonPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush ButtonPressed
@@ -497,12 +511,12 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(ButtonPressedTextProperty, value); }
         }
 
-        public static readonly DependencyProperty ButtonTextProperty = DependencyProperty.Register("ButtonText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty ButtonBorderPressedProperty = DependencyProperty.Register("ButtonBorderPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush ButtonText
+        public Brush ButtonBorderPressed
         {
-            get { return (Brush)GetValue(ButtonTextProperty); }
-            set { SetValue(ButtonTextProperty, value); }
+            get { return (Brush)GetValue(ButtonBorderPressedProperty); }
+            set { SetValue(ButtonBorderPressedProperty, value); }
         }
     }
 }

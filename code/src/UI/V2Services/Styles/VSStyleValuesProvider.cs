@@ -109,40 +109,48 @@ namespace Microsoft.Templates.UI.V2Services
             {
                 switch (memberName)
                 {
-                    case "ButtonBorderColorKey":
-                        return GetColor(CommonControlsColors.ButtonBorderColorKey);
                     case "ButtonColorKey":
                         return GetColor(CommonControlsColors.ButtonColorKey);
-                    case "ButtonBorderDefaultColorKey":
-                        return GetColor(CommonControlsColors.ButtonBorderDefaultColorKey);
-                    case "ButtonBorderFocusedColorKey":
-                        return GetColor(CommonControlsColors.ButtonBorderFocusedColorKey);
-                    case "ButtonBorderHoverColorKey":
-                        return GetColor(CommonControlsColors.ButtonBorderHoverColorKey);
-                    case "ButtonBorderPressedColorKey":
-                        return GetColor(CommonControlsColors.ButtonBorderPressedColorKey);
+                    case "ButtonTextColorKey":
+                        return GetColor(CommonControlsColors.ButtonTextColorKey);
+                    case "ButtonBorderColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderColorKey);
+
                     case "ButtonDefaultColorKey":
                         return GetColor(CommonControlsColors.ButtonDefaultColorKey);
                     case "ButtonDefaultTextColorKey":
                         return GetColor(CommonControlsColors.ButtonDefaultTextColorKey);
+                    case "ButtonBorderDefaultColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderDefaultColorKey);
+
                     case "ButtonDisabledColorKey":
                         return GetColor(CommonControlsColors.ButtonDisabledColorKey);
                     case "ButtonDisabledTextColorKey":
                         return GetColor(CommonControlsColors.ButtonDisabledTextColorKey);
+                    case "ButtonBorderDisabledColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderDisabledColorKey);
+
                     case "ButtonFocusedColorKey":
                         return GetColor(CommonControlsColors.ButtonFocusedColorKey);
                     case "ButtonFocusedTextColorKey":
                         return GetColor(CommonControlsColors.ButtonFocusedTextColorKey);
+                    case "ButtonBorderFocusedColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderFocusedColorKey);
+
                     case "ButtonHoverColorKey":
                         return GetColor(CommonControlsColors.ButtonHoverColorKey);
                     case "ButtonHoverTextColorKey":
                         return GetColor(CommonControlsColors.ButtonHoverTextColorKey);
+                    case "ButtonBorderHoverColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderHoverColorKey);
+
                     case "ButtonPressedColorKey":
                         return GetColor(CommonControlsColors.ButtonPressedColorKey);
                     case "ButtonPressedTextColorKey":
                         return GetColor(CommonControlsColors.ButtonPressedTextColorKey);
-                    case "ButtonTextColorKey":
-                        return GetColor(CommonControlsColors.ButtonTextColorKey);
+                    case "ButtonBorderPressedColorKey":
+                        return GetColor(CommonControlsColors.ButtonBorderPressedColorKey);
+
                     default:
                         throw new Exception($"The color key value '{memberName}' is not found");
                 }
@@ -239,6 +247,17 @@ namespace Microsoft.Templates.UI.V2Services
             }
 
             throw new Exception($"The font size is not valid.");
+        }
+
+        public FontFamily GetFontFamily()
+        {
+            var fontFamily = Application.Current.FindResource(VsFonts.EnvironmentFontFamilyKey);
+            if (fontFamily is FontFamily)
+            {
+                return fontFamily as FontFamily;
+            }
+
+            throw new Exception($"The font family is not valid.");
         }
     }
 }

@@ -13,6 +13,8 @@ namespace Microsoft.Templates.UI.V2Services
 
         double GetFontSize(string fontSizeResourceKey);
 
+        FontFamily GetFontFamily();
+
         event EventHandler ThemeChanged;
     }
 }

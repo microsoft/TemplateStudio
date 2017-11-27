@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
+using System.Windows.Media;
 
 namespace Microsoft.Templates.UI.V2Services
 {
@@ -86,6 +87,14 @@ namespace Microsoft.Templates.UI.V2Services
         {
             get { return (double)GetValue(Environment375PercentFontSizeProperty); }
             set { SetValue(Environment375PercentFontSizeProperty, value); }
+        }
+
+        public static readonly DependencyProperty EnvironmentFontFamilyProperty = DependencyProperty.Register("EnvironmentFontFamily", typeof(FontFamily), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public FontFamily EnvironmentFontFamily
+        {
+            get { return (FontFamily)GetValue(EnvironmentFontFamilyProperty); }
+            set { SetValue(EnvironmentFontFamilyProperty, value); }
         }
     }
 }

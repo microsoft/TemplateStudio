@@ -97,40 +97,48 @@ namespace Microsoft.Templates.UI.V2Services
             {
                 switch (memberName)
                 {
-                    case "ButtonBorderColorKey":
-                        return LightColorValues.Color_FF_ACACAC;
                     case "ButtonColorKey":
                         return LightColorValues.Color_FF_ECECF0;
-                    case "ButtonBorderDefaultColorKey":
-                        return LightColorValues.Color_FF_3399FF;
-                    case "ButtonBorderFocusedColorKey":
-                        return LightColorValues.Color_FF_3399FF;
-                    case "ButtonBorderHoverColorKey":
-                        return LightColorValues.Color_FF_3399FF;
-                    case "ButtonBorderPressedColorKey":
-                        return LightColorValues.Color_FF_007ACC;
+                    case "ButtonTextColorKey":
+                        return LightColorValues.Color_FF_1E1E1E;
+                    case "ButtonBorderColorKey":
+                        return LightColorValues.Color_FF_ACACAC;
+
                     case "ButtonDefaultColorKey":
                         return LightColorValues.Color_FF_ECECF0;
                     case "ButtonDefaultTextColorKey":
                         return LightColorValues.Color_FF_1E1E1E;
+                    case "ButtonBorderDefaultColorKey":
+                        return LightColorValues.Color_FF_3399FF;
+
                     case "ButtonDisabledColorKey":
                         return LightColorValues.Color_FF_F5F5F5;
                     case "ButtonDisabledTextColorKey":
                         return LightColorValues.Color_FF_A2A4A5;
+                    case "ButtonBorderDisabledColorKey":
+                        return LightColorValues.Color_FF_CCCEDB;
+
                     case "ButtonFocusedColorKey":
                         return LightColorValues.Color_FF_C9DEF5;
                     case "ButtonFocusedTextColorKey":
                         return LightColorValues.Color_FF_1E1E1E;
+                    case "ButtonBorderFocusedColorKey":
+                        return LightColorValues.Color_FF_3399FF;
+
                     case "ButtonHoverColorKey":
                         return LightColorValues.Color_FF_C9DEF5;
                     case "ButtonHoverTextColorKey":
                         return LightColorValues.Color_FF_1E1E1E;
+                    case "ButtonBorderHoverColorKey":
+                        return LightColorValues.Color_FF_3399FF;
+
                     case "ButtonPressedColorKey":
                         return LightColorValues.Color_FF_007ACC;
                     case "ButtonPressedTextColorKey":
                         return LightColorValues.Color_FF_FFFFFF;
-                    case "ButtonTextColorKey":
-                        return LightColorValues.Color_FF_1E1E1E;
+                    case "ButtonBorderPressedColorKey":
+                        return LightColorValues.Color_FF_007ACC;
+
                     default:
                         throw new Exception($"The color key value '{memberName}' is not found");
                 }
@@ -205,6 +213,8 @@ namespace Microsoft.Templates.UI.V2Services
                     throw new Exception($"The font size value '{fontSizeResourceKey}' is not found");
             }
         }
+
+        public FontFamily GetFontFamily() => new FontFamily("Segoe UI");
 
         private void OnThemeChanged()
         {

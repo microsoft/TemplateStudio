@@ -2,4 +2,68 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services">
 
+    <Style TargetType="Button" x:Key="wtsButton">
+        <Setter Property="Foreground" Value="{Binding ButtonText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Background" Value="{Binding Button, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="BorderBrush" Value="{Binding ButtonBorder, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Width" Value="75" />
+        <Setter Property="Height" Value="23" />
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                            </ControlTemplate>
+                        </Setter.Value> 
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{Binding ButtonHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{Binding ButtonHoverText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding ButtonBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{Binding ButtonPressed, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{Binding ButtonPressedText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding ButtonBorderPressed, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="{Binding ButtonDisabled, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{Binding ButtonDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding ButtonBorderDisabled, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="true">
+                <Setter Property="Background" Value="{Binding ButtonFocused, Source={x:Static services:UIStylesService.Instance}}" />
+                <Setter Property="TextElement.Foreground" Value="{Binding ButtonFocusedText, Source={x:Static services:UIStylesService.Instance}}" />
+                <Setter Property="BorderBrush" Value="{Binding ButtonBorderFocused, Source={x:Static services:UIStylesService.Instance}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>
