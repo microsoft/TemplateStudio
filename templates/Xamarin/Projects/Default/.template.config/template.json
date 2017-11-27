@@ -11,7 +11,7 @@
     "wts.type": "project",
     "wts.framework": "MVVMBasic|CodeBehind",
     "wts.platform" : "Xamarin",
-    "wts.projecttype":"Blank",
+    "wts.projecttype":"Blank|MasterDetailXamarin",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.outputToSolution": "true"

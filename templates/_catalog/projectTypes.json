@@ -20,6 +20,16 @@
         "languages": [ "C#", "VisualBasic" ]
     },
     {
+        "name": "MasterDetailXamarin",
+        "displayName": "Master Detail",
+        "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
+        "author": "Microsoft",
+        "order": "1",
+        "licenses": "",
+        "platforms": ["Xamarin"],
+        "languages": [ "C#" ]
+    },
+    {
         "name": "TabbedPivot",
         "displayName": "Pivot and Tabs",
         "summary": "Tabs across the top allow for quickly navigating between pages.",
