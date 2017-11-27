@@ -19,7 +19,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         private int _step;
         private string _summaryImage;
-        private ICommand _openDetailCommand;
 
         public int Step
         {
@@ -33,7 +32,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             set => SetProperty(ref _summaryImage, value);
         }
 
-        public ICommand OpenDetailCommand => _openDetailCommand ?? (_openDetailCommand = new RelayCommand(OnOpenDetail));
+        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel();
 
         private MainViewModel()
         {
@@ -93,11 +92,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         protected override void OnFinish()
         {
-        }
-
-        private void OnOpenDetail()
-        {
-            NavigationService.NavigateMainFrame(new TemplateInfoPage());
         }
     }
 }

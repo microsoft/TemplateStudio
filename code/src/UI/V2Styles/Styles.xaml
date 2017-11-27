@@ -5,6 +5,8 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Button.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Grid.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Hyperlink.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ListView.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBlock.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>

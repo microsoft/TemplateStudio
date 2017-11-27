@@ -15,7 +15,7 @@
     </Page.Resources>
 
     <Grid>
-        <Viewbox StretchDirection="DownOnly">
+        <Viewbox StretchDirection="DownOnly" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="/Microsoft.Templates.UI;component/Assets/Step3.png" />
         </Viewbox>
     </Grid>

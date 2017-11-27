@@ -366,8 +366,10 @@
     <Compile Include="V2Services\Styles\UIStylesService.FontSizes.cs" />
     <Compile Include="V2Services\Styles\VSStyleValuesProvider.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\BasicInfoViewModel.cs" />
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
     <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\ProjectTypeViewModel.cs" />
     <Compile Include="V2Views\NewProject\FeaturesPage.xaml.cs">
       <DependentUpon>FeaturesPage.xaml</DependentUpon>
     </Compile>
@@ -576,6 +578,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Styles\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\ListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Hyperlink.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -833,6 +843,7 @@
     <Resource Include="Assets\FileExtensions\Json.png" />
     <Resource Include="Assets\FileExtensions\VBProj.png" />
     <Resource Include="Assets\FileExtensions\VisualBasic.png" />
+    <Resource Include="Assets\Detail.png" />
     <Content Include="Assets\Html\min\vs\base\worker\workerMain.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

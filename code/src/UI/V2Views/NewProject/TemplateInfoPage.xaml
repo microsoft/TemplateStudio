@@ -11,7 +11,7 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -21,6 +21,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button/>
+        <TextBlock Margin="{StaticResource Margin_L_LeftTop}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding GoBackCommand}">
+                <TextBlock Text="Back" Style="{StaticResource WtsTextBlockHyperlink}" />
+            </Hyperlink>
+        </TextBlock>
+        <Viewbox Grid.Row="1" StretchDirection="DownOnly" Margin="{StaticResource Margin_L_LeftTopRightBottom}" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Image Source="/Microsoft.Templates.UI;component/Assets/Detail.png" />
+        </Viewbox>
     </Grid>
 </Page>

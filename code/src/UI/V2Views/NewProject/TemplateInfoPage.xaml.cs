@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Microsoft.Templates.UI.V2ViewModels.Common;
 
 namespace Microsoft.Templates.UI.V2Views.NewProject
 {
@@ -20,8 +12,12 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
     /// </summary>
     public partial class TemplateInfoPage : Page
     {
-        public TemplateInfoPage()
+        public BasicInfoViewModel ViewModel { get; }
+
+        public TemplateInfoPage(BasicInfoViewModel basicInfoViewModel)
         {
+            ViewModel = basicInfoViewModel;
+            DataContext = ViewModel;
             InitializeComponent();
         }
     }
