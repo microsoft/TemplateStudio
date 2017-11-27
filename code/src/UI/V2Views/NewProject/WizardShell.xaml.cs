@@ -11,10 +11,13 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
 {
     public partial class WizardShell : Window
     {
+        public static Window Current;
+
         public UserSelection Result { get; set; }
 
         public WizardShell(string language)
         {
+            Current = this;
             DataContext = MainViewModel.Instance;
             InitializeComponent();
             NavigationService.InitializeMainFrame(mainFrame, new MainPage());

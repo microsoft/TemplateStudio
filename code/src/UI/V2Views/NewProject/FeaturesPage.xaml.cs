@@ -7,9 +7,9 @@ using Microsoft.Templates.UI.V2ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.V2Views.NewProject
 {
-    public partial class ProjectTypePage : Page
+    public partial class FeaturesPage : Page
     {
-        public ProjectTypePage()
+        public FeaturesPage()
         {
             DataContext = MainViewModel.Instance;
             InitializeComponent();

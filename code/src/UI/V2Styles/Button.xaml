@@ -66,4 +66,8 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="Button" x:Key="wtFinishButton" BasedOn="{StaticResource wtsButton}">
+        <Setter Property="BorderBrush" Value="{Binding ButtonPressed, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
 </ResourceDictionary>

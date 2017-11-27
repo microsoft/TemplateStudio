@@ -13,6 +13,8 @@ namespace Microsoft.Templates.UI.V2Services
 
         public static bool CanGoBackMainFrame => _mainFrame.CanGoBack;
 
+        public static bool CanGoBackSecondaryFrame => _secondaryFrame.CanGoBack;
+
         public static void InitializeMainFrame(Frame mainFrame, object content)
         {
             _mainFrame = mainFrame;
@@ -26,5 +28,11 @@ namespace Microsoft.Templates.UI.V2Services
         }
 
         public static bool NavigateMainFrame(object content) => _mainFrame.Navigate(content);
+
+        public static bool NavigateSecondaryFrame(object content) => _secondaryFrame.Navigate(content);
+
+        public static void GoBackMainFrame() => _mainFrame.GoBack();
+
+        public static void GoBackSecondaryFrame() => _secondaryFrame.GoBack();
     }
 }

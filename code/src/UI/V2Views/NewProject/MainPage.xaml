@@ -33,11 +33,16 @@
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
             <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
+            <Viewbox Grid.Column="4" StretchDirection="DownOnly">
+                <Image Source="{Binding SummaryImage}" />
+            </Viewbox>
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">
-                <Button Style="{StaticResource wtsButton}" Content="OK" />
-                <Button Style="{StaticResource wtsButton}" Content="Cancel" Margin="8,0,0,0" />
+                <Button Style="{StaticResource wtsButton}" Content="Back" Command="{Binding GoBackCommand}"/>
+                <Button Style="{StaticResource wtsButton}" Content="Next" Margin="8,0,0,0" Command="{Binding GoForwardCommand}" />
+                <Button Style="{StaticResource wtFinishButton}" Content="Create" Margin="8,0,0,0" Command="{Binding FinishCommand}" />
+                <Button Style="{StaticResource wtsButton}" Content="Cancel" Margin="8,0,0,0" Command="{Binding CancelCommand}" />
             </StackPanel>
         </Grid>
     </Grid>

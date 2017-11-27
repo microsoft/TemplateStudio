@@ -368,8 +368,17 @@
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
     <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
+    <Compile Include="V2Views\NewProject\FeaturesPage.xaml.cs">
+      <DependentUpon>FeaturesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\PagesPage.xaml.cs">
+      <DependentUpon>PagesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="V2Views\NewProject\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\DesignPatternPage.xaml.cs">
+      <DependentUpon>DesignPatternPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Views\NewProject\ProjectTypePage.xaml.cs">
       <DependentUpon>ProjectTypePage.xaml</DependentUpon>
@@ -586,9 +595,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="V2Views\NewProject\FeaturesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Views\NewProject\PagesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="V2Views\NewProject\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewProject\DesignPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Views\NewProject\ProjectTypePage.xaml">
       <SubType>Designer</SubType>
@@ -794,6 +815,13 @@
     <Resource Include="Assets\FileExtensions\Resw.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\PaneStep1-2.png" />
+    <Resource Include="Assets\PaneStep3.png" />
+    <Resource Include="Assets\PaneStep4.png" />
+    <Resource Include="Assets\Step3.png" />
+    <Resource Include="Assets\Step4.png" />
+    <Resource Include="Assets\Step2.png" />
+    <Resource Include="Assets\Step1.png" />
     <EmbeddedResource Include="Assets\Html\Document.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
