@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Test
             // Replace the default assets in the generated project or they will cause WACK to fail
             foreach (var assetFile in new DirectoryInfo("./TestData/NonDefaultAssets").GetFiles("*.png"))
             {
-                File.Copy(assetFile.FullName, Path.Combine(ProjectPath, "Assets", assetFile.Name), overwrite: true);
+                File.Copy(assetFile.FullName, Path.Combine(DestinationPath, "Assets", assetFile.Name), overwrite: true);
             }
 
             // Create APPXBundle

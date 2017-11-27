@@ -16,20 +16,19 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true" ,
-    "wts.outputToSolution": "true"
+    "wts.rightClickEnabled":"true" 
   },
   "sourceName": "BlankView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Param_ProjectName\\Views\\BlankViewPage.xaml"
+      "path": ".\\Param_ProjectName\\Views\\BlankViewPage.xaml"
     },
     {
-      "path": ".\\Param_ProjectName\\Param_ProjectName\\Views\\BlankViewPage.xaml.cs"
+      "path": ".\\Param_ProjectName\\Views\\BlankViewPage.xaml.cs"
     },
     {
-      "path": ".\\Param_ProjectName\\Param_ProjectName\\ViewModels\\BlankViewViewModel.cs"
+      "path": ".\\Param_ProjectName\\ViewModels\\BlankViewViewModel.cs"
     }
   ],
   "symbols": {

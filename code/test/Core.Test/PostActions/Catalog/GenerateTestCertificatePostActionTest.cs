@@ -32,9 +32,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string OutputPath { get; set; }
 
-        public string ProjectPath { get; set; }
+        public string DestinationPath { get; set; }
 
-        public string SolutionPath { get; set; }
+        public string DestinationParentPath { get; set; }
 
         public string TempGenerationPath { get; set; }
 
@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var projectName = "Test";
             string projectFile = $"{projectName}.csproj";
 
-            ProjectPath = @".\TestData\tmp\TestProject";
+            DestinationPath = @".\TestData\tmp\TestProject";
             OutputPath = @".\TestData\tmp\TestProject";
             ProjectName = projectName;
 
@@ -87,13 +87,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var projectName = "Test";
             string projectFile = $@"TestProject\{projectName}.csproj";
 
-            ProjectPath = @".\TestData\tmp\TestProject";
+            DestinationPath = @".\TestData\tmp\TestProject";
             OutputPath = @".\TestData\tmp\";
             ProjectName = projectName;
 
             GenContext.Current = this;
 
-            Directory.CreateDirectory(GenContext.Current.ProjectPath);
+            Directory.CreateDirectory(GenContext.Current.DestinationPath);
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\{projectFile}"), Path.Combine(GenContext.Current.OutputPath, projectFile), true);
 
             Dictionary<string, string> testArgs = new Dictionary<string, string>();
@@ -106,11 +106,11 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             postAction.Execute();
 
-            var expectedCertFilePath = Path.Combine(GenContext.Current.ProjectPath, $"{projectName}_TemporaryKey.pfx");
+            var expectedCertFilePath = Path.Combine(GenContext.Current.DestinationPath, $"{projectName}_TemporaryKey.pfx");
 
             Assert.True(File.Exists(expectedCertFilePath));
 
-            Fs.SafeDeleteDirectory(ProjectPath);
+            Fs.SafeDeleteDirectory(DestinationPath);
         }
 
         [Fact]

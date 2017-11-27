@@ -65,8 +65,8 @@ namespace Microsoft.Templates.Test
 
             ProjectName = projectName;
 
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            SolutionPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language, getName);
 
@@ -125,8 +125,8 @@ namespace Microsoft.Templates.Test
             await SetUpFixtureForTestingAsync(platform, language);
 
             ProjectName = projectName;
-            ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
-            SolutionPath = Path.Combine(_fixture.TestNewItemPath, projectName);
+            DestinationPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestNewItemPath, projectName);
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
@@ -217,9 +217,9 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{finalName}{ShortLanguageName(language)}";
 
             ProjectName = projectName;
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            SolutionPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-            OutputPath = ProjectPath;
+            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            OutputPath = DestinationPath;
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
@@ -259,8 +259,8 @@ namespace Microsoft.Templates.Test
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
 
             ProjectName = $"{projectType}{framework}Compare{language.Replace("#", "S")}";
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
-            OutputPath = ProjectPath;
+            DestinationPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
+            OutputPath = DestinationPath;
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 

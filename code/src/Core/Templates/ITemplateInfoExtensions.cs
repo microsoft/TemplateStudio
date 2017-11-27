@@ -357,9 +357,9 @@ namespace Microsoft.Templates.Core
             return ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance();
         }
 
-        public static bool GetOutputToSolution(this ITemplateInfo ti)
+        public static bool GetOutputToParent(this ITemplateInfo ti)
         {
-            var result = GetValueFromTag(ti, TagPrefix + "outputToSolution");
+            var result = GetValueFromTag(ti, TagPrefix + "outputToParent");
 
             if (!string.IsNullOrEmpty(result))
             {

@@ -520,6 +520,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to resolve platform. .
+        /// </summary>
+        public static string ExceptionUnableResolvePlatform {
+            get {
+                return ResourceManager.GetString("ExceptionUnableResolvePlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
         /// </summary>
         public static string GeneratingFeatureMessage {

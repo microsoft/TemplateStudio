@@ -22,9 +22,9 @@ namespace Microsoft.UI.Test
 
         public string OutputPath { get; set; }
 
-        public string ProjectPath => string.Empty;
+        public string DestinationPath => string.Empty;
 
-        public string SolutionPath => string.Empty;
+        public string DestinationParentPath => string.Empty;
 
         public string TempGenerationPath => string.Empty;
 

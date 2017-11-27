@@ -5,7 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -103,7 +105,7 @@ namespace Microsoft.Templates.Core.Gen
                 var projFile = Fs.FindFileAtOrAbove(itemDirectory, "*.*proj");
                 if (string.IsNullOrEmpty(projFile))
                 {
-                    throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
+                    throw new FileNotFoundException(string.Format(StringRes.ExceptionProjectNotFound, item));
                 }
 
                 if (Path.GetExtension(projFile) == ".shproj")

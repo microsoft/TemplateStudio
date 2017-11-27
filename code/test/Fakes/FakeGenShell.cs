@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Fakes
             {
                 if (GenContext.Current != null)
                 {
-                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.ProjectPath), $"{GenContext.Current.ProjectName}.sln");
+                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.DestinationPath), $"{GenContext.Current.ProjectName}.sln");
                 }
 
                 return null;
@@ -96,11 +96,11 @@ namespace Microsoft.Templates.Fakes
 
         public override string GetActiveProjectGuid()
         {
-            var projectFileName = FindProject(GenContext.Current.ProjectPath);
+            var projectFileName = FindProject(GenContext.Current.DestinationPath);
 
             if (string.IsNullOrEmpty(projectFileName))
             {
-                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
+                throw new Exception($"There is not project file in {GenContext.Current.DestinationPath}");
             }
 
             var msbuildProj = FakeMsBuildProject.Load(projectFileName);
@@ -109,11 +109,11 @@ namespace Microsoft.Templates.Fakes
 
         public override string GetActiveProjectTypeGuids()
         {
-            var projectFileName = FindProject(GenContext.Current.ProjectPath);
+            var projectFileName = FindProject(GenContext.Current.DestinationPath);
 
             if (string.IsNullOrEmpty(projectFileName))
             {
-                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
+                throw new Exception($"There is not project file in {GenContext.Current.DestinationPath}");
             }
 
             var msbuildProj = FakeMsBuildProject.Load(projectFileName);
@@ -127,12 +127,12 @@ namespace Microsoft.Templates.Fakes
 
         public override string GetActiveProjectPath()
         {
-            return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
+            return (GenContext.Current != null) ? GenContext.Current.DestinationPath : string.Empty;
         }
 
         public override string GetSolutionPath()
         {
-            return (GenContext.Current != null) ? GenContext.Current.SolutionPath : string.Empty;
+            return (GenContext.Current != null) ? GenContext.Current.DestinationParentPath : string.Empty;
         }
 
         public override string GetActiveProjectLanguage()

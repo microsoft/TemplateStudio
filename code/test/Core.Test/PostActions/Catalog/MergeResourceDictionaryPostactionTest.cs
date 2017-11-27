@@ -22,9 +22,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string OutputPath { get; set; }
 
-        public string ProjectPath => Directory.GetCurrentDirectory();
+        public string DestinationPath => Directory.GetCurrentDirectory();
 
-        public string SolutionPath => string.Empty;
+        public string DestinationParentPath => string.Empty;
 
         public string TempGenerationPath => string.Empty;
 

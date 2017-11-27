@@ -13,8 +13,7 @@
     "wts.platform" : "Xamarin",
     "wts.projecttype":"Blank|MasterDetailXamarin",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
-    "wts.outputToSolution": "true"
+    "wts.displayOrder": "1"
   },
   "sourceName": "wts.DefaultProject",
   "preferNameDirectory": true,
@@ -27,10 +26,10 @@
               "18E93540-F89F-42D6-9D2E-EBDA91F2D5C6"],//UWP Project
   "PrimaryOutputs":
   [
-    { "path": "Param_ProjectName/Param_ProjectName/wts.DefaultProject.shproj" }, //shared project
-    { "path": "Param_ProjectName/Param_ProjectName.Android/wts.DefaultProject.Android.csproj" }, // Android project
-    { "path": "Param_ProjectName/Param_ProjectName.iOS/wts.DefaultProject.iOS.csproj" }, // iOS project
-    { "path": "Param_ProjectName/Param_ProjectName.UWP/wts.DefaultProject.UWP.csproj" } //UWP project
+    { "path": "Param_ProjectName/wts.DefaultProject.shproj" }, //shared project
+    { "path": "Param_ProjectName.Android/wts.DefaultProject.Android.csproj" }, // Android project
+    { "path": "Param_ProjectName.iOS/wts.DefaultProject.iOS.csproj" }, // iOS project
+    { "path": "Param_ProjectName.UWP/wts.DefaultProject.UWP.csproj" } //UWP project
   ],
   "symbols":
   {

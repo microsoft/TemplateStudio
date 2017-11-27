@@ -47,9 +47,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string OutputPath { get;  set; }
 
-        public string ProjectPath { get; private set; }
+        public string DestinationPath { get; private set; }
 
-        public string SolutionPath { get; private set; }
+        public string DestinationParentPath { get; private set; }
 
         public string TempGenerationPath { get; private set; }
 
@@ -215,9 +215,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
-                    var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
+                    var destinationPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
 
-                    var solutionPath = Path.Combine(newProjectInfo.location, newProjectInfo.name);
+                    var destinationParentPath = Path.Combine(newProjectInfo.location, newProjectInfo.name);
 
                     GenContext.Current = this;
 
@@ -226,9 +226,9 @@ namespace Microsoft.Templates.VsEmulator.Main
                     if (userSelection != null)
                     {
                         ProjectName = newProjectInfo.name;
-                        ProjectPath = projectPath;
-                        OutputPath = projectPath;
-                        SolutionPath = solutionPath;
+                        DestinationPath = destinationPath;
+                        OutputPath = destinationPath;
+                        DestinationParentPath = destinationParentPath;
 
                         ClearContext();
                         SolutionName = null;
@@ -325,9 +325,9 @@ namespace Microsoft.Templates.VsEmulator.Main
                 SolutionFilePath = loadProjectInfo;
                 SolutionName = Path.GetFileNameWithoutExtension(SolutionFilePath);
 
-                SolutionPath = Path.GetDirectoryName(SolutionFilePath);
-                var projFile = Directory.EnumerateFiles(SolutionPath, "*.csproj", SearchOption.AllDirectories)
-                        .Union(Directory.EnumerateFiles(SolutionPath, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
+                DestinationParentPath = Path.GetDirectoryName(SolutionFilePath);
+                var projFile = Directory.EnumerateFiles(DestinationParentPath, "*.csproj", SearchOption.AllDirectories)
+                        .Union(Directory.EnumerateFiles(DestinationParentPath, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
                 _language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
                 _platform = ProjectConfigInfo.ReadProjectConfiguration().Platform;
@@ -336,8 +336,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 GenContext.Current = this;
 
                 ProjectName = Path.GetFileNameWithoutExtension(projFile);
-                ProjectPath = Path.GetDirectoryName(projFile);
-                OutputPath = ProjectPath;
+                DestinationPath = Path.GetDirectoryName(projFile);
+                OutputPath = DestinationPath;
                 IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
                 OnPropertyChanged(nameof(TempFolderAvailable));
                 ClearContext();
@@ -379,9 +379,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void OpenInExplorer()
         {
-            if (!string.IsNullOrEmpty(SolutionPath))
+            if (!string.IsNullOrEmpty(DestinationParentPath))
             {
-                System.Diagnostics.Process.Start(SolutionPath);
+                System.Diagnostics.Process.Start(DestinationParentPath);
             }
         }
 

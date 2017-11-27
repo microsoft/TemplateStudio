@@ -688,4 +688,7 @@
     <value>Select platform</value>
     <comment>Project configuration window select platform title</comment>
   </data>
+  <data name="ExceptionUnableResolvePlatform" xml:space="preserve">
+    <value>Unable to resolve platform. </value>
+  </data>
 </root>

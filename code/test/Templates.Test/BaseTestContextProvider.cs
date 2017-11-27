@@ -15,9 +15,9 @@ namespace Microsoft.Templates.Test
 
         public string OutputPath { get; set; }
 
-        public string ProjectPath { get; set; }
+        public string DestinationPath { get; set; }
 
-        public string SolutionPath { get; set; }
+        public string DestinationParentPath { get; set; }
 
         public string TempGenerationPath { get; set; }
 

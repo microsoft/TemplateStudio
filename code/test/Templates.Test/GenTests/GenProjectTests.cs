@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Test
 
         private static void AssertProjectConfigInfoRecreated(string projectType, string framework, string platform)
         {
-            string content = File.ReadAllText(Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest"));
+            string content = File.ReadAllText(Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest"));
             string expectedFxText = $"Name=\"framework\" Value=\"{framework}\"";
             string expectedPtText = $"Name=\"projectType\" Value=\"{projectType}\"";
             string expectedPfText = $"Name=\"platform\" Value=\"{platform}\"";
@@ -86,7 +86,7 @@ namespace Microsoft.Templates.Test
 
         private void RemoveProjectConfigInfoFromProject()
         {
-            string manifest = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
+            string manifest = Path.Combine(GenContext.Current.DestinationPath, "Package.appxmanifest");
             var lines = File.ReadAllLines(manifest);
             StringBuilder sb = new StringBuilder();
             string fx = $"genTemplate:Item Name=\"framework\"";
