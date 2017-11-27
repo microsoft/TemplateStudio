@@ -1,0 +1,1 @@
+﻿Na této stránce se zobrazuje galerie obrázků a uživatel může navigovat mezi galerií a detaily obrázku.
