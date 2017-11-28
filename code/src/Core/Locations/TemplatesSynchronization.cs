@@ -167,11 +167,8 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                if (_content.IsNewVersionAvailable())
-                {
-                    var package = _source.Config.ResolvePackage(CurrentWizardVersion);
-                    _content.GetNewVersionContent();
-                }
+                var package = _source.Config.ResolvePackage(CurrentWizardVersion);
+                _content.GetNewVersionContent();
             }
             catch (Exception ex)
             {

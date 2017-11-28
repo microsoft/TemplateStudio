@@ -200,7 +200,7 @@ namespace Microsoft.Templates.Core.Locations
         /// <param name="overwrite">If true overwrites an existing reparse point or empty directory</param>
         /// <exception cref="IOException">Thrown when the junction point could not be created or when
         /// an existing directory was found and <paramref name="overwrite" /> if false</exception>
-        public static void Create(string sourceDir, string targetDir, bool overwrite)
+        public static void CreateJunction(string sourceDir, string targetDir, bool overwrite)
         {
             sourceDir = Path.GetFullPath(sourceDir);
 
@@ -262,7 +262,7 @@ namespace Microsoft.Templates.Core.Locations
         /// Only works on NTFS.
         /// </remarks>
         /// <param name="junctionPoint">The junction point path</param>
-        public static void Delete(string junctionPoint)
+        public static void DeleteJunction(string junctionPoint)
         {
             if (!Directory.Exists(junctionPoint))
             {
@@ -319,7 +319,7 @@ namespace Microsoft.Templates.Core.Locations
         /// <returns>True if the specified path represents a junction point</returns>
         /// <exception cref="IOException">Thrown if the specified path is invalid
         /// or some other error occurs</exception>
-        public static bool Exists(string path)
+        public static bool ExistsJuntion(string path)
         {
             if (!Directory.Exists(path))
             {
@@ -343,7 +343,7 @@ namespace Microsoft.Templates.Core.Locations
         /// <returns>The target of the junction point</returns>
         /// <exception cref="IOException">Thrown when the specified path does not
         /// exist, is invalid, is not a junction point, or some other error occurs</exception>
-        public static string GetTarget(string junctionPoint)
+        public static string GetJunctionTarget(string junctionPoint)
         {
             using (SafeFileHandle handle = OpenReparsePoint(junctionPoint, EFileAccess.GenericRead))
             {

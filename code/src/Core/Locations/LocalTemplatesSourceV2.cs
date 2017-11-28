@@ -84,12 +84,13 @@ namespace Microsoft.Templates.Core.Locations
         public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
         {
             string targetFolder = Path.Combine(workingFolder, packageInfo.Version.ToString());
+
             if (Directory.Exists(targetFolder))
             {
-                Fs.SafeDeleteDirectory(targetFolder, false);
+                Fs.SafeDeleteDirectory(targetFolder);
             }
 
-            NativeMethods.Create(Origin, targetFolder, true);
+            NativeMethods.CreateJunction(Origin, targetFolder, true);
 
             return new TemplatesContentInfo()
             {

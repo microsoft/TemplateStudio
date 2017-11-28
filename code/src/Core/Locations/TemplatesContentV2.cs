@@ -75,13 +75,16 @@ namespace Microsoft.Templates.Core.Locations
 
         public void GetNewVersionContent()
         {
-            if (IsNewVersionAvailable())
-            {
-                var latestPackage = Source.Config.ResolvePackage(WizardVersion);
+            var latestPackage = Source.Config.ResolvePackage(WizardVersion);
 
-                TemplatesContentInfo content = Source.GetContent(latestPackage, TemplatesFolder);
-                All.Add(content);
+            TemplatesContentInfo content = Source.GetContent(latestPackage, TemplatesFolder);
+            var alreadyExists = All.Where(p => p.Version == latestPackage.Version).FirstOrDefault();
+            if (alreadyExists != null)
+            {
+                All.Remove(alreadyExists);
             }
+
+            All.Add(content);
         }
 
         internal void Extract(string mstxFilePath)
