@@ -351,8 +351,8 @@ namespace Microsoft.Templates.Test
                     result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetProjectTemplatesAsync(framework));
                     break;
 
-                case "LegacyFrameworks":
-                    result = context.Factory.Run(() => BuildRightClickWithLegacyFixture.GetProjectTemplatesAsync());
+                case "LegacyFrameworks": // TODO : RAGC RESTORE!
+                    // result = context.Factory.Run(() => BuildRightClickWithLegacyFixture.GetProjectTemplatesAsync());
                     break;
                 default:
                     result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync());
