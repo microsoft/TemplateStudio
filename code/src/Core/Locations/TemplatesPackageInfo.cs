@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -49,30 +50,37 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public static void Extract(TemplatesPackageInfo packageInfo, string workingFolder, bool verifyPackageSignatures = true)
+        public static Version GetVersionFromMstx(string mstxFilePath)
         {
-            if (!string.IsNullOrEmpty(packageInfo.LocalPath))
+            string content = GetFileContent(mstxFilePath, "Version.txt");
+
+            if (!Version.TryParse(content, out Version result))
             {
-                Extract(packageInfo.LocalPath, Path.Combine(workingFolder, packageInfo.Version.ToString()), verifyPackageSignatures);
+                result = new Version(0, 0, 0, 0);
             }
-            else
-            {
-                // TODO: Package Not Adquired
-            }
+
+            return result;
         }
 
-        private static void Extract(string mstxFilePath, string versionedFolder, bool verifyPackageSignatures = true)
+        private static string GetFileContent(string mstxFilePath, string fileName)
         {
-            try
+            string result = string.Empty;
+            if (File.Exists(mstxFilePath))
             {
-                TemplatePackage.Extract(mstxFilePath, versionedFolder, verifyPackageSignatures);
-                AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {versionedFolder}.").FireAndForget();
+                using (ZipArchive zip = ZipFile.Open(mstxFilePath, ZipArchiveMode.Read))
+                {
+                    var entry = zip.Entries.Where(e => e.Name == fileName).FirstOrDefault();
+                    if (entry != null)
+                    {
+                        using (StreamReader sr = new StreamReader(entry.Open()))
+                        {
+                            result = sr.ReadToEnd();
+                        }
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Exception.TrackAsync(ex, StringRes.TemplatesSourceExtractContentMessage).FireAndForget();
-                throw;
-            }
+
+            return result;
         }
     }
 }

@@ -144,7 +144,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
         {
             var templatesSource = new LocalTemplatesSourceV2(_useWizardVersion, _useTemplatesVersion);
             var templatesSync = new TemplatesSynchronization(templatesSource, new Version(_useWizardVersion));
-            string currentTemplatesFolder = templatesSync.CurrentTemplatesFolder;
+            string currentTemplatesFolder = templatesSync.CurrentContent.Path;
 
             return currentTemplatesFolder;
         }

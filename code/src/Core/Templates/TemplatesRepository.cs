@@ -35,9 +35,9 @@ namespace Microsoft.Templates.Core
 
         public string WizardVersion { get; private set; }
 
-        public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
+        public string CurrentContentFolder { get => Sync?.CurrentContent?.Path; }
 
-        public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? string.Empty; }
+        public string TemplatesVersion { get => Sync?.CurrentContent?.Version.ToString() ?? string.Empty; }
 
         public bool SyncInProgress { get => TemplatesSynchronization.SyncInProgress; }
 
@@ -103,7 +103,7 @@ namespace Microsoft.Templates.Core
 
         private IEnumerable<MetadataInfo> GetMetadataInfo(string type)
         {
-            var folderName = Path.Combine(Sync.CurrentContentFolder, Catalog);
+            var folderName = Path.Combine(Sync?.CurrentContent.Path, Catalog);
 
             if (!Directory.Exists(folderName))
             {

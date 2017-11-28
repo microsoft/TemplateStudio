@@ -2,15 +2,16 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Packaging;
-using Microsoft.Templates.Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Packaging;
+using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -30,6 +31,8 @@ namespace Microsoft.Templates.Core.Locations
 
         public abstract void LoadConfig();
 
-        public abstract TemplatesPackageInfo Get(TemplatesPackageInfo packageInfo);
+        public abstract TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder);
+
+        public abstract void Adquire(ref TemplatesPackageInfo packageInfo);
     }
 }

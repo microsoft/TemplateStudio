@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -13,9 +14,6 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class TemplatesContentV2
     {
-
-        //BASE CONTENT IN TEMPLATECONTENTINFO
-
         private const string TemplatesFolderName = "Templates";
 
         public string TemplatesFolder { get; private set; }
@@ -26,29 +24,36 @@ namespace Microsoft.Templates.Core.Locations
 
         public string LatestContentFolder => GetContentFolder();
 
-        public TemplatesContentV2(string workingFolder, string sourceId, Version wizardVersion, TemplatesSourceV2 source)
+        public TemplatesContentInfo Current { get; private set; }
+
+        public List<TemplatesContentInfo> All { get; private set; }
+
+        public TemplatesContentInfo Latest { get => GetLatestContent(); }
+
+        public TemplatesContentV2(string workingFolder, string sourceId, Version wizardVersion, TemplatesSourceV2 source, string tengineCurrentContent)
         {
             TemplatesFolder = Path.Combine(workingFolder, TemplatesFolderName, sourceId);
 
-            WizardVersion = wizardVersion;
+            LoadAvailableContents();
 
             // TODO: Ensure is the bestplace RAGC
             source.LoadConfig();
+            Source = source;
+            SetCurrentContent(tengineCurrentContent);
+
+            WizardVersion = wizardVersion;
         }
 
         public bool Exists()
         {
-            return ExistsContent(LatestContentFolder);
+            return Current != null;
         }
 
-        public bool RequiresContentUpdate(string currentContentFolder)
+        public bool RequiresContentUpdate()
         {
-            if (ExistsContent(LatestContentFolder))
+            if (Current != null)
             {
-                Version currentVersion = GetVersionFromFolder(currentContentFolder);
-                Version latestVersion = GetVersionFromFolder(LatestContentFolder);
-
-                return currentVersion == null || currentVersion < latestVersion || latestVersion.IsZero();
+                return Current.Version.IsZero() || Current.Version < Latest.Version;
             }
             else
             {
@@ -56,14 +61,11 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public bool IsNewVersionAvailable(string currentContentFolder)
+        public bool IsNewVersionAvailable()
         {
-            if (ExistsContent(LatestContentFolder))
+            if (Current != null)
             {
-                Version currentVersion = GetVersionFromFolder(currentContentFolder);
-                Version latestVersion = Source.Config.ResolvePackage(WizardVersion).Version;
-
-                return !currentVersion.IsNull() && currentVersion < latestVersion;
+                return !Current.Version.IsNull() && Current.Version < Source.Config.ResolvePackage(WizardVersion).Version;
             }
             else
             {
@@ -71,33 +73,49 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public void GetNewVersionContent(string currentContentFolder)
+        public void GetNewVersionContent()
         {
-            if (IsNewVersionAvailable(currentContentFolder))
+            if (IsNewVersionAvailable())
             {
                 var latestPackage = Source.Config.ResolvePackage(WizardVersion);
 
-                // TODO: Esto lo tiene que gestionar TemplatesContent (que debe tener una lista de TemplatesContentInfo -> la cagamos o la creamos de cero)
-                // Source.Get(latestPackage, Path.Combine(TemplatesFolder, latestPackage.Version.ToString()));
-
-
+                TemplatesContentInfo content = Source.GetContent(latestPackage, TemplatesFolder);
+                All.Add(content);
             }
         }
 
-        public void Purge(string currentContent)
+        internal void Extract(string mstxFilePath)
+        {
+            TemplatesPackageInfo installedPackage = null;
+            if (Source is RemoteTemplatesSourceV2 && File.Exists(mstxFilePath))
+            {
+                installedPackage = new TemplatesPackageInfo()
+                {
+                    Name = Path.GetFileName(mstxFilePath),
+                    LocalPath = mstxFilePath,
+                    Version = TemplatesPackageInfo.GetVersionFromMstx(mstxFilePath)
+                };
+            }
+            else if (Source is LocalTemplatesSourceV2)
+            {
+                installedPackage = LocalTemplatesSourceV2.VersionZero;
+            }
+
+            Source.Adquire(ref installedPackage);
+            var package = Source.GetContent(installedPackage, TemplatesFolder);
+            Current = package;
+            All.Add(package);
+        }
+
+        public void Purge()
         {
             if (Directory.Exists(TemplatesFolder))
             {
                 var di = new DirectoryInfo(TemplatesFolder);
 
-                foreach (var sdi in di.EnumerateDirectories())
+                foreach (var sdi in di.EnumerateDirectories().Where(d => d.FullName != Current.Path))
                 {
-                    Version.TryParse(sdi.Name, out Version v);
-
-                    if (!v.IsZero() && v < GetVersionFromFolder(currentContent))
-                    {
-                        Fs.SafeDeleteDirectory(sdi.FullName, false);
-                    }
+                    Fs.SafeDeleteDirectory(sdi.FullName, false);
                 }
             }
         }
@@ -147,6 +165,50 @@ namespace Microsoft.Templates.Core.Locations
             }
 
             return latestContent;
+        }
+
+        private void LoadAvailableContents()
+        {
+            var latestVersion = new Version(0, 0, 0, 0);
+            string latestContent = Path.Combine(TemplatesFolder, "0.0.0.0");
+            All = new List<TemplatesContentInfo>();
+
+            if (Directory.Exists(TemplatesFolder))
+            {
+                var di = new DirectoryInfo(TemplatesFolder);
+
+                foreach (DirectoryInfo sdi in di.EnumerateDirectories())
+                {
+                    Version.TryParse(sdi.Name, out Version v);
+
+                    if (!v.IsNull())
+                    {
+                        TemplatesContentInfo t = new TemplatesContentInfo()
+                        {
+                            Path = sdi.FullName,
+                            Version = v,
+                            Date = sdi.CreationTime
+                        };
+
+                        All.Add(t);
+                    }
+                }
+            }
+        }
+
+        private TemplatesContentInfo GetLatestContent()
+        {
+            return All.OrderByDescending(c => c.Version).ThenByDescending(c => c.Date).FirstOrDefault();
+        }
+
+        private void SetCurrentContent(string tengineCurrentContent)
+        {
+            Current = All.Where(c => c.Path.Equals(tengineCurrentContent, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+        }
+
+        internal void RefreshContentFolder(string tengineCurrentContent)
+        {
+            Current = All.Where(c => c.Path.Equals(tengineCurrentContent, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
         }
     }
 }

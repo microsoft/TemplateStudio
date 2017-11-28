@@ -5,12 +5,22 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Microsoft.Templates.Core.Locations
 {
     public class LocalTemplatesSourceV2 : TemplatesSourceV2
     {
-        private readonly TemplatesPackageInfo versionZero = new TemplatesPackageInfo()
+        private enum SymbolicLink
+        {
+            File = 0,
+            Directory = 1
+        }
+
+        [DllImport("kernel32.dll")]
+        private static extern bool CreateSymbolicLink(string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
+
+        public static readonly TemplatesPackageInfo VersionZero = new TemplatesPackageInfo()
         {
             Name = "LocalTemplates",
             LocalPath = $@"..\..\..\..\..\{SourceFolderName}",
@@ -19,8 +29,6 @@ namespace Microsoft.Templates.Core.Locations
             Uri = new Uri("file://"),
             Version = new Version(0, 0, 0, 0)
         };
-
-        public string LocalTemplatesVersion { get; private set; }
 
         public string LocalWizardVersion { get; private set; }
 
@@ -50,8 +58,7 @@ namespace Microsoft.Templates.Core.Locations
         public LocalTemplatesSourceV2(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
             ForcedAcquisition = forcedAdquisition;
-            LocalTemplatesVersion = templatesVersion;
-            LocalWizardVersion = wizardVersion;
+
             if (string.IsNullOrEmpty(_id))
             {
                 _id = Configuration.Current.Environment + GetAgentName();
@@ -62,20 +69,28 @@ namespace Microsoft.Templates.Core.Locations
         {
             Config = new TemplatesSourceConfig()
             {
-                PackagesInfo = new List<TemplatesPackageInfo>() { versionZero },
-                Latest = versionZero,
+                PackagesInfo = new List<TemplatesPackageInfo>() { VersionZero },
+                Latest = VersionZero,
                 VersionCount = 1
             };
         }
 
-        public override TemplatesPackageInfo Get(TemplatesPackageInfo packageInfo)
+        public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
         {
-            return new TemplatesPackageInfo()
+            string targetFolder = Path.Combine(workingFolder, packageInfo.Version.ToString());
+            JunctionPoint.Create(Origin, targetFolder, true);
+
+            return new TemplatesContentInfo()
             {
                 Version = packageInfo.Version,
-                LocalPath = Origin,
+                Path = targetFolder,
                 Date = packageInfo.Date
             };
+        }
+
+        public override void Adquire(ref TemplatesPackageInfo packageInfo)
+        {
+            packageInfo.LocalPath = Origin;
         }
 
         private static string GetAgentName()

@@ -32,11 +32,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public string WorkingFolder => _workingFolder.Value;
 
-        public string CurrentTemplatesFolder { get => _content?.TemplatesFolder; }
-
-        public string CurrentContentFolder { get; private set; }
-
-        public Version CurrentContentVersion { get => GetCurrentContentVersion(); }
+        public TemplatesContentInfo CurrentContent { get => _content?.Current; }
 
         public Version CurrentWizardVersion { get; private set; }
 
@@ -45,8 +41,10 @@ namespace Microsoft.Templates.Core.Locations
         public TemplatesSynchronization(TemplatesSourceV2 source, Version wizardVersion)
         {
             _source = source ?? throw new ArgumentNullException(nameof(source));
-            _content = new TemplatesContentV2(WorkingFolder, source.Id, wizardVersion, source);
-            CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder, source.Id);
+
+            string currentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder, source.Id);
+
+            _content = new TemplatesContentV2(WorkingFolder, source.Id, wizardVersion, source, currentContentFolder);
         }
 
         public async Task DoAsync()
@@ -72,7 +70,7 @@ namespace Microsoft.Templates.Core.Locations
 
                     PurgeContentAsync().FireAndForget();
 
-                    TelemetryService.Current.SetContentVersionToContext(CurrentContentVersion);
+                    TelemetryService.Current.SetContentVersionToContext(CurrentContent.Version);
                 }
                 finally
                 {
@@ -126,7 +124,7 @@ namespace Microsoft.Templates.Core.Locations
 
             try
             {
-                if (force || _content.IsNewVersionAvailable(CurrentContentFolder))
+                if (force || _content.IsNewVersionAvailable())
                 {
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
@@ -168,11 +166,10 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                if (_content.IsNewVersionAvailable(CurrentContentFolder))
+                if (_content.IsNewVersionAvailable())
                 {
                     var package = _source.Config.ResolvePackage(CurrentWizardVersion);
-                    _source.Get(package);
-                    // TODO: Extract a donde diga _source
+                    _content.GetNewVersionContent();
                 }
             }
             catch (Exception ex)
@@ -185,19 +182,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                string installedTemplatesPath = GetInstalledTemplatesPath();
-                if (File.Exists(installedTemplatesPath))
-                {
-                    // TODO: Include a json with the information
-                    TemplatesPackageInfo installedPackage = new TemplatesPackageInfo()
-                    {
-                        Name = Path.GetFileName(installedTemplatesPath),
-                        LocalPath = installedTemplatesPath,
-                        Version = TemplatesPackageInfo.ParseVersion(Path.GetFileName(installedTemplatesPath))
-                    };
-
-                    TemplatesPackageInfo.Extract(installedPackage, _content.TemplatesFolder);
-                }
+                _content.Extract(GetInstalledTemplatesPath());
             }
             catch (Exception ex)
             {
@@ -231,7 +216,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             await Task.Run(() =>
             {
-                if (_content.IsNewVersionAvailable(CurrentContentFolder))
+                if (_content.IsNewVersionAvailable())
                 {
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewVersionAvailable });
                 }
@@ -242,14 +227,14 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                if (_content.RequiresContentUpdate(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
+                if (_content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
                     CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);
 
                     CodeGen.Instance.Settings.SettingsLoader.Save();
 
-                    CurrentContentFolder = CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _source.Id);
+                    _content.RefreshContentFolder(CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _source.Id));
                 }
             }
             catch (Exception ex)
@@ -262,7 +247,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                await Task.Run(() => _content.Purge(CurrentContentFolder));
+                await Task.Run(() => _content.Purge());
             }
             catch (Exception ex)
             {
@@ -272,12 +257,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private bool RequireExtractInstalledContent()
         {
-            return !_content.Exists() || CurrentContentVersion.IsNull();
-        }
-
-        private Version GetCurrentContentVersion()
-        {
-            return null;
+            return !_content.Exists();
         }
 
         private bool LockSync()
@@ -317,7 +297,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                FileInfo fileInfo = new FileInfo(Path.Combine(CurrentTemplatesFolder, ".lock"));
+                FileInfo fileInfo = new FileInfo(Path.Combine(_content.TemplatesFolder, ".lock"));
                 return fileInfo.Exists && DateTime.Now < fileInfo.CreationTime.Add(instanceMaxSyncWait);
             }
             catch (Exception ex)
@@ -333,13 +313,13 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                FileInfo fileInfo = new FileInfo(Path.Combine(CurrentTemplatesFolder, ".lock"));
+                FileInfo fileInfo = new FileInfo(Path.Combine(_content.TemplatesFolder, ".lock"));
                 if (fileInfo.Exists)
                 {
                     fileInfo.Delete();
                 }
 
-                Fs.EnsureFolder(CurrentTemplatesFolder);
+                Fs.EnsureFolder(_content.TemplatesFolder);
                 File.WriteAllText(fileInfo.FullName, "Instance syncing");
             }
             catch (Exception ex)
@@ -352,7 +332,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                FileInfo fileInfo = new FileInfo(Path.Combine(CurrentTemplatesFolder, ".lock"));
+                FileInfo fileInfo = new FileInfo(Path.Combine(_content.TemplatesFolder, ".lock"));
                 if (fileInfo.Exists)
                 {
                     fileInfo.Delete();

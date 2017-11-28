@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class TemplatesContentInfo
     {
-        public string LocalPath { get; set; }
+        public string Path { get; set; }
 
         public DateTime Date { get; set; }
 

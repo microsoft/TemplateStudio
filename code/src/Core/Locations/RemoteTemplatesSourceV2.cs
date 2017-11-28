@@ -7,6 +7,7 @@ using System.IO;
 using System.Net;
 
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Packaging;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
@@ -17,7 +18,25 @@ namespace Microsoft.Templates.Core.Locations
 
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
 
-        public override TemplatesPackageInfo Get(TemplatesPackageInfo packageInfo)
+        public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
+        {
+            var extractionFolder = Extract(packageInfo);
+
+            var finalDestination = Path.Combine(workingFolder, packageInfo.Version.ToString());
+
+            Fs.SafeMoveDirectory(Path.Combine(extractionFolder, "Templates"), finalDestination);
+
+            return new TemplatesContentInfo()
+            {
+                Date = packageInfo.Date,
+                Path = finalDestination,
+                Version = packageInfo.Version
+            };
+
+            // TODO REMOVE TEMPS
+        }
+
+        public override void Adquire(ref TemplatesPackageInfo packageInfo)
         {
             var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var sourceUrl = $"{_cdnUrl}/{packageInfo.Name}";
@@ -27,8 +46,6 @@ namespace Microsoft.Templates.Core.Locations
             DownloadContent(sourceUrl, fileTarget);
 
             packageInfo.LocalPath = fileTarget;
-
-            return packageInfo; // TODO: Se hace copia?
         }
 
         public override void LoadConfig()
@@ -58,6 +75,35 @@ namespace Microsoft.Templates.Core.Locations
             {
                 AppHealth.Current.Info.TrackAsync(StringRes.RemoteTemplatesSourceDownloadContentKoInfoMessage).FireAndForget();
                 AppHealth.Current.Error.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentKoErrorMessage, sourceUrl), ex).FireAndForget();
+            }
+        }
+
+        private static string Extract(TemplatesPackageInfo packageInfo, bool verifyPackageSignatures = true)
+        {
+            if (!string.IsNullOrEmpty(packageInfo.LocalPath))
+            {
+                Extract(packageInfo.LocalPath, Path.GetDirectoryName(packageInfo.LocalPath), verifyPackageSignatures);
+                return Path.GetDirectoryName(packageInfo.LocalPath);
+            }
+            else
+            {
+                // TODO: Package Not Adquired
+                // ERROR
+                return null;
+            }
+        }
+
+        private static void Extract(string mstxFilePath, string versionedFolder, bool verifyPackageSignatures = true)
+        {
+            try
+            {
+                TemplatePackage.Extract(mstxFilePath, versionedFolder, verifyPackageSignatures);
+                AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {versionedFolder}.").FireAndForget();
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.TemplatesSourceExtractContentMessage).FireAndForget();
+                throw;
             }
         }
     }
