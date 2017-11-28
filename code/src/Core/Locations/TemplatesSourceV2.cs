@@ -17,9 +17,7 @@ namespace Microsoft.Templates.Core.Locations
 {
     public abstract class TemplatesSourceV2
     {
-        protected const string SourceFolderName = "Templates";
-
-        private List<string> _tempFoldersUsed = new List<string>();
+        protected const string TemplatesFolderName = "Templates";
 
         public TemplatesSourceConfig Config { get; protected set; }
 

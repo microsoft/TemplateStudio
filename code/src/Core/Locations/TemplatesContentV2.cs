@@ -96,12 +96,12 @@ namespace Microsoft.Templates.Core.Locations
                     Version = TemplatesPackageInfo.GetVersionFromMstx(mstxFilePath)
                 };
             }
-            else if (Source is LocalTemplatesSourceV2)
+            else
             {
+                // TODO: refactor este extrac? FirstTimeAdq??
                 installedPackage = LocalTemplatesSourceV2.VersionZero;
             }
 
-            Source.Adquire(ref installedPackage);
             var package = Source.GetContent(installedPackage, TemplatesFolder);
             Current = package;
             All.Add(package);

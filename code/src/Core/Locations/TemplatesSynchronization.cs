@@ -43,8 +43,9 @@ namespace Microsoft.Templates.Core.Locations
             _source = source ?? throw new ArgumentNullException(nameof(source));
 
             string currentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder, source.Id);
-
             _content = new TemplatesContentV2(WorkingFolder, source.Id, wizardVersion, source, currentContentFolder);
+
+            CurrentWizardVersion = wizardVersion;
         }
 
         public async Task DoAsync()

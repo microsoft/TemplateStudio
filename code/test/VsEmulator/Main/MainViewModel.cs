@@ -445,7 +445,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
         {
             GenContext.Bootstrap(
-                new LocalTemplatesSourceV2(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
+                new LocalTemplatesSourceV2(TemplatesVersion, forceLocalTemplatesRefresh),
                 new FakeGenShell(_language, msg => SetState(msg), l => AddLog(l), _host),
                 new Version(WizardVersion),
                 _language);
@@ -473,32 +473,26 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void CleanUpNotUsedContentVersions()
         {
-            // TODO: VER COMO PROBAR
-            //if (_wizardVersion == "0.0.0.0" && _templatesVersion == "0.0.0.0")
-            //{
-            //    var templatesFolder = GetTemplatesFolder();
-            //    if (Directory.Exists(templatesFolder))
-            //    {
-            //        var dirs = Directory.EnumerateDirectories(templatesFolder);
-            //        foreach (var dir in dirs)
-            //        {
-            //            if (!dir.EndsWith("0.0.0.0", StringComparison.OrdinalIgnoreCase))
-            //            {
-            //                Fs.SafeDeleteDirectory(dir);
-            //            }
-            //        }
-            //    }
-            //}
+            if (_wizardVersion == "0.0.0.0" && _templatesVersion == "0.0.0.0")
+            {
+                var templatesFolder = GetTemplatesFolder();
+                if (Directory.Exists(templatesFolder))
+                {
+                    var dirs = Directory.EnumerateDirectories(templatesFolder);
+                    foreach (var dir in dirs)
+                    {
+                        if (!dir.EndsWith("0.0.0.0", StringComparison.OrdinalIgnoreCase))
+                        {
+                            Fs.SafeDeleteDirectory(dir);
+                        }
+                    }
+                }
+            }
         }
 
         private string GetTemplatesFolder()
         {
-            //var templatesSource = new LocalTemplatesSourceV2(_wizardVersion, _templatesVersion);
-            //var templatesSync = new TemplatesSynchronization(templatesSource, new Version(_wizardVersion));
-            //string currentTemplatesFolder = templatesSync.CurrentTemplatesFolder;
-
-            //return currentTemplatesFolder;
-            return null;
+            return @"C:\ProgramData\WindowsTemplateStudio\Templates\Local";
         }
     }
 }

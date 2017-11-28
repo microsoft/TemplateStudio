@@ -23,39 +23,37 @@ namespace Microsoft.Templates.Core.Locations
         public static readonly TemplatesPackageInfo VersionZero = new TemplatesPackageInfo()
         {
             Name = "LocalTemplates",
-            LocalPath = $@"..\..\..\..\..\{SourceFolderName}",
+            LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
             Bytes = 1024,
             Date = DateTime.Now,
             Uri = new Uri("file://"),
             Version = new Version(0, 0, 0, 0)
         };
 
-        public string LocalWizardVersion { get; private set; }
-
-        protected override bool VerifyPackageSignatures => false;
-
-        public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
+        private string Origin => $@"..\..\..\..\..\{TemplatesFolderName}";
 
         private string _id;
 
+        private List<TemplatesPackageInfo> availablePackages = new List<TemplatesPackageInfo>();
+
+        protected override bool VerifyPackageSignatures => false;
+
         public override string Id { get => _id; }
 
-        protected string FinalDestination { get; set; }
-
         public LocalTemplatesSourceV2()
-            : this("0.0.0.0", "0.0.0.0", true)
+            : this("0.0.0.0", true)
         {
             _id = Configuration.Current.Environment + GetAgentName();
         }
 
         public LocalTemplatesSourceV2(string id)
-            : this("0.0.0.0", "0.0.0.0", true)
+            : this("0.0.0.0", true)
         {
             _id = id + GetAgentName();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Used to override the default value for this property in the local (test) source")]
-        public LocalTemplatesSourceV2(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
+        public LocalTemplatesSourceV2(string templatesVersion, bool forcedAdquisition = true)
         {
             ForcedAcquisition = forcedAdquisition;
 
@@ -63,13 +61,30 @@ namespace Microsoft.Templates.Core.Locations
             {
                 _id = Configuration.Current.Environment + GetAgentName();
             }
+
+            availablePackages.Add(VersionZero);
+            Version.TryParse(templatesVersion, out Version v);
+            if (!v.IsZero())
+            {
+                var package = new TemplatesPackageInfo()
+                {
+                    Name = $"LocalTemplates_v{v.ToString()}",
+                    LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
+                    Bytes = 1024,
+                    Date = DateTime.Now,
+                    Uri = new Uri("file://"),
+                    Version = v
+                };
+
+                availablePackages.Add(package);
+            }
         }
 
         public override void LoadConfig()
         {
             Config = new TemplatesSourceConfig()
             {
-                PackagesInfo = new List<TemplatesPackageInfo>() { VersionZero },
+                PackagesInfo = availablePackages,
                 Latest = VersionZero,
                 VersionCount = 1
             };
