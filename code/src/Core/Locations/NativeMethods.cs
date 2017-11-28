@@ -13,7 +13,7 @@ using Microsoft.Win32.SafeHandles;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    internal static class JunctionPoint
+    internal static class NativeMethods
     {
 #pragma warning disable SA1310 // Field names must not contain underscore. Reason: Become from API Constants
 
@@ -244,7 +244,7 @@ namespace Microsoft.Templates.Core.Locations
 
                     if (!result)
                     {
-                        ThrowLastWin32Error($"Unable to create junction point '{sourceDir}' -> '{targetDir}'.");
+                        ThrowLastWin32Error($"Unable to create junction point \'{sourceDir}\' -> \'{targetDir}\'.");
                     }
                 }
                 finally

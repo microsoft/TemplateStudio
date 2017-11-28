@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Test
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CM\\{testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LocalTemplatesSource("TstBldCaliburn");
+        public TemplatesSourceV2 Source => new LocalTemplatesSourceV2("TstBldCaliburn");
 
         private static bool syncExecuted;
 
@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Test
         {
             List<object[]> result = new List<object[]>();
 
-            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldCaliburn"), ProgrammingLanguages.CSharp);
+            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSourceV2("TstBldCaliburn"), ProgrammingLanguages.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                                             && t.GetLanguage() == ProgrammingLanguages.CSharp);
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
         {
             List<object[]> result = new List<object[]>();
 
-            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldCaliburn"), ProgrammingLanguages.CSharp);
+            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSourceV2("TstBldCaliburn"), ProgrammingLanguages.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                                             && t.GetLanguage() == ProgrammingLanguages.CSharp);
@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source, string language)
+        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSourceV2 source, string language)
         {
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
 

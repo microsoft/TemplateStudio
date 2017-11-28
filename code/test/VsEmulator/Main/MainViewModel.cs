@@ -450,7 +450,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 new Version(WizardVersion),
                 _language);
 
-            CleanUpNotUsedContentVersions();
+            // CleanUpNotUsedContentVersions();
         }
 
         [SuppressMessage(

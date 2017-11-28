@@ -11,15 +11,6 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class LocalTemplatesSourceV2 : TemplatesSourceV2
     {
-        private enum SymbolicLink
-        {
-            File = 0,
-            Directory = 1
-        }
-
-        [DllImport("kernel32.dll")]
-        private static extern bool CreateSymbolicLink(string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
-
         public static readonly TemplatesPackageInfo VersionZero = new TemplatesPackageInfo()
         {
             Name = "LocalTemplates",
@@ -30,7 +21,7 @@ namespace Microsoft.Templates.Core.Locations
             Version = new Version(0, 0, 0, 0)
         };
 
-        private string Origin => $@"..\..\..\..\..\{TemplatesFolderName}";
+        protected virtual string Origin => $@"..\..\..\..\..\{TemplatesFolderName}";
 
         private string _id;
 
@@ -93,7 +84,7 @@ namespace Microsoft.Templates.Core.Locations
         public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
         {
             string targetFolder = Path.Combine(workingFolder, packageInfo.Version.ToString());
-            JunctionPoint.Create(Origin, targetFolder, true);
+            NativeMethods.Create(Origin, targetFolder, true);
 
             return new TemplatesContentInfo()
             {
@@ -108,7 +99,7 @@ namespace Microsoft.Templates.Core.Locations
             packageInfo.LocalPath = Origin;
         }
 
-        private static string GetAgentName()
+        protected static string GetAgentName()
         {
             // If running tests in VSTS concurrently in different agents avoids the collison in templates folders
             string agentName = Environment.GetEnvironmentVariable("AGENT_NAME");

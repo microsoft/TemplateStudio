@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Test
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\LEG\\{testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new LegacyTemplatesSource();
-        public TemplatesSource LocalSource => new LocalTemplatesSource("BldRClickLegacy");
+        public TemplatesSourceV2 LocalSource => new LocalTemplatesSourceV2("BldRClickLegacy");
 
         private static bool syncExecuted;
 
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public async Task ChangeTemplatesSourceAsync(TemplatesSource source, string language)
+        public async Task ChangeTemplatesSourceAsync(TemplatesSourceV2 source, string language)
         {
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
             await GenContext.ToolBox.Repo.SynchronizeAsync();

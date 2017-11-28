@@ -115,7 +115,11 @@ namespace Microsoft.Templates.Core.Locations
 
                 foreach (var sdi in di.EnumerateDirectories().Where(d => d.FullName != Current.Path))
                 {
-                    Fs.SafeDeleteDirectory(sdi.FullName, false);
+                    Version.TryParse(sdi.Name, out Version v);
+                    if (!v.IsNull() && v < Current.Version)
+                    {
+                        Fs.SafeDeleteDirectory(sdi.FullName, false);
+                    }
                 }
             }
         }
