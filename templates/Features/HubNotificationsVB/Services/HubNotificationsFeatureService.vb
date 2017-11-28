@@ -33,9 +33,11 @@ Namespace Services
 
         Protected Overrides Async Function HandleInternalAsync(args As ToastNotificationActivatedEventArgs) As Task
             ' TODO WTS: Handle activation from toast notification,
+            ' Be sure to use the template 'ToastGeneric' in the toast notification configuration XML
+            ' to ensure OnActivated is called when launching from a Toast Notification sent from Azure
+            '
             ' For more info handling activation see documentation at
-            ' https://blogs.msdn.microsoft.com/tiles_and_toasts/2015/07/08/quickstart-sending-a-local-toast-notification-and-handling-activations-from-it-windows-10/
-
+            ' https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast
             Await Task.CompletedTask
         End Function
     End Class
