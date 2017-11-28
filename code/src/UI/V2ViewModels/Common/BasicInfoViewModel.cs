@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2Views.NewProject;
@@ -31,6 +32,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public RelayCommand DetailsCommand => _detailsCommand ?? (_detailsCommand = new RelayCommand(OnDetails));
 
         public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack));
+
+        public BasicInfoViewModel(MetadataInfo metadataInfo)
+        {
+            Title = metadataInfo.DisplayName;
+            Description = metadataInfo.Description;
+        }
 
         private void OnDetails()
         {

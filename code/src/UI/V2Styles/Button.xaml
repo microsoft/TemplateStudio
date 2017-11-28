@@ -21,8 +21,7 @@
                 <Style>
                     <Setter Property="Control.Template">
                         <Setter.Value>
-                            <ControlTemplate>
-                            </ControlTemplate>
+                            <ControlTemplate/>
                         </Setter.Value> 
                     </Setter>
                 </Style>

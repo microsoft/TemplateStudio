@@ -11,47 +11,25 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <DataTemplate x:Key="projectTypeItemTemplate">
-                <Grid Width="200" Height="230">
-                    <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50" /><!--Image-->
-                            <RowDefinition Height="Auto" /><!--Title-->
-                            <RowDefinition Height="*" /><!--Description-->
-                            <RowDefinition Height="50" /><!--Detail / Status-->
-                        </Grid.RowDefinitions>
-                        <TextBlock
-                            Grid.Row="1"
-                            Text="{Binding Title}"
-                            Style="{StaticResource WtsTextBlockCardTitle}" />
-                        <TextBlock
-                            Grid.Row="2"
-                            Text="{Binding Description}"
-                            Style="{StaticResource WtsTextBlockCardDescription}"
-                            Margin="{StaticResource Margin_M_Top}"/>
-                        <Grid Grid.Row="3">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock>
-                                <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
-                                    <TextBlock Text="Details" Style="{StaticResource WtsTextBlockHyperlink}" />
-                                </Hyperlink>
-                            </TextBlock>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </DataTemplate>
         </ResourceDictionary>
     </Page.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Text="Select a project type"
+            Margin="{StaticResource Margin_L_LeftRight_M_Top}"
+            Style="{StaticResource WtsSectionTitle}" />
         <ListView
-            Style="{DynamicResource WtsListView}"
+            Grid.Row="1"
+            Style="{StaticResource WtsListView}"
             ItemsSource="{Binding Items}"
-            ItemTemplate="{StaticResource projectTypeItemTemplate}" />
+            SelectedItem="{Binding Selected, Mode=TwoWay}"
+            ItemTemplate="{StaticResource WtsItemTemplateProjectTypeDesignPattern}" />
     </Grid>
 
 </Page>

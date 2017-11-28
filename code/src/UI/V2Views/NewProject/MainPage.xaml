@@ -33,9 +33,19 @@
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
             <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
-            <Viewbox Grid.Column="4" StretchDirection="DownOnly">
-                <Image Source="{Binding SummaryImage}" />
-            </Viewbox>
+            <ScrollViewer Grid.Column="4">
+                <StackPanel>
+                    <TextBlock
+                        Style="{StaticResource WtsSectionTitle}"
+                        Margin="{StaticResource Margin_L_LeftRight_M_Top}"
+                        Text="Your project details"/>
+                    <ComboBox
+                        ItemsSource="{Binding ProjectType.Items}"
+                        SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
+                        ItemTemplate="{StaticResource WtsComboBoxProjectTypeDesignPattern}"
+                        Style="{StaticResource WtsComboBox}"/>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">

@@ -4,6 +4,19 @@
 
     <Style TargetType="Hyperlink" x:Key="WtsHyperlink">
         <Setter Property="TextDecorations" Value="{x:Null}" />
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Grid Height="2" Background="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" VerticalAlignment="Bottom"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <!--<Trigger Property="IsPressed" Value="true">
                 <Setter Property="Foreground" Value="{Binding HyperlinkPressed, Source={x:Static services:UIStylesService.Instance}}" />

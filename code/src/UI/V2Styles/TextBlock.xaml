@@ -57,4 +57,12 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="WtsSectionTitle">
+        <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="FontStyle" Value="Normal" />
+    </Style>
+
 </ResourceDictionary>

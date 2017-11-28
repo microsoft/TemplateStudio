@@ -357,6 +357,7 @@
     <Compile Include="V2Controls\SequentialFlow.xaml.cs">
       <DependentUpon>SequentialFlow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="V2Services\DataService.cs" />
     <Compile Include="V2Services\NavigationService.cs" />
     <Compile Include="V2Services\Styles\LightColorValues.cs" />
     <Compile Include="V2Services\Styles\FakeStyleValuesProvider.cs" />
@@ -381,6 +382,9 @@
     </Compile>
     <Compile Include="V2Views\NewProject\DesignPatternPage.xaml.cs">
       <DependentUpon>DesignPatternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\PageToRemove.xaml.cs">
+      <DependentUpon>PageToRemove.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Views\NewProject\ProjectTypePage.xaml.cs">
       <DependentUpon>ProjectTypePage.xaml</DependentUpon>
@@ -589,6 +593,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="V2Styles\DataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="V2Styles\_Thickness.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -618,6 +630,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="V2Views\NewProject\DesignPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Views\NewProject\PageToRemove.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
