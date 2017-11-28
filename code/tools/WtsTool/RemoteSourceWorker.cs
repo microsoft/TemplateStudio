@@ -46,7 +46,7 @@ namespace WtsTool
                 output.WriteLine();
 
                 WriteSummary(config, output);
-                WritePackagesTable(config.Versions, output);
+                WritePackagesTable(config.PackagesInfo, output);
             }
             catch (Exception ex)
             {
@@ -172,8 +172,7 @@ namespace WtsTool
                 output.WriteCommandText($"WARN: Downloading main version for {v.Major}.{v.Minor}, ignoring the version parts build and revision ({v.Build}.{v.Revision}).");
             }
 
-            TemplatesPackageInfo match = config.Versions.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor)
-                    .OrderByDescending(p => p.Date).FirstOrDefault();
+            TemplatesPackageInfo match = config.ResolvePackage(v);
 
             return match;
         }
@@ -185,7 +184,7 @@ namespace WtsTool
             output.WriteCommandText($"Latest Version Uri: {config.Latest.Uri}");
 
             output.WriteLine();
-            output.WriteCommandText($"Available Versions: {string.Join(", ", config.Versions.Select(e => e.MainVersion).ToArray())}");
+            output.WriteCommandText($"Available Versions: {string.Join(", ", config.PackagesInfo.Select(e => e.MainVersion).ToArray())}");
         }
 
         private static void WritePackagesTable(IEnumerable<TemplatesPackageInfo> packages, TextWriter output)

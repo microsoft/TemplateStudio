@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core
 
         public bool SyncInProgress { get => TemplatesSynchronization.SyncInProgress; }
 
-        public TemplatesRepository(TemplatesSource source, Version wizardVersion, string language)
+        public TemplatesRepository(TemplatesSourceV2 source, Version wizardVersion, string language)
         {
             _language = language;
             WizardVersion = wizardVersion.ToString();

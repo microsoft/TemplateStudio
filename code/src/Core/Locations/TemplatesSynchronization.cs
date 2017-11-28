@@ -20,9 +20,9 @@ namespace Microsoft.Templates.Core.Locations
 
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
 
-        private readonly TemplatesSource _source;
+        private readonly TemplatesSourceV2 _source;
 
-        private readonly TemplatesContent _content;
+        private readonly TemplatesContentV2 _content;
 
         private static object syncLock = new object();
 
@@ -42,10 +42,10 @@ namespace Microsoft.Templates.Core.Locations
 
         public static bool SyncInProgress { get; private set; }
 
-        public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
+        public TemplatesSynchronization(TemplatesSourceV2 source, Version wizardVersion)
         {
             _source = source ?? throw new ArgumentNullException(nameof(source));
-            _content = new TemplatesContent(WorkingFolder, source.Id, wizardVersion);
+            _content = new TemplatesContentV2(WorkingFolder, source.Id, wizardVersion, source);
             CurrentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder, source.Id);
         }
 
@@ -104,14 +104,12 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task CheckContentStatusAsync()
         {
-            await CheckContentUnderVersionAsync();
             await CheckNewVersionAvailableAsync();
-            await CheckContentOverVersionAsync();
         }
 
         private async Task CheckInstallDeployedContentAsync()
         {
-            if (!_content.Exists() || RequireExtractInstalledContent())
+            if (RequireExtractInstalledContent())
             {
                 await ExtractInstalledContentAsync();
             }
@@ -119,7 +117,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private async Task<bool> CheckMandatoryAcquireContentAsync()
         {
-            return await AcquireContentAsync(_source.ForcedAcquisition || _content.ExistUnderVersion());
+            return await AcquireContentAsync(_source.ForcedAcquisition);
         }
 
         private async Task<bool> AcquireContentAsync(bool force = false)
@@ -128,7 +126,7 @@ namespace Microsoft.Templates.Core.Locations
 
             try
             {
-                if (force || _content.IsExpired(CurrentContentFolder))
+                if (force || _content.IsNewVersionAvailable(CurrentContentFolder))
                 {
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
@@ -170,7 +168,12 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                _source.Acquire(_content.TemplatesFolder);
+                if (_content.IsNewVersionAvailable(CurrentContentFolder))
+                {
+                    var package = _source.Config.ResolvePackage(CurrentWizardVersion);
+                    _source.Get(package);
+                    // TODO: Extract a donde diga _source
+                }
             }
             catch (Exception ex)
             {
@@ -185,7 +188,15 @@ namespace Microsoft.Templates.Core.Locations
                 string installedTemplatesPath = GetInstalledTemplatesPath();
                 if (File.Exists(installedTemplatesPath))
                 {
-                    _source.Extract(installedTemplatesPath, _content.TemplatesFolder);
+                    // TODO: Include a json with the information
+                    TemplatesPackageInfo installedPackage = new TemplatesPackageInfo()
+                    {
+                        Name = Path.GetFileName(installedTemplatesPath),
+                        LocalPath = installedTemplatesPath,
+                        Version = TemplatesPackageInfo.ParseVersion(Path.GetFileName(installedTemplatesPath))
+                    };
+
+                    TemplatesPackageInfo.Extract(installedPackage, _content.TemplatesFolder);
                 }
             }
             catch (Exception ex)
@@ -216,37 +227,6 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task CheckContentOverVersionAsync()
-        {
-            await Task.Run(() =>
-            {
-                if (_content.ExistOverVersion())
-                {
-                    if (CurrentContentVersion.IsNull())
-                    {
-                        SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.OverVersionNoContent });
-                    }
-                    else
-                    {
-                        SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.OverVersion });
-                    }
-                }
-            });
-        }
-
-        private async Task CheckContentUnderVersionAsync()
-        {
-            await Task.Run(() =>
-            {
-                bool result = _content.ExistUnderVersion();
-
-                if (result)
-                {
-                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.UnderVersion });
-                }
-            });
-        }
-
         private async Task CheckNewVersionAvailableAsync()
         {
             await Task.Run(() =>
@@ -262,7 +242,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                if (_content.RequiresUpdate(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
+                if (_content.RequiresContentUpdate(CurrentContentFolder) || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
                     CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);
@@ -292,12 +272,12 @@ namespace Microsoft.Templates.Core.Locations
 
         private bool RequireExtractInstalledContent()
         {
-            return CurrentContentVersion.IsNull() || CurrentContentVersion < _source.GetVersionFromMstx(GetInstalledTemplatesPath());
+            return !_content.Exists() || CurrentContentVersion.IsNull();
         }
 
         private Version GetCurrentContentVersion()
         {
-            return _content?.GetVersionFromFolder(CurrentContentFolder);
+            return null;
         }
 
         private bool LockSync()

@@ -1,0 +1,35 @@
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Packaging;
+using Microsoft.Templates.Core.Resources;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Microsoft.Templates.Core.Locations
+{
+    public abstract class TemplatesSourceV2
+    {
+        protected const string SourceFolderName = "Templates";
+
+        private List<string> _tempFoldersUsed = new List<string>();
+
+        public TemplatesSourceConfig Config { get; protected set; }
+
+        public virtual bool ForcedAcquisition { get; protected set; }
+
+        public virtual string Id { get => Configuration.Current.Environment; }
+
+        protected virtual bool VerifyPackageSignatures { get => true; }
+
+        public abstract void LoadConfig();
+
+        public abstract TemplatesPackageInfo Get(TemplatesPackageInfo packageInfo);
+    }
+}

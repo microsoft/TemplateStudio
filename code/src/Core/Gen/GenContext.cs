@@ -45,12 +45,12 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        public static void Bootstrap(TemplatesSource source, GenShell shell, string language)
+        public static void Bootstrap(TemplatesSourceV2 source, GenShell shell, string language)
         {
             Bootstrap(source, shell, GetWizardVersionFromAssembly(), language);
         }
 
-        public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion, string language)
+        public static void Bootstrap(TemplatesSourceV2 source, GenShell shell, Version wizardVersion, string language)
         {
             try
             {

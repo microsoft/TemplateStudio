@@ -445,7 +445,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
         {
             GenContext.Bootstrap(
-                new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
+                new LocalTemplatesSourceV2(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
                 new FakeGenShell(_language, msg => SetState(msg), l => AddLog(l), _host),
                 new Version(WizardVersion),
                 _language);
@@ -492,7 +492,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private string GetTemplatesFolder()
         {
-            var templatesSource = new LocalTemplatesSource(_wizardVersion, _templatesVersion);
+            var templatesSource = new LocalTemplatesSourceV2(_wizardVersion, _templatesVersion);
             var templatesSync = new TemplatesSynchronization(templatesSource, new Version(_wizardVersion));
             string currentTemplatesFolder = templatesSync.CurrentTemplatesFolder;
 

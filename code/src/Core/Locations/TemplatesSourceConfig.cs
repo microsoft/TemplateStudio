@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public int VersionCount { get; set; }
 
-        public List<TemplatesPackageInfo> Versions { get; set; }
+        public List<TemplatesPackageInfo> PackagesInfo { get; set; }
 
         public static TemplatesSourceConfig LoadFromFile(string filePath)
         {
@@ -42,6 +42,14 @@ namespace Microsoft.Templates.Core.Locations
             }
 
             return result;
+        }
+
+        public TemplatesPackageInfo ResolvePackage(Version v)
+        {
+            TemplatesPackageInfo match = PackagesInfo.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor)
+                        .OrderByDescending(p => p.Date).FirstOrDefault();
+
+            return match;
         }
     }
 }

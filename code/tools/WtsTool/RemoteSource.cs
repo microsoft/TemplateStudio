@@ -34,7 +34,7 @@ namespace WtsTool
                         Uri = e.Uri,
                         Bytes = e.Properties.Length,
                         Date = e.Properties.LastModified.Value.DateTime,
-                        Version = ParseVersion(e.Name),
+                        Version = TemplatesPackageInfo.ParseVersion(e.Name),
                     })
                 .OrderByDescending(e => e.Date)
                 .OrderByDescending(e => e.Version)
@@ -45,7 +45,7 @@ namespace WtsTool
             {
                 VersionCount = remotePackages.Count(),
                 Latest = remotePackages.FirstOrDefault(),
-                Versions = remotePackages.ToList()
+                PackagesInfo = remotePackages.ToList()
             };
             return config;
         }
@@ -111,21 +111,6 @@ namespace WtsTool
             return parsedEnv;
         }
 
-        private static Version ParseVersion(string name)
-        {
-            string versionPattern = @"\d+.\d+.\d+.\d+";
-            Regex versionRegEx = new Regex(versionPattern, RegexOptions.Compiled & RegexOptions.IgnoreCase & RegexOptions.CultureInvariant);
-            var match = versionRegEx.Match(name);
-            if (match.Success)
-            {
-                return new Version(match.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         private static CloudBlobContainer GetContainer(string account, string key, string container)
         {
             StorageCredentials credentials = new StorageCredentials(account, key);
@@ -183,7 +168,7 @@ namespace WtsTool
                 throw new ArgumentException($"The value '{version}' is not valid for parameter '{nameof(version)}'.");
             }
 
-            Version versionInFile = ParseVersion(Path.GetFileName(sourceFile));
+            Version versionInFile = TemplatesPackageInfo.ParseVersion(Path.GetFileName(sourceFile));
             if (versionInFile != null && versionInFile != specifedVersion)
             {
                 throw new ArgumentException($"Parameter '{nameof(sourceFile)}' (with value '{sourceFile}') contains the version {versionInFile.ToString()} that do not match with the value specified in the parameter '{nameof(version)}' (with value '{version}').");
