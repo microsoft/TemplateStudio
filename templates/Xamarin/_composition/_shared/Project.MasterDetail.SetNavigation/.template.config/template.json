@@ -1,0 +1,55 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Project.MasterDetail.SetNavigation.Xamarin",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Xamarin",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & $projectType == MasterDetailXamarin & wts.type == project",
+    "wts.compositionOrder": "0"
+ },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Param_ProjectName\\Views\\Navigation\\MasterDetailPage.xaml"
+    },
+    {
+      "path": ".\\Param_ProjectName\\Views\\Navigation\\MasterDetailPage.xaml.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName\\Views\\Navigation\\MasterDetailPageMaster.xaml"
+    },
+    {
+      "path": ".\\Param_ProjectName\\Views\\Navigation\\MasterDetailPageMaster.xaml.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName\\Models\\MasterDetailPageMenuItem.cs"
+    }
+  ],
+  "symbols": {
+    "wts.projectName": 
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
+    }
+  }
+}
