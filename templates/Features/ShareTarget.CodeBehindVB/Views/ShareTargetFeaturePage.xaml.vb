@@ -36,7 +36,7 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             ' TODO WTS: Configure your Share Target Declaration to allow other data formats.
             ' Share Target declarations are defined in Package.appxmanifest.
             ' Current declarations allow to share WebLink and image files with the app.
@@ -49,20 +49,20 @@ Namespace Views
             _shareOperation = TryCast(e.Parameter, ShareOperation)
 
             If _shareOperation.Data.Contains(StandardDataFormats.WebLink) Then
-                Dim newSharedData = New SharedDataWebLinkModel() With { _
-                    Key .Title = _shareOperation.Data.Properties.Title, _
-                    Key .PageTitle = "ShareTargetFeature_WebLinkTitle".GetLocalized(), _
-                    Key .DataFormat = StandardDataFormats.WebLink _
+                Dim newSharedData = New SharedDataWebLinkModel() With {
+                    .Title = _shareOperation.Data.Properties.Title,
+                    .PageTitle = "ShareTargetFeature_WebLinkTitle".GetLocalized(),
+                    .DataFormat = StandardDataFormats.WebLink
                 }
                 newSharedData.Uri = Await _shareOperation.GetWebLinkAsync()
                 SharedData = newSharedData
             End If
 
             If _shareOperation.Data.Contains(StandardDataFormats.StorageItems) Then
-                Dim newSharedData = New SharedDataStorageItemsModel() With { _
-                    Key .Title = _shareOperation.Data.Properties.Title, _
-                    Key .PageTitle = "ShareTargetFeature_ImagesTitle".GetLocalized(), _
-                    Key .DataFormat = StandardDataFormats.StorageItems _
+                Dim newSharedData = New SharedDataStorageItemsModel() With {
+                    .Title = _shareOperation.Data.Properties.Title,
+                    .PageTitle = "ShareTargetFeature_ImagesTitle".GetLocalized(),
+                    .DataFormat = StandardDataFormats.StorageItems
                 }
                 Dim files = Await _shareOperation.GetStorageItemsAsync()
                 For Each file As IStorageFile In files
@@ -80,7 +80,7 @@ Namespace Views
             End If
         End Sub
 
-        Public Event PropertyChanged As PropertyChangedEventHandler
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
 
         Private Sub [Set](Of T)(ByRef storage As T, value As T, <CallerMemberName> Optional propertyName As String = Nothing)
             If Equals(storage, value) Then
