@@ -1,0 +1,1 @@
+﻿Drag & Drop feature description.

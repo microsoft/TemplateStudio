@@ -1,0 +1,43 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Drag & Drop",
+  "groupIdentity": "wts.Feat.DragAndDrop",
+  "identity": "wts.Feat.DragAndDrop",
+  "description": "Drag & Drop feature description.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.group": "ConnectedExperiences",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",    
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "DragAndDropFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\DragDropService.cs"
+    },
+    {
+      "path": ".\\Services\\DropConfiguration.cs"
+    },
+    {
+      "path": ".\\Services\\ListViewDropConfiguration.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

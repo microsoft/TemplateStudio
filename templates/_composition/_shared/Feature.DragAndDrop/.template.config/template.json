@@ -1,0 +1,44 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Feature.DragAndDrop",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro & identity == wts.Feat.DragAndDrop|wts.Feat.DragAndDrop.CodeBehind"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Models\\DragDropCompletedData.cs"
+    },
+    {
+      "path": ".\\Models\\DragDropData.cs"
+    },
+    {
+      "path": ".\\Models\\DragDropStartingData.cs"
+    },
+    {
+      "path": ".\\Services\\VisualDropConfiguration.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
+    }
+  }
+}
