@@ -120,43 +120,43 @@ namespace Param_ItemNamespace.Services
 
             if (dataview.Contains(StandardDataFormats.ApplicationLink) && DropApplicationLinkAction != null)
             {
-                var uri = await dataview.GetApplicationLinkAsync();
+                Uri uri = await dataview.GetApplicationLinkAsync();
                 DropApplicationLinkAction.Invoke(uri);
             }
 
             if (dataview.Contains(StandardDataFormats.Bitmap) && DropBitmapAction != null)
             {
-                var stream = await dataview.GetBitmapAsync();
+                RandomAccessStreamReference stream = await dataview.GetBitmapAsync();
                 DropBitmapAction.Invoke(stream);
             }
 
             if (dataview.Contains(StandardDataFormats.Html) && DropHtmlAction != null)
             {
-                var html = await dataview.GetHtmlFormatAsync();
+                string html = await dataview.GetHtmlFormatAsync();
                 DropHtmlAction.Invoke(html);
             }
 
             if (dataview.Contains(StandardDataFormats.Rtf) && DropRtfAction != null)
             {
-                var rtf = await dataview.GetRtfAsync();
+                string rtf = await dataview.GetRtfAsync();
                 DropRtfAction.Invoke(rtf);
             }
 
             if (dataview.Contains(StandardDataFormats.StorageItems) && DropStorageItemsAction != null)
             {
-                var storageItems = await dataview.GetStorageItemsAsync();
+                IReadOnlyList<IStorageItem> storageItems = await dataview.GetStorageItemsAsync();
                 DropStorageItemsAction.Invoke(storageItems);
             }
 
             if (dataview.Contains(StandardDataFormats.Text) && DropTextAction != null)
             {
-                var text = await dataview.GetTextAsync();
+                string text = await dataview.GetTextAsync();
                 DropTextAction.Invoke(text);
             }
 
             if (dataview.Contains(StandardDataFormats.WebLink) && DropWebLinkAction != null)
             {
-                var uri = await dataview.GetWebLinkAsync();
+                Uri uri = await dataview.GetWebLinkAsync();
                 DropWebLinkAction.Invoke(uri);
             }
         }

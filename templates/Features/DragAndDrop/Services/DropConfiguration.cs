@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 
 namespace Param_ItemNamespace.Services
@@ -116,43 +119,43 @@ namespace Param_ItemNamespace.Services
 
             if (dataview.Contains(StandardDataFormats.ApplicationLink) && DropApplicationLinkCommand != null)
             {
-                var uri = await dataview.GetApplicationLinkAsync();
+                Uri uri = await dataview.GetApplicationLinkAsync();
                 DropApplicationLinkCommand.Execute(uri);
             }
 
             if (dataview.Contains(StandardDataFormats.Bitmap) && DropBitmapCommand != null)
             {
-                var stream = await dataview.GetBitmapAsync();
+                RandomAccessStreamReference stream = await dataview.GetBitmapAsync();
                 DropBitmapCommand.Execute(stream);
             }
 
             if (dataview.Contains(StandardDataFormats.Html) && DropHtmlCommand != null)
             {
-                var html = await dataview.GetHtmlFormatAsync();
+                string html = await dataview.GetHtmlFormatAsync();
                 DropHtmlCommand.Execute(html);
             }
 
             if (dataview.Contains(StandardDataFormats.Rtf) && DropRtfCommand != null)
             {
-                var rtf = await dataview.GetRtfAsync();
+                string rtf = await dataview.GetRtfAsync();
                 DropRtfCommand.Execute(rtf);
             }
 
             if (dataview.Contains(StandardDataFormats.StorageItems) && DropStorageItemsCommand != null)
             {
-                var storageItems = await dataview.GetStorageItemsAsync();
+                IReadOnlyList<IStorageItem> storageItems = await dataview.GetStorageItemsAsync();
                 DropStorageItemsCommand.Execute(storageItems);
             }
 
             if (dataview.Contains(StandardDataFormats.Text) && DropTextCommand != null)
             {
-                var text = await dataview.GetTextAsync();
+                string text = await dataview.GetTextAsync();
                 DropTextCommand.Execute(text);
             }
 
             if (dataview.Contains(StandardDataFormats.WebLink) && DropWebLinkCommand != null)
             {
-                var uri = await dataview.GetWebLinkAsync();
+                Uri uri = await dataview.GetWebLinkAsync();
                 DropWebLinkCommand.Execute(uri);
             }
         }
