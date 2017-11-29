@@ -58,7 +58,7 @@ namespace WtsTool
                 {
                     List<Regex> exclusionFilters = GetExclusionFilters(exclusions, output);
 
-                    var resultDir = Path.GetFullPath(prepareDir).Replace(Path.GetFileName(prepareDir), $"{Path.GetFileName(prepareDir)}_v{v.ToString()}");
+                    var resultDir = Path.GetFullPath(prepareDir).Replace(Path.GetFileName(prepareDir), $"{Path.GetFileName(prepareDir)}_v{version}");
 
                     List<string> excludedDirs = new List<string>();
                     List<DirectoryInfo> includedDirs = new List<DirectoryInfo>();
@@ -223,6 +223,7 @@ namespace WtsTool
             {
                 foreach (var file in d.GetFiles("*", SearchOption.TopDirectoryOnly))
                 {
+                    output.WriteLine($"Copying file {file.FullName} to {d.FullName.Replace(prepareDir, resultDir)}");
                     Fs.SafeCopyFile(file.FullName, d.FullName.Replace(prepareDir, resultDir), true);
                     countFiles++;
                 }
