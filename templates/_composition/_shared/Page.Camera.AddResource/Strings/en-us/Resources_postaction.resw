@@ -9,7 +9,7 @@
     <value>wts.ItemName</value>
   </data>
   <data name="Camera_Exception_UnauthorizedAccess" xml:space="preserve">
-    <value>The app was denied access to the camera.</value>
+    <value>The app was denied access to the camera or microphone.</value>
   </data>
   <data name="Camera_Exception_NotSupported" xml:space="preserve">
     <value>No video capture devices found.</value>
