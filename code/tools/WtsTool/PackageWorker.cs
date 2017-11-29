@@ -212,7 +212,13 @@ namespace WtsTool
 
             int countDirs = 0;
             int countFiles = 0;
-            Console.CursorVisible = false;
+
+            bool consoleAvailable = CheckConsole();
+            if (consoleAvailable)
+            {
+                Console.CursorVisible = false;
+            }
+
             toCopy.ForEach(d =>
             {
                 foreach (var file in d.GetFiles("*", SearchOption.TopDirectoryOnly))
@@ -220,16 +226,36 @@ namespace WtsTool
                     Fs.SafeCopyFile(file.FullName, d.FullName.Replace(prepareDir, resultDir), true);
                     countFiles++;
                 }
-                output.WriteLine($"   {++countDirs}/{toCopy.Count}...");
-                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                if (consoleAvailable)
+                {
+                    output.WriteLine($"   {++countDirs}/{toCopy.Count}...");
+                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                }
             });
             output.WriteLine();
-            Console.CursorVisible = true;
+
+            if (consoleAvailable)
+            {
+                Console.CursorVisible = true;
+            }
 
             File.WriteAllText(Path.Combine(resultDir, "version.txt"), version, System.Text.Encoding.UTF8);
 
             output.WriteLine();
             output.WriteCommandText($"Preparation for directory '{prepareDir}' done in '{resultDir}' ({countDirs} dirs and {countFiles} files).");
+        }
+
+        private static bool CheckConsole()
+        {
+            try
+            {
+                Console.CursorVisible = true;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private static void PrepareResultDir(TextWriter output, string resultDir)
@@ -274,23 +300,30 @@ namespace WtsTool
             {
                 foreach (var subDir in allDirs)
                 {
-                    bool include = false;
+                    bool exclude = true;
                     foreach (var regex in exclusionFilters)
                     {
-                        include = !regex.IsMatch(subDir.Name);
-                        if (!include)
+                        exclude = regex.IsMatch(subDir.Name) || excludedDirs.Contains(subDir.FullName);
+                        if (exclude)
                         {
                             break;
                         }
                     }
 
-                    if (include)
+                    if (exclude)
                     {
-                        includedDirs.Add(subDir);
+                        if (!excludedDirs.Contains(subDir.FullName))
+                        {
+                            excludedDirs.Add(subDir.FullName);
+                            foreach (var child in subDir.GetDirectories("*", SearchOption.AllDirectories))
+                            {
+                                excludedDirs.Add(child.FullName);
+                            }
+                        }
                     }
                     else
                     {
-                        excludedDirs.Add(subDir.FullName);
+                        includedDirs.Add(subDir);
                     }
                 }
             }
