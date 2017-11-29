@@ -226,9 +226,10 @@ namespace WtsTool
                     Fs.SafeCopyFile(file.FullName, d.FullName.Replace(prepareDir, resultDir), true);
                     countFiles++;
                 }
+                countDirs++;
                 if (consoleAvailable)
                 {
-                    output.WriteLine($"   {++countDirs}/{toCopy.Count}...");
+                    output.WriteLine($"   {countDirs}/{toCopy.Count}...");
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
                 }
             });
