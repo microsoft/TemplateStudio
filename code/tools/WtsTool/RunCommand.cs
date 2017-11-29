@@ -37,7 +37,6 @@ namespace WtsTool
                     return 1;
             }
 
-            Console.CursorVisible = true;
             return 0;
         }
 
