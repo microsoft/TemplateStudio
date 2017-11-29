@@ -11,9 +11,9 @@ Namespace Services
             Dim data = New ObservableCollection(Of SampleImage)()
             For i As Integer = 1 To 10
                 data.Add(New SampleImage() With {
-                    .ID = "{i}",
-                    .Source = "ms-appx:///Assets/SampleData/SamplePhoto{i}.png",
-                    .Name = "Image sample {i}"
+                    .ID = $"{i}",
+                    .Source = $"ms-appx:///Assets/SampleData/SamplePhoto{i}.png",
+                    .Name = $"Image sample {i}"
                 })
             Next
 

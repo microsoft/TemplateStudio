@@ -24,7 +24,7 @@ Namespace Services
         End Function
 
         Private Function PackageVersionToReadableString(packageVersion As PackageVersion) As String
-            Return "{packageVersion.Major}.{packageVersion.Minor}.{packageVersion.Build}.{packageVersion.Revision}"
+            Return $"{packageVersion.Major}.{packageVersion.Minor}.{packageVersion.Build}.{packageVersion.Revision}"
         End Function
     End Module
 End Namespace
