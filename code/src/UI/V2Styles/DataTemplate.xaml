@@ -47,7 +47,7 @@
 
     <DataTemplate x:Key="WtsComboBoxProjectTypeDesignPattern">
         <Grid>
-            <TextBlock Text="{Binding Title}" />
+            <TextBlock Style="{StaticResource WtsTextBlockComboBoxItem}" Text="{Binding Title}" />
         </Grid>
     </DataTemplate>
 

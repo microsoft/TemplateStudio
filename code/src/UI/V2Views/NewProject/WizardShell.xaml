@@ -4,13 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources"
+    xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
     WindowStartupLocation="CenterScreen"
     MinWidth="800"
     MinHeight="400"
     Width="{Binding WizardStatus.Width}"
     Height="{Binding WizardStatus.Height}"
-    Title="{x:Static strings:StringRes.Title}"
+    Title="{x:Static strings:StringRes.NewProjectTitle}"
     KeyDown="OnKeyDown"
     mc:Ignorable="d">
 
@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <TextBlock Text="New Universal Windows Platform app" Style="{StaticResource WtsTextBlockWizardTitle}" />
+            <TextBlock Text="{x:Static strings:StringRes.NewProjectTitle}" Style="{StaticResource WtsTextBlockWizardTitle}" />
         </Grid>
 
         <Grid Grid.Row="1" Style="{StaticResource WtsGridSectionDividerHorizontal}" />

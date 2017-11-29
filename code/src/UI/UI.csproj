@@ -357,6 +357,11 @@
     <Compile Include="V2Controls\SequentialFlow.xaml.cs">
       <DependentUpon>SequentialFlow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="V2Resources\StringRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="V2Services\DataService.cs" />
     <Compile Include="V2Services\NavigationService.cs" />
     <Compile Include="V2Services\Styles\LightColorValues.cs" />
@@ -818,6 +823,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="V2Resources\StringRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

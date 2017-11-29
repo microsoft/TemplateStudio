@@ -3,12 +3,21 @@
 
     <Thickness x:Key="Margin_S_LeftTopRightBottom">8,8,8,8</Thickness>
     <Thickness x:Key="Margin_S_LeftRight">8,0,8,0</Thickness>
+    
     <Thickness x:Key="Margin_M_LeftTopRightBottom">12,12,12,12</Thickness>
     <Thickness x:Key="Margin_M_Top">0,12,0,0</Thickness>
-    <Thickness x:Key="Margin_L_Left">25,0,0,0</Thickness>
-    <Thickness x:Key="Margin_L_LeftTop">25,25,0,0</Thickness>
-    <Thickness x:Key="Margin_L_LeftTopRightBottom">25,25,25,25</Thickness>
 
-    <Thickness x:Key="Margin_L_LeftRight_M_Top">25,12,25,0</Thickness>
+    <Thickness x:Key="Margin_M2_LeftRight_M_Top">16,12,16,0</Thickness>
+    
+    <Thickness x:Key="Margin_M2_LeftTopRight">16,16,16,0</Thickness>
+
+    <Thickness x:Key="Margin_M2_LeftRight_L_Top">16,24,16,0</Thickness>
+    
+    <Thickness x:Key="Margin_L_Left">24,0,0,0</Thickness>
+    <Thickness x:Key="Margin_L_LeftTop">24,24,0,0</Thickness>
+    <Thickness x:Key="Margin_L_LeftTopRightBottom">24,24,24,24</Thickness>
+    <Thickness x:Key="Margin_L_LeftTopRight">24,24,24,0</Thickness>
+
+    <Thickness x:Key="Margin_L_LeftRight_M_Top">24,12,24,0</Thickness>
 
 </ResourceDictionary>
