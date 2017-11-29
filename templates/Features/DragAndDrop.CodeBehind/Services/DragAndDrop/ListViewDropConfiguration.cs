@@ -3,7 +3,7 @@ using Windows.UI.Xaml;
 
 using Param_ItemNamespace.Models;
 
-namespace Param_ItemNamespace.Services
+namespace Param_ItemNamespace.Services.DragAndDrop
 {
     public class ListViewDropConfiguration : DropConfiguration
     {

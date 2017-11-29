@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 using Param_RootNamespace.Models;
 
-namespace Param_ItemNamespace.Services
+namespace Param_ItemNamespace.Services.DragAndDrop
 {
     public class DragDropService
     {

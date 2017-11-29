@@ -7,7 +7,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 
-namespace Param_ItemNamespace.Services
+namespace Param_ItemNamespace.Services.DragAndDrop
 {
     public class DropConfiguration : DependencyObject
     {

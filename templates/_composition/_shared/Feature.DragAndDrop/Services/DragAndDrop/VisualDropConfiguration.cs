@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
-namespace Param_ItemNamespace.Services
+namespace Param_ItemNamespace.Services.DragAndDrop
 {
     public class VisualDropConfiguration : DependencyObject
     {

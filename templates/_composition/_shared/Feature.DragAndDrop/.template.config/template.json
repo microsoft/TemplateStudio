@@ -25,10 +25,10 @@
       "path": ".\\Models\\DragDropStartingData.cs"
     },
     {
-      "path": ".\\Services\\DragDropService.cs"
+      "path": ".\\Services\\DragAndDrop\\DragDropService.cs"
     },
     {
-      "path": ".\\Services\\VisualDropConfiguration.cs"
+      "path": ".\\Services\\DragAndDrop\\VisualDropConfiguration.cs"
     }
   ],
   "symbols": {
