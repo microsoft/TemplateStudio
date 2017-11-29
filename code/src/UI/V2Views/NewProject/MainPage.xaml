@@ -40,10 +40,11 @@
                         Margin="{StaticResource Margin_L_LeftRight_M_Top}"
                         Text="Your project details"/>
                     <ComboBox
+                        Margin="10"
                         ItemsSource="{Binding ProjectType.Items}"
                         SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeDesignPattern}"
-                        Style="{StaticResource WtsComboBox}"/>
+                        Style="{StaticResource WtsComboBoxStyle}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>

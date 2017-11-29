@@ -33,6 +33,29 @@ namespace Microsoft.Templates.UI.V2Services
         private void SetStyles()
         {
             // Colors
+            SetThemedDialogColors();
+            SetThemedCardColors();
+            SetCommonDocumentColors();
+            SetCommonControlColors();
+
+            // FontSizes
+            Environment90PercentFontSize = _stylesProvider.GetFontSize("Environment90PercentFontSize");
+            Environment100PercentFontSize = _stylesProvider.GetFontSize("Environment100PercentFontSize");
+            Environment111PercentFontSize = _stylesProvider.GetFontSize("Environment111PercentFontSize");
+            Environment122PercentFontSize = _stylesProvider.GetFontSize("Environment122PercentFontSize");
+            Environment133PercentFontSize = _stylesProvider.GetFontSize("Environment133PercentFontSize");
+            Environment155PercentFontSize = _stylesProvider.GetFontSize("Environment155PercentFontSize");
+            Environment200PercentFontSize = _stylesProvider.GetFontSize("Environment200PercentFontSize");
+            Environment310PercentFontSize = _stylesProvider.GetFontSize("Environment310PercentFontSize");
+            Environment330PercentFontSize = _stylesProvider.GetFontSize("Environment330PercentFontSize");
+            Environment375PercentFontSize = _stylesProvider.GetFontSize("Environment375PercentFontSize");
+
+            // Font Family
+            EnvironmentFontFamily = _stylesProvider.GetFontFamily();
+        }
+
+        private void SetThemedDialogColors()
+        {
             WindowPanel = _stylesProvider.GetColor("ThemedDialogColors", "WindowPanelColorKey");
             WindowBorder = _stylesProvider.GetColor("ThemedDialogColors", "WindowBorderColorKey");
             HeaderText = _stylesProvider.GetColor("ThemedDialogColors", "HeaderTextColorKey");
@@ -51,6 +74,7 @@ namespace Microsoft.Templates.UI.V2Services
             GridHeadingHoverText = _stylesProvider.GetColor("ThemedDialogColors", "GridHeadingHoverTextColorKey");
             GridLine = _stylesProvider.GetColor("ThemedDialogColors", "GridLineColorKey");
             SectionDivider = _stylesProvider.GetColor("ThemedDialogColors", "SectionDividerColorKey");
+
             WindowButton = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonColorKey");
             WindowButtonHover = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonHoverColorKey");
             WindowButtonDown = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonDownColorKey");
@@ -60,8 +84,13 @@ namespace Microsoft.Templates.UI.V2Services
             WindowButtonGlyph = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonGlyphColorKey");
             WindowButtonHoverGlyph = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonHoverGlyphColorKey");
             WindowButtonDownGlyph = _stylesProvider.GetColor("ThemedDialogColors", "WindowButtonDownGlyphColorKey");
+
             WizardFooter = _stylesProvider.GetColor("ThemedDialogColors", "WizardFooterColorKey");
             WizardFooterText = _stylesProvider.GetColor("ThemedDialogColors", "WizardFooterTextColorKey");
+        }
+
+        private void SetThemedCardColors()
+        {
             CardTitleText = _stylesProvider.GetColor("ThemedCardColors", "CardTitleTextColorKey");
             CardDescriptionText = _stylesProvider.GetColor("ThemedCardColors", "CardDescriptionTextColorKey");
             CardBackgroundDefault = _stylesProvider.GetColor("ThemedCardColors", "CardBackgroundDefaultColorKey");
@@ -76,10 +105,16 @@ namespace Microsoft.Templates.UI.V2Services
             CardBorderPressed = _stylesProvider.GetColor("ThemedCardColors", "CardBorderPressedColorKey");
             CardBorderSelected = _stylesProvider.GetColor("ThemedCardColors", "CardBorderSelectedColorKey");
             CardBorderDisabled = _stylesProvider.GetColor("ThemedCardColors", "CardBorderDisabledColorKey");
+        }
 
+        private void SetCommonDocumentColors()
+        {
             ListItemText = _stylesProvider.GetColor("CommonDocumentColors", "ListItemTextColorKey");
             ListItemTextDisabled = _stylesProvider.GetColor("CommonDocumentColors", "ListItemTextDisabledColorKey");
+        }
 
+        private void SetCommonControlColors()
+        {
             Button = _stylesProvider.GetColor("CommonControlColors", "ButtonColorKey");
             ButtonText = _stylesProvider.GetColor("CommonControlColors", "ButtonTextColorKey");
             ButtonBorder = _stylesProvider.GetColor("CommonControlColors", "ButtonBorderColorKey");
@@ -104,20 +139,53 @@ namespace Microsoft.Templates.UI.V2Services
             ButtonPressedText = _stylesProvider.GetColor("CommonControlColors", "ButtonPressedTextColorKey");
             ButtonBorderPressed = _stylesProvider.GetColor("CommonControlColors", "ButtonBorderPressedColorKey");
 
-            // FontSizes
-            Environment90PercentFontSize = _stylesProvider.GetFontSize("Environment90PercentFontSize");
-            Environment100PercentFontSize = _stylesProvider.GetFontSize("Environment100PercentFontSize");
-            Environment111PercentFontSize = _stylesProvider.GetFontSize("Environment111PercentFontSize");
-            Environment122PercentFontSize = _stylesProvider.GetFontSize("Environment122PercentFontSize");
-            Environment133PercentFontSize = _stylesProvider.GetFontSize("Environment133PercentFontSize");
-            Environment155PercentFontSize = _stylesProvider.GetFontSize("Environment155PercentFontSize");
-            Environment200PercentFontSize = _stylesProvider.GetFontSize("Environment200PercentFontSize");
-            Environment310PercentFontSize = _stylesProvider.GetFontSize("Environment310PercentFontSize");
-            Environment330PercentFontSize = _stylesProvider.GetFontSize("Environment330PercentFontSize");
-            Environment375PercentFontSize = _stylesProvider.GetFontSize("Environment375PercentFontSize");
+            ////ComboBox Colors
+            ComboBoxBackground = _stylesProvider.GetColor("CommonControlColors", "ComboBoxBackgroundColorKey");
+            ComboBoxBackgroundDisabled = _stylesProvider.GetColor("CommonControlColors", "ComboBoxBackgroundDisabledColorKey");
+            ComboBoxBackgroundFocused = _stylesProvider.GetColor("CommonControlColors", "ComboBoxBackgroundFocusedColorKey");
+            ComboBoxBackgroundHover = _stylesProvider.GetColor("CommonControlColors", "ComboBoxBackgroundHoverColorKey");
+            ComboBoxBackgroundPressed = _stylesProvider.GetColor("CommonControlColors", "ComboBoxBackgroundPressedColorKey");
 
-            // Font Family
-            EnvironmentFontFamily = _stylesProvider.GetFontFamily();
+            ComboBoxBorder = _stylesProvider.GetColor("CommonControlColors", "ComboBoxBorderColorKey");
+            ComboBoxBorderDisabled = _stylesProvider.GetColor("CommonControlColors", "ComboBoxBorderDisabledColorKey");
+            ComboBoxBorderFocused = _stylesProvider.GetColor("CommonControlColors", "ComboBoxBorderFocusedColorKey");
+            ComboBoxBorderHover = _stylesProvider.GetColor("CommonControlColors", "ComboBoxBorderHoverColorKey");
+            ComboBoxBorderPressed = _stylesProvider.GetColor("CommonControlColors", "ComboBoxBorderPressedColorKey");
+
+            ComboBoxGlyph = _stylesProvider.GetColor("CommonControlColors", "ComboBoxGlyphColorKey");
+            ComboBoxGlyphBackground = _stylesProvider.GetColor("CommonControlColors", "ComboBoxGlyphBackgroundColorKey");
+            ComboBoxGlyphBackgroundDisabled = _stylesProvider.GetColor("CommonControlColors", "ComboBoxGlyphBackgroundDisabledColorKey");
+            ComboBoxGlyphBackgroundFocused = _stylesProvider.GetColor("CommonControlColors", "ComboBoxGlyphBackgroundFocusedColorKey");
+            ComboBoxGlyphBackgroundHover = _stylesProvider.GetColor("CommonControlColors", "ComboBoxGlyphBackgroundHoverColorKey");
+            ComboBoxGlyphBackgroundPressed = _stylesProvider.GetColor("CommonControlColors", "ComboBoxGlyphBackgroundPressedColorKey");
+            ComboBoxGlyphDisabled = _stylesProvider.GetColor("CommonControlColors", "ComboBoxGlyphDisabledColorKey");
+            ComboBoxGlyphFocused = _stylesProvider.GetColor("CommonControlColors", "ComboBoxGlyphFocusedColorKey");
+            ComboBoxGlyphHover = _stylesProvider.GetColor("CommonControlColors", "ComboBoxGlyphHoverColorKey");
+            ComboBoxGlyphPressed = _stylesProvider.GetColor("CommonControlColors", "ComboBoxGlyphPressedColorKey");
+
+            ComboBoxListBackground = _stylesProvider.GetColor("CommonControlColors", "ComboBoxListBackgroundColorKey");
+            ComboBoxListBackgroundShadow = _stylesProvider.GetColor("CommonControlColors", "ComboBoxListBackgroundShadowColorKey");
+            ComboBoxListBorder = _stylesProvider.GetColor("CommonControlColors", "ComboBoxListBorderColorKey");
+
+            ComboBoxListItemBackgroundHover = _stylesProvider.GetColor("CommonControlColors", "ComboBoxListItemBackgroundHoverColorKey");
+            ComboBoxListItemBorderHover = _stylesProvider.GetColor("CommonControlColors", "ComboBoxListItemBorderHoverColorKey");
+            ComboBoxListItemText = _stylesProvider.GetColor("CommonControlColors", "ComboBoxListItemTextColorKey");
+            ComboBoxListItemTextHover = _stylesProvider.GetColor("CommonControlColors", "ComboBoxListItemTextHoverColorKey");
+
+            ComboBoxSelection = _stylesProvider.GetColor("CommonControlColors", "ComboBoxSelectionColorKey");
+
+            ComboBoxSeparator = _stylesProvider.GetColor("CommonControlColors", "ComboBoxSeparatorColorKey");
+            ComboBoxSeparatorDisabled = _stylesProvider.GetColor("CommonControlColors", "ComboBoxSeparatorDisabledColorKey");
+            ComboBoxSeparatorFocused = _stylesProvider.GetColor("CommonControlColors", "ComboBoxSeparatorFocusedColorKey");
+            ComboBoxSeparatorHover = _stylesProvider.GetColor("CommonControlColors", "ComboBoxSeparatorHoverColorKey");
+            ComboBoxSeparatorPressed = _stylesProvider.GetColor("CommonControlColors", "ComboBoxSeparatorPressedColorKey");
+
+            ComboBoxText = _stylesProvider.GetColor("CommonControlColors", "ComboBoxTextColorKey");
+            ComboBoxTextDisabled = _stylesProvider.GetColor("CommonControlColors", "ComboBoxTextDisabledColorKey");
+            ComboBoxTextFocused = _stylesProvider.GetColor("CommonControlColors", "ComboBoxTextFocusedColorKey");
+            ComboBoxTextHover = _stylesProvider.GetColor("CommonControlColors", "ComboBoxTextHoverColorKey");
+            ComboBoxTextInputSelection = _stylesProvider.GetColor("CommonControlColors", "ComboBoxTextInputSelectionColorKey");
+            ComboBoxTextPressed = _stylesProvider.GetColor("CommonControlColors", "ComboBoxTextPressedColorKey");
         }
     }
 }

@@ -362,9 +362,11 @@
     <Compile Include="V2Services\Styles\LightColorValues.cs" />
     <Compile Include="V2Services\Styles\FakeStyleValuesProvider.cs" />
     <Compile Include="V2Services\Styles\IStyleValuesProvider.cs" />
-    <Compile Include="V2Services\Styles\UIStylesService.Colors.cs" />
+    <Compile Include="V2Services\Styles\UIStylesService.ThemedDialogColors.cs" />
     <Compile Include="V2Services\Styles\UIStylesService.cs" />
     <Compile Include="V2Services\Styles\UIStylesService.FontSizes.cs" />
+    <Compile Include="V2Services\Styles\UIStylesService.ThemedCardColors.cs" />
+    <Compile Include="V2Services\Styles\UIStylesService.CommonControlColors.cs" />
     <Compile Include="V2Services\Styles\VSStyleValuesProvider.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="V2ViewModels\Common\BasicInfoViewModel.cs" />
@@ -573,6 +575,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="V2Styles\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="V2Styles\TextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -594,10 +600,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Styles\DataTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="V2Styles\ComboBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
