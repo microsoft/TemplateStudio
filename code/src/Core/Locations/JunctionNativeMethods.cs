@@ -13,7 +13,7 @@ using Microsoft.Win32.SafeHandles;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    internal static class NativeMethods
+    internal static class JunctionNativeMethods
     {
 #pragma warning disable SA1310 // Field names must not contain underscore. Reason: Become from API Constants
 

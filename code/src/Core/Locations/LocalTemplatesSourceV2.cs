@@ -90,7 +90,7 @@ namespace Microsoft.Templates.Core.Locations
                 Fs.SafeDeleteDirectory(targetFolder);
             }
 
-            NativeMethods.CreateJunction(Origin, targetFolder, true);
+            JunctionNativeMethods.CreateJunction(Origin, targetFolder, true);
 
             return new TemplatesContentInfo()
             {

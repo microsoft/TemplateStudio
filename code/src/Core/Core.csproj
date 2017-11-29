@@ -192,7 +192,7 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
-    <Compile Include="Locations\NativeMethods.cs" />
+    <Compile Include="Locations\JunctionNativeMethods.cs" />
     <Compile Include="Locations\LocalTemplatesSourceV2.cs" />
     <Compile Include="Locations\RemoteTemplatesSourceV2.cs" />
     <Compile Include="Locations\TemplatesContentV2.cs" />
