@@ -6,12 +6,10 @@ namespace Param_ItemNamespace.Services
     public class ListViewDropConfiguration : DropConfiguration
     {
         public static readonly DependencyProperty DragItemsStartingCommandProperty =
-            DependencyProperty.Register("DragItemsStartingCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DragItemsStartingCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DragItemsCompletedCommandProperty =
-            DependencyProperty.Register("DragItemsCompletedCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DragItemsCompletedCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public ICommand DragItemsStartingCommand
         {

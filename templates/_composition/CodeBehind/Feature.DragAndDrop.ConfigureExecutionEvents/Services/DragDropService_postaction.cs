@@ -1,13 +1,13 @@
-namespace Param_ItemNamespace.Services
+﻿namespace Param_ItemNamespace.Services
 {
     public class DragDropService
     {
         private static void ConfigureUIElement(UIElement element, DropConfiguration configuration)
-	    {
+        {
             //{[{
             element.DragEnter += (sender, args) =>
             {
-                //Operation is copy by default
+                // Operation is copy by default
                 args.AcceptedOperation = DataPackageOperation.Copy;
 
                 var data = new DragDropData { AcceptedOperation = args.AcceptedOperation, DataView = args.DataView };
@@ -46,7 +46,7 @@ namespace Param_ItemNamespace.Services
 
             listview.DragItemsCompleted += (sender, args) =>
             {
-                var data = new DragDropCompletedData {DropResult = args.DropResult, Items = args.Items };
+                var data = new DragDropCompletedData { DropResult = args.DropResult, Items = args.Items };
                 configuration.DragItemsCompletedAction?.Invoke(data);
             };
             //}]}

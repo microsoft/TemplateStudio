@@ -9,13 +9,13 @@ namespace Param_ItemNamespace.Services
 {
     public class DragDropService
     {
-        private static DependencyProperty ConfigurationProperty = DependencyProperty.RegisterAttached(
+        private static DependencyProperty configurationProperty = DependencyProperty.RegisterAttached(
         "Configuration",
         typeof(DropConfiguration),
         typeof(DragDropService),
         new PropertyMetadata(null, OnConfigurationPropertyChanged));
 
-        private static DependencyProperty VisualConfigurationProperty = DependencyProperty.RegisterAttached(
+        private static DependencyProperty visualConfigurationProperty = DependencyProperty.RegisterAttached(
         "VisualConfiguration",
         typeof(VisualDropConfiguration),
         typeof(DragDropService),
@@ -25,26 +25,26 @@ namespace Param_ItemNamespace.Services
         {
             if (dependencyObject != null)
             {
-                dependencyObject.SetValue(ConfigurationProperty, value);
+                dependencyObject.SetValue(configurationProperty, value);
             }
         }
 
         public static DropConfiguration GetConfiguration(DependencyObject dependencyObject)
         {
-            return (DropConfiguration)dependencyObject.GetValue(ConfigurationProperty);
+            return (DropConfiguration)dependencyObject.GetValue(configurationProperty);
         }
 
         public static void SetVisualConfiguration(DependencyObject dependencyObject, VisualDropConfiguration value)
         {
             if (dependencyObject != null)
             {
-                dependencyObject.SetValue(VisualConfigurationProperty, value);
+                dependencyObject.SetValue(visualConfigurationProperty, value);
             }
         }
 
         public static VisualDropConfiguration GetVisualConfiguration(DependencyObject dependencyObject)
         {
-            return (VisualDropConfiguration)dependencyObject.GetValue(VisualConfigurationProperty);
+            return (VisualDropConfiguration)dependencyObject.GetValue(visualConfigurationProperty);
         }
 
         private static void OnConfigurationPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
@@ -55,18 +55,18 @@ namespace Param_ItemNamespace.Services
 
             var listview = element as ListViewBase;
             var listviewconfig = configuration as ListViewDropConfiguration;
-            if(listview != null && listviewconfig != null)
+            if (listview != null && listviewconfig != null)
             {
                 ConfigureListView(listview, listviewconfig);
             }
         }
 
         private static void ConfigureUIElement(UIElement element, DropConfiguration configuration)
-	    {
+        {
         }
 
         private static void ConfigureListView(ListViewBase listview, ListViewDropConfiguration configuration)
-        {		
+        {
         }
 
         private static void OnVisualConfigurationPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)

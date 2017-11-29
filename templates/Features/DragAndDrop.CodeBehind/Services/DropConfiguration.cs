@@ -13,48 +13,37 @@ namespace Param_ItemNamespace.Services
     public class DropConfiguration : DependencyObject
     {
         public static readonly DependencyProperty DropBitmapActionProperty =
-            DependencyProperty.Register("DropBitmapAction", typeof(Action<RandomAccessStreamReference>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropBitmapAction", typeof(Action<RandomAccessStreamReference>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropHtmlActionProperty =
-            DependencyProperty.Register("DropHtmlAction", typeof(Action<string>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropHtmlAction", typeof(Action<string>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropRtfActionProperty =
-            DependencyProperty.Register("DropRtfAction", typeof(Action<string>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropRtfAction", typeof(Action<string>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropStorageItemsActionProperty =
-            DependencyProperty.Register("DropStorageItemsAction", typeof(Action<IReadOnlyList<IStorageItem>>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropStorageItemsAction", typeof(Action<IReadOnlyList<IStorageItem>>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropTextActionProperty =
-            DependencyProperty.Register("DropTextAction", typeof(Action<string>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropTextAction", typeof(Action<string>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropApplicationLinkActionProperty =
-            DependencyProperty.Register("DropApplicationLinkAction", typeof(Action<Uri>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropApplicationLinkAction", typeof(Action<Uri>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropWebLinkActionProperty =
-            DependencyProperty.Register("DropWebLinkAction", typeof(Action<Uri>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropWebLinkAction", typeof(Action<Uri>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropDataViewActionProperty =
-            DependencyProperty.Register("DropDataViewAction", typeof(Action<DataPackageView>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropDataViewAction", typeof(Action<DataPackageView>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DragEnterActionProperty =
-            DependencyProperty.Register("DragEnterAction", typeof(Action<DragDropData>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DragEnterAction", typeof(Action<DragDropData>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DragOverActionProperty =
-            DependencyProperty.Register("DragOverAction", typeof(Action<DragDropData>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DragOverAction", typeof(Action<DragDropData>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DragLeaveActionProperty =
-            DependencyProperty.Register("DragLeaveAction", typeof(Action<DragDropData>),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DragLeaveAction", typeof(Action<DragDropData>), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public Action<RandomAccessStreamReference> DropBitmapAction
         {

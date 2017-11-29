@@ -9,48 +9,37 @@ namespace Param_ItemNamespace.Services
     public class DropConfiguration : DependencyObject
     {
         public static readonly DependencyProperty DropBitmapCommandProperty =
-            DependencyProperty.Register("DropBitmapCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropBitmapCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropHtmlCommandProperty =
-            DependencyProperty.Register("DropHtmlCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropHtmlCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropRtfCommandProperty =
-            DependencyProperty.Register("DropRtfCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropRtfCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropStorageItemsCommandProperty =
-            DependencyProperty.Register("DropStorageItemsCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropStorageItemsCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropTextCommandProperty =
-            DependencyProperty.Register("DropTextCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropTextCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropApplicationLinkCommandProperty =
-            DependencyProperty.Register("DropApplicationLinkCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropApplicationLinkCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropWebLinkCommandProperty =
-            DependencyProperty.Register("DropWebLinkCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropWebLinkCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropDataViewCommandProperty =
-            DependencyProperty.Register("DropDataViewCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropDataViewCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DragEnterCommandProperty =
-            DependencyProperty.Register("DragEnterCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DragEnterCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DragOverCommandProperty =
-            DependencyProperty.Register("DragOverCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DragOverCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DragLeaveCommandProperty =
-            DependencyProperty.Register("DragLeaveCommand", typeof(ICommand),
-                typeof(DropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DragLeaveCommand", typeof(ICommand), typeof(DropConfiguration), new PropertyMetadata(null));
 
         public ICommand DropBitmapCommand
         {

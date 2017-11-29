@@ -6,35 +6,29 @@ namespace Param_ItemNamespace.Services
     public class VisualDropConfiguration : DependencyObject
     {
         public static readonly DependencyProperty CaptionProperty =
-            DependencyProperty.Register("Caption", typeof(string),
-                typeof(VisualDropConfiguration), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Caption", typeof(string), typeof(VisualDropConfiguration), new PropertyMetadata(string.Empty));
 
         public static readonly DependencyProperty IsCaptionVisibleProperty =
-            DependencyProperty.Register("IsCaptionVisible", typeof(bool),
-                typeof(VisualDropConfiguration), new PropertyMetadata(true));
+            DependencyProperty.Register("IsCaptionVisible", typeof(bool), typeof(VisualDropConfiguration), new PropertyMetadata(true));
 
         public static readonly DependencyProperty IsContentVisibleProperty =
-            DependencyProperty.Register("IsContentVisible", typeof(bool),
-                typeof(VisualDropConfiguration), new PropertyMetadata(true));
+            DependencyProperty.Register("IsContentVisible", typeof(bool), typeof(VisualDropConfiguration), new PropertyMetadata(true));
 
         public static readonly DependencyProperty IsGlyphVisibleProperty =
-            DependencyProperty.Register("IsGlyphVisible", typeof(bool),
-                typeof(VisualDropConfiguration), new PropertyMetadata(true));
+            DependencyProperty.Register("IsGlyphVisible", typeof(bool), typeof(VisualDropConfiguration), new PropertyMetadata(true));
 
         public static readonly DependencyProperty DragStartingImageProperty =
-            DependencyProperty.Register("DragStartingImage", typeof(ImageSource),
-                typeof(VisualDropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DragStartingImage", typeof(ImageSource), typeof(VisualDropConfiguration), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DropOverImageProperty =
-            DependencyProperty.Register("DropOverImage", typeof(ImageSource),
-                typeof(VisualDropConfiguration), new PropertyMetadata(null));
+            DependencyProperty.Register("DropOverImage", typeof(ImageSource), typeof(VisualDropConfiguration), new PropertyMetadata(null));
 
         public string Caption
         {
             get { return (string)GetValue(CaptionProperty); }
             set { SetValue(CaptionProperty, value); }
         }
-        
+
         public bool IsCaptionVisible
         {
             get { return (bool)GetValue(IsCaptionVisibleProperty); }
@@ -46,7 +40,7 @@ namespace Param_ItemNamespace.Services
             get { return (bool)GetValue(IsContentVisibleProperty); }
             set { SetValue(IsContentVisibleProperty, value); }
         }
-        
+
         public bool IsGlyphVisible
         {
             get { return (bool)GetValue(IsGlyphVisibleProperty); }
@@ -58,11 +52,11 @@ namespace Param_ItemNamespace.Services
             get { return (ImageSource)GetValue(DragStartingImageProperty); }
             set { SetValue(DragStartingImageProperty, value); }
         }
-        
+
         public ImageSource DropOverImage
         {
             get { return (ImageSource)GetValue(DropOverImageProperty); }
             set { SetValue(DropOverImageProperty, value); }
-        }               
+        }
     }
 }
