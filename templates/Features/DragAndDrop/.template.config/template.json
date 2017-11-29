@@ -11,8 +11,8 @@
     "wts.type": "feature",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1",
-    "wts.group": "ConnectedExperiences",
+    "wts.displayOrder": "9",
+    "wts.group": "UserInteraction",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",    
     "wts.rightClickEnabled":"true"
