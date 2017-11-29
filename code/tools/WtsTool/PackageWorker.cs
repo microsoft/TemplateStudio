@@ -300,23 +300,30 @@ namespace WtsTool
             {
                 foreach (var subDir in allDirs)
                 {
-                    bool include = false;
+                    bool exclude = true;
                     foreach (var regex in exclusionFilters)
                     {
-                        include = !regex.IsMatch(subDir.Name);
-                        if (!include)
+                        exclude = regex.IsMatch(subDir.Name) || excludedDirs.Contains(subDir.FullName);
+                        if (exclude)
                         {
                             break;
                         }
                     }
 
-                    if (include)
+                    if (exclude)
                     {
-                        includedDirs.Add(subDir);
+                        if (!excludedDirs.Contains(subDir.FullName))
+                        {
+                            excludedDirs.Add(subDir.FullName);
+                            foreach (var child in subDir.GetDirectories("*", SearchOption.AllDirectories))
+                            {
+                                excludedDirs.Add(child.FullName);
+                            }
+                        }
                     }
                     else
                     {
-                        excludedDirs.Add(subDir.FullName);
+                        includedDirs.Add(subDir);
                     }
                 }
             }
