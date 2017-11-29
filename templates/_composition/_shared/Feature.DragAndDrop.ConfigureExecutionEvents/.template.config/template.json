@@ -3,33 +3,18 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.DragAndDrop",
+  "name": "Feature.DragAndDrop.ConfigureExecutionEvents",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro & identity == wts.Feat.DragAndDrop|wts.Feat.DragAndDrop.CodeBehind",
-    "wts.compositionOrder": "0"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CaliburnMicro & identity == wts.Feat.DragAndDrop",
+    "wts.compositionOrder": "1"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Models\\DragDropCompletedData.cs"
-    },
-    {
-      "path": ".\\Models\\DragDropData.cs"
-    },
-    {
-      "path": ".\\Models\\DragDropStartingData.cs"
-    },
-    {
-      "path": ".\\Services\\DragDropService.cs"
-    },
-    {
-      "path": ".\\Services\\VisualDropConfiguration.cs"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {
