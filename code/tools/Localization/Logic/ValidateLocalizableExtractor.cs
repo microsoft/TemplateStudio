@@ -42,8 +42,13 @@ namespace Localization
 
             using (var repo = new Repository(_repository))
             {
-               var filter = ConfigureFilter(repo);
-               return repo.Commits.QueryBy(file, filter).Any();
+                var filter = ConfigureFilter(repo);
+
+                var referenceCommitDate = repo.Lookup<Commit>(filter.ExcludeReachableFrom.ToString()).Author.When;
+
+                var commits = repo.Commits.QueryBy(file, filter).Where(c => c.Commit.Author.When > referenceCommitDate);
+
+                return commits.Any();
             }
         }
 
