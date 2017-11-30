@@ -26,27 +26,27 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             string originalFilePath = GetFilePath();
             if (!File.Exists(originalFilePath))
             {
-                if (_config.FailOnError )
+                if (Config.FailOnError )
                 {
-                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, _config.FilePath));
+                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, Config.FilePath));
                 }
                 else
                 {
                     AddFailedMergePostActionsFileNotFound(originalFilePath);
-                    File.Delete(_config.FilePath);
+                    File.Delete(Config.FilePath);
                     return;
                 }
             }
 
             var source = File.ReadAllLines(originalFilePath).ToList();
-            var merge = File.ReadAllLines(_config.FilePath).ToList();
+            var merge = File.ReadAllLines(Config.FilePath).ToList();
 
             IEnumerable<string> result = source.HandleRemovals(merge);
             result = result.Merge(merge.RemoveRemovals(), out string errorLine);
 
             if (errorLine != string.Empty)
             {
-                if (_config.FailOnError)
+                if (Config.FailOnError)
                 {
                     throw new InvalidDataException(string.Format(StringRes.MergeLineNotFoundExceptionMessage, errorLine, originalFilePath));
                 }
@@ -61,25 +61,24 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
 
                 // REFRESH PROJECT TO UN-DIRTY IT
-                if ((Path.GetExtension(_config.FilePath).Equals(".csproj", StringComparison.OrdinalIgnoreCase)
-                   || Path.GetExtension(_config.FilePath).Equals(".vbproj", StringComparison.OrdinalIgnoreCase))
-                  && (GenContext.Current.OutputPath == GenContext.Current.ProjectPath))
+                if (Path.GetExtension(Config.FilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
+                 && GenContext.Current.OutputPath == GenContext.Current.ProjectPath)
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject();
                 }
             }
 
-            File.Delete(_config.FilePath);
+            File.Delete(Config.FilePath);
         }
 
         protected void AddFailedMergePostActions(string originalFilePath, MergeFailureType mergeFailureType, string description)
         {
             var sourceFileName = GetRelativePath(originalFilePath);
-            var postactionFileName = GetRelativePath(_config.FilePath);
+            var postactionFileName = GetRelativePath(Config.FilePath);
 
             var failedFileName = GetFailedPostActionFileName();
-            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, _config.FilePath, failedFileName, description, mergeFailureType));
-            File.Copy(_config.FilePath, failedFileName, true);
+            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostAction(sourceFileName, Config.FilePath, failedFileName, description, mergeFailureType));
+            File.Copy(Config.FilePath, failedFileName, true);
         }
 
         protected string GetRelativePath(string path)
@@ -101,13 +100,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFailedPostActionFileName()
         {
-            var newFileName = Path.GetFileNameWithoutExtension(_config.FilePath).Replace(MergeConfiguration.Suffix, MergeConfiguration.NewSuffix);
-            var folder = Path.GetDirectoryName(_config.FilePath);
-            var extension = Path.GetExtension(_config.FilePath);
+            var newFileName = Path.GetFileNameWithoutExtension(Config.FilePath).Replace(MergeConfiguration.Suffix, MergeConfiguration.NewSuffix);
+            var folder = Path.GetDirectoryName(Config.FilePath);
+            var extension = Path.GetExtension(Config.FilePath);
 
             var validator = new List<Validator>
             {
-                new FileExistsValidator(Path.GetDirectoryName(_config.FilePath))
+                new FileExistsValidator(Path.GetDirectoryName(Config.FilePath))
             };
 
             newFileName = Naming.Infer(newFileName, validator);
@@ -116,16 +115,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(_config.FilePath).StartsWith(MergeConfiguration.Extension, StringComparison.InvariantCultureIgnoreCase))
+            if (Path.GetFileName(Config.FilePath).StartsWith(MergeConfiguration.Extension, StringComparison.OrdinalIgnoreCase))
             {
-                var extension = Path.GetExtension(_config.FilePath);
-                var directory = Path.GetDirectoryName(_config.FilePath);
+                var extension = Path.GetExtension(Config.FilePath);
+                var directory = Path.GetDirectoryName(Config.FilePath);
 
                 return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(MergeConfiguration.Suffix));
             }
             else
             {
-                var path = Regex.Replace(_config.FilePath, MergeConfiguration.PostactionRegex, ".");
+                var path = Regex.Replace(Config.FilePath, MergeConfiguration.PostactionRegex, ".");
 
                 return path;
             }

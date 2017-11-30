@@ -1,0 +1,20 @@
+﻿<Page
+    mc:Ignorable="d">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Margin="{StaticResource MediumLeftRightMargin}">
+            <StackPanel Grid.Row="1">
+                <StackPanel Margin="{StaticResource EightTopMargin}">
+                    <!--^^-->
+                    <!--{[{-->
+
+                    <HyperlinkButton
+                        Margin="{StaticResource EightTopMargin}"
+                        x:Uid="FeedbackHub_Link"
+                        cm:Message.Attach="LaunchFeedbackHub;"
+                        Visibility="{x:Bind ViewModel.FeedbackLinkVisibility}" />
+                    <!--}]}-->
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

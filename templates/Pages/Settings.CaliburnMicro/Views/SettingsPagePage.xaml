@@ -39,7 +39,7 @@
                             x:Name="ThemeLightButton"
                             x:Uid="SettingsPage_Theme_Light"
                             GroupName="AppTheme"
-                            IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=TwoWay}"
+                            IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
                             cm:Message.Attach="SwitchTheme(ThemeLightButton.Tag)">
                             <RadioButton.Tag>
                                 <xaml:ElementTheme>Light</xaml:ElementTheme>
@@ -49,7 +49,7 @@
                             x:Name="ThemeDarkButton"
                             x:Uid="SettingsPage_Theme_Dark"
                             GroupName="AppTheme"
-                            IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=TwoWay}"
+                            IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
                              cm:Message.Attach="SwitchTheme(ThemeDarkButton.Tag)">
                             <RadioButton.Tag>
                                 <xaml:ElementTheme>Dark</xaml:ElementTheme>
@@ -59,7 +59,7 @@
                             x:Name="ThemeDefaultButton"
                             x:Uid="SettingsPage_Theme_Default"
                             GroupName="AppTheme"
-                            IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=TwoWay}"
+                            IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
                              cm:Message.Attach="SwitchTheme(ThemeDefaultButton.Tag)">
                             <RadioButton.Tag>
                                 <xaml:ElementTheme>Default</xaml:ElementTheme>

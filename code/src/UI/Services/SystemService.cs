@@ -6,12 +6,14 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
+using Microsoft.Templates.UI.Threading;
 
 namespace Microsoft.Templates.UI.Services
 {
     public class SystemService : DependencyObject
     {
         private static SystemService _instance;
+
         public static SystemService Instance => _instance ?? (_instance = new SystemService());
 
         private SystemService()
@@ -19,8 +21,9 @@ namespace Microsoft.Templates.UI.Services
             SystemParameters.StaticPropertyChanged += OnStaticPropertyChanged;
         }
 
-        private void OnStaticPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private async void OnStaticPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             if (e.PropertyName == "HighContrast")
             {
                 Instance.IsHighContrast = SystemParameters.HighContrast;
@@ -28,6 +31,7 @@ namespace Microsoft.Templates.UI.Services
         }
 
         public static readonly DependencyProperty IsHighContrastProperty = DependencyProperty.Register("IsHighContrast", typeof(bool), typeof(SystemService), new PropertyMetadata(SystemParameters.HighContrast));
+
         public bool IsHighContrast
         {
             get => (bool)GetValue(IsHighContrastProperty);

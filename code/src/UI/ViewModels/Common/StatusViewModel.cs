@@ -14,11 +14,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
     public class StatusViewModel
     {
-        public static StatusViewModel EmptyStatus = new StatusViewModel(StatusType.Empty);
+        public static StatusViewModel EmptyStatus { get; } = new StatusViewModel(StatusType.Empty);
 
         public StatusType Status { get; set; }
+
         public string Message { get; set; }
+
         public bool CanBeCleared { get; set; }
+
         public int AutoHideSeconds { get; set; }
 
         public StatusViewModel(StatusType status, string message = null, bool canBeCleared = true, int autoHide = 0)
@@ -30,7 +33,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         public static StatusViewModel Information(string message, bool canBeCleared = true, int autoHide = 0) => new StatusViewModel(StatusType.Information, message, canBeCleared, autoHide);
+
         public static StatusViewModel Warning(string message, bool canBeCleared = false, int autoHide = 0) => new StatusViewModel(StatusType.Warning, message, canBeCleared, autoHide);
+
         public static StatusViewModel Error(string message, bool canBeCleared = false, int autoHide = 0) => new StatusViewModel(StatusType.Error, message, canBeCleared, autoHide);
     }
 }

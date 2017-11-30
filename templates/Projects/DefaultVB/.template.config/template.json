@@ -1,8 +1,8 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "classifications": ["Universal"],
   "name": "Default",
-  "groupIdentity": "wts.Proj.Default",
+  "groupIdentity": "wts.Proj.Default.VB",
   "identity": "wts.Proj.Default.VB",
   "description": "",
   "tags": {

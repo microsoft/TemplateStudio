@@ -30,8 +30,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
                 return false;
             }
 
-            var startUsingIndex = classContent.IndexOf(l => l.TrimStart().StartsWith(comparer.Keyword, StringComparison.InvariantCultureIgnoreCase) || string.IsNullOrWhiteSpace(l));
-            var endUsingIndex = classContent.LastIndexOfWhile(startUsingIndex, l => l.TrimStart().StartsWith(comparer.Keyword, StringComparison.InvariantCultureIgnoreCase) || string.IsNullOrWhiteSpace(l));
+            var startUsingIndex = classContent.IndexOf(l => l.TrimStart().StartsWith(comparer.Keyword, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(l));
+            var endUsingIndex = classContent.LastIndexOfWhile(startUsingIndex, l => l.TrimStart().StartsWith(comparer.Keyword, StringComparison.OrdinalIgnoreCase) || string.IsNullOrWhiteSpace(l));
 
             if (startUsingIndex == -1 || endUsingIndex == -1)
             {

@@ -2,21 +2,21 @@
   {
     "name": "MVVMBasic",
     "displayName": "MVVM Basic",
-    "summary": "This is a generic version of a MVVM pattern. The Model-View-ViewModel pattern can be used on all XAML platforms."
+    "summary": "È una versione generica di uno schema MVVM. Lo schema Model-View-ViewModel può essere utilizzato su tutte le piattaforme XAML."
   },
   {
     "name": "MVVMLight",
     "displayName": "MVVM Light",
-    "summary": "MVVM Light is a popular, 3rd party framework based on the Model-View-ViewModel pattern."
+    "summary": "MVVM Light è un noto framework di terze parti basato sullo schema Model-View-ViewModel."
   },
   {
     "name": "CodeBehind",
     "displayName": "Code Behind",
-    "summary": "This is the traditional model for an application where logic is handled in the code-behind.  For a quick application, this is a great option."
+    "summary": "Si tratta del modello tradizionale per un'applicazione in cui la logica viene gestita nel code-behind.  È un'ottima opzione per un'applicazione rapida."
   },
   {
     "name": "CaliburnMicro",
     "displayName": "Caliburn.Micro",
-    "summary": "Caliburn.Micro is a popular MVVM framework emphasising conventions and composability."
+    "summary": "Caliburn.Micro è un noto framework MVVM che enfatizza convenzioni e componibilità."
   }
 ]

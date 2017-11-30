@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class StringRes {
+    public class StringRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Templates.Core.Resources.StringRes", typeof(StringRes).Assembly);
@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Additional Message.
         /// </summary>
-        internal static string AdditionalMessageString {
+        public static string AdditionalMessageString {
             get {
                 return ResourceManager.GetString("AdditionalMessageString", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Addtional Exception Info.
         /// </summary>
-        internal static string AddtionalExceptionInfoString {
+        public static string AddtionalExceptionInfoString {
             get {
                 return ResourceManager.GetString("AddtionalExceptionInfoString", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Assembly File Version.
         /// </summary>
-        internal static string AssemblyFileVersionString {
+        public static string AssemblyFileVersionString {
             get {
                 return ResourceManager.GetString("AssemblyFileVersionString", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The query &quot;{0}&quot; is not valid. Allowed operators are &apos;==&apos; or &apos;!=&apos;. Multiple conditions are separated by &apos;&amp;&apos;..
         /// </summary>
-        internal static string CompositionQueryParseMessage {
+        public static string CompositionQueryParseMessage {
             get {
                 return ResourceManager.GetString("CompositionQueryParseMessage", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Configuration file loaded.
         /// </summary>
-        internal static string ConfigurationFileLoadedString {
+        public static string ConfigurationFileLoadedString {
             get {
                 return ResourceManager.GetString("ConfigurationFileLoadedString", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Current content expiration.
         /// </summary>
-        internal static string CurrentContentExpirationString {
+        public static string CurrentContentExpirationString {
             get {
                 return ResourceManager.GetString("CurrentContentExpirationString", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Exception Info.
         /// </summary>
-        internal static string ExceptionInfoString {
+        public static string ExceptionInfoString {
             get {
                 return ResourceManager.GetString("ExceptionInfoString", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Exception.
         /// </summary>
-        internal static string ExceptionString {
+        public static string ExceptionString {
             get {
                 return ResourceManager.GetString("ExceptionString", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Exception Tracked.
         /// </summary>
-        internal static string ExceptionTrackedString {
+        public static string ExceptionTrackedString {
             get {
                 return ResourceManager.GetString("ExceptionTrackedString", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Could not find file &apos;{0}&apos; to include the following changes. Please review the code blocks to include the changes manually where required in your project. .
         /// </summary>
-        internal static string FailedMergePostActionFileNotFound {
+        public static string FailedMergePostActionFileNotFound {
             get {
                 return ResourceManager.GetString("FailedMergePostActionFileNotFound", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The style with key &apos;{0}&apos; is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project..
         /// </summary>
-        internal static string FailedMergePostActionKeyAlreadyDefined {
+        public static string FailedMergePostActionKeyAlreadyDefined {
             get {
                 return ResourceManager.GetString("FailedMergePostActionKeyAlreadyDefined", resourceCulture);
             }
@@ -162,16 +162,25 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Could not find the expected line `{0}` in file &apos;{1}&apos;. Please merge the content from the postaction file manually..
         /// </summary>
-        internal static string FailedMergePostActionLineNotFound {
+        public static string FailedMergePostActionLineNotFound {
             get {
                 return ResourceManager.GetString("FailedMergePostActionLineNotFound", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The folder {0} can&apos;t be copied to {1}. Error: {2}.
+        ///   Looks up a localized string similar to Cannot remove readonly protection from file {0}.
         /// </summary>
-        internal static string FsSafeCopyFileMessage {
+        public static string FsEnsureFileEditableException {
+            get {
+                return ResourceManager.GetString("FsEnsureFileEditableException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file {0} can&apos;t be copied to {1}. Error: {2}.
+        /// </summary>
+        public static string FsSafeCopyFileMessage {
             get {
                 return ResourceManager.GetString("FsSafeCopyFileMessage", resourceCulture);
             }
@@ -180,7 +189,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The folder {0} can&apos;t be delete. Error: {1}.
         /// </summary>
-        internal static string FsSafeDeleteDirectoryMessage {
+        public static string FsSafeDeleteDirectoryMessage {
             get {
                 return ResourceManager.GetString("FsSafeDeleteDirectoryMessage", resourceCulture);
             }
@@ -189,7 +198,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The file {0} can&apos;t be delete. Error: {1}.
         /// </summary>
-        internal static string FsSafeDeleteFileMessage {
+        public static string FsSafeDeleteFileMessage {
             get {
                 return ResourceManager.GetString("FsSafeDeleteFileMessage", resourceCulture);
             }
@@ -198,7 +207,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The folder {0} can&apos;t be moved to {1}. Error: {2}.
         /// </summary>
-        internal static string FsSafeMoveDirectoryMessage {
+        public static string FsSafeMoveDirectoryMessage {
             get {
                 return ResourceManager.GetString("FsSafeMoveDirectoryMessage", resourceCulture);
             }
@@ -207,7 +216,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Critical error initializating GenContext..
         /// </summary>
-        internal static string GenContextBootstrapError {
+        public static string GenContextBootstrapError {
             get {
                 return ResourceManager.GetString("GenContextBootstrapError", resourceCulture);
             }
@@ -216,7 +225,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to There is no context for the current gen execution, call Current_set first.
         /// </summary>
-        internal static string GenContextCurrentInvalidOperationMessage {
+        public static string GenContextCurrentInvalidOperationMessage {
             get {
                 return ResourceManager.GetString("GenContextCurrentInvalidOperationMessage", resourceCulture);
             }
@@ -225,7 +234,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error generating certificate..
         /// </summary>
-        internal static string GenerateTestCertificatePostActionExecute {
+        public static string GenerateTestCertificatePostActionExecute {
             get {
                 return ResourceManager.GetString("GenerateTestCertificatePostActionExecute", resourceCulture);
             }
@@ -234,7 +243,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Log started.
         /// </summary>
-        internal static string LogStartedString {
+        public static string LogStartedString {
             get {
                 return ResourceManager.GetString("LogStartedString", resourceCulture);
             }
@@ -243,7 +252,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to *Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*.
         /// </summary>
-        internal static string MarkdownHeader {
+        public static string MarkdownHeader {
             get {
                 return ResourceManager.GetString("MarkdownHeader", resourceCulture);
             }
@@ -252,7 +261,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to There is no merge target for file &apos;{0}&apos;.
         /// </summary>
-        internal static string MergeFileNotFoundExceptionMessage {
+        public static string MergeFileNotFoundExceptionMessage {
             get {
                 return ResourceManager.GetString("MergeFileNotFoundExceptionMessage", resourceCulture);
             }
@@ -261,25 +270,16 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Line {0} not found in file &apos;{1}&apos;.
         /// </summary>
-        internal static string MergeLineNotFoundExceptionMessage {
+        public static string MergeLineNotFoundExceptionMessage {
             get {
                 return ResourceManager.GetString("MergeLineNotFoundExceptionMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no merge target for file &apos;{0}&apos;.
-        /// </summary>
-        internal static string MergePostActionExecuteMessage {
-            get {
-                return ResourceManager.GetString("MergePostActionExecuteMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unable to infer a name. Too many iterations.
         /// </summary>
-        internal static string NamingInferMessage {
+        public static string NamingInferMessage {
             get {
                 return ResourceManager.GetString("NamingInferMessage", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Package certificate.
         /// </summary>
-        internal static string PackageCertificateString {
+        public static string PackageCertificateString {
             get {
                 return ResourceManager.GetString("PackageCertificateString", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error downloading from {0}. Internet connection is required to download template updates..
         /// </summary>
-        internal static string RemoteTemplatesSourceDownloadContentKoErrorMessage {
+        public static string RemoteTemplatesSourceDownloadContentKoErrorMessage {
             get {
                 return ResourceManager.GetString("RemoteTemplatesSourceDownloadContentKoErrorMessage", resourceCulture);
             }
@@ -306,7 +306,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Templates content can&apos;t be downloaded right now, we will try it later..
         /// </summary>
-        internal static string RemoteTemplatesSourceDownloadContentKoInfoMessage {
+        public static string RemoteTemplatesSourceDownloadContentKoInfoMessage {
             get {
                 return ResourceManager.GetString("RemoteTemplatesSourceDownloadContentKoInfoMessage", resourceCulture);
             }
@@ -315,7 +315,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Templates content downloaded to {0} from {1}..
         /// </summary>
-        internal static string RemoteTemplatesSourceDownloadContentOkMessage {
+        public static string RemoteTemplatesSourceDownloadContentOkMessage {
             get {
                 return ResourceManager.GetString("RemoteTemplatesSourceDownloadContentOkMessage", resourceCulture);
             }
@@ -324,7 +324,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error syncing templates. Status:.
         /// </summary>
-        internal static string RepositorySynchronizationExceptionMessage {
+        public static string RepositorySynchronizationExceptionMessage {
             get {
                 return ResourceManager.GetString("RepositorySynchronizationExceptionMessage", resourceCulture);
             }
@@ -333,7 +333,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Adding items to project ....
         /// </summary>
-        internal static string StatusAddingItems {
+        public static string StatusAddingItems {
             get {
                 return ResourceManager.GetString("StatusAddingItems", resourceCulture);
             }
@@ -342,7 +342,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Opening generated files ....
         /// </summary>
-        internal static string StatusOpeningItems {
+        public static string StatusOpeningItems {
             get {
                 return ResourceManager.GetString("StatusOpeningItems", resourceCulture);
             }
@@ -351,7 +351,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Steps to include new item generation.md.
         /// </summary>
-        internal static string SyncInstructionsFileName {
+        public static string SyncInstructionsFileName {
             get {
                 return ResourceManager.GetString("SyncInstructionsFileName", resourceCulture);
             }
@@ -363,7 +363,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///Please compare and make sure everything is in the right place:
         ///{0}.
         /// </summary>
-        internal static string SyncInstructionsSectionConflictingFiles {
+        public static string SyncInstructionsSectionConflictingFiles {
             get {
                 return ResourceManager.GetString("SyncInstructionsSectionConflictingFiles", resourceCulture);
             }
@@ -374,7 +374,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///To integrate your new item with the existing project apply the following changes:
         ///{0}.
         /// </summary>
-        internal static string SyncInstructionsSectionModifiedFiles {
+        public static string SyncInstructionsSectionModifiedFiles {
             get {
                 return ResourceManager.GetString("SyncInstructionsSectionModifiedFiles", resourceCulture);
             }
@@ -385,7 +385,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///Copy and add the following files to your project:
         ///{0}.
         /// </summary>
-        internal static string SyncInstructionsSectionNewFiles {
+        public static string SyncInstructionsSectionNewFiles {
             get {
                 return ResourceManager.GetString("SyncInstructionsSectionNewFiles", resourceCulture);
             }
@@ -396,7 +396,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///These files already exist in your project, no action is necessary:
         ///{0}.
         /// </summary>
-        internal static string SyncInstructionsSectionUnchangedFiles {
+        public static string SyncInstructionsSectionUnchangedFiles {
             get {
                 return ResourceManager.GetString("SyncInstructionsSectionUnchangedFiles", resourceCulture);
             }
@@ -415,7 +415,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///{3}
         ///{4}.
         /// </summary>
-        internal static string SyncInstructionsTemplate {
+        public static string SyncInstructionsTemplate {
             get {
                 return ResourceManager.GetString("SyncInstructionsTemplate", resourceCulture);
             }
@@ -427,7 +427,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///{1}
         ///Preview the changes in: {2}.
         /// </summary>
-        internal static string SyncInstructionsTemplateModifiedFile {
+        public static string SyncInstructionsTemplateModifiedFile {
             get {
                 return ResourceManager.GetString("SyncInstructionsTemplateModifiedFile", resourceCulture);
             }
@@ -436,7 +436,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to GenerationSummary.md.
         /// </summary>
-        internal static string SyncSummaryFileName {
+        public static string SyncSummaryFileName {
             get {
                 return ResourceManager.GetString("SyncSummaryFileName", resourceCulture);
             }
@@ -445,7 +445,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ProjectFile.
         /// </summary>
-        internal static string SyncSummaryProjectFile {
+        public static string SyncSummaryProjectFile {
             get {
                 return ResourceManager.GetString("SyncSummaryProjectFile", resourceCulture);
             }
@@ -457,7 +457,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///Please compare and make sure everything is in the right place.
         ///{0}.
         /// </summary>
-        internal static string SyncSummarySectionConflictingFiles {
+        public static string SyncSummarySectionConflictingFiles {
             get {
                 return ResourceManager.GetString("SyncSummarySectionConflictingFiles", resourceCulture);
             }
@@ -468,7 +468,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///Merges in the following files failed:
         ///{0}.
         /// </summary>
-        internal static string SyncSummarySectionFailedMergeFiles {
+        public static string SyncSummarySectionFailedMergeFiles {
             get {
                 return ResourceManager.GetString("SyncSummarySectionFailedMergeFiles", resourceCulture);
             }
@@ -479,7 +479,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///The following changes have been applied:
         ///{0}.
         /// </summary>
-        internal static string SyncSummarySectionModifiedFiles {
+        public static string SyncSummarySectionModifiedFiles {
             get {
                 return ResourceManager.GetString("SyncSummarySectionModifiedFiles", resourceCulture);
             }
@@ -490,7 +490,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///These files have been added to your project.
         ///{0}.
         /// </summary>
-        internal static string SyncSummarySectionNewFiles {
+        public static string SyncSummarySectionNewFiles {
             get {
                 return ResourceManager.GetString("SyncSummarySectionNewFiles", resourceCulture);
             }
@@ -499,7 +499,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Temp.
         /// </summary>
-        internal static string SyncSummaryTempGenerationFile {
+        public static string SyncSummaryTempGenerationFile {
             get {
                 return ResourceManager.GetString("SyncSummaryTempGenerationFile", resourceCulture);
             }
@@ -518,7 +518,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///{3}
         ///{4}.
         /// </summary>
-        internal static string SyncSummaryTemplate {
+        public static string SyncSummaryTemplate {
             get {
                 return ResourceManager.GetString("SyncSummaryTemplate", resourceCulture);
             }
@@ -530,7 +530,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///The following changes could not be integrated: {2}
         ///{1}.
         /// </summary>
-        internal static string SyncSummaryTemplateFailedMerges {
+        public static string SyncSummaryTemplateFailedMerges {
             get {
                 return ResourceManager.GetString("SyncSummaryTemplateFailedMerges", resourceCulture);
             }
@@ -543,7 +543,7 @@ namespace Microsoft.Templates.Core.Resources {
         ///
         ///{1}.
         /// </summary>
-        internal static string SyncSummaryTemplateModifiedFile {
+        public static string SyncSummaryTemplateModifiedFile {
             get {
                 return ResourceManager.GetString("SyncSummaryTemplateModifiedFile", resourceCulture);
             }
@@ -552,7 +552,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Invalid digital signatures in &apos;{0}&apos;. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue..
         /// </summary>
-        internal static string TemplatePackageExtractMessage {
+        public static string TemplatePackageExtractMessage {
             get {
                 return ResourceManager.GetString("TemplatePackageExtractMessage", resourceCulture);
             }
@@ -561,7 +561,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Found {0} certificates matching the thumbprint {1} in the store {2}.
         /// </summary>
-        internal static string TemplatePackageFindCertificateFoundMessage {
+        public static string TemplatePackageFindCertificateFoundMessage {
             get {
                 return ResourceManager.GetString("TemplatePackageFindCertificateFoundMessage", resourceCulture);
             }
@@ -570,7 +570,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The certificate found does not have private key..
         /// </summary>
-        internal static string TemplatePackageFindCertificateNoPkMessage {
+        public static string TemplatePackageFindCertificateNoPkMessage {
             get {
                 return ResourceManager.GetString("TemplatePackageFindCertificateNoPkMessage", resourceCulture);
             }
@@ -579,7 +579,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to More than one certificate found matching the thumbrint. Returning the first one..
         /// </summary>
-        internal static string TemplatePackageFindCertificateNotOneMessage {
+        public static string TemplatePackageFindCertificateNotOneMessage {
             get {
                 return ResourceManager.GetString("TemplatePackageFindCertificateNotOneMessage", resourceCulture);
             }
@@ -588,7 +588,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The specified source &apos;{0}&apos; is invalid, the file does not exist, or the folder is empty..
         /// </summary>
-        internal static string TemplatePackageGetSourceFilesMessage {
+        public static string TemplatePackageGetSourceFilesMessage {
             get {
                 return ResourceManager.GetString("TemplatePackageGetSourceFilesMessage", resourceCulture);
             }
@@ -597,7 +597,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No certificate found matching the thumbrint {0}. Searched on CurrentUser/My and LocalMachine/My stores..
         /// </summary>
-        internal static string TemplatePackageLoadCertMessage {
+        public static string TemplatePackageLoadCertMessage {
             get {
                 return ResourceManager.GetString("TemplatePackageLoadCertMessage", resourceCulture);
             }
@@ -606,7 +606,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The certificate with thumbprint {0} can&apos;t be found in CurrentUser/My or LocalMachine/My..
         /// </summary>
-        internal static string TemplatePackagePackAndSignMessage {
+        public static string TemplatePackagePackAndSignMessage {
             get {
                 return ResourceManager.GetString("TemplatePackagePackAndSignMessage", resourceCulture);
             }
@@ -615,7 +615,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error signing package..
         /// </summary>
-        internal static string TemplatePackageSignAllPartsMessage {
+        public static string TemplatePackageSignAllPartsMessage {
             get {
                 return ResourceManager.GetString("TemplatePackageSignAllPartsMessage", resourceCulture);
             }
@@ -624,7 +624,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Package signature certificate validation not passed..
         /// </summary>
-        internal static string TemplatePackageValidatePackageCertificatesMessage {
+        public static string TemplatePackageValidatePackageCertificatesMessage {
             get {
                 return ResourceManager.GetString("TemplatePackageValidatePackageCertificatesMessage", resourceCulture);
             }
@@ -633,7 +633,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Certificate &apos;{0}&apos; verification finished with status &apos;{1}&apos;.
         /// </summary>
-        internal static string TemplatePackageVerifyCertificateMessage {
+        public static string TemplatePackageVerifyCertificateMessage {
             get {
                 return ResourceManager.GetString("TemplatePackageVerifyCertificateMessage", resourceCulture);
             }
@@ -642,7 +642,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Templates extracted to.
         /// </summary>
-        internal static string TemplatesContentExtractedToString {
+        public static string TemplatesContentExtractedToString {
             get {
                 return ResourceManager.GetString("TemplatesContentExtractedToString", resourceCulture);
             }
@@ -651,16 +651,43 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to The templates can&apos;t be extracted..
         /// </summary>
-        internal static string TemplatesSourceExtractContentMessage {
+        public static string TemplatesSourceExtractContentMessage {
             get {
                 return ResourceManager.GetString("TemplatesSourceExtractContentMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error acquiring content..
+        /// </summary>
+        public static string TemplatesSynchronizationErrorAcquiring {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationErrorAcquiring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error extracting installed templates content...
+        /// </summary>
+        public static string TemplatesSynchronizationErrorExtracting {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationErrorExtracting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error updating templates content..
+        /// </summary>
+        public static string TemplatesSynchronizationErrorUpdating {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationErrorUpdating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to purge old content..
         /// </summary>
-        internal static string TemplatesSynchronizationPurgeContentAsyncMessage {
+        public static string TemplatesSynchronizationPurgeContentAsyncMessage {
             get {
                 return ResourceManager.GetString("TemplatesSynchronizationPurgeContentAsyncMessage", resourceCulture);
             }
@@ -669,7 +696,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Other instance is syncing templates... Waiting 5 seconds..
         /// </summary>
-        internal static string TemplatesSynchronizationWaitingOtherInstanceMessage {
+        public static string TemplatesSynchronizationWaitingOtherInstanceMessage {
             get {
                 return ResourceManager.GetString("TemplatesSynchronizationWaitingOtherInstanceMessage", resourceCulture);
             }
@@ -678,7 +705,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error creating the instance locking file..
         /// </summary>
-        internal static string TemplatesSynchronizationWarnCreatingLockFileMessage {
+        public static string TemplatesSynchronizationWarnCreatingLockFileMessage {
             get {
                 return ResourceManager.GetString("TemplatesSynchronizationWarnCreatingLockFileMessage", resourceCulture);
             }
@@ -687,7 +714,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error deleting the instance locking file..
         /// </summary>
-        internal static string TemplatesSynchronizationWarnDeletingLockFileMessage {
+        public static string TemplatesSynchronizationWarnDeletingLockFileMessage {
             get {
                 return ResourceManager.GetString("TemplatesSynchronizationWarnDeletingLockFileMessage", resourceCulture);
             }
@@ -696,7 +723,7 @@ namespace Microsoft.Templates.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Error reading the instance locking file..
         /// </summary>
-        internal static string TemplatesSynchronizationWarnReadingLockFileMessage {
+        public static string TemplatesSynchronizationWarnReadingLockFileMessage {
             get {
                 return ResourceManager.GetString("TemplatesSynchronizationWarnReadingLockFileMessage", resourceCulture);
             }

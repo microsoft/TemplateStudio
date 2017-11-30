@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Map",
-  "description": "The map page is based around the Map Control. Code includes adding a Map Icon and setting your location.",
+  "description": "Stránka mapy je založena na ovládacím prvku Mapa. Kód zahrnuje přidání ikony Mapa a nastavení vaší polohy.",
   "identity": "wts.Page.Map.CodeBehind"
 }

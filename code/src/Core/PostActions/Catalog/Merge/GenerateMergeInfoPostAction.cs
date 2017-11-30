@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -25,8 +26,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public override void Execute()
         {
-            var fileName = _config;
-            var postAction = File.ReadAllText(_config).AsUserFriendlyPostAction();
+            var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
             var sourceFile = GetFilePath();
             var mergeType = GetMergeType();
             var relFilePath = sourceFile.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
@@ -41,16 +41,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetMergeType()
         {
-            switch (Path.GetExtension(_config).ToLowerInvariant())
+            switch (Path.GetExtension(Config).ToUpperInvariant())
             {
-                case ".cs":
-                    return "csharp";
-                case ".vb":
-                    return "vb.net";
-                case ".csproj":
-                case ".vbproj":
-                case ".xaml":
-                    return "xml";
+                case ".CS":
+                    return "CSHARP";
+                case ".VB":
+                    return "VB.NET";
+                case ".CSPROJ":
+                case ".VBPROJ":
+                case ".XAML":
+                    return "XML";
                 default:
                     return string.Empty;
             }
@@ -58,16 +58,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(_config).StartsWith(Extension))
+            if (Path.GetFileName(Config).StartsWith(Extension, StringComparison.OrdinalIgnoreCase))
             {
-                var extension = Path.GetExtension(_config);
-                var directory = Path.GetDirectoryName(_config);
+                var extension = Path.GetExtension(Config);
+                var directory = Path.GetDirectoryName(Config);
 
                 return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(Suffix));
             }
             else
             {
-                var path = Regex.Replace(_config, PostactionRegex, ".");
+                var path = Regex.Replace(Config, PostactionRegex, ".");
 
                 return path;
             }

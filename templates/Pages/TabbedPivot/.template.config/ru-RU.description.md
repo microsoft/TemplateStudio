@@ -1,3 +1,3 @@
-﻿The tabbed page is used for navigating frequently accessed, distinct content categories. Pivots allow for navigation between two or more content panes and relies on text headers to articulate the different sections of content.
+﻿Страница со вкладками используется для навигации по часто посещаемым отдельным категориям содержимого. Сводки предоставляют возможность навигации между несколькими панелями содержимого. Текстовые заголовки разделяют разное содержимое.
 
-To find out more if this is a good solution for you, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot).
+Чтобы узнать, подходит ли вам это решение, перейдите по ссылке [docs.microsoft.com](https://docs.microsoft.com/ru-ru/windows/uwp/controls-and-patterns/tabs-pivot).

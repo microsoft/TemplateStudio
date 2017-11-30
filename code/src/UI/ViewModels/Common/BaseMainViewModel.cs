@@ -22,19 +22,29 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private Window _mainView;
 
         private bool _canGoBack;
+
         private bool _canGoForward;
+
         private bool _canFinish;
+
         private bool _canCheckingUpdates;
 
         private bool _templatesAvailable;
+
         private bool _hasValidationErrors;
 
         private RelayCommand _cancelCommand;
+
         private RelayCommand _closeCommand;
+
         private RelayCommand _backCommand;
+
         private RelayCommand _nextCommand;
+
         private RelayCommand<string> _finishCommand;
+
         private RelayCommand _checkUpdatesCommand;
+
         private RelayCommand _refreshTemplatesCommand;
 
         protected int CurrentStep { get; private set; }
@@ -42,10 +52,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public WizardStatus WizardStatus { get; } = new WizardStatus();
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
+
         public RelayCommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand(OnClose));
+
         public RelayCommand BackCommand => _backCommand ?? (_backCommand = new RelayCommand(OnGoBack, () => _canGoBack));
+
         public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
+
         public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, (parameter) => !_hasValidationErrors && _canFinish));
+
         public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(
             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnCheckUpdatesAsync()),
             () => _canCheckingUpdates));
@@ -64,7 +79,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         protected abstract void OnCancel();
+
         protected abstract void OnClose();
+
         protected virtual void OnGoBack()
         {
             UpdateCanFinish(false);
@@ -134,6 +151,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         }
 
         protected abstract Task OnTemplatesAvailableAsync();
+
         protected abstract Task OnNewTemplatesAvailableAsync();
 
         protected async Task BaseInitializeAsync()
@@ -179,12 +197,21 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 UpdateCanCheckUpdates(true);
             }
 
-            if (status.Status == SyncStatus.OverVersionNoContent)
+            if (status.Status == SyncStatus.OverVersion)
             {
                 SafeThreading.JoinableTaskFactory.Run(async () =>
                 {
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                     UpdateTemplatesAvailable(true);
+                });
+            }
+
+            if (status.Status == SyncStatus.OverVersionNoContent)
+            {
+                SafeThreading.JoinableTaskFactory.Run(async () =>
+                {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    UpdateTemplatesAvailable(false);
                 });
             }
 

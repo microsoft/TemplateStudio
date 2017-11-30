@@ -22,7 +22,9 @@ namespace Microsoft.Templates.Core
         public static CodeGen Instance { get; private set; }
 
         public TemplateCreator Creator { get; }
+
         public EngineEnvironmentSettings Settings { get; }
+
         public TemplateCache Cache
         {
             get
@@ -50,7 +52,7 @@ namespace Microsoft.Templates.Core
 
             foreach (var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {
-                if (mp != null && Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place) && (mp.Place.IndexOf(sourceId, StringComparison.InvariantCultureIgnoreCase) != -1))
+                if (mp != null && Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place) && (mp.Place.IndexOf(sourceId, StringComparison.OrdinalIgnoreCase) != -1))
                 {
                     result = mp.Place;
                 }

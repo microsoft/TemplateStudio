@@ -3,11 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Threading.Tasks;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.ViewModels.NewProject;
 
 using Xunit;
-
-using Microsoft.Templates.UI.ViewModels.NewProject;
-using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.UI.Test
 {
@@ -16,16 +16,17 @@ namespace Microsoft.UI.Test
     public class DataServiceTest : IClassFixture<TemplatesFixture>
     {
         private TemplatesFixture _fixture;
+
         public DataServiceTest(TemplatesFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixture("C#");
+            _fixture.InitializeFixture(ProgrammingLanguages.CSharp);
         }
 
         [Fact]
         public async Task LoadProjectSetupAsync()
         {
-            var viewModel = new MainViewModel();
+            var viewModel = new MainViewModel(GenContext.InitializedLanguage);
             await viewModel.ProjectSetup.InitializeAsync();
             Assert.True(viewModel.ProjectSetup.ProjectTypes.Count > 0);
             Assert.True(viewModel.ProjectSetup.Frameworks.Count > 0);
@@ -34,7 +35,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task LoadTemplatesAsync()
         {
-            var viewModel = new MainViewModel();
+            var viewModel = new MainViewModel(GenContext.InitializedLanguage);
             await viewModel.ProjectSetup.InitializeAsync();
             await viewModel.ProjectTemplates.InitializeAsync();
 

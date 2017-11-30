@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Background Task",
+    "description": "Ajouter une tâche d\u0027arrière-plan en traitement pour exécuter le code même lorsque l\u0027application n\u0027est pas au premier plan.",
+    "identity": "wts.Feat.BackgroundTask.VB"
+}

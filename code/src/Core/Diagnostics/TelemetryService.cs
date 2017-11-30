@@ -22,7 +22,8 @@ namespace Microsoft.Templates.Core.Diagnostics
         private TelemetryClient _client;
         private bool vsTelemAvailable = false;
 
-        public static TelemetryService _current;
+        private static TelemetryService _current;
+
         public static TelemetryService Current
         {
             get
@@ -275,7 +276,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             foreach (var key in metrics.Keys)
             {
-                string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpper() + ".");
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpperInvariant() + ".");
                 e.Properties[renamedKey] = new VsTelem.TelemetryMetricProperty(metrics[key]);
             }
 
@@ -317,7 +318,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             foreach (var key in metrics.Keys)
             {
-                string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpper() + ".");
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, TelemetryEvents.Prefix.ToUpperInvariant() + ".");
                 e.Properties[renamedKey] = new VsTelem.TelemetryMetricProperty(metrics[key]);
             }
 

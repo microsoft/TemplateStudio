@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--This file is NOT compatible with Silverlight-->
 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
-  <Canvas Name="svg3700" Width="48" Height="48">
+  <Canvas Name="Capa_1" Width="48" Height="48">
     <Canvas.RenderTransform>
       <TranslateTransform X="0" Y="0"/>
     </Canvas.RenderTransform>
     <Canvas.Resources/>
     <!--Unknown tag: metadata-->
     <!--Unknown tag: sodipodi:namedview-->
-    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3696" Fill="#000000">
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path4" Fill="#000000" StrokeThickness="0.44670802">
       <Path.Data>
-        <PathGeometry Figures="M24 46.472 18.764 36H2V2H46V36H29.236ZM4 34H20l4 8 4-8H44V4H4Z" FillRule="NonZero"/>
+        <PathGeometry Figures="M 23.999999 48 16.448485 36.2435 H 1.3521805 V 0 H 46.647819 V 36.2435 H 31.551513 Z M 4.1035575 33.49212 H 17.950461 l 6.049538 9.41622 6.049539 -9.41622 H 43.896441 V 2.751377 H 4.1035575 Z" FillRule="NonZero"/>
       </Path.Data>
     </Path>
-    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3698" Fill="#000000">
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path6" Fill="#000000" StrokeThickness="0.44670802">
       <Path.Data>
-        <PathGeometry Figures="M29.545 14.117 28.3 13.286l-1.574.315a3.016 3.016 0 0 0-1.935-2.026 3.4 3.4 0 0 1 .581.766 2.609 2.609 0 0 1 .944 1.342l-.933.187a3.01 3.01 0 0 0-3-2.869c-1.629 0-2.952 1.709-3.008 3.325l0 .747L17 15.5v9.25L28.3 27 31 25.961V14.325ZM27 16.75V20H23V17.376Zm-7.221-2.321c0-1.432 1.165-3.013 2.6-3.013a2.6 2.6 0 0 1 2.594 2.536L21.24 14.7a3.2 3.2 0 0 1 1.882-2.732 2.162 2.162 0 0 0-.656-.129 3.74 3.74 0 0 0-1.643 2.9v.041l-1.044.209ZM22 17.533V20H19V18ZM19 21h3v2.476l-3-.465Zm4 2.63V21h4v3.25Z" FillRule="NonZero"/>
+        <PathGeometry Figures="m 29.134904 12.873071 v -0.275574 a 3.6814771 3.6814771 0 0 0 -1.534215 -2.986985 4.1914345 4.1914345 0 0 1 0.383892 1.131015 3.1275011 3.1275011 0 0 1 0.610932 1.855974 v 0.275574 H 27.51925 V 11.513171 A 3.6875746 3.6875746 0 0 0 20.251534 10.63019 v 1.7e-4 a 3.7092266 3.7092266 0 0 0 -0.106316 0.882811 v 1.359904 H 14.286463 V 25.01715 a 1.207693 1.207693 0 0 0 1.20759 1.20759 H 32.702425 A 1.0110342 1.0110342 0 0 0 33.713537 25.2138 V 12.873071 Z m -8.450447 -1.3599 a 3.1477794 3.1477794 0 0 1 6.295558 0 v 1.359904 h -4.679896 v -0.275574 a 3.1425909 3.1425909 0 0 1 3.123177 -3.146692 2.6015426 2.6015426 0 0 0 -0.843684 -0.435781 3.674504 3.674504 0 0 0 -2.712411 2.699318 h 1.7e-4 a 3.6995554 3.6995554 0 0 0 -0.106638 0.883142 v 0.275574 h -1.076276 z m 2.856336 11.956509 h -3.60279 v -3.60279 h 3.60279 z m 0 -4.16805 h -3.60279 v -3.602805 h 3.60279 z m 4.168044 4.16805 h -3.602789 v -3.60279 h 3.602789 z m 0 -4.16805 h -3.602789 v -3.602805 h 3.602789 z" FillRule="NonZero"/>
       </Path.Data>
     </Path>
   </Canvas>

@@ -14,10 +14,13 @@ namespace Microsoft.Templates.Fakes
     public class FakeMsBuildProject
     {
         private const string MsBuildNs = "http://schemas.microsoft.com/developer/msbuild/2003";
+
         private string _path;
+
         private XElement _root;
 
         public string Name { get; }
+
         public string Namespace
         {
             get
@@ -115,10 +118,10 @@ namespace Microsoft.Templates.Fakes
         {
             VsItemType returnType = VsItemType.Content;
 
-            switch (Path.GetExtension(fileName).ToLower())
+            switch (Path.GetExtension(fileName).ToLowerInvariant())
             {
                 case ".cs":
-                    if (fileName.EndsWith(".xaml.cs", true, CultureInfo.InvariantCulture))
+                    if (fileName.EndsWith(".xaml.cs", StringComparison.OrdinalIgnoreCase))
                     {
                         returnType = VsItemType.CompiledWithDependant;
                     }
@@ -129,7 +132,7 @@ namespace Microsoft.Templates.Fakes
 
                     break;
                 case ".vb":
-                    if (fileName.EndsWith(".xaml.vb", true, CultureInfo.InvariantCulture))
+                    if (fileName.EndsWith(".xaml.vb", StringComparison.OrdinalIgnoreCase))
                     {
                         returnType = VsItemType.CompiledWithDependant;
                     }

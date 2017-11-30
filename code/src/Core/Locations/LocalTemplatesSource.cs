@@ -2,11 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.IO;
-using System.Text;
 using System;
-
-using Microsoft.Templates.Core.Packaging;
+using System.IO;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -21,6 +18,7 @@ namespace Microsoft.Templates.Core.Locations
         public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
 
         private string _id;
+
         public override string Id { get => _id; }
 
         protected string FinalDestination { get; set; }
@@ -37,6 +35,7 @@ namespace Microsoft.Templates.Core.Locations
             _id = id + GetAgentName();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Used to override the default value for this property in the local (test) source")]
         public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
         {
             ForcedAcquisition = forcedAdquisition;
@@ -55,7 +54,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public override void Extract(string source, string targetFolder)
         {
-            if (source.ToLower().EndsWith("mstx"))
+            if (source.EndsWith("mstx", StringComparison.OrdinalIgnoreCase))
             {
                 base.Extract(source, targetFolder);
             }

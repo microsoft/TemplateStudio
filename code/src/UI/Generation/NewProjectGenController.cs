@@ -22,6 +22,7 @@ namespace Microsoft.Templates.UI
     public class NewProjectGenController : GenController
     {
         private static Lazy<NewProjectGenController> _instance = new Lazy<NewProjectGenController>(Initialize);
+
         public static NewProjectGenController Instance => _instance.Value;
 
         private static NewProjectGenController Initialize()
@@ -31,12 +32,12 @@ namespace Microsoft.Templates.UI
 
         private NewProjectGenController(PostActionFactory postactionFactory)
         {
-            _postactionFactory = postactionFactory;
+            PostactionFactory = postactionFactory;
         }
 
-        public UserSelection GetUserSelection()
+        public UserSelection GetUserSelection(string language)
         {
-            var mainView = new Views.NewProject.MainView();
+            var mainView = new Views.NewProject.MainView(language);
 
             try
             {
@@ -123,7 +124,7 @@ namespace Microsoft.Templates.UI
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Exception.TrackAsync(ex, "Exception tracking telemetry for Template Generation.").FireAndForget();
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.TrackTelemetryException).FireAndForget();
             }
         }
     }

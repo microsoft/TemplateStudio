@@ -13,7 +13,9 @@ namespace Microsoft.Templates.Core
     public class MetadataLocalizedInfo
     {
         public string Name { get; set; }
+
         public string DisplayName { get; set; }
+
         public string Summary { get; set; }
     }
 }

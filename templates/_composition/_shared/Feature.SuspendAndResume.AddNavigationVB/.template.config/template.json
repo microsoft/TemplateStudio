@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Microsoft Community Contribution",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Feat.SuspendAndResume"
+    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Feat.SuspendAndResume.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -7,9 +7,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-using Microsoft.VisualStudio.Shell;
-using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.UI.VisualStudio;
+using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.Extension.Commands
 {
@@ -23,6 +23,7 @@ namespace Microsoft.Templates.Extension.Commands
     public sealed class RelayCommandPackage : AsyncPackage
     {
         private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
+
         private RightClickActions RightClickActions => _rightClickActions.Value;
 
         private RelayCommand addPageCommand;

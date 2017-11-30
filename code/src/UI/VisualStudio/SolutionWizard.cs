@@ -5,15 +5,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 using EnvDTE;
+
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
-using Microsoft.VisualStudio.TemplateWizard;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -97,7 +99,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection();
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection(GenContext.InitializedLanguage);
                 }
             }
             catch (WizardBackoutException)

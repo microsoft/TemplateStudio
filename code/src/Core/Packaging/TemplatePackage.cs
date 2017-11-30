@@ -222,7 +222,7 @@ namespace Microsoft.Templates.Core.Packaging
         {
             string stringPart = packagePart.Uri.ToString().TrimStart('/');
             var partUri = new Uri(stringPart, UriKind.Relative);
-            string dir = targetDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()) ? targetDirectory : targetDirectory + Path.DirectorySeparatorChar;
+            string dir = targetDirectory.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.OrdinalIgnoreCase) ? targetDirectory : targetDirectory + Path.DirectorySeparatorChar;
             var uriFullPartPath = new Uri(new Uri(dir, UriKind.Absolute), partUri);
 
             // When packing, directories are automatically converted when turned into a URI
@@ -235,9 +235,37 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
+        public static List<(X509Certificate2 cert, string pin, X509ChainStatusFlags status)> GetCertsInfo(string signedPackageFilename)
+        {
+            using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                var res = new List<(X509Certificate2 cert, string pin, X509ChainStatusFlags status)>();
+                var dsm = new PackageDigitalSignatureManager(package);
+                var certs = GetPackageCertificates(dsm);
+                foreach (X509Certificate cert in certs.Values)
+                {
+                    (X509Certificate2 cert, string pin, X509ChainStatusFlags status) certInfo =
+                        (cert: new X509Certificate2(cert), pin: cert.GetPublicKeyString().ObfuscateSHA(), PackageDigitalSignatureManager.VerifyCertificate(cert));
+
+                    res.Add(certInfo);
+                }
+
+                return res;
+            }
+        }
+
+        public static bool IsSigned(string signedPackageFilename)
+        {
+            using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                var dsm = new PackageDigitalSignatureManager(package);
+                return dsm.IsSigned;
+            }
+        }
+
         public static bool ValidateSignatures(string signedPackageFilename)
         {
-            using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read))
+            using (Package package = Package.Open(signedPackageFilename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 return ValidateSignatures(package);
             }
@@ -390,7 +418,7 @@ namespace Microsoft.Templates.Core.Packaging
 
         private static void EnsureDirectory(string dir)
         {
-            if (!string.IsNullOrEmpty(dir) && dir.ToLower() != Environment.CurrentDirectory.ToLower())
+            if (!string.IsNullOrEmpty(dir) && !dir.Equals(Environment.CurrentDirectory, StringComparison.OrdinalIgnoreCase))
             {
                 if (!Directory.Exists(dir))
                 {

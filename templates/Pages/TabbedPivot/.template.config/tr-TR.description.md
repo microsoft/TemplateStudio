@@ -1,3 +1,3 @@
-﻿The tabbed page is used for navigating frequently accessed, distinct content categories. Pivots allow for navigation between two or more content panes and relies on text headers to articulate the different sections of content.
+﻿Sekmeli sayfa sıklıkla erişilen farklı içerik kategorilerine ulaşmak için kullanılır. Özetler iki veya daha fazla içerik bölmesi arasında gezintiyi sağlar ve içeriğin farklı bölümlerini düzenlemek için metin başlıklarını kullanır.
 
-To find out more if this is a good solution for you, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot).
+Bunun sizin için iyi bir çözüm olup olmadığı hakkında daha fazla bilgi için [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tabs-pivot) adresine gidin.

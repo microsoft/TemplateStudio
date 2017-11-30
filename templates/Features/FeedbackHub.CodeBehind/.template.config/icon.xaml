@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <TextBlock Margin="2" FontFamily="Segoe MDL2 Assets" Text="&#xE939;" />
+</Viewbox>

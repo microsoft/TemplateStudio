@@ -5,13 +5,14 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Web;
 using System.Windows;
 using System.Windows.Controls;
-using System.Web;
 
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewItem;
+
 namespace Microsoft.Templates.UI.Controls
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace Microsoft.Templates.UI.Controls
                 patternText = patternText.Replace("##language##", language);
                 patternText = patternText
                     .Replace("##ExecutingDirectory##", executingDirectory)
-                    .Replace("##renderSideBySide##", renderSideBySide.ToString().ToLower())
+                    .Replace("##renderSideBySide##", renderSideBySide ? "true" : "false")
                     .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty)
                     .Replace("##fontSize##", $"fontSize: {CodeFontSize},");
                 if (_currentHtml != patternText)

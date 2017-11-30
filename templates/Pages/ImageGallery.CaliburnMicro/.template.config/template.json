@@ -1,5 +1,5 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
@@ -17,7 +17,7 @@
     "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",
     "wts.dependencies": "wts.Feat.SampleDataService|wts.Feat.SettingsStorage",
     "wts.genGroup": "0",
-    "wts.isHidden": "true",
+    "wts.isHidden": "false",
     "wts.rightClickEnabled":"true"
   },
   "sourceName": "ImageGalleryView",

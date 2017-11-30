@@ -1,5 +1,5 @@
-﻿This project includes a navigation pane (or 'hamburger menu') at the side of the screen, for navigation between pages.
+﻿Questo progetto include un riquadro di navigazione (o 'menu Hamburger') al lato dello schermo, per la navigazione tra pagine.
 
-This style is popular in mobile apps but also works well on larger screens. The menu can be hidden when space is limited, or it isn't needed.
+Lo stile è molto usato nelle app per dispositivi mobili, ma anche per schermi più ampi. Il menu può essere nascosto quando lo spazio è limitato o non è necessario.
 
-The menu shows items with an icon and text. The menu can be entirely hidden, show just the icon, or show the icon and text. The user can choose to display the full menu at the touch of a button. The menu also adapts automatically to the size of the screen.
+Il menu mostra le voci con un'icona e del testo. Il menu può essere interamente nascosto, può mostrare solo l'icona o sia l'icona sia il testo. L'utente può scegliere di visualizzare il menu completo al tocco di un pulsante. Il menu si adatta automaticamente alle dimensioni dello schermo.
