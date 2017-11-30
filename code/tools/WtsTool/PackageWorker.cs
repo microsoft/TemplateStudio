@@ -219,10 +219,10 @@ namespace WtsTool
             {
                 foreach (var file in d.GetFiles("*", SearchOption.TopDirectoryOnly))
                 {
-                    var targetFile = file.FullName.Replace(prepareDirPath, resultDir);
+                    var targetFolder = Path.GetDirectoryName(file.FullName.Replace(prepareDirPath, resultDir));
 
-                    output.WriteVerbose($"Copying file {file.FullName} to {targetFile}");
-                    Fs.SafeCopyFile(file.FullName, targetFile, true);
+                    output.WriteVerbose($"Copying file {file.FullName} to {targetFolder}");
+                    Fs.SafeCopyFile(file.FullName, targetFolder, true);
                     countFiles++;
                 }
                 countDirs++;
