@@ -57,7 +57,7 @@ StoreNotificationsService is in change of configuring the application with the W
 
 See the official documentation on how to [configure your app for targeted push notifications](https://docs.microsoft.com/windows/uwp/monetize/configure-your-app-to-receive-dev-center-notifications) and how to [send notifications to your app's customers](https://docs.microsoft.com/windows/uwp/publish/send-push-notifications-to-your-apps-customers).
 
-To handle app activation from a Toast Notification that is sent from Windows Dev Center service will need you to add a similar implementation to that detailed above. THe key difference is to call `ParseArgumentsAndTrackAppLaunch` to notify the Windows Dev Center that the app was launched in response to a targeted push notification and to get the original arguments. An example of this is shown below.
+To handle app activation from a Toast Notification that is sent from Windows Dev Center service will need you to add a similar implementation to that detailed above. The key difference is to call `ParseArgumentsAndTrackAppLaunch` to notify the Windows Dev Center that the app was launched in response to a targeted push notification and to get the original arguments. An example of this is shown below.
 
 ```csharp
 protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
