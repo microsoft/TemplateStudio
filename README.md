@@ -25,7 +25,7 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 
 
 > The builds include test verifications to validate the contributions:
-> * *CI Build*: Includes all unit test + minimum integration verifications (minumum generation + build + code style rules). Runs every PR requested / PR accepted.
+> * *CI Build*: Includes all unit test + minimum integration verifications (minimum generation + build + code style rules). Runs every PR requested / PR accepted.
 > * *Gen Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view. Runs every PR accepted and takes a bit to complete.
 > * *Full Tests*: Includes `Gen Tests` and actually builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed. 
 > * *Wack Tests*: Includes tests that run the App Certification Kit against the generated projects to ensure there are no issues blocking a submission to the store. Runs once nightly and takes quite a while to complete. 
@@ -63,7 +63,7 @@ Here is what we're currently thinking in our [roadmap](docs/roadmap.md).
 
 ## Contributing
 
-Do you want to contribute? We would love to have you help out.  Here are our [contribution guidelines](CONTRIBUTING.md).
+Do you want to contribute? We would love to have you help out. Here are our [contribution guidelines](CONTRIBUTING.md).
 
 ## Principles
 
