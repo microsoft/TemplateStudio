@@ -58,8 +58,6 @@ namespace WtsTool
                 {
                     List<Regex> exclusionFilters = GetExclusionFilters(exclusions, output);
 
-                    var resultDir = Path.GetFullPath(prepareDir).Replace(Path.GetFileName(prepareDir), $"{Path.GetFileName(prepareDir)}_v{version}");
-
                     List<string> excludedDirs = new List<string>();
                     List<DirectoryInfo> includedDirs = new List<DirectoryInfo>();
                     List<DirectoryInfo> allDirs = new List<DirectoryInfo>(prepareDirInfo.EnumerateDirectories("*", SearchOption.AllDirectories));
@@ -80,11 +78,11 @@ namespace WtsTool
 
                     ShowDirectoriesInfo(verbose, output, exclusionFilters, excludedDirs, includedDirs);
 
-                    PrepareResultDir(output, resultDir);
+                    var resultDir = PrepareResultDir(prepareDir, version, output);
 
                     List<DirectoryInfo> toCopy = exclusionFilters.Count > 0 ? includedDirs : allDirs;
 
-                    MakeCopy(prepareDir, version, output, resultDir, toCopy);
+                    MakeCopy(toCopy, prepareDir, resultDir, version, output);
                 }
                 else
                 {
@@ -204,7 +202,7 @@ namespace WtsTool
             output.WriteCommandText($"Signature validation type: {validationType}");
         }
 
-         private static void MakeCopy(string prepareDir, string version, TextWriter output, string resultDir, List<DirectoryInfo> toCopy)
+        private static void MakeCopy(List<DirectoryInfo> toCopy, string prepareDir, string resultDir, string version, TextWriter output)
         {
             output.WriteLine();
             output.WriteCommandText("Copying directories...");
@@ -213,55 +211,41 @@ namespace WtsTool
             int countDirs = 0;
             int countFiles = 0;
 
-            bool consoleAvailable = CheckConsole();
-            if (consoleAvailable)
-            {
-                Console.CursorVisible = false;
-            }
+            ConsoleHelper.HideCursor();
+
+            var prepareDirPath = new DirectoryInfo(prepareDir).Parent.FullName;
 
             toCopy.ForEach(d =>
             {
                 foreach (var file in d.GetFiles("*", SearchOption.TopDirectoryOnly))
                 {
-                    output.WriteLine($"Copying file {file.FullName} to {d.FullName.Replace(prepareDir, resultDir)}");
-                    Fs.SafeCopyFile(file.FullName, d.FullName.Replace(prepareDir, resultDir), true);
+                    var targetFile = file.FullName.Replace(prepareDirPath, resultDir);
+
+                    output.WriteVerbose($"Copying file {file.FullName} to {targetFile}");
+                    Fs.SafeCopyFile(file.FullName, targetFile, true);
                     countFiles++;
                 }
                 countDirs++;
-                if (consoleAvailable)
-                {
-                    output.WriteLine($"   {countDirs}/{toCopy.Count}...");
-                    Console.SetCursorPosition(0, Console.CursorTop - 1);
-                }
+
+                output.WriteLine($"   {countDirs}/{toCopy.Count}...");
+                ConsoleHelper.OverrideWriteLine();
             });
             output.WriteLine();
 
-            if (consoleAvailable)
-            {
-                Console.CursorVisible = true;
-            }
-
-            File.WriteAllText(Path.Combine(resultDir, "version.txt"), version, System.Text.Encoding.UTF8);
+            File.WriteAllText(Path.Combine(prepareDir.Replace(prepareDirPath, resultDir), "version.txt"), version, System.Text.Encoding.UTF8);
 
             output.WriteLine();
             output.WriteCommandText($"Preparation for directory '{prepareDir}' done in '{resultDir}' ({countDirs} dirs and {countFiles} files).");
+
+            ConsoleHelper.ShowCursor();
         }
 
-        private static bool CheckConsole()
+        private static string PrepareResultDir(string prepareDir, string version, TextWriter output)
         {
-            try
-            {
-                Console.CursorVisible = true;
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+            var prepareDirPath = new DirectoryInfo(prepareDir).Parent.FullName;
 
-        private static void PrepareResultDir(TextWriter output, string resultDir)
-        {
+            var resultDir = Path.Combine(prepareDirPath, $"Preparation_v{version}");
+
             if (Directory.Exists(resultDir))
             {
                 output.WriteCommandText("The target directory already exists, cleaning...");
@@ -271,6 +255,8 @@ namespace WtsTool
             {
                 Fs.EnsureFolder(resultDir);
             }
+
+            return resultDir;
         }
 
         private static void ShowDirectoriesInfo(bool verbose, TextWriter output, List<Regex> exclusionFilters, List<string> excludedDirs, List<DirectoryInfo> includedDirs)
