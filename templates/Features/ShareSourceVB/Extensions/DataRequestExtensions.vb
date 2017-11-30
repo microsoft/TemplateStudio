@@ -69,7 +69,7 @@ Namespace Extensions
 
         <Extension>
         Private Sub FillDeferredContent(ByVal requestData As DataPackage, ByVal deferredDataFormatId As String, ByVal getDeferredDataAsyncFunc As Func(Of Task(Of Object)))
-            requestData.SetDataProvider(deferredDataFormatId, Async Function(providerRequest)
+            requestData.SetDataProvider(deferredDataFormatId, Async Sub(providerRequest)
                 Dim deferral = providerRequest.GetDeferral()
                 Try
                     Dim deferredData = Await getDeferredDataAsyncFunc()
@@ -77,7 +77,7 @@ Namespace Extensions
                 Finally
                     deferral.Complete()
                 End Try
-            End Function)
+            End Sub)
         End Sub
     End Module
 End Namespace

@@ -58,5 +58,13 @@ namespace WtsTool
         {
             writer.WriteLine($"   {data}");
         }
+
+        public static void WriteVerbose(this TextWriter writer, string data)
+        {
+            if (Verbose)
+            {
+                writer.WriteLine($"   {data}");
+            }
+        }
     }
 }
