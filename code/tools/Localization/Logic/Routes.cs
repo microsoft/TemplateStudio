@@ -18,13 +18,11 @@ namespace Localization
         internal const string RelayCommandFileNamePattern = "RelayCommandPackage.{0}.vsct";
         internal const string VspackageFileNamePattern = "VSPackage.{0}.resx";
 
-        internal static string[] RightClickMdsFolders { get; } = { "_composition", "Features", "Pages" };
-
         internal const string RightClickFileSearchPattern = "*postaction.md";
 
         internal const string TemplatesRootDirPath = "templates";
-        internal const string TemplatesPagesPath = "templates\\Pages";
-        internal const string TemplatesFeaturesPath = "templates\\Features";
+        internal const string TemplatesPagesPatternPath = "Pages";
+        internal const string TemplatesFeaturesPatternPath = "Features";
 
         internal const string TemplateConfigDir = ".template.config";
         internal const string TemplateDescriptionFile = "description.md";

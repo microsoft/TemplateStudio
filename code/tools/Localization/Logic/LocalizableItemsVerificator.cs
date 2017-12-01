@@ -79,12 +79,12 @@ namespace Localization
 
         private void VerifyTemplatePages()
         {
-            VerifyTemplateItem(Routes.TemplatesPagesPath);
+            VerifyTemplateItem(Routes.TemplatesPagesPatternPath);
         }
 
         private void VerifyTemplateFeatures()
         {
-            VerifyTemplateItem(Routes.TemplatesFeaturesPath);
+            VerifyTemplateItem(Routes.TemplatesFeaturesPatternPath);
         }
 
         private void VerifyWtsProjectTypes()
@@ -133,14 +133,15 @@ namespace Localization
             }
         }
 
-        private void VerifyTemplateItem(string directoryPath)
+        private void VerifyTemplateItem(string patternPath)
         {
-            var directory = new DirectoryInfo(Path.Combine(_sourceDir.FullName, directoryPath));
-            var subDirectories = directory.EnumerateDirectories().Select(d => d.Name);
+            var templatesDir = new DirectoryInfo(Path.Combine(_sourceDir.FullName, Routes.TemplatesRootDirPath));
+            var directories = templatesDir.EnumerateDirectories(patternPath, SearchOption.AllDirectories);
+            var templatesDirectories = directories.SelectMany(d => d.GetDirectories()).Select(d => GetTemplateRelativePath(d));
 
-            foreach (var itemTemplate in subDirectories)
+            foreach (var itemTemplate in templatesDirectories)
             {
-                var templateDirectory = Path.Combine(directoryPath, itemTemplate, Routes.TemplateConfigDir);
+                var templateDirectory = Path.Combine(itemTemplate, Routes.TemplateConfigDir);
 
                 VerifyFile(templateDirectory, Routes.TemplateJsonFile);
                 VerifyFilesByCulture(templateDirectory, string.Concat("{0}.", Routes.TemplateJsonFile));
@@ -254,6 +255,17 @@ namespace Localization
 
             _errors.ToList().ForEach(e => ConsoleExt.WriteError(string.Concat(" - ", e)));
             _warnings.ToList().ForEach(e => ConsoleExt.WriteWarning(string.Concat(" - ", e)));
+        }
+
+        private string GetTemplateRelativePath(DirectoryInfo directory)
+        {
+            if (directory.Name == Routes.TemplatesRootDirPath)
+            {
+                return directory.Name;
+            }
+
+            var path = GetTemplateRelativePath(directory.Parent);
+            return Path.Combine(path, directory.Name);
         }
     }
 }

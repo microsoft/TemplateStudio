@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SignConfigXML>
   <job platform="" configuration="release" dest="" jobname="WindowsTemplateStudio Sign" approvers="crutkas;ralarcon">
-    <file src="__INPATHROOT__\templates\latest\Templates.mstx" signType="100040160" dest="__OUTPATHROOT__\templates\latest\Templates.mstx" />
-    <file src="__INPATHROOT__\templates\###VersionedTemplateFile###" signType="100040160" dest="__OUTPATHROOT__\templates\###VersionedTemplateFile###" />
+    <file src="__INPATHROOT__\templates\Templates.mstx" signType="100040160" dest="__OUTPATHROOT__\templates\Templates.mstx" />
   </job>
 </SignConfigXML>
