@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--This file is NOT compatible with Silverlight-->
+<Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+  <Canvas Name="Capa_1" Width="150" Height="150">
+    <Canvas.RenderTransform>
+      <TranslateTransform X="0" Y="0"/>
+    </Canvas.RenderTransform>
+    <Canvas.Resources/>
+    <!--Unknown tag: metadata-->
+    <!--Unknown tag: sodipodi:namedview-->
+    <Polygon xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Points="92.288 119.409 24.943 119.409 24.943 60.587 18.783 60.587 18.783 125.569 98.447 125.569 98.447 108.465 92.288 108.465 92.288 119.409" Name="polygon3895" FillRule="NonZero" Fill="#000000"/>
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path3897" Fill="#000000">
+      <Path.Data>
+        <PathGeometry Figures="M93.01606 81.95169v23.66553l38.20047-40.59139L93.01606 24.43144V49.2428C47.60976 55.64864 47.07444 97.422 47.07444 97.852v8.25241L52.48181 99.87C66.98067 83.15166 86.05985 81.87049 93.01606 81.95169Zm3.40141-26.92258 2.75782-.28871V39.96185l23.58433 25.064-23.58433 25.061v-13.738L96.49867 75.997a37.94667 37.94667 0 0 0-4.66454-.2436A58.38985 58.38985 0 0 0 54.38552 89.347C57.08921 77.77436 66.13859 58.217 96.41747 55.02911Z" FillRule="NonZero"/>
+      </Path.Data>
+    </Path>
+  </Canvas>
+</Viewbox>

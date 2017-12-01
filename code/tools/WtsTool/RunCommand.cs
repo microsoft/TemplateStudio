@@ -29,6 +29,9 @@ namespace WtsTool
                 case PackageTask.Info:
                     PackageWorker.GetInfo(options.Info, output, error);
                     break;
+                case PackageTask.Prepare:
+                    PackageWorker.Prepare(options.PrepareDir, options.Exclusions, options.Version, options.Verbose, output, error);
+                    break;
                 default:
                     error.WriteLine($"Unexpected action '{action.ToString()}'");
                     return 1;
@@ -95,6 +98,11 @@ namespace WtsTool
             if (!string.IsNullOrEmpty(options.Extract))
             {
                 return PackageTask.Extract;
+            }
+
+            if (!string.IsNullOrEmpty(options.PrepareDir))
+            {
+                return PackageTask.Prepare;
             }
 
             return PackageTask.None;
