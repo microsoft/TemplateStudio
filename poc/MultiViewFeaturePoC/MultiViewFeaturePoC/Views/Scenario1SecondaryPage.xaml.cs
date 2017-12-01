@@ -3,6 +3,8 @@
 using MultiViewFeaturePoC.ViewModels;
 
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+using MultiViewFeaturePoC.Services;
 
 namespace MultiViewFeaturePoC.Views
 {
@@ -13,6 +15,12 @@ namespace MultiViewFeaturePoC.Views
         public Scenario1SecondaryPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            ViewModel.Initialize(e.Parameter as ViewLifetimeControl);
         }
     }
 }

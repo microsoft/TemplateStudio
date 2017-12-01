@@ -1,0 +1,1 @@
+﻿Görüntü galerisinin görüntülendiği ve kullanıcının galeri ile görüntü ayrıntısı arasında gezinmesine olanak tanıyan sayfa.

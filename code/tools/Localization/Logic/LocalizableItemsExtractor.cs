@@ -110,20 +110,24 @@ namespace Localization
 
         internal void ExtractTemplatePages()
         {
-            ExtractTemplateEngineTemplates(Routes.TemplatesPagesPath);
+            ExtractTemplateEngineTemplates(Routes.TemplatesPagesPatternPath);
         }
 
         internal void ExtractTemplateFeatures()
         {
-            ExtractTemplateEngineTemplates(Routes.TemplatesFeaturesPath);
+            ExtractTemplateEngineTemplates(Routes.TemplatesFeaturesPatternPath);
         }
 
-        private void ExtractTemplateEngineTemplates(string templatePath)
+        private void ExtractTemplateEngineTemplates(string patternPath)
         {
-            var srcDirectory = GetDirectory(Path.Combine(_sourceDir.FullName, templatePath));
-            foreach (var subDirectory in srcDirectory.GetDirectories())
+            var srcDirectory = GetDirectory(Path.Combine(_sourceDir.FullName, Routes.TemplatesRootDirPath));
+            var directories = srcDirectory.GetDirectories(patternPath, SearchOption.AllDirectories);
+            var templatesDirectories = directories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB")));
+
+            foreach (var directory in templatesDirectories)
             {
-                string pageSrcDirectory = Path.Combine(templatePath, subDirectory.Name, Routes.TemplateConfigDir);
+                var path = GetTemplateRelativePath(directory);
+                string pageSrcDirectory = Path.Combine(path, Routes.TemplateConfigDir);
 
                 ExtractTemplateJson(pageSrcDirectory);
                 ExtractTemplateDescription(pageSrcDirectory);
@@ -295,6 +299,17 @@ namespace Localization
             }
 
             return file;
+        }
+
+        private string GetTemplateRelativePath(DirectoryInfo directory)
+        {
+            if (directory.Name == Routes.TemplatesRootDirPath)
+            {
+                return directory.Name;
+            }
+
+            var path = GetTemplateRelativePath(directory.Parent);
+            return Path.Combine(path, directory.Name);
         }
     }
 }
