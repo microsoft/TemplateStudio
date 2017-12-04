@@ -7,6 +7,7 @@ using Param_RootNamespace.Models;
 
 namespace Param_ItemNamespace.Services.DragAndDrop
 {
+    // For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/drag-and-drop.md
     public class DragDropService
     {
         private static DependencyProperty configurationProperty = DependencyProperty.RegisterAttached(
