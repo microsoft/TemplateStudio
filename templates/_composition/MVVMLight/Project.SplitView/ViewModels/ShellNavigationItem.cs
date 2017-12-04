@@ -73,7 +73,8 @@ namespace wts.ItemName.ViewModels
             {
                 Set(ref _isSelected, value);
 
-                SelectedVis = value ? Visibility.Visible : Visibility.Collapsed;
+                bool isFcu = ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5);
+                SelectedVis = isFcu && value ? Visibility.Visible : Visibility.Collapsed;
 
                 SelectedForeground = IsSelected
                     ? Application.Current.Resources["SystemControlForegroundAccentBrush"] as SolidColorBrush
