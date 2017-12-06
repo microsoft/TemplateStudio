@@ -31,6 +31,8 @@ namespace WtsTool
                 errs => 1);
 
             Console.Out.WriteFooter($"{chrono.Elapsed.TotalSeconds} sec.");
+
+            ConsoleHelper.ShowCursor();
         }
     }
 }

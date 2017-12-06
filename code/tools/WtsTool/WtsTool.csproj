@@ -106,6 +106,7 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="CommandOptions\CommonOptions.cs" />
+    <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Environments.cs" />
     <Compile Include="CommandOptions\RemoteSourceCommonOptions.cs" />
     <Compile Include="CommandOptions\RemoteSourceListOptions.cs" />
