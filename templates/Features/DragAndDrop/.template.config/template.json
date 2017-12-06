@@ -9,7 +9,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "feature",
-    "wts.framework": "MVVMBasic|MVVMLight|CaliburnMicro",
+    "wts.framework": "MVVMBasic|MVVMLight|CaliburnMicro|Prism",
     "wts.version": "1.0.0",
     "wts.displayOrder": "9",
     "wts.group": "UserInteraction",
