@@ -1,6 +1,4 @@
-﻿Imports System.Windows.Input
-Imports Windows.UI.Xaml.Media.Imaging
-Imports Param_ItemNamespace.Helpers
+﻿Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.EventHandlers
 
 Namespace ViewModels

@@ -1,7 +1,4 @@
-﻿Imports System.Threading.Tasks
-Imports System.Windows.Input
-Imports Windows.Devices.Geolocation
-Imports Windows.Foundation
+﻿Imports Windows.Devices.Geolocation
 Imports Windows.Storage.Streams
 Imports Windows.UI.Xaml.Controls.Maps
 Imports Param_ItemNamespace.Helpers

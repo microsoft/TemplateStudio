@@ -1,6 +1,4 @@
-﻿Imports System.Threading.Tasks
-
-Imports Windows.ApplicationModel.DataTransfer
+﻿Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.ApplicationModel.DataTransfer.ShareTarget
 
 Imports Param_ItemNamespace.Helpers

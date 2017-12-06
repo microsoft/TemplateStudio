@@ -1,8 +1,4 @@
-﻿'{[{
-Imports System.Runtime.CompilerServices
-Imports System.ComponentModel
-'}]}
-Namespace Views
+﻿Namespace Views
     Public NotInheritable Partial Class wts.ItemNameDetailPage
         Inherits Page
         Implements INotifyPropertyChanged
