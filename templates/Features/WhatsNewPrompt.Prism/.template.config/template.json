@@ -1,0 +1,46 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [ "Universal" ],
+  "name": "What's New Prompt",
+  "groupIdentity": "wts.Feat.WhatsNewPrompt",
+  "identity": "wts.Feat.WhatsNewPrompt.Prism",
+  "description": "Display a prompt when the app is first used after an update.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "Prism",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "6",
+    "wts.group": "UserInteraction",
+    "wts.dependencies":"wts.Feat.SettingsStorage",
+    "wts.multipleInstance": "false",
+    "wts.defaultInstance": "WhatsNewPrompt",    
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "WhatsNewPromptFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\WhatsNewDialog.xaml"
+    },
+    {
+      "path": ".\\Views\\WhatsNewDialog.xaml.cs"
+    },
+    {
+      "path": ".\\Services\\WhatsNewDisplayService.cs"
+    },
+    {
+      "path": ".\\Services\\IWhatsNewDisplayService.cs"
+    }  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

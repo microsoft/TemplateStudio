@@ -1,8 +1,4 @@
-﻿Imports System.Windows.Input
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-
-Namespace ViewModels
+﻿Namespace ViewModels
     Public Class WebViewPageViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
         ' TODO WTS: Set the URI of the page to show by default

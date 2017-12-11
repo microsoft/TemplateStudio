@@ -1,6 +1,4 @@
 ﻿Imports Param_ItemNamespace.Models
-Imports System.Collections.Generic
-Imports System.Collections.ObjectModel
 
 Namespace Services
     ' This module holds sample data used by some generated pages to show how they can be used.

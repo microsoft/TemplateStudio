@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "Azure Notifications",
+    "description": "Register to receive and handle messages from Azure Notification Hubs.",
+    "identity": "wts.Feat.HubNotifications.Prism"
+}

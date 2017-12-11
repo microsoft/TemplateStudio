@@ -1,10 +1,4 @@
-﻿Imports System.Collections.ObjectModel
-Imports System.Linq
-Imports System.Threading.Tasks
-
-Imports Windows.Storage
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
+﻿Imports Windows.Storage
 Imports Windows.UI.Xaml.Media.Animation
 
 Imports Param_ItemNamespace.Helpers

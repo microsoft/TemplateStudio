@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.Mvvm
 
         public RelayCommand(Action execute, Func<bool> canExecute)
         {
-            _execute = execute ?? throw new ArgumentNullException("execute");
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
 
@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Core.Mvvm
 
         public RelayCommand(Action<T> execute, Func<T, bool> canExecute)
         {
-            _execute = execute ?? throw new ArgumentNullException("execute");
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
 

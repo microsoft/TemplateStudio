@@ -1,5 +1,4 @@
-﻿Imports System.Threading.Tasks
-Imports Windows.Devices.Geolocation
+﻿Imports Windows.Devices.Geolocation
 Imports Param_ItemNamespace.Helpers
 
 Namespace Services
@@ -9,15 +8,6 @@ Namespace Services
         Public Event PositionChanged As EventHandler(Of Geoposition)
 
         Public Property CurrentPosition As Geoposition
-            Get
-                Return m_CurrentPosition
-            End Get
-            Private Set
-                m_CurrentPosition = Value
-            End Set
-        End Property
-
-        Private m_CurrentPosition As Geoposition
 
         Public Async Function InitializeAsync() As Task(Of Boolean)
             Return Await InitializeAsync(100)

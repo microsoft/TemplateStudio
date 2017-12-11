@@ -1,12 +1,6 @@
-﻿Imports System.ComponentModel
-Imports System.Runtime.CompilerServices
-Imports Windows.ApplicationModel.DataTransfer
+﻿Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.ApplicationModel.DataTransfer.ShareTarget
 Imports Windows.Storage
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Media.Imaging
-Imports Windows.UI.Xaml.Navigation
 Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.Models
 

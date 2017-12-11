@@ -202,6 +202,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildPrismTests\BuildPrismCollection.cs" />
+    <Compile Include="BuildPrismTests\BuildPrismFixture.cs" />
+    <Compile Include="BuildPrismTests\BuildPrismProjectTests.cs" />
     <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroCollection.cs" />
     <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroFixture.cs" />
     <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroProjectTests.cs" />

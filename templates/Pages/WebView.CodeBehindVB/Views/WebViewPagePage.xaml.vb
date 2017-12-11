@@ -1,9 +1,4 @@
-﻿Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports System.ComponentModel
-Imports System.Runtime.CompilerServices
-
-Namespace Views
+﻿Namespace Views
     Public NotInheritable Partial Class WebViewPagePage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged

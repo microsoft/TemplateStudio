@@ -1,7 +1,4 @@
-﻿Imports System.Collections.ObjectModel
-Imports System.Linq
-Imports System.Threading.Tasks
-Imports Microsoft.Toolkit.Uwp.UI.Controls
+﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Param_ItemNamespace.Models
 Imports Param_ItemNamespace.Services
 

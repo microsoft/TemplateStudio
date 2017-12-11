@@ -17,7 +17,7 @@ namespace TasksApp.Views
             InitializeComponent();
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             await ViewModel.LoadDataAsync(WindowStates.CurrentState, e.Parameter as SuspensionState);
             Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += Instance_OnBackgroundEntering;

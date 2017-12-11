@@ -15,10 +15,10 @@ namespace Param_ItemNamespace.ViewModels
         // TODO WTS: Set your preferred default zoom level
         private const double DefaultZoomLevel = 17;
 
-        private readonly LocationService locationService;
+        private readonly LocationService _locationService;
 
         // TODO WTS: Set your preferred default location if a geolock can't be found.
-        private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
+        private readonly BasicGeoposition _defaultPosition = new BasicGeoposition()
         {
             Latitude = 47.609425,
             Longitude = -122.3417
@@ -42,31 +42,31 @@ namespace Param_ItemNamespace.ViewModels
 
         public MapPageViewModel()
         {
-            locationService = new LocationService();
-            Center = new Geopoint(defaultPosition);
+            _locationService = new LocationService();
+            Center = new Geopoint(_defaultPosition);
             ZoomLevel = DefaultZoomLevel;
         }
 
         public async Task InitializeAsync(MapControl map)
         {
-            if (locationService != null)
+            if (_locationService != null)
             {
-                locationService.PositionChanged += LocationService_PositionChanged;
+                _locationService.PositionChanged += LocationService_PositionChanged;
 
-                var initializationSuccessful = await locationService.InitializeAsync();
+                var initializationSuccessful = await _locationService.InitializeAsync();
 
                 if (initializationSuccessful)
                 {
-                    await locationService.StartListeningAsync();
+                    await _locationService.StartListeningAsync();
                 }
 
-                if (initializationSuccessful && locationService.CurrentPosition != null)
+                if (initializationSuccessful && _locationService.CurrentPosition != null)
                 {
-                    Center = locationService.CurrentPosition.Coordinate.Point;
+                    Center = _locationService.CurrentPosition.Coordinate.Point;
                 }
                 else
                 {
-                    Center = new Geopoint(defaultPosition);
+                    Center = new Geopoint(_defaultPosition);
                 }
             }
 

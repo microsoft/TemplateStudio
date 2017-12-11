@@ -1,0 +1,49 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Background Task",
+  "groupIdentity": "wts.Feat.BackgroundTask",
+  "identity": "wts.Feat.BackgroundTask.Prism",
+  "description": "Add an in-process background task ready to run code even while the app is not in the foreground.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "Prism",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.group": "BackgroundWork",
+    "wts.multipleInstance": "true",
+    "wts.genGroup": "0",    
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "BackgroundTaskFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\BackgroundTaskService.cs"
+    },
+    {
+      "path": ".\\Services\\IBackgroundTaskService.cs"
+    },
+    {
+      "path": ".\\BackgroundTasks\\BackgroundTask.cs"
+    },
+    {
+      "path": ".\\BackgroundTasks\\BackgroundTaskFeature.cs"
+    },
+    {
+      "path": ".\\Helpers\\TaskExtensions.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

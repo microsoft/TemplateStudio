@@ -1,6 +1,4 @@
-﻿Imports Windows.UI.Xaml.Controls
-
-Namespace Views
+﻿Namespace Views
     Public NotInheritable Partial Class ChartViewPage
         Inherits Page
         ' TODO WTS: Change the chart as appropriate to your app.

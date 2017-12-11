@@ -1,0 +1,52 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Uri Scheme",
+  "groupIdentity": "wts.Feat.UriScheme",
+  "identity": "wts.Feat.UriScheme.Prism",
+  "description": "Add the ability to launch and deep link into the app with a custom URI scheme.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "Prism",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "7",
+    "wts.group": "ApplicationLaunching",
+    "wts.defaultInstance": "UriScheme",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0"
+  },
+  "sourceName": "UriSchemeExample",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\ViewModels\\UriSchemeExampleViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\UriSchemeExamplePage.xaml"
+    },
+    {
+      "path": ".\\Views\\UriSchemeExamplePage.xaml.cs"
+    },
+    {
+      "path": ".\\Assets\\Logo.png"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
+    }
+  }
+}
