@@ -1,6 +1,4 @@
-﻿Imports System
-
-Namespace Services
+﻿Namespace Services
     Public Class SuspensionState
         Public Property Data As Object
 

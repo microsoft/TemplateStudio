@@ -2,9 +2,6 @@
 Imports Windows.Media.Playback
 Imports Windows.System.Display
 Imports Windows.UI.Core
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Media.Imaging
-Imports Windows.UI.Xaml.Navigation
 
 Namespace Views
     Public NotInheritable Partial Class MediaPlayerViewPage

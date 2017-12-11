@@ -1,7 +1,4 @@
-﻿Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-
-Namespace Views
+﻿Namespace Views
     Public NotInheritable Partial Class ImageGalleryViewPage
         Inherits Page
 

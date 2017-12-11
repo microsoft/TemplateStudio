@@ -1,5 +1,4 @@
-﻿Imports System.Collections.ObjectModel
-Imports Windows.Media.Playback
+﻿Imports Windows.Media.Playback
 Imports Windows.Media.Core
 
 Namespace ViewModels

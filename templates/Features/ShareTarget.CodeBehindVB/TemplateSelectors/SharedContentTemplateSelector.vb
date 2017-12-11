@@ -1,6 +1,4 @@
 ﻿Imports Windows.ApplicationModel.DataTransfer
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
 Imports Param_ItemNamespace.Models
 
 Namespace TemplateSelectors

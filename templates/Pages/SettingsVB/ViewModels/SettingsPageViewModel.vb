@@ -1,7 +1,4 @@
-﻿Imports System.Windows.Input
-Imports Param_RootNamespace.Services
-Imports Windows.ApplicationModel
-Imports Windows.UI.Xaml
+﻿Imports Param_RootNamespace.Services
 
 Namespace ViewModels
     Public Class SettingsPageViewModel

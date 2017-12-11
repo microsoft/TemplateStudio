@@ -1,11 +1,4 @@
-﻿Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Threading.Tasks
-Imports Windows.ApplicationModel.Activation
-Imports Windows.UI.Core
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
+﻿Imports Windows.UI.Core
 
 Imports wts.DefaultProject.Activation
 

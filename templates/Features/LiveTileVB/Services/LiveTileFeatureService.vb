@@ -1,8 +1,5 @@
 ﻿Imports Param_RootNamespace.Activation
 Imports Param_RootNamespace.Helpers
-Imports System.Linq
-Imports System.Threading.Tasks
-Imports Windows.ApplicationModel.Activation
 Imports Windows.Storage
 Imports Windows.UI.Notifications
 Imports Windows.UI.StartScreen
