@@ -15,7 +15,7 @@ Namespace Views
             End Get
 
             Set
-                [Set](_elementTheme, value)
+                [Param_Setter](_elementTheme, value)
             End Set
         End Property
 
@@ -27,7 +27,7 @@ Namespace Views
             End Get
 
             Set
-                [Set](_versionDescription, value)
+                [Param_Setter](_versionDescription, value)
             End Set
         End Property
 

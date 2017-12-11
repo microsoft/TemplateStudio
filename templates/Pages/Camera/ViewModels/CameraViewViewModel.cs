@@ -15,7 +15,7 @@ namespace Param_ItemNamespace.ViewModels
         public BitmapImage Photo
         {
             get { return _photo; }
-            set { Set(ref _photo, value); }
+            set { Param_Setter(ref _photo, value); }
         }
 
         public ICommand PhotoTakenCommand => _photoTakenCommand ?? (_photoTakenCommand = new RelayCommand<CameraControlEventArgs>(OnPhotoTaken));

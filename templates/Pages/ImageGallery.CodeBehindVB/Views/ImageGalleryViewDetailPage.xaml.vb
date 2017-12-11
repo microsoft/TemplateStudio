@@ -20,7 +20,7 @@ Namespace Views
                 Return _selectedImage
             End Get
             Set
-                [Set](_selectedImage, value)
+                [Param_Setter](_selectedImage, value)
                 ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewPage.ImageGalleryViewSelectedImageId, DirectCast(SelectedImage, SampleImage).ID)
             End Set
         End Property
@@ -30,7 +30,7 @@ Namespace Views
                 Return _source
             End Get
             Set
-                [Set](_source, value)
+                [Param_Setter](_source, value)
             End Set
         End Property
 

@@ -26,7 +26,7 @@ namespace Param_ItemNamespace.ViewModels
         public SampleOrder Item
         {
             get { return _item; }
-            set { SetProperty(ref _item, value); }
+            set { Param_Setter(ref _item, value); }
         }
 
         public MasterDetailDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)

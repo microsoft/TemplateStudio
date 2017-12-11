@@ -13,7 +13,7 @@ Namespace ViewModels
                 Return _uri
             End Get
             Set
-                [Set](_uri, value)
+                [Param_Setter](_uri, value)
             End Set
         End Property
 

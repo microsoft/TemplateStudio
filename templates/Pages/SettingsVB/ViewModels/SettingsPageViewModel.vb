@@ -13,7 +13,7 @@ Namespace ViewModels
             End Get
 
             Set
-                [Set](_elementTheme, value)
+                [Param_Setter](_elementTheme, value)
             End Set
         End Property
 
@@ -25,7 +25,7 @@ Namespace ViewModels
             End Get
 
             Set
-                [Set](_versionDescription, newValue := value)
+                [Param_Setter](_versionDescription, newValue := value)
             End Set
         End Property
 

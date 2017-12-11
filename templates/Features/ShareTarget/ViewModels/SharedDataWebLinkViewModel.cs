@@ -15,7 +15,7 @@ namespace Param_ItemNamespace.ViewModels
         public Uri Uri
         {
             get => _uri;
-            set => Set(ref _uri, value);
+            set => Param_Setter(ref _uri, value);
         }
 
         public SharedDataWebLinkViewModel()

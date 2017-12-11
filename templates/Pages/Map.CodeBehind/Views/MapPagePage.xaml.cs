@@ -29,7 +29,7 @@ namespace Param_ItemNamespace.Views
         public double ZoomLevel
         {
             get { return _zoomLevel; }
-            set { Set(ref _zoomLevel, value); }
+            set { Param_Setter(ref _zoomLevel, value); }
         }
 
         private Geopoint _center;
@@ -37,7 +37,7 @@ namespace Param_ItemNamespace.Views
         public Geopoint Center
         {
             get { return _center; }
-            set { Set(ref _center, value); }
+            set { Param_Setter(ref _center, value); }
         }
 
         public MapPagePage()
