@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CaliburnMicro & identity == wts.Feat.DragAndDrop",
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CaliburnMicro|Prism & identity == wts.Feat.DragAndDrop",
     "wts.compositionOrder": "1"
   },
   "sourceName": "wts.ItemName",
