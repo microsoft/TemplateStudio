@@ -11,7 +11,7 @@
     xmlns:b="using:Param_ItemNamespace.Behaviors"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <maps:MapControl
             x:Name="mapControl" MapServiceToken="{Binding MapServiceToken}"
             ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}" 
