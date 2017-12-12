@@ -231,7 +231,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportSetterTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Set" }.Contains(tag.Value))
+            if (!new[] { "Set", "SetProperty" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.setter tag.");
             }

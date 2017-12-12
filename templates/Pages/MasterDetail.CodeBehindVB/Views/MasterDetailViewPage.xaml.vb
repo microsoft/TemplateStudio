@@ -15,7 +15,7 @@ Namespace Views
                 Return _selected
             End Get
             Set
-                [Set](_selected, value)
+                [Param_Setter](_selected, value)
             End Set
         End Property
 

@@ -21,7 +21,7 @@ Namespace ViewModels
                 Return _source
             End Get
             Set
-                [Set](_source, value)
+                [Param_Setter](_source, value)
             End Set
         End Property
 

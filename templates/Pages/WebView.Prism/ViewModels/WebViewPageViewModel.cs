@@ -32,7 +32,7 @@ namespace Param_ItemNamespace.ViewModels
         public Uri Source
         {
             get { return _source; }
-            set { SetProperty(ref _source, value); }
+            set { Param_Setter(ref _source, value); }
         }
 
         private bool _isLoading;
@@ -51,7 +51,7 @@ namespace Param_ItemNamespace.ViewModels
                     IsShowingFailedMessage = false;
                 }
 
-                SetProperty(ref _isLoading, value);
+                Param_Setter(ref _isLoading, value);
                 IsLoadingVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
@@ -67,7 +67,7 @@ namespace Param_ItemNamespace.ViewModels
 
             set
             {
-                SetProperty(ref _isLoadingVisibility, value);
+                Param_Setter(ref _isLoadingVisibility, value);
             }
         }
 
@@ -87,7 +87,7 @@ namespace Param_ItemNamespace.ViewModels
                     IsLoading = false;
                 }
 
-                SetProperty(ref _isShowingFailedMessage, value);
+                Param_Setter(ref _isShowingFailedMessage, value);
                 FailedMesageVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
@@ -103,7 +103,7 @@ namespace Param_ItemNamespace.ViewModels
 
             set
             {
-                SetProperty(ref _failedMessageVisibility, value);
+                Param_Setter(ref _failedMessageVisibility, value);
             }
         }
 

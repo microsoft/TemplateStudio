@@ -15,7 +15,7 @@ namespace Param_ItemNamespace.ViewModels
         public string DataFormat
         {
             get => _dataFormat;
-            set => SetProperty(ref _dataFormat, value);
+            set => Param_Setter(ref _dataFormat, value);
         }
 
         private string _pageTitle;
@@ -23,7 +23,7 @@ namespace Param_ItemNamespace.ViewModels
         public string PageTitle
         {
             get => _pageTitle;
-            set => SetProperty(ref _pageTitle, value);
+            set => Param_Setter(ref _pageTitle, value);
         }
 
         private string _title;
@@ -31,7 +31,7 @@ namespace Param_ItemNamespace.ViewModels
         public string Title
         {
             get => _title;
-            set => SetProperty(ref _title, value);
+            set => Param_Setter(ref _title, value);
         }
 
         public SharedDataViewModelBase()
