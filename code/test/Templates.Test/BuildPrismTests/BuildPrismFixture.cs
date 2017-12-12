@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test
     public sealed class BuildPrismFixture : BaseGenAndBuildFixture, IDisposable
     {
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CM\\{testExecutionTimeStamp}\\";
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\P\\{testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new LocalTemplatesSource("TestBuildPrism");
 
