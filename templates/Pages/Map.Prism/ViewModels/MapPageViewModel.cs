@@ -31,7 +31,7 @@ namespace Param_ItemNamespace.ViewModels
         public string MapServiceToken
         {
             get { return _mapServiceToken; }
-            set { SetProperty(ref _mapServiceToken, value); }
+            set { Param_Setter(ref _mapServiceToken, value); }
         }
 
         private double _zoomLevel;
@@ -39,7 +39,7 @@ namespace Param_ItemNamespace.ViewModels
         public double ZoomLevel
         {
             get { return _zoomLevel; }
-            set { SetProperty(ref _zoomLevel, value); }
+            set { Param_Setter(ref _zoomLevel, value); }
         }
 
         private Geopoint _center;
@@ -47,7 +47,7 @@ namespace Param_ItemNamespace.ViewModels
         public Geopoint Center
         {
             get { return _center; }
-            set { SetProperty(ref _center, value); }
+            set { Param_Setter(ref _center, value); }
         }
 
         private ObservableCollection<MapIcon> _mapIcons = new ObservableCollection<MapIcon>();
@@ -55,7 +55,7 @@ namespace Param_ItemNamespace.ViewModels
         public ObservableCollection<MapIcon> MapIcons
         {
             get { return _mapIcons; }
-            set { SetProperty(ref _mapIcons, value); }
+            set { Param_Setter(ref _mapIcons, value); }
         }
 
         public MapPageViewModel(ILocationService locationServiceInstance)

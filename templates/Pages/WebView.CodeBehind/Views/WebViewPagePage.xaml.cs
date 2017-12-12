@@ -16,7 +16,7 @@ namespace Param_ItemNamespace.Views
         public Uri Source
         {
             get { return _source; }
-            set { Set(ref _source, value); }
+            set { Param_Setter(ref _source, value); }
         }
 
         private bool _isLoading;
@@ -35,7 +35,7 @@ namespace Param_ItemNamespace.Views
                     IsShowingFailedMessage = false;
                 }
 
-                Set(ref _isLoading, value);
+                Param_Setter(ref _isLoading, value);
                 IsLoadingVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
@@ -45,7 +45,7 @@ namespace Param_ItemNamespace.Views
         public Visibility IsLoadingVisibility
         {
             get { return _isLoadingVisibility; }
-            set { Set(ref _isLoadingVisibility, value); }
+            set { Param_Setter(ref _isLoadingVisibility, value); }
         }
 
         private bool _isShowingFailedMessage;
@@ -64,7 +64,7 @@ namespace Param_ItemNamespace.Views
                     IsLoading = false;
                 }
 
-                Set(ref _isShowingFailedMessage, value);
+                Param_Setter(ref _isShowingFailedMessage, value);
                 FailedMesageVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
@@ -74,7 +74,7 @@ namespace Param_ItemNamespace.Views
         public Visibility FailedMesageVisibility
         {
             get { return _failedMesageVisibility; }
-            set { Set(ref _failedMesageVisibility, value); }
+            set { Param_Setter(ref _failedMesageVisibility, value); }
         }
 
         private void OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)

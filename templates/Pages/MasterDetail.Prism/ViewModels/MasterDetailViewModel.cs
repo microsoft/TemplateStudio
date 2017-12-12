@@ -38,7 +38,7 @@ namespace Param_ItemNamespace.ViewModels
         public SampleOrder Selected
         {
             get => _selected;
-            set => SetProperty(ref _selected, value);
+            set => Param_Setter(ref _selected, value);
         }
 
         public ICommand ItemClickCommand { get; }
