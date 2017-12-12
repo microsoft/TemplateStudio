@@ -4,12 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
     DataContext="{Binding PivotViewModel, Source={StaticResource Locator}}"
     xmlns:model="using:wts.ItemName.Models"
     xmlns:views="using:wts.ItemName.Views"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <Pivot x:Uid="PivotPage">
         </Pivot>
     </Grid>
