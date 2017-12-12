@@ -16,7 +16,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             get { return _elementTheme; }
 
-            set { SetProperty(ref _elementTheme, value); }
+            set { Param_Setter(ref _elementTheme, value); }
         }
 
         private string _versionDescription;
@@ -25,7 +25,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             get { return _versionDescription; }
 
-            set { SetProperty(ref _versionDescription, value); }
+            set { Param_Setter(ref _versionDescription, value); }
         }
 
         private ICommand _switchThemeCommand;

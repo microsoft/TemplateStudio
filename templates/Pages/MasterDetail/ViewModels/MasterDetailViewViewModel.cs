@@ -15,7 +15,7 @@ namespace Param_ItemNamespace.ViewModels
         public SampleOrder Selected
         {
             get { return _selected; }
-            set { Set(ref _selected, value); }
+            set { Param_Setter(ref _selected, value); }
         }
 
         public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();

@@ -33,7 +33,7 @@ namespace Param_ItemNamespace.ViewModels
         public ObservableCollection<SampleImage> Source
         {
             get => _source;
-            set => SetProperty(ref _source, value);
+            set => Param_Setter(ref _source, value);
         }
 
         public ICommand ItemSelectedCommand => _itemSelectedCommand ?? (_itemSelectedCommand = new DelegateCommand<ItemClickEventArgs>(OnsItemSelected));

@@ -25,7 +25,7 @@ namespace Param_ItemNamespace.Views
         public ObservableCollection<SampleImage> Source
         {
             get => _source;
-            set => Set(ref _source, value);
+            set => Param_Setter(ref _source, value);
         }
 
         public ImageGalleryViewPage()

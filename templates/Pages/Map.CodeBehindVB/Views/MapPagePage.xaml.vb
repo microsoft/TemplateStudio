@@ -27,7 +27,7 @@ Namespace Views
                 Return _zoomLevel
             End Get
             Set
-                [Set](_zoomLevel, value)
+                [Param_Setter](_zoomLevel, value)
             End Set
         End Property
 
@@ -38,7 +38,7 @@ Namespace Views
                 Return _center
             End Get
             Set
-                [Set](_center, value)
+                [Param_Setter](_center, value)
             End Set
         End Property
 

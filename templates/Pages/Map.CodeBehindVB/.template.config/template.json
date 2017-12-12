@@ -40,7 +40,7 @@
     },
     "setter": {
       "type": "parameter",
-      "replaces": "Set"
+      "replaces": "Param_Setter"
     }
   }
 }
