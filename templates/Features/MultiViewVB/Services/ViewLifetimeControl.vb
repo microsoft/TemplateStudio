@@ -1,4 +1,5 @@
 ﻿Imports Windows.UI.Core
+Imports Param_ItemNamespace.Helpers
 
 Namespace Services
 
@@ -39,7 +40,7 @@ Namespace Services
                 End SyncLock
 
                 If releasedCopy Then
-                    Throw New InvalidOperationException("This view is being disposed")
+                    Throw New InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized())
                 End If
             End AddHandler
 
@@ -79,7 +80,7 @@ Namespace Services
             End SyncLock
 
             If releasedCopy Then
-                Throw New InvalidOperationException("This view is being disposed")
+                Throw New InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized())
             End If
 
             Return refCountCopy
@@ -102,7 +103,7 @@ Namespace Services
             End SyncLock
 
             If releasedCopy Then
-                Throw New InvalidOperationException("This view is being disposed")
+                Throw New InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized())
             End If
 
             Return refCountCopy
