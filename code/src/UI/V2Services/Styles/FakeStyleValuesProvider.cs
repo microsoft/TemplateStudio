@@ -313,6 +313,8 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FF007ACC;
                 case "CardBorderDisabledColorKey":
                     return LightColorValues.Color_FFCCCEDB;
+                case "CardIconColorKey":
+                    return LightColorValues.Color_FF888D8F;
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }

@@ -93,6 +93,7 @@ namespace Microsoft.Templates.UI.V2Services
         {
             CardTitleText = _stylesProvider.GetColor("ThemedCardColors", "CardTitleTextColorKey");
             CardDescriptionText = _stylesProvider.GetColor("ThemedCardColors", "CardDescriptionTextColorKey");
+            CardIcon = _stylesProvider.GetColor("ThemedCardColors", "CardIconColorKey"); // Added by mvegaca
             CardBackgroundDefault = _stylesProvider.GetColor("ThemedCardColors", "CardBackgroundDefaultColorKey");
             CardBackgroundFocus = _stylesProvider.GetColor("ThemedCardColors", "CardBackgroundFocusColorKey");
             CardBackgroundHover = _stylesProvider.GetColor("ThemedCardColors", "CardBackgroundHoverColorKey");

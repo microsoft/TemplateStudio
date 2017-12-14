@@ -354,6 +354,7 @@
     <Compile Include="TemplateSelectors\StatusBoxTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
+    <Compile Include="V2Controls\ImageEx.cs" />
     <Compile Include="V2Controls\SequentialFlow.xaml.cs">
       <DependentUpon>SequentialFlow.xaml</DependentUpon>
     </Compile>
@@ -616,6 +617,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Styles\DataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\ImageEx.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

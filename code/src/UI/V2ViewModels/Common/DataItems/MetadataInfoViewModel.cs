@@ -14,6 +14,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             Title = metadataInfo.DisplayName;
             Description = metadataInfo.Description;
             Author = metadataInfo.Author;
+            Icon = metadataInfo.Icon;
             Order = metadataInfo.Order;
         }
     }

@@ -25,6 +25,14 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(CardDescriptionTextProperty, value); }
         }
 
+        public static readonly DependencyProperty CardIconProperty = DependencyProperty.Register("CardIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CardIcon
+        {
+            get { return (Brush)GetValue(CardIconProperty); }
+            set { SetValue(CardIconProperty, value); }
+        }
+
         public static readonly DependencyProperty CardBackgroundDefaultProperty = DependencyProperty.Register("CardBackgroundDefault", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush CardBackgroundDefault

@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private string _title;
         private string _description;
         private string _author;
+        private string _icon;
         private int _order;
         private RelayCommand _detailsCommand;
         private RelayCommand _goBackCommand;
@@ -37,6 +38,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             get => _author;
             set => SetProperty(ref _author, value);
+        }
+
+        public string Icon
+        {
+            get => _icon;
+            set => SetProperty(ref _icon, value);
         }
 
         public int Order

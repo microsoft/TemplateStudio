@@ -29,6 +29,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             Title = template.Name;
             Description = template.Description;
             Author = template.Author;
+            Icon = template.GetIcon();
             Order = template.GetDisplayOrder();
 
             // ITemplateInfo properties
