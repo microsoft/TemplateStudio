@@ -108,12 +108,16 @@ namespace Microsoft.Templates.Test
             CheckStringNotIncluded("Namespace Param_ItemNamespace."); // Root namespace is included by default in VB
             CheckStringNotIncluded(";");
             CheckStringNotIncluded("var "); // May be in commented our code included in template as an example
+            CheckStringNotIncluded("Var "); // May be in commented our code included in template as an example
             CheckStringNotIncluded("Key ."); // Output by converter as part of object initializers
             CheckStringNotIncluded("yield Return"); // Return not needed but converter includes it
+            CheckStringNotIncluded("yield return"); // Return not needed but converter includes it
             CheckStringNotIncluded("wts__"); // temporary placeholder used during conversion
             CheckStringNotIncluded("'''/");
 
             IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: new[] { " MustOverride ", "Function RunAsync(", "Function RunAsyncInternal(", " FireAndForget(" });
+
+            IfLineIncludes("\"{", itMustAlsoInclude: "$");
 
             Assert.True(foundErrors.Count == 0, string.Join(Environment.NewLine, foundErrors));
         }

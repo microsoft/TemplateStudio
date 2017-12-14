@@ -7,7 +7,7 @@ namespace Param_ItemNamespace.Services
 {
     public class LocationService
     {
-        private Geolocator geolocator;
+        private Geolocator _geolocator;
 
         public event EventHandler<Geoposition> PositionChanged;
 
@@ -26,10 +26,10 @@ namespace Param_ItemNamespace.Services
         public async Task<bool> InitializeAsync(uint desiredAccuracyInMeters, double movementThreshold)
         {
             // to find out more about getting location, go to https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location
-            if (geolocator != null)
+            if (_geolocator != null)
             {
-                geolocator.PositionChanged -= GeolocatorOnPositionChanged;
-                geolocator = null;
+                _geolocator.PositionChanged -= GeolocatorOnPositionChanged;
+                _geolocator = null;
             }
 
             var access = await Geolocator.RequestAccessAsync();
@@ -39,7 +39,7 @@ namespace Param_ItemNamespace.Services
             switch (access)
             {
                 case GeolocationAccessStatus.Allowed:
-                    geolocator = new Geolocator
+                    _geolocator = new Geolocator
                     {
                         DesiredAccuracyInMeters = desiredAccuracyInMeters,
                         MovementThreshold = movementThreshold
@@ -58,24 +58,24 @@ namespace Param_ItemNamespace.Services
 
         public async Task StartListeningAsync()
         {
-            if (geolocator == null)
+            if (_geolocator == null)
             {
                 throw new InvalidOperationException("ExceptionLocationServiceStartListeningCanNotBeCalled".GetLocalized());
             }
 
-            geolocator.PositionChanged += GeolocatorOnPositionChanged;
+            _geolocator.PositionChanged += GeolocatorOnPositionChanged;
 
-            CurrentPosition = await geolocator.GetGeopositionAsync();
+            CurrentPosition = await _geolocator.GetGeopositionAsync();
         }
 
         public void StopListening()
         {
-            if (geolocator == null)
+            if (_geolocator == null)
             {
                 return;
             }
 
-            geolocator.PositionChanged -= GeolocatorOnPositionChanged;
+            _geolocator.PositionChanged -= GeolocatorOnPositionChanged;
         }
 
         private async void GeolocatorOnPositionChanged(Geolocator sender, PositionChangedEventArgs args)

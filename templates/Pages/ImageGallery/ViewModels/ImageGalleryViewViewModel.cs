@@ -27,7 +27,7 @@ namespace Param_ItemNamespace.ViewModels
         public ObservableCollection<SampleImage> Source
         {
             get => _source;
-            set => Set(ref _source, value);
+            set => Param_Setter(ref _source, value);
         }
 
         public ICommand ItemSelectedCommand => _itemSelectedCommand ?? (_itemSelectedCommand = new RelayCommand<ItemClickEventArgs>(OnsItemSelected));

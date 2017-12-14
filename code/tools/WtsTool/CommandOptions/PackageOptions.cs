@@ -14,7 +14,8 @@ namespace WtsTool.CommandOptions
         Info,
         Extract,
         Create,
-        None
+        None,
+        Prepare
     }
 
     [Verb("package-task", Hidden = false, HelpText = "Operations with template package file (.mstx)")]
@@ -37,5 +38,14 @@ namespace WtsTool.CommandOptions
 
         [Option('d', "destination-dir", Required = false, HelpText = "Destionation directory path to be used for extraction", SetName = "Extract", Default = ".")]
         public string DestionationDir { get; set; }
+
+        [Option('p', "prepare-dir", Required = true, HelpText = "Makes a copy of the specified folder applying filters (if any). Overwrite contents if already exists.", SetName = "Prepare")]
+        public string PrepareDir { get; set; }
+
+        [Option('e', "exclude", Required = false, HelpText = "Apply the exclusion filters to the prepare directory by excluding the directories with names matching the specified patterns (C# Regular expresions)", Separator = ';', SetName = "Prepare")]
+        public IEnumerable<string> Exclusions { get; set; }
+
+        [Option('v', "version", Required = true, HelpText = "Version number (mayor.minor.build.revision) to be prepared.", Separator = ';', SetName = "Prepare")]
+        public string Version { get; set; }
     }
 }

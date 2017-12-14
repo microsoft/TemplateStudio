@@ -1,6 +1,4 @@
-﻿Imports System.Threading.Tasks
-Imports Param_RootNamespace.Services
-Imports Windows.ApplicationModel.Activation
+﻿Imports Param_RootNamespace.Services
 
 Namespace Activation
     ' TODO WTS: Open package.appxmanifest and change the declaration for the scheme (from the default of 'wtsapp') to what you want for your app.

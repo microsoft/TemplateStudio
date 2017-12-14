@@ -1,6 +1,6 @@
 ﻿<Page
     mc:Ignorable="d">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <Grid Margin="{StaticResource MediumLeftRightMargin}">
             <StackPanel Grid.Row="1">
                 <StackPanel Margin="{StaticResource EightTopMargin}">

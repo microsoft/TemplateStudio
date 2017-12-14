@@ -1,10 +1,4 @@
 ﻿Imports Microsoft.Practices.ServiceLocation
-Imports System.Collections.ObjectModel
-Imports System.Linq
-Imports System.Windows.Input
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
 Imports GalaSoft.MvvmLight
 Imports GalaSoft.MvvmLight.Command
 Imports wts.ItemName.Services

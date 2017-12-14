@@ -1,7 +1,4 @@
-﻿Imports System.Linq
-Imports System.Threading.Tasks
-
-Imports Windows.ApplicationModel.Background
+﻿Imports Windows.ApplicationModel.Background
 Imports Windows.System.Threading
 
 Namespace BackgroundTasks

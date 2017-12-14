@@ -1,5 +1,4 @@
-﻿Imports Windows.UI.Xaml.Controls
-Imports wts.ItemName.ViewModels
+﻿Imports wts.ItemName.ViewModels
 
 Namespace Views
     Public NotInheritable Partial Class ShellPage
