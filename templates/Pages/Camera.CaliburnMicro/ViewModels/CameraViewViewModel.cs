@@ -13,7 +13,7 @@ namespace Param_ItemNamespace.ViewModels
         public BitmapImage Photo
         {
             get { return _photo; }
-            set { Set(ref _photo, value); }
+            set { Param_Setter(ref _photo, value); }
         }
 
         public void OnPhotoTaken(CameraControlEventArgs args)

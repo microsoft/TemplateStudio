@@ -1,11 +1,9 @@
 ﻿Imports Windows.Devices.Geolocation
 Imports Windows.Foundation
 Imports Windows.Storage.Streams
-Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Controls.Maps
 Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.Services
-Imports System.Threading.Tasks
 
 Namespace Views
     Public NotInheritable Partial Class MapPagePage
@@ -29,7 +27,7 @@ Namespace Views
                 Return _zoomLevel
             End Get
             Set
-                [Set](_zoomLevel, value)
+                [Param_Setter](_zoomLevel, value)
             End Set
         End Property
 
@@ -40,7 +38,7 @@ Namespace Views
                 Return _center
             End Get
             Set
-                [Set](_center, value)
+                [Param_Setter](_center, value)
             End Set
         End Property
 

@@ -5,11 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding PivotViewModel, Source={StaticResource Locator}}"
+    Style="{StaticResource PageStyle}"
     xmlns:model="using:wts.ItemName.Models"
     xmlns:views="using:wts.ItemName.Views"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <Pivot x:Uid="PivotPage">
         </Pivot>
     </Grid>

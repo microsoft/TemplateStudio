@@ -10,7 +10,7 @@ Namespace ViewModels
                 Return _dataFormat
             End Get
             Set
-                [Set](_dataFormat, value)
+                [Param_Setter](_dataFormat, value)
             End Set
         End Property
 
@@ -21,7 +21,7 @@ Namespace ViewModels
                 Return _pageTitle
             End Get
             Set
-                [Set](_pageTitle, value)
+                [Param_Setter](_pageTitle, value)
             End Set
         End Property
 
@@ -32,7 +32,7 @@ Namespace ViewModels
                 Return _title
             End Get
             Set
-                [Set](_title, value)
+                [Param_Setter](_title, value)
             End Set
         End Property
 

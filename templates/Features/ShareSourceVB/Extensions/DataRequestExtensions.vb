@@ -1,15 +1,7 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Threading.Tasks
-Imports Windows.ApplicationModel.DataTransfer
+﻿Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.Storage
 Imports Windows.Storage.Streams
 Imports Param_ItemNamespace.Models
-Imports System.Runtime.CompilerServices
-Imports System.Runtime.CompilerServices
-Imports System.Runtime.CompilerServices
-Imports System.Runtime.CompilerServices
 
 Namespace Extensions
     Module DataRequestExtensions

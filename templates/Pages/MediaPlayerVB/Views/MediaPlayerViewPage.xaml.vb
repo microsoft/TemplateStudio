@@ -1,7 +1,5 @@
 ﻿Imports Windows.Media.Playback
 Imports Windows.System.Display
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
 Imports Windows.UI.Core
 
 Namespace Views

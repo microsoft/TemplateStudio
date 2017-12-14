@@ -1,7 +1,4 @@
-﻿Imports System.Threading.Tasks
-Imports System.Windows.Input
-Imports Windows.Devices.Geolocation
-Imports Windows.Foundation
+﻿Imports Windows.Devices.Geolocation
 Imports Windows.Storage.Streams
 Imports Windows.UI.Xaml.Controls.Maps
 Imports Param_ItemNamespace.Helpers
@@ -28,7 +25,7 @@ Namespace ViewModels
                 Return _zoomLevel
             End Get
             Set
-                [Set](_zoomLevel, value)
+                [Param_Setter](_zoomLevel, value)
             End Set
         End Property
 
@@ -39,7 +36,7 @@ Namespace ViewModels
                 Return _center
             End Get
             Set
-                [Set](_center, value)
+                [Param_Setter](_center, value)
             End Set
         End Property
 

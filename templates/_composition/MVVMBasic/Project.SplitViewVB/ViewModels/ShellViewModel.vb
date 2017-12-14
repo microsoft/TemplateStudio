@@ -1,10 +1,4 @@
-﻿Imports System.Collections.ObjectModel
-Imports System.Linq
-Imports System.Windows.Input
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
-Imports wts.ItemName.Services
+﻿Imports wts.ItemName.Services
 Imports wts.ItemName.Views
 Imports wts.ItemName.Helpers
 

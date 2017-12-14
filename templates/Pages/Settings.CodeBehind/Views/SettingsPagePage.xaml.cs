@@ -17,7 +17,7 @@ namespace Param_ItemNamespace.Views
         {
             get { return _elementTheme; }
 
-            set { Set(ref _elementTheme, value); }
+            set { Param_Setter(ref _elementTheme, value); }
         }
 
         private string _versionDescription;
@@ -26,7 +26,7 @@ namespace Param_ItemNamespace.Views
         {
             get { return _versionDescription; }
 
-            set { Set(ref _versionDescription, value); }
+            set { Param_Setter(ref _versionDescription, value); }
         }
 
         public SettingsPagePage()

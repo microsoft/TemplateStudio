@@ -1,0 +1,10 @@
+﻿<!--{**-->
+<!--This xml block adds a reference to WindowsAzure.Messaging.Managed to your project.-->
+<!--**}-->
+
+<!-- Nuget package references -->
+<!--{[{-->
+<PackageReference Include="WindowsAzure.Messaging.Managed">
+  <Version>0.1.7.9</Version>
+</PackageReference>
+<!--}]}-->

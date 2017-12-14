@@ -142,7 +142,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             text = Normalize(text);
@@ -167,7 +167,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             return DoHeaders(
@@ -199,7 +199,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             return DoCodeSpans(
@@ -241,7 +241,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             // split on two or more newlines
@@ -393,7 +393,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             return Evaluate(text, _imageInline, ImageInlineEvaluator, defaultHandler);
@@ -403,7 +403,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (match == null)
             {
-                throw new ArgumentNullException("match");
+                throw new ArgumentNullException(nameof(match));
             }
 
             string linkText = match.Groups[2].Value;
@@ -469,7 +469,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             // Next, inline-style links: [link text](url "optional title") or [link text](url "optional title")
@@ -480,7 +480,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (match == null)
             {
-                throw new ArgumentNullException("match");
+                throw new ArgumentNullException(nameof(match));
             }
 
             string linkText = match.Groups[2].Value;
@@ -538,7 +538,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             return Evaluate<Block>(
@@ -552,7 +552,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (match == null)
             {
-                throw new ArgumentNullException("match");
+                throw new ArgumentNullException(nameof(match));
             }
 
             string header = match.Groups[1].Value;
@@ -566,7 +566,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (match == null)
             {
-                throw new ArgumentNullException("match");
+                throw new ArgumentNullException(nameof(match));
             }
 
             string header = match.Groups[2].Value;
@@ -578,7 +578,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (content == null)
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             var block = Create<Paragraph, Inline>(content);
@@ -646,7 +646,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             return Evaluate(text, _horizontalRules, RuleEvaluator, defaultHandler);
@@ -656,7 +656,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (match == null)
             {
-                throw new ArgumentNullException("match");
+                throw new ArgumentNullException(nameof(match));
             }
 
             var line = new Line();
@@ -712,7 +712,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             // We use a different prefix before nested lists than top-level lists.
@@ -725,7 +725,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (match == null)
             {
-                throw new ArgumentNullException("match");
+                throw new ArgumentNullException(nameof(match));
             }
 
             string list = match.Groups[1].Value;
@@ -800,7 +800,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (match == null)
             {
-                throw new ArgumentNullException("match");
+                throw new ArgumentNullException(nameof(match));
             }
 
             string item = match.Groups[4].Value;
@@ -834,7 +834,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             ////    * You can use multiple backticks as the delimiters if you want to
@@ -866,7 +866,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (match == null)
             {
-                throw new ArgumentNullException("match");
+                throw new ArgumentNullException(nameof(match));
             }
 
             string span = match.Groups[2].Value;
@@ -905,7 +905,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             // <strong> must go first, then <em>
@@ -931,7 +931,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (match == null)
             {
-                throw new ArgumentNullException("match");
+                throw new ArgumentNullException(nameof(match));
             }
 
             var content = match.Groups[contentGroup].Value;
@@ -942,7 +942,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (match == null)
             {
-                throw new ArgumentNullException("match");
+                throw new ArgumentNullException(nameof(match));
             }
 
             var content = match.Groups[contentGroup].Value;
@@ -969,7 +969,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             var output = new StringBuilder(text.Length);
@@ -1043,7 +1043,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (data == null)
             {
-                throw new ArgumentNullException("data");
+                throw new ArgumentNullException(nameof(data));
             }
 
             var sb = new StringBuilder(data.Length * count);
@@ -1071,7 +1071,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             var matches = expression.Matches(text);
@@ -1108,7 +1108,7 @@ namespace Microsoft.Templates.UI.Controls
         {
             if (text == null)
             {
-                throw new ArgumentNullException("text");
+                throw new ArgumentNullException(nameof(text));
             }
 
             var t = _eoln.Replace(text, " ");
