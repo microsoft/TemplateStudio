@@ -38,15 +38,15 @@ namespace Microsoft.Templates.UI.V2Controls
             {
                 // 1. Project type
                 SetSelected(projectTypeGrid, projectTypeTextBlock);
-                SetUnSelected(designPatternGrid, designPatternTextBlock);
+                SetUnSelected(frameworkGrid, frameworkTextBlock);
                 SetUnSelected(pagesGrid, pagesTextBlock);
                 SetUnSelected(featuresGrid, featuresTextBlock);
             }
             else if (newStep == 1)
             {
-                // 2. Design pattern
+                // 2. Framework
                 SetUnSelected(projectTypeGrid, projectTypeTextBlock);
-                SetSelected(designPatternGrid, designPatternTextBlock);
+                SetSelected(frameworkGrid, frameworkTextBlock);
                 SetUnSelected(pagesGrid, pagesTextBlock);
                 SetUnSelected(featuresGrid, featuresTextBlock);
             }
@@ -54,7 +54,7 @@ namespace Microsoft.Templates.UI.V2Controls
             {
                 // 3. Pages
                 SetUnSelected(projectTypeGrid, projectTypeTextBlock);
-                SetUnSelected(designPatternGrid, designPatternTextBlock);
+                SetUnSelected(frameworkGrid, frameworkTextBlock);
                 SetSelected(pagesGrid, pagesTextBlock);
                 SetUnSelected(featuresGrid, featuresTextBlock);
             }
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.UI.V2Controls
             {
                 // 4. Features
                 SetUnSelected(projectTypeGrid, projectTypeTextBlock);
-                SetUnSelected(designPatternGrid, designPatternTextBlock);
+                SetUnSelected(frameworkGrid, frameworkTextBlock);
                 SetUnSelected(pagesGrid, pagesTextBlock);
                 SetSelected(featuresGrid, featuresTextBlock);
             }

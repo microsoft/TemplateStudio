@@ -18,7 +18,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         public static MainViewModel Instance => _instance ?? (_instance = new MainViewModel());
 
         private int _step;
-        private string _summaryImage;
 
         public int Step
         {
@@ -26,20 +25,18 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             set => SetProperty(ref _step, value);
         }
 
-        public string SummaryImage
-        {
-            get => _summaryImage;
-            set => SetProperty(ref _summaryImage, value);
-        }
-
         public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel();
 
-        public DesignPatternViewModel DesignPattern { get; } = new DesignPatternViewModel();
+        public FrameworkViewModel Framework { get; } = new FrameworkViewModel();
+
+        public AddPagesViewModel AddPages { get; } = new AddPagesViewModel();
+
+        public AddFeaturesViewModel AddFeatures { get; } = new AddFeaturesViewModel();
 
         private MainViewModel()
         {
-            SummaryImage = "/Microsoft.Templates.UI;component/Assets/PaneStep1-2.png";
-            ProjectType.ProjectTypeChanged += OnProjectTypeChanged;
+            ProjectType.SelectionChanged += OnProjectTypeSelectionChanged;
+            Framework.SelectionChanged += OnFrameworkSelectionChanged;
         }
 
         protected override void OnCancel()
@@ -51,20 +48,18 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             switch (Step)
             {
-                case 1: // GoBack button Clicked on DesignPatternPage
+                case 1: // GoBack button Clicked on FrameworkPage
                     NavigationService.GoBackMainFrame();
                     Step--;
                     SetCanGoBack(false);
                     break;
                 case 2: // GoBack button Clicked on PagesPage
                     NavigationService.GoBackMainFrame();
-                    SummaryImage = "/Microsoft.Templates.UI;component/Assets/PaneStep1-2.png";
                     Step--;
                     break;
                 case 3: // GoBack button Clicked on FeaturesPage
                     NavigationService.GoBackMainFrame();
                     Step--;
-                    SummaryImage = "/Microsoft.Templates.UI;component/Assets/PaneStep3.png";
                     SetCanGoForward(true);
                     break;
             }
@@ -75,18 +70,16 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             switch (Step)
             {
                 case 0: // GoForward button Clicked on ProjectTypePage
-                    NavigationService.NavigateSecondaryFrame(new DesignPatternPage());
+                    NavigationService.NavigateSecondaryFrame(new FrameworkPage());
                     Step++;
                     SetCanGoBack(true);
                     break;
-                case 1: // GoForward button Clicked on DesignPatternPage
-                    NavigationService.NavigateSecondaryFrame(new PagesPage());
-                    SummaryImage = "/Microsoft.Templates.UI;component/Assets/PaneStep3.png";
+                case 1: // GoForward button Clicked on FrameworkPage
+                    NavigationService.NavigateSecondaryFrame(new AddPagesPage());
                     Step++;
                     break;
-                case 2: // GoForward button Clicked on PagesPage
-                    NavigationService.NavigateSecondaryFrame(new FeaturesPage());
-                    SummaryImage = "/Microsoft.Templates.UI;component/Assets/PaneStep4.png";
+                case 2: // GoForward button Clicked on AddPagesPage
+                    NavigationService.NavigateSecondaryFrame(new AddFeaturesPage());
                     Step++;
                     SetCanGoForward(false);
                     break;
@@ -97,9 +90,15 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
         }
 
-        private void OnProjectTypeChanged(object sender, BasicInfoViewModel e)
+        private void OnProjectTypeSelectionChanged(object sender, MetadataInfoViewModel projectType)
         {
-            DesignPattern.LoadData(e.Name);
+            Framework.LoadData(projectType.Name);
+        }
+
+        private void OnFrameworkSelectionChanged(object sender, MetadataInfoViewModel framework)
+        {
+            AddPages.LoadData(framework.Name);
+            AddFeatures.LoadData(framework.Name);
         }
     }
 }

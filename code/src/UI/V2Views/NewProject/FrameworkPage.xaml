@@ -1,4 +1,4 @@
-﻿<Page x:Class="Microsoft.Templates.UI.V2Views.NewProject.DesignPatternPage"
+﻿<Page x:Class="Microsoft.Templates.UI.V2Views.NewProject.FrameworkPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -22,15 +22,15 @@
         </Grid.RowDefinitions>
         <TextBlock
             Grid.Row="0"
-            Text="{x:Static strings:StringRes.DesignPatternTitle}"
+            Text="{x:Static strings:StringRes.FrameworkTitle}"
             Margin="{StaticResource Margin_L_LeftRight_M_Top}"
             Style="{StaticResource WtsTextBlockSectionTitle}" />
         <ListView
             Grid.Row="1"
-            Style="{StaticResource WtsListView}"
+            Style="{StaticResource WtsListViewSingleSelection}"
             ItemsSource="{Binding Items}"
             SelectedItem="{Binding Selected, Mode=TwoWay}"
-            ItemTemplate="{StaticResource WtsItemTemplateProjectTypeDesignPattern}" />
+            ItemTemplate="{StaticResource WtsItemTemplateProjectTypeFramework}" />
     </Grid>
 
 </Page>

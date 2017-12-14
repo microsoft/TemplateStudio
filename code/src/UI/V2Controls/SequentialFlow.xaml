@@ -22,8 +22,8 @@
         </Grid>
         
         <Grid>
-            <Grid x:Name="designPatternGrid" Style="{StaticResource WtsGridSequentialFlowInactive}"/>
-            <TextBlock x:Name="designPatternTextBlock" Text="2. Design pattern" Style="{StaticResource WtsTextBlockSequentialFlow}" />
+            <Grid x:Name="frameworkGrid" Style="{StaticResource WtsGridSequentialFlowInactive}"/>
+            <TextBlock x:Name="frameworkTextBlock" Text="2. Design pattern" Style="{StaticResource WtsTextBlockSequentialFlow}" />
         </Grid>
         
         <Grid>

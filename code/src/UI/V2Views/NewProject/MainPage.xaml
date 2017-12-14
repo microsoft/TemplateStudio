@@ -48,18 +48,18 @@
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
                         ItemsSource="{Binding ProjectType.Items}"
                         SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
-                        ItemTemplate="{StaticResource WtsComboBoxProjectTypeDesignPattern}"
+                        ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}" />
 
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsDesignPatternSectionTitle}"/>
+                        Text="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"/>
                     <ComboBox
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
-                        ItemsSource="{Binding DesignPattern.Items}"
-                        SelectedItem="{Binding DesignPattern.Selected, Mode=TwoWay}"
-                        ItemTemplate="{StaticResource WtsComboBoxProjectTypeDesignPattern}"
+                        ItemsSource="{Binding Framework.Items}"
+                        SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
+                        ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}" />
                 </StackPanel>
             </ScrollViewer>

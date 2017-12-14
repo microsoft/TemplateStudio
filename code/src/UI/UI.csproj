@@ -357,6 +357,7 @@
     <Compile Include="V2Controls\SequentialFlow.xaml.cs">
       <DependentUpon>SequentialFlow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="V2Converters\StringVisibilityConverter.cs" />
     <Compile Include="V2Resources\StringRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -375,21 +376,26 @@
     <Compile Include="V2Services\Styles\VSStyleValuesProvider.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="V2ViewModels\Common\BasicInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\MetadataInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
-    <Compile Include="V2ViewModels\NewProject\DesignPatternViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\AddFeaturesViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\AddPagesViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\FrameworkViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\ProjectTypeViewModel.cs" />
-    <Compile Include="V2Views\NewProject\FeaturesPage.xaml.cs">
-      <DependentUpon>FeaturesPage.xaml</DependentUpon>
+    <Compile Include="V2Views\NewProject\AddFeaturesPage.xaml.cs">
+      <DependentUpon>AddFeaturesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewProject\PagesPage.xaml.cs">
-      <DependentUpon>PagesPage.xaml</DependentUpon>
+    <Compile Include="V2Views\NewProject\AddPagesPage.xaml.cs">
+      <DependentUpon>AddPagesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Views\NewProject\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewProject\DesignPatternPage.xaml.cs">
-      <DependentUpon>DesignPatternPage.xaml</DependentUpon>
+    <Compile Include="V2Views\NewProject\FrameworkPage.xaml.cs">
+      <DependentUpon>FrameworkPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Views\NewProject\PageToRemove.xaml.cs">
       <DependentUpon>PageToRemove.xaml</DependentUpon>
@@ -625,19 +631,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Views\NewProject\FeaturesPage.xaml">
+    <Page Include="V2Views\NewProject\AddFeaturesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Views\NewProject\PagesPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="V2Views\NewProject\AddPagesPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="V2Views\NewProject\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\NewProject\DesignPatternPage.xaml">
+    <Page Include="V2Views\NewProject\FrameworkPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -828,6 +834,7 @@
     <EmbeddedResource Include="V2Resources\StringRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

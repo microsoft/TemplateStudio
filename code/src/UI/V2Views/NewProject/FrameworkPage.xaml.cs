@@ -7,11 +7,11 @@ using Microsoft.Templates.UI.V2ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.V2Views.NewProject
 {
-    public partial class PagesPage : Page
+    public partial class FrameworkPage : Page
     {
-        public PagesPage()
+        public FrameworkPage()
         {
-            DataContext = MainViewModel.Instance;
+            DataContext = MainViewModel.Instance.Framework;
             InitializeComponent();
         }
     }

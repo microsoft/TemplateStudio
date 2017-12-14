@@ -61,6 +61,24 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add features.
+        /// </summary>
+        public static string AddFeaturesTitle {
+            get {
+                return ResourceManager.GetString("AddFeaturesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add pages.
+        /// </summary>
+        public static string AddPagesTitle {
+            get {
+                return ResourceManager.GetString("AddPagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string ButtonBack {
@@ -99,9 +117,9 @@ namespace Microsoft.Templates.UI.V2Resources {
         /// <summary>
         ///   Looks up a localized string similar to Select a design pattern.
         /// </summary>
-        public static string DesignPatternTitle {
+        public static string FrameworkTitle {
             get {
-                return ResourceManager.GetString("DesignPatternTitle", resourceCulture);
+                return ResourceManager.GetString("FrameworkTitle", resourceCulture);
             }
         }
         
@@ -117,9 +135,9 @@ namespace Microsoft.Templates.UI.V2Resources {
         /// <summary>
         ///   Looks up a localized string similar to Design pattern.
         /// </summary>
-        public static string ProjectDetailsDesignPatternSectionTitle {
+        public static string ProjectDetailsFrameworkSectionTitle {
             get {
-                return ResourceManager.GetString("ProjectDetailsDesignPatternSectionTitle", resourceCulture);
+                return ResourceManager.GetString("ProjectDetailsFrameworkSectionTitle", resourceCulture);
             }
         }
         

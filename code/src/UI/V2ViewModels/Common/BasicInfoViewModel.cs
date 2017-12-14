@@ -14,10 +14,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
     {
         private string _title;
         private string _description;
+        private string _author;
+        private int _order;
         private RelayCommand _detailsCommand;
         private RelayCommand _goBackCommand;
 
-        public readonly string Name;
+        public string Name { get; protected set; }
 
         public string Title
         {
@@ -31,16 +33,21 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _description, value);
         }
 
+        public string Author
+        {
+            get => _author;
+            set => SetProperty(ref _author, value);
+        }
+
+        public int Order
+        {
+            get => _order;
+            set => SetProperty(ref _order, value);
+        }
+
         public RelayCommand DetailsCommand => _detailsCommand ?? (_detailsCommand = new RelayCommand(OnDetails));
 
         public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack));
-
-        public BasicInfoViewModel(MetadataInfo metadataInfo)
-        {
-            Name = metadataInfo.Name;
-            Title = metadataInfo.DisplayName;
-            Description = metadataInfo.Description;
-        }
 
         private void OnDetails()
         {

@@ -7,11 +7,11 @@ using Microsoft.Templates.UI.V2ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.V2Views.NewProject
 {
-    public partial class DesignPatternPage : Page
+    public partial class AddFeaturesPage : Page
     {
-        public DesignPatternPage()
+        public AddFeaturesPage()
         {
-            DataContext = MainViewModel.Instance.DesignPattern;
+            DataContext = MainViewModel.Instance.AddFeatures;
             InitializeComponent();
         }
     }

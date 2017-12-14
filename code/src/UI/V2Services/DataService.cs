@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
@@ -11,12 +12,15 @@ namespace Microsoft.Templates.UI.V2Services
 {
     public static class DataService
     {
-        public static bool LoadProjectTypes(ObservableCollection<BasicInfoViewModel> projectTypes)
+        public static bool LoadProjectTypes(ObservableCollection<MetadataInfoViewModel> projectTypes)
         {
             projectTypes.Clear();
             if (GenContext.ToolBox.Repo.GetProjectTypes().Any())
             {
-                var data = GenContext.ToolBox.Repo.GetProjectTypes().Select(m => new BasicInfoViewModel(m)).ToList();
+                var data = GenContext.ToolBox.Repo.GetProjectTypes()
+                                                .Select(m => new MetadataInfoViewModel(m))
+                                                .OrderBy(pt => pt.Order)
+                                                .ToList();
 
                 foreach (var projectType in data.Where(p => !string.IsNullOrEmpty(p.Description)))
                 {
@@ -31,22 +35,43 @@ namespace Microsoft.Templates.UI.V2Services
             }
         }
 
-        public static bool LoadDesignPatterns(ObservableCollection<BasicInfoViewModel> designPatterns, string projectTypeName)
+        public static bool LoadFrameworks(ObservableCollection<MetadataInfoViewModel> frameworks, string projectTypeName)
         {
             var projectFrameworks = GenComposer.GetSupportedFx(projectTypeName);
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
                                                                 .Where(m => projectFrameworks.Contains(m.Name))
-                                                                .Select(m => new BasicInfoViewModel(m))
+                                                                .Select(m => new MetadataInfoViewModel(m))
+                                                                .OrderBy(f => f.Order)
                                                                 .ToList();
 
-            designPatterns.Clear();
+            frameworks.Clear();
 
             foreach (var item in targetFrameworks)
             {
-                designPatterns.Add(item);
+                frameworks.Add(item);
             }
 
-            return designPatterns.Any();
+            return frameworks.Any();
+        }
+
+        public static int LoadTemplateGroups(ObservableCollection<TemplateGroupViewModel> templateGroups, TemplateType templateType, string frameworkName)
+        {
+            if (!templateGroups.Any())
+            {
+                var templates = GenContext.ToolBox.Repo.Get(t =>
+                                    t.GetTemplateType() == templateType &&
+                                    t.GetFrameworkList().Contains(frameworkName) &&
+                                    !t.GetIsHidden())
+                                    .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, frameworkName)));
+
+                var groups = templates.GroupBy(t => t.Group)
+                    .Select(gr => new TemplateGroupViewModel(gr))
+                    .OrderBy(gr => gr.Name);
+                templateGroups.AddRange(groups);
+                return templates.Count();
+            }
+
+            return 0;
         }
     }
 }

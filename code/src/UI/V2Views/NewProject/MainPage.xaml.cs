@@ -7,9 +7,6 @@ using Microsoft.Templates.UI.V2ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.V2Views.NewProject
 {
-    /// <summary>
-    /// Interaction logic for MainPage.xaml
-    /// </summary>
     public partial class MainPage : Page
     {
         public MainPage()

@@ -7,9 +7,6 @@ using Microsoft.Templates.UI.V2ViewModels.Common;
 
 namespace Microsoft.Templates.UI.V2Views.NewProject
 {
-    /// <summary>
-    /// Interaction logic for TemplateInfoPage.xaml
-    /// </summary>
     public partial class TemplateInfoPage : Page
     {
         public BasicInfoViewModel ViewModel { get; }

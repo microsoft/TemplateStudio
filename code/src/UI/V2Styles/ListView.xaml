@@ -6,7 +6,7 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="WtsListViewItemStyle" TargetType="{x:Type ListViewItem}">
+    <Style x:Key="WtsListViewItemSingleSelection" TargetType="{x:Type ListViewItem}">
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="BorderBrush" Value="{Binding CardBorderDefault, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Background" Value="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" />
@@ -53,7 +53,7 @@
         <WrapPanel Margin="{StaticResource Margin_S_LeftRight}" Orientation="Horizontal"/>
     </ItemsPanelTemplate>
 
-    <Style x:Key="WtsListView" TargetType="{x:Type ListView}">
+    <Style x:Key="WtsListViewSingleSelection" TargetType="{x:Type ListView}">
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -64,7 +64,87 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="ItemsPanel" Value="{StaticResource WtsItemsPanelTemplate}" />
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemStyle}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemSingleSelection}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListView}">
+                    <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="0" SnapsToDevicePixels="true">
+                        <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </ScrollViewer>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <!--TODO Add IsEnabled visual states-->
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsGrouping" Value="true"/>
+                                <Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WtsListViewItemMultipleSelection" TargetType="{x:Type ListViewItem}">
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="{Binding CardBorderDefault, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Background" Value="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_S_LeftTopRightBottom}" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border
+                                    BorderThickness="3"
+                                    BorderBrush="{Binding CardBorderFocus, Source={x:Static services:UIStylesService.Instance}}"
+                                    Margin="{StaticResource Margin_S_LeftTopRightBottom}"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                    <Border x:Name="border" Margin="{TemplateBinding Margin}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding CardBorderSelected, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="border" Value="{Binding CardBackgroundSelected, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding CardBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="border" Value="{Binding CardBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WtsListViewMultipleSelection" TargetType="{x:Type ListView}">
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="ItemsPanel" Value="{StaticResource WtsItemsPanelTemplate}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemMultipleSelection}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
