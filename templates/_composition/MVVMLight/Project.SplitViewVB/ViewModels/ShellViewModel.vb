@@ -13,7 +13,7 @@ Namespace ViewModels
         Private Const WideStateMinWindowWidth As Double = 640
         Private Const PanoramicStateMinWindowWidth As Double = 1024
 
-        Public ReadOnly Property NavigationService() As NavigationServiceEx
+        Public ReadOnly Property NavigationService As NavigationServiceEx
             Get
                 Return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()
             End Get
