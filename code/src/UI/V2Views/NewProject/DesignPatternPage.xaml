@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
@@ -15,9 +16,21 @@
     </Page.Resources>
 
     <Grid>
-        <Viewbox StretchDirection="DownOnly">
-            <Image Source="/Microsoft.Templates.UI;component/Assets/Step2.png" />
-        </Viewbox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Text="{x:Static strings:StringRes.DesignPatternTitle}"
+            Margin="{StaticResource Margin_L_LeftRight_M_Top}"
+            Style="{StaticResource WtsTextBlockSectionTitle}" />
+        <ListView
+            Grid.Row="1"
+            Style="{StaticResource WtsListView}"
+            ItemsSource="{Binding Items}"
+            SelectedItem="{Binding Selected, Mode=TwoWay}"
+            ItemTemplate="{StaticResource WtsItemTemplateProjectTypeDesignPattern}" />
     </Grid>
 
 </Page>

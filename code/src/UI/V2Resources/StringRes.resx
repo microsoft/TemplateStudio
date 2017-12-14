@@ -129,6 +129,9 @@
   <data name="ButtonNext" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="DesignPatternTitle" xml:space="preserve">
+    <value>Select a design pattern</value>
+  </data>
   <data name="NewProjectTitle" xml:space="preserve">
     <value>New Universal Windows Platform app</value>
   </data>

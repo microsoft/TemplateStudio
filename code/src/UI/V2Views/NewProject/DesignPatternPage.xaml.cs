@@ -11,7 +11,7 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
     {
         public DesignPatternPage()
         {
-            DataContext = MainViewModel.Instance;
+            DataContext = MainViewModel.Instance.DesignPattern;
             InitializeComponent();
         }
     }

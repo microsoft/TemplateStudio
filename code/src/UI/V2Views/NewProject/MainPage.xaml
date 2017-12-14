@@ -57,8 +57,8 @@
                         Text="{x:Static strings:StringRes.ProjectDetailsDesignPatternSectionTitle}"/>
                     <ComboBox
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
-                        ItemsSource="{Binding ProjectType.Items}"
-                        SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
+                        ItemsSource="{Binding DesignPattern.Items}"
+                        SelectedItem="{Binding DesignPattern.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeDesignPattern}"
                         Style="{StaticResource WtsComboBoxStyle}" />
                 </StackPanel>

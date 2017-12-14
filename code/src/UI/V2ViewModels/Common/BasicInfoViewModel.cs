@@ -17,6 +17,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private RelayCommand _detailsCommand;
         private RelayCommand _goBackCommand;
 
+        public readonly string Name;
+
         public string Title
         {
             get => _title;
@@ -35,6 +37,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public BasicInfoViewModel(MetadataInfo metadataInfo)
         {
+            Name = metadataInfo.Name;
             Title = metadataInfo.DisplayName;
             Description = metadataInfo.Description;
         }

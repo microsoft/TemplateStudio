@@ -34,9 +34,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel();
 
+        public DesignPatternViewModel DesignPattern { get; } = new DesignPatternViewModel();
+
         private MainViewModel()
         {
             SummaryImage = "/Microsoft.Templates.UI;component/Assets/PaneStep1-2.png";
+            ProjectType.ProjectTypeChanged += OnProjectTypeChanged;
         }
 
         protected override void OnCancel()
@@ -92,6 +95,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         protected override void OnFinish()
         {
+        }
+
+        private void OnProjectTypeChanged(object sender, BasicInfoViewModel e)
+        {
+            DesignPattern.LoadData(e.Name);
         }
     }
 }

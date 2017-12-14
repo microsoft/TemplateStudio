@@ -97,6 +97,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a design pattern.
+        /// </summary>
+        public static string DesignPatternTitle {
+            get {
+                return ResourceManager.GetString("DesignPatternTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Universal Windows Platform app.
         /// </summary>
         public static string NewProjectTitle {

@@ -30,5 +30,23 @@ namespace Microsoft.Templates.UI.V2Services
                 return false;
             }
         }
+
+        public static bool LoadDesignPatterns(ObservableCollection<BasicInfoViewModel> designPatterns, string projectTypeName)
+        {
+            var projectFrameworks = GenComposer.GetSupportedFx(projectTypeName);
+            var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
+                                                                .Where(m => projectFrameworks.Contains(m.Name))
+                                                                .Select(m => new BasicInfoViewModel(m))
+                                                                .ToList();
+
+            designPatterns.Clear();
+
+            foreach (var item in targetFrameworks)
+            {
+                designPatterns.Add(item);
+            }
+
+            return designPatterns.Any();
+        }
     }
 }

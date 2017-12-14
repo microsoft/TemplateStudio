@@ -7,35 +7,28 @@ using System.Linq;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
-using System;
 
 namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 {
-    public class ProjectTypeViewModel : Observable
+    public class DesignPatternViewModel : Observable
     {
         private BasicInfoViewModel _selected;
 
         public BasicInfoViewModel Selected
         {
             get => _selected;
-            set
-            {
-                SetProperty(ref _selected, value);
-                ProjectTypeChanged?.Invoke(this, value);
-            }
+            set => SetProperty(ref _selected, value);
         }
-
-        public event EventHandler<BasicInfoViewModel> ProjectTypeChanged;
 
         public ObservableCollection<BasicInfoViewModel> Items { get; } = new ObservableCollection<BasicInfoViewModel>();
 
-        public ProjectTypeViewModel()
+        public DesignPatternViewModel()
         {
         }
 
-        public void LoadData()
+        public void LoadData(string projectTypeName)
         {
-            if (DataService.LoadProjectTypes(Items))
+            if (DataService.LoadDesignPatterns(Items, projectTypeName))
             {
                 Selected = Items.First();
             }
