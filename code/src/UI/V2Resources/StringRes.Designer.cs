@@ -133,11 +133,29 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Features.
+        /// </summary>
+        public static string ProjectDetailsFeaturesSectionTitle {
+            get {
+                return ResourceManager.GetString("ProjectDetailsFeaturesSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Design pattern.
         /// </summary>
         public static string ProjectDetailsFrameworkSectionTitle {
             get {
                 return ResourceManager.GetString("ProjectDetailsFrameworkSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages.
+        /// </summary>
+        public static string ProjectDetailsPagesSectionTitle {
+            get {
+                return ResourceManager.GetString("ProjectDetailsPagesSectionTitle", resourceCulture);
             }
         }
         

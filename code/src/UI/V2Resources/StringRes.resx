@@ -149,9 +149,17 @@
     <value>New Universal Windows Platform app</value>
     <comment>Wizard title on WizardShell page</comment>
   </data>
+  <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
+    <value>Features</value>
+    <comment>Feature list header on project details</comment>
+  </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
     <value>Design pattern</value>
     <comment>Framework combobox header on project details</comment>
+  </data>
+  <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
+    <value>Pages</value>
+    <comment>Page list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
     <value>Project type</value>

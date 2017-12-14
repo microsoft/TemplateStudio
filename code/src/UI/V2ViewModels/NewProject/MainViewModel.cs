@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
@@ -33,10 +34,18 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public AddFeaturesViewModel AddFeatures { get; } = new AddFeaturesViewModel();
 
+        public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
+
         private MainViewModel()
         {
-            ProjectType.SelectionChanged += OnProjectTypeSelectionChanged;
-            Framework.SelectionChanged += OnFrameworkSelectionChanged;
+            EventService.Instance.OnProjectTypeChanged += OnProjectTypeSelectionChanged;
+            EventService.Instance.OnFrameworkChanged += OnFrameworkSelectionChanged;
+            EventService.Instance.OnTemplateClicked += OnTemplateClicked;
+            ValidationService.Initialize(TemplateSelection.GetNames);
+        }
+
+        private void OnFrameworkChanged()
+        {
         }
 
         protected override void OnCancel()
@@ -99,6 +108,15 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             AddPages.LoadData(framework.Name);
             AddFeatures.LoadData(framework.Name);
+        }
+
+        private void OnTemplateClicked(object sender, TemplateInfoViewModel template)
+        {
+            var newItem = TemplateSelection.Add(template);
+            if (newItem != null)
+            {
+                // Update count on TemplateInfoViewModel
+            }
         }
     }
 }

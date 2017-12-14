@@ -21,13 +21,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             set
             {
                 SetProperty(ref _selected, value);
-                SelectionChanged?.Invoke(this, value);
+                EventService.Instance.RaiseOnProjectTypeChanged(value);
             }
         }
 
         public ObservableCollection<MetadataInfoViewModel> Items { get; } = new ObservableCollection<MetadataInfoViewModel>();
-
-        public event EventHandler<MetadataInfoViewModel> SelectionChanged;
 
         public ProjectTypeViewModel()
         {

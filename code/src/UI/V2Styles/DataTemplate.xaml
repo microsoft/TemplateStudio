@@ -110,4 +110,10 @@
         </Grid>
     </DataTemplate>
 
+    <DataTemplate x:Key="WtsItemTemplateSavedTemplate">
+        <Grid Margin="{StaticResource Margin_M2_LeftTopRight}">
+            <TextBlock Text="{Binding Name}" Style="{StaticResource WtsTextBlockSavedTemplateName}"/>
+        </Grid>
+    </DataTemplate>
+
 </ResourceDictionary>

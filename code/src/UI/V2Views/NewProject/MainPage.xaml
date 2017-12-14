@@ -61,6 +61,23 @@
                         SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}" />
+
+                    <TextBlock
+                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                        Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                        Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}"/>
+                    <ItemsControl
+                        ItemsSource="{Binding TemplateSelection.Pages}"
+                        ItemTemplate="{StaticResource WtsItemTemplateSavedTemplate}"/>
+
+                    <TextBlock
+                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                        Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                        Text="{x:Static strings:StringRes.ProjectDetailsFeaturesSectionTitle}"/>
+                    <ItemsControl
+                        ItemsSource="{Binding TemplateSelection.Features}"
+                        ItemTemplate="{StaticResource WtsItemTemplateSavedTemplate}"/>
+
                 </StackPanel>
             </ScrollViewer>
         </Grid>
