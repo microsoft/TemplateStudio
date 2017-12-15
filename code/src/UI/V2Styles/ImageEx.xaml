@@ -11,4 +11,11 @@
         <Setter Property="FallbackImage" Value="/Microsoft.Templates.UI;component/Assets/DefaultIcon.png" />
     </Style>
 
+    <Style TargetType="controls:ImageEx" x:Key="WtsImageExProjectDetails" BasedOn="{StaticResource WtsImageEx}">
+        <Setter Property="MaxHeight" Value="25" />
+        <Setter Property="MaxWidth" Value="25" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
 </ResourceDictionary>

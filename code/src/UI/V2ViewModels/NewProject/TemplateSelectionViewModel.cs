@@ -28,8 +28,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             var items = template.TemplateType == Core.TemplateType.Page ? Pages : Features;
 
-            var newItem = new SavedTemplateViewModel();
-            newItem.Name = ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, true);
+            var newItem = new SavedTemplateViewModel()
+            {
+                Icon = template.Icon,
+                Name = ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, true)
+            };
             items.Add(newItem);
             return newItem;
         }

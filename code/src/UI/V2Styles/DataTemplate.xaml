@@ -10,6 +10,7 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ImageEx.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ListView.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBlock.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
@@ -123,7 +124,20 @@
 
     <DataTemplate x:Key="WtsItemTemplateSavedTemplate">
         <Grid Margin="{StaticResource Margin_M2_LeftTopRight}">
-            <TextBlock Text="{Binding Name}" Style="{StaticResource WtsTextBlockSavedTemplateName}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <controls:ImageEx
+                    Grid.Column="0"
+                    SourcePath="{Binding Icon}"
+                    Style="{StaticResource WtsImageExProjectDetails}" />
+                <TextBox
+                    Grid.Column="1"
+                    Text="{Binding Name}"
+                    Style="{StaticResource WtsTextBoxStyle}" />
+            </Grid>
         </Grid>
     </DataTemplate>
 

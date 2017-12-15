@@ -11,11 +11,18 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
     public class SavedTemplateViewModel : Observable
     {
         private string _name;
+        private string _icon;
 
         public string Name
         {
             get => _name;
             set => SetProperty(ref _name, value);
+        }
+
+        public string Icon
+        {
+            get => _icon;
+            set => SetProperty(ref _icon, value);
         }
 
         public SavedTemplateViewModel()

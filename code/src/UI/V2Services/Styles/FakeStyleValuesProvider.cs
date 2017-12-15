@@ -276,6 +276,27 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_66007ACC;
                 case "ComboBoxTextPressedColorKey":
                     return LightColorValues.Color_FF1E1E1E;
+
+                case "TextBoxBackgroundColorKey":
+                    return LightColorValues.Color_FFFFFFFF;
+                case "TextBoxBorderColorKey":
+                    return LightColorValues.Color_FFCCCEDB;
+                case "TextBoxTextColorKey":
+                    return LightColorValues.Color_FF1E1E1E;
+
+                case "TextBoxBackgroundDisabledColorKey":
+                    return LightColorValues.Color_FFEEEEF2;
+                case "TextBoxBorderDisabledColorKey":
+                    return LightColorValues.Color_FFCCCEDB;
+                case "TextBoxTextDisabledColorKey":
+                    return LightColorValues.Color_FFA2A4A5;
+
+                case "TextBoxBackgroundFocusedColorKey":
+                    return LightColorValues.Color_FFFFFFFF;
+                case "TextBoxBorderFocusedColorKey":
+                    return LightColorValues.Color_FF007ACC;
+                case "TextBoxTextFocusedColorKey":
+                    return LightColorValues.Color_FF1E1E1E;
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }

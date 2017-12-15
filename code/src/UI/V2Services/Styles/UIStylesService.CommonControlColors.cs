@@ -471,5 +471,80 @@ namespace Microsoft.Templates.UI.V2Services
             get { return (Brush)GetValue(ComboBoxTextPressedProperty); }
             set { SetValue(ComboBoxTextPressedProperty, value); }
         }
+
+        // TextBox Colors
+        public static readonly DependencyProperty TextBoxBackgroundProperty = DependencyProperty.Register("TextBoxBackground", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush TextBoxBackground
+        {
+            get { return (Brush)GetValue(TextBoxBackgroundProperty); }
+            set { SetValue(TextBoxBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty TextBoxTextProperty = DependencyProperty.Register("TextBoxText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush TextBoxText
+        {
+            get { return (Brush)GetValue(TextBoxTextProperty); }
+            set { SetValue(TextBoxTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty TextBoxBorderProperty = DependencyProperty.Register("TextBoxBorder", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush TextBoxBorder
+        {
+            get { return (Brush)GetValue(TextBoxBorderProperty); }
+            set { SetValue(TextBoxBorderProperty, value); }
+        }
+
+        // TextBox Disabled Colors
+        public static readonly DependencyProperty TextBoxBackgroundDisabledProperty = DependencyProperty.Register("TextBoxBackgroundDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush TextBoxBackgroundDisabled
+        {
+            get { return (Brush)GetValue(TextBoxBackgroundDisabledProperty); }
+            set { SetValue(TextBoxBackgroundDisabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty TextBoxBorderDisabledProperty = DependencyProperty.Register("TextBoxBorderDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush TextBoxBorderDisabled
+        {
+            get { return (Brush)GetValue(TextBoxBorderDisabledProperty); }
+            set { SetValue(TextBoxBorderDisabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty TextBoxTextDisabledProperty = DependencyProperty.Register("TextBoxTextDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush TextBoxTextDisabled
+        {
+            get { return (Brush)GetValue(TextBoxTextDisabledProperty); }
+            set { SetValue(TextBoxTextDisabledProperty, value); }
+        }
+
+        // TextBox Focused Colors
+        public static readonly DependencyProperty TextBoxBackgroundFocusedProperty = DependencyProperty.Register("TextBoxBackgroundFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush TextBoxBackgroundFocused
+        {
+            get { return (Brush)GetValue(TextBoxBackgroundFocusedProperty); }
+            set { SetValue(TextBoxBackgroundFocusedProperty, value); }
+        }
+
+        public static readonly DependencyProperty TextBoxBorderFocusedProperty = DependencyProperty.Register("TextBoxBorderFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush TextBoxBorderFocused
+        {
+            get { return (Brush)GetValue(TextBoxBorderFocusedProperty); }
+            set { SetValue(TextBoxBorderFocusedProperty, value); }
+        }
+
+        public static readonly DependencyProperty TextBoxTextFocusedProperty = DependencyProperty.Register("TextBoxTextFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush TextBoxTextFocused
+        {
+            get { return (Brush)GetValue(TextBoxTextFocusedProperty); }
+            set { SetValue(TextBoxTextFocusedProperty, value); }
+        }
     }
 }

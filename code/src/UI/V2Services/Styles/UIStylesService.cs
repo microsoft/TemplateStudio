@@ -187,6 +187,18 @@ namespace Microsoft.Templates.UI.V2Services
             ComboBoxTextHover = _stylesProvider.GetColor("CommonControlColors", "ComboBoxTextHoverColorKey");
             ComboBoxTextInputSelection = _stylesProvider.GetColor("CommonControlColors", "ComboBoxTextInputSelectionColorKey");
             ComboBoxTextPressed = _stylesProvider.GetColor("CommonControlColors", "ComboBoxTextPressedColorKey");
+
+            TextBoxBackground = _stylesProvider.GetColor("CommonControlColors", "TextBoxBackgroundColorKey");
+            TextBoxText = _stylesProvider.GetColor("CommonControlColors", "TextBoxTextColorKey");
+            TextBoxBorder = _stylesProvider.GetColor("CommonControlColors", "TextBoxBorderColorKey");
+
+            TextBoxBackgroundDisabled = _stylesProvider.GetColor("CommonControlColors", "TextBoxBackgroundDisabledColorKey");
+            TextBoxBorderDisabled = _stylesProvider.GetColor("CommonControlColors", "TextBoxBorderDisabledColorKey");
+            TextBoxTextDisabled = _stylesProvider.GetColor("CommonControlColors", "TextBoxTextDisabledColorKey");
+
+            TextBoxBackgroundFocused = _stylesProvider.GetColor("CommonControlColors", "TextBoxBackgroundFocusedColorKey");
+            TextBoxBorderFocused = _stylesProvider.GetColor("CommonControlColors", "TextBoxBorderFocusedColorKey");
+            TextBoxTextFocused = _stylesProvider.GetColor("CommonControlColors", "TextBoxTextFocusedColorKey");
         }
     }
 }

@@ -13,5 +13,6 @@
     </Page.Resources>
 
     <Grid>
+        <TextBox Style="{DynamicResource WtsTextBoxStyle}"/>
     </Grid>
 </Page>

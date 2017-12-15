@@ -252,6 +252,27 @@ namespace Microsoft.Templates.UI.V2Services
                     return GetColor(CommonControlsColors.ComboBoxTextInputSelectionColorKey);
                 case "ComboBoxTextPressedColorKey":
                     return GetColor(CommonControlsColors.ComboBoxTextPressedColorKey);
+
+                case "TextBoxBackgroundColorKey":
+                    return GetColor(CommonControlsColors.TextBoxBackgroundColorKey);
+                case "TextBoxBorderColorKey":
+                    return GetColor(CommonControlsColors.TextBoxBorderColorKey);
+                case "TextBoxTextColorKey":
+                    return GetColor(CommonControlsColors.TextBoxTextColorKey);
+
+                case "TextBoxBackgroundDisabledColorKey":
+                    return GetColor(CommonControlsColors.TextBoxBackgroundDisabledColorKey);
+                case "TextBoxBorderDisabledColorKey":
+                    return GetColor(CommonControlsColors.TextBoxBorderDisabledColorKey);
+                case "TextBoxTextDisabledColorKey":
+                    return GetColor(CommonControlsColors.TextBoxTextDisabledColorKey);
+
+                case "TextBoxBackgroundFocusedColorKey":
+                    return GetColor(CommonControlsColors.TextBoxBackgroundFocusedColorKey);
+                case "TextBoxBorderFocusedColorKey":
+                    return GetColor(CommonControlsColors.TextBoxBorderFocusedColorKey);
+                case "TextBoxTextFocusedColorKey":
+                    return GetColor(CommonControlsColors.TextBoxTextFocusedColorKey);
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
