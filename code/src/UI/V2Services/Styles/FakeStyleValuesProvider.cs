@@ -17,14 +17,14 @@ namespace Microsoft.Templates.UI.V2Services
         {
             switch (className)
             {
-                case "ThemedDialogColors":
-                    return GetThemedDialogColor(memberName);
-                case "CommonDocumentColors":
-                    return GetCommonDocumentColor(memberName);
-                case "CommonControlColors":
-                    return GetCommonControlColor(memberName);
-                case "ThemedCardColors":
-                    return GetThemedCardColor(memberName);
+                case "ThemedDialog":
+                    return GetColorFromThemedDialog(memberName);
+                case "CommonDocument":
+                    return GetColorFromCommonDocument(memberName);
+                case "CommonControls":
+                    return GetColorFromCommonControls(memberName);
+                case "ThemedCard":
+                    return GetColorFromThemedCard(memberName);
                 default:
                     throw new Exception($"Class name not recognized '{className}'");
             }
@@ -66,275 +66,275 @@ namespace Microsoft.Templates.UI.V2Services
             ThemeChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        private Brush GetThemedDialogColor(string memberName)
+        private Brush GetColorFromThemedDialog(string memberName)
         {
             switch (memberName)
             {
-                case "WindowPanelColorKey":
+                case "WindowPanel":
                     return LightColorValues.Color_FFFFFFFF;
-                case "WindowBorderColorKey":
+                case "WindowBorder":
                     return LightColorValues.Color_FFCCCEDB;
-                case "HeaderTextColorKey":
+                case "HeaderText":
                     return LightColorValues.Color_FF1E1E1E;
-                case "HyperlinkColorKey":
+                case "Hyperlink":
                     return LightColorValues.Color_FF0E70C0;
-                case "HyperlinkHoverColorKey":
+                case "HyperlinkHover":
                     return LightColorValues.Color_FF007ACC;
-                case "HyperlinkPressedColorKey":
+                case "HyperlinkPressed":
                     return LightColorValues.Color_FF0E70C0;
-                case "HyperlinkDisabledColorKey":
+                case "HyperlinkDisabled":
                     return LightColorValues.Color_FFA2A4A5;
-                case "SelectedItemActiveColorKey":
+                case "SelectedItemActive":
                     return LightColorValues.Color_FF007ACC;
-                case "SelectedItemInactiveColorKey":
+                case "SelectedItemInactive":
                     return LightColorValues.Color_FFCCCEDB;
-                case "ListItemMouseOverColorKey":
+                case "ListItemMouseOver":
                     return LightColorValues.Color_FFC9DEF5;
-                case "ListItemDisabledTextColorKey":
+                case "ListItemDisabledText":
                     return LightColorValues.Color_FFA2A4A5;
-                case "GridHeadingBackgroundColorKey":
+                case "GridHeadingBackground":
                     return LightColorValues.Color_00000000;
-                case "GridHeadingHoverBackgroundColorKey":
+                case "GridHeadingHoverBackground":
                     return LightColorValues.Color_00000000;
-                case "GridHeadingTextColorKey":
+                case "GridHeadingText":
                     return LightColorValues.Color_FF717171;
-                case "GridHeadingHoverTextColorKey":
+                case "GridHeadingHoverText":
                     return LightColorValues.Color_FF1E1E1E;
-                case "GridLineColorKey":
+                case "GridLine":
                     return LightColorValues.Color_FFCCCEDB;
-                case "SectionDividerColorKey":
+                case "SectionDivider":
                     return LightColorValues.Color_FFCCCEDB;
-                case "WindowButtonColorKey":
+                case "WindowButton":
                     return LightColorValues.Color_00000000;
-                case "WindowButtonHoverColorKey":
+                case "WindowButtonHover":
                     return LightColorValues.Color_FFC9DEF5;
-                case "WindowButtonDownColorKey":
+                case "WindowButtonDown":
                     return LightColorValues.Color_FF007ACC;
-                case "WindowButtonBorderColorKey":
+                case "WindowButtonBorder":
                     return LightColorValues.Color_00000000;
-                case "WindowButtonHoverBorderColorKey":
+                case "WindowButtonHoverBorder":
                     return LightColorValues.Color_FFC9DEF5;
-                case "WindowButtonDownBorderColorKey":
+                case "WindowButtonDownBorder":
                     return LightColorValues.Color_FF007ACC;
-                case "WindowButtonGlyphColorKey":
+                case "WindowButtonGlyph":
                     return LightColorValues.Color_FF1E1E1E;
-                case "WindowButtonHoverGlyphColorKey":
+                case "WindowButtonHoverGlyph":
                     return LightColorValues.Color_FF1E1E1E;
-                case "WindowButtonDownGlyphColorKey":
+                case "WindowButtonDownGlyph":
                     return LightColorValues.Color_FFFFFFFF;
-                case "WizardFooterColorKey":
+                case "WizardFooter":
                     return LightColorValues.Color_FFEFEFF2;
-                case "HeaderTextSecondaryColorKey":
+                case "HeaderTextSecondary":
                     return LightColorValues.Color_FF828282;
-                case "WizardFooterTextColorKey":
+                case "WizardFooterText":
                     return LightColorValues.Color_FF828282;
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
         }
 
-        private Brush GetCommonDocumentColor(string memberName)
+        private Brush GetColorFromCommonDocument(string memberName)
         {
             switch (memberName)
             {
-                case "ListItemTextColorKey":
+                case "ListItemText":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ListItemTextDisabledColorKey":
+                case "ListItemTextDisabled":
                     return LightColorValues.Color_FFA2A4A5;
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
         }
 
-        private Brush GetCommonControlColor(string memberName)
+        private Brush GetColorFromCommonControls(string memberName)
         {
             switch (memberName)
             {
-                case "ButtonColorKey":
+                case "Button":
                     return LightColorValues.Color_FFECECF0;
-                case "ButtonTextColorKey":
+                case "ButtonText":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ButtonBorderColorKey":
+                case "ButtonBorder":
                     return LightColorValues.Color_FFACACAC;
 
-                case "ButtonDefaultColorKey":
+                case "ButtonDefault":
                     return LightColorValues.Color_FFECECF0;
-                case "ButtonDefaultTextColorKey":
+                case "ButtonDefaultText":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ButtonBorderDefaultColorKey":
+                case "ButtonBorderDefault":
                     return LightColorValues.Color_FF3399FF;
 
-                case "ButtonDisabledColorKey":
+                case "ButtonDisabled":
                     return LightColorValues.Color_FFF5F5F5;
-                case "ButtonDisabledTextColorKey":
+                case "ButtonDisabledText":
                     return LightColorValues.Color_FFA2A4A5;
-                case "ButtonBorderDisabledColorKey":
+                case "ButtonBorderDisabled":
                     return LightColorValues.Color_FFCCCEDB;
 
-                case "ButtonFocusedColorKey":
+                case "ButtonFocused":
                     return LightColorValues.Color_FFC9DEF5;
-                case "ButtonFocusedTextColorKey":
+                case "ButtonFocusedText":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ButtonBorderFocusedColorKey":
+                case "ButtonBorderFocused":
                     return LightColorValues.Color_FF3399FF;
 
-                case "ButtonHoverColorKey":
+                case "ButtonHover":
                     return LightColorValues.Color_FFC9DEF5;
-                case "ButtonHoverTextColorKey":
+                case "ButtonHoverText":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ButtonBorderHoverColorKey":
+                case "ButtonBorderHover":
                     return LightColorValues.Color_FF3399FF;
 
-                case "ButtonPressedColorKey":
+                case "ButtonPressed":
                     return LightColorValues.Color_FF007ACC;
-                case "ButtonPressedTextColorKey":
+                case "ButtonPressedText":
                     return LightColorValues.Color_FFFFFFFF;
-                case "ButtonBorderPressedColorKey":
+                case "ButtonBorderPressed":
                     return LightColorValues.Color_FF007ACC;
 
-                case "ComboBoxBackgroundColorKey":
+                case "ComboBoxBackground":
                     return LightColorValues.Color_FFFFFFFF;
-                case "ComboBoxBackgroundDisabledColorKey":
+                case "ComboBoxBackgroundDisabled":
                     return LightColorValues.Color_FFEEEEF2;
-                case "ComboBoxBackgroundFocusedColorKey":
+                case "ComboBoxBackgroundFocused":
                     return LightColorValues.Color_FFFFFFFF;
-                case "ComboBoxBackgroundHoverColorKey":
+                case "ComboBoxBackgroundHover":
                     return LightColorValues.Color_FFFFFFFF;
-                case "ComboBoxBackgroundPressedColorKey":
+                case "ComboBoxBackgroundPressed":
                     return LightColorValues.Color_FFFFFFFF;
 
-                case "ComboBoxBorderColorKey":
+                case "ComboBoxBorder":
                     return LightColorValues.Color_FFCCCEDB;
-                case "ComboBoxBorderDisabledColorKey":
+                case "ComboBoxBorderDisabled":
                     return LightColorValues.Color_FFCCCEDB;
-                case "ComboBoxBorderFocusedColorKey":
+                case "ComboBoxBorderFocused":
                     return LightColorValues.Color_FF007ACC;
-                case "ComboBoxBorderHoverColorKey":
+                case "ComboBoxBorderHover":
                     return LightColorValues.Color_FF007ACC;
-                case "ComboBoxBorderPressedColorKey":
+                case "ComboBoxBorderPressed":
                     return LightColorValues.Color_FF007ACC;
 
-                case "ComboBoxGlyphColorKey":
+                case "ComboBoxGlyph":
                     return LightColorValues.Color_FF717171;
-                case "ComboBoxGlyphBackgroundColorKey":
+                case "ComboBoxGlyphBackground":
                     return LightColorValues.Color_FFFFFFFF;
-                case "ComboBoxGlyphBackgroundDisabledColorKey":
+                case "ComboBoxGlyphBackgroundDisabled":
                     return LightColorValues.Color_FFEEEEF2;
-                case "ComboBoxGlyphBackgroundFocusedColorKey":
+                case "ComboBoxGlyphBackgroundFocused":
                     return LightColorValues.Color_FFC9DEF5;
-                case "ComboBoxGlyphBackgroundHoverColorKey":
+                case "ComboBoxGlyphBackgroundHover":
                     return LightColorValues.Color_FFC9DEF5;
-                case "ComboBoxGlyphBackgroundPressedColorKey":
+                case "ComboBoxGlyphBackgroundPressed":
                     return LightColorValues.Color_FF007ACC;
-                case "ComboBoxGlyphDisabledColorKey":
+                case "ComboBoxGlyphDisabled":
                     return LightColorValues.Color_FFCCCEDB;
-                case "ComboBoxGlyphFocusedColorKey":
+                case "ComboBoxGlyphFocused":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ComboBoxGlyphHoverColorKey":
+                case "ComboBoxGlyphHover":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ComboBoxGlyphPressedColorKey":
+                case "ComboBoxGlyphPressed":
                     return LightColorValues.Color_FFFFFFFF;
 
-                case "ComboBoxListBackgroundColorKey":
+                case "ComboBoxListBackground":
                     return LightColorValues.Color_FFF6F6F6;
-                case "ComboBoxListBackgroundShadowColorKey":
+                case "ComboBoxListBackgroundShadow":
                     return LightColorValues.Color_19000000;
-                case "ComboBoxListBorderColorKey":
+                case "ComboBoxListBorder":
                     return LightColorValues.Color_FFCCCEDB;
-                case "ComboBoxListItemBackgroundHoverColorKey":
+                case "ComboBoxListItemBackgroundHover":
                     return LightColorValues.Color_FFC9DEF5;
-                case "ComboBoxListItemBorderHoverColorKey":
+                case "ComboBoxListItemBorderHover":
                     return LightColorValues.Color_FFC9DEF5;
-                case "ComboBoxListItemTextColorKey":
+                case "ComboBoxListItemText":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ComboBoxListItemTextHoverColorKey":
+                case "ComboBoxListItemTextHover":
                     return LightColorValues.Color_FF1E1E1E;
 
-                case "ComboBoxSelectionColorKey":
+                case "ComboBoxSelection":
                     return LightColorValues.Color_FF007ACC;
 
-                case "ComboBoxSeparatorColorKey":
+                case "ComboBoxSeparator":
                     return LightColorValues.Color_FFFFFFFF;
-                case "ComboBoxSeparatorDisabledColorKey":
+                case "ComboBoxSeparatorDisabled":
                     return LightColorValues.Color_FFEEEEF2;
-                case "ComboBoxSeparatorFocusedColorKey":
+                case "ComboBoxSeparatorFocused":
                     return LightColorValues.Color_FF007ACC;
-                case "ComboBoxSeparatorHoverColorKey":
+                case "ComboBoxSeparatorHover":
                     return LightColorValues.Color_FF007ACC;
-                case "ComboBoxSeparatorPressedColorKey":
+                case "ComboBoxSeparatorPressed":
                     return LightColorValues.Color_FF007ACC;
 
-                case "ComboBoxTextColorKey":
+                case "ComboBoxText":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ComboBoxTextDisabledColorKey":
+                case "ComboBoxTextDisabled":
                     return LightColorValues.Color_FFA2A4A5;
-                case "ComboBoxTextFocusedColorKey":
+                case "ComboBoxTextFocused":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ComboBoxTextHoverColorKey":
+                case "ComboBoxTextHover":
                     return LightColorValues.Color_FF1E1E1E;
-                case "ComboBoxTextInputSelectionColorKey":
+                case "ComboBoxTextInputSelection":
                     return LightColorValues.Color_66007ACC;
-                case "ComboBoxTextPressedColorKey":
+                case "ComboBoxTextPressed":
                     return LightColorValues.Color_FF1E1E1E;
 
-                case "TextBoxBackgroundColorKey":
+                case "TextBoxBackground":
                     return LightColorValues.Color_FFFFFFFF;
-                case "TextBoxBorderColorKey":
+                case "TextBoxBorder":
                     return LightColorValues.Color_FFCCCEDB;
-                case "TextBoxTextColorKey":
+                case "TextBoxText":
                     return LightColorValues.Color_FF1E1E1E;
 
-                case "TextBoxBackgroundDisabledColorKey":
+                case "TextBoxBackgroundDisabled":
                     return LightColorValues.Color_FFEEEEF2;
-                case "TextBoxBorderDisabledColorKey":
+                case "TextBoxBorderDisabled":
                     return LightColorValues.Color_FFCCCEDB;
-                case "TextBoxTextDisabledColorKey":
+                case "TextBoxTextDisabled":
                     return LightColorValues.Color_FFA2A4A5;
 
-                case "TextBoxBackgroundFocusedColorKey":
+                case "TextBoxBackgroundFocused":
                     return LightColorValues.Color_FFFFFFFF;
-                case "TextBoxBorderFocusedColorKey":
+                case "TextBoxBorderFocused":
                     return LightColorValues.Color_FF007ACC;
-                case "TextBoxTextFocusedColorKey":
+                case "TextBoxTextFocused":
                     return LightColorValues.Color_FF1E1E1E;
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
         }
 
-        private Brush GetThemedCardColor(string memberName)
+        private Brush GetColorFromThemedCard(string memberName)
         {
             switch (memberName)
             {
-                case "CardTitleTextColorKey":
+                case "CardTitleText":
                     return LightColorValues.Color_FF1E1E1E;
-                case "CardDescriptionTextColorKey":
+                case "CardDescriptionText":
                     return LightColorValues.Color_FF717171;
-                case "CardBackgroundDefaultColorKey":
+                case "CardBackgroundDefault":
                     return LightColorValues.Color_FFFFFFFF;
-                case "CardBackgroundFocusColorKey":
+                case "CardBackgroundFocus":
                     return LightColorValues.Color_FFFFFFFF;
-                case "CardBackgroundHoverColorKey":
+                case "CardBackgroundHover":
                     return LightColorValues.Color_FFEFEFF2;
-                case "CardBackgroundPressedColorKey":
+                case "CardBackgroundPressed":
                     return LightColorValues.Color_FFEFEFF2;
-                case "CardBackgroundSelectedColorKey":
+                case "CardBackgroundSelected":
                     return LightColorValues.Color_FFFFFFFF;
-                case "CardBackgroundDisabledColorKey":
+                case "CardBackgroundDisabled":
                     return LightColorValues.Color_FFF5F5F5;
-                case "CardBorderDefaultColorKey":
+                case "CardBorderDefault":
                     return LightColorValues.Color_FFBFBFBF;
-                case "CardBorderFocusColorKey":
+                case "CardBorderFocus":
                     return LightColorValues.Color_FF3399FF;
-                case "CardBorderHoverColorKey":
+                case "CardBorderHover":
                     return LightColorValues.Color_FF9A9A9A;
-                case "CardBorderPressedColorKey":
+                case "CardBorderPressed":
                     return LightColorValues.Color_FF007ACC;
-                case "CardBorderSelectedColorKey":
+                case "CardBorderSelected":
                     return LightColorValues.Color_FF007ACC;
-                case "CardBorderDisabledColorKey":
+                case "CardBorderDisabled":
                     return LightColorValues.Color_FFCCCEDB;
-                case "CardIconColorKey":
+                case "CardIcon":
                     return LightColorValues.Color_FF888D8F;
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
