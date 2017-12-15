@@ -1,5 +1,4 @@
 ﻿Imports Microsoft.Toolkit.Uwp.Notifications
-Imports System.Threading.Tasks
 Imports Windows.UI.Notifications
 Imports Windows.UI.StartScreen
 

@@ -18,7 +18,12 @@ namespace Param_RootNamespace
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(_container, typeof(ViewModels.Param_HomeNameViewModel), new Views.ShellPage());
+            return new ActivationService(_container, typeof(ViewModels.Param_HomeNameViewModel), new Lazy<UIElement>(CreateShell));
+        }
+
+        private UIElement CreateShell()
+        {
+            return new Views.ShellPage();
         }
 //}]}
     }

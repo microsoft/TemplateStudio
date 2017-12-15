@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic|MVVMLight & $projectType == TabbedPivot & wts.type==page"
+    "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic|MVVMLight|Prism & $projectType == TabbedPivot & wts.type==page"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -8,7 +8,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-    "wts.platform" : "Uwp",
+    "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro & identity == wts.Page.Chart|wts.Page.Chart.CodeBehind"
  },

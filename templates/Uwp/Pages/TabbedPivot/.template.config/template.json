@@ -11,7 +11,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "MVVMBasic|MVVMLight",
+    "wts.framework": "MVVMBasic|MVVMLight|Prism",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "8",
@@ -46,7 +46,7 @@
     },
     "setter": {
       "type": "parameter",
-      "replaces": "Set"
+      "replaces": "Param_Setter"
     }
   }
 }

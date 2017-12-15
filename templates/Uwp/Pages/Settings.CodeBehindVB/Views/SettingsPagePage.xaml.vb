@@ -1,7 +1,4 @@
 ﻿Imports Param_ItemNamespace.Services
-Imports Windows.ApplicationModel
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
 
 Namespace Views
     Public NotInheritable Partial Class SettingsPagePage
@@ -18,7 +15,7 @@ Namespace Views
             End Get
 
             Set
-                [Set](_elementTheme, value)
+                [Param_Setter](_elementTheme, value)
             End Set
         End Property
 
@@ -30,7 +27,7 @@ Namespace Views
             End Get
 
             Set
-                [Set](_versionDescription, value)
+                [Param_Setter](_versionDescription, value)
             End Set
         End Property
 

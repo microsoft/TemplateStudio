@@ -1,6 +1,4 @@
-﻿Imports System.Threading.Tasks
-Imports Windows.ApplicationModel.Activation
-Imports wts.DefaultProject.Services
+﻿Imports wts.DefaultProject.Services
 
 Namespace Activation
     Friend Class DefaultLaunchActivationHandler

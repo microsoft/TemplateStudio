@@ -53,6 +53,7 @@ So we encourage to use this solution for the general template authoring or code 
 
 ### Accesible UI
 
+
 Both the UI and the templates (generated code) must be accesible by definition. If you are going to collaborate in this space, please, be sure you have verified all accesibility rules defined in [Accessibility checklist](accesibility.md).
 
 ## Inside the Code folder
@@ -96,6 +97,7 @@ The following list shows which tests are executed in which build. Within the Tem
     * ExecutionSet=BuildCodeBehind 
     * ExecutionSet=BuildMVVMLight
     * ExecutionSet=BuildCaliburnMicro
+    * ExecutionSet=BuildPrism
     * ExecutionSet=BuildStyleCop
     * ExecutionSet=TemplateValidation
     * ExecutionSet=BuildRightClickWithLegacy

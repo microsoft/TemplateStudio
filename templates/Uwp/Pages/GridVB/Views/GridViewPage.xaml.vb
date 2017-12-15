@@ -1,6 +1,4 @@
-﻿Imports Windows.UI.Xaml.Controls
-
-Namespace Views
+﻿Namespace Views
     Public NotInheritable Partial Class GridViewPage
         Inherits Page
         ' TODO WTS: Change the grid as appropriate to your app.

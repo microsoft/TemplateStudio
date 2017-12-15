@@ -1,6 +1,4 @@
 ﻿Imports Windows.ApplicationModel.DataTransfer.ShareTarget
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
 Imports Param_ItemNamespace.ViewModels
 
 Namespace Views

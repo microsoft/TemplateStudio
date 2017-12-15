@@ -1,6 +1,4 @@
-﻿Imports Windows.UI.Xaml.Controls
-Imports System.Collections.ObjectModel
-Imports Param_ItemNamespace.Models
+﻿Imports Param_ItemNamespace.Models
 Imports Param_ItemNamespace.Services
 
 Namespace Views

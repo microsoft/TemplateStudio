@@ -1,0 +1,42 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [ "Universal" ],
+  "name": "Feedback Hub Link",
+  "groupIdentity": "wts.Feat.FeedbackHub",
+  "identity": "wts.Feat.FeedbackHub.Prism",
+  "description": "Add a link, on the settings page, to the Feedback Hub.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "Prism",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "8",
+    "wts.group": "UserInteraction",
+    "wts.dependencies":"wts.Page.Settings.Prism",
+    "wts.platform": "Uwp",
+    "wts.multipleInstance": "false",
+    "wts.rightClickEnabled":"false",
+    "wts.defaultInstance": "FeedbackHubFeature",
+    "wts.licenses": "[Microsoft Store Services SDK](https://marketplace.visualstudio.com/items?itemName=AdMediator.MicrosoftStoreServicesSDK)"
+  },
+  "sourceName": "FeedbackHubFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    },
+    "wts.Page.Settings.Prism": {
+      "type": "parameter",
+      "replaces": "Param_SettingsPageName",
+      "fileRename": "Param_SettingsPageName" 
+    }
+  }
+}
