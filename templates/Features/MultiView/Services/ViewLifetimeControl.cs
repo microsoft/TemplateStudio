@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
+using Param_ItemNamespace.Helpers;
 
 namespace Param_ItemNamespace.Services
 {
@@ -43,7 +44,7 @@ namespace Param_ItemNamespace.Services
 
                 if (releasedCopy)
                 {
-                    throw new InvalidOperationException("This view is being disposed");
+                    throw new InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized());
                 }
             }
 
@@ -87,7 +88,7 @@ namespace Param_ItemNamespace.Services
 
             if (releasedCopy)
             {
-                throw new InvalidOperationException("This view is being disposed");
+                throw new InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized());
             }
 
             return refCountCopy;
@@ -115,7 +116,7 @@ namespace Param_ItemNamespace.Services
 
             if (releasedCopy)
             {
-                throw new InvalidOperationException("This view is being disposed");
+                throw new InvalidOperationException("ExceptionViewLifeTimeControlViewDisposal".GetLocalized());
             }
 
             return refCountCopy;

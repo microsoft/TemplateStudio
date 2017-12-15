@@ -85,8 +85,7 @@ namespace Param_ItemNamespace.Services
         {
             if (_geolocator == null)
             {
-                throw new InvalidOperationException(
-                    "The StartListening method cannot be called before the InitializeAsync method is called and returns true.");
+                throw new InvalidOperationException("ExceptionLocationServiceStartListeningCanNotBeCalled".GetLocalized());
             }
 
             _geolocator.PositionChanged += GeolocatorOnPositionChanged;

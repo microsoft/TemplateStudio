@@ -2,19 +2,10 @@
     Public Class CameraControlEventArgs
         Inherits EventArgs
 
-        Private _Photo As String
-
         Public Property Photo As String
-            Get
-                Return _Photo
-            End Get
-            Set
-                _Photo = Value
-            End Set
-        End Property
 
-        Public Sub New(photo__1 As String)
-            Photo = photo__1
+        Public Sub New(photo_ As String)
+            Photo = photo_
         End Sub
     End Class
 End Namespace
