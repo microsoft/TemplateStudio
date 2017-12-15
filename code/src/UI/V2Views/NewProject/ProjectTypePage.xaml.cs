@@ -13,10 +13,6 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
         {
             DataContext = MainViewModel.Instance.ProjectType;
             InitializeComponent();
-            Loaded += (sender, args) =>
-            {
-                MainViewModel.Instance.ProjectType.LoadData();
-            };
         }
     }
 }

@@ -3,7 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
@@ -36,6 +40,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         protected abstract void OnFinish();
 
+        protected abstract Task OnTemplatesAvailableAsync();
+
         protected void SetCanGoBack(bool canGoBack)
         {
             _canGoBack = canGoBack;
@@ -46,6 +52,28 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             _canGoForward = canGoForward;
             GoForwardCommand.OnCanExecuteChanged();
+        }
+
+        public virtual async Task InitializeAsync()
+        {
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
+            try
+            {
+                await GenContext.ToolBox.Repo.SynchronizeAsync();
+            }
+            catch (Exception ex)
+            {
+                await AppHealth.Current.Error.TrackAsync(ex.ToString());
+                await AppHealth.Current.Exception.TrackAsync(ex);
+            }
+        }
+
+        private void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)
+        {
+            if (args.Status == SyncStatus.Updated)
+            {
+                OnTemplatesAvailableAsync();
+            }
         }
     }
 }

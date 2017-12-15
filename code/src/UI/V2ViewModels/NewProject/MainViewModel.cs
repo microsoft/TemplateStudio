@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
@@ -44,8 +45,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             ValidationService.Initialize(TemplateSelection.GetNames);
         }
 
-        private void OnFrameworkChanged()
+        public override async Task InitializeAsync()
         {
+            await base.InitializeAsync();
         }
 
         protected override void OnCancel()
@@ -117,6 +119,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             {
                 // Update count on TemplateInfoViewModel
             }
+        }
+
+        protected override Task OnTemplatesAvailableAsync()
+        {
+            ProjectType.LoadData();
+            return Task.CompletedTask;
         }
     }
 }

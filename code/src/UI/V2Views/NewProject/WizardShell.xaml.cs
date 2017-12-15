@@ -21,6 +21,10 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
             DataContext = MainViewModel.Instance;
             InitializeComponent();
             NavigationService.InitializeMainFrame(mainFrame, new MainPage());
+            Loaded += async (sender, args) =>
+            {
+                await MainViewModel.Instance.InitializeAsync();
+            };
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
