@@ -121,8 +121,8 @@ namespace Vsts2git
             {
                 title = buildInfo.message.text,
                 body = bodyBuilder.ToString(),
-                labels = buildInfo.resource.result == "failed" || buildInfo.resource.result == "partiallySucceeded" ? new string[] { "bug" } : new string[0],
-                assignees = new string[0]
+                labels = buildInfo.resource.result == "failed" || buildInfo.resource.result == "partiallySucceeded" ? new string[] { "bug", "vsts-build" } : new string[] { "vsts-build" },
+                    assignees = new string[0]
             };
 
             return issue;
