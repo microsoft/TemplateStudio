@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
-    prismMvvm:ViewModelLocator.AutoWireViewModel="True" 
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:Param_ItemNamespace.Models"
     mc:Ignorable="d">
@@ -27,7 +27,7 @@
         <FlipView
             x:Name="flipView"
             Visibility="Collapsed"
-            ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
+            ItemsSource="{x:Bind ViewModel.Source}"
             SelectedItem="{x:Bind ViewModel.SelectedImage, Mode=TwoWay}">
             <FlipView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">
