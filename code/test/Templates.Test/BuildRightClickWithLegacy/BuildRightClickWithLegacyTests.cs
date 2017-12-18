@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Test
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
         public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
-            var projectName = $"{projectType}{framework}AllLegacy";
+            var projectName = $"{ShortProjectType(projectType)}{framework}AllLegacy";
 
             Func<ITemplateInfo, bool> selector =
                t => t.GetTemplateType() == TemplateType.Project
