@@ -40,5 +40,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         }
 
         private void OnItemClick() => EventService.Instance.RaiseOnTemplateClicked(this);
+
+        public void UpdateSelection(SavedTemplateViewModel newTemplate)
+        {
+            // TODO mvegaca: Add visual efects on new template
+        }
     }
 }

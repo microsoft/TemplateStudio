@@ -4,8 +4,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
@@ -112,12 +115,21 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             AddFeatures.LoadData(framework.Name);
         }
 
-        private void OnTemplateClicked(object sender, TemplateInfoViewModel template)
+        private void OnTemplateClicked(object sender, TemplateInfoViewModel selectedTemplate)
         {
-            var newItem = TemplateSelection.Add(template);
-            if (newItem != null)
+            var newTemplate = TemplateSelection.Add(selectedTemplate);
+            if (newTemplate != null)
             {
                 // Update count on TemplateInfoViewModel
+                var groups = (selectedTemplate.TemplateType == TemplateType.Page) ? AddPages.Groups : AddFeatures.Groups;
+                foreach (var group in groups)
+                {
+                    var template = group.Items.FirstOrDefault(t => t == selectedTemplate);
+                    if (template != null)
+                    {
+                        template.UpdateSelection(newTemplate);
+                    }
+                }
             }
         }
 

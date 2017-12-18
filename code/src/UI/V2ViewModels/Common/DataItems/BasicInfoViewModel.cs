@@ -2,8 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2Views.NewProject;
@@ -64,6 +62,22 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private void OnGoBack()
         {
             NavigationService.GoBackMainFrame();
+        }
+
+        public override bool Equals(object obj)
+        {
+            var info = obj as BasicInfoViewModel;
+            if (info != null)
+            {
+                return Name.Equals(info.Name);
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

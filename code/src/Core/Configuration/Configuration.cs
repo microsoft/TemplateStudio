@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Core
 
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
 
-        public int VersionCheckingExpirationMinutes { get; set; } = 0;
+        public int VersionCheckingExpirationMinutes { get; set; } = 60; // TODO mvegaca
 
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
 

@@ -12,8 +12,8 @@
     </Style>
 
     <Style TargetType="controls:ImageEx" x:Key="WtsImageExProjectDetails" BasedOn="{StaticResource WtsImageEx}">
-        <Setter Property="MaxHeight" Value="25" />
-        <Setter Property="MaxWidth" Value="25" />
+        <Setter Property="MaxHeight" Value="20" />
+        <Setter Property="MaxWidth" Value="20" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>

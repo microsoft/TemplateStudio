@@ -48,7 +48,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string ProjectPath { get; private set; }
 
-        private bool _forceLocalTemplatesRefresh = true;
+        private bool _forceLocalTemplatesRefresh = false; // TODO mvegaca
 
         public bool ForceLocalTemplatesRefresh
         {
