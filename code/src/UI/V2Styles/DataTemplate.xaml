@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
-                    xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services">
+                    xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services"
+                    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.V2Extensions">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
@@ -14,6 +15,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <converters:StringVisibilityConverter x:Key="StringVisibilityConverter"/>
+    <converters:IntegerVisibilityConverter x:Key="IntegerVisibilityConverter"/>
 
     <DataTemplate x:Key="WtsItemTemplateProjectTypeFramework">
         <Grid Width="200" Height="230">
@@ -85,13 +87,25 @@
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Bottom">
                         <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
                             <TextBlock Text="Details" Style="{StaticResource WtsTextBlockHyperlink}" />
                         </Hyperlink>
                     </TextBlock>
+                    <Grid
+                        Grid.Column="1"
+                        Width="25"
+                        Height="25"
+                        VerticalAlignment="Bottom"
+                        Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}">
+                        <Ellipse
+                            Fill="{Binding CardIcon, Source={x:Static services:UIStylesService.Instance}}"/>
+                        <TextBlock
+                            Text="{Binding Count}"
+                            Style="{StaticResource WtsTextBlockCardTemplatesCount}" />
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
@@ -136,7 +150,8 @@
                 <TextBox
                     Grid.Column="1"
                     Text="{Binding Name}"
-                    Style="{StaticResource WtsTextBoxStyle}" />
+                    Style="{StaticResource WtsTextBoxStyle}"
+                    extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"/>
             </Grid>
         </Grid>
     </DataTemplate>

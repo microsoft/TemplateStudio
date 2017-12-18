@@ -127,6 +127,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                     var template = group.Items.FirstOrDefault(t => t == selectedTemplate);
                     if (template != null)
                     {
+                        newTemplate.UpdateSelection();
                         template.UpdateSelection(newTemplate);
                     }
                 }

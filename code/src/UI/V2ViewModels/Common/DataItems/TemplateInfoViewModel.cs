@@ -14,6 +14,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public class TemplateInfoViewModel : BasicInfoViewModel
     {
+        private int _count;
+
         public string Group { get; }
 
         public TemplateType TemplateType { get; }
@@ -21,6 +23,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public bool ItemNameEditable { get; }
 
         public ICommand ItemClickCommand { get; }
+
+        public int Count
+        {
+            get => _count;
+            set => SetProperty(ref _count, value);
+        }
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
         {
@@ -43,7 +51,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public void UpdateSelection(SavedTemplateViewModel newTemplate)
         {
-            // TODO mvegaca: Add visual efects on new template
+            Count++;
         }
     }
 }

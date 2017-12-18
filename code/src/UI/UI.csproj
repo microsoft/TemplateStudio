@@ -358,7 +358,9 @@
     <Compile Include="V2Controls\SequentialFlow.xaml.cs">
       <DependentUpon>SequentialFlow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="V2Converters\IntegerVisibilityConverter.cs" />
     <Compile Include="V2Converters\StringVisibilityConverter.cs" />
+    <Compile Include="V2Extensions\TextBoxExtensions.cs" />
     <Compile Include="V2Resources\StringRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

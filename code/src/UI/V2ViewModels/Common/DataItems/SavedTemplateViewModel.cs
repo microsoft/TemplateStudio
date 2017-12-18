@@ -12,6 +12,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
     {
         private string _name;
         private string _icon;
+        private bool _isFocused;
 
         public string Name
         {
@@ -25,8 +26,19 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _icon, value);
         }
 
+        public bool IsFocused
+        {
+            get => _isFocused;
+            set => SetProperty(ref _isFocused, value);
+        }
+
         public SavedTemplateViewModel()
         {
+        }
+
+        public void UpdateSelection()
+        {
+            IsFocused = true;
         }
     }
 }
