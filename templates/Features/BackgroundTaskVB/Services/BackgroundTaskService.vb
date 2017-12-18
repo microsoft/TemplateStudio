@@ -1,10 +1,4 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Threading.Tasks
-
-Imports Windows.ApplicationModel.Activation
-Imports Windows.ApplicationModel.Background
+﻿Imports Windows.ApplicationModel.Background
 
 Imports Param_RootNamespace.Activation
 Imports Param_RootNamespace.BackgroundTasks

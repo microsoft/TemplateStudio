@@ -1,0 +1,16 @@
+﻿<!--{**-->
+<!--This xml block adds a reference to Microsoft.Services.Store.SDK, Microsoft.Services.Store.Engagement and Microsoft.VCLibs to your project.-->
+<!--**}-->
+
+<!-- Nuget package references -->
+<!--{[{-->
+<PackageReference Include="Microsoft.Services.Store.SDK">
+  <Version>10.1705.16001</Version>
+</PackageReference>
+<SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0">
+  <Name>Microsoft Engagement Framework</Name>
+</SDKReference>
+<SDKReference Include="Microsoft.VCLibs, Version=14.0">
+  <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+</SDKReference>
+<!--}]}-->

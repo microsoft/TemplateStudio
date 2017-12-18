@@ -15,7 +15,7 @@ namespace Microsoft.Templates.UI.Extensions
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
 
             if (element.Opacity < 1.0)
@@ -38,7 +38,7 @@ namespace Microsoft.Templates.UI.Extensions
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
 
             if (element.Opacity > 0.0)
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.UI.Extensions
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
 
             if (element.ActualWidth != width)

@@ -1,8 +1,4 @@
-﻿Imports System.Threading.Tasks
-Imports Windows.ApplicationModel.Activation
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Param_ItemNamespace.Views
+﻿Imports Param_ItemNamespace.Views
 
 Namespace Activation
     Friend Class wts.ItemNameActivationHandler

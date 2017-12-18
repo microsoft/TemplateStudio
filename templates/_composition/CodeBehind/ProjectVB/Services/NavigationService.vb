@@ -1,7 +1,4 @@
-﻿Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Media.Animation
-Imports Windows.UI.Xaml.Navigation
+﻿Imports Windows.UI.Xaml.Media.Animation
 
 Namespace Services
     Public Module NavigationService

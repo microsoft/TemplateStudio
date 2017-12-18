@@ -1,12 +1,5 @@
-﻿Imports System.Collections.ObjectModel
-Imports System.Linq
-Imports System.Threading.Tasks
-
-Imports Windows.Storage
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
+﻿Imports Windows.Storage
 Imports Windows.UI.Xaml.Media.Animation
-Imports Windows.UI.Xaml.Navigation
 
 Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.Models
@@ -27,7 +20,7 @@ Namespace Views
                 Return _selectedImage
             End Get
             Set
-                [Set](_selectedImage, value)
+                [Param_Setter](_selectedImage, value)
                 ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewPage.ImageGalleryViewSelectedImageId, DirectCast(SelectedImage, SampleImage).ID)
             End Set
         End Property
@@ -37,7 +30,7 @@ Namespace Views
                 Return _source
             End Get
             Set
-                [Set](_source, value)
+                [Param_Setter](_source, value)
             End Set
         End Property
 

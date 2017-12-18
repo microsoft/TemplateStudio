@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Sample Data",
+    "description": "SampleDataService holds sample data used by the generated version of some pages.",
+    "identity": "wts.Feat.SampleDataService"
+}

@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.OrdinalIgnoreCase);
             var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.OrdinalIgnoreCase);
 
-            if (startIndex > 0 && endIndex > startIndex)
+            while (startIndex > 0 && endIndex > startIndex)
             {
                 // VB uses a single character (') to start the comment, C# uses two (//)
                 int commentIndicatorLength = mergeString[startIndex - 1] == '\'' ? 1 : 2;
@@ -142,6 +142,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     (endIndex - commentIndicatorLength) - (startIndex - commentIndicatorLength) - (MacroStartDelete.Length + commentIndicatorLength));
 
                 sourceString = sourceString.Replace(toRemove, string.Empty);
+                mergeString = mergeString.Substring(endIndex + MacroEndDelete.Length);
+                startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.InvariantCultureIgnoreCase);
+                endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.InvariantCultureIgnoreCase);
             }
 
             return sourceString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();
@@ -155,7 +158,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.OrdinalIgnoreCase);
             var endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.OrdinalIgnoreCase);
 
-            if (startIndex > 0 && endIndex > startIndex)
+            while (startIndex > 0 && endIndex > startIndex)
             {
                 // VB uses a single character (') to start the comment, C# uses two (//)
                 int commentIndicatorLength = mergeString[startIndex - 1] == '\'' ? 1 : 2;
@@ -168,6 +171,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 }
 
                 mergeString = mergeString.Remove(startIndex - commentIndicatorLength, lengthOfDeletion);
+                startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.InvariantCultureIgnoreCase);
+                endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.InvariantCultureIgnoreCase);
             }
 
             return mergeString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();

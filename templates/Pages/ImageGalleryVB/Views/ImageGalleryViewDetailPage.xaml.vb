@@ -1,7 +1,4 @@
-﻿Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
-Imports Param_ItemNamespace.Models
+﻿Imports Param_ItemNamespace.Models
 
 Namespace Views
     Public NotInheritable Partial Class ImageGalleryViewDetailPage

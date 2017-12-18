@@ -257,3 +257,8 @@ paket-files/
 *.sln.iml
 templates/_composition/_shared/Page.Chart.SampleDataService/Services/SampleDataService_postaction.cs
 /myModel.vsdx
+/code/SynchronizeFilesUsedByVisualBasicTemplates.ps1
+/code/PrismTests.playlist
+/code/AllButWhack.playlist
+/code/tools/Localization/Localization.sln
+/code/FinalTests.playlist

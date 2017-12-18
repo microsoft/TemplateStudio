@@ -1,12 +1,5 @@
 ﻿Imports wts.ItemName.Services
 Imports wts.ItemName.Helpers
-Imports System.Collections.ObjectModel
-Imports System.Linq
-Imports System.ComponentModel
-Imports System.Runtime.CompilerServices
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
 
 Namespace Views
     Public NotInheritable Partial Class ShellPage

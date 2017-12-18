@@ -1,6 +1,4 @@
 ﻿Imports Microsoft.Services.Store.Engagement
-Imports System.Threading.Tasks
-Imports Windows.ApplicationModel.Activation
 Imports Param_RootNamespace.Activation
 
 Namespace Services

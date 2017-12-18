@@ -1,6 +1,4 @@
 ﻿Imports Param_ItemNamespace.EventHandlers
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Media.Imaging
 
 Namespace Views
     Public NotInheritable Partial Class CameraViewPage

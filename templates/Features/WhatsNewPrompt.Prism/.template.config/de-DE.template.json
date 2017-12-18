@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "What's New Prompt",
+    "description": "Display a prompt when the app is first used after an update.",
+    "identity": "wts.Feat.WhatsNewPrompt.Prism"
+}

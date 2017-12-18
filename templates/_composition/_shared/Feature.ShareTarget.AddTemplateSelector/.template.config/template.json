@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & identity == wts.Feat.ShareTarget"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|Prism & identity == wts.Feat.ShareTarget|wts.Feat.ShareTarget.Prism"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

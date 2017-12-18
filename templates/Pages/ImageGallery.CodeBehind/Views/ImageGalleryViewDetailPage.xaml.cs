@@ -26,7 +26,7 @@ namespace Param_ItemNamespace.Views
             get => _selectedImage;
             set
             {
-                Set(ref _selectedImage, value);
+                Param_Setter(ref _selectedImage, value);
                 ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewPage.ImageGalleryViewSelectedImageId, ((SampleImage)SelectedImage).ID);
             }
         }
@@ -34,7 +34,7 @@ namespace Param_ItemNamespace.Views
         public ObservableCollection<SampleImage> Source
         {
             get => _source;
-            set => Set(ref _source, value);
+            set => Param_Setter(ref _source, value);
         }
 
         public ImageGalleryViewDetailPage()
