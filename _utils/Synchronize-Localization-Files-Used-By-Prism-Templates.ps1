@@ -22,7 +22,7 @@ function Format-Json([Parameter(Mandatory, ValueFromPipeline)][String] $json) {
 # This is needed as the files can't just be copied as they have Prism specific content.
 [string[]] $templatesPath = "..\templates\Pages","..\templates\Features";
 
-Get-ChildItem ..\templates\* -Recurse -include *template.json | where { $_.FullName -Match ".Prism\\" } |  % { 
+Get-ChildItem $templatesPath -Recurse -include *template.json | where { $_.FullName -Match ".Prism\\" } |  % { 
 
     $prismFile = $_.FullName;
     $csFile = $_.FullName -replace ".Prism\\", "\\"; 
