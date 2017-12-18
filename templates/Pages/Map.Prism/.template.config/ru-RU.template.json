@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Map",
-  "description": "The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location.",
-  "identity": "wts.Page.Map.Prism"
+    "author": "Microsoft",
+    "name": "Map",
+    "description": "Страница карты основана на Windows Map Control. Код включает добавление значка карты и получение местоположения.",
+    "identity": "wts.Page.Map.Prism"
 }
