@@ -1,4 +1,9 @@
 ﻿<Page
+    <!--^^-->
+    <!--{[{-->    
+    xmlns:fcu ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:cu ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
+    <!--}]}-->
     mc:Ignorable="d">
         <!--^^-->
         <!--{[{-->
@@ -15,7 +20,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
+                        <Setter Target="TitlePage.Margin" cu:Value="60,0,12,7" fcu:Value="12,0,12,7"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
