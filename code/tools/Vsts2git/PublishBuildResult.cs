@@ -34,6 +34,7 @@ namespace Vsts2git
             public Commiter commiter { get; set; }
             public string content { get; set; }
             public string sha { get; set; }
+            public string branch { get; set; }
         }
 
         class Issue
@@ -95,8 +96,9 @@ namespace Vsts2git
 
         private static async Task<BuildContent> SetupBuildContent(dynamic buildInfo, string repo, string owner, Binder binder)
         {
-             string name = $"{buildInfo?.resource?.definition?.id}.md";
+            string name = $"{buildInfo?.resource?.definition?.id}.md";
             string result = buildInfo?.resource?.result;
+            string branch = ConfigurationManager.AppSettings["ContentBranch"];
     
             string logsUrl = await Vsts2git.BuildContent.CopyLogsToBlob(buildInfo, binder);
             StringBuilder contentBuilder = Vsts2git.BuildContent.GetBuilderWithSummary(buildInfo);
@@ -113,12 +115,13 @@ namespace Vsts2git
 
                 commiter = new Commiter()
                 {
-                    name = "ralarcon",
-                    email = "ralarcon@microsoft.com"
+                    name = "wasteam",
+                    email = "wasteam@outlook.com"
                 },
                 message = "Vsts build completed",
                 content = base64,
-                sha = await GetContentSha(name, repo, owner)
+                sha = await GetContentSha(name, repo, owner),
+                branch = branch
             };
             return content;
         }
@@ -127,7 +130,14 @@ namespace Vsts2git
         {
             var buildPath = $"vsts-builds/{buildName}";
             string pat = ConfigurationManager.AppSettings["GithubPAT"];
-            string url = ConfigurationManager.AppSettings["ContentUrl"]?.Replace("%%ACCESS_TOKEN%%", pat).Replace("%%REPO%%", repo).Replace("%%OWNER%%", owner).Replace("%%PATH%%", buildPath);
+            string url = ConfigurationManager.AppSettings["ContentUrl"]?
+                .Replace("%%ACCESS_TOKEN%%", pat)
+                .Replace("%%REPO%%", repo)
+                .Replace("%%OWNER%%", owner)
+                .Replace("%%PATH%%", buildPath);
+                
+            url = url + $"&ref={ConfigurationManager.AppSettings["ContentBranch"]}";
+
             string sha = string.Empty;
 
             using (HttpClient client = new HttpClient())
@@ -151,6 +161,7 @@ namespace Vsts2git
             var buildPath = $"vsts-builds/{content.name}";
             string pat = ConfigurationManager.AppSettings["GithubPAT"];
             string url = ConfigurationManager.AppSettings["ContentUrl"].Replace("%%ACCESS_TOKEN%%", pat).Replace("%%REPO%%", repo).Replace("%%OWNER%%", owner).Replace("%%PATH%%", buildPath);
+
             string sha = string.Empty;
 
             using (HttpClient client = new HttpClient())
