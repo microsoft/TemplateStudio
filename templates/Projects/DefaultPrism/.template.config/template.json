@@ -12,8 +12,9 @@
     "wts.framework": "Prism",
     "wts.projecttype":"Blank|SplitView|TabbedPivot",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "1"
-  },
+    "wts.displayOrder": "1",
+    "wts.licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)"
+    },
   "sourceName": "wts.DefaultProject",
   "preferNameDirectory": true,
   "guids": [ "7cf740f7-735f-48ea-8b7b-3ffa4902371c", "be236938-efed-4037-b3f2-70788b43ca20" ],
