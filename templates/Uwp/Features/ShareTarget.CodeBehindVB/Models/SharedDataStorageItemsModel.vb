@@ -1,7 +1,4 @@
-﻿Imports System.Collections.Generic
-Imports Windows.UI.Xaml.Media
-
-Namespace Models
+﻿Namespace Models
     Public Class SharedDataStorageItemsModel
         Inherits SharedDataModelBase
 

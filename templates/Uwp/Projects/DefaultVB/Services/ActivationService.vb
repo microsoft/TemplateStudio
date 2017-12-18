@@ -1,11 +1,4 @@
-﻿Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Threading.Tasks
-Imports Windows.ApplicationModel.Activation
-Imports Windows.UI.Core
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
+﻿Imports Windows.UI.Core
 
 Imports wts.DefaultProject.Activation
 
@@ -13,12 +6,12 @@ Namespace Services
     ' For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     Friend Class ActivationService
         Private ReadOnly _app As App
-        Private ReadOnly _shell As UIElement
+        Private ReadOnly _shell As Lazy(Of UIElement)
         Private ReadOnly _defaultNavItem As Type
 
-        Public Sub New(app As App, defaultNavItem As Type, Optional shell As UIElement = Nothing)
+        Public Sub New(app As App, defaultNavItem As Type, Optional shell As Lazy(Of UIElement) = Nothing)
             _app = app
-            _shell = If(shell, New Frame())
+            _shell = shell
             _defaultNavItem = defaultNavItem
         End Sub
 
@@ -31,7 +24,7 @@ Namespace Services
                 ' just ensure that the window is active
                 If Window.Current.Content Is Nothing Then
                     ' Create a Frame to act as the navigation context and navigate to the first page
-                    Window.Current.Content = _shell
+                    Window.Current.Content = If(_shell?.Value, New Frame())
                     AddHandler NavigationService.NavigationFailed, Function(sender, e)
                         Throw e.Exception
                                                                 End Function

@@ -1,7 +1,4 @@
-﻿
-Imports System.Threading.Tasks
-Imports System.Windows.Input
-Imports Windows.ApplicationModel.DataTransfer
+﻿Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.ApplicationModel.DataTransfer.ShareTarget
 Imports GalaSoft.MvvmLight
 Imports GalaSoft.MvvmLight.Command

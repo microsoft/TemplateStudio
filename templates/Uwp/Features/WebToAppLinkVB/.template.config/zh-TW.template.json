@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Web to app link",
+  "description": "Web to App link associates your app with a website so that when someone opens a link to your website.",
+  "identity": "wts.Feat.WebToAppLink.VB"
+}

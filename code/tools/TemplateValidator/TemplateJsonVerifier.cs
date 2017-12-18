@@ -135,7 +135,7 @@ namespace TemplateValidator
             // The explicit values here are the ones that are currently in use.
             // In theory any string could be exported and used as a symbol but currently it's only these
             // If lots of templates start exporting new symbols it might be necessary to change how symbol keys are verified
-            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.CaliburnMicro", "wts.Page.Settings.VB", "wts.Page.Settings.CodeBehind.VB" };
+            var allValidSymbolKeys = new List<string>(paramValues) { "baseclass", "setter", "wts.Page.Settings", "wts.Page.Settings.CodeBehind", "wts.Page.Settings.Prism", "wts.Page.Settings.CaliburnMicro", "wts.Page.Settings.VB", "wts.Page.Settings.CodeBehind.VB" };
 
             foreach (var symbol in template.Symbols)
             {
@@ -242,7 +242,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsExportSetterTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "Set" }.Contains(tag.Value))
+            if (!new[] { "Set", "SetProperty" }.Contains(tag.Value))
             {
                 results.Add($"Unexpected value '{tag.Value}' specified in the wts.export.setter tag.");
             }
@@ -357,7 +357,7 @@ namespace TemplateValidator
             // This tag may contain a single value or multiple ones separated by the pipe character
             foreach (var frameworkValue in tag.Value.Split('|'))
             {
-                if (!new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro" }.Contains(frameworkValue))
+                if (!new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" }.Contains(frameworkValue))
                 {
                     results.Add($"Invalid value '{tag.Value}' specified in the wts.type tag.");
                 }

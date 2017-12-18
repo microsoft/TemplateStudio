@@ -1,8 +1,5 @@
 ﻿Imports Microsoft.WindowsAzure.Messaging
-Imports System.Threading.Tasks
-Imports Windows.ApplicationModel.Activation
 Imports Windows.Networking.PushNotifications
-
 Imports Param_RootNamespace.Activation
 
 Namespace Services

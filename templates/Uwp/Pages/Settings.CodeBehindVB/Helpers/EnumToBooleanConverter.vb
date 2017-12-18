@@ -1,6 +1,4 @@
-﻿Imports Windows.UI.Xaml.Data
-
-Namespace Helpers
+﻿Namespace Helpers
     Public Class EnumToBooleanConverter
         Implements IValueConverter
 

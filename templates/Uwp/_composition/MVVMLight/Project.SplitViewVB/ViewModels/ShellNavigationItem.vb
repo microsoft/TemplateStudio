@@ -1,7 +1,4 @@
 ﻿Imports GalaSoft.MvvmLight
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Media
 
 Namespace ViewModels
     Public NotInheritable Class ShellNavigationItem

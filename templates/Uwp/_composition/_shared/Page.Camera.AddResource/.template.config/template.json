@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Page.Camera|wts.Page.Camera.CodeBehind|wts.Page.Camera.CaliburnMicro"
+    "wts.compositionFilter": "identity == wts.Page.Camera|wts.Page.Camera.CodeBehind|wts.Page.Camera.CaliburnMicro|wts.Page.Camera.Prism"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

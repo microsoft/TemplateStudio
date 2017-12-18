@@ -1,7 +1,4 @@
-﻿Imports System.Windows.Input
-Imports Param_RootNamespace.Services
-Imports Windows.ApplicationModel
-Imports Windows.UI.Xaml
+﻿Imports Param_RootNamespace.Services
 
 Namespace ViewModels
     Public Class SettingsPageViewModel
@@ -16,7 +13,7 @@ Namespace ViewModels
             End Get
 
             Set
-                [Set](_elementTheme, value)
+                [Param_Setter](_elementTheme, value)
             End Set
         End Property
 
@@ -28,7 +25,7 @@ Namespace ViewModels
             End Get
 
             Set
-                [Set](_versionDescription, newValue := value)
+                [Param_Setter](_versionDescription, newValue := value)
             End Set
         End Property
 

@@ -1,8 +1,4 @@
-﻿Imports System.Windows.Input
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-
-Namespace ViewModels
+﻿Namespace ViewModels
     Public Class WebViewPageViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
         ' TODO WTS: Set the URI of the page to show by default
@@ -15,7 +11,7 @@ Namespace ViewModels
                 Return _source
             End Get
             Set
-                [Set](_source, value)
+                [Param_Setter](_source, value)
             End Set
         End Property
 
@@ -31,7 +27,7 @@ Namespace ViewModels
                     IsShowingFailedMessage = False
                 End If
 
-                [Set](_isLoading, value)
+                [Param_Setter](_isLoading, value)
                 IsLoadingVisibility = If(value, Visibility.Visible, Visibility.Collapsed)
             End Set
         End Property
@@ -43,7 +39,7 @@ Namespace ViewModels
                 Return _isLoadingVisibility
             End Get
             Set
-                [Set](_isLoadingVisibility, value)
+                [Param_Setter](_isLoadingVisibility, value)
             End Set
         End Property
 
@@ -59,7 +55,7 @@ Namespace ViewModels
                     IsLoading = False
                 End If
 
-                [Set](_isShowingFailedMessage, value)
+                [Param_Setter](_isShowingFailedMessage, value)
                 FailedMesageVisibility = If(value, Visibility.Visible, Visibility.Collapsed)
             End Set
         End Property
@@ -71,7 +67,7 @@ Namespace ViewModels
                 Return _failedMesageVisibility
             End Get
             Set
-                [Set](_failedMesageVisibility, value)
+                [Param_Setter](_failedMesageVisibility, value)
             End Set
         End Property
 

@@ -1,6 +1,4 @@
-﻿Imports Windows.UI.Xaml.Controls
-
-Namespace Views
+﻿Namespace Views
     Public NotInheritable Partial Class FirstRunDialog
         Inherits ContentDialog
         Public Sub New()

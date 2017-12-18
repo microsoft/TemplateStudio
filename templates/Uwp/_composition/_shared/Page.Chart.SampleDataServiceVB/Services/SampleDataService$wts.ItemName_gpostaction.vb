@@ -1,10 +1,6 @@
 ﻿'{**
 ' This code block adds the method `GetChartSampleData()` to the SampleDataService of your project.
 '**}
-'{[{
-Imports System.Linq
-'}]}
-
 Namespace Services
     Public Module SampleDataService
         '^^

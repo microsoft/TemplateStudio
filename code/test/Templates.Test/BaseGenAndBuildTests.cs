@@ -382,6 +382,9 @@ namespace Microsoft.Templates.Test
                 case "LegacyFrameworks":
                     result = context.Factory.Run(() => BuildRightClickWithLegacyFixture.GetProjectTemplatesAsync());
                     break;
+                case "Prism":
+                    result = context.Factory.Run(() => BuildPrismFixture.GetProjectTemplatesAsync(framework));
+                    break;
                 default:
                     result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync());
                     break;
@@ -413,6 +416,10 @@ namespace Microsoft.Templates.Test
 
                 case "CaliburnMicro":
                     result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    break;
+
+                case "Prism":
+                    result = context.Factory.Run(() => BuildPrismFixture.GetPageAndFeatureTemplatesAsync(framework));
                     break;
             }
 

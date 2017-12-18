@@ -1,7 +1,5 @@
 ﻿Imports Param_ItemNamespace.Views
 Imports Param_ItemNamespace.Helpers
-Imports System.Threading.Tasks
-Imports Windows.ApplicationModel
 
 Namespace Services
     Public NotInheritable Class FirstRunDisplayService
