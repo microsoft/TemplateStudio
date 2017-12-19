@@ -136,7 +136,7 @@ namespace wts.ItemName.ViewModels
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
-        private void ItemSelected(HamburgetMenuItemInvokedEventArgs  args)
+        private void ItemSelected(HamburgetMenuItemInvokedEventArgs args)
         {
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
