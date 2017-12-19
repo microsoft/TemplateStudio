@@ -32,7 +32,7 @@
     },
     {
       "path": ".\\Views\\FirstRunDialog.xaml.cs"
-    },
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {

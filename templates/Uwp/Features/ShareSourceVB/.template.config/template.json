@@ -28,7 +28,7 @@
       "path": ".\\Models\\ShareSourceFeatureItem.vb"
     },
     {
-      "path": ".\\Extensions\\DataRequestExtensions.vb"
+      "path": ".\\Helpers\\DataRequestExtensions.vb"
     }
   ],
   "symbols": {

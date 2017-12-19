@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "ImageGallery",
-  "description": "A page displaying a image gallery and allows user to navigate between gallery and image detail.",
-  "identity": "wts.Page.ImageGallery.Prism"
+    "author": "Microsoft",
+    "name": "ImageGallery",
+    "description": "画像ギャラリーを表示するページです。このページにより、ユーザーはギャラリーと画像の詳細の間を移動することができます。",
+    "identity": "wts.Page.ImageGallery.Prism"
 }

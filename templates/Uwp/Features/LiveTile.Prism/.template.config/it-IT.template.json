@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
     "name": "Live Tile",
-    "description": "Adds a sample to show updating the tile as well as code for working with multiple tiles.",
+    "description": "Aggiunge un esempio per mostrare l\u0027aggiornamento del riquadro e il codice per lavorare con più riquadri.",
     "identity": "wts.Feat.LiveTile.Prism"
 }
