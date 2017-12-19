@@ -10,7 +10,7 @@ Namespace ViewModels
 
         Private _sharedData As SharedDataViewModelBase
 
-        Public Property SharedData() As SharedDataViewModelBase
+        Public Property SharedData As SharedDataViewModelBase
             Get
                 Return _sharedData
             End Get
@@ -21,7 +21,7 @@ Namespace ViewModels
 
         Private _completeCommand As ICommand
 
-        Public ReadOnly Property CompleteCommand() As ICommand
+        Public ReadOnly Property CompleteCommand As ICommand
             Get
                 If _completeCommand Is Nothing Then
                     _completeCommand = New RelayCommand(AddressOf OnComplete)

@@ -9,7 +9,7 @@ Namespace ViewModels
         Inherits ViewModelBase
 
         '{[{
-        Public ReadOnly Property NavigationService() As NavigationServiceEx
+        Public ReadOnly Property NavigationService As NavigationServiceEx
             Get
                 Return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()
             End Get

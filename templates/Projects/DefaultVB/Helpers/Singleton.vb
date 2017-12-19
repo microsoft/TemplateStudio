@@ -6,7 +6,7 @@ Namespace Helpers
         End Sub
         Private Shared ReadOnly _instances As New ConcurrentDictionary(Of Type, T)()
 
-        Public Shared ReadOnly Property Instance() As T
+        Public Shared ReadOnly Property Instance As T
             Get
                 Return _instances.GetOrAdd(GetType(T), Function(t) New T())
             End Get

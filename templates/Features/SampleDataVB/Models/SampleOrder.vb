@@ -19,7 +19,7 @@
 
         Public ReadOnly Property SymbolAsChar As Char
             Get
-                Return CChar(Symbol)
+                Return ChrW(Symbol)
             End Get
         End Property
 
@@ -29,7 +29,7 @@
             End Get
         End Property
 
-        Public ReadOnly Property HashIdentTitle() As String
+        Public ReadOnly Property HashIdentTitle As String
             Get
                 Return GetHashCode().ToString() & "-title"
             End Get

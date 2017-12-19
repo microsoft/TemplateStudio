@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.Blank.VB|wts.Page.Settings.VB|wts.Page.TabbedPivot.VB|wts.Page.Chart.VB|wts.Page.Camera.VB"
+    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.Blank.VB|wts.Page.Settings.VB|wts.Page.TabbedPivot.VB|wts.Page.Chart.VB|wts.Page.ImageGallery.VB|wts.Page.Camera.VB|wts.Page.Grid.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

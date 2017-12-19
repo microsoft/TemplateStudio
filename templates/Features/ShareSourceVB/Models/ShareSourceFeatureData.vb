@@ -1,5 +1,4 @@
 ﻿Imports Windows.Storage
-Imports Param_ItemNamespace.Helpers
 
 Namespace Models
     Public Class ShareSourceFeatureData
@@ -12,7 +11,7 @@ Namespace Models
 
         Public Sub New(ByVal title As String, ByVal Optional desciption As String = Nothing)
             If String.IsNullOrEmpty(title) Then
-                Throw New ArgumentException("ExceptionShareSourceFeatureDataTitleIsNullOrEmpty".GetLocalized(), NameOf(title))
+                Throw New ArgumentException($"The parameter '{NameOf(title)}' can not be null or empty.")
             End If
 
             Items = New List(Of ShareSourceFeatureItem)()
@@ -22,7 +21,7 @@ Namespace Models
 
         Public Sub SetText(ByVal text As String)
             If String.IsNullOrEmpty(text) Then
-                Throw New ArgumentException("ExceptionShareSourceFeatureDataTitleIsNullOrEmpty".GetLocalized(), nameof(text))
+                Throw New ArgumentException($"The parameter '{NameOf(text)}' is null or empty")
             End If
 
             Items.Add(ShareSourceFeatureItem.FromText(text))
@@ -46,7 +45,7 @@ Namespace Models
 
         Public Sub SetHtml(ByVal html As String)
             If String.IsNullOrEmpty(html) Then
-                Throw New ArgumentException("ExceptionShareSourceFeatureDataHtmlIsNullOrEmpty".GetLocalized(), nameof(html))
+                Throw New ArgumentException($"Parameter '{NameOf(html)}' to share is null or empty.")
             End If
 
             Items.Add(ShareSourceFeatureItem.FromHtml(html))
@@ -54,7 +53,7 @@ Namespace Models
 
         Public Sub SetImage(ByVal image As StorageFile)
             If image Is Nothing Then
-                Throw New ArgumentNullException(NameOf(image))
+                Throw New ArgumentNullException($"{NameOf(image)}")
             End If
 
             Items.Add(ShareSourceFeatureItem.FromImage(image))
@@ -62,7 +61,7 @@ Namespace Models
 
         Public Sub SetStorageItems(ByVal storageItems As IEnumerable(Of IStorageItem))
             If storageItems Is Nothing OrElse Not storageItems.Any() Then
-                Throw New ArgumentException("ExceptionShareSourceFeatureDataStorageItemsIsNullOrEmpty".GetLocalized(), nameof(storageItems))
+                Throw New ArgumentException($"Paramter '{NameOf(storageItems)}' is null or does not contains any element.")
             End If
 
             Items.Add(ShareSourceFeatureItem.FromStorageItems(storageItems))
@@ -70,7 +69,7 @@ Namespace Models
 
         Public Sub SetDeferredContent(ByVal deferredDataFormatId As String, ByVal getDeferredDataAsyncFunc As Func(Of Task(Of Object)))
             If String.IsNullOrEmpty(deferredDataFormatId) Then
-                Throw New ArgumentException("ExceptionShareSourceFeatureDataDeferredDataFormatIdIsNullOrEmpty".GetLocalized(), nameof(deferredDataFormatId))
+                Throw New ArgumentException($"Parameter '{NameOf(deferredDataFormatId)}' to share is null or empty")
             End If
 
             Items.Add(ShareSourceFeatureItem.FromDeferredContent(deferredDataFormatId, getDeferredDataAsyncFunc))
