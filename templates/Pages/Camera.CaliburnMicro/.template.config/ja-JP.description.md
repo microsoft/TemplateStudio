@@ -1,3 +1,3 @@
-﻿A page for capturing a photo from the camera. Includes handling previewing, mirroring, and orientation.
+﻿カメラから写真をキャプチャするページです。プレビュー、ミラーリング、向きの処理を含みます。
 
-More details on using the MediaCapture class can be found in the [official docs](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture).
+MediaCapture クラスの詳細については、[公式マニュアル](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture) を参照してください。

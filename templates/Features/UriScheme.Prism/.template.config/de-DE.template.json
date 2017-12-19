@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
     "name": "Uri Scheme",
-    "description": "Add the ability to launch and deep link into the app with a custom URI scheme.",
+    "description": "Fügen Sie die Möglichkeit hinzu, die App zu starten und mit einem benutzerdefinierten URI-Schema einen Deep Link zur App zu erstellen.",
     "identity": "wts.Feat.UriScheme.Prism"
 }
