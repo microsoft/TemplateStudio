@@ -1,5 +1,5 @@
-﻿After you update your app it's important to tell the people using it about the changes you make. This feature will display a message to the person using it when the app is updated.
+﻿Dopo l'aggiornamento dell'app è importante comunicare alle persone che la utilizzano le modifiche apportate. Questa funzionalità visualizza un messaggio all'utente che utilizza l'app al momento dell'aggiornamento.
 
-The message displayed is fully customizable and can be used to give details about new features or bugs that have been fixed.
+Il messaggio visualizzato è completamente personalizzabile e può essere utilizzato per fornire dettagli sulle nuove funzionalità o sui bug risolti.
 
-Add this feature now so that it will be able to tell when it has been updated.
+Aggiungi ora questa funzionalità per permettere all'app di segnalare quando viene aggiornata.

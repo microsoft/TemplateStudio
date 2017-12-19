@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
     "name": "Background Task",
-    "description": "Add an in-process background task ready to run code even while the app is not in the foreground.",
+    "description": "Fügen Sie eine In-Process-Hintergrundaufgabe hinzu, um Code auszuführen, auch wenn die App nicht im Vordergrund ist.",
     "identity": "wts.Feat.BackgroundTask.Prism"
 }

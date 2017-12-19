@@ -3,7 +3,7 @@ Imports Windows.Storage
 Imports Windows.Storage.Streams
 Imports Param_ItemNamespace.Models
 
-Namespace Extensions
+Namespace Helpers
     Module DataRequestExtensions
         <Extension>
         Sub SetData(ByVal dataRequest As DataRequest, ByVal config As ShareSourceFeatureData)

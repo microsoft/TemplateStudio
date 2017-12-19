@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Param_ItemNamespace.Helpers;
 using Windows.Storage;
 
 namespace Param_ItemNamespace.Models
@@ -19,7 +20,7 @@ namespace Param_ItemNamespace.Models
         {
             if (string.IsNullOrEmpty(title))
             {
-                throw new ArgumentException($"The parameter '{nameof(title)}' can not be null or empty.");
+                throw new ArgumentException("ExceptionShareSourceFeatureDataTitleIsNullOrEmpty".GetLocalized(), nameof(title));
             }
 
             Items = new List<ShareSourceFeatureItem>();
@@ -31,7 +32,7 @@ namespace Param_ItemNamespace.Models
         {
             if (string.IsNullOrEmpty(text))
             {
-                throw new ArgumentException($"The parameter '{nameof(text)}' is null or empty");
+                throw new ArgumentException("ExceptionShareSourceFeatureDataTitleIsNullOrEmpty".GetLocalized(), nameof(text));
             }
 
             Items.Add(ShareSourceFeatureItem.FromText(text));
@@ -71,7 +72,7 @@ namespace Param_ItemNamespace.Models
         {
             if (string.IsNullOrEmpty(html))
             {
-                throw new ArgumentException($"Parameter '{nameof(html)}' to share is null or empty.");
+                throw new ArgumentException("ExceptionShareSourceFeatureDataHtmlIsNullOrEmpty".GetLocalized(), nameof(html));
             }
 
             Items.Add(ShareSourceFeatureItem.FromHtml(html));
@@ -81,7 +82,7 @@ namespace Param_ItemNamespace.Models
         {
             if (image == null)
             {
-                throw new ArgumentNullException($"{nameof(image)}");
+                throw new ArgumentNullException(nameof(image));
             }
 
             Items.Add(ShareSourceFeatureItem.FromImage(image));
@@ -91,7 +92,7 @@ namespace Param_ItemNamespace.Models
         {
             if (storageItems == null || !storageItems.Any())
             {
-                throw new ArgumentException($"Paramter '{nameof(storageItems)}' is null or does not contains any element.");
+                throw new ArgumentException("ExceptionShareSourceFeatureDataStorageItemsIsNullOrEmpty".GetLocalized(), nameof(storageItems));
             }
 
             Items.Add(ShareSourceFeatureItem.FromStorageItems(storageItems));
@@ -104,7 +105,7 @@ namespace Param_ItemNamespace.Models
         {
             if (string.IsNullOrEmpty(deferredDataFormatId))
             {
-                throw new ArgumentException($"Parameter '{nameof(deferredDataFormatId)}' to share is null or empty");
+                throw new ArgumentException("ExceptionShareSourceFeatureDataDeferredDataFormatIdIsNullOrEmpty".GetLocalized(), nameof(deferredDataFormatId));
             }
 
             Items.Add(ShareSourceFeatureItem.FromDeferredContent(deferredDataFormatId, getDeferredDataAsyncFunc));
