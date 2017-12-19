@@ -24,11 +24,8 @@ namespace Param_ItemNamespace.Views
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            if (e.NavigationMode == NavigationMode.Back)
-            {
-                previewImage.Visibility = Visibility.Visible;
-                ViewModel.SetAnimation();
-            }
+            previewImage.Visibility = Visibility.Visible;
+            ViewModel.SetAnimation();
         }
     }
 }
