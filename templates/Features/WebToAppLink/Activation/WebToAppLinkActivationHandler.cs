@@ -5,9 +5,11 @@ namespace Param_ItemNamespace.Activation
 {
     internal class WebToAppLinkActivationHandler : ActivationHandler<ProtocolActivatedEventArgs>
     {
-        // See detailed documentation about Web to App link
+        // See detailed documentation and samples about Web to App link
         // https://docs.microsoft.com/en-us/windows/uwp/launch-resume/web-to-app-linking
-        // TODO WTS: You must to update the Host Uri also on Package.appxmanifest
+        // https://blogs.windows.com/buildingapps/2016/10/14/web-to-app-linking-with-appurihandlers/
+        //
+        // TODO WTS: You must to update the Host Uri also on Package.appxmanifest XML (Right click > View Code)
         private const string Host = "myapp.website.com";
         private const string Section1 = "/MySection1";
         private const string Section2 = "/MySection2";

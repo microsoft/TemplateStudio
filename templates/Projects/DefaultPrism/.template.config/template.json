@@ -1,0 +1,64 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Default",
+  "groupIdentity": "wts.Proj.Default",
+  "identity": "wts.Proj.DefaultPrism",
+  "description": "",
+  "tags": {
+    "language": "C#",
+    "type": "project",
+    "wts.type": "project",
+    "wts.framework": "Prism",
+    "wts.projecttype":"Blank|SplitView|TabbedPivot",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)"
+    },
+  "sourceName": "wts.DefaultProject",
+  "preferNameDirectory": true,
+  "guids": [ "7cf740f7-735f-48ea-8b7b-3ffa4902371c", "be236938-efed-4037-b3f2-70788b43ca20" ],
+  "PrimaryOutputs":
+  [
+    { "path": "wts.DefaultProject.csproj" }
+  ],
+  "symbols":
+  {
+    "wts.userName":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_UserName"
+    },
+    "wts.wizardVersion":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Wizard.Version"
+    },
+    "wts.templatesVersion":
+    {
+      "type": "parameter",
+      "dataType": "string",
+      "replaces": "Param_Templates.Version"
+    },
+    "wts.generationProjectType":
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectType"
+    },
+    "wts.generationFramework":
+    {
+      "type": "parameter",
+      "replaces": "Param_Framework"
+    },
+    "copyrightYear": {
+        "type": "generated",
+        "generator": "now",
+        "replaces": "1976",
+        "parameters": {
+          "format": "yyyy"
+      }
+    }
+  }
+}

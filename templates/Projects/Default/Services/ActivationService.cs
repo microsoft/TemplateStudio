@@ -16,13 +16,13 @@ namespace wts.DefaultProject.Services
     internal class ActivationService
     {
         private readonly App _app;
-        private readonly UIElement _shell;
+        private readonly Lazy<UIElement> _shell;
         private readonly Type _defaultNavItem;
 
-        public ActivationService(App app, Type defaultNavItem, UIElement shell = null)
+        public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
             _app = app;
-            _shell = shell ?? new Frame();
+            _shell = shell;
             _defaultNavItem = defaultNavItem;
         }
 
@@ -38,7 +38,7 @@ namespace wts.DefaultProject.Services
                 if (Window.Current.Content == null)
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
-                    Window.Current.Content = _shell;
+                    Window.Current.Content = _shell?.Value ?? new Frame();
                     NavigationService.NavigationFailed += (sender, e) =>
                     {
                         throw e.Exception;

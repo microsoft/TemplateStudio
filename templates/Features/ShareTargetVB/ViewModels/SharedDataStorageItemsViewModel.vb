@@ -1,11 +1,6 @@
-﻿Imports System.Collections.ObjectModel
-Imports System.Threading.Tasks
-
-Imports Windows.ApplicationModel.DataTransfer
+﻿Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.ApplicationModel.DataTransfer.ShareTarget
 Imports Windows.Storage
-Imports Windows.UI.Xaml.Media
-Imports Windows.UI.Xaml.Media.Imaging
 
 Imports Param_ItemNamespace.Helpers
 

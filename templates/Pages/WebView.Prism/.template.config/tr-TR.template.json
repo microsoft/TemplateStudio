@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "Web View",
+    "description": "Web görünümü sayfası, bir görünümü Microsoft Edge işleme motorunu kullanarak web içeriğini işleyen uygulamanıza katıştırır.",
+    "identity": "wts.Page.WebView.Prism"
+}

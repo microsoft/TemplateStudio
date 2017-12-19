@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "Web View",
+    "description": "Die Webansichtseite integriert eine Ansicht in Ihre App, die Webinhalte mittels des Microsoft Edge-Renderingmoduls rendert.",
+    "identity": "wts.Page.WebView.Prism"
+}

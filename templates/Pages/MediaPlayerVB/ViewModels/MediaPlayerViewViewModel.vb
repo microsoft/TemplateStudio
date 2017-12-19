@@ -1,5 +1,4 @@
-﻿Imports System.Collections.ObjectModel
-Imports Windows.Media.Playback
+﻿Imports Windows.Media.Playback
 Imports Windows.Media.Core
 
 Namespace ViewModels
@@ -18,7 +17,7 @@ Namespace ViewModels
                 Return _source
             End Get
             Set
-                [Set](_source, value)
+                [Param_Setter](_source, value)
             End Set
         End Property
 
@@ -29,7 +28,7 @@ Namespace ViewModels
                 Return _posterSource
             End Get
             Set
-                [Set](_posterSource, newValue := value)
+                [Param_Setter](_posterSource, newValue := value)
             End Set
         End Property
 

@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "First Run Prompt",
+    "description": "Afficher une invite lorsque l\u0027application est utilisée pour la première fois.",
+    "identity": "wts.Feat.FirstRunPrompt.Prism"
+}

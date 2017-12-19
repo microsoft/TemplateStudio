@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "Web View",
+    "description": "網頁檢視頁面會將檢視內嵌在您的應用程式中，該應用程式使用 Microsoft Edge 轉譯引擎來轉譯網頁內容。",
+    "identity": "wts.Page.WebView.Prism"
+}

@@ -1,0 +1,3 @@
+﻿Azure Notification Hubs stellen ein benutzerfreundliches, plattformübergreifendes und skaliertes Push-Modul bereit. Mit einem einzigen plattformübergreifenden API-Aufruf können Sie auf einfache Weise über jede Cloud oder jedes Back-End vor Ort ausgerichtete und personalisierte Push-Benachrichtigungen an jede mobile Plattform senden.
+
+Weitere Informationen zu den ersten Schritten mit Azure Notification Hubs für UWP finden Sie unter [docs.microsoft.com] (https://docs.microsoft.com/de-de/azure/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification).  Allgemeine Informationen finden Sue auf der [Hauptseite für die Dokumentation] (https://docs.microsoft.com/de-de/azure/notification-hubs/notification-hubs-push-notification-overview).

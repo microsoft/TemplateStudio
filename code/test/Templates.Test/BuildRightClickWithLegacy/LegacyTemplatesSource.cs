@@ -14,8 +14,8 @@ namespace Microsoft.Templates.Test
 {
     public sealed class LegacyTemplatesSource : TemplatesSource
     {
-        private static string TemplatesVersion { get; } = "1.4.17291.05";
-        private string TemplatesPackageFileName { get; } = $"pro.version_{TemplatesVersion}.mstx";
+        private static string TemplatesVersion { get; } = "1.5.17334.07";
+        private string TemplatesPackageFileName { get; } = $"pro.Templates_{TemplatesVersion}.mstx";
 
         private readonly string _cdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 

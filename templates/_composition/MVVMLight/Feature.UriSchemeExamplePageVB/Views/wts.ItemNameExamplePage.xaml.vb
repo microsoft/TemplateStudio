@@ -1,8 +1,4 @@
-﻿Imports System.Runtime.CompilerServices
-Imports System.ComponentModel
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Navigation
-Imports Param_ItemNamespace.ViewModels
+﻿Imports Param_ItemNamespace.ViewModels
 
 Namespace Views
     ' TODO WTS: This page exists purely as an example of how to launch a specific page

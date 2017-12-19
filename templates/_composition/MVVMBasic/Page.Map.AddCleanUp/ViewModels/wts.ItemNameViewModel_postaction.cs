@@ -7,10 +7,10 @@
         //{[{
         public void Cleanup()
         {
-            if (locationService != null)
+            if (_locationService != null)
             {
-                locationService.PositionChanged -= LocationService_PositionChanged;
-                locationService.StopListening();
+                _locationService.PositionChanged -= LocationService_PositionChanged;
+                _locationService.StopListening();
             }
         }
         //}]}

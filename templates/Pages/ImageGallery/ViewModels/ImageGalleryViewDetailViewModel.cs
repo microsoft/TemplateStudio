@@ -24,7 +24,7 @@ namespace Param_ItemNamespace.ViewModels
             get => _selectedImage;
             set
             {
-                Set(ref _selectedImage, value);
+                Param_Setter(ref _selectedImage, value);
                 ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedImageId, ((SampleImage)SelectedImage).ID);
             }
         }
@@ -32,7 +32,7 @@ namespace Param_ItemNamespace.ViewModels
         public ObservableCollection<SampleImage> Source
         {
             get => _source;
-            set => Set(ref _source, value);
+            set => Param_Setter(ref _source, value);
         }
 
         public ImageGalleryViewDetailViewModel()

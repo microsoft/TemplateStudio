@@ -1,6 +1,4 @@
-﻿Imports System.Windows.Input
-Imports Windows.UI.Xaml.Media.Imaging
-Imports Param_ItemNamespace.Helpers
+﻿Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.EventHandlers
 
 Namespace ViewModels
@@ -15,7 +13,7 @@ Namespace ViewModels
                 Return _photo
             End Get
             Set
-                  [Set](_photo, value)
+                  [Param_Setter](_photo, value)
             End Set
         End Property
 

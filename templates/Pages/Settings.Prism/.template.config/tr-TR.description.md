@@ -1,0 +1,1 @@
+﻿Ayarlar sayfası, uygulamanız için koyu / açık tema ayarlama gibi yapılandırma ayarlarını eklemenizi önerdiğimiz sayfadır. Bu sayfada lisanslar, sürüm numarası ve gizlilik koşullarınız da yer alabilir.

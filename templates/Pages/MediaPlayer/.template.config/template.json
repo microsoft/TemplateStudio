@@ -11,7 +11,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "MVVMBasic|MVVMLight|CaliburnMicro",
+    "wts.framework": "MVVMBasic|MVVMLight|CaliburnMicro|Prism",
     "wts.version": "1.0.0",
     "wts.displayOrder": "4",
     "wts.genGroup": "0",    
@@ -45,7 +45,7 @@
     },
     "setter": {
       "type": "parameter",
-      "replaces": "Set"
+      "replaces": "Param_Setter"
     }
   }
 }
