@@ -33,6 +33,23 @@ namespace Microsoft.Templates.Test
             return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
         }
 
+        protected static string ShortProjectType(string projectType)
+        {
+            switch (projectType)
+            {
+                case "Blank":
+                    return "B";
+                case "SplitView":
+                    return "SV";
+                case "MasterDetailXamarin":
+                    return "MDX";
+                case "TabbedPivot":
+                    return "TP";
+                default:
+                    return projectType;
+            }
+        }
+
         protected static string ShortFramework(string framework)
         {
             switch (framework)
@@ -214,7 +231,7 @@ namespace Microsoft.Templates.Test
 
             finalName = Naming.Infer(finalName, validators);
 
-            var projectName = $"{projectType}{finalName}{ShortLanguageName(language)}";
+            var projectName = $"{ShortProjectType(projectType)}{finalName}{ShortLanguageName(language)}";
 
             ProjectName = projectName;
             DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
