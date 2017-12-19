@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Master/Detail",
-  "description": "The master-detail page has a master pane and a details pane for content.",
-  "identity": "wts.Page.MasterDetail.Prism"
+    "author": "Microsoft",
+    "name": "Master/Detail",
+    "description": "La página de maestro y detalles que tiene un panel maestro y un panel de detalles para el contenido.",
+    "identity": "wts.Page.MasterDetail.Prism"
 }

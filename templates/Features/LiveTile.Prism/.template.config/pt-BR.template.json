@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
     "name": "Live Tile",
-    "description": "Adds a sample to show updating the tile as well as code for working with multiple tiles.",
+    "description": "Adiciona um exemplo para mostrar a atualização do bloco, bem como o código para trabalhar com vários blocos.",
     "identity": "wts.Feat.LiveTile.Prism"
 }

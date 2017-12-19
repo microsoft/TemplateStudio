@@ -9,7 +9,7 @@ using Windows.Storage.Streams;
 
 using Param_ItemNamespace.Models;
 
-namespace Param_ItemNamespace.Extensions
+namespace Param_ItemNamespace.Helpers
 {
     // TODO WTS: Share Source Feature
     //  This extension, in conjuntion with the ShareSourceData class and ShareSourceItem, eases the development

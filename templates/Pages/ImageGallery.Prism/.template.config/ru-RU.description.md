@@ -1,1 +1,1 @@
-﻿A page displaying a image gallery and allows user to navigate between gallery and image detail.
+﻿Страница, на которой отображается коллекция изображений. Она позволяет пользователю переходить между коллекцией и сведениями о изображении.
