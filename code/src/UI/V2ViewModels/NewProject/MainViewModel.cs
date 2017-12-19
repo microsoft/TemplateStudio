@@ -3,13 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 using Microsoft.Templates.UI.V2Views.NewProject;
@@ -38,14 +34,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public AddFeaturesViewModel AddFeatures { get; } = new AddFeaturesViewModel();
 
-        public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
+        public UserSelection UserSelection { get; } = new UserSelection();
 
         private MainViewModel()
         {
             EventService.Instance.OnProjectTypeChanged += OnProjectTypeSelectionChanged;
             EventService.Instance.OnFrameworkChanged += OnFrameworkSelectionChanged;
             EventService.Instance.OnTemplateClicked += OnTemplateClicked;
-            ValidationService.Initialize(TemplateSelection.GetNames);
+            ValidationService.Initialize(UserSelection.GetNames);
         }
 
         public override async Task InitializeAsync()
@@ -113,11 +109,17 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             AddPages.LoadData(framework.Name);
             AddFeatures.LoadData(framework.Name);
+            InitializeUserSelection();
+        }
+
+        private void InitializeUserSelection()
+        {
+            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name);
         }
 
         private void OnTemplateClicked(object sender, TemplateInfoViewModel selectedTemplate)
         {
-            var newTemplate = TemplateSelection.Add(selectedTemplate);
+            var newTemplate = UserSelection.Add(TemplateOrigin.UserSelection, selectedTemplate);
             if (newTemplate != null)
             {
                 // Update count on TemplateInfoViewModel

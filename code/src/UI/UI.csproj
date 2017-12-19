@@ -393,7 +393,7 @@
     <Compile Include="V2ViewModels\NewProject\FrameworkViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\ProjectTypeViewModel.cs" />
-    <Compile Include="V2ViewModels\NewProject\TemplateSelectionViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\UserSelection.cs" />
     <Compile Include="V2Views\NewProject\AddFeaturesPage.xaml.cs">
       <DependentUpon>AddFeaturesPage.xaml</DependentUpon>
     </Compile>

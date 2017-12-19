@@ -67,7 +67,7 @@
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                         Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}"/>
                     <ItemsControl
-                        ItemsSource="{Binding TemplateSelection.Pages}"
+                        ItemsSource="{Binding UserSelection.Pages}"
                         ItemTemplate="{StaticResource WtsItemTemplateSavedTemplate}"/>
 
                     <TextBlock
@@ -75,7 +75,7 @@
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                         Text="{x:Static strings:StringRes.ProjectDetailsFeaturesSectionTitle}"/>
                     <ItemsControl
-                        ItemsSource="{Binding TemplateSelection.Features}"
+                        ItemsSource="{Binding UserSelection.Features}"
                         ItemTemplate="{StaticResource WtsItemTemplateSavedTemplate}"/>
 
                 </StackPanel>
