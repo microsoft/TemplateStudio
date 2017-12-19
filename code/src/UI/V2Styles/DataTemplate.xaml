@@ -18,7 +18,7 @@
     <converters:IntegerVisibilityConverter x:Key="IntegerVisibilityConverter"/>
 
     <DataTemplate x:Key="WtsItemTemplateProjectTypeFramework">
-        <Grid Width="200" Height="230">
+        <Grid Width="162" Height="190">
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
@@ -59,7 +59,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WtsItemTemplatePageFeature">
-        <Grid Width="200" Height="230">
+        <Grid>
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />

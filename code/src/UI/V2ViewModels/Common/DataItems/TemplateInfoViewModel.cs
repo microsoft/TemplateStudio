@@ -15,6 +15,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
     public class TemplateInfoViewModel : BasicInfoViewModel
     {
         private int _count;
+        private bool _hasMoreThanOne;
+        private bool _hasMoreThanTwo;
 
         public string Group { get; }
 
@@ -27,7 +29,24 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public int Count
         {
             get => _count;
-            set => SetProperty(ref _count, value);
+            set
+            {
+                SetProperty(ref _count, value);
+                HasMoreThanOne = value > 1;
+                HasMoreThanTwo = value > 2;
+            }
+        }
+
+        public bool HasMoreThanOne
+        {
+            private get => _hasMoreThanOne;
+            set => SetProperty(ref _hasMoreThanOne, value);
+        }
+
+        public bool HasMoreThanTwo
+        {
+            private get => _hasMoreThanTwo;
+            set => SetProperty(ref _hasMoreThanTwo, value);
         }
 
         public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)

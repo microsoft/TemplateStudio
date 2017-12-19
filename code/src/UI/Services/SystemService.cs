@@ -56,8 +56,8 @@ namespace Microsoft.Templates.UI.Services
 
         public(double width, double height) GetMainWindowSize()
         {
-            double width = 1277;
-            double height = 727;
+            double width = 1076; // 1277;
+            double height = 745; // 727
             double dpi = 0;
             if (Application.Current != null)
             {

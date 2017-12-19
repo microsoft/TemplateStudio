@@ -19,18 +19,18 @@
 
     <Grid Style="{StaticResource WtsGridMainPage}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="60" />
+            <RowDefinition Height="9066*" /><!--Main area-->
+            <RowDefinition Height="934*" /><!--Buttons area-->
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="20*"/><!--20% Sequential flow-->
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="57*"/><!--57% Selection area-->
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="23*"/><!--23% Project details-->
             </Grid.ColumnDefinitions>
-            <controls:SequentialFlow Step="{Binding Step}"/>
+            <controls:SequentialFlow Step="{Binding Step}" />
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
             <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
