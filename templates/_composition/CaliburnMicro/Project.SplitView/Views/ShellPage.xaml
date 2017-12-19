@@ -9,21 +9,25 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:cm="using:Caliburn.Micro"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:fcu ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:cu ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
-            <Grid Width="320" Height="40" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+            <Grid Width="320" Height="40">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Rectangle
+                <Grid fcu:Visibility="Collapsed" cu:Visibility="Visible">
+                    <Rectangle
                         Width="6"
                         Height="24"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Fill="{ThemeResource SystemControlForegroundAccentBrush}"
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
+                </Grid>
                 <Viewbox
                         Child="{x:Bind Icon}"
                         Margin="16,12"
@@ -95,6 +99,8 @@
 
     <controls:HamburgerMenu
             x:Name="NavigationMenu"
+            UseNavigationViewWhenPossible="True"
+            SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
             DisplayMode="{x:Bind ViewModel.DisplayMode, Mode=OneWay}"
             IsPaneOpen="{x:Bind ViewModel.IsPaneOpen, Mode=TwoWay}"
             ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
@@ -103,7 +109,7 @@
             OptionsItemsSource="{x:Bind ViewModel.SecondaryItems}"
             PaneBackground="{ThemeResource SystemControlBackgroundAltHighBrush}"
             PaneForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
-            cm:Message.Attach="[Event ItemClick] = [Action ItemSelected($eventArgs)]; [Event OptionsItemClick] = [Action ItemSelected($eventArgs)]"
+            cm:Message.Attach="[Event ItemInvoked] = [Action ItemSelected($eventArgs)]; [Event ItemInvoked] = [Action ItemSelected($eventArgs)]"
             >
         <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
             <Frame x:Name="shellFrame" DataContext="{x:Null}"/>
