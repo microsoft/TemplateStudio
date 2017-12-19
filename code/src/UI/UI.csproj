@@ -379,6 +379,7 @@
     <Compile Include="V2Services\Styles\UIStylesService.ThemedCardColors.cs" />
     <Compile Include="V2Services\Styles\UIStylesService.CommonControlColors.cs" />
     <Compile Include="V2Services\Styles\VSStyleValuesProvider.cs" />
+    <Compile Include="V2Services\SystemService.cs" />
     <Compile Include="V2Services\ValidationService.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\BasicInfoViewModel.cs" />

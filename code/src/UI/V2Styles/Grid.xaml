@@ -15,12 +15,12 @@
 
     <Style TargetType="Grid" x:Key="WtsGridSectionDividerHorizontal">
         <Setter Property="Background" Value="{Binding SectionDivider, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Height" Value="2" />
+        <Setter Property="Height" Value="1.5" />
     </Style>
 
     <Style TargetType="Grid" x:Key="WtsGridSectionDividerVertical">
         <Setter Property="Background" Value="{Binding SectionDivider, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Width" Value="2" />
+        <Setter Property="Width" Value="1.5" />
     </Style>
 
     <Style TargetType="Grid" x:Key="WtsGridSequentialFlowActive">
