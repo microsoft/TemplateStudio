@@ -1,3 +1,3 @@
-﻿The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿La page maître-détail comporte un volet principal et un volet de détails pour le contenu. Lorsqu'un élément de la liste maître est sélectionnée, le volet des détails est mis à jour. Ce modèle est fréquemment utilisé pour les e-mails et les répertoires d'adresse.
 
-More information about the master-detail pattern can be found [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details).
+Plus d'informations sur le modèle maître-détail sont disponibles à l'adresse [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details).

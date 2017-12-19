@@ -1,3 +1,3 @@
-﻿This creates an in-process background task. This will allow you to run code even while the app is not in the foreground. The in-process model enhances the application lifecycle with improved notifications for when your app is in the foreground or in the background.
+﻿To tworzy wewnątrzprocesowe zadanie w tle. Pozwala to uruchomić kod nawet wtedy, gdy aplikacja nie jest na pierwszym planie. Model wewnątrzprocesowy poprawia cykl życia aplikacji dzięki ulepszonym powiadomieniom wyświetlanym, gdy aplikacja jest na pierwszym planie lub w tle.
 
-To find out more about in-process background tasks, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task).
+Więcej na temat wewnątrzprocesowych zadań w tle można dowiedzieć się na stronie [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task).

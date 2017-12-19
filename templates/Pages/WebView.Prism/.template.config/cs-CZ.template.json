@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Web View",
-  "description": "The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine.",
-  "identity": "wts.Page.WebView.Prism"
+    "author": "Microsoft",
+    "name": "Web View",
+    "description": "Stránka webového zobrazení umožňuje vložit do vaší aplikace zobrazení, které vykresluje webový obsah pomocí vykreslovacího modulu prohlížeče Microsoft Edge.",
+    "identity": "wts.Page.WebView.Prism"
 }

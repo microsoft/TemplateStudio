@@ -1,3 +1,3 @@
-﻿This feature will display a message to the person using it when the app is used for the first time. You can use this to provide useful instructions or information to a person who hasn't used the app before.
+﻿Bu özellik, uygulama ilk kez kullanıldığında kullanıcı için bir ileti görüntüler. Bu özelliği, uygulamayı daha önce kullanmamış bir kişiye yararlı yönergeler veya bilgiler vermek için kullanabilirsiniz.
 
-The message displayed is fully customizable and can display text, images, or anything else.
+Görüntülenen ileti tamamen özelleştirilebilir ve metin, görüntü veya diğer öğeleri içerebilir.

@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
     "name": "Azure Notifications",
-    "description": "Register to receive and handle messages from Azure Notification Hubs.",
+    "description": "Proveďte registraci, která zajistí přijímání a zpracovávání zpráv z center oznámení Azure.",
     "identity": "wts.Feat.HubNotifications.Prism"
 }

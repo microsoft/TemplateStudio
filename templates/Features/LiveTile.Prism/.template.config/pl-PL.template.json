@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
     "name": "Live Tile",
-    "description": "Adds a sample to show updating the tile as well as code for working with multiple tiles.",
+    "description": "Dodaje próbkę do wyświetlania aktualizacji kafelków oraz kod do pracy z wieloma kafelkami.",
     "identity": "wts.Feat.LiveTile.Prism"
 }

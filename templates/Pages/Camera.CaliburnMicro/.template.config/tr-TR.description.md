@@ -1,3 +1,3 @@
-﻿A page for capturing a photo from the camera. Includes handling previewing, mirroring, and orientation.
+﻿Kamerayla bir fotoğraf çekmek için kullanılan sayfa. Önizleme, yansıtma ve yönlendirme işlevlerini içerir.
 
-More details on using the MediaCapture class can be found in the [official docs](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture).
+MediaCapture sınıfını kullanma hakkında daha fazla bilgi için [resmi belgelere](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture) bakın.
