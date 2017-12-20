@@ -18,8 +18,7 @@
         <TextBlock
             x:Name="TitlePage"
             x:Uid="GridView_Title"
-            FontSize="28" FontWeight="SemiLight" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center"
-            Margin="0,0,12,7"/>
+            Style="{StaticResource PageTitleStyle}" />
 
         <Grid
             Grid.Row="1"

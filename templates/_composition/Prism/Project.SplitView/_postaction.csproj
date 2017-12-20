@@ -1,6 +1,6 @@
 ﻿<!-- Nuget package references -->
 <!--{[{-->
 <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-  <Version>2.0.0</Version>
+      <Version>2.1.1</Version>
 </PackageReference>
 <!--}]}-->
