@@ -1,7 +1,4 @@
-﻿'{[{
-Imports Windows.UI.Xaml
-'}]}
-Namespace Views
+﻿Namespace Views
     Public NotInheritable Partial Class wts.ItemNamePage
         Inherits Page
         Public Sub New()

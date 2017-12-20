@@ -1,1 +1,67 @@
-<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><title>icon</title><polygon points="96.956 107.008 96.983 117.952 29.634 118.103 29.505 59.283 23.346 59.295 23.487 124.274 103.154 124.099 103.115 106.996 96.956 107.008"/><path d="M126.6362,25.72614l-5.39234,6.24645C106.77809,48.721,87.69289,50.09842,80.74571,49.97812l-.04812-23.66553L42.58133,66.98819,80.872,107.49837,80.81789,82.687c45.38825-6.50509,45.83636-48.2784,45.83636-48.70846ZM77.40445,76.90972l-2.75782.29473L74.67971,91.98,51.03824,66.97014,74.56843,41.861l.03007,13.735,2.67963.34886a58.09181,58.09181,0,0,0,42.08307-13.44325C116.68459,54.07726,107.67431,73.65568,77.40445,76.90972Z"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Capa_1"
+   data-name="Capa 1"
+   viewBox="0 0 48 48"
+   version="1.1"
+   sodipodi:docname="ShareSource.svg"
+   width="48"
+   height="48"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <metadata
+     id="metadata13">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>icon</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs11" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="986"
+     id="namedview9"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="6.2933333"
+     inkscape:cx="-29.643254"
+     inkscape:cy="33.572321"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Capa_1" />
+  <title
+     id="title2">icon</title>
+  <polygon
+     points="92.288,119.409 24.943,119.409 24.943,60.587 18.783,60.587 18.783,125.569 98.447,125.569 98.447,108.465 92.288,108.465 "
+     id="polygon4"
+     transform="matrix(0.42691891,0,0,0.42691891,-8.0188179,-8.0190122)" />
+  <path
+     inkscape:connector-curvature="0"
+     d="M 31.691497,26.967714 V 37.070976 L 48,19.741744 31.691497,2.4112315 V 13.00367 C 12.306689,15.738445 12.078151,33.572282 12.078151,33.755857 v 3.52311 l 2.308508,-2.661588 c 6.189838,-7.137375 14.3351,-7.684331 17.304838,-7.649665 z M 33.143623,15.473955 34.320989,15.3507 V 9.0414572 L 44.389585,19.741753 34.320989,30.440768 v -5.865012 l -1.1427,-0.150212 a 16.200151,16.200151 0 0 0 -1.99138,-0.103997 24.927731,24.927731 0 0 0 -15.98752,5.803365 c 1.154256,-4.940579 5.017608,-13.289986 17.944234,-14.650957 z"
+     id="path6"
+     style="stroke-width:0.42691892" />
+</svg>

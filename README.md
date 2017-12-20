@@ -19,13 +19,13 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 
 |Branch   |Gen Tests        |Full Tests       |WACK Tests       |
 |:--------|:---------------:|:---------------:|:---------------:|
-|master|[![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/141/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=141)|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/129/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=129)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/144/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=144)
-|dev|[![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/135/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=135)|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/128/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=128)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/142/badge)](https://winappstudio.visualstudio.com/DefaultCollection/Vegas/_build/index?definitionId=142)
+|master|[![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/141/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/141.md)|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/129/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/129.md)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/144/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/144.md)
+|dev|[![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/135/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/135.md)|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/128/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/128.md)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/142/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/142.md)
 
 
 
 > The builds include test verifications to validate the contributions:
-> * *CI Build*: Includes all unit test + minimum integration verifications (minumum generation + build + code style rules). Runs every PR requested / PR accepted.
+> * *CI Build*: Includes all unit test + minimum integration verifications (minimum generation + build + code style rules). Runs every PR requested / PR accepted.
 > * *Gen Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view. Runs every PR accepted and takes a bit to complete.
 > * *Full Tests*: Includes `Gen Tests` and actually builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed. 
 > * *Wack Tests*: Includes tests that run the App Certification Kit against the generated projects to ensure there are no issues blocking a submission to the store. Runs once nightly and takes quite a while to complete. 
@@ -63,7 +63,7 @@ Here is what we're currently thinking in our [roadmap](docs/roadmap.md).
 
 ## Contributing
 
-Do you want to contribute? We would love to have you help out.  Here are our [contribution guidelines](CONTRIBUTING.md).
+Do you want to contribute? We would love to have you help out. Here are our [contribution guidelines](CONTRIBUTING.md).
 
 ## Principles
 

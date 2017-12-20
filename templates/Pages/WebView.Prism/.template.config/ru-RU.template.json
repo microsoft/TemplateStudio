@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "Web View",
+    "description": "Страница веб-представления встраивает в ваше приложение представление, которое отображает веб-содержимое с помощью подсистемы отрисовки Microsoft Edge.",
+    "identity": "wts.Page.WebView.Prism"
+}

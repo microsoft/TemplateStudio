@@ -1,0 +1,3 @@
+﻿Prezentowanie klientom odpowiednich komunikatów we właściwym czasie nierzadko decyduje o sukcesie aplikacji. Centrum deweloperów systemu Windows jest opartą na danych platformą pozwalającą wysyłać powiadomienia wszystkim klientom lub tylko użytkownikom systemu Windows 10 spełniającym kryteria zdefiniowane w segmencie klienta.
+
+Aby dowiedzieć się więcej o powiadomieniach, przejdź na stronę [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/monetize/configure-your-app-to-receive-dev-center-notifications). Możesz też dowiedzieć się, jak [wysyłać powiadomienia użytkownikom aplikacji](https://docs.microsoft.com/en-us/windows/uwp/publish/send-push-notifications-to-your-apps-customers).

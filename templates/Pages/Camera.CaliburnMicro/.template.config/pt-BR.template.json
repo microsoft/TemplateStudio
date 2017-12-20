@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "Camera",
-  "description": "A page for capturing and displaying an image from the camera.",
+  "description": "Uma página para capturar e exibir uma imagem da câmera.",
   "identity": "wts.Page.Camera.CaliburnMicro"
 }

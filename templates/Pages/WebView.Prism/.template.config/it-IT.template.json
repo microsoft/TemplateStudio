@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "Web View",
+    "description": "La pagina della visualizzazione Web incorpora una vista dell\u0027app che esegue il rendering del contenuto Web utilizzando il motore di rendering Microsoft Edge.",
+    "identity": "wts.Page.WebView.Prism"
+}

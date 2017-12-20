@@ -3,7 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Packaging;
 
@@ -40,6 +42,56 @@ namespace WtsTool
             catch (Exception ex)
             {
                 error.WriteException(ex, "Unexpected exception creating templates package.");
+            }
+        }
+
+        internal static void Prepare(string prepareDir, IEnumerable<string> exclusions, string version, bool verbose, TextWriter output, TextWriter error)
+        {
+            output.WriteCommandHeader($"Preparing directory {prepareDir} for version {version}");
+
+            Version.TryParse(version, out Version v);
+            if (v != null)
+            {
+                DirectoryInfo prepareDirInfo = new DirectoryInfo(prepareDir);
+
+                if (prepareDirInfo.Exists)
+                {
+                    List<Regex> exclusionFilters = GetExclusionFilters(exclusions, output);
+
+                    List<string> excludedDirs = new List<string>();
+                    List<DirectoryInfo> includedDirs = new List<DirectoryInfo>();
+                    List<DirectoryInfo> allDirs = new List<DirectoryInfo>(prepareDirInfo.EnumerateDirectories("*", SearchOption.AllDirectories));
+
+                    ApplyFilters(exclusionFilters, excludedDirs, includedDirs, allDirs);
+
+                    if (excludedDirs.Count == 0 && exclusionFilters.Count > 0)
+                    {
+                        output.WriteCommandText("WARN: Preparation did not work. The exclusions do not filter any directory, please review the regular expresions.");
+                        return;
+                    }
+
+                    if (exclusionFilters.Count > 0 && (excludedDirs.Count + includedDirs.Count != allDirs.Count))
+                    {
+                        output.WriteCommandText($"WARN: Preparation did not work. The excluded dirs ({excludedDirs.Count}) plus the included dirs ({includedDirs.Count}) do not match the original dir count {allDirs.Count}");
+                        return;
+                    }
+
+                    ShowDirectoriesInfo(verbose, output, exclusionFilters, excludedDirs, includedDirs);
+
+                    var resultDir = PrepareResultDir(prepareDir, version, output);
+
+                    List<DirectoryInfo> toCopy = exclusionFilters.Count > 0 ? includedDirs : allDirs;
+
+                    MakeCopy(toCopy, prepareDir, resultDir, version, output);
+                }
+                else
+                {
+                    error.WriteCommandText($"WARN: The directory '{prepareDir}' does not exists");
+                }
+            }
+            else
+            {
+                error.WriteCommandText($"WAR: {version} is not a valid version number");
             }
         }
 
@@ -148,6 +200,136 @@ namespace WtsTool
 
             output.WriteLine();
             output.WriteCommandText($"Signature validation type: {validationType}");
+        }
+
+        private static void MakeCopy(List<DirectoryInfo> toCopy, string prepareDir, string resultDir, string version, TextWriter output)
+        {
+            output.WriteLine();
+            output.WriteCommandText("Copying directories...");
+            output.WriteLine();
+
+            int countDirs = 0;
+            int countFiles = 0;
+
+            ConsoleHelper.HideCursor();
+
+            var prepareDirPath = new DirectoryInfo(prepareDir).Parent.FullName;
+
+            toCopy.ForEach(d =>
+            {
+                foreach (var file in d.GetFiles("*", SearchOption.TopDirectoryOnly))
+                {
+                    var targetFolder = Path.GetDirectoryName(file.FullName.Replace(prepareDirPath, resultDir));
+
+                    output.WriteVerbose($"Copying file {file.FullName} to {targetFolder}");
+                    Fs.SafeCopyFile(file.FullName, targetFolder, true);
+                    countFiles++;
+                }
+                countDirs++;
+
+                output.WriteLine($"   {countDirs}/{toCopy.Count}...");
+                ConsoleHelper.OverrideWriteLine();
+            });
+            output.WriteLine();
+
+            File.WriteAllText(Path.Combine(prepareDir.Replace(prepareDirPath, resultDir), "version.txt"), version, System.Text.Encoding.UTF8);
+
+            output.WriteLine();
+            output.WriteCommandText($"Preparation for directory '{prepareDir}' done in '{resultDir}' ({countDirs} dirs and {countFiles} files).");
+
+            ConsoleHelper.ShowCursor();
+        }
+
+        private static string PrepareResultDir(string prepareDir, string version, TextWriter output)
+        {
+            var prepareDirPath = new DirectoryInfo(prepareDir).Parent.FullName;
+
+            var resultDir = Path.Combine(prepareDirPath, $"Preparation_v{version}");
+
+            if (Directory.Exists(resultDir))
+            {
+                output.WriteCommandText("The target directory already exists, cleaning...");
+                Fs.SafeDeleteDirectory(resultDir);
+            }
+            else
+            {
+                Fs.EnsureFolder(resultDir);
+            }
+
+            return resultDir;
+        }
+
+        private static void ShowDirectoriesInfo(bool verbose, TextWriter output, List<Regex> exclusionFilters, List<string> excludedDirs, List<DirectoryInfo> includedDirs)
+        {
+            if (exclusionFilters.Count > 0)
+            {
+                output.WriteLine();
+                output.WriteCommandText("EXCLUDED DIRS:");
+                output.WriteLine();
+                excludedDirs.ForEach(d => output.WriteCommandText(d));
+                output.WriteLine($"Total excluded dirs: {excludedDirs.Count}");
+                output.WriteLine();
+            }
+
+            if (verbose)
+            {
+                output.WriteLine();
+                output.WriteCommandText("INCLUDED DIRS:");
+                output.WriteLine();
+                includedDirs.ForEach(d => output.WriteCommandText(d.FullName));
+                output.WriteLine($"Total included dirs: {includedDirs.Count}");
+                output.WriteLine();
+            }
+        }
+
+        private static void ApplyFilters(List<Regex> exclusionFilters, List<string> excludedDirs, List<DirectoryInfo> includedDirs, List<DirectoryInfo> allDirs)
+        {
+            if (exclusionFilters.Count > 0)
+            {
+                foreach (var subDir in allDirs)
+                {
+                    bool exclude = true;
+                    foreach (var regex in exclusionFilters)
+                    {
+                        exclude = regex.IsMatch(subDir.Name) || excludedDirs.Contains(subDir.FullName);
+                        if (exclude)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (exclude)
+                    {
+                        if (!excludedDirs.Contains(subDir.FullName))
+                        {
+                            excludedDirs.Add(subDir.FullName);
+                            foreach (var child in subDir.GetDirectories("*", SearchOption.AllDirectories))
+                            {
+                                excludedDirs.Add(child.FullName);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        includedDirs.Add(subDir);
+                    }
+                }
+            }
+        }
+
+        private static List<Regex> GetExclusionFilters(IEnumerable<string> exclusions, TextWriter output)
+        {
+            List<Regex> exclusionFilters = new List<Regex>();
+            foreach (var exclusion in exclusions)
+            {
+                if (!string.IsNullOrWhiteSpace(exclusion))
+                {
+                    exclusionFilters.Add(new Regex(exclusion, RegexOptions.Compiled & RegexOptions.IgnoreCase & RegexOptions.CultureInvariant));
+                    output.WriteCommandText($"The regex {exclusion} will be applied to the target directory.");
+                }
+            }
+
+            return exclusionFilters;
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿Imports Windows.ApplicationModel.Activation
-Imports Windows.UI.Xaml
-Imports wts.DefaultProject.Services
+﻿Imports wts.DefaultProject.Services
 
 NotInheritable Partial Class App
     Inherits Application

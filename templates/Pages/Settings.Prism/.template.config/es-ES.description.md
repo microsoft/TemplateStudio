@@ -1,0 +1,1 @@
+﻿La página de configuración es la página en la que recomendamos poner las opciones de configuración para tu aplicación, como establecer un tema oscuro o claro. Esto también podría incluir licencias, número de versión y tus términos de privacidad.

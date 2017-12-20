@@ -65,6 +65,10 @@ namespace Microsoft.Templates.UI.Extensions
                     return StringRes.StatusPrepared;
                 case SyncStatus.NewVersionAvailable:
                     return StringRes.StatusNewVersionAvailable;
+                case SyncStatus.OverVersion:
+                    return StringRes.StatusOverVersionContent;
+                case SyncStatus.OverVersionNoContent:
+                    return StringRes.StatusOverVersionNoContent;
                 default:
                     return string.Empty;
             }

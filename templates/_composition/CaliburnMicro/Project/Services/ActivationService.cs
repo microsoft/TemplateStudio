@@ -18,9 +18,9 @@ namespace Param_RootNamespace.Services
     {
         private readonly WinRTContainer _container;
         private readonly Type _defaultNavItem;
-        private UIElement _shell;
+        private readonly Lazy<UIElement> _shell;
 
-        public ActivationService(WinRTContainer container, Type defaultNavItem, UIElement shell = null)
+        public ActivationService(WinRTContainer container, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
             _container = container;
             _shell = shell;
@@ -39,25 +39,23 @@ namespace Param_RootNamespace.Services
                 if (Window.Current.Content == null)
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
-                    if (_shell == null)
+                    if (_shell?.Value == null)
                     {
                         var frame = new Frame();
-                        _shell = frame;
-
                         NavigationService = _container.RegisterNavigationService(frame);
+                        Window.Current.Content = frame;
                     }
                     else
                     {
-                        var viewModel = ViewModelLocator.LocateForView(_shell);
+                        var viewModel = ViewModelLocator.LocateForView(_shell.Value);
 
-                        ViewModelBinder.Bind(viewModel, _shell, null);
+                        ViewModelBinder.Bind(viewModel, _shell.Value, null);
 
                         ScreenExtensions.TryActivate(viewModel);
 
                         NavigationService = _container.GetInstance<INavigationService>();
+                        Window.Current.Content = _shell?.Value;
                     }
-
-                    Window.Current.Content = _shell;
 
                     if (NavigationService != null)
                     {

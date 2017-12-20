@@ -12,7 +12,7 @@ namespace Param_ItemNamespace.Services
 {
     internal class ActivationService
     {
-        private async Task InitializeAsync()
+        private async Task StartupAsync()
         {
             //{[{
             await Singleton<StoreNotificationsFeatureService>.Instance.InitializeAsync();

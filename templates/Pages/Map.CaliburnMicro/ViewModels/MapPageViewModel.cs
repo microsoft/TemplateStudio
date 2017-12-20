@@ -16,10 +16,10 @@ namespace Param_ItemNamespace.ViewModels
         // TODO WTS: Specify your preferred default zoom level
         private const double DefaultZoomLevel = 17;
 
-        private readonly LocationService locationService;
+        private readonly LocationService _locationService;
 
         // TODO WTS: Specify your preferred default location if a geolock can't be found.
-        private readonly BasicGeoposition defaultPosition = new BasicGeoposition()
+        private readonly BasicGeoposition _defaultPosition = new BasicGeoposition()
         {
             Latitude = 47.609425,
             Longitude = -122.3417
@@ -30,7 +30,7 @@ namespace Param_ItemNamespace.ViewModels
         public double ZoomLevel
         {
             get { return _zoomLevel; }
-            set { Set(ref _zoomLevel, value); }
+            set { Param_Setter(ref _zoomLevel, value); }
         }
 
         private Geopoint _center;
@@ -38,7 +38,7 @@ namespace Param_ItemNamespace.ViewModels
         public Geopoint Center
         {
             get { return _center; }
-            set { Set(ref _center, value); }
+            set { Param_Setter(ref _center, value); }
         }
 
         private string _mapServiceToken;
@@ -46,13 +46,13 @@ namespace Param_ItemNamespace.ViewModels
         public string MapServiceToken
         {
             get { return _mapServiceToken; }
-            set { Set(ref _mapServiceToken, value); }
+            set { Param_Setter(ref _mapServiceToken, value); }
         }
 
         public MapPageViewModel()
         {
-            locationService = new LocationService();
-            Center = new Geopoint(defaultPosition);
+            _locationService = new LocationService();
+            Center = new Geopoint(_defaultPosition);
             ZoomLevel = DefaultZoomLevel;
         }
 
@@ -60,24 +60,24 @@ namespace Param_ItemNamespace.ViewModels
         {
             base.OnInitialize();
 
-            if (locationService != null)
+            if (_locationService != null)
             {
-                locationService.PositionChanged += LocationServicePositionChanged;
+                _locationService.PositionChanged += LocationServicePositionChanged;
 
-                var initializationSuccessful = await locationService.InitializeAsync();
+                var initializationSuccessful = await _locationService.InitializeAsync();
 
                 if (initializationSuccessful)
                 {
-                    await locationService.StartListeningAsync();
+                    await _locationService.StartListeningAsync();
                 }
 
-                if (initializationSuccessful && locationService.CurrentPosition != null)
+                if (initializationSuccessful && _locationService.CurrentPosition != null)
                 {
-                    Center = locationService.CurrentPosition.Coordinate.Point;
+                    Center = _locationService.CurrentPosition.Coordinate.Point;
                 }
                 else
                 {
-                    Center = new Geopoint(defaultPosition);
+                    Center = new Geopoint(_defaultPosition);
                 }
             }
 
@@ -93,10 +93,10 @@ namespace Param_ItemNamespace.ViewModels
         {
             base.OnDeactivate(close);
 
-            if (locationService != null)
+            if (_locationService != null)
             {
-                locationService.PositionChanged -= LocationServicePositionChanged;
-                locationService.StopListening();
+                _locationService.PositionChanged -= LocationServicePositionChanged;
+                _locationService.StopListening();
             }
         }
 

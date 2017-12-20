@@ -1,0 +1,3 @@
+﻿アプリはスタート メニューでタイルによって表されます。すべてのアプリにタイルがあります。新しい UWP (Universal Windows Platform) アプリ プロジェクトを Microsoft Visual Studio で作成するとき、アプリ名とロゴを表示する既定のタイルも作成されます。アプリを初めてインストールしたとき、このタイルが Windows に表示されます。アプリをインストールした後、通知によってタイルのコンテンツを変更することができます。たとえば、ニュースの見出しや最新の未読メッセージのタイトルなど、新しい情報をユーザーに伝えるためにタイルを変更することができます。
+
+ライブ タイルの詳細については、[docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-creating-tiles) を参照してください。さらに、通知チームでは、適応型ライブ タイルと通知のデザインに役立つ[視覚化アプリ](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) も用意しています。

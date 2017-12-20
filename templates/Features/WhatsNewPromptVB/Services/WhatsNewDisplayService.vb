@@ -1,7 +1,5 @@
 ﻿Imports Param_ItemNamespace.Views
 Imports Param_ItemNamespace.Helpers
-Imports System.Threading.Tasks
-Imports Windows.ApplicationModel
 
 Namespace Services
     ' For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/tree/master/docs/features/whats-new-prompt.md
@@ -24,7 +22,7 @@ Namespace Services
         End Function
 
         Private Function PackageVersionToReadableString(packageVersion As PackageVersion) As String
-            Return "{packageVersion.Major}.{packageVersion.Minor}.{packageVersion.Build}.{packageVersion.Revision}"
+            Return $"{packageVersion.Major}.{packageVersion.Minor}.{packageVersion.Build}.{packageVersion.Revision}"
         End Function
     End Module
 End Namespace

@@ -1,0 +1,3 @@
+﻿Le notifiche di tipo avviso popup adattive e interattive ti consentono di creare notifiche popup flessibili con più contenuto, immagini incorporate facoltative e interazione utente facoltativa. Puoi utilizzare immagini, pulsanti, input di testo, azioni e altro ancora.
+
+Per ulteriori informazioni sugli avvisi popup, visita [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-adaptive-interactive-toasts). Inoltre, il team di notifica ha a disposizione un'[app di visualizzazione](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) utile per progettare notifiche e riquadri animati adattivi.

@@ -18,7 +18,7 @@ namespace Param_ItemNamespace.ViewModels
         public IMediaPlaybackSource Source
         {
             get { return _source; }
-            set { Set(ref _source, value); }
+            set { Param_Setter(ref _source, value); }
         }
 
         private string _posterSource;
@@ -26,7 +26,7 @@ namespace Param_ItemNamespace.ViewModels
         public string PosterSource
         {
             get { return _posterSource; }
-            set { Set(ref _posterSource, value); }
+            set { Param_Setter(ref _posterSource, value); }
         }
 
         public MediaPlayerViewViewModel()

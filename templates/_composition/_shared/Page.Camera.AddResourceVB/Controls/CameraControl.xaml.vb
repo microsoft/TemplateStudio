@@ -1,13 +1,8 @@
-﻿Imports System.Linq
-Imports System.Threading.Tasks
+﻿Imports Param_ItemNamespace.Helpers
+Imports Param_ItemNamespace.EventHandlers
 
-Imports Param_ItemNamespace.Helpers
-
-Imports Windows.ApplicationModel
 Imports Windows.Devices.Enumeration
 Imports Windows.Devices.Sensors
-Imports Windows.Foundation
-Imports Windows.Graphics.Display
 Imports Windows.Graphics.Imaging
 Imports Windows.Media.Capture
 Imports Windows.Media.MediaProperties
@@ -15,9 +10,6 @@ Imports Windows.Storage
 Imports Windows.Storage.FileProperties
 Imports Windows.Storage.Streams
 Imports Windows.UI.Core
-Imports Windows.UI.Xaml
-Imports Param_ItemNamespace.EventHandlers
-Imports System.Windows.Input
 
 Namespace Controls
     Public NotInheritable Partial Class CameraControl

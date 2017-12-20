@@ -15,10 +15,11 @@ namespace Microsoft.Templates.UI.Generation
 {
     public class ProjectConfigInfo
     {
-        private const string FxMVVMBasic = "MVVMBasic";
-        private const string FxMVVMLight = "MVVMLight";
-        private const string FxCodeBehid = "CodeBehind";
-        private const string FxCaliburnMicro = "CaliburnMicro";
+        public const string FxMVVMBasic = "MVVMBasic";
+        public const string FxMVVMLight = "MVVMLight";
+        public const string FxCodeBehid = "CodeBehind";
+        public const string FxCaliburnMicro = "CaliburnMicro";
+        public const string FxPrism = "Prism";
 
         private const string ProjTypeBlank = "Blank";
         private const string ProjTypeSplitView = "SplitView";
@@ -121,6 +122,10 @@ namespace Microsoft.Templates.UI.Generation
             {
                 return FxCaliburnMicro;
             }
+            else if (IsPrism())
+            {
+                return FxPrism;
+            }
             else
             {
                 return string.Empty;
@@ -176,8 +181,9 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsTabbedPivot()
         {
-            return (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
-                && ExistsFileInProjectPath("Views", "PivotPage.xaml");
+            return ((ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
+                && ExistsFileInProjectPath("Views", "PivotPage.xaml")) || (ExistsFileInProjectPath("Constants", "PageTokens.cs")
+                && ExistsFileInProjectPath("Views", "PivotPage.xaml"));
         }
 
         private static bool IsCodeBehind()
@@ -229,13 +235,30 @@ namespace Microsoft.Templates.UI.Generation
             return false;
         }
 
+        private static bool IsPrism()
+        {
+            if (ExistsFileInProjectPath("Constants", "PageTokens.cs"))
+            {
+                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                foreach (string file in files)
+                {
+                    if (File.ReadAllText(file).Contains("<PackageReference Include=\"Prism.Unity\">"))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private static bool IsSplitView()
         {
             if (IsCSharpProject())
             {
-                return ExistsFileInProjectPath("Services", "ActivationService.cs")
-                    && ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                    && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs"));
+                return (ExistsFileInProjectPath("Services", "ActivationService.cs") && ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                    && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs")))
+                    || (ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs") && ExistsFileInProjectPath("Constants", "PageTokens.cs"));
             }
             else
             {
@@ -252,7 +275,18 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool ExistsFileInProjectPath(string subPath, string fileName)
         {
-            return Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, subPath), fileName, SearchOption.TopDirectoryOnly).Any();
+            try
+            {
+                return Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, subPath), fileName, SearchOption.TopDirectoryOnly).Count() > 0;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return false;
+            }
+            catch (FileNotFoundException)
+            {
+                return false;
+            }
         }
     }
 }

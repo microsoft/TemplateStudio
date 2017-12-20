@@ -1,0 +1,3 @@
+﻿La pagina della visualizzazione Web incorpora una vista dell'app che esegue il rendering del contenuto Web utilizzando il motore di rendering Microsoft Edge. I collegamenti ipertestuali possono anche essere presenti e funzionare in un controllo di visualizzazione Web.  Puoi utilizzare un controllo di visualizzazione Web per visualizzare contenuto HTML con formattazione RTF da un server Web remoto, codice generato in modo dinamico o file di contenuto nel pacchetto dell'app. Il contenuto con formattazione RTF può anche contenere codice script e comunicare tra script e codice dell'app.
+
+Per scoprire se questa soluzione è adatta a te, visita [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/web-view).

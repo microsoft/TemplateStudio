@@ -79,7 +79,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                                                                  && !t.GetIsHidden())
                                                        .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, MainViewModel.Current.ConfigFramework)));
 
-                var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order), OnSelectedItemChanged)).OrderBy(gr => gr.Title);
+                var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order), OnSelectedItemChanged)).OrderBy(gr => gr.Name);
 
                 TemplateGroups.Clear();
                 TemplateGroups.AddRange(groups);

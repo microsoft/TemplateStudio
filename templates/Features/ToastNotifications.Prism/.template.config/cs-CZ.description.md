@@ -1,0 +1,3 @@
+﻿Jde o adaptivní a interaktivní oznamování informačních zpráv, která vám umožňují vytvářet flexibilní, automaticky zobrazovaná oznámení s rozsáhlejším obsahem, volitelnými vloženými obrázky a volitelnými interakcemi s uživateli. Můžete používat obrázky, tlačítka, textové vstupy, akce a další prvky.
+
+Další informace o informačních zprávách najdete na webu [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-adaptive-interactive-toasts). Kromě toho může tým vytvářející oznámení využívat [vizualizační aplikaci](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer), která mu usnadní navrhování adaptivních živých dlaždic a oznámení.
