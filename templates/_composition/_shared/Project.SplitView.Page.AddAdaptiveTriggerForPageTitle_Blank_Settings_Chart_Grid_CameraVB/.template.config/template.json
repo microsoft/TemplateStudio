@@ -1,15 +1,15 @@
 ﻿{
-  "author": "Microsoft",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "Project.SplitView.Page.AddAdaptiveTriggerForPageTitle_Blank_Settings_Chart_Grid_ImageGallery_Camera",
+  "name": "Project.SplitView.Page.AddAdaptiveTriggerForPageTitle_Blank_Settings_Chart_Grid_Camera.VB",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.Blank|wts.Page.Settings|wts.Page.Chart|wts.Page.Grid|wts.Page.ImageGallery|wts.Page.Camera"
+    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.Blank.VB|wts.Page.Settings.VB|wts.Page.Chart.VB|wts.Page.Grid.VB|wts.Page.Camera.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
