@@ -1,6 +1,6 @@
 # ActivationService & ActivationHandlers
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./activation.vb.md) :heavy_exclamation_mark:
+:heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./activation.md) :heavy_exclamation_mark:
 
 ## ActivationService
 
@@ -21,25 +21,21 @@ The virtual method `CanHandleInternal()` checks if the incoming activation argum
 
 We'll have look at the SuspendAndResumeService to see how activation works in detail:
 
-```csharp
-protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
-{
-    return args.PreviousExecutionState == ApplicationExecutionState.Terminated;
-}
+```vbnet
+Protected Overrides Function CanHandleInternal(ByVal args As LaunchActivatedEventArgs) As Boolean
+    Return args.PreviousExecutionState = ApplicationExecutionState.Terminated
+End Function
 
-protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
-{
-    await RestoreStateAsync();
-}
+Protected Overrides Async Function HandleInternalAsync(ByVal args As LaunchActivatedEventArgs) As Task
+    Await RestoreStateAsync()
+End Function
 
-private async Task RestoreStateAsync()
-{
-    var saveState = await ApplicationData.Current.LocalFolder.ReadAsync<OnBackgroundEnteringEventArgs>(stateFilename);
-    if (typeof(Page).IsAssignableFrom(saveState?.Target))
-    {
-        NavigationService.Navigate(saveState.Target, saveState.SuspensionState);
-    }
-}
+Private Async Function RestoreStateAsync() As Task
+    Dim saveState = Await ApplicationData.Current.LocalFolder.ReadAsync(Of OnBackgroundEnteringEventArgs)(stateFilename)
+    If GetType(Page).IsAssignableFrom(saveState?.Target) Then
+        NavigationService.Navigate(saveState.Target, saveState.SuspensionState)
+    End If
+End Function
 ```
 
 The `CanHandleInternal()` method was overwritten here, to handle activation only in case the PreviousExecutionState is Terminated.
@@ -80,11 +76,10 @@ First we have to add a file type association declaration in the application mani
 
 Further we have to handle the file activation event by implementing OnFileActivated:
 
-```csharp
-protected override async void OnFileActivated(FileActivatedEventArgs args)
-{
-    await ActivationService.ActivateAsync(args);
-}
+```vbnet
+Protected Overrides Async Sub OnFileActivated(ByVal args As FileActivatedEventArgs)
+    Await ActivationService.ActivateAsync(args)
+End Sub
 ```
 
 ### Add a FileAssociationService
@@ -92,34 +87,29 @@ protected override async void OnFileActivated(FileActivatedEventArgs args)
 Then we need a service that handles this new type of activation. We'll call it FileAssociationService, it derives from `ApplicationHandler<T>`. 
 As it manages activation by File​Activated​Event​Args the signature would be: 
 
-```csharp
-internal class FileAssociationService : ActivationHandler<File​Activated​Event​Args>
-{
+```vbnet
+Friend Class FileAssociationService
+    Inherits ActivationHandler(Of FileActivatedEventArgs)
 
-}
+End Class
 ```
 
 Next, we'll implement HandleInternalAsync(), to evaluate the event args, and take action:
 
-```csharp
-protected override async Task HandleInternalAsync(File​Activated​Event​Args args)
-{
-    var file = args.Files.FirstOrDefault();
-
-    NavigationService.Navigate(typeof(MarkdownPage), file);
-
-    await Task.CompletedTask;
-}
+```vbnet
+Protected Overrides Async Function HandleInternalAsync(ByVal args As FileActivatedEventArgs) As Task
+    Dim file = args.Files.FirstOrDefault()
+    NavigationService.Navigate(GetType(MarkdownPage), file)
+    Await Task.CompletedTask
+End Function
 ```
 
 ### Add the FileAssociationService to ActivationService
 
 Last but not least, we'll have to add our new FileAssociationService to the ActivationHandlers registered in the ActivationService:
 
-```csharp
-private IEnumerable<ActivationHandler> GetActivationHandlers()
-{
-    yield return Singleton<FileAssociationService>.Instance;
-    yield break;
-}
+```vbnet
+Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)
+    Yield Singleton(Of FileAssociationService).Instance
+End Function
 ```
