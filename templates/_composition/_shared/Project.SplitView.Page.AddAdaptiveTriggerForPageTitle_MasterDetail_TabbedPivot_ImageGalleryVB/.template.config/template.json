@@ -3,13 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Project.SplitView.Page.AddAdaptiveTriggerForPageTitle_MasterDetail_TabbedPivot.VB",
+  "name": "Project.SplitView.Page.AddAdaptiveTriggerForPageTitle_MasterDetail_TabbedPivot_ImageGallery.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.MasterDetail.VB|wts.Page.TabbedPivot.VB",
+    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.MasterDetail.VB|wts.Page.TabbedPivot.VB|wts.Page.ImageGallery.VB",
     "wts.compositionOrder": "0"
   },
   "sourceName": "wts.ItemName",
