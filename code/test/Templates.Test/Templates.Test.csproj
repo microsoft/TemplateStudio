@@ -334,6 +334,10 @@
     <Content Include="TestData\NonDefaultAssets\Wide310x150Logo.scale-200.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="TestData\SonarLintVB\_searchreplace.1.vbproj">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="TestData\StyleCop\_searchreplace.1.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
