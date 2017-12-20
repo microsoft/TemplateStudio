@@ -10,7 +10,7 @@ Namespace ViewModels
 
         Private _sharedData As SharedDataViewModelBase
 
-        Public Property SharedData As SharedDataViewModelBase
+        Public Property SharedData(As SharedDataViewModelBase
             Get
                 Return _sharedData
             End Get

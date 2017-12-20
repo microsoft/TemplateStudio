@@ -21,18 +21,6 @@ Namespace ViewModels
             End Set
         End Property
 
-        Private _selected As Object
-
-        Public Property Selected As Object
-            Get
-                Return _selected
-            End Get
-
-            Set(ByVal value As Object)
-                [Set](_selected, value)
-            End Set
-        End Property
-
         Private _displayMode As SplitViewDisplayMode = SplitViewDisplayMode.CompactInline
         Public Property DisplayMode As SplitViewDisplayMode
             Get
@@ -170,7 +158,6 @@ Namespace ViewModels
             End If
             If newValue IsNot Nothing Then
                 TryCast(newValue, ShellNavigationItem).IsSelected = True
-                Selected = newValue
             End If
         End Sub
 
