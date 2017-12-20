@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,38 +17,26 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         UserSelection
     }
 
-    public enum InitializationResult
-    {
-        Success,
-        SelectionResetRequested
-    }
-
     public class UserSelection
     {
-        private bool _hasItemsAddedByUser;
         private bool _isInitialized;
 
         public ObservableCollection<SavedTemplateViewModel> Pages { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
         public ObservableCollection<SavedTemplateViewModel> Features { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
+        public bool HasItemsAddedByUser { get; private set; }
+
         public UserSelection()
         {
         }
 
-        public InitializationResult Initialize(string projectTypeName, string frameworkName)
+        public void Initialize(string projectTypeName, string frameworkName)
         {
-            if (_isInitialized && !_hasItemsAddedByUser)
+            if (_isInitialized)
             {
                 Pages.Clear();
                 Features.Clear();
-            }
-            else if (_isInitialized && _hasItemsAddedByUser)
-            {
-                // TODO mvegaca Temporary reset;
-                _hasItemsAddedByUser = false;
-                return Initialize(projectTypeName, frameworkName);
-                //return InitializationResult.SelectionResetRequested;
             }
 
             var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName);
@@ -61,7 +50,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             }
 
             _isInitialized = true;
-            return InitializationResult.Success;
         }
 
         public IEnumerable<string> GetNames() => Pages.Select(t => t.Name)
@@ -88,10 +76,18 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             items.Add(newTemplate);
             if (templateOrigin == TemplateOrigin.UserSelection)
             {
-                _hasItemsAddedByUser = true;
+                HasItemsAddedByUser = true;
             }
 
             return newTemplate;
+        }
+
+        internal void ResetUserSelection()
+        {
+            HasItemsAddedByUser = false;
+            _isInitialized = false;
+            Pages.Clear();
+            Features.Clear();
         }
     }
 }

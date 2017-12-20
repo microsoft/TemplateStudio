@@ -5,6 +5,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
@@ -26,9 +27,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             set => SetProperty(ref _step, value);
         }
 
-        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel();
+        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(IsSelectionEnabled);
 
-        public FrameworkViewModel Framework { get; } = new FrameworkViewModel();
+        public FrameworkViewModel Framework { get; } = new FrameworkViewModel(IsSelectionEnabled);
 
         public AddPagesViewModel AddPages { get; } = new AddPagesViewModel();
 
@@ -100,6 +101,32 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
         }
 
+        private static bool IsSelectionEnabled()
+        {
+            bool result = false;
+            if (!Instance.UserSelection.HasItemsAddedByUser)
+            {
+                result = true;
+            }
+            else
+            {
+                var messageResult = MessageBox.Show("Do you want to restart the selection?", "Project configuration", MessageBoxButton.YesNo);
+                if (messageResult == MessageBoxResult.Yes)
+                {
+                    Instance.UserSelection.ResetUserSelection();
+                    Instance.AddPages.ResetUserSelection();
+                    Instance.AddFeatures.ResetUserSelection();
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+
+            return result;
+        }
+
         private void OnProjectTypeSelectionChanged(object sender, MetadataInfoViewModel projectType)
         {
             Framework.LoadData(projectType.Name);
@@ -109,11 +136,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             AddPages.LoadData(framework.Name);
             AddFeatures.LoadData(framework.Name);
-            InitializeUserSelection();
-        }
-
-        private void InitializeUserSelection()
-        {
             UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name);
         }
 

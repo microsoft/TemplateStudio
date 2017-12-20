@@ -22,5 +22,16 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             DataService.LoadTemplateGroups(Groups, TemplateType.Feature, frameworkName);
         }
+
+        public void ResetUserSelection()
+        {
+            foreach (var group in Groups)
+            {
+                foreach (var template in group.Items)
+                {
+                    template.ResetUserSelection();
+                }
+            }
+        }
     }
 }

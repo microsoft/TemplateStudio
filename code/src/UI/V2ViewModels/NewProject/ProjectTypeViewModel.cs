@@ -5,7 +5,11 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
@@ -14,21 +18,46 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
     public class ProjectTypeViewModel : Observable
     {
         private MetadataInfoViewModel _selected;
+        private Func<bool> _isSelectionEnabled;
 
         public MetadataInfoViewModel Selected
         {
             get => _selected;
             set
             {
-                SetProperty(ref _selected, value);
-                EventService.Instance.RaiseOnProjectTypeChanged(value);
+                var origValue = _selected;
+                if (value == _selected)
+                {
+                    return;
+                }
+
+                _selected = value;
+
+                if (!_isSelectionEnabled())
+                {
+                    SafeThreading.JoinableTaskFactory.Run(async () =>
+                    {
+                        await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                        Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            _selected = origValue;
+                            OnPropertyChanged("Selected");
+                        }), DispatcherPriority.ContextIdle, null);
+                    });
+                }
+                else
+                {
+                    OnPropertyChanged("Selected");
+                    EventService.Instance.RaiseOnProjectTypeChanged(value);
+                }
             }
         }
 
         public ObservableCollection<MetadataInfoViewModel> Items { get; } = new ObservableCollection<MetadataInfoViewModel>();
 
-        public ProjectTypeViewModel()
+        public ProjectTypeViewModel(Func<bool> isSelectionEnabled)
         {
+            _isSelectionEnabled = isSelectionEnabled;
         }
 
         public void LoadData()

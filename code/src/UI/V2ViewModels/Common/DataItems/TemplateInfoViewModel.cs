@@ -72,5 +72,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             Count++;
         }
+
+        public void ResetUserSelection()
+        {
+            Count = 0;
+        }
     }
 }
