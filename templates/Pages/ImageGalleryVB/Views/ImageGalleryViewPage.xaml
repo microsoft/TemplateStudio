@@ -10,10 +10,7 @@
     NavigationCacheMode="Required"
     mc:Ignorable="d">
 
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-
+    <Grid x:Name="ContentArea">
         <Grid.RowDefinitions>
             <RowDefinition x:Name="TitleRow" Height="48"/>
             <RowDefinition Height="*"/>
@@ -22,13 +19,15 @@
         <TextBlock
             x:Name="TitlePage"
             x:Uid="ImageGalleryView_Title"
-            Style="{StaticResource PageTitleStyle}" />
+            Style="{StaticResource PageTitleStyle}"
+            Margin="12,0,12,7" />
 
         <GridView
             Grid.Row="1"
             ItemsSource="{x:Bind ViewModel.Source}"
             IsItemClickEnabled="True"
             SelectionMode="None"
+            Padding="{StaticResource MediumLeftRightMargin}"
             Loaded="GridView_Loaded">
             <i:Interaction.Behaviors>
                 <ic:EventTriggerBehavior EventName="ItemClick">
