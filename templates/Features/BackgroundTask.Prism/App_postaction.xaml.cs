@@ -32,9 +32,10 @@ namespace Param_RootNamespace
             base.OnBackgroundActivated(args);
             if (Container == null)
             {
-                base.CreateAndConfigureContainer();
+                CreateAndConfigureContainer();
                 ConfigureContainer();
             }
+
             Container.Resolve<IBackgroundTaskService>().Start(args.TaskInstance);
         }
 //}]}
