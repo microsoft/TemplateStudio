@@ -23,12 +23,4 @@
         <Setter Property="Width" Value="1.5" />
     </Style>
 
-    <Style TargetType="Grid" x:Key="WtsGridSequentialFlowActive">
-        <Setter Property="Background" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
-    </Style>
-
-    <Style TargetType="Grid" x:Key="WtsGridSequentialFlowInactive">
-        <Setter Property="Background" Value="Transparent" />
-    </Style>
-
 </ResourceDictionary>

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:Microsoft.Templates.UI.V2Controls"
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
@@ -14,28 +15,9 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <StackPanel Margin="{StaticResource Margin_L_LeftTopRightBottom}">
-
-        <Grid>
-            <Grid x:Name="projectTypeGrid" Style="{StaticResource WtsGridSequentialFlowActive}"/>
-            <TextBlock x:Name="projectTypeTextBlock" Text="1. Project type" Style="{StaticResource WtsTextBlockSequentialFlowSelected}" />
-        </Grid>
-        
-        <Grid>
-            <Grid x:Name="frameworkGrid" Style="{StaticResource WtsGridSequentialFlowInactive}"/>
-            <TextBlock x:Name="frameworkTextBlock" Text="2. Design pattern" Style="{StaticResource WtsTextBlockSequentialFlow}" />
-        </Grid>
-        
-        <Grid>
-            <Grid x:Name="pagesGrid" Style="{StaticResource WtsGridSequentialFlowInactive}"/>
-            <TextBlock x:Name="pagesTextBlock" Text="3. Pages" Style="{StaticResource WtsTextBlockSequentialFlow}" />
-        </Grid>
-
-        <Grid>
-            <Grid x:Name="featuresGrid" Style="{StaticResource WtsGridSequentialFlowInactive}"/>
-            <TextBlock x:Name="featuresTextBlock" Text="4. Features" Style="{StaticResource WtsTextBlockSequentialFlow}" />
-        </Grid>
-        
-    </StackPanel>
+    <ListView
+        ItemsSource="{Binding Steps, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SequentialFlow}}}"
+        SelectedIndex="{Binding Step, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SequentialFlow}}}"
+        Style="{DynamicResource WtsListViewSequentialFlow}" />
 
 </UserControl>

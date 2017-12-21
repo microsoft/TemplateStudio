@@ -25,15 +25,11 @@
         <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Margin" Value="{StaticResource Margin_S_LeftTopRightBottom}" />
+        <Setter Property="Margin" Value="10,5" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
-    </Style>
-
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlowSelected" BasedOn="{StaticResource WtsTextBlockSequentialFlow}">
-        <Setter Property="Foreground" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockCardTitle">

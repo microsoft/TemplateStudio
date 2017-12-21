@@ -6,7 +6,8 @@
     <Thickness x:Key="Margin_S_LeftTopRightBottom">8,8,8,8</Thickness>
     <Thickness x:Key="Margin_S_LeftTop">8,8,0,0</Thickness>
     <Thickness x:Key="Margin_S_LeftRight">8,0,8,0</Thickness>
-    
+    <Thickness x:Key="Margin_S_Bottom">0,0,0,8</Thickness>
+
     <Thickness x:Key="Margin_M_LeftTopRightBottom">12,12,12,12</Thickness>
     <Thickness x:Key="Margin_M_LeftTopRight">12,12,12,0</Thickness>
     <Thickness x:Key="Margin_M_LeftTop">12,12,0,0</Thickness>

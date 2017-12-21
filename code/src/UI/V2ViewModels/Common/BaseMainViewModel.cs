@@ -14,6 +14,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public abstract class BaseMainViewModel : Observable
     {
+        private int _step;
         private bool _canGoBack = false;
         private bool _canGoForward = true;
 
@@ -22,21 +23,30 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private RelayCommand _goForwardCommand;
         private RelayCommand _finishCommand;
 
+        public int Step
+        {
+            get => _step;
+            set
+            {
+                var goForward = value > _step;
+                SetProperty(ref _step, value);
+                UpdateStep();
+            }
+        }
+
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
 
-        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, () => _canGoBack));
+        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(() => Step--, () => _canGoBack));
 
-        public RelayCommand GoForwardCommand => _goForwardCommand ?? (_goForwardCommand = new RelayCommand(OnGoForward, () => _canGoForward));
+        public RelayCommand GoForwardCommand => _goForwardCommand ?? (_goForwardCommand = new RelayCommand(() => Step++, () => _canGoForward));
 
         public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish));
 
         public WizardStatus WizardStatus { get; } = new WizardStatus();
 
+        protected abstract void UpdateStep();
+
         protected abstract void OnCancel();
-
-        protected abstract void OnGoBack();
-
-        protected abstract void OnGoForward();
 
         protected abstract void OnFinish();
 

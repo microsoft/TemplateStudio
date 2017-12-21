@@ -10,6 +10,10 @@
 
     <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 
+    <ItemsPanelTemplate x:Key="WtsItemsPanelTemplate">
+        <WrapPanel Margin="{StaticResource Margin_M2_LeftRight}" Orientation="Horizontal" />
+    </ItemsPanelTemplate>
+
     <Style x:Key="WtsListViewItemSingleSelection" TargetType="{x:Type ListViewItem}">
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="BorderBrush" Value="{Binding CardBorderDefault, Source={x:Static services:UIStylesService.Instance}}" />
@@ -52,10 +56,6 @@
         </Setter>
     </Style>
 
-    <ItemsPanelTemplate x:Key="WtsItemsPanelTemplate">
-        <WrapPanel Margin="{StaticResource Margin_M2_LeftRight}" Orientation="Horizontal" />
-    </ItemsPanelTemplate>
-
     <Style x:Key="WtsListViewSingleSelection" TargetType="{x:Type ListView}">
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="BorderThickness" Value="0" />
@@ -94,6 +94,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
 
     <Style x:Key="WtsListViewItemMultipleSelection" TargetType="{x:Type ListViewItem}">
         <Setter Property="BorderThickness" Value="1.5" />
@@ -190,4 +192,59 @@
         </Setter>
     </Style>
 
+
+
+    <Style x:Key="WtsListViewItemSequentialFlow" TargetType="{x:Type ListViewItem}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_S_Bottom}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                    <Grid>
+                        <Grid x:Name="grid" Background="Transparent"/>
+                        <TextBlock x:Name="text" Text="{Binding}" Style="{StaticResource WtsTextBlockSequentialFlow}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="Background" TargetName="grid" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="true"/>
+                                <Condition Property="IsSelected" Value="false"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" TargetName="grid" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
+                                <Setter Property="Opacity" TargetName="grid" Value="0.8" />
+                                <Setter Property="Foreground" TargetName="text" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WtsListViewSequentialFlow" TargetType="{x:Type ListView}">
+        <Setter Property="Background" Value="LightGreen" />
+        <Setter Property="Margin" Value="24,20" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemSequentialFlow}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListView}">
+                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

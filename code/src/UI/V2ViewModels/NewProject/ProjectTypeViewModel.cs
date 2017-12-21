@@ -5,11 +5,9 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
@@ -18,37 +16,28 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
     public class ProjectTypeViewModel : Observable
     {
         private MetadataInfoViewModel _selected;
+        private MetadataInfoViewModel _origValue;
         private Func<bool> _isSelectionEnabled;
+        private DispatcherTimer _resetSelectionTimer;
 
         public MetadataInfoViewModel Selected
         {
             get => _selected;
             set
             {
-                var origValue = _selected;
-                if (value == _selected)
+                _origValue = _selected;
+                if (value != _selected)
                 {
-                    return;
-                }
-
-                _selected = value;
-
-                if (!_isSelectionEnabled())
-                {
-                    SafeThreading.JoinableTaskFactory.Run(async () =>
+                    _selected = value;
+                    if (_isSelectionEnabled())
                     {
-                        await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                        Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                        {
-                            _selected = origValue;
-                            OnPropertyChanged("Selected");
-                        }), DispatcherPriority.ContextIdle, null);
-                    });
-                }
-                else
-                {
-                    OnPropertyChanged("Selected");
-                    EventService.Instance.RaiseOnProjectTypeChanged(value);
+                        OnPropertyChanged("Selected");
+                        EventService.Instance.RaiseOnProjectTypeChanged(value);
+                    }
+                    else
+                    {
+                        _resetSelectionTimer.Start();
+                    }
                 }
             }
         }
@@ -58,6 +47,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         public ProjectTypeViewModel(Func<bool> isSelectionEnabled)
         {
             _isSelectionEnabled = isSelectionEnabled;
+            _resetSelectionTimer = new DispatcherTimer(DispatcherPriority.ContextIdle, Application.Current.Dispatcher);
+            _resetSelectionTimer.Interval = TimeSpan.FromMilliseconds(1);
+            _resetSelectionTimer.Tick += OnResetSelection;
         }
 
         public void LoadData()
@@ -66,6 +58,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             {
                 Selected = Items.First();
             }
+        }
+
+        private void OnResetSelection(object sender, EventArgs e)
+        {
+            _selected = _origValue;
+            OnPropertyChanged("Selected");
+            _resetSelectionTimer.Stop();
         }
     }
 }

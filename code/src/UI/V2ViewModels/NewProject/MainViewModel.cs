@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
@@ -18,14 +19,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         private static MainViewModel _instance;
 
         public static MainViewModel Instance => _instance ?? (_instance = new MainViewModel());
-
-        private int _step;
-
-        public int Step
-        {
-            get => _step;
-            set => SetProperty(ref _step, value);
-        }
 
         public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(IsSelectionEnabled);
 
@@ -55,45 +48,30 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             WizardShell.Current.Close();
         }
 
-        protected override void OnGoBack()
+        protected override void UpdateStep()
         {
+            Page destinationPage = null;
             switch (Step)
             {
-                case 1: // GoBack button Clicked on FrameworkPage
-                    NavigationService.GoBackMainFrame();
-                    Step--;
-                    SetCanGoBack(false);
+                case 0:
+                    destinationPage = new ProjectTypePage();
                     break;
-                case 2: // GoBack button Clicked on PagesPage
-                    NavigationService.GoBackMainFrame();
-                    Step--;
+                case 1:
+                    destinationPage = new FrameworkPage();
                     break;
-                case 3: // GoBack button Clicked on FeaturesPage
-                    NavigationService.GoBackMainFrame();
-                    Step--;
-                    SetCanGoForward(true);
+                case 2:
+                    destinationPage = new AddPagesPage();
+                    break;
+                case 3:
+                    destinationPage = new AddFeaturesPage();
                     break;
             }
-        }
 
-        protected override void OnGoForward()
-        {
-            switch (Step)
+            if (destinationPage != null)
             {
-                case 0: // GoForward button Clicked on ProjectTypePage
-                    NavigationService.NavigateSecondaryFrame(new FrameworkPage());
-                    Step++;
-                    SetCanGoBack(true);
-                    break;
-                case 1: // GoForward button Clicked on FrameworkPage
-                    NavigationService.NavigateSecondaryFrame(new AddPagesPage());
-                    Step++;
-                    break;
-                case 2: // GoForward button Clicked on AddPagesPage
-                    NavigationService.NavigateSecondaryFrame(new AddFeaturesPage());
-                    Step++;
-                    SetCanGoForward(false);
-                    break;
+                NavigationService.NavigateSecondaryFrame(destinationPage);
+                SetCanGoBack(Step > 0);
+                SetCanGoForward(Step < 3);
             }
         }
 
