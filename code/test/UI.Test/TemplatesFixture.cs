@@ -42,7 +42,7 @@ namespace Microsoft.UI.Test
         Justification = "Required por unit testing.")]
         public void InitializeFixture(string language)
         {
-            var source = new LocalTemplatesSource();
+            var source = new LocalTemplatesSourceV2();
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
             GenContext.Current = this;
             if (!syncExecuted)

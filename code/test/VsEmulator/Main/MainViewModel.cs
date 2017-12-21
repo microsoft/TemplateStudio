@@ -32,8 +32,6 @@ namespace Microsoft.Templates.VsEmulator.Main
     {
         private readonly MainView _host;
 
-        private string _language;
-
         public MainViewModel(MainView host)
         {
             _host = host;
@@ -47,7 +45,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string ProjectPath { get; private set; }
 
-        private bool _forceLocalTemplatesRefresh = true;
+        private bool _forceLocalTemplatesRefresh = false;
 
         public bool ForceLocalTemplatesRefresh
         {
@@ -166,6 +164,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         public void Initialize()
         {
             SolutionName = null;
+            ConfigureGenContext(ForceLocalTemplatesRefresh);
         }
 
         private void NewCSharpProject()
@@ -188,9 +187,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async Task NewProjectAsync(string language)
         {
-            _language = language;
-            ConfigureGenContext(ForceLocalTemplatesRefresh);
-
+            SetCurrentLanguage(language);
             try
             {
                 var newProjectInfo = ShowNewProjectDialog();
@@ -201,7 +198,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     GenContext.Current = this;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
                     if (userSelection != null)
                     {
@@ -234,14 +231,12 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewFeature()
         {
-            ConfigureGenContext(ForceLocalTemplatesRefresh);
-
             OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
 
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.InitializedLanguage);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
 
                 if (userSelection != null)
                 {
@@ -270,13 +265,11 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewPage()
         {
-            ConfigureGenContext(ForceLocalTemplatesRefresh);
-
             OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.InitializedLanguage);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
 
                 if (userSelection != null)
                 {
@@ -308,9 +301,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var projFile = Directory.EnumerateFiles(solutionDirectory, "*.csproj", SearchOption.AllDirectories)
                         .Union(Directory.EnumerateFiles(solutionDirectory, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
-                _language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
-
-                ConfigureGenContext(ForceLocalTemplatesRefresh);
+                var language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
+                SetCurrentLanguage(language);
 
                 GenContext.Current = this;
 
@@ -442,15 +434,22 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
+        private void SetCurrentLanguage(string language)
+        {
+            GenContext.SetCurrentLanguage(language);
+            var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
+            fakeShell.SetCurrentLanguage(language);
+        }
+
         private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
         {
             GenContext.Bootstrap(
                 new LocalTemplatesSourceV2(TemplatesVersion, forceLocalTemplatesRefresh),
-                new FakeGenShell(_language, msg => SetState(msg), l => AddLog(l), _host),
+                new FakeGenShell(ProgrammingLanguages.CSharp, msg => SetState(msg), l => AddLog(l), _host),
                 new Version(WizardVersion),
-                _language);
+                ProgrammingLanguages.CSharp);
 
-            // CleanUpNotUsedContentVersions();
+            CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
         }
 
         [SuppressMessage(

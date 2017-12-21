@@ -15,10 +15,11 @@ namespace Microsoft.Templates.Fakes
 {
     public class FakeGenShell : GenShell
     {
-        private readonly string _language;
         private readonly Action<string> _changeStatus;
         private readonly Action<string> _addLog;
         private readonly Window _owner;
+
+        private string _language;
 
         public string SolutionPath
         {
@@ -39,6 +40,11 @@ namespace Microsoft.Templates.Fakes
             _changeStatus = changeStatus;
             _addLog = addLog;
             _owner = owner;
+        }
+
+        public void SetCurrentLanguage(string language)
+        {
+            _language = language;
         }
 
         public override void AddItems(params string[] itemsFullPath)

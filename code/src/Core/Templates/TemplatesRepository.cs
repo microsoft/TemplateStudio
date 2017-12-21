@@ -20,9 +20,7 @@ using Newtonsoft.Json;
 namespace Microsoft.Templates.Core
 {
     public class TemplatesRepository
-    {
-        private readonly string _language;
-
+    { 
         private const string Separator = "|";
 
         private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
@@ -30,6 +28,8 @@ namespace Microsoft.Templates.Core
         private const string Catalog = "_catalog";
 
         private static readonly string[] SupportedIconTypes = { ".jpg", ".jpeg", ".png", ".xaml" };
+
+        public string CurrentLanguage { get; set; }
 
         public TemplatesSynchronization Sync { get; private set; }
 
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Core
 
         public TemplatesRepository(TemplatesSourceV2 source, Version wizardVersion, string language)
         {
-            _language = language;
+            CurrentLanguage = language;
             WizardVersion = wizardVersion.ToString();
             Sync = new TemplatesSynchronization(source, wizardVersion);
         }
@@ -65,7 +65,7 @@ namespace Microsoft.Templates.Core
 
         public IEnumerable<ITemplateInfo> GetAll()
         {
-            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter(_language));
+            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter(CurrentLanguage));
 
             return queryResult
                         .Where(r => r.IsMatch)
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Core
 
             if (metadata.Any(m => m.Languages != null))
             {
-                metadata.RemoveAll(m => !m.Languages.Contains(_language));
+                metadata.RemoveAll(m => !m.Languages.Contains(CurrentLanguage));
             }
 
             if (File.Exists(metadataFileLocalized))

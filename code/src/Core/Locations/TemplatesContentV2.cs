@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             if (Current != null)
             {
-                return Current.Version.IsZero() || Current.Version < Latest.Version;
+                return Current.Version < Latest.Version;
             }
             else
             {
