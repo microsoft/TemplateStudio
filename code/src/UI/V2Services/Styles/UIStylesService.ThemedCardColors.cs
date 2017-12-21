@@ -33,6 +33,14 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(CardIconProperty, value); }
         }
 
+        public static readonly DependencyProperty CardFooterTextProperty = DependencyProperty.Register("CardFooterText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CardFooterText
+        {
+            get { return (Brush)GetValue(CardFooterTextProperty); }
+            set { SetValue(CardFooterTextProperty, value); }
+        }
+
         public static readonly DependencyProperty CardBackgroundDefaultProperty = DependencyProperty.Register("CardBackgroundDefault", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush CardBackgroundDefault

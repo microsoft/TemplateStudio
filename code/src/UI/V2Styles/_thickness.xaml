@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Thickness x:Key="Margin_XS_LeftTopRightBottom">4,4,4,4</Thickness>
+    <Thickness x:Key="Margin_XS_Left">4,0,0,0</Thickness>
     <Thickness x:Key="Margin_XS_LeftRight">4,0,4,0</Thickness>
     <Thickness x:Key="Margin_S_LeftTopRightBottom">8,8,8,8</Thickness>
     <Thickness x:Key="Margin_S_LeftTop">8,8,0,0</Thickness>

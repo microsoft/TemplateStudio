@@ -312,6 +312,8 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FFCCCEDB; // TODO: Replace this temporary value for a VS Color
                 case "CardIcon":
                     return LightColorValues.Color_FF888D8F; // TODO: Replace this temporary value for a VS Color
+                case "CardFooterText":
+                    return LightColorValues.Color_FF575757; // TODO: Replace this temporary value for a VS Color
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }

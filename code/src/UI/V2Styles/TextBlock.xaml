@@ -52,6 +52,44 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardAddedText">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardMouseOverAddIcon">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding CardBorderSelected, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Text" Value="&#xE109;" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardTemplatesCount">
+        <Setter Property="Foreground" Value="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardAddedIcon" BasedOn="{StaticResource WtsTextBlockCardTemplatesCount}">
+        <Setter Property="Text" Value="&#xE001;" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="WtsTextBlockHyperlink">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -103,31 +141,6 @@
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
-    </Style>
-
-
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardMouseOverAddIcon">
-        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Foreground" Value="{Binding CardBorderSelected, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="Text" Value="&#xE109;" />
-        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="Margin" Value="0"/>
-    </Style>
-
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockCardTemplatesCount">
-        <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Foreground" Value="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-        <Setter Property="TextWrapping" Value="NoWrap"/>
-        <Setter Property="FontStyle" Value="Normal" />
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
 </ResourceDictionary>

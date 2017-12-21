@@ -93,7 +93,6 @@ namespace Microsoft.Templates.UI.V2Services
         {
             CardTitleText = _stylesProvider.GetColor("ThemedCard", "CardTitleText");
             CardDescriptionText = _stylesProvider.GetColor("ThemedCard", "CardDescriptionText");
-            CardIcon = _stylesProvider.GetColor("ThemedCard", "CardIcon"); // Added by mvegaca
             CardBackgroundDefault = _stylesProvider.GetColor("ThemedCard", "CardBackgroundDefault");
             CardBackgroundFocus = _stylesProvider.GetColor("ThemedCard", "CardBackgroundFocus");
             CardBackgroundHover = _stylesProvider.GetColor("ThemedCard", "CardBackgroundHover");
@@ -106,6 +105,8 @@ namespace Microsoft.Templates.UI.V2Services
             CardBorderPressed = _stylesProvider.GetColor("ThemedCard", "CardBorderPressed");
             CardBorderSelected = _stylesProvider.GetColor("ThemedCard", "CardBorderSelected");
             CardBorderDisabled = _stylesProvider.GetColor("ThemedCard", "CardBorderDisabled");
+            CardIcon = _stylesProvider.GetColor("ThemedCard", "CardIcon"); // Added by mvegaca
+            CardFooterText = _stylesProvider.GetColor("ThemedCard", "CardFooterText"); // Added by mvegaca
         }
 
         private void SetCommonDocumentColors()

@@ -22,6 +22,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public TemplateType TemplateType { get; }
 
+        public bool MultipleInstance { get; }
+
         public bool ItemNameEditable { get; }
 
         public ICommand ItemClickCommand { get; }
@@ -62,6 +64,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             // ITemplateInfo properties
             Group = template.GetGroup();
             TemplateType = template.GetTemplateType();
+            MultipleInstance = template.GetMultipleInstance();
             ItemNameEditable = template.GetItemNameEditable();
             ItemClickCommand = new RelayCommand(OnItemClick);
         }

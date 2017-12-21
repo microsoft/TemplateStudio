@@ -94,17 +94,22 @@
                             <TextBlock Text="Details" Style="{StaticResource WtsTextBlockHyperlink}" />
                         </Hyperlink>
                     </TextBlock>
-                    <Grid
-                        Grid.Column="1"
-                        Width="25"
-                        Height="25"
-                        VerticalAlignment="Bottom"
-                        Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}">
-                        <Ellipse
-                            Fill="{Binding CardIcon, Source={x:Static services:UIStylesService.Instance}}"/>
-                        <TextBlock
-                            Text="{Binding Count}"
-                            Style="{StaticResource WtsTextBlockCardTemplatesCount}" />
+                    <!--Multiple Instance added feedback-->
+                    <Grid Grid.Column="1" Visibility="{Binding MultipleInstance, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Grid Width="18" Height="18" VerticalAlignment="Bottom" Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}">
+                            <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}"/>
+                            <TextBlock Text="{Binding Count}" Style="{StaticResource WtsTextBlockCardTemplatesCount}" />
+                        </Grid>
+                    </Grid>
+                    <!--Single Instance added feedback-->
+                    <Grid Grid.Column="1" VerticalAlignment="Bottom" Visibility="{Binding MultipleInstance, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Added" Style="{StaticResource WtsTextBlockCardAddedText}" Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}"/>
+                            <Grid Width="18" Height="18" VerticalAlignment="Bottom" Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}" Margin="{StaticResource Margin_XS_Left}">
+                                <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
+                                <TextBlock Style="{StaticResource WtsTextBlockCardAddedIcon}" />
+                            </Grid>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>
