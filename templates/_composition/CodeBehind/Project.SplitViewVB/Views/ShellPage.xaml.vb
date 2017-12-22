@@ -1,6 +1,8 @@
 ﻿Imports wts.ItemName.Services
 Imports wts.ItemName.Helpers
 
+Imports Microsoft.Toolkit.Uwp.UI.Controls
+
 Namespace Views
     Public NotInheritable Partial Class ShellPage
         Inherits Page
@@ -19,6 +21,18 @@ Namespace Views
             End Get
             Set
                 [Set](_isPaneOpen, value)
+            End Set
+        End Property
+
+        Private _selected As Object
+
+        Public Property Selected As Object
+            Get
+                Return _selected
+            End Get
+
+            Set(ByVal value As Object)
+                [Set](_selected, value)
             End Set
         End Property
 
@@ -105,6 +119,7 @@ Namespace Views
             End If
             If newValue IsNot Nothing Then
                 TryCast(newValue, ShellNavigationItem).IsSelected = True
+                Selected = newValue
             End If
         End Sub
         
@@ -115,11 +130,11 @@ Namespace Views
             End If
         End Sub
 
-        Private Sub ItemClicked(sender As Object, e As ItemClickEventArgs)
+        Private Sub ItemInvoked(sender As Object, e As HamburgetMenuItemInvokedEventArgs)
             If DisplayMode = SplitViewDisplayMode.CompactOverlay OrElse DisplayMode = SplitViewDisplayMode.Overlay Then
                 IsPaneOpen = False
             End If
-            Navigate(e.ClickedItem)
+            Navigate(e.InvokedItem)
         End Sub
 
         Private Sub OpenPane_Click(sender As Object, e As RoutedEventArgs)
