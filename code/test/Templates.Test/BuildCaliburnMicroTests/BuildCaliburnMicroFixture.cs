@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Test
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CM\\{testExecutionTimeStamp}\\";
 
-        public TemplatesSourceV2 Source => new LocalTemplatesSourceV2("TstBldCaliburn");
+        public TemplatesSourceV2 Source => new LocalTemplatesSourceV2("TemplateTest");
 
         private static bool syncExecuted;
 
@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Test
         {
             List<object[]> result = new List<object[]>();
 
-            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSourceV2("TstBldCaliburn"), ProgrammingLanguages.CSharp);
+            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSourceV2("TemplateTest"), ProgrammingLanguages.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                                             && t.GetLanguage() == ProgrammingLanguages.CSharp);

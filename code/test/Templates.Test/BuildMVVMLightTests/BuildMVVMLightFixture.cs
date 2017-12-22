@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Test
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\ML\\{testExecutionTimeStamp}\\";
 
-        public TemplatesSourceV2 Source => new LocalTemplatesSourceV2("TstBldMVVML");
+        public TemplatesSourceV2 Source => new LocalTemplatesSourceV2("TemplateTest");
 
         private static bool syncExecuted;
 
@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Test
 
             foreach (var language in languagesOfInterest)
             {
-                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSourceV2("TstBldMVVML"), language);
+                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSourceV2("TemplateTest"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                                                 && t.GetLanguage() == language);
