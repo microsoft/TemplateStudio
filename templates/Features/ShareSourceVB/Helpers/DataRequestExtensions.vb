@@ -4,6 +4,26 @@ Imports Windows.Storage.Streams
 Imports Param_ItemNamespace.Models
 
 Namespace Helpers
+    ' TODO WTS: Share Source Feature
+    '  This extension, in conjuntion with the ShareSourceData class and ShareSourceItem, eases the development
+    '  and helps to maximize the target applications for your shared data.
+    '
+    '  Please, refer to https://docs.microsoft.com/windows/uwp/app-to-app/share-data for further details.
+    '
+    ' To start sharing data from your pages / views you will need to follow these steps:
+    '
+    ' - Step 1. Setup a DataTransferManager object in your page / view and add a DataRequested event handler
+    '   (i.e. OnDataRequested) to be called whenever the user invokes share.
+    '
+    ' - Step 2. Within the OnDataRequested event handler create a ShareSourceData instance and add the data you want to share.
+    '
+    ' - Step 3. Call the SetData extension method before leaving the event handler (i.e. args.Request.SetData(shareSourceData))
+    '
+    ' - Step 4. Call the DataTransferManager.ShowShareUI method from your command or handler to start the sharing action
+    '
+    ' Other considerations:
+    '  - You can also register to the DataPackage ShareComplete event handler (args.Request.Data.ShareCompleted) to run code when the sharing operation ends.
+    '    Be sure to unregister the ShareComplete event handler when done.
     Module DataRequestExtensions
         <Extension>
         Sub SetData(ByVal dataRequest As DataRequest, ByVal config As ShareSourceFeatureData)

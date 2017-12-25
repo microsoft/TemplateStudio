@@ -7,7 +7,7 @@ Namespace ViewModels
         Public Sub New()
         End Sub
 
-        Public ReadOnly Property Source() As ObservableCollection(Of DataPoint)
+        Public ReadOnly Property Source As ObservableCollection(Of DataPoint)
             Get
                 ' TODO WTS: Replace this with your actual data
                 Return SampleDataService.GetChartSampleData()

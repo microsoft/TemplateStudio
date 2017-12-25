@@ -1,4 +1,5 @@
-﻿Imports wts.ItemName.Services
+﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
+Imports wts.ItemName.Services
 Imports wts.ItemName.Helpers
 
 Namespace Views
@@ -22,6 +23,18 @@ Namespace Views
             End Set
         End Property
 
+        Private _selected As Object
+
+        Public Property Selected As Object
+            Get
+                Return _selected
+            End Get
+
+            Set(ByVal value As Object)
+                [Set](_selected, value)
+            End Set
+        End Property
+
         Private _displayMode As SplitViewDisplayMode = SplitViewDisplayMode.CompactInline
         Public Property DisplayMode As SplitViewDisplayMode
             Get
@@ -35,14 +48,14 @@ Namespace Views
         Private _lastSelectedItem As Object
 
         Private _primaryItems As New ObservableCollection(Of ShellNavigationItem)()
-        Public ReadOnly Property PrimaryItems() As ObservableCollection(Of ShellNavigationItem)
+        Public ReadOnly Property PrimaryItems As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _primaryItems
             End Get
         End Property
 
         Private _secondaryItems As New ObservableCollection(Of ShellNavigationItem)()
-        Public ReadOnly Property SecondaryItems() As ObservableCollection(Of ShellNavigationItem)
+        Public ReadOnly Property SecondaryItems As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _secondaryItems
             End Get
@@ -105,6 +118,7 @@ Namespace Views
             End If
             If newValue IsNot Nothing Then
                 TryCast(newValue, ShellNavigationItem).IsSelected = True
+                Selected = newValue
             End If
         End Sub
         
@@ -115,11 +129,11 @@ Namespace Views
             End If
         End Sub
 
-        Private Sub ItemClicked(sender As Object, e As ItemClickEventArgs)
+        Private Sub ItemInvoked(sender As Object, e As HamburgetMenuItemInvokedEventArgs)
             If DisplayMode = SplitViewDisplayMode.CompactOverlay OrElse DisplayMode = SplitViewDisplayMode.Overlay Then
                 IsPaneOpen = False
             End If
-            Navigate(e.ClickedItem)
+            Navigate(e.InvokedItem)
         End Sub
 
         Private Sub OpenPane_Click(sender As Object, e As RoutedEventArgs)

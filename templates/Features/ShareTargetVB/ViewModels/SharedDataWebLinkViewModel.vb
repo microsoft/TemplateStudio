@@ -8,7 +8,7 @@ Namespace ViewModels
         Inherits SharedDataViewModelBase
         Private _uri As Uri
 
-        Public Property Uri() As Uri
+        Public Property Uri As Uri
             Get
                 Return _uri
             End Get

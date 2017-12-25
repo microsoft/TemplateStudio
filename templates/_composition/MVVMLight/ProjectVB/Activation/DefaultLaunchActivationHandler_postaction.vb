@@ -3,7 +3,7 @@
 '{[{
     Private ReadOnly _navElement As string
 
-    Private ReadOnly Property NavigationService() As NavigationServiceEx
+    Private ReadOnly Property NavigationService As NavigationServiceEx
         Get
             Return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()
         End Get

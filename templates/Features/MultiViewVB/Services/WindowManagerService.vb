@@ -13,7 +13,11 @@ Namespace Services
 
         Public Shared ReadOnly Property Current As WindowManagerService
             Get
-                Return If(_current, (__InlineAssignHelper(_current, New WindowManagerService())))
+                If _current Is Nothing Then
+                    _current = New WindowManagerService()
+                End If
+
+                Return _current
             End Get
         End Property
 
@@ -67,12 +71,6 @@ Namespace Services
 
         Public Function IsWindowOpen(ByVal windowTitle As String) As Boolean
             Return SecondaryViews.Any(Function(v) v.Title = windowTitle)
-        End Function
-
-        '<Obsolete("Please refactor code that uses this function, it is a simple work-around to simulate inline assignment in VB!")>
-        Private Shared Function __InlineAssignHelper(Of T)(ByRef target As T, value As T) As T
-            target = value
-            Return value
         End Function
     End Class
 End Namespace
