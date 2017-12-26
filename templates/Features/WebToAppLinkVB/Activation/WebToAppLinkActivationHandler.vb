@@ -18,6 +18,7 @@ Namespace Activation
 
         Protected Overrides Async Function HandleInternalAsync(ByVal args As ProtocolActivatedEventArgs) As Task
             ' TODO WTS: Use args.Uri.AbsolutePath to determinate the page you want to launch the application.
+            ' Open the page in app that is equivalent to the section on the website.
             Select Case args.Uri.AbsolutePath
                 Case Section1
                     ' Use NavigationService to Navigate to MySection1Page

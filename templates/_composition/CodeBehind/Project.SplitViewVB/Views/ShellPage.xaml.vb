@@ -1,4 +1,5 @@
-﻿Imports wts.ItemName.Services
+﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
+Imports wts.ItemName.Services
 Imports wts.ItemName.Helpers
 
 Imports Microsoft.Toolkit.Uwp.UI.Controls
@@ -49,14 +50,14 @@ Namespace Views
         Private _lastSelectedItem As Object
 
         Private _primaryItems As New ObservableCollection(Of ShellNavigationItem)()
-        Public ReadOnly Property PrimaryItems() As ObservableCollection(Of ShellNavigationItem)
+        Public ReadOnly Property PrimaryItems As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _primaryItems
             End Get
         End Property
 
         Private _secondaryItems As New ObservableCollection(Of ShellNavigationItem)()
-        Public ReadOnly Property SecondaryItems() As ObservableCollection(Of ShellNavigationItem)
+        Public ReadOnly Property SecondaryItems As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _secondaryItems
             End Get

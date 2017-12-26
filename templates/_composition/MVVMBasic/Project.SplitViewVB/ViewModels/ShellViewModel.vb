@@ -63,7 +63,9 @@ Namespace ViewModels
         Public ReadOnly Property OpenPaneCommand As ICommand
             Get
                 If _openPaneCommand Is Nothing Then
-                    _openPaneCommand = New RelayCommand(Function() InlineAssignHelper(IsPaneOpen, Not _isPaneOpen))
+                    _openPaneCommand = New RelayCommand(Sub()
+                        IsPaneOpen = Not _isPaneOpen
+                                                        End Sub)
                 End If
 
                 Return _openPaneCommand
@@ -178,10 +180,5 @@ Namespace ViewModels
                 NavigationService.Navigate(navigationItem.PageType)
             End If
         End Sub
-
-        Private Shared Function InlineAssignHelper(Of T)(ByRef target As T, value As T) As T
-            target = value
-            Return value
-        End Function
     End Class
 End Namespace
