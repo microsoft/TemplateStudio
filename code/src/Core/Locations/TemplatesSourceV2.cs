@@ -21,8 +21,6 @@ namespace Microsoft.Templates.Core.Locations
 
         public TemplatesSourceConfig Config { get; protected set; }
 
-        public virtual bool ForcedAcquisition { get; protected set; }
-
         public virtual string Id { get => Configuration.Current.Environment; }
 
         protected virtual bool VerifyPackageSignatures { get => true; }
@@ -31,6 +29,6 @@ namespace Microsoft.Templates.Core.Locations
 
         public abstract TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder);
 
-        public abstract void Adquire(ref TemplatesPackageInfo packageInfo);
+        //public abstract void Adquire(ref TemplatesPackageInfo packageInfo);
     }
 }

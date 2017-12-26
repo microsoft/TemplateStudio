@@ -45,14 +45,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string ProjectPath { get; private set; }
 
-        private bool _forceLocalTemplatesRefresh = false;
-
-        public bool ForceLocalTemplatesRefresh
-        {
-            get => _forceLocalTemplatesRefresh;
-            set => SetProperty(ref _forceLocalTemplatesRefresh, value);
-        }
-
         public List<string> ProjectItems { get; } = new List<string>();
 
         public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
@@ -68,6 +60,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
 
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
+
+        public RelayCommand RefreshTemplateCacheCommand => new RelayCommand(RefreshTemplateCache);
 
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
 
@@ -161,10 +155,10 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string SolutionPath { get; set; }
 
-        public void Initialize()
+        public async Task InitializeAsync()
         {
             SolutionName = null;
-            ConfigureGenContext(ForceLocalTemplatesRefresh);
+            await ConfigureGenContextAsync();
         }
 
         private void NewCSharpProject()
@@ -315,6 +309,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
+        private void RefreshTemplateCache()
+        {
+            GenContext.ToolBox.Repo.RefreshAsync().FireAndForget();
+        }
+
         private void ConfigureVersions()
         {
             var dialog = new TemplatesContentView(WizardVersion, TemplatesVersion)
@@ -328,7 +327,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 WizardVersion = dialog.ViewModel.Result.WizardVersion;
                 TemplatesVersion = dialog.ViewModel.Result.TemplatesVersion;
-                ConfigureGenContext(ForceLocalTemplatesRefresh);
+                ConfigureGenContextAsync().FireAndForget();
             }
         }
 
@@ -441,15 +440,15 @@ namespace Microsoft.Templates.VsEmulator.Main
             fakeShell.SetCurrentLanguage(language);
         }
 
-        private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
+        private async Task ConfigureGenContextAsync()
         {
             GenContext.Bootstrap(
-                new LocalTemplatesSourceV2(TemplatesVersion, forceLocalTemplatesRefresh),
+                new LocalTemplatesSourceV2(TemplatesVersion, string.Empty),
                 new FakeGenShell(ProgrammingLanguages.CSharp, msg => SetState(msg), l => AddLog(l), _host),
                 new Version(WizardVersion),
                 ProgrammingLanguages.CSharp);
 
-            CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
+            await GenContext.ToolBox.Repo.RefreshAsync();
         }
 
         [SuppressMessage(

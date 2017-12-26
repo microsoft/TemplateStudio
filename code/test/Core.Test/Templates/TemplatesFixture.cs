@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test
             }
             else
             {
-                GenContext.ToolBox.Repo.CheckForUpdatesAsync().Wait();
+                GenContext.ToolBox.Repo.RefreshAsync().Wait();
             }
 
             Repository = GenContext.ToolBox.Repo;

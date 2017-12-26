@@ -58,16 +58,14 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     await CheckInstallDeployedContentAsync();
 
-                    var acquireCalled = await CheckMandatoryAcquireContentAsync();
+                    await AcquireContentAsync();
 
                     await UpdateTemplatesCacheAsync();
 
-                    if (!acquireCalled)
-                    {
-                        await AcquireContentAsync();
-                    }
-
+                    ////TODO: Check if this can be removed SM
                     await CheckContentStatusAsync();
+
+
 
                     PurgeContentAsync().FireAndForget();
 
@@ -82,7 +80,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task RefreshAsync()
         {
-            await UpdateTemplatesCacheAsync();
+            await UpdateTemplatesCacheAsync(true);
         }
 
         public async Task CheckForNewContentAsync()
@@ -91,7 +89,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 try
                 {
-                    await AcquireContentAsync(true);
+                    await AcquireContentAsync();
                     await CheckContentStatusAsync();
                 }
                 finally
@@ -114,18 +112,13 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task<bool> CheckMandatoryAcquireContentAsync()
-        {
-            return await AcquireContentAsync(_source.ForcedAcquisition);
-        }
-
-        private async Task<bool> AcquireContentAsync(bool force = false)
+        private async Task<bool> AcquireContentAsync()
         {
             bool acquireContentCalled = false;
 
             try
             {
-                if (force || _content.IsNewVersionAvailable())
+                if (_content.IsNewVersionAvailable())
                 {
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
 
@@ -193,13 +186,13 @@ namespace Microsoft.Templates.Core.Locations
             return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
         }
 
-        private async Task UpdateTemplatesCacheAsync()
+        private async Task UpdateTemplatesCacheAsync(bool force = false)
         {
             try
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updating });
 
-                await Task.Run(() => UpdateTemplatesCache());
+                await Task.Run(() => UpdateTemplatesCache(force));
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updated });
             }
@@ -221,11 +214,11 @@ namespace Microsoft.Templates.Core.Locations
             });
         }
 
-        private void UpdateTemplatesCache()
+        private void UpdateTemplatesCache(bool force)
         {
             try
             {
-                if (_content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
+                if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
                 {
                     CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
                     CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);

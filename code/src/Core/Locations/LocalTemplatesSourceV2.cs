@@ -32,22 +32,20 @@ namespace Microsoft.Templates.Core.Locations
         public override string Id { get => _id; }
 
         public LocalTemplatesSourceV2()
-            : this("0.0.0.0", true)
+            : this("0.0.0.0")
         {
             _id = Configuration.Current.Environment + GetAgentName();
         }
 
         public LocalTemplatesSourceV2(string id)
-            : this("0.0.0.0", true)
+            : this("0.0.0.0", id)
         {
             _id = id + GetAgentName();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Used to override the default value for this property in the local (test) source")]
-        public LocalTemplatesSourceV2(string templatesVersion, bool forcedAdquisition = true)
+        public LocalTemplatesSourceV2(string templatesVersion, string id)
         {
-            ForcedAcquisition = forcedAdquisition;
-
             if (string.IsNullOrEmpty(_id))
             {
                 _id = Configuration.Current.Environment + GetAgentName();
@@ -100,10 +98,10 @@ namespace Microsoft.Templates.Core.Locations
             };
         }
 
-        public override void Adquire(ref TemplatesPackageInfo packageInfo)
-        {
-            packageInfo.LocalPath = Origin;
-        }
+        //public override void Adquire(ref TemplatesPackageInfo packageInfo)
+        //{
+        //    packageInfo.LocalPath = Origin;
+        //}
 
         protected static string GetAgentName()
         {

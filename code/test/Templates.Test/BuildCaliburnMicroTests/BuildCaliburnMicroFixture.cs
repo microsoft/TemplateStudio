@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
         {
             List<object[]> result = new List<object[]>();
 
-            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSourceV2("TstBldCaliburn"), ProgrammingLanguages.CSharp);
+            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSourceV2("TemplateTest"), ProgrammingLanguages.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                                             && t.GetLanguage() == ProgrammingLanguages.CSharp);

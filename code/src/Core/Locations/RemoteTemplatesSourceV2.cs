@@ -14,8 +14,6 @@ namespace Microsoft.Templates.Core.Locations
 {
     public sealed class RemoteTemplatesSourceV2 : TemplatesSourceV2
     {
-        public override bool ForcedAcquisition => false;
-
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
 
         public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
@@ -36,17 +34,17 @@ namespace Microsoft.Templates.Core.Locations
             // TODO REMOVE TEMPS
         }
 
-        public override void Adquire(ref TemplatesPackageInfo packageInfo)
-        {
-            var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            var sourceUrl = $"{_cdnUrl}/{packageInfo.Name}";
-            var fileTarget = Path.Combine(tempFolder, packageInfo.Name);
-            Fs.EnsureFolder(tempFolder);
+        //public override void Adquire(ref TemplatesPackageInfo packageInfo)
+        //{
+        //    var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        //    var sourceUrl = $"{_cdnUrl}/{packageInfo.Name}";
+        //    var fileTarget = Path.Combine(tempFolder, packageInfo.Name);
+        //    Fs.EnsureFolder(tempFolder);
 
-            DownloadContent(sourceUrl, fileTarget);
+        //    DownloadContent(sourceUrl, fileTarget);
 
-            packageInfo.LocalPath = fileTarget;
-        }
+        //    packageInfo.LocalPath = fileTarget;
+        //}
 
         public override void LoadConfig()
         {

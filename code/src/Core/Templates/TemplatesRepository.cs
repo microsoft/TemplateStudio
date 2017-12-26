@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace Microsoft.Templates.Core
 {
     public class TemplatesRepository
-    { 
+    {
         private const string Separator = "|";
 
         private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
