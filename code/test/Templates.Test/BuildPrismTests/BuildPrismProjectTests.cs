@@ -28,6 +28,7 @@ namespace Microsoft.Templates.Test
         public BuildPrismProjectTests(BuildPrismFixture fixture)
         {
             _fixture = fixture;
+            _fixture.InitializeFixtureAsync(this);
         }
 
         [Theory]

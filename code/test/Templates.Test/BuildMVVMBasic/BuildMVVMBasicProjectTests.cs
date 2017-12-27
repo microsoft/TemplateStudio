@@ -19,6 +19,7 @@ namespace Microsoft.Templates.Test
         public BuildMVVMBasicProjectTests(BuildMVVMBasicFixture fixture)
         {
             _fixture = fixture;
+            _fixture.InitializeFixtureAsync(this);
         }
 
         [Theory]

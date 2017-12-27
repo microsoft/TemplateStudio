@@ -33,12 +33,13 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync(string frameworkFilter)
         {
+            await InitializeTemplatesAsync(new LocalTemplatesSourceV2("TemplateTest"));
+
             List<object[]> result = new List<object[]>();
 
-            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSourceV2("TemplateTest"), ProgrammingLanguages.CSharp);
-
             var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
-                                                                            && t.GetLanguage() == ProgrammingLanguages.CSharp);
+                                                                            && t.GetLanguage() == ProgrammingLanguages.CSharp
+                                                                            && t.GetFrameworkList().Contains(frameworkFilter));
 
             foreach (var projectTemplate in projectTemplates)
             {
@@ -62,9 +63,10 @@ namespace Microsoft.Templates.Test
         {
             List<object[]> result = new List<object[]>();
 
-            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSourceV2("TemplateTest"), ProgrammingLanguages.CSharp);
+            await InitializeTemplatesAsync(new LocalTemplatesSourceV2("TemplateTest"));
 
             var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
+                                                                            && t.GetFrameworkList().Contains(frameworkFilter)
                                                                             && t.GetLanguage() == ProgrammingLanguages.CSharp);
 
             foreach (var projectTemplate in projectTemplates)
@@ -94,26 +96,23 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSourceV2 source, string language)
+        private static async Task InitializeTemplatesAsync(TemplatesSourceV2 source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 
             if (!syncExecuted)
             {
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
+                await GenContext.ToolBox.Repo.RefreshAsync(true);
                 syncExecuted = true;
-            }
-            else
-            {
-                await GenContext.ToolBox.Repo.RefreshAsync();
             }
         }
 
-        public override async Task InitializeFixtureAsync(string language, IContextProvider contextProvider)
+        public override async Task InitializeFixtureAsync(IContextProvider contextProvider)
         {
             GenContext.Current = contextProvider;
 
-            await InitializeTemplatesForLanguageAsync(Source, language);
+            await InitializeTemplatesAsync(Source);
         }
     }
 }

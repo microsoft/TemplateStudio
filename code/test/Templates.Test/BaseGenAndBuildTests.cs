@@ -23,9 +23,9 @@ namespace Microsoft.Templates.Test
     {
         protected BaseGenAndBuildFixture _fixture;
 
-        private async Task SetUpFixtureForTestingAsync(string language)
+        private async Task SetUpFixtureForTestingAsync()
         {
-            await _fixture.InitializeFixtureAsync(language, this);
+           await _fixture.InitializeFixtureAsync(this);
         }
 
         protected static string ShortLanguageName(string language)
@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            BaseGenAndBuildFixture.SetCurrentLanguage(language);
 
             var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
 
@@ -96,7 +96,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool emptyProject, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            BaseGenAndBuildFixture.SetCurrentLanguage(language);
 
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
@@ -171,7 +171,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            BaseGenAndBuildFixture.SetCurrentLanguage(language);
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
             var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity == itemId);
@@ -214,19 +214,19 @@ namespace Microsoft.Templates.Test
             return (resultPath, projectName);
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForGenerationAsync()
-        {
-            JoinableTaskContext context = new JoinableTaskContext();
-            JoinableTaskCollection tasks = context.CreateCollection();
-            context.CreateFactory(tasks);
-            var result = context.Factory.Run(() => GenerationFixture.GetProjectTemplatesAsync());
+        /*public static IEnumerable<object[]> GetProjectTemplatesForGenerationAsync()
+        //{
+        //    JoinableTaskContext context = new JoinableTaskContext();
+        //    JoinableTaskCollection tasks = context.CreateCollection();
+        //    context.CreateFactory(tasks);
+        //    //var result = context.Factory.Run(() => GenerationFixture.GetProjectTemplatesAsync());
 
-            return result;
-        }
+        //    return result;
+        */
 
         protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities)
         {
-            await SetUpFixtureForTestingAsync(language);
+            BaseGenAndBuildFixture.SetCurrentLanguage(language);
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
 
@@ -256,14 +256,14 @@ namespace Microsoft.Templates.Test
             return (resultPath, ProjectName);
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGenerationAsync(string framework)
-        {
-            JoinableTaskContext context = new JoinableTaskContext();
-            JoinableTaskCollection tasks = context.CreateCollection();
-            context.CreateFactory(tasks);
-            var result = context.Factory.Run(() => GenerationFixture.GetPageAndFeatureTemplatesAsync(framework));
-            return result;
-        }
+        /*public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGenerationAsync(string framework)
+        //{
+        //    JoinableTaskContext context = new JoinableTaskContext();
+        //    JoinableTaskCollection tasks = context.CreateCollection();
+        //    context.CreateFactory(tasks);
+        //    var result = context.Factory.Run(() => GenerationFixture.GetPageAndFeatureTemplatesAsync(framework));
+        //    return result;
+        }*/
 
         private const string NavigationPanel = "SplitView";
         private const string Blank = "Blank";

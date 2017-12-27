@@ -19,6 +19,7 @@ namespace Microsoft.Templates.Test
         public BuildCaliburnMicroProjectTests(BuildCaliburnMicroFixture fixture)
         {
             _fixture = fixture;
+            _fixture.InitializeFixtureAsync(this);
         }
 
         [Theory]

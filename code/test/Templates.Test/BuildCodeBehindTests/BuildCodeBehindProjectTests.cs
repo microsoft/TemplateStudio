@@ -19,6 +19,7 @@ namespace Microsoft.Templates.Test
         public BuildCodeBehindProjectTests(BuildCodeBehindFixture fixture)
         {
             _fixture = fixture;
+            _fixture.InitializeFixtureAsync(this);
         }
 
         [Theory]
