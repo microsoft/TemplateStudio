@@ -29,6 +29,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public abstract TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder);
 
+        //TODO: Check if this is used SM
         //public abstract void Adquire(ref TemplatesPackageInfo packageInfo);
     }
 }

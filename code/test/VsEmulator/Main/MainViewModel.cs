@@ -311,7 +311,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void RefreshTemplateCache()
         {
-            GenContext.ToolBox.Repo.RefreshAsync().FireAndForget();
+            GenContext.ToolBox.Repo.RefreshAsync(true).FireAndForget();
         }
 
         private void ConfigureVersions()
@@ -426,11 +426,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddLog(string message)
         {
             Log += message + Environment.NewLine;
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                _host.logScroll.ScrollToEnd();
-            });
         }
 
         private void SetCurrentLanguage(string language)

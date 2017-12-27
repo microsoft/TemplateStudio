@@ -58,14 +58,12 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     await CheckInstallDeployedContentAsync();
 
+                    await UpdateTemplatesCacheAsync(false);
+
                     await AcquireContentAsync();
 
-                    await UpdateTemplatesCacheAsync();
-
                     ////TODO: Check if this can be removed SM
-                    await CheckContentStatusAsync();
-
-
+                    //await CheckContentStatusAsync();
 
                     PurgeContentAsync().FireAndForget();
 
@@ -78,9 +76,9 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public async Task RefreshAsync()
+        public async Task RefreshAsync(bool force)
         {
-            await UpdateTemplatesCacheAsync(true);
+            await UpdateTemplatesCacheAsync(force);
         }
 
         public async Task CheckForNewContentAsync()
@@ -90,7 +88,8 @@ namespace Microsoft.Templates.Core.Locations
                 try
                 {
                     await AcquireContentAsync();
-                    await CheckContentStatusAsync();
+                    ////TODO: Check if this can be removed SM
+                    //await CheckContentStatusAsync();
                 }
                 finally
                 {
@@ -99,10 +98,11 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task CheckContentStatusAsync()
-        {
-            await CheckNewVersionAvailableAsync();
-        }
+        ////TODO: Check if this can be removed SM
+        //private async Task CheckContentStatusAsync()
+        //{
+        //    await CheckNewVersionAvailableAsync();
+        //}
 
         private async Task CheckInstallDeployedContentAsync()
         {
@@ -112,10 +112,8 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task<bool> AcquireContentAsync()
+        private async Task AcquireContentAsync()
         {
-            bool acquireContentCalled = false;
-
             try
             {
                 if (_content.IsNewVersionAvailable())
@@ -126,8 +124,8 @@ namespace Microsoft.Templates.Core.Locations
                     {
                         AcquireContent();
                     });
-                    acquireContentCalled = true;
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewVersionAvailable });
                 }
             }
             catch (Exception ex)
@@ -135,8 +133,6 @@ namespace Microsoft.Templates.Core.Locations
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
                 AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorAcquiring, ex).FireAndForget();
             }
-
-            return await Task.FromResult<bool>(acquireContentCalled);
         }
 
         private async Task ExtractInstalledContentAsync()
@@ -186,7 +182,7 @@ namespace Microsoft.Templates.Core.Locations
             return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
         }
 
-        private async Task UpdateTemplatesCacheAsync(bool force = false)
+        private async Task UpdateTemplatesCacheAsync(bool force)
         {
             try
             {
@@ -203,16 +199,16 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task CheckNewVersionAvailableAsync()
-        {
-            await Task.Run(() =>
-            {
-                if (_content.IsNewVersionAvailable())
-                {
-                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewVersionAvailable });
-                }
-            });
-        }
+        //private async Task CheckNewVersionAvailableAsync()
+        //{
+        //    await Task.Run(() =>
+        //    {
+        //        if (_content.IsNewVersionAvailable())
+        //        {
+        //            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewVersionAvailable });
+        //        }
+        //    });
+        //}
 
         private void UpdateTemplatesCache(bool force)
         {

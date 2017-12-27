@@ -98,6 +98,7 @@ namespace Microsoft.Templates.Core.Locations
             };
         }
 
+        //TODO: Check if this is used SM
         //public override void Adquire(ref TemplatesPackageInfo packageInfo)
         //{
         //    packageInfo.LocalPath = Origin;

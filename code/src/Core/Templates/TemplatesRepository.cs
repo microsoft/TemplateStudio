@@ -58,9 +58,9 @@ namespace Microsoft.Templates.Core
             await Sync.CheckForNewContentAsync();
         }
 
-        public async Task RefreshAsync()
+        public async Task RefreshAsync(bool force = false)
         {
-            await Sync.RefreshAsync();
+            await Sync.RefreshAsync(force);
         }
 
         public IEnumerable<ITemplateInfo> GetAll()

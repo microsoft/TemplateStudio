@@ -34,6 +34,7 @@ namespace Microsoft.Templates.Core.Locations
             // TODO REMOVE TEMPS
         }
 
+        //TODO: Check if this is used SM
         //public override void Adquire(ref TemplatesPackageInfo packageInfo)
         //{
         //    var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
