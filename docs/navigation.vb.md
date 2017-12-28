@@ -1,6 +1,6 @@
 # App navigation
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./navigation.vb.md) :heavy_exclamation_mark:
+:heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./navigation.md) :heavy_exclamation_mark:
 
 ## NavigationService
 
@@ -14,16 +14,14 @@ NavigationService has different implementations for the different supported fram
 - **MVVM Light**
   - The ViewModelLocator creates the NavigationServiceEx instance and registers it with the SimpleIoC container. Each ViewModel and associated page must also be registered as navigation is done by passing the ViewModel name to the `Navigate` method.
 
-```csharp
-private NavigationServiceEx _navigationService = new NavigationServiceEx();
+```vbnet
+Private _navigationService As NavigationServiceEx = New NavigationServiceEx()
 
-public ViewModelLocator()
-{
-    ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-    Register<HomeViewModel, HomePage>();
-    SimpleIoc.Default.Register(() => _navigationService);
-}
+Public Sub ViewModelLocator()
+    ServiceLocator.SetLocatorProvider(Function() SimpleIoc.[Default])
+    Register(Of HomeViewModel, HomePage)()
+    SimpleIoc.[Default].Register(Function() _navigationService)
+End Sub
 ```
 
 ## Navigation initialization
@@ -50,7 +48,7 @@ The following code uses the [MVVM Basic](../samples/navigation/MixedNavigationSa
 
 In App.xaml.cs the ActivationService has been changed to start on the new page.
 
-```csharp
+```vbnet
 private ActivationService CreateActivationService()
 {
   //This is the default navigation for a NavigationPane project type
@@ -67,7 +65,7 @@ Navigate to the `ShellPage` and this will reset the NavigationService Frame to i
 Then navigate to `HomePage` so something is displayed in the shell.
 All subsequent navigation just requires a single `Navigate()` call.
 
-```csharp
+```vbnet
 public class StartViewModel : Observable
 {
   public ICommand StartCommand { get; set; }
