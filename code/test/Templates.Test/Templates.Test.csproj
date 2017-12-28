@@ -202,22 +202,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildPrismTests\BuildPrismCollection.cs" />
-    <Compile Include="BuildPrismTests\BuildPrismFixture.cs" />
-    <Compile Include="BuildPrismTests\BuildPrismProjectTests.cs" />
-    <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroCollection.cs" />
-    <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroFixture.cs" />
-    <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroProjectTests.cs" />
-    <Compile Include="BuildCodeBehindTests\BuildCodeBehindCollection.cs" />
-    <Compile Include="BuildCodeBehindTests\BuildCodeBehindProjectTests.cs" />
-    <Compile Include="BuildMVVMBasic\BuildMVVMBasicCollection.cs" />
-    <Compile Include="BuildMVVMBasic\BuildMVVMBasicFixture.cs" />
-    <Compile Include="BuildMVVMBasic\BuildMVVMBasicProjectTests.cs" />
-    <Compile Include="BuildMVVMLightTests\BuildMVVMLightCollection.cs" />
-    <Compile Include="BuildMVVMLightTests\BuildMVVMLightFixture.cs" />
-    <Compile Include="BuildCodeBehindTests\BuildCodeBehindFixture.cs" />
+    <Compile Include="BuildTemplatesTests\BuildMVVMBasicProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\BuildMVVMLightProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\BuildPrismProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\BuildTemplatesTestCollection.cs" />
+    <Compile Include="BuildTemplatesTests\BuildTemplatesTestFixture.cs" />
+    <Compile Include="BuildTemplatesTests\BuildCaliburnMicroProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\BuildCodeBehindProjectTests.cs" />
     <Compile Include="BuildFixture.cs" />
-    <Compile Include="BuildMVVMLightTests\BuildMVVMLightProjectTests.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />

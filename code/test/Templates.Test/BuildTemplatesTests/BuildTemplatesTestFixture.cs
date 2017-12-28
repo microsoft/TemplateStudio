@@ -4,10 +4,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -16,18 +22,21 @@ using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
-    public sealed class BuildCodeBehindFixture : BaseGenAndBuildFixture, IDisposable
+    public sealed class BuildTemplatesTestFixture : BaseGenAndBuildFixture, IDisposable
     {
-        private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\CB\\{testExecutionTimeStamp}\\";
+        private string _testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
 
-        public TemplatesSourceV2 Source => new LocalTemplatesSourceV2("TemplateTest");
+        private string _framework;
 
-        private static bool syncExecuted;
+        private static Dictionary<string, bool> syncExecuted = new Dictionary<string, bool>();
+
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{ShortFrameworkName(_framework)}\\{_testExecutionTimeStamp}\\";
+
+        public TemplatesSourceV2 Source => new LocalTemplatesSourceV2(ShortFrameworkName(_framework));
 
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync(string frameworkFilter, string programmingLanguage)
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSourceV2("TemplateTest"));
+            await InitializeTemplatesAsync(new LocalTemplatesSourceV2(ShortFrameworkName(frameworkFilter)));
 
             List<object[]> result = new List<object[]>();
 
@@ -67,7 +76,7 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync(string frameworkFilter)
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSourceV2("TemplateTest"));
+            await InitializeTemplatesAsync(new LocalTemplatesSourceV2(ShortFrameworkName(frameworkFilter)));
 
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
@@ -109,19 +118,42 @@ namespace Microsoft.Templates.Test
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 
-            if (!syncExecuted)
+            if (syncExecuted.ContainsKey(source.Id) && syncExecuted[ShortFrameworkName(source.Id)] == true)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync();
-                await GenContext.ToolBox.Repo.RefreshAsync(true);
-                syncExecuted = true;
+                return;
             }
+
+            await GenContext.ToolBox.Repo.SynchronizeAsync();
+            await GenContext.ToolBox.Repo.RefreshAsync(true);
+
+            syncExecuted.Add(source.Id, true);
         }
 
-        public override async Task InitializeFixtureAsync(IContextProvider contextProvider)
+        public override async Task InitializeFixtureAsync(IContextProvider contextProvider, string framework)
         {
             GenContext.Current = contextProvider;
+            _framework = framework;
 
             await InitializeTemplatesAsync(Source);
+        }
+
+        private static string ShortFrameworkName(string framework)
+        {
+            switch (framework)
+            {
+                case "CaliburnMicro":
+                    return "CM";
+                case "Prism":
+                    return "P";
+                case "CodeBehind":
+                    return "CB";
+                case "MVVMLight":
+                    return "ML";
+                case "MVVMBasic":
+                    return "MB";
+                default:
+                    return framework;
+            }
         }
     }
 }

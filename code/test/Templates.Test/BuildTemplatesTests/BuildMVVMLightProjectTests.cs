@@ -12,18 +12,18 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [Collection("BuildCodeBehindCollection")]
-    [Trait("ExecutionSet", "BuildCodeBehind")]
-    public class BuildCodeBehindProjectTests : BaseGenAndBuildTests
+    [Collection("BuildTemplateTestCollection")]
+    [Trait("ExecutionSet", "BuildMVVMLight")]
+    public class BuildMVVMLightProjectTests : BaseGenAndBuildTests
     {
-        public BuildCodeBehindProjectTests(BuildCodeBehindFixture fixture)
+        public BuildMVVMLightProjectTests(BuildTemplatesTestFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixtureAsync(this);
+            _fixture.InitializeFixtureAsync(this, "MVVMLight");
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string language)
         {
@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}{framework}{ShortLanguageName(language)}";
+            var projectName = $"{projectType}{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
 
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}{framework}All{ShortLanguageName(language)}";
+            var projectName = $"{projectType}All{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetDefaultName, false);
 
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind", ProgrammingLanguages.CSharp)]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight", ProgrammingLanguages.CSharp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimum")]
@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind", ProgrammingLanguages.VisualBasic)]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight", ProgrammingLanguages.VisualBasic)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimumVB")]
@@ -80,16 +80,16 @@ namespace Microsoft.Templates.Test
             await BuildAllPagesAndFeaturesRandomNamesAsync(projectType, framework, language);
         }
 
-        private async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
+        public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
-                     && t.GetProjectTypeList().Contains(projectType)
-                     && t.GetFrameworkList().Contains(framework)
-                     && !t.GetIsHidden()
-                     && t.GetLanguage() == language;
+                    && t.GetProjectTypeList().Contains(projectType)
+                    && t.GetFrameworkList().Contains(framework)
+                    && !t.GetIsHidden()
+                    && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}{framework}AllRandom{ShortLanguageName(language)}";
+            var projectName = $"{projectType}AllRandom{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetRandomName, false);
 
@@ -97,11 +97,11 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            var projectName = $"{projectType}{framework}AllRightClick{ShortLanguageName(language)}";
+            var projectName = $"{projectType}AllRightClick{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, true, false);
 
@@ -109,11 +109,11 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CodeBehind")]
+        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            var projectName = $"{projectType}{framework}AllRightClick2{ShortLanguageName(language)}";
+            var projectName = $"{projectType}AllRightClick2{ShortLanguageName(language)}";
 
             var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false, false);
 
@@ -121,9 +121,9 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesForBuildAsync", "CodeBehind")]
-        [Trait("Type", "BuildOneByOneCodeBehind")]
-        public async Task BuildCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        [MemberData("GetPageAndFeatureTemplatesForBuildAsync", "MVVMLight")]
+        [Trait("Type", "BuildOneByOneMVVMLight")]
+        public async Task BuildMVVMLightOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {
             var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
 

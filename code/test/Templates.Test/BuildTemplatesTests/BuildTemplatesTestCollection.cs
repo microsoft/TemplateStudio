@@ -6,8 +6,8 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [CollectionDefinition("BuildPrismCollection")]
-    public class BuildPrismCollection : ICollectionFixture<BuildPrismFixture>
+    [CollectionDefinition("BuildTemplateTestCollection")]
+    public class BuildTemplatesTestCollection : ICollectionFixture<BuildTemplatesTestFixture>
     {
     }
 }
