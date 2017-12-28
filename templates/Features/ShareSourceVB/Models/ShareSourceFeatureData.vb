@@ -36,6 +36,16 @@ Namespace Models
             Items.Add(ShareSourceFeatureItem.FromWebLink(webLink))
         End Sub
 
+        ' TODO WTS: To share a link to your application be sure you have configured activation by Uri
+        '
+        ' 1. Register the protocol in Package.appxmanifest Declarations/protocol
+        '      i.e.
+        '      <uap:Protocol Name="my-app-name">
+        '          <uap:Logo>Assets\smallTile-sdk.png</uap:Logo>
+        '          <uap:DisplayName>MyApp</uap:DisplayName>
+        '      </uap:Protocol>
+        '
+        ' 2. The applicationLink parameter must refer to the registered protocol (i.e. new Uri("my-app-name:navigate?page=MainPage"))
         Public Sub SetApplicationLink(ByVal applicationLink As Uri)
             If applicationLink Is Nothing Then
                 Throw New ArgumentNullException(NameOf(applicationLink))
@@ -68,6 +78,9 @@ Namespace Models
             Items.Add(ShareSourceFeatureItem.FromStorageItems(storageItems))
         End Sub
 
+        ' TODO WTS: Use this method add content to share when you do not want to process the data until the target app actually requests it.
+        ' The defferedDataFormatId parameter must be a const value from StandardDataFormats class.
+        ' The getDeferredDataAsyncFunc parameter is the function that returns the object you want to share.
         Public Sub SetDeferredContent(ByVal deferredDataFormatId As String, ByVal getDeferredDataAsyncFunc As Func(Of Task(Of Object)))
             If String.IsNullOrEmpty(deferredDataFormatId) Then
                 Throw New ArgumentException("ExceptionShareSourceFeatureDataDeferredDataFormatIdIsNullOrEmpty".GetLocalized(), nameof(deferredDataFormatId))

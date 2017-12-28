@@ -5,9 +5,13 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="MasterDetailPage_Title.Text" xml:space="preserve">
-    <value>MasterDetail</value>
-    <comment>Page title for MasterDetail</comment>
+  <data name="MasterDetailView_Title.Text" xml:space="preserve">
+    <value>MasterDetailView</value>
+    <comment>Page title for MasterDetailView</comment>
+  </data>
+  <data name="MasterDetailView_NoSelection.Text" xml:space="preserve">
+    <value>Select an item from the list.</value>
+    <comment>No selection text for MasterDetailView</comment>
   </data>
   <!--}]}-->
 </root>
