@@ -42,6 +42,7 @@ namespace Microsoft.Templates.Test
                 await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldMVVML"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
+                                                                                && t.GetFrameworkList().Contains(frameworkFilter)
                                                                                 && t.GetLanguage() == language);
 
                 foreach (var projectTemplate in projectTemplates)
@@ -71,6 +72,7 @@ namespace Microsoft.Templates.Test
                 await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldMVVML"), language);
 
                 var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
+                                                                                && t.GetFrameworkList().Contains(frameworkFilter)
                                                                                 && t.GetLanguage() == language);
 
                 foreach (var projectTemplate in projectTemplates)
