@@ -2,6 +2,8 @@
 Imports wts.ItemName.Services
 Imports wts.ItemName.Helpers
 
+Imports Microsoft.Toolkit.Uwp.UI.Controls
+
 Namespace Views
     Public NotInheritable Partial Class ShellPage
         Inherits Page
