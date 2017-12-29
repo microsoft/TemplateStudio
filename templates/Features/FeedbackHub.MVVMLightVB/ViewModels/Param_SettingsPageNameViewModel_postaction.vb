@@ -5,7 +5,7 @@ Namespace ViewModels
     Public Class Param_SettingsPageNameViewModel
         Inherits ViewModelBase
         '{[{
-        Public ReadOnly Property FeedbackLinkVisibility() As Visibility
+        Public ReadOnly Property FeedbackLinkVisibility As Visibility
             Get
                 Return If(Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.IsSupported(), Visibility.Visible, Visibility.Collapsed)
             End Get
@@ -13,7 +13,7 @@ Namespace ViewModels
 
         Private _launchFeedbackHubCommand As ICommand
 
-        Public ReadOnly Property LaunchFeedbackHubCommand() As ICommand
+        Public ReadOnly Property LaunchFeedbackHubCommand As ICommand
             Get
                 If _launchFeedbackHubCommand Is Nothing Then
                     _launchFeedbackHubCommand = New RelayCommand(Async Sub() 

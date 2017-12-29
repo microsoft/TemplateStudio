@@ -9,7 +9,7 @@ Namespace Views
     Public NotInheritable Partial Class wts.ItemNamePage
         Inherits Page
 
-        Public ReadOnly Property ViewModel() As wts.ItemNameViewModel = new wts.ItemNameViewModel
+        Public ReadOnly Property ViewModel As wts.ItemNameViewModel = new wts.ItemNameViewModel
 
         Public Sub New()
             InitializeComponent()

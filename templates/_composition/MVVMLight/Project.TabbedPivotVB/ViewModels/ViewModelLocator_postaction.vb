@@ -7,7 +7,7 @@
             '}]}
         End Sub
 '{[{
-        Public ReadOnly Property PivotViewModel() As PivotViewModel
+        Public ReadOnly Property PivotViewModel As PivotViewModel
             Get
                 Return ServiceLocator.Current.GetInstance(Of PivotViewModel)()
             End Get
