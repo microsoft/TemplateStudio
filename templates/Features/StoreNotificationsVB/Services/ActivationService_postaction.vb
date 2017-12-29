@@ -9,7 +9,7 @@ Imports Param_RootNamespace.Helpers
 
 Namespace Services
     Friend Class ActivationService
-        Private Async Function InitializeAsync() As Task
+        Private Async Function StartupAsync() As Task
             '{[{
             Await Singleton(Of StoreNotificationsFeatureService).Instance.InitializeAsync()
             '}]}
