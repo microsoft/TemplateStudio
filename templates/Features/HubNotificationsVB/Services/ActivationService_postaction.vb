@@ -24,7 +24,7 @@ Namespace Services
             yield Singleton(Of HubNotificationsFeatureService).Instance
             '}]}
 '{--{
-            yield Exit Function'}--}
+            Exit Function'}--}
         End Function
     End Class
 End Namespace
