@@ -1,6 +1,7 @@
 # Navigation Pane
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./navigationpane.vb.md) :heavy_exclamation_mark:
+:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./navigationpane.vb.md) :heavy_exclamation_mark: |
+------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 The navigation pane project type includes a navigation menu displayed in a panel at the side of the screen and which can be expanded with the Hamburger icon.
 

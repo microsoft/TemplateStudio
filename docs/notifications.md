@@ -1,6 +1,7 @@
 # Notifications on Windows Template Studio
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./notifications.vb.md) :heavy_exclamation_mark:
+:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./notifications.vb.md) :heavy_exclamation_mark: |
+----------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Windows Template Studio supports three different type of notifications for UWP:
 - Toast notifications

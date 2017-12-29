@@ -1,6 +1,7 @@
 # App navigation
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./navigation.vb.md) :heavy_exclamation_mark:
+:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./navigation.vb.md) :heavy_exclamation_mark: |
+-------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ## NavigationService
 
