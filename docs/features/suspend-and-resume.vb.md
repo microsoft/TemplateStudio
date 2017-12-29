@@ -1,7 +1,7 @@
 ## Sample: Suspend and Resume Feature
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./suspend-and-resume.vb.md) :heavy_exclamation_mark: |
----------------------------------------------------------------------------------------------------------------------------------------------------- |
+:heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./suspend-and-resume.md) :heavy_exclamation_mark: |
+--------------------------------------------------------------------------------------------------------------------------------------------- |
 
 We created a sample application that implements the suspend and resume feature. The application plays a sample video file and saves the current position of the video when the app is suspended. After the application resumes, the video playback continues from the same position it was before suspension.
 You can find the samples here: [Suspend and resume samples](/samples/suspendandresume).
@@ -16,101 +16,91 @@ Since the implementation of this feature is different depending on the framework
 
 To detect when the application goes to suspend status, we need to subscribe to OnBackgroundEntering events. In MVVM Basic we will use the page for this, subscribing to these events in OnNavigatedTo, and unsubscribing from them in OnNavigatedFrom, as follows:
 
-```csharp
-protected override void OnNavigatedTo(NavigationEventArgs e)
-{
-    base.OnNavigatedTo(e);
-    mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
-    Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += OnBackgroundEntering;
-}
+```vbnet
+Protected Overrides Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
+    MyBase.OnNavigatedTo(e)
+    AddHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, AddressOf PlaybackSession_PlaybackStateChanged
+    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
+End Sub
 
-protected override void OnNavigatedFrom(NavigationEventArgs e)
-{
-    base.OnNavigatedFrom(e);
-    mpe.MediaPlayer.Pause();
-    mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
-    Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering -= OnBackgroundEntering;
-}
+Protected Overrides Sub OnNavigatedFrom(ByVal e As NavigationEventArgs)
+    MyBase.OnNavigatedFrom(e)
+    mpe.MediaPlayer.Pause()
+    RemoveHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, Addressof PlaybackSession_PlaybackStateChanged
+    RemoveHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
+End Sub
 ```
 
 However, in MVVM Light we need to handle the subscriptions in the ViewModel. Hence, we will create a method for each of the actions in the ViewModel (SubscribeToOnBackgroundEntering and UnsubscribeFromOnBackgroundEntering) and call them from the page, in the same place we subscribed and unsubscribed in MVVM Basic. Note that we are also passing the variable we want to save in the SuspensionState to the ViewModel in this step:
 
-```csharp
-protected override void OnNavigatedTo(NavigationEventArgs e)
-{
-    base.OnNavigatedTo(e);
-    mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
+```vbnet
+Protected Overrides Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
+    MyBase.OnNavigatedTo(e)
+   AddHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, Addressof PlaybackSession_PlaybackStateChanged
 
-    ViewModel.SubscribeToOnBackgroundEntering(mpe.MediaPlayer.PlaybackSession);
-}
+    ViewModel.SubscribeToOnBackgroundEntering(mpe.MediaPlayer.PlaybackSession)
+End Sub
 
-protected override void OnNavigatedFrom(NavigationEventArgs e)
-{
-    base.OnNavigatedFrom(e);
-    mpe.MediaPlayer.Pause();
-    mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
+Protected Overrides Sub OnNavigatedFrom(ByVal e As NavigationEventArgs)
+    MyBase.OnNavigatedFrom(e)
+    mpe.MediaPlayer.Pause()
+    RemoveHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, Addressof PlaybackSession_PlaybackStateChanged
 
-    ViewModel.UnsubscribeFromOnBackgroundEntering();
-}
+    ViewModel.UnsubscribeFromOnBackgroundEntering()
+End Sub
 ```
 
 Let's take a look at the definition of the methods we just called, in the ViewModel:
 
-```csharp
-private MediaPlaybackSession _playbackSession;
+```vbnet
+Private _playbackSession As MediaPlaybackSession
 
-internal void SubscribeToOnBackgroundEntering(MediaPlaybackSession playbackSession)
-{
-    _playbackSession = playbackSession;
-    Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += OnBackgroundEntering;
-}
+Friend Sub SubscribeToOnBackgroundEntering(ByVal playbackSession As MediaPlaybackSession)
+    _playbackSession = playbackSession
+    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
+End Sub
 
-internal void UnsubscribeFromOnBackgroundEntering()
-{
-    Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering -= OnBackgroundEntering;
-}
+Friend Sub UnsubscribeFromOnBackgroundEntering()
+    RemoveHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
+End Sub
 ```
 
 ### Implement OnBackgroundEntering
 
 We will also need to implement OnBackgroundEntering to save the current playback position of the video. This Position is a TimeSpan variable that we will save in OnBackgroundEnteringEventArgs.SuspensionState.Data. In MVVM Basic we will implement this method directly in the page:
 
-```csharp
-private void OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
-{
-    e.SuspensionState.Data = mpe.MediaPlayer.PlaybackSession.Position;
-}
+```vbnet
+Private Sub OnBackgroundEntering(ByVal sender As Object, ByVal e As OnBackgroundEnteringEventArgs)
+    e.SuspensionState.Data = mpe.MediaPlayer.PlaybackSession.Position
+End Sub
 ```
 
 In MVVM Light we will implement it in the ViewModel, using the property _playbackSession that we defined in the previous step:
 
-```csharp
-private void OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
-{
-    e.SuspensionState.Data = _playbackSession.Position;
-}
+```vbnet
+Private Sub OnBackgroundEntering(ByVal sender As Object, ByVal e As OnBackgroundEnteringEventArgs)
+    e.SuspensionState.Data = _playbackSession.Position
+End Sub
 ```
 
 ### Implement Suspend and Resume feature actions
 
 Finally, we will modify OnNavigatedTo to evaluate the suspensionState.Data, recover the playback Position if there is one and set it as the current playback position when the application resumes. Since Data is an object, we will need to Parse it to a TimeSpan. This step is exactly the same in MVVM Basic and MVVM Light:
 
-```csharp
-protected override void OnNavigatedTo(NavigationEventArgs e)
-{
-    SuspensionState suspensionState = e.Parameter as SuspensionState;
-    if (suspensionState != null)
-    {
-        bool success = TimeSpan.TryParse(suspensionState.Data?.ToString(), out TimeSpan position);
-        if (success)
-        {
-            mpe.MediaPlayer.PlaybackSession.Position = position;
-        }
-    }
-    base.OnNavigatedTo(e);
-    mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
-    Singleton<SuspendAndResumeService>.Instance.OnBackgroundEntering += OnBackgroundEntering;
-}
+```vbnet
+Protected Overrides Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
+    Dim suspensionState As SuspensionState = TryCast(e.Parameter, SuspensionState)
+    If suspensionState IsNot Nothing Then
+        Dim success As Boolean = TimeSpan.TryParse(suspensionState.Data?.ToString(), TimeSpan, position)
+        If success Then
+            mpe.MediaPlayer.PlaybackSession.Position = position
+        End If
+    End If
+
+    MyBase.OnNavigatedTo(e)
+    AddHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, Addressof PlaybackSession_PlaybackStateChanged
+    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
+End Sub
 ```
 
 ### Modify Project Debug Properties
