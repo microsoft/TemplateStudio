@@ -214,6 +214,14 @@
     <Compile Include="BuildTemplatesTests\BuildCaliburnMicroProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\BuildCodeBehindProjectTests.cs" />
     <Compile Include="BuildFixture.cs" />
+    <Compile Include="CodeAnalysis\SonarLintCollection.cs" />
+    <Compile Include="CodeAnalysis\SonarLintGenerationTestsFixture.cs" />
+    <Compile Include="CodeAnalysis\SonarLintPlusLocalTemplatesSource.cs" />
+    <Compile Include="CodeAnalysis\SonarLintProjectGenerationTests.cs" />
+    <Compile Include="CodeAnalysis\StyleCopCollection.cs" />
+    <Compile Include="CodeAnalysis\StyleCopGenerationTestsFixture.cs" />
+    <Compile Include="CodeAnalysis\StyleCopPlusLocalTemplatesSource.cs" />
+    <Compile Include="CodeAnalysis\StyleCopProjectGenerationTests.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />

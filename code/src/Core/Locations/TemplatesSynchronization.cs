@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Core.Locations
             CurrentWizardVersion = wizardVersion;
         }
 
-        public async Task DoAsync()
+        public async Task DoAsync(bool force)
         {
             await EnsureVsInstancesSyncingAsync();
 
@@ -56,9 +56,9 @@ namespace Microsoft.Templates.Core.Locations
             {
                 try
                 {
-                    await CheckInstallDeployedContentAsync();
+                    await CheckInstallDeployedContentAsync(force);
 
-                    await UpdateTemplatesCacheAsync(false);
+                    await UpdateTemplatesCacheAsync(force);
 
                     await AcquireContentAsync();
 
@@ -104,9 +104,9 @@ namespace Microsoft.Templates.Core.Locations
         //    await CheckNewVersionAvailableAsync();
         //}
 
-        private async Task CheckInstallDeployedContentAsync()
+        private async Task CheckInstallDeployedContentAsync(bool force)
         {
-            if (RequireExtractInstalledContent())
+            if (RequireExtractInstalledContent() || force)
             {
                 await ExtractInstalledContentAsync();
             }

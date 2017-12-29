@@ -9,23 +9,35 @@ using Microsoft.Templates.Core.Locations;
 
 namespace Microsoft.Templates.Test
 {
-    public class SonarLintPlusLocalTemplatesSource : LocalTemplatesSource
+    public class SonarLintPlusLocalTemplatesSource : LocalTemplatesSourceV2
     {
         public SonarLintPlusLocalTemplatesSource()
             : base("BuildSonarLint")
         {
         }
 
-        public override void Extract(string source, string targetFolder)
+        public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
         {
-            base.Extract(source, targetFolder);
+            string targetFolder = Path.Combine(workingFolder, packageInfo.Version.ToString());
 
-            SetSonarLintFeatureContent();
+            if (Directory.Exists(targetFolder))
+            {
+                Fs.SafeDeleteDirectory(targetFolder);
+            }
+
+            Fs.CopyRecursive(packageInfo.LocalPath, targetFolder, true);
+            SetSonarLintFeatureContent(targetFolder);
+            return new TemplatesContentInfo()
+            {
+                Version = packageInfo.Version,
+                Path = targetFolder,
+                Date = packageInfo.Date
+            };
         }
 
-        private void SetSonarLintFeatureContent()
+        private void SetSonarLintFeatureContent(string targetFolder)
         {
-            string targetSonarLintFeaturePath = Path.Combine(FinalDestination, "Features", "SonarLintVB");
+            string targetSonarLintFeaturePath = Path.Combine(targetFolder, "Features", "SonarLintVB");
             if (Directory.Exists(targetSonarLintFeaturePath))
             {
                 Fs.SafeDeleteDirectory(targetSonarLintFeaturePath);

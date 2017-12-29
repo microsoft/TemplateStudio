@@ -11,23 +11,35 @@ using Microsoft.Templates.Core.Packaging;
 
 namespace Microsoft.Templates.Test
 {
-    public class StyleCopPlusLocalTemplatesSource : LocalTemplatesSource
+    public class StyleCopPlusLocalTemplatesSource : LocalTemplatesSourceV2
     {
         public StyleCopPlusLocalTemplatesSource()
             : base("BldStyleCop")
         {
         }
 
-        public override void Extract(string source, string targetFolder)
+        public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
         {
-            base.Extract(source, targetFolder);
+            string targetFolder = Path.Combine(workingFolder, packageInfo.Version.ToString());
 
-            SetStyleCopFeatureContent();
+            if (Directory.Exists(targetFolder))
+            {
+                Fs.SafeDeleteDirectory(targetFolder);
+            }
+
+            Fs.CopyRecursive(packageInfo.LocalPath, targetFolder, true);
+            SetStyleCopFeatureContent(targetFolder);
+            return new TemplatesContentInfo()
+            {
+                Version = packageInfo.Version,
+                Path = targetFolder,
+                Date = packageInfo.Date
+            };
         }
 
-        private void SetStyleCopFeatureContent()
+        private void SetStyleCopFeatureContent(string targetFolder)
         {
-            string targetStyleCopFeaturePath = Path.Combine(FinalDestination, "Features", "StyleCop");
+            string targetStyleCopFeaturePath = Path.Combine(targetFolder, "Features", "StyleCop");
             if (Directory.Exists(targetStyleCopFeaturePath))
             {
                 Fs.SafeDeleteDirectory(targetStyleCopFeaturePath);

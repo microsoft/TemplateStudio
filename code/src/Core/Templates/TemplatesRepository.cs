@@ -48,9 +48,9 @@ namespace Microsoft.Templates.Core
             Sync = new TemplatesSynchronization(source, wizardVersion);
         }
 
-        public async Task SynchronizeAsync()
+        public async Task SynchronizeAsync(bool force = false)
         {
-            await Sync.DoAsync();
+            await Sync.DoAsync(force);
         }
 
         public async Task CheckForUpdatesAsync()

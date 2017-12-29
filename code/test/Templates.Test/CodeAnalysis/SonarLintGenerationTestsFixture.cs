@@ -33,19 +33,14 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<ITemplateInfo> Templates;
 
-        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
+        private static async Task InitializeTemplatesAsync(TemplatesSourceV2 source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.VisualBasic), ProgrammingLanguages.VisualBasic);
             if (Templates == null)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync();
+                await GenContext.ToolBox.Repo.SynchronizeAsync(true);
+                Templates = GenContext.ToolBox.Repo.GetAll();
             }
-            else
-            {
-                await GenContext.ToolBox.Repo.RefreshAsync();
-            }
-
-            Templates = GenContext.ToolBox.Repo.GetAll();
         }
 
         public async Task InitializeFixtureAsync(IContextProvider contextProvider)
@@ -53,7 +48,7 @@ namespace Microsoft.Templates.Test
             var source = new SonarLintPlusLocalTemplatesSource();
             GenContext.Current = contextProvider;
 
-            await InitializeTemplatesForLanguageAsync(source);
+            await InitializeTemplatesAsync(source);
         }
 
         public void Dispose()
@@ -71,25 +66,21 @@ namespace Microsoft.Templates.Test
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesForSonarLintAsync()
         {
             List<object[]> result = new List<object[]>();
-            await InitializeTemplatesForLanguageAsync(new SonarLintPlusLocalTemplatesSource());
+            await InitializeTemplatesAsync(new SonarLintPlusLocalTemplatesSource());
 
-            var projectTemplates =
+            var projectTypes =
                 SonarLintGenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project
                                                              && t.GetLanguage() == ProgrammingLanguages.VisualBasic
-                                                             && t.Name != "Feature.Testing.SonarLint.VB");
+                                                             && t.Name != "Feature.Testing.SonarLint.VB")
+                                                             .SelectMany(p => p.GetProjectTypeList()).Distinct();
 
-            foreach (var projectTemplate in projectTemplates)
+            foreach (var projectType in projectTypes)
             {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
+                var frameworks = GenComposer.GetSupportedFx(projectType);
 
-                foreach (var projectType in projectTypeList)
+                foreach (var framework in frameworks)
                 {
-                    var frameworks = GenComposer.GetSupportedFx(projectType);
-
-                    foreach (var framework in frameworks)
-                    {
-                        result.Add(new object[] { projectType, framework });
-                    }
+                    result.Add(new object[] { projectType, framework });
                 }
             }
 
