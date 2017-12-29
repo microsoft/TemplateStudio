@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             Config = new TemplatesSourceConfig()
             {
-                PackagesInfo = availablePackages,
+                Versions = availablePackages,
                 Latest = VersionZero,
                 VersionCount = 1
             };
@@ -98,11 +98,10 @@ namespace Microsoft.Templates.Core.Locations
             };
         }
 
-        //TODO: Check if this is used SM
-        //public override void Adquire(ref TemplatesPackageInfo packageInfo)
-        //{
-        //    packageInfo.LocalPath = Origin;
-        //}
+        public override void Acquire(ref TemplatesPackageInfo packageInfo)
+        {
+            packageInfo.LocalPath = Origin;
+        }
 
         protected static string GetAgentName()
         {

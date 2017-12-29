@@ -157,6 +157,8 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 var package = _source.Config.ResolvePackage(CurrentWizardVersion);
+                // TODO: Is this correct here?? SM
+                _source.Acquire(ref package);
                 _content.GetNewVersionContent();
             }
             catch (Exception ex)

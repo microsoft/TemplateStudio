@@ -46,7 +46,7 @@ namespace WtsTool
                 output.WriteLine();
 
                 WriteSummary(config, output);
-                WritePackagesTable(config.PackagesInfo, output);
+                WritePackagesTable(config.Versions, output);
             }
             catch (Exception ex)
             {
@@ -184,7 +184,7 @@ namespace WtsTool
             output.WriteCommandText($"Latest Version Uri: {config.Latest.Uri}");
 
             output.WriteLine();
-            output.WriteCommandText($"Available Versions: {string.Join(", ", config.PackagesInfo.Select(e => e.MainVersion).ToArray())}");
+            output.WriteCommandText($"Available Versions: {string.Join(", ", config.Versions.Select(e => e.MainVersion).ToArray())}");
         }
 
         private static void WritePackagesTable(IEnumerable<TemplatesPackageInfo> packages, TextWriter output)

@@ -45,7 +45,7 @@ namespace WtsTool
             {
                 VersionCount = remotePackages.Count(),
                 Latest = remotePackages.FirstOrDefault(),
-                PackagesInfo = remotePackages.ToList()
+                Versions = remotePackages.ToList()
             };
             return config;
         }

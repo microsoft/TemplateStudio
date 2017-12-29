@@ -346,8 +346,8 @@ namespace Microsoft.Templates.Test
                     result = context.Factory.Run(() => BuildTemplatesTestFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
-                case "LegacyFrameworks": // TODO : RAGC RESTORE!
-                    // result = context.Factory.Run(() => BuildRightClickWithLegacyFixture.GetProjectTemplatesAsync());
+                case "LegacyFrameworks":
+                    result = context.Factory.Run(() => BuildRightClickWithLegacyFixture.GetProjectTemplatesAsync());
                     break;
                 case "Prism":
                     result = context.Factory.Run(() => BuildTemplatesTestFixture.GetProjectTemplatesAsync(framework, programmingLanguage));

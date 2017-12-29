@@ -202,6 +202,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyCollection.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyFixture.cs" />
+    <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyTests.cs" />
+    <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSourceV2.cs" />
     <Compile Include="BuildTemplatesTests\BuildMVVMBasicProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\BuildMVVMLightProjectTests.cs" />
     <Compile Include="BuildTemplatesTests\BuildPrismProjectTests.cs" />

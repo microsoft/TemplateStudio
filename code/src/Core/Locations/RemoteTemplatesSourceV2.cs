@@ -12,7 +12,7 @@ using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public sealed class RemoteTemplatesSourceV2 : TemplatesSourceV2
+    public class RemoteTemplatesSourceV2 : TemplatesSourceV2
     {
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
 
@@ -34,18 +34,17 @@ namespace Microsoft.Templates.Core.Locations
             // TODO REMOVE TEMPS
         }
 
-        //TODO: Check if this is used SM
-        //public override void Adquire(ref TemplatesPackageInfo packageInfo)
-        //{
-        //    var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-        //    var sourceUrl = $"{_cdnUrl}/{packageInfo.Name}";
-        //    var fileTarget = Path.Combine(tempFolder, packageInfo.Name);
-        //    Fs.EnsureFolder(tempFolder);
+        public override void Acquire(ref TemplatesPackageInfo packageInfo)
+        {
+            var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            var sourceUrl = $"{_cdnUrl}/{packageInfo.Name}";
+            var fileTarget = Path.Combine(tempFolder, packageInfo.Name);
+            Fs.EnsureFolder(tempFolder);
 
-        //    DownloadContent(sourceUrl, fileTarget);
+            DownloadContent(sourceUrl, fileTarget);
 
-        //    packageInfo.LocalPath = fileTarget;
-        //}
+            packageInfo.LocalPath = fileTarget;
+        }
 
         public override void LoadConfig()
         {
