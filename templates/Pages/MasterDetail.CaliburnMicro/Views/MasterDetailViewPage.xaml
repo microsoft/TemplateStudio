@@ -42,6 +42,7 @@
             ItemTemplate="{StaticResource ItemTemplate}"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
+            Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
             Loaded="MasterDetailsViewControl_Loaded"
             BorderBrush="Transparent" />
     </Grid>

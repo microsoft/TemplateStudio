@@ -53,6 +53,7 @@
             ItemTemplate="{StaticResource ItemTemplate}"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
+            Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
             BorderBrush="Transparent" />
     </Grid>
 </Page>
