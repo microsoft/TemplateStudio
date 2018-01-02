@@ -122,6 +122,14 @@ namespace Microsoft.Templates.Test
             Assert.True(foundErrors.Count == 0, string.Join(Environment.NewLine, foundErrors));
         }
 
+        [Fact]
+        public void EnsureVisualBasicCodeDoesNotUseOnErrorGoto()
+        {
+            var result = CodeIsNotUsed("On Error Goto", "*.vb");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
         private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeinTheFile, string fileExtension)
         {
             foreach (var file in GetFiles(TemplatesRoot, fileExtension))
