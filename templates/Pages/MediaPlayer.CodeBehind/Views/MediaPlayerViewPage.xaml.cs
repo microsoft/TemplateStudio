@@ -30,19 +30,6 @@ namespace Param_ItemNamespace.Views
             mpe.Source = MediaSource.CreateFromUri(new Uri(DefaultSource));
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-            mpe.MediaPlayer.Pause();
-            mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
-        }
-
         private async void PlaybackSession_PlaybackStateChanged(MediaPlaybackSession sender, object args)
         {
             if (sender is MediaPlaybackSession playbackSession && playbackSession.NaturalVideoHeight != 0)
