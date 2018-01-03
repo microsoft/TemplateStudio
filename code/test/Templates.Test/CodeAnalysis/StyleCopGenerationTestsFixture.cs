@@ -73,22 +73,18 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             await InitializeTemplatesForLanguageAsync(new StyleCopPlusLocalTemplatesSource());
 
-            var projectTemplates =
+            var projectTypes =
                 StyleCopGenerationTestsFixture.Templates.Where(
-                    t => t.GetTemplateType() == TemplateType.Project && t.Name != "Feature.Testing.StyleCop");
+                    t => t.GetTemplateType() == TemplateType.Project
+                     && t.Name != "Feature.Testing.StyleCop").SelectMany(p => p.GetProjectTypeList()).Distinct();
 
-            foreach (var projectTemplate in projectTemplates)
+            foreach (var projectType in projectTypes)
             {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
+                var frameworks = GenComposer.GetSupportedFx(projectType);
 
-                foreach (var projectType in projectTypeList)
+                foreach (var framework in frameworks)
                 {
-                    var frameworks = GenComposer.GetSupportedFx(projectType);
-
-                    foreach (var framework in frameworks)
-                    {
-                        result.Add(new object[] { projectType, framework });
-                    }
+                    result.Add(new object[] { projectType, framework });
                 }
             }
 
