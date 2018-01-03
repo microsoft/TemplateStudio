@@ -20,7 +20,9 @@ namespace Microsoft.Templates.UI.Extensions
 
             if (element.Opacity < 1.0)
             {
-                return AnimateDoubleProperty(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
+                var animation = AnimateDoubleProperty(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
+                animation.Begin();
+                return animation;
             }
 
             return null;
@@ -43,7 +45,9 @@ namespace Microsoft.Templates.UI.Extensions
 
             if (element.Opacity > 0.0)
             {
-                return AnimateDoubleProperty(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
+                var animation = AnimateDoubleProperty(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
+                animation.Begin();
+                return animation;
             }
 
             return null;
@@ -66,7 +70,9 @@ namespace Microsoft.Templates.UI.Extensions
 
             if (element.ActualWidth != width)
             {
-                return AnimateDoubleProperty(element, "Width", element.ActualWidth, width, duration, easingFunction);
+                var animation = AnimateDoubleProperty(element, "Width", element.ActualWidth, width, duration, easingFunction);
+                animation.Begin();
+                return animation;
             }
 
             return null;
@@ -92,6 +98,7 @@ namespace Microsoft.Templates.UI.Extensions
             {
                 tcs.SetResult(true);
             };
+            storyboard.Begin();
             return tcs.Task;
         }
 
@@ -112,7 +119,6 @@ namespace Microsoft.Templates.UI.Extensions
 
             storyboard.Children.Add(animation);
             storyboard.FillBehavior = FillBehavior.HoldEnd;
-            storyboard.Begin();
 
             return storyboard;
         }

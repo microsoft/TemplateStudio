@@ -27,7 +27,7 @@
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationInformationIcon}" />
                     </Grid>
                     <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsTextBlockNotificationInformationText}" />
-                    <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotificationInformation}" />
+                    <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotificationInformation}" Command="{Binding CloseCommand}" />
                 </Grid>
             </DataTemplate>
 
@@ -43,7 +43,7 @@
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationWarningIcon}" />
                     </Grid>
                     <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsTextBlockNotificationWarningText}" />
-                    <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotificationWarning}" />
+                    <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotificationWarning}" Command="{Binding CloseCommand}" />
                 </Grid>
             </DataTemplate>
 
@@ -54,8 +54,11 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <ContentControl
-        Content="{Binding Notification, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:NotificationsControl}}}"
-        ContentTemplateSelector="{StaticResource NotificationTemplateSelector}"/>
+    <Grid Height="100" VerticalAlignment="Top">
+        <StackPanel VerticalAlignment="Bottom">
+            <ContentControl Content="{Binding Notification, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:NotificationsControl}}}" ContentTemplateSelector="{StaticResource NotificationTemplateSelector}" Height="100"/>
+            <Grid x:Name="fakeGrid" Height="100" />
+        </StackPanel>
+    </Grid>
 
 </UserControl>

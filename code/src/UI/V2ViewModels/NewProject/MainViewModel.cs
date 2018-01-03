@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.V2Controls;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 using Microsoft.Templates.UI.V2Views.NewProject;

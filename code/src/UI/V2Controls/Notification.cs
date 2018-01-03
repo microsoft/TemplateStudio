@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.UI.V2Controls
 {
@@ -18,9 +20,13 @@ namespace Microsoft.Templates.UI.V2Controls
 
     public class Notification
     {
+        private ICommand _closeCommand;
+
         public NotificationType Type { get; private set; }
 
         public string Message { get; private set; }
+
+        public ICommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand(OnClose));
 
         public static Notification Information(string message)
         {
@@ -38,6 +44,11 @@ namespace Microsoft.Templates.UI.V2Controls
                 Type = NotificationType.Warning,
                 Message = message
             };
+        }
+
+        private async void OnClose()
+        {
+            await NotificationsControl.Instance.CloseAsync();
         }
     }
 }
