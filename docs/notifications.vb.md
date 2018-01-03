@@ -1,7 +1,7 @@
 # Notifications on Windows Template Studio
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./notifications.vb.md) :heavy_exclamation_mark: |
------------------------------------------------------------------------------------------------------------------------------------------------ |
+:heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./notifications.md) :heavy_exclamation_mark: |
+---------------------------------------------------------------------------------------------------------------------------------------- |
 
 Windows Template Studio supports three different type of notifications for UWP:
 - Toast notifications
@@ -15,37 +15,31 @@ ToastNotificationsService extends `ActivationHandler` to handle application acti
 Check out the [activation documentation](activation.md) to learn more about handling app activation.
 The relevant parts of the sample app that handle activation are shown below.
 
-```csharp
-// ToastNotificationService.cs
-protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
-{
+```vbnet
+' ToastNotificationService.vb
+Protected Overrides Async Function HandleInternalAsync(ByVal args As ToastNotificationActivatedEventArgs) As Task
     // Handle the app activation from a ToastNotification
-    NavigationService.Navigate<Views.ActivatedFromToastPage>(args);
-    await Task.CompletedTask;
-}
+    NavigationService.Navigate(Of Views.ActivatedFromToastPage)(args)
+    Await Task.CompletedTask
+End Function
 
-// ActivatedFromToastPage.xaml.cs
-protected override void OnNavigatedTo(NavigationEventArgs e)
-{
-    base.OnNavigatedTo(e);
-    ViewModel.Initialize(e.Parameter as ToastNotificationActivatedEventArgs);
-}
+' ActivatedFromToastPage.xaml.vb
+Protected Overrides Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
+    MyBase.OnNavigatedTo(e)
+    ViewModel.Initialize(TryCast(e.Parameter, ToastNotificationActivatedEventArgs))
+End Sub
 
-// ActivatedFromToastViewModel.cs
-public void Initialize(ToastNotificationActivatedEventArgs args)
-{
-    // Check args looking for information about the toast notification
-    if (args.Argument == "ToastButtonActivationArguments")
-    {
-        // ToastNotification was clicked on OK Button
-        ActivationSource = "ActivationSourceButtonOk".GetLocalized();
-    }
-    else if(args.Argument == "ToastContentActivationParams")
-    {
-        // ToastNotification was clicked on main content
-        ActivationSource = "ActivationSourceContent".GetLocalized();
-    }
-}
+' ActivatedFromToastViewModel.vb
+Public Sub Initialize(ByVal args As ToastNotificationActivatedEventArgs)
+    ' Check args looking for information about the toast notification
+    If args.Argument = "ToastButtonActivationArguments" Then
+        ' ToastNotification was clicked on OK Button
+        ActivationSource = "ActivationSourceButtonOk".GetLocalized()
+    ElseIf args.Argument = "ToastContentActivationParams" Then
+        ' ToastNotification was clicked on main content
+        ActivationSource = "ActivationSourceContent".GetLocalized()
+    End If
+End Sub
 ```
 
 Full toast notification documentation for UWP [here](https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent).
@@ -62,19 +56,18 @@ See the official documentation on how to [configure your app for targeted push n
 
 To handle app activation from a Toast Notification that is sent from Windows Dev Center service will need you to add a similar implementation to that detailed above. The key difference is to call `ParseArgumentsAndTrackAppLaunch` to notify the Windows Dev Center that the app was launched in response to a targeted push notification and to get the original arguments. An example of this is shown below.
 
-```csharp
-protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
-{
-    var toastActivationArgs = args as ToastNotificationActivatedEventArgs;
+```vbnet
+Protected Overrides Async Function HandleInternalAsync(ByVal args As ToastNotificationActivatedEventArgs) As Task
+    Dim toastActivationArgs = TryCast(args, ToastNotificationActivatedEventArgs)
 
-    StoreServicesEngagementManager engagementManager = StoreServicesEngagementManager.GetDefault();
-    string originalArgs = engagementManager.ParseArgumentsAndTrackAppLaunch(toastActivationArgs.Argument);
+    Dim engagementManager As StoreServicesEngagementManager = StoreServicesEngagementManager.GetDefault()
+    Dim originalArgs As String = engagementManager.ParseArgumentsAndTrackAppLaunch(toastActivationArgs.Argument)
 
-    //// Use the originalArgs variable to access the original arguments passed to the app.
-    NavigationService.Navigate<Views.ActivatedFromStorePage>(originalArgs);
+    ' Use the originalArgs variable to access the original arguments passed to the app.
+    NavigationService.Navigate(Of Views.ActivatedFromStorePage)(originalArgs)
 
-    await Task.CompletedTask;
-}
+    Await Task.CompletedTask
+End Function
 ```
 
 Other interesting links about notifications
