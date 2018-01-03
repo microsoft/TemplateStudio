@@ -25,6 +25,8 @@ namespace Microsoft.Templates.UI.V2Services
                     return GetColorFromCommonControls(memberName);
                 case "ThemedCard":
                     return GetColorFromThemedCard(memberName);
+                case "WindowsTemplateStudio":
+                    return GetColorFromWindowsTemplateStudio(memberName);
                 default:
                     throw new Exception($"Class name not recognized '{className}'");
             }
@@ -338,6 +340,28 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FF888D8F;
                 case "CardFooterText":
                     return LightColorValues.Color_FF575757;
+                default:
+                    throw new Exception($"The color key value '{memberName}' is not found");
+            }
+        }
+
+        private Brush GetColorFromWindowsTemplateStudio(string memberName)
+        {
+            switch (memberName)
+            {
+                case "NotificationInformationText":
+                    return LightColorValues.Color_FF1E1E1E;
+                case "NotificationInformationBackground":
+                    return LightColorValues.Color_FFE5F1FB;
+                case "NotificationInformationIcon":
+                    return LightColorValues.Color_FF18A2E7;
+
+                case "NotificationWarningText":
+                    return LightColorValues.Color_FF1E1E1E;
+                case "NotificationWarningBackground":
+                    return LightColorValues.Color_FFFDFBAC;
+                case "NotificationWarningIcon":
+                    return LightColorValues.Color_FF18A2E7;
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }

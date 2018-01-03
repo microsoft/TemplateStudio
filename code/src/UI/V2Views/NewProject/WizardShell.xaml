@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
+    xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
     WindowStartupLocation="CenterScreen"
     MinWidth="800"
     MinHeight="400"
@@ -36,6 +37,7 @@
         <Grid Grid.Row="1" Style="{StaticResource WtsGridSectionDividerHorizontal}" />
 
         <Frame Grid.Row="2" x:Name="mainFrame" NavigationUIVisibility="Hidden" Focusable="False"/>
+        <controls:NotificationsControl Grid.Row="2"/>
 
     </Grid>
 

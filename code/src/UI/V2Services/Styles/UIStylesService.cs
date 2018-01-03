@@ -37,6 +37,7 @@ namespace Microsoft.Templates.UI.V2Services
             SetThemedCardColors();
             SetCommonDocumentColors();
             SetCommonControlColors();
+            SetWindowsTemplateStudioColors();
 
             // FontSizes
             Environment90PercentFontSize = _stylesProvider.GetFontSize("Environment90PercentFontSize");
@@ -113,6 +114,17 @@ namespace Microsoft.Templates.UI.V2Services
         {
             ListItemText = _stylesProvider.GetColor("CommonDocument", "ListItemText");
             ListItemTextDisabled = _stylesProvider.GetColor("CommonDocument", "ListItemTextDisabled");
+        }
+
+        private void SetWindowsTemplateStudioColors()
+        {
+            NotificationInformationText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationText");
+            NotificationInformationBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationBackground");
+            NotificationInformationIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationIcon");
+
+            NotificationWarningText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningText");
+            NotificationWarningBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningBackground");
+            NotificationWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningIcon");
         }
 
         private void SetCommonControlColors()

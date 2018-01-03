@@ -9,6 +9,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.V2Controls;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
 {

@@ -9,9 +9,11 @@
     <Thickness x:Key="Margin_S_LeftRight">8,0,8,0</Thickness>
     <Thickness x:Key="Margin_S_Bottom">0,0,0,8</Thickness>
 
+    <Thickness x:Key="Margin_M_Left">12,0,0,0</Thickness>
     <Thickness x:Key="Margin_M_LeftTopRightBottom">12,12,12,12</Thickness>
     <Thickness x:Key="Margin_M_LeftTopRight">12,12,12,0</Thickness>
     <Thickness x:Key="Margin_M_LeftTop">12,12,0,0</Thickness>
+    <Thickness x:Key="Margin_M_Right">0,0,12,0</Thickness>
     <Thickness x:Key="Margin_M_Top">0,12,0,0</Thickness>
 
     <Thickness x:Key="Margin_M2_LeftTopRightBottom">16,16,16,16</Thickness>

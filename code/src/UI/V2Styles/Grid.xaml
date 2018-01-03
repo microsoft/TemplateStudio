@@ -23,4 +23,18 @@
         <Setter Property="Width" Value="1.5" />
     </Style>
 
+    <Style TargetType="Grid" x:Key="WtsGridNotification">
+        <Setter Property="Height" Value="50" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+
+    <Style TargetType="Grid" x:Key="WtsGridNotificationInformation" BasedOn="{StaticResource WtsGridNotification}">
+        <Setter Property="Background" Value="{Binding NotificationInformationBackground, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
+    <Style TargetType="Grid" x:Key="WtsGridNotificationWarning" BasedOn="{StaticResource WtsGridNotification}">
+        <Setter Property="Background" Value="{Binding NotificationWarningBackground, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
 </ResourceDictionary>

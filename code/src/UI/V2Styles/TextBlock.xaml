@@ -143,4 +143,42 @@
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationText">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Margin" Value="{StaticResource Margin_M_LeftTopRightBottom}" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationInformationText" BasedOn="{StaticResource WtsTextBlockNotificationText}">
+        <Setter Property="Foreground" Value="{Binding NotificationInformationText, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationWarningText" BasedOn="{StaticResource WtsTextBlockNotificationText}">
+        <Setter Property="Foreground" Value="{Binding NotificationWarningText, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationInformationIcon">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Text" Value="i" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{Binding NotificationInformationBackground, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationWarningIcon">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Text" Value="i" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{Binding NotificationInformationBackground, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
 </ResourceDictionary>

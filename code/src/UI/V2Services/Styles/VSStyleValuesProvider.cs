@@ -37,6 +37,8 @@ namespace Microsoft.Templates.UI.V2Services
                     return GetColorFromCommonControls(memberName);
                 case "ThemedCard":
                     return GetColorFromThemedCard(memberName);
+                case "WindowsTemplateStudio":
+                    return GetColorFromWindowsTemplateStudio(memberName);
                 default:
                     throw new Exception($"Class name not recognized '{className}'");
             }
@@ -314,6 +316,28 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FF888D8F; // TODO: Replace this temporary value for a VS Color
                 case "CardFooterText":
                     return LightColorValues.Color_FF575757; // TODO: Replace this temporary value for a VS Color
+                default:
+                    throw new Exception($"The color key value '{memberName}' is not found");
+            }
+        }
+
+        private Brush GetColorFromWindowsTemplateStudio(string memberName)
+        {
+            switch (memberName)
+            {
+                case "NotificationInformationText":
+                    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
+                case "NotificationInformationBackground":
+                    return LightColorValues.Color_FFE5F1FB; // TODO: Replace this temporary value for a VS Color
+                case "NotificationInformationIcon":
+                    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
+
+                case "NotificationWarningText":
+                    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
+                case "NotificationWarningBackground":
+                    return LightColorValues.Color_FFFDFBAC; // TODO: Replace this temporary value for a VS Color
+                case "NotificationWarningIcon":
+                    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }

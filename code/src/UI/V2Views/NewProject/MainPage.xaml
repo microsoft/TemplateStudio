@@ -83,10 +83,10 @@
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">
-                <Button Style="{StaticResource wtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}"/>
-                <Button Style="{StaticResource wtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="8,0,0,0" Command="{Binding GoForwardCommand}" />
-                <Button Style="{StaticResource wtFinishButton}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="8,0,0,0" Command="{Binding FinishCommand}" />
-                <Button Style="{StaticResource wtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="8,0,0,0" Command="{Binding CancelCommand}" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}"/>
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="8,0,0,0" Command="{Binding GoForwardCommand}" />
+                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="8,0,0,0" Command="{Binding FinishCommand}" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="8,0,0,0" Command="{Binding CancelCommand}" />
             </StackPanel>
         </Grid>
     </Grid>
