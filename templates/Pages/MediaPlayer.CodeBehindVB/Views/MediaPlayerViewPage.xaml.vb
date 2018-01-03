@@ -7,6 +7,7 @@ Namespace Views
     Public NotInheritable Partial Class MediaPlayerViewPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
+
         ' TODO WTS: Set your video default and image here
         ' For more on the MediaPlayer and adjusting controls and behavior see https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/media-playback
         Private Const DefaultSource As String = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_high.mp4"
@@ -16,6 +17,7 @@ Namespace Views
 
         ' The DisplayRequest is used to stop the screen dimming while watching for extended periods
         Private _displayRequest As New DisplayRequest()
+
         Private _isRequestActive As Boolean = False
 
         Public Sub New()

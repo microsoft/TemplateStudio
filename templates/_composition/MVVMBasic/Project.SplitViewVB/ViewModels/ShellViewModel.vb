@@ -5,6 +5,7 @@ Imports wts.ItemName.Helpers
 Namespace ViewModels
     Public Class ShellViewModel
         Inherits Observable
+
         Private Const PanoramicStateName As String = "PanoramicState"
         Private Const WideStateName As String = "WideState"
         Private Const NarrowStateName As String = "NarrowState"
@@ -12,6 +13,7 @@ Namespace ViewModels
         Private Const PanoramicStateMinWindowWidth As Double = 1024
 
         Private _isPaneOpen As Boolean
+
         Public Property IsPaneOpen As Boolean
             Get
                 Return _isPaneOpen
@@ -34,6 +36,7 @@ Namespace ViewModels
         End Property
 
         Private _displayMode As SplitViewDisplayMode = SplitViewDisplayMode.CompactInline
+
         Public Property DisplayMode As SplitViewDisplayMode
             Get
                 Return _displayMode
@@ -46,6 +49,7 @@ Namespace ViewModels
         Private _lastSelectedItem As Object
 
         Private _primaryItems As New ObservableCollection(Of ShellNavigationItem)()
+
         Public ReadOnly Property PrimaryItems As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _primaryItems
@@ -53,6 +57,7 @@ Namespace ViewModels
         End Property
 
         Private _secondaryItems As New ObservableCollection(Of ShellNavigationItem)()
+
         Public ReadOnly Property SecondaryItems As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _secondaryItems
@@ -60,6 +65,7 @@ Namespace ViewModels
         End Property
 
         Private _openPaneCommand As ICommand
+
         Public ReadOnly Property OpenPaneCommand As ICommand
             Get
                 If _openPaneCommand Is Nothing Then
@@ -73,6 +79,7 @@ Namespace ViewModels
         End Property
 
         Private _itemSelected As ICommand
+
         Public ReadOnly Property ItemSelectedCommand As ICommand
             Get
                 If _itemSelected Is Nothing Then
@@ -84,6 +91,7 @@ Namespace ViewModels
         End Property
 
         Private _stateChangedCommand As ICommand
+
         Public ReadOnly Property StateChangedCommand As ICommand
             Get
                 If _stateChangedCommand Is Nothing Then

@@ -3,6 +3,7 @@
 Namespace ViewModels
     Public Class SharedDataViewModelBase
         Inherits System.ComponentModel.INotifyPropertyChanged
+
         Private _dataFormat As String
 
         Public Property DataFormat As String

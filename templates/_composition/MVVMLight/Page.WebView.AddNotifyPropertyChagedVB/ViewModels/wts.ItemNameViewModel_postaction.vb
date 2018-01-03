@@ -1,9 +1,10 @@
-﻿/{[{
+﻿'{[{
 Imports GalaSoft.MvvmLight.Command
-/}]}
+'}]}
 Namespace ViewModels
     Public Class wts.ItemNameViewModel
         Inherits ViewModelBase
+
         Private Sub NavCompleted(e As WebViewNavigationCompletedEventArgs)
             IsLoading = False
             '{[{

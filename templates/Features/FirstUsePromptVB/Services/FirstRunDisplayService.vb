@@ -5,6 +5,7 @@ Namespace Services
     Public NotInheritable Class FirstRunDisplayService
         Private Sub New()
         End Sub
+
         Friend Shared Async Function ShowIfAppropriateAsync() As Task
             Dim hasShownFirstRun As Boolean = False
             hasShownFirstRun = Await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync(Of Boolean)(nameof(hasShownFirstRun))

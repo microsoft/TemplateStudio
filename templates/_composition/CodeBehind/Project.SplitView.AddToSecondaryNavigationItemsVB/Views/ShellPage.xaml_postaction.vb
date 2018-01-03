@@ -6,6 +6,7 @@ Namespace Views
     Public NotInheritable Partial Class ShellPage
         Inherits Page
         Implements INotifyPropertyChanged
+
         Private Sub PopulateNavItems()
             '^^
             '{[{

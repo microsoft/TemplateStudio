@@ -8,6 +8,7 @@ Imports Param_ItemNamespace.Helpers
 Namespace ViewModels
     Public Class ShellViewModel
         Inherits ViewModelBase
+
         Private Sub PopulateNavItems()
             '^^
             '{[{
