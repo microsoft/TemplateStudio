@@ -1,0 +1,6 @@
+﻿<!-- Nuget package references -->
+<!--{[{-->
+<PackageReference Include="Microsoft.Toolkit.Uwp">
+  <Version>2.1.1</Version>
+</PackageReference>
+<!--}]}-->
