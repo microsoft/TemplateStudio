@@ -1,7 +1,7 @@
 # Navigation Pane
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./navigationpane.vb.md) :heavy_exclamation_mark: |
------------------------------------------------------------------------------------------------------------------------------------------------- |
+:heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./navigationpane.md) :heavy_exclamation_mark: |
+----------------------------------------------------------------------------------------------------------------------------------------- |
 
 The navigation pane project type includes a navigation menu displayed in a panel at the side of the screen and which can be expanded with the Hamburger icon.
 
@@ -27,31 +27,31 @@ When every item has the same icon it is hard to differentiate between them when 
 
 ![](../resources/modifications/NavMenu_Different_Symbols.png)
 
-Navigate to `ViewModel/ShellViewModel.cs` (or `Views/ShellPage.xaml.cs` if using Code Behind) and change the `PopulateNavItems` method.
+Navigate to `ViewModel/ShellViewModel.vb` (or `Views/ShellPage.xaml.vb` if using Code Behind) and change the `PopulateNavItems` method.
 
 The code below shows the symbols used to create the app shown in the image above.
 
-```csharp
-private void PopulateNavItems()
-{
-    _primaryItems.Clear();
-    _secondaryItems.Clear();
+```vbnet
 
-    _primaryItems.Add(ShellNavigationItem.FromType<MainPage>("Shell_Main".GetLocalized(), Symbol.Home));
-    _primaryItems.Add(ShellNavigationItem.FromType<MapPage>("Shell_Map".GetLocalized(), Symbol.Map));
-    _primaryItems.Add(ShellNavigationItem.FromType<MasterDetailPage>("Shell_MasterDetail".GetLocalized(), Symbol.DockLeft));
-    _primaryItems.Add(ShellNavigationItem.FromType<TabbedPage>("Shell_Tabbed".GetLocalized(), Symbol.Document)); // This is still the default
-    _primaryItems.Add(ShellNavigationItem.FromType<WebViewPage>("Shell_WebView".GetLocalized(), Symbol.Globe));
-    _secondaryItems.Add(ShellNavigationItem.FromType<SettingsPage>("Shell_Settings".GetLocalized(), Symbol.Setting));
-}
+Private Sub PopulateNavItems()
+    _primaryItems.Clear()
+    _secondaryItems.Clear()
+
+    _primaryItems.Add(ShellNavigationItem.FromType(Of MainPage)("Shell_Main".GetLocalized(), Symbol.Home))
+    _primaryItems.Add(ShellNavigationItem.FromType(Of MapPage)("Shell_Map".GetLocalized(), Symbol.Map))
+    _primaryItems.Add(ShellNavigationItem.FromType(Of MasterDetailPage)("Shell_MasterDetail".GetLocalized(), Symbol.DockLeft))
+    _primaryItems.Add(ShellNavigationItem.FromType(Of TabbedPage)("Shell_Tabbed".GetLocalized(), Symbol.Document)) ' This is still the default
+    _primaryItems.Add(ShellNavigationItem.FromType(Of WebViewPage)("Shell_WebView".GetLocalized(), Symbol.Globe))
+    _secondaryItems.Add(ShellNavigationItem.FromType(Of SettingsPage)("Shell_Settings".GetLocalized(), Symbol.Setting))
+End Sub
 ```
 
 The icons are created using the `Windows.UI.Xaml.Controls.Symbol` enumeration. You can view all the symbols available at <https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.symbol>
 
 You can also set the menu item to use an `IconElement` directly. Like this:
 
-```csharp
-_navigationItems.Add(ShellNavigationItem.FromType<MainView>("Shell_Main".GetLocalized(), new FontIcon { Glyph = "\uED5A" }));
+```vbnet
+_navigationItems.Add(ShellNavigationItem.FromType(Of MainView)("Shell_Main".GetLocalized(), New FontIcon With { .Glyph = "\uED5A" }))
 ```
 
 ### Change the text for an item
@@ -146,7 +146,7 @@ Alternatively, a bar can be added inside the Hamburger menu but above each pages
 
 **A Note about the above code examples.**
 
-Events and commands are not shown in the above code but can easily be added like any other button click event or command. Note that if using the techniques for adding the bar to every page, the events or commands should be handled by the ShellPageViewModel (or in ShellPage.xaml.cs if using CodeBehind.)
+Events and commands are not shown in the above code but can easily be added like any other button click event or command. Note that if using the techniques for adding the bar to every page, the events or commands should be handled by the ShellPageViewModel (or in ShellPage.xaml.vb if using CodeBehind.)
 
 In all the above code examples the `Label` values have been hard-coded. This is to make the samples simpler. To use localized text, set the `x:Uid` value for the `AppBarButton` and add a corresponding resource entry for "{name}.Label".
 
@@ -161,94 +161,76 @@ Extending the app to add this functionality requires making two changes.
 1. Change the ShellNavigationItem to be able to handle an `Action`.
 1. Change the ShellPage or ShellViewModel to invoke the action.
 
-In **ShellNavigationItem.cs** add the following
+In **ShellNavigationItem.vb** add the following
 
-```csharp
-    public Action Action { get; private set; }
+```vbnet
+Public Property Action As Action
 
-    private ShellNavigationItem(string label, Symbol symbol, Action action)
-        : this(label, null)
-    {
-        Symbol = symbol;
-        Action = action;
-    }
+Private Sub New(ByVal label As String, ByVal symbol As Symbol, ByVal_action As Action)
+    Me.Symbol = symbol
+    Me.Action = action
+End Sub
 
-    public static ShellNavigationItem ForAction(string label, Symbol symbol, Action action)
-    {
-        return new ShellNavigationItem(label, symbol, action);
-    }
+Public Shared Function ForAction(ByVal label As String, ByVal symbol As Symbol, ByVal action As Action) As ShellNavigationItem
+    Return New ShellNavigationItem(label, symbol, action)
+End Function
 ```
 
 ### If using CodeBehind
 
-In **ShellPage.xaml.cs** change the `Navigate` method to be like this.
+In **ShellPage.xaml.vb** change the `Navigate` method to be like this.
 
-```csharp
-    private void Navigate(object item)
-    {
-        var navigationItem = item as ShellNavigationItem;
-        if (navigationItem != null)
-        {
-            if (navigationItem.Action != null)
-            {
-                navigationItem.Action.Invoke();
-            }
-            else
-            {
-                NavigationService.Navigate(navigationItem.PageType);
-            }
-        }
-    }
+```vbnet
+Private Sub Navigate(ByVal item As Object)
+    Dim navigationItem = TryCast(item, ShellNavigationItem)
+    If navigationItem IsNot Nothing Then
+        If navigationItem.Action IsNot Nothing Then
+            navigationItem.Action.Invoke()
+        Else
+            NavigationService.Navigate(navigationItem.PageType)
+        End If
+    End If
+End Sub
 ```
 
 ### If using MVVM Basic
 
 In **ShellPageViewModel** change the `Navigate` method to be like this.
 
-```csharp
-    private void Navigate(object item)
-    {
-        var navigationItem = item as ShellNavigationItem;
-        if (navigationItem != null)
-        {
-            if (navigationItem.Action != null)
-            {
-                navigationItem.Action.Invoke();
-            }
-            else
-            {
-                NavigationService.Navigate(navigationItem.PageType);
-            }
-        }
-    }
+```vbnet
+Private Sub Navigate(ByVal item As Object)
+    Dim navigationItem = TryCast(item, ShellNavigationItem)
+    If navigationItem IsNot Nothing Then
+        If navigationItem.Action IsNot Nothing Then
+            navigationItem.Action.Invoke()
+        Else
+            NavigationService.Navigate(navigationItem.PageType)
+        End If
+    End If
+End Sub
 ```
 
 ### If using MVVM Light
 
 In **ShellPageViewModel** change the `Navigate` method to be like this.
 
-```csharp
-    private void Navigate(object item)
-    {
-        var navigationItem = item as ShellNavigationItem;
-        if (navigationItem != null)
-        {
-            if (navigationItem.Action != null)
-            {
-                navigationItem.Action.Invoke();
-            }
-            else
-            {
-                NavigationService.Navigate(navigationItem.ViewModelName);
-            }
-        }
-    }
+```vbnet
+Private Sub Navigate(ByVal item As Object)
+    Dim navigationItem = TryCast(item, ShellNavigationItem)
+    If navigationItem IsNot Nothing Then
+        If navigationItem.Action IsNot Nothing Then
+            navigationItem.Action.Invoke()
+        Else
+            NavigationService.Navigate(navigationItem.ViewModelName)
+        End If
+    End If
+End Su
 ```
 
 You can then add a menu item that uses the above.
 e.g. In `PopulateNavItems()` add something like this:
 
-```csharp
+```vbnet
 _secondaryItems.Add(
     ShellNavigationItem.ForAction(
         "Rate this app",
@@ -257,4 +239,12 @@ _secondaryItems.Add(
             await new Windows.UI.Popups.MessageDialog("5 stars please").ShowAsync();
             // .. code to launch the review process, etc.
         }));
+ _secondaryItems.Add(
+    ShellNavigationItem.ForAction(
+        "Rate this app",
+        Symbol.OutlineStar,
+        Async Sub()
+            Await new Windows.UI.Popups.MessageDialog("5 stars please").ShowAsync()
+            ' .. code to launch the review process, etc.
+        End Sub))
 ```

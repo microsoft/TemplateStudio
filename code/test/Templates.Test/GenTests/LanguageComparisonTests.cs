@@ -173,7 +173,7 @@ namespace Microsoft.Templates.Test
                 {
                     for (int j = 0; j < vbCommentLines.Count(); j++)
                     {
-                        var vbComment = vbCommentLines[j].TrimStart(' ', '\'');
+                        var vbComment = vbCommentLines[j].TrimStart(' ', '\'').Replace(".vb.md", ".md"); // Allow for language specific doc files
                         var csComment = csCommentLines[j].TrimStart(' ', '/');
 
                         var commentsMatch = CommentsMatchOrAreEquivalent(vbComment, csComment);
