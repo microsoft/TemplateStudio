@@ -23,11 +23,26 @@ namespace Param_ItemNamespace.Views
             {
                 pivotPage.SelectionChanged += PivotPage_SelectionChanged;
             }
+
+            mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
+            mpe.MediaPlayer.Play();
         }
 
         private void PivotPage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // TODO: Start or stop video
+            bool navigatedTo = e.AddedItems.Cast<PivotItem>().Any(p => p.FindChild<wts.ItemNamePage>() != null);
+            bool navigatedFrom = e.RemovedItems.Cast<PivotItem>().Any(p => p.FindChild<wts.ItemNamePage>() != null);
+
+            if (navigatedTo)
+            {
+                mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
+            }
+
+            if (navigatedFrom)
+            {
+                mpe.MediaPlayer.Pause();
+                mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
+            }
         }
         //}]}
     }
