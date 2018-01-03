@@ -21,6 +21,18 @@ Namespace ViewModels
             End Set
         End Property
 
+        Private _selected As Object
+
+        Public Property Selected As Object
+            Get
+                Return _selected
+            End Get
+
+            Set(ByVal value As Object)
+                [Set](_selected, value)
+            End Set
+        End Property
+
         Private _displayMode As SplitViewDisplayMode = SplitViewDisplayMode.CompactInline
         Public Property DisplayMode As SplitViewDisplayMode
             Get
@@ -51,7 +63,9 @@ Namespace ViewModels
         Public ReadOnly Property OpenPaneCommand As ICommand
             Get
                 If _openPaneCommand Is Nothing Then
-                    _openPaneCommand = New RelayCommand(Function() InlineAssignHelper(IsPaneOpen, Not _isPaneOpen))
+                    _openPaneCommand = New RelayCommand(Sub()
+                        IsPaneOpen = Not _isPaneOpen
+                                                        End Sub)
                 End If
 
                 Return _openPaneCommand
@@ -122,7 +136,7 @@ Namespace ViewModels
 
             ' TODO WTS: Change the symbols for each item as appropriate for your app
             ' More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-            ' Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
+            ' Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.vb.md
             ' Edit String/en-US/Resources.resw: Add a menu item title for each page
         End Sub
 
@@ -156,6 +170,7 @@ Namespace ViewModels
             End If
             If newValue IsNot Nothing Then
                 TryCast(newValue, ShellNavigationItem).IsSelected = True
+                Selected = newValue
             End If
         End Sub
 
@@ -165,10 +180,5 @@ Namespace ViewModels
                 NavigationService.Navigate(navigationItem.PageType)
             End If
         End Sub
-
-        Private Shared Function InlineAssignHelper(Of T)(ByRef target As T, value As T) As T
-            target = value
-            Return value
-        End Function
     End Class
 End Namespace

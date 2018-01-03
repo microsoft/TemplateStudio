@@ -38,6 +38,7 @@ namespace Microsoft.Templates.Test
             await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldCaliburn"), ProgrammingLanguages.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
+                                                                            && t.GetFrameworkList().Contains(frameworkFilter)
                                                                             && t.GetLanguage() == ProgrammingLanguages.CSharp);
 
             foreach (var projectTemplate in projectTemplates)
@@ -65,6 +66,7 @@ namespace Microsoft.Templates.Test
             await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBldCaliburn"), ProgrammingLanguages.CSharp);
 
             var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
+                                                                            && t.GetFrameworkList().Contains(frameworkFilter)
                                                                             && t.GetLanguage() == ProgrammingLanguages.CSharp);
 
             foreach (var projectTemplate in projectTemplates)

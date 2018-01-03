@@ -13,7 +13,7 @@ Namespace ViewModels
         Private Const WideStateMinWindowWidth As Double = 640
         Private Const PanoramicStateMinWindowWidth As Double = 1024
 
-        Public ReadOnly Property NavigationService() As NavigationServiceEx
+        Public ReadOnly Property NavigationService As NavigationServiceEx
             Get
                 Return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()
             End Get
@@ -26,6 +26,18 @@ Namespace ViewModels
             End Get
             Set
                 [Set](_isPaneOpen, value)
+            End Set
+        End Property
+
+        Private _selected As Object
+
+        Public Property Selected As Object
+            Get
+                Return _selected
+            End Get
+
+            Set(ByVal value As Object)
+                [Set](_selected, value)
             End Set
         End Property
 
@@ -57,13 +69,15 @@ Namespace ViewModels
 
         Private _openPaneCommand As ICommand
         Public ReadOnly Property OpenPaneCommand As ICommand
-          Get
-              If _openPaneCommand Is Nothing Then
-                  _openPaneCommand = New RelayCommand(Function() InlineAssignHelper(IsPaneOpen, Not _isPaneOpen))
-              End If
+            Get
+                If _openPaneCommand Is Nothing Then
+                    _openPaneCommand = New RelayCommand(Sub()
+                        IsPaneOpen = Not _isPaneOpen
+                                                        End Sub)
+                End If
 
-              Return _openPaneCommand
-          End Get
+                Return _openPaneCommand
+            End Get
         End Property
 
         Private _itemSelected As ICommand
@@ -130,7 +144,7 @@ Namespace ViewModels
 
             ' TODO WTS: Change the symbols for each item as appropriate for your app
             ' More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-            ' Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
+            ' Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.vb.md
             ' Edit String/en-US/Resources.resw: Add a menu item title for each page
         End Sub
 
@@ -162,6 +176,7 @@ Namespace ViewModels
             End If
             If newValue IsNot Nothing Then
                 TryCast(newValue, ShellNavigationItem).IsSelected = True
+                Selected = newValue
             End If
         End Sub
 
@@ -171,10 +186,5 @@ Namespace ViewModels
                 NavigationService.Navigate(navigationItem.ViewModelName)
             End If
         End Sub
-
-        Private Shared Function InlineAssignHelper(Of T)(ByRef target As T, value As T) As T
-            target = value
-            Return value
-        End Function
     End Class
 End Namespace

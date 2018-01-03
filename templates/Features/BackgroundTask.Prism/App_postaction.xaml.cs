@@ -30,6 +30,7 @@ namespace Param_RootNamespace
         protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
         {
             base.OnBackgroundActivated(args);
+            CreateAndConfigureContainer();
             Container.Resolve<IBackgroundTaskService>().Start(args.TaskInstance);
         }
 //}]}

@@ -35,7 +35,14 @@ Get-ChildItem ..\templates\* -Recurse -include *template.json | where { $_.FullN
     $vbFile = $_.FullName;
     $csFile = $_.FullName -replace "VB\\", "\\"; 
 
+    Try
+    {
     $vbJson = (Get-Content $vbFile) -join "`n" | ConvertFrom-Json;
+    }
+    Catch
+    {
+        Write-Output $vbFile;
+    }
     $csJson = (Get-Content $csFile) -join "`n" | ConvertFrom-Json;
 
     $vbEquivIdentity = $vbJson.identity -replace ".VB", "";

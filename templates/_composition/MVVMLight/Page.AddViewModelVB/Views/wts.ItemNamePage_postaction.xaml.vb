@@ -5,7 +5,7 @@ Namespace Views
     Public NotInheritable Partial Class wts.ItemNamePage
         Inherits Page
 '{[{
-        Private ReadOnly Property ViewModel() As wts.ItemNameViewModel
+        Private ReadOnly Property ViewModel As wts.ItemNameViewModel
           Get
             Return TryCast(DataContext, wts.ItemNameViewModel)
           End Get
