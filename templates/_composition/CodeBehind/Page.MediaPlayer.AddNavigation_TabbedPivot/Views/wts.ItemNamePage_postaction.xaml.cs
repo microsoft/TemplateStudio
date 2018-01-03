@@ -1,23 +1,33 @@
-﻿namespace Param_ItemNamespace.Views
+﻿//{[{
+using System.Linq;
+using Windows.UI.Xaml;
+using Microsoft.Toolkit.Uwp.UI.Extensions;
+//}]}
+
+namespace Param_ItemNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page, INotifyPropertyChanged
     {
         public wts.ItemNamePage()
         {
+            //{[{
+            Loaded += wts.ItemNamePage_Loaded;
+            //}]}
         }
 
         //{[{
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void wts.ItemNamePage_Loaded(object sender, RoutedEventArgs e)
         {
-            base.OnNavigatedTo(e);
-            mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
+            var pivotPage = this.FindParent<Pivot>();
+            if (pivotPage != null)
+            {
+                pivotPage.SelectionChanged += PivotPage_SelectionChanged;
+            }
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        private void PivotPage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            base.OnNavigatedFrom(e);
-            mpe.MediaPlayer.Pause();
-            mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
+            // TODO: Start or stop video
         }
         //}]}
     }

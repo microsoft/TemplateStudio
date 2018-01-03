@@ -2,7 +2,6 @@
 using Windows.Media.Playback;
 using Windows.System.Display;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 using Windows.UI.Core;
 
 namespace Param_ItemNamespace.Views

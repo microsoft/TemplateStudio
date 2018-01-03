@@ -5,7 +5,6 @@ using Windows.System.Display;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
 namespace Param_ItemNamespace.Views
 {
