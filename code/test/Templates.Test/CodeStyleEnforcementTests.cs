@@ -132,6 +132,14 @@ namespace Microsoft.Templates.Test
         }
 
         [Fact]
+        public void EnsureVisualBasicCodeDoesNotContainMultipleConsecutiveBlankLines()
+        {
+            var result = CodeIsNotUsed($"{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}", "*.vb");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
         public void EnsureVisualBasicFilesEndWithSingleBlankLine()
         {
             var errorFiles = new List<string>();
