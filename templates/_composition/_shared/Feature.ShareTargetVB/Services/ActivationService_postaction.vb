@@ -10,7 +10,7 @@ Namespace Services
             '}]}
 '{--{
 
-            yield Exit Function'}--}
+            Exit Function'}--}
         End Function
 
         '^^
