@@ -74,6 +74,8 @@ namespace Microsoft.Templates.UI.V2Services
             {
                 case "WindowPanel":
                     return LightColorValues.Color_FFFFFFFF;
+                case "WindowPanelText":
+                    return LightColorValues.Color_FF1E1E1E;
                 case "WindowBorder":
                     return LightColorValues.Color_FFCCCEDB;
                 case "HeaderText":

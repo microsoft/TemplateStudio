@@ -3,6 +3,7 @@
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services">
 
     <Style TargetType="Hyperlink" x:Key="WtsHyperlink">
+        <Setter Property="Foreground" Value="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" />        
         <Setter Property="TextDecorations" Value="{x:Null}" />
         <Setter Property="FocusVisualStyle">
             <Setter.Value>

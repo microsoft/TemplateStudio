@@ -10,6 +10,7 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Hyperlink.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ImageEx.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ListView.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/MarkdownBlock.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBlock.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>

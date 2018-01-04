@@ -58,6 +58,7 @@ namespace Microsoft.Templates.UI.V2Services
         private void SetThemedDialogColors()
         {
             WindowPanel = _stylesProvider.GetColor("ThemedDialog", "WindowPanel");
+            WindowPanelText = _stylesProvider.GetColor("ThemedDialog", "WindowPanelText");
             WindowBorder = _stylesProvider.GetColor("ThemedDialog", "WindowBorder");
             HeaderText = _stylesProvider.GetColor("ThemedDialog", "HeaderText");
             HeaderTextSecondary = _stylesProvider.GetColor("ThemedDialog", "HeaderTextSecondary");

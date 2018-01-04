@@ -2,9 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
-using Microsoft.Templates.UI.V2Views.NewProject;
+using Microsoft.Templates.UI.V2Views.Common;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
@@ -13,6 +15,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private string _title;
         private string _description;
         private string _author;
+        private string _version;
         private string _icon;
         private int _order;
         private RelayCommand _detailsCommand;
@@ -38,6 +41,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _author, value);
         }
 
+        public string Version
+        {
+            get => _version;
+            set => SetProperty(ref _version, value);
+        }
+
         public string Icon
         {
             get => _icon;
@@ -49,6 +58,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             get => _order;
             set => SetProperty(ref _order, value);
         }
+
+        public IEnumerable<BasicInfoViewModel> Dependencies { get; protected set; }
+
+        public IEnumerable<LicenseViewModel> Licenses { get; protected set; }
 
         public RelayCommand DetailsCommand => _detailsCommand ?? (_detailsCommand = new RelayCommand(OnDetails));
 

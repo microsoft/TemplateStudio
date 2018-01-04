@@ -163,7 +163,7 @@
         <Setter Property="Foreground" Value="{Binding NotificationWarningText, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationInformationIcon">
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationIcon">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Text" Value="i" />
@@ -172,13 +172,21 @@
         <Setter Property="Foreground" Value="{Binding NotificationInformationBackground, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationWarningIcon">
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Text" Value="i" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="{Binding NotificationInformationBackground, Source={x:Static services:UIStylesService.Instance}}" />
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsTitle">
+        <Setter Property="FontSize" Value="{Binding Environment133PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsPropertyLabel">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontWeight" Value="Light" />
+        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsPropertyValue">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_M_Left}" />
     </Style>
 
 </ResourceDictionary>

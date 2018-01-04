@@ -24,7 +24,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{StaticResource Margin_M_Left}">
                         <Ellipse Fill="{Binding NotificationInformationIcon, Source={x:Static services:UIStylesService.Instance}}" />
-                        <TextBlock Style="{StaticResource WtsTextBlockNotificationInformationIcon}" />
+                        <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
                     </Grid>
                     <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsTextBlockNotificationInformationText}" />
                     <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotificationInformation}" Command="{Binding CloseCommand}" />
@@ -40,7 +40,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{StaticResource Margin_M_Left}">
                         <Ellipse Fill="{Binding NotificationWarningIcon, Source={x:Static services:UIStylesService.Instance}}" />
-                        <TextBlock Style="{StaticResource WtsTextBlockNotificationWarningIcon}" />
+                        <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
                     </Grid>
                     <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsTextBlockNotificationWarningText}" />
                     <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotificationWarning}" Command="{Binding CloseCommand}" />

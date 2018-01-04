@@ -4,6 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
@@ -51,7 +53,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _hasMoreThanTwo, value);
         }
 
-        public TemplateInfoViewModel(ITemplateInfo template, IEnumerable<ITemplateInfo> dependencies)
+        public TemplateInfoViewModel(ITemplateInfo template, string frameworkName)
         {
             // BasicInfo properties
             Name = template.Name;
@@ -60,6 +62,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             Author = template.Author;
             Icon = template.GetIcon();
             Order = template.GetDisplayOrder();
+            var dependencies = GenComposer.GetAllDependencies(template, frameworkName);
+            Dependencies = dependencies.Select(d => new TemplateInfoViewModel(d, frameworkName));
+            Licenses = template.GetLicenses().Select(l => new LicenseViewModel(l));
 
             // ITemplateInfo properties
             Group = template.GetGroup();

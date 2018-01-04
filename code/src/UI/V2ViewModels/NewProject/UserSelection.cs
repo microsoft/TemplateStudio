@@ -44,7 +44,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             {
                 if (item.Template != null)
                 {
-                    var templateInfo = new TemplateInfoViewModel(item.Template, GenComposer.GetAllDependencies(item.Template, frameworkName));
+                    var templateInfo = new TemplateInfoViewModel(item.Template, frameworkName);
                     Add(TemplateOrigin.Layout, templateInfo, item.Layout.Name);
                 }
             }

@@ -355,6 +355,10 @@
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
     <Compile Include="V2Controls\ImageEx.cs" />
+    <Compile Include="V2Controls\Markdown.cs" />
+    <Compile Include="V2Controls\MarkdownBlock.xaml.cs">
+      <DependentUpon>MarkdownBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="V2Controls\Notification.cs" />
     <Compile Include="V2Controls\NotificationsControl.xaml.cs">
       <DependentUpon>NotificationsControl.xaml</DependentUpon>
@@ -363,6 +367,7 @@
       <DependentUpon>SequentialFlow.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="V2Converters\HasItemsVisibilityConverter.cs" />
     <Compile Include="V2Converters\IntegerVisibilityConverter.cs" />
     <Compile Include="V2Converters\StringVisibilityConverter.cs" />
     <Compile Include="V2Extensions\SyncStatusExtensions.cs" />
@@ -390,6 +395,7 @@
     <Compile Include="V2TemplateSelectors\NotificationTemplateSelector.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\LicenseViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\MetadataInfoViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
@@ -419,7 +425,7 @@
     <Compile Include="V2Views\NewProject\ProjectTypePage.xaml.cs">
       <DependentUpon>ProjectTypePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewProject\TemplateInfoPage.xaml.cs">
+    <Compile Include="V2Views\Common\TemplateInfoPage.xaml.cs">
       <DependentUpon>TemplateInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Views\NewProject\VSStyleValues.xaml.cs">
@@ -599,6 +605,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="V2Controls\MarkdownBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="V2Controls\NotificationsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -608,6 +618,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="V2Styles\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\MarkdownBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -679,7 +693,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\NewProject\TemplateInfoPage.xaml">
+    <Page Include="V2Views\Common\TemplateInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -862,7 +876,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="V2Views\Common\" />
     <Folder Include="V2Views\NewItem\" />
   </ItemGroup>
   <ItemGroup>
@@ -884,13 +897,6 @@
     <Resource Include="Assets\FileExtensions\Resw.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\PaneStep1-2.png" />
-    <Resource Include="Assets\PaneStep3.png" />
-    <Resource Include="Assets\PaneStep4.png" />
-    <Resource Include="Assets\Step3.png" />
-    <Resource Include="Assets\Step4.png" />
-    <Resource Include="Assets\Step2.png" />
-    <Resource Include="Assets\Step1.png" />
     <EmbeddedResource Include="Assets\Html\Document.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -902,7 +908,6 @@
     <Resource Include="Assets\FileExtensions\Json.png" />
     <Resource Include="Assets\FileExtensions\VBProj.png" />
     <Resource Include="Assets\FileExtensions\VisualBasic.png" />
-    <Resource Include="Assets\Detail.png" />
     <Content Include="Assets\Html\min\vs\base\worker\workerMain.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

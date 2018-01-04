@@ -62,7 +62,7 @@ namespace Microsoft.Templates.UI.V2Services
                                     t.GetTemplateType() == templateType &&
                                     t.GetFrameworkList().Contains(frameworkName) &&
                                     !t.GetIsHidden())
-                                    .Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, frameworkName)));
+                                    .Select(t => new TemplateInfoViewModel(t, frameworkName));
 
                 var groups = templates.GroupBy(t => t.Group)
                     .Select(gr => new TemplateGroupViewModel(gr))

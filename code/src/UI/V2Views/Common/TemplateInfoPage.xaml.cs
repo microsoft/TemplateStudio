@@ -5,7 +5,7 @@
 using System.Windows.Controls;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
-namespace Microsoft.Templates.UI.V2Views.NewProject
+namespace Microsoft.Templates.UI.V2Views.Common
 {
     public partial class TemplateInfoPage : Page
     {

@@ -4,9 +4,11 @@
     <Thickness x:Key="Margin_XS_LeftTopRightBottom">4,4,4,4</Thickness>
     <Thickness x:Key="Margin_XS_Left">4,0,0,0</Thickness>
     <Thickness x:Key="Margin_XS_LeftRight">4,0,4,0</Thickness>
+    <Thickness x:Key="Margin_S_Left">8,0,0,0</Thickness>
     <Thickness x:Key="Margin_S_LeftTopRightBottom">8,8,8,8</Thickness>
     <Thickness x:Key="Margin_S_LeftTop">8,8,0,0</Thickness>
     <Thickness x:Key="Margin_S_LeftRight">8,0,8,0</Thickness>
+    <Thickness x:Key="Margin_S_TopBottom">0,8,0,8</Thickness>
     <Thickness x:Key="Margin_S_Bottom">0,0,0,8</Thickness>
 
     <Thickness x:Key="Margin_M_Left">12,0,0,0</Thickness>
@@ -31,6 +33,8 @@
     <Thickness x:Key="Margin_L_LeftTopRight">24,24,24,0</Thickness>
 
     <Thickness x:Key="Margin_L_LeftRight_M_Top">24,12,24,0</Thickness>
+    <Thickness x:Key="Margin_L_Left_M_Top">24,12,0,0</Thickness>
     <Thickness x:Key="Margin_L_LeftRight_M2_Top">24,16,24,0</Thickness>
+    <Thickness x:Key="Margin_L_Left_M2_Top">24,16,0,0</Thickness>
 
 </ResourceDictionary>

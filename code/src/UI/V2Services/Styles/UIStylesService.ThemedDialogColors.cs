@@ -17,6 +17,14 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(WindowPanelProperty, value); }
         }
 
+        public static readonly DependencyProperty WindowPanelTextProperty = DependencyProperty.Register("WindowPanelText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush WindowPanelText
+        {
+            get { return (Brush)GetValue(WindowPanelTextProperty); }
+            set { SetValue(WindowPanelTextProperty, value); }
+        }
+
         public static readonly DependencyProperty WindowBorderProperty = DependencyProperty.Register("WindowBorder", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush WindowBorder

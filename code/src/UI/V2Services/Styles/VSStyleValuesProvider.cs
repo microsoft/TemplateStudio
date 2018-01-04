@@ -50,6 +50,8 @@ namespace Microsoft.Templates.UI.V2Services
             {
                 case "WindowPanel":
                     return GetColor(ThemedDialogColors.WindowPanelColorKey);
+                case "WindowPanelText":
+                    return GetColor(ThemedDialogColors.WindowPanelTextColorKey);
                 case "WindowBorder":
                     return GetColor(ThemedDialogColors.WindowBorderColorKey);
                 case "HeaderText":

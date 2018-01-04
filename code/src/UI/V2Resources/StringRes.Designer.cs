@@ -266,5 +266,41 @@ namespace Microsoft.Templates.UI.V2Resources {
                 return ResourceManager.GetString("ProjectTypeTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author:.
+        /// </summary>
+        public static string TemplateDetailsAuthor {
+            get {
+                return ResourceManager.GetString("TemplateDetailsAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dependencies:.
+        /// </summary>
+        public static string TemplateDetailsDependencies {
+            get {
+                return ResourceManager.GetString("TemplateDetailsDependencies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licenses:.
+        /// </summary>
+        public static string TemplateDetailsLicenses {
+            get {
+                return ResourceManager.GetString("TemplateDetailsLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version:.
+        /// </summary>
+        public static string TemplateDetailsVersion {
+            get {
+                return ResourceManager.GetString("TemplateDetailsVersion", resourceCulture);
+            }
+        }
     }
 }

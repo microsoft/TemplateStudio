@@ -209,4 +209,16 @@
     <value>Select a project type</value>
     <comment>ProjectType Title on ProjectTypePage</comment>
   </data>
+  <data name="TemplateDetailsAuthor" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="TemplateDetailsDependencies" xml:space="preserve">
+    <value>Dependencies:</value>
+  </data>
+  <data name="TemplateDetailsLicenses" xml:space="preserve">
+    <value>Licenses:</value>
+  </data>
+  <data name="TemplateDetailsVersion" xml:space="preserve">
+    <value>Version:</value>
+  </data>
 </root>
