@@ -33,7 +33,7 @@ Namespace Views
                 Return _selected
             End Get
 
-            Set(ByVal value As Object)
+            Set(value As Object)
                 [Set](_selected, value)
             End Set
         End Property

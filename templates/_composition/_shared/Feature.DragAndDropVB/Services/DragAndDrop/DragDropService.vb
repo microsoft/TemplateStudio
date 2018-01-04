@@ -11,27 +11,27 @@ Namespace Services.DragAndDrop
 
         Private Shared visualConfigurationProperty As DependencyProperty = DependencyProperty.RegisterAttached("VisualConfiguration", GetType(VisualDropConfiguration), GetType(DragDropService), New PropertyMetadata(Nothing, AddressOf OnVisualConfigurationPropertyChanged))
 
-        Public Shared Sub SetConfiguration(ByVal dependencyObject As DependencyObject, ByVal value As DropConfiguration)
+        Public Shared Sub SetConfiguration(dependencyObject As DependencyObject, value As DropConfiguration)
             If dependencyObject IsNot Nothing Then
                 dependencyObject.SetValue(configurationProperty, value)
             End If
         End Sub
 
-        Public Shared Function GetConfiguration(ByVal dependencyObject As DependencyObject) As DropConfiguration
+        Public Shared Function GetConfiguration(dependencyObject As DependencyObject) As DropConfiguration
             Return CType(dependencyObject.GetValue(configurationProperty), DropConfiguration)
         End Function
 
-        Public Shared Sub SetVisualConfiguration(ByVal dependencyObject As DependencyObject, ByVal value As VisualDropConfiguration)
+        Public Shared Sub SetVisualConfiguration(dependencyObject As DependencyObject, value As VisualDropConfiguration)
             If dependencyObject IsNot Nothing Then
                 dependencyObject.SetValue(visualConfigurationProperty, value)
             End If
         End Sub
 
-        Public Shared Function GetVisualConfiguration(ByVal dependencyObject As DependencyObject) As VisualDropConfiguration
+        Public Shared Function GetVisualConfiguration(dependencyObject As DependencyObject) As VisualDropConfiguration
             Return CType(dependencyObject.GetValue(visualConfigurationProperty), VisualDropConfiguration)
         End Function
 
-        Private Shared Sub OnConfigurationPropertyChanged(ByVal dependencyObject As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        Private Shared Sub OnConfigurationPropertyChanged(dependencyObject As DependencyObject, e As DependencyPropertyChangedEventArgs)
             Dim element = TryCast(dependencyObject, UIElement)
             Dim configuration = GetConfiguration(element)
             ConfigureUIElement(element, configuration)
@@ -42,13 +42,13 @@ Namespace Services.DragAndDrop
             End If
         End Sub
 
-        Private Shared Sub ConfigureUIElement(ByVal element As UIElement, ByVal configuration As DropConfiguration)
+        Private Shared Sub ConfigureUIElement(element As UIElement, configuration As DropConfiguration)
         End Sub
 
-        Private Shared Sub ConfigureListView(ByVal listview As ListViewBase, ByVal configuration As ListViewDropConfiguration)
+        Private Shared Sub ConfigureListView(listview As ListViewBase, configuration As ListViewDropConfiguration)
         End Sub
 
-        Private Shared Sub OnVisualConfigurationPropertyChanged(ByVal dependencyObject As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        Private Shared Sub OnVisualConfigurationPropertyChanged(dependencyObject As DependencyObject, e As DependencyPropertyChangedEventArgs)
             Dim element = TryCast(dependencyObject, UIElement)
             Dim configuration = GetVisualConfiguration(element)
             AddHandler element.DragStarting, Sub(sender, args)

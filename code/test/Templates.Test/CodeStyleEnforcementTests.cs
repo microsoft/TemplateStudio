@@ -140,6 +140,14 @@ namespace Microsoft.Templates.Test
         }
 
         [Fact]
+        public void EnsureVisualBasicCodeDoesNotIndicateParamsPassedByVal()
+        {
+            var result = CodeIsNotUsed("ByVal", "*.vb");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
         public void EnsureVisualBasicFilesEndWithSingleBlankLine()
         {
             var errorFiles = new List<string>();
