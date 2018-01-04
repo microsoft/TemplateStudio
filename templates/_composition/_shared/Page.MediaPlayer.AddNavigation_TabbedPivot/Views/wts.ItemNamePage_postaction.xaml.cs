@@ -6,7 +6,7 @@ using Microsoft.Toolkit.Uwp.UI.Extensions;
 
 namespace Param_ItemNamespace.Views
 {
-    public sealed partial class wts.ItemNamePage : Page, INotifyPropertyChanged
+    public sealed partial class wts.ItemNamePage : Page
     {
         public wts.ItemNamePage()
         {
