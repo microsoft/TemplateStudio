@@ -18,7 +18,9 @@ namespace Param_ItemNamespace.Views
         //{[{
         private void wts.ItemNamePage_Loaded(object sender, RoutedEventArgs e)
         {
-            var pivotPage = this.FindParent<Pivot>();
+            var element = this as FrameworkElement;
+            var pivotPage = element.FindParent<Pivot>();
+
             if (pivotPage != null)
             {
                 pivotPage.SelectionChanged += PivotPage_SelectionChanged;
