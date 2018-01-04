@@ -54,10 +54,13 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Height="100" VerticalAlignment="Top">
+    <Grid Height="50" VerticalAlignment="Top">
         <StackPanel VerticalAlignment="Bottom">
-            <ContentControl Content="{Binding Notification, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:NotificationsControl}}}" ContentTemplateSelector="{StaticResource NotificationTemplateSelector}" Height="100"/>
-            <Grid x:Name="fakeGrid" Height="100" />
+            <ContentControl
+                Height="50"
+                Content="{Binding Notification, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:NotificationsControl}}}"
+                ContentTemplateSelector="{StaticResource NotificationTemplateSelector}" />
+            <Grid x:Name="fakeGrid" Height="50"/>
         </StackPanel>
     </Grid>
 

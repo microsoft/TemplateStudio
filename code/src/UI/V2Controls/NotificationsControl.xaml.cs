@@ -11,12 +11,9 @@ using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.V2Controls
 {
-    /// <summary>
-    /// Interaction logic for NotificationsControl.xaml
-    /// </summary>
     public partial class NotificationsControl : UserControl
     {
-        public static NotificationsControl Instance;
+        public static NotificationsControl Instance { get; set; }
 
         public Notification Notification
         {
@@ -36,25 +33,45 @@ namespace Microsoft.Templates.UI.V2Controls
 
         public async Task AddNotificationAsync(Notification notification)
         {
-            _notifications.Insert(0, notification);
-            await ShowNotificationAsync(notification);
-        }
-
-        private async Task ShowNotificationAsync(Notification notification)
-        {
-            Notification = notification;
-            await fakeGrid.AnimateDoublePropertyAsync("Height", 100, 0, 1000);
+            if (notification != null)
+            {
+                RemoveReplacementCategoryNotifications(notification);
+                _notifications.Insert(0, notification);
+                await ShowNotificationAsync(notification);
+            }
         }
 
         public async Task CloseAsync()
         {
-            await fakeGrid.AnimateDoublePropertyAsync("Height", 0, 100, 1000);
+            Notification.StopCloseTimer();
+            await fakeGrid.AnimateDoublePropertyAsync("Height", 0, 50, 500);
             _notifications.Remove(Notification);
             Notification = null;
 
             if (_notifications.Any())
             {
                 await ShowNotificationAsync(_notifications.First());
+            }
+        }
+
+        private async Task ShowNotificationAsync(Notification notification)
+        {
+            Notification?.StopCloseTimer();
+            Notification = notification;
+            await fakeGrid.AnimateDoublePropertyAsync("Height", 50, 0, 500);
+            Notification.StartCloseTimer();
+        }
+
+        private void RemoveReplacementCategoryNotifications(Notification notification)
+        {
+            if (notification.ReplacementCategory != ReplacementCategory.None)
+            {
+                foreach (var notificationInPull in _notifications.Where(n => n.ReplacementCategory == notification.ReplacementCategory))
+                {
+                    notificationInPull.StopCloseTimer();
+                }
+
+                _notifications.RemoveAll(n => n.ReplacementCategory == notification.ReplacementCategory);
             }
         }
     }

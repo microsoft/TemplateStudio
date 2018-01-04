@@ -9,7 +9,9 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.V2Controls;
+using Microsoft.Templates.UI.V2Extensions;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
@@ -67,15 +69,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public virtual async Task InitializeAsync()
         {
-            var notification = Notification.Information("Hello world!");
-            await NotificationsControl.Instance.AddNotificationAsync(notification);
-
-            var notification2 = Notification.Warning("Hello world!");
-            await NotificationsControl.Instance.AddNotificationAsync(notification2);
-
-            var notification3 = Notification.Information("Hello world!");
-            await NotificationsControl.Instance.AddNotificationAsync(notification3);
-
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
             try
             {
@@ -88,11 +81,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             }
         }
 
-        private void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)
+        private async void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)
         {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            await NotificationsControl.Instance.AddNotificationAsync(args.Status.GetNotification());
             if (args.Status == SyncStatus.Updated)
             {
-                OnTemplatesAvailableAsync();
+                await OnTemplatesAvailableAsync();
             }
         }
     }

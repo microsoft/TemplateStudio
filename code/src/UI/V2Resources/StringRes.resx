@@ -149,6 +149,42 @@
     <value>New Universal Windows Platform app</value>
     <comment>Wizard title on WizardShell page</comment>
   </data>
+  <data name="NotificationSyncStatus_Acquired" xml:space="preserve">
+    <value>Done.</value>
+    <comment>Notification message for Sync Status: Acquired</comment>
+  </data>
+  <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
+    <value>Checking for template updates...</value>
+    <comment>Notification message for Sync Status: Acquiring</comment>
+  </data>
+  <data name="NotificationSyncStatus_NewVersionAvailable" xml:space="preserve">
+    <value>There is new template content available.</value>
+    <comment>Notification message for Sync Status: New Version Available</comment>
+  </data>
+  <data name="NotificationSyncStatus_OverVersion" xml:space="preserve">
+    <value>An update to the templates is available but not compatible with this wizard version. Update the extension to access the latest templates.</value>
+    <comment>Notification message for Sync Status: Over Version</comment>
+  </data>
+  <data name="NotificationSyncStatus_OverVersionNoContent" xml:space="preserve">
+    <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
+    <comment>Notification message for Sync Status: Over Version No Content</comment>
+  </data>
+  <data name="NotificationSyncStatus_Prepared" xml:space="preserve">
+    <value>Templates ready.</value>
+    <comment>Notification message for Sync Status: Prepared</comment>
+  </data>
+  <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
+    <value>Preparing templates for first use...</value>
+    <comment>Notification message for Sync Status: Preparing</comment>
+  </data>
+  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
+    <value>Templates updated.</value>
+    <comment>Notification message for Sync Status: Updated</comment>
+  </data>
+  <data name="NotificationSyncStatus_Updating" xml:space="preserve">
+    <value>Updating templates...</value>
+    <comment>Notification message for Sync Status: Updating</comment>
+  </data>
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
     <value>Features</value>
     <comment>Feature list header on project details</comment>

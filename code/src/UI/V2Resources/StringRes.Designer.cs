@@ -133,6 +133,87 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Done..
+        /// </summary>
+        public static string NotificationSyncStatus_Acquired {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_Acquired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking for template updates....
+        /// </summary>
+        public static string NotificationSyncStatus_Acquiring {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_Acquiring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is new template content available..
+        /// </summary>
+        public static string NotificationSyncStatus_NewVersionAvailable {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_NewVersionAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An update to the templates is available but not compatible with this wizard version. Update the extension to access the latest templates..
+        /// </summary>
+        public static string NotificationSyncStatus_OverVersion {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_OverVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no content available for this extension version. Update the extension to access to the latest content..
+        /// </summary>
+        public static string NotificationSyncStatus_OverVersionNoContent {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_OverVersionNoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates ready..
+        /// </summary>
+        public static string NotificationSyncStatus_Prepared {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_Prepared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparing templates for first use....
+        /// </summary>
+        public static string NotificationSyncStatus_Preparing {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_Preparing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates updated..
+        /// </summary>
+        public static string NotificationSyncStatus_Updated {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_Updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating templates....
+        /// </summary>
+        public static string NotificationSyncStatus_Updating {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_Updating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Features.
         /// </summary>
         public static string ProjectDetailsFeaturesSectionTitle {
