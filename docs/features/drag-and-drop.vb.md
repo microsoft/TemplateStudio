@@ -1,7 +1,7 @@
 # Drag & Drop Service feature
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./drag-and-drop.vb.md) :heavy_exclamation_mark: |
------------------------------------------------------------------------------------------------------------------------------------------------ |
+:heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./drag-and-drop.md) :heavy_exclamation_mark: |
+---------------------------------------------------------------------------------------------------------------------------------------- |
 
 In Windows Template Studio, the Drag & Drop feature is a service that basically is a wrapper over the [standard UWP drag and drop functionallity](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop). This service simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
 
@@ -20,7 +20,6 @@ which returns the different object types supported by drag and drop within UWP:
 |DropStorageItemsCommand	|DropStorageItemsAction		|IReadOnlyList<IStorageItem> |
 |DropTextCommand			|DropTextAction				|string                      |
 |DropWebLinkCommand			|DropWebLinkAction			|Uri                         |
-
 
 The service maps the following events too:
 
@@ -101,23 +100,26 @@ In this section you can find some code snippets representing how to setup a basi
 
 - ViewModel code
 
-``` c#
-using System.Collections.Generic;
-using Windows.Storage;
-using System.Windows.Input;
+```vbnet
+Imports System.Collections.Generic
+Imports Windows.Storage
+Imports System.Windows.Input
 
 ...
 
-private ICommand _getStorageItemsCommand;
-public ICommand GetStorageItemsCommand => _getStorageItemsCommand ?? (_getStorageItemsCommand = new RelayCommand<IReadOnlyList<IStorageItem>>(OnGetStorageItem));
+Private _getStorageItemsCommand As ICommand
 
-public void OnGetStorageItem(IReadOnlyList<IStorageItem> items)
-{
-    foreach(var item in items)
-    {
-        //TODO WTS: Process storage item
-    }
-}
+Public Property GetStorageItemsCommand As ICommand
+    Get
+        Return If(_getStorageItemsCommand, (__InlineAssignHelper(_getStorageItemsCommand, New RelayCommand(Of IReadOnlyList(Of IStorageItem))(OnGetStorageItem))))
+    End Get
+End Property
+
+Public Sub OnGetStorageItem(ByVal items As IReadOnlyList(Of IStorageItem))
+    For Each item In items
+        ' TODO WTS: Process storage item
+    Next
+End Sub
 ```
 
 #### Code-Behind
@@ -136,20 +138,23 @@ public void OnGetStorageItem(IReadOnlyList<IStorageItem> items)
 
 - ViewModel code
 
-``` C#
-using System.Collections.Generic;
-using Windows.Storage;
+```vbnet
+Imports System.Collections.Generic
+Imports Windows.Storage
 
 ...
 
-public Action<IReadOnlyList<IStorageItem>> GetStorageItem => ((items) => OnGetStorageItem(items));
-public void OnGetStorageItem(IReadOnlyList<IStorageItem> items)
-{
-    foreach(var item in items)
-    {
-        //TODO WTS: Process storage item
-    }
-}
+Public Property GetStorageItem As Action(Of IReadOnlyList(Of IStorageItem))
+    Get
+        Return(Function(items) OnGetStorageItem(items))
+    End Get
+End Property
+
+Public Sub OnGetStorageItem(ByVal items As IReadOnlyList(Of IStorageItem))
+    For Each item In items
+        ' TODO WTS: Process storage item
+    Next
+End Sub
 ```
 
 ### Escenario 2: Drag and drop enabled ListView
@@ -158,13 +163,15 @@ We will configure a ListView to allow drag items from it and drop items to it. W
 
 We will need a class to be used class model during the drag and drop operations, for example the `CustomItem` class:
 
-``` c#
-public class CustomItem
-{
-    public Guid Id { get; } = Guid.NewGuid();
-    public string FileName { get; set; }
-    public IStorageItem OriginalStorageItem { get; set; }
-}
+```vbnet
+Public Class CustomItem
+
+    Public ReadOnly Property Id As Guid = Guid.NewGuid()
+
+    Public Property FileName As String
+
+    Public Property OriginalStorageItem As IStorageItem
+End Class
 ```
 
 #### MVVM Basic
@@ -195,47 +202,53 @@ public class CustomItem
 
 - ViewModel code
 
-``` c#
-private ICommand _getStorageItemsCommand;
-private ICommand _dragItemStartingCommand;
-private ICommand _dragItemCompletedCommand;
+```vbnet
+Private _getStorageItemsCommand As ICommand
 
-public ICommand GetStorageItemsCommand => _getStorageItemsCommand ?? (_getStorageItemsCommand = new RelayCommand<IReadOnlyList<IStorageItem>>(OnGetStorageItem));
-public ICommand DragItemStartingCommand => _dragItemStartingCommand ?? (_dragItemStartingCommand = new RelayCommand<DragDropStartingData>(OnDragItemStarting));
-public ICommand DragItemCompletedCommand => _dragItemCompletedCommand ?? (_dragItemCompletedCommand = new RelayCommand<DragDropCompletedData>(OnDragItemCompleted));
+Private _dragItemStartingCommand As ICommand
 
-public ObservableCollection<CustomItem> Items { get; set; } = new ObservableCollection<CustomItem>();
+Private _dragItemCompletedCommand As ICommand
 
-private void OnGetStorageItem(IReadOnlyList<IStorageItem> items)
-{
-    foreach (StorageFile item in items)
-    {
-        Items.Add(new CustomItem
-        {
-            FileName = item.Name,
-            OriginalStorageItem = item
-        });
-    }
-}
+Public Property GetStorageItemsCommand As ICommand
+    Get
+        Return If(_getStorageItemsCommand, (__InlineAssignHelper(_getStorageItemsCommand, New RelayCommand(Of IReadOnlyList(Of IStorageItem))(OnGetStorageItem))))
+    End Get
+End Property
 
-private void OnDragItemStarting(DragDropStartingData startingData)
-{
-    var items = startingData.Items.Cast<CustomItem>().Select(i => i.OriginalStorageItem);
-    startingData.Data.SetStorageItems(items);
-    startingData.Data.RequestedOperation = DataPackageOperation.Copy;
-}
+Public Property DragItemStartingCommand As ICommand
+    Get
+        Return If(_dragItemStartingCommand, (__InlineAssignHelper(_dragItemStartingCommand, New RelayCommand(Of DragDropStartingData)(OnDragItemStarting))))
+    End Get
+End Property
 
-private void OnDragItemCompleted(DragDropCompletedData completedData)
-{
-    if(completedData.DropResult != DataPackageOperation.None)
-    {
-        var draggedItems = completedData.Items.Cast<CustomItem>();
-        foreach(var item in draggedItems)
-        {
-            Items.Remove(item);
-        }
-    }
-}
+Public Property DragItemCompletedCommand As ICommand
+    Get
+        Return If(_dragItemCompletedCommand, (__InlineAssignHelper(_dragItemCompletedCommand, New RelayCommand(Of DragDropCompletedData)(OnDragItemCompleted))))
+    End Get
+End Property
+
+Public Property Items As ObservableCollection(Of CustomItem) = New ObservableCollection(Of CustomItem)()
+
+Private Sub OnGetStorageItem(ByVal items As IReadOnlyList(Of IStorageItem))
+    For Each item As StorageFile In items
+        Items.Add(New CustomItem With {.FileName = item.Name, .OriginalStorageItem = item})
+    Next
+End Sub
+
+Private Sub OnDragItemStarting(ByVal startingData As DragDropStartingData)
+    Dim items = startingData.Items.Cast(Of CustomItem)().[Select](Function(i) i.OriginalStorageItem)
+    startingData.Data.SetStorageItems(items)
+    startingData.Data.RequestedOperation = DataPackageOperation.Copy
+End Sub
+
+Private Sub OnDragItemCompleted(ByVal completedData As DragDropCompletedData)
+    If completedData.DropResult <> DataPackageOperation.None Then
+        Dim draggedItems = completedData.Items.Cast(Of CustomItem)()
+        For Each item In draggedItems
+            Items.Remove(item)
+        Next
+    End If
+End Sub
 ```
 
 #### Code-Behind
@@ -266,41 +279,45 @@ private void OnDragItemCompleted(DragDropCompletedData completedData)
 
 - ViewModel code
 
-``` c#
-public Action<IReadOnlyList<IStorageItem>> GetStorageItems => (items) => OnGetStorageItems(items);
-public Action<DragDropStartingData> DragItemStarting => (startingData) => OnDragItemStarting(startingData);
-public Action<DragDropCompletedData> DragItemCompleted => (completedData) => OnDragItemCompleted(completedData);
+```vbnet
+Public Property GetStorageItems As Action(Of IReadOnlyList(Of IStorageItem))
+    Get
+        Return Function(items) OnGetStorageItems(items)
+    End Get
+End Property
 
-public ObservableCollection<CustomItem> Items { get; set; } = new ObservableCollection<CustomItem>();
+Public Property DragItemStarting As Action(Of DragDropStartingData)
+    Get
+        Return Function(startingData) OnDragItemStarting(startingData)
+    End Get
+End Property
 
-private void OnGetStorageItems(IReadOnlyList<IStorageItem> items)
-{
-    foreach (StorageFile item in items)
-    {
-        Items.Add(new CustomItem
-        {
-            FileName = item.Name,
-            OriginalStorageItem = item
-        });
-    }
-}
+Public Property DragItemCompleted As Action(Of DragDropCompletedData)
+    Get
+        Return Function(completedData) OnDragItemCompleted(completedData)
+    End Get
+End Property
 
-private void OnDragItemStarting(DragDropStartingData startingData)
-{
-    var items = startingData.Items.Cast<CustomItem>().Select(i => i.OriginalStorageItem);
-    startingData.Data.SetStorageItems(items);
-    startingData.Data.RequestedOperation = DataPackageOperation.Copy;
-}
+Public Property Items As ObservableCollection(Of CustomItem) = New ObservableCollection(Of CustomItem)()
 
-private void OnDragItemCompleted(DragDropCompletedData completedData)
-{
-    if (completedData.DropResult != DataPackageOperation.None)
-    {
-        var draggedItems = completedData.Items.Cast<CustomItem>();
-        foreach (var item in draggedItems)
-        {
-            Items.Remove(item);
-        }
-    }
-}
+Private Sub OnGetStorageItems(ByVal items As IReadOnlyList(Of IStorageItem))
+    For Each item As StorageFile In items
+        Items.Add(New CustomItem With {.FileName = item.Name, .OriginalStorageItem = item})
+    Next
+End Sub
+
+Private Sub OnDragItemStarting(ByVal startingData As DragDropStartingData)
+    Dim items = startingData.Items.Cast(Of CustomItem)().[Select](Function(i) i.OriginalStorageItem)
+    startingData.Data.SetStorageItems(items)
+    startingData.Data.RequestedOperation = DataPackageOperation.Copy
+End Sub
+
+Private Sub OnDragItemCompleted(ByVal completedData As DragDropCompletedData)
+    If completedData.DropResult <> DataPackageOperation.None Then
+        Dim draggedItems = completedData.Items.Cast(Of CustomItem)()
+        For Each item In draggedItems
+            Items.Remove(item)
+        Next
+    End If
+End Sub
 ```

@@ -1,7 +1,7 @@
 # App navigation
 
-:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./navigation.vb.md) :heavy_exclamation_mark: |
--------------------------------------------------------------------------------------------------------------------------------------------- |
+:heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./navigation.md) :heavy_exclamation_mark: |
+------------------------------------------------------------------------------------------------------------------------------------- |
 
 ## NavigationService
 
@@ -15,21 +15,19 @@ NavigationService has different implementations for the different supported fram
 - **MVVM Light**
   - The ViewModelLocator creates the NavigationServiceEx instance and registers it with the SimpleIoC container. Each ViewModel and associated page must also be registered as navigation is done by passing the ViewModel name to the `Navigate` method.
 
-```csharp
-private NavigationServiceEx _navigationService = new NavigationServiceEx();
+```vbnet
+Private _navigationService As NavigationServiceEx = New NavigationServiceEx()
 
-public ViewModelLocator()
-{
-    ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-    Register<HomeViewModel, HomePage>();
-    SimpleIoc.Default.Register(() => _navigationService);
-}
+Public Sub ViewModelLocator()
+    ServiceLocator.SetLocatorProvider(Function() SimpleIoc.[Default])
+    Register(Of HomeViewModel, HomePage)()
+    SimpleIoc.[Default].Register(Function() _navigationService)
+End Sub
 ```
 
 ## Navigation initialization
 
-**App.xaml.cs** creates the `ActivationService` and passes it the current App instance, the default navigation target, and, optionally, a UIElement to act as a **navigation shell**. If no shell is specified the current window content will be initialized as a Frame.
+**App.xaml.vb** creates the `ActivationService` and passes it the current App instance, the default navigation target, and, optionally, a UIElement to act as a **navigation shell**. If no shell is specified the current window content will be initialized as a Frame.
 
 Normal launching of the app is passed by the ActivationService to the `DefaultLaunchActivationHandler` and this also sets the default page to display when launching the app.
 
@@ -49,17 +47,16 @@ The following code uses the [MVVM Basic](../samples/navigation/MixedNavigationSa
 
 - Step 1. Navigate to the Start Page
 
-In App.xaml.cs the ActivationService has been changed to start on the new page.
+In App.xaml.vb the ActivationService has been changed to start on the new page.
 
-```csharp
-private ActivationService CreateActivationService()
-{
-  //This is the default navigation for a NavigationPane project type
-  //return new ActivationService(this, typeof(Views.HomePage), new Views.ShellPage());
+```vbnet
+Private Function CreateActivationService() As ActivationService
+    ' This is the default navigation for a NavigationPane project type
+    ' return new ActivationService(this, typeof(Views.HomePage), new Views.ShellPage());
 
-  //We are going to initialize navigation to a StartPage
-  return new ActivationService(this, typeof(Views.StartPage));
-}
+    ' We are going to initialize navigation to a StartPage
+    Return New ActivationService(Me, GetType(Views.StartPage))
+End Function
 ```
 
 - Step 2. Return to normal **Navigation Pane** navigation.
@@ -68,25 +65,25 @@ Navigate to the `ShellPage` and this will reset the NavigationService Frame to i
 Then navigate to `HomePage` so something is displayed in the shell.
 All subsequent navigation just requires a single `Navigate()` call.
 
-```csharp
-public class StartViewModel : Observable
-{
-  public ICommand StartCommand { get; set; }
+```vbnet
 
-  public StartViewModel()
-  {
-    StartCommand = new RelayCommand(OnStart);
-  }
+Public Class StartViewModel
+    Inherits Observable
 
-  private void OnStart()
-  {
-    //Navigating to a ShellPage, this will replaces NavigationService frame for an inner frame to change navigation handling.
-    NavigationService.Navigate<Views.ShellPage>();
+    Public Property StartCommand As ICommand
 
-    //Navigating now to a HomePage, this will be the first navigation on a NavigationPane menu
-    NavigationService.Navigate<Views.HomePage>();
-  }
-}
+    Public Sub New()
+        StartCommand = New RelayCommand(AddressOf OnStart)
+    End Sub
+
+    Private Sub OnStart()
+        ' Navigating to a ShellPage, this will replaces NavigationService frame for an inner frame to change navigation handling.
+        NavigationService.Navigate(Of Views.ShellPage)()
+
+        ' Navigating now to a HomePage, this will be the first navigation on a NavigationPane menu
+        NavigationService.Navigate(Of Views.HomePage)()
+    End Sub
+End Class
 ```
 
 The three pages in this sample and the order in which they can be navigated to are shown below.

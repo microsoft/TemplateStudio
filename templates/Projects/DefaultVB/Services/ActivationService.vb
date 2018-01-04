@@ -3,7 +3,7 @@
 Imports wts.DefaultProject.Activation
 
 Namespace Services
-    ' For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
+    ' For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.vb.md
     Friend Class ActivationService
         Private ReadOnly _app As App
         Private ReadOnly _shell As Lazy(Of UIElement)

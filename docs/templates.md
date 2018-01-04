@@ -2,12 +2,12 @@
 
 Templates are used to generate the code. In Windows Template Studio we have the following kinds of templates: Frameworks, Projects Types, Pages and Features.
 
-For example, consider the following samples:
+For example, consider the following scenarios:
 
-* **Sample #1**: you want to generate a project to create a target app which uses the Split View (hamburger) menu, is based on MVVM Light framework, with some pages (Home, Products -a master detail page-, Find Us -a map page-, etc. ) and including some extra features like local storage handling, background execution...
-* **Sample #2** you want to create as in *Sample #1* but avoiding to depend on an external framework and adding Live Tiles support.
+* **Scenario #1**: you want to generate a project to create a target app which uses the Split View (hamburger) menu, is based on MVVM Light framework, with some pages (Home, Products -a master detail page-, Find Us -a map page-, etc. ) and including some extra features like local storage handling, background execution...
+* **Scenario #2** you want to create as in *Scenario #1* but without depending on an external framework and adding Live Tiles support.
 
-The Window Template Studio allow you to combine different templates to generate the project you want, using your preferred framework and using the features you most like. Moreover, the templates available in Windows Template Studio are extensible.
+The Window Template Studio allow you to combine different templates to generate the project you want, using your preferred framework, and using the features you most like. Moreover, the templates available in Windows Template Studio are extensible.
 
 ## Interested in contributing
 
@@ -22,6 +22,10 @@ Windows Template Studio works as a shopping basket where a developer can choose 
 Creating templates linearly is unmanageable, we would require to maintain Fx x Pj x (P + F) *[3 x 3 x (6 + 6) = 108]* different templates just to be able to combine all together under our preferences, but if the page types and/or features grow, then the number templates to maintain grow faster. This is what we call **The MxN issue**.
 
 To avoid the MxN issue, we have designed the Templates as composable items (frameworks, projects, pages and features), starting from the template definition from [dotnet Template Engine](https://github.com/dotnet/templating) and extending it  to allow to define compositions and post-actions to reduce the template proliferation. The drawback is that the generation becomes more complex, but infinitely more maintainable in the long term.
+
+### Multiple Language Support
+
+The MxN issue is further complicated by support for multiple languages. Windows Template Studio supports creating projects in C# and VB.Net. Each language requires it's own set of templates potentially duplicating the number of templates needed. In reality it's not quite as many as double as we don't support use of the Caliburn.Micro or Prism frameworks with VB.Net.
 
 ## Templates authoring principles
 
