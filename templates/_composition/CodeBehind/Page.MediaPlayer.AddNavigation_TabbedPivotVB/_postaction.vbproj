@@ -1,0 +1,10 @@
+﻿<!--{**-->
+<!--This xml block adds a reference to Microsoft.Toolkit.Uwp.Notifications to your project.-->
+<!--**}>
+
+<!-- Nuget package references -->
+<!--{[{-->
+<PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+  <Version>2.1.1</Version>
+</PackageReference>
+<!--}]}-->
