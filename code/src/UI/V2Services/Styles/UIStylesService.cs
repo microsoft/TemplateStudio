@@ -126,6 +126,10 @@ namespace Microsoft.Templates.UI.V2Services
             NotificationWarningText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningText");
             NotificationWarningBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningBackground");
             NotificationWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningIcon");
+
+            NotificationErrorText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorText");
+            NotificationErrorBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorBackground");
+            NotificationErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorIcon");
         }
 
         private void SetCommonControlColors()

@@ -59,10 +59,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             var items = template.TemplateType == Core.TemplateType.Page ? Pages : Features;
 
-            var newTemplate = new SavedTemplateViewModel()
-            {
-                Icon = template.Icon,
-            };
+            var newTemplate = new SavedTemplateViewModel(template);
 
             if (!string.IsNullOrEmpty(name))
             {

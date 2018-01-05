@@ -56,5 +56,29 @@ namespace Microsoft.Templates.UI.V2Services
             get { return (Brush)GetValue(NotificationWarningIconProperty); }
             set { SetValue(NotificationWarningIconProperty, value); }
         }
+
+        public static readonly DependencyProperty NotificationErrorTextProperty = DependencyProperty.Register("NotificationErrorText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush NotificationErrorText
+        {
+            get { return (Brush)GetValue(NotificationErrorTextProperty); }
+            set { SetValue(NotificationErrorTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty NotificationErrorBackgroundProperty = DependencyProperty.Register("NotificationErrorBackground", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush NotificationErrorBackground
+        {
+            get { return (Brush)GetValue(NotificationErrorBackgroundProperty); }
+            set { SetValue(NotificationErrorBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty NotificationErrorIconProperty = DependencyProperty.Register("NotificationErrorIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush NotificationErrorIcon
+        {
+            get { return (Brush)GetValue(NotificationErrorIconProperty); }
+            set { SetValue(NotificationErrorIconProperty, value); }
+        }
     }
 }

@@ -35,9 +35,18 @@ namespace Microsoft.Templates.UI.V2Controls
         {
             if (notification != null)
             {
-                RemoveReplacementCategoryNotifications(notification);
+                RemoveReplacementCategoryNotifications(notification.Category);
                 _notifications.Insert(0, notification);
                 await ShowNotificationAsync(notification);
+            }
+        }
+
+        public async Task CleanNotificationsAsync(Category replacementCategory)
+        {
+            RemoveReplacementCategoryNotifications(replacementCategory);
+            if (Notification.Category == replacementCategory)
+            {
+                await CloseAsync();
             }
         }
 
@@ -62,16 +71,16 @@ namespace Microsoft.Templates.UI.V2Controls
             Notification.StartCloseTimer();
         }
 
-        private void RemoveReplacementCategoryNotifications(Notification notification)
+        private void RemoveReplacementCategoryNotifications(Category replacementCategory)
         {
-            if (notification.ReplacementCategory != ReplacementCategory.None)
+            if (replacementCategory != Category.None)
             {
-                foreach (var notificationInPull in _notifications.Where(n => n.ReplacementCategory == notification.ReplacementCategory))
+                foreach (var notificationInPull in _notifications.Where(n => n.Category == replacementCategory))
                 {
                     notificationInPull.StopCloseTimer();
                 }
 
-                _notifications.RemoveAll(n => n.ReplacementCategory == notification.ReplacementCategory);
+                _notifications.RemoveAll(n => n.Category == replacementCategory);
             }
         }
     }

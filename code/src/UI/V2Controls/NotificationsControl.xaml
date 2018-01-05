@@ -47,10 +47,25 @@
                 </Grid>
             </DataTemplate>
 
+            <DataTemplate x:Key="ErrorTemplate">
+                <Grid Style="{StaticResource WtsGridNotificationWarning}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{StaticResource Margin_M_Left}">
+                        <Ellipse Fill="{Binding NotificationWarningIcon, Source={x:Static services:UIStylesService.Instance}}" />
+                        <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
+                    </Grid>
+                    <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsTextBlockNotificationWarningText}" />
+                </Grid>
+            </DataTemplate>
+
             <templateSelector:NotificationTemplateSelector
                 x:Key="NotificationTemplateSelector"
                 Information="{StaticResource InformationTemplate}"
-                Warning="{StaticResource WarningTemplate}" />
+                Warning="{StaticResource WarningTemplate}"
+                Error="{StaticResource ErrorTemplate}" />
         </ResourceDictionary>
     </UserControl.Resources>
 

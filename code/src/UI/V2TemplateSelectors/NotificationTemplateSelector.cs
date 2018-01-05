@@ -14,6 +14,8 @@ namespace Microsoft.Templates.UI.V2TemplateSelectors
 
         public DataTemplate Warning { get; set; }
 
+        public DataTemplate Error { get; set; }
+
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             var notification = item as Notification;
@@ -23,6 +25,8 @@ namespace Microsoft.Templates.UI.V2TemplateSelectors
                 {
                     case NotificationType.Warning:
                         return Warning;
+                    case NotificationType.Error:
+                        return Error;
                     default:
                         return Information;
                 }

@@ -31,4 +31,8 @@
         <Setter Property="Background" Value="{Binding NotificationWarningBackground, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
+    <Style TargetType="Grid" x:Key="WtsGridNotificationError">
+        <Setter Property="Background" Value="{Binding NotificationErrorBackground, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
 </ResourceDictionary>

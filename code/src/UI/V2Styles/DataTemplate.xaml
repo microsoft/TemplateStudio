@@ -154,9 +154,10 @@
                     Style="{StaticResource WtsImageExProjectDetails}" />
                 <TextBox
                     Grid.Column="1"
-                    Text="{Binding Name}"
+                    Text="{Binding Name, Mode=OneWay}"
                     Style="{StaticResource WtsTextBoxStyle}"
-                    extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"/>
+                    extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
+                    extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"/>
             </Grid>
         </Grid>
     </DataTemplate>

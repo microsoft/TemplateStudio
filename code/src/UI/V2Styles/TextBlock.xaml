@@ -163,6 +163,10 @@
         <Setter Property="Foreground" Value="{Binding NotificationWarningText, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationErrorText" BasedOn="{StaticResource WtsTextBlockNotificationText}">
+        <Setter Property="Foreground" Value="{Binding NotificationErrorText, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
     <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationIcon">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Bold" />

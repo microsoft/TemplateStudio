@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.V2Extensions
 {
@@ -17,7 +18,12 @@ namespace Microsoft.Templates.UI.V2Extensions
           new PropertyMetadata(false, OnIsFocusedPropertyChanged)
         );
 
-        // new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.AffectsRender)
+        public static readonly DependencyProperty TextChangedCommandProperty = DependencyProperty.RegisterAttached(
+          "TextChangedCommand",
+          typeof(ICommand),
+          typeof(TextBoxExtensions),
+          new PropertyMetadata(null, OnTextChangedCommandPropertyChanged)
+        );
 
         public static void SetIsFocused(UIElement element, bool value)
         {
@@ -27,6 +33,16 @@ namespace Microsoft.Templates.UI.V2Extensions
         public static bool GetIsFocused(UIElement element)
         {
             return (bool)element.GetValue(IsFocusedProperty);
+        }
+
+        public static void SetTextChangedCommand(UIElement element, ICommand value)
+        {
+            element.SetValue(TextChangedCommandProperty, value);
+        }
+
+        public static ICommand GetTextChangedCommand(UIElement element)
+        {
+            return (ICommand)element.GetValue(TextChangedCommandProperty);
         }
 
         private static void OnIsFocusedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -39,6 +55,18 @@ namespace Microsoft.Templates.UI.V2Extensions
                     textBox.Focus();
                     textBox.Select(0, textBox.Text.Length);
                 }
+            }
+        }
+
+        private static void OnTextChangedCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var textBox = d as TextBox;
+            if (textBox != null)
+            {
+                textBox.TextChanged += (sender, args) =>
+                {
+                    GetTextChangedCommand(textBox).Execute(textBox.Text);
+                };
             }
         }
     }

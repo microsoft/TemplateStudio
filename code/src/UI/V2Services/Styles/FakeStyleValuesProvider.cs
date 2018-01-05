@@ -364,6 +364,13 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FFFDFBAC;
                 case "NotificationWarningIcon":
                     return LightColorValues.Color_FF18A2E7;
+
+                case "NotificationErrorText":
+                    return LightColorValues.Color_FF1E1E1E;
+                case "NotificationErrorBackground":
+                    return LightColorValues.Color_FFFDFBAC;
+                case "NotificationErrorIcon":
+                    return LightColorValues.Color_FF18A2E7;
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }

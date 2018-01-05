@@ -16,13 +16,15 @@ namespace Microsoft.Templates.UI.V2Controls
     public enum NotificationType
     {
         Information,
-        Warning
+        Warning,
+        Error
     }
 
-    public enum ReplacementCategory
+    public enum Category
     {
         None,
-        TemplatesSync
+        TemplatesSync,
+        NamingValidation
     }
 
     public class Notification
@@ -32,35 +34,48 @@ namespace Microsoft.Templates.UI.V2Controls
 
         public NotificationType Type { get; private set; }
 
-        public ReplacementCategory ReplacementCategory { get; private set; }
+        public Category Category { get; private set; }
 
         public string Message { get; private set; }
 
         public ICommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand(OnClose));
 
-        private Notification()
+        private Notification(bool hasTimer)
         {
-            _closeTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(5) };
-            _closeTimer.Tick += OnTick;
+            if (hasTimer)
+            {
+                _closeTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(5) };
+                _closeTimer.Tick += OnTick;
+            }
         }
 
-        public static Notification Information(string message, ReplacementCategory replacementCategory = ReplacementCategory.None)
+        public static Notification Information(string message, Category category = Category.None, bool hasTimer = true)
         {
-            return new Notification()
+            return new Notification(hasTimer)
             {
                 Type = NotificationType.Information,
                 Message = message,
-                ReplacementCategory = replacementCategory
+                Category = category
             };
         }
 
-        public static Notification Warning(string message, ReplacementCategory replacementCategory = ReplacementCategory.None)
+        public static Notification Warning(string message, Category category = Category.None, bool hasTimer = true)
         {
-            return new Notification()
+            return new Notification(hasTimer)
             {
                 Type = NotificationType.Warning,
                 Message = message,
-                ReplacementCategory = replacementCategory
+                Category = category
+            };
+        }
+
+        public static Notification Error(string message, Category category = Category.None)
+        {
+            return new Notification(false)
+            {
+                Type = NotificationType.Error,
+                Message = message,
+                Category = category
             };
         }
 
@@ -71,18 +86,18 @@ namespace Microsoft.Templates.UI.V2Controls
 
         private async void OnTick(object sender, EventArgs e)
         {
-            _closeTimer.Stop();
+            _closeTimer?.Stop();
             await NotificationsControl.Instance.CloseAsync();
         }
 
         public void StartCloseTimer()
         {
-            _closeTimer.Start();
+            _closeTimer?.Start();
         }
 
         public void StopCloseTimer()
         {
-            _closeTimer.Stop();
+            _closeTimer?.Stop();
         }
     }
 }
