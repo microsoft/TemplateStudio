@@ -88,6 +88,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             if (args.Status == SyncStatus.Updated)
             {
                 await OnTemplatesAvailableAsync();
+                await NotificationsControl.Instance.CleanNotificationsAsync(Category.TemplatesSync);
             }
         }
     }

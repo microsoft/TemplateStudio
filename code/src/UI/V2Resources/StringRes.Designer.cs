@@ -214,6 +214,42 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name already exists.
+        /// </summary>
+        public static string NotificationValidationError_AlreadyExists {
+            get {
+                return ResourceManager.GetString("NotificationValidationError_AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only alphanumeric and &apos;_&apos; characters are allowed.
+        /// </summary>
+        public static string NotificationValidationError_BadFormat {
+            get {
+                return ResourceManager.GetString("NotificationValidationError_BadFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name cannot be empty.
+        /// </summary>
+        public static string NotificationValidationError_Empty {
+            get {
+                return ResourceManager.GetString("NotificationValidationError_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name is reserved.
+        /// </summary>
+        public static string NotificationValidationError_ReservedName {
+            get {
+                return ResourceManager.GetString("NotificationValidationError_ReservedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Features.
         /// </summary>
         public static string ProjectDetailsFeaturesSectionTitle {

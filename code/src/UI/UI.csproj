@@ -369,9 +369,11 @@
     <Compile Include="V2Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="V2Converters\HasItemsVisibilityConverter.cs" />
     <Compile Include="V2Converters\IntegerVisibilityConverter.cs" />
+    <Compile Include="V2Converters\SavedTemplateGridConverter.cs" />
     <Compile Include="V2Converters\StringVisibilityConverter.cs" />
     <Compile Include="V2Extensions\SyncStatusExtensions.cs" />
     <Compile Include="V2Extensions\TextBoxExtensions.cs" />
+    <Compile Include="V2Extensions\ValidationResultExtensions.cs" />
     <Compile Include="V2Resources\StringRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

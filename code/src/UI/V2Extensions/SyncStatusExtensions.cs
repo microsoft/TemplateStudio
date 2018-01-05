@@ -16,23 +16,23 @@ namespace Microsoft.Templates.UI.V2Extensions
             switch (status)
             {
                 case SyncStatus.Updating:
-                    return Notification.Information(StringRes.NotificationSyncStatus_Updating, Category.TemplatesSync);
+                    return Notification.Information(StringRes.NotificationSyncStatus_Updating, Category.TemplatesSync, false);
                 case SyncStatus.Updated:
-                    return Notification.Information(StringRes.NotificationSyncStatus_Updated, Category.TemplatesSync);
+                    return Notification.Information(StringRes.NotificationSyncStatus_Updated, Category.TemplatesSync, false);
                 case SyncStatus.Acquiring:
-                    return Notification.Information(StringRes.NotificationSyncStatus_Acquiring, Category.TemplatesSync);
+                    return Notification.Information(StringRes.NotificationSyncStatus_Acquiring, Category.TemplatesSync, false);
                 case SyncStatus.Acquired:
-                    return Notification.Information(StringRes.NotificationSyncStatus_Acquired, Category.TemplatesSync);
+                    return Notification.Information(StringRes.NotificationSyncStatus_Acquired, Category.TemplatesSync, false);
                 case SyncStatus.Preparing:
-                    return Notification.Information(StringRes.NotificationSyncStatus_Preparing, Category.TemplatesSync);
+                    return Notification.Information(StringRes.NotificationSyncStatus_Preparing, Category.TemplatesSync, false);
                 case SyncStatus.Prepared:
-                    return Notification.Information(StringRes.NotificationSyncStatus_Prepared, Category.TemplatesSync);
+                    return Notification.Information(StringRes.NotificationSyncStatus_Prepared, Category.TemplatesSync, false);
                 case SyncStatus.OverVersion:
-                    return Notification.Information(StringRes.NotificationSyncStatus_OverVersion, Category.TemplatesSync);
+                    return Notification.Information(StringRes.NotificationSyncStatus_OverVersion, Category.TemplatesSync, false);
                 case SyncStatus.OverVersionNoContent:
-                    return Notification.Information(StringRes.NotificationSyncStatus_OverVersionNoContent, Category.TemplatesSync);
+                    return Notification.Information(StringRes.NotificationSyncStatus_OverVersionNoContent, Category.TemplatesSync, false);
                 case SyncStatus.NewVersionAvailable:
-                    return Notification.Information(StringRes.NotificationSyncStatus_NewVersionAvailable, Category.TemplatesSync);
+                    return Notification.Information(StringRes.NotificationSyncStatus_NewVersionAvailable, Category.TemplatesSync, false);
                 case SyncStatus.None:
                     return null;
                 case SyncStatus.UnderVersion:

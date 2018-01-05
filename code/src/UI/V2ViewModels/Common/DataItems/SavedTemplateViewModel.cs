@@ -3,10 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Controls;
+using Microsoft.Templates.UI.V2Extensions;
 using Microsoft.Templates.UI.V2Services;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
@@ -17,28 +19,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private string _icon;
         private bool _itemNameEditable;
         private bool _isFocused;
+        private bool _hasErrors;
         private ICommand _textChangedCommand;
+        private ICommand _lostKeyboardFocusCommand;
 
         public string Name
         {
             get => _name;
-            set
-            {
-                if (ItemNameEditable)
-                {
-                    var validationResult = ValidationService.ValidateTemplateName(value, ItemNameEditable, true);
-                    if (validationResult.IsValid)
-                    {
-                        SetProperty(ref _name, value);
-                        NotificationsControl.Instance.CleanNotificationsAsync(Category.NamingValidation).FireAndForget();
-                    }
-                    else
-                    {
-                        var notification = Notification.Error("Quieto cobarde!!!!", Category.NamingValidation);
-                        NotificationsControl.Instance.AddNotificationAsync(notification).FireAndForget();
-                    }
-                }
-            }
+            set => SetProperty(ref _name, value);
         }
 
         public string Icon
@@ -59,7 +47,15 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _isFocused, value);
         }
 
-        public ICommand TextChangedCommand => _textChangedCommand ?? (_textChangedCommand = new RelayCommand<string>(OnTextChanged));
+        public bool HasErrors
+        {
+            get => _hasErrors;
+            set => SetProperty(ref _hasErrors, value);
+        }
+
+        public ICommand TextChangedCommand => _textChangedCommand ?? (_textChangedCommand = new RelayCommand<TextChangedEventArgs>(OnTextChanged));
+
+        public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
 
         public SavedTemplateViewModel(TemplateInfoViewModel template)
         {
@@ -72,9 +68,35 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             IsFocused = true;
         }
 
-        private void OnTextChanged(string text)
+        private void OnTextChanged(TextChangedEventArgs args)
         {
-            Name = text;
+            var textBox = args.Source as TextBox;
+            if (textBox != null)
+            {
+                if (ItemNameEditable)
+                {
+                    var validationResult = ValidationService.ValidateTemplateName(textBox.Text, ItemNameEditable, true);
+                    HasErrors = !validationResult.IsValid;
+                    if (validationResult.IsValid)
+                    {
+                        Name = textBox.Text;
+                        NotificationsControl.Instance.CleanNotificationsAsync(Category.NamingValidation).FireAndForget();
+                    }
+                    else
+                    {
+                        NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
+                    }
+                }
+            }
+        }
+
+        private void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs args)
+        {
+            if (HasErrors)
+            {
+                var textBox = args.Source as TextBox;
+                textBox.Focus();
+            }
         }
     }
 }

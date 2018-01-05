@@ -185,6 +185,18 @@
     <value>Updating templates...</value>
     <comment>Notification message for Sync Status: Updating</comment>
   </data>
+  <data name="NotificationValidationError_AlreadyExists" xml:space="preserve">
+    <value>Name already exists</value>
+  </data>
+  <data name="NotificationValidationError_BadFormat" xml:space="preserve">
+    <value>Only alphanumeric and '_' characters are allowed</value>
+  </data>
+  <data name="NotificationValidationError_Empty" xml:space="preserve">
+    <value>Name cannot be empty</value>
+  </data>
+  <data name="NotificationValidationError_ReservedName" xml:space="preserve">
+    <value>Name is reserved</value>
+  </data>
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
     <value>Features</value>
     <comment>Feature list header on project details</comment>

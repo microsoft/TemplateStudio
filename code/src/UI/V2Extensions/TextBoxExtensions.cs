@@ -25,6 +25,13 @@ namespace Microsoft.Templates.UI.V2Extensions
           new PropertyMetadata(null, OnTextChangedCommandPropertyChanged)
         );
 
+        public static readonly DependencyProperty LostKeyboardFocusCommandProperty = DependencyProperty.RegisterAttached(
+          "LostKeyboardFocusCommand",
+          typeof(ICommand),
+          typeof(TextBoxExtensions),
+          new PropertyMetadata(null, LostKeyboardFocusCommandPropertyChanged)
+        );
+
         public static void SetIsFocused(UIElement element, bool value)
         {
             element.SetValue(IsFocusedProperty, value);
@@ -43,6 +50,16 @@ namespace Microsoft.Templates.UI.V2Extensions
         public static ICommand GetTextChangedCommand(UIElement element)
         {
             return (ICommand)element.GetValue(TextChangedCommandProperty);
+        }
+
+        public static void SetLostKeyboardFocusCommand(UIElement element, ICommand value)
+        {
+            element.SetValue(LostKeyboardFocusCommandProperty, value);
+        }
+
+        public static ICommand GetLostKeyboardFocusCommand(UIElement element)
+        {
+            return (ICommand)element.GetValue(LostKeyboardFocusCommandProperty);
         }
 
         private static void OnIsFocusedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -65,7 +82,19 @@ namespace Microsoft.Templates.UI.V2Extensions
             {
                 textBox.TextChanged += (sender, args) =>
                 {
-                    GetTextChangedCommand(textBox).Execute(textBox.Text);
+                    GetTextChangedCommand(textBox).Execute(args);
+                };
+            }
+        }
+
+        private static void LostKeyboardFocusCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var textBox = d as TextBox;
+            if (textBox != null)
+            {
+                textBox.LostKeyboardFocus += (sender, args) =>
+                {
+                    GetLostKeyboardFocusCommand(textBox).Execute(args);
                 };
             }
         }

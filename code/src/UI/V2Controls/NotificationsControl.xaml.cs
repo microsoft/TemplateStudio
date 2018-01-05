@@ -35,7 +35,7 @@ namespace Microsoft.Templates.UI.V2Controls
         {
             if (notification != null)
             {
-                RemoveReplacementCategoryNotifications(notification.Category);
+                RemoveCategoryNotifications(notification.Category);
                 _notifications.Insert(0, notification);
                 await ShowNotificationAsync(notification);
             }
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.UI.V2Controls
 
         public async Task CleanNotificationsAsync(Category replacementCategory)
         {
-            RemoveReplacementCategoryNotifications(replacementCategory);
+            RemoveCategoryNotifications(replacementCategory);
             if (Notification.Category == replacementCategory)
             {
                 await CloseAsync();
@@ -71,16 +71,16 @@ namespace Microsoft.Templates.UI.V2Controls
             Notification.StartCloseTimer();
         }
 
-        private void RemoveReplacementCategoryNotifications(Category replacementCategory)
+        private void RemoveCategoryNotifications(Category category)
         {
-            if (replacementCategory != Category.None)
+            if (category != Category.None)
             {
-                foreach (var notificationInPull in _notifications.Where(n => n.Category == replacementCategory))
+                foreach (var notificationInPull in _notifications.Where(n => n.Category == category))
                 {
                     notificationInPull.StopCloseTimer();
                 }
 
-                _notifications.RemoveAll(n => n.Category == replacementCategory);
+                _notifications.RemoveAll(n => n.Category == category);
             }
         }
     }
