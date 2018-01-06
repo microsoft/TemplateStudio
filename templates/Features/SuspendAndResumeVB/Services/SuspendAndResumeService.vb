@@ -45,4 +45,4 @@ Namespace Services
             Dim saveState = Await ApplicationData.Current.LocalFolder.ReadAsync(Of OnBackgroundEnteringEventArgs)(StateFilename)
         End Function
     End Class
-End Namespace 
+End Namespace

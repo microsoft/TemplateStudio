@@ -7,4 +7,4 @@
             ' Use it when you don't want or need to wait for the task to complete.
         End Sub
     End Module
-End Namespace 
+End Namespace

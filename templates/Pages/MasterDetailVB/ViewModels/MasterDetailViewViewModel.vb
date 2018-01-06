@@ -36,4 +36,4 @@ Namespace ViewModels
             End If
         End Function
     End Class
-End Namespace 
+End Namespace

@@ -4,4 +4,4 @@
 
         Public Property SuspensionDate As DateTime
     End Class
-End Namespace 
+End Namespace

@@ -39,4 +39,4 @@
             Return $"{Company} {Status}"
         End Function
     End Class
-End Namespace 
+End Namespace

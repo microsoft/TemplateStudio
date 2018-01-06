@@ -11,4 +11,4 @@
             Await ViewModel.LoadAnimationAsync(gridView)
         End Sub
     End Class
-End Namespace 
+End Namespace

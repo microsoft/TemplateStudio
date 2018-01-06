@@ -12,4 +12,4 @@ Private Async Function StartupAsync() As Task
     '{[{
     ThemeSelectorService.SetRequestedTheme()
     '}]}
-End Function 
+End Function

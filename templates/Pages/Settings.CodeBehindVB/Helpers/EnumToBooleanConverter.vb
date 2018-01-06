@@ -27,4 +27,4 @@
             Throw New ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName".GetLocalized())
         End Function
     End Class
-End Namespace 
+End Namespace
