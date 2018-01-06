@@ -232,6 +232,7 @@
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <Compile Include="GenTests\GenProjectTests.cs" />
+    <Compile Include="GenTests\VisualComparisonTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
     <Compile Include="BaseGenAndBuildFixture.cs" />

@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Test
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             // Clean
-            Fs.SafeDeleteDirectory(projectPath);
+          ////  Fs.SafeDeleteDirectory(projectPath);
         }
 
         protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool emptyProject, bool cleanGeneration = true)
@@ -208,7 +208,7 @@ namespace Microsoft.Templates.Test
             // Clean
             if (cleanGeneration)
             {
-                Fs.SafeDeleteDirectory(resultPath);
+               // Fs.SafeDeleteDirectory(resultPath);
             }
 
             return (resultPath, projectName);
@@ -224,7 +224,7 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities)
+        protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
         {
             await SetUpFixtureForTestingAsync(language);
 
@@ -247,6 +247,12 @@ namespace Microsoft.Templates.Test
                 {
                     _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
                 }
+            }
+
+            if (lastPageIsHome)
+            {
+                // Useful if creating a blank project type and want to change the start page
+                userSelection.HomeName = userSelection.Pages.Last().name;
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
