@@ -52,4 +52,4 @@ Namespace Services
             Await PinSecondaryTileAsync(tile)
         End Function
     End Class
-End Namespace
+End Namespace 

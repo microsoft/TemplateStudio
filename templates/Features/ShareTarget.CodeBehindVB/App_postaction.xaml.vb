@@ -10,4 +10,4 @@ NotInheritable Partial Class App
         Await ActivationService.ActivateFromShareTargetAsync(args)
     End Sub
     '}]}
-End Class
+End Class 

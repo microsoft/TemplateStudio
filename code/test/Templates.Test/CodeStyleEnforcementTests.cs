@@ -154,17 +154,6 @@ namespace Microsoft.Templates.Test
 
             foreach (var file in GetFiles(TemplatesRoot, "*.vb"))
             {
-                ////var lines = File.ReadAllLines(file, Encoding.UTF8);
-
-                ////if (lines.Last() != string.Empty)
-                ////{
-                ////    errorFiles.Add(file);
-                ////}
-                ////else if (lines[lines.Length - 2] == string.Empty)
-                ////{
-                ////    errorFiles.Add(file);
-                ////}
-
                 var text = File.ReadAllText(file, Encoding.UTF8);
 
                 if (!text.EndsWith(Environment.NewLine, StringComparison.InvariantCulture)

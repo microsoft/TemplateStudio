@@ -24,4 +24,4 @@ Namespace BackgroundTasks
             AddHandler taskInstance.Canceled, New BackgroundTaskCanceledEventHandler(AddressOf OnCanceled)
         End Sub
     End Class
-End Namespace
+End Namespace 
