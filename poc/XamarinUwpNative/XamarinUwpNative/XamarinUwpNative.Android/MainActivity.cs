@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+using Plugin.Permissions;
+
 namespace XamarinUwpNative.Droid
 {
 	[Activity (Label = "XamarinUwpNative", Icon = "@drawable/icon", Theme="@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -20,8 +22,14 @@ namespace XamarinUwpNative.Droid
 			base.OnCreate (bundle);
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
-			LoadApplication (new XamarinUwpNative.App ());
-		}
-	}
+			LoadApplication (new XamarinUwpNative.App ());            
+        }
+
+        // Required for Media plugin for camera page
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
 }
 
