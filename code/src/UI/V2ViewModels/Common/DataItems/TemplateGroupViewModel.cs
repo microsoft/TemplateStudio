@@ -6,6 +6,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
@@ -26,6 +28,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             Name = templateGroup.Key;
             Items = new ObservableCollection<TemplateInfoViewModel>(templateGroup);
+        }
+
+        public TemplateInfoViewModel GetTemplate((LayoutItem Layout, ITemplateInfo Template) item)
+        {
+            return Items.FirstOrDefault(t => t.Name == item.Template.Name);
         }
     }
 }

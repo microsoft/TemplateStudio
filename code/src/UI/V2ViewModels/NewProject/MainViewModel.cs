@@ -93,14 +93,18 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                 if (messageResult == MessageBoxResult.Yes)
                 {
                     Instance.UserSelection.ResetUserSelection();
-                    Instance.AddPages.ResetUserSelection();
-                    Instance.AddFeatures.ResetUserSelection();
                     result = true;
                 }
                 else
                 {
                     result = false;
                 }
+            }
+
+            if (result == true)
+            {
+                Instance.AddPages.ResetUserSelection();
+                Instance.AddFeatures.ResetTemplatesCount();
             }
 
             return result;
@@ -115,7 +119,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             AddPages.LoadData(framework.Name);
             AddFeatures.LoadData(framework.Name);
-            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name);
+            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, AddPages.Groups, AddFeatures.Groups);
         }
 
         private void OnTemplateClicked(object sender, TemplateInfoViewModel selectedTemplate)
@@ -124,16 +128,16 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             if (newTemplate != null)
             {
                 // Update count on TemplateInfoViewModel
-                var groups = (selectedTemplate.TemplateType == TemplateType.Page) ? AddPages.Groups : AddFeatures.Groups;
-                foreach (var group in groups)
-                {
-                    var template = group.Items.FirstOrDefault(t => t == selectedTemplate);
-                    if (template != null)
-                    {
-                        newTemplate.UpdateSelection();
-                        template.UpdateSelection(newTemplate);
-                    }
-                }
+                // var groups = (selectedTemplate.TemplateType == TemplateType.Page) ? AddPages.Groups : AddFeatures.Groups;
+                // foreach (var group in groups)
+                // {
+                //    var template = group.Items.FirstOrDefault(t => t == selectedTemplate);
+                //    if (template != null)
+                //    {
+                //        newTemplate.UpdateSelection();
+                //        template.UpdateSelection();
+                //    }
+                // }
             }
         }
 

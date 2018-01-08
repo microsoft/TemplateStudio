@@ -5,6 +5,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -88,8 +89,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             if (args.Status == SyncStatus.Updated)
             {
                 await OnTemplatesAvailableAsync();
-                await NotificationsControl.Instance.CleanNotificationsAsync(Category.TemplatesSync);
+                CleanNotificationsAsync().FireAndForget();
             }
+        }
+
+        public async Task CleanNotificationsAsync()
+        {
+            await Task.Delay(2000);
+            await NotificationsControl.Instance.CleanNotificationsAsync(Category.TemplatesSync);
         }
     }
 }

@@ -35,6 +35,11 @@ namespace Microsoft.Templates.UI.V2Controls
         {
             if (notification != null)
             {
+                if (Notification != null && Notification.Equals(notification))
+                {
+                    return;
+                }
+
                 RemoveCategoryNotifications(notification.Category);
                 _notifications.Insert(0, notification);
                 await ShowNotificationAsync(notification);

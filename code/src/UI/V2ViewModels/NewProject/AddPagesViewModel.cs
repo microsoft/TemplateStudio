@@ -29,7 +29,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             {
                 foreach (var template in group.Items)
                 {
-                    template.ResetUserSelection();
+                    template.ResetTemplateCount();
                 }
             }
         }

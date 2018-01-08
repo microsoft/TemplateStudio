@@ -99,5 +99,16 @@ namespace Microsoft.Templates.UI.V2Controls
         {
             _closeTimer?.Stop();
         }
+
+        public override bool Equals(object obj)
+        {
+            var result = false;
+            if (obj is Notification notification)
+            {
+                result = notification.Category == Category && notification.Message == Message;
+            }
+
+            return result;
+        }
     }
 }

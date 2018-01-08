@@ -76,12 +76,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         private void OnItemClick() => EventService.Instance.RaiseOnTemplateClicked(this);
 
-        public void UpdateSelection(SavedTemplateViewModel newTemplate)
+        public void UpdateSelection()
         {
             Count++;
         }
 
-        public void ResetUserSelection()
+        public void ResetTemplateCount()
         {
             Count = 0;
         }

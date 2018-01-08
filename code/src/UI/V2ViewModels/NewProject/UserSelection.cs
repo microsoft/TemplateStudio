@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
@@ -31,7 +32,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
         }
 
-        public void Initialize(string projectTypeName, string frameworkName)
+        public void Initialize(string projectTypeName, string frameworkName, IEnumerable<TemplateGroupViewModel> pageGroups, IEnumerable<TemplateGroupViewModel> featureGroups)
         {
             if (_isInitialized)
             {
@@ -44,8 +45,15 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             {
                 if (item.Template != null)
                 {
-                    var templateInfo = new TemplateInfoViewModel(item.Template, frameworkName);
-                    Add(TemplateOrigin.Layout, templateInfo, item.Layout.Name);
+                    var groups = item.Template.GetTemplateType() == TemplateType.Page ? pageGroups : featureGroups;
+                    foreach (var group in groups)
+                    {
+                        var template = group.GetTemplate(item);
+                        if (template != null)
+                        {
+                            Add(TemplateOrigin.Layout, template, item.Layout.Name);
+                        }
+                    }
                 }
             }
 
@@ -57,8 +65,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public SavedTemplateViewModel Add(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string name = null)
         {
+            template.UpdateSelection();
             var items = template.TemplateType == Core.TemplateType.Page ? Pages : Features;
-
             var newTemplate = new SavedTemplateViewModel(template);
 
             if (!string.IsNullOrEmpty(name))
@@ -68,6 +76,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             else
             {
                 newTemplate.Name = ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, true);
+                newTemplate.UpdateSelection();
             }
 
             items.Add(newTemplate);

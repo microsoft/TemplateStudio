@@ -79,13 +79,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
                     HasErrors = !validationResult.IsValid;
                     if (validationResult.IsValid)
                     {
-                        Name = textBox.Text;
                         NotificationsControl.Instance.CleanNotificationsAsync(Category.NamingValidation).FireAndForget();
                     }
                     else
                     {
                         NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
                     }
+
+                    Name = textBox.Text;
                 }
             }
         }
