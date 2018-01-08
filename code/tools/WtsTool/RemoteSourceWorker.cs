@@ -179,9 +179,8 @@ namespace WtsTool
 
         private static void WriteSummary(TemplatesSourceConfig config, TextWriter output)
         {
-            output.WriteCommandText($"Templates Package count: {config.VersionCount}");
             output.WriteCommandText($"Latest Version: {config.Latest?.MainVersion} ({config.Latest.Version?.ToString()})");
-            output.WriteCommandText($"Latest Version Uri: {config.Latest.Uri}");
+            output.WriteCommandText($"Latest Version Uri: {config.RootUri + config.Latest.Name }");
 
             output.WriteLine();
             output.WriteCommandText($"Available Versions: {string.Join(", ", config.Versions.Select(e => e.MainVersion).ToArray())}");
@@ -191,7 +190,7 @@ namespace WtsTool
         {
             string c1 = nameof(TemplatesPackageInfo.Version);
             string c2 = nameof(TemplatesPackageInfo.Date);
-            string c3 = nameof(TemplatesPackageInfo.Uri);
+            string c3 = nameof(TemplatesPackageInfo.Name);
 
             output.WriteLine();
             string tableHeader = string.Format("{0,-14}   {1,-24}   {2}", c1, c2, c3);
@@ -202,7 +201,7 @@ namespace WtsTool
 
             foreach (var info in packages)
             {
-                string row = string.Format("{0,-14}   {1,-24}   {2}", info.Version, info.Date, info.Uri);
+                string row = string.Format("{0,-14}   {1,-24}   {2}", info.Version, info.Date, info.Name);
                 output.WriteCommandText(row);
             }
         }

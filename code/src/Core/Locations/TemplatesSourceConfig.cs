@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core.Locations
     {
         public TemplatesPackageInfo Latest { get; set; }
 
-        public int VersionCount { get; set; }
+        public Uri RootUri { get; set; }
 
         public List<TemplatesPackageInfo> Versions { get; set; }
 

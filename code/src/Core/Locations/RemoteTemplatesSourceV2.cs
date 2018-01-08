@@ -36,14 +36,17 @@ namespace Microsoft.Templates.Core.Locations
 
         public override void Acquire(ref TemplatesPackageInfo packageInfo)
         {
-            var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            var sourceUrl = $"{_cdnUrl}/{packageInfo.Name}";
-            var fileTarget = Path.Combine(tempFolder, packageInfo.Name);
-            Fs.EnsureFolder(tempFolder);
+            if (string.IsNullOrEmpty(packageInfo.LocalPath) || !File.Exists(packageInfo.LocalPath))
+            {
+                var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                var sourceUrl = $"{_cdnUrl}/{packageInfo.Name}";
+                var fileTarget = Path.Combine(tempFolder, packageInfo.Name);
+                Fs.EnsureFolder(tempFolder);
 
-            DownloadContent(sourceUrl, fileTarget);
+                DownloadContent(sourceUrl, fileTarget);
 
-            packageInfo.LocalPath = fileTarget;
+                packageInfo.LocalPath = fileTarget;
+            }
         }
 
         public override void LoadConfig()

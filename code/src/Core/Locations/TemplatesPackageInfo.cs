@@ -21,8 +21,6 @@ namespace Microsoft.Templates.Core.Locations
     {
         public string Name { get; set; }
 
-        public Uri Uri { get; set; }
-
         [JsonIgnore]
         public string LocalPath { get; set; }
 
@@ -30,7 +28,19 @@ namespace Microsoft.Templates.Core.Locations
 
         public long Bytes { get; set; }
 
-        public Version Version { get; set; }
+        [JsonIgnore]
+        public Version Version { get => GetVersion(); }
+
+        private Version GetVersion()
+        {
+            var version = ParseVersion(Name);
+            if (version == null)
+            {
+                version = GetVersionFromMstx(LocalPath);
+            }
+
+            return version;
+        }
 
         [JsonIgnore]
         public string MainVersion { get => !Version.IsNull() ? $"{Version.Major.ToString()}.{Version.Minor.ToString()}" : "NoVersion"; }

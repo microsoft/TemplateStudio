@@ -31,10 +31,8 @@ namespace WtsTool
                     new TemplatesPackageInfo()
                     {
                         Name = e.Name,
-                        Uri = e.Uri,
                         Bytes = e.Properties.Length,
-                        Date = e.Properties.LastModified.Value.DateTime,
-                        Version = TemplatesPackageInfo.ParseVersion(e.Name),
+                        Date = e.Properties.LastModified.Value.DateTime
                     })
                 .OrderByDescending(e => e.Date)
                 .OrderByDescending(e => e.Version)
@@ -43,9 +41,9 @@ namespace WtsTool
 
             TemplatesSourceConfig config = new TemplatesSourceConfig()
             {
-                VersionCount = remotePackages.Count(),
                 Latest = remotePackages.FirstOrDefault(),
-                Versions = remotePackages.ToList()
+                Versions = remotePackages.ToList(),
+                RootUri = container.Uri
             };
             return config;
         }

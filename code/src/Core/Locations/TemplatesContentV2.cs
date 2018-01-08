@@ -107,8 +107,7 @@ namespace Microsoft.Templates.Core.Locations
                 installedPackage = new TemplatesPackageInfo()
                 {
                     Name = Path.GetFileName(mstxFilePath),
-                    LocalPath = mstxFilePath,
-                    Version = TemplatesPackageInfo.GetVersionFromMstx(mstxFilePath)
+                    LocalPath = mstxFilePath
                 };
             }
             else

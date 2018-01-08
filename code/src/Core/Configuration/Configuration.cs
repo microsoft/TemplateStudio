@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core
     {
         public string Environment { get; set; } = "Local";
 
-        public string CdnUrl { get; set; } = "https://wtsrepository.blob.core.windows.net/dev/Latest";
+        public string CdnUrl { get; set; } = "https://wtsrepository.blob.core.windows.net/dev";
 
         // Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
         public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>";

@@ -14,12 +14,10 @@ namespace Microsoft.Templates.Core.Locations
     {
         public static readonly TemplatesPackageInfo VersionZero = new TemplatesPackageInfo()
         {
-            Name = "LocalTemplates",
+            Name = "LocalTemplates_v0.0.0.0",
             LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
             Bytes = 1024,
             Date = DateTime.Now,
-            Uri = new Uri("file://"),
-            Version = new Version(0, 0, 0, 0)
         };
 
         protected virtual string Origin => $@"..\..\..\..\..\{TemplatesFolderName}";
@@ -62,8 +60,6 @@ namespace Microsoft.Templates.Core.Locations
                     LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
                     Bytes = 1024,
                     Date = DateTime.Now,
-                    Uri = new Uri("file://"),
-                    Version = v
                 };
 
                 availablePackages.Add(package);
@@ -75,8 +71,7 @@ namespace Microsoft.Templates.Core.Locations
             Config = new TemplatesSourceConfig()
             {
                 Versions = availablePackages,
-                Latest = availablePackages.OrderByDescending(p => p.Version).FirstOrDefault(),
-                VersionCount = 1
+                Latest = availablePackages.OrderByDescending(p => p.Version).FirstOrDefault()
             };
         }
 
