@@ -8,6 +8,7 @@ Imports Param_ItemNamespace.Views
 Namespace ViewModels
     Public Class ShellViewModel
         Inherits Observable
+
         Private Sub PopulateNavItems()
 '^^
 '{[{

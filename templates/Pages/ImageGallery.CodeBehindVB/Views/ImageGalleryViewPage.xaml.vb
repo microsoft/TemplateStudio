@@ -9,6 +9,7 @@ Namespace Views
     Public NotInheritable Partial Class ImageGalleryViewPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
+
         Public Const ImageGalleryViewSelectedImageId As String = "ImageGalleryViewSelectedImageId"
         Public Const ImageGalleryViewAnimationOpen As String = "ImageGalleryView_AnimationOpen"
         Public Const ImageGalleryViewAnimationClose As String = "ImageGalleryView_AnimationClose"

@@ -9,10 +9,13 @@ Namespace Views
     Public NotInheritable Partial Class ImageGalleryViewDetailPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
+
         Private _timer As New DispatcherTimer() With {
              .Interval = TimeSpan.FromMilliseconds(500)
         }
+
         Private _selectedImage As Object
+
         Private _source As ObservableCollection(Of SampleImage)
 
         Public Property SelectedImage As Object

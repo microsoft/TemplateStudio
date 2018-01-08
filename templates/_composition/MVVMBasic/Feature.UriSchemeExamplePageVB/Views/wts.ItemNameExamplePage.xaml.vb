@@ -7,6 +7,7 @@ Namespace Views
     ' needs and redirected to another of your pages.
     Partial Public NotInheritable Class wts.ItemNameExamplePage
         Inherits Page
+
         Public ReadOnly Property ViewModel As New wts.ItemNameExampleViewModel
 
         Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)

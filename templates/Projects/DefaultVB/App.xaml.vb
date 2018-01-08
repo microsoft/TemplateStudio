@@ -2,7 +2,9 @@
 
 NotInheritable Partial Class App
     Inherits Application
+
     Private _activationService As Lazy(Of ActivationService)
+
     Private ReadOnly Property ActivationService As ActivationService
         Get
             Return _activationService.Value

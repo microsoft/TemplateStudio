@@ -14,7 +14,7 @@ Namespace Views
 
         '{[{
 
-        Private Sub wts.ItemNamePage_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
+        Private Sub wts.ItemNamePage_Loaded(sender As Object, e As RoutedEventArgs)
             Dim element = TryCast(Me, FrameworkElement)
             Dim pivotPage = element.FindParent(Of Pivot)()
             If pivotPage IsNot Nothing Then
@@ -25,7 +25,7 @@ Namespace Views
             mpe.MediaPlayer.Play()
         End Sub
 
-        Private Sub PivotPage_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs)
+        Private Sub PivotPage_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
             Dim navigatedTo As Boolean = e.AddedItems.Cast(Of PivotItem)().Any(Function(p) p.FindChild(Of wts.ItemNamePage)() IsNot Nothing)
             Dim navigatedFrom As Boolean = e.RemovedItems.Cast(Of PivotItem)().Any(Function(p) p.FindChild(Of wts.ItemNamePage)() IsNot Nothing)
             If navigatedTo Then

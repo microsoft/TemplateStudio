@@ -222,6 +222,10 @@
     <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyFixture.cs" />
     <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyTests.cs" />
     <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSource.cs" />
+    <Compile Include="CodeAnalysis\VBStyleProjectGenerationTests.cs" />
+    <Compile Include="CodeAnalysis\VBStylePlusLocalTemplatesSource.cs" />
+    <Compile Include="CodeAnalysis\VBStyleGenerationTestsFixture.cs" />
+    <Compile Include="CodeAnalysis\VBStyleCollection.cs" />
     <Compile Include="CodeAnalysis\SonarLintCollection.cs" />
     <Compile Include="CodeAnalysis\SonarLintGenerationTestsFixture.cs" />
     <Compile Include="CodeAnalysis\SonarLintPlusLocalTemplatesSource.cs" />
@@ -261,6 +265,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestData\StyleCop\GlobalSuppressions.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\VBStyleAnalysis\.template.config\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\VBStyleAnalysis\WTSVBRules.ruleset">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -336,6 +346,16 @@
     </Content>
     <Content Include="TestData\SonarLintVB\_searchreplace.1.vbproj">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\VBStyleAnalysis\_postaction.vbproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\VBStyleAnalysis\_searchreplace.1.vbproj">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\VBStyleAnalysis\_searchreplace.vbproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="TestData\StyleCop\_searchreplace.1.csproj">

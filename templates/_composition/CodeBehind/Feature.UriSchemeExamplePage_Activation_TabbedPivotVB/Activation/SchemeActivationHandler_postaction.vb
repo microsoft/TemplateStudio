@@ -2,6 +2,7 @@
     Friend Class SchemeActivationHandler
         Inherits ActivationHandler(Of ProtocolActivatedEventArgs)
         '{[{
+
         ' By default, this handler expects URIs of the format 'wtsapp:sample?secret={value}'
         Protected Overrides Async Function HandleInternalAsync(args As ProtocolActivatedEventArgs) As Task
             If args.Uri.AbsolutePath.ToLowerInvariant.Equals("sample") Then
@@ -28,7 +29,6 @@
 
             Await Task.CompletedTask
         End Function
-
         '}]}
     End Class
 End Namespace

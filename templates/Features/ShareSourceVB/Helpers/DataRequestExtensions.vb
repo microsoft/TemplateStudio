@@ -26,7 +26,7 @@ Namespace Helpers
     '    Be sure to unregister the ShareComplete event handler when done.
     Module DataRequestExtensions
         <Extension>
-        Sub SetData(ByVal dataRequest As DataRequest, ByVal config As ShareSourceFeatureData)
+        Sub SetData(dataRequest As DataRequest, config As ShareSourceFeatureData)
             Dim deferral = dataRequest.GetDeferral()
             Try
                 Dim requestData = dataRequest.Data
@@ -65,7 +65,7 @@ Namespace Helpers
         End Sub
 
         <Extension>
-        Private Sub FillImage(ByVal requestData As DataPackage, ByVal image As StorageFile, ByVal storageItems As List(Of IStorageItem))
+        Private Sub FillImage(requestData As DataPackage, image As StorageFile, storageItems As List(Of IStorageItem))
             storageItems.Add(image)
             Dim streamReference = RandomAccessStreamReference.CreateFromFile(image)
             requestData.Properties.Thumbnail = streamReference
@@ -73,14 +73,14 @@ Namespace Helpers
         End Sub
 
         <Extension>
-        Private Sub FillStorageItems(ByVal requestData As DataPackage, ByVal sourceItems As IEnumerable(Of IStorageItem), ByVal storageItems As List(Of IStorageItem))
+        Private Sub FillStorageItems(requestData As DataPackage, sourceItems As IEnumerable(Of IStorageItem), storageItems As List(Of IStorageItem))
             For Each item In sourceItems
                 storageItems.Add(item)
             Next
         End Sub
 
         <Extension>
-        Private Sub FillDeferredContent(ByVal requestData As DataPackage, ByVal deferredDataFormatId As String, ByVal getDeferredDataAsyncFunc As Func(Of Task(Of Object)))
+        Private Sub FillDeferredContent(requestData As DataPackage, deferredDataFormatId As String, getDeferredDataAsyncFunc As Func(Of Task(Of Object)))
             requestData.SetDataProvider(deferredDataFormatId, Async Sub(providerRequest)
                 Dim deferral = providerRequest.GetDeferral()
                 Try

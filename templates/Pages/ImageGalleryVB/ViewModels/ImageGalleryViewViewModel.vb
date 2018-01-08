@@ -14,6 +14,7 @@ Namespace ViewModels
         Public Const ImageGalleryViewAnimationClose As String = "ImageGalleryView_AnimationClose"
 
         Private _source As ObservableCollection(Of SampleImage)
+        
         Private _imagesGridView As GridView
 
         Public Property Source As ObservableCollection(Of SampleImage)
