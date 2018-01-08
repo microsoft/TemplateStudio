@@ -134,6 +134,12 @@
     </Reference>
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XamarinUwpNative.Core\XamarinUwpNative.Core.csproj">
+      <Project>{efe39410-0c3d-448b-b558-e8060015e688}</Project>
+      <Name>XamarinUwpNative.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\XamarinUwpNative\XamarinUwpNative.projitems" Label="Shared" Condition="Exists('..\XamarinUwpNative\XamarinUwpNative.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using XamarinUwpNative.Core;
 
 namespace XamarinUwpNative
 {
@@ -12,6 +13,7 @@ namespace XamarinUwpNative
 		public MainPage()
 		{
 			InitializeComponent();
-		}
+            var model = new BasicModel(6);
+        }
 	}
 }
