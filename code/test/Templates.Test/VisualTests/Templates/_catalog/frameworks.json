@@ -1,0 +1,11 @@
+﻿[
+    {
+        "name": "CodeBehind",
+        "displayName": "Code Behind",
+        "summary": "Only Code Behind is supported for UI tests.",
+        "author": "Microsoft Community",
+        "order": "1",
+        "licenses": "",
+        "languages": [ "C#" ]
+    }
+]

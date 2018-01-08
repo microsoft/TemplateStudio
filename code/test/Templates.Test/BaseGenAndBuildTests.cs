@@ -224,7 +224,7 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
+        protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
         {
             await SetUpFixtureForTestingAsync(language);
 

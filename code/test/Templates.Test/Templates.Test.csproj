@@ -136,6 +136,10 @@
     <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\3.0\System.Management.Automation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
@@ -232,7 +236,20 @@
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <Compile Include="GenTests\GenProjectTests.cs" />
-    <Compile Include="GenTests\VisualComparisonTests.cs" />
+    <None Include="VisualTests\Templates\Features\CompareLaunchScreen\Tests\LaunchBothAppsAndCompareInitialScreenshots.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\Templates\Projects\Default\AppIds.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\Templates\Projects\Default\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\Templates\Projects\Default\Utils\ImageComparer.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="VisualTests\VisualComparisonTemplatesSource.cs" />
+    <Compile Include="VisualTests\VisualComparisonTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
     <Compile Include="BaseGenAndBuildFixture.cs" />
@@ -248,6 +265,7 @@
     </AdditionalFiles>
     <Compile Include="TemplateFolderValidationTests.cs" />
     <Compile Include="TemplateJsonValidationTests.cs" />
+    <Compile Include="VisualTests\VisualComparisonTestsFixture.cs" />
     <Compile Include="WindowsAppCertKitTests.cs" />
     <None Include="RunWackTest.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -262,6 +280,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestData\StyleCop\GlobalSuppressions.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\Templates\Features\CompareLaunchScreen\.template.config\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\Templates\Projects\Default\.template.config\Layout.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\Templates\Projects\Default\.template.config\template.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\Templates\Projects\Default\packages.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\Templates\_catalog\frameworks.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\Templates\_catalog\projectTypes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -339,6 +375,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="VisualTests\Templates\Projects\Default\wts.DefaultProject.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\StyleCop\_searchreplace.1.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

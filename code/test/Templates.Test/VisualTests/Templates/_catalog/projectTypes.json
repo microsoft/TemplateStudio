@@ -1,0 +1,11 @@
+﻿[
+    {
+        "name": "AutomatedUIComparisonTests",
+        "displayName": "AutomatedUIComparisonTests",
+        "summary": "A basic test project ready for comparing two projects.",
+        "author": "Microsoft Community",
+        "order": "0",
+        "licenses": "",
+        "languages": [ "C#" ]
+    }
+]

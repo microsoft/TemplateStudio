@@ -1,0 +1,264 @@
+grep -r --included=*.cs -h "TODO WTS" > todo.txt
+
+                // TODO WTS: Handle activation from toast notification,  
+                // TODO WTS: Handle activation from toast notification,  
+                // TODO WTS: Handle activation from toast notification,  
+                // TODO WTS: Handle activation from toast notification,  
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+        // TODO WTS: See more details about showing multiple views for an app
+        // TODO WTS: Displays a view as a standalone
+        // TODO WTS: Specify your video default and image here
+            // TODO WTS: If you want to share a link to your application be sure of the following
+            // TODO WTS: If you need to handle any action when de data is shared implement on this method
+        // TODO WTS: Set the same Host Uri on Package.appxmanifest
+            // TODO WTS: Use args.Uri.AbsolutePath to determinate the page you want to launch the application.            
+        //// TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings-codebehind.md
+        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+            // TODO WTS: This is a sample on how to show a toast notification.
+                // TODO WTS: Check this documentation to know more about the Launch property
+                        // TODO WTS: Check this documentation to know more about Toast Buttons
+                // TODO WTS: Gets or sets the unique identifier of this notification within the notification Group. Max length 16 characters.
+                // TODO WTS: Define your trigger here and set your conditions
+                //// TODO WTS: Insert the code that should be executed in the background task here.
+           // TODO WTS: Insert code to handle the cancelation request here.
+                // TODO WTS: Define your trigger here and set your conditions
+                //// TODO WTS: Insert the code that should be executed in the background task here.
+           // TODO WTS: Insert code to handle the cancelation request here.
+    // TODO WTS: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data
+    // TODO WTS: Remove this class once your pages/features are using your data.
+            // TODO WTS: Implement your own logic to determine if you can handle the SecondaryTile activation
+            // TODO WTS: Implement your own logic to determine if you can handle the LiveTile notification update activation
+            // TODO WTS: Call this method to Pin a Secondary Tile from a page.
+    // TODO WTS: Delete this file once your app is using real data.
+        // TODO WTS: Remove this once your chart page is displaying real data
+        // TODO WTS: Remove this once your grid page is displaying real data
+        // TODO WTS: Remove this once your image gallery page is displaying real data
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
+                // TODO WTS: Check this documentation to know more about the Launch property
+                        // TODO WTS: Check this documentation to know more about Toast Buttons
+                // TODO WTS: Gets or sets the unique identifier of this notification within the notification Group. Max length 16 characters.
+                // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+         // TODO WTS: Set your preferred default zoom level
+        // TODO WTS: Set your preferred default location if a geolock can't be found.
+            // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/
+        // TODO WTS: Specify your video default and image here
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+    // TODO WTS: This class exists purely as part of the example of how to launch a specific page in response to a protocol launch and pass it a value. It is expected that you will delete this class once you have changed the handling of a protocol launch to meet your needs and redirected to another of your pages.
+        // TODO WTS: Set your hyperlink default here
+        // TODO WTS: Change the chart as appropriate to your app.
+            // TODO WTS: Update the contents of this dialog with any important information you want to show when the app is used for the first time.
+        // TODO WTS: Change the grid as appropriate to your app.
+        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+    // TODO WTS: This page exists purely as an example of how to launch a specific page in response to a protocol launch and pass it a value. It is expected that you will delete this page once you have changed the handling of a protocol launch to meet your needs and redirected to another of your pages.
+            // TODO WTS: Update the contents of this dialog every time you release a new version of the app
+    // TODO WTS: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data
+    // TODO WTS: Remove this class once your pages/features are using your data.
+    // TODO WTS: Delete this file once your app is using real data.
+        // TODO WTS: Remove this once your chart page is displaying real data
+        // TODO WTS: Remove this once your grid page is displaying real data
+        // TODO WTS: Remove this once your image gallery page is displaying real data
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
+                // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+         // TODO WTS: Set your preferred default zoom level
+        // TODO WTS: Set your preferred default location if a geolock can't be found.
+            // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/
+        // TODO WTS: Specify your video default and image here
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+        // TODO WTS: Set your hyperlink default here
+        // TODO WTS: Change the chart as appropriate to your app.
+        // TODO WTS: Change the grid as appropriate to your app.
+        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+    // TODO WTS: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data
+    // TODO WTS: This is used by the Sample Grid Data. Remove this once your grid page is displaying real data
+    // TODO WTS: Delete this file once your app is using real data.
+        // TODO WTS: Remove this once your chart page is displaying real data
+        // TODO WTS: Remove this once your grid page is displaying real data
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
+                // TODO WTS: Replace this with your actual data
+        // TODO WTS: Set your preferred default zoom level
+        // TODO WTS: Set your preferred default location if a geolock can't be found.
+            // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
+        // TODO WTS: Set your video default and image here
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+        // TODO WTS: Set your hyperlink default here
+        // TODO WTS: Change the grid as appropriate to your app.
+        // TODO WTS: Setup your privacy web in your Resource File, currently set to https://YourPrivacyUrlGoesHere
+    // TODO WTS: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data
+    // TODO WTS: This is used by the Sample Grid Data. Remove this once your grid page is displaying real data
+    // TODO WTS: Delete this file once your app is using real data.
+        // TODO WTS: Remove this once your chart page is displaying real data
+        // TODO WTS: Remove this once your grid page is displaying real data
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
+                // TODO WTS: Replace this with your actual data
+        // TODO WTS: Set your preferred default zoom level
+        // TODO WTS: Set your preferred default location if a geolock can't be found.
+            // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
+        // TODO WTS: Set your video default and image here
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+        // TODO WTS: Set your hyperlink default here
+        // TODO WTS: Change the grid as appropriate to your app.
+        // TODO WTS: Setup your privacy web in your Resource File, currently set to https://YourPrivacyUrlGoesHere
+    // TODO WTS: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data
+    // TODO WTS: This is used by the Sample Grid Data. Remove this once your grid page is displaying real data
+    // TODO WTS: Delete this file once your app is using real data.
+        // TODO WTS: Remove this once your chart page is displaying real data
+        // TODO WTS: Remove this once your grid page is displaying real data
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
+                // TODO WTS: Replace this with your actual data
+        // TODO WTS: Set your preferred default zoom level
+        // TODO WTS: Set your preferred default location if a geolock can't be found.
+            // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/            
+        // TODO WTS: Set your video default and image here
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+        // TODO WTS: Set your hyperlink default here
+        // TODO WTS: Change the grid as appropriate to your app.
+        // TODO WTS: Setup your privacy web in your Resource File, currently set to https://YourPrivacyUrlGoesHere
+        // TODO WTS: For more information regarding the application lifecycle and how to handle suspend and resume, please see:
+        // TODO WTS: This event is fired just before the app enters in background. Subscribe to this event if you want to save your current state.
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+        // TODO WTS: Setup your privacy web in your Resource File, currently set to https://YourPrivacyUrlGoesHere
+                // TODO WTS: Define your trigger here and set your conditions
+                //// TODO WTS: Insert the code that should be executed in the background task here.
+           // TODO WTS: Insert code to handle the cancelation request here.
+                // TODO WTS: Define your trigger here and set your conditions
+                //// TODO WTS: Insert the code that should be executed in the background task here.
+           // TODO WTS: Insert code to handle the cancelation request here.
+            // TODO WTS: Update the contents of this dialog with any important information you want to show when the app is used for the first time.
+            // TODO WTS: Update the contents of this dialog with any important information you want to show when the app is used for the first time.
+            // TODO WTS: To use the HubNotificationService specific data related with your Azure Notification Hubs is required.
+            // TODO WTS: Handle activation from toast notification,
+            // TODO WTS: Implement your own logic to determine if you can handle the SecondaryTile activation
+            // TODO WTS: Implement your own logic to determine if you can handle the LiveTile notification update activation
+            // TODO WTS: Call this method to Pin a Secondary Tile from a page.
+            // TODO WTS: Implement your own logic to determine if you can handle the SecondaryTile activation
+            // TODO WTS: Implement your own logic to determine if you can handle the LiveTile notification update activation
+            // TODO WTS: Call this method to Pin a Secondary Tile from a page.
+        // TODO WTS: See more details about showing multiple views for an app
+        // TODO WTS: Displays a view as a standalone
+    // TODO WTS: Remove this class once your pages/features are using your data.
+    // TODO WTS: Delete this file once your app is using real data.
+    // TODO WTS: Share Source Feature
+        // TODO WTS: To share a link to your application be sure you have configured activation by Uri
+        // TODO WTS: Use this method add content to share when you do not want to process the data until the target app actually requests it.
+    // TODO WTS: This page exists purely as an example of how to launch a specific page in
+            // TODO WTS: Configure your Share Target Declaration to allow other data formats.
+            // TODO WTS: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
+            // TODO WTS: Implement the actions you want to realize with the shared data before compleate the share operation.
+        //// TODO WTS: For more information regarding the application lifecycle and how to handle suspend and resume, please see:
+        // TODO WTS: This event is fired just before the app enters in background. Subscribe to this event if you want to save your current state.
+            // TODO WTS: This is a sample on how to show a toast notification.
+            //// TODO WTS: Handle activation from toast notification,
+                // TODO WTS: Check this documentation to know more about the Launch property
+                        // TODO WTS: Check this documentation to know more about Toast Buttons
+                // TODO WTS: Get or set the unique identifier of this notification within the notification Group. Max length 16 characters.
+                // TODO WTS: Check this documentation to know more about the Launch property
+                        // TODO WTS: Check this documentation to know more about Toast Buttons
+                // TODO WTS: Gets or sets the unique identifier of this notification within the notification Group. Max length 16 characters.
+    // TODO WTS: Open package.appxmanifest and change the declaration for the scheme (from the default of 'wtsapp') to what you want for your app.
+    // TODO WTS: Change the image in Assets/Logo.png to one for display if the OS asks the user which app to launch.
+    // TODO WTS: This class exists purely as part of the example of how to launch a specific page in response to a protocol launch and pass it a value. It is expected that you will delete this class once you have changed the handling of a protocol launch to meet your needs and redirected to another of your pages.
+    // TODO WTS: This page exists purely as an example of how to launch a specific page in response to a protocol launch and pass it a value. It is expected that you will delete this page once you have changed the handling of a protocol launch to meet your needs and redirected to another of your pages.
+        // TODO WTS: You must to update the Host Uri also on Package.appxmanifest XML (Right click > View Code)
+            // TODO WTS: Use args.Uri.AbsolutePath to determinate the page you want to launch the application.
+        // TODO WTS: You must to update the Host Uri also on Package.appxmanifest
+            // TODO WTS: Update the contents of this dialog every time you release a new version of the app
+            // TODO WTS: Update the contents of this dialog every time you release a new version of the app
+                // TODO WTS: Replace this with your actual data
+        // TODO WTS: Change the chart as appropriate to your app.
+        // TODO WTS: Change the chart as appropriate to your app.
+                // TODO WTS: Replace this with your actual data
+                // TODO WTS: Replace this with your actual data
+        // TODO WTS: Change the chart as appropriate to your app.
+                // TODO WTS: Replace this with your actual data
+        // TODO WTS: Change the grid as appropriate to your app.
+        // TODO WTS: Change the grid as appropriate to your app.
+                // TODO WTS: Replace this with your actual data
+        // TODO WTS: Change the grid as appropriate to your app.
+            // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+            // TODO WTS: Replace this with your actual data
+        // TODO WTS: Set your preferred default zoom level
+        // TODO WTS: Set your preferred default location if a geolock can't be found.
+                // TODO WTS: Set your map service token. If you don't have one, request at https://www.bingmapsportal.com/
+        // TODO WTS: Specify your preferred default zoom level
+        // TODO WTS: Specify your preferred default location if a geolock can't be found.
+            // TODO WTS: Specify your map service token. If you don't have one, request at https://www.bingmapsportal.com/
+        // TODO WTS: Set your preferred default zoom level
+        // TODO WTS: Set your preferred default location if a geolock can't be found.
+                // TODO WTS: Set your map service token. If you don't have one, request at https://www.bingmapsportal.com/
+        // TODO WTS: Set your preferred default zoom level
+        // TODO WTS: Set your preferred default location if a geolock can't be found.
+            // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/
+        // TODO WTS: Specify your video default and image here
+        // TODO WTS: Set your video default and image here
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+        //// TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings-codebehind.md
+        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+        // TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
+        //// TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
+        // TODO WTS: Set the URI of the page to show by default
+        // TODO WTS: Specify your hyperlink default here
+        // TODO WTS: Set the URI of the page to show by default
+        // TODO WTS: Set your hyperlink default here
+            // TODO WTS: Configure your Share Target Declaration to allow other data formats.
+            // TODO WTS: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
+            // TODO WTS: Implement the actions you want to realize with the shared data before compleate the share operation.
+    // TODO WTS: This class exists purely as part of the example of how to launch a specific page in response to a protocol launch and pass it a value. It is expected that you will delete this class once you have changed the handling of a protocol launch to meet your needs and redirected to another of your pages.
+    // TODO WTS: This page exists purely as an example of how to launch a specific page in response to a protocol launch and pass it a value. It is expected that you will delete this page once you have changed the handling of a protocol launch to meet your needs and redirected to another of your pages.
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+    // TODO WTS: This page exists purely as an example of how to launch a specific page
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+            // TODO WTS: Configure your Share Target Declaration to allow other data formats.
+            // TODO WTS: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
+            // TODO WTS: Implement the actions you want to realize with the shared data before compleate the share operation.
+    // TODO WTS: This page exists purely as an example of how to launch a specific page
+    // TODO WTS: This class exists purely as part of the example of how to launch a specific page in response to a protocol launch and pass it a value. It is expected that you will delete this class once you have changed the handling of a protocol launch to meet your needs and redirected to another of your pages.
+    // TODO WTS: This page exists purely as an example of how to launch a specific page
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+            // TODO WTS: Configure your Share Target Declaration to allow other data formats.
+            // TODO WTS: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
+            // TODO WTS: Implement the actions you want to realize with the shared data before compleate the share operation.
+    // TODO WTS: This page exists purely as an example of how to launch a specific page
+    // TODO WTS: This class exists purely as part of the example of how to launch a specific page in response to a protocol launch and pass it a value. It is expected that you will delete this class once you have changed the handling of a protocol launch to meet your needs and redirected to another of your pages.
+    // TODO WTS: This page exists purely as an example of how to launch a specific page
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+    // TODO WTS: Delete this file once your app is using real data.
+            // TODO WTS: Configure your Share Target Declaration to allow other data formats.
+            // TODO WTS: Customize SharedDataModelBase or derived classes adding properties for data that you need to extract from _shareOperation
+            // TODO WTS: Implement the actions you want to realize with the shared data before compleate the share operation.
+    // TODO WTS: This page exists purely as an example of how to launch a specific page
+    // TODO WTS: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data
+        // TODO WTS: Remove this once your chart page is displaying real data
+        // TODO WTS: Remove this once your grid page is displaying real data
+        // TODO WTS: Remove this once your image gallery page is displaying real data
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
+            // TODO WTS: Change the symbols for each item as appropriate for your app
+    // TODO WTS: This is used by the Sample Chart Data. Remove this once your chart page is displaying real data
+        // TODO WTS: Remove this once your chart page is displaying real data
+        // TODO WTS: Remove this once your grid page is displaying real data
+        // TODO WTS: Remove this once your image gallery page is displaying real data
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
