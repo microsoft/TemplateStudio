@@ -268,6 +268,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Licenses.
+        /// </summary>
+        public static string ProjectDetailsLicensesSectionTitle {
+            get {
+                return ResourceManager.GetString("ProjectDetailsLicensesSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pages.
         /// </summary>
         public static string ProjectDetailsPagesSectionTitle {

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.V2Controls;
 using Microsoft.Templates.UI.V2Services;
@@ -29,7 +30,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public AddFeaturesViewModel AddFeatures { get; } = new AddFeaturesViewModel();
 
-        public UserSelection UserSelection { get; } = new UserSelection();
+        public UserSelectionViewModel UserSelection { get; } = new UserSelectionViewModel();
 
         private MainViewModel()
             : base()
@@ -40,9 +41,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             ValidationService.Initialize(UserSelection.GetNames);
         }
 
-        public override async Task InitializeAsync()
+        public override async Task InitializeAsync(string language)
         {
-            await base.InitializeAsync();
+            await base.InitializeAsync(language);
         }
 
         protected override void OnCancel()
@@ -120,8 +121,22 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             AddPages.LoadData(framework.Name);
             AddFeatures.LoadData(framework.Name);
-            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, AddPages.Groups, AddFeatures.Groups);
+            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
             WizardStatus.IsLoading = false;
+        }
+
+        public TemplateInfoViewModel GetTemplate(ITemplateInfo templateInfo)
+        {
+            var groups = templateInfo.GetTemplateType() == TemplateType.Page ? AddPages.Groups : AddFeatures.Groups;
+            foreach (var group in groups)
+            {
+                var template = group.GetTemplate(templateInfo);
+                if (template != null)
+                {
+                    return template;
+                }
+            }
+            return null;
         }
 
         private void OnTemplateClicked(object sender, TemplateInfoViewModel selectedTemplate)

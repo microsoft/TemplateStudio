@@ -20,6 +20,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private bool _hasMoreThanOne;
         private bool _hasMoreThanTwo;
 
+        public ITemplateInfo Template { get; }
+
         public string Group { get; }
 
         public TemplateType TemplateType { get; }
@@ -68,6 +70,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             Licenses = template.GetLicenses().Select(l => new LicenseViewModel(l));
 
             // ITemplateInfo properties
+            Template = template;
             Group = template.GetGroup();
             TemplateType = template.GetTemplateType();
             MultipleInstance = template.GetMultipleInstance();

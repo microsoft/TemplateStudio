@@ -30,9 +30,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             Items = new ObservableCollection<TemplateInfoViewModel>(templateGroup);
         }
 
-        public TemplateInfoViewModel GetTemplate((LayoutItem Layout, ITemplateInfo Template) item)
+        public TemplateInfoViewModel GetTemplate(ITemplateInfo templateInfo)
         {
-            return Items.FirstOrDefault(t => t.Name == item.Template.Name);
+            return Items.FirstOrDefault(t => t.Name == templateInfo.Name);
         }
     }
 }

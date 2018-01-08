@@ -23,7 +23,7 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
             NavigationService.InitializeMainFrame(mainFrame, new MainPage());
             Loaded += async (sender, args) =>
             {
-                await MainViewModel.Instance.InitializeAsync();
+                await MainViewModel.Instance.InitializeAsync(language);
             };
         }
 

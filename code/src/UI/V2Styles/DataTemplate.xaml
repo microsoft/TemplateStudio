@@ -158,6 +158,7 @@
                         Grid.Column="1"
                         Text="{Binding Name, Mode=OneWay}"
                         Style="{StaticResource WtsTextBoxStyle}"
+                        IsEnabled="{Binding ItemNameEditable}"
                         extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
                         extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
                         extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}" />

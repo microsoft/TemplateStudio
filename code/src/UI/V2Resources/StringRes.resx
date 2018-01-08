@@ -205,6 +205,9 @@
     <value>Design pattern</value>
     <comment>Framework combobox header on project details</comment>
   </data>
+  <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
   <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
     <value>Pages</value>
     <comment>Page list header on project details</comment>

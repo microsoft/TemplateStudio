@@ -27,6 +27,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private RelayCommand _goForwardCommand;
         private RelayCommand _finishCommand;
 
+        protected string Language { get; private set; }
+
         public int Step
         {
             get => _step;
@@ -80,8 +82,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             GoForwardCommand.OnCanExecuteChanged();
         }
 
-        public virtual async Task InitializeAsync()
+        public virtual async Task InitializeAsync(string language)
         {
+            Language = language;
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
             try
             {

@@ -5,6 +5,7 @@
 using System;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Controls;
@@ -24,7 +25,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private ICommand _textChangedCommand;
         private ICommand _lostKeyboardFocusCommand;
 
-        public string Identity { get; private set; }
+        public ITemplateInfo Template { get; }
+
+        public string Identity { get; }
 
         public string Name
         {
@@ -62,12 +65,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public SavedTemplateViewModel(TemplateInfoViewModel template)
         {
+            Template = template.Template;
             Identity = template.Identity;
             Icon = template.Icon;
             ItemNameEditable = template.ItemNameEditable;
         }
 
-        public void UpdateSelection()
+        public void Focus()
         {
             IsFocused = true;
         }
@@ -121,5 +125,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         }
 
         public override int GetHashCode() => base.GetHashCode();
+
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
+        public (string name, ITemplateInfo template) GetUserSelection() => (Name, Template);
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
     }
 }
