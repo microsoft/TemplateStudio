@@ -16,6 +16,7 @@ namespace Microsoft.Templates.Core.Locations
         OverVersion = 7,
         OverVersionNoContent = 8,
         UnderVersion = 9,
-        NewVersionAvailable
+        NewVersionAvailable = 10,
+        NewWizardVersionAvailable = 11
     }
 }

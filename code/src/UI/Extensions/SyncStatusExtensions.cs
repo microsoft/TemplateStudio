@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.Extensions
         {
             switch (status)
             {
-                case SyncStatus.OverVersion:
+                case SyncStatus.NewWizardVersionAvailable:
                     return StatusType.Warning;
 
                 case SyncStatus.OverVersionNoContent:
@@ -65,7 +65,7 @@ namespace Microsoft.Templates.UI.Extensions
                     return StringRes.StatusPrepared;
                 case SyncStatus.NewVersionAvailable:
                     return StringRes.StatusNewVersionAvailable;
-                case SyncStatus.OverVersion:
+                case SyncStatus.NewWizardVersionAvailable:
                     return StringRes.StatusOverVersionContent;
                 case SyncStatus.OverVersionNoContent:
                     return StringRes.StatusOverVersionNoContent;

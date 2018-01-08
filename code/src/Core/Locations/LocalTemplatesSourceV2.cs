@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -74,7 +75,7 @@ namespace Microsoft.Templates.Core.Locations
             Config = new TemplatesSourceConfig()
             {
                 Versions = availablePackages,
-                Latest = VersionZero,
+                Latest = availablePackages.OrderByDescending(p => p.Version).FirstOrDefault(),
                 VersionCount = 1
             };
         }

@@ -62,8 +62,7 @@ namespace Microsoft.Templates.Core.Locations
 
                     await AcquireContentAsync();
 
-                    ////TODO: Check if this can be removed SM
-                    //await CheckContentStatusAsync();
+                    CheckContentStatusAsync();
 
                     PurgeContentAsync().FireAndForget();
 
@@ -88,8 +87,7 @@ namespace Microsoft.Templates.Core.Locations
                 try
                 {
                     await AcquireContentAsync();
-                    ////TODO: Check if this can be removed SM
-                    //await CheckContentStatusAsync();
+                    CheckContentStatusAsync();
                 }
                 finally
                 {
@@ -98,11 +96,13 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        ////TODO: Check if this can be removed SM
-        //private async Task CheckContentStatusAsync()
-        //{
-        //    await CheckNewVersionAvailableAsync();
-        //}
+        private void CheckContentStatusAsync()
+        {
+            if (_content.IsWizardUpdateAvailable())
+            {
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewWizardVersionAvailable });
+            }
+        }
 
         private async Task CheckInstallDeployedContentAsync(bool force)
         {
@@ -157,7 +157,6 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 var package = _source.Config.ResolvePackage(CurrentWizardVersion);
-                // TODO: Is this correct here?? SM
                 _source.Acquire(ref package);
                 _content.GetNewVersionContent();
             }

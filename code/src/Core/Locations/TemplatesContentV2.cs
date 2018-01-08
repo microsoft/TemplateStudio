@@ -73,6 +73,18 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
+        public bool IsWizardUpdateAvailable()
+        {
+            if (Current != null)
+            {
+                return !Current.Version.IsNull() && (Current.Version.Major < Source.Config.Latest.Version.Major || Current.Version.Minor < Source.Config.Latest.Version.Minor);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void GetNewVersionContent()
         {
             var latestPackage = Source.Config.ResolvePackage(WizardVersion);
@@ -101,7 +113,6 @@ namespace Microsoft.Templates.Core.Locations
             }
             else
             {
-                // TODO: refactor este extrac? FirstTimeAdq??
                 installedPackage = LocalTemplatesSourceV2.VersionZero;
             }
 
