@@ -57,6 +57,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             // BasicInfo properties
             Name = template.Name;
+            Identity = template.Identity;
             Title = template.Name;
             Description = template.Description;
             Author = template.Author;

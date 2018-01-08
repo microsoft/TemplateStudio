@@ -40,11 +40,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
 
-        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(() => Step--, () => _canGoBack));
+        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(() => Step--, () => _canGoBack && !WizardStatus.IsBusy));
 
-        public RelayCommand GoForwardCommand => _goForwardCommand ?? (_goForwardCommand = new RelayCommand(() => Step++, () => _canGoForward));
+        public RelayCommand GoForwardCommand => _goForwardCommand ?? (_goForwardCommand = new RelayCommand(() => Step++, () => _canGoForward && !WizardStatus.IsBusy));
 
-        public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish));
+        public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, () => !WizardStatus.IsBusy));
 
         public WizardStatus WizardStatus { get; } = new WizardStatus();
 
@@ -56,6 +56,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         protected abstract Task OnTemplatesAvailableAsync();
 
+        public BaseMainViewModel()
+        {
+            WizardStatus.IsBusyChanged += IsBusyChanged;
+        }
+
         protected void SetCanGoBack(bool canGoBack)
         {
             _canGoBack = canGoBack;
@@ -65,6 +70,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         protected void SetCanGoForward(bool canGoForward)
         {
             _canGoForward = canGoForward;
+            GoForwardCommand.OnCanExecuteChanged();
+        }
+
+        protected virtual void IsBusyChanged(object sender, bool e)
+        {
+            FinishCommand.OnCanExecuteChanged();
+            GoBackCommand.OnCanExecuteChanged();
             GoForwardCommand.OnCanExecuteChanged();
         }
 

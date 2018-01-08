@@ -2,21 +2,62 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
-    public class WizardStatus
+    public class WizardStatus : Observable
     {
+        private bool _isBusy;
+        private bool _hasValidationErrors;
+        private bool _isLoading = true;
+
         public double Width { get; }
 
         public double Height { get; }
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            private set => SetProperty(ref _isBusy, value);
+        }
+
+        public bool HasValidationErrors
+        {
+            get => _hasValidationErrors;
+            set
+            {
+                SetProperty(ref _hasValidationErrors, value);
+                UpdateIsBusy();
+            }
+        }
+
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                SetProperty(ref _isLoading, value);
+                UpdateIsBusy();
+            }
+        }
+
+        public event EventHandler<bool> IsBusyChanged;
 
         public WizardStatus()
         {
             var size = SystemService.Instance.GetMainWindowSize();
             Width = size.width;
             Height = size.height;
+            UpdateIsBusy();
+        }
+
+        private void UpdateIsBusy()
+        {
+            IsBusy = IsLoading || HasValidationErrors;
+            IsBusyChanged?.Invoke(this, true);
         }
     }
 }

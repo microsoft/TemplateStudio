@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         UserSelection
     }
 
-    public class UserSelection
+    public class UserSelection : Observable
     {
         private bool _isInitialized;
 
@@ -75,11 +76,16 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             }
             else
             {
-                newTemplate.Name = ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, true);
+                newTemplate.Name = ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, template.ItemNameEditable);
                 newTemplate.UpdateSelection();
             }
 
             items.Add(newTemplate);
+
+            // Notiffy collection name to update the visibillity on the layout
+            var collectionName = template.TemplateType == TemplateType.Page ? nameof(Pages) : nameof(Features);
+            OnPropertyChanged(collectionName);
+
             if (templateOrigin == TemplateOrigin.UserSelection)
             {
                 HasItemsAddedByUser = true;
@@ -94,6 +100,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             _isInitialized = false;
             Pages.Clear();
             Features.Clear();
+        }
+
+        internal bool IsTemplateAdded(TemplateInfoViewModel template)
+        {
+            var collection = template.TemplateType == TemplateType.Page ? Pages : Features;
+            return collection.Any(t => t.Equals(template));
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
+using Microsoft.Templates.UI.V2ViewModels.NewProject;
 using Microsoft.Templates.UI.V2Views.Common;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
@@ -20,6 +21,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private int _order;
         private RelayCommand _detailsCommand;
         private RelayCommand _goBackCommand;
+
+        public string Identity { get; protected set; }
 
         public string Name { get; protected set; }
 
@@ -63,7 +66,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public IEnumerable<LicenseViewModel> Licenses { get; protected set; }
 
-        public RelayCommand DetailsCommand => _detailsCommand ?? (_detailsCommand = new RelayCommand(OnDetails));
+        public RelayCommand DetailsCommand => _detailsCommand ?? (_detailsCommand = new RelayCommand(OnDetails, () => !MainViewModel.Instance.WizardStatus.IsBusy));
 
         public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack));
 
@@ -79,13 +82,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public override bool Equals(object obj)
         {
-            var info = obj as BasicInfoViewModel;
-            if (info != null)
+            var result = false;
+            if (obj is BasicInfoViewModel info)
             {
-                return Name.Equals(info.Name);
+                result = Name.Equals(info.Name);
             }
 
-            return false;
+            return result;
         }
 
         public override int GetHashCode()

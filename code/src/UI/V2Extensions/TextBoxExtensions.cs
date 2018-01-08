@@ -29,7 +29,7 @@ namespace Microsoft.Templates.UI.V2Extensions
           "LostKeyboardFocusCommand",
           typeof(ICommand),
           typeof(TextBoxExtensions),
-          new PropertyMetadata(null, LostKeyboardFocusCommandPropertyChanged)
+          new PropertyMetadata(null, OnLostKeyboardFocusCommandPropertyChanged)
         );
 
         public static void SetIsFocused(UIElement element, bool value)
@@ -87,7 +87,7 @@ namespace Microsoft.Templates.UI.V2Extensions
             }
         }
 
-        private static void LostKeyboardFocusCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnLostKeyboardFocusCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var textBox = d as TextBox;
             if (textBox != null)

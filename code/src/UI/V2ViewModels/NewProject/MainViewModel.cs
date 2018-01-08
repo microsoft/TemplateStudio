@@ -32,6 +32,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         public UserSelection UserSelection { get; } = new UserSelection();
 
         private MainViewModel()
+            : base()
         {
             EventService.Instance.OnProjectTypeChanged += OnProjectTypeSelectionChanged;
             EventService.Instance.OnFrameworkChanged += OnFrameworkSelectionChanged;
@@ -120,24 +121,17 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             AddPages.LoadData(framework.Name);
             AddFeatures.LoadData(framework.Name);
             UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, AddPages.Groups, AddFeatures.Groups);
+            WizardStatus.IsLoading = false;
         }
 
         private void OnTemplateClicked(object sender, TemplateInfoViewModel selectedTemplate)
         {
-            var newTemplate = UserSelection.Add(TemplateOrigin.UserSelection, selectedTemplate);
-            if (newTemplate != null)
+            if (!WizardStatus.IsBusy)
             {
-                // Update count on TemplateInfoViewModel
-                // var groups = (selectedTemplate.TemplateType == TemplateType.Page) ? AddPages.Groups : AddFeatures.Groups;
-                // foreach (var group in groups)
-                // {
-                //    var template = group.Items.FirstOrDefault(t => t == selectedTemplate);
-                //    if (template != null)
-                //    {
-                //        newTemplate.UpdateSelection();
-                //        template.UpdateSelection();
-                //    }
-                // }
+                if (selectedTemplate.MultipleInstance || !UserSelection.IsTemplateAdded(selectedTemplate))
+                {
+                    UserSelection.Add(TemplateOrigin.UserSelection, selectedTemplate);
+                }
             }
         }
 

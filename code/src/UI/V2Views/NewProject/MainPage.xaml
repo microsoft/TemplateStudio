@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
       xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
+      xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="MainPage">
@@ -14,6 +15,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:HasItemsVisibilityConverter x:Key="HasItemsVisibilityConverter" />
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -22,13 +25,13 @@
             <RowDefinition Height="9066*" /><!--Main area-->
             <RowDefinition Height="934*" /><!--Buttons area-->
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/><!--20% Sequential flow-->
-                <ColumnDefinition Width="Auto"/> 
-                <ColumnDefinition Width="57*"/><!--57% Selection area-->
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="23*"/><!--23% Project details-->
+                <ColumnDefinition Width="20*" /><!--20% Sequential flow-->
+                <ColumnDefinition Width="Auto" /> 
+                <ColumnDefinition Width="57*" /><!--57% Selection area-->
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="23*" /><!--23% Project details-->
             </Grid.ColumnDefinitions>
             <controls:SequentialFlow Step="{Binding Step, Mode=TwoWay}" />
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
@@ -39,45 +42,51 @@
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftTopRight}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsTitle}"/>
+                        Text="{x:Static strings:StringRes.ProjectDetailsTitle}" />
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}"/>
+                        Text="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}" />
                     <ComboBox
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
                         ItemsSource="{Binding ProjectType.Items}"
                         SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
-                        Style="{StaticResource WtsComboBoxStyle}" />
-
+                        Style="{StaticResource WtsComboBoxStyle}"
+                        IsEnabled="{Binding WizardStatus.IsBusy}" />
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"/>
+                        Text="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}" />
                     <ComboBox
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
                         ItemsSource="{Binding Framework.Items}"
                         SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
-                        Style="{StaticResource WtsComboBoxStyle}" />
+                        Style="{StaticResource WtsComboBoxStyle}"
+                        IsEnabled="{Binding WizardStatus.IsBusy}" />
 
-                    <TextBlock
-                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                        Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}"/>
-                    <ItemsControl
-                        ItemsSource="{Binding UserSelection.Pages}"
-                        ItemTemplate="{StaticResource WtsItemTemplateSavedTemplate}"/>
+                    <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
+                        <TextBlock
+                            Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                            Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                            Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}" />
+                        <ItemsControl
+                            Style="{StaticResource WtsItemsControlProjectDetails}"
+                            ItemsSource="{Binding UserSelection.Pages}"
+                            ItemTemplate="{StaticResource WtsItemTemplateSavedTemplate}" />
+                    </StackPanel>
 
-                    <TextBlock
-                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                        Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                        Text="{x:Static strings:StringRes.ProjectDetailsFeaturesSectionTitle}"/>
-                    <ItemsControl
-                        ItemsSource="{Binding UserSelection.Features}"
-                        ItemTemplate="{StaticResource WtsItemTemplateSavedTemplate}"/>
-
+                    <StackPanel Visibility="{Binding UserSelection.Features, Converter={StaticResource HasItemsVisibilityConverter}}">
+                        <TextBlock
+                            Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                            Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                            Text="{x:Static strings:StringRes.ProjectDetailsFeaturesSectionTitle}" />
+                        <ItemsControl
+                            Style="{StaticResource WtsItemsControlProjectDetails}"
+                            ItemsSource="{Binding UserSelection.Features}"
+                            ItemTemplate="{StaticResource WtsItemTemplateSavedTemplate}" />
+                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

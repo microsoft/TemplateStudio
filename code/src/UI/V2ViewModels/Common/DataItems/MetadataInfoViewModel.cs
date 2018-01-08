@@ -12,6 +12,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public MetadataInfoViewModel(MetadataInfo metadataInfo)
         {
             Name = metadataInfo.Name;
+            Identity = metadataInfo.Name;
             Title = metadataInfo.DisplayName;
             Description = metadataInfo.Description;
             Author = metadataInfo.Author;
