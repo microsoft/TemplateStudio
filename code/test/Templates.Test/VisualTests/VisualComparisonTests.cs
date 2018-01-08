@@ -91,21 +91,22 @@ ForEach ($i in $dump)
             ChangeProjectToNotUseDotNetNativeToolchain(baseSetup, language); // So building release version is fast
 
             ////Build solution in release mode  // Building in release mode creates the APPX and certificate files we need
-            var solutionFile = $"{baseSetup.ProjectPath}.sln";
-            var buildSolutionScript = $"\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" msbuild {solutionFile} /t:Build /p:Configuration=Release /p:Platform=x86";
+            var solutionFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}.sln";
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Release /p:Platform=x86";
             ExecutePowerShellScript(buildSolutionScript);
 
             result.CertificatePath = InstallCertificate(baseSetup);
 
             ////install appx
-            var appxFile = $"{baseSetup.ProjectPath}\\AppPackages\\{baseSetup.ProjectName}_1.0.0.0_x86_Test\\{baseSetup.ProjectName}_1.0.0.0_x86.appx";
+            var appxFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}\\AppPackages\\{baseSetup.ProjectName}_1.0.0.0_x86_Test\\{baseSetup.ProjectName}_1.0.0.0_x86.appx";
             ExecutePowerShellScript($"Add-AppxPackage -Path {appxFile}");
 
             // get app package name
-            var manifest = XDocument.Load($"{baseSetup.ProjectPath}\\Package.appxmanifest");
+            var manifest = new XmlDocument();
+            manifest.Load($"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}\\Package.appxmanifest");
             var xnm = new XmlNamespaceManager(new NameTable());
             xnm.AddNamespace(string.Empty, "http://schemas.microsoft.com/appx/manifest/foundation/windows10");
-            var packageName = manifest.XPathSelectElement("Package/Identity[@name='Name']/@value", xnm);
+            var packageName = manifest.SelectSingleNode("//Package/Identity").Attributes["Name"].Value;
 
             // get details from appx install
             var getPackageNamesScript = $"$PackageName = \"{packageName}\"" + @"
@@ -125,18 +126,18 @@ Write-Host $packageFullName";
             return result;
         }
 
-        private string InstallCertificate((string ProjectPath, string ProjectName) baseSetup)
+        private string InstallCertificate((string SolutionPath, string ProjectName) baseSetup)
         {
-            var cerFile = $"{baseSetup.ProjectPath}\\AppPackages\\{baseSetup.ProjectName}_1.0.0.0_x86_Test\\{baseSetup.ProjectName}_1.0.0.0_x86.cer";
+            var cerFile = $"{baseSetup.SolutionPath}\\{baseSetup.ProjectName}\\AppPackages\\{baseSetup.ProjectName}_1.0.0.0_x86_Test\\{baseSetup.ProjectName}_1.0.0.0_x86.cer";
 
-            ExecutePowerShellScript($"certutil.exe -addstore TrustedPeople {cerFile}");
+            ExecutePowerShellScript($"& certutil.exe -addstore TrustedPeople \"{cerFile}\"");
 
             return cerFile;
         }
 
-        private void ChangeProjectToNotUseDotNetNativeToolchain((string ProjectPath, string ProjectName) baseSetup, string language)
+        private void ChangeProjectToNotUseDotNetNativeToolchain((string SolutionPath, string ProjectName) baseSetup, string language)
         {
-            var projFileName = $"{baseSetup.ProjectPath}/{baseSetup.ProjectName}.{GetProjectExtension(language)}";
+            var projFileName = $"{baseSetup.SolutionPath}\\{baseSetup.ProjectName}\\{baseSetup.ProjectName}.{GetProjectExtension(language)}";
 
             var projFileContents = File.ReadAllText(projFileName);
 
