@@ -3,6 +3,7 @@
 Namespace Views
     Public NotInheritable Partial Class PivotPage
         Inherits Page
+
         Private ReadOnly Property ViewModel As PivotViewModel
             Get
                 Return TryCast(DataContext, PivotViewModel)

@@ -1,10 +1,8 @@
-﻿'{[{
-Imports Param_ItemNamespace.ViewModels
-'}]}
-Namespace Activation
+﻿Namespace Activation
     Friend Class SchemeActivationHandler
         Inherits ActivationHandler(Of ProtocolActivatedEventArgs)
         '{[{
+
         Private ReadOnly Property NavigationService As NavigationServiceEx
             Get
                 Return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()

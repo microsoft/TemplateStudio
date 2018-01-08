@@ -16,6 +16,7 @@ Namespace Views
         Private Const PanoramicStateMinWindowWidth As Double = 1024
 
         Private _isPaneOpen As Boolean
+
         Public Property IsPaneOpen As Boolean
             Get
                 Return _isPaneOpen
@@ -32,12 +33,13 @@ Namespace Views
                 Return _selected
             End Get
 
-            Set(ByVal value As Object)
+            Set(value As Object)
                 [Set](_selected, value)
             End Set
         End Property
 
         Private _displayMode As SplitViewDisplayMode = SplitViewDisplayMode.CompactInline
+
         Public Property DisplayMode As SplitViewDisplayMode
             Get
                 Return _displayMode
@@ -50,6 +52,7 @@ Namespace Views
         Private _lastSelectedItem As Object
 
         Private _primaryItems As New ObservableCollection(Of ShellNavigationItem)()
+
         Public ReadOnly Property PrimaryItems As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _primaryItems
@@ -57,6 +60,7 @@ Namespace Views
         End Property
 
         Private _secondaryItems As New ObservableCollection(Of ShellNavigationItem)()
+
         Public ReadOnly Property SecondaryItems As ObservableCollection(Of ShellNavigationItem)
             Get
                 Return _secondaryItems

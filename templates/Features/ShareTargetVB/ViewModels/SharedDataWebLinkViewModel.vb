@@ -6,6 +6,7 @@ Imports Param_ItemNamespace.Helpers
 Namespace ViewModels
     Public Class SharedDataWebLinkViewModel
         Inherits SharedDataViewModelBase
+
         Private _uri As Uri
 
         Public Property Uri As Uri

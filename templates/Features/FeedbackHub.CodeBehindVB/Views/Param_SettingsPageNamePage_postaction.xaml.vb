@@ -5,6 +5,7 @@ Namespace Views
     Public NotInheritable Partial Class Param_SettingsPageNamePage
         Inherits Page
         Implements INotifyPropertyChanged
+
         Private Sub Initialize()
             '^^
             '{[{

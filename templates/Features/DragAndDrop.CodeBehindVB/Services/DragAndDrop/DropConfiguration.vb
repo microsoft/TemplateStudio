@@ -36,7 +36,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropBitmapActionProperty), Action(Of RandomAccessStreamReference))
             End Get
 
-            Set(ByVal value As Action(Of RandomAccessStreamReference))
+            Set(value As Action(Of RandomAccessStreamReference))
                 SetValue(DropBitmapActionProperty, value)
             End Set
         End Property
@@ -46,7 +46,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropHtmlActionProperty), Action(Of String))
             End Get
 
-            Set(ByVal value As Action(Of String))
+            Set(value As Action(Of String))
                 SetValue(DropHtmlActionProperty, value)
             End Set
         End Property
@@ -56,7 +56,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropRtfActionProperty), Action(Of String))
             End Get
 
-            Set(ByVal value As Action(Of String))
+            Set(value As Action(Of String))
                 SetValue(DropRtfActionProperty, value)
             End Set
         End Property
@@ -66,7 +66,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropStorageItemsActionProperty), Action(Of IReadOnlyList(Of IStorageItem)))
             End Get
 
-            Set(ByVal value As Action(Of IReadOnlyList(Of IStorageItem)))
+            Set(value As Action(Of IReadOnlyList(Of IStorageItem)))
                 SetValue(DropStorageItemsActionProperty, value)
             End Set
         End Property
@@ -76,7 +76,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropTextActionProperty), Action(Of String))
             End Get
 
-            Set(ByVal value As Action(Of String))
+            Set(value As Action(Of String))
                 SetValue(DropTextActionProperty, value)
             End Set
         End Property
@@ -86,7 +86,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropApplicationLinkActionProperty), Action(Of Uri))
             End Get
 
-            Set(ByVal value As Action(Of Uri))
+            Set(value As Action(Of Uri))
                 SetValue(DropApplicationLinkActionProperty, value)
             End Set
         End Property
@@ -96,7 +96,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropWebLinkActionProperty), Action(Of Uri))
             End Get
 
-            Set(ByVal value As Action(Of Uri))
+            Set(value As Action(Of Uri))
                 SetValue(DropWebLinkActionProperty, value)
             End Set
         End Property
@@ -106,7 +106,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropDataViewActionProperty), Action(Of DataPackageView))
             End Get
 
-            Set(ByVal value As Action(Of DataPackageView))
+            Set(value As Action(Of DataPackageView))
                 SetValue(DropDataViewActionProperty, value)
             End Set
         End Property
@@ -116,7 +116,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DragEnterActionProperty), Action(Of DragDropData))
             End Get
 
-            Set(ByVal value As Action(Of DragDropData))
+            Set(value As Action(Of DragDropData))
                 SetValue(DragEnterActionProperty, value)
             End Set
         End Property
@@ -126,7 +126,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DragOverActionProperty), Action(Of DragDropData))
             End Get
 
-            Set(ByVal value As Action(Of DragDropData))
+            Set(value As Action(Of DragDropData))
                 SetValue(DragOverActionProperty, value)
             End Set
         End Property
@@ -136,12 +136,12 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DragLeaveActionProperty), Action(Of DragDropData))
             End Get
 
-            Set(ByVal value As Action(Of DragDropData))
+            Set(value As Action(Of DragDropData))
                 SetValue(DragLeaveActionProperty, value)
             End Set
         End Property
 
-        Public Async Function ProcessComandsAsync(ByVal dataview As DataPackageView) As Task
+        Public Async Function ProcessComandsAsync(dataview As DataPackageView) As Task
             If DropDataViewAction IsNot Nothing Then
                 DropDataViewAction.Invoke(dataview)
             End If

@@ -5,7 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
+using System.Text;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -120,6 +121,50 @@ namespace Microsoft.Templates.Test
             IfLineIncludes("\"{", itMustAlsoInclude: "$");
 
             Assert.True(foundErrors.Count == 0, string.Join(Environment.NewLine, foundErrors));
+        }
+
+        [Fact]
+        public void EnsureVisualBasicCodeDoesNotUseOnErrorGoto()
+        {
+            var result = CodeIsNotUsed("On Error Goto", "*.vb");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
+        public void EnsureVisualBasicCodeDoesNotContainMultipleConsecutiveBlankLines()
+        {
+            var result = CodeIsNotUsed($"{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}", "*.vb");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
+        [Fact]
+        public void EnsureVisualBasicCodeDoesNotIndicateParamsPassedByVal()
+        {
+            var result = CodeIsNotUsed("ByVal", "*.vb");
+
+            Assert.True(result.Item1, result.Item2);
+        }
+
+        // Disabled as failing on AppVeyor for some files with no obvious reason
+        ////[Fact]
+        public void EnsureVisualBasicFilesEndWithSingleBlankLine()
+        {
+            var errorFiles = new List<string>();
+
+            foreach (var file in GetFiles(TemplatesRoot, "*.vb"))
+            {
+                var text = File.ReadAllText(file, Encoding.UTF8);
+
+                if (!text.EndsWith(Environment.NewLine, StringComparison.InvariantCulture)
+                 || text.EndsWith(Environment.NewLine + Environment.NewLine, StringComparison.InvariantCulture))
+                {
+                    errorFiles.Add(file);
+                }
+            }
+
+            Assert.True(errorFiles.Count == 0, $"The following files don't end with a single NewLine{Environment.NewLine}{string.Join(Environment.NewLine, errorFiles)}");
         }
 
         private Tuple<bool, string> CodeIsNotUsed(string textThatShouldNotBeinTheFile, string fileExtension)

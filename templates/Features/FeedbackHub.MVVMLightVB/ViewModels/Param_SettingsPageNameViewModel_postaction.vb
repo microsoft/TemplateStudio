@@ -4,6 +4,7 @@
 Namespace ViewModels
     Public Class Param_SettingsPageNameViewModel
         Inherits ViewModelBase
+
         '{[{
         Public ReadOnly Property FeedbackLinkVisibility As Visibility
             Get

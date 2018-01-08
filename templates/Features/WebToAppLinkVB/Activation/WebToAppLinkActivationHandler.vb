@@ -16,7 +16,7 @@ Namespace Activation
 
         Private Const Section2 As String = "/MySection2"
 
-        Protected Overrides Async Function HandleInternalAsync(ByVal args As ProtocolActivatedEventArgs) As Task
+        Protected Overrides Async Function HandleInternalAsync(args As ProtocolActivatedEventArgs) As Task
             ' TODO WTS: Use args.Uri.AbsolutePath to determinate the page you want to launch the application.
             ' Open the page in app that is equivalent to the section on the website.
             Select Case args.Uri.AbsolutePath
@@ -35,7 +35,7 @@ Namespace Activation
             Await Task.CompletedTask
         End Function
 
-        Protected Overrides Function CanHandleInternal(ByVal args As ProtocolActivatedEventArgs) As Boolean
+        Protected Overrides Function CanHandleInternal(args As ProtocolActivatedEventArgs) As Boolean
             Return args?.Uri?.Host = Host
         End Function
     End Class

@@ -12,7 +12,7 @@
                 Return CType(GetValue(DragItemsStartingCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DragItemsStartingCommandProperty, value)
             End Set
         End Property
@@ -22,7 +22,7 @@
                 Return CType(GetValue(DragItemsCompletedCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DragItemsCompletedCommandProperty, value)
             End Set
         End Property

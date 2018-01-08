@@ -14,7 +14,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DragItemsStartingActionProperty), Action(Of DragDropStartingData))
             End Get
 
-            Set(ByVal value As Action(Of DragDropStartingData))
+            Set(value As Action(Of DragDropStartingData))
                 SetValue(DragItemsStartingActionProperty, value)
             End Set
         End Property
@@ -24,7 +24,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DragItemsCompletedActionProperty), Action(Of DragDropCompletedData))
             End Get
 
-            Set(ByVal value As Action(Of DragDropCompletedData))
+            Set(value As Action(Of DragDropCompletedData))
                 SetValue(DragItemsCompletedActionProperty, value)
             End Set
         End Property

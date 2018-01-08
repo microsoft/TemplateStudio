@@ -6,6 +6,7 @@ Namespace Services
     Public NotInheritable Class ThemeSelectorService
         Private Sub New()
         End Sub
+
         Private Const SettingsKey As String = "RequestedTheme"
 
         Public Shared Property Theme As ElementTheme = ElementTheme.Default
