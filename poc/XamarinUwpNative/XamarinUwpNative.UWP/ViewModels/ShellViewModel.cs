@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Navigation;
 using XamarinUwpNative.UWP.Helpers;
 using XamarinUwpNative.UWP.Services;
 using XamarinUwpNative.UWP.Views;
+using XamarinUwpNative.Core.Helpers;
 
 namespace XamarinUwpNative.UWP.ViewModels
 {

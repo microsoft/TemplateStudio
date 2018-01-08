@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 
-using XamarinUwpNative.UWP.Helpers;
+using XamarinUwpNative.Core.Helpers;
 
 namespace XamarinUwpNative.UWP.ViewModels
 {

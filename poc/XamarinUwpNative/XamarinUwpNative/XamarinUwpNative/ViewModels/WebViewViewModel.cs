@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.Windows.Input;
-using XamarinUwpNative.Helpers;
+using XamarinUwpNative.Core.Helpers;
 
 namespace XamarinUwpNative.ViewModels
 {

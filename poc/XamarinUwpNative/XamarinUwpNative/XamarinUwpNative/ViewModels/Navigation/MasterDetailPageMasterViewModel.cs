@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using XamarinUwpNative.Helpers;
+using XamarinUwpNative.Core.Helpers;
 using XamarinUwpNative.Services;
 using XamarinUwpNative.Views;
 using XamarinUwpNative.Views.Navigation;

@@ -2,7 +2,7 @@
 using Plugin.Media.Abstractions;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using XamarinUwpNative.Helpers;
+using XamarinUwpNative.Core.Helpers;
 using Xamarin.Forms;
 
 namespace XamarinUwpNative.ViewModels

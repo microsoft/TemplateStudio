@@ -1,6 +1,5 @@
 ﻿using System;
-using XamarinUwpNative.Core;
-using XamarinUwpNative.UWP.Helpers;
+using XamarinUwpNative.Core.Helpers;
 
 namespace XamarinUwpNative.UWP.ViewModels
 {
@@ -8,7 +7,6 @@ namespace XamarinUwpNative.UWP.ViewModels
     {
         public MainViewModel()
         {
-            var model = new BasicModel(6);
         }
     }
 }

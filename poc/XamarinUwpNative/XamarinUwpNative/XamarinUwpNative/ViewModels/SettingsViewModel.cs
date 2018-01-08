@@ -1,6 +1,6 @@
 ﻿using Plugin.Settings;
 using Plugin.Settings.Abstractions;
-using XamarinUwpNative.Helpers;
+using XamarinUwpNative.Core.Helpers;
 using XamarinUwpNative.Models;
 using XamarinUwpNative.Services;
 using Xamarin.Forms;

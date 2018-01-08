@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
+using XamarinUwpNative.Core.Helpers;
 using XamarinUwpNative.UWP.Helpers;
 
 namespace XamarinUwpNative.UWP.ViewModels

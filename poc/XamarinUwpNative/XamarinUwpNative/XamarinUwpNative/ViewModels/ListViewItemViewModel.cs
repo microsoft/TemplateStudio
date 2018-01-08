@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using XamarinUwpNative.Helpers;
+using XamarinUwpNative.Core.Helpers;
 using XamarinUwpNative.Models;
 using XamarinUwpNative.Services;
 using Xamarin.Forms;

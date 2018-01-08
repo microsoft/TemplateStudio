@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
-
+using XamarinUwpNative.Core.Helpers;
 using XamarinUwpNative.UWP.Helpers;
 using XamarinUwpNative.UWP.Services;
 

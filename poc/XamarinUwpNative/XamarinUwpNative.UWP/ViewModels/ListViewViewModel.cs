@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Toolkit.Uwp.UI.Controls;
 
-using XamarinUwpNative.UWP.Helpers;
+using XamarinUwpNative.Core.Helpers;
 using XamarinUwpNative.UWP.Models;
 using XamarinUwpNative.UWP.Services;
 

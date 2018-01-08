@@ -2,7 +2,7 @@
 using System.Windows.Input;
 
 using Windows.UI.Xaml.Media.Imaging;
-
+using XamarinUwpNative.Core.Helpers;
 using XamarinUwpNative.UWP.EventHandlers;
 using XamarinUwpNative.UWP.Helpers;
 

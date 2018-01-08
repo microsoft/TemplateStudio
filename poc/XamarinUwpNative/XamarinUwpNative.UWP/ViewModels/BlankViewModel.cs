@@ -1,6 +1,6 @@
 ﻿using System;
 
-using XamarinUwpNative.UWP.Helpers;
+using XamarinUwpNative.Core.Helpers;
 
 namespace XamarinUwpNative.UWP.ViewModels
 {
