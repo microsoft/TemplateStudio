@@ -60,7 +60,7 @@
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>
-                        <Button Command="{Binding RefreshTemplateCacheCommand}" Content="Refresh Cache" Style="{StaticResource TextButton}" ToolTip="Refresh template cache"/>
+                        <Button Command="{Binding RefreshTemplateCacheCommand}" Content="Refresh Cache" Style="{StaticResource TextButton}" Margin="0,6,0,0" ToolTip="Refresh template cache"/>
                     </TextBlock>
 
                 </StackPanel>

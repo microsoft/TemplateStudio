@@ -32,6 +32,10 @@ namespace Microsoft.Templates.VsEmulator.Main
     {
         private readonly MainView _host;
 
+        private bool _canRefreshTemplateCache;
+
+        private RelayCommand _refreshTemplateCacheCommand;
+
         public MainViewModel(MainView host)
         {
             _host = host;
@@ -61,7 +65,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
 
-        public RelayCommand RefreshTemplateCacheCommand => new RelayCommand(RefreshTemplateCache);
+        public RelayCommand RefreshTemplateCacheCommand => _refreshTemplateCacheCommand ?? (_refreshTemplateCacheCommand = new RelayCommand(
+            () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await RefreshTemplateCacheAsync()), () => _canRefreshTemplateCache));
 
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
 
@@ -309,9 +314,14 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private void RefreshTemplateCache()
+        private async Task RefreshTemplateCacheAsync()
         {
-            GenContext.ToolBox.Repo.RefreshAsync(true).FireAndForget();
+            UpdateCanRefreshTemplateCache(false);
+
+            await GenContext.ToolBox.Repo.RefreshAsync(true);
+            AddLog($"{DateTime.Now.FormatAsTime()} - Template cache refreshed");
+
+            UpdateCanRefreshTemplateCache(true);
         }
 
         private void ConfigureVersions()
@@ -444,6 +454,13 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProgrammingLanguages.CSharp);
 
             await GenContext.ToolBox.Repo.RefreshAsync();
+            UpdateCanRefreshTemplateCache(true);
+        }
+
+        private void UpdateCanRefreshTemplateCache(bool canRefreshTemplateCache)
+        {
+            _canRefreshTemplateCache = canRefreshTemplateCache;
+            RefreshTemplateCacheCommand.OnCanExecuteChanged();
         }
 
         [SuppressMessage(
