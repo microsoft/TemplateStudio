@@ -2,7 +2,7 @@
 using Plugin.Media.Abstractions;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using WtsXamarinUWP.Mobile.Helpers;
+using WtsXamarinUWP.Core.Helpers;
 using Xamarin.Forms;
 
 namespace WtsXamarinUWP.Mobile.ViewModels

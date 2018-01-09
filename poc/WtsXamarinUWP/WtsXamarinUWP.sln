@@ -11,10 +11,16 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WtsXamarinUWP.Mobile", "Wts
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsXamarinUWP.UWP", "WtsXamarinUWP.UWP\WtsXamarinUWP.UWP.csproj", "{11B85433-A24D-4A96-9465-1F8E51FD939C}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WtsXamarinUWP.Core", "WtsXamarinUWP.Core\WtsXamarinUWP.Core.shproj", "{89049DB3-D42C-4CE8-8F19-D199FFE2A7C0}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		WtsXamarinUWP\WtsXamarinUWP\WtsXamarinUWP.projitems*{0db1fdd8-1332-4d55-98b4-0a7f27d1d81a}*SharedItemsImports = 13
+		WtsXamarinUWP.Core\WtsXamarinUWP.Core.projitems*{0dfba403-c350-42d4-853a-0da40383551b}*SharedItemsImports = 4
 		WtsXamarinUWP\WtsXamarinUWP\WtsXamarinUWP.projitems*{0dfba403-c350-42d4-853a-0da40383551b}*SharedItemsImports = 4
+		WtsXamarinUWP.Core\WtsXamarinUWP.Core.projitems*{11b85433-a24d-4a96-9465-1f8e51fd939c}*SharedItemsImports = 4
+		WtsXamarinUWP.Core\WtsXamarinUWP.Core.projitems*{89049db3-d42c-4ce8-8f19-d199ffe2a7c0}*SharedItemsImports = 13
+		WtsXamarinUWP.Core\WtsXamarinUWP.Core.projitems*{d30b0f6a-d872-41a3-92c3-fe22f272fe84}*SharedItemsImports = 4
 		WtsXamarinUWP\WtsXamarinUWP\WtsXamarinUWP.projitems*{d30b0f6a-d872-41a3-92c3-fe22f272fe84}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -8,7 +8,7 @@ using Microsoft.Toolkit.Uwp.UI.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
+using WtsXamarinUWP.Core.Helpers;
 using WtsXamarinUWP.UWP.Helpers;
 using WtsXamarinUWP.UWP.Services;
 using WtsXamarinUWP.UWP.Views;

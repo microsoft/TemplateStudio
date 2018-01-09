@@ -1,4 +1,4 @@
-﻿using WtsXamarinUWP.Mobile.Helpers;
+﻿using WtsXamarinUWP.Core.Helpers;
 
 namespace WtsXamarinUWP.Mobile.ViewModels
 {

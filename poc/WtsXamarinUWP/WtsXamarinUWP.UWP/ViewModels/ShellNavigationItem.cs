@@ -4,8 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
-
-using WtsXamarinUWP.UWP.Helpers;
+using WtsXamarinUWP.Core.Helpers;
 
 namespace WtsXamarinUWP.UWP.ViewModels
 {

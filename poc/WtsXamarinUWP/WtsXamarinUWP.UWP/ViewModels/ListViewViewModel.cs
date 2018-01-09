@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Toolkit.Uwp.UI.Controls;
 
-using WtsXamarinUWP.UWP.Helpers;
+using WtsXamarinUWP.Core.Helpers;
 using WtsXamarinUWP.UWP.Models;
 using WtsXamarinUWP.UWP.Services;
 

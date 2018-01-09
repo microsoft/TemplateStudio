@@ -2,7 +2,7 @@
 using System.Windows.Input;
 
 using Windows.UI.Xaml.Media.Imaging;
-
+using WtsXamarinUWP.Core.Helpers;
 using WtsXamarinUWP.UWP.EventHandlers;
 using WtsXamarinUWP.UWP.Helpers;
 

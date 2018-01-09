@@ -1,6 +1,6 @@
 ﻿using Plugin.Settings;
 using Plugin.Settings.Abstractions;
-using WtsXamarinUWP.Mobile.Helpers;
+using WtsXamarinUWP.Core.Helpers;
 using WtsXamarinUWP.Mobile.Models;
 using WtsXamarinUWP.Mobile.Services;
 using Xamarin.Forms;

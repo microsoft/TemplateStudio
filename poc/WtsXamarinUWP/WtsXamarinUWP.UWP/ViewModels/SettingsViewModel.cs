@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
-
+using WtsXamarinUWP.Core.Helpers;
 using WtsXamarinUWP.UWP.Helpers;
 using WtsXamarinUWP.UWP.Services;
 

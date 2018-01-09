@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.Windows.Input;
-using WtsXamarinUWP.Mobile.Helpers;
+using WtsXamarinUWP.Core.Helpers;
 
 namespace WtsXamarinUWP.Mobile.ViewModels
 {

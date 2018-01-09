@@ -1,6 +1,6 @@
 ﻿using System;
 
-using WtsXamarinUWP.UWP.Helpers;
+using WtsXamarinUWP.Core.Helpers;
 
 namespace WtsXamarinUWP.UWP.ViewModels
 {
