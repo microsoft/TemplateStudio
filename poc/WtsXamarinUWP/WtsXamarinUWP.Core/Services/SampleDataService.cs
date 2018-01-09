@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using WtsXamarinUWP.Core.Models;
 
-using Windows.UI.Xaml.Controls;
-
-using WtsXamarinUWP.UWP.Models;
-
-namespace WtsXamarinUWP.UWP.Services
+namespace WtsXamarinUWP.Core.Services
 {
-    // This class holds sample data used by some generated pages to show how they can be used.
-    // TODO WTS: Delete this file once your app is using real data.
     public static class SampleDataService
     {
-        private static IEnumerable<SampleOrder> AllOrders()
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
+        public static async Task<IEnumerable<SampleOrder>> GetAllOrdersAsync()
         {
-            // The following is order summary data
-            var data = new ObservableCollection<SampleOrder>
+            var data = new List<SampleOrder>
             {
                 new SampleOrder
                 {
@@ -26,7 +20,7 @@ namespace WtsXamarinUWP.UWP.Services
                     ShipTo = "Francisco Pérez-Olaeta",
                     OrderTotal = 2490.00,
                     Status = "Closed",
-                    Symbol = Symbol.Globe
+                    IconName = "Globe"
                 },
                 new SampleOrder
                 {
@@ -36,7 +30,7 @@ namespace WtsXamarinUWP.UWP.Services
                     ShipTo = "Soo Jung Lee",
                     OrderTotal = 1760.00,
                     Status = "Closed",
-                    Symbol = Symbol.Audio
+                    IconName = "Audio"
                 },
                 new SampleOrder
                 {
@@ -46,7 +40,7 @@ namespace WtsXamarinUWP.UWP.Services
                     ShipTo = "Run Liu",
                     OrderTotal = 2310.00,
                     Status = "Closed",
-                    Symbol = Symbol.Calendar
+                    IconName = "Calendar"
                 },
                 new SampleOrder
                 {
@@ -56,7 +50,7 @@ namespace WtsXamarinUWP.UWP.Services
                     ShipTo = "John Rodman",
                     OrderTotal = 665.00,
                     Status = "Closed",
-                    Symbol = Symbol.Camera
+                    IconName = "Camera"
                 },
                 new SampleOrder
                 {
@@ -66,7 +60,7 @@ namespace WtsXamarinUWP.UWP.Services
                     ShipTo = "Elizabeth Andersen",
                     OrderTotal = 560.00,
                     Status = "Shipped",
-                    Symbol = Symbol.Clock
+                    IconName = "Clock"
                 },
                 new SampleOrder
                 {
@@ -76,7 +70,7 @@ namespace WtsXamarinUWP.UWP.Services
                     ShipTo = "Francisco Pérez-Olaeta",
                     OrderTotal = 810.00,
                     Status = "Shipped",
-                    Symbol = Symbol.Contact
+                    IconName = "Contact"
                 },
                 new SampleOrder
                 {
@@ -86,7 +80,7 @@ namespace WtsXamarinUWP.UWP.Services
                     ShipTo = "Sven Mortensen",
                     OrderTotal = 196.50,
                     Status = "Shipped",
-                    Symbol = Symbol.Favorite
+                    IconName = "Favorite"
                 },
                 new SampleOrder
                 {
@@ -96,7 +90,7 @@ namespace WtsXamarinUWP.UWP.Services
                     ShipTo = "Amritansh Raghav",
                     OrderTotal = 270.00,
                     Status = "New",
-                    Symbol = Symbol.Home
+                    IconName = "Home"
                 },
                 new SampleOrder
                 {
@@ -106,7 +100,7 @@ namespace WtsXamarinUWP.UWP.Services
                     ShipTo = "Anna Bedecs",
                     OrderTotal = 736.00,
                     Status = "New",
-                    Symbol = Symbol.Mail
+                    IconName = "Mail"
                 },
                 new SampleOrder
                 {
@@ -116,19 +110,12 @@ namespace WtsXamarinUWP.UWP.Services
                     ShipTo = "Peter Krschne",
                     OrderTotal = 800.00,
                     Status = "New",
-                    Symbol = Symbol.OutlineStar
+                    IconName = "OutlineStar"
                 },
             };
 
-            return data;
-        }
-
-        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
-        public static async Task<IEnumerable<SampleOrder>> GetSampleModelDataAsync()
-        {
             await Task.CompletedTask;
-
-            return AllOrders();
+            return data;
         }
     }
 }

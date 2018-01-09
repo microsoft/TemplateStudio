@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using WtsXamarinUWP.Core.Helpers;
-using WtsXamarinUWP.Mobile.Models;
+using WtsXamarinUWP.Core.Models;
+using WtsXamarinUWP.Core.Services;
 using WtsXamarinUWP.Mobile.Services;
 
 namespace WtsXamarinUWP.Mobile.ViewModels
@@ -11,7 +13,6 @@ namespace WtsXamarinUWP.Mobile.ViewModels
 
         public ListViewListViewModel()
         {
-            SampleData = SampleDataService.GetGridSampleData();
         }
 
         public ObservableCollection<SampleOrder> SampleData
@@ -24,6 +25,12 @@ namespace WtsXamarinUWP.Mobile.ViewModels
         {
             get => null;
             set => NavigationService.Instance.NavigateToAsync<ListViewItemViewModel>(value);
+        }
+
+        public async Task LoadDataAsync()
+        {
+            var data = await SampleDataService.GetAllOrdersAsync();
+            SampleData = new ObservableCollection<SampleOrder>(data);
         }
     }
 }

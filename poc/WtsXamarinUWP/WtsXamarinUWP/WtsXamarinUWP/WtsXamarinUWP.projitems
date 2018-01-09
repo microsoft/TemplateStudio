@@ -26,11 +26,9 @@
       <DependentUpon>StandardRadioButton.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\SampleOrder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SampleProgramOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IPlatformInfoService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\SampleDataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BlankViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CameraViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ListViewItemViewModel.cs" />

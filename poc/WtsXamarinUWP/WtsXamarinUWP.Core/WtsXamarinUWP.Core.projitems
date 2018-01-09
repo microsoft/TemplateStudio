@@ -10,5 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Observable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\SampleOrder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SampleDataService.cs" />
   </ItemGroup>
 </Project>

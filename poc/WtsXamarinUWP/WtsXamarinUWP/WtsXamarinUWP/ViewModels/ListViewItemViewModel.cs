@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 using WtsXamarinUWP.Core.Helpers;
-using WtsXamarinUWP.Mobile.Models;
+using WtsXamarinUWP.Core.Models;
 using WtsXamarinUWP.Mobile.Services;
 using Xamarin.Forms;
 

@@ -17,7 +17,7 @@
         </TransitionCollection>
     </Page.Transitions>
     <Page.Resources>
-        <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrder">
+        <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrderWithSymbol">
             <Grid Height="64" Padding="0,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

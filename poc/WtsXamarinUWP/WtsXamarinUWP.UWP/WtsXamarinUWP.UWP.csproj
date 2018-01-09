@@ -120,11 +120,10 @@
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
-    <Compile Include="Models\SampleOrder.cs" />
+    <Compile Include="Models\SampleOrderWithSymbol.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="Services\SampleDataService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="ViewModels\BlankViewModel.cs" />
     <Compile Include="ViewModels\CameraViewModel.cs" />

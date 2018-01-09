@@ -9,13 +9,13 @@ namespace WtsXamarinUWP.UWP.Views
 {
     public sealed partial class ListViewDetailControl : UserControl
     {
-        public SampleOrder MasterMenuItem
+        public SampleOrderWithSymbol MasterMenuItem
         {
-            get { return GetValue(MasterMenuItemProperty) as SampleOrder; }
+            get { return GetValue(MasterMenuItemProperty) as SampleOrderWithSymbol; }
             set { SetValue(MasterMenuItemProperty, value); }
         }
 
-        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrder), typeof(ListViewDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
+        public static readonly DependencyProperty MasterMenuItemProperty = DependencyProperty.Register("MasterMenuItem", typeof(SampleOrderWithSymbol), typeof(ListViewDetailControl), new PropertyMetadata(null, OnMasterMenuItemPropertyChanged));
 
         public ListViewDetailControl()
         {

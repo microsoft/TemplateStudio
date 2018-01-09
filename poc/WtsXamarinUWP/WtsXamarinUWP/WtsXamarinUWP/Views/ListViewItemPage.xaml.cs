@@ -1,4 +1,4 @@
-﻿using WtsXamarinUWP.Mobile.Models;
+﻿using WtsXamarinUWP.Core.Models;
 using WtsXamarinUWP.Mobile.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

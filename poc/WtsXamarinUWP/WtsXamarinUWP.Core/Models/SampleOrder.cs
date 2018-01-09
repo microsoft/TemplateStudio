@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WtsXamarinUWP.Mobile.Models
+namespace WtsXamarinUWP.Core.Models
 {
     public class SampleOrder
     {
@@ -15,5 +15,7 @@ namespace WtsXamarinUWP.Mobile.Models
         public double OrderTotal { get; set; }
 
         public string Status { get; set; }
+
+        public string IconName { get; set; }
     }
 }

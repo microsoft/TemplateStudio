@@ -15,5 +15,14 @@ namespace WtsXamarinUWP.Mobile.Views
             InitializeComponent();
             BindingContext = new ListViewListViewModel();
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            var vm = BindingContext as ListViewListViewModel;
+            await vm.LoadDataAsync();
+
+        }
     }
 }
