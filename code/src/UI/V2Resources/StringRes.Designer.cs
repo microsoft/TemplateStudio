@@ -133,6 +133,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can not remove {0} because {1} depends on it..
+        /// </summary>
+        public static string NotificationRemoveError_Dependency {
+            get {
+                return ResourceManager.GetString("NotificationRemoveError_Dependency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done..
         /// </summary>
         public static string NotificationSyncStatus_Acquired {

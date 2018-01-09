@@ -149,6 +149,10 @@
     <value>New Universal Windows Platform app</value>
     <comment>Wizard title on WizardShell page</comment>
   </data>
+  <data name="NotificationRemoveError_Dependency" xml:space="preserve">
+    <value>You can not remove {0} because {1} depends on it.</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name</comment>
+  </data>
   <data name="NotificationSyncStatus_Acquired" xml:space="preserve">
     <value>Done.</value>
     <comment>Notification message for Sync Status: Acquired</comment>
