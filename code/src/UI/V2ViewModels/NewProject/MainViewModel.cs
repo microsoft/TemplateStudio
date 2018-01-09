@@ -136,6 +136,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                     return template;
                 }
             }
+
             return null;
         }
 

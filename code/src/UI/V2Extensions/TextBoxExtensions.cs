@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,22 +14,19 @@ namespace Microsoft.Templates.UI.V2Extensions
           "IsFocused",
           typeof(bool),
           typeof(TextBoxExtensions),
-          new PropertyMetadata(false, OnIsFocusedPropertyChanged)
-        );
+          new PropertyMetadata(false, OnIsFocusedPropertyChanged));
 
         public static readonly DependencyProperty TextChangedCommandProperty = DependencyProperty.RegisterAttached(
           "TextChangedCommand",
           typeof(ICommand),
           typeof(TextBoxExtensions),
-          new PropertyMetadata(null, OnTextChangedCommandPropertyChanged)
-        );
+          new PropertyMetadata(null, OnTextChangedCommandPropertyChanged));
 
         public static readonly DependencyProperty LostKeyboardFocusCommandProperty = DependencyProperty.RegisterAttached(
           "LostKeyboardFocusCommand",
           typeof(ICommand),
           typeof(TextBoxExtensions),
-          new PropertyMetadata(null, OnLostKeyboardFocusCommandPropertyChanged)
-        );
+          new PropertyMetadata(null, OnLostKeyboardFocusCommandPropertyChanged));
 
         public static void SetIsFocused(UIElement element, bool value)
         {
