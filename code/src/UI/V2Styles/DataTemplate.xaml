@@ -16,7 +16,6 @@
 
     <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
     <converters:IntegerVisibilityConverter x:Key="IntegerVisibilityConverter" />
-    <converters:SavedTemplateGridConverter x:Key="SavedTemplateGridConverter" />
 
     <DataTemplate x:Key="WtsItemTemplateProjectTypeFramework">
         <Grid Width="162" Height="190">
@@ -139,31 +138,6 @@
     <DataTemplate x:Key="WtsComboBoxProjectTypeFramework">
         <Grid>
             <TextBlock Style="{StaticResource WtsTextBlockComboBoxItem}" Text="{Binding Title}" />
-        </Grid>
-    </DataTemplate>
-
-    <DataTemplate x:Key="WtsItemTemplateSavedTemplate">
-        <Grid Style="{Binding HasErrors, Converter={StaticResource SavedTemplateGridConverter}}">
-            <Grid Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="35" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <controls:ImageEx
-                        Grid.Column="0"
-                        SourcePath="{Binding Icon}"
-                        Style="{StaticResource WtsImageExProjectDetails}" />
-                    <TextBox
-                        Grid.Column="1"
-                        Text="{Binding Name, Mode=OneWay}"
-                        Style="{StaticResource WtsTextBoxStyle}"
-                        IsEnabled="{Binding ItemNameEditable}"
-                        extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
-                        extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
-                        extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}" />
-                </Grid>
-            </Grid>
         </Grid>
     </DataTemplate>
 

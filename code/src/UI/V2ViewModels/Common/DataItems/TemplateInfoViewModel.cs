@@ -35,7 +35,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public int Count
         {
             get => _count;
-            set
+            private set
             {
                 SetProperty(ref _count, value);
                 HasMoreThanOne = value > 1;
@@ -65,6 +65,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             Author = template.Author;
             Icon = template.GetIcon();
             Order = template.GetDisplayOrder();
+            IsHidden = template.GetIsHidden();
             var dependencies = GenComposer.GetAllDependencies(template, frameworkName);
             Dependencies = dependencies.Select(d => new TemplateInfoViewModel(d, frameworkName));
             Licenses = template.GetLicenses().Select(l => new LicenseViewModel(l));
@@ -80,9 +81,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         private void OnItemClick() => EventService.Instance.RaiseOnTemplateClicked(this);
 
-        public void UpdateSelection()
+        public void IncreaseSelection()
         {
             Count++;
+        }
+
+        public void DecreaseSelection()
+        {
+            Count--;
         }
 
         public void ResetTemplateCount()

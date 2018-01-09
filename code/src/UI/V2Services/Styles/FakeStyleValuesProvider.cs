@@ -371,6 +371,12 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FFFDFBAC;
                 case "NotificationErrorIcon":
                     return LightColorValues.Color_FF18A2E7;
+
+                case "DeleteTemplateIcon":
+                    return LightColorValues.Color_FFE82C3C;
+                case "SavedTemplateBackgroundHover":
+                    return LightColorValues.Color_FFE9E9E9;
+
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }

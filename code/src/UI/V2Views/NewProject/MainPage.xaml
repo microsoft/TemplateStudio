@@ -37,7 +37,7 @@
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
             <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
-            <ScrollViewer Grid.Column="4">
+            <ScrollViewer Grid.Column="4" VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSectionTitle}"
@@ -71,10 +71,9 @@
                             Style="{StaticResource WtsTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                             Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}" />
-                        <ItemsControl
-                            Style="{StaticResource WtsItemsControlProjectDetails}"
-                            ItemsSource="{Binding UserSelection.Pages}"
-                            ItemTemplate="{StaticResource WtsItemTemplateSavedTemplate}" />
+                        <ListView
+                            Style="{StaticResource WtsListViewProjectDetailsTemplates}"
+                            ItemsSource="{Binding UserSelection.Pages}" />
                     </StackPanel>
 
                     <StackPanel Visibility="{Binding UserSelection.Features, Converter={StaticResource HasItemsVisibilityConverter}}">
@@ -82,10 +81,9 @@
                             Style="{StaticResource WtsTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                             Text="{x:Static strings:StringRes.ProjectDetailsFeaturesSectionTitle}" />
-                        <ItemsControl
-                            Style="{StaticResource WtsItemsControlProjectDetails}"
-                            ItemsSource="{Binding UserSelection.Features}"
-                            ItemTemplate="{StaticResource WtsItemTemplateSavedTemplate}" />
+                        <ListView
+                            Style="{StaticResource WtsListViewProjectDetailsTemplates}"
+                            ItemsSource="{Binding UserSelection.Features}" />
                     </StackPanel>
 
                     <StackPanel Visibility="{Binding UserSelection.Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">

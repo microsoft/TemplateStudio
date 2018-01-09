@@ -20,11 +20,17 @@ namespace Microsoft.Templates.UI.V2Controls
         Error
     }
 
+    public enum ErrorCategory
+    {
+        None,
+        NamingValidation
+    }
+
     public enum Category
     {
         None,
         TemplatesSync,
-        NamingValidation
+        RemoveTemplateValidation
     }
 
     public class Notification
@@ -34,9 +40,17 @@ namespace Microsoft.Templates.UI.V2Controls
 
         public NotificationType Type { get; private set; }
 
+        public ErrorCategory ErrorCategory { get; private set; }
+
         public Category Category { get; private set; }
 
         public string Message { get; private set; }
+
+        // Only for Errors.
+        // Errors could remove warning and notifications from pull it needed.
+        // i.e. NamingValidation error can remove a RemoveTemplateValidation warning becaouse these errors are produced
+        // by user but it there are some notification in pull not provided by user action is should keep in the pull (i.e. New templates available!)
+        public IEnumerable<Category> CategoriesToOverride { get; private set; }
 
         public ICommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand(OnClose));
 
@@ -69,13 +83,15 @@ namespace Microsoft.Templates.UI.V2Controls
             };
         }
 
-        public static Notification Error(string message, Category category = Category.None)
+        public static Notification Error(string message, ErrorCategory errorCategory = ErrorCategory.None, IEnumerable<Category> categoriesToOverride = null)
         {
             return new Notification(false)
             {
                 Type = NotificationType.Error,
                 Message = message,
-                Category = category
+                ErrorCategory = errorCategory,
+                CategoriesToOverride = categoriesToOverride,
+                Category = Category.None
             };
         }
 
@@ -110,5 +126,7 @@ namespace Microsoft.Templates.UI.V2Controls
 
             return result;
         }
+
+        public override int GetHashCode() => base.GetHashCode();
     }
 }

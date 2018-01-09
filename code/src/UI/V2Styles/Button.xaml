@@ -82,6 +82,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="1" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
         <Setter Property="FocusVisualStyle">
             <Setter.Value>
                 <Style>
@@ -97,7 +98,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
@@ -109,6 +110,7 @@
                             <Setter Property="Background" TargetName="border" Value="{Binding ButtonPressed, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{Binding ButtonDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -123,16 +125,8 @@
     <Style TargetType="Button" x:Key="WtsButtonCloseNotification" BasedOn="{StaticResource WtsButtonIcon}">
         <Setter Property="Margin" Value="{StaticResource Margin_M_Right}" />
         <Setter Property="Padding" Value="{StaticResource Margin_M_LeftTopRightBottom}" />
-        <Setter Property="Content">
-            <Setter.Value>
-                <TextBlock
-                    FontFamily="Segoe MDL2 Assets"
-                    Text="&#xE106;"                    
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Content" Value="&#xE106;" />
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
     <Style TargetType="Button" x:Key="WtsButtonCloseNotificationInformation" BasedOn="{StaticResource WtsButtonCloseNotification}">
@@ -141,6 +135,14 @@
 
     <Style TargetType="Button" x:Key="WtsButtonCloseNotificationWarning" BasedOn="{StaticResource WtsButtonCloseNotification}">
         <Setter Property="Foreground" Value="{Binding NotificationWarningText, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="WtsButtonDeleteTemplate" BasedOn="{StaticResource WtsButtonIcon}">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="{StaticResource Margin_XS_LeftTopRightBottom}" />
+        <Setter Property="Foreground" Value="{Binding DeleteTemplateIcon, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Content" Value="&#xE10A;" />
+        <Setter Property="FontSize" Value="12" />
     </Style>
 
 </ResourceDictionary>

@@ -80,5 +80,21 @@ namespace Microsoft.Templates.UI.V2Services
             get { return (Brush)GetValue(NotificationErrorIconProperty); }
             set { SetValue(NotificationErrorIconProperty, value); }
         }
+
+        public static readonly DependencyProperty DeleteTemplateIconProperty = DependencyProperty.Register("DeleteTemplateIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush DeleteTemplateIcon
+        {
+            get { return (Brush)GetValue(DeleteTemplateIconProperty); }
+            set { SetValue(DeleteTemplateIconProperty, value); }
+        }
+
+        public static readonly DependencyProperty SavedTemplateBackgroundHoverProperty = DependencyProperty.Register("SavedTemplateBackgroundHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush SavedTemplateBackgroundHover
+        {
+            get { return (Brush)GetValue(SavedTemplateBackgroundHoverProperty); }
+            set { SetValue(SavedTemplateBackgroundHoverProperty, value); }
+        }
     }
 }

@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
@@ -20,14 +21,21 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private string _name;
         private string _icon;
         private bool _itemNameEditable;
+        private bool _isHidden;
         private bool _isFocused;
         private bool _hasErrors;
+        private bool _isHome;
         private ICommand _textChangedCommand;
         private ICommand _lostKeyboardFocusCommand;
+        private RelayCommand _deleteCommand;
 
         public ITemplateInfo Template { get; }
 
         public string Identity { get; }
+
+        public TemplateType TemplateType { get; }
+
+        public IEnumerable<BasicInfoViewModel> Dependencies { get; }
 
         public string Name
         {
@@ -47,6 +55,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _itemNameEditable, value);
         }
 
+        public bool IsHidden
+        {
+            get => _isHidden;
+            set => SetProperty(ref _isHidden, value);
+        }
+
         public bool IsFocused
         {
             get => _isFocused;
@@ -59,16 +73,34 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _hasErrors, value);
         }
 
+        public bool IsHome
+        {
+            get => _isHome;
+            private set
+            {
+                SetProperty(ref _isHome, value);
+                DeleteCommand.OnCanExecuteChanged();
+            }
+        }
+
+        public TemplateOrigin TemplateOrigin { get; }
+
         public ICommand TextChangedCommand => _textChangedCommand ?? (_textChangedCommand = new RelayCommand<TextChangedEventArgs>(OnTextChanged));
 
         public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
 
-        public SavedTemplateViewModel(TemplateInfoViewModel template)
+        public RelayCommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(OnDelete, () => !IsHome));
+
+        public SavedTemplateViewModel(TemplateInfoViewModel template, TemplateOrigin templateOrigin)
         {
             Template = template.Template;
             Identity = template.Identity;
+            TemplateType = template.TemplateType;
+            Dependencies = template.Dependencies;
             Icon = template.Icon;
             ItemNameEditable = template.ItemNameEditable;
+            IsHidden = template.IsHidden;
+            TemplateOrigin = templateOrigin;
         }
 
         public void Focus()
@@ -88,7 +120,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
                     MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
                     if (validationResult.IsValid)
                     {
-                        NotificationsControl.Instance.CleanNotificationsAsync(Category.NamingValidation).FireAndForget();
+                        NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
                     }
                     else
                     {
@@ -109,12 +141,20 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             }
         }
 
+        private void OnDelete()
+        {
+            if (!IsHome)
+            {
+                EventService.Instance.RaiseOnDeleteTemplateClicked(this);
+            }
+        }
+
         public override bool Equals(object obj)
         {
             var result = false;
             if (obj is SavedTemplateViewModel savedTemplate)
             {
-                result = Identity.Equals(savedTemplate.Identity);
+                result = Identity.Equals(savedTemplate.Identity) && Name.Equals(savedTemplate.Name);
             }
             else if (obj is TemplateInfoViewModel templateInfo)
             {
@@ -129,5 +169,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 #pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         public (string name, ITemplateInfo template) GetUserSelection() => (Name, Template);
 #pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
+
+        public void SetHome(bool isHome) => IsHome = isHome;
     }
 }

@@ -16,15 +16,23 @@ namespace Microsoft.Templates.UI.V2Extensions
             switch (validationResult.ErrorType)
             {
                 case ValidationErrorType.Empty:
-                    return Notification.Error(StringRes.NotificationValidationError_Empty, Category.NamingValidation);
+                    return Notification.Error(StringRes.NotificationValidationError_Empty, ErrorCategory.NamingValidation, CategoriesToOverride);
                 case ValidationErrorType.AlreadyExists:
-                    return Notification.Error(StringRes.NotificationValidationError_AlreadyExists, Category.NamingValidation);
+                    return Notification.Error(StringRes.NotificationValidationError_AlreadyExists, ErrorCategory.NamingValidation, CategoriesToOverride);
                 case ValidationErrorType.BadFormat:
-                    return Notification.Error(StringRes.NotificationValidationError_BadFormat, Category.NamingValidation);
+                    return Notification.Error(StringRes.NotificationValidationError_BadFormat, ErrorCategory.NamingValidation, CategoriesToOverride);
                 case ValidationErrorType.ReservedName:
-                    return Notification.Error(StringRes.NotificationValidationError_ReservedName, Category.NamingValidation);
+                    return Notification.Error(StringRes.NotificationValidationError_ReservedName, ErrorCategory.NamingValidation, CategoriesToOverride);
                 default:
                     return null;
+            }
+        }
+
+        private static IEnumerable<Category> CategoriesToOverride
+        {
+            get
+            {
+                yield return Category.RemoveTemplateValidation;
             }
         }
     }

@@ -8,7 +8,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.V2Controls;
+using Microsoft.Templates.UI.V2Resources;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
@@ -38,6 +41,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public UserSelectionViewModel()
         {
+            EventService.Instance.OnDeleteTemplateClicked += OnRemove;
         }
 
         public void Initialize(string projectTypeName, string frameworkName, string language)
@@ -64,6 +68,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                 }
             }
 
+            UpdateHomePage();
             _isInitialized = true;
         }
 
@@ -87,11 +92,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                 }
             }
 
-            template.UpdateSelection();
-            var savedTemplate = new SavedTemplateViewModel(template);
+            template.IncreaseSelection();
+            var savedTemplate = new SavedTemplateViewModel(template, templateOrigin);
             if (!IsTemplateAdded(template) || template.MultipleInstance)
             {
-                var storageCollection = template.TemplateType == TemplateType.Page ? Pages : Features;
                 if (!string.IsNullOrEmpty(layoutName))
                 {
                     savedTemplate.Name = layoutName;
@@ -105,16 +109,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                     }
                 }
 
-                storageCollection.Add(savedTemplate);
-
-                // Notiffy collection name to update the visibillity on the layout
-                var collectionName = template.TemplateType == TemplateType.Page ? nameof(Pages) : nameof(Features);
-                OnPropertyChanged(collectionName);
-
-                if (templateOrigin == TemplateOrigin.UserSelection)
-                {
-                    HasItemsAddedByUser = true;
-                }
+                GetCollection(template.TemplateType).Add(savedTemplate);
+                RaiseCollectionChanged(template.TemplateType);
+                UpdateHasItemsAddedByUser();
 
                 var userSelection = GetUserSelection();
                 var licenses = GenComposer.GetAllLicences(userSelection);
@@ -125,7 +122,18 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             }
         }
 
-        internal void ResetUserSelection()
+        private ObservableCollection<SavedTemplateViewModel> GetCollection(TemplateType templateType) => templateType == TemplateType.Page ? Pages : Features;
+
+        public bool IsTemplateAdded(TemplateInfoViewModel template) => GetCollection(template.TemplateType).Any(t => t.Equals(template));
+
+        private void RaiseCollectionChanged(TemplateType templateType)
+        {
+            // Notify collection name to update the visibillity on the layout
+            var collectionName = templateType == TemplateType.Page ? nameof(Pages) : nameof(Features);
+            OnPropertyChanged(collectionName);
+        }
+
+        public void ResetUserSelection()
         {
             HasItemsAddedByUser = false;
             _isInitialized = false;
@@ -133,18 +141,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             Features.Clear();
         }
 
-        internal bool IsTemplateAdded(TemplateInfoViewModel template)
-        {
-            var collection = template.TemplateType == TemplateType.Page ? Pages : Features;
-            return collection.Any(t => t.Equals(template));
-        }
-
         private UserSelection GetUserSelection()
         {
-            var selection = new UserSelection(_projectTypeName, _frameworkName, _language)
+            var selection = new UserSelection(_projectTypeName, _frameworkName, _language);
+
+            if (Pages.Any())
             {
-                HomeName = Pages.First().Name
-            };
+                selection.HomeName = Pages.First().Name;
+            }
 
             foreach (var page in Pages)
             {
@@ -157,6 +161,116 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             }
 
             return selection;
+        }
+
+        private SavedTemplateViewModel Remove(SavedTemplateViewModel savedTemplate)
+        {
+            // Look if is there any templates that depends on item
+            var dependency = GetSavedTemplateDependency(savedTemplate);
+            if (dependency == null)
+            {
+                if (Pages.Contains(savedTemplate))
+                {
+                    Pages.Remove(savedTemplate);
+                }
+                else if (Features.Contains(savedTemplate))
+                {
+                    Features.Remove(savedTemplate);
+                }
+
+                RaiseCollectionChanged(savedTemplate.TemplateType);
+                var template = MainViewModel.Instance.GetTemplate(savedTemplate.Template);
+                template?.DecreaseSelection();
+
+                TryRemoveHiddenDependencies(savedTemplate);
+                UpdateHasItemsAddedByUser();
+                AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
+            }
+
+            return dependency;
+        }
+
+        private void TryRemoveHiddenDependencies(SavedTemplateViewModel savedTemplate)
+        {
+            foreach (var identity in savedTemplate.Dependencies)
+            {
+                var dependency = Features.FirstOrDefault(f => f.Identity == identity.Identity);
+                if (dependency == null)
+                {
+                    dependency = Pages.FirstOrDefault(p => p.Identity == identity.Identity);
+                }
+
+                if (dependency != null)
+                {
+                    // If the template is not hidden we can not remove it because it could be added in wizard
+                    if (dependency.IsHidden)
+                    {
+                        // Look if there are another saved template that depends on it.
+                        // For example, if it's added two different chart pages, when remove the first one SampleDataService can not be removed, but if no saved templates use SampleDataService, it can be removed.
+                        if (!Features.Any(sf => sf.Dependencies.Any(d => d.Identity == dependency.Identity)) || Pages.Any(p => p.Dependencies.Any(d => d.Identity == dependency.Identity)))
+                        {
+                            Remove(dependency);
+                        }
+                    }
+                }
+            }
+        }
+
+        private SavedTemplateViewModel GetSavedTemplateDependency(SavedTemplateViewModel savedTemplate)
+        {
+            SavedTemplateViewModel dependencyItem = null;
+            dependencyItem = Pages.FirstOrDefault(p => p.Dependencies.Any(d => d.Identity == savedTemplate.Identity));
+            if (dependencyItem == null)
+            {
+                dependencyItem = Features.FirstOrDefault(f => f.Dependencies.Any(d => d.Identity == savedTemplate.Identity));
+            }
+
+            return dependencyItem;
+        }
+
+        private async void OnRemove(object sender, SavedTemplateViewModel savedTemplate)
+        {
+            var dependency = Remove(savedTemplate);
+            if (dependency != null)
+            {
+                var message = string.Format(StringRes.NotificationRemoveError_Dependency, savedTemplate.Name, dependency.Name);
+                var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
+                await NotificationsControl.Instance.AddNotificationAsync(notification);
+            }
+        }
+
+        private void UpdateHasItemsAddedByUser()
+        {
+            foreach (var page in Pages)
+            {
+                if (page.TemplateOrigin != TemplateOrigin.Layout)
+                {
+                    HasItemsAddedByUser = true;
+                    return;
+                }
+            }
+
+            foreach (var feature in Features)
+            {
+                if (feature.TemplateOrigin != TemplateOrigin.Layout)
+                {
+                    HasItemsAddedByUser = true;
+                    return;
+                }
+            }
+
+            HasItemsAddedByUser = false;
+        }
+
+        private void UpdateHomePage()
+        {
+            foreach (var page in Pages)
+            {
+                page.SetHome(false);
+            }
+
+            var home = Pages.FirstOrDefault();
+            home?.SetHome(true);
         }
     }
 }

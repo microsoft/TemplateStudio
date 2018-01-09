@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,8 +42,22 @@ namespace Microsoft.Templates.UI.V2Controls
                 }
 
                 RemoveCategoryNotifications(notification.Category);
+                RemoveErrorCategoryNotifications(notification.ErrorCategory);
+                RemoveCategoriesToOverride(notification.CategoriesToOverride);
+
                 _notifications.Insert(0, notification);
                 await ShowNotificationAsync(notification);
+            }
+        }
+
+        private void RemoveCategoriesToOverride(IEnumerable<Category> categoriesToOverride)
+        {
+            if (categoriesToOverride != null)
+            {
+                foreach (var category in categoriesToOverride)
+                {
+                    RemoveCategoryNotifications(category);
+                }
             }
         }
 
@@ -50,6 +65,15 @@ namespace Microsoft.Templates.UI.V2Controls
         {
             RemoveCategoryNotifications(replacementCategory);
             if (Notification.Category == replacementCategory)
+            {
+                await CloseAsync();
+            }
+        }
+
+        public async Task CleanErrorNotificationsAsync(ErrorCategory replacementCategory)
+        {
+            RemoveErrorCategoryNotifications(replacementCategory);
+            if (Notification.ErrorCategory == replacementCategory)
             {
                 await CloseAsync();
             }
@@ -80,12 +104,24 @@ namespace Microsoft.Templates.UI.V2Controls
         {
             if (category != Category.None)
             {
-                foreach (var notificationInPull in _notifications.Where(n => n.Category == category))
-                {
-                    notificationInPull.StopCloseTimer();
-                }
-
+                PauseCategoryNotifications(category);
                 _notifications.RemoveAll(n => n.Category == category);
+            }
+        }
+
+        private void RemoveErrorCategoryNotifications(ErrorCategory errorCategory)
+        {
+            if (errorCategory != ErrorCategory.None)
+            {
+                _notifications.RemoveAll(n => n.ErrorCategory == errorCategory);
+            }
+        }
+
+        private void PauseCategoryNotifications(Category category)
+        {
+            foreach (var notification in _notifications.Where(n => n.Category == category))
+            {
+                notification.StopCloseTimer();
             }
         }
     }

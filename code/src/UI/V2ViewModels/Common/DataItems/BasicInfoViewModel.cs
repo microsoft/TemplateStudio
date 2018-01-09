@@ -19,6 +19,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private string _version;
         private string _icon;
         private int _order;
+        private bool _isHidden;
         private RelayCommand _detailsCommand;
         private RelayCommand _goBackCommand;
 
@@ -60,6 +61,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             get => _order;
             set => SetProperty(ref _order, value);
+        }
+
+        public bool IsHidden
+        {
+            get => _isHidden;
+            set => SetProperty(ref _isHidden, value);
         }
 
         public IEnumerable<BasicInfoViewModel> Dependencies { get; protected set; }

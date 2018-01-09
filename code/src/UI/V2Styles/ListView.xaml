@@ -1,14 +1,20 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services"
-                    xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters">
+                    xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters"
+                    xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
+                    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.V2Extensions">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Button.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ImageEx.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBlock.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <converters:SavedTemplateGridConverter x:Key="SavedTemplateGridConverter" />
 
     <ItemsPanelTemplate x:Key="WtsItemsPanelTemplate">
         <WrapPanel Margin="{StaticResource Margin_M2_LeftRight}" Orientation="Horizontal" />
@@ -243,6 +249,99 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
                     <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="WtsListViewItemProjectDetailsTemplates" TargetType="{x:Type ListViewItem}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                    <Grid>
+                        <Grid x:Name="mouseOverGrid" Opacity="0" Background="{Binding SavedTemplateBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
+                        <Grid Style="{Binding HasErrors, Converter={StaticResource SavedTemplateGridConverter}}"/>
+                        <Grid Margin="{StaticResource Margin_S_TopBottom}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="16" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="26" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    x:Name="mouseOverDragAndDropTextBlock"
+                                    Opacity="0"
+                                    Style="{StaticResource WtsTextBlockDragAndDropTemplate}"/>
+                                <controls:ImageEx
+                                    Grid.Column="1"
+                                    SourcePath="{Binding Icon}"
+                                    Style="{StaticResource WtsImageExProjectDetails}" />
+                                <TextBox
+                                    Grid.Column="2"
+                                    Margin="{StaticResource Margin_XS_Left}"
+                                    Text="{Binding Name, Mode=OneWay}"
+                                    Style="{StaticResource WtsTextBoxStyle}"
+                                    IsEnabled="{Binding ItemNameEditable}"
+                                    extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
+                                    extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
+                                    extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}" />
+                                <Button
+                                    Grid.Column="3"
+                                    x:Name="mouseOverDeleteTemplateButton"                                    
+                                    Opacity="0"
+                                    Style="{StaticResource WtsButtonDeleteTemplate}"
+                                    Command="{Binding DeleteCommand}" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Opacity" TargetName="mouseOverGrid" Value="1" />
+                            <Setter Property="Opacity" TargetName="mouseOverDragAndDropTextBlock" Value="1" />
+                            <Setter Property="Opacity" TargetName="mouseOverDeleteTemplateButton" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="Opacity" TargetName="mouseOverGrid" Value="1" />
+                            <Setter Property="Opacity" TargetName="mouseOverDragAndDropTextBlock" Value="1" />
+                            <Setter Property="Opacity" TargetName="mouseOverDeleteTemplateButton" Value="1" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WtsListViewProjectDetailsTemplates" TargetType="{x:Type ListView}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemProjectDetailsTemplates}" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListView}">
+                    <Border
+                        x:Name="Bd"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        Padding="{TemplateBinding Padding}"
+                        SnapsToDevicePixels="true">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

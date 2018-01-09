@@ -347,6 +347,12 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FFFDFBAC; // TODO: Replace this temporary value for a VS Color
                 case "NotificationErrorIcon":
                     return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
+
+                case "DeleteTemplateIcon":
+                    return LightColorValues.Color_FFE82C3C; // TODO: Replace this temporary value for a VS Color
+                case "SavedTemplateBackgroundHover":
+                    return LightColorValues.Color_FFE9E9E9; // TODO: Replace this temporary value for a VS Color
+
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }

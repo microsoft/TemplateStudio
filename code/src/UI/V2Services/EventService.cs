@@ -19,6 +19,8 @@ namespace Microsoft.Templates.UI.V2Services
 
         public event EventHandler<TemplateInfoViewModel> OnTemplateClicked;
 
+        public event EventHandler<SavedTemplateViewModel> OnDeleteTemplateClicked;
+
         private EventService()
         {
         }
@@ -28,5 +30,7 @@ namespace Microsoft.Templates.UI.V2Services
         public void RaiseOnFrameworkChanged(MetadataInfoViewModel framework) => OnFrameworkChanged?.Invoke(this, framework);
 
         public void RaiseOnTemplateClicked(TemplateInfoViewModel template) => OnTemplateClicked?.Invoke(this, template);
+
+        public void RaiseOnDeleteTemplateClicked(SavedTemplateViewModel savedTemplate) => OnDeleteTemplateClicked?.Invoke(this, savedTemplate);
     }
 }
