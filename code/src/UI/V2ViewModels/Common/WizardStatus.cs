@@ -11,6 +11,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
     public class WizardStatus : Observable
     {
         private bool _isBusy;
+        private bool _isNotBusy;
         private bool _hasValidationErrors;
         private bool _isLoading = true;
 
@@ -22,6 +23,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             get => _isBusy;
             private set => SetProperty(ref _isBusy, value);
+        }
+
+        public bool IsNotBusy
+        {
+            get => _isNotBusy;
+            private set => SetProperty(ref _isNotBusy, value);
         }
 
         public bool HasValidationErrors
@@ -57,6 +64,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private void UpdateIsBusy()
         {
             IsBusy = IsLoading || HasValidationErrors;
+            IsNotBusy = !IsBusy;
             IsBusyChanged?.Invoke(this, true);
         }
     }

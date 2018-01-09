@@ -53,7 +53,7 @@
                         SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
-                        IsEnabled="{Binding WizardStatus.IsBusy}" />
+                        IsEnabled="{Binding WizardStatus.IsNotBusy}" />
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
@@ -64,7 +64,7 @@
                         SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
-                        IsEnabled="{Binding WizardStatus.IsBusy}" />
+                        IsEnabled="{Binding WizardStatus.IsNotBusy}" />
 
                     <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
                         <TextBlock
