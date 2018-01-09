@@ -117,7 +117,6 @@
     <Compile Include="EventHandlers\CameraControlEventArgs.cs" />
     <Compile Include="Helpers\CameraOrientationExtensions.cs" />
     <Compile Include="Helpers\EnumToBooleanConverter.cs" />
-    <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="Models\SampleOrderWithSymbol.cs" />
@@ -233,7 +232,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\ResourceExtensions.cs" />
-    <Compile Include="Helpers\Singleton.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

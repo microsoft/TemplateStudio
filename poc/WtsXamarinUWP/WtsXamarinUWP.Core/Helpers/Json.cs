@@ -1,9 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
-namespace WtsXamarinUWP.UWP.Helpers
+namespace WtsXamarinUWP.Core.Helpers
 {
     public static class Json
     {

@@ -9,7 +9,9 @@
     <Import_RootNamespace>WtsXamarinUWP.Core</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Json.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Observable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Singleton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\SampleOrder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\SampleDataService.cs" />
   </ItemGroup>

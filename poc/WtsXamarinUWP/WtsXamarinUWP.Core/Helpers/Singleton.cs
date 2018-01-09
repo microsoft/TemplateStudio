@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace WtsXamarinUWP.UWP.Helpers
+namespace WtsXamarinUWP.Core.Helpers
 {
     internal static class Singleton<T>
         where T : new()

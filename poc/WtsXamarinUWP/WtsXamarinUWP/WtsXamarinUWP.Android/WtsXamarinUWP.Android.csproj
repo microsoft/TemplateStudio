@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>3.1.2</Version>
     </PackageReference>

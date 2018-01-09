@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using Windows.Storage;
 using Windows.Storage.Streams;
+using WtsXamarinUWP.Core.Helpers;
 
 namespace WtsXamarinUWP.UWP.Helpers
 {
