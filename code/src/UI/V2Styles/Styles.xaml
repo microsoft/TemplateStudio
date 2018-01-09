@@ -9,7 +9,6 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Grid.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Hyperlink.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ImageEx.xaml" />
-        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ItemsControl.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ListView.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/MarkdownBlock.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBlock.xaml" />

@@ -133,6 +133,10 @@
     <value>Cancel</value>
     <comment>MainPage Cancel button</comment>
   </data>
+  <data name="ButtonClose" xml:space="preserve">
+    <value>Close</value>
+    <comment>Notification button close</comment>
+  </data>
   <data name="ButtonCreate" xml:space="preserve">
     <value>Create</value>
     <comment>MainPage Create button</comment>
@@ -140,6 +144,10 @@
   <data name="ButtonNext" xml:space="preserve">
     <value>Next</value>
     <comment>MainPage Next button</comment>
+  </data>
+  <data name="ButtonRemove" xml:space="preserve">
+    <value>Remove</value>
+    <comment>Project details saved templates remove button Automation property name</comment>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
     <value>Select a design pattern</value>

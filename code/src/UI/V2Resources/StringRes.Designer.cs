@@ -97,6 +97,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string ButtonClose {
+            get {
+                return ResourceManager.GetString("ButtonClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string ButtonCreate {
@@ -111,6 +120,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string ButtonNext {
             get {
                 return ResourceManager.GetString("ButtonNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string ButtonRemove {
+            get {
+                return ResourceManager.GetString("ButtonRemove", resourceCulture);
             }
         }
         

@@ -27,8 +27,9 @@
             Style="{StaticResource WtsTextBlockSectionTitle}" />
         <ScrollViewer Grid.Row="1">
             <ItemsControl
+                Focusable="False"
                 ItemsSource="{Binding Groups}"
-                ItemTemplate="{StaticResource WtsGroupTemplatePageFeature}"/>
+                ItemTemplate="{StaticResource WtsGroupTemplatePageFeature}" />
         </ScrollViewer>
     </Grid>
 </Page>
