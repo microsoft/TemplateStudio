@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsXamarinUWP.Android", "Wt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsXamarinUWP.iOS", "WtsXamarinUWP\WtsXamarinUWP.iOS\WtsXamarinUWP.iOS.csproj", "{0DFBA403-C350-42D4-853A-0DA40383551B}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WtsXamarinUWP", "WtsXamarinUWP\WtsXamarinUWP\WtsXamarinUWP.shproj", "{0DB1FDD8-1332-4D55-98B4-0A7F27D1D81A}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WtsXamarinUWP.Mobile", "WtsXamarinUWP\WtsXamarinUWP\WtsXamarinUWP.Mobile.shproj", "{0DB1FDD8-1332-4D55-98B4-0A7F27D1D81A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsXamarinUWP.UWP", "WtsXamarinUWP.UWP\WtsXamarinUWP.UWP.csproj", "{11B85433-A24D-4A96-9465-1F8E51FD939C}"
 EndProject

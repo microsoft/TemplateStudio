@@ -6,7 +6,7 @@
     <SharedGUID>{0DB1FDD8-1332-4D55-98B4-0A7F27D1D81A}</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>WtsXamarinUWP</Import_RootNamespace>
+    <Import_RootNamespace>WtsXamarinUWP.Mobile</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
