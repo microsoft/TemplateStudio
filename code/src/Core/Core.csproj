@@ -213,7 +213,6 @@
     <Compile Include="Fs.cs" />
     <Compile Include="Gen\TempGenerationResult.cs" />
     <Compile Include="Packaging\InvalidSignatureException.cs" />
-    <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Composition\CompositionQuery.cs" />
     <Compile Include="Locations\SyncStatusEventArgs.cs" />
     <Compile Include="Locations\SyncStatus.cs" />
@@ -311,10 +310,7 @@
     <Compile Include="PostActions\NewItemPostActionFactory.cs" />
     <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
-    <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
-    <Compile Include="Locations\TemplatesContent.cs" />
-    <Compile Include="Locations\TemplatesSource.cs" />
     <Compile Include="Packaging\SignCertNotFoundException.cs" />
     <Compile Include="MetadataInfo.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />

@@ -86,7 +86,18 @@ namespace Microsoft.Templates.Core.Locations
             {
                 try
                 {
-                    await AcquireContentAsync();
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckingForUpdates });
+
+                    _source.LoadConfig();
+                    if (_content.IsNewVersionAvailable())
+                    {
+                        await AcquireContentAsync();
+                    }
+                    else
+                    {
+                        SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckedForUpdates });
+                    }
+
                     CheckContentStatusAsync();
                 }
                 finally
@@ -124,8 +135,8 @@ namespace Microsoft.Templates.Core.Locations
                     {
                         AcquireContent();
                     });
+
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
-                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewVersionAvailable });
                 }
             }
             catch (Exception ex)
@@ -199,17 +210,6 @@ namespace Microsoft.Templates.Core.Locations
                 AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorUpdating, ex).FireAndForget();
             }
         }
-
-        //private async Task CheckNewVersionAvailableAsync()
-        //{
-        //    await Task.Run(() =>
-        //    {
-        //        if (_content.IsNewVersionAvailable())
-        //        {
-        //            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewVersionAvailable });
-        //        }
-        //    });
-        //}
 
         private void UpdateTemplatesCache(bool force)
         {

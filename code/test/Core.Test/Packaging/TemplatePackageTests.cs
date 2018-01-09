@@ -380,7 +380,6 @@ namespace Microsoft.Templates.Core.Test.Locations
                 var contentInfo = rts.GetContent(package, testDir);
 
                 Assert.True(Directory.Exists(contentInfo.Path));
-
             }
             finally
             {

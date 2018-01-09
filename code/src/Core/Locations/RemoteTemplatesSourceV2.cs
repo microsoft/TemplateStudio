@@ -24,14 +24,14 @@ namespace Microsoft.Templates.Core.Locations
 
             Fs.SafeMoveDirectory(Path.Combine(extractionFolder, "Templates"), finalDestination);
 
+            Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
+
             return new TemplatesContentInfo()
             {
                 Date = packageInfo.Date,
                 Path = finalDestination,
                 Version = packageInfo.Version
             };
-
-            // TODO REMOVE TEMPS
         }
 
         public override void Acquire(ref TemplatesPackageInfo packageInfo)
@@ -88,8 +88,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             else
             {
-                // TODO: Package Not Adquired
-                // ERROR
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSourceLocalPathEmptyMessage).FireAndForget();
                 return null;
             }
         }

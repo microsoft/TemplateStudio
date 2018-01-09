@@ -36,7 +36,6 @@ namespace Microsoft.Templates.Core.Locations
 
             LoadAvailableContents();
 
-            // TODO: Ensure is the bestplace RAGC
             source.LoadConfig();
             Source = source;
             SetCurrentContent(tengineCurrentContent);

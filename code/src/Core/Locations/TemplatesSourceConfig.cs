@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Resources;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -35,9 +37,9 @@ namespace Microsoft.Templates.Core.Locations
                     result = JsonConvert.DeserializeObject<TemplatesSourceConfig>(configData, settings);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // TODO: Log error
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.TemplatesSourceErrorLoadingConfigFileMessage).FireAndForget();
                 result = null;
             }
 

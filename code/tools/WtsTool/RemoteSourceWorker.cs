@@ -180,7 +180,7 @@ namespace WtsTool
         private static void WriteSummary(TemplatesSourceConfig config, TextWriter output)
         {
             output.WriteCommandText($"Latest Version: {config.Latest?.MainVersion} ({config.Latest.Version?.ToString()})");
-            output.WriteCommandText($"Latest Version Uri: {config.RootUri + config.Latest.Name }");
+            output.WriteCommandText($"Latest Version Uri: {config.RootUri + config.Latest.Name}");
 
             output.WriteLine();
             output.WriteCommandText($"Available Versions: {string.Join(", ", config.Versions.Select(e => e.MainVersion).ToArray())}");

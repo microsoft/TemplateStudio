@@ -649,11 +649,29 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error reading source config file..
+        /// </summary>
+        public static string TemplatesSourceErrorLoadingConfigFileMessage {
+            get {
+                return ResourceManager.GetString("TemplatesSourceErrorLoadingConfigFileMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The templates can&apos;t be extracted..
         /// </summary>
         public static string TemplatesSourceExtractContentMessage {
             get {
                 return ResourceManager.GetString("TemplatesSourceExtractContentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates local path is empty..
+        /// </summary>
+        public static string TemplatesSourceLocalPathEmptyMessage {
+            get {
+                return ResourceManager.GetString("TemplatesSourceLocalPathEmptyMessage", resourceCulture);
             }
         }
         

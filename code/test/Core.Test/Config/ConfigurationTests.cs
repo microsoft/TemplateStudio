@@ -84,7 +84,6 @@ namespace Microsoft.Templates.Core.Test.Config
             Assert.Equal("myCdnUrldata", configInstance.CdnUrl);
             Assert.Equal("myRemoteTelemetryKey", configInstance.RemoteTelemetryKey);
             Assert.Equal(15, configInstance.DaysToKeepDiagnosticsLogs);
-            Assert.Equal(240, configInstance.VersionCheckingExpirationMinutes);
         }
 
         [Fact]
@@ -102,7 +101,6 @@ namespace Microsoft.Templates.Core.Test.Config
             Assert.NotEqual(configDefault.RemoteTelemetryKey, configInstance.RemoteTelemetryKey);
             Assert.Equal("partialTelemetryKey", configInstance.RemoteTelemetryKey);
             Assert.Equal(configDefault.DaysToKeepDiagnosticsLogs, configInstance.DaysToKeepDiagnosticsLogs);
-            Assert.Equal(configDefault.VersionCheckingExpirationMinutes, configInstance.VersionCheckingExpirationMinutes);
         }
 
         [Fact]
