@@ -10,7 +10,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.V2Extensions;
 
 namespace Microsoft.Templates.UI.V2Services
 {

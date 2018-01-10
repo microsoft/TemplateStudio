@@ -9,8 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
-
-using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.V2Extensions;
 
 namespace Microsoft.Templates.UI.V2Services
 {
