@@ -121,9 +121,6 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>10.0.3</Version>
-    </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>3.1.2</Version>
     </PackageReference>
@@ -138,7 +135,11 @@
   <ItemGroup>
     <BundleResource Include="Resources\settings.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WtsXamarinUWP.Mobile\WtsXamarinUWP.Mobile.csproj">
+      <Project>{f7f555a0-ff92-4a34-b6dd-a1a527d31400}</Project>
+      <Name>WtsXamarinUWP.Mobile</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\WtsXamarinUWP\WtsXamarinUWP.projitems" Label="Shared" />
-  <Import Project="..\..\WtsXamarinUWP.Core\WtsXamarinUWP.Core.projitems" Label="Shared" />
 </Project>
