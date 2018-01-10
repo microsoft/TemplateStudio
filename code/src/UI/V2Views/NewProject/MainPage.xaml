@@ -73,7 +73,8 @@
                             Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}" />
                         <ListView
                             Style="{StaticResource WtsListViewProjectDetailsTemplates}"
-                            ItemsSource="{Binding UserSelection.Pages}" />
+                            ItemsSource="{Binding UserSelection.Pages}"
+                            Loaded="OnLoaded"/>
                     </StackPanel>
 
                     <StackPanel Visibility="{Binding UserSelection.Features, Converter={StaticResource HasItemsVisibilityConverter}}">

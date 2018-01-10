@@ -44,6 +44,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         public UserSelectionViewModel()
         {
             EventService.Instance.OnDeleteTemplateClicked += OnRemove;
+            EventService.Instance.OnReorderTemplate += OnReorderTemplate;
         }
 
         public void Initialize(string projectTypeName, string frameworkName, string language)
@@ -255,6 +256,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                 var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
                 await NotificationsControl.Instance.AddNotificationAsync(notification);
             }
+        }
+
+        private void OnReorderTemplate(object sender, EventArgs e)
+        {
+            UpdateHomePage();
         }
 
         private void UpdateHasItemsAddedByUser()

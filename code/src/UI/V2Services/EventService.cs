@@ -21,6 +21,8 @@ namespace Microsoft.Templates.UI.V2Services
 
         public event EventHandler<SavedTemplateViewModel> OnDeleteTemplateClicked;
 
+        public event EventHandler OnReorderTemplate;
+
         private EventService()
         {
         }
@@ -32,5 +34,7 @@ namespace Microsoft.Templates.UI.V2Services
         public void RaiseOnTemplateClicked(TemplateInfoViewModel template) => OnTemplateClicked?.Invoke(this, template);
 
         public void RaiseOnDeleteTemplateClicked(SavedTemplateViewModel savedTemplate) => OnDeleteTemplateClicked?.Invoke(this, savedTemplate);
+
+        public void RaiseOnReorderTemplate() => OnReorderTemplate?.Invoke(this, EventArgs.Empty);
     }
 }

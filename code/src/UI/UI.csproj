@@ -380,9 +380,17 @@
       <DependentUpon>StringRes.resx</DependentUpon>
     </Compile>
     <Compile Include="V2Services\DataService.cs" />
+    <Compile Include="V2Services\DragAndDropService\DragAdornerLayer.cs" />
+    <Compile Include="V2Services\DragAndDropService\DragAndDropEventArgs.cs" />
+    <Compile Include="V2Services\DragAndDropService\DragAndDropService.cs" />
+    <Compile Include="V2Services\DragAndDropService\DragAndDropService.Members.cs" />
+    <Compile Include="V2Services\DragAndDropService\ListViewItemDragState.cs" />
+    <Compile Include="V2Services\DragAndDropService\MouseUtilities.cs" />
+    <Compile Include="V2Services\DragAndDropService\NativeMethods.cs" />
     <Compile Include="V2Services\EventService.cs" />
     <Compile Include="V2Services\LicensesService.cs" />
     <Compile Include="V2Services\NavigationService.cs" />
+    <Compile Include="V2Services\OrderingService.cs" />
     <Compile Include="V2Services\Styles\LightColorValues.cs" />
     <Compile Include="V2Services\Styles\FakeStyleValuesProvider.cs" />
     <Compile Include="V2Services\Styles\IStyleValuesProvider.cs" />
