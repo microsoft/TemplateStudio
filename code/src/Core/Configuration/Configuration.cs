@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core
 {
     public class Configuration
     {
-        public string Environment { get; set; } = "Local";
+        public string Environment { get; set; } = "LocalEnv";
 
         public string CdnUrl { get; set; } = "https://wtsrepository.blob.core.windows.net/dev";
 
