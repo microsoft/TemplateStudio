@@ -97,8 +97,7 @@ namespace Microsoft.Templates.Test
 
             if (!syncExecuted)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync();
-                await GenContext.ToolBox.Repo.RefreshAsync(true);
+                await GenContext.ToolBox.Repo.SynchronizeAsync(true);
                 syncExecuted = true;
             }
         }

@@ -123,8 +123,7 @@ namespace Microsoft.Templates.Test
                 return;
             }
 
-            await GenContext.ToolBox.Repo.SynchronizeAsync();
-            await GenContext.ToolBox.Repo.RefreshAsync(true);
+            await GenContext.ToolBox.Repo.SynchronizeAsync(true);
 
             syncExecuted.Add(source.Id, true);
         }

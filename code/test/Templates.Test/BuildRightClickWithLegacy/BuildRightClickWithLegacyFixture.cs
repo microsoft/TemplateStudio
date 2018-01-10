@@ -69,8 +69,7 @@ namespace Microsoft.Templates.Test
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), new Version("1.6"), ProgrammingLanguages.CSharp);
             if (!syncExecuted)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync();
-                await GenContext.ToolBox.Repo.RefreshAsync(true);
+                await GenContext.ToolBox.Repo.SynchronizeAsync(true);
 
                 syncExecuted = true;
             }
@@ -79,8 +78,7 @@ namespace Microsoft.Templates.Test
         public async Task ChangeTemplatesSourceAsync(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
-            await GenContext.ToolBox.Repo.SynchronizeAsync();
-            await GenContext.ToolBox.Repo.RefreshAsync(true);
+            await GenContext.ToolBox.Repo.SynchronizeAsync(true);
         }
 
         public override async Task InitializeFixtureAsync(IContextProvider contextProvider, string framework = "")
