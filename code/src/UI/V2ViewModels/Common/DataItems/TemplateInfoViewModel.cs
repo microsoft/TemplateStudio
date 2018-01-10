@@ -24,6 +24,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public string Group { get; }
 
+        public int GenGroup { get; }
+
         public TemplateType TemplateType { get; }
 
         public bool MultipleInstance { get; }
@@ -73,6 +75,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             // ITemplateInfo properties
             Template = template;
             Group = template.GetGroup();
+            GenGroup = template.GetGenGroup();
             TemplateType = template.GetTemplateType();
             MultipleInstance = template.GetMultipleInstance();
             ItemNameEditable = template.GetItemNameEditable();

@@ -86,12 +86,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                 if (dependencyTemplate == null)
                 {
                     // Case of hidden templates, it's not found on templat lists
-                    Add(TemplateOrigin.Dependency, new TemplateInfoViewModel(dependency, _frameworkName));
+                    dependencyTemplate = new TemplateInfoViewModel(dependency, _frameworkName);
                 }
-                else
-                {
-                    Add(TemplateOrigin.Dependency, dependencyTemplate);
-                }
+
+                Add(TemplateOrigin.Dependency, dependencyTemplate);
             }
 
             template.IncreaseSelection();
@@ -111,7 +109,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                     }
                 }
 
-                GetCollection(template.TemplateType).Add(savedTemplate);
+                AddToCollection(GetCollection(template.TemplateType), savedTemplate);
                 RaiseCollectionChanged(template.TemplateType);
                 UpdateHasItemsAddedByUser();
 
@@ -128,11 +126,22 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public bool IsTemplateAdded(TemplateInfoViewModel template) => GetCollection(template.TemplateType).Any(t => t.Equals(template));
 
-        private void RaiseCollectionChanged(TemplateType templateType)
+        private void AddToCollection(ObservableCollection<SavedTemplateViewModel> collection, SavedTemplateViewModel savedTemplate)
         {
-            // Notify collection name to update the visibillity on the layout
-            var collectionName = templateType == TemplateType.Page ? nameof(Pages) : nameof(Features);
-            OnPropertyChanged(collectionName);
+            Func<SavedTemplateViewModel, bool> genGroupEqual = (SavedTemplateViewModel st) => st.GenGroup == savedTemplate.GenGroup;
+            Func<SavedTemplateViewModel, bool> genGroupPrevious = (SavedTemplateViewModel st) => st.GenGroup < savedTemplate.GenGroup;
+
+            int index = 0;
+            if (collection.Any(genGroupEqual))
+            {
+                index = collection.IndexOf(collection.Last(genGroupEqual)) + 1;
+            }
+            else if (collection.Any())
+            {
+                index = collection.IndexOf(collection.Last(genGroupPrevious)) + 1;
+            }
+
+            collection.Insert(index, savedTemplate);
         }
 
         public void ResetUserSelection()
@@ -141,6 +150,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             _isInitialized = false;
             Pages.Clear();
             Features.Clear();
+        }
+
+        private void RaiseCollectionChanged(TemplateType templateType)
+        {
+            // Notify collection name to update the visibillity on the layout
+            var collectionName = templateType == TemplateType.Page ? nameof(Pages) : nameof(Features);
+            OnPropertyChanged(collectionName);
         }
 
         private UserSelection GetUserSelection()

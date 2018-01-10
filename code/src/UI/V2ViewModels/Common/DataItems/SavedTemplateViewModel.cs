@@ -35,6 +35,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public TemplateType TemplateType { get; }
 
+        public int GenGroup { get; }
+
         public IEnumerable<BasicInfoViewModel> Dependencies { get; }
 
         public string Name
@@ -96,6 +98,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             Template = template.Template;
             Identity = template.Identity;
             TemplateType = template.TemplateType;
+            GenGroup = template.GenGroup;
             Dependencies = template.Dependencies;
             Icon = template.Icon;
             ItemNameEditable = template.ItemNameEditable;
