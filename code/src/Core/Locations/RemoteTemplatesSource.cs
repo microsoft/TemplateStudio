@@ -12,7 +12,7 @@ using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public class RemoteTemplatesSourceV2 : TemplatesSourceV2
+    public class RemoteTemplatesSource : TemplatesSource
     {
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
 

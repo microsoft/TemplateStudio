@@ -13,7 +13,7 @@ using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Test
 {
-    public sealed class LegacyTemplatesSourceV2 : RemoteTemplatesSourceV2
+    public sealed class LegacyTemplatesSourceV2 : RemoteTemplatesSource
     {
         public override string Id => "TestLegacy" + GetAgentName();
 

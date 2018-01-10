@@ -20,9 +20,7 @@ namespace Microsoft.Templates.Core.Locations
 
         private readonly Lazy<string> _workingFolder = new Lazy<string>(() => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), FolderName));
 
-        private readonly TemplatesSourceV2 _source;
-
-        private readonly TemplatesContentV2 _content;
+        private readonly TemplatesContent _content;
 
         private static object syncLock = new object();
 
@@ -38,17 +36,15 @@ namespace Microsoft.Templates.Core.Locations
 
         public static bool SyncInProgress { get; private set; }
 
-        public TemplatesSynchronization(TemplatesSourceV2 source, Version wizardVersion)
+        public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
-            _source = source ?? throw new ArgumentNullException(nameof(source));
-
             string currentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder, source.Id);
-            _content = new TemplatesContentV2(WorkingFolder, source.Id, wizardVersion, source, currentContentFolder);
+            _content = new TemplatesContent(WorkingFolder, source.Id, wizardVersion, source, currentContentFolder);
 
             CurrentWizardVersion = wizardVersion;
         }
 
-        public async Task DoAsync(bool force)
+        public async Task EnsureContentAsync()
         {
             await EnsureVsInstancesSyncingAsync();
 
@@ -56,13 +52,29 @@ namespace Microsoft.Templates.Core.Locations
             {
                 try
                 {
-                    await CheckInstallDeployedContentAsync(force);
+                    if (!_content.Exists())
+                    {
+                        await ExtractInstalledContentAsync();
+                    }
 
+                    TelemetryService.Current.SetContentVersionToContext(CurrentContent.Version);
+                }
+                finally
+                {
+                    UnlockSync();
+                }
+            }
+        }
+
+        public async Task RefreshTemplateCacheAsync(bool force)
+        {
+            await EnsureVsInstancesSyncingAsync();
+
+            if (LockSync())
+            {
+                try
+                {
                     await UpdateTemplatesCacheAsync(force);
-
-                    await AcquireContentAsync();
-
-                    CheckContentStatusAsync();
 
                     PurgeContentAsync().FireAndForget();
 
@@ -75,30 +87,22 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public async Task RefreshAsync(bool force)
-        {
-            await UpdateTemplatesCacheAsync(force);
-        }
-
         public async Task CheckForNewContentAsync()
         {
+            await EnsureVsInstancesSyncingAsync();
+
             if (LockSync())
             {
                 try
                 {
-                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckingForUpdates });
+                    _content.Source.LoadConfig();
 
-                    _source.LoadConfig();
                     if (_content.IsNewVersionAvailable())
                     {
-                        await AcquireContentAsync();
-                    }
-                    else
-                    {
-                        SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckedForUpdates });
+                        await GetNewTemplatesAsync();
                     }
 
-                    CheckContentStatusAsync();
+                    CheckForWizardUpdates();
                 }
                 finally
                 {
@@ -107,7 +111,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private void CheckContentStatusAsync()
+        private void CheckForWizardUpdates()
         {
             if (_content.IsWizardUpdateAvailable())
             {
@@ -115,15 +119,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task CheckInstallDeployedContentAsync(bool force)
-        {
-            if (RequireExtractInstalledContent() || force)
-            {
-                await ExtractInstalledContentAsync();
-            }
-        }
-
-        private async Task AcquireContentAsync()
+        private async Task GetNewTemplatesAsync()
         {
             try
             {
@@ -133,7 +129,7 @@ namespace Microsoft.Templates.Core.Locations
 
                     await Task.Run(() =>
                     {
-                        AcquireContent();
+                        _content.GetNewVersionContent();
                     });
 
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
@@ -152,7 +148,11 @@ namespace Microsoft.Templates.Core.Locations
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing });
 
-                await Task.Run(() => ExtractInstalledContent());
+                await Task.Run(() =>
+                {
+                    var installedTemplatesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
+                    _content.GetInstalledContent(installedTemplatesPath);
+                });
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });
             }
@@ -163,44 +163,24 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private void AcquireContent()
-        {
-            try
-            {
-                var package = _source.Config.ResolvePackage(CurrentWizardVersion);
-                _source.Acquire(ref package);
-                _content.GetNewVersionContent();
-            }
-            catch (Exception ex)
-            {
-                throw new RepositorySynchronizationException(SyncStatus.Acquiring, ex);
-            }
-        }
-
-        private void ExtractInstalledContent()
-        {
-            try
-            {
-                _content.Extract(GetInstalledTemplatesPath());
-            }
-            catch (Exception ex)
-            {
-                throw new RepositorySynchronizationException(SyncStatus.Acquiring, ex);
-            }
-        }
-
-        private string GetInstalledTemplatesPath()
-        {
-            return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
-        }
-
-        private async Task UpdateTemplatesCacheAsync(bool force)
-        {
+         private async Task UpdateTemplatesCacheAsync(bool force)
+         {
             try
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updating });
 
-                await Task.Run(() => UpdateTemplatesCache(force));
+                await Task.Run(() =>
+                {
+                    if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
+                    {
+                        CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
+                        CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);
+
+                        CodeGen.Instance.Settings.SettingsLoader.Save();
+
+                        _content.RefreshContentFolder(CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _content.Source.Id));
+                    }
+                });
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updated });
             }
@@ -211,41 +191,19 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private void UpdateTemplatesCache(bool force)
-        {
-            try
-            {
-                if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
-                {
-                    CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
-                    CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);
-
-                    CodeGen.Instance.Settings.SettingsLoader.Save();
-
-                    _content.RefreshContentFolder(CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _source.Id));
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new RepositorySynchronizationException(SyncStatus.Updating, ex);
-            }
-        }
-
         private async Task PurgeContentAsync()
         {
             try
             {
-                await Task.Run(() => _content.Purge());
+                await Task.Run(() =>
+                {
+                    _content.Purge();
+                });
             }
             catch (Exception ex)
             {
                 await AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationPurgeContentAsyncMessage, ex);
             }
-        }
-
-        private bool RequireExtractInstalledContent()
-        {
-            return !_content.Exists();
         }
 
         private bool LockSync()

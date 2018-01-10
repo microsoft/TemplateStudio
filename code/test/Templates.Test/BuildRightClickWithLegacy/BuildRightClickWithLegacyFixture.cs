@@ -27,8 +27,8 @@ namespace Microsoft.Templates.Test
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\LEG\\{testExecutionTimeStamp}\\";
 
-        public TemplatesSourceV2 Source => new LegacyTemplatesSourceV2();
-        public TemplatesSourceV2 LocalSource => new LocalTemplatesSourceV2("BldRClickLegacy");
+        public TemplatesSource Source => new LegacyTemplatesSourceV2();
+        public TemplatesSource LocalSource => new LocalTemplatesSource("BldRClickLegacy");
 
         private static bool syncExecuted;
 
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesAsync(TemplatesSourceV2 source)
+        private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
@@ -76,7 +76,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public async Task ChangeTemplatesSourceAsync(TemplatesSourceV2 source)
+        public async Task ChangeTemplatesSourceAsync(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
             await GenContext.ToolBox.Repo.SynchronizeAsync();

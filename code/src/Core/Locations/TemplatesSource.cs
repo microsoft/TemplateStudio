@@ -15,7 +15,7 @@ using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public abstract class TemplatesSourceV2
+    public abstract class TemplatesSource
     {
         protected const string TemplatesFolderName = "Templates";
 

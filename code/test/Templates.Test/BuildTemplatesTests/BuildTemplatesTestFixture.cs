@@ -32,11 +32,11 @@ namespace Microsoft.Templates.Test
 
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{ShortFrameworkName(_framework)}\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSourceV2 Source => new LocalTemplatesSourceV2(ShortFrameworkName(_framework));
+        public TemplatesSource Source => new LocalTemplatesSource(ShortFrameworkName(_framework));
 
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync(string frameworkFilter, string programmingLanguage)
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSourceV2(ShortFrameworkName(frameworkFilter)));
+            await InitializeTemplatesAsync(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
 
             List<object[]> result = new List<object[]>();
 
@@ -76,7 +76,7 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync(string frameworkFilter)
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSourceV2(ShortFrameworkName(frameworkFilter)));
+            await InitializeTemplatesAsync(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
 
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
@@ -114,7 +114,7 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesAsync(TemplatesSourceV2 source)
+        private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 

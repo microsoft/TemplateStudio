@@ -48,7 +48,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (GenContext.CurrentLanguage != language)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSourceV2(), new VsGenShell(), language);
+                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), language);
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), language);
 #endif

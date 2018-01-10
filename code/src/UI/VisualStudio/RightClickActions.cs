@@ -136,7 +136,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (!GenContext.ContextInitialized)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSourceV2(), _shell, _shell.GetActiveProjectLanguage());
+                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, _shell.GetActiveProjectLanguage());
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), _shell, _shell.GetActiveProjectLanguage());
 #endif

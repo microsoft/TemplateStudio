@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core
 
         public bool SyncInProgress { get => TemplatesSynchronization.SyncInProgress; }
 
-        public TemplatesRepository(TemplatesSourceV2 source, Version wizardVersion, string language)
+        public TemplatesRepository(TemplatesSource source, Version wizardVersion, string language)
         {
             CurrentLanguage = language;
             WizardVersion = wizardVersion.ToString();
@@ -50,7 +50,9 @@ namespace Microsoft.Templates.Core
 
         public async Task SynchronizeAsync(bool force = false)
         {
-            await Sync.DoAsync(force);
+            await Sync.EnsureContentAsync();
+            await Sync.RefreshTemplateCacheAsync(force);
+            await Sync.CheckForNewContentAsync();
         }
 
         public async Task CheckForUpdatesAsync()
@@ -60,7 +62,7 @@ namespace Microsoft.Templates.Core
 
         public async Task RefreshAsync(bool force = false)
         {
-            await Sync.RefreshAsync(force);
+            await Sync.RefreshTemplateCacheAsync(force);
         }
 
         public IEnumerable<ITemplateInfo> GetAll()

@@ -28,13 +28,13 @@ namespace Microsoft.Templates.Test
 
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Build\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSourceV2 Source => new LocalTemplatesSourceV2("TstBld");
+        public TemplatesSource Source => new LocalTemplatesSource("TstBld");
 
         private static bool syncExecuted;
 
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync()
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSourceV2("TstBld"));
+            await InitializeTemplatesAsync(new LocalTemplatesSource("TstBld"));
 
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
@@ -59,7 +59,7 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync()
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSourceV2("TstBld"));
+            await InitializeTemplatesAsync(new LocalTemplatesSource("TstBld"));
 
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
@@ -90,7 +90,7 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesAsync(TemplatesSourceV2 source)
+        private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 

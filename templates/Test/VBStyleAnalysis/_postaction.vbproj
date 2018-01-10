@@ -1,0 +1,6 @@
+﻿<!-- Nuget package references -->
+<!--{[{-->
+<PackageReference Include="VBStyleAnalyzer">
+  <Version>0.1.12</Version>
+</PackageReference>
+<!--}]}-->

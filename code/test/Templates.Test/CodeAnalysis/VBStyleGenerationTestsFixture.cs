@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<ITemplateInfo> Templates;
 
-        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSourceV2 source)
+        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.VisualBasic), ProgrammingLanguages.VisualBasic);
             if (Templates == null)
@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Test
 
         public async Task InitializeFixtureAsync(IContextProvider contextProvider)
         {
-            var source = new VBStylePlusLocalTemplatesSource();
+            var source = new LocalTemplatesSource("VBStyle");
             GenContext.Current = contextProvider;
 
             await InitializeTemplatesForLanguageAsync(source);
@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Test
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesForVBStyleAsync()
         {
             List<object[]> result = new List<object[]>();
-            await InitializeTemplatesForLanguageAsync(new VBStylePlusLocalTemplatesSource());
+            await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("VBStyle"));
 
             var projectTemplates =
                 VBStyleGenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project

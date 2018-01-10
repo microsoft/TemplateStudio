@@ -12,7 +12,7 @@ using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public class TemplatesContentV2
+    public class TemplatesContent
     {
         private const string TemplatesFolderName = "Templates";
 
@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public Version WizardVersion { get; private set; }
 
-        public TemplatesSourceV2 Source { get; private set; }
+        public TemplatesSource Source { get; private set; }
 
         public string LatestContentFolder => GetContentFolder();
 
@@ -30,13 +30,12 @@ namespace Microsoft.Templates.Core.Locations
 
         public TemplatesContentInfo Latest { get => GetLatestContent(); }
 
-        public TemplatesContentV2(string workingFolder, string sourceId, Version wizardVersion, TemplatesSourceV2 source, string tengineCurrentContent)
+        public TemplatesContent(string workingFolder, string sourceId, Version wizardVersion, TemplatesSource source, string tengineCurrentContent)
         {
             TemplatesFolder = Path.Combine(workingFolder, TemplatesFolderName, sourceId);
 
             LoadAvailableContents();
 
-            source.LoadConfig();
             Source = source;
             SetCurrentContent(tengineCurrentContent);
 
@@ -87,6 +86,7 @@ namespace Microsoft.Templates.Core.Locations
         public void GetNewVersionContent()
         {
             var latestPackage = Source.Config.ResolvePackage(WizardVersion);
+            Source.Acquire(ref latestPackage);
 
             TemplatesContentInfo content = Source.GetContent(latestPackage, TemplatesFolder);
             var alreadyExists = All.Where(p => p.Version == latestPackage.Version).FirstOrDefault();
@@ -98,10 +98,10 @@ namespace Microsoft.Templates.Core.Locations
             All.Add(content);
         }
 
-        internal void Extract(string mstxFilePath)
+        internal void GetInstalledContent(string mstxFilePath)
         {
             TemplatesPackageInfo installedPackage = null;
-            if (Source is RemoteTemplatesSourceV2 && File.Exists(mstxFilePath))
+            if (Source is RemoteTemplatesSource && File.Exists(mstxFilePath))
             {
                 installedPackage = new TemplatesPackageInfo()
                 {
@@ -111,7 +111,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             else
             {
-                installedPackage = LocalTemplatesSourceV2.VersionZero;
+                installedPackage = LocalTemplatesSource.VersionZero;
             }
 
             var package = Source.GetContent(installedPackage, TemplatesFolder);

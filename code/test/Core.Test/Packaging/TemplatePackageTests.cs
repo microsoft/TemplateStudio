@@ -334,7 +334,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public void TestRemoteSource_Acquire()
         {
-            RemoteTemplatesSourceV2 rts = new RemoteTemplatesSourceV2();
+            RemoteTemplatesSource rts = new RemoteTemplatesSource();
             rts.LoadConfig();
             var package = rts.Config.Latest;
 
@@ -372,7 +372,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             try
             {
-                RemoteTemplatesSourceV2 rts = new RemoteTemplatesSourceV2();
+                RemoteTemplatesSource rts = new RemoteTemplatesSource();
                 rts.LoadConfig();
                 var package = rts.Config.Latest;
 

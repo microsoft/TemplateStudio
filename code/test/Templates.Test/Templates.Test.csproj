@@ -215,16 +215,13 @@
     <Compile Include="BuildTemplatesTests\BuildCodeBehindProjectTests.cs" />
     <Compile Include="BuildFixture.cs" />
     <Compile Include="CodeAnalysis\VBStyleProjectGenerationTests.cs" />
-    <Compile Include="CodeAnalysis\VBStylePlusLocalTemplatesSource.cs" />
     <Compile Include="CodeAnalysis\VBStyleGenerationTestsFixture.cs" />
     <Compile Include="CodeAnalysis\VBStyleCollection.cs" />
     <Compile Include="CodeAnalysis\SonarLintCollection.cs" />
     <Compile Include="CodeAnalysis\SonarLintGenerationTestsFixture.cs" />
-    <Compile Include="CodeAnalysis\SonarLintPlusLocalTemplatesSource.cs" />
     <Compile Include="CodeAnalysis\SonarLintProjectGenerationTests.cs" />
     <Compile Include="CodeAnalysis\StyleCopCollection.cs" />
     <Compile Include="CodeAnalysis\StyleCopGenerationTestsFixture.cs" />
-    <Compile Include="CodeAnalysis\StyleCopPlusLocalTemplatesSource.cs" />
     <Compile Include="CodeAnalysis\StyleCopProjectGenerationTests.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
     <Compile Include="FileEncodingTests.cs" />
@@ -250,21 +247,6 @@
     <None Include="RestoreAndBuildAppx.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\SonarLintVB\.template.config\template.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\SonarLintVB\WTSVBRules.ruleset">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\StyleCop\GlobalSuppressions.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\VBStyleAnalysis\.template.config\template.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\VBStyleAnalysis\WTSVBRules.ruleset">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -275,9 +257,6 @@
     </None>
     <None Include="RestoreAndBuild.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\StyleCop\.template.config\template.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -300,16 +279,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TestData\StyleCop\_postaction.csproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TestData\StyleCop\_searchreplace.csproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestData\NonDefaultAssets\LockScreenLogo.scale-200.png">
@@ -336,30 +305,6 @@
     <Content Include="TestData\NonDefaultAssets\Wide310x150Logo.scale-200.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\SonarLintVB\_searchreplace.1.vbproj">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\VBStyleAnalysis\_postaction.vbproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\VBStyleAnalysis\_searchreplace.1.vbproj">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\VBStyleAnalysis\_searchreplace.vbproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="TestData\StyleCop\_searchreplace.1.csproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TestData\SonarLintVB\_searchreplace.vbproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\SonarLintVB\_postaction.vbproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

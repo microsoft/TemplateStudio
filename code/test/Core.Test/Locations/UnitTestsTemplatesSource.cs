@@ -9,7 +9,7 @@ using Microsoft.Templates.Core.Locations;
 
 namespace Microsoft.Templates.Core.Test.Locations
 {
-    public sealed class UnitTestsTemplatesSource : LocalTemplatesSourceV2
+    public sealed class UnitTestsTemplatesSource : LocalTemplatesSource
     {
         public override string Id => "UnitTest" + GetAgentName();
 

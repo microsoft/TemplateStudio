@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<ITemplateInfo> Templates;
 
-        private static async Task InitializeTemplatesAsync(TemplatesSourceV2 source)
+        private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.VisualBasic), ProgrammingLanguages.VisualBasic);
             if (Templates == null)
@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Test
 
         public async Task InitializeFixtureAsync(IContextProvider contextProvider)
         {
-            var source = new SonarLintPlusLocalTemplatesSource();
+            var source = new LocalTemplatesSource("SonarLint");
             GenContext.Current = contextProvider;
 
             await InitializeTemplatesAsync(source);
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Test
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesForSonarLintAsync()
         {
             List<object[]> result = new List<object[]>();
-            await InitializeTemplatesAsync(new SonarLintPlusLocalTemplatesSource());
+            await InitializeTemplatesAsync(new LocalTemplatesSource("SonarLint"));
 
             var projectTypes =
                 SonarLintGenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project

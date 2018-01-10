@@ -27,13 +27,13 @@ namespace Microsoft.Templates.Test
         private string _testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Gen\\{_testExecutionTimeStamp}\\";
 
-        public TemplatesSourceV2 Source => new LocalTemplatesSourceV2("TestGen");
+        public TemplatesSource Source => new LocalTemplatesSource("TestGen");
 
         private static bool syncExecuted;
 
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync()
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSourceV2("TestGen"));
+            await InitializeTemplatesAsync(new LocalTemplatesSource("TestGen"));
 
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync(string frameworkFilter)
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSourceV2("TestGen"));
+            await InitializeTemplatesAsync(new LocalTemplatesSource("TestGen"));
             List<object[]> result = new List<object[]>();
 
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesAsync(TemplatesSourceV2 source)
+        private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 

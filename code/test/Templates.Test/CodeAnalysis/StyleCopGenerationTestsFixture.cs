@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<ITemplateInfo> Templates;
 
-        private static async Task InitializeTemplatesAsync(TemplatesSourceV2 source)
+        private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Test
 
         public async Task InitializeFixtureAsync(IContextProvider contextProvider)
         {
-            var source = new StyleCopPlusLocalTemplatesSource();
+            var source = new LocalTemplatesSource("StyleCop");
             GenContext.Current = contextProvider;
 
             await InitializeTemplatesAsync(source);
@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesForStyleCopAsync()
         {
-            await InitializeTemplatesAsync(new StyleCopPlusLocalTemplatesSource());
+            await InitializeTemplatesAsync(new LocalTemplatesSource("StyleCop"));
 
             List<object[]> result = new List<object[]>();
 
