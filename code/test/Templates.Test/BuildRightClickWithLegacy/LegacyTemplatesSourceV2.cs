@@ -17,6 +17,14 @@ namespace Microsoft.Templates.Test
     {
         public override string Id => "TestLegacy" + GetAgentName();
 
+        public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
+        {
+            LoadConfig();
+            var package = Config.Latest;
+            Acquire(ref package);
+            return base.GetContent(package, workingFolder);
+        }
+
         private static string GetAgentName()
         {
             // If running tests in VSTS concurrently in different agents avoids the collison in templates folders

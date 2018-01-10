@@ -2,7 +2,7 @@
     Public Class SharedDataWebLinkModel
         Inherits SharedDataModelBase
 
-        Public Property Uri() As Uri
+        Public Property Uri As Uri
 
         Public Sub New()
             MyBase.New()

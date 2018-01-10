@@ -3,6 +3,7 @@
 Namespace Views
     Public NotInheritable Partial Class ImageGalleryViewDetailPage
         Inherits Page
+
         Public Sub New()
             InitializeComponent()
             ViewModel.SetImage(previewImage)

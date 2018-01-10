@@ -27,7 +27,7 @@ Namespace Services
             yield Singleton(Of LiveTileFeatureService).Instance
             '}]}
 '{--{
-            yield Exit Function'}--}
+            Exit Function'}--}
         End Function
     End Class
 End Namespace

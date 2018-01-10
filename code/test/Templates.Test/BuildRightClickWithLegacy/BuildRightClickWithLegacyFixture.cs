@@ -41,6 +41,7 @@ namespace Microsoft.Templates.Test
             ////foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
                 const string language = ProgrammingLanguages.CSharp;
+                Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
                 await InitializeTemplatesAsync(new LegacyTemplatesSourceV2());
 

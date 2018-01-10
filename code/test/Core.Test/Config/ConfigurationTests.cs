@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.Test.Config
 
             Assert.NotNull(configInstance);
             Assert.Equal(TraceEventType.Verbose, configInstance.DiagnosticsTraceLevel);
-            Assert.Equal("https://wtsrepository.blob.core.windows.net/dev/Latest", configInstance.CdnUrl);
+            Assert.Equal("https://wtsrepository.blob.core.windows.net/dev", configInstance.CdnUrl);
             Assert.Equal("https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/", configInstance.GitHubDocsUrl);
         }
 

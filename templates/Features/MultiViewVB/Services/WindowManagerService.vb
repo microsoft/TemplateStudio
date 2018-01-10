@@ -3,7 +3,7 @@ Imports Windows.UI.Core
 
 Namespace Services
 
-    Public Delegate Sub ViewClosedHandler(ByVal viewControl As ViewLifetimeControl, ByVal e As EventArgs)
+    Public Delegate Sub ViewClosedHandler(viewControl As ViewLifetimeControl, e As EventArgs)
 
     Public Class WindowManagerService
 
@@ -13,7 +13,11 @@ Namespace Services
 
         Public Shared ReadOnly Property Current As WindowManagerService
             Get
-                Return If(_current, (__InlineAssignHelper(_current, New WindowManagerService())))
+                If _current Is Nothing Then
+                    _current = New WindowManagerService()
+                End If
+
+                Return _current
             End Get
         End Property
 
@@ -31,7 +35,7 @@ Namespace Services
 
         ' TODO WTS: Displays a view as a standalone
         ' You can use the resulting ViewLifeTileControl to interact with the new window.
-        Public Async Function TryShowAsStandaloneAsync(ByVal windowTitle As String, ByVal pageType As Type) As Task(Of ViewLifetimeControl)
+        Public Async Function TryShowAsStandaloneAsync(windowTitle As String, pageType As Type) As Task(Of ViewLifetimeControl)
             Dim viewControl As ViewLifetimeControl = Await CreateViewLifetimeControlAsync(windowTitle, pageType)
             SecondaryViews.Add(viewControl)
             viewControl.StartViewInUse()
@@ -41,7 +45,7 @@ Namespace Services
         End Function
 
         ' Displays a view as a standalone view in the desired view mode
-        Public Async Function TryShowAsViewModeAsync(ByVal windowTitle As String, ByVal pageType As Type, ByVal Optional viewMode As ApplicationViewMode = ApplicationViewMode.[Default]) As Task(Of ViewLifetimeControl)
+        Public Async Function TryShowAsViewModeAsync(windowTitle As String, pageType As Type, Optional viewMode As ApplicationViewMode = ApplicationViewMode.[Default]) As Task(Of ViewLifetimeControl)
             Dim viewControl As ViewLifetimeControl = Await CreateViewLifetimeControlAsync(windowTitle, pageType)
             SecondaryViews.Add(viewControl)
             viewControl.StartViewInUse()
@@ -50,7 +54,7 @@ Namespace Services
             Return viewControl
         End Function
 
-        Private Async Function CreateViewLifetimeControlAsync(ByVal windowTitle As String, ByVal pageType As Type) As Task(Of ViewLifetimeControl)
+        Private Async Function CreateViewLifetimeControlAsync(windowTitle As String, pageType As Type) As Task(Of ViewLifetimeControl)
             Dim viewControl As ViewLifetimeControl = Nothing
             Await CoreApplication.CreateNewView().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
                 viewControl = ViewLifetimeControl.CreateForCurrentView()
@@ -65,14 +69,8 @@ Namespace Services
             Return viewControl
         End Function
 
-        Public Function IsWindowOpen(ByVal windowTitle As String) As Boolean
+        Public Function IsWindowOpen(windowTitle As String) As Boolean
             Return SecondaryViews.Any(Function(v) v.Title = windowTitle)
-        End Function
-
-        '<Obsolete("Please refactor code that uses this function, it is a simple work-around to simulate inline assignment in VB!")>
-        Private Shared Function __InlineAssignHelper(Of T)(ByRef target As T, value As T) As T
-            target = value
-            Return value
         End Function
     End Class
 End Namespace

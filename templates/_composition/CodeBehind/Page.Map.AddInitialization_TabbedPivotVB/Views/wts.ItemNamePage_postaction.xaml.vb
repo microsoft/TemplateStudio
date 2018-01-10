@@ -2,6 +2,7 @@
     Public NotInheritable Partial Class wts.ItemNamePage
         Inherits Page
         Implements INotifyPropertyChanged
+
         Public Sub New()
             '{[{
             AddHandler Loaded, AddressOf wts.ItemNamePage_Loaded
