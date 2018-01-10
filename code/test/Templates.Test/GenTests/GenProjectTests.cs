@@ -26,6 +26,7 @@ namespace Microsoft.Templates.Test
         public GenProjectTests(GenerationFixture fixture)
         {
             _fixture = fixture;
+            _fixture.InitializeFixtureAsync(this);
         }
 
         [Theory]

@@ -45,7 +45,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             _language = language;
 
-            if (GenContext.InitializedLanguage != language)
+            if (GenContext.CurrentLanguage != language)
             {
 #if DEBUG
                 GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), language);
@@ -99,7 +99,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection(GenContext.InitializedLanguage);
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection(GenContext.CurrentLanguage);
                 }
             }
             catch (WizardBackoutException)

@@ -211,17 +211,17 @@ namespace Microsoft.Templates.Core.Diagnostics
             return string.Empty;
         }
 
-        public void SetContentVersionToContext(Version wizardContentVersion)
+        public void SetContentVersionToContext(Version contentVersion)
         {
-            if (wizardContentVersion != null && _client != null && _client.Context != null && _client.Context.Properties != null)
+            if (contentVersion != null && _client != null && _client.Context != null && _client.Context.Properties != null)
             {
                 if (!_client.Context.Properties.ContainsKey(TelemetryProperties.WizardContentVersion))
                 {
-                    _client.Context.Properties.Add(TelemetryProperties.WizardContentVersion, wizardContentVersion.ToString());
+                    _client.Context.Properties.Add(TelemetryProperties.WizardContentVersion, contentVersion.ToString());
                 }
                 else
                 {
-                    _client.Context.Properties[TelemetryProperties.WizardContentVersion] = wizardContentVersion.ToString();
+                    _client.Context.Properties[TelemetryProperties.WizardContentVersion] = contentVersion.ToString();
                 }
             }
         }

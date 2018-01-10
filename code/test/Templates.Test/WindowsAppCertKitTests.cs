@@ -21,6 +21,7 @@ namespace Microsoft.Templates.Test
         public WindowsAppCertKitTests(BuildFixture fixture)
         {
             _fixture = fixture;
+            _fixture.InitializeFixtureAsync(this);
         }
 
         //// *** WARNING ***

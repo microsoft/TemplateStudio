@@ -24,13 +24,8 @@ namespace Microsoft.Templates.UI.Extensions
         {
             switch (status)
             {
-                case SyncStatus.OverVersion:
+                case SyncStatus.NewWizardVersionAvailable:
                     return StatusType.Warning;
-
-                case SyncStatus.OverVersionNoContent:
-                case SyncStatus.UnderVersion:
-                    return StatusType.Error;
-
                 default:
                     return StatusType.Information;
             }
@@ -58,17 +53,17 @@ namespace Microsoft.Templates.UI.Extensions
                 case SyncStatus.Acquiring:
                     return StringRes.StatusAcquiring;
                 case SyncStatus.Acquired:
-                    return StringRes.StatusAcquired;
+                    return StringRes.StatusNewVersionAvailable;
                 case SyncStatus.Preparing:
                     return StringRes.StatusPreparing;
                 case SyncStatus.Prepared:
                     return StringRes.StatusPrepared;
-                case SyncStatus.NewVersionAvailable:
-                    return StringRes.StatusNewVersionAvailable;
-                case SyncStatus.OverVersion:
+                case SyncStatus.NewWizardVersionAvailable:
                     return StringRes.StatusOverVersionContent;
-                case SyncStatus.OverVersionNoContent:
-                    return StringRes.StatusOverVersionNoContent;
+                case SyncStatus.CheckingForUpdates:
+                    return StringRes.StatusCheckingForUpdates;
+                case SyncStatus.CheckedForUpdates:
+                    return StringRes.StatusCheckedForUpdates;
                 default:
                     return string.Empty;
             }

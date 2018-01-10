@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -19,32 +20,30 @@ namespace WtsTool
 {
     public static class RemoteSource
     {
-        public static RemoteTemplatesSourceConfig GetRemoteTemplatesSourceConfig(string storageAccount, EnvEnum environment)
+        public static TemplatesSourceConfig GetTemplatesSourceConfig(string storageAccount, EnvEnum environment)
         {
             string env = environment.ToString().ToLowerInvariant();
 
-            CloudBlobContainer container = RemoteSource.GetContainerAnonymous(storageAccount, env);
+            CloudBlobContainer container = GetContainerAnonymous(storageAccount, env);
             var remoteElements = RemoteSource.GetAllElements(container);
             var remotePackages = remoteElements.Where(e => e != null && e.Name.StartsWith(env, StringComparison.OrdinalIgnoreCase) && e.Name.EndsWith(".mstx", StringComparison.OrdinalIgnoreCase))
                 .Select((e) =>
-                    new RemoteTemplatesPackage()
+                    new TemplatesPackageInfo()
                     {
                         Name = e.Name,
-                        StorageUri = e.Uri,
                         Bytes = e.Properties.Length,
-                        Date = e.Properties.LastModified.Value.DateTime,
-                        Version = ParseVersion(e.Name),
+                        Date = e.Properties.LastModified.Value.DateTime
                     })
                 .OrderByDescending(e => e.Date)
                 .OrderByDescending(e => e.Version)
                 .GroupBy(e => e.MainVersion)
                 .Select(e => e.FirstOrDefault());
 
-            RemoteTemplatesSourceConfig config = new RemoteTemplatesSourceConfig()
+            TemplatesSourceConfig config = new TemplatesSourceConfig()
             {
-                VersionCount = remotePackages.Count(),
                 Latest = remotePackages.FirstOrDefault(),
-                Versions = remotePackages.ToList()
+                Versions = remotePackages.ToList(),
+                RootUri = container.Uri
             };
             return config;
         }
@@ -110,21 +109,6 @@ namespace WtsTool
             return parsedEnv;
         }
 
-        private static Version ParseVersion(string name)
-        {
-            string versionPattern = @"\d+.\d+.\d+.\d+";
-            Regex versionRegEx = new Regex(versionPattern, RegexOptions.Compiled & RegexOptions.IgnoreCase & RegexOptions.CultureInvariant);
-            var match = versionRegEx.Match(name);
-            if (match.Success)
-            {
-                return new Version(match.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         private static CloudBlobContainer GetContainer(string account, string key, string container)
         {
             StorageCredentials credentials = new StorageCredentials(account, key);
@@ -182,7 +166,7 @@ namespace WtsTool
                 throw new ArgumentException($"The value '{version}' is not valid for parameter '{nameof(version)}'.");
             }
 
-            Version versionInFile = ParseVersion(Path.GetFileName(sourceFile));
+            Version versionInFile = TemplatesPackageInfo.ParseVersion(Path.GetFileName(sourceFile));
             if (versionInFile != null && versionInFile != specifedVersion)
             {
                 throw new ArgumentException($"Parameter '{nameof(sourceFile)}' (with value '{sourceFile}') contains the version {versionInFile.ToString()} that do not match with the value specified in the parameter '{nameof(version)}' (with value '{version}').");

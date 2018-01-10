@@ -27,12 +27,8 @@ namespace Microsoft.Templates.Core.Test
             GenContext.Bootstrap(source, new FakeGenShell(language), language);
             if (!_syncExecuted)
             {
-                GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
                 _syncExecuted = true;
-            }
-            else
-            {
-                GenContext.ToolBox.Repo.CheckForUpdatesAsync().Wait();
             }
 
             Repository = GenContext.ToolBox.Repo;

@@ -106,6 +106,7 @@ namespace TemplateValidator
                         // Filter out files the following tests cannot handle
                         if (!file.Name.Contains("_postaction")
                          && !file.Name.Contains("_gpostaction")
+                         && !file.Name.Contains("_searchreplace")
                          && !file.FullName.Contains("\\Projects\\Default")
                          && !file.FullName.Contains(".template.config"))
                         {

@@ -116,7 +116,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             EnsureGenContextInitialized();
 
-            if (GenContext.InitializedLanguage == _shell.GetActiveProjectLanguage())
+            if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {
                 ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
                 ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
@@ -133,13 +133,18 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void EnsureGenContextInitialized()
         {
-            if (!GenContext.ContextInitialized || GenContext.InitializedLanguage != _shell.GetActiveProjectLanguage())
+            if (!GenContext.ContextInitialized)
             {
 #if DEBUG
                 GenContext.Bootstrap(new LocalTemplatesSource(), _shell, _shell.GetActiveProjectLanguage());
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), _shell, _shell.GetActiveProjectLanguage());
 #endif
+            }
+
+            if (GenContext.CurrentLanguage != _shell.GetActiveProjectLanguage())
+            {
+                GenContext.SetCurrentLanguage(_shell.GetActiveProjectLanguage());
             }
         }
 

@@ -24,8 +24,8 @@ namespace Microsoft.Templates.Test
 {
     public sealed class GenerationFixture : BaseGenAndBuildFixture, IDisposable
     {
-        private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Generation\\{testExecutionTimeStamp}\\";
+        private string _testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Gen\\{_testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new LocalTemplatesSource("TestGen");
 
@@ -33,11 +33,12 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync()
         {
+            await InitializeTemplatesAsync(new LocalTemplatesSource("TestGen"));
+
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TestGen"), language);
-
+                SetCurrentLanguage(language);
                 var projectTypes = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                           && t.GetLanguage() == language).SelectMany(p => p.GetProjectTypeList()).Distinct();
 
@@ -57,10 +58,12 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync(string frameworkFilter)
         {
+            await InitializeTemplatesAsync(new LocalTemplatesSource("TestGen"));
             List<object[]> result = new List<object[]>();
+
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TestGen"), language);
+                SetCurrentLanguage(language);
 
                 var projectTypes = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                           && t.GetLanguage() == language).SelectMany(p => p.GetProjectTypeList()).Distinct();
@@ -88,26 +91,22 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source, string language)
+        private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 
             if (!syncExecuted)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync();
+                await GenContext.ToolBox.Repo.SynchronizeAsync(true);
                 syncExecuted = true;
-            }
-            else
-            {
-                await GenContext.ToolBox.Repo.RefreshAsync();
             }
         }
 
-        public override async Task InitializeFixtureAsync(string language, IContextProvider contextProvider)
+        public override async Task InitializeFixtureAsync(IContextProvider contextProvider, string framework = "")
         {
             GenContext.Current = contextProvider;
 
-            await InitializeTemplatesForLanguageAsync(Source, language);
+            await InitializeTemplatesAsync(Source);
         }
     }
 }
