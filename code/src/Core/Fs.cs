@@ -74,13 +74,13 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        public static void SafeMoveDirectory(string sourceDir, string targetDir)
+        public static void SafeMoveDirectory(string sourceDir, string targetDir, bool overwrite = false)
         {
             try
             {
                 if (Directory.Exists(sourceDir))
                 {
-                    CopyRecursive(sourceDir, targetDir);
+                    CopyRecursive(sourceDir, targetDir, overwrite);
                     SafeDeleteDirectory(sourceDir);
                 }
             }

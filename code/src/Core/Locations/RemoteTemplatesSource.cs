@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Locations
 
             var finalDestination = Path.Combine(workingFolder, packageInfo.Version.ToString());
 
-            Fs.SafeMoveDirectory(Path.Combine(extractionFolder, "Templates"), finalDestination);
+            Fs.SafeMoveDirectory(Path.Combine(extractionFolder, "Templates"), finalDestination, true);
 
             Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
 
