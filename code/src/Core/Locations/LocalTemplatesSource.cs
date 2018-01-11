@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -32,13 +33,13 @@ namespace Microsoft.Templates.Core.Locations
         public override string Id { get => _id; }
 
         public LocalTemplatesSource()
-            : this("0.0.0.0")
+            : this(GenContext.GetWizardVersionFromAssembly().ToString())
         {
             _id = Configuration.Current.Environment + GetAgentName();
         }
 
         public LocalTemplatesSource(string id)
-            : this("0.0.0.0", id)
+            : this(GenContext.GetWizardVersionFromAssembly().ToString(), id)
         {
             _id = id + GetAgentName();
         }

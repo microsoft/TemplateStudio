@@ -118,7 +118,7 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        private static Version GetWizardVersionFromAssembly()
+        public static Version GetWizardVersionFromAssembly()
         {
             string assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);

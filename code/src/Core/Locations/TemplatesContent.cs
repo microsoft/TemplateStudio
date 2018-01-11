@@ -63,7 +63,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             if (Current != null)
             {
-                return !Current.Version.IsNull() && Current.Version < Source.Config.ResolvePackage(WizardVersion).Version;
+                return !Current.Version.IsNull() && Current.Version < Source.Config.ResolvePackage(WizardVersion)?.Version;
             }
             else
             {
