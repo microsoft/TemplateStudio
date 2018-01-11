@@ -103,10 +103,12 @@ namespace Microsoft.Templates.Core.Locations
             TemplatesPackageInfo installedPackage = null;
             if (Source is RemoteTemplatesSource && File.Exists(mstxFilePath))
             {
+                var tempPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                Fs.SafeCopyFile(mstxFilePath, tempPath, true);
                 installedPackage = new TemplatesPackageInfo()
                 {
                     Name = Path.GetFileName(mstxFilePath),
-                    LocalPath = mstxFilePath
+                    LocalPath = Path.Combine(tempPath, Path.GetFileName(mstxFilePath))
                 };
             }
             else
