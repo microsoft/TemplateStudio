@@ -49,6 +49,10 @@ namespace Microsoft.Templates.Core.Locations
             Version = GetVersion();
         }
 
+        public TemplatesPackageInfo()
+        {
+        }
+
         [JsonIgnore]
         public string MainVersion { get => !Version.IsNull() ? $"{Version.Major.ToString()}.{Version.Minor.ToString()}" : "NoVersion"; }
 
