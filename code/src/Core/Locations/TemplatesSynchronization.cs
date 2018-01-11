@@ -111,6 +111,36 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
+        public async Task CheckForUpdatesAsync()
+        {
+            await EnsureVsInstancesSyncingAsync();
+
+            if (LockSync())
+            {
+                try
+                {
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckingForUpdates });
+
+                    _content.Source.LoadConfig();
+
+                    if (_content.IsNewVersionAvailable())
+                    {
+                        await GetNewTemplatesAsync();
+                    }
+                    else
+                    {
+                        SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckedForUpdates });
+                    }
+
+                    CheckForWizardUpdates();
+                }
+                finally
+                {
+                    UnlockSync();
+                }
+            }
+        }
+
         private void CheckForWizardUpdates()
         {
             if (_content.IsWizardUpdateAvailable())

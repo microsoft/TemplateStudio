@@ -24,14 +24,16 @@ namespace Microsoft.Templates.Core.Locations
 
             Fs.SafeMoveDirectory(Path.Combine(extractionFolder, "Templates"), finalDestination, true);
 
-            Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
-
-            return new TemplatesContentInfo()
+            var templatesInfo = new TemplatesContentInfo()
             {
                 Date = packageInfo.Date,
                 Path = finalDestination,
                 Version = packageInfo.Version
             };
+
+            Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
+
+            return templatesInfo;
         }
 
         public override void Acquire(ref TemplatesPackageInfo packageInfo)

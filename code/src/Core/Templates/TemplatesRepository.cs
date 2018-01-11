@@ -57,7 +57,7 @@ namespace Microsoft.Templates.Core
 
         public async Task CheckForUpdatesAsync()
         {
-            await Sync.CheckForNewContentAsync();
+            await Sync.CheckForUpdatesAsync();
         }
 
         public async Task RefreshAsync(bool force = false)

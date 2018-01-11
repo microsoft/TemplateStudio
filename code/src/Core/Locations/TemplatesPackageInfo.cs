@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core.Locations
         public long Bytes { get; set; }
 
         [JsonIgnore]
-        public Version Version { get => GetVersion(); }
+        public Version Version { get; }
 
         private Version GetVersion()
         {
@@ -40,6 +40,13 @@ namespace Microsoft.Templates.Core.Locations
             }
 
             return version;
+        }
+
+        public TemplatesPackageInfo(string name, string localPath)
+        {
+            Name = name;
+            LocalPath = localPath;
+            Version = GetVersion();
         }
 
         [JsonIgnore]
