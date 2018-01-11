@@ -19,6 +19,8 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class TemplatesPackageInfo
     {
+        private Version _version;
+
         public string Name { get; set; }
 
         [JsonIgnore]
@@ -29,28 +31,20 @@ namespace Microsoft.Templates.Core.Locations
         public long Bytes { get; set; }
 
         [JsonIgnore]
-        public Version Version { get; }
+        public Version Version { get => GetVersion(); }
 
         private Version GetVersion()
         {
-            var version = ParseVersion(Name);
-            if (version == null)
+            if (_version == null)
             {
-                version = GetVersionFromMstx(LocalPath);
+                _version = ParseVersion(Name);
+                if (_version == null)
+                {
+                    _version = GetVersionFromMstx(LocalPath);
+                }
             }
 
-            return version;
-        }
-
-        public TemplatesPackageInfo(string name, string localPath)
-        {
-            Name = name;
-            LocalPath = localPath;
-            Version = GetVersion();
-        }
-
-        public TemplatesPackageInfo()
-        {
+            return _version;
         }
 
         [JsonIgnore]

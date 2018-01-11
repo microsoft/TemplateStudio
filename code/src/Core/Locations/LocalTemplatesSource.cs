@@ -14,8 +14,10 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class LocalTemplatesSource : TemplatesSource
     {
-        public static readonly TemplatesPackageInfo VersionZero = new TemplatesPackageInfo("LocalTemplates_v0.0.0.0", $@"..\..\..\..\..\{TemplatesFolderName}")
+        public static readonly TemplatesPackageInfo VersionZero = new TemplatesPackageInfo()
         {
+            Name = "LocalTemplates_v0.0.0.0",
+            LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
             Bytes = 1024,
             Date = DateTime.Now,
         };
@@ -54,8 +56,10 @@ namespace Microsoft.Templates.Core.Locations
             Version.TryParse(templatesVersion, out Version v);
             if (!v.IsZero())
             {
-                var package = new TemplatesPackageInfo($"LocalTemplates_v{v.ToString()}", $@"..\..\..\..\..\{TemplatesFolderName}")
+                var package = new TemplatesPackageInfo()
                 {
+                    Name = $"LocalTemplates_v{v.ToString()}",
+                    LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
                     Bytes = 1024,
                     Date = DateTime.Now,
                 };

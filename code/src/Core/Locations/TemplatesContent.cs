@@ -105,10 +105,11 @@ namespace Microsoft.Templates.Core.Locations
             {
                 var tempPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                 Fs.SafeCopyFile(mstxFilePath, tempPath, true);
-                installedPackage = new TemplatesPackageInfo(
-                        Path.GetFileName(mstxFilePath),
-                        Path.Combine(tempPath, Path.GetFileName(mstxFilePath)
-                ));
+                installedPackage = new TemplatesPackageInfo()
+                {
+                    Name = Path.GetFileName(mstxFilePath),
+                    LocalPath = Path.Combine(tempPath, Path.GetFileName(mstxFilePath))
+                };
             }
             else
             {
