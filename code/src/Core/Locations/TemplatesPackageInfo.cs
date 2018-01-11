@@ -79,7 +79,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 using (ZipArchive zip = ZipFile.Open(mstxFilePath, ZipArchiveMode.Read))
                 {
-                    var entry = zip.Entries.Where(e => e.Name == fileName).FirstOrDefault();
+                    var entry = zip.Entries.Where(e => e.Name.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
                     if (entry != null)
                     {
                         using (StreamReader sr = new StreamReader(entry.Open()))
