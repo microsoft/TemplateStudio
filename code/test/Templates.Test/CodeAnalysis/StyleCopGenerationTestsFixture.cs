@@ -33,27 +33,24 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<ITemplateInfo> Templates;
 
-        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
+        private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+
             if (Templates == null)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync();
-            }
-            else
-            {
-                await GenContext.ToolBox.Repo.RefreshAsync();
-            }
+                await GenContext.ToolBox.Repo.SynchronizeAsync(true);
 
-            Templates = GenContext.ToolBox.Repo.GetAll();
+                Templates = GenContext.ToolBox.Repo.GetAll();
+            }
         }
 
         public async Task InitializeFixtureAsync(IContextProvider contextProvider)
         {
-            var source = new StyleCopPlusLocalTemplatesSource();
+            var source = new LocalTemplatesSource("StyleCop");
             GenContext.Current = contextProvider;
 
-            await InitializeTemplatesForLanguageAsync(source);
+            await InitializeTemplatesAsync(source);
         }
 
         public void Dispose()
@@ -70,13 +67,14 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesForStyleCopAsync()
         {
+            await InitializeTemplatesAsync(new LocalTemplatesSource("StyleCop"));
+
             List<object[]> result = new List<object[]>();
-            await InitializeTemplatesForLanguageAsync(new StyleCopPlusLocalTemplatesSource());
 
             var projectTypes =
                 StyleCopGenerationTestsFixture.Templates.Where(
-                    t => t.GetTemplateType() == TemplateType.Project
-                     && t.Name != "Feature.Testing.StyleCop").SelectMany(p => p.GetProjectTypeList()).Distinct();
+                    t => t.GetTemplateType() == TemplateType.Project && t.Name != "Feature.Testing.StyleCop")
+                    .SelectMany(p => p.GetProjectTypeList()).Distinct();
 
             foreach (var projectType in projectTypes)
             {

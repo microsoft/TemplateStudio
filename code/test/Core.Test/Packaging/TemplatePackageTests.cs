@@ -332,39 +332,60 @@ namespace Microsoft.Templates.Core.Test.Locations
 
         // TODO: Refactor this methods to other class
         [Fact]
-        public void TestRemoteSource()
+        public void TestRemoteSource_Acquire()
+        {
+            RemoteTemplatesSource rts = new RemoteTemplatesSource();
+            rts.LoadConfig();
+            var package = rts.Config.Latest;
+
+            rts.Acquire(ref package);
+
+            string acquiredContentFolder = package.LocalPath;
+
+            Assert.NotNull(acquiredContentFolder);
+
+            // Ensure package is not downloaded again if already downloaded
+            rts.Acquire(ref package);
+            Assert.True(acquiredContentFolder == package.LocalPath);
+
+            // Reset localPath and ensure it is acquired again
+            if (Directory.Exists(Path.GetDirectoryName(package.LocalPath)))
+            {
+                Directory.Delete(Path.GetDirectoryName(package.LocalPath), true);
+            }
+
+            rts.Acquire(ref package);
+
+            Assert.True(package.LocalPath != acquiredContentFolder);
+
+            if (Directory.Exists(Path.GetDirectoryName(package.LocalPath)))
+            {
+                Directory.Delete(Path.GetDirectoryName(package.LocalPath), true);
+            }
+        }
+
+        [Fact]
+        public void TestRemoteSource_GetContent()
         {
             string drive = Path.GetPathRoot(new Uri(typeof(TemplatePackageTests).Assembly.CodeBase).LocalPath);
-            string targetFolder = Path.Combine(drive, $@"Temp\TestRts{Process.GetCurrentProcess().Id}_{Thread.CurrentThread.ManagedThreadId}");
+            string testDir = Path.Combine(drive, $@"Temp\TestRts{Process.GetCurrentProcess().Id}_{Thread.CurrentThread.ManagedThreadId}");
 
             try
             {
                 RemoteTemplatesSource rts = new RemoteTemplatesSource();
-                rts.Acquire(targetFolder);
+                rts.LoadConfig();
+                var package = rts.Config.Latest;
 
-                string acquiredContentFolder = Directory.EnumerateDirectories(targetFolder).FirstOrDefault();
+                rts.Acquire(ref package);
+                var contentInfo = rts.GetContent(package, testDir);
 
-                Assert.NotNull(acquiredContentFolder);
-
-                // There is just one
-                Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
-
-                // Ensure even downloaded, if there is coincident content, it is not duplicated.
-                rts.Acquire(targetFolder);
-                Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 1);
-
-                // Change the previous acquired content and ensure it is acquired again
-                Directory.Move(acquiredContentFolder, acquiredContentFolder + "_old");
-
-                rts.Acquire(targetFolder);
-
-                Assert.True(Directory.EnumerateDirectories(targetFolder).Count() == 2);
+                Assert.True(Directory.Exists(contentInfo.Path));
             }
             finally
             {
-                if (Directory.Exists(targetFolder))
+                if (Directory.Exists(testDir))
                 {
-                    Directory.Delete(targetFolder, true);
+                    Directory.Delete(testDir, true);
                 }
             }
         }

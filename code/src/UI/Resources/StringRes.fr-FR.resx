@@ -684,4 +684,12 @@
   <data name="TrackTelemetryException" xml:space="preserve">
     <value>Exception tracking telemetry during generation.</value>
   </data>
+  <data name="StatusCheckedForUpdates" xml:space="preserve">
+    <value>Done</value>
+    <comment>Status message for finished checking for updates</comment>
+  </data>
+  <data name="StatusCheckingForUpdates" xml:space="preserve">
+    <value>Checking for updates</value>
+    <comment>Status message for checking for updates</comment>
+  </data>
 </root>
