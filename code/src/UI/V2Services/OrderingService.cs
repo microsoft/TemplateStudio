@@ -26,28 +26,21 @@ namespace Microsoft.Templates.UI.V2Services
 
         public static void Initialize(ListView listView)
         {
-            var service = new DragAndDropService<SavedTemplateViewModel>(listView)
-            {
-                CanDragItem = CanDragItem
-            };
+            var service = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
             service.ProcessDrop += OnDrop;
         }
 
-        private static bool CanDragItem(SavedTemplateViewModel savedTemplate)
+        private static bool AreCompatibleItems(SavedTemplateViewModel template1, SavedTemplateViewModel template2)
         {
-            return savedTemplate != null && savedTemplate.GenGroup == 0;
+            return template1 != null && template2 != null && template1.GenGroup == template2.GenGroup;
         }
 
         private static void OnDrop(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
         {
-            var items = Pages.Where(p => p.GenGroup == e.ItemData.GenGroup);
-            if (items.Count() > 1)
+            if (e.OldIndex > -1)
             {
-                if (e.OldIndex > -1)
-                {
-                    Pages.Move(e.OldIndex, e.NewIndex);
-                    EventService.Instance.RaiseOnReorderTemplate();
-                }
+                e.Items.Move(e.OldIndex, e.NewIndex);
+                EventService.Instance.RaiseOnReorderTemplate();
             }
         }
     }

@@ -14,13 +14,13 @@ using Microsoft.Templates.UI.V2Extensions;
 
 namespace Microsoft.Templates.UI.V2Services
 {
-    public partial class DragAndDropService<T>
-        where T : class
+    public partial class DragAndDropService<T> where T : class
     {
-        public Func<T, bool> CanDragItem;
+        private Func<T, T, bool> _areCompatibleItems;
 
-        public DragAndDropService(ListView listView)
+        public DragAndDropService(ListView listView, Func<T, T, bool> areCompatibleItems)
         {
+            _areCompatibleItems = areCompatibleItems;
             _canInitiateDrag = false;
             _dragAdornerLayerOpacity = 0.7;
             _indexToSelect = -1;
@@ -81,17 +81,13 @@ namespace Microsoft.Templates.UI.V2Services
                 if (_listView.SelectedItem != null)
                 {
                     var itemToDrag = _listView.GetCurrentListViewItem();
-
                     if (itemToDrag != null)
                     {
-                        if (CanDragItem == null || CanDragItem.Invoke(itemToDrag.Content as T))
-                        {
-                            var adornerLayer = ShowDragAdornerLayerResolved ? InitializeAdornerLayer(itemToDrag) : null;
+                        var adornerLayer = ShowDragAdornerLayerResolved ? InitializeAdornerLayer(itemToDrag) : null;
 
-                            InitializeDragOperation(itemToDrag);
-                            PerformDragOperation();
-                            FinishDragOperation(itemToDrag, adornerLayer);
-                        }
+                        InitializeDragOperation(itemToDrag);
+                        PerformDragOperation();
+                        FinishDragOperation(itemToDrag, adornerLayer);
                     }
                 }
             }
@@ -99,15 +95,26 @@ namespace Microsoft.Templates.UI.V2Services
 
         private void OnDragOver(object sender, DragEventArgs e)
         {
-            e.Effects = DragDropEffects.Move;
-
-            if (ShowDragAdornerLayerResolved)
+            var item = GetItem(e);
+            if (ItemUnderDragCursor != null && item != null && !_areCompatibleItems(ItemUnderDragCursor, item))
             {
-                UpdateDragAdornerLocation();
+                if (_dragAdornerLayer != null)
+                {
+                    _dragAdornerLayer.Visibility = Visibility.Collapsed;
+                }
             }
+            else
+            {
+                e.Effects = DragDropEffects.Move;
 
-            int index = GetIndexUnderDragCursor();
-            ItemUnderDragCursor = index < 0 ? null : _listView.Items[index] as T;
+                if (ShowDragAdornerLayerResolved)
+                {
+                    UpdateDragAdornerLocation();
+                }
+
+                int index = GetIndexUnderDragCursor();
+                ItemUnderDragCursor = index < 0 ? null : _listView.Items[index] as T;
+            }
         }
 
         private void OnDragLeave(object sender, DragEventArgs e)
@@ -172,7 +179,7 @@ namespace Microsoft.Templates.UI.V2Services
                             }
                         }
 
-                        if (oldIndex != newIndex)
+                        if (oldIndex != newIndex && _areCompatibleItems(data, itemsSource[newIndex]))
                         {
                             if (ProcessDrop != null)
                             {
@@ -298,6 +305,16 @@ namespace Microsoft.Templates.UI.V2Services
 
                 _dragAdornerLayer.SetOffsets(left, top);
             }
+        }
+
+        private T GetItem(DragEventArgs e)
+        {
+            if (e.Data == null || !e.Data.GetDataPresent(typeof(T)))
+            {
+                return null;
+            }
+
+            return e.Data.GetData(typeof(T)) as T;
         }
     }
 }
