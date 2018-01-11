@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI.V2Services
 {
     public partial class DragAndDropService<T>
     {
+        private Func<T, T, bool> _canDrop;
         private bool _canInitiateDrag;
         private bool _showDragAdornerLayer;
         private int _indexToSelect;
