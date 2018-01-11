@@ -82,7 +82,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             ItemClickCommand = new RelayCommand(OnItemClick);
         }
 
-        private void OnItemClick() => EventService.Instance.RaiseOnTemplateClicked(this);
+        private void OnItemClick()
+        {
+            EventService.Instance.RaiseOnTemplateClicked(this);
+        }
 
         public void IncreaseSelection()
         {

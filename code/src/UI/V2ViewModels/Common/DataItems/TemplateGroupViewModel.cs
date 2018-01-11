@@ -5,10 +5,11 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.V2Services;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
@@ -20,6 +21,18 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             get => _name;
             set => SetProperty(ref _name, value);
+        }
+
+        private TemplateInfoViewModel _selected;
+
+        public TemplateInfoViewModel Selected
+        {
+            get => _selected;
+            set
+            {
+                SetProperty(ref _selected, value);
+                EventService.Instance.RaiseOnTemplateSelected(value);
+            }
         }
 
         public ObservableCollection<TemplateInfoViewModel> Items { get; }

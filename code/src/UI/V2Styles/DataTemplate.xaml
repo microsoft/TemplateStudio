@@ -71,6 +71,7 @@
                     <RowDefinition Height="50" />
                     <!--Detail / Status-->
                 </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"/>
                 <controls:ImageEx
                     Grid.Row="0"
                     SourcePath="{Binding Icon}"
@@ -131,7 +132,8 @@
                 Grid.Row="1"
                 Style="{StaticResource WtsListViewMultipleSelection}"
                 ItemsSource="{Binding Items}"
-                ItemTemplate="{StaticResource WtsItemTemplatePageFeature}" />
+                ItemTemplate="{StaticResource WtsItemTemplatePageFeature}"
+                SelectedItem="{Binding Selected, Mode=TwoWay}" />
         </Grid>
     </DataTemplate>
 

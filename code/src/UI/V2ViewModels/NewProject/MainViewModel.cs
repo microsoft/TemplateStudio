@@ -3,13 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.V2Controls;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 using Microsoft.Templates.UI.V2Views.NewProject;
@@ -19,6 +18,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
     public class MainViewModel : BaseMainViewModel
     {
         private static MainViewModel _instance;
+        private TemplateInfoViewModel _selectedTemplate;
 
         public static MainViewModel Instance => _instance ?? (_instance = new MainViewModel());
 
@@ -38,6 +38,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             EventService.Instance.OnProjectTypeChanged += OnProjectTypeSelectionChanged;
             EventService.Instance.OnFrameworkChanged += OnFrameworkSelectionChanged;
             EventService.Instance.OnTemplateClicked += OnTemplateClicked;
+            EventService.Instance.OnTemplateSelected += OnTemplateSelected;
+            EventService.Instance.OnKeyDown += OnKeyDown;
             ValidationService.Initialize(UserSelection.GetNames);
         }
 
@@ -140,14 +142,51 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             return null;
         }
 
-        private void OnTemplateClicked(object sender, TemplateInfoViewModel selectedTemplate)
+        private void OnTemplateClicked(object sender, TemplateInfoViewModel clickedTemplate)
         {
             if (!WizardStatus.IsBusy)
             {
-                if (selectedTemplate.MultipleInstance || !UserSelection.IsTemplateAdded(selectedTemplate))
-                {
-                    UserSelection.Add(TemplateOrigin.UserSelection, selectedTemplate);
-                }
+                AddTemplate(clickedTemplate);
+            }
+        }
+
+        private void OnTemplateSelected(object sender, TemplateInfoViewModel selectedTemplate)
+        {
+            _selectedTemplate = selectedTemplate;
+        }
+
+        private void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && _selectedTemplate != null)
+            {
+                AddTemplate(_selectedTemplate);
+                CleanSelected();
+            }
+            else if (e.Key == Key.Tab && _selectedTemplate != null)
+            {
+                CleanSelected();
+            }
+        }
+
+        private void CleanSelected()
+        {
+            _selectedTemplate = null;
+            foreach (var group in AddPages.Groups)
+            {
+                group.Selected = null;
+            }
+
+            foreach (var group in AddFeatures.Groups)
+            {
+                group.Selected = null;
+            }
+        }
+
+        private void AddTemplate(TemplateInfoViewModel selectedTemplate)
+        {
+            if (selectedTemplate.MultipleInstance || !UserSelection.IsTemplateAdded(selectedTemplate))
+            {
+                UserSelection.Add(TemplateOrigin.UserSelection, selectedTemplate);
             }
         }
 

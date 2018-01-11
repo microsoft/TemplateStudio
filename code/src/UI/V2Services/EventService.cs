@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Windows.Input;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
 namespace Microsoft.Templates.UI.V2Services
@@ -19,7 +20,11 @@ namespace Microsoft.Templates.UI.V2Services
 
         public event EventHandler<TemplateInfoViewModel> OnTemplateClicked;
 
+        public event EventHandler<TemplateInfoViewModel> OnTemplateSelected;
+
         public event EventHandler<SavedTemplateViewModel> OnDeleteTemplateClicked;
+
+        public event EventHandler<KeyEventArgs> OnKeyDown;
 
         public event EventHandler OnReorderTemplate;
 
@@ -33,8 +38,12 @@ namespace Microsoft.Templates.UI.V2Services
 
         public void RaiseOnTemplateClicked(TemplateInfoViewModel template) => OnTemplateClicked?.Invoke(this, template);
 
+        public void RaiseOnTemplateSelected(TemplateInfoViewModel template) => OnTemplateSelected?.Invoke(this, template);
+
         public void RaiseOnDeleteTemplateClicked(SavedTemplateViewModel savedTemplate) => OnDeleteTemplateClicked?.Invoke(this, savedTemplate);
 
         public void RaiseOnReorderTemplate() => OnReorderTemplate?.Invoke(this, EventArgs.Empty);
+
+        public void RaiseOnKeyDown(KeyEventArgs args) => OnKeyDown?.Invoke(this, args);
     }
 }
