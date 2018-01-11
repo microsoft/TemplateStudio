@@ -37,12 +37,12 @@ namespace Microsoft.Templates.Test
             var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
 #pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
-            EnsureAllEquivalentFileNamesAreUsed(csResultPath, vbResultPath);
-            EnsureResourceStringsAreIdenticalAndAllUsed(csResultPath, csProjectName, vbResultPath, vbProjectName);
-            EnsureContentsOfAssetsFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
-            EnsureContentsOfStylesFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
-            EnsureFileCommentsAreIdentical(vbResultPath);
-            EnsureFileContainIdenticalPropertiesAndMethods(vbResultPath);
+            //EnsureAllEquivalentFileNamesAreUsed(csResultPath, vbResultPath);
+            //EnsureResourceStringsAreIdenticalAndAllUsed(csResultPath, csProjectName, vbResultPath, vbProjectName);
+            //EnsureContentsOfAssetsFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
+            //EnsureContentsOfStylesFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
+            //EnsureFileCommentsAreIdentical(vbResultPath);
+            EnsureCodeFileContainIdenticalElements(vbResultPath);
 
             Fs.SafeDeleteDirectory(csResultPath);
             Fs.SafeDeleteDirectory(vbResultPath);
@@ -222,7 +222,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        private void EnsureFileContainIdenticalPropertiesAndMethods(string vbResultPath)
+        private void EnsureCodeFileContainIdenticalElements(string vbResultPath)
         {
             var failures = new List<string>();
 
@@ -237,12 +237,17 @@ namespace Microsoft.Templates.Test
                 var csRoot = (Microsoft.CodeAnalysis.CSharp.Syntax.CompilationUnitSyntax)csTree.GetRoot();
                 var csProperties = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax>().Select(p => p.Identifier.Text).ToList();
                 var csMethods = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>().Select(m => m.Identifier.Text).ToList();
+                var csEvents = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.EventDeclarationSyntax>().Select(e => e.Identifier.Text).ToList();
+                var csEnums = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax>().Select(e => e).ToList();
+                var csConstants = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.ConstantPatternSyntax>().Select(c => c.Expression.ToString()).ToList();
 
                 var vbCode = new StreamReader(vbFile).ReadToEnd();
                 var vbTree = Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxTree.ParseText(vbCode);
                 var vbRoot = (Microsoft.CodeAnalysis.VisualBasic.Syntax.CompilationUnitSyntax)vbTree.GetRoot();
                 var vbProperties = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.PropertyStatementSyntax>().Select(p => p.Identifier.Text).ToList();
                 var vbMethods = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.MethodStatementSyntax>().Select(m => m.Identifier.Text.Replace("[", string.Empty).Replace("]", string.Empty)).ToList();
+                var vbEvents = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.EventStatementSyntax>().Select(e => e.Identifier.Text).ToList();
+                var vbEnums = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.EnumStatementSyntax>().Select(e => e).ToList();
 
                 foreach (var csProp in csProperties)
                 {
@@ -271,6 +276,39 @@ namespace Microsoft.Templates.Test
                 }
 
                 failures.AddRange(vbMethods.Where(m => m != "InlineAssignHelper").Select(vbMethod => $"'{vbFile}' includes method '{vbMethod}' which isn't in the C# equivalent."));
+
+                foreach (var csEvent in csEvents)
+                {
+                    if (vbEvents.Contains(csEvent))
+                    {
+                        vbEvents.Remove(csEvent);
+                    }
+                    else
+                    {
+                        failures.Add($"'{csFile}' includes event '{csEvent}' which isn't in the VB equivalent.");
+                    }
+                }
+
+                failures.AddRange(vbEvents.Select(vbEvent => $"'{vbFile}' includes event '{vbEvent}' which isn't in the C# equivalent."));
+
+                var csEnumItems = (from csEnum in csEnums from csEnumMember in csEnum.Members select csEnum.Identifier.Text + csEnumMember.Identifier.Text).ToList();
+                var vbEnumItems = (from vbEnum in vbEnums from vbEnumMember in vbEnum.Ancestors() select vbEnum.Identifier.Text + vbEnumMember.ToString()).ToList();
+
+                foreach (var csEnum in csEnumItems)
+                {
+                    if (vbEnumItems.Contains(csEnum))
+                    {
+                        vbEnumItems.Remove(csEnum);
+                    }
+                    else
+                    {
+                        failures.Add($"'{csFile}' includes event '{csEnum}' which isn't in the VB equivalent.");
+                    }
+                }
+
+                failures.AddRange(vbEnumItems.Select(vbEnum => $"'{vbFile}' includes enum '{vbEnum}' which isn't in the C# equivalent."));
+
+
             }
 
             Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));
