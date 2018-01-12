@@ -307,6 +307,7 @@
                                     Command="{Binding DeleteCommand}" />
                             </Grid>
                         </Grid>
+                        <Grid x:Name="dropGridMask" Background="Aqua" Opacity="0.3" Visibility="Collapsed"></Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
@@ -319,6 +320,33 @@
                             <Setter Property="Opacity" TargetName="mouseOverDragAndDropTextBlock" Value="1" />
                             <Setter Property="Opacity" TargetName="mouseOverDeleteTemplateButton" Value="1" />
                         </Trigger>
+                        <EventTrigger RoutedEvent="DragEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="dropGridMask" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="DragLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="dropGridMask" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="Drop">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="dropGridMask" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

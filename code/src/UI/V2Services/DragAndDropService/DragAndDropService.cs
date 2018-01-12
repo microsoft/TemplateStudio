@@ -14,13 +14,12 @@ using Microsoft.Templates.UI.V2Extensions;
 
 namespace Microsoft.Templates.UI.V2Services
 {
-    public partial class DragAndDropService<T> where T : class
+    public partial class DragAndDropService<T>
+        where T : class
     {
-        private Func<T, T, bool> _areCompatibleItems;
-
-        public DragAndDropService(ListView listView, Func<T, T, bool> areCompatibleItems)
+        public DragAndDropService(ListView listView, Func<T, T, bool> canDrop)
         {
-            _areCompatibleItems = areCompatibleItems;
+            _canDrop = canDrop;
             _canInitiateDrag = false;
             _dragAdornerLayerOpacity = 0.7;
             _indexToSelect = -1;
@@ -60,6 +59,8 @@ namespace Microsoft.Templates.UI.V2Services
                 {
                     _mouseDownPosition = MouseUtilities.GetMousePosition(_listView);
                     _indexToSelect = index;
+
+                    ConfigureAllowDropToItems(index);
                 }
                 else
                 {
@@ -95,26 +96,15 @@ namespace Microsoft.Templates.UI.V2Services
 
         private void OnDragOver(object sender, DragEventArgs e)
         {
-            var item = GetItem(e);
-            if (ItemUnderDragCursor != null && item != null && !_areCompatibleItems(ItemUnderDragCursor, item))
-            {
-                if (_dragAdornerLayer != null)
-                {
-                    _dragAdornerLayer.Visibility = Visibility.Collapsed;
-                }
-            }
-            else
-            {
-                e.Effects = DragDropEffects.Move;
+            e.Effects = DragDropEffects.Move;
 
-                if (ShowDragAdornerLayerResolved)
-                {
-                    UpdateDragAdornerLocation();
-                }
-
-                int index = GetIndexUnderDragCursor();
-                ItemUnderDragCursor = index < 0 ? null : _listView.Items[index] as T;
+            if (ShowDragAdornerLayerResolved)
+            {
+                UpdateDragAdornerLocation();
             }
+
+            int index = GetIndexUnderDragCursor();
+            ItemUnderDragCursor = index < 0 ? null : _listView.Items[index] as T;
         }
 
         private void OnDragLeave(object sender, DragEventArgs e)
@@ -179,7 +169,7 @@ namespace Microsoft.Templates.UI.V2Services
                             }
                         }
 
-                        if (oldIndex != newIndex && _areCompatibleItems(data, itemsSource[newIndex]))
+                        if (oldIndex != newIndex)
                         {
                             if (ProcessDrop != null)
                             {
@@ -307,14 +297,15 @@ namespace Microsoft.Templates.UI.V2Services
             }
         }
 
-        private T GetItem(DragEventArgs e)
+        private void ConfigureAllowDropToItems(int dragItemIndex)
         {
-            if (e.Data == null || !e.Data.GetDataPresent(typeof(T)))
-            {
-                return null;
-            }
+            var dragItem = _listView.Items[dragItemIndex] as T;
 
-            return e.Data.GetData(typeof(T)) as T;
+            foreach (T dropItem in _listView.Items)
+            {
+                var listViewItem = GetListViewItem(dropItem);
+                listViewItem.AllowDrop = _canDrop(dragItem, dropItem);
+            }
         }
     }
 }
