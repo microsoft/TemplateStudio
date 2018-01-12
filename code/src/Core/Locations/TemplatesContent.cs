@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Reflection;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
 
@@ -59,11 +59,18 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public bool IsNewVersionAvailable()
+        public bool IsNewVersionAvailable(out Version version)
         {
+            version = null;
             if (Current != null)
             {
-                return !Current.Version.IsNull() && Current.Version < Source.Config.ResolvePackage(WizardVersion)?.Version;
+                var result = !Current.Version.IsNull() && Current.Version < Source.Config.ResolvePackage(WizardVersion)?.Version;
+                if (result == true)
+                {
+                    version = Source.Config.ResolvePackage(WizardVersion)?.Version;
+                }
+
+                return result;
             }
             else
             {
@@ -71,11 +78,19 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public bool IsWizardUpdateAvailable()
+        public bool IsWizardUpdateAvailable(out Version version)
         {
+            version = null;
+
             if (Current != null)
             {
-                return !Current.Version.IsNull() && (Current.Version.Major < Source.Config.Latest.Version.Major || Current.Version.Minor < Source.Config.Latest.Version.Minor);
+                var result = !Current.Version.IsNull() && (Current.Version.Major < Source.Config.Latest.Version.Major || Current.Version.Minor < Source.Config.Latest.Version.Minor);
+                if (result == true)
+                {
+                    version = new Version(Source.Config.Latest.Version.Major, Source.Config.Latest.Version.Minor);
+                }
+
+                return result;
             }
             else
             {
@@ -98,8 +113,10 @@ namespace Microsoft.Templates.Core.Locations
             All.Add(content);
         }
 
-        internal void GetInstalledContent(string mstxFilePath)
+        internal TemplatesPackageInfo ResolveInstalledContent()
         {
+            var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
+
             TemplatesPackageInfo installedPackage = null;
             if (Source is RemoteTemplatesSource && File.Exists(mstxFilePath))
             {
@@ -116,7 +133,12 @@ namespace Microsoft.Templates.Core.Locations
                 installedPackage = LocalTemplatesSource.VersionZero;
             }
 
-            var package = Source.GetContent(installedPackage, TemplatesFolder);
+            return installedPackage;
+        }
+
+        internal void GetInstalledContent(TemplatesPackageInfo packageInfo)
+        {
+            var package = Source.GetContent(packageInfo, TemplatesFolder);
             Current = package;
             All.Add(package);
         }
