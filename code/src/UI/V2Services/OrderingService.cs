@@ -30,9 +30,9 @@ namespace Microsoft.Templates.UI.V2Services
             service.ProcessDrop += OnDrop;
         }
 
-        private static bool AreCompatibleItems(SavedTemplateViewModel template1, SavedTemplateViewModel template2)
+        private static bool AreCompatibleItems(SavedTemplateViewModel startItem, SavedTemplateViewModel endItem)
         {
-            return template1 != null && template2 != null && template1.GenGroup == template2.GenGroup;
+            return startItem.GenGroup == endItem.GenGroup;
         }
 
         private static void OnDrop(object sender, DragAndDropEventArgs<SavedTemplateViewModel> e)
