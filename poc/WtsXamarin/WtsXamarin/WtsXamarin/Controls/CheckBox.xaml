@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WtsXamarin.Controls.CheckBox"
+             x:Name="checkbox">
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnCheckBoxTapped" />
+    </ContentView.GestureRecognizers>
+
+    <StackLayout Orientation="Horizontal"
+                 BindingContext="{x:Reference checkbox}">
+
+        <Label Text="&#x2610;"
+               TextColor="{Binding TextColor}"
+               FontSize="{Binding FontSize}">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding IsChecked}"
+                             Value="True">
+                    <Setter Property="Text" Value="&#x2611;" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+
+        <Label Text="{Binding Path=Text}"
+               TextColor="{Binding TextColor}"
+               FontSize="{Binding FontSize}"
+               FontAttributes="{Binding FontAttributes}" />
+    </StackLayout>
+</ContentView>
