@@ -229,17 +229,9 @@
     <value>Vorlagenupdates werden gesucht...</value>
     <comment>Status message for sync acquiring</comment>
   </data>
-  <data name="StatusLowerVersionContent" xml:space="preserve">
-    <value>Für die aktuelle Version des Assistenten sind keine Vorlageninhalte verfügbar. Stellen Sie sicher, dass Sie eine Internetverbindung haben, und starten Sie den Assistenten neu.</value>
-    <comment>Status error message for sync lower version content</comment>
-  </data>
-  <data name="StatusOverVersionContent" xml:space="preserve">
+  <data name="StatusNewWizardVersionAvailable" xml:space="preserve">
     <value>Es ist ein Update für die Vorlagen verfügbar, das mit dieser Version des Assistenten nicht kompatibel ist. Aktualisieren Sie die Erweiterung, um auf die neuesten Vorlagen zugreifen zu können.</value>
     <comment>Status warning message for sync over version content</comment>
-  </data>
-  <data name="StatusOverVersionNoContent" xml:space="preserve">
-    <value>Für diese Version der Erweiterung sind keine Inhalte verfügbar. Aktualisieren Sie die Erweiterung, um auf die neuesten Inhalte zugreifen zu können.</value>
-    <comment>Status error message for sync over version no content</comment>
   </data>
   <data name="StatusUpdated" xml:space="preserve">
     <value>Die Vorlagen wurden aktualisiert.</value>
@@ -516,10 +508,6 @@
     <value>Nicht geänderte Dateien</value>
     <comment>Category name of unchanged files</comment>
   </data>
-  <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>Es sind neue Vorlageninhalte verfügbar.</value>
-    <comment>Status message for sync new version available</comment>
-  </data>
   <data name="ErrorSyncRefresh" xml:space="preserve">
     <value>Fehler beim Aktualisieren von Vorlagen. Weitere Details finden Sie in der Ausgabe.</value>
     <comment>Error message for sync refresh</comment>
@@ -685,15 +673,11 @@
     <value>Exception tracking telemetry during generation.</value>
   </data>
   <data name="StatusCheckedForUpdates" xml:space="preserve">
-    <value>Done</value>
+    <value>Done.</value>
     <comment>Status message for finished checking for updates</comment>
   </data>
   <data name="StatusCheckingForUpdates" xml:space="preserve">
-    <value>Checking for updates</value>
+    <value>Checking for updates...</value>
     <comment>Status message for checking for updates</comment>
-  </data>
-  <data name="StatusCheckedForUpdates1" xml:space="preserve">
-    <value>Done</value>
-    <comment>Status message for finished checking for updates</comment>
   </data>
 </root>
