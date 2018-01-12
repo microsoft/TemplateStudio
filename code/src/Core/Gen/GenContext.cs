@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public static GenToolBox ToolBox { get; private set; }
 
-        public static string InitializedLanguage { get; private set; }
+        public static string CurrentLanguage { get; private set; }
 
         public static bool ContextInitialized => _currentContext != null;
 
@@ -50,6 +50,12 @@ namespace Microsoft.Templates.Core.Gen
             Bootstrap(source, shell, GetWizardVersionFromAssembly(), language);
         }
 
+        public static void SetCurrentLanguage(string language)
+        {
+            CurrentLanguage = language;
+            ToolBox.Repo.CurrentLanguage = language;
+        }
+
         public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion, string language)
         {
             try
@@ -68,7 +74,7 @@ namespace Microsoft.Templates.Core.Gen
 
                 CodeGen.Initialize(source.Id, hostVersion);
 
-                InitializedLanguage = language;
+                CurrentLanguage = language;
             }
             catch (Exception ex)
             {
@@ -112,7 +118,7 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        private static Version GetWizardVersionFromAssembly()
+        public static Version GetWizardVersionFromAssembly()
         {
             string assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var versionInfo = FileVersionInfo.GetVersionInfo(assemblyLocation);
