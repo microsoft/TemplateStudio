@@ -745,7 +745,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click refresh to get the latest updates (current selection will be reseted)..
+        ///   Looks up a localized string similar to Click to load the latest templates (current selection will be reset)..
         /// </summary>
         public static string NewVersionAvailable {
             get {
@@ -853,7 +853,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done..
+        ///   Looks up a localized string similar to Download completed..
         /// </summary>
         public static string StatusAcquired {
             get {
@@ -862,7 +862,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloading template updates....
+        ///   Looks up a localized string similar to There are new templates available (v{0}). Downloading….
         /// </summary>
         public static string StatusAcquiring {
             get {
@@ -889,38 +889,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no template content available for the current wizard version. Please ensure you have connectivity and restart the wizard..
+        ///   Looks up a localized string similar to Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features..
         /// </summary>
-        public static string StatusLowerVersionContent {
+        public static string StatusNewWizardVersionAvailable {
             get {
-                return ResourceManager.GetString("StatusLowerVersionContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There is new template content available..
-        /// </summary>
-        public static string StatusNewVersionAvailable {
-            get {
-                return ResourceManager.GetString("StatusNewVersionAvailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An update to the templates is available but not compatible with this wizard version. Update the extension to access the latest templates..
-        /// </summary>
-        public static string StatusOverVersionContent {
-            get {
-                return ResourceManager.GetString("StatusOverVersionContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There is no content available for this extension version. Update the extension to access to the latest content..
-        /// </summary>
-        public static string StatusOverVersionNoContent {
-            get {
-                return ResourceManager.GetString("StatusOverVersionNoContent", resourceCulture);
+                return ResourceManager.GetString("StatusNewWizardVersionAvailable", resourceCulture);
             }
         }
         
@@ -934,7 +907,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preparing templates for first use....
+        ///   Looks up a localized string similar to Preparing templates (v{0})....
         /// </summary>
         public static string StatusPreparing {
             get {
@@ -952,7 +925,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updating templates....
+        ///   Looks up a localized string similar to Refreshing templates cache….
         /// </summary>
         public static string StatusUpdating {
             get {
