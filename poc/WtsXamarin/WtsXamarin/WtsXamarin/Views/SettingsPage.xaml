@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WtsXamarin.Views.SettingsPage"
+             xmlns:controls="clr-namespace:WtsXamarin.Controls"
+             xmlns:models="clr-namespace:WtsXamarin.Models"
+             x:Name="SettingsPage"
+             Title="Settings">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DefaultBoldStyle" TargetType="Label" BasedOn="Default">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="0,10,0,5" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView Margin="10">
+            <StackLayout>
+                <StackLayout>
+                    <Label Text="Personalization" Style="{DynamicResource SubtitleStyle}" />
+
+                    <Label Text="Boolean option" Style="{DynamicResource DefaultBoldStyle}" />
+                    <controls:CheckBox Text="Boolean Program Setting" IsChecked="{Binding SampleBoolSetting}" />
+
+                    <Label Text="Multiple options" Style="{DynamicResource DefaultBoldStyle}" />                    
+                    <StackLayout>
+                        <StackLayout.BindingContext>
+                            <controls:RadioButtonManager x:Name="sampleRadioButtons"
+                                                x:TypeArguments="models:SampleProgramOptions"
+                                                SelectedValue="{Binding Source={x:Reference SettingsPage},
+                                                                        Path=BindingContext.SampleEnumSetting}" />
+                        </StackLayout.BindingContext>
+
+                        <controls:StandardRadioButton BindingContext="{Binding Items[0]}" />
+                        <controls:StandardRadioButton BindingContext="{Binding Items[1]}" />
+                        <controls:StandardRadioButton BindingContext="{Binding Items[2]}" />
+                        <controls:StandardRadioButton BindingContext="{Binding Items[3]}" />
+                        <controls:StandardRadioButton BindingContext="{Binding Items[4]}" />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Margin="0,15">
+                    <Label Text="About this application"
+                   Style="{DynamicResource SubtitleStyle}" />
+                    <Label Text="{Binding AppName}" />
+                    <Label Text="{Binding AboutDescription}" />
+                    <controls:LinkLabel Text="Privacy Statement"
+                               Link="{Binding PrivacyTermsLink}"
+                               TextColor="Blue" />
+                </StackLayout>
+            </StackLayout>            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

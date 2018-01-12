@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureMobileAuthPoc", "AzureMobileAuthPoc\AzureMobileAuthPoc.csproj", "{52CDFF3E-C9D4-4FD3-B264-A5C982953483}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Debug|ARM.ActiveCfg = Debug|ARM
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Debug|ARM.Build.0 = Debug|ARM
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Debug|ARM.Deploy.0 = Debug|ARM
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Debug|x64.ActiveCfg = Debug|x64
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Debug|x64.Build.0 = Debug|x64
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Debug|x64.Deploy.0 = Debug|x64
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Debug|x86.ActiveCfg = Debug|x86
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Debug|x86.Build.0 = Debug|x86
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Debug|x86.Deploy.0 = Debug|x86
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Release|ARM.ActiveCfg = Release|ARM
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Release|ARM.Build.0 = Release|ARM
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Release|ARM.Deploy.0 = Release|ARM
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Release|x64.ActiveCfg = Release|x64
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Release|x64.Build.0 = Release|x64
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Release|x64.Deploy.0 = Release|x64
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Release|x86.ActiveCfg = Release|x86
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Release|x86.Build.0 = Release|x86
+		{52CDFF3E-C9D4-4FD3-B264-A5C982953483}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E77A28C1-10D1-4EFF-9009-FA21651457B8}
+	EndGlobalSection
+EndGlobal
