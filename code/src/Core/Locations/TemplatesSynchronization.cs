@@ -97,7 +97,7 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     _content.Source.LoadConfig();
 
-                    if (_content.IsNewVersionAvailable())
+                    if (_content.IsNewVersionAvailable(out var version))
                     {
                         await GetNewTemplatesAsync();
                     }
@@ -123,7 +123,7 @@ namespace Microsoft.Templates.Core.Locations
 
                     _content.Source.LoadConfig();
 
-                    if (_content.IsNewVersionAvailable())
+                    if (_content.IsNewVersionAvailable(out var version))
                     {
                         await GetNewTemplatesAsync();
                     }
@@ -143,9 +143,9 @@ namespace Microsoft.Templates.Core.Locations
 
         private void CheckForWizardUpdates()
         {
-            if (_content.IsWizardUpdateAvailable())
+            if (_content.IsWizardUpdateAvailable(out var version))
             {
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewWizardVersionAvailable });
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewWizardVersionAvailable, Version = version });
             }
         }
 
@@ -153,9 +153,9 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                if (_content.IsNewVersionAvailable())
+                if (_content.IsNewVersionAvailable(out var version))
                 {
-                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring });
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring, Version = version });
 
                     await Task.Run(() =>
                     {
@@ -176,12 +176,13 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing });
+                var installedPackage = _content.ResolveInstalledContent();
+
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing, Version = installedPackage.Version });
 
                 await Task.Run(() =>
                 {
-                    var installedTemplatesPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
-                    _content.GetInstalledContent(installedTemplatesPath);
+                    _content.GetInstalledContent(installedPackage);
                 });
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });

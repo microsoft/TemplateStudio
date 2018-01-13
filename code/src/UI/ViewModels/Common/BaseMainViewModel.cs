@@ -183,7 +183,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    WizardStatus.SetStatus(status.Status.GetStatusViewModel());
+                    WizardStatus.SetStatus(status.Status.GetStatusViewModel(status.Version));
             });
 
             if (status.Status == SyncStatus.Updated)
