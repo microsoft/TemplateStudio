@@ -41,11 +41,11 @@ namespace Microsoft.Templates.Test
             var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
 #pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
-            //EnsureAllEquivalentFileNamesAreUsed(csResultPath, vbResultPath);
-            //EnsureResourceStringsAreIdenticalAndAllUsed(csResultPath, csProjectName, vbResultPath, vbProjectName);
-            //EnsureContentsOfAssetsFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
-            //EnsureContentsOfStylesFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
-            //EnsureFileCommentsAreIdentical(vbResultPath);
+            EnsureAllEquivalentFileNamesAreUsed(csResultPath, vbResultPath);
+            EnsureResourceStringsAreIdenticalAndAllUsed(csResultPath, csProjectName, vbResultPath, vbProjectName);
+            EnsureContentsOfAssetsFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
+            EnsureContentsOfStylesFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
+            EnsureFileCommentsAreIdentical(vbResultPath);
             EnsureCodeFileContainIdenticalElements(vbResultPath);
 
             Fs.SafeDeleteDirectory(csResultPath);
