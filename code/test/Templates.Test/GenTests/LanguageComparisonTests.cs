@@ -6,8 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Threading.Tasks;
 using System.Xml;
+using Microsoft.CodeAnalysis.VisualBasic;
+using Microsoft.TemplateEngine.Orchestrator.RunnableProjects;
 using Microsoft.Templates.Core;
 
 using Xunit;
@@ -20,6 +23,7 @@ namespace Microsoft.Templates.Test
         public LanguageComparisonTests(GenerationFixture fixture)
         {
             _fixture = fixture;
+            _fixture.InitializeFixtureAsync(this);
         }
 
         // This test is manual only as it will fail when C# templates are updated but their VB equivalents haven't been.
@@ -237,9 +241,25 @@ namespace Microsoft.Templates.Test
                 var csRoot = (Microsoft.CodeAnalysis.CSharp.Syntax.CompilationUnitSyntax)csTree.GetRoot();
                 var csProperties = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax>().Select(p => p.Identifier.Text).ToList();
                 var csMethods = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>().Select(m => m.Identifier.Text).ToList();
-                var csEvents = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.EventDeclarationSyntax>().Select(e => e.Identifier.Text).ToList();
+                var csEvents = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.EventFieldDeclarationSyntax>().Select(e => e.Declaration.Variables.First().Identifier.Text).ToList();
+                csEvents.AddRange(csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.EventDeclarationSyntax>().Select(e => e.Identifier.Text).ToList());
                 var csEnums = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.EnumDeclarationSyntax>().Select(e => e).ToList();
-                var csConstants = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.ConstantPatternSyntax>().Select(c => c.Expression.ToString()).ToList();
+                var csEnumItems = (from csEnum in csEnums from csEnumMember in csEnum.Members select csEnum.Identifier.Text + csEnumMember.Identifier.Text).ToList();
+
+                var csConstants = new List<string>();
+
+                foreach (var field in csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.FieldDeclarationSyntax>())
+                {
+                    foreach (var modifier in field.Modifiers)
+                    {
+                        if (modifier.ValueText.Equals("const"))
+                        {
+                            var constName = field.Declaration.Variables[0].Identifier.ToString();
+                            var constValue = field.Declaration.Variables[0].Initializer.Value.ToString();
+                            csConstants.Add($"{constName}={constValue}");
+                        }
+                    }
+                }
 
                 var vbCode = new StreamReader(vbFile).ReadToEnd();
                 var vbTree = Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxTree.ParseText(vbCode);
@@ -247,7 +267,22 @@ namespace Microsoft.Templates.Test
                 var vbProperties = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.PropertyStatementSyntax>().Select(p => p.Identifier.Text).ToList();
                 var vbMethods = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.MethodStatementSyntax>().Select(m => m.Identifier.Text.Replace("[", string.Empty).Replace("]", string.Empty)).ToList();
                 var vbEvents = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.EventStatementSyntax>().Select(e => e.Identifier.Text).ToList();
-                var vbEnums = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.EnumStatementSyntax>().Select(e => e).ToList();
+                var vbEnumItems = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.EnumMemberDeclarationSyntax>().Select(e => (e.Parent as Microsoft.CodeAnalysis.VisualBasic.Syntax.EnumBlockSyntax).EnumStatement.Identifier.ToString() + e.Identifier).ToList();
+
+                var vbConstants = new List<string>();
+
+                foreach (var field in vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.FieldDeclarationSyntax>())
+                {
+                    foreach (var modifier in field.Modifiers)
+                    {
+                        if (modifier.ValueText.Equals("Const"))
+                        {
+                            var constName = field.Declarators[0].Names[0].ToString();
+                            var constValue = field.Declarators[0].Initializer.Value.ToString();
+                            vbConstants.Add($"{constName}={constValue}");
+                        }
+                    }
+                }
 
                 foreach (var csProp in csProperties)
                 {
@@ -279,9 +314,9 @@ namespace Microsoft.Templates.Test
 
                 foreach (var csEvent in csEvents)
                 {
-                    if (vbEvents.Contains(csEvent))
+                    if (vbEvents.Contains(csEvent.ToString()))
                     {
-                        vbEvents.Remove(csEvent);
+                        vbEvents.Remove(csEvent.ToString());
                     }
                     else
                     {
@@ -291,9 +326,6 @@ namespace Microsoft.Templates.Test
 
                 failures.AddRange(vbEvents.Select(vbEvent => $"'{vbFile}' includes event '{vbEvent}' which isn't in the C# equivalent."));
 
-                var csEnumItems = (from csEnum in csEnums from csEnumMember in csEnum.Members select csEnum.Identifier.Text + csEnumMember.Identifier.Text).ToList();
-                var vbEnumItems = (from vbEnum in vbEnums from vbEnumMember in vbEnum.Ancestors() select vbEnum.Identifier.Text + vbEnumMember.ToString()).ToList();
-
                 foreach (var csEnum in csEnumItems)
                 {
                     if (vbEnumItems.Contains(csEnum))
@@ -302,13 +334,25 @@ namespace Microsoft.Templates.Test
                     }
                     else
                     {
-                        failures.Add($"'{csFile}' includes event '{csEnum}' which isn't in the VB equivalent.");
+                        failures.Add($"'{csFile}' includes enum '{csEnum}' which isn't in the VB equivalent.");
                     }
                 }
 
                 failures.AddRange(vbEnumItems.Select(vbEnum => $"'{vbFile}' includes enum '{vbEnum}' which isn't in the C# equivalent."));
 
+                foreach (var csConst in csConstants)
+                {
+                    if (vbConstants.Contains(csConst))
+                    {
+                        vbConstants.Remove(csConst);
+                    }
+                    else
+                    {
+                        failures.Add($"'{csFile}' includes constant '{csConst}' which isn't in the VB equivalent.");
+                    }
+                }
 
+                failures.AddRange(vbConstants.Select(vbConst => $"'{vbFile}' includes constant '{vbConst}' which isn't in the C# equivalent."));
             }
 
             Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));
@@ -316,7 +360,7 @@ namespace Microsoft.Templates.Test
 
         private static string VbFileToCsEquivalent(string vbFilePath)
         {
-            return vbFilePath.Replace("VisualBasic", "CS")
+            return vbFilePath.Replace("VB", "CS")
                 .Replace(".vb", ".cs")
                 .Replace("My Project", "Properties");
         }
