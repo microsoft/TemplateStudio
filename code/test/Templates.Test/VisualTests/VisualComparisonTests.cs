@@ -78,7 +78,7 @@ namespace Microsoft.Templates.Test
 
         private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details)
         {
-            var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\VIS\\{DateTime.Now:dd_HHmm}\\";
+            var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmm}\\";
             var projectFolder = Path.Combine(rootFolder, "TestProject");
             var imagesFolder = Path.Combine(rootFolder, "Images");
 
@@ -117,8 +117,9 @@ namespace Microsoft.Templates.Test
             File.WriteAllText(appInfoFileName, newAppInfoFileContents, Encoding.UTF8);
 
             // build test project
-            var solutionFile = Path.Combine(projectFolder, "AutomatedUITests.sln");
-            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Debug /p:Platform=x86";
+            var restoreNugetScript = $"& \"{projectFolder}\\nuget.exe\" restore \"{projectFolder}\\AutomatedUITests.csproj\" -PackagesDirectory \"{projectFolder}\\Packages\"";
+            ExecutePowerShellScript(restoreNugetScript);
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
             ExecutePowerShellScript(buildSolutionScript);
 
             return (projectFolder, imagesFolder);
@@ -195,9 +196,7 @@ if ($wad -ne $null)
             // get app package name
             var manifest = new XmlDocument();
             manifest.Load($"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}\\Package.appxmanifest");
-            var xnm = new XmlNamespaceManager(new NameTable());
-            xnm.AddNamespace(string.Empty, "http://schemas.microsoft.com/appx/manifest/foundation/windows10");
-            var packageName = manifest.SelectSingleNode("//Package/Identity").Attributes["Name"].Value;
+            var packageName = manifest.GetElementsByTagName("Package")[0].FirstChild.Attributes["Name"].Value;
 
             // get details from appx install
             var getPackageNamesScript = $"$PackageName = \"{packageName}\"" + @"
@@ -206,8 +205,8 @@ $packageDetails = Get-AppxPackage -Name $PackageName
 $packageFamilyName = $packageDetails.PackageFamilyName
 $packageFullName = $packageDetails.PackageFullName
 
-Write-Host $packageFamilyName
-Write-Host $packageFullName";
+Write-Output $packageFamilyName
+Write-Output $packageFullName";
 
             var response = ExecutePowerShellScript(getPackageNamesScript);
 

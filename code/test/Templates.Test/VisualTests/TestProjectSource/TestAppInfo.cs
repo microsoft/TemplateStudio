@@ -10,6 +10,6 @@ namespace AutomatedUITests
         public const string AppPfn2 = "***APP-PFN-2-GOES-HERE***";
         public const string AppName1 = "***APP-NAME-1-GOES-HERE***";
         public const string AppName2 = "***APP-NAME-2-GOES-HERE***";
-        public const string ScreenshotsFolder = "***FOLDER-GOES-HERE***";
+        public const string ScreenshotsFolder = @"***FOLDER-GOES-HERE***";
     }
 }
