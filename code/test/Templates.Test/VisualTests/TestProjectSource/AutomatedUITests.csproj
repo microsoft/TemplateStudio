@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A397D448-5D4B-4D31-B06A-38633EDEB207}</ProjectGuid>
+    <ProjectGuid>{44708CEE-E2CC-4191-A138-6D44AA55D40F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AutomatedUITests</RootNamespace>
@@ -64,12 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppIds.cs" />
-    <Compile Include="Utils\ImageComparer.cs" />
+    <Compile Include="TestAppInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ImageComparer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tests\" />
+    <Compile Include="Tests\TestBase.cs" />
+    <!--<Compile Include="Tests\LaunchBothAppsAndCompareInitialScreenshots.cs" />-->
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

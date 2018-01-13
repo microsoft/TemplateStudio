@@ -22,12 +22,11 @@ namespace Microsoft.Templates.Test
     [Collection("GenerationCollection")]
     public class VisualComparisonTests : BaseGenAndBuildTests
     {
-        private readonly VisualComparisonTestsFixture _visualFixture;
 
         public VisualComparisonTests(GenerationFixture fixture)
         {
             _fixture = fixture;
-            _visualFixture = new VisualComparisonTestsFixture();
+            _fixture.InitializeFixtureAsync(this);
         }
 
         // [Theory]
@@ -49,8 +48,13 @@ namespace Microsoft.Templates.Test
             var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities, lastPageIsHome: true);
 
             // create test project
-            /* create test project
-             */
+            var testProjectDetails = SetUpTestProject(app1Details, app2Details);
+
+            RunWinAppDriverTests(testProjectDetails);
+
+            // analyze/report results
+
+            // Remove test project (and images if not needed)
 
             UninstallAppx(app1Details.PackageFullName);
             UninstallAppx(app2Details.PackageFullName);
@@ -59,6 +63,65 @@ namespace Microsoft.Templates.Test
             RemoveCertificate(app2Details.CertificatePath);
 
             // if all went well, delete project files
+        }
+
+        private void RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
+        {
+            StartWinAppDriverIfNotRunning();
+
+            var buildOutput = Path.Combine(testProjectDetails.projectFolder, "bin", "Debug", "AutomatedUITests.dll");
+            var runTestsScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe\" \"{buildOutput}\" ";
+            ExecutePowerShellScript(runTestsScript);
+
+            StopWinAppDriverIfRunning();
+        }
+
+        private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details)
+        {
+            var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\VIS\\{DateTime.Now:dd_HHmm}\\";
+            var projectFolder = Path.Combine(rootFolder, "TestProject");
+            var imagesFolder = Path.Combine(rootFolder, "Images");
+
+            Fs.EnsureFolder(rootFolder);
+            Fs.EnsureFolder(projectFolder);
+            Fs.EnsureFolder(imagesFolder);
+
+            // Copy base project
+
+            Fs.CopyRecursive(@"..\..\VisualTests\TestProjectSource", projectFolder, overwrite: true);
+
+            // enable appropriate test
+            var projFileName = Path.Combine(projectFolder, "AutomatedUITests.csproj");
+
+            var projFileContents = File.ReadAllText(projFileName);
+
+            var newProjFileContents = projFileContents.Replace(
+                @"<!--<Compile Include=""Tests\\LaunchBothAppsAndCompareInitialScreenshots.cs"" />-->",
+                @"<Compile Include=""Tests\\LaunchBothAppsAndCompareInitialScreenshots.cs"" />");
+
+            File.WriteAllText(projFileName, newProjFileContents, Encoding.UTF8);
+
+
+            // set AppInfo values
+            var appInfoFileName = Path.Combine(projectFolder, "TestAppInfo.cs");
+
+            var appInfoFileContents = File.ReadAllText(appInfoFileName);
+
+            var newAppInfoFileContents = appInfoFileContents
+                .Replace("***APP-PFN-1-GOES-HERE***", app1Details.PackageFamilyName)
+                .Replace("***APP-PFN-2-GOES-HERE***", app2Details.PackageFamilyName)
+                .Replace("***APP-NAME-1-GOES-HERE***", app1Details.ProjectName)
+                .Replace("***APP-NAME-2-GOES-HERE***", app2Details.ProjectName)
+                .Replace("***FOLDER-GOES-HERE***", imagesFolder);
+
+            File.WriteAllText(appInfoFileName, newAppInfoFileContents, Encoding.UTF8);
+
+            // build test project
+            var solutionFile = Path.Combine(projectFolder, "AutomatedUITests.sln");
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" \"{solutionFile}\" /t:Restore,Rebuild /p:RestorePackagesPath=\"C:\\Packs\" /p:Configuration=Debug /p:Platform=x86";
+            ExecutePowerShellScript(buildSolutionScript);
+
+            return (projectFolder, imagesFolder);
         }
 
         private void RemoveCertificate(string certificatePath)
@@ -77,6 +140,32 @@ ForEach ($i in $dump)
             ExecutePowerShellScript(uninstallCertificateScript);
         }
 
+        private void StartWinAppDriverIfNotRunning()
+        {
+            var script = @"
+$wad = Get-Process WinAppDriver -ErrorAction SilentlyContinue
+
+if ($wad -eq $Null)
+{
+    Start-Process ""C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe""
+}";
+
+            ExecutePowerShellScript(script);
+        }
+
+        private void StopWinAppDriverIfRunning()
+        {
+            var script = @"
+$wad = Get-Process WinAppDriver -ErrorAction SilentlyContinue
+
+if ($wad -ne $null)
+{
+    $wad.CloseMainWindow()
+}";
+
+            ExecutePowerShellScript(script);
+        }
+
         private void UninstallAppx(string packageFullName)
         {
             ExecutePowerShellScript($"Remove-AppxPackage -Package {packageFullName}");
@@ -87,6 +176,8 @@ ForEach ($i in $dump)
             var result = new VisualComparisonTestDetails();
 
             var baseSetup = await SetUpComparisonProjectAsync(language, projectType, framework, genIdentities, lastPageIsHome);
+
+            result.ProjectName = baseSetup.ProjectName;
 
             ChangeProjectToNotUseDotNetNativeToolchain(baseSetup, language); // So building release version is fast
 
@@ -177,6 +268,8 @@ Write-Host $packageFullName";
             public string PackageFamilyName { get; set; }
 
             public string PackageFullName { get; set; }
+
+            public string ProjectName { get; set; }
         }
     }
 }

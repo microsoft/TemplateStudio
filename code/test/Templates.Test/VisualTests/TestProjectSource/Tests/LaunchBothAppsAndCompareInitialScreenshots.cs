@@ -7,46 +7,53 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
-using wts.rootNamespace;
-using wts.rootNamespace.Utils;
+using AutomatedUITests;
+using AutomatedUITests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Remote;
 
-namespace wts.rootNamespace.Tests
+namespace AutomatedUITests.Tests
 {
     [TestClass]
     public class LaunchBothAppsAndCompareInitialScreenshots : TestBase
     {
+        private string App1Filename { get; }
+        private string App2Filename { get; }
+        private string DiffFilename { get; }
+
+        public LaunchBothAppsAndCompareInitialScreenshots()
+        {
+            App1Filename = $"CompareInitialScreenshots-{TestAppInfo.AppName1}.png";
+            App2Filename = $"CompareInitialScreenshots-{TestAppInfo.AppName2}.png";
+            DiffFilename = $"CompareInitialScreenshots-{TestAppInfo.AppName1}-{TestAppInfo.AppName2}-Diff.png";
+        }
+
         [TestMethod]
         public void CompareInitialScreenshots()
         {
-            var ScreenshotFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\{DateTime.Now.ToString("dd_HHmm")}\\Screenshots\\";
-
-            if (!Directory.Exists(ScreenshotFolder))
+            if (!Directory.Exists(TestAppInfo.ScreenshotsFolder))
             {
-                Directory.CreateDirectory(ScreenshotFolder);
+                Directory.CreateDirectory(TestAppInfo.ScreenshotsFolder);
             }
 
-            using (var appSession1 = GetAppSession(AppIds.AppPfn1))
+            using (var appSession1 = base.GetAppSession(TestAppInfo.AppPfn1))
             {
                 appSession1.Manage().Window.Maximize();
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
                 var screenshot = appSession1.GetScreenshot();
-                screenshot.SaveAsFile(Path.Combine(ScreenshotFolder, "app1.png"), ImageFormat.Png);
+                screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App1Filename), ImageFormat.Png);
             }
 
-            using (var appSession2 = GetAppSession(AppIds.AppPfn2))
+            using (var appSession2 = base.GetAppSession(TestAppInfo.AppPfn2))
             {
                 appSession2.Manage().Window.Maximize();
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
                 var screenshot = appSession2.GetScreenshot();
-                screenshot.SaveAsFile(Path.Combine(ScreenshotFolder, "app2.png"), ImageFormat.Png);
+                screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App2Filename), ImageFormat.Png);
             }
 
-            var imageCompareResult = CheckImagesAreTheSame(ScreenshotFolder, "app1.png", "app2.png");
+            var imageCompareResult = CheckImagesAreTheSame(TestAppInfo.ScreenshotsFolder, App1Filename, App2Filename);
 
             Assert.IsTrue(imageCompareResult);
         }
@@ -65,7 +72,7 @@ namespace wts.rootNamespace.Tests
             {
                 var diffImage = image1.GetDifferenceImage(image2);
 
-                diffImage.Save(Path.Combine(folder, "diff.png"), ImageFormat.Png);
+                diffImage.Save(Path.Combine(folder, DiffFilename), ImageFormat.Png);
 
                 return false;
             }
@@ -73,23 +80,6 @@ namespace wts.rootNamespace.Tests
             {
                 return true;
             }
-        }
-    }
-
-    public class TestBase
-    {
-        protected const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
-
-        internal WindowsDriver<WindowsElement> GetAppSession(string appPfn)
-        {
-            DesiredCapabilities appCapabilities = new DesiredCapabilities();
-            appCapabilities.SetCapability("app", appPfn);
-            appCapabilities.SetCapability("deviceName", "WindowsPC");
-
-            var appSession = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appCapabilities);
-            appSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(4));
-
-            return appSession;
         }
     }
 }

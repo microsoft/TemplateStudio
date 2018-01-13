@@ -233,19 +233,21 @@
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <Compile Include="GenTests\GenProjectTests.cs" />
-    <None Include="VisualTests\Templates\Features\CompareLaunchScreen\Tests\LaunchBothAppsAndCompareInitialScreenshots.cs">
+    <None Include="VisualTests\TestProjectSource\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="VisualTests\Templates\Projects\Default\AppIds.cs">
+    <None Include="VisualTests\TestProjectSource\TestAppInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="VisualTests\Templates\Projects\Default\Properties\AssemblyInfo.cs">
+    <None Include="VisualTests\TestProjectSource\Tests\LaunchBothAppsAndCompareInitialScreenshots.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="VisualTests\Templates\Projects\Default\Utils\ImageComparer.cs">
+    <None Include="VisualTests\TestProjectSource\Tests\TestBase.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Compile Include="VisualTests\VisualComparisonTemplatesSource.cs" />
+    <None Include="VisualTests\TestProjectSource\Utils\ImageComparer.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="VisualTests\VisualComparisonTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
@@ -258,13 +260,15 @@
     </AdditionalFiles>
     <Compile Include="TemplateFolderValidationTests.cs" />
     <Compile Include="TemplateJsonValidationTests.cs" />
-    <Compile Include="VisualTests\VisualComparisonTestsFixture.cs" />
     <Compile Include="WindowsAppCertKitTests.cs" />
     <None Include="RunWackTest.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="RestoreAndBuildAppx.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\TestProjectSource\packages.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +328,13 @@
     <Content Include="TestData\NonDefaultAssets\Wide310x150Logo.scale-200.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="VisualTests\TestProjectSource\AutomatedUITests.sln">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\TestProjectSource\AutomatedUITests.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

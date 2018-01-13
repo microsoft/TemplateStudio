@@ -1,23 +1,19 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-// See the LICENSE file in the project root for more information.
-
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("wts.DefaultProject")]
+[assembly: AssemblyTitle("AutomatedUITests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("wts.DefaultProject")]
-[assembly: AssemblyCopyright("Copyright ©  1976")]
+[assembly: AssemblyProduct("AutomatedUITests")]
+[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("a397d448-5d4b-4d31-b06a-38633edeb207")]
+[assembly: Guid("44708cee-e2cc-4191-a138-6d44aa55d40f")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
