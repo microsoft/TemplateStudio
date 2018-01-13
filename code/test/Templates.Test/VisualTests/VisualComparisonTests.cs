@@ -96,8 +96,8 @@ namespace Microsoft.Templates.Test
             var projFileContents = File.ReadAllText(projFileName);
 
             var newProjFileContents = projFileContents.Replace(
-                @"<!--<Compile Include=""Tests\\LaunchBothAppsAndCompareInitialScreenshots.cs"" />-->",
-                @"<Compile Include=""Tests\\LaunchBothAppsAndCompareInitialScreenshots.cs"" />");
+                @"<!--<Compile Include=""Tests\LaunchBothAppsAndCompareInitialScreenshots.cs"" />-->",
+                @"<Compile Include=""Tests\LaunchBothAppsAndCompareInitialScreenshots.cs"" />");
 
             File.WriteAllText(projFileName, newProjFileContents, Encoding.UTF8);
 
