@@ -17,9 +17,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
+        private static MainViewModel _instance;
         private TemplateInfoViewModel _selectedTemplate;
 
-        public static MainViewModel Instance { get; private set; }
+        public static MainViewModel Instance => _instance ?? (_instance = new MainViewModel());
 
         public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(IsSelectionEnabled);
 
@@ -31,10 +32,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public UserSelectionViewModel UserSelection { get; } = new UserSelectionViewModel();
 
-        public MainViewModel()
+        private MainViewModel()
             : base()
         {
-            Instance = this;
             EventService.Instance.OnProjectTypeChanged += OnProjectTypeSelectionChanged;
             EventService.Instance.OnFrameworkChanged += OnFrameworkSelectionChanged;
             EventService.Instance.OnTemplateClicked += OnTemplateClicked;
