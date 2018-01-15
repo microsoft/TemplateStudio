@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Share Source",
-  "description": "Helps supporting the share contract in your UWP app to share data from your app with others.",
+  "description": "Ayuda a ser compatible con el contrato para contenido compartido en tu aplicación para UWP con el fin de compartir datos de tu aplicación con otros.",
   "identity": "wts.Feat.ShareSource"
 }

@@ -1,5 +1,5 @@
-﻿Web to App link associates your app with a website so that when someone opens a link to your website, your app is launched instead of opening the browser. If your app is not installed, your website opens in the browser as usual. Users can trust this experience because only verified content owners can register for a link. Users will be able to check all of their registered web-to-app links by going to Settings > Apps > Apps for websites.
+﻿「Web 至應用程式」連結會將您的應用程式與網站建立關聯，如此一來，當有人開啟您網站的連結時，將會啟動您的應用程式，而不是開啟瀏覽器。如果您的應用程式並未安裝，您的網站會如往常一樣在瀏覽器中開啟。使用者可以信任這個體驗，因為只有受驗證的內容擁有者才可以註冊連結。使用者將能夠移至 [設定] > [App] > [適用於網站的 App] 來查看他們註冊的所有「Web 至應用程式」連結。
 
-For more info about web to app linking, consult 
-[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking) and
+如需有關 Web 至應用程式連結的詳細資訊，請參閱
+[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking) 和
 [blogs.windows.com](https://blogs.windows.com/buildingapps/2016/10/14/web-to-app-linking-with-appurihandlers/)
