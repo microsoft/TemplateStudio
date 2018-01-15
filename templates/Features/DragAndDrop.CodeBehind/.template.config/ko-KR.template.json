@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a wrapper service over the standard UWP Drag and Drop functionallity to simplify the required code to create drag and drop ready apps.",
+  "description": "끌어서 놓기 기능은 표준 UWP 끌어서 놓기 기능에 래퍼 서비스를 제공하여 앱에 끌어서 놓기 기능을 만드는 데 필요한 코드 작업을 간소화합니다.",
   "identity": "wts.Feat.DragAndDrop.CodeBehind"
 }

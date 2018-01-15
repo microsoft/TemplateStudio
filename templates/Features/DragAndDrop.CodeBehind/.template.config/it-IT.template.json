@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a wrapper service over the standard UWP Drag and Drop functionallity to simplify the required code to create drag and drop ready apps.",
+  "description": "La funzionalità Trascinamento fornisce un servizio wrapper basato sulla funzionalità di trascinamento della selezione UWP standard al fine di semplificare il codice necessario per creare app che includano tale funzionalità.",
   "identity": "wts.Feat.DragAndDrop.CodeBehind"
 }

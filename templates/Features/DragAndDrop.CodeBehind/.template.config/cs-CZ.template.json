@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a wrapper service over the standard UWP Drag and Drop functionallity to simplify the required code to create drag and drop ready apps.",
+  "description": "Funkce Přetahování poskytuje službu, která zabaluje standardní funkci platformy UPW pro přetahování a zjednodušuje tak kód potřebný pro vytváření aplikací podporujících přetahování.",
   "identity": "wts.Feat.DragAndDrop.CodeBehind"
 }

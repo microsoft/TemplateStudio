@@ -22,6 +22,6 @@
   {
     "name": "Prism",
     "displayName": "Prism",
-    "summary": "Prism is a framework for building loosely coupled, maintainable, and testable XAML applications."
+    "summary": "Prism to struktura (framework) do tworzenia luźno sprzężonych aplikacji XAML, która są łatwe w utrzymaniu i testowaniu."
   }
 ]
