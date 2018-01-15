@@ -160,6 +160,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh templates cache.
+        /// </summary>
+        public static string ButtonRefreshTemplatesCache {
+            get {
+                return ResourceManager.GetString("ButtonRefreshTemplatesCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View info.
         /// </summary>
         public static string ButtonViewInfo {

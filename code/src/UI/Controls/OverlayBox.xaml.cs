@@ -132,6 +132,22 @@ namespace Microsoft.Templates.UI.Controls
 
         public static readonly DependencyProperty RefreshCommandProperty = DependencyProperty.Register(nameof(RefreshCommand), typeof(ICommand), typeof(OverlayBox), new PropertyMetadata(null));
 
+        public ICommand RefreshTemplateCacheCommand
+        {
+            get => (ICommand)GetValue(RefreshTemplateCacheCommandProperty);
+            set => SetValue(RefreshTemplateCacheCommandProperty, value);
+        }
+
+        public static readonly DependencyProperty RefreshTemplateCacheCommandProperty = DependencyProperty.Register(nameof(RefreshTemplateCacheCommand), typeof(ICommand), typeof(OverlayBox), new PropertyMetadata(null));
+
+        public bool CanForceRefreshTemplateCache
+        {
+            get => (bool)GetValue(CanForceRefreshTemplateCacheProperty);
+            set => SetValue(CanForceRefreshTemplateCacheProperty, value);
+        }
+
+        public static readonly DependencyProperty CanForceRefreshTemplateCacheProperty = DependencyProperty.Register(nameof(CanForceRefreshTemplateCache), typeof(bool), typeof(OverlayBox), new PropertyMetadata(false));
+
         private static void OpenUrl(string url)
         {
             if (!string.IsNullOrWhiteSpace(url) && Uri.IsWellFormedUriString(url, UriKind.Absolute))
