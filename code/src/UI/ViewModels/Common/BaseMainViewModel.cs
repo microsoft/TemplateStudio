@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -203,10 +204,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                     WizardStatus.SetStatus(status.Status.GetStatusViewModel(status.Version));
             });
 
-            if (status.Status == SyncStatus.Updated)
+            if (status.Status == SyncStatus.Ready || status.Status == SyncStatus.Updated)
             {
                 WizardStatus.TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
-                CleanStatus();
 
                 UpdateTemplatesAvailable(true);
                 await OnTemplatesAvailableAsync();

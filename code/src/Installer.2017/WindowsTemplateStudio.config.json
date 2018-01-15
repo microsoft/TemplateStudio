@@ -1,6 +1,6 @@
 {
-  "Environment": "LocalVsix",
-  "CdnUrl": "https://wtsrepository.blob.core.windows.net/dev/Latest",
+  "Environment": "LocalVsixEnv",
+  "CdnUrl": "https://wtsrepository.blob.core.windows.net/dev",
   "RemoteTelemetryKey": "VSIX Key",
   "LogFileFolderPath": "WindowsTemplateStudio\\Logs",
   "RepositoryFolderName": "WindowsTemplateStudio",
