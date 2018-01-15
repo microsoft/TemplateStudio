@@ -189,7 +189,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             if (status.Status == SyncStatus.Updated)
             {
                 WizardStatus.TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
-                CleanStatus();
 
                 UpdateTemplatesAvailable(true);
                 await OnTemplatesAvailableAsync();
