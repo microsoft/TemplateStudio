@@ -25,6 +25,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private bool _isFocused;
         private bool _hasErrors;
         private bool _isHome;
+        private bool _isDragging;
         private ICommand _textChangedCommand;
         private ICommand _lostKeyboardFocusCommand;
         private RelayCommand _deleteCommand;
@@ -83,6 +84,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
                 SetProperty(ref _isHome, value);
                 DeleteCommand.OnCanExecuteChanged();
             }
+        }
+
+        public bool IsDragging
+        {
+            get => _isDragging;
+            set => SetProperty(ref _isDragging, value);
         }
 
         public TemplateOrigin TemplateOrigin { get; }

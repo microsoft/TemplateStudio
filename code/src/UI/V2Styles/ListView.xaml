@@ -271,6 +271,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Grid>
+                        <Grid Background="{Binding SavedTemplateBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" Visibility="{Binding IsDragging, Converter={StaticResource BoolToVisibilityConverter}}" />
                         <Grid x:Name="mouseOverGrid" Opacity="0" Background="{Binding SavedTemplateBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
                         <Grid Style="{Binding HasErrors, Converter={StaticResource SavedTemplateGridConverter}}"/>
                         <Grid Margin="{StaticResource Margin_S_TopBottom}">
@@ -307,7 +308,7 @@
                                     Command="{Binding DeleteCommand}" />
                             </Grid>
                         </Grid>
-                        <Grid x:Name="dropGridMask" Background="Aqua" Opacity="0.3" Visibility="Collapsed"></Grid>
+                        <Grid x:Name="dropGridMask" Visibility="Collapsed" Opacity="0.5" Background="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
@@ -371,10 +372,11 @@
                         Background="{TemplateBinding Background}"
                         Padding="{TemplateBinding Padding}"
                         SnapsToDevicePixels="true">
-                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>
