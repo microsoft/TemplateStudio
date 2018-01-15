@@ -162,31 +162,28 @@
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name</comment>
   </data>
   <data name="NotificationSyncStatus_Acquired" xml:space="preserve">
-    <value>Done.</value>
+    <value>Download completed.</value>
     <comment>Notification message for Sync Status: Acquired</comment>
   </data>
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
-    <value>Checking for template updates...</value>
+    <value>There are new templates available (v{0}). Downloading…</value>
     <comment>Notification message for Sync Status: Acquiring</comment>
   </data>
-  <data name="NotificationSyncStatus_NewVersionAvailable" xml:space="preserve">
-    <value>There is new template content available.</value>
-    <comment>Notification message for Sync Status: New Version Available</comment>
+  <data name="NotificationSyncStatus_CheckedForUpdates" xml:space="preserve">
+    <value>Done.</value>
   </data>
-  <data name="NotificationSyncStatus_OverVersion" xml:space="preserve">
-    <value>An update to the templates is available but not compatible with this wizard version. Update the extension to access the latest templates.</value>
-    <comment>Notification message for Sync Status: Over Version</comment>
+  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
+    <value>Checking for template updates...</value>
   </data>
-  <data name="NotificationSyncStatus_OverVersionNoContent" xml:space="preserve">
-    <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
-    <comment>Notification message for Sync Status: Over Version No Content</comment>
+  <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
+    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
   </data>
   <data name="NotificationSyncStatus_Prepared" xml:space="preserve">
     <value>Templates ready.</value>
     <comment>Notification message for Sync Status: Prepared</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
-    <value>Preparing templates for first use...</value>
+    <value>Preparing templates (v{0})...</value>
     <comment>Notification message for Sync Status: Preparing</comment>
   </data>
   <data name="NotificationSyncStatus_Updated" xml:space="preserve">
@@ -194,7 +191,7 @@
     <comment>Notification message for Sync Status: Updated</comment>
   </data>
   <data name="NotificationSyncStatus_Updating" xml:space="preserve">
-    <value>Updating templates...</value>
+    <value>Refreshing templates cache…</value>
     <comment>Notification message for Sync Status: Updating</comment>
   </data>
   <data name="NotificationValidationError_AlreadyExists" xml:space="preserve">
@@ -235,6 +232,9 @@
   <data name="ProjectTypeTitle" xml:space="preserve">
     <value>Select a project type</value>
     <comment>ProjectType Title on ProjectTypePage</comment>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
   </data>
   <data name="TemplateDetailsAuthor" xml:space="preserve">
     <value>Author:</value>

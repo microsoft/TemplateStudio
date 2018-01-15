@@ -160,7 +160,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done..
+        ///   Looks up a localized string similar to Download completed..
         /// </summary>
         public static string NotificationSyncStatus_Acquired {
             get {
@@ -169,7 +169,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Checking for template updates....
+        ///   Looks up a localized string similar to There are new templates available (v{0}). Downloading….
         /// </summary>
         public static string NotificationSyncStatus_Acquiring {
             get {
@@ -178,29 +178,29 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is new template content available..
+        ///   Looks up a localized string similar to Done..
         /// </summary>
-        public static string NotificationSyncStatus_NewVersionAvailable {
+        public static string NotificationSyncStatus_CheckedForUpdates {
             get {
-                return ResourceManager.GetString("NotificationSyncStatus_NewVersionAvailable", resourceCulture);
+                return ResourceManager.GetString("NotificationSyncStatus_CheckedForUpdates", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An update to the templates is available but not compatible with this wizard version. Update the extension to access the latest templates..
+        ///   Looks up a localized string similar to Checking for template updates....
         /// </summary>
-        public static string NotificationSyncStatus_OverVersion {
+        public static string NotificationSyncStatus_CheckingForUpdates {
             get {
-                return ResourceManager.GetString("NotificationSyncStatus_OverVersion", resourceCulture);
+                return ResourceManager.GetString("NotificationSyncStatus_CheckingForUpdates", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no content available for this extension version. Update the extension to access to the latest content..
+        ///   Looks up a localized string similar to Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features..
         /// </summary>
-        public static string NotificationSyncStatus_OverVersionNoContent {
+        public static string NotificationSyncStatus_NewWizardVersionAvailable {
             get {
-                return ResourceManager.GetString("NotificationSyncStatus_OverVersionNoContent", resourceCulture);
+                return ResourceManager.GetString("NotificationSyncStatus_NewWizardVersionAvailable", resourceCulture);
             }
         }
         
@@ -214,7 +214,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preparing templates for first use....
+        ///   Looks up a localized string similar to Preparing templates (v{0})....
         /// </summary>
         public static string NotificationSyncStatus_Preparing {
             get {
@@ -232,7 +232,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updating templates....
+        ///   Looks up a localized string similar to Refreshing templates cache….
         /// </summary>
         public static string NotificationSyncStatus_Updating {
             get {
@@ -336,6 +336,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string ProjectTypeTitle {
             get {
                 return ResourceManager.GetString("ProjectTypeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features..
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

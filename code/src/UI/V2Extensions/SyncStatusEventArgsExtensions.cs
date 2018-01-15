@@ -2,39 +2,38 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.UI.V2Controls;
 using Microsoft.Templates.UI.V2Resources;
 
 namespace Microsoft.Templates.UI.V2Extensions
 {
-    public static class SyncStatusExtensions
+    public static class SyncStatusEventArgsExtensions
     {
-        public static Notification GetNotification(this SyncStatus status)
+        public static Notification GetNotification(this SyncStatusEventArgs args)
         {
-            switch (status)
+            switch (args.Status)
             {
                 case SyncStatus.Updating:
                     return Notification.Information(StringRes.NotificationSyncStatus_Updating, Category.TemplatesSync, false);
                 case SyncStatus.Updated:
                     return Notification.Information(StringRes.NotificationSyncStatus_Updated, Category.TemplatesSync, false);
                 case SyncStatus.Acquiring:
-                    return Notification.Information(StringRes.NotificationSyncStatus_Acquiring, Category.TemplatesSync, false);
+                    return Notification.Information(string.Format(StringRes.NotificationSyncStatus_Acquiring, args.Version), Category.TemplatesSync, false);
                 case SyncStatus.Acquired:
                     return Notification.Information(StringRes.NotificationSyncStatus_Acquired, Category.TemplatesSync, false);
                 case SyncStatus.Preparing:
-                    return Notification.Information(StringRes.NotificationSyncStatus_Preparing, Category.TemplatesSync, false);
+                    return Notification.Information(string.Format(StringRes.NotificationSyncStatus_Preparing, args.Version), Category.TemplatesSync, false);
                 case SyncStatus.Prepared:
                     return Notification.Information(StringRes.NotificationSyncStatus_Prepared, Category.TemplatesSync, false);
-                case SyncStatus.OverVersion:
-                    return Notification.Information(StringRes.NotificationSyncStatus_OverVersion, Category.TemplatesSync, false);
-                case SyncStatus.OverVersionNoContent:
-                    return Notification.Information(StringRes.NotificationSyncStatus_OverVersionNoContent, Category.TemplatesSync, false);
-                case SyncStatus.NewVersionAvailable:
-                    return Notification.Information(StringRes.NotificationSyncStatus_NewVersionAvailable, Category.TemplatesSync, false);
+                case SyncStatus.NewWizardVersionAvailable:
+                    return Notification.Information(string.Format(StringRes.NotificationSyncStatus_NewWizardVersionAvailable, args.Version), Category.TemplatesSync, false);
+                case SyncStatus.CheckingForUpdates:
+                    return Notification.Information(StringRes.NotificationSyncStatus_CheckingForUpdates, Category.TemplatesSync, false);
+                case SyncStatus.CheckedForUpdates:
+                    return Notification.Information(StringRes.NotificationSyncStatus_CheckedForUpdates, Category.TemplatesSync, false);
                 case SyncStatus.None:
-                    return null;
-                case SyncStatus.UnderVersion:
                     return null;
                 default:
                     return null;

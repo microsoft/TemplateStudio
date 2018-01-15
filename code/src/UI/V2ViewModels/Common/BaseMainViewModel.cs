@@ -100,11 +100,16 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private async void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            await NotificationsControl.Instance.AddNotificationAsync(args.Status.GetNotification());
+            System.Diagnostics.Debug.WriteLine(args.Status);
+            await NotificationsControl.Instance.AddNotificationAsync(args.GetNotification());
             if (args.Status == SyncStatus.Updated)
             {
                 await OnTemplatesAvailableAsync();
                 CleanNotificationsAsync().FireAndForget();
+            }
+            else if (args.Status == SyncStatus.Acquired)
+            {
+                // TODO: Turn on the light that indicates that there are templates updates.
             }
         }
 

@@ -9,5 +9,7 @@ namespace Microsoft.Templates.Core.Locations
     public sealed class SyncStatusEventArgs : EventArgs
     {
         public SyncStatus Status { get; set; }
+
+        public Version Version { get; set; }
     }
 }
