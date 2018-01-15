@@ -13,7 +13,7 @@ namespace Microsoft.Templates.UI.Extensions
     {
         public static StatusViewModel GetStatusViewModel(this SyncStatus status, Version version)
         {
-            if (status == SyncStatus.None)
+            if (status == SyncStatus.None || status == SyncStatus.Ready)
             {
                 return StatusViewModel.EmptyStatus;
             }
