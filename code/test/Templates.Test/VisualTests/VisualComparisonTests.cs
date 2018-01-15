@@ -29,6 +29,7 @@ namespace Microsoft.Templates.Test
             _fixture.InitializeFixtureAsync(this);
         }
 
+        // Note. Visual Studio MUST be running as Admin to run this test.
         // [Theory]
         // [MemberData("GetMultiLanguageProjectsAndFrameworks")]
         [Fact]
@@ -44,36 +45,64 @@ namespace Microsoft.Templates.Test
                     "wts.Page.Chart",
                 };
 
+            CheckWinAppDriverInstalled();
+
             var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
             var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities, lastPageIsHome: true);
 
-            // create test project
             var testProjectDetails = SetUpTestProject(app1Details, app2Details);
 
-            RunWinAppDriverTests(testProjectDetails);
+            var wadTestSuccessful = RunWinAppDriverTests(testProjectDetails);
 
-            // analyze/report results
+            // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+            if (wadTestSuccessful)
+            {
+                UninstallAppx(app1Details.PackageFullName);
+                UninstallAppx(app2Details.PackageFullName);
 
-            // Remove test project (and images if not needed)
+                RemoveCertificate(app1Details.CertificatePath);
+                RemoveCertificate(app2Details.CertificatePath);
 
-            UninstallAppx(app1Details.PackageFullName);
-            UninstallAppx(app2Details.PackageFullName);
+                // Parent of images folder also contains the test project
+                Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
+            }
 
-            RemoveCertificate(app1Details.CertificatePath);
-            RemoveCertificate(app2Details.CertificatePath);
-
-            // if all went well, delete project files
+            Assert.True(wadTestSuccessful, $"Failing test images in {testProjectDetails.imagesFolder}");
         }
 
-        private void RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
+        private void CheckWinAppDriverInstalled()
         {
+            Assert.True(
+                File.Exists(@"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe"),
+                "WinAppDriver is not installed. Download from https://github.com/Microsoft/WinAppDriver/releases");
+        }
+
+        private bool RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
+        {
+            var result = false;
+
             StartWinAppDriverIfNotRunning();
 
             var buildOutput = Path.Combine(testProjectDetails.projectFolder, "bin", "Debug", "AutomatedUITests.dll");
             var runTestsScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe\" \"{buildOutput}\" ";
-            ExecutePowerShellScript(runTestsScript);
+
+            var output = ExecutePowerShellScript(runTestsScript);
+
+            foreach (var outputLine in output)
+            {
+                if (outputLine.ToString().StartsWith("Total tests: "))
+                {
+                    if (outputLine.ToString().Contains("Failed: 0."))
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+            }
 
             StopWinAppDriverIfRunning();
+
+            return result;
         }
 
         private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details)
@@ -101,15 +130,14 @@ namespace Microsoft.Templates.Test
 
             File.WriteAllText(projFileName, newProjFileContents, Encoding.UTF8);
 
-
             // set AppInfo values
             var appInfoFileName = Path.Combine(projectFolder, "TestAppInfo.cs");
 
             var appInfoFileContents = File.ReadAllText(appInfoFileName);
 
             var newAppInfoFileContents = appInfoFileContents
-                .Replace("***APP-PFN-1-GOES-HERE***", app1Details.PackageFamilyName)
-                .Replace("***APP-PFN-2-GOES-HERE***", app2Details.PackageFamilyName)
+                .Replace("***APP-PFN-1-GOES-HERE***", $"{app1Details.PackageFamilyName}!App")
+                .Replace("***APP-PFN-2-GOES-HERE***", $"{app2Details.PackageFamilyName}!App")
                 .Replace("***APP-NAME-1-GOES-HERE***", app1Details.ProjectName)
                 .Replace("***APP-NAME-2-GOES-HERE***", app2Details.ProjectName)
                 .Replace("***FOLDER-GOES-HERE***", imagesFolder);

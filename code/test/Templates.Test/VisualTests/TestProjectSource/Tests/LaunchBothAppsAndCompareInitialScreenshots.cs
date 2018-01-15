@@ -66,7 +66,7 @@ namespace AutomatedUITests.Tests
             var image1 = Image.FromFile(imagePath1);
             var image2 = Image.FromFile(imagePath2);
 
-            var percentageDifference = image1.Differences(image2);
+            var percentageDifference = ImageComparer.PercentageDifferent(image1, image2);
 
             if (percentageDifference > 0f)
             {
