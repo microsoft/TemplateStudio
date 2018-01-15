@@ -56,11 +56,11 @@
                 </StackPanel>
                 <StackPanel Margin="{StaticResource Margin_M_Top}" Visibility="{Binding Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
                     <TextBlock Text="{x:Static res:StringRes.TemplateDetailsLicenses}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}" />
-                    <ItemsControl ItemsSource="{Binding Licenses}" ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
+                    <ItemsControl Style="{StaticResource WtsItemsControl}" ItemsSource="{Binding Licenses}" ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
                 </StackPanel>
                 <StackPanel Margin="{StaticResource Margin_M_Top}" Visibility="{Binding Dependencies, Converter={StaticResource HasItemsVisibilityConverter}}">
                     <TextBlock Text="{x:Static res:StringRes.TemplateDetailsDependencies}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}" />
-                    <ItemsControl ItemsSource="{Binding Dependencies}" ItemTemplate="{StaticResource WtsItemTemplateDependency}" />
+                    <ItemsControl Style="{StaticResource WtsItemsControl}" ItemsSource="{Binding Dependencies}" ItemTemplate="{StaticResource WtsItemTemplateDependency}" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

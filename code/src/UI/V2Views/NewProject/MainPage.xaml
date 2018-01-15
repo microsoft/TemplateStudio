@@ -93,6 +93,7 @@
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                             Text="{x:Static strings:StringRes.ProjectDetailsLicensesSectionTitle}" />
                         <ItemsControl
+                            Style="{StaticResource WtsItemsControl}"
                             ItemsSource="{Binding UserSelection.Licenses}"
                             Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}"
                             ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
