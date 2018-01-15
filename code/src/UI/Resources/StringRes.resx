@@ -680,4 +680,8 @@
     <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
     <comment>Status error message for sync over version no content</comment>
   </data>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Refresh templates cache</value>
+    <comment>Refresh templates cache button content on overlay box control</comment>
+  </data>
 </root>

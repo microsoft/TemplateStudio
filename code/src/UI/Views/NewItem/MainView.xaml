@@ -144,6 +144,15 @@
             </Grid>
         </Grid>
         <controls:StatusBox Style="{StaticResource StatusBoxStyle}" Status="{Binding WizardStatus.Status}" />
-        <controls:OverlayBox Style="{StaticResource OverlayBoxStyle}" NewVersionAvailable="{Binding WizardStatus.NewVersionAvailable}" WizardVersion="{Binding WizardStatus.WizardVersion}" TemplatesVersion="{Binding WizardStatus.TemplatesVersion}" Visible="{Binding WizardStatus.IsOverlayBoxVisible}" RefreshCommand="{Binding RefreshTemplatesCommand}" CheckForUpdatesCommand="{Binding CheckUpdatesCommand}" Status="{Binding WizardStatus.OverlayStatus}" />
+        <controls:OverlayBox Style="{StaticResource OverlayBoxStyle}"
+                             NewVersionAvailable="{Binding WizardStatus.NewVersionAvailable}"
+                             WizardVersion="{Binding WizardStatus.WizardVersion}"
+                             TemplatesVersion="{Binding WizardStatus.TemplatesVersion}"
+                             Visible="{Binding WizardStatus.IsOverlayBoxVisible}"
+                             RefreshCommand="{Binding RefreshTemplatesCommand}"
+                             CheckForUpdatesCommand="{Binding CheckUpdatesCommand}"
+                             Status="{Binding WizardStatus.OverlayStatus}"
+                             CanForceRefreshTemplateCache="{Binding CanForceRefreshTemplateCache}"
+                             RefreshTemplateCacheCommand="{Binding RefreshTemplatesCacheCommand}"/>
     </Grid>
 </Window>

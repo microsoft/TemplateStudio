@@ -1,11 +1,10 @@
-﻿ShareSource provides you with a class that allows you to share data  in a simple and straight-forward manner.
-It allows you to quickly share data, such as:
+﻿ShareSource poskytuje třídu, která umožňuje snadno a jednoduše sdílet data. Umožňuje rychle sdílet data, mezi která patří:
 
   * Text
-  * Links
-  * Images
-  * Html
-  * Deferred content that is loaded when the target app requests it.
+  * Odkazy
+  * Obrázky
+  * HTML
+  * Odložený obsah, který se načte, když ho aplikace vyžaduje
 
-For more info about sharing data between apps, consult 
+Další informace o sdílení dat mezi aplikacemi najdete na webu na adrese 
 [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/app-to-app/share-data)
