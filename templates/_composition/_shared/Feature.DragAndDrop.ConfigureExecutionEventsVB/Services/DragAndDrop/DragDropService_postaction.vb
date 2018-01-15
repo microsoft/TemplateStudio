@@ -2,7 +2,7 @@
 
     Public Class DragDropService
 
-        Private Shared Sub ConfigureUIElement(ByVal element As UIElement, ByVal configuration As DropConfiguration)
+        Private Shared Sub ConfigureUIElement(element As UIElement, configuration As DropConfiguration)
             '{[{
             AddHandler element.DragEnter, Sub(sender, args)
                 ' Operation is copy by default
@@ -26,7 +26,7 @@
             '}]}
         End Sub
 
-        Private Shared Sub ConfigureListView(ByVal listview As ListViewBase, ByVal configuration As ListViewDropConfiguration)
+        Private Shared Sub ConfigureListView(listview As ListViewBase, configuration As ListViewDropConfiguration)
             '{[{
             AddHandler listview.DragItemsStarting, Sub(sender, args)
                 Dim data = New DragDropStartingData With {.Data = args.Data, .Items = args.Items}

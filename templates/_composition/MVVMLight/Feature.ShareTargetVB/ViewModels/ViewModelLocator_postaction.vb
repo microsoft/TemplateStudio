@@ -15,6 +15,7 @@
         End Sub
 
         '{[{
+
         Public ReadOnly Property wts.ItemNameViewModel As wts.ItemNameViewModel
             Get
                 Return ServiceLocator.Current.GetInstance(Of wts.ItemNameViewModel)()

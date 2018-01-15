@@ -4,6 +4,7 @@ Imports Param_ItemNamespace.Services
 Namespace ViewModels
     Public Class ChartViewViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
+
         Public Sub New()
         End Sub
 

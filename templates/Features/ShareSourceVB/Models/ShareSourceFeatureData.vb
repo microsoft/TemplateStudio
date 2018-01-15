@@ -10,7 +10,7 @@ Namespace Models
 
         Friend Property Items As List(Of ShareSourceFeatureItem)
 
-        Public Sub New(ByVal title As String, ByVal Optional desciption As String = Nothing)
+        Public Sub New(title As String, Optional desciption As String = Nothing)
             If String.IsNullOrEmpty(title) Then
                 Throw New ArgumentException("ExceptionShareSourceFeatureDataTitleIsNullOrEmpty".GetLocalized(), NameOf(title))
             End If
@@ -20,7 +20,7 @@ Namespace Models
             Description = desciption
         End Sub
 
-        Public Sub SetText(ByVal text As String)
+        Public Sub SetText(text As String)
             If String.IsNullOrEmpty(text) Then
                 Throw New ArgumentException("ExceptionShareSourceFeatureDataTitleIsNullOrEmpty".GetLocalized(), nameof(text))
             End If
@@ -28,7 +28,7 @@ Namespace Models
             Items.Add(ShareSourceFeatureItem.FromText(text))
         End Sub
 
-        Public Sub SetWebLink(ByVal webLink As Uri)
+        Public Sub SetWebLink(webLink As Uri)
             If webLink Is Nothing Then
                 Throw New ArgumentNullException(NameOf(webLink))
             End If
@@ -46,7 +46,7 @@ Namespace Models
         '      </uap:Protocol>
         '
         ' 2. The applicationLink parameter must refer to the registered protocol (i.e. new Uri("my-app-name:navigate?page=MainPage"))
-        Public Sub SetApplicationLink(ByVal applicationLink As Uri)
+        Public Sub SetApplicationLink(applicationLink As Uri)
             If applicationLink Is Nothing Then
                 Throw New ArgumentNullException(NameOf(applicationLink))
             End If
@@ -54,7 +54,7 @@ Namespace Models
             Items.Add(ShareSourceFeatureItem.FromApplicationLink(applicationLink))
         End Sub
 
-        Public Sub SetHtml(ByVal html As String)
+        Public Sub SetHtml(html As String)
             If String.IsNullOrEmpty(html) Then
                 Throw New ArgumentException("ExceptionShareSourceFeatureDataHtmlIsNullOrEmpty".GetLocalized(), nameof(html))
             End If
@@ -62,7 +62,7 @@ Namespace Models
             Items.Add(ShareSourceFeatureItem.FromHtml(html))
         End Sub
 
-        Public Sub SetImage(ByVal image As StorageFile)
+        Public Sub SetImage(image As StorageFile)
             If image Is Nothing Then
                 Throw New ArgumentNullException(NameOf(image))
             End If
@@ -70,7 +70,7 @@ Namespace Models
             Items.Add(ShareSourceFeatureItem.FromImage(image))
         End Sub
 
-        Public Sub SetStorageItems(ByVal storageItems As IEnumerable(Of IStorageItem))
+        Public Sub SetStorageItems(storageItems As IEnumerable(Of IStorageItem))
             If storageItems Is Nothing OrElse Not storageItems.Any() Then
                 Throw New ArgumentException("ExceptionShareSourceFeatureDataStorageItemsIsNullOrEmpty".GetLocalized(), nameof(storageItems))
             End If
@@ -81,7 +81,7 @@ Namespace Models
         ' TODO WTS: Use this method add content to share when you do not want to process the data until the target app actually requests it.
         ' The defferedDataFormatId parameter must be a const value from StandardDataFormats class.
         ' The getDeferredDataAsyncFunc parameter is the function that returns the object you want to share.
-        Public Sub SetDeferredContent(ByVal deferredDataFormatId As String, ByVal getDeferredDataAsyncFunc As Func(Of Task(Of Object)))
+        Public Sub SetDeferredContent(deferredDataFormatId As String, getDeferredDataAsyncFunc As Func(Of Task(Of Object)))
             If String.IsNullOrEmpty(deferredDataFormatId) Then
                 Throw New ArgumentException("ExceptionShareSourceFeatureDataDeferredDataFormatIdIsNullOrEmpty".GetLocalized(), nameof(deferredDataFormatId))
             End If

@@ -7,6 +7,7 @@ Imports Param_ItemNamespace.Services
 Namespace ViewModels
     Public Class MapPageViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
+
         ' TODO WTS: Set your preferred default zoom level
         Private Const DefaultZoomLevel As Double = 17
 

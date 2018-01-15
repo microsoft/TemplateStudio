@@ -21,7 +21,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             DataContext = ViewModel;
 
-            Loaded += (o, e) =>
+            Loaded += async (sender, e) =>
             {
                 ViewModel.Initialize();
                 newCSharpProjectButton.Focus();

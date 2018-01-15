@@ -20,7 +20,7 @@
                 Return CStr(GetValue(CaptionProperty))
             End Get
 
-            Set(ByVal value As String)
+            Set(value As String)
                 SetValue(CaptionProperty, value)
             End Set
         End Property
@@ -30,7 +30,7 @@
                 Return CBool(GetValue(IsCaptionVisibleProperty))
             End Get
 
-            Set(ByVal value As Boolean)
+            Set(value As Boolean)
                 SetValue(IsCaptionVisibleProperty, value)
             End Set
         End Property
@@ -40,7 +40,7 @@
                 Return CBool(GetValue(IsContentVisibleProperty))
             End Get
 
-            Set(ByVal value As Boolean)
+            Set(value As Boolean)
                 SetValue(IsContentVisibleProperty, value)
             End Set
         End Property
@@ -50,7 +50,7 @@
                 Return CBool(GetValue(IsGlyphVisibleProperty))
             End Get
 
-            Set(ByVal value As Boolean)
+            Set(value As Boolean)
                 SetValue(IsGlyphVisibleProperty, value)
             End Set
         End Property
@@ -60,7 +60,7 @@
                 Return CType(GetValue(DragStartingImageProperty), ImageSource)
             End Get
 
-            Set(ByVal value As ImageSource)
+            Set(value As ImageSource)
                 SetValue(DragStartingImageProperty, value)
             End Set
         End Property
@@ -70,7 +70,7 @@
                 Return CType(GetValue(DropOverImageProperty), ImageSource)
             End Get
 
-            Set(ByVal value As ImageSource)
+            Set(value As ImageSource)
                 SetValue(DropOverImageProperty, value)
             End Set
         End Property

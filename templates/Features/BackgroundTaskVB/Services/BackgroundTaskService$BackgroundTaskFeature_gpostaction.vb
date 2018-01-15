@@ -5,6 +5,7 @@
 Namespace Services
     Friend Class BackgroundTaskService
         Inherits ActivationHandler(Of BackgroundActivatedEventArgs)
+
         Private Shared Function CreateInstances() As IEnumerable(Of BackgroundTask)
             Dim backgroundTasks As List(Of BackgroundTask) = New List(Of BackgroundTask)()
             '^^

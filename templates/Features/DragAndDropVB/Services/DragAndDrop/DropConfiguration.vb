@@ -35,7 +35,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropBitmapCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DropBitmapCommandProperty, value)
             End Set
         End Property
@@ -45,7 +45,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropHtmlCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DropHtmlCommandProperty, value)
             End Set
         End Property
@@ -55,7 +55,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropRtfCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DropRtfCommandProperty, value)
             End Set
         End Property
@@ -65,7 +65,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropStorageItemsCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DropStorageItemsCommandProperty, value)
             End Set
         End Property
@@ -75,7 +75,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropTextCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DropTextCommandProperty, value)
             End Set
         End Property
@@ -85,7 +85,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropApplicationLinkCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DropApplicationLinkCommandProperty, value)
             End Set
         End Property
@@ -95,7 +95,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropWebLinkCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DropWebLinkCommandProperty, value)
             End Set
         End Property
@@ -105,7 +105,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DropDataViewCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DropDataViewCommandProperty, value)
             End Set
         End Property
@@ -115,7 +115,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DragEnterCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DragEnterCommandProperty, value)
             End Set
         End Property
@@ -125,7 +125,7 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DragOverCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DragOverCommandProperty, value)
             End Set
         End Property
@@ -135,12 +135,12 @@ Namespace Services.DragAndDrop
                 Return CType(GetValue(DragLeaveCommandProperty), ICommand)
             End Get
 
-            Set(ByVal value As ICommand)
+            Set(value As ICommand)
                 SetValue(DragLeaveCommandProperty, value)
             End Set
         End Property
 
-        Public Async Function ProcessComandsAsync(ByVal dataview As DataPackageView) As Task
+        Public Async Function ProcessComandsAsync(dataview As DataPackageView) As Task
             If DropDataViewCommand IsNot Nothing Then
                 DropDataViewCommand.Execute(dataview)
             End If

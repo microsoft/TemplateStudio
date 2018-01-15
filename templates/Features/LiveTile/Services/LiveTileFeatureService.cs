@@ -12,7 +12,7 @@ namespace Param_RootNamespace.Services
 {
     internal partial class LiveTileFeatureService : ActivationHandler<LaunchActivatedEventArgs>
     {
-        private const string QueueEnabledKey = "NotificationQueueEnabled";
+        private const string QueueEnabledKey = "LiveTileNotificationQueueEnabled";
 
         public async Task EnableQueueAsync()
         {
