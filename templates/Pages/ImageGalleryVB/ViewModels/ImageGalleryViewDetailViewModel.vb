@@ -21,7 +21,7 @@ Namespace ViewModels
             End Get
             Set
                 [Param_Setter](_selectedImage, value)
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedImageId, DirectCast(SelectedImage, SampleImage).ID)
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, DirectCast(SelectedImage, SampleImage).ID)
             End Set
         End Property
 
