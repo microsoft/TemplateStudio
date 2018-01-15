@@ -28,7 +28,7 @@ namespace Microsoft.Templates.UI.V2Extensions
                 case SyncStatus.Prepared:
                     return Notification.Information(StringRes.NotificationSyncStatus_Prepared, Category.TemplatesSync, TimerType.Short);
                 case SyncStatus.NewWizardVersionAvailable:
-                    return Notification.Information(string.Format(StringRes.NotificationSyncStatus_NewWizardVersionAvailable, args.Version), Category.TemplatesSync, TimerType.Large);
+                    return Notification.Warning(string.Format(StringRes.NotificationSyncStatus_NewWizardVersionAvailable, args.Version), Category.TemplatesSync, TimerType.None);
                 case SyncStatus.CheckingForUpdates:
                     return Notification.Information(StringRes.NotificationSyncStatus_CheckingForUpdates, Category.TemplatesSync, TimerType.None);
                 case SyncStatus.CheckedForUpdates:

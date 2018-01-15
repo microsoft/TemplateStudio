@@ -18,7 +18,7 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
         public WizardShell(string language)
         {
             Current = this;
-            DataContext = MainViewModel.Instance;
+            DataContext = new MainViewModel();
             InitializeComponent();
             NavigationService.InitializeMainFrame(mainFrame, new MainPage());
             Loaded += async (sender, args) =>
