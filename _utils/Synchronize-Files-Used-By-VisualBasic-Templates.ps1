@@ -5,9 +5,6 @@
 # This script finds all interested files in VB folders and then copies the equivalent file from the CS version
 Get-ChildItem ..\templates\* -Recurse -include *.xaml, *.resw, *.md, *.png, Package.appxmanifest | where { $_.FullName -Match "VB\\" -and ($_.FullName -notmatch "\\templates\\test\\") } | % { $cs = $_.FullName -replace "VB\\", "\\"; Copy-Item $cs $_.FullName }
 
-# Handle changes in project references, such as a newer version of a referenced NuGet package
-Get-ChildItem ..\templates\* -Recurse -include _postaction.vbproj | where { $_.FullName -notmatch "\\templates\\test\\" } | % { $cs = $_.FullName -replace "VB\\", "\\" -replace ".vbproj", ".csproj"; Copy-Item $cs $_.FullName }
-
 # This script handles project file postactions that add 3rd party references
 Get-ChildItem ..\templates\* -Recurse -include _postaction.vbproj | where { $_.FullName -notmatch "\\templates\\test\\" } | % { $cs = $_.FullName -replace "VB\\", "\\"; $cs = $cs -replace ".vbproj", ".csproj"; Copy-Item $cs $_.FullName }
 
