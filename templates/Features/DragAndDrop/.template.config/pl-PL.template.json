@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps.",
+  "description": "Funkcja Przeciągnij i upuść oferuje usługę upraszczającą tworzenie aplikacji, które mają obsługiwać tę funkcję.",
   "identity": "wts.Feat.DragAndDrop"
 }

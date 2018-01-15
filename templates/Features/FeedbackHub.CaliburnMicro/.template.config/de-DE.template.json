@@ -1,6 +1,6 @@
 ﻿{
-    "author": "Microsoft Community",
-    "name": "Feedback Hub Link",
-    "description": "Add a link, on the settings page, to the Feedback Hub.",
-    "identity": "wts.Feat.FeedbackHub.CaliburnMicro"
+  "author": "Microsoft Community",
+  "name": "Feedback Hub Link",
+  "description": "Fügen Sie auf der Einstellungsseite einen Link zum Feedback-Hub hinzu.",
+  "identity": "wts.Feat.FeedbackHub.CaliburnMicro"
 }

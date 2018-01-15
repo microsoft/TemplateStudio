@@ -198,11 +198,10 @@ namespace Microsoft.Templates.Core.Locations
          {
             try
             {
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updating });
-
-                await Task.Run(() =>
+                if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
                 {
-                    if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updating });
+                    await Task.Run(() =>
                     {
                         CodeGen.Instance.Cache.DeleteAllLocaleCacheFiles();
                         CodeGen.Instance.Cache.Scan(_content.LatestContentFolder);
@@ -210,10 +209,13 @@ namespace Microsoft.Templates.Core.Locations
                         CodeGen.Instance.Settings.SettingsLoader.Save();
 
                         _content.RefreshContentFolder(CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _content.Source.Id));
-                    }
-                });
-
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updated });
+                    });
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updated });
+                }
+                else
+                {
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Ready });
+                }
             }
             catch (Exception ex)
             {

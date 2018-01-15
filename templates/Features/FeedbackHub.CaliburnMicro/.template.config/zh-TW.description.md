@@ -1,3 +1,3 @@
-﻿Add a Feedback link to the settings page to encourage your customers to leave feedback via the Feedback Hub.
+﻿新增「意見反應」連結至設定頁面，以鼓勵您的客戶透過「意見反應中樞」留下意見反應。
 
-Feedback Hub is a preinstalled app that provides a single place to gather feedback on Windows and installed apps. All customer feedback that is submitted for your app through Feedback Hub is collected and presented to you in the [Feedback report](https://docs.microsoft.com/en-us/windows/uwp/publish/feedback-report) in the Windows Dev Center dashboard, so you can see the problems, suggestions, and upvotes that your customers have submitted in one report.
+「意見反應中樞」是預先安裝的應用程式，可提供單一位置來收集有關 Windows 和已安裝之應用程式的意見反應。透過「意見反應中樞」為您的應用程式提交的所有客戶意見反應都會收集起來，並且在 Windows 開發人員中心儀表板的[意見反應報告](https://docs.microsoft.com/zh-tw/windows/uwp/publish/feedback-report) 中呈現給您，好讓您可以在一份報告中查看您的客戶所提交的問題、建議和好評。

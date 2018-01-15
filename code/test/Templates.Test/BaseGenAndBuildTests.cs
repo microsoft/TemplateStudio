@@ -225,7 +225,7 @@ namespace Microsoft.Templates.Test
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
 
-            ProjectName = $"{projectType}{framework}Compare{language.Replace("#", "S")}";
+            ProjectName = $"{projectType}{framework}Compare{ShortLanguageName(language)}";
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
             OutputPath = ProjectPath;
 
