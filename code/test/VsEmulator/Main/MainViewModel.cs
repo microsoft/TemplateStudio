@@ -502,7 +502,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private string GetTemplatesFolder()
         {
-            return @"C:\ProgramData\WindowsTemplateStudio\Templates\Local";
+            return @"C:\ProgramData\WindowsTemplateStudio\Templates\LocalEnv";
         }
     }
 }

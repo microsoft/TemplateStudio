@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Multiple views",
-  "description": "Enable your users to view independent parts of your app in separate windows.",
+  "description": "Poskytněte svým uživatelům možnost zobrazit si nezávislé části vaší aplikace v samostatných oknech.",
   "identity": "wts.Feat.MultiView"
 }

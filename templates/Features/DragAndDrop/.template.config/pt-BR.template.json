@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps.",
+  "description": "O recurso Arrastar e Soltar fornece um serviço para simplificar a criação de aplicativos preparados para arrastar e soltar.",
   "identity": "wts.Feat.DragAndDrop"
 }

@@ -33,6 +33,8 @@ namespace Microsoft.Templates.UI.V2Extensions
                     return Notification.Information(StringRes.NotificationSyncStatus_CheckingForUpdates, Category.TemplatesSync, TimerType.None);
                 case SyncStatus.CheckedForUpdates:
                     return Notification.Information(StringRes.NotificationSyncStatus_CheckedForUpdates, Category.TemplatesSync, TimerType.Short);
+                case SyncStatus.Ready:
+                    return null;
                 case SyncStatus.None:
                     return null;
                 default:

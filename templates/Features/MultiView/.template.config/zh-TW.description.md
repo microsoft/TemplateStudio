@@ -1,3 +1,3 @@
-﻿Help your users be more productive by letting them view independent parts of your app in separate windows. When you create multiple windows for an app, each window behaves independently. The taskbar shows each window separately. Users can move, resize, show, and hide app windows independently and can switch between app windows as if they were separate apps. Each window operates in its own thread.
+﻿讓您的使用者在個別視窗中檢視應用程式的獨立組件，幫助他們提高生產力。當您為應用程式建立多個視窗時，每個視窗都會有獨立的行為模式。工作列會個別顯示每個視窗。使用者可以獨立地移動、顯示、隱藏應用程式視窗及調整視窗大小，也可以在應用程式視窗之間切換，就像是個別應用程式一樣。每個視窗都會在其專屬的執行緒中運作。
 
-To find out more about multiple views, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/design/layout/show-multiple-views).
+若要深入了解多個檢視，請前往 [docs.microsoft.com](https://docs.microsoft.com/zh-tw/windows/uwp/design/layout/show-multiple-views)。

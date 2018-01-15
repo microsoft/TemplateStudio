@@ -102,7 +102,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             System.Diagnostics.Debug.WriteLine(args.Status);
             await NotificationsControl.Instance.AddNotificationAsync(args.GetNotification());
-            if (args.Status == SyncStatus.Updated)
+            if (args.Status == SyncStatus.Updated || args.Status == SyncStatus.Ready)
             {
                 await OnTemplatesAvailableAsync();
             }
