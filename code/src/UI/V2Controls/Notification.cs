@@ -20,6 +20,13 @@ namespace Microsoft.Templates.UI.V2Controls
         Error
     }
 
+    public enum TimerType
+    {
+        None,
+        Short,
+        Large
+    }
+
     public enum ErrorCategory
     {
         None,
@@ -54,18 +61,29 @@ namespace Microsoft.Templates.UI.V2Controls
 
         public ICommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand(OnClose));
 
-        private Notification(bool hasTimer)
+        private Notification(TimerType timerType)
         {
-            if (hasTimer)
+            if (timerType != TimerType.None)
             {
-                _closeTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(5) };
+                double interval = 0.0;
+                switch (timerType)
+                {
+                    case TimerType.Short:
+                        interval = 3;
+                        break;
+                    case TimerType.Large:
+                        interval = 6;
+                        break;
+                }
+
+                _closeTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(interval) };
                 _closeTimer.Tick += OnTick;
             }
         }
 
-        public static Notification Information(string message, Category category = Category.None, bool hasTimer = true)
+        public static Notification Information(string message, Category category = Category.None, TimerType timerType = TimerType.Short)
         {
-            return new Notification(hasTimer)
+            return new Notification(timerType)
             {
                 Type = NotificationType.Information,
                 Message = message,
@@ -73,9 +91,9 @@ namespace Microsoft.Templates.UI.V2Controls
             };
         }
 
-        public static Notification Warning(string message, Category category = Category.None, bool hasTimer = true)
+        public static Notification Warning(string message, Category category = Category.None, TimerType timerType = TimerType.Large)
         {
-            return new Notification(hasTimer)
+            return new Notification(timerType)
             {
                 Type = NotificationType.Warning,
                 Message = message,
@@ -85,7 +103,7 @@ namespace Microsoft.Templates.UI.V2Controls
 
         public static Notification Error(string message, ErrorCategory errorCategory = ErrorCategory.None, IEnumerable<Category> categoriesToOverride = null)
         {
-            return new Notification(false)
+            return new Notification(TimerType.None)
             {
                 Type = NotificationType.Error,
                 Message = message,

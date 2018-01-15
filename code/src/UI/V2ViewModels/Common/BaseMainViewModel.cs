@@ -105,18 +105,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             if (args.Status == SyncStatus.Updated)
             {
                 await OnTemplatesAvailableAsync();
-                CleanNotificationsAsync().FireAndForget();
             }
             else if (args.Status == SyncStatus.Acquired)
             {
                 // TODO: Turn on the light that indicates that there are templates updates.
             }
-        }
-
-        public async Task CleanNotificationsAsync()
-        {
-            await Task.Delay(2000);
-            await NotificationsControl.Instance.CleanNotificationsAsync(Category.TemplatesSync);
         }
     }
 }
