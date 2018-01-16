@@ -225,13 +225,22 @@ namespace Microsoft.Templates.Test
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
 
-            ProjectName = $"{projectType}{framework}Compare{ShortLanguageName(language)}";
+            var singlePageName = string.Empty;
+
+            var genIdentitiesList = genIdentities.ToList();
+
+            if (genIdentitiesList.Count == 1)
+            {
+                singlePageName = genIdentitiesList.Last().Split('.').Last();
+            }
+
+            ProjectName = $"{projectType}{framework}Compare{singlePageName}{ShortLanguageName(language)}";
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
             OutputPath = ProjectPath;
 
             var userSelection = _fixture.SetupProject(projectType, framework, language);
 
-            foreach (var identity in genIdentities)
+            foreach (var identity in genIdentitiesList)
             {
                 var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity.Contains(identity)
                                                                          && t.GetFrameworkList().Contains(framework));

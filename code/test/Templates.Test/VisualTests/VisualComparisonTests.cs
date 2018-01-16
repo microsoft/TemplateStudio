@@ -29,20 +29,43 @@ namespace Microsoft.Templates.Test
             _fixture.InitializeFixtureAsync(this);
         }
 
+        public static IEnumerable<object[]> GetAllSinglePageApps()
+        {
+            foreach (var projectType in new[] { "Blank" }) //, "SplitView", "TabbedPivot" })
+            {
+                foreach (var framework in new[] { "CodeBehind", "MVVMBasic", "MVVMLight" })
+                {
+                    //"wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
+                    //"wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
+                    //"wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
+                    //"wts.Page.ImageGallery", "wts.Page.MasterDetail",
+
+                    //"wts.Page.Grid", "wts.Page.WebView", "wts.Page.Settings", "wts.Page.MediaPlayer"
+                    //, "wts.Page.Map", "wts.Page.Camera"
+
+                    // foreach (var page in new[] { "wts.Page.Chart", "wts.Page.Grid", "wts.Page.WebView" })
+                    {
+                        yield return new object[] { projectType, framework, "wts.Page.MasterDetail" };
+                    }
+                }
+            }
+        }
+
         // Note. Visual Studio MUST be running as Admin to run this test.
-        // [Theory]
-        // [MemberData("GetMultiLanguageProjectsAndFrameworks")]
-        [Fact]
+        [Theory]
+        [MemberData("GetAllSinglePageApps")]
+        // [Fact]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLauchPageVisualsAreEquivalentAsync() // (string projectType, string framework)
+        public async Task EnsureLauchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
         {
-            var projectType = "Blank";
-            var framework = "CodeBehind";
+            //var projectType = "Blank";
+            //var framework = "CodeBehind";
 
             var genIdentities = new[]
                 {
-                    "wts.Page.Chart",
+                    //"wts.Page.Chart",
+                    page
                 };
 
             CheckWinAppDriverInstalled();
@@ -52,10 +75,10 @@ namespace Microsoft.Templates.Test
 
             var testProjectDetails = SetUpTestProject(app1Details, app2Details);
 
-            var wadTestSuccessful = RunWinAppDriverTests(testProjectDetails);
+            var wadTest = RunWinAppDriverTests(testProjectDetails);
 
             // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
-            if (wadTestSuccessful)
+            if (wadTest.Success)
             {
                 UninstallAppx(app1Details.PackageFullName);
                 UninstallAppx(app2Details.PackageFullName);
@@ -67,7 +90,9 @@ namespace Microsoft.Templates.Test
                 Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
             }
 
-            Assert.True(wadTestSuccessful, $"Failing test images in {testProjectDetails.imagesFolder}");
+            var outputMessages = string.Join(Environment.NewLine, wadTest.TextOutput);
+
+            Assert.True(wadTest.Success, $"Failing test images in {testProjectDetails.imagesFolder}{Environment.NewLine}{Environment.NewLine}{outputMessages}");
         }
 
         private void CheckWinAppDriverInstalled()
@@ -77,7 +102,7 @@ namespace Microsoft.Templates.Test
                 "WinAppDriver is not installed. Download from https://github.com/Microsoft/WinAppDriver/releases");
         }
 
-        private bool RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
+        private (bool Success, List<string> TextOutput) RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
         {
             var result = false;
 
@@ -86,28 +111,31 @@ namespace Microsoft.Templates.Test
             var buildOutput = Path.Combine(testProjectDetails.projectFolder, "bin", "Debug", "AutomatedUITests.dll");
             var runTestsScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe\" \"{buildOutput}\" ";
 
-            var output = ExecutePowerShellScript(runTestsScript);
+            // Test failures will be treated as an error but they are handled below
+            var output = ExecutePowerShellScript(runTestsScript, outputOnError: true);
+
+            var outputText = new List<string>();
 
             foreach (var outputLine in output)
             {
-                if (outputLine.ToString().StartsWith("Total tests: "))
+                var outputLineString = outputLine.ToString();
+
+                outputText.Add(outputLineString);
+
+                if (outputLineString.StartsWith("Total tests: ") && outputLineString.Contains("Failed: 0."))
                 {
-                    if (outputLine.ToString().Contains("Failed: 0."))
-                    {
-                        result = true;
-                        break;
-                    }
+                    result = true;
                 }
             }
 
             StopWinAppDriverIfRunning();
 
-            return result;
+            return (result, outputText);
         }
 
         private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details)
         {
-            var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmm}\\";
+            var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
             var projectFolder = Path.Combine(rootFolder, "TestProject");
             var imagesFolder = Path.Combine(rootFolder, "Images");
 
@@ -266,7 +294,7 @@ Write-Output $packageFullName";
             File.WriteAllText(projFileName, newProjFileContents, Encoding.UTF8);
         }
 
-        private Collection<PSObject> ExecutePowerShellScript(string script)
+        private Collection<PSObject> ExecutePowerShellScript(string script, bool outputOnError = false)
         {
             using (var ps = System.Management.Automation.PowerShell.Create())
             {
@@ -281,7 +309,11 @@ Write-Output $packageFullName";
                         Debug.WriteLine(errorRecord.ToString());
                     }
 
-                    throw new PSInvalidOperationException(ps.Streams.Error.First().ToString());
+                    // Some things (such as failing test execution) report an error but we still want the full output
+                    if (!outputOnError)
+                    {
+                        throw new PSInvalidOperationException(ps.Streams.Error.First().ToString());
+                    }
                 }
 
                 return psOutput;

@@ -65,7 +65,7 @@ namespace AutomatedUITests.Utils
             var differences = new byte[width, height];
 
             // exclusion area to cover app name (which may be different)
-            int exclusionAreaWidth = 400 / DivFactor;
+            int exclusionAreaWidth = 500 / DivFactor;
             int exclusionAreaHeight = 40 / DivFactor;
 
             for (var h = 0; h < height; h++)

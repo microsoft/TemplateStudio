@@ -19,7 +19,7 @@
 
         Public ReadOnly Property SymbolAsChar As Char
             Get
-                Return CChar(Symbol)
+                Return ChrW(Symbol)
             End Get
         End Property
 
