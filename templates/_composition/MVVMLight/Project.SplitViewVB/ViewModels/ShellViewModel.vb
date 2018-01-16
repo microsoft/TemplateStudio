@@ -3,6 +3,7 @@ Imports GalaSoft.MvvmLight
 Imports GalaSoft.MvvmLight.Command
 Imports wts.ItemName.Services
 Imports wts.ItemName.Views
+Imports Microsoft.Toolkit.Uwp.UI.Controls
 
 Namespace ViewModels
     Public Class ShellViewModel
@@ -91,7 +92,7 @@ Namespace ViewModels
         Public ReadOnly Property ItemSelectedCommand As ICommand
             Get
                 If _itemSelected Is Nothing Then
-                    _itemSelected = New RelayCommand(Of ItemClickEventArgs)(AddressOf ItemSelected)
+                    _itemSelected = New RelayCommand(Of HamburgetMenuItemInvokedEventArgs)(AddressOf ItemSelected)
                 End If
 
                 Return _itemSelected
@@ -156,11 +157,11 @@ Namespace ViewModels
             ' Edit String/en-US/Resources.resw: Add a menu item title for each page
         End Sub
 
-        Private Sub ItemSelected(args As ItemClickEventArgs)
+        Private Sub ItemSelected(args As HamburgetMenuItemInvokedEventArgs)
             If DisplayMode = SplitViewDisplayMode.CompactOverlay OrElse DisplayMode = SplitViewDisplayMode.Overlay Then
                 IsPaneOpen = False
             End If
-            Navigate(args.ClickedItem)
+            Navigate(args.InvokedItem)
         End Sub
 
         Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
