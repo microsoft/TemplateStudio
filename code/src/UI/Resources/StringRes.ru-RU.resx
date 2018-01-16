@@ -221,33 +221,9 @@
     <value>Восстанавливаются пакеты...</value>
     <comment>Status bar message for restoring</comment>
   </data>
-  <data name="StatusAcquired" xml:space="preserve">
-    <value>Готово.</value>
-    <comment>Status message for sync acquired</comment>
-  </data>
-  <data name="StatusAcquiring" xml:space="preserve">
-    <value>Проверяется наличие обновлений шаблонов...</value>
-    <comment>Status message for sync acquiring</comment>
-  </data>
-  <data name="StatusLowerVersionContent" xml:space="preserve">
-    <value>Нет доступного содержимого шаблонов для текущей версии мастера. Убедитесь в наличии подключения и перезапустите мастер.</value>
-    <comment>Status error message for sync lower version content</comment>
-  </data>
-  <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>Доступно обновление для шаблонов, но оно не совместимо с этой версией мастера. Обновите расширение, чтобы получить доступ к последним шаблонам.</value>
-    <comment>Status warning message for sync over version content</comment>
-  </data>
-  <data name="StatusOverVersionNoContent" xml:space="preserve">
-    <value>Нет доступного содержимого для этой версии расширения. Обновите расширение, чтобы получить доступ к последнему содержимому.</value>
-    <comment>Status error message for sync over version no content</comment>
-  </data>
   <data name="StatusUpdated" xml:space="preserve">
     <value>Шаблоны обновлены.</value>
     <comment>Status message for sync status updated</comment>
-  </data>
-  <data name="StatusUpdating" xml:space="preserve">
-    <value>Обновляются шаблоны...</value>
-    <comment>Status message for sync status updating</comment>
   </data>
   <data name="SummaryFeaturesTitle" xml:space="preserve">
     <value>Функции</value>
@@ -388,10 +364,6 @@
     <value>Шаблоны готовы.</value>
     <comment>Status message for sync status prepared</comment>
   </data>
-  <data name="StatusPreparing" xml:space="preserve">
-    <value>Шаблоны готовятся к первому использованию...</value>
-    <comment>Status message for sync status preparing</comment>
-  </data>
   <data name="UnableAddItemsToProject" xml:space="preserve">
     <value>Не удалось добавить элементы проекта. Убедитесь, что у вас есть нужный пакет SDK.</value>
     <comment>Track event message for unable add items to project</comment>
@@ -523,10 +495,6 @@
   <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
     <value>Неизмененные файлы</value>
     <comment>Category name of unchanged files</comment>
-  </data>
-  <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>Доступно новое содержимое шаблонов.</value>
-    <comment>Status message for sync new version available</comment>
   </data>
   <data name="ErrorSyncRefresh" xml:space="preserve">
     <value>Произошла ошибка при обновлении шаблонов. Дополнительные сведения см. в выходных данных.</value>
@@ -683,5 +651,33 @@
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
     <value>{0} уже является частью проекта. Выберите другую функцию.</value>
     <comment>{0}:Feature name.</comment>
+  </data>
+  <data name="StatusAcquired" xml:space="preserve">
+    <value>Download completed.</value>
+    <comment>Status message for sync new version available</comment>
+  </data>
+  <data name="StatusAcquiring" xml:space="preserve">
+    <value>There are new templates available (v{0}). Downloading…</value>
+    <comment>Status message for sync acquiring</comment>
+  </data>
+  <data name="StatusCheckedForUpdates" xml:space="preserve">
+    <value>Done.</value>
+    <comment>Status message for finished checking for updates</comment>
+  </data>
+  <data name="StatusCheckingForUpdates" xml:space="preserve">
+    <value>Checking for template updates...</value>
+    <comment>Status message for checking for updates</comment>
+  </data>
+  <data name="StatusNewWizardVersionAvailable" xml:space="preserve">
+    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <comment>Status error message for sync over version no content</comment>
+  </data>
+  <data name="StatusPreparing" xml:space="preserve">
+    <value>Preparing templates (v{0})...</value>
+    <comment>Status message for sync status preparing</comment>
+  </data>
+  <data name="StatusUpdating" xml:space="preserve">
+    <value>Refreshing templates cache…</value>
+    <comment>Status message for sync status updating</comment>
   </data>
 </root>
