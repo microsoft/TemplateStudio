@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Fakes
                 return;
             }
 
-            var filesByProject = ResolveProjectFiles(itemsFullPath);
+            var filesByProject = ResolveProjectFiles(itemsFullPath, true);
 
             foreach (var projectFile in filesByProject)
             {
