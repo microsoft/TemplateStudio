@@ -33,27 +33,22 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<ITemplateInfo> Templates;
 
-        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
+        private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.VisualBasic), ProgrammingLanguages.VisualBasic);
             if (Templates == null)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync();
+                await GenContext.ToolBox.Repo.SynchronizeAsync(true);
+                Templates = GenContext.ToolBox.Repo.GetAll();
             }
-            else
-            {
-                await GenContext.ToolBox.Repo.RefreshAsync();
-            }
-
-            Templates = GenContext.ToolBox.Repo.GetAll();
         }
 
         public async Task InitializeFixtureAsync(IContextProvider contextProvider)
         {
-            var source = new SonarLintPlusLocalTemplatesSource();
+            var source = new LocalTemplatesSource("SonarLint");
             GenContext.Current = contextProvider;
 
-            await InitializeTemplatesForLanguageAsync(source);
+            await InitializeTemplatesAsync(source);
         }
 
         public void Dispose()
@@ -71,7 +66,7 @@ namespace Microsoft.Templates.Test
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesForSonarLintAsync()
         {
             List<object[]> result = new List<object[]>();
-            await InitializeTemplatesForLanguageAsync(new SonarLintPlusLocalTemplatesSource());
+            await InitializeTemplatesAsync(new LocalTemplatesSource("SonarLint"));
 
             foreach (var platform in Platforms.GetAllPlatforms())
             {

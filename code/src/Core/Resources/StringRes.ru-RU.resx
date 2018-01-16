@@ -128,6 +128,7 @@
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
     <value>Запрос "{0}" недопустим. Разрешенные операторы: "==" или "!=". Несколько условий следует разделять символом "&amp;".</value>
+    <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
     <value>Файл конфигурации загружен</value>
@@ -145,22 +146,26 @@
     <value>Отслеживаемое исключение</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>The file {0} can't be copied to {1}. Error: {2}</value>
+    <value>Невозможно скопировать файл {0} в {1}. Ошибка: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Папку {0} невозможно удалить. Ошибка: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
     <value>Файл {0} невозможно удалить. Ошибка: {1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>Папку {0} невозможно переместить в {1}. Ошибка: {2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
     <value>Произошла критическая ошибка при инициализации GenContext.</value>
   </data>
   <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
-    <value>Нет контекста для текущего создания; сначала вызовите Current_set.</value>
+    <value>Нет контекста для выполнения текущего создания; сначала вызовите Current_set.</value>
   </data>
   <data name="GenerateTestCertificatePostActionExecute" xml:space="preserve">
     <value>Произошла ошибка при создании сертификата.</value>
@@ -179,12 +184,14 @@
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>Произошла ошибка при скачивании из {0}. Для скачивания обновлений шаблона требуется подключение к Интернету.</value>
+    <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
     <value>Содержимое шаблона сейчас невозможно скачать; повторите попытку позже.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
     <value>Содержимое шаблона скачано в {0} из {1}.</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Произошла ошибка при синхронизации шаблонов. Состояние:</value>
@@ -201,13 +208,13 @@
   <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
     <value>## Конфликтующие файлы:
 Эти файлы уже существуют в проекте, они были созданы в рамках нового элемента.
-Сравните их и убедитесь, что все они находятся на соответствующих местах:
+Сравните их и убедитесь, что все стоит на своих местах:
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncInstructionsSectionModifiedFiles" xml:space="preserve">
     <value>## Измененные файлы:
-Чтобы интегрировать новый элемент в существующий проект, примените следующие изменения:
+Чтобы интегрировать новый элемент в существующий проект, примените следующие изменения.
 {0}</value>
     <comment>{0}: List of modified files (applying SyncInstructionsTemplateModifiedFiles)</comment>
   </data>
@@ -251,7 +258,7 @@
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
     <value>## Конфликтующие файлы:
 Эти файлы уже существуют в проекте, они были созданы в рамках нового элемента.
-Сравните их и убедитесь, что все они находятся на соответствующих местах.
+Сравните их и убедитесь, что все стоит на своих местах.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
@@ -312,9 +319,11 @@
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>Недопустимые цифровые подписи в "{0}". Содержимое было незаконно изменено, либо сертификат отсутствует, недопустим или запрещен.  Не удалось продолжить.</value>
+    <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
     <value>Найдены сертификаты ({0}), соответствующие отпечатку {1} в хранилище {2}.</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
     <value>У найденного сертификата нет закрытого ключа.</value>
@@ -324,12 +333,15 @@
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
     <value>Указанный источник "{0}" недопустим. Файл не существует, или папка пуста.</value>
+    <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
     <value>Не найдены сертификаты, соответствующие отпечатку {0}. Поиск велся в хранилищах CurrentUser/My и LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
     <value>Не удается найти сертификат с отпечатком {0} в CurrentUser/My или LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
     <value>Произошла ошибка при подписании пакета.</value>
@@ -339,6 +351,7 @@
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
     <value>Проверка сертификата "{0}" завершена с состоянием "{1}"</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
     <value>## Неудавшиеся изменения в файлах:
@@ -370,13 +383,13 @@
     <value>Произошла ошибка при чтении файла блокировки экземпляра.</value>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Error acquiring content.</value>
+    <value>Ошибка получения содержимого.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Error extracting installed templates content..</value>
+    <value>Ошибка при извлечении содержимого установленных шаблонов.</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Error updating templates content.</value>
+    <value>Ошибка при обновлении содержимого шаблонов.</value>
   </data>
   <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
     <value>Error executing '{0}'. Ignoring the error as Continue on Error is enabled. Related template: {1}.</value>
@@ -403,7 +416,7 @@
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Cannot remove readonly protection from file {0}</value>
+    <value>Не удается отключить защиту от записи для файла {0}</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
@@ -417,5 +430,11 @@
   <data name="ExceptionProjectNotFound" xml:space="preserve">
     <value>Could not find project file for item {0}</value>
     <comment>{0}: Filepath</comment>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
   </data>
 </root>

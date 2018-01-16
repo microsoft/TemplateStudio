@@ -18,9 +18,10 @@ namespace Microsoft.Templates.Test
     [Trait("ExecutionSet", "LongRunning")]
     public class WindowsAppCertKitTests : BaseGenAndBuildTests
     {
-        public WindowsAppCertKitTests(WindowsAppCertKitFixture fixture)
+        public WindowsAppCertKitTests(BuildFixture fixture)
         {
             _fixture = fixture;
+            _fixture.InitializeFixtureAsync(this);
         }
 
         //// *** WARNING ***

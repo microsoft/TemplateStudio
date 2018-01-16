@@ -1,6 +1,7 @@
 ﻿Namespace Views
     Public NotInheritable Partial Class PivotPage
         Inherits Page
+
         Public Sub New()
             Me.InitializeComponent()
             ' We use NavigationCacheMode.Required to keep track the selected item on navigation. For further information see the following links.

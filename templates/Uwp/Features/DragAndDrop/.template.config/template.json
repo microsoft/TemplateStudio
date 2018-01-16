@@ -16,8 +16,8 @@
     "wts.group": "UserInteraction",
     "wts.defaultInstance": "DragAndDropFeature",
     "wts.multipleInstance": "false",
-    "wts.genGroup": "0",    
-    "wts.rightClickEnabled":"true",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled": "true"
   },
   "sourceName": "DragAndDropFeature",
   "preferNameDirectory": true,

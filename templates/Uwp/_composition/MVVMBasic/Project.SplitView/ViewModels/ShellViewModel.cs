@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -25,6 +26,14 @@ namespace wts.ItemName.ViewModels
         {
             get { return _isPaneOpen; }
             set { Set(ref _isPaneOpen, value); }
+        }
+
+        private object _selected;
+
+        public object Selected
+        {
+            get { return _selected; }
+            set { Set(ref _selected, value); }
         }
 
         private SplitViewDisplayMode _displayMode = SplitViewDisplayMode.CompactInline;
@@ -76,7 +85,7 @@ namespace wts.ItemName.ViewModels
             {
                 if (_itemSelected == null)
                 {
-                    _itemSelected = new RelayCommand<ItemClickEventArgs>(ItemSelected);
+                    _itemSelected = new RelayCommand<HamburgetMenuItemInvokedEventArgs>(ItemSelected);
                 }
 
                 return _itemSelected;
@@ -154,14 +163,14 @@ namespace wts.ItemName.ViewModels
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
-        private void ItemSelected(ItemClickEventArgs args)
+        private void ItemSelected(HamburgetMenuItemInvokedEventArgs args)
         {
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
                 IsPaneOpen = false;
             }
 
-            Navigate(args.ClickedItem);
+            Navigate(args.InvokedItem);
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
@@ -189,6 +198,7 @@ namespace wts.ItemName.ViewModels
             if (newValue != null)
             {
                 (newValue as ShellNavigationItem).IsSelected = true;
+                Selected = newValue;
             }
         }
 

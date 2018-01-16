@@ -1,3 +1,3 @@
-﻿Handle the launch of your app with a custom URI Scheme. The generated code also shows how to handle different values being passed to the app this way.
+﻿Обработка запуска приложения с помощью пользовательской схемы URI. Созданный код также показывает, как обрабатывать разные значения, которые передаются в приложение этим способом.
 
-To find out more about handling the launch of an app from a URI, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/handle-uri-activation). 
+Дополнительные сведения об обработке запуска приложения по URI: [docs.microsoft.com](https://docs.microsoft.com/ru-ru/windows/uwp/launch-resume/handle-uri-activation). 

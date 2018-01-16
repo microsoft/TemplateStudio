@@ -1,1 +1,1 @@
-﻿The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting a location from the Location Service and setting the map's center point.
+﻿此地圖頁面是根據 Windows 地圖控制項所建立。程式碼包括新增地圖圖示、從定位服務取得位置及設定地圖的中心點。

@@ -1,3 +1,3 @@
-﻿The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine. Hyperlinks can also appear and function in a web view control.  You can use a web view control to display richly formatted HTML content from a remote web server, dynamically generated code, or content files in your app package. Rich content can also contain script code and communicate between the script and your app's code.
+﻿この Web ビュー ページは、Microsoft Edge レンダリング エンジンを使用して Web コンテンツをレンダリングするアプリにビューを埋め込みます。ハイパーリンクを表示し、Web ビュー コントロールで動作させることもできます。Web ビュー コントロールを使用して、リモート Web サーバー、動的に生成したコード、またはアプリ パッケージ内のコンテンツ ファイルから、リッチに書式設定された HTML コンテンツを表示します。リッチ コンテンツにはスクリプト コードを含めることができ、スクリプトとアプリのコード間での通信が可能になります。
 
-To find out more if this is a good solution for you, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/web-view).
+これが適切な解決策かどうかを調べるには、[docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/web-view) を参照してください。

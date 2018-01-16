@@ -1,13 +1,14 @@
-﻿using wts.ItemName.Services;
-using wts.ItemName.Helpers;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using wts.ItemName.Services;
+using wts.ItemName.Helpers;
 
 namespace wts.ItemName.Views
 {
@@ -25,6 +26,14 @@ namespace wts.ItemName.Views
         {
             get { return _isPaneOpen; }
             set { Set(ref _isPaneOpen, value); }
+        }
+
+        private object _selected;
+
+        public object Selected
+        {
+            get { return _selected; }
+            set { Set(ref _selected, value); }
         }
 
         private SplitViewDisplayMode _displayMode = SplitViewDisplayMode.CompactInline;
@@ -121,6 +130,7 @@ namespace wts.ItemName.Views
             if (newValue != null)
             {
                 (newValue as ShellNavigationItem).IsSelected = true;
+                Selected = newValue;
             }
         }
 
@@ -133,14 +143,14 @@ namespace wts.ItemName.Views
             }
         }
 
-        private void ItemClicked(object sender, ItemClickEventArgs e)
+        private void ItemInvoked(object sender, HamburgetMenuItemInvokedEventArgs e)
         {
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
                 IsPaneOpen = false;
             }
 
-            Navigate(e.ClickedItem);
+            Navigate(e.InvokedItem);
         }
 
         private void OpenPane_Click(object sender, RoutedEventArgs e)

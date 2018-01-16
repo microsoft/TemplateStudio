@@ -6,26 +6,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="using:wts.ItemName.Views"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:fcu ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:cu ="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="local:ShellNavigationItem">
-            <Grid Width="320" Height="40" Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+            <Grid Width="320" Height="40">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Rectangle
+                <Grid fcu:Visibility="Collapsed" cu:Visibility="Visible">
+                    <Rectangle
                         Width="6"
                         Height="24"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         Fill="{ThemeResource SystemControlForegroundAccentBrush}"
                         Visibility="{x:Bind SelectedVis, Mode=OneWay}" />
+                </Grid>
                 <Viewbox
-                        Child="{x:Bind Icon}"
-                        ToolTipService.ToolTip="{x:Bind Label}"
-                        Margin="16,12"
-                        VerticalAlignment="Center" />
+                    Child="{x:Bind Icon}"
+                    ToolTipService.ToolTip="{x:Bind Label}"
+                    Margin="16,12"
+                    VerticalAlignment="Center" />
                 <TextBlock
                         Grid.Column="1"
                         Margin="0,9,0,11"
@@ -92,15 +96,16 @@
     </Page.Resources>
 
     <controls:HamburgerMenu
-            x:Name="NavigationMenu"
+        x:Name="NavigationMenu"
+            UseNavigationViewWhenPossible="True"
+            SelectedItem="{x:Bind Selected, Mode=OneWay}"
             DisplayMode="{x:Bind DisplayMode, Mode=OneWay}"
             IsPaneOpen="{x:Bind IsPaneOpen, Mode=TwoWay}"
             ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
             ItemsSource="{x:Bind PrimaryItems}"
             OptionsItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
             OptionsItemsSource="{x:Bind SecondaryItems}"
-            ItemClick="ItemClicked"
-            OptionsItemClick="ItemClicked"
+            ItemInvoked="ItemInvoked"
             PaneBackground="{ThemeResource SystemControlBackgroundAltHighBrush}"
             PaneForeground="{ThemeResource SystemControlForegroundBaseHighBrush}"
             >

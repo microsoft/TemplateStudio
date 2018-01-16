@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft",
+    "name": "Blank",
+    "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
+    "identity": "wts.Page.Blank.Xamarin"
+}

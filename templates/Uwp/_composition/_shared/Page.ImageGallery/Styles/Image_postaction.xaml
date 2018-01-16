@@ -4,14 +4,13 @@
 
     <!--Image Gallery Styles-->
     <Style TargetType="Image" x:Key="ThumbnailImageStyle">
-        <Setter Property="Margin" Value="{StaticResource SmallAllMargin}" />
-        <Setter Property="Width" Value="200" />
-        <Setter Property="Height" Value="200" />
+        <Setter Property="Width" Value="228" />
+        <Setter Property="Height" Value="228" />
     </Style>
 
     <Style TargetType="Image" x:Key="DetailImageStyle">
-        <Setter Property="Width" Value="600" />
-        <Setter Property="Height" Value="600" />
+        <Setter Property="Width" Value="456" />
+        <Setter Property="Height" Value="456" />
     </Style>
 
 </ResourceDictionary>

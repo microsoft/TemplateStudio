@@ -24,8 +24,9 @@ namespace Microsoft.Templates.Test
 {
     public sealed class BuildFixture : BaseGenAndBuildFixture, IDisposable
     {
-        private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Build\\{testExecutionTimeStamp}\\";
+        private string _testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
+
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\Build\\{_testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new LocalTemplatesSource("TstBld");
 
@@ -33,13 +34,15 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync()
         {
+            await InitializeTemplatesAsync(new LocalTemplatesSource("TstBld"));
+
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
+                SetCurrentLanguage(language);
                 foreach (var platform in Platforms.GetAllPlatforms())
                 {
-                    await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBld"), platform, language);
-
+                    SetCurrentPlatform(platform);
                     var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
                     var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
@@ -67,13 +70,15 @@ namespace Microsoft.Templates.Test
 
         public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync()
         {
+            await InitializeTemplatesAsync(new LocalTemplatesSource("TstBld"));
+
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
+                BaseGenAndBuildFixture.SetCurrentLanguage(language);
                 foreach (var platform in Platforms.GetAllPlatforms())
                 {
-                    await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("TstBld"), platform, language);
-
+                    SetCurrentPlatform(platform);
                     var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
                     var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
@@ -109,26 +114,22 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source, string platform, string language)
+        private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 
             if (!syncExecuted)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync();
+                await GenContext.ToolBox.Repo.SynchronizeAsync(true);
                 syncExecuted = true;
-            }
-            else
-            {
-                await GenContext.ToolBox.Repo.RefreshAsync();
             }
         }
 
-        public override async Task InitializeFixtureAsync(string platform, string language, IContextProvider contextProvider)
+        public override async Task InitializeFixtureAsync(IContextProvider contextProvider, string framework = "")
         {
             GenContext.Current = contextProvider;
 
-            await InitializeTemplatesForLanguageAsync(Source, platform, language);
+            await InitializeTemplatesAsync(Source);
         }
     }
 }

@@ -1,3 +1,3 @@
-﻿A page for capturing a photo from the camera. Includes handling previewing, mirroring, and orientation.
+﻿一个用于捕获来自相机的照片的页面。包括处理预览、镜像和定向操作。
 
-More details on using the MediaCapture class can be found in the [official docs](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture).
+有关使用 MediaCapture 类的更多详细信息可在[官方文档](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture)中找到。

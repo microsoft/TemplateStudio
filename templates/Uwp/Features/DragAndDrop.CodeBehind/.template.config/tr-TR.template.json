@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a wrapper service over the standard UWP Drag and Drop functionallity to simplify the required code to create drag and drop ready apps.",
+  "description": "Sürükle ve Bırak özelliği, sürükle ve bırak seçeneğinin kullanılabildiği uygulamalar oluşturmak için gereken kodu basitleştirmek üzere standart UWP Sürükle ve Bırak işlevselliği üzerinde bir sarmalayıcı hizmeti sunar.",
   "identity": "wts.Feat.DragAndDrop.CodeBehind"
 }

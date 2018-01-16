@@ -1,3 +1,3 @@
-﻿A page for capturing a photo from the camera. Includes handling previewing, mirroring, and orientation.
+﻿Uma página para capturar uma foto da câmera. Inclui visualização de tratamento, espelhamento e orientação.
 
-More details on using the MediaCapture class can be found in the [official docs](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture).
+Mais detalhes sobre o uso da classe MediaCapture podem ser encontrados na [documentação oficial](https://docs.microsoft.com/en-us/uwp/api/windows.media.capture.mediacapture).

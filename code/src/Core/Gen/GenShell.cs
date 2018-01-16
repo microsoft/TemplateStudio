@@ -96,7 +96,7 @@ namespace Microsoft.Templates.Core.Gen
             return result;
         }
 
-        protected static Dictionary<string, List<string>> ResolveProjectFiles(string[] itemsFullPath)
+        protected static Dictionary<string, List<string>> ResolveProjectFiles(string[] itemsFullPath, bool workWithProjitemsFile = false)
         {
             Dictionary<string, List<string>> filesByProject = new Dictionary<string, List<string>>();
             foreach (var item in itemsFullPath)
@@ -108,7 +108,7 @@ namespace Microsoft.Templates.Core.Gen
                     throw new FileNotFoundException(string.Format(StringRes.ExceptionProjectNotFound, item));
                 }
 
-                if (Path.GetExtension(projFile) == ".shproj")
+                if (workWithProjitemsFile && Path.GetExtension(projFile) == ".shproj")
                 {
                     projFile = projFile.Replace(".shproj", ".projitems");
                 }

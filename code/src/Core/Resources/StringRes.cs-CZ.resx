@@ -128,6 +128,7 @@
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
     <value>Dotaz {0} není platný. Jsou povolené operátory == a !=. K oddělování jednotlivých podmínek se používá znak &amp;.</value>
+    <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
     <value>Konfigurační soubor byl načten.</value>
@@ -145,16 +146,20 @@
     <value>Sledovaná výjimka</value>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>The file {0} can't be copied to {1}. Error: {2}</value>
+    <value>Soubor {0} nelze zkopírovat do {1}. Chyba: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Složku {0} nelze odstranit. Chyba: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
     <value>Soubor {0} nelze odstranit. Chyba: {1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>Složku {0} nelze přesunout do {1}. Chyba: {2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
     <value>Při inicializaci GenContext došlo ke kritické chybě.</value>
@@ -179,12 +184,14 @@
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>Při stahování z {0} došlo k chybě. Ke stažení aktualizací šablony je vyžadováno připojení k internetu.</value>
+    <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
     <value>Obsah šablon nelze právě teď stáhnout, zkusíme to později.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
     <value>Obsah šablon byl stažen z {1} do {0}.</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Při synchronizaci šablon došlo k chybě. Stav:</value>
@@ -312,9 +319,11 @@ Soubory vytvořené při generování najdete v dočasné složce pro generová
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>V {0} jsou neplatné digitální podpisy. Příčinou může být neoprávněná změna obsahu nebo chybějící, neplatný nebo nepovolený certifikát.  Nelze pokračovat.</value>
+    <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
     <value>V úložišti {2} bylo nalezeno {0} certifikátů odpovídajících kryptografickému otisku {1}.</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
     <value>Nalezený certifikát nemá privátní klíč.</value>
@@ -324,12 +333,15 @@ Soubory vytvořené při generování najdete v dočasné složce pro generová
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
     <value>Zadaný zdroj {0} je neplatný, soubor neexistuje nebo je složka prázdná.</value>
+    <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
     <value>Nebyl nalezen certifikát, který odpovídá kryptografickému otisku {0}. Byla prohledána úložiště CurrentUser/My a LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
     <value>Certifikát s kryptografickým otiskem {0} nelze najít v úložišti CurrentUser/My ani v úložišti LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
     <value>Při podepisování balíčku došlo k chybě.</value>
@@ -339,6 +351,7 @@ Soubory vytvořené při generování najdete v dočasné složce pro generová
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
     <value>Ověření certifikátu {0} bylo dokončeno se stavem {1}.</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
     <value>## Neúspěšné změny v souborech:
@@ -370,13 +383,13 @@ Nemohly být integrovány následující změny: {2}
     <value>Při čtení souboru zamknutí instance došlo k chybě.</value>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Error acquiring content.</value>
+    <value>Při získávání obsahu došlo k chybě.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Error extracting installed templates content..</value>
+    <value>Při extrahování obsahu nainstalovaných šablon došlo k chybě.</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Error updating templates content.</value>
+    <value>Při aktualizaci obsahu šablon došlo k chybě.</value>
   </data>
   <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
     <value>Error executing '{0}'. Ignoring the error as Continue on Error is enabled. Related template: {1}.</value>
@@ -403,7 +416,7 @@ Nemohly být integrovány následující změny: {2}
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Cannot remove readonly protection from file {0}</value>
+    <value>Nelze odebrat ochranu prostřednictvím nastavení jen pro čtení ze souboru: {0}</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
@@ -417,5 +430,11 @@ Nemohly být integrovány následující změny: {2}
   <data name="ExceptionProjectNotFound" xml:space="preserve">
     <value>Could not find project file for item {0}</value>
     <comment>{0}: Filepath</comment>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
   </data>
 </root>

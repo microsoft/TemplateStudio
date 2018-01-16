@@ -1,6 +1,7 @@
 ﻿Namespace Views
     Public NotInheritable Partial Class MasterDetailViewPage
         Inherits Page
+
         Public Sub New()
             InitializeComponent()
             AddHandler Loaded, AddressOf MasterDetailViewPage_Loaded

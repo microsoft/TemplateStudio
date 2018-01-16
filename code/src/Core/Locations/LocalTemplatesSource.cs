@@ -3,80 +3,105 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.Locations
 {
     public class LocalTemplatesSource : TemplatesSource
     {
-        public string LocalTemplatesVersion { get; private set; }
+        public static readonly TemplatesPackageInfo VersionZero = new TemplatesPackageInfo()
+        {
+            Name = "LocalTemplates_v0.0.0.0",
+            LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
+            Bytes = 1024,
+            Date = DateTime.Now,
+        };
 
-        public string LocalWizardVersion { get; private set; }
-
-        protected override bool VerifyPackageSignatures => false;
-
-        public string Origin => $@"..\..\..\..\..\{SourceFolderName}";
+        protected virtual string Origin => $@"..\..\..\..\..\{TemplatesFolderName}";
 
         private string _id;
 
+        private List<TemplatesPackageInfo> availablePackages = new List<TemplatesPackageInfo>();
+
+        protected override bool VerifyPackageSignatures => false;
+
         public override string Id { get => _id; }
 
-        protected string FinalDestination { get; set; }
-
         public LocalTemplatesSource()
-            : this("0.0.0.0", "0.0.0.0", true)
+            : this(GenContext.GetWizardVersionFromAssembly().ToString())
         {
             _id = Configuration.Current.Environment + GetAgentName();
         }
 
         public LocalTemplatesSource(string id)
-            : this("0.0.0.0", "0.0.0.0", true)
+            : this(GenContext.GetWizardVersionFromAssembly().ToString(), id)
         {
             _id = id + GetAgentName();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Justification = "Used to override the default value for this property in the local (test) source")]
-        public LocalTemplatesSource(string wizardVersion, string templatesVersion, bool forcedAdquisition = true)
+        public LocalTemplatesSource(string templatesVersion, string id)
         {
-            ForcedAcquisition = forcedAdquisition;
-            LocalTemplatesVersion = templatesVersion;
-            LocalWizardVersion = wizardVersion;
             if (string.IsNullOrEmpty(_id))
             {
                 _id = Configuration.Current.Environment + GetAgentName();
             }
-        }
 
-        protected override string AcquireMstx()
-        {
-            return Origin;
-        }
+            availablePackages.Add(VersionZero);
+            Version.TryParse(templatesVersion, out Version v);
+            if (!v.IsZero())
+            {
+                var package = new TemplatesPackageInfo()
+                {
+                    Name = $"LocalTemplates_v{v.ToString()}",
+                    LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
+                    Bytes = 1024,
+                    Date = DateTime.Now,
+                };
 
-        public override void Extract(string source, string targetFolder)
-        {
-            if (source.EndsWith("mstx", StringComparison.OrdinalIgnoreCase))
-            {
-                base.Extract(source, targetFolder);
-            }
-            else
-            {
-                SetLocalContent(source, targetFolder, new Version(LocalTemplatesVersion));
+                availablePackages.Add(package);
             }
         }
 
-        private void SetLocalContent(string sourcePath, string finalTargetFolder, Version version)
+        public override void LoadConfig()
         {
-            Version ver = version;
-
-            FinalDestination = PrepareFinalDestination(finalTargetFolder, ver);
-
-            if (!Directory.Exists(FinalDestination))
+            Config = new TemplatesSourceConfig()
             {
-                Fs.CopyRecursive(sourcePath, FinalDestination, true);
-            }
+                Versions = availablePackages,
+                Latest = availablePackages.OrderByDescending(p => p.Version).FirstOrDefault()
+            };
         }
 
-        private static string GetAgentName()
+        public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
+        {
+            string targetFolder = Path.Combine(workingFolder, packageInfo.Version.ToString());
+
+            if (Directory.Exists(targetFolder))
+            {
+                Fs.SafeDeleteDirectory(targetFolder);
+            }
+
+            JunctionNativeMethods.CreateJunction(Origin, targetFolder, true);
+
+            return new TemplatesContentInfo()
+            {
+                Version = packageInfo.Version,
+                Path = targetFolder,
+                Date = packageInfo.Date
+            };
+        }
+
+        public override void Acquire(ref TemplatesPackageInfo packageInfo)
+        {
+            packageInfo.LocalPath = Origin;
+        }
+
+        protected static string GetAgentName()
         {
             // If running tests in VSTS concurrently in different agents avoids the collison in templates folders
             string agentName = Environment.GetEnvironmentVariable("AGENT_NAME");

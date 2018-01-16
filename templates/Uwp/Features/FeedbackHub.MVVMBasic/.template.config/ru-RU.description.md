@@ -1,3 +1,3 @@
-﻿Add a Feedback link to the settings page to encourage your customers to leave feedback via the Feedback Hub.
+﻿Добавьте ссылку "Обратная связь" на страницу параметров, чтобы ваши клиенты могли оставить отзыв через Центр отзывов.
 
-Feedback Hub is a preinstalled app that provides a single place to gather feedback on Windows and installed apps. All customer feedback that is submitted for your app through Feedback Hub is collected and presented to you in the [Feedback report](https://docs.microsoft.com/en-us/windows/uwp/publish/feedback-report) in the Windows Dev Center dashboard, so you can see the problems, suggestions, and upvotes that your customers have submitted in one report.
+Центр отзывов — предустановленное приложение для сбора отзывов о Windows и об установленных приложениях. Все отзывы, отправленные клиентами через Центр отзывов, собираются в [Отчете об отзывах](https://docs.microsoft.com/ru-ru/windows/uwp/publish/feedback-report) на информационной панели Центра разработки для Windows, и вы можете просмотреть все проблемы, предложения и голоса "за", оставленные клиентами, в одном отчете.

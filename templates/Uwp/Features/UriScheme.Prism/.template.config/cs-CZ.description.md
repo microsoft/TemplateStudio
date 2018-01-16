@@ -1,3 +1,3 @@
-﻿Handle the launch of your app with a custom URI Scheme. The generated code also shows how to handle different values being passed to the app this way.
+﻿Umožňuje zpracovat spuštění aplikace pomocí vlastního schématu identifikátoru URI. Generovaný kód také ukazuje, jak zpracovat různé hodnoty předávané do aplikace tímto způsobem.
 
-To find out more about handling the launch of an app from a URI, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/handle-uri-activation). 
+Další informace o zpracování spuštění aplikace pomocí identifikátoru URI najdete na webu [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/handle-uri-activation). 

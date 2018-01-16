@@ -1,11 +1,10 @@
-﻿ShareSource provides you with a class that allows you to share data  in a simple and straight-forward manner.
-It allows you to quickly share data, such as:
+﻿ShareSource, verileri doğrudan ve basit bir şekilde paylaşmanıza olanak tanıyan bir sınıf sunar. Aşağıdaki türde verileri hızlıca paylaşmanızı sağlar:
 
-  * Text
-  * Links
-  * Images
+  * Metin
+  * Bağlantılar
+  * Görüntüler
   * Html
-  * Deferred content that is loaded when the target app requests it.
+  * Hedef uygulama istediğinde yüklenen ertelenmiş içerik.
 
-For more info about sharing data between apps, consult 
+Uygulamalar arasında veri paylaşımı hakkında daha fazla bilgi için bkz. 
 [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/app-to-app/share-data)

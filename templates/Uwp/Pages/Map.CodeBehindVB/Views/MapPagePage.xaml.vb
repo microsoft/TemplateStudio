@@ -1,5 +1,4 @@
 ﻿Imports Windows.Devices.Geolocation
-Imports Windows.Foundation
 Imports Windows.Storage.Streams
 Imports Windows.UI.Xaml.Controls.Maps
 Imports Param_ItemNamespace.Helpers
@@ -9,6 +8,7 @@ Namespace Views
     Public NotInheritable Partial Class MapPagePage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
+
         ' TODO WTS: Set your preferred default zoom level
         Private Const DefaultZoomLevel As Double = 17
 

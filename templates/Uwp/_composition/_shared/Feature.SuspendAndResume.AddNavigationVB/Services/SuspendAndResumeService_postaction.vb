@@ -4,6 +4,7 @@ Imports System.Reflection
 Namespace Services
     Friend Class SuspendAndResumeService
         Inherits ActivationHandler(Of LaunchActivatedEventArgs)
+
         Private Async Function RestoreStateAsync() As Task
             '^^
             '{[{

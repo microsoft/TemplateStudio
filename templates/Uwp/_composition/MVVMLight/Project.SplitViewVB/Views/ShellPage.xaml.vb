@@ -5,7 +5,7 @@ Namespace Views
     Public NotInheritable Partial Class ShellPage
         Inherits Page
 
-        Private ReadOnly Property ViewModel() As ShellViewModel
+        Private ReadOnly Property ViewModel As ShellViewModel
             Get
                 Return TryCast(DataContext, ShellViewModel)
             End Get

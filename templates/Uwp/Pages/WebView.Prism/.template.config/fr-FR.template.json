@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Web View",
-  "description": "The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine.",
-  "identity": "wts.Page.WebView.Prism"
+    "author": "Microsoft",
+    "name": "Web View",
+    "description": "La page Vue web intègre une vue de votre application qui fournit un rendu du contenu Web à l\u0027aide du moteur de rendu Microsoft Edge.",
+    "identity": "wts.Page.WebView.Prism"
 }

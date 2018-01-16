@@ -10,7 +10,7 @@ Namespace Services
         ' TODO WTS: For more information regarding the application lifecycle and how to handle suspend and resume, please see:
         ' Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
 
-        Private Const StateFilename As String = "suspensionState"
+        Private Const StateFilename As String = "SuspendAndResumeState"
 
         ' TODO WTS: This event is fired just before the app enters in background. Subscribe to this event if you want to save your current state.
         Public Event OnBackgroundEntering As EventHandler(Of OnBackgroundEnteringEventArgs)

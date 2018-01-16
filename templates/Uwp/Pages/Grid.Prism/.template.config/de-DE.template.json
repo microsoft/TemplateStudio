@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "Grid",
-  "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
-  "identity": "wts.Page.Grid.Prism"
+    "author": "Microsoft Community",
+    "name": "Grid",
+    "description": "Eine Seite mit einem einfachen Raster, unterstützt von Telerik UI for UWP-Steuerelementen.",
+    "identity": "wts.Page.Grid.Prism"
 }

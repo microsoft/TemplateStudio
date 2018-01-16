@@ -1,3 +1,3 @@
-﻿This feature will display a message to the person using it when the app is used for the first time. You can use this to provide useful instructions or information to a person who hasn't used the app before.
+﻿Este recurso exibirá uma mensagem para a pessoa que o utiliza quando o aplicativo for usado pela primeira vez. Você pode usar isso para fornecer instruções úteis ou informações a uma pessoa que não usou o aplicativo antes.
 
-The message displayed is fully customizable and can display text, images, or anything else.
+A mensagem exibida é totalmente personalizável e pode exibir texto, imagens ou qualquer outro item.

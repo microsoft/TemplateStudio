@@ -1,1 +1,1 @@
-﻿The settings page is the page where we recommend putting the configuration settings for your application such as setting a dark / light theme. This could also include any licenses, version number and your privacy terms.
+﻿La página de configuración es la página en la que recomendamos poner las opciones de configuración para tu aplicación, como establecer un tema oscuro o claro. Esto también podría incluir licencias, número de versión y tus términos de privacidad.

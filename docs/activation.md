@@ -1,5 +1,8 @@
 # ActivationService & ActivationHandlers
 
+:heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./activation.vb.md) :heavy_exclamation_mark: |
+-------------------------------------------------------------------------------------------------------------------------------------------- |
+
 ## ActivationService
 
 The ActivationService is in charge of handling the applications initialization and activation.

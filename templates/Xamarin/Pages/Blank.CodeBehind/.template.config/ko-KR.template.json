@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Blank",
+  "description": "가장 기본 페이지입니다. 빈 캔버스에 원하는 대로 만들어 보십시오.",
+  "identity": "wts.Page.Blank.CodeBehind.Xamarin"
+}

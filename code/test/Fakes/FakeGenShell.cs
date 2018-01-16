@@ -14,11 +14,12 @@ namespace Microsoft.Templates.Fakes
 {
     public class FakeGenShell : GenShell
     {
-        private readonly string _platform;
-        private readonly string _language;
         private readonly Action<string> _changeStatus;
         private readonly Action<string> _addLog;
         private readonly Window _owner;
+
+        private string _language;
+        private string _platform;
 
         public string SolutionPath
         {
@@ -42,6 +43,16 @@ namespace Microsoft.Templates.Fakes
             _owner = owner;
         }
 
+        public void SetCurrentLanguage(string language)
+        {
+            _language = language;
+        }
+
+        public void SetCurrentPlatform(string platform)
+        {
+            _platform = platform;
+        }
+
         public override void AddItems(params string[] itemsFullPath)
         {
             if (itemsFullPath == null || itemsFullPath.Length == 0)
@@ -49,7 +60,7 @@ namespace Microsoft.Templates.Fakes
                 return;
             }
 
-            var filesByProject = ResolveProjectFiles(itemsFullPath);
+            var filesByProject = ResolveProjectFiles(itemsFullPath, true);
 
             foreach (var projectFile in filesByProject)
             {

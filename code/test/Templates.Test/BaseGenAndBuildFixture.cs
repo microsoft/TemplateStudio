@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Test
 
         public abstract string GetTestRunPath();
 
-        public abstract Task InitializeFixtureAsync(string platform, string language, IContextProvider contextProvider);
+        public abstract Task InitializeFixtureAsync(IContextProvider contextProvider, string framework = "");
 
         public string TestProjectsPath => Path.GetFullPath(Path.Combine(GetTestRunPath(), "Proj"));
 
@@ -270,6 +270,19 @@ namespace Microsoft.Templates.Test
                     Directory.Delete(GetTestRunPath(), true);
                 }
             }
+        }
+
+        public static void SetCurrentLanguage(string language)
+        {
+            GenContext.SetCurrentLanguage(language);
+            var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
+            fakeShell.SetCurrentLanguage(language);
+        }
+
+        public static void SetCurrentPlatform(string platform)
+        {
+            var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
+            fakeShell.SetCurrentPlatform(platform);
         }
     }
 }

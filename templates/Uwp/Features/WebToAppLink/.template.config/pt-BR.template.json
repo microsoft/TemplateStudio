@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
-  "name": "Web to app link",
-  "description": "Web to App link associates your app with a website so that when someone opens a link to your website.",
+  "name": "Web to App link",
+  "description": "O link Web para App associa seu aplicativo com um site, assim quando alguém abre um link para seu site.",
   "identity": "wts.Feat.WebToAppLink"
 }

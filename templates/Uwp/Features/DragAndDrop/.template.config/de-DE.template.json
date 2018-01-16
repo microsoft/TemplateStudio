@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps.",
+  "description": "Das Drag & Drop-Feature stellt einen Dienst für die Vereinfachung der Entwicklung von Drag & Drop-kompatiblen Apps bereit.",
   "identity": "wts.Feat.DragAndDrop"
 }

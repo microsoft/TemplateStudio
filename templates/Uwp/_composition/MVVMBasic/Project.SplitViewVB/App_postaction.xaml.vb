@@ -2,6 +2,7 @@
     Inherits Application
 '^^
 '{[{
+
     Private Function CreateActivationService() As ActivationService
         Return New ActivationService(Me, GetType(Views.Param_HomeNamePage), New Lazy(Of UIElement)(AddressOf CreateShell))
     End Function
