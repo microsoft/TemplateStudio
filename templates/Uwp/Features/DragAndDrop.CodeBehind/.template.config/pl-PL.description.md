@@ -1,5 +1,5 @@
-﻿Drag and drop is a classic, natural way of interacting with content such as images and files. Once implemented, drag and drop works seamlessly in all directions, including app-to-app, app-to-desktop, and desktop-to app.
+﻿Przeciąganie i upuszczanie to klasyczny i naturalny sposób interakcji z zawartością, taką jak zdjęcia i pliki. Jeśli wprowadzisz tę funkcję, będzie ona działać we wszystkich kierunkach — w tym aplikacja-aplikacja, aplikacja-pulpit i pulpit-aplikacja.
 
-The Drag & Drop feature provides a wrapper service over the [standard UWP drag and drop functionallity](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop) to simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
+Funkcja Przeciągnij i upuść oferuje usługę otoki wokół [standardowej funkcji Przeciągnij i upuść UWP](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop), dzięki czemu kod wymagany do tworzenia obsługujących ją aplikacji jest prostszy i zgodny ze strukturą (framework) aplikacji.
 
-[More info](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[Więcej informacji](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)

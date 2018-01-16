@@ -3,6 +3,5 @@
   "RemoteTelemetryKey": "myRemoteTelemetryKey",
   "LogFileFolderPath": "WindowsTemplateStudio\\Logs",
   "DiagnosticsTraceLevel": "Information",
-  "DaysToKeepDiagnosticsLogs": 15,
-  "VersionCheckingExpirationMinutes": 240
+  "DaysToKeepDiagnosticsLogs": 15
 }

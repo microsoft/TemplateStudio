@@ -13,9 +13,9 @@ namespace Microsoft.Templates.Core.Locations
         Acquired = 4,
         Preparing = 5,
         Prepared = 6,
-        OverVersion = 7,
-        OverVersionNoContent = 8,
-        UnderVersion = 9,
-        NewVersionAvailable
+        NewWizardVersionAvailable = 7,
+        CheckingForUpdates = 8,
+        CheckedForUpdates = 9,
+        Ready = 10
     }
 }

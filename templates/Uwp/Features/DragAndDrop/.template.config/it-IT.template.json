@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps.",
+  "description": "La funzionalità Trascinamento fornisce un servizio per semplificare la creazione di app che supportino la funzionalità di trascinamento della selezione.",
   "identity": "wts.Feat.DragAndDrop"
 }

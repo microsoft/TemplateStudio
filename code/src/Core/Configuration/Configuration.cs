@@ -17,9 +17,9 @@ namespace Microsoft.Templates.Core
 {
     public class Configuration
     {
-        public string Environment { get; set; } = "Local";
+        public string Environment { get; set; } = "LocalEnv";
 
-        public string CdnUrl { get; set; } = "https://wtsrepository.blob.core.windows.net/dev/Latest";
+        public string CdnUrl { get; set; } = "https://wtsrepository.blob.core.windows.net/dev";
 
         // Set your Application Insights telemetry instrumentation key here (configure it in a WindowsTemplateStudio.config.json located in the working folder).
         public string RemoteTelemetryKey { get; set; } = "<SET_YOUR_OWN_KEY>";
@@ -37,8 +37,6 @@ namespace Microsoft.Templates.Core
         public int DaysToKeepTempGenerations { get; set; } = 5;
 
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
-
-        public int VersionCheckingExpirationMinutes { get; set; } = 0;
 
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
 

@@ -5,7 +5,6 @@ using Windows.System.Display;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
 namespace Param_ItemNamespace.Views
 {
@@ -28,19 +27,6 @@ namespace Param_ItemNamespace.Views
 
             mpe.PosterSource = new BitmapImage(new Uri(DefaultPoster));
             mpe.Source = MediaSource.CreateFromUri(new Uri(DefaultSource));
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
-        }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-            mpe.MediaPlayer.Pause();
-            mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
         }
 
         private async void PlaybackSession_PlaybackStateChanged(MediaPlaybackSession sender, object args)

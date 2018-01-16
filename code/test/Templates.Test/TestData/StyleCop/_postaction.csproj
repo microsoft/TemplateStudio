@@ -1,6 +1,0 @@
-<!-- Nuget package references -->
-<!--{[{-->
-<PackageReference Include="StyleCop.Analyzers">
-  <Version>1.0.2</Version>
-</PackageReference>
-<!--}]}-->

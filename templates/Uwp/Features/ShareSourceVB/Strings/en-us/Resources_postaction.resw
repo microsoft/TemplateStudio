@@ -9,10 +9,6 @@
     <value>The parameter title can not be null or empty.</value>
     <comment>The parameter title can not be null or empty</comment>
   </data>
-  <data name="ExceptionShareSourceFeatureDataTextIsNullOrEmpty" xml:space="preserve">
-    <value>The parameter text is null or empty.</value>
-    <comment>The parameter text can not be null or empty</comment>
-  </data>
   <data name="ExceptionShareSourceFeatureDataHtmlIsNullOrEmpty" xml:space="preserve">
     <value>The Parameter html is null or empty.</value>
     <comment>The Parameter html is null or empty.</comment>

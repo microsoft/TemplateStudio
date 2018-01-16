@@ -147,51 +147,51 @@
   </data>
   <data name="ExceptionDependencyCircularReference" xml:space="preserve">
     <value>Ringabhängigkeit für Vorlage {0} mit {1} entdeckt.</value>
-    <comment>Log text for Circular Reference exception</comment>
+    <comment>Log text for Circular Reference exception, {0}:Template id, {1}: Dependency Template id</comment>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
-    <comment>Log text for Multiple Instance exception</comment>
+    <value>Ungültiges Abhängigkeitsobjekt {0}. Abhängigkeiten müssen als „multipleInstance = false“ konfiguriert werden.</value>
+    <comment>Log text for Multiple Instance exception. {0}:Dependency template id</comment>
   </data>
   <data name="ExceptionDependencyType" xml:space="preserve">
     <value>Ungültiges Abhängigkeitsobjekt {0}. Abhängigkeitsobjekte müssen den Typ „Seite“ oder „Feature“ besitzen.</value>
-    <comment>Log text for Type exception</comment>
+    <comment>Log text for Type exception. {0}: Dependency template id</comment>
   </data>
   <data name="ExceptionGenerating" xml:space="preserve">
     <value>Vorlage „{0}“, Name: „{1}“, Grund: '{2}'</value>
-    <comment>Log text for Generating exception</comment>
+    <comment>Log text for Generating exception. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ExceptionLayoutType" xml:space="preserve">
     <value>Ungültiges Layoutobjekt {0}. Layoutobjekte müssen den Typ „Seite“ oder „Feature“ besitzen.</value>
-    <comment>Log text for Layout Type exception</comment>
+    <comment>Log text for Layout Type exception. {0}: Layout template id</comment>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
     <value>Feature „{0}“ wird erstellt...</value>
-    <comment>Generating feature log message</comment>
+    <comment>Generating feature log message. {0}: Feature and Template name</comment>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
     <value>Seite „{0}“ wird erstellt...</value>
-    <comment>Generating page log message</comment>
+    <comment>Generating page log message. {0}: Page and Template name</comment>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
     <value>Projekt „{0}“ wird erstellt...</value>
-    <comment>Generating project log message</comment>
+    <comment>Generating project log message. {0}: Project name</comment>
   </data>
   <data name="GroupFeaturesHeader_SF" xml:space="preserve">
     <value>Features ({0}) – mehrere hinzufügen</value>
-    <comment>Wizard new project group feature header string format</comment>
+    <comment>Wizard new project group feature header string format.{0}: Feature count</comment>
   </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
     <value>Framework ({0}) – eines auswählen</value>
-    <comment>Wizard new project group framework header string format</comment>
+    <comment>Wizard new project group framework header string format. {0}: Framework count</comment>
   </data>
   <data name="GroupPagesHeader_SF" xml:space="preserve">
     <value>Seiten ({0}) – mehrere hinzufügen</value>
-    <comment>Wizard new project group page header string format</comment>
+    <comment>Wizard new project group page header string format.{0}: Pages count</comment>
   </data>
   <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
     <value>Projekttyp ({0}) – einen auswählen</value>
-    <comment>Wizard new project group project type header string format</comment>
+    <comment>Wizard new project group project type header string format. {0}: Project type count</comment>
   </data>
   <data name="NoContentText" xml:space="preserve">
     <value>Kein Inhalt verfügbar</value>
@@ -207,7 +207,7 @@
   </data>
   <data name="ResetSelection" xml:space="preserve">
     <value>Sie haben die Auswahl des Projekttyps oder des frameworks geändert. Die Auswahl von Seiten und Features geht verloren, wenn Sie den Vorgang fortsetzen. Ihre Auswahl war zuvor: {0} und {1}.</value>
-    <comment>Wizard new project reset selection error message</comment>
+    <comment>Wizard new project reset selection error message. {0}:Project Type, {1}: Framework</comment>
   </data>
   <data name="RestoringMessage" xml:space="preserve">
     <value>Pakete werden wiederhergestellt...</value>
@@ -281,6 +281,10 @@
     <value>Benutzerinteraktion</value>
     <comment>Group header for user interaction templates</comment>
   </data>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Anwendung wird gestartet</value>
+    <comment>Group header for Application Launching templates</comment>
+  </data>
   <data name="TemplatesVersion" xml:space="preserve">
     <value>Vorlagen:</value>
     <comment>Templates version title</comment>
@@ -315,7 +319,7 @@
   </data>
   <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
     <value>Sie können {0} nicht entfernen, da {1} hiervon abhängig ist.</value>
-    <comment>Template name validation error message for can not remove template string format</comment>
+    <comment>Template name validation error message for can not remove template string format. {0}:Template name, {1}:Dependency template name</comment>
   </data>
   <data name="ValidationError_Empty" xml:space="preserve">
     <value>Name darf nicht leer sein</value>
@@ -402,7 +406,7 @@
   </data>
   <data name="InformationWindowInitializeViewModelMessage" xml:space="preserve">
     <value>„{0} wird für das Informationsfenster nicht als gültiger Typ erwartet.“</value>
-    <comment>Exception message for Information Window</comment>
+    <comment>Exception message for Information Window, {0}: window type</comment>
   </data>
   <data name="UndefinedErrorString" xml:space="preserve">
     <value>Nicht definierter Fehler</value>
@@ -429,7 +433,7 @@
     <comment>Track event message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="VsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>Beim Anzeigen der Statusmeldung ist ein Fehler aufgetreten. Beispiel:</value>
+    <value>Fehler beim Anzeigen der Statusmeldung. Beispiel:</value>
     <comment>Track event message for Vs GenShell show status bar message</comment>
   </data>
   <data name="SummaryDragAndDrop" xml:space="preserve">
@@ -453,12 +457,12 @@
     <comment>New item wizard title string format</comment>
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">
-    <value>Features ({0}) – eins auswählen</value>
-    <comment>Wizard new item group feature header string format</comment>
+    <value>Features ({0}) – ein Feature auswählen</value>
+    <comment>Wizard new item group feature header string format. {0}: Feature count</comment>
   </data>
   <data name="GroupPageHeader_SF" xml:space="preserve">
-    <value>Seiten ({0}) – eine auswählen</value>
-    <comment>Wizard new item group page header string format</comment>
+    <value>Seiten ({0}) – eine Seite auswählen</value>
+    <comment>Wizard new item group page header string format. {0}: Pages count</comment>
   </data>
   <data name="NewItemName" xml:space="preserve">
     <value>Name:</value>
@@ -484,6 +488,10 @@
     <value>Auf neue Vorlagen prüfen</value>
     <comment>check for templates updates button content on overlay box control</comment>
   </data>
+  <data name="ChangesSummaryTitlePage" xml:space="preserve">
+    <value>Übersicht über Änderungen: Seite „{0}“ hinzufügen </value>
+    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
+  </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>Fehlgeschlagene Zusammenführungen</value>
     <comment>Category name of failed merges</comment>
@@ -497,7 +505,7 @@
     <comment>Category name of modified files</comment>
   </data>
   <data name="ChangesSummaryCategoryNewFiles" xml:space="preserve">
-    <value>Neue Dateien:</value>
+    <value>Neue Dateien</value>
     <comment>Category name of new files</comment>
   </data>
   <data name="ConflictingDetailDescription_SF" xml:space="preserve">
@@ -562,7 +570,7 @@
   </data>
   <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
     <value>Das Feature {0} wurde erfolgreich hinzugefügt.</value>
-    <comment>Status bar message for Feature successfully added</comment>
+    <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
   </data>
   <data name="NewItemAddPageCancelled" xml:space="preserve">
     <value>Hinzufügen einer neuen Seite abgebrochen</value>
@@ -570,7 +578,7 @@
   </data>
   <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
     <value>Die Seite {0} wurde erfolgreich hinzugefügt.</value>
-    <comment>Status bar message for Page successfully added</comment>
+    <comment>Status bar message for Page successfully added, {0}: Page Name</comment>
   </data>
   <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
     <value>Lizenzen</value>
@@ -581,7 +589,7 @@
     <comment>New Item do not merge changes checkbox content</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
-    <value>Die Metadaten für die Projektkonfiguration wurden in der Datei Package.appxmanifest nicht gefunden. Stellen Sie die Projektkonfiguration bereit, die Sie beim Erstellen des Projekts ausgewählt haben.</value>
+    <value>Die Metadaten für die Projektkonfiguration wurden in der Datei Package.appxmanifest nicht gefunden. Geben Sie die von Ihnen beim Erstellen des Projekts ausgewählte Projektkonfiguration an.</value>
     <comment>ProjectConfiguration view description</comment>
   </data>
   <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
@@ -638,7 +646,11 @@
   </data>
   <data name="ExceptionDependencyMissing" xml:space="preserve">
     <value>Die Abhängigkeitsvorlage {0} für die Benutzerauswahl wurde nicht gefunden.</value>
-    <comment>Log text for misssing dependency exception.</comment>
+    <comment>Log text for misssing dependency exception. {0}: Dependency template id</comment>
+  </data>
+  <data name="NewItemHasNoChangesPage" xml:space="preserve">
+    <value>{0} ist bereits Teil Ihres Projekts. Wählen Sie eine andere Seite aus.</value>
+    <comment>{0}:Page name.</comment>
   </data>
   <data name="ChangesSummaryCategoryFailedStyleMerges" xml:space="preserve">
     <value>Fehlgeschlagene Formatvorlagenzusammenführungen</value>
@@ -649,24 +661,19 @@
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>Die Formatvorlagen konnten nicht in das Ressourcenverzeichnis eingeführt werden.</value>
   </data>
-  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
-    <value>Application Launching</value>
-    <comment>Group header for Application Launching templates</comment>
+  <data name="TrackTelemetryException" xml:space="preserve">
+    <value>Ausnahme für die Verfolgungstelemetrie während der Generierung.</value>
   </data>
   <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
-    <value>Connected Experiences</value>
+    <value>Verbundene Anwendungen</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
   <data name="ChangesSummaryTitleFeature" xml:space="preserve">
-    <value>Changes summary: Add feature '{0}'</value>
+    <value>Übersicht über Änderungen: Feature „{0}“ hinzufügen</value>
     <comment>New item wizard title for features {0}: Feature/Template name</comment>
   </data>
-  <data name="ChangesSummaryTitlePage" xml:space="preserve">
-    <value>Changes summary: Add page '{0}' </value>
-    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
-  </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another feature.</value>
+    <value>{0} ist bereits Teil Ihres Projekts. Wählen Sie ein anderes Feature aus.</value>
     <comment>{0}:Feature name.</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">

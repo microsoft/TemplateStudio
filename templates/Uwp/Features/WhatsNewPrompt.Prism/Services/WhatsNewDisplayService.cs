@@ -1,8 +1,7 @@
 ﻿using Param_ItemNamespace.Views;
-using Param_ItemNamespace.Helpers;
+using Microsoft.Toolkit.Uwp.Helpers;
 using System;
 using System.Threading.Tasks;
-using Windows.ApplicationModel;
 
 namespace Param_ItemNamespace.Services
 {
@@ -11,29 +10,11 @@ namespace Param_ItemNamespace.Services
     {
         public async Task ShowIfAppropriateAsync()
         {
-            var currentVersion = PackageVersionToReadableString(Package.Current.Id.Version);
-
-            var lastVersion = await Windows.Storage.ApplicationData.Current.LocalSettings.ReadAsync<string>(nameof(currentVersion));
-
-            if (lastVersion == null)
+            if (SystemInformation.IsAppUpdated)
             {
-                await Windows.Storage.ApplicationData.Current.LocalSettings.SaveAsync(nameof(currentVersion), currentVersion);
+                var dialog = new WhatsNewDialog();
+                await dialog.ShowAsync();
             }
-            else
-            {
-                if (currentVersion != lastVersion)
-                {
-                    await Windows.Storage.ApplicationData.Current.LocalSettings.SaveAsync(nameof(currentVersion), currentVersion);
-
-                    var dialog = new WhatsNewDialog();
-                    await dialog.ShowAsync();
-                }
-            }
-        }
-
-        private static string PackageVersionToReadableString(PackageVersion packageVersion)
-        {
-            return $"{packageVersion.Major}.{packageVersion.Minor}.{packageVersion.Build}.{packageVersion.Revision}";
         }
     }
 }

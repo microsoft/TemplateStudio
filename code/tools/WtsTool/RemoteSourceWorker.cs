@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -24,7 +25,7 @@ namespace WtsTool
             try
             {
                 output.WriteCommandHeader($"Summary Info for environment {options.Env.ToString()} ({options.StorageAccount})");
-                RemoteTemplatesSourceConfig config = GetConfig(options, output);
+                TemplatesSourceConfig config = GetConfig(options, output);
                 output.WriteLine();
 
                 WriteSummary(config, output);
@@ -41,7 +42,7 @@ namespace WtsTool
             {
                 output.WriteCommandHeader($"Versions for environment {options.Env.ToString()} ({options.StorageAccount})");
 
-                RemoteTemplatesSourceConfig config = GetConfig(options, output);
+                TemplatesSourceConfig config = GetConfig(options, output);
                 output.WriteLine();
 
                 WriteSummary(config, output);
@@ -88,9 +89,9 @@ namespace WtsTool
             {
                 output.WriteCommandHeader($"Downloading templates content from environment {options.Env.ToString()} ({options.StorageAccount})");
 
-                RemoteTemplatesSourceConfig config = GetConfigFromCdn(options.Env);
+                TemplatesSourceConfig config = GetConfigFromCdn(options.Env);
 
-                RemoteTemplatesPackage package = null;
+                TemplatesPackageInfo package = null;
                 if (options.Version != null)
                 {
                     package = ResolvePackageForVersion(config, options.Version, output);
@@ -140,12 +141,12 @@ namespace WtsTool
             }
         }
 
-        private static RemoteTemplatesSourceConfig GetConfig(RemoteSourceListOptions options, TextWriter output)
+        private static TemplatesSourceConfig GetConfig(RemoteSourceListOptions options, TextWriter output)
         {
             if (options.Build)
             {
                 output.WriteCommandText("Building Remote Templates Source Configuration information...");
-                return RemoteSource.GetRemoteTemplatesSourceConfig(options.StorageAccount, options.Env);
+                return RemoteSource.GetTemplatesSourceConfig(options.StorageAccount, options.Env);
             }
             else
             {
@@ -154,44 +155,42 @@ namespace WtsTool
             }
         }
 
-        private static RemoteTemplatesSourceConfig GetConfigFromCdn(EnvEnum env)
+        private static TemplatesSourceConfig GetConfigFromCdn(EnvEnum env)
         {
             Fs.SafeDeleteFile(Path.Combine(Path.GetTempPath(), "config.json"));
             string configFile = RemoteSource.DownloadCdnElement(Environments.CdnUrls[env], "config.json", Path.GetTempPath());
 
-            RemoteTemplatesSourceConfig config = RemoteTemplatesSourceConfig.LoadFromFile(configFile);
+            TemplatesSourceConfig config = TemplatesSourceConfig.LoadFromFile(configFile);
             return config;
         }
 
-        private static RemoteTemplatesPackage ResolvePackageForVersion(RemoteTemplatesSourceConfig config, string version, TextWriter output)
+        private static TemplatesPackageInfo ResolvePackageForVersion(TemplatesSourceConfig config, string version, TextWriter output)
         {
             Version v = new Version(version);
             if (v.Build != 0 || v.Revision != 0)
             {
-                output.WriteCommandText($"WARN: Downloading main version for {v.Major}.{v.Minor}, ignoring the version parts build ({v.Build}) and revision ({v.Revision}).");
+                output.WriteCommandText($"WARN: Downloading main version for {v.Major}.{v.Minor}, ignoring the version parts build and revision ({v.Build}.{v.Revision}).");
             }
 
-            RemoteTemplatesPackage match = config.Versions.Where(p => p.Version.Major == v.Major && p.Version.Minor == v.Minor)
-                    .OrderByDescending(p => p.Date).FirstOrDefault();
+            TemplatesPackageInfo match = config.ResolvePackage(v);
 
             return match;
         }
 
-        private static void WriteSummary(RemoteTemplatesSourceConfig config, TextWriter output)
+        private static void WriteSummary(TemplatesSourceConfig config, TextWriter output)
         {
-            output.WriteCommandText($"Templates Package count: {config.VersionCount}");
             output.WriteCommandText($"Latest Version: {config.Latest?.MainVersion} ({config.Latest.Version?.ToString()})");
-            output.WriteCommandText($"Latest Version Uri: {config.Latest.StorageUri}");
+            output.WriteCommandText($"Latest Version Uri: {config.RootUri + config.Latest.Name}");
 
             output.WriteLine();
             output.WriteCommandText($"Available Versions: {string.Join(", ", config.Versions.Select(e => e.MainVersion).ToArray())}");
         }
 
-        private static void WritePackagesTable(IEnumerable<RemoteTemplatesPackage> packages, TextWriter output)
+        private static void WritePackagesTable(IEnumerable<TemplatesPackageInfo> packages, TextWriter output)
         {
-            string c1 = nameof(RemoteTemplatesPackage.Version);
-            string c2 = nameof(RemoteTemplatesPackage.Date);
-            string c3 = nameof(RemoteTemplatesPackage.StorageUri);
+            string c1 = nameof(TemplatesPackageInfo.Version);
+            string c2 = nameof(TemplatesPackageInfo.Date);
+            string c3 = nameof(TemplatesPackageInfo.Name);
 
             output.WriteLine();
             string tableHeader = string.Format("{0,-14}   {1,-24}   {2}", c1, c2, c3);
@@ -202,7 +201,7 @@ namespace WtsTool
 
             foreach (var info in packages)
             {
-                string row = string.Format("{0,-14}   {1,-24}   {2}", info.Version, info.Date, info.StorageUri);
+                string row = string.Format("{0,-14}   {1,-24}   {2}", info.Version, info.Date, info.Name);
                 output.WriteCommandText(row);
             }
         }
@@ -216,7 +215,7 @@ namespace WtsTool
 
             Fs.SafeDeleteFile(targetFile);
 
-            RemoteTemplatesSourceConfig config = RemoteSource.GetRemoteTemplatesSourceConfig(options.StorageAccount, options.Env);
+            TemplatesSourceConfig config = RemoteSource.GetTemplatesSourceConfig(options.StorageAccount, options.Env);
             using (FileStream fs = new FileStream(targetFile, FileMode.CreateNew, FileAccess.Write))
             {
                 StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);

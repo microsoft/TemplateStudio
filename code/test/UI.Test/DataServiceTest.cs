@@ -26,7 +26,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task LoadProjectSetupAsync()
         {
-            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.InitializedLanguage);
+            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.CurrentLanguage);
             await viewModel.ProjectSetup.InitializeAsync(Platforms.Uwp);
             Assert.True(viewModel.ProjectSetup.ProjectTypes.Count > 0);
             Assert.True(viewModel.ProjectSetup.Frameworks.Count > 0);
@@ -35,7 +35,7 @@ namespace Microsoft.UI.Test
         [Fact]
         public async Task LoadTemplatesAsync()
         {
-            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.InitializedLanguage);
+            var viewModel = new MainViewModel(Platforms.Uwp, GenContext.CurrentLanguage);
             await viewModel.ProjectSetup.InitializeAsync(Platforms.Uwp);
             await viewModel.ProjectTemplates.InitializeAsync(Platforms.Uwp);
 

@@ -23,7 +23,7 @@
     </UserControl.Resources>
     
     <Grid>
-        <Grid Width="360" Height="265">
+        <Grid Width="360" MinHeight="265">
             <Polygon
                 Points="0,10 20,10 10,0"
                 Margin="0,0,5,0"
@@ -96,6 +96,12 @@
                             <TextBlock Grid.Row="0" Text="{x:Static res:StringRes.WTSDescription}" Style="{StaticResource TextOverlayBoxDescriptionStyle}"/>
 
                             <Grid Grid.Row="1" Margin="{StaticResource Margin_M_Top}">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
                                 <Button Style="{StaticResource ButtonRefreshTemplatesStyle}"
                                         Focusable="{Binding Visible, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
                                         Command="{Binding RefreshCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
@@ -106,6 +112,14 @@
                                         Command="{Binding CheckForUpdatesCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
                                         Content="{x:Static res:StringRes.CheckForUpdates}"
                                         Visibility="{Binding NewVersionAvailable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"/>
+
+                                <Button Grid.Row="2" Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                                    Content="{x:Static res:StringRes.ButtonRefreshTemplatesCache}"
+                                    Command="{Binding RefreshTemplateCacheCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
+                                    Visibility="{Binding CanForceRefreshTemplateCache, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:OverlayBox}}}"
+                                    />
+
+
                             </Grid>
 
                             <TextBox Grid.Row="3" Margin="{StaticResource Margin_S_Top}" Style="{StaticResource VersionsSelectTextBox}"

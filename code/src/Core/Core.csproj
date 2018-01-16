@@ -193,6 +193,14 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Locations\JunctionNativeMethods.cs" />
+    <Compile Include="Locations\LocalTemplatesSource.cs" />
+    <Compile Include="Locations\RemoteTemplatesSource.cs" />
+    <Compile Include="Locations\TemplatesContent.cs" />
+    <Compile Include="Locations\TemplatesContentInfo.cs" />
+    <Compile Include="Locations\TemplatesPackageInfo.cs" />
+    <Compile Include="Locations\TemplatesSourceConfig.cs" />
+    <Compile Include="Locations\TemplatesSource.cs" />
     <Compile Include="Mvvm\Observable.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
@@ -208,7 +216,6 @@
     <Compile Include="Fs.cs" />
     <Compile Include="Gen\TempGenerationResult.cs" />
     <Compile Include="Packaging\InvalidSignatureException.cs" />
-    <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Composition\CompositionQuery.cs" />
     <Compile Include="Locations\SyncStatusEventArgs.cs" />
     <Compile Include="Locations\SyncStatus.cs" />
@@ -307,10 +314,7 @@
     <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
     <Compile Include="Gen\FileRenameParameterReplacements.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
-    <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
-    <Compile Include="Locations\TemplatesContent.cs" />
-    <Compile Include="Locations\TemplatesSource.cs" />
     <Compile Include="Packaging\SignCertNotFoundException.cs" />
     <Compile Include="MetadataInfo.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />
@@ -326,7 +330,6 @@
     <Compile Include="PostActions\PostActionFactory.cs" />
     <Compile Include="PostActions\Catalog\SetDefaultSolutionConfigurationPostAction.cs" />
     <Compile Include="Extensions\XElementExtensions.cs" />
-    <Compile Include="Templates\RepositorySynchronizationException.cs" />
     <Compile Include="Templates\TemplateLicense.cs" />
     <Compile Include="Templates\TemplateLicenseEqualityComparer.cs" />
     <Compile Include="Templates\TemplatesRepository.cs" />

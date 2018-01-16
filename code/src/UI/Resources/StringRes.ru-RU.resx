@@ -147,51 +147,51 @@
   </data>
   <data name="ExceptionDependencyCircularReference" xml:space="preserve">
     <value>Обнаружена циклическая зависимость в шаблоне {0} с {1}.</value>
-    <comment>Log text for Circular Reference exception</comment>
+    <comment>Log text for Circular Reference exception, {0}:Template id, {1}: Dependency Template id</comment>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
-    <comment>Log text for Multiple Instance exception</comment>
+    <value>Недопустимый элемент зависимости {0}. Зависимости нужно настраивать с параметром multipleInstance = false.</value>
+    <comment>Log text for Multiple Instance exception. {0}:Dependency template id</comment>
   </data>
   <data name="ExceptionDependencyType" xml:space="preserve">
     <value>Недопустимый элемент зависимости {0}. Элементы зависимостей должны иметь тип Page или Feature.</value>
-    <comment>Log text for Type exception</comment>
+    <comment>Log text for Type exception. {0}: Dependency template id</comment>
   </data>
   <data name="ExceptionGenerating" xml:space="preserve">
     <value>Шаблон "{0}", имя: "{1}", причина: '{2}'</value>
-    <comment>Log text for Generating exception</comment>
+    <comment>Log text for Generating exception. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ExceptionLayoutType" xml:space="preserve">
     <value>Недопустимый элемент макета {0}. Элементы макетов должны иметь тип Page или Feature.</value>
-    <comment>Log text for Layout Type exception</comment>
+    <comment>Log text for Layout Type exception. {0}: Layout template id</comment>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
     <value>Создается функция "{0}"...</value>
-    <comment>Generating feature log message</comment>
+    <comment>Generating feature log message. {0}: Feature and Template name</comment>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
     <value>Создается страница "{0}"...</value>
-    <comment>Generating page log message</comment>
+    <comment>Generating page log message. {0}: Page and Template name</comment>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
     <value>Создается проект "{0}"...</value>
-    <comment>Generating project log message</comment>
+    <comment>Generating project log message. {0}: Project name</comment>
   </data>
   <data name="GroupFeaturesHeader_SF" xml:space="preserve">
     <value>Функции ({0}) — добавьте несколько</value>
-    <comment>Wizard new project group feature header string format</comment>
+    <comment>Wizard new project group feature header string format.{0}: Feature count</comment>
   </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
-    <value>Framework ({0}) — выберите один</value>
-    <comment>Wizard new project group framework header string format</comment>
+    <value>Framework ({0}) — выберите одно</value>
+    <comment>Wizard new project group framework header string format. {0}: Framework count</comment>
   </data>
   <data name="GroupPagesHeader_SF" xml:space="preserve">
     <value>Страницы ({0}) — добавьте несколько</value>
-    <comment>Wizard new project group page header string format</comment>
+    <comment>Wizard new project group page header string format.{0}: Pages count</comment>
   </data>
   <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
     <value>Тип проекта ({0}) — выберите один</value>
-    <comment>Wizard new project group project type header string format</comment>
+    <comment>Wizard new project group project type header string format. {0}: Project type count</comment>
   </data>
   <data name="NoContentText" xml:space="preserve">
     <value>Нет доступного содержимого.</value>
@@ -207,7 +207,7 @@
   </data>
   <data name="ResetSelection" xml:space="preserve">
     <value>Вы изменили выбранный тип или framework проекта. Выбор страниц и функций будет снят, если вы продолжите. Предыдущие выделенные элементы: {0} и {1}.</value>
-    <comment>Wizard new project reset selection error message</comment>
+    <comment>Wizard new project reset selection error message. {0}:Project Type, {1}: Framework</comment>
   </data>
   <data name="RestoringMessage" xml:space="preserve">
     <value>Восстанавливаются пакеты...</value>
@@ -281,6 +281,10 @@
     <value>Взаимодействие с пользователем</value>
     <comment>Group header for user interaction templates</comment>
   </data>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Запуск приложения</value>
+    <comment>Group header for Application Launching templates</comment>
+  </data>
   <data name="TemplatesVersion" xml:space="preserve">
     <value>Шаблоны:</value>
     <comment>Templates version title</comment>
@@ -315,7 +319,7 @@
   </data>
   <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
     <value>Невозможно удалить {0}, так как {1} зависит от него.</value>
-    <comment>Template name validation error message for can not remove template string format</comment>
+    <comment>Template name validation error message for can not remove template string format. {0}:Template name, {1}:Dependency template name</comment>
   </data>
   <data name="ValidationError_Empty" xml:space="preserve">
     <value>Имя не может быть пустым.</value>
@@ -402,7 +406,7 @@
   </data>
   <data name="InformationWindowInitializeViewModelMessage" xml:space="preserve">
     <value>"{0} не ожидается в качестве допустимого типа окна сведений".</value>
-    <comment>Exception message for Information Window</comment>
+    <comment>Exception message for Information Window, {0}: window type</comment>
   </data>
   <data name="UndefinedErrorString" xml:space="preserve">
     <value>UndefinedError</value>
@@ -453,12 +457,12 @@
     <comment>New item wizard title string format</comment>
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">
-    <value>Функции ({0}  — выберите одну</value>
-    <comment>Wizard new item group feature header string format</comment>
+    <value>Функции ({0}) — выберите одну</value>
+    <comment>Wizard new item group feature header string format. {0}: Feature count</comment>
   </data>
   <data name="GroupPageHeader_SF" xml:space="preserve">
     <value>Страницы ({0}) — выберите одну</value>
-    <comment>Wizard new item group page header string format</comment>
+    <comment>Wizard new item group page header string format. {0}: Pages count</comment>
   </data>
   <data name="NewItemName" xml:space="preserve">
     <value>Имя:</value>
@@ -483,6 +487,10 @@
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Проверка наличия новых шаблонов</value>
     <comment>check for templates updates button content on overlay box control</comment>
+  </data>
+  <data name="ChangesSummaryTitlePage" xml:space="preserve">
+    <value>Сводка изменений: Добавить страницу "{0}" </value>
+    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
   </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>Слияния со сбоем</value>
@@ -562,7 +570,7 @@
   </data>
   <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
     <value>Функция {0} добавлена</value>
-    <comment>Status bar message for Feature successfully added</comment>
+    <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
   </data>
   <data name="NewItemAddPageCancelled" xml:space="preserve">
     <value>Добавление новой страницы отменено</value>
@@ -570,7 +578,7 @@
   </data>
   <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
     <value>Страница {0} добавлена</value>
-    <comment>Status bar message for Page successfully added</comment>
+    <comment>Status bar message for Page successfully added, {0}: Page Name</comment>
   </data>
   <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
     <value>Лицензии</value>
@@ -581,11 +589,11 @@
     <comment>New Item do not merge changes checkbox content</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
-    <value>Не удалось найти метаданные конфигурации проекта в файле Package.appxmanifest. Предоставьте конфигурацию, выбранную при создании проекта.</value>
+    <value>Не удалось найти метаданные конфигурации проекта в файле Package.appxmanifest. Укажите конфигурацию, выбранную при создании проекта.</value>
     <comment>ProjectConfiguration view description</comment>
   </data>
   <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
-    <value>Выберите framework</value>
+    <value>Выбрать framework</value>
     <comment>Project configuration window select framework title</comment>
   </data>
   <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
@@ -638,7 +646,11 @@
   </data>
   <data name="ExceptionDependencyMissing" xml:space="preserve">
     <value>Шаблон зависимостей {0} не найден в выделенных элементах пользователя.</value>
-    <comment>Log text for misssing dependency exception.</comment>
+    <comment>Log text for misssing dependency exception. {0}: Dependency template id</comment>
+  </data>
+  <data name="NewItemHasNoChangesPage" xml:space="preserve">
+    <value>{0} уже является частью проекта. Выберите другую страницу.</value>
+    <comment>{0}:Page name.</comment>
   </data>
   <data name="ChangesSummaryCategoryFailedStyleMerges" xml:space="preserve">
     <value>Слияния стиля со сбоем</value>
@@ -649,24 +661,19 @@
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>Не удалось добавить стили в словарь ресурсов.</value>
   </data>
-  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
-    <value>Application Launching</value>
-    <comment>Group header for Application Launching templates</comment>
+  <data name="TrackTelemetryException" xml:space="preserve">
+    <value>Исключение при отслеживании телеметрии во время создания.</value>
   </data>
   <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
-    <value>Connected Experiences</value>
+    <value>Функциональные возможности для подключенных пользователей</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
   <data name="ChangesSummaryTitleFeature" xml:space="preserve">
-    <value>Changes summary: Add feature '{0}'</value>
+    <value>Сводка изменений: Добавить функцию "{0}"</value>
     <comment>New item wizard title for features {0}: Feature/Template name</comment>
   </data>
-  <data name="ChangesSummaryTitlePage" xml:space="preserve">
-    <value>Changes summary: Add page '{0}' </value>
-    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
-  </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another feature.</value>
+    <value>{0} уже является частью проекта. Выберите другую функцию.</value>
     <comment>{0}:Feature name.</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">

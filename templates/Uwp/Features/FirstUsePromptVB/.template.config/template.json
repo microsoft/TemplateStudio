@@ -14,10 +14,10 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "5",
     "wts.group": "UserInteraction",
-    "wts.dependencies":"wts.Feat.SettingsStorage.VB",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "FirstRunPrompt",
-    "wts.rightClickEnabled":"true"
+    "wts.rightClickEnabled": "true"
   },
   "sourceName": "FirstRunPromptFeature",
   "preferNameDirectory": true,
