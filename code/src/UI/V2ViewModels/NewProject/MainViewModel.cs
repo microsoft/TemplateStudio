@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         private static MainViewModel _instance;
         private TemplateInfoViewModel _selectedTemplate;
 
-        public static MainViewModel Instance => _instance ?? (_instance = new MainViewModel());
+        public static MainViewModel Instance => _instance ?? (_instance = new MainViewModel(WizardShell.Current));
 
         public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(IsSelectionEnabled);
 
@@ -32,8 +32,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public UserSelectionViewModel UserSelection { get; } = new UserSelectionViewModel();
 
-        private MainViewModel()
-            : base()
+        private MainViewModel(Window mainView)
+            : base(mainView)
         {
             EventService.Instance.OnProjectTypeChanged += OnProjectTypeSelectionChanged;
             EventService.Instance.OnFrameworkChanged += OnFrameworkSelectionChanged;
@@ -82,6 +82,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         protected override void OnFinish()
         {
+            WizardShell.Current.Result = UserSelection.GetUserSelection();
+            base.OnFinish();
         }
 
         private static bool IsSelectionEnabled()

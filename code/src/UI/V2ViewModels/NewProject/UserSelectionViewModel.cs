@@ -157,7 +157,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             OnPropertyChanged(collectionName);
         }
 
-        private UserSelection GetUserSelection()
+        public UserSelection GetUserSelection()
         {
             var selection = new UserSelection(_projectTypeName, _frameworkName, _language);
 

@@ -11,7 +11,7 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
 {
     public partial class WizardShell : Window
     {
-        public static Window Current { get; private set; }
+        public static WizardShell Current { get; private set; }
 
         public UserSelection Result { get; set; }
 

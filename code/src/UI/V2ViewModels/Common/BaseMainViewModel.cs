@@ -4,6 +4,7 @@
 
 using System;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -18,6 +19,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public abstract class BaseMainViewModel : Observable
     {
+        private Window _mainView;
         private int _step;
         private bool _canGoBack = false;
         private bool _canGoForward = true;
@@ -54,13 +56,18 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         protected abstract void OnCancel();
 
-        protected abstract void OnFinish();
-
         protected abstract Task OnTemplatesAvailableAsync();
 
-        public BaseMainViewModel()
+        public BaseMainViewModel(Window mainView)
         {
+            _mainView = mainView;
             WizardStatus.IsBusyChanged += IsBusyChanged;
+        }
+
+        protected virtual void OnFinish()
+        {
+            _mainView.DialogResult = true;
+            _mainView.Close();
         }
 
         protected void SetCanGoBack(bool canGoBack)
