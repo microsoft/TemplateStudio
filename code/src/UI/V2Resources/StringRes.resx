@@ -153,6 +153,12 @@
     <value>Select a design pattern</value>
     <comment>Title on FrameworkPage</comment>
   </data>
+  <data name="NewItemTitleFeature" xml:space="preserve">
+    <value>New feature</value>
+  </data>
+  <data name="NewItemTitlePage" xml:space="preserve">
+    <value>New page</value>
+  </data>
   <data name="NewProjectTitle" xml:space="preserve">
     <value>New Universal Windows Platform app</value>
     <comment>Wizard title on WizardShell page</comment>
@@ -232,9 +238,6 @@
   <data name="ProjectTypeTitle" xml:space="preserve">
     <value>Select a project type</value>
     <comment>ProjectType Title on ProjectTypePage</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
   </data>
   <data name="TemplateDetailsAuthor" xml:space="preserve">
     <value>Author:</value>

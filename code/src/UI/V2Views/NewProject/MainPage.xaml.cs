@@ -16,12 +16,6 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
             DataContext = MainViewModel.Instance;
             InitializeComponent();
             V2Services.NavigationService.InitializeSecondaryFrame(stepFrame, new ProjectTypePage());
-            KeyDown += OnKeyDown;
-        }
-
-        private void OnKeyDown(object sender, KeyEventArgs args)
-        {
-            V2Services.EventService.Instance.RaiseOnKeyDown(args);
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)

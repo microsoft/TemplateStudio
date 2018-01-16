@@ -14,6 +14,7 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.V2Controls;
 using Microsoft.Templates.UI.V2Extensions;
+using Microsoft.Templates.UI.V2Services;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
@@ -62,6 +63,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             _mainView = mainView;
             WizardStatus.IsBusyChanged += IsBusyChanged;
+            _mainView.KeyDown += OnMainViewKeyDown;
         }
 
         protected virtual void OnFinish()
@@ -119,6 +121,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             {
                 // TODO: Turn on the light that indicates that there are templates updates.
             }
+        }
+
+        private void OnMainViewKeyDown(object sender, KeyEventArgs e)
+        {
+            EventService.Instance.RaiseOnKeyDown(e);
         }
     }
 }

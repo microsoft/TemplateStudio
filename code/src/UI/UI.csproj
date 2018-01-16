@@ -413,12 +413,19 @@
     <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
+    <Compile Include="V2ViewModels\NewItem\MainViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\AddFeaturesViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\AddPagesViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\FrameworkViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\ProjectTypeViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\UserSelectionViewModel.cs" />
+    <Compile Include="V2Views\NewItem\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewItem\WizardShell.xaml.cs">
+      <DependentUpon>WizardShell.xaml</DependentUpon>
+    </Compile>
     <Compile Include="V2Views\NewProject\AddFeaturesPage.xaml.cs">
       <DependentUpon>AddFeaturesPage.xaml</DependentUpon>
     </Compile>
@@ -685,6 +692,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="V2Views\NewItem\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewItem\WizardShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="V2Views\NewProject\AddFeaturesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -891,9 +906,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="V2Views\NewItem\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.0.240\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />

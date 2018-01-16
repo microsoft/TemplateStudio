@@ -10,6 +10,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public class WizardStatus : Observable
     {
+        private string _title;
         private bool _isBusy;
         private bool _isNotBusy;
         private bool _hasValidationErrors;
@@ -18,6 +19,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public double Width { get; }
 
         public double Height { get; }
+
+        public string Title
+        {
+            get => _title;
+            set => SetProperty(ref _title, value);
+        }
 
         public bool IsBusy
         {

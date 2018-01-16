@@ -142,6 +142,24 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New feature.
+        /// </summary>
+        public static string NewItemTitleFeature {
+            get {
+                return ResourceManager.GetString("NewItemTitleFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New page.
+        /// </summary>
+        public static string NewItemTitlePage {
+            get {
+                return ResourceManager.GetString("NewItemTitlePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Universal Windows Platform app.
         /// </summary>
         public static string NewProjectTitle {
@@ -336,15 +354,6 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string ProjectTypeTitle {
             get {
                 return ResourceManager.GetString("ProjectTypeTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features..
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         
