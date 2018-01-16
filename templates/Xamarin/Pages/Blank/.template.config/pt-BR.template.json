@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Blank",
+  "description": "Esta é a página mais básica. Uma tela em branco para incluir o que você quiser.",
+  "identity": "wts.Page.Blank.Xamarin"
+}

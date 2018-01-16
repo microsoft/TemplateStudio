@@ -213,33 +213,9 @@
     <value>패키지 복원 중...</value>
     <comment>Status bar message for restoring</comment>
   </data>
-  <data name="StatusAcquired" xml:space="preserve">
-    <value>완료</value>
-    <comment>Status message for sync acquired</comment>
-  </data>
-  <data name="StatusAcquiring" xml:space="preserve">
-    <value>템플릿 업데이트 확인 중...</value>
-    <comment>Status message for sync acquiring</comment>
-  </data>
-  <data name="StatusLowerVersionContent" xml:space="preserve">
-    <value>현재의 마법사 버전에서 사용 가능한 템플릿 콘텐츠가 없습니다. 인터넷 연결을 확인하고 마법사를 다시 시작하십시오.</value>
-    <comment>Status error message for sync lower version content</comment>
-  </data>
-  <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>템플릿에 업데이트는 가능하지만 이 마법사 버전과 호환되지 않습니다. 확장 버전을 업데이트하고 최신 템플릿을 사용하십시오.</value>
-    <comment>Status warning message for sync over version content</comment>
-  </data>
-  <data name="StatusOverVersionNoContent" xml:space="preserve">
-    <value>이 확장 버전에서 사용 가능한 콘텐츠가 없습니다. 확장 버전을 업데이트하고 최신 콘텐츠를 사용하십시오.</value>
-    <comment>Status error message for sync over version no content</comment>
-  </data>
   <data name="StatusUpdated" xml:space="preserve">
     <value>템플릿이 업데이트되었습니다.</value>
     <comment>Status message for sync status updated</comment>
-  </data>
-  <data name="StatusUpdating" xml:space="preserve">
-    <value>템플릿 업데이트 중...</value>
-    <comment>Status message for sync status updating</comment>
   </data>
   <data name="SummaryFeaturesTitle" xml:space="preserve">
     <value>기능</value>
@@ -380,10 +356,6 @@
     <value>템플릿이 준비되었습니다.</value>
     <comment>Status message for sync status prepared</comment>
   </data>
-  <data name="StatusPreparing" xml:space="preserve">
-    <value>첫 템플릿 준비 중...</value>
-    <comment>Status message for sync status preparing</comment>
-  </data>
   <data name="UnableAddItemsToProject" xml:space="preserve">
     <value>프로젝트 항목을 추가할 수 없습니다. 필수 SDK가 있는지 확인하십시오.</value>
     <comment>Track event message for unable add items to project</comment>
@@ -516,10 +488,6 @@
     <value>변경되지 않은 파일</value>
     <comment>Category name of unchanged files</comment>
   </data>
-  <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>사용 가능한 새 템플릿 콘텐츠가 있습니다.</value>
-    <comment>Status message for sync new version available</comment>
-  </data>
   <data name="ErrorSyncRefresh" xml:space="preserve">
     <value>템플릿을 새로 고치는 중 오류가 발생했습니다. 자세한 출력 정보를 참조하십시오.</value>
     <comment>Error message for sync refresh</comment>
@@ -649,7 +617,7 @@
     <comment>Log text for misssing dependency exception. {0}: Dependency template id</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0}은(는) 프로젝트의 일부입니다. 다른 페이지를 선택하십시오.</value>
+    <value>{0} is already part of your project. Please choose another page.</value>
     <comment>{0}:Page name.</comment>
   </data>
   <data name="ChangesSummaryCategoryFailedStyleMerges" xml:space="preserve">
@@ -662,7 +630,7 @@
     <value>리소스 사전에서 스타일을 사용할 수 없습니다.</value>
   </data>
   <data name="TrackTelemetryException" xml:space="preserve">
-    <value>생성하는 동안 텔레메트리 추적 예외가 발생했습니다.</value>
+    <value>Exception tracking telemetry during generation.</value>
   </data>
   <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
     <value>연결 환경</value>
@@ -676,12 +644,33 @@
     <value>{0}은(는) 프로젝트의 일부입니다. 다른 기능을 선택하십시오.</value>
     <comment>{0}:Feature name.</comment>
   </data>
-  <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another page.</value>
-    <comment>{0}:Page name.</comment>
+  <data name="StatusAcquired" xml:space="preserve">
+    <value>Download completed.</value>
+    <comment>Status message for sync new version available</comment>
   </data>
-  <data name="TrackTelemetryException" xml:space="preserve">
-    <value>Exception tracking telemetry during generation.</value>
+  <data name="StatusAcquiring" xml:space="preserve">
+    <value>There are new templates available (v{0}). Downloading…</value>
+    <comment>Status message for sync acquiring</comment>
+  </data>
+  <data name="StatusCheckedForUpdates" xml:space="preserve">
+    <value>Done.</value>
+    <comment>Status message for finished checking for updates</comment>
+  </data>
+  <data name="StatusCheckingForUpdates" xml:space="preserve">
+    <value>Checking for template updates...</value>
+    <comment>Status message for checking for updates</comment>
+  </data>
+  <data name="StatusNewWizardVersionAvailable" xml:space="preserve">
+    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <comment>Status error message for sync over version no content</comment>
+  </data>
+  <data name="StatusPreparing" xml:space="preserve">
+    <value>Preparing templates (v{0})...</value>
+    <comment>Status message for sync status preparing</comment>
+  </data>
+  <data name="StatusUpdating" xml:space="preserve">
+    <value>Refreshing templates cache…</value>
+    <comment>Status message for sync status updating</comment>
   </data>
   <data name="ExceptionLayoutNotFound" xml:space="preserve">
     <value>Layout template {0} not found for framework {1} and platform {2}.</value>
@@ -697,5 +686,9 @@
   </data>
   <data name="ExceptionUnableResolvePlatform" xml:space="preserve">
     <value>Unable to resolve platform. </value>
+  </data>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Refresh templates cache</value>
+    <comment>Refresh templates cache button content on overlay box control</comment>
   </data>
 </root>

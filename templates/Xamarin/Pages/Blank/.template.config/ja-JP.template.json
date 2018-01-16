@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Blank",
+  "description": "これは、最も基本的なページです。自由自在に変更できる、まっさらのキャンバスです。",
+  "identity": "wts.Page.Blank.Xamarin"
+}

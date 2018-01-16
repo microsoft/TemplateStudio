@@ -431,4 +431,10 @@ Aşağıdaki değişiklikler tümleştirilemedi: {2}
     <value>Could not find project file for item {0}</value>
     <comment>{0}: Filepath</comment>
   </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
+  </data>
 </root>

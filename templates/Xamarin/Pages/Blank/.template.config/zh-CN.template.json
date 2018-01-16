@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Blank",
+  "description": "这是最基本的页面。一张空白画布，可塑造成任何你想要得到的内容。",
+  "identity": "wts.Page.Blank.Xamarin"
+}

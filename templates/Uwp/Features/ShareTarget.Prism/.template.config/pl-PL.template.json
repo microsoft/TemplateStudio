@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Share Target",
-  "description": "Allows you to receive data shared by other apps using the share contract in your UWP app.",
-  "identity": "wts.Feat.ShareTarget.Prism"
+    "author": "Microsoft",
+    "name": "Share Target",
+    "description": "Pozwala odbierać dane udostępniane przez inne aplikacje przy użyciu funkcji Udostępnij w aplikacji UWP.",
+    "identity": "wts.Feat.ShareTarget.Prism"
 }

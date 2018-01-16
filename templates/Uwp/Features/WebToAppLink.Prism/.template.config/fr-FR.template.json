@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Web to app link",
-  "description": "Web to App link associates your app with a website so that when someone opens a link to your website.",
-  "identity": "wts.Feat.WebToAppLink.Prism"
+    "author": "Microsoft",
+    "name": "Web to app link",
+    "description": "Le lien Web vers application permet d\u0027associer votre application à un site Web lorsqu\u0027un utilisateur accède à votre site en cliquant sur ce lien.",
+    "identity": "wts.Feat.WebToAppLink.Prism"
 }

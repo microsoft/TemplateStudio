@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Blank",
+  "description": "To jest najbardziej podstawowa strona. Jest to pusta przestrzeń, którą możesz dowolnie kształtować.",
+  "identity": "wts.Page.Blank.CodeBehind.Xamarin"
+}
