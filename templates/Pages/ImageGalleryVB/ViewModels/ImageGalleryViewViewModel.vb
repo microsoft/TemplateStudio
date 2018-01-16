@@ -9,7 +9,7 @@ Namespace ViewModels
     Public Class ImageGalleryViewViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
 
-        Public Const ImageGalleryViewSelectedImageId As String = "ImageGalleryViewSelectedImageId"
+        Public Const ImageGalleryViewSelectedIdKey As String = "ImageGalleryViewSelectedIdKey"
         Public Const ImageGalleryViewAnimationOpen As String = "ImageGalleryView_AnimationOpen"
         Public Const ImageGalleryViewAnimationClose As String = "ImageGalleryView_AnimationClose"
 
@@ -35,7 +35,7 @@ Namespace ViewModels
 
         Public Async Function LoadAnimationAsync(imagesGridView As GridView) As Task
             _imagesGridView = imagesGridView
-            Dim selectedImageId = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewSelectedImageId)
+            Dim selectedImageId = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewSelectedIdKey)
             If Not String.IsNullOrEmpty(selectedImageId) Then
                 Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose)
                 If animation IsNot Nothing Then
@@ -44,7 +44,7 @@ Namespace ViewModels
                     Await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage")
                 End If
 
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedImageId, String.Empty)
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedIdKey, String.Empty)
             End If
         End Function
     End Class
