@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Core.Locations
             CurrentWizardVersion = wizardVersion;
         }
 
-        public async Task EnsureContentAsync()
+        public async Task EnsureContentAsync(bool force = false)
         {
             await EnsureVsInstancesSyncingAsync();
 
@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 try
                 {
-                    if (!_content.Exists())
+                    if (!_content.Exists() || force)
                     {
                         await ExtractInstalledContentAsync();
                     }
