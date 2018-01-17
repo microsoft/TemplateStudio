@@ -27,7 +27,7 @@ namespace Param_ItemNamespace.Views
             set
             {
                 Param_Setter(ref _selectedImage, value);
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewPage.ImageGalleryViewSelectedImageId, ((SampleImage)SelectedImage).ID);
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey, ((SampleImage)SelectedImage).ID);
             }
         }
 

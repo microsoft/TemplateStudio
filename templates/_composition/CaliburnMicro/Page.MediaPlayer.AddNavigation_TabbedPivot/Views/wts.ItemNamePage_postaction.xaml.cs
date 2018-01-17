@@ -2,6 +2,7 @@
 using System.Linq;
 using Windows.UI.Xaml;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
+using Caliburn.Micro;
 //}]}
 
 namespace Param_ItemNamespace.Views
@@ -32,8 +33,8 @@ namespace Param_ItemNamespace.Views
 
         private void PivotPage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            bool navigatedTo = e.AddedItems.Cast<PivotItem>().Any(p => p.FindDescendant<wts.ItemNamePage>() != null);
-            bool navigatedFrom = e.RemovedItems.Cast<PivotItem>().Any(p => p.FindDescendant<wts.ItemNamePage>() != null);
+            bool navigatedTo = e.AddedItems.Cast<Screen>().Any(p => p.GetView() is wts.ItemNamePage);
+            bool navigatedFrom = e.RemovedItems.Cast<Screen>().Any(p => p.GetView() is wts.ItemNamePage);
 
             if (navigatedTo)
             {
