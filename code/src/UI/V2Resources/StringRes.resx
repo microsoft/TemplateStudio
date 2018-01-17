@@ -159,6 +159,12 @@
   <data name="NewItemStepTwo" xml:space="preserve">
     <value>Changes summary</value>
   </data>
+  <data name="NewItemTemplateDetailsNameSectionTitle" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NewItemTemplateDetailsTitle" xml:space="preserve">
+    <value>Template Details</value>
+  </data>
   <data name="NewItemTitleFeature" xml:space="preserve">
     <value>New feature</value>
   </data>

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
+      xmlns:extensions="clr-namespace:Microsoft.Templates.UI.V2Extensions"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
@@ -39,5 +40,28 @@
             </ScrollViewer>
         </Grid>
         <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
+        <StackPanel Grid.Column="2">
+            <TextBlock
+                Style="{StaticResource WtsTextBlockSectionTitle}"
+                Margin="{StaticResource Margin_M2_LeftTopRight}"
+                Text="{x:Static strings:StringRes.NewItemTemplateDetailsTitle}" />
+            <TextBlock
+                Text="{x:Static strings:StringRes.NewItemTemplateDetailsNameSectionTitle}"
+                Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                Margin="{StaticResource Margin_M2_LeftRight_L_Top}" />
+            <TextBox
+                Style="{StaticResource WtsTextBoxStyle}"
+                Text="{Binding Name, Mode=OneWay}"
+                Margin="{StaticResource Margin_M2_LeftRight_M_Top}" />
+            <TextBlock
+                Text="{x:Static strings:StringRes.ProjectDetailsLicensesSectionTitle}"
+                Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                Margin="{StaticResource Margin_M2_LeftRight_L_Top}" />
+            <!--
+            extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
+            extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
+            extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}"
+            -->
+        </StackPanel>
     </Grid>
 </Page>
