@@ -195,6 +195,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             ResetSelection();
             OrderingService.Panel.Children.Clear();
             NavigationService.Navigate(new ProjectSetupView());
+            WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
             await ProjectSetup.InitializeAsync(true);
         }
 
