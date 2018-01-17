@@ -17,7 +17,7 @@ Namespace Views
 
         Private Sub wts.ItemNamePage_Loaded(sender As Object, e As RoutedEventArgs)
             Dim element = TryCast(Me, FrameworkElement)
-            Dim pivotPage = element.FindParent(Of Pivot)()
+            Dim pivotPage = element.FindAscendant(Of Pivot)()
             If pivotPage IsNot Nothing Then
                 AddHandler pivotPage.SelectionChanged, AddressOf PivotPage_SelectionChanged
             End If
@@ -27,8 +27,8 @@ Namespace Views
         End Sub
 
         Private Sub PivotPage_SelectionChanged(sender As Object, e As SelectionChangedEventArgs)
-            Dim navigatedTo As Boolean = e.AddedItems.Cast(Of PivotItem)().Any(Function(p) p.FindChild(Of wts.ItemNamePage)() IsNot Nothing)
-            Dim navigatedFrom As Boolean = e.RemovedItems.Cast(Of PivotItem)().Any(Function(p) p.FindChild(Of wts.ItemNamePage)() IsNot Nothing)
+            Dim navigatedTo As Boolean = e.AddedItems.Cast(Of PivotItem)().Any(Function(p) p.FindDescendant(Of wts.ItemNamePage)() IsNot Nothing)
+            Dim navigatedFrom As Boolean = e.RemovedItems.Cast(Of PivotItem)().Any(Function(p) p.FindDescendant(Of wts.ItemNamePage)() IsNot Nothing)
             If navigatedTo Then
                 AddHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, AddressOf PlaybackSession_PlaybackStateChanged
             End If

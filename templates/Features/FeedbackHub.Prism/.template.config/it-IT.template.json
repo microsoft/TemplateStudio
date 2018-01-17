@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
     "name": "Feedback Hub Link",
-    "description": "Add a link, on the settings page, to the Feedback Hub.",
+    "description": "Aggiungi un collegamento all'Hub di Feedback nella pagina delle impostazioni.",
     "identity": "wts.Feat.FeedbackHub.Prism"
 }

@@ -3,13 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.MediaPlayer.AddNavigation_TabbedPivot",
+  "name": "CaliburnMicro.Page.MediaPlayer.AddNavigation_TabbedPivot",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework != CodeBehind|CaliburnMicro & $projectType == TabbedPivot & identity == wts.Page.MediaPlayer|wts.Page.MediaPlayer.CodeBehind"
+    "wts.compositionFilter": "$framework == CaliburnMicro & $projectType == TabbedPivot & identity == wts.Page.MediaPlayer"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

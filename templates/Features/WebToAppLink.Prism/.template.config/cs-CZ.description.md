@@ -1,5 +1,5 @@
-﻿Web to App link associates your app with a website so that when someone opens a link to your website, your app is launched instead of opening the browser. If your app is not installed, your website opens in the browser as usual. Users can trust this experience because only verified content owners can register for a link. Users will be able to check all of their registered web-to-app links by going to Settings > Apps > Apps for websites.
+﻿Propojení webu s aplikací přidruží vaši aplikaci k webu. Když pak někdo otevře odkaz na váš web, namísto otevření prohlížeče se spustí vaše aplikace. Pokud vaše aplikace není nainstalovaná, otevře se váš web v prohlížeči jako obvykle. Uživatelé mohou tomuto mechanismu důvěřovat, protože propojení mohou zaregistrovat jen ověření vlastníci obsahu. Uživatelé si mohou prohlédnout všechna zaregistrovaná propojení webů a aplikací tak, že přejdou do části Nastavení > Aplikace > Aplikace pro weby.
 
-For more info about web to app linking, consult 
-[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking) and
+Další informace o propojení webů s aplikacemi najdete na adrese 
+[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking) a
 [blogs.windows.com](https://blogs.windows.com/buildingapps/2016/10/14/web-to-app-linking-with-appurihandlers/)
