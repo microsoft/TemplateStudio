@@ -415,4 +415,10 @@ Les modifications suivantes n'ont pu être intégrées : {2}
     <value>Impossible d'annuler la protection du fichier {0} de manière aléatoire</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
+  </data>
 </root>
