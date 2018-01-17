@@ -9,6 +9,8 @@ using Microsoft.Templates.UI.V2ViewModels.Common;
 using Microsoft.Templates.UI.V2Views.NewItem;
 using Microsoft.Templates.UI.V2Extensions;
 using Microsoft.Templates.UI.V2Resources;
+using Microsoft.Templates.UI.V2Controls;
+using System.Collections.Generic;
 
 namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 {
@@ -35,6 +37,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 
         protected override void UpdateStep()
         {
+            base.UpdateStep();
         }
 
         protected override void OnCancel()
@@ -44,6 +47,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         protected override Task OnTemplatesAvailableAsync()
         {
             return Task.CompletedTask;
+        }
+
+        protected override IEnumerable<Step> GetSteps()
+        {
+            yield return new Step(0, StringRes.NewItemStepOne, true);
+            yield return new Step(1, StringRes.NewItemStepTwo);
         }
     }
 }

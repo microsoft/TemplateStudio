@@ -153,11 +153,29 @@
     <value>Select a design pattern</value>
     <comment>Title on FrameworkPage</comment>
   </data>
+  <data name="NewItemStepOne" xml:space="preserve">
+    <value>Template selection</value>
+  </data>
+  <data name="NewItemStepTwo" xml:space="preserve">
+    <value>Changes summary</value>
+  </data>
   <data name="NewItemTitleFeature" xml:space="preserve">
     <value>New feature</value>
   </data>
   <data name="NewItemTitlePage" xml:space="preserve">
     <value>New page</value>
+  </data>
+  <data name="NewProjectStepFour" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="NewProjectStepOne" xml:space="preserve">
+    <value>Project type</value>
+  </data>
+  <data name="NewProjectStepThree" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="NewProjectStepTwo" xml:space="preserve">
+    <value>Design pattern</value>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
     <value>New Universal Windows Platform app</value>

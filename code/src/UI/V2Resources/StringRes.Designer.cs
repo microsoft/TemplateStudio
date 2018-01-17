@@ -142,6 +142,24 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Template selection.
+        /// </summary>
+        public static string NewItemStepOne {
+            get {
+                return ResourceManager.GetString("NewItemStepOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes summary.
+        /// </summary>
+        public static string NewItemStepTwo {
+            get {
+                return ResourceManager.GetString("NewItemStepTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New feature.
         /// </summary>
         public static string NewItemTitleFeature {
@@ -156,6 +174,42 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string NewItemTitlePage {
             get {
                 return ResourceManager.GetString("NewItemTitlePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Features.
+        /// </summary>
+        public static string NewProjectStepFour {
+            get {
+                return ResourceManager.GetString("NewProjectStepFour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project type.
+        /// </summary>
+        public static string NewProjectStepOne {
+            get {
+                return ResourceManager.GetString("NewProjectStepOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pages.
+        /// </summary>
+        public static string NewProjectStepThree {
+            get {
+                return ResourceManager.GetString("NewProjectStepThree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design pattern.
+        /// </summary>
+        public static string NewProjectStepTwo {
+            get {
+                return ResourceManager.GetString("NewProjectStepTwo", resourceCulture);
             }
         }
         

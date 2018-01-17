@@ -3,12 +3,15 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.V2Controls;
+using Microsoft.Templates.UI.V2Resources;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 using Microsoft.Templates.UI.V2Views.NewProject;
@@ -55,6 +58,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         protected override void UpdateStep()
         {
+            base.UpdateStep();
             Page destinationPage = null;
             switch (Step)
             {
@@ -196,6 +200,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             ProjectType.LoadData();
             return Task.CompletedTask;
+        }
+
+        protected override IEnumerable<Step> GetSteps()
+        {
+            yield return new Step(0, StringRes.NewProjectStepOne, true);
+            yield return new Step(1, StringRes.NewProjectStepTwo);
+            yield return new Step(2, StringRes.NewProjectStepThree);
+            yield return new Step(3, StringRes.NewProjectStepFour);
         }
     }
 }

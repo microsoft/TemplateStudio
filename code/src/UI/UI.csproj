@@ -366,6 +366,7 @@
     <Compile Include="V2Controls\SequentialFlow.xaml.cs">
       <DependentUpon>SequentialFlow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="V2Controls\Step.cs" />
     <Compile Include="V2Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="V2Converters\HasItemsVisibilityConverter.cs" />
     <Compile Include="V2Converters\IntegerVisibilityConverter.cs" />

@@ -118,7 +118,7 @@
                                 <Border
                                     BorderThickness="3"
                                     BorderBrush="{Binding CardBorderFocus, Source={x:Static services:UIStylesService.Instance}}"
-                                    Margin="{StaticResource Margin_S_LeftTopRightBottom}"/>
+                                    Margin="{StaticResource Margin_S_LeftTopRightBottom}" />
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
@@ -215,11 +215,21 @@
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Grid>
                         <Grid x:Name="selectedGrid" Background="Transparent" />
-                        <TextBlock x:Name="text" Text="{Binding}" Style="{StaticResource WtsTextBlockSequentialFlow}"/>
+                        <Grid MinHeight="35">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="tick" Style="{StaticResource WtsTextBlockSequentialFlowCompleted}" Visibility="{Binding Completed, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBlock Grid.Column="0" x:Name="index" Text="{Binding LayoutIndex}" Style="{StaticResource WtsTextBlockSequentialFlow}" Visibility="{Binding Completed, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
+                            <TextBlock Grid.Column="1" x:Name="text" Margin="{StaticResource Margin_M_Left}" Text="{Binding Title}" Style="{StaticResource WtsTextBlockSequentialFlow}" />
+                        </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="true">
                             <Setter Property="Background" TargetName="selectedGrid" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="tick" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="index" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="text" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="true">
@@ -228,8 +238,8 @@
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="true"/>
-                                <Condition Property="IsSelected" Value="false"/>
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="IsSelected" Value="false" />
                             </MultiTrigger.Conditions>
                             <MultiTrigger.Setters>
                                 <Setter Property="Background" TargetName="selectedGrid" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />

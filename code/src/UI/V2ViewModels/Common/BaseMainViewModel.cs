@@ -3,10 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -37,11 +39,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             get => _step;
             set
             {
-                var goForward = value > _step;
                 SetProperty(ref _step, value);
                 UpdateStep();
             }
         }
+
+        public ObservableCollection<Step> Steps { get; } = new ObservableCollection<Step>();
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
 
@@ -53,11 +56,20 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public WizardStatus WizardStatus { get; } = new WizardStatus();
 
-        protected abstract void UpdateStep();
+        protected virtual void UpdateStep()
+        {
+            var currentStep = Steps.FirstOrDefault(s => s.Index == Step);
+            if (currentStep != null)
+            {
+                currentStep.Completed = true;
+            }
+        }
 
         protected abstract void OnCancel();
 
         protected abstract Task OnTemplatesAvailableAsync();
+
+        protected abstract IEnumerable<Step> GetSteps();
 
         public BaseMainViewModel(Window mainView)
         {
@@ -94,6 +106,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public virtual async Task InitializeAsync(string language)
         {
             Language = language;
+            Steps.Clear();
+            foreach (var step in GetSteps())
+            {
+                Steps.Add(step);
+            }
+
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
             try
             {
