@@ -19,7 +19,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
     public class MainViewModel : BaseMainViewModel
     {
         private static MainViewModel _instance;
-        private TemplateType _templateType;
+
+        public TemplateType TemplateType;
+
+        public string Language { get; private set; }
 
         public string ConfigFramework { get; private set; }
 
@@ -36,8 +39,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 
         public async Task InitializeAsync(TemplateType templateType, string language)
         {
-            _templateType = templateType;
-
+            TemplateType = templateType;
+            Language = language;
             var stringResource = templateType == TemplateType.Page ? StringRes.NewItemTitlePage : StringRes.NewItemTitleFeature;
             WizardStatus.Title = stringResource;
             await InitializeAsync(language);
@@ -71,7 +74,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         protected override Task OnTemplatesAvailableAsync()
         {
             SetProjectConfigInfo();
-            TemplateSelection.LoadData(_templateType, ConfigFramework);
+            TemplateSelection.LoadData(TemplateType, ConfigFramework);
             WizardStatus.IsLoading = false;
             return Task.CompletedTask;
         }

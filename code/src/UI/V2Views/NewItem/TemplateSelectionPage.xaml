@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
       xmlns:extensions="clr-namespace:Microsoft.Templates.UI.V2Extensions"
+      xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
@@ -13,6 +14,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:HasItemsVisibilityConverter x:Key="HasItemsVisibilityConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -52,11 +54,19 @@
             <TextBox
                 Style="{StaticResource WtsTextBoxStyle}"
                 Text="{Binding Name, Mode=OneWay}"
-                Margin="{StaticResource Margin_M2_LeftRight_M_Top}" />
-            <TextBlock
-                Text="{x:Static strings:StringRes.ProjectDetailsLicensesSectionTitle}"
-                Style="{StaticResource WtsTextBlockSubSectionTitle}"
-                Margin="{StaticResource Margin_M2_LeftRight_L_Top}" />
+                Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
+                IsEnabled="{Binding NameEditable}" />
+            <StackPanel Visibility="{Binding Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
+                <TextBlock
+                    Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                    Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                    Text="{x:Static strings:StringRes.ProjectDetailsLicensesSectionTitle}" />
+                <ItemsControl
+                    Style="{StaticResource WtsItemsControl}"
+                    ItemsSource="{Binding Licenses}"
+                    Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}"
+                    ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
+            </StackPanel>
             <!--
             extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
             extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
