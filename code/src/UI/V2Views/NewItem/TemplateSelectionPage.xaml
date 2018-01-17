@@ -15,6 +15,7 @@
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:HasItemsVisibilityConverter x:Key="HasItemsVisibilityConverter" />
+            <converters:SavedTemplateGridConverter x:Key="SavedTemplateGridConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -51,11 +52,15 @@
                 Text="{x:Static strings:StringRes.NewItemTemplateDetailsNameSectionTitle}"
                 Style="{StaticResource WtsTextBlockSubSectionTitle}"
                 Margin="{StaticResource Margin_M2_LeftRight_L_Top}" />
-            <TextBox
-                Style="{StaticResource WtsTextBoxStyle}"
-                Text="{Binding Name, Mode=OneWay}"
-                Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
-                IsEnabled="{Binding NameEditable}" />
+            <Grid>
+                <Grid Style="{Binding HasErrors, Converter={StaticResource SavedTemplateGridConverter}}"/>
+                <TextBox
+                    Style="{StaticResource WtsTextBoxStyle}"
+                    Text="{Binding Name, Mode=OneWay}"
+                    Margin="{StaticResource Margin_M2_LeftRight_M_TopBottom}"
+                    IsEnabled="{Binding NameEditable}"
+                    extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}" />
+            </Grid>
             <StackPanel Visibility="{Binding Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
                 <TextBlock
                     Style="{StaticResource WtsTextBlockSubSectionTitle}"
@@ -68,8 +73,7 @@
                     ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
             </StackPanel>
             <!--
-            extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
-            extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
+            extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"            
             extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}"
             -->
         </StackPanel>

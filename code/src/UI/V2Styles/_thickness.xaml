@@ -22,6 +22,7 @@
     <Thickness x:Key="Margin_M2_LeftTopRightBottom">16,16,16,16</Thickness>
     <Thickness x:Key="Margin_M2_LeftRight">16,0,16,0</Thickness>
     <Thickness x:Key="Margin_M2_LeftRight_M_Top">16,12,16,0</Thickness>
+    <Thickness x:Key="Margin_M2_LeftRight_M_TopBottom">16,12,16,12</Thickness>
     
     <Thickness x:Key="Margin_M2_LeftTopRight">16,16,16,0</Thickness>
 

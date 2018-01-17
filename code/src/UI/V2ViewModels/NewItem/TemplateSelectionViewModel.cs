@@ -5,8 +5,12 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.V2Controls;
+using Microsoft.Templates.UI.V2Extensions;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
@@ -16,6 +20,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
     {
         private string _name;
         private bool _nameEditable;
+        private bool _hasErrors;
+        private ICommand _textChangedCommand;
 
         public string Name
         {
@@ -29,9 +35,17 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             set => SetProperty(ref _nameEditable, value);
         }
 
+        public bool HasErrors
+        {
+            get => _hasErrors;
+            set => SetProperty(ref _hasErrors, value);
+        }
+
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
 
         public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
+
+        public ICommand TextChangedCommand => _textChangedCommand ?? (_textChangedCommand = new RelayCommand<TextChangedEventArgs>(OnTextChanged));
 
         public TemplateSelectionViewModel()
         {
@@ -61,9 +75,33 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
                 }
 
                 NameEditable = template.ItemNameEditable;
-                Name = ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, template.ItemNameEditable);
+                Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
                 LicensesService.SyncLicenses(template.Template.GetLicenses(), Licenses);
                 OnPropertyChanged("Licenses");
+            }
+        }
+
+        private void OnTextChanged(TextChangedEventArgs args)
+        {
+            var textBox = args.Source as TextBox;
+            if (textBox != null)
+            {
+                if (NameEditable)
+                {
+                    var validationResult = ValidationService.ValidateTemplateName(textBox.Text, NameEditable, false);
+                    HasErrors = !validationResult.IsValid;
+                    MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
+                    if (validationResult.IsValid)
+                    {
+                        NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                    }
+                    else
+                    {
+                        NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
+                    }
+
+                    Name = textBox.Text;
+                }
             }
         }
     }

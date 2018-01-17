@@ -5,7 +5,7 @@
 using System;
 using System.Globalization;
 using System.Windows.Data;
-using Microsoft.Templates.UI.V2Views.NewProject;
+using Microsoft.Templates.UI.V2Services;
 
 namespace Microsoft.Templates.UI.V2Converters
 {
@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.V2Converters
             }
 
             var styleName = hasErrors ? "WtsGridSavedTemplateError" : "WtsGridSavedTemplate";
-            return WizardShell.Current.FindResource(styleName);
+            return ResourcesService.Instance.FindResource(styleName);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

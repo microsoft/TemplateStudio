@@ -393,6 +393,7 @@
     <Compile Include="V2Services\LicensesService.cs" />
     <Compile Include="V2Services\NavigationService.cs" />
     <Compile Include="V2Services\OrderingService.cs" />
+    <Compile Include="V2Services\ResourcesService.cs" />
     <Compile Include="V2Services\Styles\LightColorValues.cs" />
     <Compile Include="V2Services\Styles\FakeStyleValuesProvider.cs" />
     <Compile Include="V2Services\Styles\IStyleValuesProvider.cs" />

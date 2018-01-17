@@ -74,6 +74,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public BaseMainViewModel(Window mainView)
         {
             _mainView = mainView;
+            ResourcesService.Instance.Initialize(mainView);
             WizardStatus.IsBusyChanged += IsBusyChanged;
             if (_mainView != null)
             {

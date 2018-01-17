@@ -64,7 +64,7 @@ namespace Microsoft.Templates.UI.V2Controls
         public async Task CleanErrorNotificationsAsync(ErrorCategory replacementCategory)
         {
             RemoveErrorCategoryNotifications(replacementCategory);
-            if (Notification.ErrorCategory == replacementCategory)
+            if (Notification?.ErrorCategory == replacementCategory)
             {
                 await CloseAsync();
             }

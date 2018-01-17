@@ -73,7 +73,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public IEnumerable<LicenseViewModel> Licenses { get; protected set; }
 
-        public RelayCommand DetailsCommand => _detailsCommand ?? (_detailsCommand = new RelayCommand(OnDetails, () => !MainViewModel.Instance.WizardStatus.IsBusy));
+        public RelayCommand DetailsCommand => _detailsCommand ?? (_detailsCommand = new RelayCommand(OnDetails, () => !WizardStatus.Current.IsBusy));
 
         public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack));
 

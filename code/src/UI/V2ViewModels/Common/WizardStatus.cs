@@ -16,6 +16,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private bool _hasValidationErrors;
         private bool _isLoading = true;
 
+        public static WizardStatus Current;
+
         public double Width { get; }
 
         public double Height { get; }
@@ -62,6 +64,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public WizardStatus()
         {
+            Current = this;
             var size = SystemService.Instance.GetMainWindowSize();
             Width = size.width;
             Height = size.height;
