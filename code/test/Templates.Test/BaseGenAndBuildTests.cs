@@ -257,6 +257,11 @@ namespace Microsoft.Templates.Test
             {
                 // Useful if creating a blank project type and want to change the start page
                 userSelection.HomeName = userSelection.Pages.Last().name;
+
+                if (projectType == "TabbedPivot")
+                {
+                    userSelection.Pages.Reverse();
+                }
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);

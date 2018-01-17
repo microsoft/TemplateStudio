@@ -31,21 +31,16 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetAllSinglePageApps()
         {
-            foreach (var projectType in new[] { "Blank" }) //, "SplitView", "TabbedPivot" })
+            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedPivot" })
             {
                 foreach (var framework in new[] { "CodeBehind", "MVVMBasic", "MVVMLight" })
                 {
-                    //"wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
-                    //"wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
-                    //"wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
-                    //"wts.Page.ImageGallery", "wts.Page.MasterDetail",
+                    ////"wts.Page.Grid", "wts.Page.WebView", "wts.Page.Settings", "wts.Page.MediaPlayer" // These pages have dynamic content
+                    ////"wts.Page.Map", "wts.Page.Camera" // These pages raise dialogs that need to be handled
 
-                    //"wts.Page.Grid", "wts.Page.WebView", "wts.Page.Settings", "wts.Page.MediaPlayer"
-                    //, "wts.Page.Map", "wts.Page.Camera"
-
-                    // foreach (var page in new[] { "wts.Page.Chart", "wts.Page.Grid", "wts.Page.WebView" })
+                     foreach (var page in new[] { "wts.Page.Chart", "wts.Page.Blank", "wts.Page.TabbedPivot", "wts.Page.ImageGallery", "wts.Page.MasterDetail" })
                     {
-                        yield return new object[] { projectType, framework, "wts.Page.MasterDetail" };
+                        yield return new object[] { projectType, framework, page };
                     }
                 }
             }
@@ -54,19 +49,11 @@ namespace Microsoft.Templates.Test
         // Note. Visual Studio MUST be running as Admin to run this test.
         [Theory]
         [MemberData("GetAllSinglePageApps")]
-        // [Fact]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLauchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
         {
-            //var projectType = "Blank";
-            //var framework = "CodeBehind";
-
-            var genIdentities = new[]
-                {
-                    //"wts.Page.Chart",
-                    page
-                };
+            var genIdentities = new[] { page };
 
             CheckWinAppDriverInstalled();
 

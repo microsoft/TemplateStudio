@@ -35,6 +35,9 @@ namespace AutomatedUITests.Tests
                 Directory.CreateDirectory(TestAppInfo.ScreenshotsFolder);
             }
 
+            // Hide other apps to all a consistent backdrop for acrylic textures
+            VirtualKeyboard.MinimizeAllWindows();
+
             using (var appSession1 = base.GetAppSession(TestAppInfo.AppPfn1))
             {
                 appSession1.Manage().Window.Maximize();
