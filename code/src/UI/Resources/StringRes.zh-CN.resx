@@ -652,32 +652,36 @@
     <value>{0} 已是项目的一部分。请选择另一个功能。</value>
     <comment>{0}:Feature name.</comment>
   </data>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Refresh templates cache</value>
+    <comment>Refresh templates cache button content on overlay box control</comment>
+  </data>
   <data name="StatusAcquired" xml:space="preserve">
-    <value>Download completed.</value>
+    <value>下载已完成。</value>
     <comment>Status message for sync new version available</comment>
   </data>
   <data name="StatusAcquiring" xml:space="preserve">
-    <value>There are new templates available (v{0}). Downloading…</value>
+    <value>有可用的新模板 (v{0})。正在下载...</value>
     <comment>Status message for sync acquiring</comment>
   </data>
   <data name="StatusCheckedForUpdates" xml:space="preserve">
-    <value>Done.</value>
+    <value>完成。</value>
     <comment>Status message for finished checking for updates</comment>
   </data>
   <data name="StatusCheckingForUpdates" xml:space="preserve">
-    <value>Checking for template updates...</value>
+    <value>正在检查模板更新...</value>
     <comment>Status message for checking for updates</comment>
   </data>
   <data name="StatusNewWizardVersionAvailable" xml:space="preserve">
-    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <value>Windows Template Studio 版本 {0} 已发布。请更新扩展以使用最新功能。</value>
     <comment>Status error message for sync over version no content</comment>
   </data>
   <data name="StatusPreparing" xml:space="preserve">
-    <value>Preparing templates (v{0})...</value>
+    <value>正在准备模板 (v{0})...</value>
     <comment>Status message for sync status preparing</comment>
   </data>
   <data name="StatusUpdating" xml:space="preserve">
-    <value>Refreshing templates cache…</value>
+    <value>正在刷新模板缓存...</value>
     <comment>Status message for sync status updating</comment>
   </data>
 </root>
