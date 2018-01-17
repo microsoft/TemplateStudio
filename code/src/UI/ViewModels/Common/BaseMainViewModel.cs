@@ -229,6 +229,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 await GenContext.ToolBox.Repo.RefreshAsync(force);
                 WizardStatus.TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
                 await OnNewTemplatesAvailableAsync();
+                ResetWizardSteps();
                 WizardStatus.NewVersionAvailable = false;
                 WizardStatus.SetStatus(StatusViewModel.Information(StringRes.StatusUpdated, true, 5));
             }
@@ -243,6 +244,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
             }
+        }
+
+        public void ResetWizardSteps()
+        {
+            CurrentStep = 0;
+            UpdateCanGoBack(false);
+            UpdateCanGoForward(true);
+            UpdateCanFinish(false);
         }
 
         private async Task OnCheckUpdatesAsync()
