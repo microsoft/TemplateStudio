@@ -3,14 +3,16 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Generation;
+using Microsoft.Templates.UI.V2Controls;
+using Microsoft.Templates.UI.V2Resources;
+using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 using Microsoft.Templates.UI.V2Views.NewItem;
-using Microsoft.Templates.UI.V2Extensions;
-using Microsoft.Templates.UI.V2Resources;
-using Microsoft.Templates.UI.V2Controls;
-using System.Collections.Generic;
 
 namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 {
@@ -19,7 +21,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         private static MainViewModel _instance;
         private TemplateType _templateType;
 
+        public string ConfigFramework { get; private set; }
+
+        public string ConfigProjectType { get; private set; }
+
         public static MainViewModel Instance => _instance ?? (_instance = new MainViewModel(WizardShell.Current));
+
+        public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
 
         public MainViewModel(WizardShell mainWindow)
             : base(mainWindow)
@@ -38,6 +46,22 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         protected override void UpdateStep()
         {
             base.UpdateStep();
+            Page destinationPage = null;
+            switch (Step)
+            {
+                case 0:
+                    destinationPage = new TemplateSelectionPage();
+                    break;
+                case 1:
+                    destinationPage = new ChangesSummaryPage();
+                    break;
+            }
+            if (destinationPage != null)
+            {
+                NavigationService.NavigateSecondaryFrame(destinationPage);
+                SetCanGoBack(Step > 0);
+                SetCanGoForward(Step < 1);
+            }
         }
 
         protected override void OnCancel()
@@ -46,7 +70,35 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 
         protected override Task OnTemplatesAvailableAsync()
         {
+            SetProjectConfigInfo();
+            TemplateSelection.LoadData(_templateType, ConfigFramework);
+            WizardStatus.IsLoading = false;
             return Task.CompletedTask;
+        }
+
+        private void SetProjectConfigInfo()
+        {
+            var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
+            {
+                // TODO: mvegaca
+                //WizardStatus.InfoShapeVisibility = Visibility.Visible;
+                //ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow(MainView);
+
+                //if (projectConfig.ShowDialog().Value)
+                //{
+                //    configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
+                //    configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
+                //    WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
+                //}
+                //else
+                //{
+                //    Cancel();
+                //}
+            }
+
+            ConfigFramework = configInfo.Framework;
+            ConfigProjectType = configInfo.ProjectType;
         }
 
         protected override IEnumerable<Step> GetSteps()

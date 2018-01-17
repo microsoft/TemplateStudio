@@ -3,17 +3,14 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows.Controls;
-using Microsoft.Templates.UI.V2ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.V2Views.NewItem
 {
-    public partial class MainPage : Page
+    public partial class ChangesSummaryPage : Page
     {
-        public MainPage()
+        public ChangesSummaryPage()
         {
-            DataContext = MainViewModel.Instance;
             InitializeComponent();
-            V2Services.NavigationService.InitializeSecondaryFrame(stepFrame, new TemplateSelectionPage());
         }
     }
 }

@@ -7,8 +7,7 @@
       xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="MainPage">
+      d:DesignHeight="300" d:DesignWidth="300">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -29,14 +28,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*" /><!--20% Sequential flow-->
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="57*" /><!--57% Selection area-->
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="23*" /><!--23% Project details-->
+                <ColumnDefinition Width="80*" /><!--80% Selection area-->
             </Grid.ColumnDefinitions>
-            <controls:SequentialFlow Step="{Binding Step, Mode=TwoWay}" />
+            <controls:SequentialFlow Step="{Binding Step, Mode=TwoWay}" Steps="{Binding Steps}" />
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
-            <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">

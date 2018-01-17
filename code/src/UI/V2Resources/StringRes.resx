@@ -269,4 +269,7 @@
   <data name="TemplateDetailsVersion" xml:space="preserve">
     <value>Version:</value>
   </data>
+  <data name="TemplateSelectionTitle" xml:space="preserve">
+    <value>Select the template you want to add</value>
+  </data>
 </root>

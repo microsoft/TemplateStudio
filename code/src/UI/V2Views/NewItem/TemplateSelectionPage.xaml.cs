@@ -7,13 +7,12 @@ using Microsoft.Templates.UI.V2ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.V2Views.NewItem
 {
-    public partial class MainPage : Page
+    public partial class TemplateSelectionPage : Page
     {
-        public MainPage()
+        public TemplateSelectionPage()
         {
-            DataContext = MainViewModel.Instance;
+            DataContext = MainViewModel.Instance.TemplateSelection;
             InitializeComponent();
-            V2Services.NavigationService.InitializeSecondaryFrame(stepFrame, new TemplateSelectionPage());
         }
     }
 }

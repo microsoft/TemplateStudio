@@ -415,14 +415,21 @@
     <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
     <Compile Include="V2ViewModels\NewItem\MainViewModel.cs" />
+    <Compile Include="V2ViewModels\NewItem\TemplateSelectionViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\AddFeaturesViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\AddPagesViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\FrameworkViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\ProjectTypeViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\UserSelectionViewModel.cs" />
+    <Compile Include="V2Views\NewItem\ChangesSummaryPage.xaml.cs">
+      <DependentUpon>ChangesSummaryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="V2Views\NewItem\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewItem\TemplateSelectionPage.xaml.cs">
+      <DependentUpon>TemplateSelectionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Views\NewItem\WizardShell.xaml.cs">
       <DependentUpon>WizardShell.xaml</DependentUpon>
@@ -693,7 +700,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="V2Views\NewItem\ChangesSummaryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="V2Views\NewItem\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewItem\TemplateSelectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

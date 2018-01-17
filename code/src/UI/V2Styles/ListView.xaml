@@ -101,6 +101,27 @@
         </Setter>
     </Style>
 
+    <Style x:Key="WtsListViewSingleSelectionWithoutScroll" TargetType="{x:Type ListView}">
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="ItemsPanel" Value="{StaticResource WtsItemsPanelTemplate}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemSingleSelection}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListView}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="0" Margin="0" SnapsToDevicePixels="true">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="0"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 
     <Style x:Key="WtsListViewItemMultipleSelection" TargetType="{x:Type ListViewItem}">

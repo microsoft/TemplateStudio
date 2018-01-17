@@ -17,18 +17,14 @@
     <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
     <converters:IntegerVisibilityConverter x:Key="IntegerVisibilityConverter" />
 
-    <DataTemplate x:Key="WtsItemTemplateProjectTypeFramework">
+    <DataTemplate x:Key="WtsItemTemplateBasicInfo">
         <Grid Width="162" Height="190">
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                    <!--Image-->
-                    <RowDefinition Height="Auto" />
-                    <!--Title-->
-                    <RowDefinition Height="*" />
-                    <!--Description-->
-                    <RowDefinition Height="50" />
-                    <!--Detail / Status-->
+                    <RowDefinition Height="50" /><!--Image-->
+                    <RowDefinition Height="Auto" /><!--Title-->
+                    <RowDefinition Height="*" /><!--Description-->
+                    <RowDefinition Height="50" /><!--Detail-->
                 </Grid.RowDefinitions>
                 <controls:ImageEx
                     Grid.Row="0"
@@ -133,6 +129,26 @@
                 Style="{StaticResource WtsListViewMultipleSelection}"
                 ItemsSource="{Binding Items}"
                 ItemTemplate="{StaticResource WtsItemTemplatePageFeature}"
+                SelectedItem="{Binding Selected, Mode=TwoWay}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsNewItemGroupTemplatePageFeature">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock
+                Visibility="{Binding Name, Converter={StaticResource StringVisibilityConverter}}"
+                Text="{Binding Name}"
+                Margin="{StaticResource Margin_L_LeftRight_M_Top}"
+                Style="{StaticResource WtsTextBlockSectionTitle}" />
+            <ListView
+                Grid.Row="1"
+                Style="{StaticResource WtsListViewSingleSelectionWithoutScroll}"
+                ItemsSource="{Binding Items}"
+                ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}"
                 SelectedItem="{Binding Selected, Mode=TwoWay}" />
         </Grid>
     </DataTemplate>

@@ -30,7 +30,7 @@
             Style="{StaticResource WtsListViewSingleSelection}"
             ItemsSource="{Binding Items}"
             SelectedItem="{Binding Selected, Mode=TwoWay}"
-            ItemTemplate="{StaticResource WtsItemTemplateProjectTypeFramework}" />
+            ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}" />
     </Grid>
 
 </Page>

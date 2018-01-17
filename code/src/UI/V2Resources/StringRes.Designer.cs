@@ -446,5 +446,14 @@ namespace Microsoft.Templates.UI.V2Resources {
                 return ResourceManager.GetString("TemplateDetailsVersion", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the template you want to add.
+        /// </summary>
+        public static string TemplateSelectionTitle {
+            get {
+                return ResourceManager.GetString("TemplateSelectionTitle", resourceCulture);
+            }
+        }
     }
 }

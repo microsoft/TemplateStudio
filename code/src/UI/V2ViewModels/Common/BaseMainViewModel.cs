@@ -75,7 +75,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             _mainView = mainView;
             WizardStatus.IsBusyChanged += IsBusyChanged;
-            _mainView.KeyDown += OnMainViewKeyDown;
+            if (_mainView != null)
+            {
+                _mainView.KeyDown += OnMainViewKeyDown;
+            }
         }
 
         protected virtual void OnFinish()
