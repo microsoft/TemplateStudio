@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using AutomatedUITests;
 using AutomatedUITests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium.Appium.Windows;
 
 namespace AutomatedUITests.Tests
 {
@@ -40,6 +41,9 @@ namespace AutomatedUITests.Tests
 
             using (var appSession1 = base.GetAppSession(TestAppInfo.AppPfn1))
             {
+                //// See https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
+                //// ClickYesIfPermissionDialogShown(appSession1);
+
                 appSession1.Manage().Window.Maximize();
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
@@ -49,6 +53,9 @@ namespace AutomatedUITests.Tests
 
             using (var appSession2 = base.GetAppSession(TestAppInfo.AppPfn2))
             {
+                //// See https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
+                //// ClickYesIfPermissionDialogShown(appSession2);
+
                 appSession2.Manage().Window.Maximize();
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
@@ -59,6 +66,15 @@ namespace AutomatedUITests.Tests
             var imageCompareResult = CheckImagesAreTheSame(TestAppInfo.ScreenshotsFolder, App1Filename, App2Filename);
 
             Assert.IsTrue(imageCompareResult);
+        }
+
+        private void ClickYesIfPermissionDialogShown(WindowsDriver<WindowsElement> session)
+        {
+            if (session.TryFindElementByName("Yes", out var yesButton))
+            {
+                yesButton.Click();
+                Task.Delay(TimeSpan.FromSeconds(2)).Wait(); // Allow time for dialog to be dismissed
+            }
         }
 
         private bool CheckImagesAreTheSame(string folder, string fileName1, string fileName2)

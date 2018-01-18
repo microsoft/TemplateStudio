@@ -22,7 +22,6 @@ namespace Microsoft.Templates.Test
     [Collection("GenerationCollection")]
     public class VisualComparisonTests : BaseGenAndBuildTests
     {
-
         public VisualComparisonTests(GenerationFixture fixture)
         {
             _fixture = fixture;
@@ -35,10 +34,17 @@ namespace Microsoft.Templates.Test
             {
                 foreach (var framework in new[] { "CodeBehind", "MVVMBasic", "MVVMLight" })
                 {
-                    ////"wts.Page.Grid", "wts.Page.WebView", "wts.Page.Settings", "wts.Page.MediaPlayer" // These pages have dynamic content
-                    ////"wts.Page.Map", "wts.Page.Camera" // These pages raise dialogs that need to be handled
+                    // For other pages see https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
+                    var pagesThatSupportUiTesting = new[]
+                    {
+                        "wts.Page.Blank",
+                        "wts.Page.Chart",
+                        "wts.Page.ImageGallery",
+                        "wts.Page.MasterDetail",
+                        "wts.Page.TabbedPivot",
+                    };
 
-                     foreach (var page in new[] { "wts.Page.Chart", "wts.Page.Blank", "wts.Page.TabbedPivot", "wts.Page.ImageGallery", "wts.Page.MasterDetail" })
+                    foreach (var page in pagesThatSupportUiTesting)
                     {
                         yield return new object[] { projectType, framework, page };
                     }
@@ -51,7 +57,7 @@ namespace Microsoft.Templates.Test
         [MemberData("GetAllSinglePageApps")]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLauchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
+        public async Task EnsureLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
         {
             var genIdentities = new[] { page };
 
@@ -62,10 +68,12 @@ namespace Microsoft.Templates.Test
 
             var testProjectDetails = SetUpTestProject(app1Details, app2Details);
 
-            var wadTest = RunWinAppDriverTests(testProjectDetails);
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
+            var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
             // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
-            if (wadTest.Success)
+            if (testSuccess)
             {
                 UninstallAppx(app1Details.PackageFullName);
                 UninstallAppx(app2Details.PackageFullName);
@@ -77,9 +85,18 @@ namespace Microsoft.Templates.Test
                 Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
             }
 
-            var outputMessages = string.Join(Environment.NewLine, wadTest.TextOutput);
+            var outputMessages = string.Join(Environment.NewLine, testOutput);
 
-            Assert.True(wadTest.Success, $"Failing test images in {testProjectDetails.imagesFolder}{Environment.NewLine}{Environment.NewLine}{outputMessages}");
+            if (Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
+            {
+                Assert.True(
+                    testSuccess,
+                    $"Failing test images in {testProjectDetails.imagesFolder}{Environment.NewLine}{Environment.NewLine}{outputMessages}");
+            }
+            else
+            {
+                Assert.True(testSuccess, outputMessages);
+            }
         }
 
         private void CheckWinAppDriverInstalled()
@@ -89,7 +106,9 @@ namespace Microsoft.Templates.Test
                 "WinAppDriver is not installed. Download from https://github.com/Microsoft/WinAppDriver/releases");
         }
 
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         private (bool Success, List<string> TextOutput) RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
         {
             var result = false;
 
@@ -120,7 +139,9 @@ namespace Microsoft.Templates.Test
             return (result, outputText);
         }
 
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details)
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
         {
             var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
             var projectFolder = Path.Combine(rootFolder, "TestProject");
@@ -131,7 +152,6 @@ namespace Microsoft.Templates.Test
             Fs.EnsureFolder(imagesFolder);
 
             // Copy base project
-
             Fs.CopyRecursive(@"..\..\VisualTests\TestProjectSource", projectFolder, overwrite: true);
 
             // enable appropriate test
