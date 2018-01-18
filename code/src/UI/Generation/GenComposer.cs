@@ -127,6 +127,14 @@ namespace Microsoft.Templates.UI
                     .ToList();
         }
 
+        public static IEnumerable<TemplateLicense> GetAllLicences(ITemplateInfo template, string framework)
+        {
+            return GetAllDependencies(template, framework)
+                .SelectMany(s => s.GetLicenses())
+                .Distinct(new TemplateLicenseEqualityComparer())
+                .ToList();
+        }
+
         public static IEnumerable<GenInfo> ComposeNewItem(UserSelection userSelection)
         {
             var genQueue = new List<GenInfo>();

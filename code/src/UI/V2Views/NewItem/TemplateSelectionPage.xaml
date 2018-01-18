@@ -21,9 +21,9 @@
 
     <Grid Style="{StaticResource WtsGridMainPage}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="77*" />
+            <ColumnDefinition Width="71*" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="23*" />
+            <ColumnDefinition Width="29*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
@@ -60,22 +60,35 @@
                     Margin="{StaticResource Margin_M2_LeftRight_M_TopBottom}"
                     IsEnabled="{Binding NameEditable}"
                     extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}" />
+                    <!--
+                    extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"            
+                    extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}"
+                    -->
             </Grid>
+
+            <StackPanel Visibility="{Binding Dependencies, Converter={StaticResource HasItemsVisibilityConverter}}">
+                <TextBlock
+                    Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                    Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                    Text="{x:Static strings:StringRes.NewItemTemplateDetailsDependenciesSectionTitle}" />
+                <ItemsControl
+                    Style="{StaticResource WtsItemsControl}"
+                    ItemsSource="{Binding Dependencies}"
+                    Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}"
+                    ItemTemplate="{StaticResource WtsItemTemplateDependency}" />
+            </StackPanel>
+
             <StackPanel Visibility="{Binding Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
                 <TextBlock
                     Style="{StaticResource WtsTextBlockSubSectionTitle}"
                     Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                    Text="{x:Static strings:StringRes.ProjectDetailsLicensesSectionTitle}" />
+                    Text="{x:Static strings:StringRes.NewItemTemplateDetailsLicensesSectionTitle}" />
                 <ItemsControl
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding Licenses}"
                     Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}"
                     ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
             </StackPanel>
-            <!--
-            extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"            
-            extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}"
-            -->
         </StackPanel>
     </Grid>
 </Page>

@@ -45,6 +45,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 
         public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
 
+        public ObservableCollection<BasicInfoViewModel> Dependencies { get; } = new ObservableCollection<BasicInfoViewModel>();
+
         public ICommand TextChangedCommand => _textChangedCommand ?? (_textChangedCommand = new RelayCommand<TextChangedEventArgs>(OnTextChanged));
 
         public TemplateSelectionViewModel()
@@ -76,8 +78,16 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 
                 NameEditable = template.ItemNameEditable;
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
-                LicensesService.SyncLicenses(template.Template.GetLicenses(), Licenses);
+                var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework);
+                LicensesService.SyncLicenses(licenses, Licenses);
+                Dependencies.Clear();
+                foreach (var dependency in template.Dependencies)
+                {
+                    Dependencies.Add(dependency);
+                }
+
                 OnPropertyChanged("Licenses");
+                OnPropertyChanged("Dependencies");
             }
         }
 

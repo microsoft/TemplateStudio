@@ -160,6 +160,24 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dependencies.
+        /// </summary>
+        public static string NewItemTemplateDetailsDependenciesSectionTitle {
+            get {
+                return ResourceManager.GetString("NewItemTemplateDetailsDependenciesSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licenses.
+        /// </summary>
+        public static string NewItemTemplateDetailsLicensesSectionTitle {
+            get {
+                return ResourceManager.GetString("NewItemTemplateDetailsLicensesSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string NewItemTemplateDetailsNameSectionTitle {

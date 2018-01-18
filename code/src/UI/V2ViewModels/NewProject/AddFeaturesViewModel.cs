@@ -20,6 +20,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public void LoadData(string frameworkName)
         {
+            Groups.Clear();
             DataService.LoadTemplateGroups(Groups, TemplateType.Feature, frameworkName);
         }
 
