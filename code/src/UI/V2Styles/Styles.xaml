@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Button.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ComboBox.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/DataTemplate.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Grid.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Hyperlink.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ImageEx.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ItemsControl.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ListView.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/MarkdownBlock.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBlock.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

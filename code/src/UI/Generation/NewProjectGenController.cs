@@ -37,7 +37,10 @@ namespace Microsoft.Templates.UI
 
         public UserSelection GetUserSelection(string language)
         {
-            var mainView = new Views.NewProject.MainView(language);
+            // TODO mvegaca
+            // var mainView = new Views.NewProject.MainView(language);
+            // var mainView = new V2Views.NewProject.VSStyleValues();
+            var mainView = new V2Views.NewProject.WizardShell(language);
 
             try
             {

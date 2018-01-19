@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.props" Condition="Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -122,10 +123,6 @@
       <HintPath>..\..\packages\Microsoft.VisualStudio.Shell.Immutable.10.0.10.0.30319\lib\net40\Microsoft.VisualStudio.Shell.Immutable.10.0.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.11.0, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.Shell.Immutable.11.0.11.0.50727\lib\net45\Microsoft.VisualStudio.Shell.Immutable.11.0.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Shell.Immutable.12.0.12.0.21003\lib\net45\Microsoft.VisualStudio.Shell.Immutable.12.0.dll</HintPath>
       <Private>True</Private>
@@ -190,6 +187,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
     </Reference>
@@ -214,6 +212,15 @@
     <Reference Include="WindowsBase" />
     <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WriteableBitmapEx.1.5.1.0\lib\net40\WriteableBitmapEx.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.4.0.280\lib\netstandard1.0\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.4.0.280\lib\netstandard1.0\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.4.0.280\lib\netstandard1.0\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -347,6 +354,112 @@
     <Compile Include="TemplateSelectors\StatusBoxTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
+    <Compile Include="V2Controls\ImageEx.cs" />
+    <Compile Include="V2Controls\Markdown.cs" />
+    <Compile Include="V2Controls\MarkdownBlock.xaml.cs">
+      <DependentUpon>MarkdownBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Controls\Notification.cs" />
+    <Compile Include="V2Controls\NotificationsControl.xaml.cs">
+      <DependentUpon>NotificationsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Controls\SequentialFlow.xaml.cs">
+      <DependentUpon>SequentialFlow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Controls\Step.cs" />
+    <Compile Include="V2Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="V2Converters\HasItemsVisibilityConverter.cs" />
+    <Compile Include="V2Converters\IntegerVisibilityConverter.cs" />
+    <Compile Include="V2Converters\SavedTemplateGridConverter.cs" />
+    <Compile Include="V2Converters\StringVisibilityConverter.cs" />
+    <Compile Include="V2Extensions\ListViewExtensions.cs" />
+    <Compile Include="V2Extensions\SyncStatusEventArgsExtensions.cs" />
+    <Compile Include="V2Extensions\TextBoxExtensions.cs" />
+    <Compile Include="V2Extensions\ValidationResultExtensions.cs" />
+    <Compile Include="V2Resources\StringRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StringRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="V2Services\DataService.cs" />
+    <Compile Include="V2Services\DragAndDropService\DragAdornerLayer.cs" />
+    <Compile Include="V2Services\DragAndDropService\DragAndDropEventArgs.cs" />
+    <Compile Include="V2Services\DragAndDropService\DragAndDropService.cs" />
+    <Compile Include="V2Services\DragAndDropService\DragAndDropService.Members.cs" />
+    <Compile Include="V2Services\DragAndDropService\ListViewItemDragState.cs" />
+    <Compile Include="V2Services\DragAndDropService\MouseUtilities.cs" />
+    <Compile Include="V2Services\DragAndDropService\NativeMethods.cs" />
+    <Compile Include="V2Services\EventService.cs" />
+    <Compile Include="V2Services\LicensesService.cs" />
+    <Compile Include="V2Services\NavigationService.cs" />
+    <Compile Include="V2Services\OrderingService.cs" />
+    <Compile Include="V2Services\ResourcesService.cs" />
+    <Compile Include="V2Services\Styles\LightColorValues.cs" />
+    <Compile Include="V2Services\Styles\FakeStyleValuesProvider.cs" />
+    <Compile Include="V2Services\Styles\IStyleValuesProvider.cs" />
+    <Compile Include="V2Services\Styles\UIStylesService.ThemedDialogColors.cs" />
+    <Compile Include="V2Services\Styles\UIStylesService.cs" />
+    <Compile Include="V2Services\Styles\UIStylesService.FontSizes.cs" />
+    <Compile Include="V2Services\Styles\UIStylesService.ThemedCardColors.cs" />
+    <Compile Include="V2Services\Styles\UIStylesService.CommonControlColors.cs" />
+    <Compile Include="V2Services\Styles\UIStylesService.WindowsTemplateStudio.cs" />
+    <Compile Include="V2Services\Styles\VSStyleValuesProvider.cs" />
+    <Compile Include="V2Services\SystemService.cs" />
+    <Compile Include="V2Services\ValidationService.cs" />
+    <Compile Include="V2TemplateSelectors\NotificationTemplateSelector.cs" />
+    <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\LicenseViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\MetadataInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
+    <Compile Include="V2ViewModels\NewItem\ChangesSummaryViewModel.cs" />
+    <Compile Include="V2ViewModels\NewItem\MainViewModel.cs" />
+    <Compile Include="V2ViewModels\NewItem\TemplateSelectionViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\AddFeaturesViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\AddPagesViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\FrameworkViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\ProjectTypeViewModel.cs" />
+    <Compile Include="V2ViewModels\NewProject\UserSelectionViewModel.cs" />
+    <Compile Include="V2Views\NewItem\ChangesSummaryPage.xaml.cs">
+      <DependentUpon>ChangesSummaryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewItem\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewItem\TemplateSelectionPage.xaml.cs">
+      <DependentUpon>TemplateSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewItem\WizardShell.xaml.cs">
+      <DependentUpon>WizardShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\AddFeaturesPage.xaml.cs">
+      <DependentUpon>AddFeaturesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\AddPagesPage.xaml.cs">
+      <DependentUpon>AddPagesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\FrameworkPage.xaml.cs">
+      <DependentUpon>FrameworkPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\PageToRemove.xaml.cs">
+      <DependentUpon>PageToRemove.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\ProjectTypePage.xaml.cs">
+      <DependentUpon>ProjectTypePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\Common\TemplateInfoPage.xaml.cs">
+      <DependentUpon>TemplateInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\VSStyleValues.xaml.cs">
+      <DependentUpon>VSStyleValues.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="ViewModels\Common\FileExtension.cs" />
     <Compile Include="ViewModels\Common\FileStatus.cs" />
@@ -395,6 +508,9 @@
     <Compile Include="ViewModels\NewProject\TemplateInfoViewModel.cs" />
     <Compile Include="Views\NewItem\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewProject\WizardShell.xaml.cs">
+      <DependentUpon>WizardShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewItem\ChangesSummaryView.xaml.cs">
       <DependentUpon>ChangesSummaryView.xaml</DependentUpon>
@@ -517,6 +633,126 @@
     <Page Include="Styles\_FocusVisualStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Controls\MarkdownBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Controls\NotificationsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Controls\SequentialFlow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Styles\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\MarkdownBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\ListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Hyperlink.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\DataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\ImageEx.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\ItemsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\_Thickness.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\XXXXXXX.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Grid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Views\NewItem\ChangesSummaryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewItem\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewItem\TemplateSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewItem\WizardShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Views\NewProject\AddFeaturesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Views\NewProject\AddPagesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewProject\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewProject\FrameworkPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Views\NewProject\PageToRemove.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Views\NewProject\ProjectTypePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\Common\TemplateInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewProject\VSStyleValues.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Views\NewProject\WizardShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Common\ErrorDialog.xaml">
       <SubType>Designer</SubType>
@@ -680,6 +916,11 @@
     <EmbeddedResource Include="Resources\StringRes.zh-TW.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="V2Resources\StringRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
@@ -890,5 +1131,8 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.9\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.9\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.props'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets'))" />
   </Target>
+  <Import Project="..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets')" />
 </Project>

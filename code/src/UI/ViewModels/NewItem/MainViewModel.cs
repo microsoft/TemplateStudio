@@ -268,14 +268,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void AddTemplate(UserSelection userSelection, string name, ITemplateInfo template, TemplateType templateType)
         {
-            if (templateType == TemplateType.Page)
-            {
-                userSelection.Pages.Add((name, template));
-            }
-            else if (templateType == TemplateType.Feature)
-            {
-                userSelection.Features.Add((name, template));
-            }
+            userSelection.Add((name, template));
         }
     }
 }
