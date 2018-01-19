@@ -644,40 +644,44 @@
     <value>{0} fa già parte del progetto. Scegli un'altra funzionalità.</value>
     <comment>{0}:Feature name.</comment>
   </data>
-  <data name="StatusAcquired" xml:space="preserve">
-    <value>Download completed.</value>
-    <comment>Status message for sync new version available</comment>
-  </data>
-  <data name="StatusAcquiring" xml:space="preserve">
-    <value>There are new templates available (v{0}). Downloading…</value>
-    <comment>Status message for sync acquiring</comment>
-  </data>
-  <data name="StatusCheckedForUpdates" xml:space="preserve">
-    <value>Done.</value>
-    <comment>Status message for finished checking for updates</comment>
-  </data>
-  <data name="StatusCheckingForUpdates" xml:space="preserve">
-    <value>Checking for template updates...</value>
-    <comment>Status message for checking for updates</comment>
-  </data>
-  <data name="StatusNewWizardVersionAvailable" xml:space="preserve">
-    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
-    <comment>Status error message for sync over version no content</comment>
-  </data>
   <data name="StatusPrepared" xml:space="preserve">
     <value>Modelli pronti.</value>
     <comment>Status message for sync status prepared</comment>
-  </data>
-  <data name="StatusPreparing" xml:space="preserve">
-    <value>Preparing templates (v{0})...</value>
-    <comment>Status message for sync status preparing</comment>
   </data>
   <data name="StatusUpdated" xml:space="preserve">
     <value>Modelli aggiornati.</value>
     <comment>Status message for sync status updated</comment>
   </data>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Refresh templates cache</value>
+    <comment>Refresh templates cache button content on overlay box control</comment>
+  </data>
+  <data name="StatusAcquired" xml:space="preserve">
+    <value>Il download è stato completato.</value>
+    <comment>Status message for sync new version available</comment>
+  </data>
+  <data name="StatusAcquiring" xml:space="preserve">
+    <value>Sono disponibili nuovi modelli (v{0}). Download in corso...</value>
+    <comment>Status message for sync acquiring</comment>
+  </data>
+  <data name="StatusCheckedForUpdates" xml:space="preserve">
+    <value>Fine.</value>
+    <comment>Status message for finished checking for updates</comment>
+  </data>
+  <data name="StatusCheckingForUpdates" xml:space="preserve">
+    <value>Controllo aggiornamenti modello in corso...</value>
+    <comment>Status message for checking for updates</comment>
+  </data>
+  <data name="StatusNewWizardVersionAvailable" xml:space="preserve">
+    <value>Le versione {0} di Windows Template Studio è disponibile. Aggiorna l'estensione per usufruire delle funzionalità più recenti.</value>
+    <comment>Status error message for sync over version no content</comment>
+  </data>
+  <data name="StatusPreparing" xml:space="preserve">
+    <value>Preparazione dei modelli (v{0}) in corso...</value>
+    <comment>Status message for sync status preparing</comment>
+  </data>
   <data name="StatusUpdating" xml:space="preserve">
-    <value>Refreshing templates cache…</value>
+    <value>Aggiornamento cache dei modelli in corso...</value>
     <comment>Status message for sync status updating</comment>
   </data>
 </root>
