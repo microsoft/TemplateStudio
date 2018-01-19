@@ -415,6 +415,7 @@
     <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
+    <Compile Include="V2ViewModels\NewItem\ChangesSummaryViewModel.cs" />
     <Compile Include="V2ViewModels\NewItem\MainViewModel.cs" />
     <Compile Include="V2ViewModels\NewItem\TemplateSelectionViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\AddFeaturesViewModel.cs" />

@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Controls;
@@ -40,6 +41,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             get => _hasErrors;
             set => SetProperty(ref _hasErrors, value);
         }
+
+        public ITemplateInfo Template { get; private set; }
 
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
 
@@ -78,6 +81,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 
                 NameEditable = template.ItemNameEditable;
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
+                Template = template.Template;
                 var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework);
                 LicensesService.SyncLicenses(licenses, Licenses);
                 Dependencies.Clear();

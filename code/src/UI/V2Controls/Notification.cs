@@ -37,7 +37,8 @@ namespace Microsoft.Templates.UI.V2Controls
     {
         None,
         TemplatesSync,
-        RemoveTemplateValidation
+        RemoveTemplateValidation,
+        RightClickItemHasNoChanges
     }
 
     public class Notification

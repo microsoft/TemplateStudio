@@ -8,7 +8,7 @@ namespace Microsoft.Templates.UI.V2Views.NewItem
 {
     public partial class ChangesSummaryPage : Page
     {
-        public ChangesSummaryPage()
+        public ChangesSummaryPage(NewItemGenerationResult output)
         {
             InitializeComponent();
         }

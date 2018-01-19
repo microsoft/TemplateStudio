@@ -142,6 +142,24 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another feature..
+        /// </summary>
+        public static string NewItemHasNoChangesFeature {
+            get {
+                return ResourceManager.GetString("NewItemHasNoChangesFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another page..
+        /// </summary>
+        public static string NewItemHasNoChangesPage {
+            get {
+                return ResourceManager.GetString("NewItemHasNoChangesPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template selection.
         /// </summary>
         public static string NewItemStepOne {

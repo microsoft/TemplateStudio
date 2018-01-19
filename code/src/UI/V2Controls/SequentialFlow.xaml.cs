@@ -4,11 +4,14 @@
 
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Microsoft.Templates.UI.V2Controls
 {
     public partial class SequentialFlow : UserControl
     {
+        public static SequentialFlow Instance { get; private set; }
+
         public int Step
         {
             get => (int)GetValue(StepProperty);
@@ -27,6 +30,7 @@ namespace Microsoft.Templates.UI.V2Controls
 
         public SequentialFlow()
         {
+            Instance = this;
             InitializeComponent();
         }
     }

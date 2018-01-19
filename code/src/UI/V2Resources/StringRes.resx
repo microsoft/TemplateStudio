@@ -153,6 +153,12 @@
     <value>Select a design pattern</value>
     <comment>Title on FrameworkPage</comment>
   </data>
+  <data name="NewItemHasNoChangesFeature" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another feature.</value>
+  </data>
+  <data name="NewItemHasNoChangesPage" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another page.</value>
+  </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>Template selection</value>
   </data>

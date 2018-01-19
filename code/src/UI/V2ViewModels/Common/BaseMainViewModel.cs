@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -24,6 +25,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
     {
         private Window _mainView;
         private int _step;
+        private int _origStep;
         private bool _canGoBack = false;
         private bool _canGoForward = true;
 
@@ -31,18 +33,45 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private RelayCommand _goBackCommand;
         private RelayCommand _goForwardCommand;
         private RelayCommand _finishCommand;
+        private DispatcherTimer _setStepTimer;
+        private DispatcherTimer _resetStepTimer;
 
         protected string Language { get; private set; }
 
         public int Step
         {
             get => _step;
-            set
+            set => SetStep(value);
+        }
+
+        private async void SetStep(int step)
+        {
+            _origStep = _step;
+            if (step != _step)
             {
-                SetProperty(ref _step, value);
+                _step = step;
+            }
+
+            if (await IsStepAvailableAsync(step))
+            {
+                OnPropertyChanged("Selected");
                 UpdateStep();
             }
+            else
+            {
+                _resetStepTimer.Start();
+            }
         }
+
+        //public int Step
+        //{
+        //    get => _step;
+        //    set
+        //    {
+        //        SetProperty(ref _step, value);
+        //        UpdateStep();
+        //    }
+        //}
 
         public ObservableCollection<Step> Steps { get; } = new ObservableCollection<Step>();
 
@@ -55,6 +84,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, () => !WizardStatus.IsBusy));
 
         public WizardStatus WizardStatus { get; } = new WizardStatus();
+
+        protected virtual async Task<bool> IsStepAvailableAsync(int step)
+        {
+            await Task.CompletedTask;
+            return true;
+        }
 
         protected virtual void UpdateStep()
         {
@@ -80,6 +115,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             {
                 _mainView.KeyDown += OnMainViewKeyDown;
             }
+
+            _resetStepTimer = new DispatcherTimer(DispatcherPriority.ContextIdle, Application.Current.Dispatcher);
+            _resetStepTimer.Interval = TimeSpan.FromMilliseconds(1);
+            _resetStepTimer.Tick += OnResetSelection;
         }
 
         protected virtual void OnFinish()
@@ -148,6 +187,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private void OnMainViewKeyDown(object sender, KeyEventArgs e)
         {
             EventService.Instance.RaiseOnKeyDown(e);
+        }
+
+        private void OnResetSelection(object sender, EventArgs e)
+        {
+            _step = _origStep;
+            OnPropertyChanged("Step");
+            _resetStepTimer.Stop();
         }
     }
 }
