@@ -98,7 +98,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         private UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, Language) { HomeName = string.Empty };
+            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework);
             userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
+            foreach (var dependencyTemplate in dependencies)
+            {
+                userSelection.Add((dependencyTemplate.GetDefaultName(), dependencyTemplate));
+            }
+
             return userSelection;
         }
 

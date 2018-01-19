@@ -54,7 +54,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
             if (await IsStepAvailableAsync(step))
             {
-                OnPropertyChanged("Selected");
+                OnPropertyChanged("Step");
                 UpdateStep();
             }
             else
@@ -62,16 +62,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
                 _resetStepTimer.Start();
             }
         }
-
-        //public int Step
-        //{
-        //    get => _step;
-        //    set
-        //    {
-        //        SetProperty(ref _step, value);
-        //        UpdateStep();
-        //    }
-        //}
 
         public ObservableCollection<Step> Steps { get; } = new ObservableCollection<Step>();
 
