@@ -175,4 +175,18 @@
         </TextBlock>
     </DataTemplate>
 
+    <DataTemplate x:Key="WtsNewItemFileGroup">
+        <StackPanel>
+            <TextBlock
+                Style="{StaticResource WtsTextBlockSectionTitle}"
+                Margin="{StaticResource Margin_M2_LeftTopRight}"
+                Text="{Binding Title}" />
+            <ListView
+                ItemsSource="{Binding Items}"
+                SelectedItem="{Binding Selected, Mode=TwoWay}"
+                Style="{StaticResource WtsListViewNewItemFile}" />
+
+        </StackPanel>
+    </DataTemplate>
+
 </ResourceDictionary>

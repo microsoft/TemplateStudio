@@ -409,8 +409,12 @@
     <Compile Include="V2TemplateSelectors\NotificationTemplateSelector.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\FileExtension.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\FileStatus.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\ItemsGroupViewModel`1.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\LicenseViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\MetadataInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\NewItemFileViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
@@ -683,6 +687,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Styles\ItemsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Ellipse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Image.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

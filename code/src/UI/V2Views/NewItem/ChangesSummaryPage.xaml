@@ -15,7 +15,17 @@
     </Page.Resources>
 
     <Grid Style="{StaticResource WtsGridMainPage}">
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="71*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="29*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
+        <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding ChangesSummary.FileGroups}" ItemTemplate="{StaticResource WtsNewItemFileGroup}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </Page>

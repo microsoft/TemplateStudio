@@ -108,9 +108,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             return userSelection;
         }
 
-        protected override void OnCancel()
-        {
-        }
+        protected override void OnCancel() => WizardShell.Current.Close();
 
         protected override Task OnTemplatesAvailableAsync()
         {

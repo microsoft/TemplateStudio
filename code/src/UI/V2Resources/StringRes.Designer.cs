@@ -133,6 +133,60 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conflicting files.
+        /// </summary>
+        public static string ChangesSummaryGroupConflictingFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupConflictingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conflicting styles files.
+        /// </summary>
+        public static string ChangesSummaryGroupConflictingStylesFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupConflictingStylesFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified files.
+        /// </summary>
+        public static string ChangesSummaryGroupModifiedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New files.
+        /// </summary>
+        public static string ChangesSummaryGroupNewFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupNewFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unchanged files.
+        /// </summary>
+        public static string ChangesSummaryGroupUnchangedFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupUnchangedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning files.
+        /// </summary>
+        public static string ChangesSummaryGroupWarningFiles {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupWarningFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a design pattern.
         /// </summary>
         public static string FrameworkTitle {

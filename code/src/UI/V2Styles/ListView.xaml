@@ -8,6 +8,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Button.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Ellipse.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Image.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ImageEx.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBlock.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBox.xaml" />
@@ -19,6 +21,8 @@
     <ItemsPanelTemplate x:Key="WtsItemsPanelTemplate">
         <WrapPanel Margin="{StaticResource Margin_M2_LeftRight}" Orientation="Horizontal" />
     </ItemsPanelTemplate>
+
+    <!-- New Project Project type / Framework -->
 
     <Style x:Key="WtsListViewItemSingleSelection" TargetType="{x:Type ListViewItem}">
         <Setter Property="BorderThickness" Value="2" />
@@ -403,6 +407,73 @@
                         Background="{TemplateBinding Background}"
                         Padding="{TemplateBinding Padding}"
                         SnapsToDevicePixels="true">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="WtsListViewItemNewItemFile" TargetType="{x:Type ListViewItem}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_S_Bottom}" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                    <Border x:Name="bd" ToolTip="{Binding Subject}">
+                        <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Ellipse Grid.Column="0" Fill="{Binding CircleColor, FallbackValue=Red}" Style="{StaticResource WtsEllipseNewItemFileCircle}" Margin="{StaticResource Margin_XS_Left}" />
+                            <Image Grid.Column="1" Source="{Binding Icon}" Style="{StaticResource WtsImageNewItemFileIcon}" Margin="{StaticResource Margin_XS_Left}" />
+                            <TextBlock x:Name="fileName" Grid.Column="2" Text="{Binding Subject}" Style="{StaticResource WtsTextBlockNewItemFileSubject}" Margin="{StaticResource Margin_XS_LeftRight}" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="Background" TargetName="bd" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="fileName" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="IsSelected" Value="false" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WtsListViewNewItemFile" TargetType="{x:Type ListView}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemNewItemFile}" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListView}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
                         <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Border>
                 </ControlTemplate>

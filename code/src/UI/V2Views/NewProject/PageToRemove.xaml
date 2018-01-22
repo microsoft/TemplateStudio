@@ -14,6 +14,17 @@
         <SolidColorBrush x:Key="ListBox.Static.Border" Color="#FFABADB3"/>
         <SolidColorBrush x:Key="ListBox.Disabled.Background" Color="#FFFFFFFF"/>
         <SolidColorBrush x:Key="ListBox.Disabled.Border" Color="#FFD9D9D9"/>
+
+        <Style x:Key="ListViewItemStyle1" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Grid/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="ListViewStyle1" TargetType="{x:Type ListView}">
             <Setter Property="Background" Value="{StaticResource ListBox.Static.Background}"/>
             <Setter Property="BorderBrush" Value="{StaticResource ListBox.Static.Border}"/>
@@ -25,6 +36,7 @@
             <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
             <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource ListViewItemStyle1}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListView}">
@@ -50,26 +62,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
-            <VirtualizingStackPanel IsItemsHost="True"/>
-        </ItemsPanelTemplate>
-        <Style x:Key="ListViewItemStyle1" TargetType="{x:Type ListViewItem}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ListViewItem}">
-                        <Grid/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
     </Page.Resources>
 
     <Grid>
-        <ListView
-            Style="{DynamicResource ListViewStyle1}"
-            ItemsPanel="{DynamicResource ItemsPanelTemplate1}"
-            ItemContainerStyle="{DynamicResource ListViewItemStyle1}"/>
+        <ListView Style="{DynamicResource ListViewStyle1}" />
     </Grid>
 </Page>
