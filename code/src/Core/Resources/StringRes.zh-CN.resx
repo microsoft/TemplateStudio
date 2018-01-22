@@ -127,7 +127,8 @@
     <value>程序集文件版本</value>
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
-    <value>查询“{0}”无效。允许的运算符是“==”或“!=”。多个条件用“&amp;”分隔。</value>
+    <value>查询“{0}”无效。允许的运算符是 "==" 或 "!="。多个条件用 "&amp;" 分隔。</value>
+    <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
     <value>配置文件已加载</value>
@@ -146,27 +147,33 @@
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
     <value>找不到文件“{0}”，无法包括以下更改。请查看代码块，以将这些更改手动包括在项目中的所需位置。</value>
+    <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
     <value>在文件“{1}”中找不到应有的行 "{0}"。请手动合并操作后文件中的内容。</value>
+    <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>The file {0} can't be copied to {1}. Error: {2}</value>
+    <value>无法将文件 {0} 复制到 {1}。错误:{2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>无法删除文件夹 {0}。错误:{1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
     <value>无法删除文件 {0}。错误:{1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>无法将文件夹 {0} 移动到 {1}。错误:{2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
     <value>初始化 GenContext 时出现严重错误。</value>
   </data>
   <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
-    <value>没有可供执行当前 gen 操作的上下文，请先调用 Current_set。</value>
+    <value>没有可供执行当前 gen 操作的上下文，请先调用 Current_set</value>
   </data>
   <data name="GenerateTestCertificatePostActionExecute" xml:space="preserve">
     <value>生成证书时出错。</value>
@@ -179,24 +186,28 @@
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>没有文件“{0}”的合并目标</value>
+    <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>在文件“{1}”中找不到行 {0}</value>
+    <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
-    <value>无法推断名称。迭代太多</value>
+    <value>无法推断名称。迭代次数过多</value>
   </data>
   <data name="PackageCertificateString" xml:space="preserve">
     <value>程序包证书</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>从 {0} 下载时出错。需要 Internet 连接才能下载模板更新。</value>
+    <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
     <value>无法立即下载模板内容，我们将稍后重试。</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
     <value>模板内容已从 {1} 下载到 {0}。</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>同步模板时出错。状态:</value>
@@ -324,9 +335,11 @@
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>“{0}”中的数字签名无效。内容已篡改，或证书不存在、无效或不允许使用。无法继续。</value>
+    <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
     <value>在存储区 {2} 中找到与指纹 {1} 匹配的 {0} 证书</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
     <value>找到的证书没有私钥。</value>
@@ -336,12 +349,15 @@
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
     <value>指定的源“{0}”无效，文件不存在，或文件夹为空。</value>
+    <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
     <value>找不到与指纹 {0} 匹配的证书。已在 CurrentUser/My 和 LocalMachine/My 存储区中搜索。</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
     <value>在 CurrentUser/My 或 LocalMachine/My 中找不到与指纹 {0} 匹配的证书。</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
     <value>签署程序包时出错。</value>
@@ -351,6 +367,7 @@
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
     <value>证书“{0}”验证已完成，状态为“{1}”。</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
     <value>## 文件中的失败更改:
@@ -383,18 +400,25 @@
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>已使用此文件中的不同值或元素定义密钥为“{0}”的样式。请查看这些样式，以将这些更改手动包括在项目中的所需位置。</value>
+    <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Error acquiring content.</value>
+    <value>获取内容时出错。</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Error extracting installed templates content..</value>
+    <value>提取已安装的模板内容时出错。</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Error updating templates content.</value>
+    <value>更新模板内容时出错。</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Cannot remove readonly protection from file {0}</value>
+    <value>无法删除文件 {0} 的只读保护</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
   </data>
 </root>

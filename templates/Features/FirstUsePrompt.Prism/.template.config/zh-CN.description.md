@@ -1,3 +1,3 @@
-﻿This feature will display a message to the person using it when the app is used for the first time. You can use this to provide useful instructions or information to a person who hasn't used the app before.
+﻿在首次使用应用时，此功能将会向该应用的使用者显示一则消息。你可以使用该功能向未曾用过该应用的人提供有用的说明或信息。
 
-The message displayed is fully customizable and can display text, images, or anything else.
+显示的消息可完全自定义，并显示文本、图像或其他任何内容。

@@ -142,11 +142,7 @@ namespace Microsoft.Templates.VsEmulator.TemplatesContent
 
         private string GetTemplatesFolder()
         {
-            var templatesSource = new LocalTemplatesSource(_useWizardVersion, _useTemplatesVersion);
-            var templatesSync = new TemplatesSynchronization(templatesSource, new Version(_useWizardVersion));
-            string currentTemplatesFolder = templatesSync.CurrentTemplatesFolder;
-
-            return currentTemplatesFolder;
+            return @"C:\ProgramData\WindowsTemplateStudio\Templates\LocalEnv";
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps.",
+  "description": "Sürükle ve Bırak özelliği, sürükle ve bırak seçeneğinin kullanılabildiği uygulamaların oluşturulmasını basitleştiren bir hizmet sunar.",
   "identity": "wts.Feat.DragAndDrop"
 }

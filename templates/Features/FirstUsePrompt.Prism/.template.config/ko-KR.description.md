@@ -1,3 +1,3 @@
-﻿This feature will display a message to the person using it when the app is used for the first time. You can use this to provide useful instructions or information to a person who hasn't used the app before.
+﻿앱을 처음 사용하는 사용자에게 메시지를 표시하는 기능입니다. 이 기능을 사용하여 이전에 앱을 사용해보지 않은 사용자에게 지침이나 유용한 정보를 전달합니다.
 
-The message displayed is fully customizable and can display text, images, or anything else.
+철저히 맞춤형으로 구성되는 메시지는 문자나 이미지 등을 표시할 수 있습니다.

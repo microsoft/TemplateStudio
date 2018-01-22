@@ -11,5 +11,4 @@ It consists of an ActivationHandler, in charge of activating the app when conten
 
 Additionally we added in a sample page that show's how the app can receive a link or images shared by another app through the share contract.
 
-For more info about receiving data from other apps, consult 
-[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/app-to-app/receive-data)
+For more info about receiving data from other apps, consult [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/app-to-app/receive-data)

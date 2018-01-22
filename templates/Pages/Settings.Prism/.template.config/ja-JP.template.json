@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Settings",
-  "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
-  "identity": "wts.Page.Settings.Prism"
+    "author": "Microsoft",
+    "name": "Settings",
+    "description": "この設定ページに、アプリの設定を含めることをお勧めします。",
+    "identity": "wts.Page.Settings.Prism"
 }

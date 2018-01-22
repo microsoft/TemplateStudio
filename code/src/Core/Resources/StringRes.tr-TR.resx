@@ -127,7 +127,8 @@
     <value>Derleme Dosyası Sürümü</value>
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
-    <value>"{0}" sorgusu geçerli değil. İzin verilen işleçler şunlardır: "==" veya "!=". Birden fazla koşul varsa bunlar "&amp;" ile ayrılır.</value>
+    <value>"{0}" sorgusu geçerli değil. İzin verilen işleçler şunlardır: "==" veya "!=". Birden çok koşul "&amp;" ile ayrılır.</value>
+    <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
     <value>Yapılandırma dosyası yüklendi</value>
@@ -146,21 +147,27 @@
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
     <value>Aşağıdaki değişiklikleri içeren "{0}" dosyası bulunamadı. Lütfen gerektiğinde projenize değişiklikleri el ile dahil etmek için kod bloklarını gözden geçirin. </value>
+    <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
     <value>"{1}" dosyasında beklenen "{0}" satırı bulunamadı. Lütfen içeriği eylem sonrası dosyadan el ile birleştirin.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>The file {0} can't be copied to {1}. Error: {2}</value>
+    <value>{0} dosyası {1} hedefine kopyalanamıyor. Hata: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>{0} klasörü silinemiyor. Hata: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
     <value>{0} dosyası silinemiyor. Hata: {1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>{0} klasörü {1} konumuna taşınamıyor. Hata: {2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
     <value>GenContext başlatılırken kritik bir hata oluştu.</value>
@@ -179,9 +186,11 @@
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>"{0}" dosyası için birleştirme hedefi yok</value>
+    <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>"{1}" dosyasında {0} satırı bulunamadı</value>
+    <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Ad çıkarılamıyor. Çok fazla yineleme var</value>
@@ -191,12 +200,14 @@
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>{0} konumundan indirilirken bir hata oluştu. Şablon güncelleştirmelerini indirmek için internet bağlantısı gerekiyor.</value>
+    <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
     <value>Şablonların içeriği şu anda indirilemiyor, daha sonra tekrar deneyeceğiz.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
     <value>Şablonların içeriği {1} üzerinden {0} konumuna indirildi.</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Şablonlar eşitlenirken bir hata oluştu. Durum:</value>
@@ -213,7 +224,7 @@
   <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
     <value>## Çakışan dosyalar:
 Bu dosyalar projenizde zaten var ve yeni öğenin parçası olarak da oluşturuldular.
-Lütfen karşılaştırın ve tüm içeriğin doğru olduğundan emin olun:
+Lütfen karşılaştırın ve tüm içeriğin doğru yerde olduğundan emin olun:
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
@@ -231,7 +242,7 @@ Aşağıdaki dosyaları kopyalayıp projenize ekleyin:
   </data>
   <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
     <value>## Değiştirilmeyen dosyalar:
-Bu dosyalar projenizde zaten var, başka bir işlem yapılması gerekmiyor:
+Bu dosyalar projenizde zaten var. Başka bir işlem yapılması gerekmiyor:
 {0}</value>
     <comment>{0}: List of unchanged files</comment>
   </data>
@@ -263,7 +274,7 @@ Değişikliklerin önizlemesi için: {2}</value>
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
     <value>## Çakışan dosyalar:
 Bu dosyalar projenizde zaten var ve yeni öğenin parçası olarak da oluşturuldular.
-Lütfen karşılaştırın ve tüm içeriğin doğru olduğundan emin olun.
+Lütfen karşılaştırın ve tüm içeriğin doğru yerde olduğundan emin olun.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
@@ -314,7 +325,7 @@ Oluşturma işleminden elde edilen dosyaları geçici oluşturma klasöründe bu
 {4}: Conflicting Files</comment>
   </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
-    <value>Şablonlar ayıklandı</value>
+    <value>Şablonların ayıklandığı konum:</value>
   </data>
   <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
     <value>Şablonlar ayıklanamıyor.</value>
@@ -324,9 +335,11 @@ Oluşturma işleminden elde edilen dosyaları geçici oluşturma klasöründe bu
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>"{0}" içinde geçersiz dijital imzalar var. İçerik değiştirilmiş veya sertifika mevcut değil, geçersiz ya da izin verilmiyor.  Devam edilemiyor.</value>
+    <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
     <value>{2} mağazasında {1} parmak iziyle eşleşen {0} sertifika bulundu</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
     <value>Bulunan sertifikanın özel anahtarı yok.</value>
@@ -336,12 +349,15 @@ Oluşturma işleminden elde edilen dosyaları geçici oluşturma klasöründe bu
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
     <value>Belirtilen "{0}" kaynağı geçersiz, dosya mevcut değil veya klasör boş.</value>
+    <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
     <value>{0} parmak iziyle eşleşen bir sertifika bulunamadı. GeçerliKullanıcı/Benim ve YerelMakine/Benim mağazalarında arandı.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
     <value>{0} parmak izine sahip sertifika GeçerliKullanıcı/Benim veya YerelMakine/Benim içinde bulunamadı.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
     <value>Paket imzalanırken bir hata oluştu.</value>
@@ -351,6 +367,7 @@ Oluşturma işleminden elde edilen dosyaları geçici oluşturma klasöründe bu
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
     <value>"{0}" sertifikasını doğrulama işlemi "{1}" durumuyla sonlandı</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
     <value>## Dosyalardaki başarısız olan değişiklikler:
@@ -383,18 +400,25 @@ Aşağıdaki değişiklikler tümleştirilemedi: {2}
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>"{0}" anahtarına sahip stil bu dosyada farklı değer veya öğelerle zaten tanımlanmış. Lütfen gerektiğinde projenize değişiklikleri el ile dahil etmek için stilleri gözden geçirin.</value>
+    <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Error acquiring content.</value>
+    <value>İçerik alınırken hata oluştu.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Error extracting installed templates content..</value>
+    <value>Yüklü şablon içeriği ayıklanırken hata oluştu.</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Error updating templates content.</value>
+    <value>Şablon içeriği güncelleştirilirken hata oluştu.</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Cannot remove readonly protection from file {0}</value>
+    <value>{0} dosyasından salt okunur koruma kaldırılamıyor</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
   </data>
 </root>

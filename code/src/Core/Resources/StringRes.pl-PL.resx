@@ -128,6 +128,7 @@
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
     <value>Zapytanie „{0}” jest nieprawidłowe. Dopuszczalne operatory to „==” lub „!=”. Warunki są oddzielone znakiem „&amp;”.</value>
+    <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
     <value>Załadowano plik konfiguracji</value>
@@ -146,21 +147,27 @@
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
     <value>Nie można znaleźć pliku „{0}” do uwzględnienia następujących zmian. Sprawdź bloki kodu, aby wprowadzić zmiany ręcznie, tam, gdzie jest to wymagane w projekcie. </value>
+    <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
     <value>Nie można znaleźć oczekiwanego wiersza „{0}” w pliku „{1}”. Ręcznie scal zawartość z pliku akcji po operacji.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>The file {0} can't be copied to {1}. Error: {2}</value>
+    <value>Nie można skopiować pliku {0} do {1}. Błąd: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Nie można usunąć folderu {0}. Błąd: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
     <value>Nie można usunąć pliku {0}. Błąd: {1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>Nie można przenieść folderu {0} do {1}. Błąd: {2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
     <value>Wystąpił błąd krytyczny podczas inicjowania GenContext.</value>
@@ -179,9 +186,11 @@
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>Nie ma miejsca docelowego scalenia pliku „{0}”</value>
+    <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Nie znaleziono wiersza {0} w pliku „{1}”</value>
+    <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Nie można wywnioskować nazwy. Za dużo iteracji</value>
@@ -191,12 +200,14 @@
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>Wystąpił błąd podczas pobierania z lokalizacji {0}. Do pobrania aktualizacji szablonu wymagane jest połączenie internetowe.</value>
+    <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
     <value>W tej chwili nie można pobrać zawartość szablonów. Spróbujemy później.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
     <value>Pobrano zawartość szablonów do lokalizacji {0} z lokalizacji {1}.</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Wystąpił błąd podczas synchronizowania szablonów. Stan:</value>
@@ -324,9 +335,11 @@ Utworzone pliki można znaleźć w folderze tymczasowym: {0}
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>Nieprawidłowe podpisy cyfrowe w „{0}”. Zawartość została zmieniona lub brakuje certyfikatu, jest nieważny lub niedozwolony.  Nie można kontynuować.</value>
+    <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
     <value>Znaleziono certyfikaty ({0}) dopasowane do odcisku palca {1} w sklepie {2}</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
     <value>Znaleziony certyfikat nie ma prywatnego klucza.</value>
@@ -336,12 +349,15 @@ Utworzone pliki można znaleźć w folderze tymczasowym: {0}
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
     <value>Określone źródło „{0}” jest nieprawidłowe, plik nie istnieje lub folder jest pusty.</value>
+    <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
     <value>Nie znaleziono certyfikatu zgodnego z odciskiem palca {0}. Wyszukano w sklepach CurrentUser/My i LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
     <value>Nie można znaleźć certyfikatu z odciskiem palca {0} w sklepach CurrentUser/My ani LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
     <value>Wystąpił błąd podczas podpisywania pakietu.</value>
@@ -351,6 +367,7 @@ Utworzone pliki można znaleźć w folderze tymczasowym: {0}
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
     <value>Weryfikacja certyfikatu „{0}” zakończyła się stanem „{1}”</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
     <value>## Nieudane zmiany w plikach:
@@ -383,18 +400,25 @@ Nie można zinterpretować następujących zmian: {2}
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>Styl z kluczem „{0}” jest już zdefiniowany z inną wartością lub innymi elementami w tym pliku. Sprawdź style, aby wprowadzić zmiany ręcznie, tam, gdzie jest to wymagane w projekcie.</value>
+    <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Error acquiring content.</value>
+    <value>Wystąpił błąd podczas pobierania treści.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Error extracting installed templates content..</value>
+    <value>Wystąpił błąd podczas wyodrębniania zawartości szablonów.</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Error updating templates content.</value>
+    <value>Wystąpił błąd podczas aktualizowania zawartości szablonów.</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Cannot remove readonly protection from file {0}</value>
+    <value>Nie można usunąć ochrony tylko do odczytu w pliku {0}</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
   </data>
 </root>

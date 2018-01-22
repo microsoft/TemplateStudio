@@ -4,6 +4,7 @@ Imports Windows.Media.Core
 Namespace ViewModels
     Public Class MediaPlayerViewViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
+
         ' TODO WTS: Specify your video default and image here
         Private Const DefaultSource As String = "https://sec.ch9.ms/ch9/db15/43c9fbed-535e-4013-8a4a-a74cc00adb15/C9L12WinTemplateStudio_high.mp4"
 

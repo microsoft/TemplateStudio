@@ -81,7 +81,7 @@ namespace wts.ItemName.ViewModels
 
         private SolidColorBrush GetStandardTextColorBrush()
         {
-            var brush = Application.Current.Resources["SystemControlForegroundBaseHighBrush"] as SolidColorBrush;
+            var brush = Application.Current.Resources["ThemeControlForegroundBaseHighBrush"] as SolidColorBrush;
             return brush;
         }
 

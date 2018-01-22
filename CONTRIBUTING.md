@@ -16,6 +16,7 @@ While we're grateful for any and all contributions, we don't want you to waste a
 * The code that is output in the generated projects may end up in thousands of apps so it must be of the highest quality. Expect it to be reviewed very thoroughly and it must meet our standards for standards for style, structure, and format. There are details below and automated tests to verify their use.
 * Get familiar with the automated tests that are part of the project. With so many possible combinations of output, it's impossible to verify everything manually. You will need to make sure they all pass.
 * When adding anything new it should be created to work with all supported frameworks. If this is going to be a problem, discuss it before beginning work.
+* We support templates for apps built with both C# and VB.Net but appreciate that not evevryone wants to work in both languages. For this reason we have a C#-first approach. This approach means that new functionality if first created in the C# templates and the VB.Net version is created after. If contributing something it is ok to submit a PR that just contains the C# version. For all non-code files (xaml, images, etc.) the different language versions should use identical copies of files. The VB templates contain a copy of such files so that it is possible to change the templates for each language separately.
 
 ## A good pull request
 
@@ -23,16 +24,17 @@ Every contribution has to come with:
 
 * Before starting coding, **you must open an issue** and start discussing with the community to see if the idea/feature is interesting enough.
 * A documentation page in the [documentation folder](https://github.com/Microsoft/WindowsTemplateStudio/tree/master/docs).
-* Unit tests (If applicable)
+* Unit tests (If applicable, or an explanation why they're not)
 
-* If you've changed the UI: 
+* If you've changed the UI:
   - Be sure you are including screenshots to show the changes.
   - Be sure you have reviewed the [accesibility checklist](docs/accessibility.md).
-  
-* If you've included a new template: 
+
+* If you've included a new template:
   - Be sure you reviewed the [Template Verification Checklist](https://github.com/Microsoft/WindowsTemplateStudio/wiki/Template-Verification-Checklist).
 
 * You tested your code with two most recent Windows 10 SDKs. (Build 14393 and 15063)
+* You've run all existing tests to make sure you've not broken anything.
 * PR has to target dev branch.
 
 PR has to be validated by at least two core members before being merged. Once merged, it will be in the pre-release package. To find out more, head to [Installing / Using the extension](docs/getting-started-extension.md).

@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
     "name": "Live Tile",
-    "description": "Adds a sample to show updating the tile as well as code for working with multiple tiles.",
+    "description": "Ajoute un échantillon pour afficher la mise à jour de la vignette ainsi que du code pour travailler avec plusieurs vignettes.",
     "identity": "wts.Feat.LiveTile.Prism"
 }

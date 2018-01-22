@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "Camera",
-  "description": "A page for capturing and displaying an image from the camera.",
-  "identity": "wts.Page.Camera.Prism"
+    "author": "Microsoft Community",
+    "name": "Camera",
+    "description": "Strona do przechwytywania i wyświetlania obrazu z aparatu.",
+    "identity": "wts.Page.Camera.Prism"
 }

@@ -8,7 +8,7 @@ Namespace Services
     Friend Partial Class LiveTileFeatureService
         Inherits ActivationHandler(Of LaunchActivatedEventArgs)
 
-        Private Const QueueEnabledKey As String = "NotificationQueueEnabled"
+        Private Const QueueEnabledKey As String = "LiveTileNotificationQueueEnabled"
 
         Public Async Function EnableQueueAsync() As Task
             Dim queueEnabled = Await ApplicationData.Current.LocalSettings.ReadAsync(Of Boolean)(QueueEnabledKey)

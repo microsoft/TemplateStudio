@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
     "name": "Dev Center Notifications",
-    "description": "Register your app to receive notifications from the store and handle them being used to launch the app.",
+    "description": "Inscrivez votre application pour recevoir des notifications de la part du Microsoft Store et les gérer dans le cadre du lancement de l\u0027application.",
     "identity": "wts.Feat.StoreNotifications.Prism"
 }

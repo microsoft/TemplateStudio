@@ -147,59 +147,59 @@
   </data>
   <data name="ExceptionDependencyCircularReference" xml:space="preserve">
     <value>Dependencia circular detectada en la plantilla {0} con {1}.</value>
-    <comment>Log text for Circular Reference exception</comment>
+    <comment>Log text for Circular Reference exception, {0}:Template id, {1}: Dependency Template id</comment>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
-    <comment>Log text for Multiple Instance exception</comment>
+    <value>Elemento de dependencia no válido {0}. Las dependencias deben configurarse como multipleInstance = false.</value>
+    <comment>Log text for Multiple Instance exception. {0}:Dependency template id</comment>
   </data>
   <data name="ExceptionDependencyNotFound" xml:space="preserve">
     <value>No se encontró la plantilla de dependencia {0} para el framework {1}.</value>
-    <comment>Log text for Not Found exception</comment>
+    <comment>Log text for Not Found exception. {0}: Dependency template id, {1}: Framework</comment>
   </data>
   <data name="ExceptionDependencyType" xml:space="preserve">
     <value>Elemento de dependencia no válido {0}. Los elementos de dependencia deben ser del tipo Página o Característica.</value>
-    <comment>Log text for Type exception</comment>
+    <comment>Log text for Type exception. {0}: Dependency template id</comment>
   </data>
   <data name="ExceptionGenerating" xml:space="preserve">
     <value>Plantilla '{0}', nombre: '{1}', razón: '{2}'</value>
-    <comment>Log text for Generating exception</comment>
+    <comment>Log text for Generating exception. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ExceptionLayoutNotFound" xml:space="preserve">
     <value>No se encontró la plantilla de diseño {0} para el framework {1}.</value>
-    <comment>Log text for Layout Not Found exception</comment>
+    <comment>Log text for Layout Not Found exception. {0}:Layout group identity, {1}:Framework</comment>
   </data>
   <data name="ExceptionLayoutType" xml:space="preserve">
     <value>Elemento de diseño no válido {0}. Los elementos de diseño deben ser del tipo Página o Característica.</value>
-    <comment>Log text for Layout Type exception</comment>
+    <comment>Log text for Layout Type exception. {0}: Layout template id</comment>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
     <value>Creando característica '{0}'...</value>
-    <comment>Generating feature log message</comment>
+    <comment>Generating feature log message. {0}: Feature and Template name</comment>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
     <value>Creando página '{0}'...</value>
-    <comment>Generating page log message</comment>
+    <comment>Generating page log message. {0}: Page and Template name</comment>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
     <value>Creando proyecto '{0}'...</value>
-    <comment>Generating project log message</comment>
+    <comment>Generating project log message. {0}: Project name</comment>
   </data>
   <data name="GroupFeaturesHeader_SF" xml:space="preserve">
     <value>Característica ({0}) - Agregar varias</value>
-    <comment>Wizard new project group feature header string format</comment>
+    <comment>Wizard new project group feature header string format.{0}: Feature count</comment>
   </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
-    <value>Framework ({0}) - Seleccionar una</value>
-    <comment>Wizard new project group framework header string format</comment>
+    <value>Framework ({0}) - Seleccionar uno</value>
+    <comment>Wizard new project group framework header string format. {0}: Framework count</comment>
   </data>
   <data name="GroupPagesHeader_SF" xml:space="preserve">
     <value>Páginas ({0}) - Agregar varias</value>
-    <comment>Wizard new project group page header string format</comment>
+    <comment>Wizard new project group page header string format.{0}: Pages count</comment>
   </data>
   <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
     <value>Tipo de proyecto ({0}) - Seleccionar uno</value>
-    <comment>Wizard new project group project type header string format</comment>
+    <comment>Wizard new project group project type header string format. {0}: Project type count</comment>
   </data>
   <data name="NoContentText" xml:space="preserve">
     <value>No hay contenido disponible</value>
@@ -214,40 +214,16 @@
     <comment>Wizard new project tiltle for step 1</comment>
   </data>
   <data name="ResetSelection" xml:space="preserve">
-    <value>Has cambiado la selección del framework el tipo de proyecto. Si continúas, se perderán las selecciones de características y páginas. Tus selecciones anteriores eran: {0} y {1}.</value>
-    <comment>Wizard new project reset selection error message</comment>
+    <value>Has cambiado la selección del framework o el tipo de proyecto. Si continúas, se perderán las selecciones de características y páginas. Tus selecciones anteriores eran: {0} y {1}.</value>
+    <comment>Wizard new project reset selection error message. {0}:Project Type, {1}: Framework</comment>
   </data>
   <data name="RestoringMessage" xml:space="preserve">
     <value>Restaurando paquetes...</value>
     <comment>Status bar message for restoring</comment>
   </data>
-  <data name="StatusAcquired" xml:space="preserve">
-    <value>Listo.</value>
-    <comment>Status message for sync acquired</comment>
-  </data>
-  <data name="StatusAcquiring" xml:space="preserve">
-    <value>Buscando actualizaciones de plantillas...</value>
-    <comment>Status message for sync acquiring</comment>
-  </data>
-  <data name="StatusLowerVersionContent" xml:space="preserve">
-    <value>No hay contenido de plantillas disponible para la versión actual del asistente. Asegúrate de que tienes conectividad y reinicia el asistente.</value>
-    <comment>Status error message for sync lower version content</comment>
-  </data>
-  <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>Hay una actualización de plantillas disponible, pero no es compatible con esta versión del asistente. Actualiza la extensión para acceder a las últimas plantillas.</value>
-    <comment>Status warning message for sync over version content</comment>
-  </data>
-  <data name="StatusOverVersionNoContent" xml:space="preserve">
-    <value>No hay contenido de plantillas disponible para la versión de esta extensión. Actualiza la extensión para acceder a los últimos contenidos.</value>
-    <comment>Status error message for sync over version no content</comment>
-  </data>
   <data name="StatusUpdated" xml:space="preserve">
     <value>Plantillas actualizadas.</value>
     <comment>Status message for sync status updated</comment>
-  </data>
-  <data name="StatusUpdating" xml:space="preserve">
-    <value>Actualizando plantillas...</value>
-    <comment>Status message for sync status updating</comment>
   </data>
   <data name="SummaryFeaturesTitle" xml:space="preserve">
     <value>Características</value>
@@ -289,6 +265,10 @@
     <value>Interacción del usuario</value>
     <comment>Group header for user interaction templates</comment>
   </data>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Inicio de la aplicación</value>
+    <comment>Group header for Application Launching templates</comment>
+  </data>
   <data name="TemplatesVersion" xml:space="preserve">
     <value>Plantillas:</value>
     <comment>Templates version title</comment>
@@ -323,7 +303,7 @@
   </data>
   <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
     <value>No puedes eliminar {0} porque {1} depende de él.</value>
-    <comment>Template name validation error message for can not remove template string format</comment>
+    <comment>Template name validation error message for can not remove template string format. {0}:Template name, {1}:Dependency template name</comment>
   </data>
   <data name="ValidationError_Empty" xml:space="preserve">
     <value>El nombre no puede estar vacío</value>
@@ -384,10 +364,6 @@
     <value>Plantillas listas.</value>
     <comment>Status message for sync status prepared</comment>
   </data>
-  <data name="StatusPreparing" xml:space="preserve">
-    <value>Preparando las plantillas para usarlas por primera vez...</value>
-    <comment>Status message for sync status preparing</comment>
-  </data>
   <data name="UnableAddItemsToProject" xml:space="preserve">
     <value>No se pueden agregar elementos del proyecto. Asegúrate de que tienes el SDK necesario.</value>
     <comment>Track event message for unable add items to project</comment>
@@ -410,7 +386,7 @@
   </data>
   <data name="InformationWindowInitializeViewModelMessage" xml:space="preserve">
     <value>"{0} no es lo esperado como un tipo válido para la Ventana de información."</value>
-    <comment>Exception message for Information Window</comment>
+    <comment>Exception message for Information Window, {0}: window type</comment>
   </data>
   <data name="UndefinedErrorString" xml:space="preserve">
     <value>UndefinedError</value>
@@ -462,11 +438,11 @@
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">
     <value>Características ({0}) - Seleccionar una</value>
-    <comment>Wizard new item group feature header string format</comment>
+    <comment>Wizard new item group feature header string format. {0}: Feature count</comment>
   </data>
   <data name="GroupPageHeader_SF" xml:space="preserve">
     <value>Páginas ({0}) - Seleccionar una</value>
-    <comment>Wizard new item group page header string format</comment>
+    <comment>Wizard new item group page header string format. {0}: Pages count</comment>
   </data>
   <data name="NewItemName" xml:space="preserve">
     <value>Nombre:</value>
@@ -492,6 +468,10 @@
     <value>Buscar plantillas nuevas</value>
     <comment>check for templates updates button content on overlay box control</comment>
   </data>
+  <data name="ChangesSummaryTitlePage" xml:space="preserve">
+    <value>Resumen de los cambios: Agregar página '{0}' </value>
+    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
+  </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>Errores en las combinaciones</value>
     <comment>Category name of failed merges</comment>
@@ -515,10 +495,6 @@
   <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
     <value>Archivos sin modificar</value>
     <comment>Category name of unchanged files</comment>
-  </data>
-  <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>Hay contenido de plantillas nuevo disponible.</value>
-    <comment>Status message for sync new version available</comment>
   </data>
   <data name="ErrorSyncRefresh" xml:space="preserve">
     <value>Error al actualizar plantillas. Para obtener más información, consulte los resultados.</value>
@@ -570,7 +546,7 @@
   </data>
   <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
     <value>La característica {0} se ha agregado correctamente</value>
-    <comment>Status bar message for Feature successfully added</comment>
+    <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
   </data>
   <data name="NewItemAddPageCancelled" xml:space="preserve">
     <value>Se ha cancelado agregar página nueva</value>
@@ -578,7 +554,7 @@
   </data>
   <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
     <value>La página {0} se ha agregado correctamente</value>
-    <comment>Status bar message for Page successfully added</comment>
+    <comment>Status bar message for Page successfully added, {0}: Page Name</comment>
   </data>
   <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
     <value>Licencias</value>
@@ -646,7 +622,11 @@
   </data>
   <data name="ExceptionDependencyMissing" xml:space="preserve">
     <value>No se encontró la plantilla de dependencia {0} en la selección del usuario</value>
-    <comment>Log text for misssing dependency exception.</comment>
+    <comment>Log text for misssing dependency exception. {0}: Dependency template id</comment>
+  </data>
+  <data name="NewItemHasNoChangesPage" xml:space="preserve">
+    <value>{0} ya es parte de tu proyecto. Elige otra página.</value>
+    <comment>{0}:Page name.</comment>
   </data>
   <data name="ChangesSummaryCategoryFailedStyleMerges" xml:space="preserve">
     <value>Errores en las combinaciones de estilo</value>
@@ -657,31 +637,51 @@
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>No podemos introducir los estilos en el diccionario de recursos.</value>
   </data>
-  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
-    <value>Application Launching</value>
-    <comment>Group header for Application Launching templates</comment>
+  <data name="TrackTelemetryException" xml:space="preserve">
+    <value>Excepción al realizar un seguimiento de la telemetría durante la generación.</value>
   </data>
   <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
-    <value>Connected Experiences</value>
+    <value>Experiencias conectadas</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
   <data name="ChangesSummaryTitleFeature" xml:space="preserve">
-    <value>Changes summary: Add feature '{0}'</value>
+    <value>Resumen de los cambios: Agregar característica '{0}'</value>
     <comment>New item wizard title for features {0}: Feature/Template name</comment>
   </data>
-  <data name="ChangesSummaryTitlePage" xml:space="preserve">
-    <value>Changes summary: Add page '{0}' </value>
-    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
-  </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another feature.</value>
+    <value>{0} ya es parte de tu proyecto. Elige otra característica.</value>
     <comment>{0}:Feature name.</comment>
   </data>
-  <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another page.</value>
-    <comment>{0}:Page name.</comment>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Refresh templates cache</value>
+    <comment>Refresh templates cache button content on overlay box control</comment>
   </data>
-  <data name="TrackTelemetryException" xml:space="preserve">
-    <value>Exception tracking telemetry during generation.</value>
+  <data name="StatusAcquired" xml:space="preserve">
+    <value>La descarga ha finalizado.</value>
+    <comment>Status message for sync new version available</comment>
+  </data>
+  <data name="StatusAcquiring" xml:space="preserve">
+    <value>Hay nuevas plantillas disponibles (v{0}). Descargando...</value>
+    <comment>Status message for sync acquiring</comment>
+  </data>
+  <data name="StatusCheckedForUpdates" xml:space="preserve">
+    <value>Listo.</value>
+    <comment>Status message for finished checking for updates</comment>
+  </data>
+  <data name="StatusCheckingForUpdates" xml:space="preserve">
+    <value>Buscando actualizaciones de plantillas...</value>
+    <comment>Status message for checking for updates</comment>
+  </data>
+  <data name="StatusNewWizardVersionAvailable" xml:space="preserve">
+    <value>La versión {0} de Windows Template Studio está disponible. Actualiza la extensión para disfrutar de las últimas características.</value>
+    <comment>Status error message for sync over version no content</comment>
+  </data>
+  <data name="StatusPreparing" xml:space="preserve">
+    <value>Preparando plantillas (v{0})...</value>
+    <comment>Status message for sync status preparing</comment>
+  </data>
+  <data name="StatusUpdating" xml:space="preserve">
+    <value>Actualizando el caché de las plantillas...</value>
+    <comment>Status message for sync status updating</comment>
   </data>
 </root>

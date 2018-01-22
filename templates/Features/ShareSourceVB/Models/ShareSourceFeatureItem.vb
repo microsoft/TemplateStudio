@@ -32,35 +32,35 @@ Namespace Models
 
         Public Property GetDeferredDataAsyncFunc As Func(Of Task(Of Object))
 
-        Private Sub New(ByVal dataType As ShareSourceFeatureItemType)
+        Private Sub New(dataType As ShareSourceFeatureItemType)
             DataType = dataType
         End Sub
 
-        Friend Shared Function FromText(ByVal text As String) As ShareSourceFeatureItem
+        Friend Shared Function FromText(text As String) As ShareSourceFeatureItem
             Return New ShareSourceFeatureItem(ShareSourceFeatureItemType.Text) With {.Text = text}
         End Function
 
-        Friend Shared Function FromWebLink(ByVal webLink As Uri) As ShareSourceFeatureItem
+        Friend Shared Function FromWebLink(webLink As Uri) As ShareSourceFeatureItem
             Return New ShareSourceFeatureItem(ShareSourceFeatureItemType.WebLink) With {.WebLink = webLink}
         End Function
 
-        Friend Shared Function FromApplicationLink(ByVal applicationLink As Uri) As ShareSourceFeatureItem
+        Friend Shared Function FromApplicationLink(applicationLink As Uri) As ShareSourceFeatureItem
             Return New ShareSourceFeatureItem(ShareSourceFeatureItemType.ApplicationLink) With {.ApplicationLink = applicationLink}
         End Function
 
-        Friend Shared Function FromHtml(ByVal html As String) As ShareSourceFeatureItem
+        Friend Shared Function FromHtml(html As String) As ShareSourceFeatureItem
             Return New ShareSourceFeatureItem(ShareSourceFeatureItemType.Html) With {.Html = html}
         End Function
 
-        Friend Shared Function FromImage(ByVal image As StorageFile) As ShareSourceFeatureItem
+        Friend Shared Function FromImage(image As StorageFile) As ShareSourceFeatureItem
             Return New ShareSourceFeatureItem(ShareSourceFeatureItemType.Image) With {.Image = image}
         End Function
 
-        Friend Shared Function FromStorageItems(ByVal storageItems As IEnumerable(Of IStorageItem)) As ShareSourceFeatureItem
+        Friend Shared Function FromStorageItems(storageItems As IEnumerable(Of IStorageItem)) As ShareSourceFeatureItem
             Return New ShareSourceFeatureItem(ShareSourceFeatureItemType.StorageItems) With {.StorageItems = storageItems}
         End Function
 
-        Friend Shared Function FromDeferredContent(ByVal deferredDataFormatId As String, ByVal getDeferredDataAsyncFunc As Func(Of Task(Of Object))) As ShareSourceFeatureItem
+        Friend Shared Function FromDeferredContent(deferredDataFormatId As String, getDeferredDataAsyncFunc As Func(Of Task(Of Object))) As ShareSourceFeatureItem
             Return New ShareSourceFeatureItem(ShareSourceFeatureItemType.DeferredContent) With {.DeferredDataFormatId = deferredDataFormatId, .GetDeferredDataAsyncFunc = getDeferredDataAsyncFunc}
         End Function
     End Class

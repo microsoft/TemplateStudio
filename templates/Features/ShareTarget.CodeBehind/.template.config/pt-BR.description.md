@@ -1,15 +1,15 @@
-﻿ShareTarget allows you to easily receive data shared by other apps, such as:
+﻿O ShareTarget permite que você receba facilmente dados compartilhados por outros aplicativos, como:
 
   * Link
   * Bitmap
   * Html
-  * Rtf text
-  * Text
+  * Texto rtf
+  * Texto
   * StorageItem
 
-It consists of an ActivationHandler, in charge of activating the app when content is sent and an extension class that provides you with methods to extract the content received.
+Ele consiste em um ActivationHandler, encarregado de ativar o aplicativo quando o conteúdo é enviado, e uma classe de extensão, que fornece os métodos para extrair o conteúdo recebido.
 
-Additionally we added in a sample page that show's how the app can receive a link or images shared by another app through the share contract.
+Além disso, adicionamos uma página de amostra que demonstra como o aplicativo pode receber um link ou imagens compartilhados por outro aplicativo por meio do contrato de compartilhamento.
 
-For more info about receiving data from other apps, consult 
+Para mais informações sobre o recebimento de dados de outros aplicativos, consulte 
 [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/app-to-app/receive-data)

@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft",
     "name": "Toast Notifications",
-    "description": "Adds code to show displaying a toast and handling it being used to launch the app.",
+    "description": "Ajoute un code pour afficher une notification toast et gérer cette dernière lorsqu\u0027elle est utilisée pour lancer l\u0027application.",
     "identity": "wts.Feat.ToastNotifications.Prism"
 }

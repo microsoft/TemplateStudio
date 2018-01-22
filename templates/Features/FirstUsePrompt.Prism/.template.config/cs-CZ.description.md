@@ -1,3 +1,3 @@
-﻿This feature will display a message to the person using it when the app is used for the first time. You can use this to provide useful instructions or information to a person who hasn't used the app before.
+﻿Tato funkce zobrazí zprávu uživateli, který ji používá, při prvním použití aplikace. Funkci můžete použít k poskytnutí užitečných pokynů nebo informací uživateli, který příslušnou aplikaci předtím nepoužíval.
 
-The message displayed is fully customizable and can display text, images, or anything else.
+Zobrazovanou zprávu je možné plně přizpůsobit a může zobrazovat text, obrázky nebo cokoli jiného.

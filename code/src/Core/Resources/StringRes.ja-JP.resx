@@ -128,6 +128,7 @@
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
     <value>クエリ "{0}" は有効ではありません。許可される演算子は '==' または '!=' です。複数の条件は、'&amp;' で区切ります。</value>
+    <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
     <value>構成ファイルを読み込みました</value>
@@ -146,21 +147,27 @@
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
     <value>次の変更を含めるファイル '{0}' が見つかりません。必要な変更を手動でプロジェクトに含めるために、コード ブロックを確認してください。</value>
+    <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
     <value>予期された行 `{0}` (ファイル '{1}') が見つかりません。事後アクション ファイルからコンテンツを手動でマージしてください。</value>
+    <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>The file {0} can't be copied to {1}. Error: {2}</value>
+    <value>ファイル {0} を {1} にコピーできません。エラー: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>フォルダー {0} を削除できません。エラー: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
     <value>ファイル {0} を削除できません。エラー: {1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>フォルダー {0} を {1} に移動できません。エラー: {2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
     <value>GenContext を初期化する際の重大なエラー。</value>
@@ -179,9 +186,11 @@
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>ファイル '{0}' のマージ ターゲットがありません</value>
+    <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>ファイル '{1}' に行 {0} が見つかりません</value>
+    <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>名前を推測できません。反復が多すぎます。</value>
@@ -191,12 +200,14 @@
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>{0} からダウンロードする際のエラー。テンプレートのアップデートをダウンロードするには、インターネット接続が必要です。</value>
+    <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
     <value>現在、テンプレートのコンテンツをダウンロードできません。後で再試行します。</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
     <value>テンプレート コンテンツが {1} から {0} にダウンロードされました。</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>テンプレートを同期する際のエラーです。ステータス: </value>
@@ -236,7 +247,7 @@
     <comment>{0}: List of unchanged files</comment>
   </data>
   <data name="SyncInstructionsTemplate" xml:space="preserve">
-    <value>*推奨される Markdown ビューワー: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*推奨される Markdown ビューアー: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
 # 新しい項目生成を含めるための手順
 指示に従って、新しい項目をプロジェクトに含めてください:
@@ -296,7 +307,7 @@
     <value>一時</value>
   </data>
   <data name="SyncSummaryTemplate" xml:space="preserve">
-    <value>*推奨される Markdown ビューワー: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*推奨される Markdown ビューアー: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
 # 生成の概要
 次の変更がプロジェクトに組み込まれました: 
@@ -324,9 +335,11 @@
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>'{0}' の無効なデジタル署名。コンテンツが改ざんされているか、証明書が存在しない、無効、または許可されていません。続行できません。</value>
+    <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
     <value>ストア {2} で拇印 {1} に一致する証明書が {0} 件見つかりました</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
     <value>見つかった証明書に秘密キーがありません。</value>
@@ -336,12 +349,15 @@
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
     <value>指定したソース '{0}' が無効です。ファイルが存在しないか、フォルダーが空です。</value>
+    <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
     <value>拇印 {0} に一致する証明書が見つかりません。CurrentUser/My および LocalMachine/My ストアで検索しました。</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
     <value>拇印 {0} の証明書が CurrentUser/My または LocalMachine/My に見つかりません。</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
     <value>パッケージに署名する際のエラーです。</value>
@@ -351,6 +367,7 @@
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
     <value>証明書 '{0}' 検証は、ステータス '{1}' で完了しました</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
     <value>## ファイル内で失敗した変更: 
@@ -383,18 +400,25 @@
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>キー '{0}' のスタイルは、このファイルにおいて異なる値または要素で既に定義されています。必要な変更を手動でプロジェクトに含めるために、スタイルを確認してください。</value>
+    <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Error acquiring content.</value>
+    <value>コンテンツを取得する際のエラーです。</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Error extracting installed templates content..</value>
+    <value>インストール済みテンプレートのコンテンツを抽出する際のエラーです。</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Error updating templates content.</value>
+    <value>テンプレートのコンテンツを更新する際のエラーです。</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Cannot remove readonly protection from file {0}</value>
+    <value>ファイル {0} の読み取り専用保護を解除できません</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
   </data>
 </root>

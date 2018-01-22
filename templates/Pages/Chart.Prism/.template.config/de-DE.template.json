@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "Chart",
-  "description": "A page displaying a simple chart, powered by Telerik UI controls for UWP.",
-  "identity": "wts.Page.Chart.Prism"
+    "author": "Microsoft Community",
+    "name": "Chart",
+    "description": "Eine Seite mit einem einfachen Diagramm, unterstützt von Telerik UI for UWP-Steuerelementen.",
+    "identity": "wts.Page.Chart.Prism"
 }

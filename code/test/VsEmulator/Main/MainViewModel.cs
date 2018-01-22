@@ -32,7 +32,9 @@ namespace Microsoft.Templates.VsEmulator.Main
     {
         private readonly MainView _host;
 
-        private string _language;
+        private bool _canRefreshTemplateCache;
+
+        private RelayCommand _refreshTemplateCacheCommand;
 
         public MainViewModel(MainView host)
         {
@@ -46,14 +48,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         public string OutputPath { get; private set; }
 
         public string ProjectPath { get; private set; }
-
-        private bool _forceLocalTemplatesRefresh = true;
-
-        public bool ForceLocalTemplatesRefresh
-        {
-            get => _forceLocalTemplatesRefresh;
-            set => SetProperty(ref _forceLocalTemplatesRefresh, value);
-        }
 
         public List<string> ProjectItems { get; } = new List<string>();
 
@@ -70,6 +64,9 @@ namespace Microsoft.Templates.VsEmulator.Main
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
 
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
+
+        public RelayCommand RefreshTemplateCacheCommand => _refreshTemplateCacheCommand ?? (_refreshTemplateCacheCommand = new RelayCommand(
+            () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await RefreshTemplateCacheAsync()), () => _canRefreshTemplateCache));
 
         public RelayCommand OpenInVsCommand => new RelayCommand(OpenInVs);
 
@@ -163,9 +160,10 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string SolutionPath { get; set; }
 
-        public void Initialize()
+        public async Task InitializeAsync()
         {
             SolutionName = null;
+            await ConfigureGenContextAsync();
         }
 
         private void NewCSharpProject()
@@ -188,9 +186,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private async Task NewProjectAsync(string language)
         {
-            _language = language;
-            ConfigureGenContext(ForceLocalTemplatesRefresh);
-
+            SetCurrentLanguage(language);
             try
             {
                 var newProjectInfo = ShowNewProjectDialog();
@@ -201,7 +197,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     GenContext.Current = this;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection(_language);
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
                     if (userSelection != null)
                     {
@@ -234,14 +230,12 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewFeature()
         {
-            ConfigureGenContext(ForceLocalTemplatesRefresh);
-
             OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
 
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.InitializedLanguage);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
 
                 if (userSelection != null)
                 {
@@ -270,13 +264,11 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewPage()
         {
-            ConfigureGenContext(ForceLocalTemplatesRefresh);
-
             OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.InitializedLanguage);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
 
                 if (userSelection != null)
                 {
@@ -308,9 +300,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var projFile = Directory.EnumerateFiles(solutionDirectory, "*.csproj", SearchOption.AllDirectories)
                         .Union(Directory.EnumerateFiles(solutionDirectory, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
-                _language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
-
-                ConfigureGenContext(ForceLocalTemplatesRefresh);
+                var language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
+                SetCurrentLanguage(language);
 
                 GenContext.Current = this;
 
@@ -321,6 +312,16 @@ namespace Microsoft.Templates.VsEmulator.Main
                 OnPropertyChanged(nameof(TempFolderAvailable));
                 ClearContext();
             }
+        }
+
+        private async Task RefreshTemplateCacheAsync()
+        {
+            UpdateCanRefreshTemplateCache(false);
+
+            await GenContext.ToolBox.Repo.RefreshAsync(true);
+            AddLog($"{DateTime.Now.FormatAsTime()} - Template cache refreshed");
+
+            UpdateCanRefreshTemplateCache(true);
         }
 
         private void ConfigureVersions()
@@ -336,7 +337,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 WizardVersion = dialog.ViewModel.Result.WizardVersion;
                 TemplatesVersion = dialog.ViewModel.Result.TemplatesVersion;
-                ConfigureGenContext(ForceLocalTemplatesRefresh);
+                ConfigureGenContextAsync().FireAndForget();
             }
         }
 
@@ -435,22 +436,31 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void AddLog(string message)
         {
             Log += message + Environment.NewLine;
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                _host.logScroll.ScrollToEnd();
-            });
         }
 
-        private void ConfigureGenContext(bool forceLocalTemplatesRefresh)
+        private void SetCurrentLanguage(string language)
+        {
+            GenContext.SetCurrentLanguage(language);
+            var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
+            fakeShell.SetCurrentLanguage(language);
+        }
+
+        private async Task ConfigureGenContextAsync()
         {
             GenContext.Bootstrap(
-                new LocalTemplatesSource(WizardVersion, TemplatesVersion, forceLocalTemplatesRefresh),
-                new FakeGenShell(_language, msg => SetState(msg), l => AddLog(l), _host),
+                new LocalTemplatesSource(TemplatesVersion, string.Empty),
+                new FakeGenShell(ProgrammingLanguages.CSharp, msg => SetState(msg), l => AddLog(l), _host),
                 new Version(WizardVersion),
-                _language);
+                ProgrammingLanguages.CSharp);
 
-            CleanUpNotUsedContentVersions();
+            await GenContext.ToolBox.Repo.RefreshAsync();
+            UpdateCanRefreshTemplateCache(true);
+        }
+
+        private void UpdateCanRefreshTemplateCache(bool canRefreshTemplateCache)
+        {
+            _canRefreshTemplateCache = canRefreshTemplateCache;
+            RefreshTemplateCacheCommand.OnCanExecuteChanged();
         }
 
         [SuppressMessage(
@@ -492,11 +502,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private string GetTemplatesFolder()
         {
-            var templatesSource = new LocalTemplatesSource(_wizardVersion, _templatesVersion);
-            var templatesSync = new TemplatesSynchronization(templatesSource, new Version(_wizardVersion));
-            string currentTemplatesFolder = templatesSync.CurrentTemplatesFolder;
-
-            return currentTemplatesFolder;
+            return @"C:\ProgramData\WindowsTemplateStudio\Templates\LocalEnv";
         }
     }
 }

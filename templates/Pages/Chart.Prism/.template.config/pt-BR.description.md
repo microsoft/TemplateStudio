@@ -1,6 +1,6 @@
-﻿A page displaying a [RadChart control](http://www.telerik.com/universal-windows-platform-ui/chart), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP).
+﻿Uma página que exibe um [controle RadChart](http://www.telerik.com/universal-windows-platform-ui/chart), da plataforma [Telerik UI para UWP](http://www.telerik.com/universal-windows-platform-ui), que está disponível [comercialmente](http://www.telerik.com/purchase/universal-windows-platform) e como [software livre](https://github.com/telerik/UI-For-UWP).
 
-RadChart control for Windows 10 apps features a rich set of chart series from Bar, Line, Area, Pie, Scatter and Polar charts to different financial series.
+O controle RadChart para aplicativos do Windows 10 tem um conjunto avançado de séries de gráficos de Barras, Linhas, Área, Pizza, Dispersão e Polares para diferentes séries financeiras.
 
-More details on using these charts can be found in [the official getting started documentation](http://docs.telerik.com/windows-universal/controls/radchart/getting-started).
+Mais detalhes sobre como usar esses gráficos podem ser encontrados na [documentação oficial de introdução](http://docs.telerik.com/windows-universal/controls/radchart/getting-started).
 

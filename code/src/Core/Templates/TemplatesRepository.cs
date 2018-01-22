@@ -21,8 +21,6 @@ namespace Microsoft.Templates.Core
 {
     public class TemplatesRepository
     {
-        private readonly string _language;
-
         private const string Separator = "|";
 
         private const string LicensesPattern = @"\[(?<text>.*?)\]\((?<url>.*?)\)\" + Separator + "?";
@@ -31,41 +29,46 @@ namespace Microsoft.Templates.Core
 
         private static readonly string[] SupportedIconTypes = { ".jpg", ".jpeg", ".png", ".xaml" };
 
+        public string CurrentLanguage { get; set; }
+
         public TemplatesSynchronization Sync { get; private set; }
 
         public string WizardVersion { get; private set; }
 
-        public string CurrentContentFolder { get => Sync?.CurrentContentFolder; }
+        public string CurrentContentFolder { get => Sync?.CurrentContent?.Path; }
 
-        public string TemplatesVersion { get => Sync.CurrentContentVersion?.ToString() ?? string.Empty; }
+        public string TemplatesVersion { get => Sync?.CurrentContent?.Version.ToString() ?? string.Empty; }
 
         public bool SyncInProgress { get => TemplatesSynchronization.SyncInProgress; }
 
         public TemplatesRepository(TemplatesSource source, Version wizardVersion, string language)
         {
-            _language = language;
+            CurrentLanguage = language;
             WizardVersion = wizardVersion.ToString();
             Sync = new TemplatesSynchronization(source, wizardVersion);
         }
 
-        public async Task SynchronizeAsync()
+        public async Task SynchronizeAsync(bool force = false)
         {
-            await Sync.DoAsync();
+            await Sync.EnsureContentAsync(force);
+            await Sync.RefreshTemplateCacheAsync(force);
+            await Sync.CheckForNewContentAsync();
         }
 
         public async Task CheckForUpdatesAsync()
         {
-            await Sync.CheckForNewContentAsync();
+            await Sync.CheckForUpdatesAsync();
         }
 
-        public async Task RefreshAsync()
+        public async Task RefreshAsync(bool force = false)
         {
-            await Sync.RefreshAsync();
+            await Sync.EnsureContentAsync();
+            await Sync.RefreshTemplateCacheAsync(force);
         }
 
         public IEnumerable<ITemplateInfo> GetAll()
         {
-            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter(_language));
+            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter(CurrentLanguage));
 
             return queryResult
                         .Where(r => r.IsMatch)
@@ -103,7 +106,7 @@ namespace Microsoft.Templates.Core
 
         private IEnumerable<MetadataInfo> GetMetadataInfo(string type)
         {
-            var folderName = Path.Combine(Sync.CurrentContentFolder, Catalog);
+            var folderName = Path.Combine(Sync?.CurrentContent.Path, Catalog);
 
             if (!Directory.Exists(folderName))
             {
@@ -116,7 +119,7 @@ namespace Microsoft.Templates.Core
 
             if (metadata.Any(m => m.Languages != null))
             {
-                metadata.RemoveAll(m => !m.Languages.Contains(_language));
+                metadata.RemoveAll(m => !m.Languages.Contains(CurrentLanguage));
             }
 
             if (File.Exists(metadataFileLocalized))

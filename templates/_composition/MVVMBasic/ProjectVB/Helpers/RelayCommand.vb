@@ -3,6 +3,7 @@
         Implements ICommand
 
         Private ReadOnly _execute As Action
+
         Private ReadOnly _canExecute As Func(Of Boolean)
 
         Public Event CanExecuteChanged As EventHandler Implements ICommand.CanExecuteChanged
@@ -74,6 +75,5 @@
         Public Sub OnCanExecuteChanged()
             RaiseEvent CanExecuteChanged(Me, EventArgs.Empty)
         End Sub
-
     End Class
 End Namespace

@@ -128,6 +128,7 @@
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
     <value>Die Abfrage „{0}“ ist nicht gültig. Zulässige Operatoren sind „==“ oder „!=“. Mehrere Bedingungen werden durch „&amp;“ getrennt.</value>
+    <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
     <value>Konfigurationsdatei geladen</value>
@@ -146,21 +147,27 @@
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
     <value>„{0}“ konnte nicht gefunden werden, um die folgenden Änderungen zu integrieren. Überprüfen Sie die Codeblöcke, um die Änderungen manuell zu integrieren, wenn für Ihr Projekt erforderlich. </value>
+    <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
     <value>Die erwartete Zeile „{0}“ konnte in der Datei „{1}“ nicht gefunden werden. Führen Sie die Inhalte aus der Postaktionsdatei manuell zusammen.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>The file {0} can't be copied to {1}. Error: {2}</value>
+    <value>Die Datei {0} kann nicht zu {1} kopiert werden. Fehler: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Der Ordner {0} kann nicht gelöscht werden. Fehler: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
     <value>Die Datei {0} kann nicht gelöscht werden. Fehler: {1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>Der Ordner {0} kann nicht zu {1} verschoben werden. Fehler: {2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
     <value>Kritischer Fehler beim Initialisieren von GenContext.</value>
@@ -179,9 +186,11 @@
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>Es gibt kein Zusammenführungsziel für die Datei „{0}“.</value>
+    <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Die Zeile {0} wurde in der Datei „{1}“ nicht gefunden.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Es ist nicht möglich, einen Namen abzuleiten. Es gibt zu viele Iterationen.</value>
@@ -191,12 +200,14 @@
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>Fehler beim Herunterladen von {0}. Für den Download von Vorlagenupdates ist eine Internetverbindung erforderlich.</value>
+    <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
     <value>Zurzeit können keine Vorlageninhalte heruntergeladen werden. Der Vorgang wird später wiederholt.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
     <value>Die Vorlageninhalte wurden von {1} zu {0} heruntergeladen.</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Fehler beim Synchronisieren von Vorlagen. Status:</value>
@@ -225,7 +236,7 @@ Um Ihr neues Objekt in das vorhandene Projekt zu integrieren, wenden Sie die fol
   </data>
   <data name="SyncInstructionsSectionNewFiles" xml:space="preserve">
     <value>## Neue Dateien:
-Kopieren Sie die folgenden Dateien und fügen Sie sie Ihrem Projekt hinzu:
+Kopieren Sie die folgenden Dateien, und fügen Sie sie Ihrem Projekt hinzu:
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
@@ -236,7 +247,7 @@ Diese Dateien sind in Ihrem Projekt bereits vorhanden. Es ist keine Aktion notwe
     <comment>{0}: List of unchanged files</comment>
   </data>
   <data name="SyncInstructionsTemplate" xml:space="preserve">
-    <value>*Empfohlener Markdown-Viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>* Empfohlener Markdown-Viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
 # Schritte zur Integration des neues Objekts
 Folgen Sie den Anweisungen, um das neue Objekt in Ihr Projekt zu integrieren:
@@ -296,7 +307,7 @@ Diese Dateien wurden Ihrem Projekt hinzugefügt.
     <value>Temp</value>
   </data>
   <data name="SyncSummaryTemplate" xml:space="preserve">
-    <value>*Empfohlener Markdown-Viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>* Empfohlener Markdown-Viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
 # Generierungsübersicht
 Die folgenden Änderungen wurden in Ihr Projekt integriert:
@@ -324,9 +335,11 @@ Sie finden die Dateien aus der Generierung im temporären Generierungsordner: {0
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>Ungültige digitale Signaturen in „{0}“. Die Inhalte wurden manipuliert oder das Zertifikat ist nicht vorhanden, nicht gültig oder nicht zulässig.  Der Vorgang kann nicht fortgesetzt werden.</value>
+    <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
     <value>Es wurden {0} Zertifikate gefunden, die dem Fingerabdruck {1} im Microsoft Store {2} entsprechen.</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
     <value>Das gefundene Zertifikat besitzt keinen privaten Schlüssel.</value>
@@ -336,12 +349,15 @@ Sie finden die Dateien aus der Generierung im temporären Generierungsordner: {0
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
     <value>Die angegebene Quelle „{0}“ ist ungültig, die Datei ist nicht vorhanden, oder der Ordner ist leer.</value>
+    <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
     <value>Es wurde kein Zertifikat gefunden, das mit dem Fingerabdruck {0} übereinstimmt. Die Suche wurde für CurrentUser/My und LocalMachine/My stores durchgeführt.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
     <value>Das Zertifikat mit dem Fingerabdruck {0} kann in CurrentUser/My oder LocalMachine/My nicht gefunden werden.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
     <value>Fehler beim Signieren des Pakets.</value>
@@ -351,6 +367,7 @@ Sie finden die Dateien aus der Generierung im temporären Generierungsordner: {0
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
     <value>Die Überprüfung des Zertifikats „{0}“ wurde mit dem Status „{1}“ beendet.</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
     <value>## Fehlgeschlagene Änderungen in Dateien:
@@ -367,7 +384,7 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
 {2}:MergeResult,</comment>
   </data>
   <data name="SyncSummaryProjectFile" xml:space="preserve">
-    <value>Projektdatei</value>
+    <value>ProjectFile</value>
   </data>
   <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
     <value>Andere Instanz synchronisiert Vorlagen... Die Wartezeit beträgt 5 Sekunden.</value>
@@ -383,18 +400,25 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>Diese Formatvorlage mit dem Schlüssel „{0}“ wurde bereits mit einem anderen Wert oder anderen Elementen in dieser Datei definiert. Überprüfen Sie die Formatvorlagen, um die Änderungen manuell zu integrieren, wenn für Ihr Projekt erforderlich.</value>
+    <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Error acquiring content.</value>
+    <value>Fehler beim Abrufen von Inhalten.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Error extracting installed templates content..</value>
+    <value>Fehler beim Extrahieren der Inhalte der installierten Vorlagen.</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Error updating templates content.</value>
+    <value>Fehler beim Aktualisieren der Inhalte der Vorlagen.</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Cannot remove readonly protection from file {0}</value>
+    <value>Der Schreibschutz für Datei {0} kann nicht entfernt werden.</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
   </data>
 </root>

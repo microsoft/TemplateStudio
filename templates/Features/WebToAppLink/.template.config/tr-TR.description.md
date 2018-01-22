@@ -1,5 +1,5 @@
-﻿Web to App link associates your app with a website so that when someone opens a link to your website, your app is launched instead of opening the browser. If your app is not installed, your website opens in the browser as usual. Users can trust this experience because only verified content owners can register for a link. Users will be able to check all of their registered web-to-app links by going to Settings > Apps > Apps for websites.
+﻿Web-Uygulama bağlantısı, web sitenize yönlendiren bir bağlantı açıldığında tarayıcının açılmayıp uygulamanızın başlatılması için uygulamanızı bir web sitesi ile ilişkilendirir. Uygulamanız yüklü değilse web siteniz her zamanki gibi tarayıcıda açılır. Yalnızca doğrulanmış içerik sahipleri bir bağlantıya kaydolabildiğinden, kullanıcılar bu deneyime güvenebilir. Kullanıcılar, Ayarlar > Uygulamalar > Web siteleri için uygulamalar bölümüne giderek kayıtlı tüm Web-uygulama bağlantılarını denetleyebilirler.
 
-For more info about web to app linking, consult 
-[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking) and
+Web-uygulama bağlantıları hakkında daha fazla bilgi için bkz. 
+[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking) ve
 [blogs.windows.com](https://blogs.windows.com/buildingapps/2016/10/14/web-to-app-linking-with-appurihandlers/)

@@ -1,3 +1,3 @@
-﻿The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books.
+﻿大纲-细节页面包含与内容相关的大纲窗格和细节窗格。如果选择了大纲列表中的某项，将更新细节窗格。这种模式常用于电子邮件和通讯簿。
 
-More information about the master-detail pattern can be found [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details).
+有关大纲-细节模式的更多信息可在 [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/master-details) 上找到。

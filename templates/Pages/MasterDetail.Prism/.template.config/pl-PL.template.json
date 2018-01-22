@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Master/Detail",
-  "description": "The master-detail page has a master pane and a details pane for content.",
-  "identity": "wts.Page.MasterDetail.Prism"
+    "author": "Microsoft",
+    "name": "Master/Detail",
+    "description": "Strona wzorzec-szczegóły zawiera okienko wzorca i okienko szczegółów treści.",
+    "identity": "wts.Page.MasterDetail.Prism"
 }

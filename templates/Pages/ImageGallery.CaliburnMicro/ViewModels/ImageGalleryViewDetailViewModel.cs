@@ -25,7 +25,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Param_Setter(ref _selectedImage, value);
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedImageId, SelectedImage.ID);
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, SelectedImage.ID);
             }
         }
 

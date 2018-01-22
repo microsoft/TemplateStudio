@@ -1,1 +1,1 @@
-﻿The settings page is the page where we recommend putting the configuration settings for your application such as setting a dark / light theme. This could also include any licenses, version number and your privacy terms.
+﻿設定頁面是我們建議放置您應用程式組態設定 (例如設定深色/淺色佈景主題) 的頁面。這可能會包含任何授權、版本號碼及您的隱私權條款。

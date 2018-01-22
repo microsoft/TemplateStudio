@@ -1,5 +1,5 @@
 ﻿# Get list of all templates
-$allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | % { Write-Output $_.FullName }
+$allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | where { $_.FullName -notmatch "\\templates\\test\\" } | % { Write-Output $_.FullName }
 Foreach ($t in $allTemplates)
 {
     # Ignore VB ones

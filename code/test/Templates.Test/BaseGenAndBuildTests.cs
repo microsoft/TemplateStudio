@@ -23,11 +23,6 @@ namespace Microsoft.Templates.Test
     {
         protected BaseGenAndBuildFixture _fixture;
 
-        private async Task SetUpFixtureForTestingAsync(string language)
-        {
-            await _fixture.InitializeFixtureAsync(language, this);
-        }
-
         protected static string ShortLanguageName(string language)
         {
             return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
@@ -40,7 +35,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            BaseGenAndBuildFixture.SetCurrentLanguage(language);
 
             var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
 
@@ -96,7 +91,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool emptyProject, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            BaseGenAndBuildFixture.SetCurrentLanguage(language);
 
             ProjectName = projectName;
             ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
@@ -171,7 +166,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language, bool cleanGeneration = true)
         {
-            await SetUpFixtureForTestingAsync(language);
+            BaseGenAndBuildFixture.SetCurrentLanguage(language);
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
             var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity == itemId);
@@ -224,19 +219,28 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities)
+        protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
         {
-            await SetUpFixtureForTestingAsync(language);
+            BaseGenAndBuildFixture.SetCurrentLanguage(language);
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
 
-            ProjectName = $"{projectType}{framework}Compare{language.Replace("#", "S")}";
+            var singlePageName = string.Empty;
+
+            var genIdentitiesList = genIdentities.ToList();
+
+            if (genIdentitiesList.Count == 1)
+            {
+                singlePageName = genIdentitiesList.Last().Split('.').Last();
+            }
+
+            ProjectName = $"{projectType}{framework}Compare{singlePageName}{ShortLanguageName(language)}";
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
             OutputPath = ProjectPath;
 
             var userSelection = _fixture.SetupProject(projectType, framework, language);
 
-            foreach (var identity in genIdentities)
+            foreach (var identity in genIdentitiesList)
             {
                 var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity.Contains(identity)
                                                                          && t.GetFrameworkList().Contains(framework));
@@ -246,6 +250,17 @@ namespace Microsoft.Templates.Test
                 if (itemTemplate.GetMultipleInstance())
                 {
                     _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
+                }
+            }
+
+            if (lastPageIsHome)
+            {
+                // Useful if creating a blank project type and want to change the start page
+                userSelection.HomeName = userSelection.Pages.Last().name;
+
+                if (projectType == "TabbedPivot")
+                {
+                    userSelection.Pages.Reverse();
                 }
             }
 
@@ -297,11 +312,14 @@ namespace Microsoft.Templates.Test
                 {
                     "wts.Page.Blank.CodeBehind", "wts.Page.Settings.CodeBehind", "wts.Page.Chart.CodeBehind",
                     "wts.Page.Grid.CodeBehind", "wts.Page.WebView.CodeBehind", "wts.Page.MediaPlayer.CodeBehind",
-                    "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind",
+                    "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind", "wts.Page.Camera.CodeBehind",
+                    "wts.Page.ImageGallery.CodeBehind", "wts.Page.MasterDetail.CodeBehind",
                     "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                     "wts.Feat.UriScheme", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
                     "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
-                    "wts.Feat.StoreNotifications"
+                    "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub.CodeBehind", "wts.Feat.MultiView",
+                    "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.UriScheme", "wts.Feat.WebToAppLink",
+                    "wts.Feat.DragAndDrop.CodeBehind"
                 };
             }
             else
@@ -310,11 +328,14 @@ namespace Microsoft.Templates.Test
                 {
                     "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
                     "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
-                    "wts.Page.TabbedPivot", "wts.Page.Map",
+                    "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
+                    "wts.Page.ImageGallery", "wts.Page.MasterDetail",
                     "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                     "wts.Feat.UriScheme", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
                     "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
-                    "wts.Feat.StoreNotifications"
+                    "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
+                    "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.UriScheme", "wts.Feat.WebToAppLink",
+                    "wts.Feat.DragAndDrop"
                 };
             }
         }
@@ -336,26 +357,26 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case "CodeBehind":
-                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
+                    result = context.Factory.Run(() => BuildTemplatesTestFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
                 case "MVVMBasic":
-                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
+                    result = context.Factory.Run(() => BuildTemplatesTestFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
                 case "MVVMLight":
-                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
+                    result = context.Factory.Run(() => BuildTemplatesTestFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
                 case "CaliburnMicro":
-                    result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetProjectTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildTemplatesTestFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
 
                 case "LegacyFrameworks":
                     result = context.Factory.Run(() => BuildRightClickWithLegacyFixture.GetProjectTemplatesAsync());
                     break;
                 case "Prism":
-                    result = context.Factory.Run(() => BuildPrismFixture.GetProjectTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildTemplatesTestFixture.GetProjectTemplatesAsync(framework, programmingLanguage));
                     break;
                 default:
                     result = context.Factory.Run(() => BuildFixture.GetProjectTemplatesAsync());
@@ -375,23 +396,23 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case "CodeBehind":
-                    result = context.Factory.Run(() => BuildCodeBehindFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildTemplatesTestFixture.GetPageAndFeatureTemplatesAsync(framework));
                     break;
 
                 case "MVVMBasic":
-                    result = context.Factory.Run(() => BuildMVVMBasicFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildTemplatesTestFixture.GetPageAndFeatureTemplatesAsync(framework));
                     break;
 
                 case "MVVMLight":
-                    result = context.Factory.Run(() => BuildMVVMLightFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildTemplatesTestFixture.GetPageAndFeatureTemplatesAsync(framework));
                     break;
 
                 case "CaliburnMicro":
-                    result = context.Factory.Run(() => BuildCaliburnMicroFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildTemplatesTestFixture.GetPageAndFeatureTemplatesAsync(framework));
                     break;
 
                 case "Prism":
-                    result = context.Factory.Run(() => BuildPrismFixture.GetPageAndFeatureTemplatesAsync(framework));
+                    result = context.Factory.Run(() => BuildTemplatesTestFixture.GetPageAndFeatureTemplatesAsync(framework));
                     break;
             }
 

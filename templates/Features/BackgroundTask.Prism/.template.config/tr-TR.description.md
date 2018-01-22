@@ -1,3 +1,3 @@
-﻿This creates an in-process background task. This will allow you to run code even while the app is not in the foreground. The in-process model enhances the application lifecycle with improved notifications for when your app is in the foreground or in the background.
+﻿Bu, işlem içi bir arka plan görevi oluşturur. Böylece uygulama ön planda olmasa da kodu çalıştırabilirsiniz. İşlem içi model, uygulamanız ön planda veya arka planda çalışırken gönderilen gelişmiş bildirimlerle uygulama yaşam döngüsünü geliştirir.
 
-To find out more about in-process background tasks, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task).
+İşlem içi arka plan görevleri hakkında daha fazla bilgi için [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task) adresine gidin.

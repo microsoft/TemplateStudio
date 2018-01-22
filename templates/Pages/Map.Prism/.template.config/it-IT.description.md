@@ -1,1 +1,1 @@
-﻿The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting a location from the Location Service and setting the map's center point.
+﻿La pagina della mappa è basata su Controllo mappa di Windows. Il codice include l'aggiunta di un'icona mappa, il rilevamento dell'itinerario dal Servizio di posizione e l'impostazione del punto centrale della mappa.

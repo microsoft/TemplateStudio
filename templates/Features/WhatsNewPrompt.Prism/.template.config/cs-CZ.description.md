@@ -1,5 +1,5 @@
-﻿After you update your app it's important to tell the people using it about the changes you make. This feature will display a message to the person using it when the app is updated.
+﻿Po aktualizaci aplikace je důležité informovat o provedených změnách uživatele, kteří ji používají. Tato funkce zobrazí zprávu uživateli, který ji používá, po aktualizaci aplikace.
 
-The message displayed is fully customizable and can be used to give details about new features or bugs that have been fixed.
+Zobrazovanou zprávu můžete plně přizpůsobit a používat k poskytování podrobných informací o nových funkcích nebo chybách, které jste opravili.
 
-Add this feature now so that it will be able to tell when it has been updated.
+Tuto funkci můžete přidat hned, aby mohla poskytovat příslušné informace, jakmile proběhne aktualizace.

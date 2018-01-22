@@ -9,7 +9,8 @@ Namespace Views
     Public NotInheritable Partial Class ImageGalleryViewPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
-        Public Const ImageGalleryViewSelectedImageId As String = "ImageGalleryViewSelectedImageId"
+
+        Public Const ImageGalleryViewSelectedIdKey As String = "ImageGalleryViewSelectedIdKey"
         Public Const ImageGalleryViewAnimationOpen As String = "ImageGalleryView_AnimationOpen"
         Public Const ImageGalleryViewAnimationClose As String = "ImageGalleryView_AnimationClose"
 
@@ -37,7 +38,7 @@ Namespace Views
         End Sub
 
         Private Async Sub ImagesGridView_Loaded(sender As Object, e As RoutedEventArgs)
-            Dim selectedImageId = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewSelectedImageId)
+            Dim selectedImageId = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewSelectedIdKey)
             If Not String.IsNullOrEmpty(selectedImageId) Then
                 Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose)
                 If animation IsNot Nothing Then
@@ -46,7 +47,7 @@ Namespace Views
                     Await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage")
                 End If
 
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedImageId, String.Empty)
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedIdKey, String.Empty)
             End If
         End Sub
     End Class

@@ -2,6 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
+
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public enum StatusType
@@ -14,7 +16,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
     public class StatusViewModel
     {
-        public static StatusViewModel EmptyStatus { get; } = new StatusViewModel(StatusType.Empty);
+        public static StatusViewModel EmptyStatus { get; } = new StatusViewModel(StatusType.Empty, null);
 
         public StatusType Status { get; set; }
 

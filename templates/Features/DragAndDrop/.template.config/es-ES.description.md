@@ -1,5 +1,5 @@
-﻿Drag and drop is a classic, natural way of interacting with content such as images and files. Once implemented, drag and drop works seamlessly in all directions, including app-to-app, app-to-desktop, and desktop-to app.
+﻿Arrastrar y colocar es una forma clásica y natural de interactuar con contenido como imágenes y archivos. Una vez implementada, la función de arrastrar y colocar funciona perfectamente en todas las direcciones: entre aplicaciones, aplicación a escritorio y escritorio a aplicación.
 
-The Drag & Drop feature provides a wrapper service over the [standard UWP drag and drop functionallity](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop) to simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
+La función de arrastrar y colocar proporciona un servicio de contenedor para la [funcionalidad estándar de arrastrar y colocar de UWP](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop) que simplifica el código necesario para crear aplicaciones listas para arrastrar y colocar y que sigue el patrón del framework que utiliza tu aplicación.
 
-[More info](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[Más información](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)

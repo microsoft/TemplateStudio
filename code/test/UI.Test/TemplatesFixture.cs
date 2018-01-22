@@ -47,12 +47,8 @@ namespace Microsoft.UI.Test
             GenContext.Current = this;
             if (!syncExecuted)
             {
-                GenContext.ToolBox.Repo.SynchronizeAsync().Wait();
+                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
                 syncExecuted = true;
-            }
-            else
-            {
-                GenContext.ToolBox.Repo.RefreshAsync().Wait();
             }
 
             Repository = GenContext.ToolBox.Repo;

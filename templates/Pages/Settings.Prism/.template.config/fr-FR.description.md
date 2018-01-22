@@ -1,1 +1,1 @@
-﻿The settings page is the page where we recommend putting the configuration settings for your application such as setting a dark / light theme. This could also include any licenses, version number and your privacy terms.
+﻿La page des paramètres est la page où nous vous recommandons de saisir les paramètres de configuration de votre application, tels que la définition d'un thème sombre ou clair. Celle-ci peut également inclure des licences, un numéro de version ou votre politique de confidentialité.

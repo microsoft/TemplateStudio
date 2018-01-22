@@ -1,3 +1,3 @@
-﻿Engaging with your customers at the right time and with the right message is key to your success as an app developer. Windows Dev Center provides a data-driven customer engagement platform you can use to send notifications to all of your customers, or only targeted to a subset of your Windows 10 customers who meet the criteria youâ€™ve defined in a customer segment.
+﻿在正确的时间使用正确的消息与客户合作，是应用开发人员取得成功的关键。Windows 开发人员中心提供了数据驱动的客户合作平台，可用于向所有客户发送通知，或仅向满足你已在“客户”部分中定义的条件的部分 Windows 10 客户发送通知。
 
-To find out more about Store Notifications, head to [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/monetize/configure-your-app-to-receive-dev-center-notifications) for a broad overview of this feature or learn about [sending notifications to your app's customers](https://docs.microsoft.com/en-us/windows/uwp/publish/send-push-notifications-to-your-apps-customers).
+若要了解有关 Store 通知的更多信息，请访问 [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/monetize/configure-your-app-to-receive-dev-center-notifications) 以获得此功能的完整概述，或了解[向你的应用客户发送通知](https://docs.microsoft.com/en-us/windows/uwp/publish/send-push-notifications-to-your-apps-customers)。

@@ -147,59 +147,59 @@
   </data>
   <data name="ExceptionDependencyCircularReference" xml:space="preserve">
     <value>V šabloně {0} byla zjištěna cyklická závislost u {1}.</value>
-    <comment>Log text for Circular Reference exception</comment>
+    <comment>Log text for Circular Reference exception, {0}:Template id, {1}: Dependency Template id</comment>
   </data>
   <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
-    <comment>Log text for Multiple Instance exception</comment>
+    <value>Položka závislosti {0} je neplatná. Závislosti je nutné nakonfigurovat jako multipleInstance = false.</value>
+    <comment>Log text for Multiple Instance exception. {0}:Dependency template id</comment>
   </data>
   <data name="ExceptionDependencyNotFound" xml:space="preserve">
     <value>Nebyla nalezena šablona závislosti {0} pro rámec (framework) {1}.</value>
-    <comment>Log text for Not Found exception</comment>
+    <comment>Log text for Not Found exception. {0}: Dependency template id, {1}: Framework</comment>
   </data>
   <data name="ExceptionDependencyType" xml:space="preserve">
     <value>Položka závislosti {0} je neplatná. Položky závislosti musí být typu Stránka nebo Funkce.</value>
-    <comment>Log text for Type exception</comment>
+    <comment>Log text for Type exception. {0}: Dependency template id</comment>
   </data>
   <data name="ExceptionGenerating" xml:space="preserve">
     <value>Šablona {0}, název: {1}, důvod: '{2}'</value>
-    <comment>Log text for Generating exception</comment>
+    <comment>Log text for Generating exception. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ExceptionLayoutNotFound" xml:space="preserve">
     <value>Nebyla nalezena šablona rozložení {0} pro rámec (framework) {1}.</value>
-    <comment>Log text for Layout Not Found exception</comment>
+    <comment>Log text for Layout Not Found exception. {0}:Layout group identity, {1}:Framework</comment>
   </data>
   <data name="ExceptionLayoutType" xml:space="preserve">
     <value>Položka rozložení {0} je neplatná. Položky rozvržení musí být typu Stránka nebo Funkce.</value>
-    <comment>Log text for Layout Type exception</comment>
+    <comment>Log text for Layout Type exception. {0}: Layout template id</comment>
   </data>
   <data name="GeneratingFeatureMessage" xml:space="preserve">
     <value>Vytváření funkce {0}...</value>
-    <comment>Generating feature log message</comment>
+    <comment>Generating feature log message. {0}: Feature and Template name</comment>
   </data>
   <data name="GeneratingPageMessage" xml:space="preserve">
     <value>Vytváření stránky {0}...</value>
-    <comment>Generating page log message</comment>
+    <comment>Generating page log message. {0}: Page and Template name</comment>
   </data>
   <data name="GeneratingProjectMessage" xml:space="preserve">
     <value>Vytváření projektu {0}...</value>
-    <comment>Generating project log message</comment>
+    <comment>Generating project log message. {0}: Project name</comment>
   </data>
   <data name="GroupFeaturesHeader_SF" xml:space="preserve">
     <value>Funkce ({0}) – Přidat několik</value>
-    <comment>Wizard new project group feature header string format</comment>
+    <comment>Wizard new project group feature header string format.{0}: Feature count</comment>
   </data>
   <data name="GroupFrameworkHeader_SF" xml:space="preserve">
     <value>Rámec (framework) ({0}) – Vybrat jeden</value>
-    <comment>Wizard new project group framework header string format</comment>
+    <comment>Wizard new project group framework header string format. {0}: Framework count</comment>
   </data>
   <data name="GroupPagesHeader_SF" xml:space="preserve">
     <value>Stránky ({0}) – Přidat několik</value>
-    <comment>Wizard new project group page header string format</comment>
+    <comment>Wizard new project group page header string format.{0}: Pages count</comment>
   </data>
   <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
     <value>Typ projektu ({0}) – Vybrat jeden</value>
-    <comment>Wizard new project group project type header string format</comment>
+    <comment>Wizard new project group project type header string format. {0}: Project type count</comment>
   </data>
   <data name="NoContentText" xml:space="preserve">
     <value>Není k dispozici žádný obsah.</value>
@@ -215,39 +215,15 @@
   </data>
   <data name="ResetSelection" xml:space="preserve">
     <value>Změnili jste výběr typu projektu nebo rámce (framework). Pokud budete pokračovat, budou zrušeny výběry stránek a funkce. Naposledy jste vybrali: {0} a {1}.</value>
-    <comment>Wizard new project reset selection error message</comment>
+    <comment>Wizard new project reset selection error message. {0}:Project Type, {1}: Framework</comment>
   </data>
   <data name="RestoringMessage" xml:space="preserve">
     <value>Obnovování balíčků...</value>
     <comment>Status bar message for restoring</comment>
   </data>
-  <data name="StatusAcquired" xml:space="preserve">
-    <value>Hotovo</value>
-    <comment>Status message for sync acquired</comment>
-  </data>
-  <data name="StatusAcquiring" xml:space="preserve">
-    <value>Kontrola dostupnosti aktualizací šablon...</value>
-    <comment>Status message for sync acquiring</comment>
-  </data>
-  <data name="StatusLowerVersionContent" xml:space="preserve">
-    <value>Není k dispozici žádný obsah šablon pro aktuální verzi průvodce. Ověřte, zda máte připojení, a spusťte průvodce znovu.</value>
-    <comment>Status error message for sync lower version content</comment>
-  </data>
-  <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>Je k dispozici aktualizace pro šablony, ale není kompatibilní s touto verzí průvodce. K získání přístupu k nejnovějším šablonám je třeba aktualizovat rozšíření.</value>
-    <comment>Status warning message for sync over version content</comment>
-  </data>
-  <data name="StatusOverVersionNoContent" xml:space="preserve">
-    <value>Není k dispozici žádný obsah pro tuto verzi rozšíření. K získání přístupu k nejnovějšímu obsahu je třeba aktualizovat rozšíření.</value>
-    <comment>Status error message for sync over version no content</comment>
-  </data>
   <data name="StatusUpdated" xml:space="preserve">
     <value>Šablony byly aktualizovány.</value>
     <comment>Status message for sync status updated</comment>
-  </data>
-  <data name="StatusUpdating" xml:space="preserve">
-    <value>Aktualizace šablon...</value>
-    <comment>Status message for sync status updating</comment>
   </data>
   <data name="SummaryFeaturesTitle" xml:space="preserve">
     <value>Funkce</value>
@@ -289,6 +265,10 @@
     <value>Interakce uživatele</value>
     <comment>Group header for user interaction templates</comment>
   </data>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Spuštění aplikace</value>
+    <comment>Group header for Application Launching templates</comment>
+  </data>
   <data name="TemplatesVersion" xml:space="preserve">
     <value>Šablony:</value>
     <comment>Templates version title</comment>
@@ -318,12 +298,12 @@
     <comment>Template name validation error message for already exists</comment>
   </data>
   <data name="ValidationError_BadFormat" xml:space="preserve">
-    <value>Jsou povolené jenom alfanumerické znaky a znak podtržítka (_).</value>
+    <value>Jsou povoleny jen alfanumerické znaky a znak podtržítka (_).</value>
     <comment>Template name validation error message for bad format</comment>
   </data>
   <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
-    <value>Nelze odebrat šablonu {0}, protože na ní závisí {1}.</value>
-    <comment>Template name validation error message for can not remove template string format</comment>
+    <value>Nelze odebrat šablonu {0}, protože na ní závisí šablona {1}.</value>
+    <comment>Template name validation error message for can not remove template string format. {0}:Template name, {1}:Dependency template name</comment>
   </data>
   <data name="ValidationError_Empty" xml:space="preserve">
     <value>Název nesmí být prázdný.</value>
@@ -384,10 +364,6 @@
     <value>Šablony jsou připravené.</value>
     <comment>Status message for sync status prepared</comment>
   </data>
-  <data name="StatusPreparing" xml:space="preserve">
-    <value>Příprava šablon pro první použití...</value>
-    <comment>Status message for sync status preparing</comment>
-  </data>
   <data name="UnableAddItemsToProject" xml:space="preserve">
     <value>Nelze přidat položky projektu. Ujistěte se, že máte požadovanou sadu SDK.</value>
     <comment>Track event message for unable add items to project</comment>
@@ -410,7 +386,7 @@
   </data>
   <data name="InformationWindowInitializeViewModelMessage" xml:space="preserve">
     <value>Typ {0} není očekáván jako platný typ pro okno s informacemi.</value>
-    <comment>Exception message for Information Window</comment>
+    <comment>Exception message for Information Window, {0}: window type</comment>
   </data>
   <data name="UndefinedErrorString" xml:space="preserve">
     <value>UndefinedError</value>
@@ -462,11 +438,11 @@
   </data>
   <data name="GroupFeatureHeader_SF" xml:space="preserve">
     <value>Funkce ({0}) – Vybrat jednu</value>
-    <comment>Wizard new item group feature header string format</comment>
+    <comment>Wizard new item group feature header string format. {0}: Feature count</comment>
   </data>
   <data name="GroupPageHeader_SF" xml:space="preserve">
     <value>Stránky ({0}) – Vybrat jednu</value>
-    <comment>Wizard new item group page header string format</comment>
+    <comment>Wizard new item group page header string format. {0}: Pages count</comment>
   </data>
   <data name="NewItemName" xml:space="preserve">
     <value>Název:</value>
@@ -492,6 +468,10 @@
     <value>Zkontrolovat dostupnost nových šablon</value>
     <comment>check for templates updates button content on overlay box control</comment>
   </data>
+  <data name="ChangesSummaryTitlePage" xml:space="preserve">
+    <value>Souhrn změn: Přidat stránku {0} </value>
+    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
+  </data>
   <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
     <value>Neúspěšná sloučení</value>
     <comment>Category name of failed merges</comment>
@@ -515,10 +495,6 @@
   <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
     <value>Neupravené soubory</value>
     <comment>Category name of unchanged files</comment>
-  </data>
-  <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>K dispozici je nový obsah šablony.</value>
-    <comment>Status message for sync new version available</comment>
   </data>
   <data name="ErrorSyncRefresh" xml:space="preserve">
     <value>Při aktualizaci šablon došlo k chybě. Podrobnější informace najdete ve výstupu.</value>
@@ -570,7 +546,7 @@
   </data>
   <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
     <value>Funkce {0} byla úspěšně přidána.</value>
-    <comment>Status bar message for Feature successfully added</comment>
+    <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
   </data>
   <data name="NewItemAddPageCancelled" xml:space="preserve">
     <value>Přidání nové stránky bylo zrušeno.</value>
@@ -578,7 +554,7 @@
   </data>
   <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
     <value>Stránka {0} byla úspěšně přidána.</value>
-    <comment>Status bar message for Page successfully added</comment>
+    <comment>Status bar message for Page successfully added, {0}: Page Name</comment>
   </data>
   <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
     <value>Licence</value>
@@ -646,7 +622,11 @@
   </data>
   <data name="ExceptionDependencyMissing" xml:space="preserve">
     <value>Ve výběru uživatele nebyla nalezena šablona závislosti {0}.</value>
-    <comment>Log text for misssing dependency exception.</comment>
+    <comment>Log text for misssing dependency exception. {0}: Dependency template id</comment>
+  </data>
+  <data name="NewItemHasNoChangesPage" xml:space="preserve">
+    <value>{0} je už součástí vašeho projektu. Zvolte jinou stránku.</value>
+    <comment>{0}:Page name.</comment>
   </data>
   <data name="ChangesSummaryCategoryFailedStyleMerges" xml:space="preserve">
     <value>Neúspěšná sloučení stylů</value>
@@ -657,31 +637,51 @@
   <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
     <value>Nemůžeme zahrnout styly do slovníku prostředků.</value>
   </data>
-  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
-    <value>Application Launching</value>
-    <comment>Group header for Application Launching templates</comment>
+  <data name="TrackTelemetryException" xml:space="preserve">
+    <value>Telemetrie sledování výjimky během generování</value>
   </data>
   <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
-    <value>Connected Experiences</value>
+    <value>Propojená prostředí</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
   <data name="ChangesSummaryTitleFeature" xml:space="preserve">
-    <value>Changes summary: Add feature '{0}'</value>
+    <value>Souhrn změn: Přidat funkci {0}</value>
     <comment>New item wizard title for features {0}: Feature/Template name</comment>
   </data>
-  <data name="ChangesSummaryTitlePage" xml:space="preserve">
-    <value>Changes summary: Add page '{0}' </value>
-    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
-  </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another feature.</value>
+    <value>{0} je už součástí vašeho projektu. Zvolte jinou funkci.</value>
     <comment>{0}:Feature name.</comment>
   </data>
-  <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another page.</value>
-    <comment>{0}:Page name.</comment>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Refresh templates cache</value>
+    <comment>Refresh templates cache button content on overlay box control</comment>
   </data>
-  <data name="TrackTelemetryException" xml:space="preserve">
-    <value>Exception tracking telemetry during generation.</value>
+  <data name="StatusAcquired" xml:space="preserve">
+    <value>Stahování bylo dokončeno.</value>
+    <comment>Status message for sync new version available</comment>
+  </data>
+  <data name="StatusAcquiring" xml:space="preserve">
+    <value>Jsou dostupné nové šablony (verze {0}). Probíhá stahování...</value>
+    <comment>Status message for sync acquiring</comment>
+  </data>
+  <data name="StatusCheckedForUpdates" xml:space="preserve">
+    <value>Hotovo</value>
+    <comment>Status message for finished checking for updates</comment>
+  </data>
+  <data name="StatusCheckingForUpdates" xml:space="preserve">
+    <value>Kontrola dostupnosti aktualizací šablon...</value>
+    <comment>Status message for checking for updates</comment>
+  </data>
+  <data name="StatusNewWizardVersionAvailable" xml:space="preserve">
+    <value>Je dostupná verze Windows Template Studio {0}. Aktualizací rozšíření získáte přístup k nejnovějším funkcím.</value>
+    <comment>Status error message for sync over version no content</comment>
+  </data>
+  <data name="StatusPreparing" xml:space="preserve">
+    <value>Příprava šablon (verze {0})...</value>
+    <comment>Status message for sync status preparing</comment>
+  </data>
+  <data name="StatusUpdating" xml:space="preserve">
+    <value>Aktualizace mezipaměti šablon...</value>
+    <comment>Status message for sync status updating</comment>
   </data>
 </root>
