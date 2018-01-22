@@ -136,6 +136,10 @@
     <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\3.0\System.Management.Automation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
@@ -202,46 +206,61 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuildPrismTests\BuildPrismCollection.cs" />
-    <Compile Include="BuildPrismTests\BuildPrismFixture.cs" />
-    <Compile Include="BuildPrismTests\BuildPrismProjectTests.cs" />
-    <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroCollection.cs" />
-    <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroFixture.cs" />
-    <Compile Include="BuildCaliburnMicroTests\BuildCaliburnMicroProjectTests.cs" />
-    <Compile Include="BuildCodeBehindTests\BuildCodeBehindCollection.cs" />
-    <Compile Include="BuildCodeBehindTests\BuildCodeBehindProjectTests.cs" />
-    <Compile Include="BuildMVVMBasic\BuildMVVMBasicCollection.cs" />
-    <Compile Include="BuildMVVMBasic\BuildMVVMBasicFixture.cs" />
-    <Compile Include="BuildMVVMBasic\BuildMVVMBasicProjectTests.cs" />
-    <Compile Include="BuildMVVMLightTests\BuildMVVMLightCollection.cs" />
-    <Compile Include="BuildMVVMLightTests\BuildMVVMLightFixture.cs" />
-    <Compile Include="BuildCodeBehindTests\BuildCodeBehindFixture.cs" />
-    <Compile Include="BuildFixture.cs" />
-    <Compile Include="BuildMVVMLightTests\BuildMVVMLightProjectTests.cs" />
     <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyCollection.cs" />
     <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyFixture.cs" />
     <Compile Include="BuildRightClickWithLegacy\BuildRightClickWithLegacyTests.cs" />
-    <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSource.cs" />
+    <Compile Include="BuildRightClickWithLegacy\LegacyTemplatesSourceV2.cs" />
+    <Compile Include="BuildTemplatesTests\BuildMVVMBasicProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\BuildMVVMLightProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\BuildPrismProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\BuildTemplatesTestCollection.cs" />
+    <Compile Include="BuildTemplatesTests\BuildTemplatesTestFixture.cs" />
+    <Compile Include="BuildTemplatesTests\BuildCaliburnMicroProjectTests.cs" />
+    <Compile Include="BuildTemplatesTests\BuildCodeBehindProjectTests.cs" />
+    <Compile Include="BuildFixture.cs" />
+    <Compile Include="CodeAnalysis\VBStyleProjectGenerationTests.cs" />
+    <Compile Include="CodeAnalysis\VBStyleGenerationTestsFixture.cs" />
+    <Compile Include="CodeAnalysis\VBStyleCollection.cs" />
     <Compile Include="CodeAnalysis\SonarLintCollection.cs" />
     <Compile Include="CodeAnalysis\SonarLintGenerationTestsFixture.cs" />
-    <Compile Include="CodeAnalysis\SonarLintPlusLocalTemplatesSource.cs" />
     <Compile Include="CodeAnalysis\SonarLintProjectGenerationTests.cs" />
+    <Compile Include="CodeAnalysis\StyleCopCollection.cs" />
+    <Compile Include="CodeAnalysis\StyleCopGenerationTestsFixture.cs" />
+    <Compile Include="CodeAnalysis\StyleCopProjectGenerationTests.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />
     <Compile Include="CodeStyleEnforcementTests.cs" />
     <Compile Include="GenTests\LanguageComparisonTests.cs" />
     <Compile Include="GenTests\GenProjectTests.cs" />
+    <None Include="VisualTests\TestProjectSource\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\TestProjectSource\TestAppInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\TestProjectSource\Tests\LaunchBothAppsAndCompareInitialScreenshots.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\TestProjectSource\Tests\TestBase.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\TestProjectSource\Utils\ImageComparer.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\TestProjectSource\Utils\VirtualKeyboard.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\TestProjectSource\Utils\WindowsElementExtensions.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Compile Include="VisualTests\VisualComparisonTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
     <Compile Include="BaseGenAndBuildFixture.cs" />
-    <Compile Include="CodeAnalysis\StyleCopCollection.cs" />
-    <Compile Include="CodeAnalysis\StyleCopGenerationTestsFixture.cs" />
-    <Compile Include="CodeAnalysis\StyleCopProjectGenerationTests.cs" />
     <Compile Include="BuildCollection.cs" />
     <Compile Include="GenTests\GenerationFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CodeAnalysis\StyleCopPlusLocalTemplatesSource.cs" />
     <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
@@ -254,13 +273,7 @@
     <None Include="RestoreAndBuildAppx.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\SonarLintVB\.template.config\template.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\SonarLintVB\WTSVBRules.ruleset">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\StyleCop\GlobalSuppressions.cs">
+    <None Include="VisualTests\TestProjectSource\packages.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -273,9 +286,6 @@
     </None>
     <None Include="RestoreAndBuild.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\StyleCop\.template.config\template.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -298,16 +308,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TestData\StyleCop\_postaction.csproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TestData\StyleCop\_searchreplace.csproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestData\NonDefaultAssets\LockScreenLogo.scale-200.png">
@@ -334,18 +334,13 @@
     <Content Include="TestData\NonDefaultAssets\Wide310x150Logo.scale-200.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\SonarLintVB\_searchreplace.1.vbproj">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="TestData\StyleCop\_searchreplace.1.csproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TestData\SonarLintVB\_searchreplace.vbproj">
+    <None Include="VisualTests\TestProjectSource\nuget.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\SonarLintVB\_postaction.vbproj">
+    <None Include="VisualTests\TestProjectSource\AutomatedUITests.sln">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="VisualTests\TestProjectSource\AutomatedUITests.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

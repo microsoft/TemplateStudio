@@ -78,7 +78,11 @@ Namespace ViewModels
 
         Public Property SelectedForeground As SolidColorBrush
             Get
-                Return If(_selectedForeground, (InlineAssignHelper(_selectedForeground, GetStandardTextColorBrush())))
+                If _selectedForeground Is Nothing Then
+                    _selectedForeground = GetStandardTextColorBrush()
+                End If
+
+                Return _selectedForeground
             End Get
             Set
                 [Set](_selectedForeground, value)
@@ -111,11 +115,5 @@ Namespace ViewModels
         Public Overrides Function ToString() As String
             Return Label
         End Function
-
-        Private Shared Function InlineAssignHelper(Of T)(ByRef target As T, value As T) As T
-            target = value
-            Return value
-        End Function
-
     End Class
 End Namespace

@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -47,6 +48,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private RelayCommand _refreshTemplatesCommand;
 
+        private RelayCommand _refreshTemplatesCacheCommand;
+
         protected int CurrentStep { get; private set; }
 
         public WizardStatus WizardStatus { get; } = new WizardStatus();
@@ -67,6 +70,21 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(
             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
+
+        public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
+            () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync(true))));
+
+        public bool CanForceRefreshTemplateCache
+        {
+            get
+            {
+                #if DEBUG
+                    return true;
+                #else
+                    return false;
+                #endif
+            }
+        }
 
         public BaseMainViewModel()
         {
@@ -183,13 +201,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    WizardStatus.SetStatus(status.Status.GetStatusViewModel());
+                    WizardStatus.SetStatus(status.Status.GetStatusViewModel(status.Version));
             });
 
-            if (status.Status == SyncStatus.Updated)
+            if (status.Status == SyncStatus.Ready || status.Status == SyncStatus.Updated)
             {
                 WizardStatus.TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
-                CleanStatus();
 
                 UpdateTemplatesAvailable(true);
                 await OnTemplatesAvailableAsync();
@@ -197,34 +214,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 UpdateCanCheckUpdates(true);
             }
 
-            if (status.Status == SyncStatus.OverVersion)
-            {
-                SafeThreading.JoinableTaskFactory.Run(async () =>
-                {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    UpdateTemplatesAvailable(true);
-                });
-            }
-
-            if (status.Status == SyncStatus.OverVersionNoContent)
-            {
-                SafeThreading.JoinableTaskFactory.Run(async () =>
-                {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    UpdateTemplatesAvailable(false);
-                });
-            }
-
-            if (status.Status == SyncStatus.UnderVersion)
-            {
-                SafeThreading.JoinableTaskFactory.Run(async () =>
-                {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    UpdateTemplatesAvailable(false);
-                });
-            }
-
-            if (status.Status == SyncStatus.NewVersionAvailable)
+            if (status.Status == SyncStatus.Acquired)
             {
                 WizardStatus.NewVersionAvailable = true;
             }
@@ -232,13 +222,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public void UnsuscribeEventHandlers() => GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= SyncSyncStatusChanged;
 
-        private async Task OnRefreshTemplatesAsync()
+        private async Task OnRefreshTemplatesAsync(bool force = false)
         {
             try
             {
-                await GenContext.ToolBox.Repo.RefreshAsync();
+                await GenContext.ToolBox.Repo.RefreshAsync(force);
                 WizardStatus.TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
                 await OnNewTemplatesAvailableAsync();
+                ResetWizardSteps();
                 WizardStatus.NewVersionAvailable = false;
                 WizardStatus.SetStatus(StatusViewModel.Information(StringRes.StatusUpdated, true, 5));
             }
@@ -253,6 +244,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
             }
+        }
+
+        public void ResetWizardSteps()
+        {
+            CurrentStep = 0;
+            UpdateCanGoBack(false);
+            UpdateCanGoForward(true);
+            UpdateCanFinish(false);
         }
 
         private async Task OnCheckUpdatesAsync()

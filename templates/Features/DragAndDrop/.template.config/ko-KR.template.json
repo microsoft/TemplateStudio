@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps.",
+  "description": "끌어서 놓기 기능은 앱에서 끌어서 놓기 기능을 간단하게 만드는 서비스를 제공합니다.",
   "identity": "wts.Feat.DragAndDrop"
 }

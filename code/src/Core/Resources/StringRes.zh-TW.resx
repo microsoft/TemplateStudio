@@ -128,6 +128,7 @@
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
     <value>查詢「{0}」無效。允許的運算子為 '==' 或 '!='。多個條件會以 '&amp;' 分隔。</value>
+    <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
     <value>已載入組態檔</value>
@@ -146,21 +147,27 @@
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
     <value>找不到要包含以下變更的檔案 '{0}'。請檢閱要在您的專案所需的地方手動加入變更的程式碼區塊。</value>
+    <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
     <value>在檔案 '{1}' 中找不到預期的行 `{0}`。請手動合併 postaction 檔案中的內容。</value>
+    <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>The file {0} can't be copied to {1}. Error: {2}</value>
+    <value>檔案 {0} 無法複製到 {1}。錯誤：{2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>無法刪除資料夾 {0}。錯誤：{1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
     <value>無法刪除檔案 {0}。錯誤：{1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>資料夾 {0} 無法移到 {1}。錯誤：{2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
     <value>初始化 GenContext 時發生嚴重錯誤。</value>
@@ -179,9 +186,11 @@
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>檔案 '{0}' 沒有合併目標</value>
+    <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>檔案 '{1}' 中找不到行 {0}</value>
+    <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>無法推斷名稱。有太多反覆項目</value>
@@ -191,12 +200,14 @@
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>從 {0} 下載時發生錯誤。需要網際網路連線才能下載範本更新。</value>
+    <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
     <value>目前無法下載範本內容，我們將於稍後重試。</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
     <value>範本內容已從 {1} 下載到 {0}。</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>同步範本時發生錯誤。狀態：</value>
@@ -324,9 +335,11 @@
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>'{0}' 中的數位簽章無效。內容已遭篡改，或是憑證不存在、無效或不被允許。無法繼續進行。</value>
+    <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
     <value>在存放區 {2} 中找到符合指紋 {1} 的 {0} 憑證</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
     <value>找到的憑證沒有私密金鑰。</value>
@@ -336,12 +349,15 @@
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
     <value>指定的來源 '{0}' 無效、檔案不存在或資料夾是空的。</value>
+    <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
     <value>找不到符合指紋 {0} 的任何憑證。已在 CurrentUser/My 和 LocalMachine/My 存放區中搜尋。</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
     <value>在 CurrentUser/My 或 LocalMachine/My 中找不到有指紋 {0} 的憑證。</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
     <value>簽署封裝時發生錯誤。</value>
@@ -351,6 +367,7 @@
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
     <value>憑證 '{0}' 驗證已完成，狀態為 '{1}'</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
     <value>## 檔案中的失敗變更：
@@ -383,18 +400,25 @@
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>這個檔案中已經有包含金鑰 '{0}' 的樣式定義了不同的值或元素。請檢閱要在您的專案所需的地方手動加入變更的樣式。</value>
+    <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Error acquiring content.</value>
+    <value>取得內容時發生錯誤。</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Error extracting installed templates content..</value>
+    <value>解壓縮已安裝的範本內容時發生錯誤。</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Error updating templates content.</value>
+    <value>更新範本內容時發生錯誤。</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Cannot remove readonly protection from file {0}</value>
+    <value>無法從檔案 {0} 中移除唯讀保護</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
   </data>
 </root>

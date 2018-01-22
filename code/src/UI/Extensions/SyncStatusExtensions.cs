@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
@@ -10,27 +11,22 @@ namespace Microsoft.Templates.UI.Extensions
 {
     public static class SyncStatusExtensions
     {
-        public static StatusViewModel GetStatusViewModel(this SyncStatus status)
+        public static StatusViewModel GetStatusViewModel(this SyncStatus status, Version version)
         {
-            if (status == SyncStatus.None)
+            if (status == SyncStatus.None || status == SyncStatus.Ready)
             {
                 return StatusViewModel.EmptyStatus;
             }
 
-            return new StatusViewModel(status.GetStatusType(), status.GetResourceString(), true, status.GetStatusHideSeconds());
+            return new StatusViewModel(status.GetStatusType(), status.GetResourceString(version), true, status.GetStatusHideSeconds());
         }
 
         private static StatusType GetStatusType(this SyncStatus status)
         {
             switch (status)
             {
-                case SyncStatus.OverVersion:
+                case SyncStatus.NewWizardVersionAvailable:
                     return StatusType.Warning;
-
-                case SyncStatus.OverVersionNoContent:
-                case SyncStatus.UnderVersion:
-                    return StatusType.Error;
-
                 default:
                     return StatusType.Information;
             }
@@ -47,7 +43,7 @@ namespace Microsoft.Templates.UI.Extensions
             }
         }
 
-        private static string GetResourceString(this SyncStatus status)
+        private static string GetResourceString(this SyncStatus status, Version version)
         {
             switch (status)
             {
@@ -56,19 +52,19 @@ namespace Microsoft.Templates.UI.Extensions
                 case SyncStatus.Updated:
                     return StringRes.StatusUpdated;
                 case SyncStatus.Acquiring:
-                    return StringRes.StatusAcquiring;
+                    return string.Format(StringRes.StatusAcquiring, version);
                 case SyncStatus.Acquired:
                     return StringRes.StatusAcquired;
                 case SyncStatus.Preparing:
-                    return StringRes.StatusPreparing;
+                    return string.Format(StringRes.StatusPreparing, version);
                 case SyncStatus.Prepared:
                     return StringRes.StatusPrepared;
-                case SyncStatus.NewVersionAvailable:
-                    return StringRes.StatusNewVersionAvailable;
-                case SyncStatus.OverVersion:
-                    return StringRes.StatusOverVersionContent;
-                case SyncStatus.OverVersionNoContent:
-                    return StringRes.StatusOverVersionNoContent;
+                case SyncStatus.NewWizardVersionAvailable:
+                    return string.Format(StringRes.StatusNewWizardVersionAvailable, version);
+                case SyncStatus.CheckingForUpdates:
+                    return StringRes.StatusCheckingForUpdates;
+                case SyncStatus.CheckedForUpdates:
+                    return StringRes.StatusCheckedForUpdates;
                 default:
                     return string.Empty;
             }

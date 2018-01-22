@@ -16,7 +16,7 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class ImageGalleryViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        public const string ImageGalleryViewSelectedImageId = "ImageGalleryViewSelectedImageId";
+        public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
         public const string ImageGalleryViewAnimationOpen = "ImageGalleryView_AnimationOpen";
         public const string ImageGalleryViewAnimationClose = "ImageGalleryView_AnimationClose";
 
@@ -41,7 +41,7 @@ namespace Param_ItemNamespace.ViewModels
         public async Task LoadAnimationAsync(GridView imagesGridView)
         {
             _imagesGridView = imagesGridView;
-            var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedImageId);
+            var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedIdKey);
             if (!string.IsNullOrEmpty(selectedImageId))
             {
                 var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose);
@@ -52,7 +52,7 @@ namespace Param_ItemNamespace.ViewModels
                     await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
                 }
 
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedImageId, string.Empty);
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedIdKey, string.Empty);
             }
         }
     }

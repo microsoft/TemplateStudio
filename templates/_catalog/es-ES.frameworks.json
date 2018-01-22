@@ -18,5 +18,10 @@
     "name": "CaliburnMicro",
     "displayName": "Caliburn.Micro",
     "summary": "Caliburn.Micro es un framework MVVM popular que enfatiza las convenciones y la redacción."
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism es un framework para compilar aplicaciones XAML acopladas de forma imprecisa, fácil de mantener y con capacidad de prueba."
   }
 ]

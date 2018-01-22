@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Drag & Drop",
+  "description": "The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps.",
+  "identity": "wts.Feat.DragAndDrop.VB"
+}

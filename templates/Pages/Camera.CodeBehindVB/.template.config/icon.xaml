@@ -9,7 +9,7 @@
       <Canvas.RenderTransform>
         <MatrixTransform Matrix="0.54135135 0 0 0.54134628 -16.601351 -16.090787"/>
       </Canvas.RenderTransform>
-      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path48" Fill="#000000" StrokeThickness="0">
+      <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path48" Fill="#000000"  StrokeThickness="0">
         <Path.Data>
           <PathGeometry Figures="M 119.3335 106.84619 H 30.6665 V 49.27246 h 27.41211 l 3.53223 -6.11865 h 26.77832 l 3.53223 6.11865 h 27.41211 z m -83.667 -5 h 78.66699 V 54.27246 H 89.03467 L 85.50244 48.15381 H 64.49756 l -3.53223 6.11865 H 35.6665 Z" FillRule="NonZero"/>
         </Path.Data>

@@ -45,7 +45,7 @@ Namespace Services
             Frame.GoForward()
         End Sub
 
-        Public Function Navigate(pageType As Type, Optional ByVal parameter As Object = Nothing, Optional ByVal infoOverride As NavigationTransitionInfo = Nothing) As Boolean
+        Public Function Navigate(pageType As Type, Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
             ' Don't open the same page multiple times
             If Frame.Content?.GetType IsNot pageType.GetType Then
                 Return Frame.Navigate(pageType, parameter, infoOverride)
@@ -54,7 +54,7 @@ Namespace Services
             End If
         End Function
 
-        Public Function Navigate(Of T As Page)(Optional ByVal parameter As Object = Nothing, Optional ByVal infoOverride As NavigationTransitionInfo = Nothing) As Boolean
+        Public Function Navigate(Of T As Page)(Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
             Return Navigate(GetType(T), parameter, infoOverride)
         End Function
 

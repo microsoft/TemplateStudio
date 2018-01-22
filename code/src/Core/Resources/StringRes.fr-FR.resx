@@ -128,6 +128,7 @@
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
     <value>La requête « {0} » n'est pas valide. Les opérateurs autorisés sont « == » ou « != ». Les conditions multiples sont séparées par des « &amp; ».</value>
+    <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
     <value>Fichier de configuration chargé</value>
@@ -146,21 +147,27 @@
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
     <value>Impossible de trouver le fichier « {0} » pour inclure les modifications suivantes. Veuillez passer en revue les blocages de code pour inclure les modifications manuellement lorsque cela est nécessaire dans le cadre de votre projet. </value>
+    <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
     <value>Impossible de trouver la rangée « {0} » prévue dans le fichier « {1} ». Veuillez fusionner le contenu depuis le fichier de post-action manuellement.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>The file {0} can't be copied to {1}. Error: {2}</value>
+    <value>Le fichier {0} ne peut pas être copié vers {1}. Erreur : {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
     <value>Le dossier {0} ne peut pas être supprimé. Erreur : {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
     <value>Le fichier {0} ne peut pas être supprimé. Erreur : {1}</value>
+    <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
     <value>Le dossier {0} ne peut pas être déplacé vers {1}. Erreur : {2}</value>
+    <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
     <value>Une erreur critique est survenue lors de l'initialisation de GenContext.</value>
@@ -179,9 +186,11 @@
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
     <value>Aucune cible de fusion pour le fichier « {0} »</value>
+    <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
     <value>Ligne {0} introuvable dans le fichier « {1} »</value>
+    <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Impossible de déduire un nom. Trop d'itérations</value>
@@ -191,12 +200,14 @@
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>Une erreur est survenue lors du téléchargement de {0}. Une connexion à Internet est requise pour télécharger les mises à jour du modèle.</value>
+    <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
     <value>Le contenu des modèles ne peut être téléchargé actuellement, nous réessaierons ultérieurement.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
     <value>Le contenu des modèles est téléchargé sur {0} depuis {1}.</value>
+    <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Une erreur est survenue lors de la synchronisation des modèles. État :</value>
@@ -324,9 +335,11 @@ Vous pouvez trouver les fichiers de la génération dans le dossier de générat
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>Signatures numériques non valides dans «{0}». Le contenu a été trafiqué ou le certificat est manquant, non valide ou non autorisé.  Impossible de continuer.</value>
+    <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
     <value>{0} certificats trouvés correspondant à l'empreinte {1} dans le magasin {2}</value>
+    <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
     <value>Le certificat trouvé ne dispose pas d'une clé privée.</value>
@@ -336,12 +349,15 @@ Vous pouvez trouver les fichiers de la génération dans le dossier de générat
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
     <value>La source spécifiée « {0} » n'est pas valide, le fichier n'existe pas ou le dossier est vide.</value>
+    <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
     <value>Aucun certificat ne correspond à l'empreinte {0}. Recherche effectuée dans les magasins CurrentUser/My et LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
     <value>Le certificat avec l'empreinte {0} est introuvable dans CurrentUser/My ou LocalMachine/My.</value>
+    <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
     <value>Erreur de signature du package.</value>
@@ -351,6 +367,7 @@ Vous pouvez trouver les fichiers de la génération dans le dossier de générat
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
     <value>La vérification du certificat « {0} » s'est achevée avec l'état « {1} »</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
     <value>### Échec des modifications dans les fichiers :
@@ -383,18 +400,25 @@ Les modifications suivantes n'ont pu être intégrées : {2}
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
     <value>Le style doté de la clé « {0} » a déjà été défini avec une valeur ou des éléments différents dans ce fichier. Veuillez passer en revue les styles pour inclure les modifications manuellement lorsque cela est nécessaire dans le cadre de votre projet.</value>
+    <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Error acquiring content.</value>
+    <value>Une erreur est survenue lors de l'acquisition du contenu.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Error extracting installed templates content..</value>
+    <value>Une erreur est survenue lors de l'extraction du contenu des modèles installés…</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Error updating templates content.</value>
+    <value>Une erreur est survenue lors de la mise à jour du contenu des modèles.</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Cannot remove readonly protection from file {0}</value>
+    <value>Impossible d'annuler la protection du fichier {0} de manière aléatoire</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
+    <value>Error reading source config file.</value>
+  </data>
+  <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
+    <value>Templates local path is empty.</value>
   </data>
 </root>

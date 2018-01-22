@@ -8,8 +8,11 @@ Imports Param_ItemNamespace.Services
 Namespace ViewModels
     Public Class ImageGalleryViewDetailViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
+
         Private Shared _image As UIElement
+
         Private _selectedImage As Object
+
         Private _source As ObservableCollection(Of SampleImage)
 
         Public Property SelectedImage As Object
@@ -18,7 +21,7 @@ Namespace ViewModels
             End Get
             Set
                 [Param_Setter](_selectedImage, value)
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedImageId, DirectCast(SelectedImage, SampleImage).ID)
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, DirectCast(SelectedImage, SampleImage).ID)
             End Set
         End Property
 

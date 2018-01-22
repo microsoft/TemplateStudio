@@ -9,7 +9,7 @@ Imports Param_RootNamespace.Helpers
 
 Namespace Services
     Friend Class ActivationService
-        Private Async Function InitializeAsync() As Task
+        Private Async Function StartupAsync() As Task
             '{[{
             Await Singleton(Of StoreNotificationsFeatureService).Instance.InitializeAsync()
             '}]}
@@ -20,7 +20,7 @@ Namespace Services
             yield Singleton(Of StoreNotificationsFeatureService).Instance
             '}]}
 '{--{
-            yield Exit Function'}--}
+            Exit Function'}--}
         End Function
     End Class
 End Namespace

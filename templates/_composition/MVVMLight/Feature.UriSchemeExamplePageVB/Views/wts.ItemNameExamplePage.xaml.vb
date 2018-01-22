@@ -7,6 +7,7 @@ Namespace Views
     ' needs and redirected to another of your pages.
     Partial Public NotInheritable Class wts.ItemNameExamplePage
         Inherits Page
+
         Private ReadOnly Property ViewModel As wts.ItemNameExampleViewModel
             Get
                 Return TryCast(DataContext, wts.ItemNameExampleViewModel)

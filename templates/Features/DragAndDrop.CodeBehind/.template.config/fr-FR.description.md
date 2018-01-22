@@ -1,5 +1,5 @@
-﻿Drag and drop is a classic, natural way of interacting with content such as images and files. Once implemented, drag and drop works seamlessly in all directions, including app-to-app, app-to-desktop, and desktop-to app.
+﻿La fonctionnalité de glisser-déposer est un moyen classique et naturel d'interagir avec des contenus tels que des images et des fichiers. Une fois implémentée, la fonctionnalité de glisser-déposer fonctionne de manière fluide dans toutes les directions, y compris application vers application, application vers bureau et bureau vers application.
 
-The Drag & Drop feature provides a wrapper service over the [standard UWP drag and drop functionallity](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop) to simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
+La fonctionnalité de glisser-déposer fournit un Service Wrapper sur la [fonctionnalité de glisser-déposer UWP standard] (https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop) afin de simplifier le code requis pour créer des applications prêtes à prendre en charge les fonctions de glisser-déposer et à suivre le modèle framework de structure utilisé par votre application.
 
-[More info](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[Plus d'informations](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)

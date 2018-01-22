@@ -5,7 +5,7 @@ Namespace Services
 
     ' A custom event that fires whenever the secondary view is ready to be closed. You should
     ' clean up any state (including deregistering for events) then close the window in this handler
-    Public Delegate Sub ViewReleasedHandler(ByVal sender As Object, ByVal e As EventArgs)
+    Public Delegate Sub ViewReleasedHandler(sender As Object, e As EventArgs)
 
     ' Whenever the main view is about to interact with the secondary view, it should call
     ' StartViewInUse on this object. When finished interacting, it should call StopViewInUse.
@@ -29,7 +29,7 @@ Namespace Services
         Public Property Title As String
 
         Public Custom Event Released As ViewReleasedHandler
-            AddHandler(ByVal value As ViewReleasedHandler)
+            AddHandler(value As ViewReleasedHandler)
                 Dim releasedCopy As Boolean = False
                 SyncLock Me
                     releasedCopy = _released
@@ -44,18 +44,18 @@ Namespace Services
                 End If
             End AddHandler
 
-            RemoveHandler(ByVal value As ViewReleasedHandler)
+            RemoveHandler(value As ViewReleasedHandler)
                 SyncLock Me
                     RemoveHandler InternalReleased, value
                 End SyncLock
             End RemoveHandler
 
-            RaiseEvent(ByVal sender As Object, ByVal e As System.EventArgs)
+            RaiseEvent(sender As Object, e As System.EventArgs)
                 RaiseEvent InternalReleased(sender, e)
             End RaiseEvent
         End Event
 
-        Private Sub New(ByVal newWindow As CoreWindow)
+        Private Sub New(newWindow As CoreWindow)
             Dispatcher = newWindow.Dispatcher
             _window = newWindow
             Id = ApplicationView.GetApplicationViewIdForWindow(_window)
@@ -117,7 +117,7 @@ Namespace Services
             RemoveHandler ApplicationView.GetForCurrentView().Consolidated, AddressOf ViewConsolidated
         End Sub
 
-        Private Sub ViewConsolidated(ByVal sender As ApplicationView, ByVal e As ApplicationViewConsolidatedEventArgs)
+        Private Sub ViewConsolidated(sender As ApplicationView, e As ApplicationViewConsolidatedEventArgs)
             StopViewInUse()
         End Sub
 

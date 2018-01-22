@@ -221,32 +221,16 @@
     <value>Restoring packages...</value>
     <comment>Status bar message for restoring</comment>
   </data>
-  <data name="StatusAcquired" xml:space="preserve">
-    <value>Done.</value>
-    <comment>Status message for sync acquired</comment>
-  </data>
   <data name="StatusAcquiring" xml:space="preserve">
-    <value>Checking for template updates...</value>
+    <value>There are new templates available (v{0}). Downloading…</value>
     <comment>Status message for sync acquiring</comment>
-  </data>
-  <data name="StatusLowerVersionContent" xml:space="preserve">
-    <value>There is no template content available for the current wizard version. Please ensure you have connectivity and restart the wizard.</value>
-    <comment>Status error message for sync lower version content</comment>
-  </data>
-  <data name="StatusOverVersionContent" xml:space="preserve">
-    <value>An update to the templates is available but not compatible with this wizard version. Update the extension to access the latest templates.</value>
-    <comment>Status warning message for sync over version content</comment>
-  </data>
-  <data name="StatusOverVersionNoContent" xml:space="preserve">
-    <value>There is no content available for this extension version. Update the extension to access to the latest content.</value>
-    <comment>Status error message for sync over version no content</comment>
   </data>
   <data name="StatusUpdated" xml:space="preserve">
     <value>Templates updated.</value>
     <comment>Status message for sync status updated</comment>
   </data>
   <data name="StatusUpdating" xml:space="preserve">
-    <value>Updating templates...</value>
+    <value>Refreshing templates cache…</value>
     <comment>Status message for sync status updating</comment>
   </data>
   <data name="SummaryFeaturesTitle" xml:space="preserve">
@@ -389,7 +373,7 @@
     <comment>Status message for sync status prepared</comment>
   </data>
   <data name="StatusPreparing" xml:space="preserve">
-    <value>Preparing templates for first use...</value>
+    <value>Preparing templates (v{0})...</value>
     <comment>Status message for sync status preparing</comment>
   </data>
   <data name="UnableAddItemsToProject" xml:space="preserve">
@@ -489,7 +473,7 @@
     <comment>Refresh templates button content on overlay box control</comment>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>Click refresh to get the latest updates (current selection will be reseted).</value>
+    <value>Click to load the latest templates (current selection will be reset).</value>
     <comment>New version available decription on overlay box control</comment>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
@@ -524,8 +508,8 @@
     <value>Unchanged files</value>
     <comment>Category name of unchanged files</comment>
   </data>
-  <data name="StatusNewVersionAvailable" xml:space="preserve">
-    <value>There is new template content available.</value>
+  <data name="StatusAcquired" xml:space="preserve">
+    <value>Download completed.</value>
     <comment>Status message for sync new version available</comment>
   </data>
   <data name="ErrorSyncRefresh" xml:space="preserve">
@@ -683,5 +667,21 @@
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another feature.</value>
     <comment>{0}:Feature name.</comment>
+  </data>
+  <data name="StatusCheckedForUpdates" xml:space="preserve">
+    <value>Done.</value>
+    <comment>Status message for finished checking for updates</comment>
+  </data>
+  <data name="StatusCheckingForUpdates" xml:space="preserve">
+    <value>Checking for template updates...</value>
+    <comment>Status message for checking for updates</comment>
+  </data>
+  <data name="StatusNewWizardVersionAvailable" xml:space="preserve">
+    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <comment>Status error message for sync over version no content</comment>
+  </data>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Refresh templates cache</value>
+    <comment>Refresh templates cache button content on overlay box control</comment>
   </data>
 </root>

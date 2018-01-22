@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "The Drag & Drop feature provides a wrapper service over the standard UWP Drag and Drop functionallity to simplify the required code to create drag and drop ready apps.",
+  "description": "La función de arrastrar y soltar proporciona un servicio de contenedor en la funcionalidad de arrastrar y soltar de UWP para simplificar el código necesario para crear aplicaciones listas para arrastrar y soltar.",
   "identity": "wts.Feat.DragAndDrop.CodeBehind"
 }

@@ -12,7 +12,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             //^^
             //{[{
-            SecondaryItems.Add(new ShellNavigationItem("Shell_wts.ItemName".GetLocalized(), Symbol.Document, "wts.ItemName"));
+            SecondaryItems.Add(new ShellNavigationItem("Shell_wts.ItemName".GetLocalized(), Symbol.Setting, "wts.ItemName"));
             //}]}
         }
     }

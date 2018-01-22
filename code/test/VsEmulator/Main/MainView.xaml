@@ -59,10 +59,10 @@
                             <TextBlock Text="Configure versions..."/>
                         </Hyperlink>
                     </TextBlock>
+                    <TextBlock>
+                        <Button Command="{Binding RefreshTemplateCacheCommand}" Content="Refresh Cache" Style="{StaticResource TextButton}" Margin="0,6,0,0" ToolTip="Refresh template cache"/>
+                    </TextBlock>
 
-                    <CheckBox Content="Refesh Local Templates" IsChecked="{Binding ForceLocalTemplatesRefresh, Mode=TwoWay}" Margin="0,12,0,0"/>
-                    <TextBlock Text="To avoid refresh Local Templates every time you will need to modify the value for setting VersionCheckingExpirationMinutes, which is Zero by default." FontStyle="Italic" TextWrapping="Wrap" Margin="0,8,0,0"
-                               Visibility="{Binding ForceLocalTemplatesRefresh, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"/>
                 </StackPanel>
                 
                 <ScrollViewer x:Name="logScroll" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto" Height="200">

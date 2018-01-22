@@ -31,7 +31,7 @@ Namespace ViewModels
 
         Private _switchThemeCommand As ICommand
 
-        Public ReadOnly Property SwitchThemeCommand() As ICommand
+        Public ReadOnly Property SwitchThemeCommand As ICommand
             Get
                 If _switchThemeCommand Is Nothing Then
                     _switchThemeCommand = New RelayCommand(Of ElementTheme)(Async Sub(param) 

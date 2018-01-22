@@ -18,5 +18,10 @@
     "name": "CaliburnMicro",
     "displayName": "Caliburn.Micro",
     "summary": "Caliburn.Micro je oblíbený rámec (framework) MVVM, který klade důraz na konvence a uspořadatelnost."
+  },
+  {
+    "name": "Prism",
+    "displayName": "Prism",
+    "summary": "Prism je rámec (framework) pro vytváření volně provázaných, udržovatelných a testovatelných aplikací XAML."
   }
 ]
