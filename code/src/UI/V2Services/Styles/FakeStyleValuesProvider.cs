@@ -377,6 +377,19 @@ namespace Microsoft.Templates.UI.V2Services
                 case "SavedTemplateBackgroundHover":
                     return LightColorValues.Color_FFE9E9E9;
 
+                case "NewItemFileStatusNewFile":
+                    return LightColorValues.Color_FF00CC6A;
+                case "NewItemFileStatusModifiedFile":
+                    return LightColorValues.Color_FF0078D6;
+                case "NewItemFileStatusConflictingFile":
+                    return LightColorValues.Color_FFE81123;
+                case "NewItemFileStatusConflictingStylesFile":
+                    return LightColorValues.Color_FFFFB900;
+                case "NewItemFileStatusWarningFile":
+                    return LightColorValues.Color_FFFFB900;
+                case "NewItemFileStatusUnchangedFile":
+                    return LightColorValues.Color_FF004F9E;
+
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
