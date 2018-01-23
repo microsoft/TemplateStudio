@@ -34,5 +34,14 @@
         "order": "4",
         "licenses": "[Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro/blob/master/License.txt)",
         "languages": [ "C#" ]
+    },
+    {
+        "name": "Prism",
+        "displayName": "Prism",
+        "summary": "Prism is a framework for building loosely coupled, maintainable, and testable XAML applications.",
+        "author": "Brian Lagunas, Bart Lannoeye, Dan Siegel",
+        "order": "5",
+        "licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)",
+        "languages": [ "C#" ]
     }
 ]
