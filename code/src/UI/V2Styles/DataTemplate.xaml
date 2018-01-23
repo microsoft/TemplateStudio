@@ -180,20 +180,20 @@
         </TextBlock>
     </DataTemplate>
 
+    <DataTemplate x:Key="WtsNewItemFileGroupHeader">
+        <TextBlock Text="{Binding}" Style="{StaticResource WtsTextBlockNewItemFileSubject}" />
+    </DataTemplate>
+
     <DataTemplate x:Key="WtsNewItemFileGroup">
-        <!--<StackPanel>-->
-        <Expander Header="{Binding Title}" Style="{StaticResource WtsExpander}" IsExpanded="True">
+        <Expander
+            Header="{Binding Title}"
+            Style="{StaticResource WtsExpander}"
+            HeaderTemplate="{StaticResource WtsNewItemFileGroupHeader}">
             <ListView
                 ItemsSource="{Binding Items}"
                 SelectedItem="{Binding Selected, Mode=TwoWay}"
                 Style="{StaticResource WtsListViewNewItemFile}" />
         </Expander>
-        <!--<TextBlock
-                Style="{StaticResource WtsTextBlockSectionTitle}"
-                Margin="{StaticResource Margin_M2_LeftTopRight}"
-                Text="{Binding Title}" />-->
-
-        <!--</StackPanel>-->
     </DataTemplate>
 
 </ResourceDictionary>
