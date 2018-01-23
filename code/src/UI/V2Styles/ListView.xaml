@@ -421,7 +421,7 @@
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Margin" Value="{StaticResource Margin_S_Bottom}" />
+        <Setter Property="Margin" Value="{StaticResource Margin_XS_Bottom}" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
@@ -430,7 +430,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Border x:Name="bd" ToolTip="{Binding Subject}">
-                        <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
+                        <Grid Margin="{StaticResource Margin_S_LeftTopRightBottom}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />

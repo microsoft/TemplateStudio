@@ -7,6 +7,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Expander.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Hyperlink.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ImageEx.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ListView.xaml" />
@@ -21,10 +22,14 @@
         <Grid Width="162" Height="190">
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" /><!--Image-->
-                    <RowDefinition Height="Auto" /><!--Title-->
-                    <RowDefinition Height="*" /><!--Description-->
-                    <RowDefinition Height="50" /><!--Detail-->
+                    <RowDefinition Height="50" />
+                    <!--Image-->
+                    <RowDefinition Height="Auto" />
+                    <!--Title-->
+                    <RowDefinition Height="*" />
+                    <!--Description-->
+                    <RowDefinition Height="50" />
+                    <!--Detail-->
                 </Grid.RowDefinitions>
                 <controls:ImageEx
                     Grid.Row="0"
@@ -176,17 +181,19 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WtsNewItemFileGroup">
-        <StackPanel>
-            <TextBlock
-                Style="{StaticResource WtsTextBlockSectionTitle}"
-                Margin="{StaticResource Margin_M2_LeftTopRight}"
-                Text="{Binding Title}" />
+        <!--<StackPanel>-->
+        <Expander Header="{Binding Title}" Style="{StaticResource WtsExpander}" IsExpanded="True">
             <ListView
                 ItemsSource="{Binding Items}"
                 SelectedItem="{Binding Selected, Mode=TwoWay}"
                 Style="{StaticResource WtsListViewNewItemFile}" />
+        </Expander>
+        <!--<TextBlock
+                Style="{StaticResource WtsTextBlockSectionTitle}"
+                Margin="{StaticResource Margin_M2_LeftTopRight}"
+                Text="{Binding Title}" />-->
 
-        </StackPanel>
+        <!--</StackPanel>-->
     </DataTemplate>
 
 </ResourceDictionary>

@@ -7,6 +7,7 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ComboBox.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/DataTemplate.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Ellipse.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Expander.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Grid.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Hyperlink.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Image.xaml" />
