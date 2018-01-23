@@ -32,29 +32,21 @@ namespace Microsoft.Templates.UI.V2Services
 
         private void SetStyles()
         {
-            // Colors
+            // VS Colors
             SetThemedDialogColors();
-            SetThemedCardColors();
             SetCommonDocumentColors();
             SetCommonControlColors();
+            SetEnvironmentColors();
+
+            // New Color additions
+            SetThemedCardColors();
             SetWindowsTemplateStudioColors();
 
-            // FontSizes
-            Environment90PercentFontSize = _stylesProvider.GetFontSize("Environment90PercentFontSize");
-            Environment100PercentFontSize = _stylesProvider.GetFontSize("Environment100PercentFontSize");
-            Environment111PercentFontSize = _stylesProvider.GetFontSize("Environment111PercentFontSize");
-            Environment122PercentFontSize = _stylesProvider.GetFontSize("Environment122PercentFontSize");
-            Environment133PercentFontSize = _stylesProvider.GetFontSize("Environment133PercentFontSize");
-            Environment155PercentFontSize = _stylesProvider.GetFontSize("Environment155PercentFontSize");
-            Environment200PercentFontSize = _stylesProvider.GetFontSize("Environment200PercentFontSize");
-            Environment310PercentFontSize = _stylesProvider.GetFontSize("Environment310PercentFontSize");
-            Environment330PercentFontSize = _stylesProvider.GetFontSize("Environment330PercentFontSize");
-            Environment375PercentFontSize = _stylesProvider.GetFontSize("Environment375PercentFontSize");
-
-            // Font Family
-            EnvironmentFontFamily = _stylesProvider.GetFontFamily();
+            // Font Sizes and Font Family
+            SetFontProperties();
         }
 
+        // VS Colors
         private void SetThemedDialogColors()
         {
             WindowPanel = _stylesProvider.GetColor("ThemedDialog", "WindowPanel");
@@ -91,55 +83,10 @@ namespace Microsoft.Templates.UI.V2Services
             WizardFooterText = _stylesProvider.GetColor("ThemedDialog", "WizardFooterText");
         }
 
-        private void SetThemedCardColors()
-        {
-            CardTitleText = _stylesProvider.GetColor("ThemedCard", "CardTitleText");
-            CardDescriptionText = _stylesProvider.GetColor("ThemedCard", "CardDescriptionText");
-            CardBackgroundDefault = _stylesProvider.GetColor("ThemedCard", "CardBackgroundDefault");
-            CardBackgroundFocus = _stylesProvider.GetColor("ThemedCard", "CardBackgroundFocus");
-            CardBackgroundHover = _stylesProvider.GetColor("ThemedCard", "CardBackgroundHover");
-            CardBackgroundPressed = _stylesProvider.GetColor("ThemedCard", "CardBackgroundPressed");
-            CardBackgroundSelected = _stylesProvider.GetColor("ThemedCard", "CardBackgroundSelected");
-            CardBackgroundDisabled = _stylesProvider.GetColor("ThemedCard", "CardBackgroundDisabled");
-            CardBorderDefault = _stylesProvider.GetColor("ThemedCard", "CardBorderDefault");
-            CardBorderFocus = _stylesProvider.GetColor("ThemedCard", "CardBorderFocus");
-            CardBorderHover = _stylesProvider.GetColor("ThemedCard", "CardBorderHover");
-            CardBorderPressed = _stylesProvider.GetColor("ThemedCard", "CardBorderPressed");
-            CardBorderSelected = _stylesProvider.GetColor("ThemedCard", "CardBorderSelected");
-            CardBorderDisabled = _stylesProvider.GetColor("ThemedCard", "CardBorderDisabled");
-            CardIcon = _stylesProvider.GetColor("ThemedCard", "CardIcon"); // Added by mvegaca
-            CardFooterText = _stylesProvider.GetColor("ThemedCard", "CardFooterText"); // Added by mvegaca
-        }
-
         private void SetCommonDocumentColors()
         {
             ListItemText = _stylesProvider.GetColor("CommonDocument", "ListItemText");
             ListItemTextDisabled = _stylesProvider.GetColor("CommonDocument", "ListItemTextDisabled");
-        }
-
-        private void SetWindowsTemplateStudioColors()
-        {
-            NotificationInformationText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationText");
-            NotificationInformationBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationBackground");
-            NotificationInformationIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationIcon");
-
-            NotificationWarningText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningText");
-            NotificationWarningBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningBackground");
-            NotificationWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningIcon");
-
-            NotificationErrorText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorText");
-            NotificationErrorBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorBackground");
-            NotificationErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorIcon");
-
-            DeleteTemplateIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DeleteTemplateIcon");
-            SavedTemplateBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "SavedTemplateBackgroundHover");
-
-            NewItemFileStatusNewFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusNewFile");
-            NewItemFileStatusModifiedFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusModifiedFile");
-            NewItemFileStatusConflictingFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusConflictingFile");
-            NewItemFileStatusConflictingStylesFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusConflictingStylesFile");
-            NewItemFileStatusWarningFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusWarningFile");
-            NewItemFileStatusUnchangedFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusUnchangedFile");
         }
 
         private void SetCommonControlColors()
@@ -227,6 +174,82 @@ namespace Microsoft.Templates.UI.V2Services
             TextBoxBackgroundFocused = _stylesProvider.GetColor("CommonControls", "TextBoxBackgroundFocused");
             TextBoxBorderFocused = _stylesProvider.GetColor("CommonControls", "TextBoxBorderFocused");
             TextBoxTextFocused = _stylesProvider.GetColor("CommonControls", "TextBoxTextFocused");
+        }
+
+        private void SetEnvironmentColors()
+        {
+            PageSideBarExpanderBody = _stylesProvider.GetColor("Environment", "PageSideBarExpanderBody");
+            PageSideBarExpanderChevron = _stylesProvider.GetColor("Environment", "PageSideBarExpanderChevron");
+            PageSideBarExpanderHeader = _stylesProvider.GetColor("Environment", "PageSideBarExpanderHeader");
+            PageSideBarExpanderHeaderHover = _stylesProvider.GetColor("Environment", "PageSideBarExpanderHeaderHover");
+            PageSideBarExpanderHeaderPressed = _stylesProvider.GetColor("Environment", "PageSideBarExpanderHeaderPressed");
+            PageSideBarExpanderSeparator = _stylesProvider.GetColor("Environment", "PageSideBarExpanderSeparator");
+            PageSideBarExpanderText = _stylesProvider.GetColor("Environment", "PageSideBarExpanderText");
+        }
+
+        // New Color additions
+        private void SetThemedCardColors()
+        {
+            CardTitleText = _stylesProvider.GetColor("ThemedCard", "CardTitleText");
+            CardDescriptionText = _stylesProvider.GetColor("ThemedCard", "CardDescriptionText");
+            CardBackgroundDefault = _stylesProvider.GetColor("ThemedCard", "CardBackgroundDefault");
+            CardBackgroundFocus = _stylesProvider.GetColor("ThemedCard", "CardBackgroundFocus");
+            CardBackgroundHover = _stylesProvider.GetColor("ThemedCard", "CardBackgroundHover");
+            CardBackgroundPressed = _stylesProvider.GetColor("ThemedCard", "CardBackgroundPressed");
+            CardBackgroundSelected = _stylesProvider.GetColor("ThemedCard", "CardBackgroundSelected");
+            CardBackgroundDisabled = _stylesProvider.GetColor("ThemedCard", "CardBackgroundDisabled");
+            CardBorderDefault = _stylesProvider.GetColor("ThemedCard", "CardBorderDefault");
+            CardBorderFocus = _stylesProvider.GetColor("ThemedCard", "CardBorderFocus");
+            CardBorderHover = _stylesProvider.GetColor("ThemedCard", "CardBorderHover");
+            CardBorderPressed = _stylesProvider.GetColor("ThemedCard", "CardBorderPressed");
+            CardBorderSelected = _stylesProvider.GetColor("ThemedCard", "CardBorderSelected");
+            CardBorderDisabled = _stylesProvider.GetColor("ThemedCard", "CardBorderDisabled");
+            CardIcon = _stylesProvider.GetColor("ThemedCard", "CardIcon"); // Added by mvegaca
+            CardFooterText = _stylesProvider.GetColor("ThemedCard", "CardFooterText"); // Added by mvegaca
+        }
+
+        private void SetWindowsTemplateStudioColors()
+        {
+            NotificationInformationText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationText");
+            NotificationInformationBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationBackground");
+            NotificationInformationIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationIcon");
+
+            NotificationWarningText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningText");
+            NotificationWarningBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningBackground");
+            NotificationWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningIcon");
+
+            NotificationErrorText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorText");
+            NotificationErrorBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorBackground");
+            NotificationErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorIcon");
+
+            DeleteTemplateIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DeleteTemplateIcon");
+            SavedTemplateBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "SavedTemplateBackgroundHover");
+
+            NewItemFileStatusNewFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusNewFile");
+            NewItemFileStatusModifiedFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusModifiedFile");
+            NewItemFileStatusConflictingFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusConflictingFile");
+            NewItemFileStatusConflictingStylesFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusConflictingStylesFile");
+            NewItemFileStatusWarningFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusWarningFile");
+            NewItemFileStatusUnchangedFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusUnchangedFile");
+        }
+
+        // Font Sizes and Font Family
+        private void SetFontProperties()
+        {
+            // FontSizes
+            Environment90PercentFontSize = _stylesProvider.GetFontSize("Environment90PercentFontSize");
+            Environment100PercentFontSize = _stylesProvider.GetFontSize("Environment100PercentFontSize");
+            Environment111PercentFontSize = _stylesProvider.GetFontSize("Environment111PercentFontSize");
+            Environment122PercentFontSize = _stylesProvider.GetFontSize("Environment122PercentFontSize");
+            Environment133PercentFontSize = _stylesProvider.GetFontSize("Environment133PercentFontSize");
+            Environment155PercentFontSize = _stylesProvider.GetFontSize("Environment155PercentFontSize");
+            Environment200PercentFontSize = _stylesProvider.GetFontSize("Environment200PercentFontSize");
+            Environment310PercentFontSize = _stylesProvider.GetFontSize("Environment310PercentFontSize");
+            Environment330PercentFontSize = _stylesProvider.GetFontSize("Environment330PercentFontSize");
+            Environment375PercentFontSize = _stylesProvider.GetFontSize("Environment375PercentFontSize");
+
+            // Font Family
+            EnvironmentFontFamily = _stylesProvider.GetFontFamily();
         }
     }
 }

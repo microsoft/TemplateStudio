@@ -35,6 +35,8 @@ namespace Microsoft.Templates.UI.V2Services
                     return GetColorFromCommonDocument(memberName);
                 case "CommonControls":
                     return GetColorFromCommonControls(memberName);
+                case "Environment":
+                    return GetColorFromEnvironment(memberName);
                 case "ThemedCard":
                     return GetColorFromThemedCard(memberName);
                 case "WindowsTemplateStudio":
@@ -277,6 +279,29 @@ namespace Microsoft.Templates.UI.V2Services
                     return GetColor(CommonControlsColors.TextBoxBorderFocusedColorKey);
                 case "TextBoxTextFocused":
                     return GetColor(CommonControlsColors.TextBoxTextFocusedColorKey);
+                default:
+                    throw new Exception($"The color key value '{memberName}' is not found");
+            }
+        }
+
+        private Brush GetColorFromEnvironment(string memberName)
+        {
+            switch (memberName)
+            {
+                case "PageSideBarExpanderBody":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderBodyColorKey);
+                case "PageSideBarExpanderChevron":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderChevronColorKey);
+                case "PageSideBarExpanderHeader":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderColorKey);
+                case "PageSideBarExpanderHeaderHover":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderHoverColorKey);
+                case "PageSideBarExpanderHeaderPressed":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderPressedColorKey);
+                case "PageSideBarExpanderSeparator":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderSeparatorColorKey);
+                case "PageSideBarExpanderText":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderTextColorKey);
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }

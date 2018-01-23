@@ -23,6 +23,8 @@ namespace Microsoft.Templates.UI.V2Services
                     return GetColorFromCommonDocument(memberName);
                 case "CommonControls":
                     return GetColorFromCommonControls(memberName);
+                case "Environment":
+                    return GetColorFromEnvironment(memberName);
                 case "ThemedCard":
                     return GetColorFromThemedCard(memberName);
                 case "WindowsTemplateStudio":
@@ -300,6 +302,29 @@ namespace Microsoft.Templates.UI.V2Services
                 case "TextBoxBorderFocused":
                     return LightColorValues.Color_FF007ACC;
                 case "TextBoxTextFocused":
+                    return LightColorValues.Color_FF1E1E1E;
+                default:
+                    throw new Exception($"The color key value '{memberName}' is not found");
+            }
+        }
+
+        private Brush GetColorFromEnvironment(string memberName)
+        {
+            switch (memberName)
+            {
+                case "PageSideBarExpanderBody":
+                    return LightColorValues.Color_FFF5F5F5;
+                case "PageSideBarExpanderChevron":
+                    return LightColorValues.Color_FF1E1E1E;
+                case "PageSideBarExpanderHeader":
+                    return LightColorValues.Color_FFFEFEFE;
+                case "PageSideBarExpanderHeaderHover":
+                    return LightColorValues.Color_FFCCCEDB;
+                case "PageSideBarExpanderHeaderPressed":
+                    return LightColorValues.Color_FFCCCEDB;
+                case "PageSideBarExpanderSeparator":
+                    return LightColorValues.Color_FFCCCEDB;
+                case "PageSideBarExpanderText":
                     return LightColorValues.Color_FF1E1E1E;
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
