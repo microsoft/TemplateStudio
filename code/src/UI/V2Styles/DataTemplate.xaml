@@ -22,14 +22,14 @@
         <Grid Width="162" Height="190">
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
                     <!--Image-->
-                    <RowDefinition Height="Auto" />
-                    <!--Title-->
-                    <RowDefinition Height="*" />
-                    <!--Description-->
                     <RowDefinition Height="50" />
+                    <!--Title-->
+                    <RowDefinition Height="Auto" />
+                    <!--Description-->
+                    <RowDefinition Height="*" />
                     <!--Detail-->
+                    <RowDefinition Height="30" />
                 </Grid.RowDefinitions>
                 <controls:ImageEx
                     Grid.Row="0"
@@ -63,14 +63,14 @@
         <Grid>
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
                     <!--Image-->
-                    <RowDefinition Height="Auto" />
-                    <!--Title-->
-                    <RowDefinition Height="*" />
-                    <!--Description-->
                     <RowDefinition Height="50" />
+                    <!--Title-->
+                    <RowDefinition Height="Auto" />
+                    <!--Description-->
+                    <RowDefinition Height="*" />
                     <!--Detail / Status-->
+                    <RowDefinition Height="30" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"/>
                 <controls:ImageEx
@@ -160,7 +160,19 @@
 
     <DataTemplate x:Key="WtsComboBoxProjectTypeFramework">
         <Grid>
-            <TextBlock Style="{StaticResource WtsTextBlockComboBoxItem}" Text="{Binding Title}" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:ImageEx
+                Grid.Column="0"
+                SourcePath="{Binding Icon}"
+                Style="{StaticResource WtsImageExProjectDetails}" />
+            <TextBlock
+                Grid.Column="1"
+                Text="{Binding Title}"
+                Margin="{StaticResource Margin_M_Left}"
+                Style="{StaticResource WtsTextBlockComboBoxItem}" />
         </Grid>
     </DataTemplate>
 

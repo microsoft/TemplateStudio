@@ -160,7 +160,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private async void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-            System.Diagnostics.Debug.WriteLine(args.Status);
+            WizardStatus.SetVersions();
             await NotificationsControl.Instance.AddNotificationAsync(args.GetNotification());
 
             System.Diagnostics.Debug.WriteLine(GenContext.ToolBox.TemplatesVersion);

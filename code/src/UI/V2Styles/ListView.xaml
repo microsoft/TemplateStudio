@@ -321,20 +321,28 @@
                                     Grid.Column="0"
                                     x:Name="mouseOverDragAndDropTextBlock"
                                     Opacity="0"
+                                    Visibility="{Binding IsReorderEnabled, Converter={StaticResource BoolToVisibilityConverter}}"
                                     Style="{StaticResource WtsTextBlockDragAndDropTemplate}"/>
                                 <controls:ImageEx
                                     Grid.Column="1"
                                     SourcePath="{Binding Icon}"
                                     Style="{StaticResource WtsImageExProjectDetails}" />
-                                <TextBox
-                                    Grid.Column="2"
-                                    Margin="{StaticResource Margin_XS_Left}"
-                                    Text="{Binding Name, Mode=OneWay}"
-                                    Style="{StaticResource WtsTextBoxStyle}"
-                                    IsEnabled="{Binding ItemNameEditable}"
-                                    extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
-                                    extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
-                                    extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}" />
+                                <Grid
+                                    Grid.Column="2">
+                                    <TextBox                                    
+                                        Text="{Binding Name, Mode=OneWay}"
+                                        Style="{StaticResource WtsTextBoxStyle}"
+                                        Margin="{StaticResource Margin_XS_Left}"
+                                        Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
+                                        extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
+                                        extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}" />
+                                    <TextBlock
+                                        Text="{Binding Name, Mode=OneWay}"
+                                        Style="{StaticResource WtsTextBlockSavedTemplateName}"
+                                        Margin="{StaticResource Margin_M_Left}"
+                                        Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
+                                </Grid>
                                 <Button
                                     Grid.Column="3"
                                     x:Name="mouseOverDeleteTemplateButton"                                    

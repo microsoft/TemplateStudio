@@ -25,6 +25,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private bool _isFocused;
         private bool _hasErrors;
         private bool _isHome;
+        private bool _isReorderEnabled;
         private bool _isDragging;
         private ICommand _textChangedCommand;
         private ICommand _lostKeyboardFocusCommand;
@@ -92,6 +93,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _isDragging, value);
         }
 
+        public bool IsReorderEnabled
+        {
+            get => _isReorderEnabled;
+            set => SetProperty(ref _isReorderEnabled, value);
+        }
+
         public TemplateOrigin TemplateOrigin { get; }
 
         public ICommand TextChangedCommand => _textChangedCommand ?? (_textChangedCommand = new RelayCommand<TextChangedEventArgs>(OnTextChanged));
@@ -111,6 +118,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             ItemNameEditable = template.ItemNameEditable;
             IsHidden = template.IsHidden;
             TemplateOrigin = templateOrigin;
+            IsReorderEnabled = template.TemplateType == TemplateType.Page;
         }
 
         public void Focus()
