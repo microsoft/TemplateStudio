@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 try
                 {
-                    if (!_content.Exists() || force)
+                    if (!_content.Exists() || force || CurrentContent.Version < CurrentWizardVersion)
                     {
                         await ExtractInstalledContentAsync();
                     }
