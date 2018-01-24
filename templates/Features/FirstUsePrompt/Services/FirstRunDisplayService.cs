@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Param_ItemNamespace.Services
 {
-    private static bool shown = false;
-
     public static class FirstRunDisplayService
     {
+        private static bool shown = false;
+
         internal static async Task ShowIfAppropriateAsync()
         {
             if (SystemInformation.IsFirstRun && !shown)
