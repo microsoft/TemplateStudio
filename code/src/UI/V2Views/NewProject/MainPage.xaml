@@ -22,16 +22,21 @@
 
     <Grid Style="{StaticResource WtsGridMainPage}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="9066*" /><!--Main area-->
-            <RowDefinition Height="934*" /><!--Buttons area-->
+            <RowDefinition Height="9066*" />
+            <!--Main area-->
+            <RowDefinition Height="934*" />
+            <!--Buttons area-->
         </Grid.RowDefinitions>
         <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*" /><!--20% Sequential flow-->
-                <ColumnDefinition Width="Auto" /> 
-                <ColumnDefinition Width="57*" /><!--57% Selection area-->
+                <ColumnDefinition Width="20*" />
+                <!--20% Sequential flow-->
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="23*" /><!--23% Project details-->
+                <ColumnDefinition Width="57*" />
+                <!--57% Selection area-->
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="23*" />
+                <!--23% Project details-->
             </Grid.ColumnDefinitions>
             <controls:SequentialFlow Step="{Binding Step, Mode=TwoWay}" Steps="{Binding Steps}" />
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
@@ -98,6 +103,24 @@
                             Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}"
                             ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
                     </StackPanel>
+
+                    <TextBlock
+                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                        Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
+                        Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionTitle}" />
+                    <TextBlock
+                        Style="{StaticResource WtsTextBlockAboutSubSectionText}"
+                        Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}"
+                        Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionText}" />
+                    <TextBox
+                        Style="{StaticResource WtsTextBoxVersion}"
+                        Margin="{StaticResource Margin_M2_LeftRight}"
+                        Text="{Binding WizardStatus.Versions}"/>
+                    <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}">
+                        <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}">
+                            <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
+                        </Hyperlink>
+                    </TextBlock>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

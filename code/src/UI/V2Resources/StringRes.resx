@@ -272,6 +272,21 @@
   <data name="NotificationValidationError_ReservedName" xml:space="preserve">
     <value>Name is reserved</value>
   </data>
+  <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
+    <value>aka.ms/wts</value>
+  </data>
+  <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
+    <value>Templates version:</value>
+  </data>
+  <data name="ProjectDetailsAboutSectionText" xml:space="preserve">
+    <value>An easy to use wizard to build a strong foundation for your UWP app.</value>
+  </data>
+  <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ProjectDetailsAboutSectionWizardVersion" xml:space="preserve">
+    <value>Wizard version:</value>
+  </data>
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
     <value>Features</value>
     <comment>Feature list header on project details</comment>

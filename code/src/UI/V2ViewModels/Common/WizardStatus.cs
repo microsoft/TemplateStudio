@@ -3,7 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Diagnostics;
+using System.Text;
+using System.Windows.Input;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.V2Resources;
 using Microsoft.Templates.UI.V2Services;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
@@ -11,10 +16,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
     public class WizardStatus : Observable
     {
         private string _title;
+        private string _versions;
         private bool _isBusy;
         private bool _isNotBusy;
         private bool _hasValidationErrors;
         private bool _isLoading = true;
+        private ICommand _openWebSiteCommand;
 
         public static WizardStatus Current;
 
@@ -26,6 +33,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             get => _title;
             set => SetProperty(ref _title, value);
+        }
+
+        public string Versions
+        {
+            get => _versions;
+            set => SetProperty(ref _versions, value);
         }
 
         public bool IsBusy
@@ -60,6 +73,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             }
         }
 
+        public ICommand OpenWebSiteCommand => _openWebSiteCommand ?? (_openWebSiteCommand = new RelayCommand(OnOpenWebSite));
+
         public event EventHandler<bool> IsBusyChanged;
 
         public WizardStatus()
@@ -69,6 +84,19 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             Width = size.width;
             Height = size.height;
             UpdateIsBusy();
+            SetVersions();
+        }
+
+        public void SetVersions()
+        {
+            var versionsStringBuilder = new StringBuilder();
+            versionsStringBuilder.AppendLine($"{StringRes.ProjectDetailsAboutSectionTemplatesVersion} {GenContext.ToolBox.TemplatesVersion}");
+            versionsStringBuilder.Append($"{StringRes.ProjectDetailsAboutSectionWizardVersion} {GenContext.ToolBox.WizardVersion}");
+            var versionsText = versionsStringBuilder.ToString();
+            if (string.IsNullOrEmpty(Versions) || !Versions.Equals(versionsText))
+            {
+                Versions = versionsText;
+            }
         }
 
         private void UpdateIsBusy()
@@ -77,5 +105,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             IsNotBusy = !IsBusy;
             IsBusyChanged?.Invoke(this, true);
         }
+
+        private void OnOpenWebSite() => Process.Start("https://aka.ms/wts");
     }
 }

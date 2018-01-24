@@ -457,6 +457,51 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to aka.ms/wts.
+        /// </summary>
+        public static string ProjectDetailsAboutSectionLink {
+            get {
+                return ResourceManager.GetString("ProjectDetailsAboutSectionLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates version:.
+        /// </summary>
+        public static string ProjectDetailsAboutSectionTemplatesVersion {
+            get {
+                return ResourceManager.GetString("ProjectDetailsAboutSectionTemplatesVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An easy to use wizard to build a strong foundation for your UWP app..
+        /// </summary>
+        public static string ProjectDetailsAboutSectionText {
+            get {
+                return ResourceManager.GetString("ProjectDetailsAboutSectionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string ProjectDetailsAboutSectionTitle {
+            get {
+                return ResourceManager.GetString("ProjectDetailsAboutSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wizard version:.
+        /// </summary>
+        public static string ProjectDetailsAboutSectionWizardVersion {
+            get {
+                return ResourceManager.GetString("ProjectDetailsAboutSectionWizardVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Features.
         /// </summary>
         public static string ProjectDetailsFeaturesSectionTitle {
