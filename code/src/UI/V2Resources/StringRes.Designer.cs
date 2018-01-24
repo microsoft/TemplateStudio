@@ -563,5 +563,14 @@ namespace Microsoft.Templates.UI.V2Resources {
                 return ResourceManager.GetString("TemplateSelectionTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By continuing, you agree to the terms of all the licenses in the licenses section..
+        /// </summary>
+        public static string TermsAndConditionsText {
+            get {
+                return ResourceManager.GetString("TermsAndConditionsText", resourceCulture);
+            }
+        }
     }
 }

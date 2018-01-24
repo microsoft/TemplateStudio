@@ -314,4 +314,7 @@
   <data name="TemplateSelectionTitle" xml:space="preserve">
     <value>Select the template you want to add</value>
   </data>
+  <data name="TermsAndConditionsText" xml:space="preserve">
+    <value>By continuing, you agree to the terms of all the licenses in the licenses section.</value>
+  </data>
 </root>

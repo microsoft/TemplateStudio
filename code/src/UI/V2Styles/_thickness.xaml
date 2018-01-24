@@ -16,6 +16,7 @@
     <Thickness x:Key="Margin_M_LeftTopRightBottom">12,12,12,12</Thickness>
     <Thickness x:Key="Margin_M_LeftTopRight">12,12,12,0</Thickness>
     <Thickness x:Key="Margin_M_LeftTop">12,12,0,0</Thickness>
+    <Thickness x:Key="Margin_M_LeftRight">12,0,12,0</Thickness>
     <Thickness x:Key="Margin_M_Right">0,0,12,0</Thickness>
     <Thickness x:Key="Margin_M_Top">0,12,0,0</Thickness>
 
