@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 
 namespace Param_ItemNamespace.Services
 {
+    private static bool shown = false;
+
     public static class FirstRunDisplayService
     {
         internal static async Task ShowIfAppropriateAsync()
         {
-            if (SystemInformation.IsFirstRun)
+            if (SystemInformation.IsFirstRun && !shown)
             {
+                shown = true;
                 var dialog = new FirstRunDialog();
                 await dialog.ShowAsync();
             }
