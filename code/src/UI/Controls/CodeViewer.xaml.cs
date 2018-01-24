@@ -114,7 +114,7 @@ namespace Microsoft.Templates.UI.Controls
                     language = "csharp";
                     break;
                 case ".vb":
-                    language = "vb.net";
+                    language = "vb";
                     break;
                 case ".json":
                     language = "json";
