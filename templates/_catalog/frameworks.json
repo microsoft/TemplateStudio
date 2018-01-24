@@ -34,7 +34,7 @@
         "order": "4",
         "licenses": "[Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro/blob/master/License.txt)",
         "languages": [ "C#" ]
-    },    
+    },
     {
         "name": "Prism",
         "displayName": "Prism",
