@@ -160,7 +160,19 @@
 
     <DataTemplate x:Key="WtsComboBoxProjectTypeFramework">
         <Grid>
-            <TextBlock Style="{StaticResource WtsTextBlockComboBoxItem}" Text="{Binding Title}" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:ImageEx
+                Grid.Column="0"
+                SourcePath="{Binding Icon}"
+                Style="{StaticResource WtsImageExProjectDetails}" />
+            <TextBlock
+                Grid.Column="1"
+                Text="{Binding Title}"
+                Margin="{StaticResource Margin_M_Left}"
+                Style="{StaticResource WtsTextBlockComboBoxItem}" />
         </Grid>
     </DataTemplate>
 
