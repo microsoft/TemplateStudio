@@ -354,6 +354,9 @@
     <Compile Include="TemplateSelectors\StatusBoxTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
+    <Compile Include="V2Controls\CodeViewer.xaml.cs">
+      <DependentUpon>CodeViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="V2Controls\ImageEx.cs" />
     <Compile Include="V2Controls\Markdown.cs" />
     <Compile Include="V2Controls\MarkdownBlock.xaml.cs">
@@ -638,6 +641,10 @@
     <Page Include="Styles\_FocusVisualStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Controls\CodeViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Controls\MarkdownBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
