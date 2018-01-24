@@ -1,33 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-  <Metadata>
-    <Identity Id="WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb" Version="0.1" Language="en-US" Publisher="Microsoft Corporation" />
-    <DisplayName>WTS (vs2017 local)</DisplayName>
-    <Description xml:space="preserve">Windows Template Studio</Description>
-    <MoreInfo>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfo>
-    <License>Content\EULA.rtf</License>
-    <GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/readme.md</GettingStartedGuide>
-    <ReleaseNotes>https://github.com/Microsoft/WindowsTemplateStudio/</ReleaseNotes>
-    <Icon>Resources\windowsTemplateStudio_Logo_200x200.png</Icon>
-    <Tags>Windows Template Studio UWP XAML MVVM</Tags>
-  </Metadata>
-  <Installation AllUsers="true">
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,16.0)" />
-  </Installation>
-  <Dependencies>
-    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework 4.7 or higher" d:Source="Manual" Version="[4.7,)" d:InstallSource="Download" Location="http://go.microsoft.com/fwlink/?LinkId=825319" />
-    <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0,16.0)" />
-    <Dependency d:Source="Installed" Version="[15.0.26730,16.0)" d:InstallSource="Download" Id="8EAF6C8E-1283-4EEE-AB6E-F0F087BFCBFD" DisplayName="Visual Studio 2017 Update 3 or higher" Location="https://www.visualstudio.com/downloads" />
-  </Dependencies>
-  <Prerequisites>
-    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
-    <Prerequisite Id="Microsoft.VisualStudio.Component.UWP.Support" Version="[15.0,16.0)" DisplayName="Universal Windows Platform tools" />
-  </Prerequisites>
-  <Assets>
-    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Core" Path="|Core|" AssemblyName="|Core;AssemblyName|" />
-    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="UI" Path="|UI|" AssemblyName="|UI;AssemblyName|" />
-    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.UWP.VS2017.Solution" d:TargetPath="|CSharp.UWP.VS2017.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
-    <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="VBNet.UWP.VS2017.Solution" d:TargetPath="|VBNet.UWP.VS2017.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
-  </Assets>
+    <Metadata>
+        <Identity Id="WindowsTemplateStudio2017.Local.cc89ead5-631c-412c-a571-2616fb8d60cb" Version="0.1" Language="en-US" Publisher="Microsoft Corporation" />
+        <DisplayName>WTS (vs2017 local)</DisplayName>
+        <Description xml:space="preserve">Windows Template Studio</Description>
+        <MoreInfo>https://github.com/Microsoft/WindowsTemplateStudio/</MoreInfo>
+        <License>Content\EULA.rtf</License>
+        <GettingStartedGuide>https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/readme.md</GettingStartedGuide>
+        <ReleaseNotes>https://github.com/Microsoft/WindowsTemplateStudio/</ReleaseNotes>
+        <Icon>Resources\windowsTemplateStudio_Logo_200x200.png</Icon>
+        <Tags>Windows Template Studio UWP XAML MVVM</Tags>
+    </Metadata>
+    <Installation AllUsers="true">
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,16.0)" />
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework 4.7 or higher" d:Source="Manual" Version="[4.7,)" d:InstallSource="Download" Location="http://go.microsoft.com/fwlink/?LinkId=825319" />
+        <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0,16.0)" />
+        <Dependency d:Source="Installed" Version="[15.0.26730,16.0)" d:InstallSource="Download" Id="8EAF6C8E-1283-4EEE-AB6E-F0F087BFCBFD" DisplayName="Visual Studio 2017 Update 3 or higher" Location="https://www.visualstudio.com/downloads" />
+    </Dependencies>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
+        <Prerequisite Id="Microsoft.VisualStudio.Component.UWP.Support" Version="[15.0,16.0)" DisplayName="Universal Windows Platform tools" />
+    </Prerequisites>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Core" Path="|Core|" AssemblyName="|Core;AssemblyName|" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="UI" Path="|UI|" AssemblyName="|UI;AssemblyName|" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="CSharp.UWP.VS2017.Solution" d:TargetPath="|CSharp.UWP.VS2017.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="VBNet.UWP.VS2017.Solution" d:TargetPath="|VBNet.UWP.VS2017.Solution;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+    </Assets>
 </PackageManifest>

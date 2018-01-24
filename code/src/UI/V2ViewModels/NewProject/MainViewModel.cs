@@ -51,10 +51,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             await base.InitializeAsync(language);
         }
 
-        protected override void OnCancel()
-        {
-            WizardShell.Current.Close();
-        }
+        protected override void OnCancel() => WizardShell.Current.Close();
 
         protected override void UpdateStep()
         {

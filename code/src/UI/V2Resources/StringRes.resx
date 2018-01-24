@@ -149,6 +149,30 @@
     <value>Remove</value>
     <comment>Project details saved templates remove button Automation property name</comment>
   </data>
+  <data name="ChangesSummaryGroupConflictingFiles" xml:space="preserve">
+    <value>Conflicting files</value>
+    <comment>Changes summary group title for: Conflicting files</comment>
+  </data>
+  <data name="ChangesSummaryGroupConflictingStylesFiles" xml:space="preserve">
+    <value>Conflicting styles files</value>
+    <comment>Changes summary group title for: Conflicting styles files</comment>
+  </data>
+  <data name="ChangesSummaryGroupModifiedFiles" xml:space="preserve">
+    <value>Modified files</value>
+    <comment>Changes summary group title for: Modified files</comment>
+  </data>
+  <data name="ChangesSummaryGroupNewFiles" xml:space="preserve">
+    <value>New files</value>
+    <comment>Changes summary group title for: New files</comment>
+  </data>
+  <data name="ChangesSummaryGroupUnchangedFiles" xml:space="preserve">
+    <value>Unchanged files</value>
+    <comment>Changes summary group title for: Unchanged files</comment>
+  </data>
+  <data name="ChangesSummaryGroupWarningFiles" xml:space="preserve">
+    <value>Warning files</value>
+    <comment>Changes summary group title for: Warning files</comment>
+  </data>
   <data name="FrameworkTitle" xml:space="preserve">
     <value>Select a design pattern</value>
     <comment>Title on FrameworkPage</comment>
@@ -289,5 +313,8 @@
   </data>
   <data name="TemplateSelectionTitle" xml:space="preserve">
     <value>Select the template you want to add</value>
+  </data>
+  <data name="TermsAndConditionsText" xml:space="preserve">
+    <value>By continuing, you agree to the terms of all the licenses in the licenses section.</value>
   </data>
 </root>

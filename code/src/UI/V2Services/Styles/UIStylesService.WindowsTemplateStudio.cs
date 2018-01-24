@@ -96,5 +96,53 @@ namespace Microsoft.Templates.UI.V2Services
             get { return (Brush)GetValue(SavedTemplateBackgroundHoverProperty); }
             set { SetValue(SavedTemplateBackgroundHoverProperty, value); }
         }
+
+        public static readonly DependencyProperty NewItemFileStatusNewFileProperty = DependencyProperty.Register("NewItemFileStatusNewFile", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush NewItemFileStatusNewFile
+        {
+            get { return (Brush)GetValue(NewItemFileStatusNewFileProperty); }
+            set { SetValue(NewItemFileStatusNewFileProperty, value); }
+        }
+
+        public static readonly DependencyProperty NewItemFileStatusModifiedFileProperty = DependencyProperty.Register("NewItemFileStatusModifiedFile", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush NewItemFileStatusModifiedFile
+        {
+            get { return (Brush)GetValue(NewItemFileStatusModifiedFileProperty); }
+            set { SetValue(NewItemFileStatusModifiedFileProperty, value); }
+        }
+
+        public static readonly DependencyProperty NewItemFileStatusConflictingFileProperty = DependencyProperty.Register("NewItemFileStatusConflictingFile", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush NewItemFileStatusConflictingFile
+        {
+            get { return (Brush)GetValue(NewItemFileStatusConflictingFileProperty); }
+            set { SetValue(NewItemFileStatusConflictingFileProperty, value); }
+        }
+
+        public static readonly DependencyProperty NewItemFileStatusConflictingStylesFileProperty = DependencyProperty.Register("NewItemFileStatusConflictingStylesFile", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush NewItemFileStatusConflictingStylesFile
+        {
+            get { return (Brush)GetValue(NewItemFileStatusConflictingStylesFileProperty); }
+            set { SetValue(NewItemFileStatusConflictingStylesFileProperty, value); }
+        }
+
+        public static readonly DependencyProperty NewItemFileStatusWarningFileProperty = DependencyProperty.Register("NewItemFileStatusWarningFile", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush NewItemFileStatusWarningFile
+        {
+            get { return (Brush)GetValue(NewItemFileStatusWarningFileProperty); }
+            set { SetValue(NewItemFileStatusWarningFileProperty, value); }
+        }
+
+        public static readonly DependencyProperty NewItemFileStatusUnchangedFileProperty = DependencyProperty.Register("NewItemFileStatusUnchangedFile", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush NewItemFileStatusUnchangedFile
+        {
+            get { return (Brush)GetValue(NewItemFileStatusUnchangedFileProperty); }
+            set { SetValue(NewItemFileStatusUnchangedFileProperty, value); }
+        }
     }
 }

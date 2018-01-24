@@ -219,19 +219,28 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        protected async Task<(string ProjectPath, string ProjecName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities)
+        protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
 
-            ProjectName = $"{projectType}{framework}Compare{ShortLanguageName(language)}";
+            var singlePageName = string.Empty;
+
+            var genIdentitiesList = genIdentities.ToList();
+
+            if (genIdentitiesList.Count == 1)
+            {
+                singlePageName = genIdentitiesList.Last().Split('.').Last();
+            }
+
+            ProjectName = $"{projectType}{framework}Compare{singlePageName}{ShortLanguageName(language)}";
             ProjectPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
             OutputPath = ProjectPath;
 
             var userSelection = _fixture.SetupProject(projectType, framework, language);
 
-            foreach (var identity in genIdentities)
+            foreach (var identity in genIdentitiesList)
             {
                 var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity.Contains(identity)
                                                                          && t.GetFrameworkList().Contains(framework));
@@ -241,6 +250,17 @@ namespace Microsoft.Templates.Test
                 if (itemTemplate.GetMultipleInstance())
                 {
                     _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
+                }
+            }
+
+            if (lastPageIsHome)
+            {
+                // Useful if creating a blank project type and want to change the start page
+                userSelection.HomeName = userSelection.Pages.Last().name;
+
+                if (projectType == "TabbedPivot")
+                {
+                    userSelection.Pages.Reverse();
                 }
             }
 

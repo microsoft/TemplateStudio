@@ -354,6 +354,9 @@
     <Compile Include="TemplateSelectors\StatusBoxTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\SummaryItemOptionsTemplateSelector.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
+    <Compile Include="V2Controls\CodeViewer.xaml.cs">
+      <DependentUpon>CodeViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="V2Controls\ImageEx.cs" />
     <Compile Include="V2Controls\Markdown.cs" />
     <Compile Include="V2Controls\MarkdownBlock.xaml.cs">
@@ -397,6 +400,7 @@
     <Compile Include="V2Services\Styles\LightColorValues.cs" />
     <Compile Include="V2Services\Styles\FakeStyleValuesProvider.cs" />
     <Compile Include="V2Services\Styles\IStyleValuesProvider.cs" />
+    <Compile Include="V2Services\Styles\UIStylesService.Environment.cs" />
     <Compile Include="V2Services\Styles\UIStylesService.ThemedDialogColors.cs" />
     <Compile Include="V2Services\Styles\UIStylesService.cs" />
     <Compile Include="V2Services\Styles\UIStylesService.FontSizes.cs" />
@@ -409,8 +413,12 @@
     <Compile Include="V2TemplateSelectors\NotificationTemplateSelector.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\FileExtension.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\FileStatus.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\ItemsGroupViewModel`1.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\LicenseViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\MetadataInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\DataItems\NewItemFileViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
@@ -634,6 +642,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="V2Controls\CodeViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="V2Controls\MarkdownBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -683,6 +695,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Styles\ItemsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Ellipse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Image.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Styles\Expander.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

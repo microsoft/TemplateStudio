@@ -63,5 +63,17 @@ namespace Microsoft.Templates.UI.V2Services
         internal static Brush Color_FFE82C3C { get; } = new SolidColorBrush() { Color = new Color() { A = 255, R = 234, G = 44, B = 60 } };
 
         internal static Brush Color_FFE9E9E9 { get; } = new SolidColorBrush() { Color = new Color() { A = 255, R = 233, G = 233, B = 233 } };
+
+        internal static Brush Color_FF00CC6A { get; } = new SolidColorBrush() { Color = new Color() { A = 255, R = 0, G = 204, B = 106 } };
+
+        internal static Brush Color_FF0078D6 { get; } = new SolidColorBrush() { Color = new Color() { A = 255, R = 0, G = 120, B = 214 } };
+
+        internal static Brush Color_FFE81123 { get; } = new SolidColorBrush() { Color = new Color() { A = 255, R = 232, G = 17, B = 35 } };
+
+        internal static Brush Color_FFFFB900 { get; } = new SolidColorBrush() { Color = new Color() { A = 255, R = 255, G = 185, B = 0 } };
+
+        internal static Brush Color_FF004F9E { get; } = new SolidColorBrush() { Color = new Color() { A = 255, R = 0, G = 79, B = 158 } };
+
+        internal static Brush Color_FFFEFEFE { get; } = new SolidColorBrush() { Color = new Color() { A = 255, R = 254, G = 254, B = 254 } };
     }
 }

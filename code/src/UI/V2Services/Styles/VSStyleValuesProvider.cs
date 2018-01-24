@@ -35,6 +35,8 @@ namespace Microsoft.Templates.UI.V2Services
                     return GetColorFromCommonDocument(memberName);
                 case "CommonControls":
                     return GetColorFromCommonControls(memberName);
+                case "Environment":
+                    return GetColorFromEnvironment(memberName);
                 case "ThemedCard":
                     return GetColorFromThemedCard(memberName);
                 case "WindowsTemplateStudio":
@@ -282,6 +284,29 @@ namespace Microsoft.Templates.UI.V2Services
             }
         }
 
+        private Brush GetColorFromEnvironment(string memberName)
+        {
+            switch (memberName)
+            {
+                case "PageSideBarExpanderBody":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderBodyColorKey);
+                case "PageSideBarExpanderChevron":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderChevronColorKey);
+                case "PageSideBarExpanderHeader":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderColorKey);
+                case "PageSideBarExpanderHeaderHover":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderHoverColorKey);
+                case "PageSideBarExpanderHeaderPressed":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderPressedColorKey);
+                case "PageSideBarExpanderSeparator":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderSeparatorColorKey);
+                case "PageSideBarExpanderText":
+                    return GetColor(EnvironmentColors.PageSideBarExpanderTextColorKey);
+                default:
+                    throw new Exception($"The color key value '{memberName}' is not found");
+            }
+        }
+
         private Brush GetColorFromThemedCard(string memberName)
         {
             switch (memberName)
@@ -352,6 +377,19 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FFE82C3C; // TODO: Replace this temporary value for a VS Color
                 case "SavedTemplateBackgroundHover":
                     return LightColorValues.Color_FFE9E9E9; // TODO: Replace this temporary value for a VS Color
+
+                case "NewItemFileStatusNewFile":
+                    return LightColorValues.Color_FF00CC6A; // TODO: Replace this temporary value for a VS Color
+                case "NewItemFileStatusModifiedFile":
+                    return LightColorValues.Color_FF0078D6; // TODO: Replace this temporary value for a VS Color
+                case "NewItemFileStatusConflictingFile":
+                    return LightColorValues.Color_FFE81123; // TODO: Replace this temporary value for a VS Color
+                case "NewItemFileStatusConflictingStylesFile":
+                    return LightColorValues.Color_FFFFB900; // TODO: Replace this temporary value for a VS Color
+                case "NewItemFileStatusWarningFile":
+                    return LightColorValues.Color_FFFFB900; // TODO: Replace this temporary value for a VS Color
+                case "NewItemFileStatusUnchangedFile":
+                    return LightColorValues.Color_FF004F9E; // TODO: Replace this temporary value for a VS Color
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
