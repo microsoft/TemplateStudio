@@ -148,5 +148,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             yield return new Step(0, StringRes.NewItemStepOne, true);
             yield return new Step(1, StringRes.NewItemStepTwo);
         }
+
+        public override void ProcessItem(object item)
+        {
+            if (item is TemplateInfoViewModel template)
+            {
+                TemplateSelection.AddTemplate(template);
+            }
+        }
     }
 }

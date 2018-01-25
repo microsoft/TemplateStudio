@@ -2,8 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
-                    xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services"
-                    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.V2Extensions">
+                    xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
@@ -153,8 +152,7 @@
                 Grid.Row="1"
                 Style="{StaticResource WtsListViewSingleSelectionWithoutScroll}"
                 ItemsSource="{Binding Items}"
-                ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}"
-                SelectedItem="{Binding Selected, Mode=TwoWay}" />
+                ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}" />
         </Grid>
     </DataTemplate>
 

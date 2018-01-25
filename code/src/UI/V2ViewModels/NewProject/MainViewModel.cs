@@ -38,11 +38,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         private MainViewModel(Window mainView)
             : base(mainView)
         {
-            EventService.Instance.OnProjectTypeChanged += OnProjectTypeSelectionChanged;
-            EventService.Instance.OnFrameworkChanged += OnFrameworkSelectionChanged;
-            EventService.Instance.OnTemplateClicked += OnTemplateClicked;
-            EventService.Instance.OnTemplateSelected += OnTemplateSelected;
-            EventService.Instance.OnKeyDown += OnKeyDown;
             ValidationService.Initialize(UserSelection.GetNames);
         }
 
@@ -117,19 +112,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             return result;
         }
 
-        private void OnProjectTypeSelectionChanged(object sender, MetadataInfoViewModel projectType)
-        {
-            Framework.LoadData(projectType.Name);
-        }
-
-        private void OnFrameworkSelectionChanged(object sender, MetadataInfoViewModel framework)
-        {
-            AddPages.LoadData(framework.Name);
-            AddFeatures.LoadData(framework.Name);
-            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
-            WizardStatus.IsLoading = false;
-        }
-
         public TemplateInfoViewModel GetTemplate(ITemplateInfo templateInfo)
         {
             var groups = templateInfo.GetTemplateType() == TemplateType.Page ? AddPages.Groups : AddFeatures.Groups;
@@ -143,46 +125,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             }
 
             return null;
-        }
-
-        private void OnTemplateClicked(object sender, TemplateInfoViewModel clickedTemplate)
-        {
-            if (!WizardStatus.IsBusy)
-            {
-                AddTemplate(clickedTemplate);
-            }
-        }
-
-        private void OnTemplateSelected(object sender, TemplateInfoViewModel selectedTemplate)
-        {
-            _selectedTemplate = selectedTemplate;
-        }
-
-        private void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter && _selectedTemplate != null)
-            {
-                AddTemplate(_selectedTemplate);
-                CleanSelected();
-            }
-            else if (e.Key == Key.Tab && _selectedTemplate != null)
-            {
-                CleanSelected();
-            }
-        }
-
-        private void CleanSelected()
-        {
-            _selectedTemplate = null;
-            foreach (var group in AddPages.Groups)
-            {
-                group.Selected = null;
-            }
-
-            foreach (var group in AddFeatures.Groups)
-            {
-                group.Selected = null;
-            }
         }
 
         private void AddTemplate(TemplateInfoViewModel selectedTemplate)
@@ -205,6 +147,31 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             yield return new Step(1, StringRes.NewProjectStepTwo);
             yield return new Step(2, StringRes.NewProjectStepThree);
             yield return new Step(3, StringRes.NewProjectStepFour);
+        }
+
+        public override void ProcessItem(object item)
+        {
+            if (item is MetadataInfoViewModel metadata)
+            {
+                if (metadata.IsProjectType())
+                {
+                    ProjectType.Selected = metadata;
+                    Framework.LoadData(metadata.Name);
+                }
+                else if (metadata.IsFramework())
+                {
+                    Framework.Selected = metadata;
+                    AddPages.LoadData(metadata.Name);
+                    AddFeatures.LoadData(metadata.Name);
+                    UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
+                    WizardStatus.IsLoading = false;
+                }
+            }
+            else if (item is TemplateInfoViewModel template)
+            {
+                _selectedTemplate = template;
+                AddTemplate(template);
+            }
         }
     }
 }

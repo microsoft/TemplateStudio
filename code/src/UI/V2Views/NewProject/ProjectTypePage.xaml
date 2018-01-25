@@ -25,11 +25,10 @@
             Text="{x:Static strings:StringRes.ProjectTypeTitle}"
             Margin="{StaticResource Margin_L_LeftRight_M2_Top}"
             Style="{StaticResource WtsTextBlockSectionTitle}" />
-        <ListView
+        <ListView            
             Grid.Row="1"
             Style="{StaticResource WtsListViewSingleSelection}"
             ItemsSource="{Binding Items}"
-            SelectedItem="{Binding Selected, Mode=TwoWay}"
             ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}" />
     </Grid>
 

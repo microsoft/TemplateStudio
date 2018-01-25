@@ -3,6 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows.Controls;
+using System.Windows.Input;
+using Microsoft.Templates.UI.V2ViewModels.Common;
 using Microsoft.Templates.UI.V2ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.V2Views.NewProject

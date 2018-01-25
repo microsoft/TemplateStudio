@@ -6,6 +6,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.V2Services;
@@ -31,8 +32,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                     _selected = value;
                     if (_isSelectionEnabled())
                     {
+                        foreach (var item in Items)
+                        {
+                            item.IsSelected = false;
+                        }
+
+                        _selected.IsSelected = true;
                         OnPropertyChanged("Selected");
-                        EventService.Instance.RaiseOnProjectTypeChanged(value);
                     }
                     else
                     {
@@ -56,7 +62,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             if (DataService.LoadProjectTypes(Items))
             {
-                Selected = Items.First();
+                BaseMainViewModel.Instance.ProcessItem(Items.First());
             }
         }
 
