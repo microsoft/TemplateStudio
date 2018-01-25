@@ -23,6 +23,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public abstract class BaseMainViewModel : Observable
     {
+        public static BaseMainViewModel Instance;
         private Window _mainView;
         private int _step;
         private int _origStep;
@@ -96,15 +97,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         protected abstract IEnumerable<Step> GetSteps();
 
+        public abstract void ProcessItem(object item);
+
         public BaseMainViewModel(Window mainView)
         {
+            Instance = this;
             _mainView = mainView;
             ResourcesService.Instance.Initialize(mainView);
             WizardStatus.IsBusyChanged += IsBusyChanged;
-            if (_mainView != null)
-            {
-                _mainView.KeyDown += OnMainViewKeyDown;
-            }
 
             _resetStepTimer = new DispatcherTimer(DispatcherPriority.ContextIdle, Application.Current.Dispatcher);
             _resetStepTimer.Interval = TimeSpan.FromMilliseconds(1);
@@ -172,11 +172,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             {
                 // TODO: Turn on the light that indicates that there are templates updates.
             }
-        }
-
-        private void OnMainViewKeyDown(object sender, KeyEventArgs e)
-        {
-            EventService.Instance.RaiseOnKeyDown(e);
         }
 
         private void OnResetSelection(object sender, EventArgs e)

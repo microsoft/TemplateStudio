@@ -410,6 +410,9 @@
     <Compile Include="V2Services\Styles\VSStyleValuesProvider.cs" />
     <Compile Include="V2Services\SystemService.cs" />
     <Compile Include="V2Services\ValidationService.cs" />
+    <Compile Include="V2Styles\ListView.xaml.cs">
+      <DependentUpon>ListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="V2TemplateSelectors\NotificationTemplateSelector.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\BasicInfoViewModel.cs" />

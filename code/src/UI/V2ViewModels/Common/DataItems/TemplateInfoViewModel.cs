@@ -32,8 +32,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public bool ItemNameEditable { get; }
 
-        public ICommand ItemClickCommand { get; }
-
         public int Count
         {
             get => _count;
@@ -79,12 +77,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             TemplateType = template.GetTemplateType();
             MultipleInstance = template.GetMultipleInstance();
             ItemNameEditable = template.GetItemNameEditable();
-            ItemClickCommand = new RelayCommand(OnItemClick);
-        }
-
-        private void OnItemClick()
-        {
-            EventService.Instance.RaiseOnTemplateClicked(this);
         }
 
         public void IncreaseSelection()

@@ -27,7 +27,6 @@ namespace Microsoft.Templates.UI.V2Services
         {
             var service = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
             service.ProcessDrop += OnDrop;
-            EventService.Instance.OnKeyDown += OnKeyDown;
             listView.SelectionChanged += OnSelectionChanged;
             listView.GotFocus += OnGotFocus;
             listView.LostFocus += OnLostFocus;
@@ -74,24 +73,24 @@ namespace Microsoft.Templates.UI.V2Services
             }
         }
 
-        private static void OnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter && _isFocused && _selected != null)
-            {
-                if (SetDrag(_selected))
-                {
-                    _selected = null;
-                }
-                else
-                {
-                    _dropTarget = _selected;
-                    if (SetDrop(_selected))
-                    {
-                        _selected = null;
-                    }
-                }
-            }
-        }
+        //private static void OnKeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Enter && _isFocused && _selected != null)
+        //    {
+        //        if (SetDrag(_selected))
+        //        {
+        //            _selected = null;
+        //        }
+        //        else
+        //        {
+        //            _dropTarget = _selected;
+        //            if (SetDrop(_selected))
+        //            {
+        //                _selected = null;
+        //            }
+        //        }
+        //    }
+        //}
 
         private static void OnLostFocus(object sender, System.Windows.RoutedEventArgs e)
         {

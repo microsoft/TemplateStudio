@@ -54,7 +54,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 
         public TemplateSelectionViewModel()
         {
-            EventService.Instance.OnTemplateSelected += OnTemplateSelected;
         }
 
         public void LoadData(TemplateType templateType, string framework)
@@ -67,7 +66,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             }
         }
 
-        private void OnTemplateSelected(object sender, TemplateInfoViewModel template)
+        public void AddTemplate(TemplateInfoViewModel template)
         {
             if (template != null)
             {

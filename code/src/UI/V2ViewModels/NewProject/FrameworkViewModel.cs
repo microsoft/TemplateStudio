@@ -31,8 +31,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                     _selected = value;
                     if (_isSelectionEnabled())
                     {
+                        foreach (var item in Items)
+                        {
+                            item.IsSelected = false;
+                        }
+
+                        _selected.IsSelected = true;
                         OnPropertyChanged("Selected");
-                        EventService.Instance.RaiseOnFrameworkChanged(value);
                     }
                     else
                     {
@@ -56,7 +61,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             if (DataService.LoadFrameworks(Items, projectTypeName))
             {
-                Selected = Items.First();
+                BaseMainViewModel.Instance.ProcessItem(Items.First());
             }
         }
 

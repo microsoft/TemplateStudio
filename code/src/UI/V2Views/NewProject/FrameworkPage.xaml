@@ -29,7 +29,6 @@
             Grid.Row="1"
             Style="{StaticResource WtsListViewSingleSelection}"
             ItemsSource="{Binding Items}"
-            SelectedItem="{Binding Selected, Mode=TwoWay}"
             ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}" />
     </Grid>
 
