@@ -18,12 +18,31 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         private MetadataInfoViewModel _selected;
         private MetadataInfoViewModel _origValue;
         private Func<bool> _isSelectionEnabled;
-        private DispatcherTimer _resetSelectionTimer;
 
         public MetadataInfoViewModel Selected
         {
             get => _selected;
-            set
+        }
+
+        public ObservableCollection<MetadataInfoViewModel> Items { get; } = new ObservableCollection<MetadataInfoViewModel>();
+
+        public FrameworkViewModel(Func<bool> isSelectionEnabled)
+        {
+            _isSelectionEnabled = isSelectionEnabled;
+        }
+
+        public void LoadData(string projectTypeName)
+        {
+            _selected = null;
+            if (DataService.LoadFrameworks(Items, projectTypeName))
+            {
+                BaseMainViewModel.BaseInstance.ProcessItem(Items.First());
+            }
+        }
+
+        public bool Select(MetadataInfoViewModel value)
+        {
+            if (value != null)
             {
                 _origValue = _selected;
                 if (value != _selected)
@@ -38,38 +57,17 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
                         _selected.IsSelected = true;
                         OnPropertyChanged("Selected");
+                        return true;
                     }
                     else
                     {
-                        _resetSelectionTimer.Start();
+                        _selected = _origValue;
+                        OnPropertyChanged("Selected");
                     }
                 }
             }
-        }
 
-        public ObservableCollection<MetadataInfoViewModel> Items { get; } = new ObservableCollection<MetadataInfoViewModel>();
-
-        public FrameworkViewModel(Func<bool> isSelectionEnabled)
-        {
-            _isSelectionEnabled = isSelectionEnabled;
-            _resetSelectionTimer = new DispatcherTimer(DispatcherPriority.ContextIdle, Application.Current.Dispatcher);
-            _resetSelectionTimer.Interval = TimeSpan.FromMilliseconds(1);
-            _resetSelectionTimer.Tick += OnResetSelection;
-        }
-
-        public void LoadData(string projectTypeName)
-        {
-            if (DataService.LoadFrameworks(Items, projectTypeName))
-            {
-                BaseMainViewModel.Instance.ProcessItem(Items.First());
-            }
-        }
-
-        private void OnResetSelection(object sender, EventArgs e)
-        {
-            _selected = _origValue;
-            OnPropertyChanged("Selected");
-            _resetSelectionTimer.Stop();
+            return false;
         }
     }
 }

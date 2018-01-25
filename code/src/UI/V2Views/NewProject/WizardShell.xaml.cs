@@ -15,10 +15,13 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
 
         public UserSelection Result { get; set; }
 
+        public MainViewModel ViewModel { get; }
+
         public WizardShell(string language)
         {
+            ViewModel = new MainViewModel(this);
             Current = this;
-            DataContext = MainViewModel.Instance;
+            DataContext = ViewModel;
             InitializeComponent();
             NavigationService.InitializeMainFrame(mainFrame, new MainPage());
             Loaded += async (sender, args) =>

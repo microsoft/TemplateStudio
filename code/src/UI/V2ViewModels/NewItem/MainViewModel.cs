@@ -20,8 +20,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 {
     public class MainViewModel : BaseMainViewModel
     {
-        private static MainViewModel _instance;
-
         private NewItemGenerationResult _output;
 
         public TemplateType TemplateType;
@@ -32,7 +30,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 
         public string ConfigProjectType { get; private set; }
 
-        public static MainViewModel Instance => _instance ?? (_instance = new MainViewModel(WizardShell.Current));
+        public static MainViewModel Instance { get; private set; }
 
         public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
 
@@ -41,6 +39,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         public MainViewModel(WizardShell mainWindow)
             : base(mainWindow)
         {
+            Instance = this;
         }
 
         public async Task InitializeAsync(TemplateType templateType, string language)

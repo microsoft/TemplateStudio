@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI.V2Styles
             var item = sender as ListViewItem;
             if (item != null)
             {
-                BaseMainViewModel.Instance.ProcessItem(item.Content);
+                BaseMainViewModel.BaseInstance.ProcessItem(item.Content);
             }
         }
 
@@ -25,7 +25,7 @@ namespace Microsoft.Templates.UI.V2Styles
             var listView = sender as System.Windows.Controls.ListView;
             if (listView != null && e.Key == Key.Enter)
             {
-                BaseMainViewModel.Instance.ProcessItem(listView.SelectedItem);
+                BaseMainViewModel.BaseInstance.ProcessItem(listView.SelectedItem);
             }
         }
     }
