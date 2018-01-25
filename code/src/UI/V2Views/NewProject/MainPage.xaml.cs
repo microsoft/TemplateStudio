@@ -5,6 +5,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Templates.UI.V2ViewModels.Common;
 using Microsoft.Templates.UI.V2ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.V2Views.NewProject
@@ -24,6 +25,21 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
             if (listView != null)
             {
                 V2Services.OrderingService.Initialize(listView);
+            }
+        }
+
+        private void ComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            if (comboBox != null && !comboBox.IsDropDownOpen)
+            {
+                if (e.Key == Key.Left
+                    || e.Key == Key.Up
+                    || e.Key == Key.Right
+                    || e.Key == Key.Down)
+                {
+                    e.Handled = true;
+                }
             }
         }
     }

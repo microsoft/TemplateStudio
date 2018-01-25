@@ -22,6 +22,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         public MetadataInfoViewModel Selected
         {
             get => _selected;
+            set => BaseMainViewModel.BaseInstance.ProcessItem(value);
         }
 
         public ObservableCollection<MetadataInfoViewModel> Items { get; } = new ObservableCollection<MetadataInfoViewModel>();
@@ -61,8 +62,15 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                     }
                     else
                     {
-                        _selected = _origValue;
-                        OnPropertyChanged("Selected");
+                        Application.Current.Dispatcher.BeginInvoke(
+                            new Action(() =>
+                            {
+                                _selected = _origValue;
+                                OnPropertyChanged("Selected");
+                            }),
+                            DispatcherPriority.ContextIdle,
+                            null
+                        );
                     }
                 }
             }

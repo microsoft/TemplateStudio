@@ -55,10 +55,11 @@
                     <ComboBox
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
                         ItemsSource="{Binding ProjectType.Items}"
-                        SelectedItem="{Binding ProjectType.Selected, Mode=OneWay}"
+                        SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
-                        IsEnabled="{Binding WizardStatus.IsNotBusy}" />
+                        IsEnabled="{Binding WizardStatus.IsNotBusy}"
+                        PreviewKeyDown="ComboBox_PreviewKeyDown" />
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
@@ -66,7 +67,7 @@
                     <ComboBox
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
                         ItemsSource="{Binding Framework.Items}"
-                        SelectedItem="{Binding Framework.Selected, Mode=OneWay}"
+                        SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}" />
