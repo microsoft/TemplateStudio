@@ -20,10 +20,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
-        private static MainViewModel _instance;
         private TemplateInfoViewModel _selectedTemplate;
 
-        public static MainViewModel Instance => _instance ?? (_instance = new MainViewModel(WizardShell.Current));
+        public static MainViewModel Instance { get; private set; }
 
         public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(IsSelectionEnabled);
 
@@ -35,9 +34,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public UserSelectionViewModel UserSelection { get; } = new UserSelectionViewModel();
 
-        private MainViewModel(Window mainView)
+        public MainViewModel(Window mainView)
             : base(mainView)
         {
+            Instance = this;
             ValidationService.Initialize(UserSelection.GetNames);
         }
 
@@ -155,16 +155,20 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             {
                 if (metadata.IsProjectType())
                 {
-                    ProjectType.Selected = metadata;
-                    Framework.LoadData(metadata.Name);
+                    if (ProjectType.Select(metadata))
+                    {
+                        Framework.LoadData(metadata.Name);
+                    }
                 }
                 else if (metadata.IsFramework())
                 {
-                    Framework.Selected = metadata;
-                    AddPages.LoadData(metadata.Name);
-                    AddFeatures.LoadData(metadata.Name);
-                    UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
-                    WizardStatus.IsLoading = false;
+                    if (Framework.Select(metadata))
+                    {
+                        AddPages.LoadData(metadata.Name);
+                        AddFeatures.LoadData(metadata.Name);
+                        UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
+                        WizardStatus.IsLoading = false;
+                    }
                 }
             }
             else if (item is TemplateInfoViewModel template)

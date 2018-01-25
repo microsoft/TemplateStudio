@@ -14,81 +14,58 @@
     </Style>
 
     <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
-        <Setter Property="OverridesDefaultStyle" Value="true"/>
-        <Setter Property="IsTabStop" Value="false"/>
-        <Setter Property="Focusable" Value="false"/>
-        <Setter Property="ClickMode" Value="Press"/>
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="ClickMode" Value="Press" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border x:Name="templateRoot" BorderBrush="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}" BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}"
-                            SnapsToDevicePixels="true">
-                        <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="1" HorizontalAlignment="Right" Margin="0" SnapsToDevicePixels="true" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
-                            <Path x:Name="arrow" Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z"
-                                  Fill="{Binding ComboBoxGlyph, Source={x:Static services:UIStylesService.Instance}}" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center"/>
+                    <Border
+                        x:Name="templateRoot"
+                        Background="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}"
+                        BorderBrush="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}"
+                        BorderThickness="{TemplateBinding BorderThickness}"                        
+                        SnapsToDevicePixels="true">
+                        <Border
+                            x:Name="splitBorder"
+                            BorderBrush="Transparent"
+                            BorderThickness="1"
+                            HorizontalAlignment="Right"
+                            Margin="0"
+                            SnapsToDevicePixels="true"
+                            Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                            <Path
+                                x:Name="arrow"
+                                Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z"
+                                Fill="{Binding ComboBoxGlyph, Source={x:Static services:UIStylesService.Instance}}"
+                                HorizontalAlignment="Center"
+                                Margin="0"
+                                VerticalAlignment="Center"/>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
-                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="false"/>
-                                <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="false"/>
-                                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="true"/>
-                            </MultiDataTrigger.Conditions>
-                        </MultiDataTrigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}"/>
+                            <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}"/>
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
-                            </MultiDataTrigger.Conditions>
-                        </MultiDataTrigger>
                         <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphPressed, Source={x:Static services:UIStylesService.Instance}}"/>
+                            <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphPressed, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundPressed, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderPressed, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundPressed, Source={x:Static services:UIStylesService.Instance}}"/>
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderPressed, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="true"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
-                            </MultiDataTrigger.Conditions>
-                        </MultiDataTrigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphDisabled, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </Trigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="false"/>
-                            </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundDisabled, Source={x:Static services:UIStylesService.Instance}}"/>
                             <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderDisabled, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </MultiDataTrigger>
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
-                                <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}}" Value="true"/>
-                            </MultiDataTrigger.Conditions>
-                        </MultiDataTrigger>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -114,64 +91,29 @@
                         <Trigger Property="IsEnabled" Value="True">
                             <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{Binding ComboBoxListItemText, Source={x:Static services:UIStylesService.Instance}}"/>
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="False"/>
-                                <Condition Property="IsMouseOver" Value="True"/>
-                                <Condition Property="IsKeyboardFocused" Value="False"/>
-                            </MultiTrigger.Conditions>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
                             <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{Binding ComboBoxListItemTextHover, Source={x:Static services:UIStylesService.Instance}}"/>
                             <Setter Property="Background" TargetName="Bd" Value="{Binding ComboBoxListItemBackgroundHover, Source={x:Static services:UIStylesService.Instance}}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding ComboBoxListItemBorderHover, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="True"/>
-                                <Condition Property="IsMouseOver" Value="False"/>
-                                <Condition Property="IsKeyboardFocused" Value="True"/>
-                            </MultiTrigger.Conditions>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="True"/>
-                                <Condition Property="IsMouseOver" Value="True"/>
-                            </MultiTrigger.Conditions>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{Binding ComboBoxListItemTextHover, Source={x:Static services:UIStylesService.Instance}}"/>
                             <Setter Property="Background" TargetName="Bd" Value="{Binding ComboBoxListItemBackgroundHover, Source={x:Static services:UIStylesService.Instance}}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding ComboBoxListItemBorderHover, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="True"/>
-                                <Condition Property="IsMouseOver" Value="False"/>
-                                <Condition Property="IsKeyboardFocused" Value="False"/>
-                            </MultiTrigger.Conditions>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="False"/>
-                                <Condition Property="IsMouseOver" Value="False"/>
-                                <Condition Property="IsKeyboardFocused" Value="True"/>
-                            </MultiTrigger.Conditions>
-                        </MultiTrigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsSelected" Value="False"/>
-                                <Condition Property="IsMouseOver" Value="True"/>
-                                <Condition Property="IsKeyboardFocused" Value="True"/>
-                            </MultiTrigger.Conditions>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
                             <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{Binding ComboBoxListItemTextHover, Source={x:Static services:UIStylesService.Instance}}"/>
                             <Setter Property="Background" TargetName="Bd" Value="{Binding ComboBoxListItemBackgroundHover, Source={x:Static services:UIStylesService.Instance}}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding ComboBoxListItemBorderHover, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </MultiTrigger>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="WtsComboBoxStyle" TargetType="{x:Type ComboBox}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource ComboBoxFocusVisual}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding ComboBoxText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -182,6 +124,8 @@
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsComboBoxItemStyle}" />
+        <Setter Property="IsEditable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
@@ -190,22 +134,55 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0" />
                         </Grid.ColumnDefinitions>
-                        <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
-                            <Themes:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
-                                <Border x:Name="dropDownBorder" BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                        <Popup
+                            x:Name="PART_Popup"
+                            AllowsTransparency="true"
+                            Grid.ColumnSpan="2"
+                            IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            Margin="1"
+                            PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+                            Placement="Bottom">
+                            <Themes:SystemDropShadowChrome
+                                x:Name="shadow"
+                                Color="Transparent"
+                                MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+                                <Border
+                                    x:Name="dropDownBorder"
+                                    BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
+                                    BorderThickness="1"
+                                    Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
                                     <ScrollViewer x:Name="DropDownScrollViewer">
                                         <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                             <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                                <Rectangle x:Name="opaqueRect" Fill="{Binding Background, ElementName=dropDownBorder}" Height="{Binding ActualHeight, ElementName=dropDownBorder}" Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                                <Rectangle
+                                                    x:Name="opaqueRect"
+                                                    Fill="{Binding Background, ElementName=dropDownBorder}"
+                                                    Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                                    Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
                                             </Canvas>
-                                            <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                            <ItemsPresenter
+                                                x:Name="ItemsPresenter"
+                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                            <!--KeyboardNavigation.DirectionalNavigation="Contained"-->
                                         </Grid>
                                     </ScrollViewer>
                                 </Border>
                             </Themes:SystemDropShadowChrome>
                         </Popup>
                         <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
-                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" IsHitTestVisible="false" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <ContentPresenter
+                            x:Name="contentPresenter"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            Content="{TemplateBinding SelectionBoxItem}"
+                            ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            IsHitTestVisible="false"
+                            Margin="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
@@ -230,7 +207,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="ItemContainerStyle" Value="{StaticResource WtsComboBoxItemStyle}"/>
     </Style>
 
 </ResourceDictionary>

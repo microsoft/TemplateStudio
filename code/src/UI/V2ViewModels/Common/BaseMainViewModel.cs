@@ -23,7 +23,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public abstract class BaseMainViewModel : Observable
     {
-        public static BaseMainViewModel Instance;
+        public static BaseMainViewModel BaseInstance { get; private set; }
+
         private Window _mainView;
         private int _step;
         private int _origStep;
@@ -101,7 +102,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public BaseMainViewModel(Window mainView)
         {
-            Instance = this;
+            BaseInstance = this;
             _mainView = mainView;
             ResourcesService.Instance.Initialize(mainView);
             WizardStatus.IsBusyChanged += IsBusyChanged;
