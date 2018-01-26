@@ -35,7 +35,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private RelayCommand _goBackCommand;
         private RelayCommand _goForwardCommand;
         private RelayCommand _finishCommand;
-        private DispatcherTimer _setStepTimer;
         private DispatcherTimer _resetStepTimer;
 
         protected string Language { get; private set; }

@@ -18,7 +18,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
     public class FrameworkViewModel : Observable
     {
         private MetadataInfoViewModel _selected;
-        private MetadataInfoViewModel _origValue;
 
         public MetadataInfoViewModel Selected
         {
