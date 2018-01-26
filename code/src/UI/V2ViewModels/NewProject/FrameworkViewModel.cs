@@ -5,9 +5,11 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
@@ -22,6 +24,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         public MetadataInfoViewModel Selected
         {
             get => _selected;
+            set => BaseMainViewModel.BaseInstance.ProcessItemAsync(value);
         }
 
         public ObservableCollection<MetadataInfoViewModel> Items { get; } = new ObservableCollection<MetadataInfoViewModel>();
@@ -36,11 +39,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             _selected = null;
             if (DataService.LoadFrameworks(Items, projectTypeName))
             {
-                BaseMainViewModel.BaseInstance.ProcessItem(Items.First());
+                BaseMainViewModel.BaseInstance.ProcessItemAsync(Items.First());
             }
         }
 
-        public bool Select(MetadataInfoViewModel value)
+        public async Task<bool> SelectAsync(MetadataInfoViewModel value)
         {
             if (value != null)
             {
@@ -61,8 +64,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                     }
                     else
                     {
-                        _selected = _origValue;
-                        OnPropertyChanged("Selected");
+                        await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                        await Application.Current.Dispatcher.InvokeAsync(() =>
+                        {
+                            _selected = _origValue;
+                            OnPropertyChanged("Selected");
+                        });
                     }
                 }
             }

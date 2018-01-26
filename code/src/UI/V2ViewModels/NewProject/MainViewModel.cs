@@ -149,20 +149,20 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             yield return new Step(3, StringRes.NewProjectStepFour);
         }
 
-        public override void ProcessItem(object item)
+        public override async Task ProcessItemAsync(object item)
         {
             if (item is MetadataInfoViewModel metadata)
             {
                 if (metadata.IsProjectType())
                 {
-                    if (ProjectType.Select(metadata))
+                    if (await ProjectType.SelectAsync(metadata))
                     {
                         Framework.LoadData(metadata.Name);
                     }
                 }
                 else if (metadata.IsFramework())
                 {
-                    if (Framework.Select(metadata))
+                    if (await Framework.SelectAsync(metadata))
                     {
                         AddPages.LoadData(metadata.Name);
                         AddFeatures.LoadData(metadata.Name);

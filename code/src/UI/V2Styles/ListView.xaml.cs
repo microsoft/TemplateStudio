@@ -11,21 +11,21 @@ namespace Microsoft.Templates.UI.V2Styles
 {
     public partial class ListView
     {
-        private void OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private async void OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var item = sender as ListViewItem;
             if (item != null)
             {
-                BaseMainViewModel.BaseInstance.ProcessItem(item.Content);
+                await BaseMainViewModel.BaseInstance.ProcessItemAsync(item.Content);
             }
         }
 
-        private void OnPreviewKeyDown(object sender, KeyEventArgs e)
+        private async void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
             var listView = sender as System.Windows.Controls.ListView;
             if (listView != null && e.Key == Key.Enter)
             {
-                BaseMainViewModel.BaseInstance.ProcessItem(listView.SelectedItem);
+                await BaseMainViewModel.BaseInstance.ProcessItemAsync(listView.SelectedItem);
             }
         }
     }

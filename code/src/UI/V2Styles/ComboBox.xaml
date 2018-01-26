@@ -101,11 +101,11 @@
                             <Setter Property="Background" TargetName="Bd" Value="{Binding ComboBoxListItemBackgroundHover, Source={x:Static services:UIStylesService.Instance}}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding ComboBoxListItemBorderHover, Source={x:Static services:UIStylesService.Instance}}"/>
                         </Trigger>
-                        <Trigger Property="IsSelected" Value="True">
+                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
                             <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{Binding ComboBoxListItemTextHover, Source={x:Static services:UIStylesService.Instance}}"/>
                             <Setter Property="Background" TargetName="Bd" Value="{Binding ComboBoxListItemBackgroundHover, Source={x:Static services:UIStylesService.Instance}}"/>
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding ComboBoxListItemBorderHover, Source={x:Static services:UIStylesService.Instance}}"/>
-                        </Trigger>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -125,7 +125,6 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource WtsComboBoxItemStyle}" />
-        <Setter Property="IsEditable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">

@@ -148,7 +148,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             yield return new Step(1, StringRes.NewItemStepTwo);
         }
 
-        public override void ProcessItem(object item)
+        public override async Task ProcessItemAsync(object item)
         {
             if (item is TemplateInfoViewModel template)
             {
