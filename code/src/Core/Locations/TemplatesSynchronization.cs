@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 try
                 {
-                    if (!_content.Exists() || force)
+                    if (!_content.Exists() || force || CurrentContent.Version < CurrentWizardVersion)
                     {
                         await ExtractInstalledContentAsync();
                     }
@@ -198,7 +198,7 @@ namespace Microsoft.Templates.Core.Locations
          {
             try
             {
-                if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0)
+                if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0 || CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _content.Source.Id) != _content.LatestContentFolder)
                 {
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updating });
                     await Task.Run(() =>
