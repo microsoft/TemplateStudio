@@ -44,7 +44,14 @@ namespace Microsoft.Templates.Core.Locations
 
         public bool Exists()
         {
-            return Current != null;
+            if (Current != null)
+            {
+                return Directory.Exists(Current.Path);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool RequiresContentUpdate()
