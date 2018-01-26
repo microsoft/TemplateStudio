@@ -150,4 +150,10 @@
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRemove}" />
     </Style>
 
+    <Style TargetType="Button" x:Key="ButtonRefreshTemplatesStyle" BasedOn="{StaticResource WtsButton}">
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="140" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
 </ResourceDictionary>

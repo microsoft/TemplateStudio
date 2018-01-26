@@ -122,6 +122,11 @@
                             <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
                         </Hyperlink>
                     </TextBlock>
+                    <Button Margin="{StaticResource Margin_M2_LeftRight_S_Top}" Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                        Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
+                        Command="{Binding RefreshTemplatesCacheCommand}"
+                        Visibility="{Binding CanForceRefreshTemplateCache, Converter={StaticResource BoolToVisibilityConverter}}">
+                    </Button>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

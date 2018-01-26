@@ -10,6 +10,10 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.V2Controls;
 using Microsoft.Templates.UI.V2Resources;
 using Microsoft.Templates.UI.V2Services;
@@ -20,6 +24,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
+        private RelayCommand _refreshTemplatesCacheCommand;
+
         private TemplateInfoViewModel _selectedTemplate;
 
         public static MainViewModel Instance { get; private set; }
@@ -33,6 +39,21 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         public AddFeaturesViewModel AddFeatures { get; } = new AddFeaturesViewModel();
 
         public UserSelectionViewModel UserSelection { get; } = new UserSelectionViewModel();
+
+        public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
+             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
+
+        public bool CanForceRefreshTemplateCache
+        {
+            get
+            {
+#if DEBUG
+                return true;
+#else
+                return false;
+#endif
+            }
+        }
 
         public MainViewModel(Window mainView)
             : base(mainView)
@@ -175,6 +196,27 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             {
                 _selectedTemplate = template;
                 AddTemplate(template);
+            }
+        }
+
+        protected async Task OnRefreshTemplatesAsync()
+        {
+            try
+            {
+                WizardStatus.IsLoading = true;
+                UserSelection.ResetUserSelection();
+                await GenContext.ToolBox.Repo.RefreshAsync(true);
+            }
+            catch (Exception ex)
+            {
+                await NotificationsControl.Instance.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
+
+                await AppHealth.Current.Error.TrackAsync(ex.ToString());
+                await AppHealth.Current.Exception.TrackAsync(ex);
+            }
+            finally
+            {
+                WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
             }
         }
     }
