@@ -16,6 +16,10 @@ namespace Microsoft.Templates.UI.V2Services
 
         public event EventHandler<SavedTemplateViewModel> OnDeleteTemplateClicked;
 
+        public event EventHandler<MetadataInfoViewModel> OnProjectTypeChange;
+
+        public event EventHandler<MetadataInfoViewModel> OnFrameworkChange;
+
         public event EventHandler OnReorderTemplate;
 
         private EventService()
@@ -31,5 +35,9 @@ namespace Microsoft.Templates.UI.V2Services
         }
 
         public void RaiseOnReorderTemplate() => OnReorderTemplate?.Invoke(this, EventArgs.Empty);
+
+        public void RaiseOnProjectTypeChange(MetadataInfoViewModel projectType) => OnProjectTypeChange?.Invoke(this, projectType);
+
+        public void RaiseOnFrameworkChange(MetadataInfoViewModel framework) => OnFrameworkChange?.Invoke(this, framework);
     }
 }

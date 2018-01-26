@@ -24,9 +24,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public static MainViewModel Instance { get; private set; }
 
-        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(IsSelectionEnabled);
+        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel();
 
-        public FrameworkViewModel Framework { get; } = new FrameworkViewModel(IsSelectionEnabled);
+        public FrameworkViewModel Framework { get; } = new FrameworkViewModel();
 
         public AddPagesViewModel AddPages { get; } = new AddPagesViewModel();
 
@@ -82,10 +82,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             base.OnFinish();
         }
 
-        private static bool IsSelectionEnabled()
+        public override bool IsSelectionEnabled()
         {
             bool result = false;
-            if (!Instance.UserSelection.HasItemsAddedByUser)
+            if (!UserSelection.HasItemsAddedByUser)
             {
                 result = true;
             }
@@ -94,7 +94,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                 var messageResult = MessageBox.Show("Do you want to restart the selection?", "Project configuration", MessageBoxButton.YesNo);
                 if (messageResult == MessageBoxResult.Yes)
                 {
-                    Instance.UserSelection.ResetUserSelection();
+                    UserSelection.ResetUserSelection();
                     result = true;
                 }
                 else
@@ -105,8 +105,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
             if (result == true)
             {
-                Instance.AddPages.ResetUserSelection();
-                Instance.AddFeatures.ResetTemplatesCount();
+                AddPages.ResetUserSelection();
+                AddFeatures.ResetTemplatesCount();
             }
 
             return result;
@@ -149,25 +149,27 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             yield return new Step(3, StringRes.NewProjectStepFour);
         }
 
-        public override async Task ProcessItemAsync(object item)
+        public override void ProcessItem(object item)
         {
             if (item is MetadataInfoViewModel metadata)
             {
                 if (metadata.IsProjectType())
                 {
-                    if (await ProjectType.SelectAsync(metadata))
+                    if (ProjectType.Select(metadata))
                     {
                         Framework.LoadData(metadata.Name);
+                        EventService.Instance.RaiseOnProjectTypeChange(metadata);
                     }
                 }
                 else if (metadata.IsFramework())
                 {
-                    if (await Framework.SelectAsync(metadata))
+                    if (Framework.Select(metadata))
                     {
                         AddPages.LoadData(metadata.Name);
                         AddFeatures.LoadData(metadata.Name);
                         UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
                         WizardStatus.IsLoading = false;
+                        EventService.Instance.RaiseOnFrameworkChange(metadata);
                     }
                 }
             }

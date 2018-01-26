@@ -22,7 +22,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
     {
         private NewItemGenerationResult _output;
 
-        public TemplateType TemplateType;
+        public TemplateType TemplateType { get; set; }
 
         public string Language { get; private set; }
 
@@ -148,12 +148,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             yield return new Step(1, StringRes.NewItemStepTwo);
         }
 
-        public override async Task ProcessItemAsync(object item)
+        public override void ProcessItem(object item)
         {
             if (item is TemplateInfoViewModel template)
             {
                 TemplateSelection.AddTemplate(template);
             }
         }
+
+        public override bool IsSelectionEnabled() => true;
     }
 }

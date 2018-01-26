@@ -98,7 +98,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         protected abstract IEnumerable<Step> GetSteps();
 
-        public abstract Task ProcessItemAsync(object item);
+        public abstract bool IsSelectionEnabled();
+
+        public abstract void ProcessItem(object item);
 
         public BaseMainViewModel(Window mainView)
         {

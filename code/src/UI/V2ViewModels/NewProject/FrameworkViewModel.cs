@@ -19,19 +19,16 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
     {
         private MetadataInfoViewModel _selected;
         private MetadataInfoViewModel _origValue;
-        private Func<bool> _isSelectionEnabled;
 
         public MetadataInfoViewModel Selected
         {
             get => _selected;
-            set => BaseMainViewModel.BaseInstance.ProcessItemAsync(value);
         }
 
         public ObservableCollection<MetadataInfoViewModel> Items { get; } = new ObservableCollection<MetadataInfoViewModel>();
 
-        public FrameworkViewModel(Func<bool> isSelectionEnabled)
+        public FrameworkViewModel()
         {
-            _isSelectionEnabled = isSelectionEnabled;
         }
 
         public void LoadData(string projectTypeName)
@@ -39,38 +36,25 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             _selected = null;
             if (DataService.LoadFrameworks(Items, projectTypeName))
             {
-                BaseMainViewModel.BaseInstance.ProcessItemAsync(Items.First());
+                BaseMainViewModel.BaseInstance.ProcessItem(Items.First());
             }
         }
 
-        public async Task<bool> SelectAsync(MetadataInfoViewModel value)
+        public bool Select(MetadataInfoViewModel value)
         {
             if (value != null)
             {
-                _origValue = _selected;
                 if (value != _selected)
                 {
                     _selected = value;
-                    if (_isSelectionEnabled())
+                    foreach (var item in Items)
                     {
-                        foreach (var item in Items)
-                        {
-                            item.IsSelected = false;
-                        }
+                        item.IsSelected = false;
+                    }
 
-                        _selected.IsSelected = true;
-                        OnPropertyChanged("Selected");
-                        return true;
-                    }
-                    else
-                    {
-                        await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                        await Application.Current.Dispatcher.InvokeAsync(() =>
-                        {
-                            _selected = _origValue;
-                            OnPropertyChanged("Selected");
-                        });
-                    }
+                    _selected.IsSelected = true;
+                    OnPropertyChanged(nameof(Selected));
+                    return true;
                 }
             }
 

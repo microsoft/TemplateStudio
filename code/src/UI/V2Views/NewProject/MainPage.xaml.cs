@@ -12,11 +12,16 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
 {
     public partial class MainPage : Page
     {
+        private bool _handleSelection = true;
+        private bool _listenComboUpdates = true;
+
         public MainPage()
         {
             DataContext = MainViewModel.Instance;
             InitializeComponent();
             V2Services.NavigationService.InitializeSecondaryFrame(stepFrame, new ProjectTypePage());
+            V2Services.EventService.Instance.OnProjectTypeChange += OnProjectTypeChange;
+            V2Services.EventService.Instance.OnFrameworkChange += OnFrameworkChange;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -41,6 +46,52 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
                     e.Handled = true;
                 }
             }
+        }
+
+        private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!_listenComboUpdates)
+            {
+                return;
+            }
+
+            if (_handleSelection)
+            {
+                if (!MainViewModel.Instance.IsSelectionEnabled())
+                {
+                    var combo = (ComboBox)sender;
+                    _handleSelection = false;
+                    if (e.RemovedItems != null && e.RemovedItems.Count > 0)
+                    {
+                        combo.SelectedItem = e.RemovedItems[0];
+                        return;
+                    }
+                }
+                else
+                {
+                    if (e.AddedItems != null && e.AddedItems.Count > 0)
+                    {
+                        MainViewModel.Instance.ProcessItem(e.AddedItems[0]);
+                        return;
+                    }
+                }
+            }
+
+            _handleSelection = true;
+        }
+
+        private void OnProjectTypeChange(object sender, MetadataInfoViewModel e)
+        {
+            _listenComboUpdates = false;
+            projectTypeCombo.SelectedItem = e;
+            _listenComboUpdates = true;
+        }
+
+        private void OnFrameworkChange(object sender, MetadataInfoViewModel e)
+        {
+            _listenComboUpdates = false;
+            frameworkCombo.SelectedItem = e;
+            _listenComboUpdates = true;
         }
     }
 }
