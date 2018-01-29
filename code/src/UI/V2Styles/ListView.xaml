@@ -154,7 +154,7 @@
                         <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}" Margin="{StaticResource Margin_S_LeftTopRightBottom}">
                             <ContentPresenter />
                         </Border>
-                        <Grid x:Name="addIcon" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="35"  Margin="{StaticResource Margin_M_LeftTop}">
+                        <Grid x:Name="addIcon" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="30"  Margin="{StaticResource Margin_M3_LeftTop}">
                             <Ellipse Fill="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" Stroke="{Binding CardBorderSelected, Source={x:Static services:UIStylesService.Instance}}" StrokeThickness="1"/>
                             <TextBlock Style="{StaticResource WtsTextBlockCardMouseOverAddIcon}" />
                         </Grid>
