@@ -145,6 +145,10 @@
     <value>Next</value>
     <comment>MainPage Next button</comment>
   </data>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Refresh templates cache</value>
+    <comment>Refresh templates cache button content </comment>
+  </data>
   <data name="ButtonRemove" xml:space="preserve">
     <value>Remove</value>
     <comment>Project details saved templates remove button Automation property name</comment>
@@ -226,6 +230,10 @@
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>You can not remove {0} because {1} depends on it.</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name</comment>
+  </data>
+  <data name="NotificationSyncError_Refresh" xml:space="preserve">
+    <value>Error refreshing templates. See output for more details.</value>
+    <comment>Error message for sync refresh</comment>
   </data>
   <data name="NotificationSyncStatus_Acquired" xml:space="preserve">
     <value>Download completed.</value>
