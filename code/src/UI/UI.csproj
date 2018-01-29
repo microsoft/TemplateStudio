@@ -386,7 +386,7 @@
     </Compile>
     <Compile Include="V2Services\DataService.cs" />
     <Compile Include="V2Services\DragAndDropService\DragAdornerLayer.cs" />
-    <Compile Include="V2Services\DragAndDropService\DragAndDropEventArgs.cs" />
+    <Compile Include="V2Services\DragAndDropService\DragAndDropEventArgs`1.cs" />
     <Compile Include="V2Services\DragAndDropService\DragAndDropService.cs" />
     <Compile Include="V2Services\DragAndDropService\DragAndDropService.Members.cs" />
     <Compile Include="V2Services\DragAndDropService\ListViewItemDragState.cs" />

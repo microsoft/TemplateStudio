@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -35,7 +36,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private RelayCommand _goBackCommand;
         private RelayCommand _goForwardCommand;
         private RelayCommand _finishCommand;
-        private DispatcherTimer _setStepTimer;
         private DispatcherTimer _resetStepTimer;
 
         protected string Language { get; private set; }
@@ -43,10 +43,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public int Step
         {
             get => _step;
-            set => SetStep(value);
+            set => SetStepAsync(value).FireAndForget();
         }
 
-        private async void SetStep(int step)
+        private async Task SetStepAsync(int step)
         {
             _origStep = _step;
             if (step != _step)
@@ -85,10 +85,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         protected virtual void UpdateStep()
         {
-            var currentStep = Steps.FirstOrDefault(s => s.Index == Step);
-            if (currentStep != null)
+            var compleatedSteps = Steps.Where(s => s.Index <= Step);
+            foreach (var step in compleatedSteps)
             {
-                currentStep.Completed = true;
+                step.Completed = true;
             }
         }
 
@@ -98,7 +98,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         protected abstract IEnumerable<Step> GetSteps();
 
-        public abstract Task ProcessItemAsync(object item);
+        public abstract bool IsSelectionEnabled();
+
+        public abstract void ProcessItem(object item);
 
         public BaseMainViewModel(Window mainView)
         {

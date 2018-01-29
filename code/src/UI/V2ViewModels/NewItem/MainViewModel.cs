@@ -22,9 +22,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
     {
         private NewItemGenerationResult _output;
 
-        public TemplateType TemplateType;
-
-        public string Language { get; private set; }
+        public TemplateType TemplateType { get; set; }
 
         public string ConfigFramework { get; private set; }
 
@@ -45,7 +43,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         public async Task InitializeAsync(TemplateType templateType, string language)
         {
             TemplateType = templateType;
-            Language = language;
             var stringResource = templateType == TemplateType.Page ? StringRes.NewItemTitlePage : StringRes.NewItemTitleFeature;
             WizardStatus.Title = stringResource;
             await InitializeAsync(language);
@@ -123,19 +120,19 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
             {
                 // TODO: mvegaca
-                //WizardStatus.InfoShapeVisibility = Visibility.Visible;
-                //ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow(MainView);
+                // WizardStatus.InfoShapeVisibility = Visibility.Visible;
+                // ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow(MainView);
 
-                //if (projectConfig.ShowDialog().Value)
-                //{
+                // if (projectConfig.ShowDialog().Value)
+                // {
                 //    configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
                 //    configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
                 //    WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
-                //}
-                //else
-                //{
+                // }
+                // else
+                // {
                 //    Cancel();
-                //}
+                // }
             }
 
             ConfigFramework = configInfo.Framework;
@@ -148,12 +145,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             yield return new Step(1, StringRes.NewItemStepTwo);
         }
 
-        public override async Task ProcessItemAsync(object item)
+        public override void ProcessItem(object item)
         {
             if (item is TemplateInfoViewModel template)
             {
                 TemplateSelection.AddTemplate(template);
             }
         }
+
+        public override bool IsSelectionEnabled() => true;
     }
 }
