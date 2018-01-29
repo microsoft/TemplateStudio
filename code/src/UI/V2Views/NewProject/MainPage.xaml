@@ -53,24 +53,28 @@
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                         Text="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}" />
                     <ComboBox
+                        x:Name="projectTypeCombo"
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
-                        ItemsSource="{Binding ProjectType.Items}"
-                        SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
+                        ItemsSource="{Binding ProjectType.Items}"                        
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
-                        PreviewKeyDown="ComboBox_PreviewKeyDown" />
+                        PreviewKeyDown="ComboBox_PreviewKeyDown"
+                        SelectionChanged="OnSelectionChanged" />
+                    <!--SelectedItem="{Binding ProjectType.Selected, Mode=OneWay}"-->
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                         Text="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}" />
                     <ComboBox
+                        x:Name="frameworkCombo"
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
                         ItemsSource="{Binding Framework.Items}"
-                        SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
-                        IsEnabled="{Binding WizardStatus.IsNotBusy}" />
+                        IsEnabled="{Binding WizardStatus.IsNotBusy}"
+                        SelectionChanged="OnSelectionChanged" />
+                    <!--SelectedItem="{Binding Framework.Selected, Mode=OneWay}"-->
 
                     <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
                         <TextBlock

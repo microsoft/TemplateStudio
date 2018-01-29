@@ -23,7 +23,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private bool _isLoading = true;
         private ICommand _openWebSiteCommand;
 
-        public static WizardStatus Current;
+        public static WizardStatus Current { get; private set; }
 
         public double Width { get; }
 

@@ -13,12 +13,10 @@ namespace Microsoft.Templates.UI.V2Services
 {
     public static class OrderingService
     {
-        private static bool _isFocused;
-        private static SavedTemplateViewModel _selected;
         private static SavedTemplateViewModel _dragginItem;
         private static SavedTemplateViewModel _dropTarget;
 
-        private static ObservableCollection<SavedTemplateViewModel> _pages
+        private static ObservableCollection<SavedTemplateViewModel> Pages
         {
             get => MainViewModel.Instance.UserSelection.Pages;
         }
@@ -27,9 +25,6 @@ namespace Microsoft.Templates.UI.V2Services
         {
             var service = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
             service.ProcessDrop += OnDrop;
-            listView.SelectionChanged += OnSelectionChanged;
-            listView.GotFocus += OnGotFocus;
-            listView.LostFocus += OnLostFocus;
         }
 
         public static bool SetDrag(SavedTemplateViewModel savedTemplate)
@@ -48,9 +43,9 @@ namespace Microsoft.Templates.UI.V2Services
         {
             if (_dragginItem != null && _dropTarget != null && !_dragginItem.Equals(_dropTarget))
             {
-                var newIndex = _pages.IndexOf(_dropTarget);
-                var oldIndex = _pages.IndexOf(_dragginItem);
-                OnDrop(null, new DragAndDropEventArgs<SavedTemplateViewModel>(_pages, _dropTarget, oldIndex, newIndex));
+                var newIndex = Pages.IndexOf(_dropTarget);
+                var oldIndex = Pages.IndexOf(_dragginItem);
+                OnDrop(null, new DragAndDropEventArgs<SavedTemplateViewModel>(Pages, _dropTarget, oldIndex, newIndex));
                 _dragginItem = null;
                 _dropTarget = null;
                 return true;
@@ -70,44 +65,6 @@ namespace Microsoft.Templates.UI.V2Services
             {
                 e.Items.Move(e.OldIndex, e.NewIndex);
                 EventService.Instance.RaiseOnReorderTemplate();
-            }
-        }
-
-        //private static void OnKeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.Key == Key.Enter && _isFocused && _selected != null)
-        //    {
-        //        if (SetDrag(_selected))
-        //        {
-        //            _selected = null;
-        //        }
-        //        else
-        //        {
-        //            _dropTarget = _selected;
-        //            if (SetDrop(_selected))
-        //            {
-        //                _selected = null;
-        //            }
-        //        }
-        //    }
-        //}
-
-        private static void OnLostFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            _isFocused = false;
-        }
-
-        private static void OnGotFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            _isFocused = true;
-        }
-
-        private static void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var listView = sender as ListView;
-            if (listView != null)
-            {
-                _selected = listView.SelectedItem as SavedTemplateViewModel;
             }
         }
     }
