@@ -129,7 +129,7 @@
                     <Button Margin="{StaticResource Margin_M2_LeftRight_S_Top}" Style="{StaticResource ButtonRefreshTemplatesStyle}"
                         Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
                         Command="{Binding RefreshTemplatesCacheCommand}"
-                        Visibility="{Binding CanForceRefreshTemplateCache, Converter={StaticResource BoolToVisibilityConverter}}">
+                        Visibility="{Binding RefreshTemplateCacheVisibility}">
                     </Button>
                 </StackPanel>
             </ScrollViewer>

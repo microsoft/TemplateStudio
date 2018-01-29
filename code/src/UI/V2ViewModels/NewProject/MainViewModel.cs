@@ -43,14 +43,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
              () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
 
-        public bool CanForceRefreshTemplateCache
+        public Visibility RefreshTemplateCacheVisibility
         {
             get
             {
 #if DEBUG
-                return true;
+                return Visibility.Visible;
 #else
-                return false;
+                return Visibility.Hidden;
 #endif
             }
         }
