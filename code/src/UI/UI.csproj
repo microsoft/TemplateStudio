@@ -385,6 +385,7 @@
       <DependentUpon>StringRes.resx</DependentUpon>
     </Compile>
     <Compile Include="V2Services\DataService.cs" />
+    <Compile Include="V2Services\DispatcherService.cs" />
     <Compile Include="V2Services\DragAndDropService\DragAdornerLayer.cs" />
     <Compile Include="V2Services\DragAndDropService\DragAndDropEventArgs`1.cs" />
     <Compile Include="V2Services\DragAndDropService\DragAndDropService.cs" />
@@ -425,6 +426,8 @@
     <Compile Include="V2ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\Selectable.cs" />
+    <Compile Include="V2ViewModels\Common\SelectableGroup`1.cs" />
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
     <Compile Include="V2ViewModels\NewItem\ChangesSummaryViewModel.cs" />
     <Compile Include="V2ViewModels\NewItem\MainViewModel.cs" />

@@ -24,9 +24,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public static MainViewModel Instance { get; private set; }
 
-        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel();
+        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(() => Instance.IsSelectionEnabled());
 
-        public FrameworkViewModel Framework { get; } = new FrameworkViewModel();
+        public FrameworkViewModel Framework { get; } = new FrameworkViewModel(() => Instance.IsSelectionEnabled());
 
         public AddPagesViewModel AddPages { get; } = new AddPagesViewModel();
 

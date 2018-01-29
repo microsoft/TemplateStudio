@@ -12,7 +12,7 @@ using Microsoft.Templates.UI.V2Views.Common;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
-    public class BasicInfoViewModel : Observable
+    public class BasicInfoViewModel : Selectable
     {
         private string _title;
         private string _description;

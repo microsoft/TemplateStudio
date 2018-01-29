@@ -55,13 +55,12 @@
                     <ComboBox
                         x:Name="projectTypeCombo"
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
-                        ItemsSource="{Binding ProjectType.Items}"                        
+                        ItemsSource="{Binding ProjectType.Items}"
+                        SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
-                        PreviewKeyDown="ComboBox_PreviewKeyDown"
-                        SelectionChanged="OnSelectionChanged" />
-                    <!--SelectedItem="{Binding ProjectType.Selected, Mode=OneWay}"-->
+                        PreviewKeyDown="ComboBox_PreviewKeyDown" />
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
@@ -70,11 +69,11 @@
                         x:Name="frameworkCombo"
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
                         ItemsSource="{Binding Framework.Items}"
+                        SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
-                        SelectionChanged="OnSelectionChanged" />
-                    <!--SelectedItem="{Binding Framework.Selected, Mode=OneWay}"-->
+                        PreviewKeyDown="ComboBox_PreviewKeyDown" />
 
                     <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
                         <TextBlock
