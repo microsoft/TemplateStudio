@@ -10,14 +10,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public class MetadataInfoViewModel : BasicInfoViewModel
     {
-        private bool _isSelected;
         private string _metadataType;
-
-        public bool IsSelected
-        {
-            get => _isSelected;
-            set => SetProperty(ref _isSelected, value);
-        }
 
         public string MetadataType
         {
