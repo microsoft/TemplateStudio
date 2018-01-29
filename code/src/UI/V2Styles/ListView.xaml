@@ -401,6 +401,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemProjectDetailsTemplates}" />
         <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="Focusable" Value="False" />
         <EventSetter Event="PreviewKeyDown" Handler="OnProjectDetailsTemplatesPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>

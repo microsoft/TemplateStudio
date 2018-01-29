@@ -154,7 +154,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             }
         }
 
-        private void OnDelete()
+        public void OnDelete()
         {
             if (!IsHome)
             {
