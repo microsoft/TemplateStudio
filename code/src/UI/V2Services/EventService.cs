@@ -16,6 +16,8 @@ namespace Microsoft.Templates.UI.V2Services
 
         public event EventHandler<SavedTemplateViewModel> OnDeleteTemplateClicked;
 
+        public event EventHandler<SavedTemplateViewModel> OnSavedTemplateFocused;
+
         public event EventHandler<MetadataInfoViewModel> OnProjectTypeChange;
 
         public event EventHandler<MetadataInfoViewModel> OnFrameworkChange;
@@ -39,5 +41,7 @@ namespace Microsoft.Templates.UI.V2Services
         public void RaiseOnProjectTypeChange(MetadataInfoViewModel projectType) => OnProjectTypeChange?.Invoke(this, projectType);
 
         public void RaiseOnFrameworkChange(MetadataInfoViewModel framework) => OnFrameworkChange?.Invoke(this, framework);
+
+        public void RaiseOnSavedTemplateFocused(SavedTemplateViewModel template) => OnSavedTemplateFocused?.Invoke(this, template);
     }
 }

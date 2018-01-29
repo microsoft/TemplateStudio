@@ -37,5 +37,18 @@ namespace Microsoft.Templates.UI.V2Styles
 
             BaseMainViewModel.BaseInstance.ProcessItem(item);
         }
+
+        private async void OnProjectDetailsTemplatesPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var listView = sender as System.Windows.Controls.ListView;
+            if (listView != null && e.Key == Key.F2)
+            {
+                var savedTemplate = listView.SelectedItem as SavedTemplateViewModel;
+                if (savedTemplate != null)
+                {
+                    savedTemplate.Focus();
+                }
+            }
+        }
     }
 }

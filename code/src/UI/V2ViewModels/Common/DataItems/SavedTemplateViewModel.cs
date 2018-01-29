@@ -4,11 +4,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.V2Controls;
 using Microsoft.Templates.UI.V2Extensions;
 using Microsoft.Templates.UI.V2Services;
@@ -22,7 +24,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private string _icon;
         private bool _itemNameEditable;
         private bool _isHidden;
-        private bool _isFocused;
         private bool _hasErrors;
         private bool _isHome;
         private bool _isReorderEnabled;
@@ -63,12 +64,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             get => _isHidden;
             set => SetProperty(ref _isHidden, value);
-        }
-
-        public bool IsFocused
-        {
-            get => _isFocused;
-            set => SetProperty(ref _isFocused, value);
         }
 
         public bool HasErrors
@@ -123,7 +118,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public void Focus()
         {
-            IsFocused = true;
+            EventService.Instance.RaiseOnSavedTemplateFocused(this);
         }
 
         private void OnTextChanged(TextChangedEventArgs args)

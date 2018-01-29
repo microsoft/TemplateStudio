@@ -329,9 +329,10 @@
                                         Style="{StaticResource WtsTextBoxStyle}"
                                         Margin="{StaticResource Margin_XS_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
-                                        extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
+                                        extensions:TextBoxExtensions.ListenIsFocused="True"
                                         extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
                                         extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}" />
+
                                     <TextBlock
                                         Text="{Binding Name, Mode=OneWay}"
                                         Style="{StaticResource WtsTextBlockSavedTemplateName}"
@@ -400,6 +401,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemProjectDetailsTemplates}" />
         <Setter Property="SelectionMode" Value="Single" />
+        <EventSetter Event="PreviewKeyDown" Handler="OnProjectDetailsTemplatesPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
