@@ -121,7 +121,7 @@
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockCardMouseOverAddIcon">
-        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="{Binding CardBorderSelected, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="Text" Value="&#xE109;" />

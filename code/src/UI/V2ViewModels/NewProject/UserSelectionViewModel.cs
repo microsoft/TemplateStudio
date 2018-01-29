@@ -92,6 +92,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
             template.IncreaseSelection();
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin);
+            var focus = false;
             if (!IsTemplateAdded(template) || template.MultipleInstance)
             {
                 if (!string.IsNullOrEmpty(layoutName))
@@ -103,7 +104,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                     savedTemplate.Name = ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, template.ItemNameEditable);
                     if (savedTemplate.ItemNameEditable)
                     {
-                        savedTemplate.Focus();
+                        focus = true;
                     }
                 }
 
@@ -117,6 +118,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
                 // Notiffy Licenses name to update the visibillity on the layout
                 OnPropertyChanged(nameof(Licenses));
+                if (focus)
+                {
+                    savedTemplate.Focus();
+                }
             }
         }
 
