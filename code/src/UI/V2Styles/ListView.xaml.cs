@@ -15,10 +15,7 @@ namespace Microsoft.Templates.UI.V2Styles
             var item = sender as ListViewItem;
             if (item != null)
             {
-                if (BaseMainViewModel.BaseInstance.IsSelectionEnabled())
-                {
-                    BaseMainViewModel.BaseInstance.ProcessItem(item.Content);
-                }
+                SelectItem(item.Content as BasicInfoViewModel);
             }
         }
 
@@ -27,11 +24,18 @@ namespace Microsoft.Templates.UI.V2Styles
             var listView = sender as System.Windows.Controls.ListView;
             if (listView != null && e.Key == Key.Enter)
             {
-                if (BaseMainViewModel.BaseInstance.IsSelectionEnabled())
-                {
-                    BaseMainViewModel.BaseInstance.ProcessItem(listView.SelectedItem);
-                }
+                SelectItem(listView.SelectedItem as BasicInfoViewModel);
             }
+        }
+
+        private void SelectItem(BasicInfoViewModel item)
+        {
+            if (item is MetadataInfoViewModel && !BaseMainViewModel.BaseInstance.IsSelectionEnabled())
+            {
+                return;
+            }
+
+            BaseMainViewModel.BaseInstance.ProcessItem(item);
         }
     }
 }

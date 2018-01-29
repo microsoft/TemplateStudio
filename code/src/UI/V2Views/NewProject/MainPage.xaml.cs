@@ -50,34 +50,32 @@ namespace Microsoft.Templates.UI.V2Views.NewProject
 
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!_listenComboUpdates)
+            if (_listenComboUpdates)
             {
-                return;
-            }
-
-            if (_handleSelection)
-            {
-                if (!MainViewModel.Instance.IsSelectionEnabled())
+                if (_handleSelection)
                 {
-                    var combo = (ComboBox)sender;
-                    _handleSelection = false;
-                    if (e.RemovedItems != null && e.RemovedItems.Count > 0)
+                    if (!MainViewModel.Instance.IsSelectionEnabled())
                     {
-                        combo.SelectedItem = e.RemovedItems[0];
-                        return;
+                        var combo = (ComboBox)sender;
+                        _handleSelection = false;
+                        if (e.RemovedItems != null && e.RemovedItems.Count > 0)
+                        {
+                            combo.SelectedItem = e.RemovedItems[0];
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (e.AddedItems != null && e.AddedItems.Count > 0)
+                        {
+                            MainViewModel.Instance.ProcessItem(e.AddedItems[0]);
+                            return;
+                        }
                     }
                 }
-                else
-                {
-                    if (e.AddedItems != null && e.AddedItems.Count > 0)
-                    {
-                        MainViewModel.Instance.ProcessItem(e.AddedItems[0]);
-                        return;
-                    }
-                }
-            }
 
-            _handleSelection = true;
+                _handleSelection = true;
+            }
         }
 
         private void OnProjectTypeChange(object sender, MetadataInfoViewModel e)
