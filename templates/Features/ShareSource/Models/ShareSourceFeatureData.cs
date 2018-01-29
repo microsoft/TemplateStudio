@@ -48,7 +48,7 @@ namespace Param_ItemNamespace.Models
             Items.Add(ShareSourceFeatureItem.FromWebLink(webLink));
         }
 
-        // TODO WTS: To share a link to your application be sure you have configured activation by Uri
+        // TODO WTS: To share a link to your application be sure you have configured activation by URI
         //
         // 1. Register the protocol in Package.appxmanifest Declarations/protocol
         //      i.e.
@@ -98,7 +98,7 @@ namespace Param_ItemNamespace.Models
             Items.Add(ShareSourceFeatureItem.FromStorageItems(storageItems));
         }
 
-        // TODO WTS: Use this method add content to share when you do not want to process the data until the target app actually requests it.
+        // TODO WTS: Use this method to add content to share when you do not want to process the data until the target app actually requests it.
         // The defferedDataFormatId parameter must be a const value from StandardDataFormats class.
         // The getDeferredDataAsyncFunc parameter is the function that returns the object you want to share.
         public void SetDeferredContent(string deferredDataFormatId, Func<Task<object>> getDeferredDataAsyncFunc)

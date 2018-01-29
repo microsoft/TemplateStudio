@@ -46,7 +46,7 @@ namespace Param_ItemNamespace.ViewModels
 
         public void Complete()
         {
-            // TODO WTS: Implement the actions you want to realize with the shared data before compleate the share operation.
+            // TODO WTS: Implement the actions you want to realize with the shared data before completing the share operation.
             // For further details check https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
             _shareOperation.ReportCompleted();
         }

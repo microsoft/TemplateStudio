@@ -13,8 +13,8 @@ using Param_ItemNamespace.Models;
 
 namespace Param_ItemNamespace.Views
 {
-    // TODO WTS: This page exists purely as an example of how to launch a specific page in
-    // response to a protocol launch and pass it a value. It is expected that you will
+    // TODO WTS: This page exists purely as an example of how to launch a specific page
+    // in response to a protocol launch and pass it a value. It is expected that you will
     // delete this page once you have changed the handling of a protocol launch to meet your
     // needs and redirected to another of your pages.
     public sealed partial class ShareTargetFeaturePage : Page, INotifyPropertyChanged
@@ -103,7 +103,7 @@ namespace Param_ItemNamespace.Views
 
         private void CompleteButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO WTS: Implement the actions you want to realize with the shared data before compleate the share operation.
+            // TODO WTS: Implement the actions you want to realize with the shared data before completing the share operation.
             // For further details check https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
             _shareOperation.ReportCompleted();
         }

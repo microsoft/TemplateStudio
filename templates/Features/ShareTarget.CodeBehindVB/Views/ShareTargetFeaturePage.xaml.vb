@@ -5,8 +5,8 @@ Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.Models
 
 Namespace Views
-    ' TODO WTS: This page exists purely as an example of how to launch a specific page in
-    ' response to a protocol launch and pass it a value. It is expected that you will
+    ' TODO WTS: This page exists purely as an example of how to launch a specific page
+    ' in response to a protocol launch and pass it a value. It is expected that you will
     ' delete this page once you have changed the handling of a protocol launch to meet your
     ' needs and redirected to another of your pages.
     Public NotInheritable Partial Class ShareTargetFeaturePage
@@ -90,7 +90,7 @@ Namespace Views
         End Sub
 
         Private Sub CompleteButton_Click(sender As Object, e As RoutedEventArgs)
-            ' TODO WTS: Implement the actions you want to realize with the shared data before compleate the share operation.
+            ' TODO WTS: Implement the actions you want to realize with the shared data before completing the share operation.
             ' For further details check https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
             _shareOperation.ReportCompleted()
         End Sub

@@ -9,7 +9,7 @@ Namespace Activation
         ' https://docs.microsoft.com/en-us/windows/uwp/launch-resume/web-to-app-linking
         ' https://blogs.windows.com/buildingapps/2016/10/14/web-to-app-linking-with-appurihandlers/
         '
-        ' TODO WTS: You must to update the Host Uri also on Package.appxmanifest XML (Right click > View Code)
+        ' TODO WTS: Update the Host URI here and in Package.appxmanifest XML (Right click > View Code)
         Private Const Host As String = "myapp.website.com"
 
         Private Const Section1 As String = "/MySection1"
