@@ -4,6 +4,7 @@
 
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
 namespace Microsoft.Templates.UI.V2Styles
@@ -66,5 +67,28 @@ namespace Microsoft.Templates.UI.V2Styles
                 }
             }
         }
+
+        private void OnSavedTemplateItemKeyDown(object sender, KeyEventArgs e)
+        {
+            var item = sender as ListViewItem;
+            var viewModel = item?.DataContext as SavedTemplateViewModel;
+             var listView = ItemsControl.ItemsControlFromItemContainer(item) as System.Windows.Controls.ListView;
+
+            if (viewModel == null)
+            {
+                return;
+            }
+
+            if (HasControlModifiedPressed() && e.Key == Key.Up)
+            {
+                OrderingService.MoveUp(viewModel);
+            }
+            else if (HasControlModifiedPressed() && e.Key == Key.Down)
+            {
+                OrderingService.MoveDown(viewModel);
+            }
+        }
+
+        private bool HasControlModifiedPressed() => (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control;
     }
 }

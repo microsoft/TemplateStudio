@@ -13,8 +13,7 @@ namespace Microsoft.Templates.UI.V2Services
 {
     public static class OrderingService
     {
-        private static SavedTemplateViewModel _dragginItem;
-        private static SavedTemplateViewModel _dropTarget;
+        private static ListView _listView;
 
         private static ObservableCollection<SavedTemplateViewModel> Pages
         {
@@ -23,35 +22,31 @@ namespace Microsoft.Templates.UI.V2Services
 
         public static void Initialize(ListView listView)
         {
+            _listView = listView;
             var service = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
             service.ProcessDrop += OnDrop;
         }
 
-        public static bool SetDrag(SavedTemplateViewModel savedTemplate)
+        public static void MoveUp(SavedTemplateViewModel item)
         {
-            if (_dragginItem == null)
+            if (!Pages.Contains(item) || Pages.First() == item)
             {
-                _dragginItem = savedTemplate;
-                savedTemplate.IsDragging = true;
-                return true;
+                return;
             }
 
-            return false;
+            var index = Pages.IndexOf(item);
+            MoveItem(index, index - 1);
         }
 
-        public static bool SetDrop(SavedTemplateViewModel savedTemplate)
+        public static void MoveDown(SavedTemplateViewModel item)
         {
-            if (_dragginItem != null && _dropTarget != null && !_dragginItem.Equals(_dropTarget))
+            if (!Pages.Contains(item) || Pages.Last() == item)
             {
-                var newIndex = Pages.IndexOf(_dropTarget);
-                var oldIndex = Pages.IndexOf(_dragginItem);
-                OnDrop(null, new DragAndDropEventArgs<SavedTemplateViewModel>(Pages, _dropTarget, oldIndex, newIndex));
-                _dragginItem = null;
-                _dropTarget = null;
-                return true;
+                return;
             }
 
-            return false;
+            var index = Pages.IndexOf(item);
+            MoveItem(index, index + 1);
         }
 
         private static bool AreCompatibleItems(SavedTemplateViewModel startItem, SavedTemplateViewModel endItem)
@@ -63,7 +58,19 @@ namespace Microsoft.Templates.UI.V2Services
         {
             if (e.OldIndex > -1)
             {
-                e.Items.Move(e.OldIndex, e.NewIndex);
+                Pages.Move(e.OldIndex, e.NewIndex);
+                EventService.Instance.RaiseOnReorderTemplate();
+            }
+        }
+
+        private static void MoveItem(int oldIndex, int newIndex)
+        {
+            var oldItem = Pages.ElementAt(oldIndex);
+            var newItem = Pages.ElementAt(newIndex);
+
+            if (AreCompatibleItems(oldItem, newItem))
+            {
+                Pages.Move(oldIndex, newIndex);
                 EventService.Instance.RaiseOnReorderTemplate();
             }
         }
