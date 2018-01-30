@@ -475,7 +475,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to aka.ms/wts.
+        ///   Looks up a localized string similar to https://aka.ms/wts.
         /// </summary>
         public static string ProjectDetailsAboutSectionLink {
             get {

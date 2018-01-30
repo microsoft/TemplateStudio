@@ -281,7 +281,7 @@
     <value>Name is reserved</value>
   </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
-    <value>aka.ms/wts</value>
+    <value>https://aka.ms/wts</value>
   </data>
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
     <value>Templates version:</value>
