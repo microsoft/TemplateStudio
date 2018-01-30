@@ -36,7 +36,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private RelayCommand _goBackCommand;
         private RelayCommand _goForwardCommand;
         private RelayCommand _finishCommand;
-        private DispatcherTimer _resetStepTimer;
 
         protected string Language { get; private set; }
 
@@ -46,7 +45,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetStepAsync(value).FireAndForget();
         }
 
-        private async Task SetStepAsync(int step)
+        public async Task SetStepAsync(int step)
         {
             _origStep = _step;
             if (step != _step)
@@ -56,12 +55,16 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
             if (await IsStepAvailableAsync(step))
             {
-                OnPropertyChanged("Step");
+                OnPropertyChanged(nameof(Step));
                 UpdateStep();
             }
             else
             {
-                _resetStepTimer.Start();
+                DispatcherService.BeginInvoke(() =>
+                {
+                    _step = _origStep;
+                    OnPropertyChanged(nameof(Step));
+                });
             }
         }
 
@@ -90,6 +93,17 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             {
                 step.Completed = true;
             }
+
+            foreach (var step in Steps)
+            {
+                step.IsSelected = false;
+            }
+
+            var selectedStep = Steps.FirstOrDefault(step => step.Index == Step);
+            if (selectedStep != null)
+            {
+                selectedStep.IsSelected = true;
+            }
         }
 
         protected abstract void OnCancel();
@@ -108,10 +122,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             _mainView = mainView;
             ResourcesService.Instance.Initialize(mainView);
             WizardStatus.IsBusyChanged += IsBusyChanged;
-
-            _resetStepTimer = new DispatcherTimer(DispatcherPriority.ContextIdle, Application.Current.Dispatcher);
-            _resetStepTimer.Interval = TimeSpan.FromMilliseconds(1);
-            _resetStepTimer.Tick += OnResetSelection;
         }
 
         protected virtual void OnFinish()
@@ -181,7 +191,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             _step = _origStep;
             OnPropertyChanged("Step");
-            _resetStepTimer.Stop();
         }
     }
 }
