@@ -164,7 +164,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         protected override IEnumerable<Step> GetSteps()
         {
-            yield return new Step(0, StringRes.NewProjectStepOne, true);
+            yield return new Step(0, StringRes.NewProjectStepOne, true, true);
             yield return new Step(1, StringRes.NewProjectStepTwo);
             yield return new Step(2, StringRes.NewProjectStepThree);
             yield return new Step(3, StringRes.NewProjectStepFour);

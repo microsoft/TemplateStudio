@@ -78,6 +78,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack));
 
+        protected BasicInfoViewModel()
+            : base(false)
+        {
+        }
+
         private void OnDetails()
         {
             NavigationService.NavigateMainFrame(new TemplateInfoPage(this));

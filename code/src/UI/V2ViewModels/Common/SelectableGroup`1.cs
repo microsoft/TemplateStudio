@@ -32,30 +32,33 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public bool Select(T value)
         {
-            _origSelected = _selected;
-            if (value != _selected)
+            if (value != null)
             {
-                _selected = value;
-            }
-
-            if (_isSelectionEnabled())
-            {
-                foreach (var item in Items)
+                _origSelected = _selected;
+                if (value != _selected)
                 {
-                    item.IsSelected = false;
+                    _selected = value;
                 }
 
-                _selected.IsSelected = true;
-                OnPropertyChanged(nameof(Selected));
-                return true;
-            }
-            else
-            {
-                DispatcherService.BeginInvoke(() =>
+                if (_isSelectionEnabled())
                 {
-                    _selected = _origSelected;
+                    foreach (var item in Items)
+                    {
+                        item.IsSelected = false;
+                    }
+
+                    _selected.IsSelected = true;
                     OnPropertyChanged(nameof(Selected));
-                });
+                    return true;
+                }
+                else
+                {
+                    DispatcherService.BeginInvoke(() =>
+                    {
+                        _selected = _origSelected;
+                        OnPropertyChanged(nameof(Selected));
+                    });
+                }
             }
 
             return false;

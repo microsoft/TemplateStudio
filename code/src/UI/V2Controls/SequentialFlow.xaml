@@ -18,7 +18,7 @@
     <ListView
         x:Name="listView"
         ItemsSource="{Binding Steps, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SequentialFlow}}}"
-        SelectedIndex="{Binding Step, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SequentialFlow}}}"
         Style="{DynamicResource WtsListViewSequentialFlow}" />
+    <!--SelectedIndex="{Binding Step, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SequentialFlow}}}"-->
 
 </UserControl>
