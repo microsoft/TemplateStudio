@@ -124,6 +124,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh templates cache.
+        /// </summary>
+        public static string ButtonRefreshTemplatesCache {
+            get {
+                return ResourceManager.GetString("ButtonRefreshTemplatesCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string ButtonRemove {
@@ -336,6 +345,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string NotificationRemoveError_Dependency {
             get {
                 return ResourceManager.GetString("NotificationRemoveError_Dependency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error refreshing templates. See output for more details..
+        /// </summary>
+        public static string NotificationSyncError_Refresh {
+            get {
+                return ResourceManager.GetString("NotificationSyncError_Refresh", resourceCulture);
             }
         }
         

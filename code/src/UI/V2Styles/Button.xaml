@@ -7,7 +7,7 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="Button" x:Key="WtsButton">
+    <Style TargetType="Button" x:Key="WtsBaseButton">
         <Setter Property="Foreground" Value="{Binding ButtonText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Background" Value="{Binding Button, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding ButtonBorder, Source={x:Static services:UIStylesService.Instance}}" />
@@ -19,8 +19,6 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="1" />
-        <Setter Property="Width" Value="75" />
-        <Setter Property="Height" Value="23" />
         <Setter Property="FocusVisualStyle">
             <Setter.Value>
                 <Style>
@@ -68,6 +66,10 @@
                 <Setter Property="BorderBrush" Value="{Binding ButtonBorderFocused, Source={x:Static services:UIStylesService.Instance}}" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+    <Style TargetType="Button" x:Key="WtsButton" BasedOn="{StaticResource WtsBaseButton}">
+        <Setter Property="Width" Value="75" />
+        <Setter Property="Height" Value="23" />
     </Style>
 
     <Style TargetType="Button" x:Key="WtsButtonFinish" BasedOn="{StaticResource WtsButton}">
@@ -150,4 +152,9 @@
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRemove}" />
     </Style>
 
+    <Style TargetType="Button" x:Key="ButtonRefreshTemplatesStyle" BasedOn="{StaticResource WtsBaseButton}">
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Height" Value="23" />
+    </Style>
 </ResourceDictionary>
