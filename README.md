@@ -25,6 +25,8 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 > * *Full Tests*: Includes `Gen Tests` and actually builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed.
 > * *Wack Tests*: Includes tests that run the App Certification Kit against the generated projects to ensure there are no issues blocking a submission to the store. Runs once nightly and takes quite a while to complete.
 
+Latest release [1.7.18030.1](https://github.com/Microsoft/WindowsTemplateStudio/releases/tag/1.7.18030.1)
+
 ## Features
 
 Windows Template Studio approaches UWP app creation using the following four attribute sets:
