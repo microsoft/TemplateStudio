@@ -16,5 +16,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _isSelected, value);
         }
 
+        public Selectable(bool isSelected)
+        {
+            _isSelected = isSelected;
+        }
     }
 }

@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
+    WindowStyle="None"
     WindowStartupLocation="CenterScreen"
     MinWidth="800"
     MinHeight="400"
