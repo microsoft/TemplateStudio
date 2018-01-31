@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -25,6 +26,9 @@ namespace Microsoft.Templates.UI.V2Styles
                     case Step step:
                         await SelectStepAsync(step);
                         break;
+                    case NewItemFileViewModel file:
+                        SelectFile(file);
+                        break;
                     default:
                         break;
                 }
@@ -43,6 +47,9 @@ namespace Microsoft.Templates.UI.V2Styles
                         break;
                     case Step step:
                         await SelectStepAsync(step);
+                        break;
+                    case NewItemFileViewModel file:
+                        SelectFile(file);
                         break;
                     default:
                         break;
@@ -68,10 +75,9 @@ namespace Microsoft.Templates.UI.V2Styles
             BaseMainViewModel.BaseInstance.ProcessItem(item);
         }
 
-        private async Task SelectStepAsync(Step step)
-        {
-            await BaseMainViewModel.BaseInstance.SetStepAsync(step.Index);
-        }
+        private async Task SelectStepAsync(Step step) => await BaseMainViewModel.BaseInstance.SetStepAsync(step.Index);
+
+        private void SelectFile(NewItemFileViewModel file) => V2ViewModels.NewItem.MainViewModel.Instance.ChangesSummary.SelectFile(file);
 
         private void OnProjectDetailsTemplatesPreviewKeyDown(object sender, KeyEventArgs e)
         {

@@ -169,11 +169,29 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This file already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing..
+        /// </summary>
+        public static string ChangesSummaryGroupConflictingFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupConflictingFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Conflicting styles files.
         /// </summary>
         public static string ChangesSummaryGroupConflictingStylesFiles {
             get {
                 return ResourceManager.GetString("ChangesSummaryGroupConflictingStylesFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are not able to introduce the styles in the resource dictionary..
+        /// </summary>
+        public static string ChangesSummaryGroupConflictingStylesFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupConflictingStylesFilesDescription", resourceCulture);
             }
         }
         
@@ -187,11 +205,29 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This file will be modified to include required content..
+        /// </summary>
+        public static string ChangesSummaryGroupModifiedFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupModifiedFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New files.
         /// </summary>
         public static string ChangesSummaryGroupNewFiles {
             get {
                 return ResourceManager.GetString("ChangesSummaryGroupNewFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This file will be added as new file to your project..
+        /// </summary>
+        public static string ChangesSummaryGroupNewFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupNewFilesDescription", resourceCulture);
             }
         }
         
@@ -205,11 +241,29 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This file already exists in your project and no further action is necessary. The file will remain unchanged..
+        /// </summary>
+        public static string ChangesSummaryGroupUnchangedFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupUnchangedFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warning files.
         /// </summary>
         public static string ChangesSummaryGroupWarningFiles {
             get {
                 return ResourceManager.GetString("ChangesSummaryGroupWarningFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are not able to introduce the modifications required. If needed, you can access the generated file after finishing..
+        /// </summary>
+        public static string ChangesSummaryGroupWarningFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupWarningFilesDescription", resourceCulture);
             }
         }
         

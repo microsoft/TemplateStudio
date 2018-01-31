@@ -29,7 +29,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private bool _isReorderEnabled;
         private bool _isDragging;
         private bool _isFocused;
-        private ICommand _textChangedCommand;
         private ICommand _lostKeyboardFocusCommand;
         private ICommand _setFocusCommand;
         private RelayCommand _deleteCommand;
@@ -47,7 +46,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public string Name
         {
             get => _name;
-            set => SetProperty(ref _name, value);
+            set => SetName(value);
         }
 
         public string Icon
@@ -112,8 +111,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public TemplateOrigin TemplateOrigin { get; }
 
-        public ICommand TextChangedCommand => _textChangedCommand ?? (_textChangedCommand = new RelayCommand<TextChangedEventArgs>(OnTextChanged));
-
         public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
 
         public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
@@ -139,28 +136,24 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             EventService.Instance.RaiseOnSavedTemplateFocused(this);
         }
 
-        private void OnTextChanged(TextChangedEventArgs args)
+        private void SetName(string newName)
         {
-            var textBox = args.Source as TextBox;
-            if (textBox != null)
+            if (ItemNameEditable)
             {
-                if (ItemNameEditable)
+                var validationResult = ValidationService.ValidateTemplateName(newName, ItemNameEditable, true);
+                HasErrors = !validationResult.IsValid;
+                MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
+                if (validationResult.IsValid)
                 {
-                    var validationResult = ValidationService.ValidateTemplateName(textBox.Text, ItemNameEditable, true);
-                    HasErrors = !validationResult.IsValid;
-                    MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
-                    if (validationResult.IsValid)
-                    {
-                        NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
-                    }
-                    else
-                    {
-                        NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
-                    }
-
-                    Name = textBox.Text;
+                    NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                }
+                else
+                {
+                    NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
                 }
             }
+
+            SetProperty(ref _name, newName, nameof(Name));
         }
 
         private void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs args)

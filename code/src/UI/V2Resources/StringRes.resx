@@ -163,25 +163,43 @@
     <value>Conflicting files</value>
     <comment>Changes summary group title for: Conflicting files</comment>
   </data>
+  <data name="ChangesSummaryGroupConflictingFilesDescription" xml:space="preserve">
+    <value>This file already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
+  </data>
   <data name="ChangesSummaryGroupConflictingStylesFiles" xml:space="preserve">
     <value>Conflicting styles files</value>
     <comment>Changes summary group title for: Conflicting styles files</comment>
+  </data>
+  <data name="ChangesSummaryGroupConflictingStylesFilesDescription" xml:space="preserve">
+    <value>We are not able to introduce the styles in the resource dictionary.</value>
   </data>
   <data name="ChangesSummaryGroupModifiedFiles" xml:space="preserve">
     <value>Modified files</value>
     <comment>Changes summary group title for: Modified files</comment>
   </data>
+  <data name="ChangesSummaryGroupModifiedFilesDescription" xml:space="preserve">
+    <value>This file will be modified to include required content.</value>
+  </data>
   <data name="ChangesSummaryGroupNewFiles" xml:space="preserve">
     <value>New files</value>
     <comment>Changes summary group title for: New files</comment>
+  </data>
+  <data name="ChangesSummaryGroupNewFilesDescription" xml:space="preserve">
+    <value>This file will be added as new file to your project.</value>
   </data>
   <data name="ChangesSummaryGroupUnchangedFiles" xml:space="preserve">
     <value>Unchanged files</value>
     <comment>Changes summary group title for: Unchanged files</comment>
   </data>
+  <data name="ChangesSummaryGroupUnchangedFilesDescription" xml:space="preserve">
+    <value>This file already exists in your project and no further action is necessary. The file will remain unchanged.</value>
+  </data>
   <data name="ChangesSummaryGroupWarningFiles" xml:space="preserve">
     <value>Warning files</value>
     <comment>Changes summary group title for: Warning files</comment>
+  </data>
+  <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
+    <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
     <value>Select a design pattern</value>

@@ -11,7 +11,7 @@ namespace Microsoft.Templates.UI.V2Views.NewItem
     {
         public TemplateSelectionPage()
         {
-            DataContext = MainViewModel.Instance.TemplateSelection;
+            DataContext = MainViewModel.Instance;
             InitializeComponent();
         }
     }
