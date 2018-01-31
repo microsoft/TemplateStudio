@@ -6,19 +6,8 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="ExpanderHeaderFocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Border>
-                        <Rectangle Margin="0" SnapsToDevicePixels="true" Stroke="Black" StrokeThickness="1" StrokeDashArray="1 2"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="ExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -50,6 +39,9 @@
                             <Setter Property="Data" TargetName="arrow" Value="M 0,0  L 5,5  L 0,10"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{Binding PageSideBarExpanderHeaderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
                             <Setter Property="Background" TargetName="border" Value="{Binding PageSideBarExpanderHeaderHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
@@ -101,8 +93,7 @@
                                 MinWidth="0"
                                 MinHeight="0"
                                 Padding="{TemplateBinding Padding}"
-                                Style="{StaticResource ExpanderDownHeaderStyle}"
-                                FocusVisualStyle="{StaticResource ExpanderHeaderFocusVisual}" />
+                                Style="{StaticResource ExpanderDownHeaderStyle}" />
                             <ContentPresenter
                                 x:Name="ExpandSite"
                                 DockPanel.Dock="Bottom"
