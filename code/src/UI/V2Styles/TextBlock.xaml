@@ -272,6 +272,17 @@
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
     </Style>
 
+    <!--Changes Summary-->
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockFileStatusDescription">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+    </Style>
+
     <!--Dialog-->
     <Style TargetType="TextBlock" x:Key="WtsTextBlockDialogTitle">
         <Setter Property="FontSize" Value="{Binding Environment111PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />

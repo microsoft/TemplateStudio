@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
-                    xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services">
+                    xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services"
+                    xmlns:res="clr-namespace:Microsoft.Templates.UI.V2Resources">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
@@ -217,7 +218,21 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WtsDataTemplateChangesSummaryNewFileDetailTemplate">
-        <Grid Background="{Binding NewItemFileStatusNewFile, Source={x:Static services:UIStylesService.Instance}}" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupNewFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </Grid>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="WtsDataTemplateChangesSummaryModifiedFileDetailTemplate">
