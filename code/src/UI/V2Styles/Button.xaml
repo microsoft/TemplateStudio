@@ -148,6 +148,7 @@
         <Setter Property="Foreground" Value="{Binding DeleteTemplateIcon, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Content" Value="&#xE10A;" />
         <Setter Property="FontSize" Value="12" />
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonRemove}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRemove}" />
     </Style>

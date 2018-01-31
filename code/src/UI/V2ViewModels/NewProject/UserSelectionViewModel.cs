@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Mvvm;
@@ -29,6 +30,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         private string _projectTypeName;
         private string _frameworkName;
         private string _language;
+        private ICommand _movePageUpCommand;
+        private ICommand _movePageDownCommand;
 
         public ObservableCollection<SavedTemplateViewModel> Pages { get; } = new ObservableCollection<SavedTemplateViewModel>();
 
@@ -36,7 +39,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
 
+        public ICommand MovePageUpCommand => _movePageUpCommand ?? (_movePageUpCommand = new RelayCommand(() => OrderingService.MoveUp(SelectedPage)));
+
+        public ICommand MovePageDownCommand => _movePageDownCommand ?? (_movePageDownCommand = new RelayCommand(() => OrderingService.MoveDown(SelectedPage)));
+
         public bool HasItemsAddedByUser { get; private set; }
+
+        public SavedTemplateViewModel SelectedPage { get; set; }
 
         public UserSelectionViewModel()
         {
@@ -92,6 +101,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
             template.IncreaseSelection();
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin);
+            var focus = false;
             if (!IsTemplateAdded(template) || template.MultipleInstance)
             {
                 if (!string.IsNullOrEmpty(layoutName))
@@ -103,7 +113,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                     savedTemplate.Name = ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, template.ItemNameEditable);
                     if (savedTemplate.ItemNameEditable)
                     {
-                        savedTemplate.Focus();
+                        focus = true;
                     }
                 }
 
@@ -117,6 +127,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
                 // Notiffy Licenses name to update the visibillity on the layout
                 OnPropertyChanged(nameof(Licenses));
+                if (focus)
+                {
+                    savedTemplate.Focus();
+                }
             }
         }
 

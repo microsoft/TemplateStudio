@@ -2,25 +2,23 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Templates.UI.V2Services;
 
 namespace Microsoft.Templates.UI.V2Extensions
 {
     public class TextBoxExtensions
     {
-        public static readonly DependencyProperty IsFocusedProperty = DependencyProperty.RegisterAttached(
-          "IsFocused",
+        private static string _currentFocusTemplateName;
+
+        public static readonly DependencyProperty ListenIsFocusedProperty = DependencyProperty.RegisterAttached(
+          "ListenIsFocused",
           typeof(bool),
           typeof(TextBoxExtensions),
-          new PropertyMetadata(false, OnIsFocusedPropertyChanged));
-
-        public static readonly DependencyProperty TextChangedCommandProperty = DependencyProperty.RegisterAttached(
-          "TextChangedCommand",
-          typeof(ICommand),
-          typeof(TextBoxExtensions),
-          new PropertyMetadata(null, OnTextChangedCommandPropertyChanged));
+          new PropertyMetadata(false, OnListenIsFocusedPropertyChanged));
 
         public static readonly DependencyProperty LostKeyboardFocusCommandProperty = DependencyProperty.RegisterAttached(
           "LostKeyboardFocusCommand",
@@ -28,24 +26,14 @@ namespace Microsoft.Templates.UI.V2Extensions
           typeof(TextBoxExtensions),
           new PropertyMetadata(null, OnLostKeyboardFocusCommandPropertyChanged));
 
-        public static void SetIsFocused(UIElement element, bool value)
+        public static void SetListenIsFocused(UIElement element, bool value)
         {
-            element.SetValue(IsFocusedProperty, value);
+            element.SetValue(ListenIsFocusedProperty, value);
         }
 
-        public static bool GetIsFocused(UIElement element)
+        public static bool GetListenIsFocused(UIElement element)
         {
-            return (bool)element.GetValue(IsFocusedProperty);
-        }
-
-        public static void SetTextChangedCommand(UIElement element, ICommand value)
-        {
-            element.SetValue(TextChangedCommandProperty, value);
-        }
-
-        public static ICommand GetTextChangedCommand(UIElement element)
-        {
-            return (ICommand)element.GetValue(TextChangedCommandProperty);
+            return (bool)element.GetValue(ListenIsFocusedProperty);
         }
 
         public static void SetLostKeyboardFocusCommand(UIElement element, ICommand value)
@@ -58,28 +46,27 @@ namespace Microsoft.Templates.UI.V2Extensions
             return (ICommand)element.GetValue(LostKeyboardFocusCommandProperty);
         }
 
-        private static void OnIsFocusedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnListenIsFocusedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var textBox = d as TextBox;
             if (textBox != null)
             {
-                if ((bool)e.NewValue)
+                EventService.Instance.OnSavedTemplateFocused += (sender, template) =>
                 {
-                    textBox.Focus();
-                    textBox.Select(0, textBox.Text.Length);
-                }
+                    _currentFocusTemplateName = template.Name;
+                    ProcessFocus(textBox);
+                };
+                ProcessFocus(textBox);
             }
         }
 
-        private static void OnTextChangedCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void ProcessFocus(TextBox textBox)
         {
-            var textBox = d as TextBox;
-            if (textBox != null)
+            if (textBox.Text == _currentFocusTemplateName)
             {
-                textBox.TextChanged += (sender, args) =>
-                {
-                    GetTextChangedCommand(textBox).Execute(args);
-                };
+                textBox.Focus();
+                textBox.Select(0, textBox.Text.Length);
+                _currentFocusTemplateName = string.Empty;
             }
         }
 

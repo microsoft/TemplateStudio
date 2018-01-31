@@ -38,7 +38,8 @@
                 <ColumnDefinition Width="23*" />
                 <!--23% Project details-->
             </Grid.ColumnDefinitions>
-            <controls:SequentialFlow Step="{Binding Step, Mode=TwoWay}" Steps="{Binding Steps}" />
+            <controls:SequentialFlow Steps="{Binding Steps}" />
+            <!--Step="{Binding Step, Mode=OneWay}"-->
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
             <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
@@ -55,13 +56,12 @@
                     <ComboBox
                         x:Name="projectTypeCombo"
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
-                        ItemsSource="{Binding ProjectType.Items}"                        
+                        ItemsSource="{Binding ProjectType.Items}"
+                        SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
-                        PreviewKeyDown="ComboBox_PreviewKeyDown"
-                        SelectionChanged="OnSelectionChanged" />
-                    <!--SelectedItem="{Binding ProjectType.Selected, Mode=OneWay}"-->
+                        PreviewKeyDown="ComboBox_PreviewKeyDown" />
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
@@ -70,11 +70,11 @@
                         x:Name="frameworkCombo"
                         Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
                         ItemsSource="{Binding Framework.Items}"
+                        SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
-                        SelectionChanged="OnSelectionChanged" />
-                    <!--SelectedItem="{Binding Framework.Selected, Mode=OneWay}"-->
+                        PreviewKeyDown="ComboBox_PreviewKeyDown" />
 
                     <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
                         <TextBlock
@@ -84,7 +84,13 @@
                         <ListView
                             Style="{StaticResource WtsListViewProjectDetailsTemplates}"
                             ItemsSource="{Binding UserSelection.Pages}"
-                            Loaded="OnLoaded"/>
+                            SelectedItem="{Binding UserSelection.SelectedPage}"
+                            Loaded="OnLoaded">
+                            <ListView.InputBindings>
+                                <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding UserSelection.MovePageUpCommand}" />
+                                <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding UserSelection.MovePageDownCommand}" />
+                            </ListView.InputBindings>
+                        </ListView>
                     </StackPanel>
 
                     <StackPanel Visibility="{Binding UserSelection.Features, Converter={StaticResource HasItemsVisibilityConverter}}">
@@ -126,11 +132,11 @@
                             <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
                         </Hyperlink>
                     </TextBlock>
-                    <Button Margin="{StaticResource Margin_M2_LeftRight_S_Top}" Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                    <Button
+                        Margin="{StaticResource Margin_M2_LeftRight_S_Top}" Style="{StaticResource ButtonRefreshTemplatesStyle}"
                         Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
                         Command="{Binding RefreshTemplatesCacheCommand}"
-                        Visibility="{Binding RefreshTemplateCacheVisibility}">
-                    </Button>
+                        Visibility="{Binding RefreshTemplateCacheVisibility}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>

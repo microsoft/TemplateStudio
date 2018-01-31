@@ -4,10 +4,11 @@
 
 using System;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.V2ViewModels.Common;
 
 namespace Microsoft.Templates.UI.V2Controls
 {
-    public class Step : Observable
+    public class Step : Selectable
     {
         private bool _completed;
 
@@ -23,11 +24,12 @@ namespace Microsoft.Templates.UI.V2Controls
             set => SetProperty(ref _completed, value);
         }
 
-        public Step(int index, string title, bool completed = false)
+        public Step(int index, string title, bool completed = false, bool isSelected = false)
+            : base(isSelected)
         {
-            Completed = completed;
             Index = index;
             Title = title;
+            Completed = completed;
         }
     }
 }

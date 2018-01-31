@@ -141,7 +141,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 
         protected override IEnumerable<Step> GetSteps()
         {
-            yield return new Step(0, StringRes.NewItemStepOne, true);
+            yield return new Step(0, StringRes.NewItemStepOne, true, true);
             yield return new Step(1, StringRes.NewItemStepTwo);
         }
 
@@ -153,6 +153,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             }
         }
 
-        public override bool IsSelectionEnabled() => true;
+        public override bool IsSelectionEnabled(MetadataType metadataType) => true;
     }
 }

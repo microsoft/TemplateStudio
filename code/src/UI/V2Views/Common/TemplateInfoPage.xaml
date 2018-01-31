@@ -28,8 +28,8 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
         <TextBlock Margin="{StaticResource Margin_L_Left_M2_Top}">
@@ -46,13 +46,13 @@
             <StackPanel Margin="{StaticResource Margin_L_LeftRight_M2_Top}">
                 <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockTemplateDetailsTitle}" />
                 <controls:MarkdownBlock Text="{Binding Description}" Margin="{StaticResource Margin_M_Top}" />
-                <StackPanel Margin="{StaticResource Margin_M_Top}" Orientation="Horizontal">
+                <StackPanel Margin="{StaticResource Margin_M_Top}" Orientation="Horizontal" Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}}">
                     <TextBlock Text="{x:Static res:StringRes.TemplateDetailsAuthor}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}" />
                     <TextBlock Text="{Binding Author}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}" />
                 </StackPanel>
-                <StackPanel Margin="{StaticResource Margin_M_Top}" Orientation="Horizontal">
+                <StackPanel Margin="{StaticResource Margin_M_Top}" Orientation="Horizontal" Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}}">
                     <TextBlock Text="{x:Static res:StringRes.TemplateDetailsVersion}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}" />
-                    <TextBlock Text="{Binding Author}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}" />
+                    <TextBlock Text="{Binding Version}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}" />
                 </StackPanel>
                 <StackPanel Margin="{StaticResource Margin_M_Top}" Visibility="{Binding Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
                     <TextBlock Text="{x:Static res:StringRes.TemplateDetailsLicenses}" Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}" />

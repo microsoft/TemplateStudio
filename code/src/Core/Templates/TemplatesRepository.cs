@@ -134,7 +134,7 @@ namespace Microsoft.Templates.Core
 
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
-            metadata.ForEach(m => m.MetadataType = type);
+            metadata.ForEach(m => m.MetadataType = type == "projectTypes" ? MetadataType.ProjectType : MetadataType.Framework);
             metadata.ForEach(m => SetLicenseTerms(m));
 
             return metadata.OrderBy(m => m.Order);

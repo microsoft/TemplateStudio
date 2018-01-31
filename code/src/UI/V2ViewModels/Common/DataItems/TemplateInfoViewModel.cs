@@ -63,6 +63,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             Title = template.Name;
             Description = template.Description;
             Author = template.Author;
+            Version = template.GetVersion();
             Icon = template.GetIcon();
             Order = template.GetDisplayOrder();
             IsHidden = template.GetIsHidden();

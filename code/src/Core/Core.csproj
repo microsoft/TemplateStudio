@@ -200,6 +200,7 @@
     <Compile Include="Locations\TemplatesPackageInfo.cs" />
     <Compile Include="Locations\TemplatesSourceConfig.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
+    <Compile Include="MetadataType.cs" />
     <Compile Include="Mvvm\Observable.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />

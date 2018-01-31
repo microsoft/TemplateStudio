@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.TemplateEngine.Abstractions;
@@ -19,14 +20,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _name, value);
         }
 
-        private TemplateInfoViewModel _selected;
-
-        public TemplateInfoViewModel Selected
-        {
-            get => _selected;
-            set => SetProperty(ref _selected, value);
-        }
-
         public ObservableCollection<TemplateInfoViewModel> Items { get; }
 
         public TemplateGroupViewModel(IGrouping<string, TemplateInfoViewModel> templateGroup)
@@ -38,6 +31,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public TemplateInfoViewModel GetTemplate(ITemplateInfo templateInfo)
         {
             return Items.FirstOrDefault(t => t.Name == templateInfo.Name);
+        }
+
+        public void ClearIsSelected()
+        {
+            foreach (var item in Items)
+            {
+                item.IsSelected = false;
+            }
         }
     }
 }

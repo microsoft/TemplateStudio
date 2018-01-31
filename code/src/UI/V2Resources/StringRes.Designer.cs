@@ -124,6 +124,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string ButtonNo {
+            get {
+                return ResourceManager.GetString("ButtonNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh templates cache.
         /// </summary>
         public static string ButtonRefreshTemplatesCache {
@@ -142,11 +151,29 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string ButtonYes {
+            get {
+                return ResourceManager.GetString("ButtonYes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Conflicting files.
         /// </summary>
         public static string ChangesSummaryGroupConflictingFiles {
             get {
                 return ResourceManager.GetString("ChangesSummaryGroupConflictingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This file already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing..
+        /// </summary>
+        public static string ChangesSummaryGroupConflictingFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupConflictingFilesDescription", resourceCulture);
             }
         }
         
@@ -160,11 +187,29 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We are not able to introduce the styles in the resource dictionary..
+        /// </summary>
+        public static string ChangesSummaryGroupConflictingStylesFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupConflictingStylesFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modified files.
         /// </summary>
         public static string ChangesSummaryGroupModifiedFiles {
             get {
                 return ResourceManager.GetString("ChangesSummaryGroupModifiedFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This file will be modified to include required content..
+        /// </summary>
+        public static string ChangesSummaryGroupModifiedFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupModifiedFilesDescription", resourceCulture);
             }
         }
         
@@ -178,6 +223,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This file will be added as new file to your project..
+        /// </summary>
+        public static string ChangesSummaryGroupNewFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupNewFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unchanged files.
         /// </summary>
         public static string ChangesSummaryGroupUnchangedFiles {
@@ -187,11 +241,29 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This file already exists in your project and no further action is necessary. The file will remain unchanged..
+        /// </summary>
+        public static string ChangesSummaryGroupUnchangedFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupUnchangedFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warning files.
         /// </summary>
         public static string ChangesSummaryGroupWarningFiles {
             get {
                 return ResourceManager.GetString("ChangesSummaryGroupWarningFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are not able to introduce the modifications required. If needed, you can access the generated file after finishing..
+        /// </summary>
+        public static string ChangesSummaryGroupWarningFilesDescription {
+            get {
+                return ResourceManager.GetString("ChangesSummaryGroupWarningFilesDescription", resourceCulture);
             }
         }
         
@@ -484,7 +556,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to aka.ms/wts.
+        ///   Looks up a localized string similar to https://aka.ms/wts.
         /// </summary>
         public static string ProjectDetailsAboutSectionLink {
             get {
@@ -538,6 +610,24 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?.
+        /// </summary>
+        public static string ProjectDetailsFrameworkResetDescription {
+            get {
+                return ResourceManager.GetString("ProjectDetailsFrameworkResetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change design pattern.
+        /// </summary>
+        public static string ProjectDetailsFrameworkResetTitle {
+            get {
+                return ResourceManager.GetString("ProjectDetailsFrameworkResetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Design pattern.
         /// </summary>
         public static string ProjectDetailsFrameworkSectionTitle {
@@ -561,6 +651,24 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string ProjectDetailsPagesSectionTitle {
             get {
                 return ResourceManager.GetString("ProjectDetailsPagesSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?.
+        /// </summary>
+        public static string ProjectDetailsProjectTypeResetDescription {
+            get {
+                return ResourceManager.GetString("ProjectDetailsProjectTypeResetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change project type.
+        /// </summary>
+        public static string ProjectDetailsProjectTypeResetTitle {
+            get {
+                return ResourceManager.GetString("ProjectDetailsProjectTypeResetTitle", resourceCulture);
             }
         }
         

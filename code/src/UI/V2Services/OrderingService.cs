@@ -5,7 +5,6 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Input;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 using Microsoft.Templates.UI.V2ViewModels.NewProject;
 
@@ -13,8 +12,7 @@ namespace Microsoft.Templates.UI.V2Services
 {
     public static class OrderingService
     {
-        private static SavedTemplateViewModel _dragginItem;
-        private static SavedTemplateViewModel _dropTarget;
+        private static ListView _listView;
 
         private static ObservableCollection<SavedTemplateViewModel> Pages
         {
@@ -23,35 +21,33 @@ namespace Microsoft.Templates.UI.V2Services
 
         public static void Initialize(ListView listView)
         {
+            _listView = listView;
+
             var service = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
             service.ProcessDrop += OnDrop;
         }
 
-        public static bool SetDrag(SavedTemplateViewModel savedTemplate)
+        public static void MoveUp(SavedTemplateViewModel item)
         {
-            if (_dragginItem == null)
+            if (Pages.Contains(item) && Pages.First() != item)
             {
-                _dragginItem = savedTemplate;
-                savedTemplate.IsDragging = true;
-                return true;
+                var index = Pages.IndexOf(item);
+                MoveItemAndSetFocus(index, index - 1);
             }
-
-            return false;
         }
 
-        public static bool SetDrop(SavedTemplateViewModel savedTemplate)
+        public static void MoveDown(SavedTemplateViewModel item)
         {
-            if (_dragginItem != null && _dropTarget != null && !_dragginItem.Equals(_dropTarget))
+            if (Pages.Contains(item) && Pages.Last() != item)
             {
-                var newIndex = Pages.IndexOf(_dropTarget);
-                var oldIndex = Pages.IndexOf(_dragginItem);
-                OnDrop(null, new DragAndDropEventArgs<SavedTemplateViewModel>(Pages, _dropTarget, oldIndex, newIndex));
-                _dragginItem = null;
-                _dropTarget = null;
-                return true;
+                var index = Pages.IndexOf(item);
+                MoveItemAndSetFocus(index, index + 1);
             }
+        }
 
-            return false;
+        private static bool AreCompatibleItems(int indexOfItem1, int indexOfItem2)
+        {
+            return AreCompatibleItems(Pages.ElementAt(indexOfItem1), Pages.ElementAt(indexOfItem2));
         }
 
         private static bool AreCompatibleItems(SavedTemplateViewModel startItem, SavedTemplateViewModel endItem)
@@ -63,8 +59,20 @@ namespace Microsoft.Templates.UI.V2Services
         {
             if (e.OldIndex > -1)
             {
-                e.Items.Move(e.OldIndex, e.NewIndex);
+                MoveItemAndSetFocus(e.OldIndex, e.NewIndex);
+            }
+        }
+
+        private static void MoveItemAndSetFocus(int oldIndex, int newIndex)
+        {
+            if (AreCompatibleItems(oldIndex, newIndex))
+            {
+                Pages.Move(oldIndex, newIndex);
                 EventService.Instance.RaiseOnReorderTemplate();
+
+                _listView.UpdateLayout();
+                var item = _listView.ItemContainerGenerator.ContainerFromIndex(newIndex) as ListBoxItem;
+                item?.Focus();
             }
         }
     }

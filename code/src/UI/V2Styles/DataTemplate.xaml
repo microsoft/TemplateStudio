@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
-                    xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services">
+                    xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services"
+                    xmlns:res="clr-namespace:Microsoft.Templates.UI.V2Resources">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
@@ -177,18 +178,21 @@
     <DataTemplate x:Key="WtsItemTemplateDependency">
         <TextBlock Margin="{StaticResource Margin_S_TopBottom}">
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}">
-                <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockHyperlink}"/>
+                <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockHyperlink}" />
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
 
     <DataTemplate x:Key="WtsItemTemplateLicense">
-        <TextBlock Margin="{StaticResource Margin_S_TopBottom}">
+        <TextBlock Margin="{StaticResource Margin_XS2_TopBottom}">
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenCommand}">
-                <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}"/>
+                <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}" />
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
+
+
+    <!--Changes Summary-->
 
     <DataTemplate x:Key="WtsNewItemFileGroupHeader">
         <TextBlock Text="{Binding}" Style="{StaticResource WtsTextBlockNewItemFileSubject}" />
@@ -201,9 +205,46 @@
             HeaderTemplate="{StaticResource WtsNewItemFileGroupHeader}">
             <ListView
                 ItemsSource="{Binding Items}"
-                SelectedItem="{Binding Selected, Mode=TwoWay}"
                 Style="{StaticResource WtsListViewNewItemFile}" />
         </Expander>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryConflictingFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusConflictingFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryConflictingStylesFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusConflictingStylesFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryNewFileDetailTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupNewFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryModifiedFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusModifiedFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryUnchangedFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusUnchangedFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryWarningFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusWarningFile, Source={x:Static services:UIStylesService.Instance}}" />
     </DataTemplate>
 
 </ResourceDictionary>

@@ -43,25 +43,9 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{Binding CardBorderSelected, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Background" TargetName="border" Value="{Binding CardBackgroundSelected, Source={x:Static services:UIStylesService.Instance}}" />
                         </DataTrigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsSelected}" Value="false" />
-                                <Condition Binding="{Binding IsMouseOver}" Value="true" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding CardBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
-                        </MultiDataTrigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" TargetName="border" Value="{Binding CardBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
-
-                        <MultiDataTrigger>
-                            <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding IsSelected}" Value="false" />
-                                <Condition Binding="{Binding IsFocused}" Value="true" />
-                            </MultiDataTrigger.Conditions>
-                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding CardBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
-                        </MultiDataTrigger>
                         <Trigger Property="IsFocused" Value="true">
                             <Setter Property="Background" TargetName="border" Value="{Binding CardBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
@@ -154,7 +138,7 @@
                         <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}" Margin="{StaticResource Margin_S_LeftTopRightBottom}">
                             <ContentPresenter />
                         </Border>
-                        <Grid x:Name="addIcon" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="35"  Margin="{StaticResource Margin_M_LeftTop}">
+                        <Grid x:Name="addIcon" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="30"  Margin="{StaticResource Margin_M3_LeftTop}">
                             <Ellipse Fill="{Binding CardBackgroundDefault, Source={x:Static services:UIStylesService.Instance}}" Stroke="{Binding CardBorderSelected, Source={x:Static services:UIStylesService.Instance}}" StrokeThickness="1"/>
                             <TextBlock Style="{StaticResource WtsTextBlockCardMouseOverAddIcon}" />
                         </Grid>
@@ -230,6 +214,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnPreviewMouseLeftButtonDown" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -246,25 +231,26 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="true">
+                        <DataTrigger Binding="{Binding IsSelected}" Value="true">
                             <Setter Property="Background" TargetName="selectedGrid" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="tick" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="index" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="text" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
-                        </Trigger>
+                        </DataTrigger>
                         <Trigger Property="IsFocused" Value="true">
                             <Setter Property="Background" TargetName="selectedGrid" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Opacity" TargetName="selectedGrid" Value="0.8" />
+                            <Setter Property="Foreground" TargetName="tick" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="index" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="true" />
-                                <Condition Property="IsSelected" Value="false" />
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.Setters>
-                                <Setter Property="Background" TargetName="selectedGrid" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
-                            </MultiTrigger.Setters>
-                        </MultiTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected}" Value="false" />
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Background" TargetName="selectedGrid" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -277,6 +263,8 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="Focusable" Value="False" />
+        <EventSetter Event="PreviewKeyDown" Handler="OnPreviewKeyDown" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemSequentialFlow}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -297,6 +285,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
+        <Setter Property="extensions:FocusExtension.IsFocused" Value="{Binding IsFocused}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -325,13 +314,16 @@
                                 <Grid
                                     Grid.Column="2">
                                     <TextBox                                    
-                                        Text="{Binding Name, Mode=OneWay}"
+                                        Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         Style="{StaticResource WtsTextBoxStyle}"
                                         Margin="{StaticResource Margin_XS_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
-                                        extensions:TextBoxExtensions.IsFocused="{Binding IsFocused}"
-                                        extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
-                                        extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}" />
+                                        extensions:TextBoxExtensions.ListenIsFocused="True"
+                                        extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}">
+                                        <TextBox.InputBindings>
+                                            <KeyBinding Key="Enter" Command="{Binding SetFocusCommand}" />
+                                        </TextBox.InputBindings>
+                                    </TextBox>
                                     <TextBlock
                                         Text="{Binding Name, Mode=OneWay}"
                                         Style="{StaticResource WtsTextBlockSavedTemplateName}"
@@ -400,6 +392,8 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemProjectDetailsTemplates}" />
         <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="Focusable" Value="False" />
+        <EventSetter Event="PreviewKeyDown" Handler="OnProjectDetailsTemplatesPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
@@ -429,6 +423,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnPreviewMouseLeftButtonDown" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -445,19 +440,24 @@
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="true">
+                        <DataTrigger Binding="{Binding IsSelected}" Value="true">
                             <Setter Property="Background" TargetName="bd" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="fileName" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
-                        </Trigger>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="true" />
-                                <Condition Property="IsSelected" Value="false" />
-                            </MultiTrigger.Conditions>
-                            <MultiTrigger.Setters>
-                                <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
-                            </MultiTrigger.Setters>
-                        </MultiTrigger>
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected}" Value="false" />
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected}" Value="false" />
+                                <Condition Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="true" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -473,6 +473,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemNewItemFile}" />
         <Setter Property="SelectionMode" Value="Single" />
+        <EventSetter Event="PreviewKeyDown" Handler="OnPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">

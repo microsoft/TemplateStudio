@@ -3,16 +3,22 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Windows.Input;
 using System.Windows.Media;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.V2Services;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
-    public class NewItemFileViewModel
+    public class NewItemFileViewModel : Selectable
     {
+        private ICommand _moreDetailsCommand;
+
         public FileStatus FileStatus { get; private set; }
 
         public string Title { get; private set; } // TODO: mvegaca Load from resource
@@ -35,7 +41,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public string FailedPostaction { get; private set; }
 
+        public ICommand MoreDetailsCommand => _moreDetailsCommand ?? (_moreDetailsCommand = new RelayCommand(OnMoreDetails));
+
         private NewItemFileViewModel(FileStatus fileStatus, string subject, Func<string, string> updateTextAction = null)
+            : base(false)
         {
             FileStatus = fileStatus;
             Icon = GetIcon();
@@ -78,6 +87,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             return new NewItemFileViewModel(FileStatus.WarningFile, file.FileName, AsUserFriendlyPostAction);
         }
+
+        private void OnMoreDetails() => Process.Start($"{Configuration.Current.GitHubDocsUrl}newitem.md");
 
         private string GetIcon()
         {

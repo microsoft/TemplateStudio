@@ -4,11 +4,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.V2Controls;
 using Microsoft.Templates.UI.V2Extensions;
 using Microsoft.Templates.UI.V2Services;
@@ -22,13 +24,13 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private string _icon;
         private bool _itemNameEditable;
         private bool _isHidden;
-        private bool _isFocused;
         private bool _hasErrors;
         private bool _isHome;
         private bool _isReorderEnabled;
         private bool _isDragging;
-        private ICommand _textChangedCommand;
+        private bool _isFocused;
         private ICommand _lostKeyboardFocusCommand;
+        private ICommand _setFocusCommand;
         private RelayCommand _deleteCommand;
 
         public ITemplateInfo Template { get; }
@@ -44,7 +46,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public string Name
         {
             get => _name;
-            set => SetProperty(ref _name, value);
+            set => SetName(value);
         }
 
         public string Icon
@@ -63,12 +65,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             get => _isHidden;
             set => SetProperty(ref _isHidden, value);
-        }
-
-        public bool IsFocused
-        {
-            get => _isFocused;
-            set => SetProperty(ref _isFocused, value);
         }
 
         public bool HasErrors
@@ -99,11 +95,25 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _isReorderEnabled, value);
         }
 
+        public bool IsFocused
+        {
+            get => _isFocused;
+            set
+            {
+                if (_isFocused == value)
+                {
+                    SetProperty(ref _isFocused, false);
+                }
+
+                SetProperty(ref _isFocused, value);
+            }
+        }
+
         public TemplateOrigin TemplateOrigin { get; }
 
-        public ICommand TextChangedCommand => _textChangedCommand ?? (_textChangedCommand = new RelayCommand<TextChangedEventArgs>(OnTextChanged));
-
         public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
+
+        public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
         public RelayCommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(OnDelete, () => !IsHome));
 
@@ -123,31 +133,27 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public void Focus()
         {
-            IsFocused = true;
+            EventService.Instance.RaiseOnSavedTemplateFocused(this);
         }
 
-        private void OnTextChanged(TextChangedEventArgs args)
+        private void SetName(string newName)
         {
-            var textBox = args.Source as TextBox;
-            if (textBox != null)
+            if (ItemNameEditable)
             {
-                if (ItemNameEditable)
+                var validationResult = ValidationService.ValidateTemplateName(newName, ItemNameEditable, true);
+                HasErrors = !validationResult.IsValid;
+                MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
+                if (validationResult.IsValid)
                 {
-                    var validationResult = ValidationService.ValidateTemplateName(textBox.Text, ItemNameEditable, true);
-                    HasErrors = !validationResult.IsValid;
-                    MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
-                    if (validationResult.IsValid)
-                    {
-                        NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
-                    }
-                    else
-                    {
-                        NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
-                    }
-
-                    Name = textBox.Text;
+                    NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                }
+                else
+                {
+                    NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
                 }
             }
+
+            SetProperty(ref _name, newName, nameof(Name));
         }
 
         private void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs args)
@@ -159,7 +165,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             }
         }
 
-        private void OnDelete()
+        public void OnDelete()
         {
             if (!IsHome)
             {
