@@ -22,8 +22,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public QuestionDialogViewModel(Window window, MetadataType metadataType)
             : base(window)
         {
-            Title = metadataType == MetadataType.Framework ? StringRes.ProjectDetailsProjectTypeResetTitle : StringRes.ProjectDetailsFrameworkResetTitle;
-            Description = metadataType == MetadataType.Framework ? StringRes.ProjectDetailsProjectTypeResetDescription : StringRes.ProjectDetailsFrameworkResetDescription;
+            Title = metadataType == MetadataType.ProjectType ? StringRes.ProjectDetailsProjectTypeResetTitle : StringRes.ProjectDetailsFrameworkResetTitle;
+            Description = metadataType == MetadataType.ProjectType ? StringRes.ProjectDetailsProjectTypeResetDescription : StringRes.ProjectDetailsFrameworkResetDescription;
         }
 
         protected override void OnFinish(object parameter)
