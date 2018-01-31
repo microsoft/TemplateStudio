@@ -12,6 +12,7 @@ namespace Microsoft.Templates.UI.V2Views.NewItem
         public ChangesSummaryPage(NewItemGenerationResult output)
         {
             DataContext = MainViewModel.Instance;
+
             InitializeComponent();
             Loaded += (sender, args) =>
             {

@@ -414,6 +414,7 @@
     <Compile Include="V2Styles\ListView.xaml.cs">
       <DependentUpon>ListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="V2TemplateSelectors\FileStatusTemplateSelector.cs" />
     <Compile Include="V2TemplateSelectors\NotificationTemplateSelector.cs" />
     <Compile Include="V2ViewModels\Common\BaseDialogViewModel.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />

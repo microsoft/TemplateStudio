@@ -11,7 +11,7 @@ using Microsoft.Templates.Core.Mvvm;
 namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public class ItemsGroupViewModel<T> : Observable
-        where T : class
+        where T : Selectable
     {
         private string _title;
         private T _selected;
@@ -29,6 +29,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set
             {
                 SetProperty(ref _selected, value);
+                value.IsSelected = true;
                 _onItemChanged?.Invoke(this);
             }
         }
@@ -54,7 +55,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             if (_selected != default(T))
             {
-                _selected = null;
+                _selected.IsSelected = false;
+                _selected = default(T);
                 OnPropertyChanged("Selected");
             }
         }

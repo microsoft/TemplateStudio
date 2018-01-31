@@ -190,6 +190,9 @@
         </TextBlock>
     </DataTemplate>
 
+
+    <!--Changes Summary-->
+
     <DataTemplate x:Key="WtsNewItemFileGroupHeader">
         <TextBlock Text="{Binding}" Style="{StaticResource WtsTextBlockNewItemFileSubject}" />
     </DataTemplate>
@@ -201,9 +204,32 @@
             HeaderTemplate="{StaticResource WtsNewItemFileGroupHeader}">
             <ListView
                 ItemsSource="{Binding Items}"
-                SelectedItem="{Binding Selected, Mode=TwoWay}"
                 Style="{StaticResource WtsListViewNewItemFile}" />
         </Expander>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryConflictingFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusConflictingFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryConflictingStylesFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusConflictingStylesFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryNewFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusNewFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryModifiedFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusModifiedFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryUnchangedFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusUnchangedFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryWarningFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusWarningFile, Source={x:Static services:UIStylesService.Instance}}" />
     </DataTemplate>
 
 </ResourceDictionary>
