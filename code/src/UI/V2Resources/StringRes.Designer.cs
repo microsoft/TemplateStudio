@@ -124,6 +124,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string ButtonNo {
+            get {
+                return ResourceManager.GetString("ButtonNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh templates cache.
         /// </summary>
         public static string ButtonRefreshTemplatesCache {
@@ -138,6 +147,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string ButtonRemove {
             get {
                 return ResourceManager.GetString("ButtonRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string ButtonYes {
+            get {
+                return ResourceManager.GetString("ButtonYes", resourceCulture);
             }
         }
         
@@ -475,7 +493,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to aka.ms/wts.
+        ///   Looks up a localized string similar to https://aka.ms/wts.
         /// </summary>
         public static string ProjectDetailsAboutSectionLink {
             get {
@@ -529,6 +547,24 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?.
+        /// </summary>
+        public static string ProjectDetailsFrameworkResetDescription {
+            get {
+                return ResourceManager.GetString("ProjectDetailsFrameworkResetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change design pattern.
+        /// </summary>
+        public static string ProjectDetailsFrameworkResetTitle {
+            get {
+                return ResourceManager.GetString("ProjectDetailsFrameworkResetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Design pattern.
         /// </summary>
         public static string ProjectDetailsFrameworkSectionTitle {
@@ -552,6 +588,24 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string ProjectDetailsPagesSectionTitle {
             get {
                 return ResourceManager.GetString("ProjectDetailsPagesSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?.
+        /// </summary>
+        public static string ProjectDetailsProjectTypeResetDescription {
+            get {
+                return ResourceManager.GetString("ProjectDetailsProjectTypeResetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change project type.
+        /// </summary>
+        public static string ProjectDetailsProjectTypeResetTitle {
+            get {
+                return ResourceManager.GetString("ProjectDetailsProjectTypeResetTitle", resourceCulture);
             }
         }
         

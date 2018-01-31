@@ -23,9 +23,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             set => SetProperty(ref _displayName, value);
         }
 
-        private string _metadataType;
+        private MetadataType _metadataType;
 
-        public string MetadataType
+        public MetadataType MetadataType
         {
             get => _metadataType;
             set => SetProperty(ref _metadataType, value);

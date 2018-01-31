@@ -112,7 +112,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         protected abstract IEnumerable<Step> GetSteps();
 
-        public abstract bool IsSelectionEnabled();
+        public abstract bool IsSelectionEnabled(MetadataType metadataType);
 
         public abstract void ProcessItem(object item);
 
