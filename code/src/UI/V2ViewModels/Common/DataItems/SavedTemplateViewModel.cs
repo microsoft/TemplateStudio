@@ -99,7 +99,15 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public bool IsFocused
         {
             get => _isFocused;
-            set => SetProperty(ref _isFocused, value);
+            set
+            {
+                if (_isFocused == value)
+                {
+                    SetProperty(ref _isFocused, false);
+                }
+
+                SetProperty(ref _isFocused, value);
+            }
         }
 
         public TemplateOrigin TemplateOrigin { get; }
