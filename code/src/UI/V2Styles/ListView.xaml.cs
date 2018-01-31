@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.UI.V2Controls;
-using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
 namespace Microsoft.Templates.UI.V2Styles
@@ -102,6 +101,5 @@ namespace Microsoft.Templates.UI.V2Styles
                 }
             }
         }
-
     }
 }
