@@ -109,5 +109,41 @@ namespace Microsoft.Templates.UI.V2Extensions
                 };
             }
         }
+
+
+        public static readonly DependencyProperty ReturnKeySetItemFocusProperty = DependencyProperty.RegisterAttached(
+          "ReturnKeySetItemFocus",
+          typeof(bool),
+          typeof(TextBoxExtensions),
+          new PropertyMetadata(false, OnReturnKeySetItemFocusPropertyChanged));
+
+        public static void SetReturnKeySetItemFocus(UIElement element, bool value)
+        {
+            element.SetValue(ReturnKeySetItemFocusProperty, value);
+        }
+
+        public static bool GetReturnKeySetItemFocus(UIElement element)
+        {
+            return (bool)element.GetValue(ReturnKeySetItemFocusProperty);
+        }
+
+        private static void OnReturnKeySetItemFocusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var textBox = d as TextBox;
+            if (textBox != null)
+            {
+                textBox.PreviewKeyDown += TextBox_PreviewKeyDown;
+            }
+        }
+
+        private static void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var textbox = e.OriginalSource as TextBox;
+            if (e.Key == Key.Return)
+            {
+                e.Handled = true;
+                textbox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Previous));
+            }
+        }
     }
 }

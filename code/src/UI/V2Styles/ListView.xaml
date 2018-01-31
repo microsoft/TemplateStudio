@@ -319,7 +319,9 @@
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
                                         extensions:TextBoxExtensions.ListenIsFocused="True"
                                         extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
-                                        extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}" />
+                                        extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}"
+                                        extensions:TextBoxExtensions.ReturnKeySetItemFocus="True" />
+
 
                                     <TextBlock
                                         Text="{Binding Name, Mode=OneWay}"
