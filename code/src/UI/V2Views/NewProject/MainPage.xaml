@@ -84,7 +84,13 @@
                         <ListView
                             Style="{StaticResource WtsListViewProjectDetailsTemplates}"
                             ItemsSource="{Binding UserSelection.Pages}"
-                            Loaded="OnLoaded"/>
+                            SelectedItem="{Binding UserSelection.SelectedPage}"
+                            Loaded="OnLoaded">
+                            <ListView.InputBindings>
+                                <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding UserSelection.MovePageUpCommand}" />
+                                <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding UserSelection.MovePageDownCommand}" />
+                            </ListView.InputBindings>
+                        </ListView>
                     </StackPanel>
 
                     <StackPanel Visibility="{Binding UserSelection.Features, Converter={StaticResource HasItemsVisibilityConverter}}">
