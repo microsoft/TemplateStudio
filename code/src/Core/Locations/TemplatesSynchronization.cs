@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public async Task CheckForNewContentAsync()
+        public async Task GetNewContentAsync()
         {
             await EnsureVsInstancesSyncingAsync();
 
@@ -97,9 +97,11 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     _content.Source.LoadConfig();
 
+                    _content.NewVersionProgress += OnNewVersionProgress;
+
                     if (_content.IsNewVersionAvailable(out var version))
                     {
-                        await GetNewTemplatesAsync();
+                        await GetNewTemplatesAsync(version);
                     }
 
                     CheckForWizardUpdates();
@@ -111,34 +113,22 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public async Task CheckForUpdatesAsync()
+        private void OnNewVersionProgress(Version version, int progress)
         {
-            await EnsureVsInstancesSyncingAsync();
-
-            if (LockSync())
+            if (progress == 100)
             {
-                try
-                {
-                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckingForUpdates });
-
-                    _content.Source.LoadConfig();
-
-                    if (_content.IsNewVersionAvailable(out var version))
-                    {
-                        await GetNewTemplatesAsync();
-                    }
-                    else
-                    {
-                        SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckedForUpdates });
-                    }
-
-                    CheckForWizardUpdates();
-                }
-                finally
-                {
-                    UnlockSync();
-                }
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing, Version = version });
             }
+            else
+            {
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring, Version = version, Progress = progress });
+            }
+        }
+
+        public void CleanUp()
+        {
+            UnlockSync();
         }
 
         private void CheckForWizardUpdates()
@@ -149,25 +139,19 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task GetNewTemplatesAsync()
+        private async Task GetNewTemplatesAsync(Version version)
         {
             try
             {
-                if (_content.IsNewVersionAvailable(out var version))
-                {
-                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring, Version = version });
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring, Version = version });
 
-                    await Task.Run(() =>
-                    {
-                        _content.GetNewVersionContent();
-                    });
+                await _content.GetNewVersionContentAsync();
 
-                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
-                }
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired, Version = version });
             }
             catch (Exception ex)
             {
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.ErrorAcquiring, Version = version });
                 AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorAcquiring, ex).FireAndForget();
             }
         }

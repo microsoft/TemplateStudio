@@ -367,7 +367,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are new templates available (v{0}). Downloading….
+        ///   Looks up a localized string similar to There are new templates available (v{0}). Downloading… ({1} %).
         /// </summary>
         public static string NotificationSyncStatus_Acquiring {
             get {
@@ -390,6 +390,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string NotificationSyncStatus_CheckingForUpdates {
             get {
                 return ResourceManager.GetString("NotificationSyncStatus_CheckingForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error downloading templates (v{0}). We&apos;ll try later again..
+        /// </summary>
+        public static string NotificationSyncStatus_ErrorAcquiring {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_ErrorAcquiring", resourceCulture);
             }
         }
         

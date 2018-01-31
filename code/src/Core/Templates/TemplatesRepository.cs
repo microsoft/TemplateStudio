@@ -50,14 +50,9 @@ namespace Microsoft.Templates.Core
 
         public async Task SynchronizeAsync(bool force = false)
         {
+            await Sync.GetNewContentAsync();
             await Sync.EnsureContentAsync(force);
             await Sync.RefreshTemplateCacheAsync(force);
-            await Sync.CheckForNewContentAsync();
-        }
-
-        public async Task CheckForUpdatesAsync()
-        {
-            await Sync.CheckForUpdatesAsync();
         }
 
         public async Task RefreshAsync(bool force = false)

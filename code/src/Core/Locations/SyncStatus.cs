@@ -16,6 +16,7 @@ namespace Microsoft.Templates.Core.Locations
         NewWizardVersionAvailable = 7,
         CheckingForUpdates = 8,
         CheckedForUpdates = 9,
-        Ready = 10
+        Ready = 10,
+        ErrorAcquiring = 11
     }
 }

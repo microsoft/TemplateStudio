@@ -17,6 +17,8 @@ namespace Microsoft.Templates.Core.Locations
 {
     public abstract class TemplatesSource
     {
+        public event Action<Version, int> NewVersionProgress;
+
         protected const string TemplatesFolderName = "Templates";
 
         public TemplatesSourceConfig Config { get; protected set; }
@@ -29,6 +31,11 @@ namespace Microsoft.Templates.Core.Locations
 
         public abstract TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder);
 
-        public abstract void Acquire(ref TemplatesPackageInfo packageInfo);
+        public abstract Task AcquireAsync(TemplatesPackageInfo packageInfo);
+
+        protected virtual void OnNewVersionProgress(Version version, int progress)
+        {
+            NewVersionProgress?.Invoke(version, progress);
+        }
     }
 }

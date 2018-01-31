@@ -164,7 +164,16 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             WizardStatus.SetVersions();
-            await NotificationsControl.Instance.AddNotificationAsync(args.GetNotification());
+
+            var notification = args.GetNotification();
+            if (notification?.Category == Category.TemplatesSync)
+            {
+                await NotificationsControl.Instance.AddOrUpdateNotificationAsync(notification);
+            }
+            else
+            {
+                await NotificationsControl.Instance.AddNotificationAsync(notification);
+            }
 
             System.Diagnostics.Debug.WriteLine(GenContext.ToolBox.TemplatesVersion);
             if (args.Status == SyncStatus.Updated || args.Status == SyncStatus.Ready)

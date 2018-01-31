@@ -96,9 +96,12 @@ namespace Microsoft.Templates.Core.Locations
             };
         }
 
-        public override void Acquire(ref TemplatesPackageInfo packageInfo)
+        public override async Task AcquireAsync(TemplatesPackageInfo packageInfo)
         {
-            packageInfo.LocalPath = Origin;
+            await Task.Run(() =>
+            {
+                packageInfo.LocalPath = Origin;
+            });
         }
 
         protected static string GetAgentName()

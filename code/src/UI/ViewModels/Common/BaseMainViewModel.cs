@@ -259,7 +259,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             try
             {
                 UpdateCanCheckUpdates(false);
-                await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
+
+                // TODO: Delete this: await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
             }
             catch (Exception ex)
             {

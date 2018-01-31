@@ -240,7 +240,7 @@
     <comment>Notification message for Sync Status: Acquired</comment>
   </data>
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
-    <value>There are new templates available (v{0}). Downloading…</value>
+    <value>There are new templates available (v{0}). Downloading… ({1} %)</value>
     <comment>Notification message for Sync Status: Acquiring</comment>
   </data>
   <data name="NotificationSyncStatus_CheckedForUpdates" xml:space="preserve">
@@ -248,6 +248,9 @@
   </data>
   <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
     <value>Checking for template updates...</value>
+  </data>
+  <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
+    <value>Error downloading templates (v{0}). We'll try later again.</value>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
     <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>

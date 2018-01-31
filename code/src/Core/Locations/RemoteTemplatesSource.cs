@@ -5,7 +5,7 @@
 using System;
 using System.IO;
 using System.Net;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Packaging;
 using Microsoft.Templates.Core.Resources;
@@ -15,6 +15,8 @@ namespace Microsoft.Templates.Core.Locations
     public class RemoteTemplatesSource : TemplatesSource
     {
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
+
+        private Version _newVersion;
 
         public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
         {
@@ -36,17 +38,18 @@ namespace Microsoft.Templates.Core.Locations
             return templatesInfo;
         }
 
-        public override void Acquire(ref TemplatesPackageInfo packageInfo)
+        public override async Task AcquireAsync(TemplatesPackageInfo packageInfo)
         {
             if (string.IsNullOrEmpty(packageInfo.LocalPath) || !File.Exists(packageInfo.LocalPath))
             {
+                _newVersion = packageInfo.Version;
+
                 var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                 var sourceUrl = $"{_cdnUrl}/{packageInfo.Name}";
                 var fileTarget = Path.Combine(tempFolder, packageInfo.Name);
                 Fs.EnsureFolder(tempFolder);
 
-                DownloadContent(sourceUrl, fileTarget);
-
+                await DownloadContentAsync(sourceUrl, fileTarget);
                 packageInfo.LocalPath = fileTarget;
             }
         }
@@ -79,6 +82,30 @@ namespace Microsoft.Templates.Core.Locations
                 AppHealth.Current.Info.TrackAsync(StringRes.RemoteTemplatesSourceDownloadContentKoInfoMessage).FireAndForget();
                 AppHealth.Current.Error.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentKoErrorMessage, sourceUrl), ex).FireAndForget();
             }
+        }
+
+        private async Task DownloadContentAsync(string sourceUrl, string file)
+        {
+            try
+            {
+                var wc = new WebClient();
+
+                wc.DownloadProgressChanged += Wc_DownloadProgressChanged;
+                await wc.DownloadFileTaskAsync(sourceUrl, file);
+
+                AppHealth.Current.Verbose.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentOkMessage, file, sourceUrl)).FireAndForget();
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Info.TrackAsync(StringRes.RemoteTemplatesSourceDownloadContentKoInfoMessage).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentKoErrorMessage, sourceUrl), ex).FireAndForget();
+                throw;
+            }
+        }
+
+        private void Wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            OnNewVersionProgress(_newVersion, e.ProgressPercentage);
         }
 
         private static string Extract(TemplatesPackageInfo packageInfo, bool verifyPackageSignatures = true)

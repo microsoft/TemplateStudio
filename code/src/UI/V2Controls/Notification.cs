@@ -15,9 +15,9 @@ namespace Microsoft.Templates.UI.V2Controls
 {
     public enum NotificationType
     {
-        Information,
-        Warning,
-        Error
+        Information = 0,
+        Warning = 1,
+        Error = 2
     }
 
     public enum TimerType
@@ -37,12 +37,15 @@ namespace Microsoft.Templates.UI.V2Controls
     {
         None,
         TemplatesSync,
+        TemplatesSyncError,
         RemoveTemplateValidation,
         RightClickItemHasNoChanges
     }
 
-    public class Notification
+    public class Notification : Observable
     {
+        private bool _canClose;
+        private string _message;
         private ICommand _closeCommand;
         private DispatcherTimer _closeTimer;
 
@@ -52,7 +55,19 @@ namespace Microsoft.Templates.UI.V2Controls
 
         public Category Category { get; private set; }
 
-        public string Message { get; private set; }
+        public TimerType TimerType { get; private set; }
+
+        public string Message
+        {
+            get => _message;
+            private set => SetProperty(ref _message, value);
+        }
+
+        public bool CanClose
+        {
+            get => _canClose;
+            private set => SetProperty(ref _canClose, value);
+        }
 
         // Only for Errors.
         // Errors could remove warning and notifications from pull it needed.
@@ -64,41 +79,65 @@ namespace Microsoft.Templates.UI.V2Controls
 
         private Notification(TimerType timerType)
         {
-            if (timerType != TimerType.None)
-            {
-                double interval = 0.0;
-                switch (timerType)
-                {
-                    case TimerType.Short:
-                        interval = 3;
-                        break;
-                    case TimerType.Large:
-                        interval = 6;
-                        break;
-                }
+            TimerType = timerType;
+            double interval = GetInterval(timerType);
 
-                _closeTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(interval) };
-                _closeTimer.Tick += OnTick;
+            _closeTimer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(interval) };
+            _closeTimer.Tick += OnTick;
+        }
+
+        private static double GetInterval(TimerType timerType)
+        {
+            double interval = 0.0;
+            switch (timerType)
+            {
+                case TimerType.Short:
+                    interval = 3;
+                    break;
+                case TimerType.Large:
+                    interval = 6;
+                    break;
+            }
+
+            return interval;
+        }
+
+        internal bool IsLowerOrEqualPriority(Notification notification)
+        {
+            return Type <= notification.Type;
+        }
+
+        public void Update(Notification notification)
+        {
+            Message = notification.Message;
+            CanClose = notification.CanClose;
+
+            if (notification.TimerType == TimerType.None)
+            {
+                StopCloseTimer();
             }
         }
 
-        public static Notification Information(string message, Category category = Category.None, TimerType timerType = TimerType.Short)
+        public static Notification Information(string message, Category category = Category.None, TimerType timerType = TimerType.Short, bool canClose = true)
         {
             return new Notification(timerType)
             {
                 Type = NotificationType.Information,
+                CanClose = canClose,
                 Message = message,
                 Category = category
             };
         }
 
-        public static Notification Warning(string message, Category category = Category.None, TimerType timerType = TimerType.Large)
+        public static Notification Warning(string message, Category category = Category.None, TimerType timerType = TimerType.Large, IEnumerable<Category> categoriesToOverride = null)
         {
             return new Notification(timerType)
             {
                 Type = NotificationType.Warning,
+                CanClose = true,
                 Message = message,
-                Category = category
+                CategoriesToOverride = categoriesToOverride,
+                Category = category,
             };
         }
 
@@ -127,12 +166,19 @@ namespace Microsoft.Templates.UI.V2Controls
 
         public void StartCloseTimer()
         {
-            _closeTimer?.Start();
+            if (TimerType != TimerType.None)
+            {
+                _closeTimer?.Start();
+            }
         }
 
-        public void StopCloseTimer()
+        public void StopCloseTimer() => _closeTimer?.Stop();
+
+        public void ResetTimer(TimerType timerType)
         {
-            _closeTimer?.Stop();
+            _closeTimer.Stop();
+            _closeTimer.Interval = TimeSpan.FromSeconds(GetInterval(timerType));
+            _closeTimer.Start();
         }
 
         public override bool Equals(object obj)

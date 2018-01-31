@@ -7,14 +7,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Resources;
+using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
 {
     public class TemplatesContent
     {
         private const string TemplatesFolderName = "Templates";
+
+        public event Action<Version, int> NewVersionProgress;
 
         public string TemplatesFolder { get; private set; }
 
@@ -68,20 +69,14 @@ namespace Microsoft.Templates.Core.Locations
 
         public bool IsNewVersionAvailable(out Version version)
         {
-            version = null;
+            version = Source.Config?.ResolvePackage(WizardVersion)?.Version;
             if (Current != null)
             {
-                var result = !Current.Version.IsNull() && Current.Version < Source.Config.ResolvePackage(WizardVersion)?.Version;
-                if (result == true)
-                {
-                    version = Source.Config.ResolvePackage(WizardVersion)?.Version;
-                }
-
-                return result;
+                return !Current.Version.IsNull() && Current.Version < version;
             }
             else
             {
-                return false;
+                return WizardVersion < version;
             }
         }
 
@@ -91,7 +86,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (Current != null)
             {
-                var result = !Current.Version.IsNull() && (Current.Version.Major < Source.Config.Latest.Version.Major || Current.Version.Minor < Source.Config.Latest.Version.Minor);
+                var result = WizardVersion.Major < Source.Config.Latest.Version.Major || WizardVersion.Minor < Source.Config.Latest.Version.Minor;
                 if (result == true)
                 {
                     version = new Version(Source.Config.Latest.Version.Major, Source.Config.Latest.Version.Minor);
@@ -105,19 +100,34 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public void GetNewVersionContent()
+        public async Task GetNewVersionContentAsync()
         {
             var latestPackage = Source.Config.ResolvePackage(WizardVersion);
-            Source.Acquire(ref latestPackage);
 
-            TemplatesContentInfo content = Source.GetContent(latestPackage, TemplatesFolder);
-            var alreadyExists = All.Where(p => p.Version == latestPackage.Version).FirstOrDefault();
-            if (alreadyExists != null)
+            Source.NewVersionProgress += OnNewVersionProgress;
+
+            await Source.AcquireAsync(latestPackage);
+
+            if (latestPackage.LocalPath != null)
             {
-                All.Remove(alreadyExists);
-            }
+                await Task.Run(() =>
+                {
+                    TemplatesContentInfo content = Source.GetContent(latestPackage, TemplatesFolder);
+                    var alreadyExists = All.Where(p => p.Version == latestPackage.Version).FirstOrDefault();
+                    if (alreadyExists != null)
+                    {
+                        All.Remove(alreadyExists);
+                    }
 
-            All.Add(content);
+                    Current = content;
+                    All.Add(content);
+                });
+            }
+        }
+
+        private void OnNewVersionProgress(Version version, int progress)
+        {
+            NewVersionProgress?.Invoke(version, progress);
         }
 
         internal TemplatesPackageInfo ResolveInstalledContent()
