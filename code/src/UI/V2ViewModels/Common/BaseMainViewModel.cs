@@ -42,7 +42,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         public int Step
         {
             get => _step;
-            set => SetStepAsync(value).FireAndForget();
+            private set => SetStepAsync(value).FireAndForget();
         }
 
         public async Task SetStepAsync(int step)

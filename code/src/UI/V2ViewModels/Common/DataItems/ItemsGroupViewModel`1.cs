@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Microsoft.Templates.Core.Mvvm;
 
 namespace Microsoft.Templates.UI.V2ViewModels.Common
@@ -14,8 +13,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         where T : Selectable
     {
         private string _title;
-        private T _selected;
-        private Action<ItemsGroupViewModel<T>> _onItemChanged;
 
         public string Title
         {
@@ -23,41 +20,19 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _title, value);
         }
 
-        public T Selected
-        {
-            get => _selected;
-            set
-            {
-                SetProperty(ref _selected, value);
-                value.IsSelected = true;
-                _onItemChanged?.Invoke(this);
-            }
-        }
-
         public ObservableCollection<T> Items { get; } = new ObservableCollection<T>();
 
-        public ItemsGroupViewModel(string title, IEnumerable<T> items, Action<ItemsGroupViewModel<T>> onItemChanged)
+        public ItemsGroupViewModel(string title, IEnumerable<T> items)
         {
             Title = title;
             Items.AddRange(items);
-            _onItemChanged = onItemChanged;
-        }
-
-        public void SelectFirstItem()
-        {
-            if (Items.Any())
-            {
-                Selected = Items.First();
-            }
         }
 
         internal void CleanSelected()
         {
-            if (_selected != default(T))
+            foreach (var item in Items)
             {
-                _selected.IsSelected = false;
-                _selected = default(T);
-                OnPropertyChanged("Selected");
+                item.IsSelected = false;
             }
         }
     }

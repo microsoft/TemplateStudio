@@ -30,16 +30,14 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="29*"/>
         </Grid.ColumnDefinitions>
+        <ContentPresenter
+            Content="{Binding ChangesSummary.Selected}"
+            ContentTemplateSelector="{StaticResource DetailTemplateSelector}" />
         <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
         <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto">
-            <StackPanel>
-                <ItemsControl
-                    ItemsSource="{Binding ChangesSummary.FileGroups}"
-                    ItemTemplate="{StaticResource WtsNewItemFileGroup}" />
-                <ContentPresenter
-                    Content="{Binding ChangesSummary.Selected}"
-                    ContentTemplateSelector="{StaticResource DetailTemplateSelector}" />
-            </StackPanel>
+            <ItemsControl
+                ItemsSource="{Binding ChangesSummary.FileGroups}"
+                ItemTemplate="{StaticResource WtsNewItemFileGroup}" />
         </ScrollViewer>
     </Grid>
 

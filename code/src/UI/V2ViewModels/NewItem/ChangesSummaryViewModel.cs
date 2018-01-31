@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         public NewItemFileViewModel Selected
         {
             get => _selected;
-            set => SetProperty(ref _selected, value);
+            private set => SetProperty(ref _selected, value);
         }
 
         public ObservableCollection<ItemsGroupViewModel<NewItemFileViewModel>> FileGroups { get; } = new ObservableCollection<ItemsGroupViewModel<NewItemFileViewModel>>();
@@ -35,14 +35,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             var failedStyleMerges = GenContext.Current.FailedMergePostActions.Where(w => w.MergeFailureType == MergeFailureType.KeyAlreadyDefined);
 
             FileGroups.Clear();
-            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupWarningFiles, warnings.Select(f => NewItemFileViewModel.WarningFile(f)), OnItemChanged));
-            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupConflictingStylesFiles, failedStyleMerges.Select(f => NewItemFileViewModel.ConflictingStylesFile(f)), OnItemChanged));
-            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupNewFiles, output.NewFiles.Select(f => NewItemFileViewModel.NewFile(f)), OnItemChanged));
-            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupModifiedFiles, output.ModifiedFiles.Select(f => NewItemFileViewModel.ModifiedFile(f)), OnItemChanged));
-            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupUnchangedFiles, output.UnchangedFiles.Select(f => NewItemFileViewModel.UnchangedFile(f)), OnItemChanged));
-            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupConflictingFiles, output.ConflictingFiles.Select(f => NewItemFileViewModel.ConflictingFile(f)), OnItemChanged));
+            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupWarningFiles, warnings.Select(f => NewItemFileViewModel.WarningFile(f))));
+            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupConflictingStylesFiles, failedStyleMerges.Select(f => NewItemFileViewModel.ConflictingStylesFile(f))));
+            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupNewFiles, output.NewFiles.Select(f => NewItemFileViewModel.NewFile(f))));
+            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupModifiedFiles, output.ModifiedFiles.Select(f => NewItemFileViewModel.ModifiedFile(f))));
+            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupUnchangedFiles, output.UnchangedFiles.Select(f => NewItemFileViewModel.UnchangedFile(f))));
+            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupConflictingFiles, output.ConflictingFiles.Select(f => NewItemFileViewModel.ConflictingFile(f))));
 
-            FileGroups.First().SelectFirstItem();
+            SelectFile(FileGroups.First().Items.First());
         }
 
         private void AddGroup(ItemsGroupViewModel<NewItemFileViewModel> group)
@@ -53,17 +53,15 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             }
         }
 
-        private void OnItemChanged(ItemsGroupViewModel<NewItemFileViewModel> group)
+        public void SelectFile(NewItemFileViewModel file)
         {
-            foreach (var item in FileGroups)
+            foreach (var group in FileGroups)
             {
-                if (item.Title != group.Title)
-                {
-                    item.CleanSelected();
-                }
+                group.CleanSelected();
             }
 
-            Selected = group.Selected;
+            Selected = file;
+            Selected.IsSelected = true;
         }
     }
 }

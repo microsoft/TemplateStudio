@@ -62,7 +62,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             var group = Groups.FirstOrDefault();
             if (group != null)
             {
-                group.Selected = group.Items.FirstOrDefault();
+                AddTemplate(group.Items.FirstOrDefault());
             }
         }
 
@@ -72,12 +72,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             {
                 foreach (var group in Groups)
                 {
-                    if (!group.Items.Any(g => g == template))
-                    {
-                        group.Selected = null;
-                    }
+                    group.ClearIsSelected();
                 }
 
+                template.IsSelected = true;
                 NameEditable = template.ItemNameEditable;
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
                 Template = template.Template;

@@ -419,8 +419,8 @@
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
-        <Setter Property="Focusable" Value="False" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnPreviewMouseLeftButtonDown" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -448,6 +448,13 @@
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected}" Value="false" />
+                                <Condition Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="true" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -463,6 +470,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemNewItemFile}" />
         <Setter Property="SelectionMode" Value="Single" />
+        <EventSetter Event="PreviewKeyDown" Handler="OnPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
