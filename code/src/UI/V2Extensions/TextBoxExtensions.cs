@@ -32,6 +32,12 @@ namespace Microsoft.Templates.UI.V2Extensions
           typeof(TextBoxExtensions),
           new PropertyMetadata(null, OnLostKeyboardFocusCommandPropertyChanged));
 
+        public static readonly DependencyProperty ReturnKeySetItemFocusProperty = DependencyProperty.RegisterAttached(
+          "ReturnKeySetItemFocus",
+          typeof(bool),
+          typeof(TextBoxExtensions),
+          new PropertyMetadata(false, OnReturnKeySetItemFocusPropertyChanged));
+
         public static void SetListenIsFocused(UIElement element, bool value)
         {
             element.SetValue(ListenIsFocusedProperty, value);
@@ -60,6 +66,16 @@ namespace Microsoft.Templates.UI.V2Extensions
         public static ICommand GetLostKeyboardFocusCommand(UIElement element)
         {
             return (ICommand)element.GetValue(LostKeyboardFocusCommandProperty);
+        }
+
+        public static void SetReturnKeySetItemFocus(UIElement element, bool value)
+        {
+            element.SetValue(ReturnKeySetItemFocusProperty, value);
+        }
+
+        public static bool GetReturnKeySetItemFocus(UIElement element)
+        {
+            return (bool)element.GetValue(ReturnKeySetItemFocusProperty);
         }
 
         private static void OnListenIsFocusedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -108,23 +124,6 @@ namespace Microsoft.Templates.UI.V2Extensions
                     GetLostKeyboardFocusCommand(textBox).Execute(args);
                 };
             }
-        }
-
-
-        public static readonly DependencyProperty ReturnKeySetItemFocusProperty = DependencyProperty.RegisterAttached(
-          "ReturnKeySetItemFocus",
-          typeof(bool),
-          typeof(TextBoxExtensions),
-          new PropertyMetadata(false, OnReturnKeySetItemFocusPropertyChanged));
-
-        public static void SetReturnKeySetItemFocus(UIElement element, bool value)
-        {
-            element.SetValue(ReturnKeySetItemFocusProperty, value);
-        }
-
-        public static bool GetReturnKeySetItemFocus(UIElement element)
-        {
-            return (bool)element.GetValue(ReturnKeySetItemFocusProperty);
         }
 
         private static void OnReturnKeySetItemFocusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
