@@ -56,10 +56,9 @@
                 <Grid Style="{Binding TemplateSelection.HasErrors, Converter={StaticResource SavedTemplateGridConverter}}"/>
                 <TextBox
                     Style="{StaticResource WtsTextBoxStyle}"
-                    Text="{Binding TemplateSelection.Name, Mode=OneWay}"
+                    Text="{Binding TemplateSelection.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Margin="{StaticResource Margin_M2_LeftRight_M_TopBottom}"
-                    IsEnabled="{Binding TemplateSelection.NameEditable}"
-                    extensions:TextBoxExtensions.TextChangedCommand="{Binding TemplateSelection.TextChangedCommand}" />
+                    IsEnabled="{Binding TemplateSelection.NameEditable}" />
                 <!--
                     extensions:TextBoxExtensions.IsFocused="{Binding TemplateSelection.IsFocused}"            
                     extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding TemplateSelection.LostKeyboardFocusCommand}"

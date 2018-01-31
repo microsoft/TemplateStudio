@@ -20,12 +20,6 @@ namespace Microsoft.Templates.UI.V2Extensions
           typeof(TextBoxExtensions),
           new PropertyMetadata(false, OnListenIsFocusedPropertyChanged));
 
-        public static readonly DependencyProperty TextChangedCommandProperty = DependencyProperty.RegisterAttached(
-          "TextChangedCommand",
-          typeof(ICommand),
-          typeof(TextBoxExtensions),
-          new PropertyMetadata(null, OnTextChangedCommandPropertyChanged));
-
         public static readonly DependencyProperty LostKeyboardFocusCommandProperty = DependencyProperty.RegisterAttached(
           "LostKeyboardFocusCommand",
           typeof(ICommand),
@@ -40,16 +34,6 @@ namespace Microsoft.Templates.UI.V2Extensions
         public static bool GetListenIsFocused(UIElement element)
         {
             return (bool)element.GetValue(ListenIsFocusedProperty);
-        }
-
-        public static void SetTextChangedCommand(UIElement element, ICommand value)
-        {
-            element.SetValue(TextChangedCommandProperty, value);
-        }
-
-        public static ICommand GetTextChangedCommand(UIElement element)
-        {
-            return (ICommand)element.GetValue(TextChangedCommandProperty);
         }
 
         public static void SetLostKeyboardFocusCommand(UIElement element, ICommand value)
@@ -83,18 +67,6 @@ namespace Microsoft.Templates.UI.V2Extensions
                 textBox.Focus();
                 textBox.Select(0, textBox.Text.Length);
                 _currentFocusTemplateName = string.Empty;
-            }
-        }
-
-        private static void OnTextChangedCommandPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var textBox = d as TextBox;
-            if (textBox != null)
-            {
-                textBox.TextChanged += (sender, args) =>
-                {
-                    GetTextChangedCommand(textBox).Execute(args);
-                };
             }
         }
 

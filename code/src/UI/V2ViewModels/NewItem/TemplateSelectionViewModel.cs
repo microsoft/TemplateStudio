@@ -22,12 +22,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         private string _name;
         private bool _nameEditable;
         private bool _hasErrors;
-        private ICommand _textChangedCommand;
 
         public string Name
         {
             get => _name;
-            set => SetProperty(ref _name, value);
+            set => SetName(value);
         }
 
         public bool NameEditable
@@ -49,8 +48,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
 
         public ObservableCollection<BasicInfoViewModel> Dependencies { get; } = new ObservableCollection<BasicInfoViewModel>();
-
-        public ICommand TextChangedCommand => _textChangedCommand ?? (_textChangedCommand = new RelayCommand<TextChangedEventArgs>(OnTextChanged));
 
         public TemplateSelectionViewModel()
         {
@@ -92,28 +89,24 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             }
         }
 
-        private void OnTextChanged(TextChangedEventArgs args)
+        private void SetName(string newName)
         {
-            var textBox = args.Source as TextBox;
-            if (textBox != null)
+            if (NameEditable)
             {
-                if (NameEditable)
+                var validationResult = ValidationService.ValidateTemplateName(newName, NameEditable, false);
+                HasErrors = !validationResult.IsValid;
+                MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
+                if (validationResult.IsValid)
                 {
-                    var validationResult = ValidationService.ValidateTemplateName(textBox.Text, NameEditable, false);
-                    HasErrors = !validationResult.IsValid;
-                    MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
-                    if (validationResult.IsValid)
-                    {
-                        NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
-                    }
-                    else
-                    {
-                        NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
-                    }
-
-                    Name = textBox.Text;
+                    NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                }
+                else
+                {
+                    NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
                 }
             }
+
+            SetProperty(ref _name, newName, nameof(Name));
         }
     }
 }

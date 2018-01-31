@@ -314,15 +314,14 @@
                                 <Grid
                                     Grid.Column="2">
                                     <TextBox                                    
-                                        Text="{Binding Name, Mode=OneWay}"
+                                        Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         Style="{StaticResource WtsTextBoxStyle}"
                                         Margin="{StaticResource Margin_XS_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
                                         extensions:TextBoxExtensions.ListenIsFocused="True"
-                                        extensions:TextBoxExtensions.TextChangedCommand="{Binding TextChangedCommand}"
                                         extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}">
                                         <TextBox.InputBindings>
-                                            <KeyBinding Key="Return" Command="{Binding SetFocusCommand}" />
+                                            <KeyBinding Key="Enter" Command="{Binding SetFocusCommand}" />
                                         </TextBox.InputBindings>
                                     </TextBox>
                                     <TextBlock
