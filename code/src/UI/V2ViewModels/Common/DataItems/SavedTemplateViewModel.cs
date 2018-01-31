@@ -28,8 +28,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private bool _isHome;
         private bool _isReorderEnabled;
         private bool _isDragging;
+        private bool _isFocused;
         private ICommand _textChangedCommand;
         private ICommand _lostKeyboardFocusCommand;
+        private ICommand _setFocusCommand;
         private RelayCommand _deleteCommand;
 
         public ITemplateInfo Template { get; }
@@ -94,11 +96,19 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             set => SetProperty(ref _isReorderEnabled, value);
         }
 
+        public bool IsFocused
+        {
+            get => _isFocused;
+            set => SetProperty(ref _isFocused, value);
+        }
+
         public TemplateOrigin TemplateOrigin { get; }
 
         public ICommand TextChangedCommand => _textChangedCommand ?? (_textChangedCommand = new RelayCommand<TextChangedEventArgs>(OnTextChanged));
 
         public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
+
+        public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
         public RelayCommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(OnDelete, () => !IsHome));
 
