@@ -225,7 +225,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Author = metadataInfo.Author;
             Name = metadataInfo.DisplayName;
             InformationMD = metadataInfo.Description;
-            InformationType = GetInformationType(metadataInfo.MetadataType);
+            InformationType = GetInformationType(metadataInfo.MetadataType.ToString());
             if (metadataInfo.LicenseTerms != null && metadataInfo.LicenseTerms.Any())
             {
                 LicenseTerms.AddRange(metadataInfo.LicenseTerms.Select(l => new SummaryLicenseViewModel(l)));
@@ -251,9 +251,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             switch (name)
             {
-                case "projectTypes":
+                case "ProjectType":
                     return StringRes.TemplateTypeProjectType;
-                case "frameworks":
+                case "Framework":
                     return StringRes.TemplateTypeFramework;
                 case "Page":
                     return StringRes.TemplateTypePage;

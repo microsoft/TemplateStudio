@@ -145,6 +145,9 @@
     <value>Next</value>
     <comment>MainPage Next button</comment>
   </data>
+  <data name="ButtonNo" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
     <value>Refresh templates cache</value>
     <comment>Refresh templates cache button content </comment>
@@ -152,6 +155,9 @@
   <data name="ButtonRemove" xml:space="preserve">
     <value>Remove</value>
     <comment>Project details saved templates remove button Automation property name</comment>
+  </data>
+  <data name="ButtonYes" xml:space="preserve">
+    <value>Yes</value>
   </data>
   <data name="ChangesSummaryGroupConflictingFiles" xml:space="preserve">
     <value>Conflicting files</value>
@@ -299,6 +305,12 @@
     <value>Features</value>
     <comment>Feature list header on project details</comment>
   </data>
+  <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
+    <value>You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+  </data>
+  <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
+    <value>Change design pattern</value>
+  </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
     <value>Design pattern</value>
     <comment>Framework combobox header on project details</comment>
@@ -309,6 +321,12 @@
   <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
     <value>Pages</value>
     <comment>Page list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
+    <value>You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
+    <value>Change project type</value>
   </data>
   <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
     <value>Project type</value>

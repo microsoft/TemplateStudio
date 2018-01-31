@@ -52,9 +52,17 @@ namespace Microsoft.Templates.UI.V2Styles
 
         private void SelectItem(BasicInfoViewModel item)
         {
-            if (item is MetadataInfoViewModel && !BaseMainViewModel.BaseInstance.IsSelectionEnabled())
+            switch (item)
             {
-                return;
+                case MetadataInfoViewModel metadataInfo:
+                    if (!BaseMainViewModel.BaseInstance.IsSelectionEnabled(metadataInfo.MetadataType))
+                    {
+                        return;
+                    }
+
+                    break;
+                default:
+                    break;
             }
 
             BaseMainViewModel.BaseInstance.ProcessItem(item);
