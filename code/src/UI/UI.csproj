@@ -375,6 +375,7 @@
     <Compile Include="V2Converters\IntegerVisibilityConverter.cs" />
     <Compile Include="V2Converters\SavedTemplateGridConverter.cs" />
     <Compile Include="V2Converters\StringVisibilityConverter.cs" />
+    <Compile Include="V2Extensions\FocusExtension.cs" />
     <Compile Include="V2Extensions\ListViewExtensions.cs" />
     <Compile Include="V2Extensions\SyncStatusEventArgsExtensions.cs" />
     <Compile Include="V2Extensions\TextBoxExtensions.cs" />

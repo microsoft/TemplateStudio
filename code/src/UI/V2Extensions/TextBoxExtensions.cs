@@ -32,12 +32,6 @@ namespace Microsoft.Templates.UI.V2Extensions
           typeof(TextBoxExtensions),
           new PropertyMetadata(null, OnLostKeyboardFocusCommandPropertyChanged));
 
-        public static readonly DependencyProperty ReturnKeySetItemFocusProperty = DependencyProperty.RegisterAttached(
-          "ReturnKeySetItemFocus",
-          typeof(bool),
-          typeof(TextBoxExtensions),
-          new PropertyMetadata(false, OnReturnKeySetItemFocusPropertyChanged));
-
         public static void SetListenIsFocused(UIElement element, bool value)
         {
             element.SetValue(ListenIsFocusedProperty, value);
@@ -66,16 +60,6 @@ namespace Microsoft.Templates.UI.V2Extensions
         public static ICommand GetLostKeyboardFocusCommand(UIElement element)
         {
             return (ICommand)element.GetValue(LostKeyboardFocusCommandProperty);
-        }
-
-        public static void SetReturnKeySetItemFocus(UIElement element, bool value)
-        {
-            element.SetValue(ReturnKeySetItemFocusProperty, value);
-        }
-
-        public static bool GetReturnKeySetItemFocus(UIElement element)
-        {
-            return (bool)element.GetValue(ReturnKeySetItemFocusProperty);
         }
 
         private static void OnListenIsFocusedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -123,25 +107,6 @@ namespace Microsoft.Templates.UI.V2Extensions
                 {
                     GetLostKeyboardFocusCommand(textBox).Execute(args);
                 };
-            }
-        }
-
-        private static void OnReturnKeySetItemFocusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var textBox = d as TextBox;
-            if (textBox != null)
-            {
-                textBox.PreviewKeyDown += TextBox_PreviewKeyDown;
-            }
-        }
-
-        private static void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            var textbox = e.OriginalSource as TextBox;
-            if (e.Key == Key.Return)
-            {
-                e.Handled = true;
-                textbox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Previous));
             }
         }
     }
