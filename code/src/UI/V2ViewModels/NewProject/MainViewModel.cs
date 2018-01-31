@@ -18,6 +18,7 @@ using Microsoft.Templates.UI.V2Controls;
 using Microsoft.Templates.UI.V2Resources;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
+using Microsoft.Templates.UI.V2Views.Common;
 using Microsoft.Templates.UI.V2Views.NewProject;
 
 namespace Microsoft.Templates.UI.V2ViewModels.NewProject
@@ -30,9 +31,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public static MainViewModel Instance { get; private set; }
 
-        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(() => Instance.IsSelectionEnabled());
+        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(() => Instance.IsSelectionEnabled(MetadataType.ProjectType));
 
-        public FrameworkViewModel Framework { get; } = new FrameworkViewModel(() => Instance.IsSelectionEnabled());
+        public FrameworkViewModel Framework { get; } = new FrameworkViewModel(() => Instance.IsSelectionEnabled(MetadataType.Framework));
 
         public AddPagesViewModel AddPages { get; } = new AddPagesViewModel();
 
@@ -103,7 +104,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             base.OnFinish();
         }
 
-        public override bool IsSelectionEnabled()
+        public override bool IsSelectionEnabled(MetadataType metadataType)
         {
             bool result = false;
             if (!UserSelection.HasItemsAddedByUser)
@@ -112,8 +113,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             }
             else
             {
-                var messageResult = MessageBox.Show("Do you want to restart the selection?", "Project configuration", MessageBoxButton.YesNo);
-                if (messageResult == MessageBoxResult.Yes)
+                var questionDialog = new QuestionDialogWindow(metadataType);
+                questionDialog.ShowDialog();
+                if (questionDialog.DialogResult == true)
                 {
                     UserSelection.ResetUserSelection();
                     result = true;
@@ -174,7 +176,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
         {
             if (item is MetadataInfoViewModel metadata)
             {
-                if (metadata.IsProjectType())
+                if (metadata.MetadataType == MetadataType.ProjectType)
                 {
                     if (ProjectType.Select(metadata))
                     {
@@ -182,7 +184,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
                         EventService.Instance.RaiseOnProjectTypeChange(metadata);
                     }
                 }
-                else if (metadata.IsFramework())
+                else if (metadata.MetadataType == MetadataType.Framework)
                 {
                     if (Framework.Select(metadata))
                     {

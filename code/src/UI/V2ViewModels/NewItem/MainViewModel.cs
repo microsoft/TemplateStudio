@@ -153,6 +153,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             }
         }
 
-        public override bool IsSelectionEnabled() => true;
+        public override bool IsSelectionEnabled(MetadataType metadataType) => true;
     }
 }

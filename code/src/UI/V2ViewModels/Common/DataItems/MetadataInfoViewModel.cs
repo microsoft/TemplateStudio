@@ -10,9 +10,9 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public class MetadataInfoViewModel : BasicInfoViewModel
     {
-        private string _metadataType;
+        private MetadataType _metadataType;
 
-        public string MetadataType
+        public MetadataType MetadataType
         {
             get => _metadataType;
             set => SetProperty(ref _metadataType, value);
@@ -30,9 +30,5 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             MetadataType = metadataInfo.MetadataType;
             Licenses = metadataInfo.LicenseTerms?.Select(l => new LicenseViewModel(l));
         }
-
-        public bool IsProjectType() => MetadataType == "projectTypes";
-
-        internal bool IsFramework() => MetadataType == "frameworks";
     }
 }

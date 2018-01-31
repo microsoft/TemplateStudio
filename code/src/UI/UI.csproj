@@ -415,6 +415,7 @@
       <DependentUpon>ListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2TemplateSelectors\NotificationTemplateSelector.cs" />
+    <Compile Include="V2ViewModels\Common\BaseDialogViewModel.cs" />
     <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\FileExtension.cs" />
@@ -426,6 +427,7 @@
     <Compile Include="V2ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\QuestionDialogViewModel.cs" />
     <Compile Include="V2ViewModels\Common\Selectable.cs" />
     <Compile Include="V2ViewModels\Common\SelectableGroup`1.cs" />
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
@@ -438,6 +440,9 @@
     <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\ProjectTypeViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\UserSelectionViewModel.cs" />
+    <Compile Include="V2Views\Common\QuestionDialogWindow.xaml.cs">
+      <DependentUpon>QuestionDialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="V2Views\NewItem\ChangesSummaryPage.xaml.cs">
       <DependentUpon>ChangesSummaryPage.xaml</DependentUpon>
     </Compile>
@@ -731,6 +736,10 @@
     <Page Include="V2Styles\Grid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="V2Views\Common\QuestionDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="V2Views\NewItem\ChangesSummaryPage.xaml">
       <SubType>Designer</SubType>
