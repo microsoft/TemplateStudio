@@ -5,7 +5,6 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Input;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 using Microsoft.Templates.UI.V2ViewModels.NewProject;
 
@@ -23,30 +22,32 @@ namespace Microsoft.Templates.UI.V2Services
         public static void Initialize(ListView listView)
         {
             _listView = listView;
+
             var service = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
             service.ProcessDrop += OnDrop;
         }
 
         public static void MoveUp(SavedTemplateViewModel item)
         {
-            if (!Pages.Contains(item) || Pages.First() == item)
+            if (Pages.Contains(item) && Pages.First() != item)
             {
-                return;
+                var index = Pages.IndexOf(item);
+                MoveItemAndSetFocus(index, index - 1);
             }
-
-            var index = Pages.IndexOf(item);
-            MoveItem(index, index - 1);
         }
 
         public static void MoveDown(SavedTemplateViewModel item)
         {
-            if (!Pages.Contains(item) || Pages.Last() == item)
+            if (Pages.Contains(item) && Pages.Last() != item)
             {
-                return;
+                var index = Pages.IndexOf(item);
+                MoveItemAndSetFocus(index, index + 1);
             }
+        }
 
-            var index = Pages.IndexOf(item);
-            MoveItem(index, index + 1);
+        private static bool AreCompatibleItems(int indexOfItem1, int indexOfItem2)
+        {
+            return AreCompatibleItems(Pages.ElementAt(indexOfItem1), Pages.ElementAt(indexOfItem2));
         }
 
         private static bool AreCompatibleItems(SavedTemplateViewModel startItem, SavedTemplateViewModel endItem)
@@ -58,20 +59,20 @@ namespace Microsoft.Templates.UI.V2Services
         {
             if (e.OldIndex > -1)
             {
-                Pages.Move(e.OldIndex, e.NewIndex);
-                EventService.Instance.RaiseOnReorderTemplate();
+                MoveItemAndSetFocus(e.OldIndex, e.NewIndex);
             }
         }
 
-        private static void MoveItem(int oldIndex, int newIndex)
+        private static void MoveItemAndSetFocus(int oldIndex, int newIndex)
         {
-            var oldItem = Pages.ElementAt(oldIndex);
-            var newItem = Pages.ElementAt(newIndex);
-
-            if (AreCompatibleItems(oldItem, newItem))
+            if (AreCompatibleItems(oldIndex, newIndex))
             {
                 Pages.Move(oldIndex, newIndex);
                 EventService.Instance.RaiseOnReorderTemplate();
+
+                _listView.UpdateLayout();
+                var item = _listView.ItemContainerGenerator.ContainerFromIndex(newIndex) as ListBoxItem;
+                item?.Focus();
             }
         }
     }
