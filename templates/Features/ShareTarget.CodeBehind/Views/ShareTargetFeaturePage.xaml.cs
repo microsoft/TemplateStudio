@@ -104,7 +104,7 @@ namespace Param_ItemNamespace.Views
         private void CompleteButton_Click(object sender, RoutedEventArgs e)
         {
             // TODO WTS: Implement the actions you want to realize with the shared data before completing the share operation.
-            // For further details check https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
+            // More details at https://docs.microsoft.com/en-us/windows/uwp/app-to-app/receive-data
             _shareOperation.ReportCompleted();
         }
     }

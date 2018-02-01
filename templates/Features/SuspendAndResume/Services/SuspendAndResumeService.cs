@@ -10,14 +10,13 @@ using Param_RootNamespace.Helpers;
 
 namespace Param_ItemNamespace.Services
 {
+
+    // More details regarding the application lifecycle and how to handle suspend and resume at https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {
-        //// TODO WTS: For more information regarding the application lifecycle and how to handle suspend and resume, please see:
-        //// Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
-
         private const string StateFilename = "SuspendAndResumeState";
 
-        // TODO WTS: This event is fired just before the app enters in background. Subscribe to this event if you want to save your current state.
+        // TODO WTS: Subscribe to this event if you want to save the current state. It is fired just before the app enters the background.
         public event EventHandler<OnBackgroundEnteringEventArgs> OnBackgroundEntering;
 
         public async Task SaveStateAsync()

@@ -15,7 +15,7 @@ namespace Param_ItemNamespace.Helpers
     //  This extension, in conjuntion with the ShareSourceData class and ShareSourceItem, eases the development
     //  and helps to maximize the target applications for your shared data.
     //
-    //  Please, refer to https://docs.microsoft.com/windows/uwp/app-to-app/share-data for further details.
+    // More details at https://docs.microsoft.com/windows/uwp/app-to-app/share-data
     //
     // To start sharing data from your pages / views you will need to follow these steps:
     //

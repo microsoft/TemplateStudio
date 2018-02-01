@@ -7,21 +7,19 @@ using Windows.Networking.PushNotifications;
 
 namespace Param_RootNamespace.Services
 {
+    // More about adding push notifications to your Windows app at https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push
     internal class HubNotificationsFeatureService : IHubNotificationsFeatureService
     {
         public async Task InitializeAsync()
         {
-            // The code below will throw an exception until it had correct parameters added to it.
+            // The code below will throw an exception until it has correct parameters added to it.
             // Once that is done the try/catch can be removed if desired.
             try
             {
-                //// See more about adding push notifications to your Windows app at
-                //// https://docs.microsoft.com/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push
-
-                // Specify your Hub Name here
+                // TODO WTS: Specify your Hub Name
                 var hubName = string.Empty;
 
-                // Specify your DefaultListenSharedAccessSignature here
+                // TODO WTS: Specify your DefaultListenSharedAccessSignature
                 var accessSignature = string.Empty;
 
                 var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
@@ -34,7 +32,7 @@ namespace Param_RootNamespace.Services
                 }
 
                 // You can also send push notifications from Windows Developer Center targeting your app consumers
-                // Documentation: https://docs.microsoft.com/windows/uwp/publish/send-push-notifications-to-your-apps-customers
+                // More details at https://docs.microsoft.com/windows/uwp/publish/send-push-notifications-to-your-apps-customers
             }
             catch (Exception)
             {

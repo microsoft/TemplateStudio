@@ -12,8 +12,7 @@ namespace Param_RootNamespace
     {
 //^^
 //{[{
-        // See detailed documentation about Web to App link
-        // https://docs.microsoft.com/en-us/windows/uwp/launch-resume/web-to-app-linking
+        // Detailed documentation about Web to App link at https://docs.microsoft.com/en-us/windows/uwp/launch-resume/web-to-app-linking
         // TODO WTS: Update the Host URI here and in Package.appxmanifest XML (Right click > View Code)
         private const string Host = "myapp.website.com";
         private const string Section1 = "/MySection1";
