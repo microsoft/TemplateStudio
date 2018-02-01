@@ -21,10 +21,16 @@ namespace WtsTool
             switch (action)
             {
                 case PackageTask.Create:
-                    PackageWorker.Create(options.CreateNew, options.OutFile, options.CertThumbprint, output, error);
+                    Task.Run(async () =>
+                    {
+                        await PackageWorker.CreateAsync(options.CreateNew, options.OutFile, options.CertThumbprint, output, error);
+                    });
                     break;
                 case PackageTask.Extract:
-                    PackageWorker.Extract(options.Extract, options.DestionationDir, output, error);
+                    Task.Run(async () =>
+                    {
+                        await PackageWorker.ExtractAsync(options.Extract, options.DestionationDir, output, error);
+                    });
                     break;
                 case PackageTask.Info:
                     PackageWorker.GetInfo(options.Info, output, error);

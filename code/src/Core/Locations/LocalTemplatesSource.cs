@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Core.Locations
             };
         }
 
-        public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
+        public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder)
         {
             string targetFolder = Path.Combine(workingFolder, packageInfo.Version.ToString());
 
@@ -86,7 +86,10 @@ namespace Microsoft.Templates.Core.Locations
                 Fs.SafeDeleteDirectory(targetFolder);
             }
 
-            JunctionNativeMethods.CreateJunction(Origin, targetFolder, true);
+            await Task.Run(() =>
+            {
+                JunctionNativeMethods.CreateJunction(Origin, targetFolder, true);
+            });
 
             return new TemplatesContentInfo()
             {

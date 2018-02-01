@@ -97,7 +97,9 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     _content.Source.LoadConfig();
 
-                    _content.NewVersionProgress += OnNewVersionProgress;
+                    _content.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
+                    _content.GetContentProgress += OnGetContentProgress;
+                    _content.CopyProgress += OnCopyProgress;
 
                     if (_content.IsNewVersionAvailable(out var version))
                     {
@@ -108,22 +110,27 @@ namespace Microsoft.Templates.Core.Locations
                 }
                 finally
                 {
+                    _content.NewVersionAcquisitionProgress -= OnNewVersionAcquisitionProgress;
+                    _content.GetContentProgress -= OnGetContentProgress;
+                    _content.CopyProgress -= OnCopyProgress;
                     UnlockSync();
                 }
             }
         }
 
-        private void OnNewVersionProgress(Version version, int progress)
+        private void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
         {
-            if (progress == 100)
-            {
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired });
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing, Version = version });
-            }
-            else
-            {
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring, Version = version, Progress = progress });
-            }
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Copying, Version = eventArgs.Version, Progress = eventArgs.Progress });
+        }
+
+        private void OnGetContentProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing, Version = eventArgs.Version, Progress = eventArgs.Progress });
+        }
+
+        private void OnNewVersionAcquisitionProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring, Version = eventArgs.Version, Progress = eventArgs.Progress });
         }
 
         public void CleanUp()
@@ -164,10 +171,7 @@ namespace Microsoft.Templates.Core.Locations
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing, Version = installedPackage.Version });
 
-                await Task.Run(() =>
-                {
-                    _content.GetInstalledContent(installedPackage);
-                });
+                await _content.GetInstalledContentAsync(installedPackage);
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });
             }

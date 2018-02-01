@@ -17,6 +17,7 @@ namespace Microsoft.Templates.Core.Locations
         CheckingForUpdates = 8,
         CheckedForUpdates = 9,
         Ready = 10,
-        ErrorAcquiring = 11
+        ErrorAcquiring = 11,
+        Copying
     }
 }

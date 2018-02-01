@@ -25,7 +25,7 @@ namespace Microsoft.Templates.UI.V2Extensions
                 case SyncStatus.Acquired:
                     return Notification.Information(StringRes.NotificationSyncStatus_Acquired, Category.TemplatesSync, TimerType.None, false);
                 case SyncStatus.Preparing:
-                    return Notification.Information(string.Format(StringRes.NotificationSyncStatus_Preparing, args.Version), Category.TemplatesSync, TimerType.None, false);
+                    return Notification.Information(string.Format(StringRes.NotificationSyncStatus_Preparing, args.Version, args.Progress), Category.TemplatesSync, TimerType.None, false);
                 case SyncStatus.Prepared:
                     return Notification.Information(StringRes.NotificationSyncStatus_Prepared, Category.TemplatesSync, TimerType.Short, true);
                 case SyncStatus.NewWizardVersionAvailable:
@@ -36,6 +36,8 @@ namespace Microsoft.Templates.UI.V2Extensions
                     return Notification.Information(StringRes.NotificationSyncStatus_CheckedForUpdates, Category.TemplatesSync, TimerType.Short, true);
                 case SyncStatus.ErrorAcquiring:
                     return Notification.Warning(string.Format(StringRes.NotificationSyncStatus_ErrorAcquiring, args.Version), Category.TemplatesSyncError, TimerType.Large, CategoriesToOverride);
+                case SyncStatus.Copying:
+                    return Notification.Information(string.Format(StringRes.NotificationSyncStatus_Copying, args.Version, args.Progress), Category.TemplatesSync, TimerType.None, false);
                 case SyncStatus.Ready:
                     return null;
                 case SyncStatus.None:

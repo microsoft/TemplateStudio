@@ -17,7 +17,11 @@ namespace Microsoft.Templates.Core.Locations
 {
     public abstract class TemplatesSource
     {
-        public event Action<Version, int> NewVersionProgress;
+        public event Action<object, ProgressEventArgs> NewVersionAcquisitionProgress;
+
+        public event Action<object, ProgressEventArgs> GetContentProgress;
+
+        public event Action<object, ProgressEventArgs> CopyProgress;
 
         protected const string TemplatesFolderName = "Templates";
 
@@ -29,13 +33,23 @@ namespace Microsoft.Templates.Core.Locations
 
         public abstract void LoadConfig();
 
-        public abstract TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder);
+        public abstract Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder);
 
         public abstract Task AcquireAsync(TemplatesPackageInfo packageInfo);
 
-        protected virtual void OnNewVersionProgress(Version version, int progress)
+        protected virtual void OnNewVersionAcquisitionProgress(object sender, ProgressEventArgs eventArgs)
         {
-            NewVersionProgress?.Invoke(version, progress);
+            NewVersionAcquisitionProgress?.Invoke(this, eventArgs);
+        }
+
+        protected virtual void OnGetContentProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            GetContentProgress?.Invoke(this, eventArgs);
+        }
+
+        protected virtual void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            CopyProgress?.Invoke(this, eventArgs);
         }
     }
 }

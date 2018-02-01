@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -16,15 +17,16 @@ namespace Microsoft.Templates.Core.Locations
     {
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
 
-        private Version _newVersion;
+        private Version _version;
 
-        public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
+        public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder)
         {
-            var extractionFolder = Extract(packageInfo);
+            var extractionFolder = await ExtractAsync(packageInfo);
 
             var finalDestination = Path.Combine(workingFolder, packageInfo.Version.ToString());
 
-            Fs.SafeMoveDirectory(Path.Combine(extractionFolder, "Templates"), finalDestination, true);
+             await Fs.SafeMoveDirectoryAsync(Path.Combine(extractionFolder, "Templates"), finalDestination, true, ReportCopyProgress);
+                Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
 
             var templatesInfo = new TemplatesContentInfo()
             {
@@ -33,8 +35,6 @@ namespace Microsoft.Templates.Core.Locations
                 Version = packageInfo.Version
             };
 
-            Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
-
             return templatesInfo;
         }
 
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             if (string.IsNullOrEmpty(packageInfo.LocalPath) || !File.Exists(packageInfo.LocalPath))
             {
-                _newVersion = packageInfo.Version;
+                _version = packageInfo.Version;
 
                 var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                 var sourceUrl = $"{_cdnUrl}/{packageInfo.Name}";
@@ -105,14 +105,15 @@ namespace Microsoft.Templates.Core.Locations
 
         private void Wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            OnNewVersionProgress(_newVersion, e.ProgressPercentage);
+            OnNewVersionAcquisitionProgress(this, new ProgressEventArgs() { Version = _version, Progress = e.ProgressPercentage });
         }
 
-        private static string Extract(TemplatesPackageInfo packageInfo, bool verifyPackageSignatures = true)
+        private async Task<string> ExtractAsync(TemplatesPackageInfo packageInfo, bool verifyPackageSignatures = true)
         {
+            _version = packageInfo.Version;
             if (!string.IsNullOrEmpty(packageInfo.LocalPath))
             {
-                Extract(packageInfo.LocalPath, Path.GetDirectoryName(packageInfo.LocalPath), verifyPackageSignatures);
+                await ExtractAsync(packageInfo.LocalPath, Path.GetDirectoryName(packageInfo.LocalPath), verifyPackageSignatures);
                 return Path.GetDirectoryName(packageInfo.LocalPath);
             }
             else
@@ -122,11 +123,11 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private static void Extract(string mstxFilePath, string versionedFolder, bool verifyPackageSignatures = true)
+        private async Task ExtractAsync(string mstxFilePath, string versionedFolder, bool verifyPackageSignatures = true)
         {
             try
             {
-                TemplatePackage.Extract(mstxFilePath, versionedFolder, verifyPackageSignatures);
+                await TemplatePackage.ExtractAsync(mstxFilePath, versionedFolder, verifyPackageSignatures, ReportExtractionProgress);
                 AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {versionedFolder}.").FireAndForget();
             }
             catch (Exception ex)
@@ -134,6 +135,16 @@ namespace Microsoft.Templates.Core.Locations
                 AppHealth.Current.Exception.TrackAsync(ex, StringRes.TemplatesSourceExtractContentMessage).FireAndForget();
                 throw;
             }
+        }
+
+        private void ReportExtractionProgress(int progress)
+        {
+            OnGetContentProgress(this, new ProgressEventArgs() { Version = _version, Progress = progress });
+        }
+
+        private void ReportCopyProgress(int progress)
+        {
+            OnCopyProgress(this, new ProgressEventArgs() { Version = _version, Progress = progress });
         }
     }
 }

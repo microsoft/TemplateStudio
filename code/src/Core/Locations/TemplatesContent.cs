@@ -15,7 +15,11 @@ namespace Microsoft.Templates.Core.Locations
     {
         private const string TemplatesFolderName = "Templates";
 
-        public event Action<Version, int> NewVersionProgress;
+        public event Action<object, ProgressEventArgs> NewVersionAcquisitionProgress;
+
+        public event Action<object, ProgressEventArgs> GetContentProgress;
+
+        public event Action<object, ProgressEventArgs> CopyProgress;
 
         public string TemplatesFolder { get; private set; }
 
@@ -102,17 +106,20 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task GetNewVersionContentAsync()
         {
-            var latestPackage = Source.Config.ResolvePackage(WizardVersion);
-
-            Source.NewVersionProgress += OnNewVersionProgress;
-
-            await Source.AcquireAsync(latestPackage);
-
-            if (latestPackage.LocalPath != null)
+            try
             {
-                await Task.Run(() =>
+                var latestPackage = Source.Config.ResolvePackage(WizardVersion);
+
+                Source.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
+                Source.GetContentProgress += OnGetContentProgress;
+                Source.CopyProgress += OnCopyProgress;
+
+                await Source.AcquireAsync(latestPackage);
+
+                if (latestPackage.LocalPath != null)
                 {
-                    TemplatesContentInfo content = Source.GetContent(latestPackage, TemplatesFolder);
+                    TemplatesContentInfo content = await Source.GetContentAsync(latestPackage, TemplatesFolder);
+
                     var alreadyExists = All.Where(p => p.Version == latestPackage.Version).FirstOrDefault();
                     if (alreadyExists != null)
                     {
@@ -121,13 +128,29 @@ namespace Microsoft.Templates.Core.Locations
 
                     Current = content;
                     All.Add(content);
-                });
+                }
+            }
+            finally
+            {
+                Source.NewVersionAcquisitionProgress -= OnNewVersionAcquisitionProgress;
+                Source.GetContentProgress -= OnGetContentProgress;
+                Source.CopyProgress -= OnCopyProgress;
             }
         }
 
-        private void OnNewVersionProgress(Version version, int progress)
+        private void OnNewVersionAcquisitionProgress(object sender, ProgressEventArgs eventArgs)
         {
-            NewVersionProgress?.Invoke(version, progress);
+            NewVersionAcquisitionProgress?.Invoke(this, eventArgs);
+        }
+
+        private void OnGetContentProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            GetContentProgress?.Invoke(this, eventArgs);
+        }
+
+        private void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            CopyProgress?.Invoke(this, eventArgs);
         }
 
         internal TemplatesPackageInfo ResolveInstalledContent()
@@ -153,11 +176,22 @@ namespace Microsoft.Templates.Core.Locations
             return installedPackage;
         }
 
-        internal void GetInstalledContent(TemplatesPackageInfo packageInfo)
+        internal async Task GetInstalledContentAsync(TemplatesPackageInfo packageInfo)
         {
-            var package = Source.GetContent(packageInfo, TemplatesFolder);
-            Current = package;
-            All.Add(package);
+            try
+            {
+                Source.GetContentProgress += OnGetContentProgress;
+                Source.CopyProgress += OnCopyProgress;
+
+                var package = await Source.GetContentAsync(packageInfo, TemplatesFolder);
+                Current = package;
+                All.Add(package);
+            }
+            finally
+            {
+                Source.GetContentProgress -= OnGetContentProgress;
+                Source.CopyProgress -= OnCopyProgress;
+            }
         }
 
         public void Purge()
