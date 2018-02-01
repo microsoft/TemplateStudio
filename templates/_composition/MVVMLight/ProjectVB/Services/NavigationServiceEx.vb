@@ -55,8 +55,13 @@ Namespace Services
                     Throw New ArgumentException(String.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey))
                 End If
             End SyncLock
-            Dim navigationResult = Frame.Navigate(page, parameter, infoOverride)
-            Return navigationResult
+
+            If Frame.Content?.GetType IsNot page Then
+                Dim navigationResult = Frame.Navigate(page, parameter, infoOverride)
+                Return navigationResult
+            Else
+                Return False
+            End If
         End Function
 
         Public Sub Configure(key As String, pageType As Type)
