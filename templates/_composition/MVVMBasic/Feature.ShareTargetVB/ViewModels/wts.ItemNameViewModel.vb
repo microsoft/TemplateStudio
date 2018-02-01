@@ -34,7 +34,7 @@ Namespace ViewModels
         End Sub
 
         Public Async Function LoadAsync(shareOperation As ShareOperation) As Task
-            ' TODO WTS: Configure your Share Target Declaration to allow other data formats.
+            ' TODO WTS: Configure the Share Target Declaration for the formats you require.
             ' Share Target declarations are defined in Package.appxmanifest.
             ' Current declarations allow to share WebLink and image files with the app.
             ' ShareTarget can be tested sharing the WebLink from Microsoft Edge or sharing images from Windows Photos.

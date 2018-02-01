@@ -98,7 +98,7 @@ namespace Param_ItemNamespace.Models
             Items.Add(ShareSourceFeatureItem.FromStorageItems(storageItems));
         }
 
-        // TODO WTS: Use this method to add content to share when you do not want to process the data until the target app actually requests it.
+        // Use this method to add content to share when you do not want to process the data until the target app actually requests it.
         // The defferedDataFormatId parameter must be a const value from StandardDataFormats class.
         // The getDeferredDataAsyncFunc parameter is the function that returns the object you want to share.
         public void SetDeferredContent(string deferredDataFormatId, Func<Task<object>> getDeferredDataAsyncFunc)

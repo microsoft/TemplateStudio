@@ -5,10 +5,9 @@ Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.Models
 
 Namespace Views
-    ' TODO WTS: This page exists purely as an example of how to launch a specific page
-    ' in response to a protocol launch and pass it a value. It is expected that you will
-    ' delete this page once you have changed the handling of a protocol launch to meet your
-    ' needs and redirected to another of your pages.
+    ' TODO WTS: Remove this example page when/if it's not needed.
+    ' This page is an example of how to handle data that is shared with your app.
+    ' You can either change this page to meet your needs, or use another and delete this.
     Public NotInheritable Partial Class ShareTargetFeaturePage
         Inherits Page
         Implements INotifyPropertyChanged
@@ -31,7 +30,7 @@ Namespace Views
         End Sub
 
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
-            ' TODO WTS: Configure your Share Target Declaration to allow other data formats.
+            ' TODO WTS: Configure the Share Target Declaration for the formats you require.
             ' Share Target declarations are defined in Package.appxmanifest.
             ' Current declarations allow to share WebLink and image files with the app.
             ' ShareTarget can be tested sharing the WebLink from Microsoft Edge or sharing images from Windows Photos.

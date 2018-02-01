@@ -16,7 +16,8 @@ namespace Param_ItemNamespace.Activation
 
         protected override async Task HandleInternalAsync(ProtocolActivatedEventArgs args)
         {
-            // TODO WTS: Use args.Uri.AbsolutePath to determinate the page you want to launch the application.
+            // TODO WTS: Handle navigation based on the original URI
+            // Use args.Uri.AbsolutePath to determinate the page you want to launch the application.
             switch (args.Uri.AbsolutePath)
             {
                 // Open the page in app that is equivalent to the section on the website.
