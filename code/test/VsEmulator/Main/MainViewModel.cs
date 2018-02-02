@@ -220,11 +220,20 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+                CleanUp();
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+        }
+
+        private void CleanUp()
+        {
+            if (GenContext.ToolBox.Repo.SyncInProgress)
+            {
+                GenContext.ToolBox.Repo.Sync.CleanUp();
             }
         }
 
@@ -247,6 +256,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+                CleanUp();
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
@@ -281,6 +291,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+                CleanUp();
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
