@@ -10,7 +10,6 @@ using Param_RootNamespace.Helpers;
 
 namespace Param_ItemNamespace.Services
 {
-
     // More details regarding the application lifecycle and how to handle suspend and resume at https://docs.microsoft.com/windows/uwp/launch-resume/app-lifecycle
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {
