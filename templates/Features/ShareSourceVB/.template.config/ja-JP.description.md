@@ -1,11 +1,10 @@
-﻿ShareSource provides you with a class that allows you to share data  in a simple and straight-forward manner.
-It allows you to quickly share data, such as:
+﻿ShareSource は、簡単かつ分かりやすい方法でデータを共有できるようにするクラスを提供します。以下のようなデータをすばやく共有できます。
 
-  * Text
-  * Links
-  * Images
+  * テキスト
+  * リンク
+  * 画像
   * Html
-  * Deferred content that is loaded when the target app requests it.
+  * ターゲット アプリが要求したときに読み込まれる遅延コンテンツ
 
-For more info about sharing data between apps, consult 
-[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/app-to-app/share-data)
+アプリ間のデータ共有の詳細については、以下を参照してください。
+[docs.microsoft.com] (https://docs.microsoft.com/windows/uwp/app-to-app/share-data)
