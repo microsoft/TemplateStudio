@@ -27,7 +27,7 @@
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
                     </Grid>
                     <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsTextBlockNotificationInformationText}" />
-                    <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotificationInformation}" Command="{Binding CloseCommand}" />
+                    <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotificationInformation}" Command="{Binding CloseCommand}" Visibility="{Binding CanClose, Converter={StaticResource BoolToVisibilityConverter}}" />
                 </Grid>
             </DataTemplate>
 

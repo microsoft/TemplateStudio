@@ -194,6 +194,7 @@
     <Compile Include="Gen\IContextProvider.cs" />
     <Compile Include="Locations\JunctionNativeMethods.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
+    <Compile Include="Locations\ProgressEventArgs.cs" />
     <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesContent.cs" />
     <Compile Include="Locations\TemplatesContentInfo.cs" />

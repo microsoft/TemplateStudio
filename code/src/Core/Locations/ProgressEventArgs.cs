@@ -6,10 +6,8 @@ using System;
 
 namespace Microsoft.Templates.Core.Locations
 {
-    public sealed class SyncStatusEventArgs : EventArgs
+    public sealed class ProgressEventArgs : EventArgs
     {
-        public SyncStatus Status { get; set; }
-
         public Version Version { get; set; }
 
         public int Progress { get; set; }
