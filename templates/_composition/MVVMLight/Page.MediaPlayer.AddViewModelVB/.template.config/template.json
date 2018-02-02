@@ -3,13 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Page.AddViewModel.VB",
+  "name": "MVVMLight.Page.MediaPlayer.AddViewModel.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & wts.type==page & identity != wts.Page.MediaPlayer.VB",
+    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Page.MediaPlayer.VB",
     "wts.export.baseclass": "ViewModelBase",
     "wts.export.setter": "Set"
   },
