@@ -48,16 +48,8 @@ namespace Param_ItemNamespace.Models
             Items.Add(ShareSourceFeatureItem.FromWebLink(webLink));
         }
 
-        // TODO WTS: To share a link to your application be sure you have configured activation by URI
-        //
-        // 1. Register the protocol in Package.appxmanifest Declarations/protocol
-        //      i.e.
-        //      <uap:Protocol Name="my-app-name">
-        //          <uap:Logo>Assets\smallTile-sdk.png</uap:Logo>
-        //          <uap:DisplayName>MyApp</uap:DisplayName>
-        //      </uap:Protocol>
-        //
-        // 2. The applicationLink parameter must refer to the registered protocol (i.e. new Uri("my-app-name:navigate?page=MainPage"))
+        // To share a link to your app you must first register it to handle URI activation
+        // More details at https://docs.microsoft.com/en-us/windows/uwp/launch-resume/handle-uri-activation
         public void SetApplicationLink(Uri applicationLink)
         {
             if (applicationLink == null)

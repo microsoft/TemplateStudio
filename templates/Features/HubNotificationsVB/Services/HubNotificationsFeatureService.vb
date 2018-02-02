@@ -8,10 +8,10 @@ Namespace Services
         Inherits ActivationHandler(Of ToastNotificationActivatedEventArgs)
 
         Public Async Function InitializeAsync() As Task
-            ' TODO WTS: Specify your Hub Name
+            ' TODO WTS: Set your Hub Name
             Dim hubName = String.Empty
 
-            ' TODO WTS: Specify your DefaultListenSharedAccessSignature
+            ' TODO WTS: Set your DefaultListenSharedAccessSignature
             Dim accessSignature = String.Empty
 
             Dim channel = Await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync()

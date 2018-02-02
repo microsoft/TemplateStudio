@@ -13,10 +13,10 @@ namespace Param_RootNamespace.Services
     {
         public async Task InitializeAsync()
         {
-            // TODO WTS: Specify your Hub Name
+            // TODO WTS: Set your Hub Name
             var hubName = string.Empty;
 
-            // TODO WTS: Specify your DefaultListenSharedAccessSignature
+            // TODO WTS: Set your DefaultListenSharedAccessSignature
             var accessSignature = string.Empty;
 
             var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();

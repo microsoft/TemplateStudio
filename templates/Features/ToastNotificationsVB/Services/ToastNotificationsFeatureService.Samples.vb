@@ -22,7 +22,7 @@ Namespace Services
             content.Actions = actions
 
             ' Add the content to the toast
-            ' TODO WTS: Set a unique identifier for this notification within the notification Group. (optional)
+            ' TODO WTS: Set a unique identifier for this notification within the notification group. (optional)
             ' More details at https://docs.microsoft.com/en-gb/uwp/api/windows.ui.notifications.toastnotification#Windows_UI_Notifications_ToastNotification_Tag
             Dim toast = New ToastNotification(content.GetXml()) With { .Tag = "ToastTag" }
 

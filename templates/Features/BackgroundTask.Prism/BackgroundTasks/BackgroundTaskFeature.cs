@@ -26,8 +26,7 @@ namespace Param_ItemNamespace.BackgroundTasks
                     Name = taskName
                 };
 
-                // TODO WTS: Define your trigger here and set your conditions
-                // Note conditions are optional
+                // TODO WTS: Define the trigger for your background task and set any (optional) conditions
                 // More details at https://docs.microsoft.com/windows/uwp/launch-resume/create-and-register-an-inproc-background-task
                 builder.SetTrigger(new TimeTrigger(15, false));
                 builder.AddCondition(new SystemCondition(SystemConditionType.UserPresent));
