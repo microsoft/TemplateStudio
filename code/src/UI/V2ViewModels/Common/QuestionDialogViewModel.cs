@@ -15,21 +15,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public class QuestionDialogViewModel : BaseDialogViewModel
     {
-        public string Title { get; set; }
-
-        public string Description { get; set; }
-
-        public QuestionDialogViewModel(Window window, MetadataType metadataType)
-            : base(window)
+        public QuestionDialogViewModel(MetadataType metadataType)
         {
             Title = metadataType == MetadataType.ProjectType ? StringRes.ProjectDetailsProjectTypeResetTitle : StringRes.ProjectDetailsFrameworkResetTitle;
             Description = metadataType == MetadataType.ProjectType ? StringRes.ProjectDetailsProjectTypeResetDescription : StringRes.ProjectDetailsFrameworkResetDescription;
-        }
-
-        protected override void OnFinish(object parameter)
-        {
-            Window.DialogResult = bool.Parse(parameter.ToString());
-            base.OnFinish(parameter);
         }
     }
 }

@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Templates.Core.Mvvm;
@@ -10,20 +11,41 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 {
     public abstract class BaseDialogViewModel : Observable
     {
-        private ICommand _finishCommand;
-
-        public Window Window { get; }
-
-        public ICommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<object>(OnFinish));
-
-        public BaseDialogViewModel(Window window)
+        public BaseDialogViewModel()
         {
-            Window = window;
+            AcceptCommand = new RelayCommand(OnAccept);
+            CancelCommand = new RelayCommand(OnCancel);
         }
 
-        protected virtual void OnFinish(object parameter)
+        public string Title { get; set; }
+
+        public string Description { get; set; }
+
+        public ICommand AcceptCommand { get; private set; }
+
+        public ICommand CancelCommand { get; private set; }
+
+        public DialogResult Result { get; set; } = DialogResult.None;
+
+        public Action CloseAction { get; set; }
+
+        protected virtual void OnAccept()
         {
-            Window.Close();
+            Result = DialogResult.Accept;
+            CloseAction?.Invoke();
         }
+
+        protected virtual void OnCancel()
+        {
+            Result = DialogResult.Cancel;
+            CloseAction?.Invoke();
+        }
+    }
+
+    public enum DialogResult
+    {
+        None,
+        Accept,
+        Cancel
     }
 }
