@@ -1,15 +1,15 @@
 ﻿{
-  "author": "Microsoft",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Page.AddViewModel",
+  "name": "MVVMLight.Page.MediaPlayer.AddViewModel.VB",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & wts.type==page & identity != wts.Page.MediaPlayer",
+    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Page.MediaPlayer.VB",
     "wts.export.baseclass": "ViewModelBase",
     "wts.export.setter": "Set"
   },
