@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Drag \u0026 Drop",
+    "name": "Drag & Drop",
     "description": "「拖放」功能為標準 UWP 拖放功能提供包裝函式服務，以簡化建立具備拖放功能之應用程式所需的程式碼。",
     "identity": "wts.Feat.DragAndDrop.CodeBehind.VB"
 }

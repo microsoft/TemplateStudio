@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Drag \u0026 Drop",
+    "name": "Drag & Drop",
     "description": "Funkce Přetahování poskytuje službu, která zabaluje standardní funkci platformy UPW pro přetahování a zjednodušuje tak kód potřebný pro vytváření aplikací podporujících přetahování.",
     "identity": "wts.Feat.DragAndDrop.CodeBehind.VB"
 }

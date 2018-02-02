@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Drag \u0026 Drop",
+    "name": "Drag & Drop",
     "description": "La función de arrastrar y soltar proporciona un servicio de contenedor en la funcionalidad de arrastrar y soltar de UWP para simplificar el código necesario para crear aplicaciones listas para arrastrar y soltar.",
     "identity": "wts.Feat.DragAndDrop.CodeBehind.VB"
 }

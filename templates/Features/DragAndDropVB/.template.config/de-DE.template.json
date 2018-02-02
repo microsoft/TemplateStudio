@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Drag \u0026 Drop",
-    "description": "Das Drag \u0026 Drop-Feature stellt einen Dienst für die Vereinfachung der Entwicklung von Drag \u0026 Drop-kompatiblen Apps bereit.",
+    "name": "Drag & Drop",
+    "description": "Das Drag & Drop-Feature stellt einen Dienst für die Vereinfachung der Entwicklung von Drag & Drop-kompatiblen Apps bereit.",
     "identity": "wts.Feat.DragAndDrop.VB"
 }

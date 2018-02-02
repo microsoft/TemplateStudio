@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Drag \u0026 Drop",
-    "description": "Das Drag \u0026 Drop-Feature stellt einen Wrapper-Dienst für die Drag \u0026 Drop-Standardfunktionalität der UWP bereit, um den für die Entwicklung von Drag \u0026 Drop-kompatiblen Apps erforderlichen Code zu vereinfachen.",
+    "name": "Drag & Drop",
+    "description": "Das Drag & Drop-Feature stellt einen Wrapper-Dienst für die Drag & Drop-Standardfunktionalität der UWP bereit, um den für die Entwicklung von Drag & Drop-kompatiblen Apps erforderlichen Code zu vereinfachen.",
     "identity": "wts.Feat.DragAndDrop.CodeBehind.VB"
 }

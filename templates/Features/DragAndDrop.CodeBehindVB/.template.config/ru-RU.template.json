@@ -1,6 +1,6 @@
 ﻿{
     "author": "Microsoft Community",
-    "name": "Drag \u0026 Drop",
+    "name": "Drag & Drop",
     "description": "Функция перетаскивания предоставляет службу оболочки для стандартной функции перетаскивания UWP, что позволяет упростить создание приложений с поддержкой перетаскивания.",
     "identity": "wts.Feat.DragAndDrop.CodeBehind.VB"
 }
