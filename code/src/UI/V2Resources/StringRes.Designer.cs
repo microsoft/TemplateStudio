@@ -133,6 +133,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string ButtonOk {
+            get {
+                return ResourceManager.GetString("ButtonOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh templates cache.
         /// </summary>
         public static string ButtonRefreshTemplatesCache {
@@ -264,6 +273,24 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string ChangesSummaryGroupWarningFilesDescription {
             get {
                 return ResourceManager.GetString("ChangesSummaryGroupWarningFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong :-(.
+        /// </summary>
+        public static string ErrorDialogTitle {
+            get {
+                return ResourceManager.GetString("ErrorDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View problem details.
+        /// </summary>
+        public static string ErrorViewProblemDetails {
+            get {
+                return ResourceManager.GetString("ErrorViewProblemDetails", resourceCulture);
             }
         }
         

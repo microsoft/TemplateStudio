@@ -1,0 +1,61 @@
+﻿<Window x:Class="Microsoft.Templates.UI.V2Views.Common.ErrorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
+        xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters"
+        xmlns:extensions="clr-namespace:Microsoft.Templates.UI.V2Extensions"
+        WindowStyle="None"
+        SizeToContent="Height"
+        mc:Ignorable="d"
+        MinHeight="200" MaxHeight="500" Width="500"
+        extensions:WindowExtensions.CenterOnSizeChange="True">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Margin="{StaticResource Margin_M2_LeftTopRightBottom}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Text="{Binding Title}"
+                       Style="{StaticResource WtsTextBlockDialogTitle}" />
+            <TextBlock Grid.Row="1"
+                       Text="{Binding Description}"
+                       Style="{StaticResource WtsTextBlockDialogDescription}"
+                       Margin="{StaticResource Margin_M_Top}"/>
+            <TextBox Grid.Row="2"
+                     Text="{Binding ErrorStackTrace}"
+                     Visibility="{Binding ShowDetails, Converter={StaticResource BoolToVisibilityConverter}}"
+                     Margin="{StaticResource Margin_L_Top}"
+                     Style="{StaticResource WtsTextBlockErrorDialogErrorStackTrace}"/>
+        </Grid>
+        <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
+            <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
+                <ToggleButton
+                    IsChecked="{Binding ShowDetails}"
+                    Content="{x:Static strings:StringRes.ErrorViewProblemDetails}"
+                    HorizontalAlignment="Left"/>
+                <Button
+                    Style="{StaticResource WtsButtonFinish}"
+                    Content="{x:Static strings:StringRes.ButtonOk}"
+                    Command="{Binding AcceptCommand}"
+                    HorizontalAlignment="Right"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
