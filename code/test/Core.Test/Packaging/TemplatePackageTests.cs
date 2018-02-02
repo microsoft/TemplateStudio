@@ -264,6 +264,22 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
+        public async Task ExtractConcurrentReadAsync()
+        {
+            var inFile = @"Packaging\MsSigned\Templates.mstx";
+            var outDir1 = @"C:\Temp\OutFolder\Concurrent1";
+            var outDir2 = @"C:\Temp\OutFolder\Concurrent2";
+
+            Task t1 = Task.Run(async () => await TemplatePackage.ExtractAsync(inFile, outDir1));
+            Task t2 = Task.Run(async () => await TemplatePackage.ExtractAsync(inFile, outDir2));
+
+            await Task.WhenAll(t1, t2);
+
+            Directory.Delete(outDir1, true);
+            Directory.Delete(outDir2, true);
+        }
+
+        [Fact]
         public async Task ExtractFileTamperedAsync()
         {
             var certPass = GetTestCertPassword();
