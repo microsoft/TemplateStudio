@@ -1,5 +1,5 @@
-﻿Web to App link associates your app with a website so that when someone opens a link to your website, your app is launched instead of opening the browser. If your app is not installed, your website opens in the browser as usual. Users can trust this experience because only verified content owners can register for a link. Users will be able to check all of their registered web-to-app links by going to Settings > Apps > Apps for websites.
+﻿Привязка приложения к веб-сайту позволяет связать ваше приложение с веб-сайтом, чтобы при щелчке ссылки на веб-сайт вместо браузера открывалось ваше приложение. Если ваше приложение не установлено, будет открыт веб-сайт в браузере. Пользователи могут доверять такому подходу, так как такая привязка доступна только для проверенных владельцев содержимого. Пользователи могут просмотреть список всех привязок приложений к веб-сайтам, открыв раздел "Параметры" > "Приложения" > "Приложения для веб-сайтов".
 
-For more info about web to app linking, consult 
-[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking) and
+Дополнительные сведения о привязке приложений к веб-сайтам см. на сайте 
+[docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/web-to-app-linking) и
 [blogs.windows.com](https://blogs.windows.com/buildingapps/2016/10/14/web-to-app-linking-with-appurihandlers/)
