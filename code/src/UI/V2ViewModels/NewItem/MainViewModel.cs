@@ -14,6 +14,7 @@ using Microsoft.Templates.UI.V2Controls;
 using Microsoft.Templates.UI.V2Resources;
 using Microsoft.Templates.UI.V2Services;
 using Microsoft.Templates.UI.V2ViewModels.Common;
+using Microsoft.Templates.UI.V2Views.Common;
 using Microsoft.Templates.UI.V2Views.NewItem;
 
 namespace Microsoft.Templates.UI.V2ViewModels.NewItem
@@ -119,20 +120,21 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
             if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
             {
-                // TODO: mvegaca
-                // WizardStatus.InfoShapeVisibility = Visibility.Visible;
-                // ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow(MainView);
+                var vm = new ProjectConfigurationViewModel();
+                ProjectConfigurationDialog projectConfig = new ProjectConfigurationDialog(vm);
+                projectConfig.ShowDialog();
 
-                // if (projectConfig.ShowDialog().Value)
-                // {
-                //    configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
-                //    configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
-                //    WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
-                // }
-                // else
-                // {
-                //    Cancel();
-                // }
+                if (vm.Result == DialogResult.Accept)
+                {
+                    configInfo.ProjectType = vm.SelectedProjectType.Name;
+                    configInfo.Framework = vm.SelectedFramework.Name;
+                    ProjectConfigInfo.SaveProjectConfiguration(configInfo.ProjectType, configInfo.Framework);
+                }
+                else
+                {
+                    OnCancel();
+                }
+
             }
 
             ConfigFramework = configInfo.Framework;
