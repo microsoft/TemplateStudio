@@ -29,6 +29,11 @@ namespace Microsoft.Templates.UI.V2Views.NewItem
             {
                 await MainViewModel.Instance.InitializeAsync(templateType, language);
             };
+
+            Unloaded += (sender, e) =>
+            {
+                ViewModel.UnsuscribeEventHandlers();
+            };
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)

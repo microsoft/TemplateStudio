@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.V2Controls;
@@ -129,16 +130,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
                     ProjectConfigInfo.SaveProjectConfiguration(configInfo.ProjectType, configInfo.Framework);
+                    ConfigFramework = configInfo.Framework;
+                    ConfigProjectType = configInfo.ProjectType;
                 }
                 else
                 {
                     OnCancel();
                 }
-
             }
-
-            ConfigFramework = configInfo.Framework;
-            ConfigProjectType = configInfo.ProjectType;
         }
 
         protected override IEnumerable<Step> GetSteps()

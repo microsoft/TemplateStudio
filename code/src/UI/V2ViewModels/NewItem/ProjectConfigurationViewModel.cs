@@ -13,7 +13,6 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 {
     public class ProjectConfigurationViewModel : BaseDialogViewModel
     {
-
         public ObservableCollection<MetadataInfo> ProjectTypes { get; } = new ObservableCollection<MetadataInfo>();
 
         public ObservableCollection<MetadataInfo> Frameworks { get; } = new ObservableCollection<MetadataInfo>();
