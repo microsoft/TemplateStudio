@@ -700,7 +700,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change design pattern.
+        ///   Looks up a localized string similar to Design pattern changed.
         /// </summary>
         public static string ProjectDetailsFrameworkResetTitle {
             get {
@@ -745,7 +745,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change project type.
+        ///   Looks up a localized string similar to Project type changed.
         /// </summary>
         public static string ProjectDetailsProjectTypeResetTitle {
             get {
@@ -831,6 +831,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string TermsAndConditionsText {
             get {
                 return ResourceManager.GetString("TermsAndConditionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio.
+        /// </summary>
+        public static string WindowsTemplateStudio {
+            get {
+                return ResourceManager.GetString("WindowsTemplateStudio", resourceCulture);
             }
         }
     }

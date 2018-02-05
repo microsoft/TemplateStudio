@@ -4,10 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
-        WindowStyle="None"
-        WindowStartupLocation="CenterScreen"        
+        ResizeMode="NoResize"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        Title="{x:Static strings:StringRes.WindowsTemplateStudio}"      
         mc:Ignorable="d"
-        Height="200" Width="350">
+        MinHeight="200" Width="500">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -28,8 +30,13 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding Title}" Style="{StaticResource WtsTextBlockDialogTitle}" />
-            <TextBlock Grid.Row="1" Text="{Binding Description}" Style="{StaticResource WtsTextBlockDialogDescription}" Margin="{StaticResource Margin_M_Top}"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource WtsDialogInfoIcon}" Margin="{StaticResource Margin_M_Right}"/>
+            <TextBlock Grid.Column="1" Text="{Binding Title}" Style="{StaticResource WtsTextBlockDialogTitle}" />
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" Style="{StaticResource WtsTextBlockDialogDescription}" Margin="{StaticResource Margin_XS_Top}"/>
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_LeftTopRightBottom}">

@@ -4,14 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
+        ResizeMode="NoResize"
+        SizeToContent="Height"
+        Title="{x:Static strings:StringRes.WindowsTemplateStudio}"        
         WindowStartupLocation="CenterScreen"
         MinWidth="500"
-        MinHeight="400"
         Width="500"
-        Height="400"
-        Title="Windows Template Studio"
+        MinHeight="350"
         mc:Ignorable="d">
-
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
