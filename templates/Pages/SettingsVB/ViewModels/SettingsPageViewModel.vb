@@ -1,10 +1,10 @@
 ﻿Imports Param_RootNamespace.Services
 
 Namespace ViewModels
+    ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
     Public Class SettingsPageViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
 
-        ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
         Private _elementTheme As ElementTheme = ThemeSelectorService.Theme
 
         Public Property ElementTheme As ElementTheme

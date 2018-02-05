@@ -95,17 +95,17 @@
                 Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionTitle}" />
             <TextBlock
                 Style="{StaticResource WtsTextBlockAboutSubSectionText}"
-                Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}"
+                Margin="{StaticResource Margin_M2_LeftRight_S_Top}"
                 Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionText}" />
-            <TextBox
-                Style="{StaticResource WtsTextBoxVersion}"
-                Margin="{StaticResource Margin_M2_LeftRight}"
-                Text="{Binding WizardStatus.Versions}"/>
-            <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}">
+            <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}">
                 <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}">
                     <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
                 </Hyperlink>
             </TextBlock>
+            <TextBox
+                Style="{StaticResource WtsTextBoxVersion}"
+                Margin="{StaticResource Margin_M1_LeftRight}"
+                Text="{Binding WizardStatus.Versions}"/>
             <Button
                 Margin="{StaticResource Margin_M2_LeftRight_S_Top}" Style="{StaticResource ButtonRefreshTemplatesStyle}"
                 Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"

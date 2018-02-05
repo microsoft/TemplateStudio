@@ -14,10 +14,8 @@ namespace Microsoft.Templates.Core.Locations
         Preparing = 5,
         Prepared = 6,
         NewWizardVersionAvailable = 7,
-        CheckingForUpdates = 8,
-        CheckedForUpdates = 9,
-        Ready = 10,
-        ErrorAcquiring = 11,
-        Copying
+        Ready = 8,
+        ErrorAcquiring = 9,
+        Copying = 10
     }
 }

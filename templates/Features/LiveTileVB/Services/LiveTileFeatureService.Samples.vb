@@ -4,10 +4,9 @@ Imports Windows.UI.StartScreen
 
 Namespace Services
     Friend Partial Class LiveTileFeatureService
-    
+
+        ' More about Live Tiles Notifications at https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
         Public Sub SampleUpdate()
-            ' See more information about Live Tiles Notifications
-            ' Documentation: https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
 
             ' These would be initialized with actual data
             Dim from = "Jennifer Parker"
