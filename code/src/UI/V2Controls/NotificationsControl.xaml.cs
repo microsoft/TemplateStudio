@@ -32,6 +32,38 @@ namespace Microsoft.Templates.UI.V2Controls
             InitializeComponent();
         }
 
+        public async Task AddOrUpdateNotificationAsync(Notification notification)
+        {
+            bool isCurrent = false;
+            if (notification != null)
+            {
+                Notification current = null;
+                if (Notification?.Category == notification.Category)
+                {
+                    current = Notification;
+                    isCurrent = true;
+                }
+
+                if (current == null)
+                {
+                    current = _notifications.FirstOrDefault(n => n.Category == notification.Category);
+                }
+
+                if (current != null)
+                {
+                    current.Update(notification);
+                    if (isCurrent && notification.TimerType != TimerType.None)
+                    {
+                        current.ResetTimer(notification.TimerType);
+                    }
+                }
+                else
+                {
+                    await AddNotificationAsync(notification);
+                }
+            }
+        }
+
         public async Task AddNotificationAsync(Notification notification)
         {
             if (notification != null)
@@ -46,7 +78,11 @@ namespace Microsoft.Templates.UI.V2Controls
                 RemoveCategoriesToOverride(notification.CategoriesToOverride);
 
                 _notifications.Insert(0, notification);
-                await ShowNotificationAsync(notification);
+
+                if (Notification == null || Notification.IsLowerOrEqualPriority(notification))
+                {
+                    await ShowNotificationAsync(notification);
+                }
             }
         }
 

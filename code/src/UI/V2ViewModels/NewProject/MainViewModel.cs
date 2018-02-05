@@ -113,9 +113,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
             }
             else
             {
-                var questionDialog = new QuestionDialogWindow(metadataType);
+                var vm = new QuestionDialogViewModel(metadataType);
+                var questionDialog = new QuestionDialogWindow(vm);
                 questionDialog.ShowDialog();
-                if (questionDialog.DialogResult == true)
+
+                if (vm.Result == DialogResult.Accept)
                 {
                     UserSelection.ResetUserSelection();
                     result = true;

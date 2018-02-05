@@ -33,8 +33,8 @@
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_LeftTopRightBottom}">
-                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonYes}" Command="{Binding FinishCommand}" CommandParameter="true" />
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNo}" Margin="{StaticResource Margin_S_Left}" Command="{Binding FinishCommand}" CommandParameter="false" />
+                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonYes}" Command="{Binding AcceptCommand}" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNo}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
             </StackPanel>
         </Grid>
     </Grid>

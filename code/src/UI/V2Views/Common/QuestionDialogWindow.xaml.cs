@@ -3,19 +3,17 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
-using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.V2ViewModels.Common;
 
 namespace Microsoft.Templates.UI.V2Views.Common
 {
     public partial class QuestionDialogWindow : Window
     {
-        public QuestionDialogViewModel ViewModel { get; }
-
-        public QuestionDialogWindow(MetadataType metadataType)
+        public QuestionDialogWindow(QuestionDialogViewModel vm)
         {
-            ViewModel = new QuestionDialogViewModel(this, metadataType);
-            DataContext = ViewModel;
+            DataContext = vm;
+            vm.CloseAction = () => Close();
+
             InitializeComponent();
         }
     }

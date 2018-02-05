@@ -109,6 +109,11 @@ namespace Microsoft.Templates.UI.VisualStudio
                 var projectDirectory = replacementsDictionary["$destinationdirectory$"];
                 var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
 
+                if (GenContext.ToolBox.Repo.SyncInProgress)
+                {
+                    GenContext.ToolBox.Repo.Sync.CleanUp();
+                }
+
                 CleanupDirectories(projectDirectory, solutionDirectory);
 
                 throw;
