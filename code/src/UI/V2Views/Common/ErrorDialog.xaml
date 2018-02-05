@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         SizeToContent="Height"
         WindowStartupLocation="CenterScreen"
-        Title="{x:Static strings:StringRes.ErrorDialogWindowTitle}"
+        Title="{x:Static strings:StringRes.WindowsTemplateStudio}"
         mc:Ignorable="d"
         MinHeight="200" MaxHeight="500" Width="500">
 
@@ -35,13 +35,13 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource WtsErrorDialogErrorIcon}" Margin="{StaticResource Margin_M_Right}"/>
+            <TextBlock Style="{StaticResource WtsDialogErrorIcon}" Margin="{StaticResource Margin_M_Right}"/>
                 <TextBlock Text="{Binding Title}" Grid.Column="1"
-                        Style="{StaticResource WtsTextBlockErrorDialogTitle}"/>
+                        Style="{StaticResource WtsTextBlockDialogTitle}"/>
             <TextBlock Grid.Row="1" Grid.Column="1"
                         Text="{Binding Description}"
-                        Style="{StaticResource WtsTextBlockErrorDialogDescription}"
-                        Margin="{StaticResource Margin_M_Top}"/>
+                        Style="{StaticResource WtsTextBlockDialogDescription}"
+                        Margin="{StaticResource Margin_XS_Top}"/>
             <TextBox Grid.Row="2" Grid.ColumnSpan="2"
                      Text="{Binding ErrorStackTrace}"
                      Visibility="{Binding ShowDetails, Converter={StaticResource BoolToVisibilityConverter}}"

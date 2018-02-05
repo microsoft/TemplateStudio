@@ -415,6 +415,11 @@ namespace Microsoft.Templates.UI.V2Services
                 case "NewItemFileStatusUnchangedFile":
                     return LightColorValues.Color_FF004F9E;
 
+                case "DialogInfoIcon":
+                    return LightColorValues.Color_FF007ACC;
+                case "DialogErrorIcon":
+                    return LightColorValues.Color_FFFF0000;
+
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
