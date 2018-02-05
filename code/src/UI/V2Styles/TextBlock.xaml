@@ -319,5 +319,35 @@
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
+    
+    <!--Error Dialog-->
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockErrorDialogTitle">
+        <Setter Property="FontSize" Value="{Binding Environment155PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextAlignment" Value="Left" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockErrorDialogDescription">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextAlignment" Value="Left" />
+    </Style>
+
+    <Style x:Key="WtsErrorDialogErrorIcon" TargetType="TextBlock">
+        <Setter Property="Text" Value="&#xEB90;" />
+        <Setter Property="FontSize" Value="{Binding Environment310PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
+        <Setter Property="Foreground" Value="Red" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+    </Style>
+
+
 
 </ResourceDictionary>

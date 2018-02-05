@@ -150,6 +150,7 @@
   </data>
   <data name="ButtonOk" xml:space="preserve">
     <value>Ok</value>
+    <comment>Error dialog and information window ok button content</comment>
   </data>
   <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
     <value>Refresh templates cache</value>
@@ -203,6 +204,18 @@
   </data>
   <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
     <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
+  </data>
+  <data name="ErrorDialogShowDetails" xml:space="preserve">
+    <value>Show details</value>
+    <comment>Error dialog show details link button</comment>
+  </data>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Something went wrong :-(</value>
+    <comment>Error dialog title</comment>
+  </data>
+  <data name="ErrorDialogWindowTitle" xml:space="preserve">
+    <value>Windows Template Studio Error</value>
+    <comment>Error dialog window title</comment>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
     <value>Select a design pattern</value>
