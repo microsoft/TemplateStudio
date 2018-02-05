@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [Collection("StyleCopCollection")]
+    [Collection("Unit Test Templates")]
     [Trait("Type", "CodeStyle")]
     [Trait("ExecutionSet", "Minimum")]
     [Trait("ExecutionSet", "TemplateValidation")]
