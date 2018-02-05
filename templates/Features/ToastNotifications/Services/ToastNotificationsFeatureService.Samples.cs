@@ -10,8 +10,7 @@ namespace Param_RootNamespace.Services
             // Create the toast content
             var content = new ToastContent()
             {
-                // TODO WTS: Check this documentation to know more about the Launch property
-                // Documentation: https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent
+                // More about the Launch property at https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent
                 Launch = "ToastContentActivationParams",
 
                 Visual = new ToastVisual()
@@ -37,8 +36,7 @@ namespace Param_RootNamespace.Services
                 {
                     Buttons =
                     {
-                        // TODO WTS: Check this documentation to know more about Toast Buttons
-                        // Documentation: https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
+                        // More about Toast Buttons at https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
                         new ToastButton("OK", "ToastButtonActivationArguments")
                         {
                             ActivationType = ToastActivationType.Foreground
@@ -52,8 +50,8 @@ namespace Param_RootNamespace.Services
             // Add the content to the toast
             var toast = new ToastNotification(content.GetXml())
             {
-                // TODO WTS: Get or set the unique identifier of this notification within the notification Group. Max length 16 characters.
-                // Documentation: https://docs.microsoft.com/uwp/api/windows.ui.notifications.toastnotification
+                // TODO WTS: Set a unique identifier for this notification within the notification group. (optional)
+                // More details at https://docs.microsoft.com/en-gb/uwp/api/windows.ui.notifications.toastnotification#Windows_UI_Notifications_ToastNotification_Tag
                 Tag = "ToastTag"
             };
 
