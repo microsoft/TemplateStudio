@@ -1,3 +1,3 @@
-﻿Help your users be more productive by letting them view independent parts of your app in separate windows. When you create multiple windows for an app, each window behaves independently. The taskbar shows each window separately. Users can move, resize, show, and hide app windows independently and can switch between app windows as if they were separate apps. Each window operates in its own thread.
+﻿アプリの個別の部分を独立したウィンドウに表示できるようにして、ユーザーの生産性を高めます。アプリの複数のウィンドウを作成すると、各ウィンドウが個別に動作します。タスク バーが各ウィンドウに個別に表示されます。ユーザーは、アプリのウィンドウを個別に移動、サイズ変更、表示、および非表示にできます。また各ウィンドウが独立したアプリであるかのように、アプリのウィンドウ間を切り替えることができます。各ウィンドウは独自のスレッドで動作します。
 
-To find out more about multiple views, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/design/layout/show-multiple-views).
+複数のビューの詳細については、[docs.microsoft.com] (https://docs.microsoft.com/en-us/windows/uwp/design/layout/show-multiple-views) を参照してください。

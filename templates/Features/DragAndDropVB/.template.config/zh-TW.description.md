@@ -1,5 +1,5 @@
-﻿Drag and drop is a classic, natural way of interacting with content such as images and files. Once implemented, drag and drop works seamlessly in all directions, including app-to-app, app-to-desktop, and desktop-to app.
+﻿拖放是與影像和檔案等內容進行互動的傳統、自然方式。一旦實作拖放功能，它就可以在各個方向順暢運作，包括應用程式對應用程式、應用程式對桌面及桌面對應用程式。
 
-The Drag & Drop feature provides a wrapper service over the [standard UWP drag and drop functionallity](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop) to simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
+「拖放」功能為[標準 UWP 拖放功能](https://docs.microsoft.com/zh-tw/windows/uwp/app-to-app/drag-and-drop) 提供包裝函式服務來簡化建立具備拖放功能之應用程式所需的程式碼，也會遵循您的應用程式所使用的framework模式。
 
-[More info](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[詳細資訊](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
