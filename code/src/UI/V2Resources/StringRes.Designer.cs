@@ -133,6 +133,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string ButtonOk {
+            get {
+                return ResourceManager.GetString("ButtonOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh templates cache.
         /// </summary>
         public static string ButtonRefreshTemplatesCache {
@@ -561,6 +570,42 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string NotificationValidationError_ReservedName {
             get {
                 return ResourceManager.GetString("NotificationValidationError_ReservedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?.
+        /// </summary>
+        public static string ProjectConfigurationDescriptionText {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select framework:.
+        /// </summary>
+        public static string ProjectConfigurationSelectFramework {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select design pattern:.
+        /// </summary>
+        public static string ProjectConfigurationSelectProjectType {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectProjectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose project configuration.
+        /// </summary>
+        public static string ProjectConfigurationTitleText {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationTitleText", resourceCulture);
             }
         }
         
