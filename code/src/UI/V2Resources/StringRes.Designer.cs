@@ -457,24 +457,6 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done..
-        /// </summary>
-        public static string NotificationSyncStatus_CheckedForUpdates {
-            get {
-                return ResourceManager.GetString("NotificationSyncStatus_CheckedForUpdates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Checking for template updates....
-        /// </summary>
-        public static string NotificationSyncStatus_CheckingForUpdates {
-            get {
-                return ResourceManager.GetString("NotificationSyncStatus_CheckingForUpdates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Copying templates (v{0})... {1}%.
         /// </summary>
         public static string NotificationSyncStatus_Copying {
@@ -628,7 +610,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An easy to use wizard to build a strong foundation for your UWP app..
+        ///   Looks up a localized string similar to Windows Template Studio.
         /// </summary>
         public static string ProjectDetailsAboutSectionText {
             get {

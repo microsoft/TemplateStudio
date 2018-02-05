@@ -157,7 +157,7 @@
   </data>
   <data name="ButtonRemove" xml:space="preserve">
     <value>Remove</value>
-    <comment>Project details saved templates remove button Automation property name</comment>
+    <comment>Project details saved templates remove button </comment>
   </data>
   <data name="ButtonYes" xml:space="preserve">
     <value>Yes</value>
@@ -210,9 +210,11 @@
   </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another feature.</value>
+    <comment>{0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another page.</value>
+    <comment>{0}: Page name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>Template selection</value>
@@ -270,20 +272,17 @@
     <value>There are new templates available (v{0}). Downloading… {1}%</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_CheckedForUpdates" xml:space="preserve">
-    <value>Done.</value>
-  </data>
-  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
-    <value>Checking for template updates...</value>
-  </data>
   <data name="NotificationSyncStatus_Copying" xml:space="preserve">
     <value>Copying templates (v{0})... {1}%</value>
+    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>Error downloading templates (v{0}). We'll try later again.</value>
+    <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
     <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Prepared" xml:space="preserve">
     <value>Templates ready.</value>
@@ -335,7 +334,7 @@
     <value>Templates version:</value>
   </data>
   <data name="ProjectDetailsAboutSectionText" xml:space="preserve">
-    <value>An easy to use wizard to build a strong foundation for your UWP app.</value>
+    <value>Windows Template Studio</value>
   </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>About</value>

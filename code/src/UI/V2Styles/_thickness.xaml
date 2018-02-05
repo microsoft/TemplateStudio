@@ -23,12 +23,15 @@
     <Thickness x:Key="Margin_M_Right">0,0,12,0</Thickness>
     <Thickness x:Key="Margin_M_Top">0,12,0,0</Thickness>
 
+    <Thickness x:Key="Margin_M1_LeftRight">14,0,14,0</Thickness>
+
     <Thickness x:Key="Margin_M2_LeftRight_S_Top">16,8,16,0</Thickness>
     <Thickness x:Key="Margin_M2_LeftRight_S_TopBottom">16,8,16,8</Thickness>
     <Thickness x:Key="Margin_M2_LeftTopRightBottom">16,16,16,16</Thickness>
     <Thickness x:Key="Margin_M2_LeftRight">16,0,16,0</Thickness>
     <Thickness x:Key="Margin_M2_LeftRight_M_Top">16,12,16,0</Thickness>
     <Thickness x:Key="Margin_M2_LeftRight_M_TopBottom">16,12,16,12</Thickness>
+    
 
     <Thickness x:Key="Margin_M2_LeftTopRight">16,16,16,0</Thickness>
     <Thickness x:Key="Margin_M2_LeftRight_L_Top">16,24,16,0</Thickness>
