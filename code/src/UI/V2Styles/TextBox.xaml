@@ -108,4 +108,14 @@
         
     </Style>
 
+
+    <!--Error Dialog-->
+    <Style TargetType="TextBox" x:Key="WtsTextBlockErrorDialogErrorStackTrace" BasedOn="{StaticResource WtsTextBoxStyle}">
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="IsReadOnly" Value="True" />
+    </Style>
+
 </ResourceDictionary>

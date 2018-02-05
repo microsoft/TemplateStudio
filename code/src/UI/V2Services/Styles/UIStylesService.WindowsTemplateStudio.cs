@@ -144,5 +144,21 @@ namespace Microsoft.Templates.UI.V2Services
             get { return (Brush)GetValue(NewItemFileStatusUnchangedFileProperty); }
             set { SetValue(NewItemFileStatusUnchangedFileProperty, value); }
         }
+
+        public static readonly DependencyProperty DialogInfoIconProperty = DependencyProperty.Register("DialogInfoIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush DialogInfoIcon
+        {
+            get { return (Brush)GetValue(DialogInfoIconProperty); }
+            set { SetValue(DialogInfoIconProperty, value); }
+        }
+
+        public static readonly DependencyProperty DialogErrorIconProperty = DependencyProperty.Register("DialogErrorIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush DialogErrorIcon
+        {
+            get { return (Brush)GetValue(DialogErrorIconProperty); }
+            set { SetValue(DialogErrorIconProperty, value); }
+        }
     }
 }

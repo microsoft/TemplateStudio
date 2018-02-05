@@ -150,6 +150,7 @@
   </data>
   <data name="ButtonOk" xml:space="preserve">
     <value>Ok</value>
+    <comment>Error dialog and information window ok button content</comment>
   </data>
   <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
     <value>Refresh templates cache</value>
@@ -203,6 +204,18 @@
   </data>
   <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
     <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
+  </data>
+  <data name="ErrorDialogShowDetails" xml:space="preserve">
+    <value>Show details</value>
+    <comment>Error dialog show details link button</comment>
+  </data>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Something went wrong :-(</value>
+    <comment>Error dialog title</comment>
+  </data>
+  <data name="ErrorDialogWindowTitle" xml:space="preserve">
+    <value>Windows Template Studio Error</value>
+    <comment>Error dialog window title</comment>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
     <value>Select a design pattern</value>
@@ -350,7 +363,7 @@
     <value>You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?</value>
   </data>
   <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
-    <value>Change design pattern</value>
+    <value>Design pattern changed</value>
   </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
     <value>Design pattern</value>
@@ -367,7 +380,7 @@
     <value>You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?</value>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
-    <value>Change project type</value>
+    <value>Project type changed</value>
   </data>
   <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
     <value>Project type</value>
@@ -398,5 +411,9 @@
   </data>
   <data name="TermsAndConditionsText" xml:space="preserve">
     <value>By continuing, you agree to the terms of all the licenses in the licenses section.</value>
+  </data>
+  <data name="WindowsTemplateStudio" xml:space="preserve">
+    <value>Windows Template Studio</value>
+    <comment>Windows template studio label</comment>
   </data>
 </root>

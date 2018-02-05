@@ -285,13 +285,12 @@
 
     <!--Dialog-->
     <Style TargetType="TextBlock" x:Key="WtsTextBlockDialogTitle">
-        <Setter Property="FontSize" Value="{Binding Environment111PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment155PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="TextAlignment" Value="Left" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockDialogDescription">
@@ -301,7 +300,7 @@
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-        <Setter Property="TextAlignment" Value="Justify" />
+        <Setter Property="TextAlignment" Value="Left" />
     </Style>
 
     <!--Project Configuration-->
@@ -319,5 +318,23 @@
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
+
+    <!-- Dialog icons -->
+    <Style x:Key="WtsDialogErrorIcon" TargetType="TextBlock">
+        <Setter Property="Text" Value="&#xEB90;" />
+        <Setter Property="FontSize" Value="{Binding Environment310PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
+        <Setter Property="Foreground" Value="{Binding DialogErrorIcon, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+    </Style>
+
+    <Style x:Key="WtsDialogInfoIcon" TargetType="TextBlock">
+        <Setter Property="Text" Value="&#xF167;" />
+        <Setter Property="FontSize" Value="{Binding Environment310PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
+        <Setter Property="Foreground" Value="{Binding DialogInfoIcon, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+    </Style>
+
+
+
 
 </ResourceDictionary>
