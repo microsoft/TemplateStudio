@@ -15,7 +15,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 {
     public class ChangesSummaryViewModel : Observable
     {
+        private bool _doNotMerge;
         private NewItemFileViewModel _selected;
+
+        public bool DoNotMerge
+        {
+            get => _doNotMerge;
+            set => SetProperty(ref _doNotMerge, value);
+        }
 
         public NewItemFileViewModel Selected
         {
