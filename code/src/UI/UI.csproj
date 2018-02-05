@@ -380,7 +380,6 @@
     <Compile Include="V2Extensions\SyncStatusEventArgsExtensions.cs" />
     <Compile Include="V2Extensions\TextBoxExtensions.cs" />
     <Compile Include="V2Extensions\ValidationResultExtensions.cs" />
-    <Compile Include="V2Extensions\WindowExtensions.cs" />
     <Compile Include="V2Resources\StringRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -277,6 +277,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show details.
+        /// </summary>
+        public static string ErrorDialogShowDetails {
+            get {
+                return ResourceManager.GetString("ErrorDialogShowDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Something went wrong :-(.
         /// </summary>
         public static string ErrorDialogTitle {
@@ -286,11 +295,11 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View problem details.
+        ///   Looks up a localized string similar to Windows Template Studio Error.
         /// </summary>
-        public static string ErrorViewProblemDetails {
+        public static string ErrorDialogWindowTitle {
             get {
-                return ResourceManager.GetString("ErrorViewProblemDetails", resourceCulture);
+                return ResourceManager.GetString("ErrorDialogWindowTitle", resourceCulture);
             }
         }
         
