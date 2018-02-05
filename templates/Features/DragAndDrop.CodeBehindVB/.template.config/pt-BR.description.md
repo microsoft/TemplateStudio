@@ -1,5 +1,5 @@
-﻿Drag and drop is a classic, natural way of interacting with content such as images and files. Once implemented, drag and drop works seamlessly in all directions, including app-to-app, app-to-desktop, and desktop-to app.
+﻿O recurso de arrastar e soltar é uma maneira clássica e natural de interagir com conteúdos como imagens e arquivos. Depois de implementado, o recurso de arrastar e soltar funciona perfeitamente em todas as direções: de aplicativo para aplicativo, de aplicativo para área de trabalho e de área de trabalho para aplicativo.
 
-The Drag & Drop feature provides a wrapper service over the [standard UWP drag and drop functionallity](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop) to simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
+O recurso Arrastar e Soltar fornece um serviço wrapper sobre a [funcionalidade arrastar e soltar padrão do UWP](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop) a fim de simplificar o código exigido para criar aplicativos prontos para o recurso. Além disso, ele segue o padrão da framework utilizada por seu aplicativo.
 
-[More info](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[Mais informações](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
