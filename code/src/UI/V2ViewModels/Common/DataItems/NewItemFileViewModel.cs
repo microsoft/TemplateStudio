@@ -50,6 +50,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             Icon = GetIcon();
             CircleColor = GetCircleColor();
             UpdateTextAction = updateTextAction;
+            FileExtension = GetFileExtension(subject);
             Subject = subject;
             TempFile = Path.Combine(GenContext.Current.OutputPath, subject);
             ProjectFile = Path.Combine(GenContext.Current.ProjectPath, subject);
@@ -135,6 +136,39 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
                     return UIStylesService.Instance.NewItemFileStatusUnchangedFile;
                 default:
                     return UIStylesService.Instance.ListItemText;
+            }
+        }
+
+        private FileExtension GetFileExtension(string subject)
+        {
+            switch (Path.GetExtension(subject))
+            {
+                case ".cs":
+                    return FileExtension.CSharp;
+                case ".xaml":
+                    return FileExtension.Xaml;
+                case ".xml":
+                    return FileExtension.Xml;
+                case ".resw":
+                    return FileExtension.Resw;
+                case ".csproj":
+                    return FileExtension.Csproj;
+                case ".appxmanifest":
+                    return FileExtension.AppXManifest;
+                case ".json":
+                    return FileExtension.Json;
+                case ".jpg":
+                    return FileExtension.Jpg;
+                case ".jpeg":
+                    return FileExtension.Jpeg;
+                case ".png":
+                    return FileExtension.Png;
+                case ".vb":
+                    return FileExtension.Vb;
+                case ".vbproj":
+                    return FileExtension.Vbproj;
+                default:
+                    return FileExtension.Default;
             }
         }
 

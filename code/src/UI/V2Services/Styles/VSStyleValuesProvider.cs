@@ -279,6 +279,51 @@ namespace Microsoft.Templates.UI.V2Services
                     return GetColor(CommonControlsColors.TextBoxBorderFocusedColorKey);
                 case "TextBoxTextFocused":
                     return GetColor(CommonControlsColors.TextBoxTextFocusedColorKey);
+
+                case "CheckBoxBackground":
+                    return GetColor(CommonControlsColors.CheckBoxBackgroundColorKey);
+                case "CheckBoxBackgroundDisabled":
+                    return GetColor(CommonControlsColors.CheckBoxBackgroundDisabledColorKey);
+                case "CheckBoxBackgroundFocused":
+                    return GetColor(CommonControlsColors.CheckBoxBackgroundFocusedColorKey);
+                case "CheckBoxBackgroundHover":
+                    return GetColor(CommonControlsColors.CheckBoxBackgroundHoverColorKey);
+                case "CheckBoxBackgroundPressed":
+                    return GetColor(CommonControlsColors.CheckBoxBackgroundPressedColorKey);
+
+                case "CheckBoxGlyph":
+                    return GetColor(CommonControlsColors.CheckBoxGlyphColorKey);
+                case "CheckBoxGlyphDisabled":
+                    return GetColor(CommonControlsColors.CheckBoxGlyphDisabledColorKey);
+                case "CheckBoxGlyphFocused":
+                    return GetColor(CommonControlsColors.CheckBoxGlyphFocusedColorKey);
+                case "CheckBoxGlyphHover":
+                    return GetColor(CommonControlsColors.CheckBoxGlyphHoverColorKey);
+                case "CheckBoxGlyphPressed":
+                    return GetColor(CommonControlsColors.CheckBoxGlyphPressedColorKey);
+
+                case "CheckBoxBorder":
+                    return GetColor(CommonControlsColors.CheckBoxBorderColorKey);
+                case "CheckBoxBorderDisabled":
+                    return GetColor(CommonControlsColors.CheckBoxBorderDisabledColorKey);
+                case "CheckBoxBorderFocused":
+                    return GetColor(CommonControlsColors.CheckBoxBorderFocusedColorKey);
+                case "CheckBoxBorderHover":
+                    return GetColor(CommonControlsColors.CheckBoxBorderHoverColorKey);
+                case "CheckBoxBorderPressed":
+                    return GetColor(CommonControlsColors.CheckBoxBorderPressedColorKey);
+
+                case "CheckBoxText":
+                    return GetColor(CommonControlsColors.CheckBoxTextColorKey);
+                case "CheckBoxTextDisabled":
+                    return GetColor(CommonControlsColors.CheckBoxTextDisabledColorKey);
+                case "CheckBoxTextFocused":
+                    return GetColor(CommonControlsColors.CheckBoxTextFocusedColorKey);
+                case "CheckBoxTextHover":
+                    return GetColor(CommonControlsColors.CheckBoxTextHoverColorKey);
+                case "CheckBoxTextPressed":
+                    return GetColor(CommonControlsColors.CheckBoxTextPressedColorKey);
+
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
@@ -390,6 +435,9 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FFFFB900; // TODO: Replace this temporary value for a VS Color
                 case "NewItemFileStatusUnchangedFile":
                     return LightColorValues.Color_FF004F9E; // TODO: Replace this temporary value for a VS Color
+
+                case "ChangesSummaryDetailFileHeaderBackground":
+                    return LightColorValues.Color_FFEFEFF2; // TODO: Replace this temporary value for a VS Color
 
                 case "DialogInfoIcon":
                     return LightColorValues.Color_FF004F9E; // TODO: Replace this temporary value for a VS Color

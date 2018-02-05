@@ -145,6 +145,14 @@ namespace Microsoft.Templates.UI.V2Services
             set { SetValue(NewItemFileStatusUnchangedFileProperty, value); }
         }
 
+        public static readonly DependencyProperty ChangesSummaryDetailFileHeaderBackgroundProperty = DependencyProperty.Register("ChangesSummaryDetailFileHeaderBackground", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ChangesSummaryDetailFileHeaderBackground
+        {
+            get { return (Brush)GetValue(ChangesSummaryDetailFileHeaderBackgroundProperty); }
+            set { SetValue(ChangesSummaryDetailFileHeaderBackgroundProperty, value); }
+        }
+
         public static readonly DependencyProperty DialogInfoIconProperty = DependencyProperty.Register("DialogInfoIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush DialogInfoIcon

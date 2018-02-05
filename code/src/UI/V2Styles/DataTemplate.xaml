@@ -3,12 +3,15 @@
                     xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services"
-                    xmlns:res="clr-namespace:Microsoft.Templates.UI.V2Resources">
+                    xmlns:res="clr-namespace:Microsoft.Templates.UI.V2Resources"
+                    xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.V2TemplateSelectors">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Expander.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Grid.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Hyperlink.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Image.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ImageEx.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ListView.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/TextBlock.xaml" />
@@ -217,34 +220,113 @@
         <Grid Background="{Binding NewItemFileStatusConflictingStylesFile, Source={x:Static services:UIStylesService.Instance}}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="WtsDataTemplateChangesSummaryNewFileDetailTemplate">
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryCodeViewer">
+        <controls:CodeViewer Item="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryImageViewer">
+        <Image
+            Source="{Binding TempFile}"
+            Style="{StaticResource WtsImageNewItemImageFiles}" />
+    </DataTemplate>
+
+    <templateSelector:FileExtensionTemplateSelector
+        x:Key="fileExtensionTemplateSelector"
+        ImageFileTemplate="{StaticResource WtsDataTemplateChangesSummaryImageViewer}"
+        CodeFileTemplate="{StaticResource WtsDataTemplateChangesSummaryCodeViewer}" />
+
+    <templateSelector:FileStatusTemplateSelector x:Key="FileStatusTemplateSelector">
+        <templateSelector:FileStatusTemplateSelector.ConflictingFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupConflictingFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.ConflictingFileTemplate>
+        <templateSelector:FileStatusTemplateSelector.ConflictingStylesFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupConflictingStylesFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.ConflictingStylesFileTemplate>
+        <templateSelector:FileStatusTemplateSelector.ModifiedFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupModifiedFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.ModifiedFileTemplate>
+        <templateSelector:FileStatusTemplateSelector.NewFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupNewFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.NewFileTemplate>
+        <templateSelector:FileStatusTemplateSelector.UnchangedFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupUnchangedFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.UnchangedFileTemplate>
+        <templateSelector:FileStatusTemplateSelector.WarningFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupWarningFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.WarningFileTemplate>
+    </templateSelector:FileStatusTemplateSelector>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryDetailTemplate">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid>
+            <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock
-                    Text="{x:Static res:StringRes.ChangesSummaryGroupNewFilesDescription}"
-                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                <ContentPresenter
+                    Grid.Column="0"
+                    ContentTemplateSelector="{StaticResource FileStatusTemplateSelector}" />
+                <TextBlock Grid.Column="1">
+                    <Hyperlink Style="{StaticResource WtsHyperlink}">
+                        <TextBlock
+                            Style="{StaticResource WtsTextBlockHyperlink}"
+                            Text="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}" />
+                    </Hyperlink>
+                </TextBlock>
             </Grid>
+            <Grid
+                Grid.Row="1"
+                Style="{StaticResource WtsGridChangesSummaryDetailFileHeader}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    Grid.Column="0"
+                    Source="{Binding Icon}"
+                    Margin="{StaticResource Margin_M_Left_S_TopBottom}"
+                    Style="{StaticResource WtsImageNewItemFileIcon}" />
+                <TextBlock
+                    Grid.Column="1"
+                    Text="{Binding Subject}"
+                    Margin="{StaticResource Margin_M_Left_S_TopBottom}"
+                    Style="{StaticResource WtsTextBlockChangesSummaryDetailFileHeader}" />
+            </Grid>
+            <ContentPresenter
+                Grid.Row="2"
+                Content="{Binding}"
+                ContentTemplateSelector="{StaticResource fileExtensionTemplateSelector}"
+                Focusable="False" />
         </Grid>
-    </DataTemplate>
-
-    <DataTemplate x:Key="WtsDataTemplateChangesSummaryModifiedFileDetailTemplate">
-        <Grid Background="{Binding NewItemFileStatusModifiedFile, Source={x:Static services:UIStylesService.Instance}}" />
-    </DataTemplate>
-
-    <DataTemplate x:Key="WtsDataTemplateChangesSummaryUnchangedFileDetailTemplate">
-        <Grid Background="{Binding NewItemFileStatusUnchangedFile, Source={x:Static services:UIStylesService.Instance}}" />
-    </DataTemplate>
-
-    <DataTemplate x:Key="WtsDataTemplateChangesSummaryWarningFileDetailTemplate">
-        <Grid Background="{Binding NewItemFileStatusWarningFile, Source={x:Static services:UIStylesService.Instance}}" />
     </DataTemplate>
 
 </ResourceDictionary>

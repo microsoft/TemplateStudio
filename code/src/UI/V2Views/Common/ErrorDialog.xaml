@@ -50,9 +50,10 @@
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
-                <CheckBox IsChecked="{Binding ShowDetails}"
+                <CheckBox
+                    IsChecked="{Binding ShowDetails}"
                     Content="{x:Static strings:StringRes.ErrorDialogShowDetails}"
-                    HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    Style="{StaticResource WtsCheckBoxStyle}" />
                 <Button
                     Style="{StaticResource WtsButtonFinish}"
                     Content="{x:Static strings:StringRes.ButtonOk}"
