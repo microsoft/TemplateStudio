@@ -152,6 +152,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
                     OnCancel();
                 }
             }
+            else
+            {
+                ConfigFramework = configInfo.Framework;
+                ConfigProjectType = configInfo.ProjectType;
+            }
         }
 
         protected override IEnumerable<Step> GetSteps()
