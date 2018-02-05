@@ -13,10 +13,9 @@ namespace Param_ItemNamespace.Services
 {
     public delegate void ViewClosedHandler(ViewLifetimeControl viewControl, EventArgs e);
 
+    // More details about showing multiple views at https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views
     public class WindowManagerService
     {
-        // TODO WTS: See more details about showing multiple views for an app
-        // https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views
         private static WindowManagerService _current;
 
         public static WindowManagerService Current => _current ?? (_current = new WindowManagerService());
@@ -34,7 +33,7 @@ namespace Param_ItemNamespace.Services
             MainDispatcher = Window.Current.Dispatcher;
         }
 
-        // TODO WTS: Displays a view as a standalone
+        // Displays a view as a standalone
         // You can use the resulting ViewLifeTileControl to interact with the new window.
         public async Task<ViewLifetimeControl> TryShowAsStandaloneAsync(string windowTitle, Type pageType)
         {
@@ -46,7 +45,7 @@ namespace Param_ItemNamespace.Services
             return viewControl;
         }
 
-        // Displays a view as a standalone view in the desired view mode
+        // Displays a view in the specified view mode
         public async Task<ViewLifetimeControl> TryShowAsViewModeAsync(string windowTitle, Type pageType, ApplicationViewMode viewMode = ApplicationViewMode.Default)
         {
             ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType);

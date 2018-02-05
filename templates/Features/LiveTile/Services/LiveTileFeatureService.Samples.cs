@@ -8,11 +8,9 @@ namespace Param_RootNamespace.Services
 {
     internal partial class LiveTileFeatureService
     {
+        // More about Live Tiles Notifications at https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
         public void SampleUpdate()
         {
-            // See more information about Live Tiles Notifications
-            // Documentation: https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-sending-a-local-tile-notification
-
             // These would be initialized with actual data
             string from = "Jennifer Parker";
             string subject = "Photos from our trip";

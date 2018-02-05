@@ -67,7 +67,7 @@ Namespace Views
             End If
 
             If mapControl IsNot Nothing Then
-                ' TODO WTS: Set your map service token. If you don't have one, request at https://www.bingmapsportal.com/
+                ' TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
                 mapControl.MapServiceToken = String.Empty
 
                 AddMapIcon(Center, "Map_YourLocation".GetLocalized())
