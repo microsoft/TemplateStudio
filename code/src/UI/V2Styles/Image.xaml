@@ -8,5 +8,12 @@
         <Setter Property="Stretch" Value="None"/>
         <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
     </Style>
-    
+
+    <Style TargetType="Image" x:Key="WtsImageNewItemImageFiles">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Stretch" Value="None"/>
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
+    </Style>
+
 </ResourceDictionary>

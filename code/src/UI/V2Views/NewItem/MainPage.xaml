@@ -6,6 +6,7 @@
       xmlns:converters="clr-namespace:Microsoft.Templates.UI.V2Converters"
       xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
+      xmlns:res="clr-namespace:Microsoft.Templates.UI.V2Resources"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
@@ -16,6 +17,7 @@
             </ResourceDictionary.MergedDictionaries>
             <converters:HasItemsVisibilityConverter x:Key="HasItemsVisibilityConverter" />
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <converters:StepVisibilityConverter x:Key="StepVisibilityConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
@@ -37,7 +39,21 @@
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                Text="{x:Static strings:StringRes.TermsAndConditionsText}"
+                Style="{StaticResource WtsTextBlockTermsAndConditions}"
+                Visibility="{Binding Step, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=0}" />
+            <CheckBox
+                Content="{x:Static res:StringRes.ChangesSummaryCheckBoxText}"
+                Style="{StaticResource WtsCheckBoxStyle}"
+                Margin="{StaticResource Margin_M_LeftRight}"
+                Visibility="{Binding Step, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=1}" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}"/>
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="8,0,0,0" Command="{Binding GoForwardCommand}" />
                 <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="8,0,0,0" Command="{Binding FinishCommand}" />

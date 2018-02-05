@@ -303,6 +303,51 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FF007ACC;
                 case "TextBoxTextFocused":
                     return LightColorValues.Color_FF1E1E1E;
+
+                case "CheckBoxBackground":
+                    return LightColorValues.Color_FFFEFEFE;
+                case "CheckBoxBackgroundDisabled":
+                    return LightColorValues.Color_FFF6F6F6;
+                case "CheckBoxBackgroundFocused":
+                    return LightColorValues.Color_FFF3F9FF;
+                case "CheckBoxBackgroundHover":
+                    return LightColorValues.Color_FFF3F9FF;
+                case "CheckBoxBackgroundPressed":
+                    return LightColorValues.Color_FF007ACC;
+
+                case "CheckBoxGlyph":
+                    return LightColorValues.Color_FF1E1E1E;
+                case "CheckBoxGlyphDisabled":
+                    return LightColorValues.Color_FFA2A4A5;
+                case "CheckBoxGlyphFocused":
+                    return LightColorValues.Color_FF1E1E1E;
+                case "CheckBoxGlyphHover":
+                    return LightColorValues.Color_FF1E1E1E;
+                case "CheckBoxGlyphPressed":
+                    return LightColorValues.Color_FFFFFFFF;
+
+                case "CheckBoxBorder":
+                    return LightColorValues.Color_FF717171;
+                case "CheckBoxBorderDisabled":
+                    return LightColorValues.Color_FFC6C6C6;
+                case "CheckBoxBorderFocused":
+                    return LightColorValues.Color_FF3399FF;
+                case "CheckBoxBorderHover":
+                    return LightColorValues.Color_FF3399FF;
+                case "CheckBoxBorderPressed":
+                    return LightColorValues.Color_FF007ACC;
+
+                case "CheckBoxText":
+                    return LightColorValues.Color_FF1E1E1E;
+                case "CheckBoxTextDisabled":
+                    return LightColorValues.Color_FF717171;
+                case "CheckBoxTextFocused":
+                    return LightColorValues.Color_FF1E1E1E;
+                case "CheckBoxTextHover":
+                    return LightColorValues.Color_FF1E1E1E;
+                case "CheckBoxTextPressed":
+                    return LightColorValues.Color_FF1E1E1E;
+
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
@@ -414,6 +459,9 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FFFFB900;
                 case "NewItemFileStatusUnchangedFile":
                     return LightColorValues.Color_FF004F9E;
+
+                case "ChangesSummaryDetailFileHeaderBackground":
+                    return LightColorValues.Color_FFEFEFF2;
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");

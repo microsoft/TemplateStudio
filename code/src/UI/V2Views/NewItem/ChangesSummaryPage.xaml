@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.V2TemplateSelectors"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
@@ -13,26 +12,18 @@
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <templateSelector:FileStatusTemplateSelector
-                x:Key="DetailTemplateSelector"
-                ConflictingFileTemplate="{StaticResource WtsDataTemplateChangesSummaryConflictingFileDetailTemplate}"
-                ConflictingStylesFileTemplate="{StaticResource WtsDataTemplateChangesSummaryConflictingStylesFileDetailTemplate}"
-                ModifiedFileTemplate="{StaticResource WtsDataTemplateChangesSummaryModifiedFileDetailTemplate}"
-                NewFileTemplate="{StaticResource WtsDataTemplateChangesSummaryNewFileDetailTemplate}"
-                UnchangedFileTemplate="{StaticResource WtsDataTemplateChangesSummaryUnchangedFileDetailTemplate}"
-                WarningFileTemplate="{StaticResource WtsDataTemplateChangesSummaryWarningFileDetailTemplate}" />
         </ResourceDictionary>
     </Page.Resources>
 
     <Grid Style="{StaticResource WtsGridMainPage}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="71*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="71*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="29*" />
         </Grid.ColumnDefinitions>
         <ContentPresenter
             Content="{Binding ChangesSummary.Selected}"
-            ContentTemplateSelector="{StaticResource DetailTemplateSelector}" />
+            ContentTemplate="{StaticResource WtsDataTemplateChangesSummaryDetailTemplate}" />
         <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
         <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto">
             <ItemsControl
