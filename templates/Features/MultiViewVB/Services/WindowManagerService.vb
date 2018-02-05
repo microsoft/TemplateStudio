@@ -5,10 +5,9 @@ Namespace Services
 
     Public Delegate Sub ViewClosedHandler(viewControl As ViewLifetimeControl, e As EventArgs)
 
+    ' More details about showing multiple views at https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views
     Public Class WindowManagerService
 
-        ' TODO WTS: See more details about showing multiple views for an app
-        ' https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views
         Private Shared _current As WindowManagerService
 
         Public Shared ReadOnly Property Current As WindowManagerService
@@ -33,7 +32,7 @@ Namespace Services
             MainDispatcher = Window.Current.Dispatcher
         End Sub
 
-        ' TODO WTS: Displays a view as a standalone
+        ' Displays a view as a standalone
         ' You can use the resulting ViewLifeTileControl to interact with the new window.
         Public Async Function TryShowAsStandaloneAsync(windowTitle As String, pageType As Type) As Task(Of ViewLifetimeControl)
             Dim viewControl As ViewLifetimeControl = Await CreateViewLifetimeControlAsync(windowTitle, pageType)
@@ -44,7 +43,7 @@ Namespace Services
             Return viewControl
         End Function
 
-        ' Displays a view as a standalone view in the desired view mode
+        ' Displays a view in the specified view mode
         Public Async Function TryShowAsViewModeAsync(windowTitle As String, pageType As Type, Optional viewMode As ApplicationViewMode = ApplicationViewMode.[Default]) As Task(Of ViewLifetimeControl)
             Dim viewControl As ViewLifetimeControl = Await CreateViewLifetimeControlAsync(windowTitle, pageType)
             SecondaryViews.Add(viewControl)

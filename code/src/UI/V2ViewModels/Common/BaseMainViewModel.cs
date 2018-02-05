@@ -170,6 +170,8 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
             }
         }
 
+        public void UnsuscribeEventHandlers() => GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= OnSyncStatusChanged;
+
         private async void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)
         {
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();

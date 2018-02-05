@@ -133,6 +133,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string ButtonOk {
+            get {
+                return ResourceManager.GetString("ButtonOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh templates cache.
         /// </summary>
         public static string ButtonRefreshTemplatesCache {
@@ -273,6 +282,33 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string ChangesSummaryGroupWarningFilesDescription {
             get {
                 return ResourceManager.GetString("ChangesSummaryGroupWarningFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show details.
+        /// </summary>
+        public static string ErrorDialogShowDetails {
+            get {
+                return ResourceManager.GetString("ErrorDialogShowDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong :-(.
+        /// </summary>
+        public static string ErrorDialogTitle {
+            get {
+                return ResourceManager.GetString("ErrorDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio Error.
+        /// </summary>
+        public static string ErrorDialogWindowTitle {
+            get {
+                return ResourceManager.GetString("ErrorDialogWindowTitle", resourceCulture);
             }
         }
         
@@ -466,24 +502,6 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Done..
-        /// </summary>
-        public static string NotificationSyncStatus_CheckedForUpdates {
-            get {
-                return ResourceManager.GetString("NotificationSyncStatus_CheckedForUpdates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Checking for template updates....
-        /// </summary>
-        public static string NotificationSyncStatus_CheckingForUpdates {
-            get {
-                return ResourceManager.GetString("NotificationSyncStatus_CheckingForUpdates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Copying templates (v{0})... {1}%.
         /// </summary>
         public static string NotificationSyncStatus_Copying {
@@ -583,6 +601,42 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?.
+        /// </summary>
+        public static string ProjectConfigurationDescriptionText {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select framework:.
+        /// </summary>
+        public static string ProjectConfigurationSelectFramework {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select design pattern:.
+        /// </summary>
+        public static string ProjectConfigurationSelectProjectType {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectProjectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose project configuration.
+        /// </summary>
+        public static string ProjectConfigurationTitleText {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://aka.ms/wts.
         /// </summary>
         public static string ProjectDetailsAboutSectionLink {
@@ -601,7 +655,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An easy to use wizard to build a strong foundation for your UWP app..
+        ///   Looks up a localized string similar to Windows Template Studio.
         /// </summary>
         public static string ProjectDetailsAboutSectionText {
             get {
@@ -646,7 +700,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change design pattern.
+        ///   Looks up a localized string similar to Design pattern changed.
         /// </summary>
         public static string ProjectDetailsFrameworkResetTitle {
             get {
@@ -691,7 +745,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change project type.
+        ///   Looks up a localized string similar to Project type changed.
         /// </summary>
         public static string ProjectDetailsProjectTypeResetTitle {
             get {
@@ -777,6 +831,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string TermsAndConditionsText {
             get {
                 return ResourceManager.GetString("TermsAndConditionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio.
+        /// </summary>
+        public static string WindowsTemplateStudio {
+            get {
+                return ResourceManager.GetString("WindowsTemplateStudio", resourceCulture);
             }
         }
     }

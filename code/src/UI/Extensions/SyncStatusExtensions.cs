@@ -61,10 +61,6 @@ namespace Microsoft.Templates.UI.Extensions
                     return StringRes.StatusPrepared;
                 case SyncStatus.NewWizardVersionAvailable:
                     return string.Format(StringRes.StatusNewWizardVersionAvailable, version);
-                case SyncStatus.CheckingForUpdates:
-                    return StringRes.StatusCheckingForUpdates;
-                case SyncStatus.CheckedForUpdates:
-                    return StringRes.StatusCheckedForUpdates;
                 default:
                     return string.Empty;
             }

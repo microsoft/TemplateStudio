@@ -227,6 +227,7 @@
     <Compile Include="CodeAnalysis\StyleCopCollection.cs" />
     <Compile Include="CodeAnalysis\StyleCopGenerationTestsFixture.cs" />
     <Compile Include="CodeAnalysis\StyleCopProjectGenerationTests.cs" />
+    <Compile Include="LanguageSyncTests.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
     <Compile Include="FileEncodingTests.cs" />
     <Compile Include="BaseTestContextProvider.cs" />

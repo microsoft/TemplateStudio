@@ -14,6 +14,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.V2Services;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI.VisualStudio
@@ -115,6 +116,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private void SetContext()
         {
             EnsureGenContextInitialized();
+            UIStylesService.Instance.Initialize(new VSStyleValuesProvider());
 
             if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {

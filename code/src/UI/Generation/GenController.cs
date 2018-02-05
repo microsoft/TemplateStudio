@@ -13,7 +13,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Views.Common;
+using Microsoft.Templates.UI.V2ViewModels.Common;
 
 namespace Microsoft.Templates.UI
 {
@@ -114,7 +114,8 @@ namespace Microsoft.Templates.UI
             AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
             AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
 
-            var error = new ErrorDialog(ex);
+            var vm = new ErrorDialogViewModel(ex);
+            var error = new V2Views.Common.ErrorDialog(vm);
 
             GenContext.ToolBox.Shell.ShowModal(error);
         }

@@ -9,7 +9,7 @@ Namespace Activation
         ' https://docs.microsoft.com/en-us/windows/uwp/launch-resume/web-to-app-linking
         ' https://blogs.windows.com/buildingapps/2016/10/14/web-to-app-linking-with-appurihandlers/
         '
-        ' TODO WTS: You must to update the Host Uri also on Package.appxmanifest XML (Right click > View Code)
+        ' TODO WTS: Update the Host URI here and in Package.appxmanifest XML (Right click > View Code)
         Private Const Host As String = "myapp.website.com"
 
         Private Const Section1 As String = "/MySection1"
@@ -17,7 +17,8 @@ Namespace Activation
         Private Const Section2 As String = "/MySection2"
 
         Protected Overrides Async Function HandleInternalAsync(args As ProtocolActivatedEventArgs) As Task
-            ' TODO WTS: Use args.Uri.AbsolutePath to determinate the page you want to launch the application.
+            ' TODO WTS: Handle navigation based on the original URI
+            ' Use args.Uri.AbsolutePath to determinate the page you want to launch the application.
             ' Open the page in app that is equivalent to the section on the website.
             Select Case args.Uri.AbsolutePath
                 Case Section1

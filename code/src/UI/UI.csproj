@@ -431,12 +431,14 @@
     <Compile Include="V2ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
     <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
+    <Compile Include="V2ViewModels\Common\ErrorDialogViewModel.cs" />
     <Compile Include="V2ViewModels\Common\QuestionDialogViewModel.cs" />
     <Compile Include="V2ViewModels\Common\Selectable.cs" />
     <Compile Include="V2ViewModels\Common\SelectableGroup`1.cs" />
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
     <Compile Include="V2ViewModels\NewItem\ChangesSummaryViewModel.cs" />
     <Compile Include="V2ViewModels\NewItem\MainViewModel.cs" />
+    <Compile Include="V2ViewModels\NewItem\ProjectConfigurationViewModel.cs" />
     <Compile Include="V2ViewModels\NewItem\TemplateSelectionViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\AddFeaturesViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\AddPagesViewModel.cs" />
@@ -444,6 +446,9 @@
     <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\ProjectTypeViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\UserSelectionViewModel.cs" />
+    <Compile Include="V2Views\Common\ErrorDialog.xaml.cs">
+      <DependentUpon>ErrorDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="V2Views\Common\QuestionDialogWindow.xaml.cs">
       <DependentUpon>QuestionDialogWindow.xaml</DependentUpon>
     </Compile>
@@ -452,6 +457,9 @@
     </Compile>
     <Compile Include="V2Views\NewItem\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewItem\ProjectConfigurationDialog.xaml.cs">
+      <DependentUpon>ProjectConfigurationDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Views\NewItem\TemplateSelectionPage.xaml.cs">
       <DependentUpon>TemplateSelectionPage.xaml</DependentUpon>
@@ -745,6 +753,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="V2Views\Common\ErrorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="V2Views\Common\QuestionDialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -756,6 +768,10 @@
     <Page Include="V2Views\NewItem\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewItem\ProjectConfigurationDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Views\NewItem\TemplateSelectionPage.xaml">
       <SubType>Designer</SubType>

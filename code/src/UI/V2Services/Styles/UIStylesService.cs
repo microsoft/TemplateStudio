@@ -252,7 +252,11 @@ namespace Microsoft.Templates.UI.V2Services
             NewItemFileStatusConflictingStylesFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusConflictingStylesFile");
             NewItemFileStatusWarningFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusWarningFile");
             NewItemFileStatusUnchangedFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusUnchangedFile");
+
             ChangesSummaryDetailFileHeaderBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeaderBackground");
+
+            DialogInfoIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoIcon");
+            DialogErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogErrorIcon");
         }
 
         // Font Sizes and Font Family

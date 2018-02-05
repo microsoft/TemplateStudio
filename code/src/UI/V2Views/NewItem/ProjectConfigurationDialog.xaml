@@ -1,0 +1,59 @@
+﻿<Window x:Class="Microsoft.Templates.UI.V2Views.Common.ProjectConfigurationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
+        ResizeMode="NoResize"
+        SizeToContent="Height"
+        Title="{x:Static strings:StringRes.WindowsTemplateStudio}"        
+        WindowStartupLocation="CenterScreen"
+        MinWidth="500"
+        Width="500"
+        MinHeight="350"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="MetadataDisplayNameTemplate">
+                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Margin="{StaticResource Margin_M2_LeftTopRightBottom}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="{Binding Title}" Style="{StaticResource WtsTextBlockDialogTitle}" />
+            <TextBlock Grid.Row="1" Text="{Binding Description}" Style="{StaticResource WtsTextBlockDialogDescription}" Margin="{StaticResource Margin_M_Top}"/>
+
+
+            <StackPanel  Grid.Row="2">
+                <TextBlock Text="{x:Static strings:StringRes.ProjectConfigurationSelectProjectType}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource ProjectConfigurationComboBoxHeaderStyle}" />
+                <ComboBox ItemsSource="{Binding ProjectTypes}" SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}" Margin="{StaticResource Margin_S_TopBottom}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}" />
+                <TextBlock Text="{Binding SelectedProjectType.Summary}" Margin="{StaticResource Margin_S_Bottom}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
+
+                <TextBlock Text="{x:Static strings:StringRes.ProjectConfigurationSelectFramework}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource ProjectConfigurationComboBoxHeaderStyle}"/>
+                <ComboBox ItemsSource="{Binding Frameworks}" SelectedItem="{Binding SelectedFramework, Mode=TwoWay}" Margin="{StaticResource Margin_S_TopBottom}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"  />
+                <TextBlock Text="{Binding SelectedFramework.Summary}" Margin="{StaticResource Margin_S_Bottom}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_LeftTopRightBottom}">
+                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonOk}" Command="{Binding AcceptCommand}" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

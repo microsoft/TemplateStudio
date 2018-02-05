@@ -148,13 +148,17 @@
   <data name="ButtonNo" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="ButtonOk" xml:space="preserve">
+    <value>Ok</value>
+    <comment>Error dialog and information window ok button content</comment>
+  </data>
   <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
     <value>Refresh templates cache</value>
     <comment>Refresh templates cache button content </comment>
   </data>
   <data name="ButtonRemove" xml:space="preserve">
     <value>Remove</value>
-    <comment>Project details saved templates remove button Automation property name</comment>
+    <comment>Project details saved templates remove button </comment>
   </data>
   <data name="ButtonYes" xml:space="preserve">
     <value>Yes</value>
@@ -204,6 +208,18 @@
   <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
     <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
   </data>
+  <data name="ErrorDialogShowDetails" xml:space="preserve">
+    <value>Show details</value>
+    <comment>Error dialog show details link button</comment>
+  </data>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Something went wrong :-(</value>
+    <comment>Error dialog title</comment>
+  </data>
+  <data name="ErrorDialogWindowTitle" xml:space="preserve">
+    <value>Windows Template Studio Error</value>
+    <comment>Error dialog window title</comment>
+  </data>
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
     <value>more info</value>
   </data>
@@ -213,9 +229,11 @@
   </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another feature.</value>
+    <comment>{0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another page.</value>
+    <comment>{0}: Page name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>Template selection</value>
@@ -273,20 +291,17 @@
     <value>There are new templates available (v{0}). Downloading… {1}%</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_CheckedForUpdates" xml:space="preserve">
-    <value>Done.</value>
-  </data>
-  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
-    <value>Checking for template updates...</value>
-  </data>
   <data name="NotificationSyncStatus_Copying" xml:space="preserve">
     <value>Copying templates (v{0})... {1}%</value>
+    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>Error downloading templates (v{0}). We'll try later again.</value>
+    <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
     <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Prepared" xml:space="preserve">
     <value>Templates ready.</value>
@@ -316,6 +331,21 @@
   <data name="NotificationValidationError_ReservedName" xml:space="preserve">
     <value>Name is reserved</value>
   </data>
+  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
+    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?</value>
+    <comment>ProjectConfiguration view description</comment>
+  </data>
+  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
+    <value>Select framework:</value>
+    <comment>Project configuration window select framework title</comment>
+  </data>
+  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
+    <value>Select design pattern:</value>
+    <comment>Project configuration window select project type title</comment>
+  </data>
+  <data name="ProjectConfigurationTitleText" xml:space="preserve">
+    <value>Choose project configuration</value>
+  </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
     <value>https://aka.ms/wts</value>
   </data>
@@ -323,7 +353,7 @@
     <value>Templates version:</value>
   </data>
   <data name="ProjectDetailsAboutSectionText" xml:space="preserve">
-    <value>An easy to use wizard to build a strong foundation for your UWP app.</value>
+    <value>Windows Template Studio</value>
   </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>About</value>
@@ -339,7 +369,7 @@
     <value>You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?</value>
   </data>
   <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
-    <value>Change design pattern</value>
+    <value>Design pattern changed</value>
   </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
     <value>Design pattern</value>
@@ -356,7 +386,7 @@
     <value>You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?</value>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
-    <value>Change project type</value>
+    <value>Project type changed</value>
   </data>
   <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
     <value>Project type</value>
@@ -387,5 +417,9 @@
   </data>
   <data name="TermsAndConditionsText" xml:space="preserve">
     <value>By continuing, you agree to the terms of all the licenses in the licenses section.</value>
+  </data>
+  <data name="WindowsTemplateStudio" xml:space="preserve">
+    <value>Windows Template Studio</value>
+    <comment>Windows template studio label</comment>
   </data>
 </root>

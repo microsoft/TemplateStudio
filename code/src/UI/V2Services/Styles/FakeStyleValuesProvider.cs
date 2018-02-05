@@ -463,6 +463,11 @@ namespace Microsoft.Templates.UI.V2Services
                 case "ChangesSummaryDetailFileHeaderBackground":
                     return LightColorValues.Color_FFEFEFF2;
 
+                case "DialogInfoIcon":
+                    return LightColorValues.Color_FF007ACC;
+                case "DialogErrorIcon":
+                    return LightColorValues.Color_FFFF0000;
+
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
