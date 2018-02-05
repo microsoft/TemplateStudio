@@ -234,6 +234,7 @@ namespace Microsoft.Templates.UI.V2Services
 
             DialogInfoIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoIcon");
             DialogErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogErrorIcon");
+            DialogWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogWarningIcon");
         }
 
         // Font Sizes and Font Family

@@ -419,6 +419,8 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FF007ACC;
                 case "DialogErrorIcon":
                     return LightColorValues.Color_FFFF0000;
+                case "DialogWarningIcon":
+                    return LightColorValues.Color_FFFFCC00;
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");

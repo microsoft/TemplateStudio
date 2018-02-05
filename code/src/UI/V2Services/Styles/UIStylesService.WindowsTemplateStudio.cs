@@ -160,5 +160,13 @@ namespace Microsoft.Templates.UI.V2Services
             get { return (Brush)GetValue(DialogErrorIconProperty); }
             set { SetValue(DialogErrorIconProperty, value); }
         }
+
+        public static readonly DependencyProperty DialogWarningIconProperty = DependencyProperty.Register("DialogWarningIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush DialogWarningIcon
+        {
+            get { return (Brush)GetValue(DialogWarningIconProperty); }
+            set { SetValue(DialogWarningIconProperty, value); }
+        }
     }
 }
