@@ -3,8 +3,7 @@ Imports Windows.Storage.Streams
 
 Namespace Helpers
     ' Use these extension methods to store and retrieve local and roaming app data
-    ' For more info regarding storing and retrieving app data see documentation at
-    ' https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
+    ' More details regarding storing and retrieving app data at https://docs.microsoft.com/windows/uwp/app-settings/store-and-retrieve-app-data
     Friend Module SettingsStorageExtensions
 
         Private Const FileExtension As String = ".json"
