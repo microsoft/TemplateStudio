@@ -326,6 +326,21 @@
   <data name="NotificationValidationError_ReservedName" xml:space="preserve">
     <value>Name is reserved</value>
   </data>
+  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
+    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?</value>
+    <comment>ProjectConfiguration view description</comment>
+  </data>
+  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
+    <value>Select framework:</value>
+    <comment>Project configuration window select framework title</comment>
+  </data>
+  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
+    <value>Select design pattern:</value>
+    <comment>Project configuration window select project type title</comment>
+  </data>
+  <data name="ProjectConfigurationTitleText" xml:space="preserve">
+    <value>Choose project configuration</value>
+  </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
     <value>https://aka.ms/wts</value>
   </data>

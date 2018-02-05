@@ -436,6 +436,7 @@
     <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
     <Compile Include="V2ViewModels\NewItem\ChangesSummaryViewModel.cs" />
     <Compile Include="V2ViewModels\NewItem\MainViewModel.cs" />
+    <Compile Include="V2ViewModels\NewItem\ProjectConfigurationViewModel.cs" />
     <Compile Include="V2ViewModels\NewItem\TemplateSelectionViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\AddFeaturesViewModel.cs" />
     <Compile Include="V2ViewModels\NewProject\AddPagesViewModel.cs" />
@@ -454,6 +455,9 @@
     </Compile>
     <Compile Include="V2Views\NewItem\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="V2Views\NewItem\ProjectConfigurationDialog.xaml.cs">
+      <DependentUpon>ProjectConfigurationDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="V2Views\NewItem\TemplateSelectionPage.xaml.cs">
       <DependentUpon>TemplateSelectionPage.xaml</DependentUpon>
@@ -758,6 +762,10 @@
     <Page Include="V2Views\NewItem\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="V2Views\NewItem\ProjectConfigurationDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="V2Views\NewItem\TemplateSelectionPage.xaml">
       <SubType>Designer</SubType>

@@ -1,5 +1,5 @@
-﻿Drag and drop is a classic, natural way of interacting with content such as images and files. Once implemented, drag and drop works seamlessly in all directions, including app-to-app, app-to-desktop, and desktop-to app.
+﻿Sürükle ve bırak özelliği, görüntü ve dosya gibi içeriklerle etkileşim kurmanın klasik, doğal bir yoludur. Sürükle ve bırak özelliği uygulandığında uygulamadan uygulamaya, uygulamadan masaüstüne ve masaüstünden uygulamaya dahil olmak üzere her yönde sorunsuz çalışır.
 
-The Drag & Drop feature provides a wrapper service over the [standard UWP drag and drop functionallity](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop) to simplify the required code to create drag and drop ready apps as well as follows the framework pattern used by your app.
+Sürükle ve Bırak özelliği, sürükle ve bırak seçeneğinin kullanılabildiği uygulamalar oluşturmak için gereken kodu basitleştirmek üzere [standart UWP sürükle ve bırak işlevselliği](https://docs.microsoft.com/en-us/windows/uwp/app-to-app/drag-and-drop) üzerinde bir sarmalayıcı hizmeti sunar ve uygulamanızın kullandığı framework desenini takip eder.
 
-[More info](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
+[Daha fazla bilgi](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/docs/features/drag-and-drop.md)
