@@ -65,6 +65,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewProject
 
         public override async Task InitializeAsync(string language)
         {
+            WizardStatus.Title = $" ({GenContext.Current.ProjectName})";
             await base.InitializeAsync(language);
         }
 

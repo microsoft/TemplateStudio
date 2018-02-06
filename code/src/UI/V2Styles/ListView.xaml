@@ -222,12 +222,12 @@
                         <Grid x:Name="selectedGrid" Background="Transparent" />
                         <Grid MinHeight="35">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="20" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock x:Name="tick" Style="{StaticResource WtsTextBlockSequentialFlowCompleted}" Visibility="{Binding Completed, Converter={StaticResource BoolToVisibilityConverter}}" />
                             <TextBlock Grid.Column="0" x:Name="index" Text="{Binding LayoutIndex}" Style="{StaticResource WtsTextBlockSequentialFlow}" Visibility="{Binding Completed, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
-                            <TextBlock Grid.Column="1" x:Name="text" Margin="{StaticResource Margin_M_Left}" Text="{Binding Title}" Style="{StaticResource WtsTextBlockSequentialFlow}" />
+                            <TextBlock Grid.Column="1" x:Name="text" Text="{Binding Title}" Style="{StaticResource WtsTextBlockSequentialFlow}" />
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>

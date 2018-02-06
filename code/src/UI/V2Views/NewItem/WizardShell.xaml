@@ -33,7 +33,10 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <TextBlock Text="{Binding WizardStatus.Title}" Style="{StaticResource WtsTextBlockWizardTitle}" />
+            <TextBlock
+                Text="{Binding WizardStatus.Title}"
+                Style="{StaticResource WtsTextBlockWizardTitle}"
+                Margin="{StaticResource Margin_L_Left}" />
         </Grid>
 
         <Grid Grid.Row="1" Style="{StaticResource WtsGridSectionDividerHorizontal}" />

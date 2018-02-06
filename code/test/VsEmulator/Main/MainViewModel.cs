@@ -194,17 +194,15 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-
                     GenContext.Current = this;
+                    ProjectName = newProjectInfo.name;
+                    ProjectPath = projectPath;
+                    OutputPath = projectPath;
                     UI.V2Services.UIStylesService.Instance.Initialize(new UI.V2Services.FakeStyleValuesProvider());
                     var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
                     if (userSelection != null)
                     {
-                        ProjectName = newProjectInfo.name;
-                        ProjectPath = projectPath;
-                        OutputPath = projectPath;
-
                         ClearContext();
                         SolutionName = null;
 
