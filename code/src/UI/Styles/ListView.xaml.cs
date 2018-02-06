@@ -21,10 +21,10 @@ namespace Microsoft.Templates.UI.V2Styles
             {
                 return;
             }
+
             var item = sender as ListViewItem;
             if (item != null)
             {
-                System.Diagnostics.Debug.WriteLine("OnPreviewMouseLeftButtonDown");
                 switch (item.Content)
                 {
                     case BasicInfoViewModel info:
