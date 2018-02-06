@@ -440,9 +440,11 @@ namespace Microsoft.Templates.UI.V2Services
                     return LightColorValues.Color_FFEFEFF2; // TODO: Replace this temporary value for a VS Color
 
                 case "DialogInfoIcon":
-                    return LightColorValues.Color_FF004F9E; // TODO: Replace this temporary value for a VS Color
+                    return LightColorValues.Color_FF007ACC; // TODO: Replace this temporary value for a VS Color
                 case "DialogErrorIcon":
-                    return LightColorValues.Color_FF004F9E; // TODO: Replace this temporary value for a VS Color
+                    return LightColorValues.Color_FFFF0000; // TODO: Replace this temporary value for a VS Color
+                case "DialogWarningIcon":
+                    return LightColorValues.Color_FFFFCC00; // TODO: Replace this temporary value for a VS Color
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
