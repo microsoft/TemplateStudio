@@ -1,12 +1,12 @@
 ﻿Imports Param_ItemNamespace.Services
 
 Namespace Views
+    ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings-codebehind.vb.md
+    ' TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
     Public NotInheritable Partial Class SettingsPagePage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
-        ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings-codebehind.vb.md
-        ' TODO WTS: Change the URL for your privacy policy in the Resource File, currently set to https://YourPrivacyUrlGoesHere
         Private _elementTheme As ElementTheme = ThemeSelectorService.Theme
 
         Public Property ElementTheme As ElementTheme

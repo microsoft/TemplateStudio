@@ -1,3 +1,3 @@
-﻿Add a Feedback link to the settings page to encourage your customers to leave feedback via the Feedback Hub.
+﻿フィードバック Hub を通じてフィードバックを残すことをユーザーに勧めるために、設定ページにフィードバック リンクを追加します。
 
-Feedback Hub is a preinstalled app that provides a single place to gather feedback on Windows and installed apps. All customer feedback that is submitted for your app through Feedback Hub is collected and presented to you in the [Feedback report](https://docs.microsoft.com/en-us/windows/uwp/publish/feedback-report) in the Windows Dev Center dashboard, so you can see the problems, suggestions, and upvotes that your customers have submitted in one report.
+フィードバック Hub は、Windows アプリやインストール済みのアプリに関するフィードバックを 1 か所で収集できるようにするプレインストール アプリです。ユーザーがフィードバック Hub から送信するすべてのフィードバックは、Windows デベロッパー センター ダッシュボードの [フィードバック レポート] (https://docs.microsoft.com/en-us/windows/uwp/publish/feedback-report) にまとめて表示されます。そのため、ユーザーがそれぞれのレポートで送信した問題点、提案事項、および賛成票を確認できます。

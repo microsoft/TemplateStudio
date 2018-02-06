@@ -4,8 +4,8 @@
 Namespace Services
     Public Module SampleDataService
         '^^
-
         '{[{
+
         ' TODO WTS: Remove this once your image gallery page is displaying real data
         Public Function GetGallerySampleData() As ObservableCollection(Of SampleImage)
             Dim data = New ObservableCollection(Of SampleImage)()
