@@ -49,7 +49,7 @@
                     Margin="{StaticResource Margin_XS_Top}" />
                 <TextBlock Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,-4">
                     <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
-                        <TextBlock Text="Details" Style="{StaticResource WtsTextBlockHyperlink}" />
+                        <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" />
                     </Hyperlink>
                 </TextBlock>
             </Grid>
@@ -90,7 +90,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Bottom">
                         <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
-                            <TextBlock Text="Details" Style="{StaticResource WtsTextBlockHyperlink}" />
+                            <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" />
                         </Hyperlink>
                     </TextBlock>
                     <!--Multiple Instance added feedback-->

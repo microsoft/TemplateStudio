@@ -520,4 +520,7 @@
     <value>User Interaction</value>
     <comment>Group header for user interaction templates</comment>
   </data>
+  <data name="ButtonDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
 </root>

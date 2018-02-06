@@ -5,8 +5,10 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.V2Styles
@@ -15,9 +17,14 @@ namespace Microsoft.Templates.UI.V2Styles
     {
         private async void OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (IsOnDetailsLink(e.OriginalSource as TextBlock))
+            {
+                return;
+            }
             var item = sender as ListViewItem;
             if (item != null)
             {
+                System.Diagnostics.Debug.WriteLine("OnPreviewMouseLeftButtonDown");
                 switch (item.Content)
                 {
                     case BasicInfoViewModel info:
@@ -40,6 +47,11 @@ namespace Microsoft.Templates.UI.V2Styles
             var listView = sender as System.Windows.Controls.ListView;
             if (listView != null && e.Key == Key.Enter)
             {
+                if (e.OriginalSource is Hyperlink)
+                {
+                    return;
+                }
+
                 switch (listView.SelectedItem)
                 {
                     case BasicInfoViewModel info:
@@ -106,6 +118,19 @@ namespace Microsoft.Templates.UI.V2Styles
                     }
                 }
             }
+        }
+
+        private bool IsOnDetailsLink(TextBlock textBlock)
+        {
+            if (textBlock != null)
+            {
+                if (textBlock.Text == StringRes.ButtonDetails)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
