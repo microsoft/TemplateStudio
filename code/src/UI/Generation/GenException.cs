@@ -4,7 +4,7 @@
 
 using System;
 using System.Runtime.Serialization;
-using Microsoft.Templates.UI.V2Resources;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI
 {

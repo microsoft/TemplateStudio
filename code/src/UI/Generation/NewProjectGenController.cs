@@ -13,7 +13,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
-using Microsoft.Templates.UI.V2Resources;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI
@@ -36,10 +36,7 @@ namespace Microsoft.Templates.UI
 
         public UserSelection GetUserSelection(string language)
         {
-            // TODO mvegaca
-            // var mainView = new Views.NewProject.MainView(language);
-            // var mainView = new V2Views.NewProject.VSStyleValues();
-            var mainView = new V2Views.NewProject.WizardShell(language);
+            var mainView = new Views.NewProject.WizardShell(language);
 
             try
             {

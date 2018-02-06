@@ -5,13 +5,11 @@
 using System;
 using System.Diagnostics;
 using System.Reflection;
-
 using EnvDTE;
 using EnvDTE80;
-
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
-using Microsoft.Templates.UI.V2Resources;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 

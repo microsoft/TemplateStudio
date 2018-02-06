@@ -10,7 +10,7 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Composition;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI.V2Resources;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI
 {

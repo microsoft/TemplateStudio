@@ -224,11 +224,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="V2Extensions\DependencyObjectExtensions.cs" />
-    <Compile Include="V2Extensions\ObservableCollectionExtensions.cs" />
-    <Compile Include="V2Converters\TextToFlowDocumentConverter.cs" />
-    <Compile Include="V2Extensions\WindowExtensions.cs" />
-    <Compile Include="V2Extensions\AnimationExtensions.cs" />
+    <Compile Include="Extensions\DependencyObjectExtensions.cs" />
+    <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
+    <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
+    <Compile Include="Extensions\WindowExtensions.cs" />
+    <Compile Include="Extensions\AnimationExtensions.cs" />
     <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
     <Compile Include="Generation\NewItemGenerationResult.cs" />
     <Compile Include="Generation\ProjectConfigInfo.cs" />
@@ -238,149 +238,149 @@
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
-    <Compile Include="V2Controls\CodeViewer.xaml.cs">
+    <Compile Include="Controls\CodeViewer.xaml.cs">
       <DependentUpon>CodeViewer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Controls\ImageEx.cs" />
-    <Compile Include="V2Controls\Markdown.cs" />
-    <Compile Include="V2Controls\MarkdownBlock.xaml.cs">
+    <Compile Include="Controls\ImageEx.cs" />
+    <Compile Include="Controls\Markdown.cs" />
+    <Compile Include="Controls\MarkdownBlock.xaml.cs">
       <DependentUpon>MarkdownBlock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Controls\Notification.cs" />
-    <Compile Include="V2Controls\NotificationsControl.xaml.cs">
+    <Compile Include="Controls\Notification.cs" />
+    <Compile Include="Controls\NotificationsControl.xaml.cs">
       <DependentUpon>NotificationsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Controls\SequentialFlow.xaml.cs">
+    <Compile Include="Controls\SequentialFlow.xaml.cs">
       <DependentUpon>SequentialFlow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Controls\Step.cs" />
-    <Compile Include="V2Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="V2Converters\HasItemsVisibilityConverter.cs" />
-    <Compile Include="V2Converters\IntegerVisibilityConverter.cs" />
-    <Compile Include="V2Converters\SavedTemplateGridConverter.cs" />
-    <Compile Include="V2Converters\StepVisibilityConverter.cs" />
-    <Compile Include="V2Converters\StringVisibilityConverter.cs" />
-    <Compile Include="V2Extensions\FocusExtension.cs" />
-    <Compile Include="V2Extensions\ListViewExtensions.cs" />
-    <Compile Include="V2Extensions\SyncStatusEventArgsExtensions.cs" />
-    <Compile Include="V2Extensions\TextBlockExtensions.cs" />
-    <Compile Include="V2Extensions\TextBoxExtensions.cs" />
-    <Compile Include="V2Extensions\ValidationResultExtensions.cs" />
-    <Compile Include="V2Resources\StringRes.Designer.cs">
+    <Compile Include="Controls\Step.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\HasItemsVisibilityConverter.cs" />
+    <Compile Include="Converters\IntegerVisibilityConverter.cs" />
+    <Compile Include="Converters\SavedTemplateGridConverter.cs" />
+    <Compile Include="Converters\StepVisibilityConverter.cs" />
+    <Compile Include="Converters\StringVisibilityConverter.cs" />
+    <Compile Include="Extensions\FocusExtension.cs" />
+    <Compile Include="Extensions\ListViewExtensions.cs" />
+    <Compile Include="Extensions\SyncStatusEventArgsExtensions.cs" />
+    <Compile Include="Extensions\TextBlockExtensions.cs" />
+    <Compile Include="Extensions\TextBoxExtensions.cs" />
+    <Compile Include="Extensions\ValidationResultExtensions.cs" />
+    <Compile Include="Resources\StringRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.resx</DependentUpon>
     </Compile>
-    <Compile Include="V2Services\DataService.cs" />
-    <Compile Include="V2Services\DispatcherService.cs" />
-    <Compile Include="V2Services\DragAndDropService\DragAdornerLayer.cs" />
-    <Compile Include="V2Services\DragAndDropService\DragAndDropEventArgs`1.cs" />
-    <Compile Include="V2Services\DragAndDropService\DragAndDropService.cs" />
-    <Compile Include="V2Services\DragAndDropService\DragAndDropService.Members.cs" />
-    <Compile Include="V2Services\DragAndDropService\ListViewItemDragState.cs" />
-    <Compile Include="V2Services\DragAndDropService\MouseUtilities.cs" />
-    <Compile Include="V2Services\DragAndDropService\NativeMethods.cs" />
-    <Compile Include="V2Services\EventService.cs" />
-    <Compile Include="V2Services\LicensesService.cs" />
-    <Compile Include="V2Services\NavigationService.cs" />
-    <Compile Include="V2Services\OrderingService.cs" />
-    <Compile Include="V2Services\ResourcesService.cs" />
-    <Compile Include="V2Services\Styles\LightColorValues.cs" />
-    <Compile Include="V2Services\Styles\FakeStyleValuesProvider.cs" />
-    <Compile Include="V2Services\Styles\IStyleValuesProvider.cs" />
-    <Compile Include="V2Services\Styles\UIStylesService.Environment.cs" />
-    <Compile Include="V2Services\Styles\UIStylesService.ThemedDialogColors.cs" />
-    <Compile Include="V2Services\Styles\UIStylesService.cs" />
-    <Compile Include="V2Services\Styles\UIStylesService.FontSizes.cs" />
-    <Compile Include="V2Services\Styles\UIStylesService.ThemedCardColors.cs" />
-    <Compile Include="V2Services\Styles\UIStylesService.CommonControlColors.cs" />
-    <Compile Include="V2Services\Styles\UIStylesService.WindowsTemplateStudio.cs" />
-    <Compile Include="V2Services\Styles\VSStyleValuesProvider.cs" />
-    <Compile Include="V2Services\SystemService.cs" />
-    <Compile Include="V2Services\ValidationService.cs" />
-    <Compile Include="V2Styles\ListView.xaml.cs">
+    <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\DispatcherService.cs" />
+    <Compile Include="Services\DragAndDropService\DragAdornerLayer.cs" />
+    <Compile Include="Services\DragAndDropService\DragAndDropEventArgs`1.cs" />
+    <Compile Include="Services\DragAndDropService\DragAndDropService.cs" />
+    <Compile Include="Services\DragAndDropService\DragAndDropService.Members.cs" />
+    <Compile Include="Services\DragAndDropService\ListViewItemDragState.cs" />
+    <Compile Include="Services\DragAndDropService\MouseUtilities.cs" />
+    <Compile Include="Services\DragAndDropService\NativeMethods.cs" />
+    <Compile Include="Services\EventService.cs" />
+    <Compile Include="Services\LicensesService.cs" />
+    <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\OrderingService.cs" />
+    <Compile Include="Services\ResourcesService.cs" />
+    <Compile Include="Services\Styles\LightColorValues.cs" />
+    <Compile Include="Services\Styles\FakeStyleValuesProvider.cs" />
+    <Compile Include="Services\Styles\IStyleValuesProvider.cs" />
+    <Compile Include="Services\Styles\UIStylesService.Environment.cs" />
+    <Compile Include="Services\Styles\UIStylesService.ThemedDialogColors.cs" />
+    <Compile Include="Services\Styles\UIStylesService.cs" />
+    <Compile Include="Services\Styles\UIStylesService.FontSizes.cs" />
+    <Compile Include="Services\Styles\UIStylesService.ThemedCardColors.cs" />
+    <Compile Include="Services\Styles\UIStylesService.CommonControlColors.cs" />
+    <Compile Include="Services\Styles\UIStylesService.WindowsTemplateStudio.cs" />
+    <Compile Include="Services\Styles\VSStyleValuesProvider.cs" />
+    <Compile Include="Services\SystemService.cs" />
+    <Compile Include="Services\ValidationService.cs" />
+    <Compile Include="Styles\ListView.xaml.cs">
       <DependentUpon>ListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2TemplateSelectors\FileExtensionTemplateSelector.cs" />
-    <Compile Include="V2TemplateSelectors\FileStatusTemplateSelector.cs" />
-    <Compile Include="V2TemplateSelectors\NotificationTemplateSelector.cs" />
-    <Compile Include="V2ViewModels\Common\BaseDialogViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\BaseMainViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\DataItems\FileExtension.cs" />
-    <Compile Include="V2ViewModels\Common\DataItems\FileStatus.cs" />
-    <Compile Include="V2ViewModels\Common\DataItems\ItemsGroupViewModel`1.cs" />
-    <Compile Include="V2ViewModels\Common\DataItems\LicenseViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\DataItems\MetadataInfoViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\DataItems\NewItemFileViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\ErrorDialogViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\QuestionDialogViewModel.cs" />
-    <Compile Include="V2ViewModels\Common\Selectable.cs" />
-    <Compile Include="V2ViewModels\Common\SelectableGroup`1.cs" />
-    <Compile Include="V2ViewModels\Common\WizardStatus.cs" />
-    <Compile Include="V2ViewModels\NewItem\ChangesSummaryViewModel.cs" />
-    <Compile Include="V2ViewModels\NewItem\MainViewModel.cs" />
-    <Compile Include="V2ViewModels\NewItem\ProjectConfigurationViewModel.cs" />
-    <Compile Include="V2ViewModels\NewItem\TemplateSelectionViewModel.cs" />
-    <Compile Include="V2ViewModels\NewProject\AddFeaturesViewModel.cs" />
-    <Compile Include="V2ViewModels\NewProject\AddPagesViewModel.cs" />
-    <Compile Include="V2ViewModels\NewProject\FrameworkViewModel.cs" />
-    <Compile Include="V2ViewModels\NewProject\MainViewModel.cs" />
-    <Compile Include="V2ViewModels\NewProject\ProjectTypeViewModel.cs" />
-    <Compile Include="V2ViewModels\NewProject\UserSelectionViewModel.cs" />
-    <Compile Include="V2Views\Common\ErrorDialog.xaml.cs">
+    <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
+    <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
+    <Compile Include="TemplateSelectors\NotificationTemplateSelector.cs" />
+    <Compile Include="ViewModels\Common\BaseDialogViewModel.cs" />
+    <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
+    <Compile Include="ViewModels\Common\DataItems\FileExtension.cs" />
+    <Compile Include="ViewModels\Common\DataItems\FileStatus.cs" />
+    <Compile Include="ViewModels\Common\DataItems\ItemsGroupViewModel`1.cs" />
+    <Compile Include="ViewModels\Common\DataItems\LicenseViewModel.cs" />
+    <Compile Include="ViewModels\Common\DataItems\MetadataInfoViewModel.cs" />
+    <Compile Include="ViewModels\Common\DataItems\NewItemFileViewModel.cs" />
+    <Compile Include="ViewModels\Common\DataItems\SavedTemplateViewModel.cs" />
+    <Compile Include="ViewModels\Common\DataItems\TemplateGroupViewModel.cs" />
+    <Compile Include="ViewModels\Common\DataItems\TemplateInfoViewModel.cs" />
+    <Compile Include="ViewModels\Common\ErrorDialogViewModel.cs" />
+    <Compile Include="ViewModels\Common\QuestionDialogViewModel.cs" />
+    <Compile Include="ViewModels\Common\Selectable.cs" />
+    <Compile Include="ViewModels\Common\SelectableGroup`1.cs" />
+    <Compile Include="ViewModels\Common\WizardStatus.cs" />
+    <Compile Include="ViewModels\NewItem\ChangesSummaryViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\MainViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\ProjectConfigurationViewModel.cs" />
+    <Compile Include="ViewModels\NewItem\TemplateSelectionViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\AddFeaturesViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\AddPagesViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\FrameworkViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\MainViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\ProjectTypeViewModel.cs" />
+    <Compile Include="ViewModels\NewProject\UserSelectionViewModel.cs" />
+    <Compile Include="Views\Common\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\Common\QuestionDialogWindow.xaml.cs">
+    <Compile Include="Views\Common\QuestionDialogWindow.xaml.cs">
       <DependentUpon>QuestionDialogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewItem\ChangesSummaryPage.xaml.cs">
+    <Compile Include="Views\NewItem\ChangesSummaryPage.xaml.cs">
       <DependentUpon>ChangesSummaryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewItem\MainPage.xaml.cs">
+    <Compile Include="Views\NewItem\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewItem\ProjectConfigurationDialog.xaml.cs">
+    <Compile Include="Views\NewItem\ProjectConfigurationDialog.xaml.cs">
       <DependentUpon>ProjectConfigurationDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewItem\TemplateSelectionPage.xaml.cs">
+    <Compile Include="Views\NewItem\TemplateSelectionPage.xaml.cs">
       <DependentUpon>TemplateSelectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewItem\WizardShell.xaml.cs">
+    <Compile Include="Views\NewItem\WizardShell.xaml.cs">
       <DependentUpon>WizardShell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewProject\AddFeaturesPage.xaml.cs">
+    <Compile Include="Views\NewProject\AddFeaturesPage.xaml.cs">
       <DependentUpon>AddFeaturesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewProject\AddPagesPage.xaml.cs">
+    <Compile Include="Views\NewProject\AddPagesPage.xaml.cs">
       <DependentUpon>AddPagesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewProject\MainPage.xaml.cs">
+    <Compile Include="Views\NewProject\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewProject\FrameworkPage.xaml.cs">
+    <Compile Include="Views\NewProject\FrameworkPage.xaml.cs">
       <DependentUpon>FrameworkPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewProject\PageToRemove.xaml.cs">
+    <Compile Include="Views\NewProject\PageToRemove.xaml.cs">
       <DependentUpon>PageToRemove.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewProject\ProjectTypePage.xaml.cs">
+    <Compile Include="Views\NewProject\ProjectTypePage.xaml.cs">
       <DependentUpon>ProjectTypePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\Common\TemplateInfoPage.xaml.cs">
+    <Compile Include="Views\Common\TemplateInfoPage.xaml.cs">
       <DependentUpon>TemplateInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="V2Views\NewProject\VSStyleValues.xaml.cs">
+    <Compile Include="Views\NewProject\VSStyleValues.xaml.cs">
       <DependentUpon>VSStyleValues.xaml</DependentUpon>
     </Compile>
     <Compile Include="Generation\GenComposer.cs" />
     <Compile Include="Generation\GenController.cs" />
     <Compile Include="Generation\GenException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V2Views\NewProject\WizardShell.xaml.cs">
+    <Compile Include="Views\NewProject\WizardShell.xaml.cs">
       <DependentUpon>WizardShell.xaml</DependentUpon>
     </Compile>
     <Compile Include="VisualStudio\RightClickActions.cs" />
@@ -429,161 +429,161 @@
     <Resource Include="Assets\IconUp.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="V2Controls\CodeViewer.xaml">
+    <Page Include="Controls\CodeViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Controls\MarkdownBlock.xaml">
+    <Page Include="Controls\MarkdownBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Controls\NotificationsControl.xaml">
+    <Page Include="Controls\NotificationsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Controls\SequentialFlow.xaml">
+    <Page Include="Controls\SequentialFlow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Styles\ComboBox.xaml">
+    <Page Include="Styles\ComboBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\MarkdownBlock.xaml">
+    <Page Include="Styles\MarkdownBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\TextBlock.xaml">
+    <Page Include="Styles\TextBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\Button.xaml">
+    <Page Include="Styles\Button.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\TextBox.xaml">
+    <Page Include="Styles\TextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\ListView.xaml">
+    <Page Include="Styles\ListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\Hyperlink.xaml">
+    <Page Include="Styles\Hyperlink.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\DataTemplate.xaml">
+    <Page Include="Styles\DataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\ImageEx.xaml">
+    <Page Include="Styles\ImageEx.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\ItemsControl.xaml">
+    <Page Include="Styles\ItemsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\Ellipse.xaml">
+    <Page Include="Styles\Ellipse.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\Image.xaml">
+    <Page Include="Styles\Image.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\Expander.xaml">
+    <Page Include="Styles\Expander.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\CheckBox.xaml">
+    <Page Include="Styles\CheckBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\_Thickness.xaml">
+    <Page Include="Styles\_Thickness.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\XXXXXXX.xaml">
+    <Page Include="Styles\XXXXXXX.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\Styles.xaml">
+    <Page Include="Styles\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Styles\Grid.xaml">
+    <Page Include="Styles\Grid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Views\Common\ErrorDialog.xaml">
+    <Page Include="Views\Common\ErrorDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\Common\QuestionDialogWindow.xaml">
+    <Page Include="Views\Common\QuestionDialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\NewItem\ChangesSummaryPage.xaml">
+    <Page Include="Views\NewItem\ChangesSummaryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\NewItem\MainPage.xaml">
+    <Page Include="Views\NewItem\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\NewItem\ProjectConfigurationDialog.xaml">
+    <Page Include="Views\NewItem\ProjectConfigurationDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Views\NewItem\TemplateSelectionPage.xaml">
+    <Page Include="Views\NewItem\TemplateSelectionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\NewItem\WizardShell.xaml">
+    <Page Include="Views\NewItem\WizardShell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Views\NewProject\AddFeaturesPage.xaml">
+    <Page Include="Views\NewProject\AddFeaturesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Views\NewProject\AddPagesPage.xaml">
+    <Page Include="Views\NewProject\AddPagesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\NewProject\MainPage.xaml">
+    <Page Include="Views\NewProject\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\NewProject\FrameworkPage.xaml">
+    <Page Include="Views\NewProject\FrameworkPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Views\NewProject\PageToRemove.xaml">
+    <Page Include="Views\NewProject\PageToRemove.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Views\NewProject\ProjectTypePage.xaml">
+    <Page Include="Views\NewProject\ProjectTypePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\Common\TemplateInfoPage.xaml">
+    <Page Include="Views\Common\TemplateInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="V2Views\NewProject\VSStyleValues.xaml">
+    <Page Include="Views\NewProject\VSStyleValues.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="V2Views\NewProject\WizardShell.xaml">
+    <Page Include="Views\NewProject\WizardShell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="V2Resources\StringRes.resx">
+    <EmbeddedResource Include="Resources\StringRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
