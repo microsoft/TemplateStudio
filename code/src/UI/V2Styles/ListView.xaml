@@ -296,7 +296,7 @@
                         <Grid Margin="{StaticResource Margin_S_TopBottom}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="16" />
+                                    <ColumnDefinition Width="22" />
                                     <ColumnDefinition Width="20" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="26" />

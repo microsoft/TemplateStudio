@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Microsoft.Templates.UI.V2Controls"
              xmlns:services="clr-namespace:Microsoft.Templates.UI.V2Services"
              xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.V2TemplateSelectors"
+             xmlns:extensions="clr-namespace:Microsoft.Templates.UI.V2Extensions"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 
@@ -26,7 +27,10 @@
                         <Ellipse Fill="{Binding NotificationInformationIcon, Source={x:Static services:UIStylesService.Instance}}" />
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
                     </Grid>
-                    <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsTextBlockNotificationInformationText}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        extensions:TextBlockExtensions.FormatedText="{Binding Message}"
+                        Style="{StaticResource WtsTextBlockNotificationInformationText}" />
                     <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotificationInformation}" Command="{Binding CloseCommand}" Visibility="{Binding CanClose, Converter={StaticResource BoolToVisibilityConverter}}" />
                 </Grid>
             </DataTemplate>
@@ -42,7 +46,10 @@
                         <Ellipse Fill="{Binding NotificationWarningIcon, Source={x:Static services:UIStylesService.Instance}}" />
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
                     </Grid>
-                    <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsTextBlockNotificationWarningText}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        extensions:TextBlockExtensions.FormatedText="{Binding Message}"
+                        Style="{StaticResource WtsTextBlockNotificationWarningText}" />
                     <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotificationWarning}" Command="{Binding CloseCommand}" />
                 </Grid>
             </DataTemplate>
@@ -57,7 +64,10 @@
                         <Ellipse Fill="{Binding NotificationWarningIcon, Source={x:Static services:UIStylesService.Instance}}" />
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
                     </Grid>
-                    <TextBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsTextBlockNotificationWarningText}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        extensions:TextBlockExtensions.FormatedText="{Binding Message}"
+                        Style="{StaticResource WtsTextBlockNotificationWarningText}" />
                 </Grid>
             </DataTemplate>
 

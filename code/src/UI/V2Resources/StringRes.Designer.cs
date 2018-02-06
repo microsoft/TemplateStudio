@@ -286,6 +286,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to more info.
+        /// </summary>
+        public static string ChangesSummaryMoreInfoLink {
+            get {
+                return ResourceManager.GetString("ChangesSummaryMoreInfoLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show details.
         /// </summary>
         public static string ErrorDialogShowDetails {
@@ -309,15 +318,6 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string ErrorDialogWindowTitle {
             get {
                 return ResourceManager.GetString("ErrorDialogWindowTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to more info.
-        /// </summary>
-        public static string ChangesSummaryMoreInfoLink {
-            get {
-                return ResourceManager.GetString("ChangesSummaryMoreInfoLink", resourceCulture);
             }
         }
         
@@ -466,7 +466,7 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can not remove {0} because {1} depends on it..
+        ///   Looks up a localized string similar to You can not remove *{0}* because *{1}* depends on it..
         /// </summary>
         public static string NotificationRemoveError_Dependency {
             get {
