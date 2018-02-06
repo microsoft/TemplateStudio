@@ -43,5 +43,11 @@ namespace Microsoft.Templates.UI.V2Views.NewItem
                 Close();
             }
         }
+
+        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            OnMouseLeftButtonDown(e);
+            DragMove();
+        }
     }
 }

@@ -26,7 +26,7 @@
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
                     <!--Image-->
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="55" />
                     <!--Title-->
                     <RowDefinition Height="Auto" />
                     <!--Description-->
@@ -46,18 +46,12 @@
                     Grid.Row="2"
                     Text="{Binding Description}"
                     Style="{StaticResource WtsTextBlockCardDescription}"
-                    Margin="{StaticResource Margin_M_Top}"/>
-                <Grid Grid.Row="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock VerticalAlignment="Bottom">
-                        <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
-                            <TextBlock Text="Details" Style="{StaticResource WtsTextBlockHyperlink}" />
-                        </Hyperlink>
-                    </TextBlock>
-                </Grid>
+                    Margin="{StaticResource Margin_XS_Top}"/>
+                <TextBlock Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,-4">
+                    <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
+                        <TextBlock Text="Details" Style="{StaticResource WtsTextBlockHyperlink}" />
+                    </Hyperlink>
+                </TextBlock>
             </Grid>
         </Grid>
     </DataTemplate>
@@ -67,7 +61,7 @@
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
                     <!--Image-->
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="55" />
                     <!--Title-->
                     <RowDefinition Height="Auto" />
                     <!--Description-->
@@ -88,8 +82,8 @@
                     Grid.Row="2"
                     Text="{Binding Description}"
                     Style="{StaticResource WtsTextBlockCardDescription}"
-                    Margin="{StaticResource Margin_M_Top}"/>
-                <Grid Grid.Row="3">
+                    Margin="{StaticResource Margin_XS_Top}"/>
+                <Grid Grid.Row="3" Margin="0,0,0,-4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>

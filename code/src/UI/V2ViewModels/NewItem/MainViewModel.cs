@@ -37,7 +37,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
         public ChangesSummaryViewModel ChangesSummary { get; } = new ChangesSummaryViewModel();
 
         public MainViewModel(WizardShell mainWindow)
-            : base(mainWindow)
+            : base(mainWindow, false)
         {
             Instance = this;
         }
@@ -82,6 +82,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             }
 
             SetCanGoBack(Step > 0);
+            SetCanFinish(Step > 0);
             SetCanGoForward(Step < 1);
         }
 
