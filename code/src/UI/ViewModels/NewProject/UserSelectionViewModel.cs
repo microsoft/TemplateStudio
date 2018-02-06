@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -193,7 +194,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return selection;
         }
 
-        private SavedTemplateViewModel Remove(SavedTemplateViewModel savedTemplate)
+        private async Task<SavedTemplateViewModel> RemoveAsync(SavedTemplateViewModel savedTemplate)
         {
             // Look if is there any templates that depends on item
             var dependency = GetSavedTemplateDependency(savedTemplate);
@@ -208,11 +209,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     Features.Remove(savedTemplate);
                 }
 
+                if (savedTemplate.HasErrors)
+                {
+                    await NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation);
+                }
+
                 RaiseCollectionChanged(savedTemplate.TemplateType);
                 var template = MainViewModel.Instance.GetTemplate(savedTemplate.Template);
                 template?.DecreaseSelection();
 
-                TryRemoveHiddenDependencies(savedTemplate);
+                await TryRemoveHiddenDependenciesAsync(savedTemplate);
                 UpdateHasItemsAddedByUser();
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
             }
@@ -220,7 +226,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return dependency;
         }
 
-        private void TryRemoveHiddenDependencies(SavedTemplateViewModel savedTemplate)
+        private async Task TryRemoveHiddenDependenciesAsync(SavedTemplateViewModel savedTemplate)
         {
             foreach (var identity in savedTemplate.Dependencies)
             {
@@ -239,7 +245,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                         // For example, if it's added two different chart pages, when remove the first one SampleDataService can not be removed, but if no saved templates use SampleDataService, it can be removed.
                         if (!Features.Any(sf => sf.Dependencies.Any(d => d.Identity == dependency.Identity)) || Pages.Any(p => p.Dependencies.Any(d => d.Identity == dependency.Identity)))
                         {
-                            Remove(dependency);
+                            await RemoveAsync(dependency);
                         }
                     }
                 }
@@ -260,7 +266,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private async void OnRemove(object sender, SavedTemplateViewModel savedTemplate)
         {
-            var dependency = Remove(savedTemplate);
+            var dependency = await RemoveAsync(savedTemplate);
             if (dependency != null)
             {
                 var message = string.Format(StringRes.NotificationRemoveError_Dependency, savedTemplate.Name, dependency.Name);
