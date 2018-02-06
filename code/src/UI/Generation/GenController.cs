@@ -13,7 +13,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.V2ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI
 {
@@ -99,11 +99,11 @@ namespace Microsoft.Templates.UI
             switch (genInfo.Template.GetTemplateType())
             {
                 case TemplateType.Project:
-                    return string.Format(StringRes.GeneratingProjectMessage, genInfo.Name);
+                    return string.Format(StringRes.StatusBarGeneratingProjectMessage, genInfo.Name);
                 case TemplateType.Page:
-                    return string.Format(StringRes.GeneratingPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                    return string.Format(StringRes.StatusBarGeneratingPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 case TemplateType.Feature:
-                    return string.Format(StringRes.GeneratingFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                    return string.Format(StringRes.StatusBarGeneratingFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 default:
                     return null;
             }
@@ -115,7 +115,7 @@ namespace Microsoft.Templates.UI
             AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
 
             var vm = new ErrorDialogViewModel(ex);
-            var error = new V2Views.Common.ErrorDialog(vm);
+            var error = new Views.Common.ErrorDialog(vm);
 
             GenContext.ToolBox.Shell.ShowModal(error);
         }

@@ -1,0 +1,326 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
+                    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+                    xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
+                    xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+                    xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.TemplateSelectors">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Expander.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Grid.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Hyperlink.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Image.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/ImageEx.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/ListView.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/TextBlock.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/TextBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <converters:StringVisibilityConverter x:Key="StringVisibilityConverter" />
+    <converters:IntegerVisibilityConverter x:Key="IntegerVisibilityConverter" />
+
+    <DataTemplate x:Key="WtsItemTemplateBasicInfo">
+        <Grid Width="162" Height="190">
+            <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
+                <Grid.RowDefinitions>
+                    <!--Image-->
+                    <RowDefinition Height="55" />
+                    <!--Title-->
+                    <RowDefinition Height="Auto" />
+                    <!--Description-->
+                    <RowDefinition Height="*" />
+                    <!--Detail-->
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <controls:ImageEx
+                    Grid.Row="0"
+                    SourcePath="{Binding Icon}"
+                    Style="{StaticResource WtsImageEx}"/>
+                <TextBlock
+                    Grid.Row="1"
+                    Text="{Binding Title}"
+                    Style="{StaticResource WtsTextBlockCardTitle}" />
+                <TextBlock
+                    Grid.Row="2"
+                    Text="{Binding Description}"
+                    Style="{StaticResource WtsTextBlockCardDescription}"
+                    Margin="{StaticResource Margin_XS_Top}"/>
+                <TextBlock Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,-4">
+                    <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
+                        <TextBlock Text="Details" Style="{StaticResource WtsTextBlockHyperlink}" />
+                    </Hyperlink>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsItemTemplatePageFeature">
+        <Grid>
+            <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
+                <Grid.RowDefinitions>
+                    <!--Image-->
+                    <RowDefinition Height="55" />
+                    <!--Title-->
+                    <RowDefinition Height="Auto" />
+                    <!--Description-->
+                    <RowDefinition Height="*" />
+                    <!--Detail / Status-->
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"/>
+                <controls:ImageEx
+                    Grid.Row="0"
+                    SourcePath="{Binding Icon}"
+                    Style="{StaticResource WtsImageEx}"/>
+                <TextBlock
+                    Grid.Row="1"
+                    Text="{Binding Title}"
+                    Style="{StaticResource WtsTextBlockCardTitle}" />
+                <TextBlock
+                    Grid.Row="2"
+                    Text="{Binding Description}"
+                    Style="{StaticResource WtsTextBlockCardDescription}"
+                    Margin="{StaticResource Margin_XS_Top}"/>
+                <Grid Grid.Row="3" Margin="0,0,0,-4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Bottom">
+                        <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
+                            <TextBlock Text="Details" Style="{StaticResource WtsTextBlockHyperlink}" />
+                        </Hyperlink>
+                    </TextBlock>
+                    <!--Multiple Instance added feedback-->
+                    <Grid Grid.Column="1" Visibility="{Binding MultipleInstance, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Grid Width="18" Height="18" VerticalAlignment="Bottom" Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}">
+                            <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}"/>
+                            <TextBlock Text="{Binding Count}" Style="{StaticResource WtsTextBlockCardTemplatesCount}" />
+                        </Grid>
+                    </Grid>
+                    <!--Single Instance added feedback-->
+                    <Grid Grid.Column="1" VerticalAlignment="Bottom" Visibility="{Binding MultipleInstance, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Added" Style="{StaticResource WtsTextBlockCardAddedText}" Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}"/>
+                            <Grid Width="18" Height="18" VerticalAlignment="Bottom" Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}" Margin="{StaticResource Margin_XS_Left}">
+                                <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
+                                <TextBlock Style="{StaticResource WtsTextBlockCardAddedIcon}" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsGroupTemplatePageFeature">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock
+                Visibility="{Binding Name, Converter={StaticResource StringVisibilityConverter}}"
+                Text="{Binding Name}"
+                Margin="{StaticResource Margin_L_LeftRight_M_Top}"
+                Style="{StaticResource WtsTextBlockSectionTitle}" />
+            <ListView
+                Grid.Row="1"
+                Style="{StaticResource WtsListViewMultipleSelection}"
+                ItemsSource="{Binding Items}"
+                ItemTemplate="{StaticResource WtsItemTemplatePageFeature}"
+                SelectedItem="{Binding Selected, Mode=TwoWay}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsNewItemGroupTemplatePageFeature">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock
+                Visibility="{Binding Name, Converter={StaticResource StringVisibilityConverter}}"
+                Text="{Binding Name}"
+                Margin="{StaticResource Margin_L_LeftRight_M_Top}"
+                Style="{StaticResource WtsTextBlockSectionTitle}" />
+            <ListView
+                Grid.Row="1"
+                Style="{StaticResource WtsListViewSingleSelectionWithoutScroll}"
+                ItemsSource="{Binding Items}"
+                ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsComboBoxProjectTypeFramework">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:ImageEx
+                Grid.Column="0"
+                SourcePath="{Binding Icon}"
+                Style="{StaticResource WtsImageExProjectDetails}" />
+            <TextBlock
+                Grid.Column="1"
+                Text="{Binding Title}"
+                Margin="{StaticResource Margin_M_Left}"
+                Style="{StaticResource WtsTextBlockComboBoxItem}" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsItemTemplateDependency">
+        <TextBlock Margin="{StaticResource Margin_S_TopBottom}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}">
+                <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockHyperlink}" />
+            </Hyperlink>
+        </TextBlock>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsItemTemplateLicense">
+        <TextBlock Margin="{StaticResource Margin_XS2_TopBottom}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenCommand}">
+                <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}" />
+            </Hyperlink>
+        </TextBlock>
+    </DataTemplate>
+
+
+    <!--Changes Summary-->
+
+    <DataTemplate x:Key="WtsNewItemFileGroupHeader">
+        <TextBlock Text="{Binding}" Style="{StaticResource WtsTextBlockNewItemFileSubject}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsNewItemFileGroup">
+        <Expander
+            Header="{Binding Title}"
+            Style="{StaticResource WtsExpander}"
+            HeaderTemplate="{StaticResource WtsNewItemFileGroupHeader}">
+            <ListView
+                ItemsSource="{Binding Items}"
+                Style="{StaticResource WtsListViewNewItemFile}" />
+        </Expander>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryConflictingFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusConflictingFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryConflictingStylesFileDetailTemplate">
+        <Grid Background="{Binding NewItemFileStatusConflictingStylesFile, Source={x:Static services:UIStylesService.Instance}}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryCodeViewer">
+        <controls:CodeViewer Item="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryImageViewer">
+        <Image
+            Source="{Binding TempFile}"
+            Style="{StaticResource WtsImageNewItemImageFiles}" />
+    </DataTemplate>
+
+    <templateSelector:FileExtensionTemplateSelector
+        x:Key="fileExtensionTemplateSelector"
+        ImageFileTemplate="{StaticResource WtsDataTemplateChangesSummaryImageViewer}"
+        CodeFileTemplate="{StaticResource WtsDataTemplateChangesSummaryCodeViewer}" />
+
+    <templateSelector:FileStatusTemplateSelector x:Key="FileStatusTemplateSelector">
+        <templateSelector:FileStatusTemplateSelector.ConflictingFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupConflictingFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.ConflictingFileTemplate>
+        <templateSelector:FileStatusTemplateSelector.ConflictingStylesFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupConflictingStylesFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.ConflictingStylesFileTemplate>
+        <templateSelector:FileStatusTemplateSelector.ModifiedFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupModifiedFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.ModifiedFileTemplate>
+        <templateSelector:FileStatusTemplateSelector.NewFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupNewFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.NewFileTemplate>
+        <templateSelector:FileStatusTemplateSelector.UnchangedFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupUnchangedFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.UnchangedFileTemplate>
+        <templateSelector:FileStatusTemplateSelector.WarningFileTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Text="{x:Static res:StringRes.ChangesSummaryGroupWarningFilesDescription}"
+                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+            </DataTemplate>
+        </templateSelector:FileStatusTemplateSelector.WarningFileTemplate>
+    </templateSelector:FileStatusTemplateSelector>
+
+    <DataTemplate x:Key="WtsDataTemplateChangesSummaryDetailTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter
+                    Grid.Column="0"
+                    ContentTemplateSelector="{StaticResource FileStatusTemplateSelector}" />
+                <TextBlock Grid.Column="1">
+                    <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding MoreDetailsCommand}">
+                        <TextBlock
+                            Style="{StaticResource WtsTextBlockHyperlink}"
+                            Text="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}" />
+                    </Hyperlink>
+                </TextBlock>
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                Style="{StaticResource WtsGridChangesSummaryDetailFileHeader}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    Grid.Column="0"
+                    Source="{Binding Icon}"
+                    Margin="{StaticResource Margin_M_Left_S_TopBottom}"
+                    Style="{StaticResource WtsImageNewItemFileIcon}" />
+                <TextBlock
+                    Grid.Column="1"
+                    Text="{Binding Subject}"
+                    Margin="{StaticResource Margin_M_Left_S_TopBottom}"
+                    Style="{StaticResource WtsTextBlockChangesSummaryDetailFileHeader}" />
+            </Grid>
+            <ContentPresenter
+                Grid.Row="2"
+                Content="{Binding}"
+                ContentTemplateSelector="{StaticResource fileExtensionTemplateSelector}"
+                Focusable="False" />
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>

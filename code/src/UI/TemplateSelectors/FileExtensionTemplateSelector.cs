@@ -5,7 +5,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.TemplateSelectors
 {
@@ -17,7 +16,7 @@ namespace Microsoft.Templates.UI.TemplateSelectors
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            if (item is BaseFileViewModel file)
+            if (item is NewItemFileViewModel file)
             {
                 switch (file.FileExtension)
                 {

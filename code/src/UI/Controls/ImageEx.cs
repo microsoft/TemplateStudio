@@ -20,9 +20,51 @@ namespace Microsoft.Templates.UI.Controls
     {
         private const string XamlExtension = ".xaml";
         private Color _updatedColor;
+        private bool _isInitialized;
+        private bool _isLayoutUpdatedAttached;
+
+        public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(ImageEx), new PropertyMetadata(Stretch.Uniform));
+
+        public Stretch Stretch
+        {
+            get => (Stretch)GetValue(StretchProperty);
+            set => SetValue(StretchProperty, value);
+        }
+
+        public static readonly DependencyProperty SourcePathProperty = DependencyProperty.Register("SourcePath", typeof(string), typeof(ImageEx), new PropertyMetadata(null, OnSourcePathPropertyChanged));
+
+        public string SourcePath
+        {
+            get => (string)GetValue(SourcePathProperty);
+            set => SetValue(SourcePathProperty, value);
+        }
+
+        public static readonly DependencyProperty FallbackImageProperty = DependencyProperty.Register("FallbackImage", typeof(ImageSource), typeof(ImageEx), new PropertyMetadata(null));
+
+        public ImageSource FallbackImage
+        {
+            get => (ImageSource)GetValue(FallbackImageProperty);
+            set => SetValue(FallbackImageProperty, value);
+        }
+
+        public ImageEx()
+        {
+            Focusable = false;
+        }
 
         public override void OnApplyTemplate()
         {
+            _isInitialized = true;
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            if (!_isInitialized)
+            {
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(SourcePath))
             {
                 Content = CreateFromBitmap();
@@ -37,7 +79,11 @@ namespace Microsoft.Templates.UI.Controls
             else
             {
                 Content = CreateFromBitmap();
-                LayoutUpdated += ImageEx_LayoutUpdated;
+                if (_isLayoutUpdatedAttached)
+                {
+                    LayoutUpdated += ImageEx_LayoutUpdated;
+                    _isLayoutUpdatedAttached = true;
+                }
             }
         }
 
@@ -109,43 +155,16 @@ namespace Microsoft.Templates.UI.Controls
                                 .ChildrenOfType<Shapes.Shape>(true)
                                 .ToList();
 
-                foreach (var shape in shapes)
+                if (shapes.Any())
                 {
-                    BindingOperations.SetBinding(
-                        shape,
-                        shape.StrokeThickness > 0 ? Shapes.Shape.StrokeProperty : Shapes.Shape.FillProperty,
-                        CreateBinding(this, nameof(Foreground)));
+                    shapes.ForEach(s => BindingOperations.SetBinding(s, Shapes.Shape.StrokeProperty, CreateBinding(this, nameof(Foreground))));
                 }
 
                 return element;
             }
         }
 
-        public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(ImageEx), new PropertyMetadata(Stretch.Uniform));
-
-        public Stretch Stretch
-        {
-            get => (Stretch)GetValue(StretchProperty);
-            set => SetValue(StretchProperty, value);
-        }
-
-        public static readonly DependencyProperty SourcePathProperty = DependencyProperty.Register("SourcePath", typeof(string), typeof(ImageEx), new PropertyMetadata(null));
-
-        public string SourcePath
-        {
-            get => (string)GetValue(SourcePathProperty);
-            set => SetValue(SourcePathProperty, value);
-        }
-
-        public static readonly DependencyProperty FallbackImageProperty = DependencyProperty.Register("FallbackImage", typeof(ImageSource), typeof(ImageEx), new PropertyMetadata(null));
-
-        public ImageSource FallbackImage
-        {
-            get => (ImageSource)GetValue(FallbackImageProperty);
-            set => SetValue(FallbackImageProperty, value);
-        }
-
-        public ImageSource CreateIcon(string path)
+        private ImageSource CreateIcon(string path)
         {
             try
             {
@@ -187,6 +206,15 @@ namespace Microsoft.Templates.UI.Controls
                 Path = new PropertyPath(path),
                 Source = source
             };
+        }
+
+        private static void OnSourcePathPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as ImageEx;
+            if (control != null)
+            {
+                control.Initialize();
+            }
         }
     }
 }

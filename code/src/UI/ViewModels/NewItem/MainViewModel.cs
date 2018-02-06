@@ -2,273 +2,173 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.Globalization;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows;
-
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.Views.NewItem;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
-    public enum NewItemStep
-    {
-        ItemConfiguration = 0,
-        ChangesSummary = 1
-    }
-
     public class MainViewModel : BaseMainViewModel
     {
-        private readonly string _language;
+        private NewItemGenerationResult _output;
 
-        public static MainViewModel Current { get; private set; }
-
-        public MainView MainView { get; private set; }
-
-        // Configuration
-        public TemplateType ConfigTemplateType { get; private set; }
+        public TemplateType TemplateType { get; set; }
 
         public string ConfigFramework { get; private set; }
 
         public string ConfigProjectType { get; private set; }
 
-        public NewItemSetupViewModel NewItemSetup { get; private set; } = new NewItemSetupViewModel();
+        public static MainViewModel Instance { get; private set; }
 
-        public ChangesSummaryViewModel ChangesSummary { get; private set; } = new ChangesSummaryViewModel();
+        public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
 
-        public MainViewModel(string language)
-            : base()
+        public ChangesSummaryViewModel ChangesSummary { get; } = new ChangesSummaryViewModel();
+
+        public MainViewModel(WizardShell mainWindow)
+            : base(mainWindow, false)
         {
-            _language = language;
-            Current = this;
+            Instance = this;
         }
 
-        public override void SetView(Window window)
+        public async Task InitializeAsync(TemplateType templateType, string language)
         {
-            base.SetView(window);
-            MainView = window as MainView;
+            TemplateType = templateType;
+            var stringResource = templateType == TemplateType.Page ? StringRes.NewItemTitlePage : StringRes.NewItemTitleFeature;
+            WizardStatus.Title = stringResource;
+            await InitializeAsync(language);
         }
 
-        public async Task InitializeAsync(TemplateType templateType)
+        protected override async Task<bool> IsStepAvailableAsync(int step)
         {
-            ConfigTemplateType = templateType;
-            SetNewItemSetupTitle();
-            await BaseInitializeAsync();
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
-        private void SetProjectConfigInfo()
-        {
-            var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
-            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
+            if (step == 1)
             {
-                WizardStatus.InfoShapeVisibility = Visibility.Visible;
-                ProjectConfigurationWindow projectConfig = new ProjectConfigurationWindow(MainView);
-
-                if (projectConfig.ShowDialog().Value)
+                _output = await CleanupAndGenerateNewItemAsync();
+                if (!_output.HasChangesToApply)
                 {
-                    configInfo.ProjectType = projectConfig.ViewModel.SelectedProjectType.Name;
-                    configInfo.Framework = projectConfig.ViewModel.SelectedFramework.Name;
-                    WizardStatus.InfoShapeVisibility = Visibility.Collapsed;
+                    var message = TemplateType == TemplateType.Page ? StringRes.NewItemHasNoChangesPage : StringRes.NewItemHasNoChangesFeature;
+                    message = string.Format(message, TemplateSelection.Name);
+                    var notification = Notification.Warning(message, Category.RightClickItemHasNoChanges);
+                    NotificationsControl.Instance.AddNotificationAsync(notification).FireAndForget();
                 }
-                else
-                {
-                    Cancel();
-                }
+
+                return _output.HasChangesToApply;
             }
 
-            ConfigFramework = configInfo.Framework;
-            ConfigProjectType = configInfo.ProjectType;
+            return await base.IsStepAvailableAsync(step);
         }
 
-        public void SetNewItemSetupTitle()
+        protected override void UpdateStep()
         {
-            if (ConfigTemplateType == TemplateType.Page)
+            base.UpdateStep();
+            if (Step == 0)
             {
-                WizardStatus.WizardTitle = StringRes.NewItemTitlePage;
+                NavigationService.NavigateSecondaryFrame(new TemplateSelectionPage());
             }
-            else if (ConfigTemplateType == TemplateType.Feature)
+            else if (Step == 1)
             {
-                WizardStatus.WizardTitle = StringRes.NewItemTitleFeature;
+                NavigationService.NavigateSecondaryFrame(new ChangesSummaryPage(_output));
             }
-        }
 
-        private string GetLocalizedTemplateTypeName(TemplateType templateType)
-        {
-            switch (templateType)
-            {
-                case TemplateType.Feature:
-                    return StringRes.TemplateTypeFeature;
-                case TemplateType.Page:
-                    return StringRes.TemplateTypePage;
-                case TemplateType.Project:
-                    return StringRes.TemplateTypeProjectType;
-                default:
-                    return templateType.ToString();
-            }
-        }
-
-        public void SetChangesSummaryTitle()
-        {
-            var template = GetActiveTemplate();
-
-            switch (template.TemplateType)
-            {
-                case TemplateType.Page:
-                    WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitlePage, template.IsItemNameEditable ? NewItemSetup.ItemName : template.Name);
-                    break;
-                case TemplateType.Feature:
-                    WizardStatus.WizardTitle = string.Format(StringRes.ChangesSummaryTitleFeature, template.IsItemNameEditable ? NewItemSetup.ItemName : template.Name);
-                    break;
-            }
-        }
-
-        protected override void OnCancel()
-        {
-            Cancel();
-        }
-
-        private void Cancel()
-        {
-            MainView.DialogResult = false;
-        }
-
-        protected override void OnClose()
-        {
-            MainView.DialogResult = true;
-        }
-
-        protected override void OnGoBack()
-        {
-            base.OnGoBack();
-            NewItemSetup.Initialize(false);
-            WizardStatus.HasOverlayBox = true;
-            ChangesSummary.ResetSelection();
-            SetNewItemSetupTitle();
-            CleanStatus();
-        }
-
-        protected override void OnNext()
-        {
-            if (CurrentStep == 0)
-            {
-                UpdateCanGoForward(false);
-
-                SafeThreading.JoinableTaskFactory.Run(async () =>
-                {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    var output = await CleanupAndGenerateNewItemAsync();
-                    if (output.HasChangesToApply)
-                    {
-                        base.OnNext();
-                        await EnsureCodeViewerInitializedAsync();
-                        WizardStatus.HasOverlayBox = false;
-                        NewItemSetup.EditionVisibility = Visibility.Collapsed;
-                        SetChangesSummaryTitle();
-                        NavigationService.Navigate(new ChangesSummaryView(output));
-                    }
-                    else
-                    {
-                        UpdateCanGoForward(true);
-                        switch (ConfigTemplateType)
-                        {
-                            case TemplateType.Page:
-                                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.NewItemHasNoChangesPage, NewItemSetup.ItemName), true, 5));
-                                break;
-                            case TemplateType.Feature:
-                                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.NewItemHasNoChangesFeature, NewItemSetup.ItemName), true, 5));
-                                break;
-                        }
-                    }
-                });
-            }
-        }
-
-        private async Task EnsureCodeViewerInitializedAsync()
-        {
-            WizardStatus.IsLoading = true;
-            await Task.Delay(300);
+            SetCanGoBack(Step > 0);
+            SetCanFinish(Step > 0);
+            SetCanGoForward(Step < 1);
         }
 
         private async Task<NewItemGenerationResult> CleanupAndGenerateNewItemAsync()
         {
-            MainView.Result = CreateUserSelection();
             NewItemGenController.Instance.CleanupTempGeneration();
-            await NewItemGenController.Instance.GenerateNewItemAsync(ConfigTemplateType, MainView.Result);
-
-            var output = NewItemGenController.Instance.CompareOutputAndProject();
-            return output;
+            var userSelection = CreateUserSelection();
+            await NewItemGenController.Instance.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
+            return NewItemGenController.Instance.CompareOutputAndProject();
         }
 
-        protected override void OnFinish(string parameter)
+        private UserSelection CreateUserSelection()
         {
-            MainView.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
-            base.OnFinish(parameter);
-        }
-
-        public TemplateInfoViewModel GetActiveTemplate()
-        {
-            var activeGroup = NewItemSetup.TemplateGroups.FirstOrDefault(gr => gr.SelectedItem != null);
-            if (activeGroup != null)
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, Language) { HomeName = string.Empty };
+            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework);
+            userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
+            foreach (var dependencyTemplate in dependencies)
             {
-                return activeGroup.SelectedItem as TemplateInfoViewModel;
-            }
-
-            return null;
-        }
-
-        protected override async Task OnTemplatesAvailableAsync()
-        {
-            SetProjectConfigInfo();
-            NewItemSetup.Initialize(true);
-
-            await Task.CompletedTask;
-        }
-
-        protected override async Task OnNewTemplatesAvailableAsync()
-        {
-            NavigationService.Navigate(new NewItemSetupView());
-            NewItemSetup.Initialize(true);
-
-            await Task.CompletedTask;
-        }
-
-        public UserSelection CreateUserSelection()
-        {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, _language)
-            {
-                HomeName = string.Empty
-            };
-
-            var template = GetActiveTemplate();
-            if (template != null)
-            {
-                var dependencies = GenComposer.GetAllDependencies(template.Template, ConfigFramework);
-
-                userSelection.Pages.Clear();
-                userSelection.Features.Clear();
-
-                AddTemplate(userSelection, NewItemSetup.ItemName, template.Template, ConfigTemplateType);
-
-                foreach (var dependencyTemplate in dependencies)
-                {
-                    AddTemplate(userSelection, dependencyTemplate.GetDefaultName(), dependencyTemplate, dependencyTemplate.GetTemplateType());
-                }
+                userSelection.Add((dependencyTemplate.GetDefaultName(), dependencyTemplate));
             }
 
             return userSelection;
         }
 
-        private void AddTemplate(UserSelection userSelection, string name, ITemplateInfo template, TemplateType templateType)
+        protected override void OnCancel() => WizardShell.Current.Close();
+
+        protected override void OnFinish()
         {
-            userSelection.Add((name, template));
+            WizardShell.Current.Result = GetUserSelection();
+            WizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
+            base.OnFinish();
         }
+
+        private UserSelection GetUserSelection()
+        {
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, Language);
+            userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
+            return userSelection;
+        }
+
+        protected override Task OnTemplatesAvailableAsync()
+        {
+            SetProjectConfigInfo();
+            TemplateSelection.LoadData(TemplateType, ConfigFramework);
+            WizardStatus.IsLoading = false;
+            return Task.CompletedTask;
+        }
+
+        private void SetProjectConfigInfo()
+        {
+            var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
+            {
+                var vm = new ProjectConfigurationViewModel();
+                ProjectConfigurationDialog projectConfig = new ProjectConfigurationDialog(vm);
+                projectConfig.ShowDialog();
+
+                if (vm.Result == DialogResult.Accept)
+                {
+                    configInfo.ProjectType = vm.SelectedProjectType.Name;
+                    configInfo.Framework = vm.SelectedFramework.Name;
+                    ProjectConfigInfo.SaveProjectConfiguration(configInfo.ProjectType, configInfo.Framework);
+                    ConfigFramework = configInfo.Framework;
+                    ConfigProjectType = configInfo.ProjectType;
+                }
+                else
+                {
+                    OnCancel();
+                }
+            }
+            else
+            {
+                ConfigFramework = configInfo.Framework;
+                ConfigProjectType = configInfo.ProjectType;
+            }
+        }
+
+        protected override IEnumerable<Step> GetSteps()
+        {
+            yield return new Step(0, StringRes.NewItemStepOne, true, true);
+            yield return new Step(1, StringRes.NewItemStepTwo);
+        }
+
+        public override void ProcessItem(object item)
+        {
+            if (item is TemplateInfoViewModel template)
+            {
+                TemplateSelection.AddTemplate(template);
+            }
+        }
+
+        public override bool IsSelectionEnabled(MetadataType metadataType) => true;
     }
 }

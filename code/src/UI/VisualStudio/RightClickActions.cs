@@ -2,19 +2,16 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.V2Services;
+using Microsoft.Templates.UI.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI.VisualStudio
@@ -57,12 +54,12 @@ namespace Microsoft.Templates.UI.VisualStudio
                     if (userSelection != null)
                     {
                         NewItemGenController.Instance.FinishGeneration(userSelection);
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddPageSuccessStatusMsg, userSelection.Pages[0].name));
+                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                     }
                 }
                 catch (WizardBackoutException)
                 {
-                    _shell.ShowStatusBarMessage(StringRes.NewItemAddPageCancelled);
+                    _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddPageCancelled);
                 }
             }
         }
@@ -79,12 +76,12 @@ namespace Microsoft.Templates.UI.VisualStudio
                     if (userSelection != null)
                     {
                         NewItemGenController.Instance.FinishGeneration(userSelection);
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddFeatureSuccessStatusMsg, userSelection.Features[0].name));
+                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                     }
                 }
                 catch (WizardBackoutException)
                 {
-                    _shell.ShowStatusBarMessage(StringRes.NewItemAddFeatureCancelled);
+                    _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddFeatureCancelled);
                 }
             }
         }
