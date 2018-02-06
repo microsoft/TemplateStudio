@@ -379,6 +379,7 @@
     <Compile Include="V2Extensions\FocusExtension.cs" />
     <Compile Include="V2Extensions\ListViewExtensions.cs" />
     <Compile Include="V2Extensions\SyncStatusEventArgsExtensions.cs" />
+    <Compile Include="V2Extensions\TextBlockExtensions.cs" />
     <Compile Include="V2Extensions\TextBoxExtensions.cs" />
     <Compile Include="V2Extensions\ValidationResultExtensions.cs" />
     <Compile Include="V2Resources\StringRes.Designer.cs">
