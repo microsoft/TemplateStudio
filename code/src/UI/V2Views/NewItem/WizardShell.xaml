@@ -7,6 +7,8 @@
     xmlns:strings="clr-namespace:Microsoft.Templates.UI.V2Resources"
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.V2Controls"
     WindowStartupLocation="CenterScreen"
+    MouseLeftButtonDown="OnMouseLeftButtonDown"
+    WindowStyle="None"
     MinWidth="800"
     MinHeight="400"
     Width="{Binding WizardStatus.Width}"
