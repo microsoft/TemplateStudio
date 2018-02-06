@@ -24,13 +24,13 @@ namespace WtsTool
                     if (!string.IsNullOrWhiteSpace(certThumbprint))
                     {
                         output.WriteCommandText($"The template package will be signed using the cert matching {certThumbprint} as thumbprint.");
-                        await TemplatePackage.PackAndSignAsync(inputPath, outfile, certThumbprint, "text/plain");
+                        await TemplatePackage.PackAndSignAsync(inputPath, outfile, certThumbprint, "text/plain").ConfigureAwait(false);
                         output.WriteCommandText($"Templates package file '{outfile}' successfully created.");
                     }
                     else
                     {
                         output.WriteCommandText($"No cert thumbprint provided, the template package will not be signed.");
-                        await TemplatePackage.PackAsync(inputPath, outfile, "text/plain");
+                        await TemplatePackage.PackAsync(inputPath, outfile, "text/plain").ConfigureAwait(false);
                     }
 
                     output.WriteCommandText($"Templates package file '{outfile}' successfully created.");
@@ -110,7 +110,7 @@ namespace WtsTool
                     Fs.EnsureFolder(destinationDir);
 
                     output.WriteCommandHeader($"Extracting {inputFile} to {destinationDir}...");
-                    await TemplatePackage.ExtractAsync(inputFile, destinationDir, true);
+                    await TemplatePackage.ExtractAsync(inputFile, destinationDir, true).ConfigureAwait(false);
                 }
                 else
                 {
