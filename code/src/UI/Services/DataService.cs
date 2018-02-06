@@ -4,11 +4,9 @@
 
 using System.Collections.ObjectModel;
 using System.Linq;
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -19,7 +17,10 @@ namespace Microsoft.Templates.UI.Services
             projectTypes.Clear();
             if (GenContext.ToolBox.Repo.GetProjectTypes().Any())
             {
-                var data = GenContext.ToolBox.Repo.GetProjectTypes().Select(m => new MetadataInfoViewModel(m)).ToList();
+                var data = GenContext.ToolBox.Repo.GetProjectTypes()
+                                                .Select(m => new MetadataInfoViewModel(m))
+                                                .OrderBy(pt => pt.Order)
+                                                .ToList();
 
                 foreach (var projectType in data.Where(p => !string.IsNullOrEmpty(p.Description)))
                 {
@@ -40,6 +41,7 @@ namespace Microsoft.Templates.UI.Services
             var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
                                                                 .Where(m => projectFrameworks.Contains(m.Name))
                                                                 .Select(m => new MetadataInfoViewModel(m))
+                                                                .OrderBy(f => f.Order)
                                                                 .ToList();
 
             frameworks.Clear();
@@ -52,13 +54,20 @@ namespace Microsoft.Templates.UI.Services
             return frameworks.Any();
         }
 
-        public static int LoadTemplatesGroups(ObservableCollection<ItemsGroupViewModel<TemplateInfoViewModel>> templatesGroups, TemplateType templateType, string frameworkName)
+        public static int LoadTemplateGroups(ObservableCollection<TemplateGroupViewModel> templateGroups, TemplateType templateType, string frameworkName)
         {
-            if (!templatesGroups.Any())
+            if (!templateGroups.Any())
             {
-                var templates = GenContext.ToolBox.Repo.Get(t => t.GetTemplateType() == templateType && t.GetFrameworkList().Contains(frameworkName) && !t.GetIsHidden()).Select(t => new TemplateInfoViewModel(t, GenComposer.GetAllDependencies(t, frameworkName)));
-                var groups = templates.GroupBy(t => t.Group).Select(gr => new ItemsGroupViewModel<TemplateInfoViewModel>(gr.Key as string, gr.ToList().OrderBy(t => t.Order))).OrderBy(gr => gr.Name);
-                templatesGroups.AddRange(groups);
+                var templates = GenContext.ToolBox.Repo.Get(t =>
+                                    t.GetTemplateType() == templateType &&
+                                    t.GetFrameworkList().Contains(frameworkName) &&
+                                    !t.GetIsHidden())
+                                    .Select(t => new TemplateInfoViewModel(t, frameworkName));
+
+                var groups = templates.GroupBy(t => t.Group)
+                    .Select(gr => new TemplateGroupViewModel(gr))
+                    .OrderBy(gr => gr.Name);
+                templateGroups.AddRange(groups);
                 return templates.Count();
             }
 

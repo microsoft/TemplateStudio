@@ -50,14 +50,9 @@ namespace Microsoft.Templates.Core
 
         public async Task SynchronizeAsync(bool force = false)
         {
+            await Sync.GetNewContentAsync();
             await Sync.EnsureContentAsync(force);
             await Sync.RefreshTemplateCacheAsync(force);
-            await Sync.CheckForNewContentAsync();
-        }
-
-        public async Task CheckForUpdatesAsync()
-        {
-            await Sync.CheckForUpdatesAsync();
         }
 
         public async Task RefreshAsync(bool force = false)
@@ -139,7 +134,7 @@ namespace Microsoft.Templates.Core
 
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
-            metadata.ForEach(m => m.MetadataType = type);
+            metadata.ForEach(m => m.MetadataType = type == "projectTypes" ? MetadataType.ProjectType : MetadataType.Framework);
             metadata.ForEach(m => SetLicenseTerms(m));
 
             return metadata.OrderBy(m => m.Order);

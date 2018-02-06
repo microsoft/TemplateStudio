@@ -3,217 +3,227 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
+using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
-        private readonly string _language;
-        private bool _needRestartConfiguration = false;
+        private RelayCommand _refreshTemplatesCacheCommand;
 
-        public static MainViewModel Current { get; private set; }
+        private TemplateInfoViewModel _selectedTemplate;
 
-        public MainView MainView { get; private set; }
+        public static MainViewModel Instance { get; private set; }
 
-        public ProjectSetupViewModel ProjectSetup { get; } = new ProjectSetupViewModel();
+        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(() => Instance.IsSelectionEnabled(MetadataType.ProjectType));
 
-        public ProjectTemplatesViewModel ProjectTemplates { get; } = new ProjectTemplatesViewModel();
+        public FrameworkViewModel Framework { get; } = new FrameworkViewModel(() => Instance.IsSelectionEnabled(MetadataType.Framework));
 
-        private bool _hasLicenses;
+        public AddPagesViewModel AddPages { get; } = new AddPagesViewModel();
 
-        public bool HasLicenses
+        public AddFeaturesViewModel AddFeatures { get; } = new AddFeaturesViewModel();
+
+        public UserSelectionViewModel UserSelection { get; } = new UserSelectionViewModel();
+
+        public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
+             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
+
+        public Visibility RefreshTemplateCacheVisibility
         {
-            get => _hasLicenses;
-            private set => SetProperty(ref _hasLicenses, value);
-        }
-
-        public ObservableCollection<SummaryLicenseViewModel> Licenses { get; } = new ObservableCollection<SummaryLicenseViewModel>();
-
-        public MainViewModel(string language)
-            : base()
-        {
-            _language = language;
-            Licenses.CollectionChanged += (s, o) => { OnPropertyChanged(nameof(Licenses)); };
-            Current = this;
-        }
-
-        public override void SetView(Window mainView)
-        {
-            base.SetView(mainView);
-            MainView = mainView as MainView;
-        }
-
-        public async Task InitializeAsync(Frame stepFrame, StackPanel summaryPageGroups)
-        {
-            WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
-            NavigationService.Initialize(stepFrame, new ProjectSetupView());
-            OrderingService.Panel = summaryPageGroups;
-            await BaseInitializeAsync();
-        }
-
-        internal void RebuildLicenses()
-        {
-            LicensesService.RebuildLicenses(Licenses, _language);
-            HasLicenses = Licenses.Any();
-        }
-
-        public void AlertProjectSetupChanged()
-        {
-            if (CheckProjectSetupChanged())
+            get
             {
-                WizardStatus.SetStatus(StatusViewModel.Warning(string.Format(StringRes.ResetSelection, ProjectTemplates.ContextProjectType.DisplayName, ProjectTemplates.ContextFramework.DisplayName), true));
-                _needRestartConfiguration = true;
+#if DEBUG
+                return Visibility.Visible;
+#else
+                return Visibility.Hidden;
+#endif
+            }
+        }
+
+        public MainViewModel(Window mainView)
+            : base(mainView)
+        {
+            Instance = this;
+            ValidationService.Initialize(UserSelection.GetNames);
+        }
+
+        public override async Task InitializeAsync(string language)
+        {
+            WizardStatus.Title = $" ({GenContext.Current.ProjectName})";
+            await base.InitializeAsync(language);
+        }
+
+        protected override void OnCancel() => WizardShell.Current.Close();
+
+        protected override void UpdateStep()
+        {
+            base.UpdateStep();
+            Page destinationPage = null;
+            switch (Step)
+            {
+                case 0:
+                    destinationPage = new ProjectTypePage();
+                    break;
+                case 1:
+                    destinationPage = new FrameworkPage();
+                    break;
+                case 2:
+                    destinationPage = new AddPagesPage();
+                    break;
+                case 3:
+                    destinationPage = new AddFeaturesPage();
+                    break;
+            }
+
+            if (destinationPage != null)
+            {
+                NavigationService.NavigateSecondaryFrame(destinationPage);
+                SetCanGoBack(Step > 0);
+                SetCanGoForward(Step < 3);
+            }
+        }
+
+        protected override void OnFinish()
+        {
+            WizardShell.Current.Result = UserSelection.GetUserSelection();
+            base.OnFinish();
+        }
+
+        public override bool IsSelectionEnabled(MetadataType metadataType)
+        {
+            bool result = false;
+            if (!UserSelection.HasItemsAddedByUser)
+            {
+                result = true;
             }
             else
             {
-                CleanStatus();
-                _needRestartConfiguration = false;
-            }
-        }
+                var vm = new QuestionDialogViewModel(metadataType);
+                var questionDialog = new QuestionDialogWindow(vm);
+                questionDialog.ShowDialog();
 
-        public void TryCloseEdition(TextBoxEx textBox, Button button)
-        {
-            if (textBox == null)
-            {
-                return;
-            }
-
-            if (button?.Tag != null && button.Tag.ToString() == "AllowCloseEdition")
-            {
-                return;
-            }
-
-            if (textBox.Tag is TemplateInfoViewModel templateInfo)
-            {
-                templateInfo.CloseEdition();
-            }
-
-            if (textBox.Tag is SavedTemplateViewModel summaryItem)
-            {
-                ProjectTemplates.SavedPages.ToList().ForEach(spg => spg.ToList().ForEach(p =>
+                if (vm.Result == DialogResult.Accept)
                 {
-                    if (p.IsEditionEnabled)
-                    {
-                        p.ConfirmRenameCommand.Execute(p);
-                        p.Close();
-                    }
-                }));
-
-                ProjectTemplates?.SavedFeatures?.ToList()?.ForEach(f =>
-                {
-                    if (f.IsEditionEnabled)
-                    {
-                        f.ConfirmRenameCommand.Execute(f);
-                        f.Close();
-                    }
-                });
-            }
-        }
-
-        protected override void OnCancel()
-        {
-            MainView.DialogResult = false;
-            MainView.Result = null;
-            MainView.Close();
-        }
-
-        protected override void OnClose()
-        {
-            MainView.DialogResult = true;
-            MainView.Result = null;
-            MainView.Close();
-        }
-
-        protected override void OnNext()
-        {
-            base.OnNext();
-            if (CurrentStep == 1)
-            {
-                if (_needRestartConfiguration)
-                {
-                    ResetSelection();
-                    OrderingService.Panel.Children.Clear();
-                    CleanStatus();
+                    UserSelection.ResetUserSelection();
+                    result = true;
                 }
-
-                WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
-                SafeThreading.JoinableTaskFactory.Run(async () =>
+                else
                 {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    await ProjectTemplates.InitializeAsync();
-                });
-
-                NavigationService.Navigate(new ProjectPagesView());
+                    result = false;
+                }
             }
-            else if (CurrentStep == 2)
+
+            if (result == true)
             {
-                WizardStatus.WizardTitle = StringRes.ProjectFeaturesTitle;
-                NavigationService.Navigate(new ProjectFeaturesView());
-                UpdateCanFinish(true);
+                AddPages.ResetUserSelection();
+                AddFeatures.ResetTemplatesCount();
             }
+
+            return result;
         }
 
-        protected override void OnGoBack()
+        public TemplateInfoViewModel GetTemplate(ITemplateInfo templateInfo)
         {
-            base.OnGoBack();
-            if (CurrentStep == 0)
+            var groups = templateInfo.GetTemplateType() == TemplateType.Page ? AddPages.Groups : AddFeatures.Groups;
+            foreach (var group in groups)
             {
-                WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
-                _needRestartConfiguration = false;
+                var template = group.GetTemplate(templateInfo);
+                if (template != null)
+                {
+                    return template;
+                }
             }
-            else if (CurrentStep == 1)
+
+            return null;
+        }
+
+        private void AddTemplate(TemplateInfoViewModel selectedTemplate)
+        {
+            if (selectedTemplate.MultipleInstance || !UserSelection.IsTemplateAdded(selectedTemplate))
             {
-                WizardStatus.WizardTitle = StringRes.ProjectPagesTitle;
+                UserSelection.Add(TemplateOrigin.UserSelection, selectedTemplate);
             }
         }
 
-        protected override void OnFinish(string parameter)
+        protected override Task OnTemplatesAvailableAsync()
         {
-            if (CurrentStep == 2)
+            ProjectType.LoadData();
+            return Task.CompletedTask;
+        }
+
+        protected override IEnumerable<Step> GetSteps()
+        {
+            yield return new Step(0, StringRes.NewProjectStepOne, true, true);
+            yield return new Step(1, StringRes.NewProjectStepTwo);
+            yield return new Step(2, StringRes.NewProjectStepThree);
+            yield return new Step(3, StringRes.NewProjectStepFour);
+        }
+
+        public override void ProcessItem(object item)
+        {
+            if (item is MetadataInfoViewModel metadata)
             {
-                MainView.Result = UserSelectionService.CreateUserSelection(_language);
-                base.OnFinish(parameter);
+                if (metadata.MetadataType == MetadataType.ProjectType)
+                {
+                    if (ProjectType.Select(metadata))
+                    {
+                        Framework.LoadData(metadata.Name);
+                        EventService.Instance.RaiseOnProjectTypeChange(metadata);
+                    }
+                }
+                else if (metadata.MetadataType == MetadataType.Framework)
+                {
+                    if (Framework.Select(metadata))
+                    {
+                        AddPages.LoadData(metadata.Name);
+                        AddFeatures.LoadData(metadata.Name);
+                        UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
+                        WizardStatus.IsLoading = false;
+                        EventService.Instance.RaiseOnFrameworkChange(metadata);
+                    }
+                }
+            }
+            else if (item is TemplateInfoViewModel template)
+            {
+                _selectedTemplate = template;
+                AddTemplate(template);
             }
         }
 
-        protected override async Task OnTemplatesAvailableAsync() => await ProjectSetup.InitializeAsync();
-
-        protected override async Task OnNewTemplatesAvailableAsync()
+        protected async Task OnRefreshTemplatesAsync()
         {
-            ResetSelection();
-            OrderingService.Panel.Children.Clear();
-            NavigationService.Navigate(new ProjectSetupView());
-            WizardStatus.WizardTitle = StringRes.ProjectSetupTitle;
-            await ProjectSetup.InitializeAsync(true);
-        }
+            try
+            {
+                WizardStatus.IsLoading = true;
+                UserSelection.ResetUserSelection();
+                await GenContext.ToolBox.Repo.RefreshAsync(true);
+            }
+            catch (Exception ex)
+            {
+                await NotificationsControl.Instance.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
 
-        private bool CheckProjectSetupChanged()
-        {
-            bool hasTemplatesAdded = ProjectTemplates.SavedPages.Any() || ProjectTemplates.SavedFeatures.Any();
-            bool frameworkChanged = ProjectTemplates.ContextFramework?.Name != ProjectSetup.SelectedFramework.Name;
-            var projectTypeChanged = ProjectTemplates.ContextProjectType?.Name != ProjectSetup.SelectedProjectType.Name;
-
-            return hasTemplatesAdded && (frameworkChanged || projectTypeChanged);
-        }
-
-        public void ResetSelection()
-        {
-            ProjectTemplates.SavedPages.Clear();
-            ProjectTemplates.SavedFeatures.Clear();
-            ProjectTemplates.PagesGroups.Clear();
-            ProjectTemplates.FeatureGroups.Clear();
+                await AppHealth.Current.Error.TrackAsync(ex.ToString());
+                await AppHealth.Current.Exception.TrackAsync(ex);
+            }
+            finally
+            {
+                WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
+            }
         }
     }
 }

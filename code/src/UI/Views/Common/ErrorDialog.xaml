@@ -3,64 +3,63 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
-        mc:Ignorable="d"
-        Icon="{x:Null}"
-        Height="{Binding HostHeight, Mode=TwoWay}"
-        Width="500"
+        xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources"
+        xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
         ResizeMode="NoResize"
-        ShowInTaskbar="False"
-        ShowActivated="True"
-        WindowState="Normal"
-        WindowStyle="None" 
-        WindowStartupLocation="CenterOwner"
-        BorderThickness="1">
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        Title="{x:Static strings:StringRes.WindowsTemplateStudio}"
+        mc:Ignorable="d"
+        MinHeight="200" MaxHeight="500" Width="500">
 
-    <Window.BorderBrush>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="White" Offset="0.0" />
-            <GradientStop Color="LightGray" Offset="0.25" />
-            <GradientStop Color="LightGray" Offset="0.75" />
-            <GradientStop Color="LightGray" Offset="1.0" />
-        </LinearGradientBrush>
-    </Window.BorderBrush>
-    
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/UIStyles.xaml" />
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         </ResourceDictionary>
     </Window.Resources>
-
-    <Border>
-        <Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Margin="{StaticResource Margin_M2_LeftTopRightBottom}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid Style="{StaticResource ErrorGridTitleStyle}">
-                <TextBlock Text="{x:Static res:StringRes.ErrorDialogTitle}" Style="{StaticResource TextTitleStyle}" Margin="{StaticResource Margin_XL_LeftRight_M_TopBottom}" />
-            </Grid>
-            <TextBlock Grid.Row="1" Text="{Binding Message}" Margin="{StaticResource Margin_XL_LeftTopRight}" TextWrapping="Wrap" />
-            <ScrollViewer Grid.Row="2" Visibility="{Binding MessageDetailVisibility}">
-                <TextBox Text="{Binding MessageDetail}" Style="{StaticResource ErrorDetailsStyle}" Margin="{StaticResource Margin_XL_All}"/>
-            </ScrollViewer>
-            <Grid Grid.Row="3" Style="{StaticResource GridBottomBarStyle}">
-                <Grid Margin="{StaticResource Margin_M_All}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                        <Button Style="{StaticResource MoreInfoButtonStyle}" Command="{Binding ToggleDetailVisibleCommand}" />
-                        <TextBlock Text="{x:Static res:StringRes.ErrorViewProblemDetails}" Margin="{StaticResource Margin_M_Left}" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <Button Grid.Column="1" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding CloseCommand}" Style="{StaticResource ButtonNavigationStyle}"/>
-                </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource WtsDialogErrorIcon}" Margin="{StaticResource Margin_M_Right}"/>
+                <TextBlock Text="{Binding Title}" Grid.Column="1"
+                        Style="{StaticResource WtsTextBlockDialogTitle}"/>
+            <TextBlock Grid.Row="1" Grid.Column="1"
+                        Text="{Binding Description}"
+                        Style="{StaticResource WtsTextBlockDialogDescription}"
+                        Margin="{StaticResource Margin_XS_Top}"/>
+            <TextBox Grid.Row="2" Grid.ColumnSpan="2"
+                     Text="{Binding ErrorStackTrace}"
+                     Visibility="{Binding ShowDetails, Converter={StaticResource BoolToVisibilityConverter}}"
+                     Margin="{StaticResource Margin_L_Top}"
+                     Style="{StaticResource WtsTextBlockErrorDialogErrorStackTrace}"/>
+        </Grid>
+        <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
+            <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
+                <CheckBox
+                    IsChecked="{Binding ShowDetails}"
+                    Content="{x:Static strings:StringRes.ErrorDialogShowDetails}"
+                    Style="{StaticResource WtsCheckBoxStyle}" />
+                <Button
+                    Style="{StaticResource WtsButtonFinish}"
+                    Content="{x:Static strings:StringRes.ButtonOk}"
+                    Command="{Binding AcceptCommand}"
+                    HorizontalAlignment="Right"/>
             </Grid>
         </Grid>
-    </Border>
+    </Grid>
 </Window>

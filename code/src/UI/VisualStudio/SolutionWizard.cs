@@ -5,15 +5,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
 using EnvDTE;
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.TemplateWizard;
 
@@ -52,7 +51,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), language);
 #endif
-                }
+                UIStylesService.Instance.Initialize(new VSStyleValuesProvider());
+            }
         }
 
         public void BeforeOpeningFile(ProjectItem projectItem)
@@ -69,21 +69,21 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void RunFinished()
         {
-            AppHealth.Current.Info.TrackAsync(StringRes.SolutionWizardRunFinishedMessage).FireAndForget();
+            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarRunFinished).FireAndForget();
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
             });
 
-            AppHealth.Current.Info.TrackAsync(StringRes.GenerationFinishedString).FireAndForget();
+            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
 
             PostGenerationActions();
         }
 
         private static void PostGenerationActions()
         {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
+            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusBarRestoring);
             GenContext.ToolBox.Shell.RestorePackages();
 
             GenContext.ToolBox.Shell.CollapseSolutionItems();
@@ -106,6 +106,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 var projectDirectory = replacementsDictionary["$destinationdirectory$"];
                 var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
+
+                if (GenContext.ToolBox.Repo.SyncInProgress)
+                {
+                    GenContext.ToolBox.Repo.Sync.CleanUp();
+                }
 
                 CleanupDirectories(projectDirectory, solutionDirectory);
 

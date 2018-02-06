@@ -35,7 +35,7 @@ namespace Microsoft.Templates.UI
 
                 if (template == null)
                 {
-                    LogOrAlertException(string.Format(StringRes.ExceptionLayoutNotFound, item.TemplateGroupIdentity, framework));
+                    LogOrAlertException(string.Format(StringRes.ErrorLayoutNotFound, item.TemplateGroupIdentity, framework));
                 }
                 else
                 {
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.UI
 
                     if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
                     {
-                        LogOrAlertException(string.Format(StringRes.ExceptionLayoutType, template.Identity));
+                        LogOrAlertException(string.Format(StringRes.ErrorLayoutType, template.Identity));
                     }
                     else
                     {
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.UI
 
                 if (dependencyTemplate == null)
                 {
-                    LogOrAlertException(string.Format(StringRes.ExceptionDependencyNotFound, dependency, framework));
+                    LogOrAlertException(string.Format(StringRes.ErrorDependencyNotFound, dependency, framework));
                 }
                 else
                 {
@@ -76,15 +76,15 @@ namespace Microsoft.Templates.UI
 
                     if (templateType != TemplateType.Page && templateType != TemplateType.Feature)
                     {
-                        LogOrAlertException(string.Format(StringRes.ExceptionDependencyType, dependencyTemplate.Identity));
+                        LogOrAlertException(string.Format(StringRes.ErrorDependencyType, dependencyTemplate.Identity));
                     }
                     else if (dependencyTemplate.GetMultipleInstance())
                     {
-                        LogOrAlertException(string.Format(StringRes.ExceptionDependencyMultipleInstance, dependencyTemplate.Identity));
+                        LogOrAlertException(string.Format(StringRes.ErrorDependencyMultipleInstance, dependencyTemplate.Identity));
                     }
                     else if (dependencyList.Any(d => d.Identity == template.Identity && d.GetDependencyList().Contains(template.Identity)))
                     {
-                        LogOrAlertException(string.Format(StringRes.ExceptionDependencyCircularReference, template.Identity, dependencyTemplate.Identity));
+                        LogOrAlertException(string.Format(StringRes.ErrorDependencyCircularReference, template.Identity, dependencyTemplate.Identity));
                     }
                     else
                     {
@@ -125,6 +125,14 @@ namespace Microsoft.Templates.UI
                     .SelectMany(s => s.Template.GetLicenses())
                     .Distinct(new TemplateLicenseEqualityComparer())
                     .ToList();
+        }
+
+        public static IEnumerable<TemplateLicense> GetAllLicences(ITemplateInfo template, string framework)
+        {
+            return GetAllDependencies(template, framework)
+                .SelectMany(s => s.GetLicenses())
+                .Distinct(new TemplateLicenseEqualityComparer())
+                .ToList();
         }
 
         public static IEnumerable<GenInfo> ComposeNewItem(UserSelection userSelection)
@@ -204,7 +212,7 @@ namespace Microsoft.Templates.UI
                 }
                 else
                 {
-                    LogOrAlertException(string.Format(StringRes.ExceptionDependencyMissing, dependencyItem.Identity));
+                    LogOrAlertException(string.Format(StringRes.ErrorDependencyMissing, dependencyItem.Identity));
                 }
             }
         }

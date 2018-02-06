@@ -194,17 +194,15 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-
                     GenContext.Current = this;
-
+                    ProjectName = newProjectInfo.name;
+                    ProjectPath = projectPath;
+                    OutputPath = projectPath;
+                    UI.Services.UIStylesService.Instance.Initialize(new UI.Services.FakeStyleValuesProvider());
                     var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
                     if (userSelection != null)
                     {
-                        ProjectName = newProjectInfo.name;
-                        ProjectPath = projectPath;
-                        OutputPath = projectPath;
-
                         ClearContext();
                         SolutionName = null;
 
@@ -220,11 +218,20 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+                CleanUp();
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+        }
+
+        private void CleanUp()
+        {
+            if (GenContext.ToolBox.Repo.SyncInProgress)
+            {
+                GenContext.ToolBox.Repo.Sync.CleanUp();
             }
         }
 
@@ -235,6 +242,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
+                UI.Services.UIStylesService.Instance.Initialize(new UI.Services.FakeStyleValuesProvider());
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
 
                 if (userSelection != null)
@@ -246,6 +254,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+                CleanUp();
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
@@ -268,6 +277,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
+                UI.Services.UIStylesService.Instance.Initialize(new UI.Services.FakeStyleValuesProvider());
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
 
                 if (userSelection != null)
@@ -279,6 +289,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+                CleanUp();
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)

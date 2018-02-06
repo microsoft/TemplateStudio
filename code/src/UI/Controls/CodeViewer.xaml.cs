@@ -8,10 +8,8 @@ using System.Reflection;
 using System.Web;
 using System.Windows;
 using System.Windows.Controls;
-
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -45,7 +43,7 @@ namespace Microsoft.Templates.UI.Controls
             InitializeComponent();
             _isInitialized = true;
 
-            if (Item is BaseFileViewModel item)
+            if (Item is NewItemFileViewModel item)
             {
                 UpdateCodeView(item);
             }
@@ -114,7 +112,7 @@ namespace Microsoft.Templates.UI.Controls
                     language = "csharp";
                     break;
                 case ".vb":
-                    language = "vb";
+                    language = "vb.net";
                     break;
                 case ".json":
                     language = "json";
@@ -129,7 +127,11 @@ namespace Microsoft.Templates.UI.Controls
             if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
             {
                 string fileText = File.ReadAllText(filePath);
-                fileText = updateTextAction(fileText);
+                if (updateTextAction != null)
+                {
+                    fileText = updateTextAction(fileText);
+                }
+
                 return HttpUtility.JavaScriptStringEncode(fileText);
             }
 
@@ -139,20 +141,20 @@ namespace Microsoft.Templates.UI.Controls
         private static void OnItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as CodeViewer;
-            var item = control.Item as BaseFileViewModel;
+            var item = control.Item as NewItemFileViewModel;
             if (control != null && item != null)
             {
                 control.UpdateCodeView(item);
             }
         }
 
-        public void UpdateCodeView(BaseFileViewModel item)
+        public void UpdateCodeView(NewItemFileViewModel item)
         {
             switch (item.FileStatus)
             {
                 case FileStatus.NewFile:
                 case FileStatus.WarningFile:
-                case FileStatus.Unchanged:
+                case FileStatus.UnchangedFile:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile);
                     break;
                 case FileStatus.ModifiedFile:

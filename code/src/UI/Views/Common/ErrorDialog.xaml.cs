@@ -2,9 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Windows;
-
 using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Views.Common
@@ -14,12 +12,10 @@ namespace Microsoft.Templates.UI.Views.Common
     /// </summary>
     public partial class ErrorDialog : Window
     {
-        public ErrorViewModel ViewModel { get; }
-
-        public ErrorDialog(Exception ex)
+        public ErrorDialog(ErrorDialogViewModel vm)
         {
-            ViewModel = new ErrorViewModel(this, ex);
-            DataContext = ViewModel;
+            DataContext = vm;
+            vm.CloseAction = () => Close();
 
             InitializeComponent();
         }

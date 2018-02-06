@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/StyleMarkdown.xaml" />
+                <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <local:Markdown x:Key="Markdown"
@@ -22,7 +22,7 @@
                         Heading2Style="{StaticResource H2Style}"
                         Heading3Style="{StaticResource H3Style}"
                         Heading4Style="{StaticResource H4Style}"
-                        LinkStyle="{StaticResource LinkStyle}"
+                        LinkStyle="{StaticResource WtsHyperlink}"
                         ImageStyle="{StaticResource ImageStyle}"
                         SeparatorStyle="{StaticResource SeparatorStyle}"
                         AssetPathRoot="{x:Static system:Environment.CurrentDirectory}" />
