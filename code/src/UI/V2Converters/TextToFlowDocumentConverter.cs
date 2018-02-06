@@ -6,10 +6,9 @@ using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using Microsoft.Templates.UI.V2Controls;
 
-using Microsoft.Templates.UI.Controls;
-
-namespace Microsoft.Templates.UI.Converters
+namespace Microsoft.Templates.UI.V2Converters
 {
     /// <summary>
     /// This code has been taken from https://github.com/theunrepentantgeek/Markdown.XAML

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
 
-namespace Microsoft.Templates.UI.Extensions
+namespace Microsoft.Templates.UI.V2Extensions
 {
     public static class AnimationExtensions
     {

@@ -4,8 +4,7 @@
 
 using System;
 using System.Runtime.Serialization;
-
-using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.V2Resources;
 
 namespace Microsoft.Templates.UI
 {
@@ -23,7 +22,7 @@ namespace Microsoft.Templates.UI
         }
 
         public GenException(string name, string template, string reason)
-            : base(string.Format(StringRes.ExceptionGenerating, template, name, reason))
+            : base(string.Format(StringRes.ErrorGenerating, template, name, reason))
         {
         }
     }

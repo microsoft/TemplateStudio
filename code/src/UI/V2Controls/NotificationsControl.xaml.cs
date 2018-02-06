@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.V2Extensions;
 
 namespace Microsoft.Templates.UI.V2Controls
 {

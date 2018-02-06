@@ -13,8 +13,8 @@ using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.UI.V2Resources;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Setup.Configuration;
@@ -79,7 +79,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             else
             {
-                AppHealth.Current.Error.TrackAsync(StringRes.UnableAddItemsToProject).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddItemsToProject).FireAndForget();
             }
         }
 
@@ -100,7 +100,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception)
             {
                 // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
-                AppHealth.Current.Info.TrackAsync(StringRes.UnableToRefreshProject).FireAndForget();
+                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableToRefreshProject).FireAndForget();
             }
         }
 
@@ -134,7 +134,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception)
             {
                 // WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
-                AppHealth.Current.Info.TrackAsync(StringRes.UnableAddProjectToSolution).FireAndForget();
+                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableAddProjectToSolution).FireAndForget();
             }
         }
 
@@ -168,7 +168,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellShowStatusBarMessageMessage} {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellShowStatusBarMessageMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -368,12 +368,12 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
                 else
                 {
-                    AppHealth.Current.Warning.TrackAsync(StringRes.VsGenShellRestorePackagesWarningMessage).FireAndForget();
+                    AppHealth.Current.Warning.TrackAsync(StringRes.ErrorVsGenShellRestorePackagesWarningMessage).FireAndForget();
                 }
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -391,7 +391,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellCollapseSolutionItemsMessage} {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellCollapseSolutionItemsMessage} {ex.ToString()}").FireAndForget();
             }
         }
 

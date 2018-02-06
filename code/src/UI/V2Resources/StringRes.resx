@@ -422,4 +422,82 @@
     <value>Windows Template Studio</value>
     <comment>Windows template studio label</comment>
   </data>
+  <data name="StatusBarGenerationFinished" xml:space="preserve">
+    <value>Generation finished</value>
+  </data>
+  <data name="StatusBarRestoring" xml:space="preserve">
+    <value>Restoring packages...</value>
+  </data>
+  <data name="StatusBarRunFinished" xml:space="preserve">
+    <value>Creating Windows Template Studio project...</value>
+  </data>
+  <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
+    <value>Add new feature cancelled</value>
+  </data>
+  <data name="StatusBarNewItemAddFeatureSuccess" xml:space="preserve">
+    <value>Feature {0} successfully added</value>
+  </data>
+  <data name="StatusBarNewItemAddPageCancelled" xml:space="preserve">
+    <value>Add new page cancelled</value>
+  </data>
+  <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
+    <value>Page {0} successfully added</value>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
+    <value>Exception tracking telemetry during generation.</value>
+  </data>
+  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
+    <value>Unable add project items. Ensure you have the required SDK.</value>
+  </data>
+  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
+    <value>Unable to add the project to the solution. Make sure you have the expected SDK installed.</value>
+  </data>
+  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
+    <value>Unable to refresh the project. Try to refresh it manually.</value>
+  </data>
+  <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
+    <value>There was an error collapsing the solution tree. Ex:</value>
+  </data>
+  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
+    <value>There was an error restoring the packages. Ex:</value>
+  </data>
+  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
+    <value>Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages.</value>
+  </data>
+  <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
+    <value>There was an error showing status message. Ex:</value>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>Circular dependency detected on template {0} with {1}.</value>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>Dependency template {0} not found on user selection</value>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Dependency template {0} not found for framework {1}.</value>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Layout template {0} not found for framework {1}.</value>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>Creating '{0}' feature ...</value>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>Creating '{0}' page ...</value>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>Creating project '{0}'...</value>
+  </data>
 </root>

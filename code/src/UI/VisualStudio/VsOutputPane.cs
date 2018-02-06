@@ -10,8 +10,8 @@ using EnvDTE;
 using EnvDTE80;
 
 using Microsoft.Templates.Core;
-using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.UI.V2Resources;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -49,7 +49,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     if (result == null)
                     {
-                        CreateUwpPane(paneGuid, visible, clearWithSolution, StringRes.Title);
+                        CreateUwpPane(paneGuid, visible, clearWithSolution, StringRes.WindowsTemplateStudio);
                         result = GetUwpPane(dte, paneGuid);
                     }
                 }
