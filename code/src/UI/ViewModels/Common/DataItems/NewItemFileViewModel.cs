@@ -21,9 +21,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public FileStatus FileStatus { get; private set; }
 
-        public string Title { get; private set; } // TODO: mvegaca Load from resource
+        public string Title { get; private set; }
 
-        public string Description { get; private set; } // TODO: mvegaca Load from resource
+        public string Description { get; private set; }
 
         public string Subject { get; }
 

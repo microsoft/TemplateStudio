@@ -364,17 +364,11 @@
     <Compile Include="Views\NewProject\FrameworkPage.xaml.cs">
       <DependentUpon>FrameworkPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewProject\PageToRemove.xaml.cs">
-      <DependentUpon>PageToRemove.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\NewProject\ProjectTypePage.xaml.cs">
       <DependentUpon>ProjectTypePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Common\TemplateInfoPage.xaml.cs">
       <DependentUpon>TemplateInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewProject\VSStyleValues.xaml.cs">
-      <DependentUpon>VSStyleValues.xaml</DependentUpon>
     </Compile>
     <Compile Include="Generation\GenComposer.cs" />
     <Compile Include="Generation\GenController.cs" />
@@ -561,10 +555,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\NewProject\PageToRemove.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\NewProject\ProjectTypePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -572,10 +562,6 @@
     <Page Include="Views\Common\TemplateInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\NewProject\VSStyleValues.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NewProject\WizardShell.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -500,4 +500,27 @@
   <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
     <value>Creating project '{0}'...</value>
   </data>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Application Launching</value>
+    <comment>Group header for Application Launching templates</comment>
+  </data>
+  <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
+    <value>Application Lifecycle</value>
+    <comment>Group header for application lifecycle templates</comment>
+  </data>
+  <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
+    <value>Background Work</value>
+    <comment>Group header for background work templates</comment>
+  </data>
+  <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
+    <value>Connected Experiences</value>
+    <comment>Group header for Connected Experiences templates</comment>
+  </data>
+  <data name="TemplateGroup_UserInteraction" xml:space="preserve">
+    <value>User Interaction</value>
+    <comment>Group header for user interaction templates</comment>
+  </data>
+  <data name="ButtonDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
 </root>

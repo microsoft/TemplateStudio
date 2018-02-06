@@ -85,6 +85,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void OnDetails()
         {
+            System.Diagnostics.Debug.WriteLine("OnDetails");
             NavigationService.NavigateMainFrame(new TemplateInfoPage(this));
         }
 

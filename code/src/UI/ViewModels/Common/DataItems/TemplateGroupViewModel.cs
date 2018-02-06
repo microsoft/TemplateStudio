@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -24,9 +25,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public TemplateGroupViewModel(IGrouping<string, TemplateInfoViewModel> templateGroup)
         {
-            Name = templateGroup.Key;
+            Name = GetName(templateGroup.Key);
             Items = new ObservableCollection<TemplateInfoViewModel>(templateGroup);
         }
+
+        private string GetName(string groupName) => StringRes.ResourceManager.GetString($"TemplateGroup_{groupName}");
 
         public TemplateInfoViewModel GetTemplate(ITemplateInfo templateInfo)
         {
