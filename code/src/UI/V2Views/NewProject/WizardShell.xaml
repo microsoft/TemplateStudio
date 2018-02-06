@@ -32,7 +32,16 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <TextBlock Text="{x:Static strings:StringRes.NewProjectTitle}" Style="{StaticResource WtsTextBlockWizardTitle}" />
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="{StaticResource Margin_L_Left}">
+                <TextBlock
+                    Text="{x:Static strings:StringRes.NewProjectTitle}"
+                    Style="{StaticResource WtsTextBlockWizardTitle}" />
+                <TextBlock
+                    Text="{Binding WizardStatus.Title}"
+                    Style="{StaticResource WtsTextBlockWizardTitleSecondary}" />
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1" Style="{StaticResource WtsGridSectionDividerHorizontal}" />

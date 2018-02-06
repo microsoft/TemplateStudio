@@ -290,7 +290,7 @@
                     Grid.Column="0"
                     ContentTemplateSelector="{StaticResource FileStatusTemplateSelector}" />
                 <TextBlock Grid.Column="1">
-                    <Hyperlink Style="{StaticResource WtsHyperlink}">
+                    <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding MoreDetailsCommand}">
                         <TextBlock
                             Style="{StaticResource WtsTextBlockHyperlink}"
                             Text="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}" />
