@@ -43,10 +43,7 @@ namespace Microsoft.Templates.UI
 
         public UserSelection GetUserSelectionNewFeature(string language)
         {
-            // TODO mvegaca
             var newItem = new Views.NewItem.WizardShell(TemplateType.Feature, language);
-
-            // var newItem = new Views.NewItem.MainView(TemplateType.Feature, language);
             try
             {
                 CleanStatusBar();
@@ -76,10 +73,7 @@ namespace Microsoft.Templates.UI
 
         public UserSelection GetUserSelectionNewPage(string language)
         {
-            // TODO mvegaca
             var newItem = new Views.NewItem.WizardShell(TemplateType.Page, language);
-
-            // var newItem = new Views.NewItem.MainView(TemplateType.Page, language);
             try
             {
                 CleanStatusBar();
