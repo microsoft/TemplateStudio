@@ -4,6 +4,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/_Thickness.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Button.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/CheckBox.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/ComboBox.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/DataTemplate.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/V2Styles/Ellipse.xaml" />

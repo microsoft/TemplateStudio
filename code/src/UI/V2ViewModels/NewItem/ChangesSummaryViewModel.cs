@@ -15,7 +15,14 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 {
     public class ChangesSummaryViewModel : Observable
     {
+        private bool _doNotMerge;
         private NewItemFileViewModel _selected;
+
+        public bool DoNotMerge
+        {
+            get => _doNotMerge;
+            set => SetProperty(ref _doNotMerge, value);
+        }
 
         public NewItemFileViewModel Selected
         {
@@ -37,10 +44,10 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
             FileGroups.Clear();
             AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupWarningFiles, warnings.Select(f => NewItemFileViewModel.WarningFile(f))));
             AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupConflictingStylesFiles, failedStyleMerges.Select(f => NewItemFileViewModel.ConflictingStylesFile(f))));
-            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupNewFiles, output.NewFiles.Select(f => NewItemFileViewModel.NewFile(f))));
-            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupModifiedFiles, output.ModifiedFiles.Select(f => NewItemFileViewModel.ModifiedFile(f))));
-            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupUnchangedFiles, output.UnchangedFiles.Select(f => NewItemFileViewModel.UnchangedFile(f))));
             AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupConflictingFiles, output.ConflictingFiles.Select(f => NewItemFileViewModel.ConflictingFile(f))));
+            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupModifiedFiles, output.ModifiedFiles.Select(f => NewItemFileViewModel.ModifiedFile(f))));
+            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupNewFiles, output.NewFiles.Select(f => NewItemFileViewModel.NewFile(f))));
+            AddGroup(new ItemsGroupViewModel<NewItemFileViewModel>(StringRes.ChangesSummaryGroupUnchangedFiles, output.UnchangedFiles.Select(f => NewItemFileViewModel.UnchangedFile(f))));
 
             SelectFile(FileGroups.First().Items.First());
         }

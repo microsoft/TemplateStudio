@@ -108,6 +108,20 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
 
         protected override void OnCancel() => WizardShell.Current.Close();
 
+        protected override void OnFinish()
+        {
+            WizardShell.Current.Result = GetUserSelection();
+            WizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
+            base.OnFinish();
+        }
+
+        private UserSelection GetUserSelection()
+        {
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, Language);
+            userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
+            return userSelection;
+        }
+
         protected override Task OnTemplatesAvailableAsync()
         {
             SetProjectConfigInfo();
@@ -137,6 +151,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.NewItem
                 {
                     OnCancel();
                 }
+            }
+            else
+            {
+                ConfigFramework = configInfo.Framework;
+                ConfigProjectType = configInfo.ProjectType;
             }
         }
 

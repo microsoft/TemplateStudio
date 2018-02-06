@@ -546,5 +546,165 @@ namespace Microsoft.Templates.UI.V2Services
             get { return (Brush)GetValue(TextBoxTextFocusedProperty); }
             set { SetValue(TextBoxTextFocusedProperty, value); }
         }
+
+        public static readonly DependencyProperty CheckBoxGlyphProperty = DependencyProperty.Register("CheckBoxGlyph", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxGlyph
+        {
+            get { return (Brush)GetValue(CheckBoxGlyphProperty); }
+            set { SetValue(CheckBoxGlyphProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxGlyphDisabledProperty = DependencyProperty.Register("CheckBoxGlyphDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxGlyphDisabled
+        {
+            get { return (Brush)GetValue(CheckBoxGlyphDisabledProperty); }
+            set { SetValue(CheckBoxGlyphDisabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxGlyphFocusedProperty = DependencyProperty.Register("CheckBoxGlyphFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxGlyphFocused
+        {
+            get { return (Brush)GetValue(CheckBoxGlyphFocusedProperty); }
+            set { SetValue(CheckBoxGlyphFocusedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxGlyphHoverProperty = DependencyProperty.Register("CheckBoxGlyphHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxGlyphHover
+        {
+            get { return (Brush)GetValue(CheckBoxGlyphHoverProperty); }
+            set { SetValue(CheckBoxGlyphHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxGlyphPressedProperty = DependencyProperty.Register("CheckBoxGlyphPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxGlyphPressed
+        {
+            get { return (Brush)GetValue(CheckBoxGlyphPressedProperty); }
+            set { SetValue(CheckBoxGlyphPressedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxBackgroundProperty = DependencyProperty.Register("CheckBoxBackground", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxBackground
+        {
+            get { return (Brush)GetValue(CheckBoxBackgroundProperty); }
+            set { SetValue(CheckBoxBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxBackgroundDisabledProperty = DependencyProperty.Register("CheckBoxBackgroundDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxBackgroundDisabled
+        {
+            get { return (Brush)GetValue(CheckBoxBackgroundDisabledProperty); }
+            set { SetValue(CheckBoxBackgroundDisabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxBackgroundFocusedProperty = DependencyProperty.Register("CheckBoxBackgroundFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxBackgroundFocused
+        {
+            get { return (Brush)GetValue(CheckBoxBackgroundFocusedProperty); }
+            set { SetValue(CheckBoxBackgroundFocusedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxBackgroundHoverProperty = DependencyProperty.Register("CheckBoxBackgroundHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxBackgroundHover
+        {
+            get { return (Brush)GetValue(CheckBoxBackgroundHoverProperty); }
+            set { SetValue(CheckBoxBackgroundHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxBackgroundPressedProperty = DependencyProperty.Register("CheckBoxBackgroundPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxBackgroundPressed
+        {
+            get { return (Brush)GetValue(CheckBoxBackgroundPressedProperty); }
+            set { SetValue(CheckBoxBackgroundPressedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxBorderProperty = DependencyProperty.Register("CheckBoxBorder", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxBorder
+        {
+            get { return (Brush)GetValue(CheckBoxBorderProperty); }
+            set { SetValue(CheckBoxBorderProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxBorderDisabledProperty = DependencyProperty.Register("CheckBoxBorderDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxBorderDisabled
+        {
+            get { return (Brush)GetValue(CheckBoxBorderDisabledProperty); }
+            set { SetValue(CheckBoxBorderDisabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxBorderFocusedProperty = DependencyProperty.Register("CheckBoxBorderFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxBorderFocused
+        {
+            get { return (Brush)GetValue(CheckBoxBorderFocusedProperty); }
+            set { SetValue(CheckBoxBorderFocusedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxBorderHoverProperty = DependencyProperty.Register("CheckBoxBorderHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxBorderHover
+        {
+            get { return (Brush)GetValue(CheckBoxBorderHoverProperty); }
+            set { SetValue(CheckBoxBorderHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxBorderPressedProperty = DependencyProperty.Register("CheckBoxBorderPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxBorderPressed
+        {
+            get { return (Brush)GetValue(CheckBoxBorderPressedProperty); }
+            set { SetValue(CheckBoxBorderPressedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxTextProperty = DependencyProperty.Register("CheckBoxText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxText
+        {
+            get { return (Brush)GetValue(CheckBoxTextProperty); }
+            set { SetValue(CheckBoxTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxTextDisabledProperty = DependencyProperty.Register("CheckBoxTextDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxTextDisabled
+        {
+            get { return (Brush)GetValue(CheckBoxTextDisabledProperty); }
+            set { SetValue(CheckBoxTextDisabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxTextFocusedProperty = DependencyProperty.Register("CheckBoxTextFocused", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxTextFocused
+        {
+            get { return (Brush)GetValue(CheckBoxTextFocusedProperty); }
+            set { SetValue(CheckBoxTextFocusedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxTextHoverProperty = DependencyProperty.Register("CheckBoxTextHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxTextHover
+        {
+            get { return (Brush)GetValue(CheckBoxTextHoverProperty); }
+            set { SetValue(CheckBoxTextHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty CheckBoxTextPressedProperty = DependencyProperty.Register("CheckBoxTextPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CheckBoxTextPressed
+        {
+            get { return (Brush)GetValue(CheckBoxTextPressedProperty); }
+            set { SetValue(CheckBoxTextPressedProperty, value); }
+        }
     }
 }

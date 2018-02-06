@@ -174,6 +174,27 @@ namespace Microsoft.Templates.UI.V2Services
             TextBoxBackgroundFocused = _stylesProvider.GetColor("CommonControls", "TextBoxBackgroundFocused");
             TextBoxBorderFocused = _stylesProvider.GetColor("CommonControls", "TextBoxBorderFocused");
             TextBoxTextFocused = _stylesProvider.GetColor("CommonControls", "TextBoxTextFocused");
+
+            CheckBoxBackground = _stylesProvider.GetColor("CommonControls", "CheckBoxBackground");
+            CheckBoxBackgroundDisabled = _stylesProvider.GetColor("CommonControls", "CheckBoxBackgroundDisabled");
+            CheckBoxBackgroundFocused = _stylesProvider.GetColor("CommonControls", "CheckBoxBackgroundFocused");
+            CheckBoxBackgroundHover = _stylesProvider.GetColor("CommonControls", "CheckBoxBackgroundHover");
+            CheckBoxBackgroundPressed = _stylesProvider.GetColor("CommonControls", "CheckBoxBackgroundPressed");
+            CheckBoxGlyph = _stylesProvider.GetColor("CommonControls", "CheckBoxGlyph");
+            CheckBoxGlyphDisabled = _stylesProvider.GetColor("CommonControls", "CheckBoxGlyphDisabled");
+            CheckBoxGlyphFocused = _stylesProvider.GetColor("CommonControls", "CheckBoxGlyphFocused");
+            CheckBoxGlyphHover = _stylesProvider.GetColor("CommonControls", "CheckBoxGlyphHover");
+            CheckBoxGlyphPressed = _stylesProvider.GetColor("CommonControls", "CheckBoxGlyphPressed");
+            CheckBoxBorder = _stylesProvider.GetColor("CommonControls", "CheckBoxBorder");
+            CheckBoxBorderDisabled = _stylesProvider.GetColor("CommonControls", "CheckBoxBorderDisabled");
+            CheckBoxBorderFocused = _stylesProvider.GetColor("CommonControls", "CheckBoxBorderFocused");
+            CheckBoxBorderHover = _stylesProvider.GetColor("CommonControls", "CheckBoxBorderHover");
+            CheckBoxBorderPressed = _stylesProvider.GetColor("CommonControls", "CheckBoxBorderPressed");
+            CheckBoxText = _stylesProvider.GetColor("CommonControls", "CheckBoxText");
+            CheckBoxTextDisabled = _stylesProvider.GetColor("CommonControls", "CheckBoxTextDisabled");
+            CheckBoxTextFocused = _stylesProvider.GetColor("CommonControls", "CheckBoxTextFocused");
+            CheckBoxTextHover = _stylesProvider.GetColor("CommonControls", "CheckBoxTextHover");
+            CheckBoxTextPressed = _stylesProvider.GetColor("CommonControls", "CheckBoxTextPressed");
         }
 
         private void SetEnvironmentColors()
@@ -231,6 +252,8 @@ namespace Microsoft.Templates.UI.V2Services
             NewItemFileStatusConflictingStylesFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusConflictingStylesFile");
             NewItemFileStatusWarningFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusWarningFile");
             NewItemFileStatusUnchangedFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusUnchangedFile");
+
+            ChangesSummaryDetailFileHeaderBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeaderBackground");
 
             DialogInfoIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoIcon");
             DialogErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogErrorIcon");

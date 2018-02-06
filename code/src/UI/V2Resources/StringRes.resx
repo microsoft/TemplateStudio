@@ -163,6 +163,9 @@
   <data name="ButtonYes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
+    <value>Do not merge changes (generate in a temp folder).</value>
+  </data>
   <data name="ChangesSummaryGroupConflictingFiles" xml:space="preserve">
     <value>Conflicting files</value>
     <comment>Changes summary group title for: Conflicting files</comment>
@@ -216,6 +219,9 @@
   <data name="ErrorDialogWindowTitle" xml:space="preserve">
     <value>Windows Template Studio Error</value>
     <comment>Error dialog window title</comment>
+  </data>
+  <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
+    <value>more info</value>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
     <value>Select a design pattern</value>

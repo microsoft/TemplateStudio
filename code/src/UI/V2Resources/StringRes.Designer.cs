@@ -169,6 +169,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do not merge changes (generate in a temp folder)..
+        /// </summary>
+        public static string ChangesSummaryCheckBoxText {
+            get {
+                return ResourceManager.GetString("ChangesSummaryCheckBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Conflicting files.
         /// </summary>
         public static string ChangesSummaryGroupConflictingFiles {
@@ -300,6 +309,15 @@ namespace Microsoft.Templates.UI.V2Resources {
         public static string ErrorDialogWindowTitle {
             get {
                 return ResourceManager.GetString("ErrorDialogWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to more info.
+        /// </summary>
+        public static string ChangesSummaryMoreInfoLink {
+            get {
+                return ResourceManager.GetString("ChangesSummaryMoreInfoLink", resourceCulture);
             }
         }
         
