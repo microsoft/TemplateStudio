@@ -54,6 +54,9 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     if (!_content.Exists() || force || CurrentContent.Version < CurrentWizardVersion)
                     {
+                        _content.GetContentProgress += OnGetContentProgress;
+                        _content.CopyProgress += OnCopyProgress;
+
                         await ExtractInstalledContentAsync();
                     }
 
@@ -61,6 +64,9 @@ namespace Microsoft.Templates.Core.Locations
                 }
                 finally
                 {
+                    _content.GetContentProgress -= OnGetContentProgress;
+                    _content.CopyProgress -= OnCopyProgress;
+
                     UnlockSync();
                 }
             }
