@@ -32,7 +32,7 @@
                     <!--Description-->
                     <RowDefinition Height="*" />
                     <!--Detail-->
-                    <RowDefinition Height="30" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <controls:ImageEx
                     Grid.Row="0"
@@ -46,7 +46,7 @@
                     Grid.Row="2"
                     Text="{Binding Description}"
                     Style="{StaticResource WtsTextBlockCardDescription}"
-                    Margin="{StaticResource Margin_XS_Top}"/>
+                    Margin="{StaticResource Margin_XS_Top}" />
                 <TextBlock Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,-4">
                     <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
                         <TextBlock Text="Details" Style="{StaticResource WtsTextBlockHyperlink}" />
@@ -67,7 +67,7 @@
                     <!--Description-->
                     <RowDefinition Height="*" />
                     <!--Detail / Status-->
-                    <RowDefinition Height="30" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"/>
                 <controls:ImageEx
