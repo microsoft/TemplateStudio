@@ -31,6 +31,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         private int _origStep;
         private bool _canGoBack = false;
         private bool _canGoForward = true;
+        private bool _canFinish;
 
         private RelayCommand _cancelCommand;
         private RelayCommand _goBackCommand;
@@ -76,7 +77,7 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public RelayCommand GoForwardCommand => _goForwardCommand ?? (_goForwardCommand = new RelayCommand(() => Step++, () => _canGoForward && !WizardStatus.IsBusy));
 
-        public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, () => !WizardStatus.IsBusy));
+        public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, () => _canFinish && !WizardStatus.IsBusy));
 
         public WizardStatus WizardStatus { get; } = new WizardStatus();
 
@@ -116,10 +117,11 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
 
         public abstract void ProcessItem(object item);
 
-        public BaseMainViewModel(Window mainView)
+        public BaseMainViewModel(Window mainView, bool canFinish = true)
         {
             BaseInstance = this;
             _mainView = mainView;
+            _canFinish = canFinish;
             ResourcesService.Instance.Initialize(mainView);
             WizardStatus.IsBusyChanged += IsBusyChanged;
         }
@@ -140,6 +142,12 @@ namespace Microsoft.Templates.UI.V2ViewModels.Common
         {
             _canGoForward = canGoForward;
             GoForwardCommand.OnCanExecuteChanged();
+        }
+
+        protected void SetCanFinish(bool canFinish)
+        {
+            _canFinish = canFinish;
+            FinishCommand.OnCanExecuteChanged();
         }
 
         protected virtual void IsBusyChanged(object sender, bool e)
