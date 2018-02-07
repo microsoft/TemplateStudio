@@ -1,21 +1,14 @@
 ﻿<Application x:Class="Microsoft.Templates.VsEmulator.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Microsoft.Templates.VsEmulator"
              StartupUri="Main/MainView.xaml">
-    
+
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/VsEmulator;component/Styles/VsTheme.xaml" />
-                <!--Light Theme-->
-                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_CommonControl.xaml" />
-                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_CommonDocument.xaml" />
-                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_Environment.xaml" />
-                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_InfoBar.xaml" />
-                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_ThemedDialog.xaml" />
-                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_WindowsTemplateStudio.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-     </Application.Resources>
+    </Application.Resources>
+
 </Application>

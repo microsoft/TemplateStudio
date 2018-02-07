@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private readonly MainView _host;
 
         private bool _canRefreshTemplateCache;
+        private string _selectedTheme;
 
         private RelayCommand _refreshTemplateCacheCommand;
 
@@ -41,6 +43,9 @@ namespace Microsoft.Templates.VsEmulator.Main
             _host = host;
             _wizardVersion = "0.0.0.0";
             _templatesVersion = "0.0.0.0";
+            Themes.Add("Light Theme");
+            Themes.Add("Dark Theme");
+            SelectedTheme = Themes.First();
         }
 
         public string ProjectName { get; private set; }
@@ -48,6 +53,14 @@ namespace Microsoft.Templates.VsEmulator.Main
         public string OutputPath { get; private set; }
 
         public string ProjectPath { get; private set; }
+
+        public string SelectedTheme
+        {
+            get => _selectedTheme;
+            set => SetProperty(ref _selectedTheme, value);
+        }
+
+        public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
 
         public List<string> ProjectItems { get; } = new List<string>();
 
@@ -184,6 +197,22 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
+        private void LoadTheme()
+        {
+            if (SelectedTheme == Themes[0])
+            {
+                App.LoadLightTheme();
+            }
+            else if (SelectedTheme == Themes[1])
+            {
+                App.LoadDarkTheme();
+            }
+            else
+            {
+                throw new Exception("Unrecognized theme");
+            }
+        }
+
         private async Task NewProjectAsync(string language)
         {
             SetCurrentLanguage(language);
@@ -198,6 +227,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     ProjectName = newProjectInfo.name;
                     ProjectPath = projectPath;
                     OutputPath = projectPath;
+                    LoadTheme();
                     UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                     var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
@@ -242,6 +272,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
+                LoadTheme();
                 UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
 
@@ -277,6 +308,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
+                LoadTheme();
                 UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
 

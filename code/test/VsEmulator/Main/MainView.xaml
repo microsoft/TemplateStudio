@@ -54,17 +54,14 @@
                             <TextBlock Text="Load project..."/>
                         </Hyperlink>
                     </TextBlock>
-                    <TextBlock>
+                    <ComboBox SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" ItemsSource="{Binding Themes}" Margin="0,8,0,0" Style="{StaticResource VSEmulatorComboBox}"/>
+                    <TextBlock Margin="0,32,0,0">
                         <Hyperlink Command="{Binding ConfigureVersionsCommand}">
                             <TextBlock Text="Configure versions..."/>
                         </Hyperlink>
                     </TextBlock>
-                    <TextBlock>
-                        <Button Command="{Binding RefreshTemplateCacheCommand}" Content="Refresh Cache" Style="{StaticResource TextButton}" Margin="0,6,0,0" ToolTip="Refresh template cache"/>
-                    </TextBlock>
-
+                    <Button Command="{Binding RefreshTemplateCacheCommand}" Content="Refresh Cache" Style="{StaticResource TextButton}" Margin="0,8,0,0" ToolTip="Refresh template cache"/>
                 </StackPanel>
-                
                 <ScrollViewer x:Name="logScroll" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto" Height="200">
                     <TextBlock Text="{Binding Log}" TextWrapping="Wrap"></TextBlock>
                 </ScrollViewer>
