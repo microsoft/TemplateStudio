@@ -168,6 +168,7 @@
     <Compile Include="Services\Environment.cs" />
     <Compile Include="Services\ThemedDialog.cs" />
     <Compile Include="Services\CommonDocument.cs" />
+    <Compile Include="Services\InfoBar.cs" />
     <Compile Include="Services\XXXXXXX.cs" />
     <Compile Include="Services\FakeStyleValuesProvider.cs" />
     <Compile Include="Services\WindowsTemplateStudio.cs" />
@@ -212,6 +213,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Light_CommonDocument.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Light_InfoBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -37,6 +37,7 @@ namespace Microsoft.Templates.UI.Services
             SetCommonDocumentColors();
             SetCommonControlColors();
             SetEnvironmentColors();
+            SetInfoBarColors();
 
             // New Color additions
             SetWindowsTemplateStudioColors();
@@ -205,6 +206,32 @@ namespace Microsoft.Templates.UI.Services
             PageSideBarExpanderText = _stylesProvider.GetColor("Environment", "PageSideBarExpanderText");
         }
 
+        private void SetInfoBarColors()
+        {
+            IBButton = _stylesProvider.GetColor("InfoBar", "Button");
+            IBButtonBorder = _stylesProvider.GetColor("InfoBar", "ButtonBorder");
+            IBButtonDisabled = _stylesProvider.GetColor("InfoBar", "ButtonDisabled");
+            IBButtonDisabledBorder = _stylesProvider.GetColor("InfoBar", "ButtonDisabledBorder");
+            IBButtonFocus = _stylesProvider.GetColor("InfoBar", "ButtonFocus");
+            IBButtonFocusBorder = _stylesProvider.GetColor("InfoBar", "ButtonFocusBorder");
+            IBButtonMouseDown = _stylesProvider.GetColor("InfoBar", "ButtonMouseDown");
+            IBButtonMouseDownBorder = _stylesProvider.GetColor("InfoBar", "ButtonMouseDownBorder");
+            IBButtonMouseOver = _stylesProvider.GetColor("InfoBar", "ButtonMouseOver");
+            IBButtonMouseOverBorder = _stylesProvider.GetColor("InfoBar", "ButtonMouseOverBorder");
+            IBCloseButton = _stylesProvider.GetColor("InfoBar", "CloseButton");
+            IBCloseButtonBorder = _stylesProvider.GetColor("InfoBar", "CloseButtonBorder");
+            IBCloseButtonDown = _stylesProvider.GetColor("InfoBar", "CloseButtonDown");
+            IBCloseButtonDownBorder = _stylesProvider.GetColor("InfoBar", "CloseButtonDownBorder");
+            IBCloseButtonDownGlyph = _stylesProvider.GetColor("InfoBar", "CloseButtonDownGlyph");
+            IBCloseButtonGlyph = _stylesProvider.GetColor("InfoBar", "CloseButtonGlyph");
+            IBCloseButtonHover = _stylesProvider.GetColor("InfoBar", "CloseButtonHover");
+            IBCloseButtonHoverBorder = _stylesProvider.GetColor("InfoBar", "CloseButtonHoverBorder");
+            IBCloseButtonHoverGlyph = _stylesProvider.GetColor("InfoBar", "CloseButtonHoverGlyph");
+            IBInfoBarBackground = _stylesProvider.GetColor("InfoBar", "InfoBarBackground");
+            IBInfoBarBackgroundText = _stylesProvider.GetColor("InfoBar", "InfoBarBackgroundText");
+            IBInfoBarBorder = _stylesProvider.GetColor("InfoBar", "InfoBarBorder");
+        }
+
         // New Color additions
         private void SetWindowsTemplateStudioColors()
         {
@@ -224,18 +251,6 @@ namespace Microsoft.Templates.UI.Services
             CardBorderDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderDisabled");
             CardIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "CardIcon");
             CardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardFooterText");
-
-            NotificationInformationText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationText");
-            NotificationInformationBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationBackground");
-            NotificationInformationIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationIcon");
-
-            NotificationWarningText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningText");
-            NotificationWarningBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningBackground");
-            NotificationWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningIcon");
-
-            NotificationErrorText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorText");
-            NotificationErrorBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorBackground");
-            NotificationErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorIcon");
 
             DeleteTemplateIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DeleteTemplateIcon");
             SavedTemplateBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "SavedTemplateBackgroundHover");

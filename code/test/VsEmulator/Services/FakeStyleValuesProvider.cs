@@ -27,6 +27,8 @@ namespace Microsoft.Templates.VsEmulator.Services
                     return GetColorFromCommonControls(memberName);
                 case "Environment":
                     return GetColorFromEnvironment(memberName);
+                case "InfoBar":
+                    return GetColorFromInfoBar(memberName);
                 case "WindowsTemplateStudio":
                     return GetColorFromWindowsTemplateStudio(memberName);
                 default:
@@ -373,6 +375,59 @@ namespace Microsoft.Templates.VsEmulator.Services
             }
         }
 
+        private Brush GetColorFromInfoBar(string memberName)
+        {
+            switch (memberName)
+            {
+                case "Button":
+                    return GetColor(InfoBar.ButtonBrushKey);
+                case "ButtonBorder":
+                    return GetColor(InfoBar.ButtonBorderBrushKey);
+                case "ButtonDisabled":
+                    return GetColor(InfoBar.ButtonDisabledBrushKey);
+                case "ButtonDisabledBorder":
+                    return GetColor(InfoBar.ButtonDisabledBorderBrushKey);
+                case "ButtonFocus":
+                    return GetColor(InfoBar.ButtonFocusBrushKey);
+                case "ButtonFocusBorder":
+                    return GetColor(InfoBar.ButtonFocusBorderBrushKey);
+                case "ButtonMouseDown":
+                    return GetColor(InfoBar.ButtonMouseDownBrushKey);
+                case "ButtonMouseDownBorder":
+                    return GetColor(InfoBar.ButtonMouseDownBorderBrushKey);
+                case "ButtonMouseOver":
+                    return GetColor(InfoBar.ButtonMouseOverBrushKey);
+                case "ButtonMouseOverBorder":
+                    return GetColor(InfoBar.ButtonMouseOverBorderBrushKey);
+                case "CloseButton":
+                    return GetColor(InfoBar.CloseButtonBrushKey);
+                case "CloseButtonBorder":
+                    return GetColor(InfoBar.CloseButtonBorderBrushKey);
+                case "CloseButtonDown":
+                    return GetColor(InfoBar.CloseButtonDownBrushKey);
+                case "CloseButtonDownBorder":
+                    return GetColor(InfoBar.CloseButtonDownBorderBrushKey);
+                case "CloseButtonDownGlyph":
+                    return GetColor(InfoBar.CloseButtonDownGlyphBrushKey);
+                case "CloseButtonGlyph":
+                    return GetColor(InfoBar.CloseButtonGlyphBrushKey);
+                case "CloseButtonHover":
+                    return GetColor(InfoBar.CloseButtonHoverBrushKey);
+                case "CloseButtonHoverBorder":
+                    return GetColor(InfoBar.CloseButtonHoverBorderBrushKey);
+                case "CloseButtonHoverGlyph":
+                    return GetColor(InfoBar.CloseButtonHoverGlyphBrushKey);
+                case "InfoBarBackground":
+                    return GetColor(InfoBar.InfoBarBackgroundBrushKey);
+                case "InfoBarBackgroundText":
+                    return GetColor(InfoBar.InfoBarBackgroundTextBrushKey);
+                case "InfoBarBorder":
+                    return GetColor(InfoBar.InfoBarBorderBrushKey);
+                default:
+                    throw new Exception($"The color key value '{memberName}' is not found");
+            }
+        }
+
         private Brush GetColorFromWindowsTemplateStudio(string memberName)
         {
             switch (memberName)
@@ -409,27 +464,6 @@ namespace Microsoft.Templates.VsEmulator.Services
                     return GetColor(WindowsTemplateStudio.CardIconBrushKey);
                 case "CardFooterText":
                     return GetColor(WindowsTemplateStudio.CardFooterTextBrushKey);
-
-                case "NotificationInformationText":
-                    return new SolidColorBrush(Colors.Red); // TODO: mvegaca add this colors
-                case "NotificationInformationBackground":
-                    return new SolidColorBrush(Colors.Red);
-                case "NotificationInformationIcon":
-                    return new SolidColorBrush(Colors.Red);
-
-                case "NotificationWarningText":
-                    return new SolidColorBrush(Colors.Red);
-                case "NotificationWarningBackground":
-                    return new SolidColorBrush(Colors.Red);
-                case "NotificationWarningIcon":
-                    return new SolidColorBrush(Colors.Red);
-
-                case "NotificationErrorText":
-                    return new SolidColorBrush(Colors.Red);
-                case "NotificationErrorBackground":
-                    return new SolidColorBrush(Colors.Red);
-                case "NotificationErrorIcon":
-                    return new SolidColorBrush(Colors.Red);
 
                 case "DeleteTemplateIcon":
                     return GetColor(WindowsTemplateStudio.DeleteTemplateIconBrushKey);

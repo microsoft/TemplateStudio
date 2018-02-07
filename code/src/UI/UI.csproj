@@ -237,6 +237,7 @@
     </Compile>
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
+    <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
     <Compile Include="Controls\CodeViewer.xaml.cs">

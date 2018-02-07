@@ -37,6 +37,8 @@ namespace Microsoft.Templates.UI.Services
                     return GetColorFromCommonControls(memberName);
                 case "Environment":
                     return GetColorFromEnvironment(memberName);
+                case "InfoBar":
+                    return GetColorFromInfoBar(memberName);
                 case "WindowsTemplateStudio":
                     return GetColorFromWindowsTemplateStudio(memberName);
                 default:
@@ -49,61 +51,61 @@ namespace Microsoft.Templates.UI.Services
             switch (memberName)
             {
                 case "WindowPanel":
-                    return GetColor(ThemedDialogColors.WindowPanelColorKey);
+                    return GetColor(ThemedDialogColors.WindowPanelBrushKey);
                 case "WindowPanelText":
-                    return GetColor(ThemedDialogColors.WindowPanelTextColorKey);
+                    return GetColor(ThemedDialogColors.WindowPanelTextBrushKey);
                 case "WindowBorder":
-                    return GetColor(ThemedDialogColors.WindowBorderColorKey);
+                    return GetColor(ThemedDialogColors.WindowBorderBrushKey);
                 case "HeaderText":
-                    return GetColor(ThemedDialogColors.HeaderTextColorKey);
+                    return GetColor(ThemedDialogColors.HeaderTextBrushKey);
                 case "Hyperlink":
-                    return GetColor(ThemedDialogColors.HyperlinkColorKey);
+                    return GetColor(ThemedDialogColors.HyperlinkBrushKey);
                 case "HyperlinkHover":
-                    return GetColor(ThemedDialogColors.HyperlinkHoverColorKey);
+                    return GetColor(ThemedDialogColors.HyperlinkHoverBrushKey);
                 case "HyperlinkPressed":
-                    return GetColor(ThemedDialogColors.HyperlinkPressedColorKey);
+                    return GetColor(ThemedDialogColors.HyperlinkPressedBrushKey);
                 case "HyperlinkDisabled":
-                    return GetColor(ThemedDialogColors.HyperlinkDisabledColorKey);
+                    return GetColor(ThemedDialogColors.HyperlinkDisabledBrushKey);
                 case "SelectedItemActive":
-                    return GetColor(ThemedDialogColors.SelectedItemActiveColorKey);
+                    return GetColor(ThemedDialogColors.SelectedItemActiveBrushKey);
                 case "SelectedItemInactive":
-                    return GetColor(ThemedDialogColors.SelectedItemInactiveColorKey);
+                    return GetColor(ThemedDialogColors.SelectedItemInactiveBrushKey);
                 case "ListItemMouseOver":
-                    return GetColor(ThemedDialogColors.ListItemMouseOverColorKey);
+                    return GetColor(ThemedDialogColors.ListItemMouseOverBrushKey);
                 case "ListItemDisabledText":
-                    return GetColor(ThemedDialogColors.ListItemDisabledTextColorKey);
+                    return GetColor(ThemedDialogColors.ListItemDisabledTextBrushKey);
                 case "GridHeadingBackground":
-                    return GetColor(ThemedDialogColors.GridHeadingBackgroundColorKey);
+                    return GetColor(ThemedDialogColors.GridHeadingBackgroundBrushKey);
                 case "GridHeadingHoverBackground":
-                    return GetColor(ThemedDialogColors.GridHeadingHoverBackgroundColorKey);
+                    return GetColor(ThemedDialogColors.GridHeadingHoverBackgroundBrushKey);
                 case "GridHeadingText":
-                    return GetColor(ThemedDialogColors.GridHeadingTextColorKey);
+                    return GetColor(ThemedDialogColors.GridHeadingTextBrushKey);
                 case "GridHeadingHoverText":
-                    return GetColor(ThemedDialogColors.GridHeadingHoverTextColorKey);
+                    return GetColor(ThemedDialogColors.GridHeadingHoverTextBrushKey);
                 case "GridLine":
-                    return GetColor(ThemedDialogColors.GridLineColorKey);
+                    return GetColor(ThemedDialogColors.GridLineBrushKey);
                 case "SectionDivider":
-                    return GetColor(ThemedDialogColors.SectionDividerColorKey);
+                    return GetColor(ThemedDialogColors.SectionDividerBrushKey);
                 case "WindowButton":
-                    return GetColor(ThemedDialogColors.WindowButtonColorKey);
+                    return GetColor(ThemedDialogColors.WindowButtonBrushKey);
                 case "WindowButtonHover":
-                    return GetColor(ThemedDialogColors.WindowButtonHoverColorKey);
+                    return GetColor(ThemedDialogColors.WindowButtonHoverBrushKey);
                 case "WindowButtonDown":
-                    return GetColor(ThemedDialogColors.WindowButtonDownColorKey);
+                    return GetColor(ThemedDialogColors.WindowButtonDownBrushKey);
                 case "WindowButtonBorder":
-                    return GetColor(ThemedDialogColors.WindowButtonBorderColorKey);
+                    return GetColor(ThemedDialogColors.WindowButtonBorderBrushKey);
                 case "WindowButtonHoverBorder":
-                    return GetColor(ThemedDialogColors.WindowButtonHoverBorderColorKey);
+                    return GetColor(ThemedDialogColors.WindowButtonHoverBorderBrushKey);
                 case "WindowButtonDownBorder":
-                    return GetColor(ThemedDialogColors.WindowButtonDownBorderColorKey);
+                    return GetColor(ThemedDialogColors.WindowButtonDownBorderBrushKey);
                 case "WindowButtonGlyph":
-                    return GetColor(ThemedDialogColors.WindowButtonGlyphColorKey);
+                    return GetColor(ThemedDialogColors.WindowButtonGlyphBrushKey);
                 case "WindowButtonHoverGlyph":
-                    return GetColor(ThemedDialogColors.WindowButtonHoverGlyphColorKey);
+                    return GetColor(ThemedDialogColors.WindowButtonHoverGlyphBrushKey);
                 case "WindowButtonDownGlyph":
-                    return GetColor(ThemedDialogColors.WindowButtonDownGlyphColorKey);
+                    return GetColor(ThemedDialogColors.WindowButtonDownGlyphBrushKey);
                 case "WizardFooter":
-                    return GetColor(ThemedDialogColors.WizardFooterColorKey);
+                    return GetColor(ThemedDialogColors.WizardFooterBrushKey);
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
@@ -114,9 +116,9 @@ namespace Microsoft.Templates.UI.Services
             switch (memberName)
             {
                 case "ListItemText":
-                    return GetColor(CommonDocumentColors.ListItemTextColorKey);
+                    return GetColor(CommonDocumentColors.ListItemTextBrushKey);
                 case "ListItemTextDisabled":
-                    return GetColor(CommonDocumentColors.ListItemTextDisabledColorKey);
+                    return GetColor(CommonDocumentColors.ListItemTextDisabledBrushKey);
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
@@ -127,196 +129,196 @@ namespace Microsoft.Templates.UI.Services
             switch (memberName)
             {
                 case "Button":
-                    return GetColor(CommonControlsColors.ButtonColorKey);
+                    return GetColor(CommonControlsColors.ButtonBrushKey);
                 case "ButtonText":
-                    return GetColor(CommonControlsColors.ButtonTextColorKey);
+                    return GetColor(CommonControlsColors.ButtonTextBrushKey);
                 case "ButtonBorder":
-                    return GetColor(CommonControlsColors.ButtonBorderColorKey);
+                    return GetColor(CommonControlsColors.ButtonBorderBrushKey);
 
                 case "ButtonDefault":
-                    return GetColor(CommonControlsColors.ButtonDefaultColorKey);
+                    return GetColor(CommonControlsColors.ButtonDefaultBrushKey);
                 case "ButtonDefaultText":
-                    return GetColor(CommonControlsColors.ButtonDefaultTextColorKey);
+                    return GetColor(CommonControlsColors.ButtonDefaultTextBrushKey);
                 case "ButtonBorderDefault":
-                    return GetColor(CommonControlsColors.ButtonBorderDefaultColorKey);
+                    return GetColor(CommonControlsColors.ButtonBorderDefaultBrushKey);
 
                 case "ButtonDisabled":
-                    return GetColor(CommonControlsColors.ButtonDisabledColorKey);
+                    return GetColor(CommonControlsColors.ButtonDisabledBrushKey);
                 case "ButtonDisabledText":
-                    return GetColor(CommonControlsColors.ButtonDisabledTextColorKey);
+                    return GetColor(CommonControlsColors.ButtonDisabledTextBrushKey);
                 case "ButtonBorderDisabled":
-                    return GetColor(CommonControlsColors.ButtonBorderDisabledColorKey);
+                    return GetColor(CommonControlsColors.ButtonBorderDisabledBrushKey);
 
                 case "ButtonFocused":
-                    return GetColor(CommonControlsColors.ButtonFocusedColorKey);
+                    return GetColor(CommonControlsColors.ButtonFocusedBrushKey);
                 case "ButtonFocusedText":
-                    return GetColor(CommonControlsColors.ButtonFocusedTextColorKey);
+                    return GetColor(CommonControlsColors.ButtonFocusedTextBrushKey);
                 case "ButtonBorderFocused":
-                    return GetColor(CommonControlsColors.ButtonBorderFocusedColorKey);
+                    return GetColor(CommonControlsColors.ButtonBorderFocusedBrushKey);
 
                 case "ButtonHover":
-                    return GetColor(CommonControlsColors.ButtonHoverColorKey);
+                    return GetColor(CommonControlsColors.ButtonHoverBrushKey);
                 case "ButtonHoverText":
-                    return GetColor(CommonControlsColors.ButtonHoverTextColorKey);
+                    return GetColor(CommonControlsColors.ButtonHoverTextBrushKey);
                 case "ButtonBorderHover":
-                    return GetColor(CommonControlsColors.ButtonBorderHoverColorKey);
+                    return GetColor(CommonControlsColors.ButtonBorderHoverBrushKey);
 
                 case "ButtonPressed":
-                    return GetColor(CommonControlsColors.ButtonPressedColorKey);
+                    return GetColor(CommonControlsColors.ButtonPressedBrushKey);
                 case "ButtonPressedText":
-                    return GetColor(CommonControlsColors.ButtonPressedTextColorKey);
+                    return GetColor(CommonControlsColors.ButtonPressedTextBrushKey);
                 case "ButtonBorderPressed":
-                    return GetColor(CommonControlsColors.ButtonBorderPressedColorKey);
+                    return GetColor(CommonControlsColors.ButtonBorderPressedBrushKey);
 
                 case "ComboBoxBackground":
-                    return GetColor(CommonControlsColors.ComboBoxBackgroundColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxBackgroundBrushKey);
                 case "ComboBoxBackgroundDisabled":
-                    return GetColor(CommonControlsColors.ComboBoxBackgroundDisabledColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxBackgroundDisabledBrushKey);
                 case "ComboBoxBackgroundFocused":
-                    return GetColor(CommonControlsColors.ComboBoxBackgroundFocusedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxBackgroundFocusedBrushKey);
                 case "ComboBoxBackgroundHover":
-                    return GetColor(CommonControlsColors.ComboBoxBackgroundHoverColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxBackgroundHoverBrushKey);
                 case "ComboBoxBackgroundPressed":
-                    return GetColor(CommonControlsColors.ComboBoxBackgroundPressedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxBackgroundPressedBrushKey);
 
                 case "ComboBoxBorder":
-                    return GetColor(CommonControlsColors.ComboBoxBorderColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxBorderBrushKey);
                 case "ComboBoxBorderDisabled":
-                    return GetColor(CommonControlsColors.ComboBoxBorderDisabledColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxBorderDisabledBrushKey);
                 case "ComboBoxBorderFocused":
-                    return GetColor(CommonControlsColors.ComboBoxBorderFocusedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxBorderFocusedBrushKey);
                 case "ComboBoxBorderHover":
-                    return GetColor(CommonControlsColors.ComboBoxBorderHoverColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxBorderHoverBrushKey);
                 case "ComboBoxBorderPressed":
-                    return GetColor(CommonControlsColors.ComboBoxBorderPressedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxBorderPressedBrushKey);
 
                 case "ComboBoxGlyph":
-                    return GetColor(CommonControlsColors.ComboBoxGlyphColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxGlyphBrushKey);
                 case "ComboBoxGlyphBackground":
-                    return GetColor(CommonControlsColors.ComboBoxGlyphBackgroundColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxGlyphBackgroundBrushKey);
                 case "ComboBoxGlyphBackgroundDisabled":
-                    return GetColor(CommonControlsColors.ComboBoxGlyphBackgroundDisabledColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxGlyphBackgroundDisabledBrushKey);
                 case "ComboBoxGlyphBackgroundFocused":
-                    return GetColor(CommonControlsColors.ComboBoxGlyphBackgroundFocusedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxGlyphBackgroundFocusedBrushKey);
                 case "ComboBoxGlyphBackgroundHover":
-                    return GetColor(CommonControlsColors.ComboBoxGlyphBackgroundHoverColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxGlyphBackgroundHoverBrushKey);
                 case "ComboBoxGlyphBackgroundPressed":
-                    return GetColor(CommonControlsColors.ComboBoxGlyphBackgroundPressedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxGlyphBackgroundPressedBrushKey);
                 case "ComboBoxGlyphDisabled":
-                    return GetColor(CommonControlsColors.ComboBoxGlyphDisabledColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxGlyphDisabledBrushKey);
                 case "ComboBoxGlyphFocused":
-                    return GetColor(CommonControlsColors.ComboBoxGlyphFocusedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxGlyphFocusedBrushKey);
                 case "ComboBoxGlyphHover":
-                    return GetColor(CommonControlsColors.ComboBoxGlyphHoverColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxGlyphHoverBrushKey);
                 case "ComboBoxGlyphPressed":
-                    return GetColor(CommonControlsColors.ComboBoxGlyphPressedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxGlyphPressedBrushKey);
 
                 case "ComboBoxListBackground":
-                    return GetColor(CommonControlsColors.ComboBoxListBackgroundColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxListBackgroundBrushKey);
                 case "ComboBoxListBackgroundShadow":
-                    return GetColor(CommonControlsColors.ComboBoxListBackgroundShadowColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxListBackgroundShadowBrushKey);
                 case "ComboBoxListBorder":
-                    return GetColor(CommonControlsColors.ComboBoxListBorderColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxListBorderBrushKey);
                 case "ComboBoxListItemBackgroundHover":
-                    return GetColor(CommonControlsColors.ComboBoxListItemBackgroundHoverColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxListItemBackgroundHoverBrushKey);
                 case "ComboBoxListItemBorderHover":
-                    return GetColor(CommonControlsColors.ComboBoxListItemBorderHoverColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxListItemBorderHoverBrushKey);
                 case "ComboBoxListItemText":
-                    return GetColor(CommonControlsColors.ComboBoxListItemTextColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxListItemTextBrushKey);
                 case "ComboBoxListItemTextHover":
-                    return GetColor(CommonControlsColors.ComboBoxListItemTextHoverColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxListItemTextHoverBrushKey);
 
                 case "ComboBoxSelection":
-                    return GetColor(CommonControlsColors.ComboBoxSelectionColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxSelectionBrushKey);
 
                 case "ComboBoxSeparator":
-                    return GetColor(CommonControlsColors.ComboBoxSeparatorColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxSeparatorBrushKey);
                 case "ComboBoxSeparatorDisabled":
-                    return GetColor(CommonControlsColors.ComboBoxSeparatorDisabledColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxSeparatorDisabledBrushKey);
                 case "ComboBoxSeparatorFocused":
-                    return GetColor(CommonControlsColors.ComboBoxSeparatorFocusedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxSeparatorFocusedBrushKey);
                 case "ComboBoxSeparatorHover":
-                    return GetColor(CommonControlsColors.ComboBoxSeparatorHoverColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxSeparatorHoverBrushKey);
                 case "ComboBoxSeparatorPressed":
-                    return GetColor(CommonControlsColors.ComboBoxSeparatorPressedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxSeparatorPressedBrushKey);
 
                 case "ComboBoxText":
-                    return GetColor(CommonControlsColors.ComboBoxTextColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxTextBrushKey);
                 case "ComboBoxTextDisabled":
-                    return GetColor(CommonControlsColors.ComboBoxTextDisabledColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxTextDisabledBrushKey);
                 case "ComboBoxTextFocused":
-                    return GetColor(CommonControlsColors.ComboBoxTextFocusedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxTextFocusedBrushKey);
                 case "ComboBoxTextHover":
-                    return GetColor(CommonControlsColors.ComboBoxTextHoverColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxTextHoverBrushKey);
                 case "ComboBoxTextInputSelection":
-                    return GetColor(CommonControlsColors.ComboBoxTextInputSelectionColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxTextInputSelectionBrushKey);
                 case "ComboBoxTextPressed":
-                    return GetColor(CommonControlsColors.ComboBoxTextPressedColorKey);
+                    return GetColor(CommonControlsColors.ComboBoxTextPressedBrushKey);
 
                 case "TextBoxBackground":
-                    return GetColor(CommonControlsColors.TextBoxBackgroundColorKey);
+                    return GetColor(CommonControlsColors.TextBoxBackgroundBrushKey);
                 case "TextBoxBorder":
-                    return GetColor(CommonControlsColors.TextBoxBorderColorKey);
+                    return GetColor(CommonControlsColors.TextBoxBorderBrushKey);
                 case "TextBoxText":
-                    return GetColor(CommonControlsColors.TextBoxTextColorKey);
+                    return GetColor(CommonControlsColors.TextBoxTextBrushKey);
 
                 case "TextBoxBackgroundDisabled":
-                    return GetColor(CommonControlsColors.TextBoxBackgroundDisabledColorKey);
+                    return GetColor(CommonControlsColors.TextBoxBackgroundDisabledBrushKey);
                 case "TextBoxBorderDisabled":
-                    return GetColor(CommonControlsColors.TextBoxBorderDisabledColorKey);
+                    return GetColor(CommonControlsColors.TextBoxBorderDisabledBrushKey);
                 case "TextBoxTextDisabled":
-                    return GetColor(CommonControlsColors.TextBoxTextDisabledColorKey);
+                    return GetColor(CommonControlsColors.TextBoxTextDisabledBrushKey);
 
                 case "TextBoxBackgroundFocused":
-                    return GetColor(CommonControlsColors.TextBoxBackgroundFocusedColorKey);
+                    return GetColor(CommonControlsColors.TextBoxBackgroundFocusedBrushKey);
                 case "TextBoxBorderFocused":
-                    return GetColor(CommonControlsColors.TextBoxBorderFocusedColorKey);
+                    return GetColor(CommonControlsColors.TextBoxBorderFocusedBrushKey);
                 case "TextBoxTextFocused":
-                    return GetColor(CommonControlsColors.TextBoxTextFocusedColorKey);
+                    return GetColor(CommonControlsColors.TextBoxTextFocusedBrushKey);
 
                 case "CheckBoxBackground":
-                    return GetColor(CommonControlsColors.CheckBoxBackgroundColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxBackgroundBrushKey);
                 case "CheckBoxBackgroundDisabled":
-                    return GetColor(CommonControlsColors.CheckBoxBackgroundDisabledColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxBackgroundDisabledBrushKey);
                 case "CheckBoxBackgroundFocused":
-                    return GetColor(CommonControlsColors.CheckBoxBackgroundFocusedColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxBackgroundFocusedBrushKey);
                 case "CheckBoxBackgroundHover":
-                    return GetColor(CommonControlsColors.CheckBoxBackgroundHoverColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxBackgroundHoverBrushKey);
                 case "CheckBoxBackgroundPressed":
-                    return GetColor(CommonControlsColors.CheckBoxBackgroundPressedColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxBackgroundPressedBrushKey);
 
                 case "CheckBoxGlyph":
-                    return GetColor(CommonControlsColors.CheckBoxGlyphColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxGlyphBrushKey);
                 case "CheckBoxGlyphDisabled":
-                    return GetColor(CommonControlsColors.CheckBoxGlyphDisabledColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxGlyphDisabledBrushKey);
                 case "CheckBoxGlyphFocused":
-                    return GetColor(CommonControlsColors.CheckBoxGlyphFocusedColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxGlyphFocusedBrushKey);
                 case "CheckBoxGlyphHover":
-                    return GetColor(CommonControlsColors.CheckBoxGlyphHoverColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxGlyphHoverBrushKey);
                 case "CheckBoxGlyphPressed":
-                    return GetColor(CommonControlsColors.CheckBoxGlyphPressedColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxGlyphPressedBrushKey);
 
                 case "CheckBoxBorder":
-                    return GetColor(CommonControlsColors.CheckBoxBorderColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxBorderBrushKey);
                 case "CheckBoxBorderDisabled":
-                    return GetColor(CommonControlsColors.CheckBoxBorderDisabledColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxBorderDisabledBrushKey);
                 case "CheckBoxBorderFocused":
-                    return GetColor(CommonControlsColors.CheckBoxBorderFocusedColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxBorderFocusedBrushKey);
                 case "CheckBoxBorderHover":
-                    return GetColor(CommonControlsColors.CheckBoxBorderHoverColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxBorderHoverBrushKey);
                 case "CheckBoxBorderPressed":
-                    return GetColor(CommonControlsColors.CheckBoxBorderPressedColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxBorderPressedBrushKey);
 
                 case "CheckBoxText":
-                    return GetColor(CommonControlsColors.CheckBoxTextColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxTextBrushKey);
                 case "CheckBoxTextDisabled":
-                    return GetColor(CommonControlsColors.CheckBoxTextDisabledColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxTextDisabledBrushKey);
                 case "CheckBoxTextFocused":
-                    return GetColor(CommonControlsColors.CheckBoxTextFocusedColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxTextFocusedBrushKey);
                 case "CheckBoxTextHover":
-                    return GetColor(CommonControlsColors.CheckBoxTextHoverColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxTextHoverBrushKey);
                 case "CheckBoxTextPressed":
-                    return GetColor(CommonControlsColors.CheckBoxTextPressedColorKey);
+                    return GetColor(CommonControlsColors.CheckBoxTextPressedBrushKey);
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
@@ -328,19 +330,72 @@ namespace Microsoft.Templates.UI.Services
             switch (memberName)
             {
                 case "PageSideBarExpanderBody":
-                    return GetColor(EnvironmentColors.PageSideBarExpanderBodyColorKey);
+                    return GetColor(EnvironmentColors.PageSideBarExpanderBodyBrushKey);
                 case "PageSideBarExpanderChevron":
-                    return GetColor(EnvironmentColors.PageSideBarExpanderChevronColorKey);
+                    return GetColor(EnvironmentColors.PageSideBarExpanderChevronBrushKey);
                 case "PageSideBarExpanderHeader":
-                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderColorKey);
+                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderBrushKey);
                 case "PageSideBarExpanderHeaderHover":
-                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderHoverColorKey);
+                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderHoverBrushKey);
                 case "PageSideBarExpanderHeaderPressed":
-                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderPressedColorKey);
+                    return GetColor(EnvironmentColors.PageSideBarExpanderHeaderPressedBrushKey);
                 case "PageSideBarExpanderSeparator":
-                    return GetColor(EnvironmentColors.PageSideBarExpanderSeparatorColorKey);
+                    return GetColor(EnvironmentColors.PageSideBarExpanderSeparatorBrushKey);
                 case "PageSideBarExpanderText":
-                    return GetColor(EnvironmentColors.PageSideBarExpanderTextColorKey);
+                    return GetColor(EnvironmentColors.PageSideBarExpanderTextBrushKey);
+                default:
+                    throw new Exception($"The color key value '{memberName}' is not found");
+            }
+        }
+
+        private Brush GetColorFromInfoBar(string memberName)
+        {
+            switch (memberName)
+            {
+                case "Button":
+                    return GetColor(InfoBarColors.ButtonBrushKey);
+                case "ButtonBorder":
+                    return GetColor(InfoBarColors.ButtonBorderBrushKey);
+                case "ButtonDisabled":
+                    return GetColor(InfoBarColors.ButtonDisabledBrushKey);
+                case "ButtonDisabledBorder":
+                    return GetColor(InfoBarColors.ButtonDisabledBorderBrushKey);
+                case "ButtonFocus":
+                    return GetColor(InfoBarColors.ButtonFocusBrushKey);
+                case "ButtonFocusBorder":
+                    return GetColor(InfoBarColors.ButtonFocusBorderBrushKey);
+                case "ButtonMouseDown":
+                    return GetColor(InfoBarColors.ButtonMouseDownBrushKey);
+                case "ButtonMouseDownBorder":
+                    return GetColor(InfoBarColors.ButtonMouseDownBorderBrushKey);
+                case "ButtonMouseOver":
+                    return GetColor(InfoBarColors.ButtonMouseOverBrushKey);
+                case "ButtonMouseOverBorder":
+                    return GetColor(InfoBarColors.ButtonMouseOverBorderBrushKey);
+                case "CloseButton":
+                    return GetColor(InfoBarColors.CloseButtonBrushKey);
+                case "CloseButtonBorder":
+                    return GetColor(InfoBarColors.CloseButtonBorderBrushKey);
+                case "CloseButtonDown":
+                    return GetColor(InfoBarColors.CloseButtonDownBrushKey);
+                case "CloseButtonDownBorder":
+                    return GetColor(InfoBarColors.CloseButtonDownBorderBrushKey);
+                case "CloseButtonDownGlyph":
+                    return GetColor(InfoBarColors.CloseButtonDownGlyphBrushKey);
+                case "CloseButtonGlyph":
+                    return GetColor(InfoBarColors.CloseButtonGlyphBrushKey);
+                case "CloseButtonHover":
+                    return GetColor(InfoBarColors.CloseButtonHoverBrushKey);
+                case "CloseButtonHoverBorder":
+                    return GetColor(InfoBarColors.CloseButtonHoverBorderBrushKey);
+                case "CloseButtonHoverGlyph":
+                    return GetColor(InfoBarColors.CloseButtonHoverGlyphBrushKey);
+                case "InfoBarBackground":
+                    return GetColor(InfoBarColors.InfoBarBackgroundBrushKey);
+                case "InfoBarBackgroundText":
+                    return GetColor(InfoBarColors.InfoBarBackgroundTextBrushKey);
+                case "InfoBarBorder":
+                    return GetColor(InfoBarColors.InfoBarBorderBrushKey);
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
@@ -351,91 +406,70 @@ namespace Microsoft.Templates.UI.Services
             switch (memberName)
             {
                 case "CardTitleText":
-                    return GetColor(WindowsTemplateStudioColors.CardTitleTextColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardTitleTextBrushKey);
                 case "CardDescriptionText":
-                    return GetColor(WindowsTemplateStudioColors.CardDescriptionTextColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardDescriptionTextBrushKey);
                 case "CardBackgroundDefault":
-                    return GetColor(WindowsTemplateStudioColors.CardBackgroundDefaultColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundDefaultBrushKey);
                 case "CardBackgroundFocus":
-                    return GetColor(WindowsTemplateStudioColors.CardBackgroundFocusColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundFocusBrushKey);
                 case "CardBackgroundHover":
-                    return GetColor(WindowsTemplateStudioColors.CardBackgroundHoverColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundHoverBrushKey);
                 case "CardBackgroundPressed":
-                    return GetColor(WindowsTemplateStudioColors.CardBackgroundPressedColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundPressedBrushKey);
                 case "CardBackgroundSelected":
-                    return GetColor(WindowsTemplateStudioColors.CardBackgroundSelectedColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundSelectedBrushKey);
                 case "CardBackgroundDisabled":
-                    return GetColor(WindowsTemplateStudioColors.CardBackgroundDisabledColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundDisabledBrushKey);
                 case "CardBorderDefault":
-                    return GetColor(WindowsTemplateStudioColors.CardBorderDefaultColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBorderDefaultBrushKey);
                 case "CardBorderFocus":
-                    return GetColor(WindowsTemplateStudioColors.CardBorderFocusColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBorderFocusBrushKey);
                 case "CardBorderHover":
-                    return GetColor(WindowsTemplateStudioColors.CardBorderHoverColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBorderHoverBrushKey);
                 case "CardBorderPressed":
-                    return GetColor(WindowsTemplateStudioColors.CardBorderPressedColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBorderPressedBrushKey);
                 case "CardBorderSelected":
-                    return GetColor(WindowsTemplateStudioColors.CardBorderSelectedColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBorderSelectedBrushKey);
                 case "CardBorderDisabled":
-                    return GetColor(WindowsTemplateStudioColors.CardBorderDisabledColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardBorderDisabledBrushKey);
                 case "CardIcon":
-                    return GetColor(WindowsTemplateStudioColors.CardIconColorKey);
+                    return GetColor(WindowsTemplateStudioColors.CardIconBrushKey);
                 case "CardFooterText":
-                    return GetColor(WindowsTemplateStudioColors.CardFooterTextColorKey);
-
-                //case "NotificationInformationText":
-                //    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
-                //case "NotificationInformationBackground":
-                //    return LightColorValues.Color_FFE5F1FB; // TODO: Replace this temporary value for a VS Color
-                //case "NotificationInformationIcon":
-                //    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
-
-                //case "NotificationWarningText":
-                //    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
-                //case "NotificationWarningBackground":
-                //    return LightColorValues.Color_FFFDFBAC; // TODO: Replace this temporary value for a VS Color
-                //case "NotificationWarningIcon":
-                //    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
-
-                //case "NotificationErrorText":
-                //    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
-                //case "NotificationErrorBackground":
-                //    return LightColorValues.Color_FFFDFBAC; // TODO: Replace this temporary value for a VS Color
-                //case "NotificationErrorIcon":
-                //    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.CardFooterTextBrushKey);
 
                 case "DeleteTemplateIcon":
-                    return GetColor(WindowsTemplateStudioColors.DeleteTemplateIconColorKey);
+                    return GetColor(WindowsTemplateStudioColors.DeleteTemplateIconBrushKey);
                 case "SavedTemplateBackgroundHover":
-                    return GetColor(WindowsTemplateStudioColors.SavedTemplateBackgroundHoverColorKey);
+                    return GetColor(WindowsTemplateStudioColors.SavedTemplateBackgroundHoverBrushKey);
 
                 case "NewItemFileStatusNewFile":
-                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusNewFileColorKey);
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusNewFileBrushKey);
                 case "NewItemFileStatusModifiedFile":
-                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusModifiedFileColorKey);
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusModifiedFileBrushKey);
                 case "NewItemFileStatusConflictingFile":
-                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusConflictingFileColorKey);
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusConflictingFileBrushKey);
                 case "NewItemFileStatusConflictingStylesFile":
-                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusConflictingStylesFileColorKey);
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusConflictingStylesFileBrushKey);
                 case "NewItemFileStatusWarningFile":
-                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusWarningFileColorKey);
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusWarningFileBrushKey);
                 case "NewItemFileStatusUnchangedFile":
-                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusUnchangedFileColorKey);
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusUnchangedFileBrushKey);
 
                 case "ChangesSummaryDetailFileHeaderBackground":
-                    return GetColor(WindowsTemplateStudioColors.ChangesSummaryDetailFileHeaderBackgroundColorKey);
+                    return GetColor(WindowsTemplateStudioColors.ChangesSummaryDetailFileHeaderBackgroundBrushKey);
 
                 case "DialogInfoIcon":
-                    return GetColor(WindowsTemplateStudioColors.DialogInfoIconColorKey);
+                    return GetColor(WindowsTemplateStudioColors.DialogInfoIconBrushKey);
                 case "DialogErrorIcon":
-                    return GetColor(WindowsTemplateStudioColors.DialogErrorIconColorKey);
+                    return GetColor(WindowsTemplateStudioColors.DialogErrorIconBrushKey);
                 case "DialogWarningIcon":
-                    return GetColor(WindowsTemplateStudioColors.DialogWarningIconColorKey);
+                    return GetColor(WindowsTemplateStudioColors.DialogWarningIconBrushKey);
 
                 case "HeaderTextSecondary":
-                    return GetColor(WindowsTemplateStudioColors.HeaderTextSecondaryColorKey);
+                    return GetColor(WindowsTemplateStudioColors.HeaderTextSecondaryBrushKey);
                 case "WizardFooterText":
-                    return GetColor(WindowsTemplateStudioColors.WizardFooterTextColorKey);
+                    return GetColor(WindowsTemplateStudioColors.WizardFooterTextBrushKey);
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
