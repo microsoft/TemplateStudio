@@ -37,8 +37,6 @@ namespace Microsoft.Templates.UI.Services
                     return GetColorFromCommonControls(memberName);
                 case "Environment":
                     return GetColorFromEnvironment(memberName);
-                case "ThemedCard":
-                    return GetColorFromThemedCard(memberName);
                 case "WindowsTemplateStudio":
                     return GetColorFromWindowsTemplateStudio(memberName);
                 default:
@@ -352,51 +350,43 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        private Brush GetColorFromThemedCard(string memberName)
-        {
-            switch (memberName)
-            {
-                case "CardTitleText":
-                    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
-                case "CardDescriptionText":
-                    return LightColorValues.Color_FF717171; // TODO: Replace this temporary value for a VS Color
-                case "CardBackgroundDefault":
-                    return LightColorValues.Color_FFFFFFFF; // TODO: Replace this temporary value for a VS Color
-                case "CardBackgroundFocus":
-                    return LightColorValues.Color_FFFFFFFF; // TODO: Replace this temporary value for a VS Color
-                case "CardBackgroundHover":
-                    return LightColorValues.Color_FFEFEFF2; // TODO: Replace this temporary value for a VS Color
-                case "CardBackgroundPressed":
-                    return LightColorValues.Color_FFEFEFF2; // TODO: Replace this temporary value for a VS Color
-                case "CardBackgroundSelected":
-                    return LightColorValues.Color_FFFFFFFF; // TODO: Replace this temporary value for a VS Color
-                case "CardBackgroundDisabled":
-                    return LightColorValues.Color_FFF5F5F5; // TODO: Replace this temporary value for a VS Color
-                case "CardBorderDefault":
-                    return LightColorValues.Color_FFBFBFBF; // TODO: Replace this temporary value for a VS Color
-                case "CardBorderFocus":
-                    return LightColorValues.Color_FF3399FF; // TODO: Replace this temporary value for a VS Color
-                case "CardBorderHover":
-                    return LightColorValues.Color_FF9A9A9A; // TODO: Replace this temporary value for a VS Color
-                case "CardBorderPressed":
-                    return LightColorValues.Color_FF007ACC; // TODO: Replace this temporary value for a VS Color
-                case "CardBorderSelected":
-                    return LightColorValues.Color_FF007ACC; // TODO: Replace this temporary value for a VS Color
-                case "CardBorderDisabled":
-                    return LightColorValues.Color_FFCCCEDB; // TODO: Replace this temporary value for a VS Color
-                case "CardIcon":
-                    return LightColorValues.Color_FF888D8F; // TODO: Replace this temporary value for a VS Color
-                case "CardFooterText":
-                    return LightColorValues.Color_FF575757; // TODO: Replace this temporary value for a VS Color
-                default:
-                    throw new Exception($"The color key value '{memberName}' is not found");
-            }
-        }
-
         private Brush GetColorFromWindowsTemplateStudio(string memberName)
         {
             switch (memberName)
             {
+                case "CardTitleText":
+                    return GetColor(WindowsTemplateStudioColors.CardTitleTextColorKey);
+                case "CardDescriptionText":
+                    return GetColor(WindowsTemplateStudioColors.CardDescriptionTextColorKey);
+                case "CardBackgroundDefault":
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundDefaultColorKey);
+                case "CardBackgroundFocus":
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundFocusColorKey);
+                case "CardBackgroundHover":
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundHoverColorKey);
+                case "CardBackgroundPressed":
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundPressedColorKey);
+                case "CardBackgroundSelected":
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundSelectedColorKey);
+                case "CardBackgroundDisabled":
+                    return GetColor(WindowsTemplateStudioColors.CardBackgroundDisabledColorKey);
+                case "CardBorderDefault":
+                    return GetColor(WindowsTemplateStudioColors.CardBorderDefaultColorKey);
+                case "CardBorderFocus":
+                    return GetColor(WindowsTemplateStudioColors.CardBorderFocusColorKey);
+                case "CardBorderHover":
+                    return GetColor(WindowsTemplateStudioColors.CardBorderHoverColorKey);
+                case "CardBorderPressed":
+                    return GetColor(WindowsTemplateStudioColors.CardBorderPressedColorKey);
+                case "CardBorderSelected":
+                    return GetColor(WindowsTemplateStudioColors.CardBorderSelectedColorKey);
+                case "CardBorderDisabled":
+                    return GetColor(WindowsTemplateStudioColors.CardBorderDisabledColorKey);
+                case "CardIcon":
+                    return GetColor(WindowsTemplateStudioColors.CardIconColorKey);
+                case "CardFooterText":
+                    return GetColor(WindowsTemplateStudioColors.CardFooterTextColorKey);
+
                 case "NotificationInformationText":
                     return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
                 case "NotificationInformationBackground":
@@ -419,32 +409,32 @@ namespace Microsoft.Templates.UI.Services
                     return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
 
                 case "DeleteTemplateIcon":
-                    return LightColorValues.Color_FFE82C3C; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.DeleteTemplateIconColorKey);
                 case "SavedTemplateBackgroundHover":
-                    return LightColorValues.Color_FFE9E9E9; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.SavedTemplateBackgroundHoverColorKey);
 
                 case "NewItemFileStatusNewFile":
-                    return LightColorValues.Color_FF00CC6A; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusNewFileColorKey);
                 case "NewItemFileStatusModifiedFile":
-                    return LightColorValues.Color_FF0078D6; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusModifiedFileColorKey);
                 case "NewItemFileStatusConflictingFile":
-                    return LightColorValues.Color_FFE81123; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusConflictingFileColorKey);
                 case "NewItemFileStatusConflictingStylesFile":
-                    return LightColorValues.Color_FFFFB900; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusConflictingStylesFileColorKey);
                 case "NewItemFileStatusWarningFile":
-                    return LightColorValues.Color_FFFFB900; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusWarningFileColorKey);
                 case "NewItemFileStatusUnchangedFile":
-                    return LightColorValues.Color_FF004F9E; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.NewItemFileStatusUnchangedFileColorKey);
 
                 case "ChangesSummaryDetailFileHeaderBackground":
-                    return LightColorValues.Color_FFEFEFF2; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.ChangesSummaryDetailFileHeaderBackgroundColorKey);
 
                 case "DialogInfoIcon":
-                    return LightColorValues.Color_FF007ACC; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.DialogInfoIconColorKey);
                 case "DialogErrorIcon":
-                    return LightColorValues.Color_FFFF0000; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.DialogErrorIconColorKey);
                 case "DialogWarningIcon":
-                    return LightColorValues.Color_FFFFCC00; // TODO: Replace this temporary value for a VS Color
+                    return GetColor(WindowsTemplateStudioColors.DialogWarningIconColorKey);
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");

@@ -293,7 +293,6 @@
     <Compile Include="Services\Styles\UIStylesService.ThemedDialogColors.cs" />
     <Compile Include="Services\Styles\UIStylesService.cs" />
     <Compile Include="Services\Styles\UIStylesService.FontSizes.cs" />
-    <Compile Include="Services\Styles\UIStylesService.ThemedCardColors.cs" />
     <Compile Include="Services\Styles\UIStylesService.CommonControlColors.cs" />
     <Compile Include="Services\Styles\UIStylesService.WindowsTemplateStudio.cs" />
     <Compile Include="Services\Styles\VSStyleValuesProvider.cs" />

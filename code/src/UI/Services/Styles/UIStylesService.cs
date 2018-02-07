@@ -39,7 +39,6 @@ namespace Microsoft.Templates.UI.Services
             SetEnvironmentColors();
 
             // New Color additions
-            SetThemedCardColors();
             SetWindowsTemplateStudioColors();
 
             // Font Sizes and Font Family
@@ -209,28 +208,25 @@ namespace Microsoft.Templates.UI.Services
         }
 
         // New Color additions
-        private void SetThemedCardColors()
-        {
-            CardTitleText = _stylesProvider.GetColor("ThemedCard", "CardTitleText");
-            CardDescriptionText = _stylesProvider.GetColor("ThemedCard", "CardDescriptionText");
-            CardBackgroundDefault = _stylesProvider.GetColor("ThemedCard", "CardBackgroundDefault");
-            CardBackgroundFocus = _stylesProvider.GetColor("ThemedCard", "CardBackgroundFocus");
-            CardBackgroundHover = _stylesProvider.GetColor("ThemedCard", "CardBackgroundHover");
-            CardBackgroundPressed = _stylesProvider.GetColor("ThemedCard", "CardBackgroundPressed");
-            CardBackgroundSelected = _stylesProvider.GetColor("ThemedCard", "CardBackgroundSelected");
-            CardBackgroundDisabled = _stylesProvider.GetColor("ThemedCard", "CardBackgroundDisabled");
-            CardBorderDefault = _stylesProvider.GetColor("ThemedCard", "CardBorderDefault");
-            CardBorderFocus = _stylesProvider.GetColor("ThemedCard", "CardBorderFocus");
-            CardBorderHover = _stylesProvider.GetColor("ThemedCard", "CardBorderHover");
-            CardBorderPressed = _stylesProvider.GetColor("ThemedCard", "CardBorderPressed");
-            CardBorderSelected = _stylesProvider.GetColor("ThemedCard", "CardBorderSelected");
-            CardBorderDisabled = _stylesProvider.GetColor("ThemedCard", "CardBorderDisabled");
-            CardIcon = _stylesProvider.GetColor("ThemedCard", "CardIcon"); // Added by mvegaca
-            CardFooterText = _stylesProvider.GetColor("ThemedCard", "CardFooterText"); // Added by mvegaca
-        }
-
         private void SetWindowsTemplateStudioColors()
         {
+            CardTitleText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardTitleText");
+            CardDescriptionText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardDescriptionText");
+            CardBackgroundDefault = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundDefault");
+            CardBackgroundFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundFocus");
+            CardBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundHover");
+            CardBackgroundPressed = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundPressed");
+            CardBackgroundSelected = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundSelected");
+            CardBackgroundDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundDisabled");
+            CardBorderDefault = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderDefault");
+            CardBorderFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderFocus");
+            CardBorderHover = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderHover");
+            CardBorderPressed = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderPressed");
+            CardBorderSelected = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderSelected");
+            CardBorderDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderDisabled");
+            CardIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "CardIcon");
+            CardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardFooterText");
+
             NotificationInformationText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationText");
             NotificationInformationBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationBackground");
             NotificationInformationIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationIcon");
