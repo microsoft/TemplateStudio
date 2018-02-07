@@ -569,11 +569,24 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx" />
+    <EmbeddedResource Include="Resources\StringRes.de-DE.resx" />
+    <EmbeddedResource Include="Resources\StringRes.es-ES.resx" />
+    <EmbeddedResource Include="Resources\StringRes.fr-FR.resx" />
+    <EmbeddedResource Include="Resources\StringRes.it-IT.resx" />
+    <EmbeddedResource Include="Resources\StringRes.ja-JP.resx" />
+    <EmbeddedResource Include="Resources\StringRes.ko-KR.resx" />
+    <EmbeddedResource Include="Resources\StringRes.pl-PL.resx" />
+    <EmbeddedResource Include="Resources\StringRes.pt-BR.resx" />
     <EmbeddedResource Include="Resources\StringRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.ru-RU.resx" />
+    <EmbeddedResource Include="Resources\StringRes.tr-TR.resx" />
+    <EmbeddedResource Include="Resources\StringRes.zh-CN.resx" />
+    <EmbeddedResource Include="Resources\StringRes.zh-TW.resx" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
