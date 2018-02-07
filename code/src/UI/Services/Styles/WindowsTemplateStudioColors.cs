@@ -80,15 +80,45 @@ namespace Microsoft.Templates.UI.Services
         public static ThemeResourceKey CardDescriptionTextColorKey { get { return _CardDescriptionTextColorKey ?? (_CardDescriptionTextColorKey = new ThemeResourceKey(Category, "CardDescriptionText", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey CardDescriptionTextBrushKey { get { return _CardDescriptionTextBrushKey ?? (_CardDescriptionTextBrushKey = new ThemeResourceKey(Category, "CardDescriptionText", ThemeResourceKeyType.BackgroundBrush)); } }
 
+        private static ThemeResourceKey _CardFooterTextColorKey;
+        private static ThemeResourceKey _CardFooterTextBrushKey;
+        public static ThemeResourceKey CardFooterTextColorKey { get { return _CardFooterTextColorKey ?? (_CardFooterTextColorKey = new ThemeResourceKey(Category, "CardFooterText", ThemeResourceKeyType.BackgroundColor)); } }
+        public static ThemeResourceKey CardFooterTextBrushKey { get { return _CardFooterTextBrushKey ?? (_CardFooterTextBrushKey = new ThemeResourceKey(Category, "CardFooterText", ThemeResourceKeyType.BackgroundBrush)); } }
+
+        private static ThemeResourceKey _CardIconColorKey;
+        private static ThemeResourceKey _CardIconBrushKey;
+        public static ThemeResourceKey CardIconColorKey { get { return _CardIconColorKey ?? (_CardIconColorKey = new ThemeResourceKey(Category, "CardIcon", ThemeResourceKeyType.BackgroundColor)); } }
+        public static ThemeResourceKey CardIconBrushKey { get { return _CardIconBrushKey ?? (_CardIconBrushKey = new ThemeResourceKey(Category, "CardIcon", ThemeResourceKeyType.BackgroundBrush)); } }
+
         private static ThemeResourceKey _CardTitleTextColorKey;
         private static ThemeResourceKey _CardTitleTextBrushKey;
         public static ThemeResourceKey CardTitleTextColorKey { get { return _CardTitleTextColorKey ?? (_CardTitleTextColorKey = new ThemeResourceKey(Category, "CardTitleText", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey CardTitleTextBrushKey { get { return _CardTitleTextBrushKey ?? (_CardTitleTextBrushKey = new ThemeResourceKey(Category, "CardTitleText", ThemeResourceKeyType.BackgroundBrush)); } }
 
+        private static ThemeResourceKey _ChangesSummaryDetailFileHeaderBackgroundColorKey;
+        private static ThemeResourceKey _ChangesSummaryDetailFileHeaderBackgroundBrushKey;
+        public static ThemeResourceKey ChangesSummaryDetailFileHeaderBackgroundColorKey { get { return _ChangesSummaryDetailFileHeaderBackgroundColorKey ?? (_ChangesSummaryDetailFileHeaderBackgroundColorKey = new ThemeResourceKey(Category, "ChangesSummaryDetailFileHeaderBackground", ThemeResourceKeyType.BackgroundColor)); } }
+        public static ThemeResourceKey ChangesSummaryDetailFileHeaderBackgroundBrushKey { get { return _ChangesSummaryDetailFileHeaderBackgroundBrushKey ?? (_ChangesSummaryDetailFileHeaderBackgroundBrushKey = new ThemeResourceKey(Category, "ChangesSummaryDetailFileHeaderBackground", ThemeResourceKeyType.BackgroundBrush)); } }
+
         private static ThemeResourceKey _DeleteTemplateIconColorKey;
         private static ThemeResourceKey _DeleteTemplateIconBrushKey;
         public static ThemeResourceKey DeleteTemplateIconColorKey { get { return _DeleteTemplateIconColorKey ?? (_DeleteTemplateIconColorKey = new ThemeResourceKey(Category, "DeleteTemplateIcon", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey DeleteTemplateIconBrushKey { get { return _DeleteTemplateIconBrushKey ?? (_DeleteTemplateIconBrushKey = new ThemeResourceKey(Category, "DeleteTemplateIcon", ThemeResourceKeyType.BackgroundBrush)); } }
+
+        private static ThemeResourceKey _DialogErrorIconColorKey;
+        private static ThemeResourceKey _DialogErrorIconBrushKey;
+        public static ThemeResourceKey DialogErrorIconColorKey { get { return _DialogErrorIconColorKey ?? (_DialogErrorIconColorKey = new ThemeResourceKey(Category, "DialogErrorIcon", ThemeResourceKeyType.BackgroundColor)); } }
+        public static ThemeResourceKey DialogErrorIconBrushKey { get { return _DialogErrorIconBrushKey ?? (_DialogErrorIconBrushKey = new ThemeResourceKey(Category, "DialogErrorIcon", ThemeResourceKeyType.BackgroundBrush)); } }
+
+        private static ThemeResourceKey _DialogInfoIconColorKey;
+        private static ThemeResourceKey _DialogInfoIconBrushKey;
+        public static ThemeResourceKey DialogInfoIconColorKey { get { return _DialogInfoIconColorKey ?? (_DialogInfoIconColorKey = new ThemeResourceKey(Category, "DialogInfoIcon", ThemeResourceKeyType.BackgroundColor)); } }
+        public static ThemeResourceKey DialogInfoIconBrushKey { get { return _DialogInfoIconBrushKey ?? (_DialogInfoIconBrushKey = new ThemeResourceKey(Category, "DialogInfoIcon", ThemeResourceKeyType.BackgroundBrush)); } }
+
+        private static ThemeResourceKey _DialogWarningIconColorKey;
+        private static ThemeResourceKey _DialogWarningIconBrushKey;
+        public static ThemeResourceKey DialogWarningIconColorKey { get { return _DialogWarningIconColorKey ?? (_DialogWarningIconColorKey = new ThemeResourceKey(Category, "DialogWarningIcon", ThemeResourceKeyType.BackgroundColor)); } }
+        public static ThemeResourceKey DialogWarningIconBrushKey { get { return _DialogWarningIconBrushKey ?? (_DialogWarningIconBrushKey = new ThemeResourceKey(Category, "DialogWarningIcon", ThemeResourceKeyType.BackgroundBrush)); } }
 
         private static ThemeResourceKey _GridHeadingBackgroundColorKey;
         private static ThemeResourceKey _GridHeadingBackgroundBrushKey;
