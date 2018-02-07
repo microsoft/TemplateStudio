@@ -52,7 +52,6 @@ namespace Microsoft.Templates.UI.Services
             WindowPanelText = _stylesProvider.GetColor("ThemedDialog", "WindowPanelText");
             WindowBorder = _stylesProvider.GetColor("ThemedDialog", "WindowBorder");
             HeaderText = _stylesProvider.GetColor("ThemedDialog", "HeaderText");
-            HeaderTextSecondary = _stylesProvider.GetColor("ThemedDialog", "HeaderTextSecondary");
             Hyperlink = _stylesProvider.GetColor("ThemedDialog", "Hyperlink");
             HyperlinkHover = _stylesProvider.GetColor("ThemedDialog", "HyperlinkHover");
             HyperlinkPressed = _stylesProvider.GetColor("ThemedDialog", "HyperlinkPressed");
@@ -79,7 +78,6 @@ namespace Microsoft.Templates.UI.Services
             WindowButtonDownGlyph = _stylesProvider.GetColor("ThemedDialog", "WindowButtonDownGlyph");
 
             WizardFooter = _stylesProvider.GetColor("ThemedDialog", "WizardFooter");
-            WizardFooterText = _stylesProvider.GetColor("ThemedDialog", "WizardFooterText");
         }
 
         private void SetCommonDocumentColors()
@@ -254,6 +252,9 @@ namespace Microsoft.Templates.UI.Services
             DialogInfoIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoIcon");
             DialogErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogErrorIcon");
             DialogWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogWarningIcon");
+
+            HeaderTextSecondary = _stylesProvider.GetColor("WindowsTemplateStudio", "HeaderTextSecondary");
+            WizardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooterText");
         }
 
         // Font Sizes and Font Family

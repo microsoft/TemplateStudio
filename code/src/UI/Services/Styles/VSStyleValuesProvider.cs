@@ -104,10 +104,6 @@ namespace Microsoft.Templates.UI.Services
                     return GetColor(ThemedDialogColors.WindowButtonDownGlyphColorKey);
                 case "WizardFooter":
                     return GetColor(ThemedDialogColors.WizardFooterColorKey);
-                //case "HeaderTextSecondary":
-                //    return LightColorValues.Color_FF828282; // TODO: Replace this temporary value for a VS Color
-                //case "WizardFooterText":
-                //    return LightColorValues.Color_FF828282; // TODO: Replace this temporary value for a VS Color
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
@@ -435,6 +431,11 @@ namespace Microsoft.Templates.UI.Services
                     return GetColor(WindowsTemplateStudioColors.DialogErrorIconColorKey);
                 case "DialogWarningIcon":
                     return GetColor(WindowsTemplateStudioColors.DialogWarningIconColorKey);
+
+                case "HeaderTextSecondary":
+                    return GetColor(WindowsTemplateStudioColors.HeaderTextSecondaryColorKey);
+                case "WizardFooterText":
+                    return GetColor(WindowsTemplateStudioColors.WizardFooterTextColorKey);
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");

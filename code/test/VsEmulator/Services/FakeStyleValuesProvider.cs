@@ -130,10 +130,7 @@ namespace Microsoft.Templates.VsEmulator.Services
                     return GetColor(ThemedDialog.WindowButtonDownGlyphBrushKey);
                 case "WizardFooter":
                     return GetColor(ThemedDialog.WizardFooterBrushKey);
-                case "HeaderTextSecondary":
-                    return new SolidColorBrush() { Color = new Color() { A = 255, R = 130, G = 130, B = 130 } }; // TODO mvegaca this color is Missing
-                case "WizardFooterText":
-                    return new SolidColorBrush() { Color = new Color() { A = 255, R = 130, G = 130, B = 130 } }; // TODO mvegaca this color is Missing
+
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
@@ -461,6 +458,11 @@ namespace Microsoft.Templates.VsEmulator.Services
                     return GetColor(WindowsTemplateStudio.DialogErrorIconBrushKey);
                 case "DialogWarningIcon":
                     return GetColor(WindowsTemplateStudio.DialogWarningIconBrushKey);
+
+                case "HeaderTextSecondary":
+                    return GetColor(WindowsTemplateStudio.HeaderTextSecondaryBrushKey);
+                case "WizardFooterText":
+                    return GetColor(WindowsTemplateStudio.WizardFooterTextBrushKey);
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");

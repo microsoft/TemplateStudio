@@ -304,5 +304,21 @@ namespace Microsoft.Templates.UI.Services
             get { return (Brush)GetValue(DialogWarningIconProperty); }
             set { SetValue(DialogWarningIconProperty, value); }
         }
+
+        public static readonly DependencyProperty HeaderTextSecondaryProperty = DependencyProperty.Register("HeaderTextSecondary", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush HeaderTextSecondary
+        {
+            get { return (Brush)GetValue(HeaderTextSecondaryProperty); }
+            set { SetValue(HeaderTextSecondaryProperty, value); }
+        }
+
+        public static readonly DependencyProperty WizardFooterTextProperty = DependencyProperty.Register("WizardFooterText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush WizardFooterText
+        {
+            get { return (Brush)GetValue(WizardFooterTextProperty); }
+            set { SetValue(WizardFooterTextProperty, value); }
+        }
     }
 }
