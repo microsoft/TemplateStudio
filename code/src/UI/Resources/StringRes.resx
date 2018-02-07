@@ -591,5 +591,10 @@
   </data>
   <data name="ButtonDetails" xml:space="preserve">
     <value>Details</value>
+    <comment>Details button</comment>
+  </data>
+  <data name="TemplateAdded" xml:space="preserve">
+    <value>Added</value>
+    <comment>Template added label</comment>
   </data>
 </root>

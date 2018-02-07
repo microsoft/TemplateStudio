@@ -1024,6 +1024,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Added.
+        /// </summary>
+        public static string TemplateAdded {
+            get {
+                return ResourceManager.GetString("TemplateAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author:.
         /// </summary>
         public static string TemplateDetailsAuthor {
