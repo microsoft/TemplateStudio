@@ -313,7 +313,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dependency template {0} not found on user selection.
+        ///   Looks up a localized string similar to Dependency template {0} not found on user selection..
         /// </summary>
         public static string ErrorDependencyMissing {
             get {
@@ -763,7 +763,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select framework:.
+        ///   Looks up a localized string similar to Select design pattern:.
         /// </summary>
         public static string ProjectConfigurationSelectFramework {
             get {
@@ -772,7 +772,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select design pattern:.
+        ///   Looks up a localized string similar to Select project type:.
         /// </summary>
         public static string ProjectConfigurationSelectProjectType {
             get {
@@ -1020,6 +1020,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string StatusBarRunFinished {
             get {
                 return ResourceManager.GetString("StatusBarRunFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added.
+        /// </summary>
+        public static string TemplateAdded {
+            get {
+                return ResourceManager.GetString("TemplateAdded", resourceCulture);
             }
         }
         
