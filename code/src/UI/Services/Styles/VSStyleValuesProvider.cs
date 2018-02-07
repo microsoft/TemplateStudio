@@ -104,10 +104,10 @@ namespace Microsoft.Templates.UI.Services
                     return GetColor(ThemedDialogColors.WindowButtonDownGlyphColorKey);
                 case "WizardFooter":
                     return GetColor(ThemedDialogColors.WizardFooterColorKey);
-                case "HeaderTextSecondary":
-                    return LightColorValues.Color_FF828282; // TODO: Replace this temporary value for a VS Color
-                case "WizardFooterText":
-                    return LightColorValues.Color_FF828282; // TODO: Replace this temporary value for a VS Color
+                //case "HeaderTextSecondary":
+                //    return LightColorValues.Color_FF828282; // TODO: Replace this temporary value for a VS Color
+                //case "WizardFooterText":
+                //    return LightColorValues.Color_FF828282; // TODO: Replace this temporary value for a VS Color
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
@@ -387,26 +387,26 @@ namespace Microsoft.Templates.UI.Services
                 case "CardFooterText":
                     return GetColor(WindowsTemplateStudioColors.CardFooterTextColorKey);
 
-                case "NotificationInformationText":
-                    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
-                case "NotificationInformationBackground":
-                    return LightColorValues.Color_FFE5F1FB; // TODO: Replace this temporary value for a VS Color
-                case "NotificationInformationIcon":
-                    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
+                //case "NotificationInformationText":
+                //    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
+                //case "NotificationInformationBackground":
+                //    return LightColorValues.Color_FFE5F1FB; // TODO: Replace this temporary value for a VS Color
+                //case "NotificationInformationIcon":
+                //    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
 
-                case "NotificationWarningText":
-                    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
-                case "NotificationWarningBackground":
-                    return LightColorValues.Color_FFFDFBAC; // TODO: Replace this temporary value for a VS Color
-                case "NotificationWarningIcon":
-                    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
+                //case "NotificationWarningText":
+                //    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
+                //case "NotificationWarningBackground":
+                //    return LightColorValues.Color_FFFDFBAC; // TODO: Replace this temporary value for a VS Color
+                //case "NotificationWarningIcon":
+                //    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
 
-                case "NotificationErrorText":
-                    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
-                case "NotificationErrorBackground":
-                    return LightColorValues.Color_FFFDFBAC; // TODO: Replace this temporary value for a VS Color
-                case "NotificationErrorIcon":
-                    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
+                //case "NotificationErrorText":
+                //    return LightColorValues.Color_FF1E1E1E; // TODO: Replace this temporary value for a VS Color
+                //case "NotificationErrorBackground":
+                //    return LightColorValues.Color_FFFDFBAC; // TODO: Replace this temporary value for a VS Color
+                //case "NotificationErrorIcon":
+                //    return LightColorValues.Color_FF18A2E7; // TODO: Replace this temporary value for a VS Color
 
                 case "DeleteTemplateIcon":
                     return GetColor(WindowsTemplateStudioColors.DeleteTemplateIconColorKey);

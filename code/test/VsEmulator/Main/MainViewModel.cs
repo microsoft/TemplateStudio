@@ -198,7 +198,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     ProjectName = newProjectInfo.name;
                     ProjectPath = projectPath;
                     OutputPath = projectPath;
-                    UI.Services.UIStylesService.Instance.Initialize(new UI.Services.FakeStyleValuesProvider());
+                    UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                     var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
                     if (userSelection != null)
@@ -242,7 +242,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                UI.Services.UIStylesService.Instance.Initialize(new UI.Services.FakeStyleValuesProvider());
+                UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
 
                 if (userSelection != null)
@@ -277,7 +277,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                UI.Services.UIStylesService.Instance.Initialize(new UI.Services.FakeStyleValuesProvider());
+                UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
 
                 if (userSelection != null)

@@ -8,6 +8,12 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/VsEmulator;component/Styles/VsTheme.xaml" />
+                <!--Light Theme-->
+                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_CommonControl.xaml" />
+                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_CommonDocument.xaml" />
+                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_Environment.xaml" />
+                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_ThemedDialog.xaml" />
+                <ResourceDictionary Source="/VsEmulator;component/Styles/Light_WindowsTemplateStudio.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
      </Application.Resources>

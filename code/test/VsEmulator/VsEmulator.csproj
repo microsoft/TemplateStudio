@@ -164,6 +164,13 @@
     </Compile>
     <Compile Include="LoadProject\LoadProjectViewModel.cs" />
     <Compile Include="Main\MainViewModel.cs" />
+    <Compile Include="Services\CommonControls.cs" />
+    <Compile Include="Services\Environment.cs" />
+    <Compile Include="Services\ThemedDialog.cs" />
+    <Compile Include="Services\CommonDocument.cs" />
+    <Compile Include="Services\XXXXXXX.cs" />
+    <Compile Include="Services\FakeStyleValuesProvider.cs" />
+    <Compile Include="Services\WindowsTemplateStudio.cs" />
     <Compile Include="TemplatesContent\TemplatesContentView.xaml.cs">
       <DependentUpon>TemplatesContentView.xaml</DependentUpon>
     </Compile>
@@ -188,6 +195,30 @@
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\Light_WindowsTemplateStudio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Light_CommonControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Light_Environment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Light_ThemedDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Light_CommonDocument.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Light_XXXXXXX.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TemplatesContent\TemplatesContentView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -286,8 +286,6 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\OrderingService.cs" />
     <Compile Include="Services\ResourcesService.cs" />
-    <Compile Include="Services\Styles\LightColorValues.cs" />
-    <Compile Include="Services\Styles\FakeStyleValuesProvider.cs" />
     <Compile Include="Services\Styles\IStyleValuesProvider.cs" />
     <Compile Include="Services\Styles\UIStylesService.Environment.cs" />
     <Compile Include="Services\Styles\UIStylesService.ThemedDialogColors.cs" />
