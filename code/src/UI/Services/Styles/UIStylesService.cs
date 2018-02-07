@@ -37,9 +37,9 @@ namespace Microsoft.Templates.UI.Services
             SetCommonDocumentColors();
             SetCommonControlColors();
             SetEnvironmentColors();
+            SetInfoBarColors();
 
             // New Color additions
-            SetThemedCardColors();
             SetWindowsTemplateStudioColors();
 
             // Font Sizes and Font Family
@@ -53,7 +53,6 @@ namespace Microsoft.Templates.UI.Services
             WindowPanelText = _stylesProvider.GetColor("ThemedDialog", "WindowPanelText");
             WindowBorder = _stylesProvider.GetColor("ThemedDialog", "WindowBorder");
             HeaderText = _stylesProvider.GetColor("ThemedDialog", "HeaderText");
-            HeaderTextSecondary = _stylesProvider.GetColor("ThemedDialog", "HeaderTextSecondary");
             Hyperlink = _stylesProvider.GetColor("ThemedDialog", "Hyperlink");
             HyperlinkHover = _stylesProvider.GetColor("ThemedDialog", "HyperlinkHover");
             HyperlinkPressed = _stylesProvider.GetColor("ThemedDialog", "HyperlinkPressed");
@@ -80,7 +79,6 @@ namespace Microsoft.Templates.UI.Services
             WindowButtonDownGlyph = _stylesProvider.GetColor("ThemedDialog", "WindowButtonDownGlyph");
 
             WizardFooter = _stylesProvider.GetColor("ThemedDialog", "WizardFooter");
-            WizardFooterText = _stylesProvider.GetColor("ThemedDialog", "WizardFooterText");
         }
 
         private void SetCommonDocumentColors()
@@ -208,40 +206,51 @@ namespace Microsoft.Templates.UI.Services
             PageSideBarExpanderText = _stylesProvider.GetColor("Environment", "PageSideBarExpanderText");
         }
 
-        // New Color additions
-        private void SetThemedCardColors()
+        private void SetInfoBarColors()
         {
-            CardTitleText = _stylesProvider.GetColor("ThemedCard", "CardTitleText");
-            CardDescriptionText = _stylesProvider.GetColor("ThemedCard", "CardDescriptionText");
-            CardBackgroundDefault = _stylesProvider.GetColor("ThemedCard", "CardBackgroundDefault");
-            CardBackgroundFocus = _stylesProvider.GetColor("ThemedCard", "CardBackgroundFocus");
-            CardBackgroundHover = _stylesProvider.GetColor("ThemedCard", "CardBackgroundHover");
-            CardBackgroundPressed = _stylesProvider.GetColor("ThemedCard", "CardBackgroundPressed");
-            CardBackgroundSelected = _stylesProvider.GetColor("ThemedCard", "CardBackgroundSelected");
-            CardBackgroundDisabled = _stylesProvider.GetColor("ThemedCard", "CardBackgroundDisabled");
-            CardBorderDefault = _stylesProvider.GetColor("ThemedCard", "CardBorderDefault");
-            CardBorderFocus = _stylesProvider.GetColor("ThemedCard", "CardBorderFocus");
-            CardBorderHover = _stylesProvider.GetColor("ThemedCard", "CardBorderHover");
-            CardBorderPressed = _stylesProvider.GetColor("ThemedCard", "CardBorderPressed");
-            CardBorderSelected = _stylesProvider.GetColor("ThemedCard", "CardBorderSelected");
-            CardBorderDisabled = _stylesProvider.GetColor("ThemedCard", "CardBorderDisabled");
-            CardIcon = _stylesProvider.GetColor("ThemedCard", "CardIcon"); // Added by mvegaca
-            CardFooterText = _stylesProvider.GetColor("ThemedCard", "CardFooterText"); // Added by mvegaca
+            IBButton = _stylesProvider.GetColor("InfoBar", "Button");
+            IBButtonBorder = _stylesProvider.GetColor("InfoBar", "ButtonBorder");
+            IBButtonDisabled = _stylesProvider.GetColor("InfoBar", "ButtonDisabled");
+            IBButtonDisabledBorder = _stylesProvider.GetColor("InfoBar", "ButtonDisabledBorder");
+            IBButtonFocus = _stylesProvider.GetColor("InfoBar", "ButtonFocus");
+            IBButtonFocusBorder = _stylesProvider.GetColor("InfoBar", "ButtonFocusBorder");
+            IBButtonMouseDown = _stylesProvider.GetColor("InfoBar", "ButtonMouseDown");
+            IBButtonMouseDownBorder = _stylesProvider.GetColor("InfoBar", "ButtonMouseDownBorder");
+            IBButtonMouseOver = _stylesProvider.GetColor("InfoBar", "ButtonMouseOver");
+            IBButtonMouseOverBorder = _stylesProvider.GetColor("InfoBar", "ButtonMouseOverBorder");
+            IBCloseButton = _stylesProvider.GetColor("InfoBar", "CloseButton");
+            IBCloseButtonBorder = _stylesProvider.GetColor("InfoBar", "CloseButtonBorder");
+            IBCloseButtonDown = _stylesProvider.GetColor("InfoBar", "CloseButtonDown");
+            IBCloseButtonDownBorder = _stylesProvider.GetColor("InfoBar", "CloseButtonDownBorder");
+            IBCloseButtonDownGlyph = _stylesProvider.GetColor("InfoBar", "CloseButtonDownGlyph");
+            IBCloseButtonGlyph = _stylesProvider.GetColor("InfoBar", "CloseButtonGlyph");
+            IBCloseButtonHover = _stylesProvider.GetColor("InfoBar", "CloseButtonHover");
+            IBCloseButtonHoverBorder = _stylesProvider.GetColor("InfoBar", "CloseButtonHoverBorder");
+            IBCloseButtonHoverGlyph = _stylesProvider.GetColor("InfoBar", "CloseButtonHoverGlyph");
+            IBInfoBarBackground = _stylesProvider.GetColor("InfoBar", "InfoBarBackground");
+            IBInfoBarBackgroundText = _stylesProvider.GetColor("InfoBar", "InfoBarBackgroundText");
+            IBInfoBarBorder = _stylesProvider.GetColor("InfoBar", "InfoBarBorder");
         }
 
+        // New Color additions
         private void SetWindowsTemplateStudioColors()
         {
-            NotificationInformationText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationText");
-            NotificationInformationBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationBackground");
-            NotificationInformationIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationInformationIcon");
-
-            NotificationWarningText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningText");
-            NotificationWarningBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningBackground");
-            NotificationWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationWarningIcon");
-
-            NotificationErrorText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorText");
-            NotificationErrorBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorBackground");
-            NotificationErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationErrorIcon");
+            CardTitleText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardTitleText");
+            CardDescriptionText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardDescriptionText");
+            CardBackgroundDefault = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundDefault");
+            CardBackgroundFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundFocus");
+            CardBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundHover");
+            CardBackgroundPressed = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundPressed");
+            CardBackgroundSelected = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundSelected");
+            CardBackgroundDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundDisabled");
+            CardBorderDefault = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderDefault");
+            CardBorderFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderFocus");
+            CardBorderHover = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderHover");
+            CardBorderPressed = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderPressed");
+            CardBorderSelected = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderSelected");
+            CardBorderDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderDisabled");
+            CardIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "CardIcon");
+            CardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardFooterText");
 
             DeleteTemplateIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DeleteTemplateIcon");
             SavedTemplateBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "SavedTemplateBackgroundHover");
@@ -258,6 +267,9 @@ namespace Microsoft.Templates.UI.Services
             DialogInfoIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoIcon");
             DialogErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogErrorIcon");
             DialogWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogWarningIcon");
+
+            HeaderTextSecondary = _stylesProvider.GetColor("WindowsTemplateStudio", "HeaderTextSecondary");
+            WizardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooterText");
         }
 
         // Font Sizes and Font Family

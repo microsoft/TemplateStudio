@@ -125,21 +125,77 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonCloseNotification" BasedOn="{StaticResource WtsButtonIcon}">
+    <Style TargetType="Button" x:Key="WtsButtonCloseNotification">
+        <Setter Property="Background" Value="{Binding IBCloseButton, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="BorderBrush" Value="{Binding IBCloseButtonBorder, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding IBCloseButtonGlyph, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
         <Setter Property="Margin" Value="{StaticResource Margin_M_Right}" />
-        <Setter Property="Padding" Value="{StaticResource Margin_M_LeftTopRightBottom}" />
+        <Setter Property="Padding" Value="{StaticResource Margin_S_LeftTopRightBottom}" />
         <Setter Property="Content" Value="&#xE106;" />
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonClose}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonClose}" />
-    </Style>
 
-    <Style TargetType="Button" x:Key="WtsButtonCloseNotificationInformation" BasedOn="{StaticResource WtsButtonCloseNotification}">
-        <Setter Property="Foreground" Value="{Binding NotificationInformationText, Source={x:Static services:UIStylesService.Instance}}" />
-    </Style>
-
-    <Style TargetType="Button" x:Key="WtsButtonCloseNotificationWarning" BasedOn="{StaticResource WtsButtonCloseNotification}">
-        <Setter Property="Foreground" Value="{Binding NotificationWarningText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="border"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        SnapsToDevicePixels="true">
+                        <ContentPresenter
+                            x:Name="contentPresenter"
+                            Focusable="False"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            RecognizesAccessKey="True"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{Binding IBCloseButtonHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding IBCloseButtonHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" Value="{Binding IBCloseButtonHoverGlyph, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{Binding IBCloseButtonDown, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding IBCloseButtonDownBorder, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" Value="{Binding IBCloseButtonDownGlyph, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="{Binding IBButtonDisabled, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding IBButtonDisabledBorder, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="true">
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Button" x:Key="WtsButtonDeleteTemplate" BasedOn="{StaticResource WtsButtonIcon}">

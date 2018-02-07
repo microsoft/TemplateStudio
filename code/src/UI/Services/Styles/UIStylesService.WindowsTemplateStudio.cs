@@ -9,76 +9,132 @@ namespace Microsoft.Templates.UI.Services
 {
     public partial class UIStylesService
     {
-        public static readonly DependencyProperty NotificationInformationTextProperty = DependencyProperty.Register("NotificationInformationText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty CardTitleTextProperty = DependencyProperty.Register("CardTitleText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush NotificationInformationText
+        public Brush CardTitleText
         {
-            get { return (Brush)GetValue(NotificationInformationTextProperty); }
-            set { SetValue(NotificationInformationTextProperty, value); }
+            get { return (Brush)GetValue(CardTitleTextProperty); }
+            set { SetValue(CardTitleTextProperty, value); }
         }
 
-        public static readonly DependencyProperty NotificationInformationBackgroundProperty = DependencyProperty.Register("NotificationInformationBackground", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty CardDescriptionTextProperty = DependencyProperty.Register("CardDescriptionText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush NotificationInformationBackground
+        public Brush CardDescriptionText
         {
-            get { return (Brush)GetValue(NotificationInformationBackgroundProperty); }
-            set { SetValue(NotificationInformationBackgroundProperty, value); }
+            get { return (Brush)GetValue(CardDescriptionTextProperty); }
+            set { SetValue(CardDescriptionTextProperty, value); }
         }
 
-        public static readonly DependencyProperty NotificationInformationIconProperty = DependencyProperty.Register("NotificationInformationIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty CardIconProperty = DependencyProperty.Register("CardIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush NotificationInformationIcon
+        public Brush CardIcon
         {
-            get { return (Brush)GetValue(NotificationInformationIconProperty); }
-            set { SetValue(NotificationInformationIconProperty, value); }
+            get { return (Brush)GetValue(CardIconProperty); }
+            set { SetValue(CardIconProperty, value); }
         }
 
-        public static readonly DependencyProperty NotificationWarningTextProperty = DependencyProperty.Register("NotificationWarningText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty CardFooterTextProperty = DependencyProperty.Register("CardFooterText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush NotificationWarningText
+        public Brush CardFooterText
         {
-            get { return (Brush)GetValue(NotificationWarningTextProperty); }
-            set { SetValue(NotificationWarningTextProperty, value); }
+            get { return (Brush)GetValue(CardFooterTextProperty); }
+            set { SetValue(CardFooterTextProperty, value); }
         }
 
-        public static readonly DependencyProperty NotificationWarningBackgroundProperty = DependencyProperty.Register("NotificationWarningBackground", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty CardBackgroundDefaultProperty = DependencyProperty.Register("CardBackgroundDefault", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush NotificationWarningBackground
+        public Brush CardBackgroundDefault
         {
-            get { return (Brush)GetValue(NotificationWarningBackgroundProperty); }
-            set { SetValue(NotificationWarningBackgroundProperty, value); }
+            get { return (Brush)GetValue(CardBackgroundDefaultProperty); }
+            set { SetValue(CardBackgroundDefaultProperty, value); }
         }
 
-        public static readonly DependencyProperty NotificationWarningIconProperty = DependencyProperty.Register("NotificationWarningIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty CardBackgroundFocusProperty = DependencyProperty.Register("CardBackgroundFocus", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush NotificationWarningIcon
+        public Brush CardBackgroundFocus
         {
-            get { return (Brush)GetValue(NotificationWarningIconProperty); }
-            set { SetValue(NotificationWarningIconProperty, value); }
+            get { return (Brush)GetValue(CardBackgroundFocusProperty); }
+            set { SetValue(CardBackgroundFocusProperty, value); }
         }
 
-        public static readonly DependencyProperty NotificationErrorTextProperty = DependencyProperty.Register("NotificationErrorText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty CardBackgroundHoverProperty = DependencyProperty.Register("CardBackgroundHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush NotificationErrorText
+        public Brush CardBackgroundHover
         {
-            get { return (Brush)GetValue(NotificationErrorTextProperty); }
-            set { SetValue(NotificationErrorTextProperty, value); }
+            get { return (Brush)GetValue(CardBackgroundHoverProperty); }
+            set { SetValue(CardBackgroundHoverProperty, value); }
         }
 
-        public static readonly DependencyProperty NotificationErrorBackgroundProperty = DependencyProperty.Register("NotificationErrorBackground", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty CardBackgroundPressedProperty = DependencyProperty.Register("CardBackgroundPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush NotificationErrorBackground
+        public Brush CardBackgroundPressed
         {
-            get { return (Brush)GetValue(NotificationErrorBackgroundProperty); }
-            set { SetValue(NotificationErrorBackgroundProperty, value); }
+            get { return (Brush)GetValue(CardBackgroundPressedProperty); }
+            set { SetValue(CardBackgroundPressedProperty, value); }
         }
 
-        public static readonly DependencyProperty NotificationErrorIconProperty = DependencyProperty.Register("NotificationErrorIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty CardBackgroundSelectedProperty = DependencyProperty.Register("CardBackgroundSelected", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush NotificationErrorIcon
+        public Brush CardBackgroundSelected
         {
-            get { return (Brush)GetValue(NotificationErrorIconProperty); }
-            set { SetValue(NotificationErrorIconProperty, value); }
+            get { return (Brush)GetValue(CardBackgroundSelectedProperty); }
+            set { SetValue(CardBackgroundSelectedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CardBackgroundDisabledProperty = DependencyProperty.Register("CardBackgroundDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CardBackgroundDisabled
+        {
+            get { return (Brush)GetValue(CardBackgroundDisabledProperty); }
+            set { SetValue(CardBackgroundDisabledProperty, value); }
+        }
+
+        public static readonly DependencyProperty CardBorderDefaultProperty = DependencyProperty.Register("CardBorderDefault", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CardBorderDefault
+        {
+            get { return (Brush)GetValue(CardBorderDefaultProperty); }
+            set { SetValue(CardBorderDefaultProperty, value); }
+        }
+
+        public static readonly DependencyProperty CardBorderFocusProperty = DependencyProperty.Register("CardBorderFocus", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CardBorderFocus
+        {
+            get { return (Brush)GetValue(CardBorderFocusProperty); }
+            set { SetValue(CardBorderFocusProperty, value); }
+        }
+
+        public static readonly DependencyProperty CardBorderHoverProperty = DependencyProperty.Register("CardBorderHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CardBorderHover
+        {
+            get { return (Brush)GetValue(CardBorderHoverProperty); }
+            set { SetValue(CardBorderHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty CardBorderPressedProperty = DependencyProperty.Register("CardBorderPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CardBorderPressed
+        {
+            get { return (Brush)GetValue(CardBorderPressedProperty); }
+            set { SetValue(CardBorderPressedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CardBorderSelectedProperty = DependencyProperty.Register("CardBorderSelected", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CardBorderSelected
+        {
+            get { return (Brush)GetValue(CardBorderSelectedProperty); }
+            set { SetValue(CardBorderSelectedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CardBorderDisabledProperty = DependencyProperty.Register("CardBorderDisabled", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush CardBorderDisabled
+        {
+            get { return (Brush)GetValue(CardBorderDisabledProperty); }
+            set { SetValue(CardBorderDisabledProperty, value); }
         }
 
         public static readonly DependencyProperty DeleteTemplateIconProperty = DependencyProperty.Register("DeleteTemplateIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
@@ -175,6 +231,22 @@ namespace Microsoft.Templates.UI.Services
         {
             get { return (Brush)GetValue(DialogWarningIconProperty); }
             set { SetValue(DialogWarningIconProperty, value); }
+        }
+
+        public static readonly DependencyProperty HeaderTextSecondaryProperty = DependencyProperty.Register("HeaderTextSecondary", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush HeaderTextSecondary
+        {
+            get { return (Brush)GetValue(HeaderTextSecondaryProperty); }
+            set { SetValue(HeaderTextSecondaryProperty, value); }
+        }
+
+        public static readonly DependencyProperty WizardFooterTextProperty = DependencyProperty.Register("WizardFooterText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush WizardFooterText
+        {
+            get { return (Brush)GetValue(WizardFooterTextProperty); }
+            set { SetValue(WizardFooterTextProperty, value); }
         }
     }
 }
