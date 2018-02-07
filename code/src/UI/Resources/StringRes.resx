@@ -147,6 +147,7 @@
   </data>
   <data name="ButtonNo" xml:space="preserve">
     <value>No</value>
+    <comment>No Button</comment>
   </data>
   <data name="ButtonOk" xml:space="preserve">
     <value>Ok</value>
@@ -154,17 +155,19 @@
   </data>
   <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
     <value>Refresh templates cache</value>
-    <comment>Refresh templates cache button content </comment>
+    <comment>Refresh templates cache button</comment>
   </data>
   <data name="ButtonRemove" xml:space="preserve">
     <value>Remove</value>
-    <comment>Project details saved templates remove button </comment>
+    <comment>Remove template button</comment>
   </data>
   <data name="ButtonYes" xml:space="preserve">
     <value>Yes</value>
+    <comment>Yes Button</comment>
   </data>
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
     <value>Do not merge changes (generate in a temp folder).</value>
+    <comment>Do not merge changes checkbox text</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingFiles" xml:space="preserve">
     <value>Conflicting files</value>
@@ -172,6 +175,7 @@
   </data>
   <data name="ChangesSummaryGroupConflictingFilesDescription" xml:space="preserve">
     <value>This file already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
+    <comment>Changes summary description for: Conflicting files</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingStylesFiles" xml:space="preserve">
     <value>Conflicting styles files</value>
@@ -179,6 +183,7 @@
   </data>
   <data name="ChangesSummaryGroupConflictingStylesFilesDescription" xml:space="preserve">
     <value>We are not able to introduce the styles in the resource dictionary.</value>
+    <comment>Changes summary description for: Conflicting styles files</comment>
   </data>
   <data name="ChangesSummaryGroupModifiedFiles" xml:space="preserve">
     <value>Modified files</value>
@@ -186,6 +191,7 @@
   </data>
   <data name="ChangesSummaryGroupModifiedFilesDescription" xml:space="preserve">
     <value>This file will be modified to include required content.</value>
+    <comment>Changes summary description for: Modified files</comment>
   </data>
   <data name="ChangesSummaryGroupNewFiles" xml:space="preserve">
     <value>New files</value>
@@ -193,6 +199,7 @@
   </data>
   <data name="ChangesSummaryGroupNewFilesDescription" xml:space="preserve">
     <value>This file will be added as new file to your project.</value>
+    <comment>Changes summary description for: New files</comment>
   </data>
   <data name="ChangesSummaryGroupUnchangedFiles" xml:space="preserve">
     <value>Unchanged files</value>
@@ -200,6 +207,7 @@
   </data>
   <data name="ChangesSummaryGroupUnchangedFilesDescription" xml:space="preserve">
     <value>This file already exists in your project and no further action is necessary. The file will remain unchanged.</value>
+    <comment>Changes summary description for: Unchanged files</comment>
   </data>
   <data name="ChangesSummaryGroupWarningFiles" xml:space="preserve">
     <value>Warning files</value>
@@ -207,6 +215,7 @@
   </data>
   <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
     <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
+    <comment>Changes summary description for: Warning files</comment>
   </data>
   <data name="ErrorDialogShowDetails" xml:space="preserve">
     <value>Show details</value>
@@ -222,6 +231,7 @@
   </data>
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
     <value>more info</value>
+    <comment>Changes summary more info link</comment>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
     <value>Select a design pattern</value>
@@ -229,47 +239,59 @@
   </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another feature.</value>
-    <comment>{0}: Feature name</comment>
+    <comment>Feature already added {0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another page.</value>
-    <comment>{0}: Page name</comment>
+    <comment>Page already added {0}: Page name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
     <value>Template selection</value>
+    <comment>New Item: Naviagtion step one </comment>
   </data>
   <data name="NewItemStepTwo" xml:space="preserve">
     <value>Changes summary</value>
+    <comment>New Item: Naviagtion step two</comment>
   </data>
   <data name="NewItemTemplateDetailsDependenciesSectionTitle" xml:space="preserve">
     <value>Dependencies</value>
+    <comment>New item: Dependencies section</comment>
   </data>
   <data name="NewItemTemplateDetailsLicensesSectionTitle" xml:space="preserve">
     <value>Licenses</value>
+    <comment>New item: Licenses section</comment>
   </data>
   <data name="NewItemTemplateDetailsNameSectionTitle" xml:space="preserve">
     <value>Name</value>
+    <comment>New item: Name section</comment>
   </data>
   <data name="NewItemTemplateDetailsTitle" xml:space="preserve">
     <value>Template Details</value>
+    <comment>New item: Template Details</comment>
   </data>
   <data name="NewItemTitleFeature" xml:space="preserve">
     <value>New feature</value>
+    <comment>New item: new feature title</comment>
   </data>
   <data name="NewItemTitlePage" xml:space="preserve">
     <value>New page</value>
+    <comment>New item: new page title</comment>
   </data>
   <data name="NewProjectStepFour" xml:space="preserve">
     <value>Features</value>
+    <comment>New project: Navigation step four</comment>
   </data>
   <data name="NewProjectStepOne" xml:space="preserve">
     <value>Project type</value>
+    <comment>New project: Navigation step one</comment>
   </data>
   <data name="NewProjectStepThree" xml:space="preserve">
     <value>Pages</value>
+    <comment>New project: Navigation step three</comment>
   </data>
   <data name="NewProjectStepTwo" xml:space="preserve">
     <value>Design pattern</value>
+    <comment>New project: Navigation step two</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
     <value>New Universal Windows Platform app</value>
@@ -309,7 +331,7 @@
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
     <value>Preparing templates (v{0})... {1}%</value>
-    <comment>Notification message for Sync Status: Preparing, , {0}:Version, {1}: Progress amount</comment>
+    <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_Updated" xml:space="preserve">
     <value>Templates updated.</value>
@@ -321,45 +343,55 @@
   </data>
   <data name="NotificationValidationError_AlreadyExists" xml:space="preserve">
     <value>Name already exists</value>
+    <comment>Validation error message: Already exists</comment>
   </data>
   <data name="NotificationValidationError_BadFormat" xml:space="preserve">
     <value>Only alphanumeric and '_' characters are allowed</value>
+    <comment>Validation error message: Bad format</comment>
   </data>
   <data name="NotificationValidationError_Empty" xml:space="preserve">
     <value>Name cannot be empty</value>
+    <comment>Validation error message: Empty</comment>
   </data>
   <data name="NotificationValidationError_ReservedName" xml:space="preserve">
     <value>Name is reserved</value>
+    <comment>Validation error message: Reserved name</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
     <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?</value>
     <comment>ProjectConfiguration view description</comment>
   </data>
   <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
-    <value>Select framework:</value>
+    <value>Select design pattern:</value>
     <comment>Project configuration window select framework title</comment>
   </data>
   <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
-    <value>Select design pattern:</value>
+    <value>Select project type:</value>
     <comment>Project configuration window select project type title</comment>
   </data>
   <data name="ProjectConfigurationTitleText" xml:space="preserve">
     <value>Choose project configuration</value>
+    <comment>Project configuration window title</comment>
   </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
     <value>https://aka.ms/wts</value>
+    <comment>About section link</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
     <value>Templates version:</value>
+    <comment>About section templates version</comment>
   </data>
   <data name="ProjectDetailsAboutSectionText" xml:space="preserve">
     <value>Windows Template Studio</value>
+    <comment>About section text</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
     <value>About</value>
+    <comment>About section title</comment>
   </data>
   <data name="ProjectDetailsAboutSectionWizardVersion" xml:space="preserve">
     <value>Wizard version:</value>
+    <comment>About section wizard version</comment>
   </data>
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
     <value>Features</value>
@@ -367,9 +399,11 @@
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
     <value>You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <comment>Framework changed message</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
     <value>Design pattern changed</value>
+    <comment>Framework changed title</comment>
   </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
     <value>Design pattern</value>
@@ -377,6 +411,7 @@
   </data>
   <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
     <value>Licenses</value>
+    <comment>New project: Licenses section</comment>
   </data>
   <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
     <value>Pages</value>
@@ -384,9 +419,11 @@
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
     <value>You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <comment>Project type changed message</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
     <value>Project type changed</value>
+    <comment>Project type changed title</comment>
   </data>
   <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
     <value>Project type</value>
@@ -402,21 +439,27 @@
   </data>
   <data name="TemplateDetailsAuthor" xml:space="preserve">
     <value>Author:</value>
+    <comment>Template details: Autor</comment>
   </data>
   <data name="TemplateDetailsDependencies" xml:space="preserve">
     <value>Dependencies:</value>
+    <comment>Template details: Dependencies</comment>
   </data>
   <data name="TemplateDetailsLicenses" xml:space="preserve">
     <value>Licenses:</value>
+    <comment>Template details: Licenses</comment>
   </data>
   <data name="TemplateDetailsVersion" xml:space="preserve">
     <value>Version:</value>
+    <comment>Template details: Version</comment>
   </data>
   <data name="TemplateSelectionTitle" xml:space="preserve">
     <value>Select the template you want to add</value>
+    <comment>Template selection title</comment>
   </data>
   <data name="TermsAndConditionsText" xml:space="preserve">
     <value>By continuing, you agree to the terms of all the licenses in the licenses section.</value>
+    <comment>Licenses Terms and conditions text</comment>
   </data>
   <data name="WindowsTemplateStudio" xml:space="preserve">
     <value>Windows Template Studio</value>
@@ -424,80 +467,106 @@
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
     <value>Generation finished</value>
+    <comment>Status bar message generation finished</comment>
   </data>
   <data name="StatusBarRestoring" xml:space="preserve">
     <value>Restoring packages...</value>
+    <comment>Status bar message for restoring</comment>
   </data>
   <data name="StatusBarRunFinished" xml:space="preserve">
     <value>Creating Windows Template Studio project...</value>
+    <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
     <value>Add new feature cancelled</value>
+    <comment>Status bar message for Add new feature cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureSuccess" xml:space="preserve">
     <value>Feature {0} successfully added</value>
+    <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
   </data>
   <data name="StatusBarNewItemAddPageCancelled" xml:space="preserve">
     <value>Add new page cancelled</value>
+    <comment>Status bar message for Add new page cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
     <value>Page {0} successfully added</value>
+    <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
   <data name="ErrorTrackTelemetryException" xml:space="preserve">
     <value>Exception tracking telemetry during generation.</value>
+    <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
     <value>Unable add project items. Ensure you have the required SDK.</value>
+    <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
     <value>Unable to add the project to the solution. Make sure you have the expected SDK installed.</value>
+    <comment>Error message for unable add project to solution</comment>
   </data>
   <data name="ErrorUnableToRefreshProject" xml:space="preserve">
     <value>Unable to refresh the project. Try to refresh it manually.</value>
+    <comment>Error message for unable to refresh project</comment>
   </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>There was an error collapsing the solution tree. Ex:</value>
+    <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
   <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
     <value>There was an error restoring the packages. Ex:</value>
+    <comment>Error message for Vs GenShell restore packages error</comment>
   </data>
   <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
     <value>Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages.</value>
+    <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>There was an error showing status message. Ex:</value>
+    <comment>Error message for Vs GenShell show status bar message</comment>
   </data>
   <data name="ErrorDependencyCircularReference" xml:space="preserve">
     <value>Circular dependency detected on template {0} with {1}.</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>Dependency template {0} not found on user selection</value>
+    <value>Dependency template {0} not found on user selection.</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
     <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">
     <value>Dependency template {0} not found for framework {1}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name</comment>
   </data>
   <data name="ErrorDependencyType" xml:space="preserve">
     <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorGenerating" xml:space="preserve">
     <value>Template '{0}', name: '{1}', reason: '{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
     <value>Layout template {0} not found for framework {1}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
     <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
   </data>
   <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
     <value>Creating '{0}' feature ...</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
   </data>
   <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
     <value>Creating '{0}' page ...</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
   </data>
   <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
     <value>Creating project '{0}'...</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
 </root>
