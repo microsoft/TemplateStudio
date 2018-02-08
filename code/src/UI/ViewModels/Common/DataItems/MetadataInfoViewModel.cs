@@ -23,6 +23,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Name = metadataInfo.Name;
             Identity = metadataInfo.Name;
             Title = metadataInfo.DisplayName;
+            Summary = metadataInfo.Summary;
             Description = metadataInfo.Description;
             Author = metadataInfo.Author;
             Icon = metadataInfo.Icon;

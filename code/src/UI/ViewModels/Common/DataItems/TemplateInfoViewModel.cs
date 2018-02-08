@@ -61,7 +61,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Name = template.Name;
             Identity = template.Identity;
             Title = template.Name;
-            Description = template.Description;
+            Summary = template.Description;
+            Description = template.GetRichDescription();
             Author = template.Author;
             Version = template.GetVersion();
             Icon = template.GetIcon();
