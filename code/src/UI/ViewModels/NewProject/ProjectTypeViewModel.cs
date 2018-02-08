@@ -11,8 +11,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class ProjectTypeViewModel : SelectableGroup<MetadataInfoViewModel>
     {
-        public ProjectTypeViewModel(Func<bool> isSelectionEnabled)
-            : base(isSelectionEnabled)
+        public ProjectTypeViewModel(Func<bool> isSelectionEnabled, Action onSelected)
+            : base(isSelectionEnabled, onSelected)
         {
         }
 
