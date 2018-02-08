@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -29,6 +30,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private ICommand _lostKeyboardFocusCommand;
         private ICommand _setFocusCommand;
         private RelayCommand _deleteCommand;
+        private Guid _id;
 
         public ITemplateInfo Template { get; }
 
@@ -116,6 +118,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public SavedTemplateViewModel(TemplateInfoViewModel template, TemplateOrigin templateOrigin)
         {
+            _id = Guid.NewGuid();
             Template = template.Template;
             Identity = template.Identity;
             TemplateType = template.TemplateType;
@@ -175,7 +178,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             var result = false;
             if (obj is SavedTemplateViewModel savedTemplate)
             {
-                result = Identity.Equals(savedTemplate.Identity) && Name.Equals(savedTemplate.Name);
+                result = _id.Equals(savedTemplate._id);
             }
             else if (obj is TemplateInfoViewModel templateInfo)
             {
