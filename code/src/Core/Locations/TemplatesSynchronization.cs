@@ -3,7 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -37,6 +39,8 @@ namespace Microsoft.Templates.Core.Locations
         public Version CurrentWizardVersion { get; private set; }
 
         public static bool SyncInProgress { get; private set; }
+
+        private CancellationTokenSource _cts;
 
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
@@ -104,7 +108,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 try
                 {
-                    bool notifiedCheckingforUpdates = await LoadConfigFileAsync();
+                    bool notifiedCheckingforUpdates = await LoadConfigFileAsync(_cts.Token);
 
                     _content.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
                     _content.GetContentProgress += OnGetContentProgress;
@@ -113,9 +117,10 @@ namespace Microsoft.Templates.Core.Locations
                     if (_content.IsNewVersionAvailable(out var version))
                     {
                         updatesAvailable = true;
-                        await GetNewTemplatesAsync(version);
+                        await GetNewTemplatesAsync(version, _cts.Token);
                     }
 
+                    //TODO: Check if this should be moved to other place SM
                     if (_content.IsWizardUpdateAvailable(out version))
                     {
                         updatesAvailable = true;
@@ -127,6 +132,10 @@ namespace Microsoft.Templates.Core.Locations
                         SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NoUpdates });
                     }
                 }
+                catch (OperationCanceledException)
+                {
+                    //TODO Review SM
+                }
                 finally
                 {
                     _content.NewVersionAcquisitionProgress -= OnNewVersionAcquisitionProgress;
@@ -137,12 +146,12 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task<bool> LoadConfigFileAsync()
+        private async Task<bool> LoadConfigFileAsync(CancellationToken ct)
         {
             bool notifyCheckingforUpdates = false;
 
             Task[] downloadTasks = new Task[2];
-            downloadTasks[0] = _content.Source.LoadConfigAsync();
+            downloadTasks[0] = _content.Source.LoadConfigAsync(ct);
             downloadTasks[1] = Task.Delay(1000);
 
             Task firstFinishedTask = await Task.WhenAny(downloadTasks);
@@ -174,19 +183,23 @@ namespace Microsoft.Templates.Core.Locations
 
         public void CleanUp()
         {
-            
+            _cts?.Cancel();
             UnlockSync();
         }
 
-        private async Task GetNewTemplatesAsync(Version version)
+        private async Task GetNewTemplatesAsync(Version version, CancellationToken ct)
         {
             try
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquiring, Version = version });
 
-                await _content.GetNewVersionContentAsync();
+                await _content.GetNewVersionContentAsync(ct);
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Acquired, Version = version });
+            }
+            catch (OperationCanceledException)
+            {
+                //TODO Review SM
             }
             catch (Exception ex)
             {
@@ -270,6 +283,7 @@ namespace Microsoft.Templates.Core.Locations
 
                 SetInstanceSyncLock();
                 SyncInProgress = true;
+                _cts = new CancellationTokenSource();
                 return SyncInProgress;
             }
         }

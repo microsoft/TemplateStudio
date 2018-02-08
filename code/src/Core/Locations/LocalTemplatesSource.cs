@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 
@@ -68,7 +69,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public override async Task LoadConfigAsync()
+        public override async Task LoadConfigAsync(CancellationToken ct)
         {
             await Task.Run(() =>
             Config = new TemplatesSourceConfig()
@@ -100,7 +101,7 @@ namespace Microsoft.Templates.Core.Locations
             };
         }
 
-        public override async Task AcquireAsync(TemplatesPackageInfo packageInfo)
+        public override async Task AcquireAsync(TemplatesPackageInfo packageInfo, CancellationToken ct)
         {
             await Task.Run(() =>
             {

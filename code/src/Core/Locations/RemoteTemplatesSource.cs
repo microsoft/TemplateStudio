@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Packaging;
@@ -25,8 +26,8 @@ namespace Microsoft.Templates.Core.Locations
 
             var finalDestination = Path.Combine(workingFolder, packageInfo.Version.ToString());
 
-             await Fs.SafeMoveDirectoryAsync(Path.Combine(extractionFolder, "Templates"), finalDestination, true, ReportCopyProgress);
-                Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
+            await Fs.SafeMoveDirectoryAsync(Path.Combine(extractionFolder, "Templates"), finalDestination, true, ReportCopyProgress);
+            Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
 
             var templatesInfo = new TemplatesContentInfo()
             {
@@ -38,7 +39,7 @@ namespace Microsoft.Templates.Core.Locations
             return templatesInfo;
         }
 
-        public override async Task AcquireAsync(TemplatesPackageInfo packageInfo)
+        public override async Task AcquireAsync(TemplatesPackageInfo packageInfo, CancellationToken ct)
         {
             if (string.IsNullOrEmpty(packageInfo.LocalPath) || !File.Exists(packageInfo.LocalPath))
             {
@@ -49,40 +50,49 @@ namespace Microsoft.Templates.Core.Locations
                 var fileTarget = Path.Combine(tempFolder, packageInfo.Name);
                 Fs.EnsureFolder(tempFolder);
 
-                await DownloadContentAsync(sourceUrl, fileTarget);
+                await DownloadContentAsync(sourceUrl, fileTarget, ct);
                 packageInfo.LocalPath = fileTarget;
             }
         }
 
-        public override async Task LoadConfigAsync()
+        public override async Task LoadConfigAsync(CancellationToken ct)
         {
             var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var sourceUrl = $"{_cdnUrl}/config.json";
             var fileTarget = Path.Combine(tempFolder, "config.json");
             Fs.EnsureFolder(tempFolder);
 
-            await DownloadContentAsync(sourceUrl, fileTarget);
+            await DownloadContentAsync(sourceUrl, fileTarget, ct);
 
             Config = TemplatesSourceConfig.LoadFromFile(fileTarget);
 
             Fs.SafeDeleteDirectory(tempFolder);
         }
 
-        private async Task DownloadContentAsync(string sourceUrl, string file)
+        private async Task DownloadContentAsync(string sourceUrl, string file, CancellationToken ct)
         {
             var wc = new WebClient();
             try
             {
+                ct.Register(() => wc.CancelAsync());
+
                 wc.DownloadProgressChanged += Wc_DownloadProgressChanged;
                 await wc.DownloadFileTaskAsync(sourceUrl, file);
 
                 AppHealth.Current.Verbose.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentOkMessage, file, sourceUrl)).FireAndForget();
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
-                AppHealth.Current.Info.TrackAsync(StringRes.RemoteTemplatesSourceDownloadContentKoInfoMessage).FireAndForget();
-                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentKoErrorMessage, sourceUrl), ex).FireAndForget();
-                throw;
+                if (ex.Status == WebExceptionStatus.RequestCanceled)
+                {
+                    throw new OperationCanceledException();
+                }
+                else
+                {
+                    AppHealth.Current.Info.TrackAsync(StringRes.RemoteTemplatesSourceDownloadContentKoInfoMessage).FireAndForget();
+                    AppHealth.Current.Error.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentKoErrorMessage, sourceUrl), ex).FireAndForget();
+                    throw;
+                }
             }
             finally
             {

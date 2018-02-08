@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
@@ -104,7 +105,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public async Task GetNewVersionContentAsync()
+        public async Task GetNewVersionContentAsync(CancellationToken ct)
         {
             try
             {
@@ -114,7 +115,7 @@ namespace Microsoft.Templates.Core.Locations
                 Source.GetContentProgress += OnGetContentProgress;
                 Source.CopyProgress += OnCopyProgress;
 
-                await Source.AcquireAsync(latestPackage);
+                await Source.AcquireAsync(latestPackage, ct);
 
                 if (latestPackage.LocalPath != null)
                 {
