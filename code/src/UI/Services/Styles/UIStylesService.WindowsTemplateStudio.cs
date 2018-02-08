@@ -217,6 +217,14 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(DialogInfoIconProperty, value); }
         }
 
+        public static readonly DependencyProperty DialogInfoCharIconProperty = DependencyProperty.Register("DialogInfoCharIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush DialogInfoCharIcon
+        {
+            get { return (Brush)GetValue(DialogInfoCharIconProperty); }
+            set { SetValue(DialogInfoCharIconProperty, value); }
+        }
+
         public static readonly DependencyProperty DialogErrorIconProperty = DependencyProperty.Register("DialogErrorIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush DialogErrorIcon

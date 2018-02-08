@@ -461,6 +461,8 @@ namespace Microsoft.Templates.UI.Services
 
                 case "DialogInfoIcon":
                     return GetColor(WindowsTemplateStudioColors.DialogInfoIconBrushKey);
+                case "DialogInfoCharIcon":
+                    return GetColor(WindowsTemplateStudioColors.DialogInfoCharIconBrushKey);
                 case "DialogErrorIcon":
                     return GetColor(WindowsTemplateStudioColors.DialogErrorIconBrushKey);
                 case "DialogWarningIcon":

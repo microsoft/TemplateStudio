@@ -23,7 +23,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{StaticResource Margin_M_Left}">
+                    <Grid Grid.Column="0" Style="{StaticResource WtsGridNotificationIcon}">
                         <Ellipse Fill="{Binding DialogInfoIcon, Source={x:Static services:UIStylesService.Instance}}" />
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
                     </Grid>
@@ -42,7 +42,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{StaticResource Margin_M_Left}">
+                    <Grid Grid.Column="0" Style="{StaticResource WtsGridNotificationIcon}">
                         <Ellipse Fill="{Binding DialogInfoIcon, Source={x:Static services:UIStylesService.Instance}}" />
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
                     </Grid>
@@ -60,7 +60,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{StaticResource Margin_M_Left}">
+                    <Grid Grid.Column="0" Style="{StaticResource WtsGridNotificationIcon}">
                         <Ellipse Fill="{Binding DialogInfoIcon, Source={x:Static services:UIStylesService.Instance}}" />
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
                     </Grid>

@@ -488,6 +488,8 @@ namespace Microsoft.Templates.VsEmulator.Services
 
                 case "DialogInfoIcon":
                     return GetColor(WindowsTemplateStudio.DialogInfoIconBrushKey);
+                case "DialogInfoCharIcon":
+                    return GetColor(WindowsTemplateStudio.DialogInfoCharIconBrushKey);
                 case "DialogErrorIcon":
                     return GetColor(WindowsTemplateStudio.DialogErrorIconBrushKey);
                 case "DialogWarningIcon":

@@ -265,6 +265,7 @@ namespace Microsoft.Templates.UI.Services
             ChangesSummaryDetailFileHeaderBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeaderBackground");
 
             DialogInfoIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoIcon");
+            DialogInfoCharIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoCharIcon");
             DialogErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogErrorIcon");
             DialogWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogWarningIcon");
 

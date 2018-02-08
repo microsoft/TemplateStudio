@@ -67,6 +67,9 @@ namespace Microsoft.Templates.VsEmulator.Services
         public static string DialogErrorIconColorKey { get { return "DialogErrorIconColorKey"; } }
         public static string DialogErrorIconBrushKey { get { return "DialogErrorIconBrushKey"; } }
 
+        public static string DialogInfoCharIconColorKey { get { return "DialogInfoCharIconColorKey"; } }
+        public static string DialogInfoCharIconBrushKey { get { return "DialogInfoCharIconBrushKey"; } }
+
         public static string DialogInfoIconColorKey { get { return "DialogInfoIconColorKey"; } }
         public static string DialogInfoIconBrushKey { get { return "DialogInfoIconBrushKey"; } }
 
@@ -191,9 +194,6 @@ namespace Microsoft.Templates.VsEmulator.Services
 
         public static string WizardFooterTextColorKey { get { return "WizardFooterTextColorKey"; } }
         public static string WizardFooterTextBrushKey { get { return "WizardFooterTextBrushKey"; } }
-#pragma warning restore SA1306 // Field names must begin with lower-case letter
-#pragma warning restore SA1516 // Elements must be separated by blank line
-#pragma warning restore SA1502 // Element must not be on a single line
     }
 #pragma warning restore SA1306 // Field names must begin with lower-case letter
 #pragma warning restore SA1516 // Elements must be separated by blank line
