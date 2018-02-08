@@ -19,6 +19,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private int _count;
         private bool _hasMoreThanOne;
         private bool _hasMoreThanTwo;
+        private bool _showAddedText;
+        private bool _canBeAdded;
 
         public ITemplateInfo Template { get; }
 
@@ -40,6 +42,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 SetProperty(ref _count, value);
                 HasMoreThanOne = value > 1;
                 HasMoreThanTwo = value > 2;
+                ShowAddedText = !MultipleInstance && Count > 0;
+                CanBeAdded = MultipleInstance || Count == 0;
             }
         }
 
@@ -53,6 +57,18 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             private get => _hasMoreThanTwo;
             set => SetProperty(ref _hasMoreThanTwo, value);
+        }
+
+        public bool ShowAddedText
+        {
+            private get => _showAddedText;
+            set => SetProperty(ref _showAddedText, value);
+        }
+
+        public bool CanBeAdded
+        {
+            private get => _canBeAdded;
+            set => SetProperty(ref _canBeAdded, value);
         }
 
         public TemplateInfoViewModel(ITemplateInfo template, string frameworkName)
@@ -79,6 +95,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             TemplateType = template.GetTemplateType();
             MultipleInstance = template.GetMultipleInstance();
             ItemNameEditable = template.GetItemNameEditable();
+            CanBeAdded = MultipleInstance || Count == 0;
         }
 
         public void IncreaseSelection()

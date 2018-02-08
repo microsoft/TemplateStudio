@@ -101,15 +101,13 @@
                         </Grid>
                     </Grid>
                     <!--Single Instance added feedback-->
-                    <Grid Grid.Column="1" VerticalAlignment="Bottom" Visibility="{Binding MultipleInstance, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Static res:StringRes.TemplateAdded}" Style="{StaticResource WtsTextBlockCardAddedText}" Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}"/>
-                            <Grid Width="18" Height="18" VerticalAlignment="Bottom" Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}" Margin="{StaticResource Margin_XS_Left}">
-                                <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
-                                <TextBlock Style="{StaticResource WtsTextBlockCardAddedIcon}" />
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Visibility="{Binding ShowAddedText, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Text="{x:Static res:StringRes.TemplateAdded}" Style="{StaticResource WtsTextBlockCardAddedText}" />
+                        <Grid Width="18" Height="18" VerticalAlignment="Bottom" Margin="{StaticResource Margin_XS_Left}">
+                            <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
+                            <TextBlock Style="{StaticResource WtsTextBlockCardAddedIcon}" />
+                        </Grid>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Grid>
