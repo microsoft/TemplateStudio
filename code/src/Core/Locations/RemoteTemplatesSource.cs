@@ -54,42 +54,25 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public override void LoadConfig()
+        public override async Task LoadConfigAsync()
         {
             var tempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var sourceUrl = $"{_cdnUrl}/config.json";
             var fileTarget = Path.Combine(tempFolder, "config.json");
             Fs.EnsureFolder(tempFolder);
 
-            DownloadContent(sourceUrl, fileTarget);
+            await DownloadContentAsync(sourceUrl, fileTarget);
 
             Config = TemplatesSourceConfig.LoadFromFile(fileTarget);
 
             Fs.SafeDeleteDirectory(tempFolder);
         }
 
-        private static void DownloadContent(string sourceUrl, string file)
-        {
-            try
-            {
-                var wc = new WebClient();
-
-                wc.DownloadFile(sourceUrl, file);
-                AppHealth.Current.Verbose.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentOkMessage, file, sourceUrl)).FireAndForget();
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Info.TrackAsync(StringRes.RemoteTemplatesSourceDownloadContentKoInfoMessage).FireAndForget();
-                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentKoErrorMessage, sourceUrl), ex).FireAndForget();
-            }
-        }
-
         private async Task DownloadContentAsync(string sourceUrl, string file)
         {
+            var wc = new WebClient();
             try
             {
-                var wc = new WebClient();
-
                 wc.DownloadProgressChanged += Wc_DownloadProgressChanged;
                 await wc.DownloadFileTaskAsync(sourceUrl, file);
 
@@ -100,6 +83,10 @@ namespace Microsoft.Templates.Core.Locations
                 AppHealth.Current.Info.TrackAsync(StringRes.RemoteTemplatesSourceDownloadContentKoInfoMessage).FireAndForget();
                 AppHealth.Current.Error.TrackAsync(string.Format(StringRes.RemoteTemplatesSourceDownloadContentKoErrorMessage, sourceUrl), ex).FireAndForget();
                 throw;
+            }
+            finally
+            {
+                wc.DownloadProgressChanged -= Wc_DownloadProgressChanged;
             }
         }
 

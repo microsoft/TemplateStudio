@@ -655,6 +655,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checking for updates.
+        /// </summary>
+        public static string NotificationSyncStatus_CheckingForUpdates {
+            get {
+                return ResourceManager.GetString("NotificationSyncStatus_CheckingForUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copying templates (v{0})... {1}%.
         /// </summary>
         public static string NotificationSyncStatus_Copying {

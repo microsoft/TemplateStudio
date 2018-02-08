@@ -3,8 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
@@ -95,13 +97,14 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task GetNewContentAsync()
         {
+            bool updatesAvailable = false;
             await EnsureVsInstancesSyncingAsync();
 
             if (LockSync())
             {
                 try
                 {
-                    _content.Source.LoadConfig();
+                    bool notifiedCheckingforUpdates = await LoadConfigFileAsync();
 
                     _content.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
                     _content.GetContentProgress += OnGetContentProgress;
@@ -109,10 +112,20 @@ namespace Microsoft.Templates.Core.Locations
 
                     if (_content.IsNewVersionAvailable(out var version))
                     {
+                        updatesAvailable = true;
                         await GetNewTemplatesAsync(version);
                     }
 
-                    CheckForWizardUpdates();
+                    if (_content.IsWizardUpdateAvailable(out version))
+                    {
+                        updatesAvailable = true;
+                        SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewWizardVersionAvailable, Version = version });
+                    }
+
+                    if (!updatesAvailable && notifiedCheckingforUpdates)
+                    {
+                        SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NoUpdates });
+                    }
                 }
                 finally
                 {
@@ -122,6 +135,26 @@ namespace Microsoft.Templates.Core.Locations
                     UnlockSync();
                 }
             }
+        }
+
+        private async Task<bool> LoadConfigFileAsync()
+        {
+            bool notifyCheckingforUpdates = false;
+
+            Task[] downloadTasks = new Task[2];
+            downloadTasks[0] = _content.Source.LoadConfigAsync();
+            downloadTasks[1] = Task.Delay(1000);
+
+            Task firstFinishedTask = await Task.WhenAny(downloadTasks);
+
+            if (firstFinishedTask.Id == downloadTasks[1].Id)
+            {
+                notifyCheckingforUpdates = true;
+                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckingForUpdates });
+                await downloadTasks[0];
+            }
+
+            return notifyCheckingforUpdates;
         }
 
         private void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
@@ -141,15 +174,8 @@ namespace Microsoft.Templates.Core.Locations
 
         public void CleanUp()
         {
+            
             UnlockSync();
-        }
-
-        private void CheckForWizardUpdates()
-        {
-            if (_content.IsWizardUpdateAvailable(out var version))
-            {
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.NewWizardVersionAvailable, Version = version });
-            }
         }
 
         private async Task GetNewTemplatesAsync(Version version)

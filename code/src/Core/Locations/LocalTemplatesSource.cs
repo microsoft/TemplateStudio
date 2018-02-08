@@ -68,13 +68,14 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public override void LoadConfig()
+        public override async Task LoadConfigAsync()
         {
+            await Task.Run(() =>
             Config = new TemplatesSourceConfig()
             {
                 Versions = availablePackages,
                 Latest = availablePackages.OrderByDescending(p => p.Version).FirstOrDefault()
-            };
+            });
         }
 
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder)

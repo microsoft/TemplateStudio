@@ -198,9 +198,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 await OnTemplatesAvailableAsync();
             }
-            else if (args.Status == SyncStatus.Acquired)
+            else if (args.Status == SyncStatus.NoUpdates)
             {
-                // TODO: Turn on the light that indicates that there are templates updates.
+                NotificationsControl.Instance.RemoveNotification();
             }
         }
 

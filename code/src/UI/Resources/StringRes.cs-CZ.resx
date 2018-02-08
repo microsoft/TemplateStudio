@@ -597,4 +597,8 @@
     <value>Added</value>
     <comment>Template added label</comment>
   </data>
+  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
+    <value>Checking for updates</value>
+    <comment>Notification message for Sync Status: CheckingForUpdates</comment>
+  </data>
 </root>

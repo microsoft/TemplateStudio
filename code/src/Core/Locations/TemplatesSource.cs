@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Core.Locations
 
         protected virtual bool VerifyPackageSignatures { get => true; }
 
-        public abstract void LoadConfig();
+        public abstract Task LoadConfigAsync();
 
         public abstract Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder);
 
