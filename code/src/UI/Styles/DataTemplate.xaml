@@ -44,7 +44,7 @@
                     Style="{StaticResource WtsTextBlockCardTitle}" />
                 <TextBlock
                     Grid.Row="2"
-                    Text="{Binding Description}"
+                    Text="{Binding Summary}"
                     Style="{StaticResource WtsTextBlockCardDescription}"
                     Margin="{StaticResource Margin_XS_Top}" />
                 <TextBlock Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,-4">
@@ -80,7 +80,7 @@
                     Style="{StaticResource WtsTextBlockCardTitle}" />
                 <TextBlock
                     Grid.Row="2"
-                    Text="{Binding Description}"
+                    Text="{Binding Summary}"
                     Style="{StaticResource WtsTextBlockCardDescription}"
                     Margin="{StaticResource Margin_XS_Top}"/>
                 <Grid Grid.Row="3" Margin="0,0,0,-4">
