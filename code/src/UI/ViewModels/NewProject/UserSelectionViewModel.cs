@@ -121,13 +121,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 AddToCollection(GetCollection(template.TemplateType), savedTemplate);
                 RaiseCollectionChanged(template.TemplateType);
                 UpdateHasItemsAddedByUser();
-
-                var userSelection = GetUserSelection();
-                var licenses = GenComposer.GetAllLicences(userSelection);
-                LicensesService.SyncLicenses(licenses, Licenses);
-
-                // Notiffy Licenses name to update the visibillity on the layout
-                OnPropertyChanged(nameof(Licenses));
+                BuildLicenses();
                 if (focus)
                 {
                     savedTemplate.Focus();
@@ -163,6 +157,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             _isInitialized = false;
             Pages.Clear();
             Features.Clear();
+        }
+
+        private void BuildLicenses()
+        {
+            var userSelection = GetUserSelection();
+            var licenses = GenComposer.GetAllLicences(userSelection);
+            LicensesService.SyncLicenses(licenses, Licenses);
+
+            // Notiffy Licenses name to update the visibillity on the layout
+            OnPropertyChanged(nameof(Licenses));
         }
 
         private void RaiseCollectionChanged(TemplateType templateType)
@@ -220,6 +224,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 await TryRemoveHiddenDependenciesAsync(savedTemplate);
                 UpdateHasItemsAddedByUser();
+
+                BuildLicenses();
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
             }
 
