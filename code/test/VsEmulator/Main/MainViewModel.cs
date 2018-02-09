@@ -261,7 +261,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             if (GenContext.ToolBox.Repo.SyncInProgress)
             {
-                GenContext.ToolBox.Repo.Sync.CleanUp();
+                GenContext.ToolBox.Repo.CancelSynchronization();
             }
         }
 

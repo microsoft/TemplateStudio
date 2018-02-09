@@ -637,15 +637,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download completed..
-        /// </summary>
-        public static string NotificationSyncStatus_Acquired {
-            get {
-                return ResourceManager.GetString("NotificationSyncStatus_Acquired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to There are new templates available (v{0}). Downloading… {1}%.
         /// </summary>
         public static string NotificationSyncStatus_Acquiring {
@@ -655,7 +646,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Checking for updates.
+        ///   Looks up a localized string similar to Checking for updates....
         /// </summary>
         public static string NotificationSyncStatus_CheckingForUpdates {
             get {
@@ -687,15 +678,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string NotificationSyncStatus_NewWizardVersionAvailable {
             get {
                 return ResourceManager.GetString("NotificationSyncStatus_NewWizardVersionAvailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Templates ready..
-        /// </summary>
-        public static string NotificationSyncStatus_Prepared {
-            get {
-                return ResourceManager.GetString("NotificationSyncStatus_Prepared", resourceCulture);
             }
         }
         

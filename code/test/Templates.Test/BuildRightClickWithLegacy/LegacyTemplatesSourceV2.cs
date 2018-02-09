@@ -5,6 +5,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -22,10 +23,11 @@ namespace Microsoft.Templates.Test
 
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder)
         {
-            LoadConfig();
+            CancellationTokenSource cts = new CancellationTokenSource();
+            await LoadConfigAsync(cts.Token);
             var package = Config.Latest;
 
-            await AcquireAsync(package);
+            await AcquireAsync(package, cts.Token);
 
             return await base.GetContentAsync(package, workingFolder);
         }

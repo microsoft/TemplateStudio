@@ -305,10 +305,6 @@
     <value>Error refreshing templates. See output for more details.</value>
     <comment>Error message for sync refresh</comment>
   </data>
-  <data name="NotificationSyncStatus_Acquired" xml:space="preserve">
-    <value>Download completed.</value>
-    <comment>Notification message for Sync Status: Acquired</comment>
-  </data>
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
     <value>There are new templates available (v{0}). Downloading… {1}%</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
@@ -325,17 +321,9 @@
     <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
-  <data name="NotificationSyncStatus_Prepared" xml:space="preserve">
-    <value>Templates ready.</value>
-    <comment>Notification message for Sync Status: Prepared</comment>
-  </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
     <value>Preparing templates (v{0})... {1}%</value>
     <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
-  </data>
-  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
-    <value>Templates updated.</value>
-    <comment>Notification message for Sync Status: Updated</comment>
   </data>
   <data name="NotificationSyncStatus_Updating" xml:space="preserve">
     <value>Refreshing templates cache…</value>
@@ -598,7 +586,11 @@
     <comment>Template added label</comment>
   </data>
   <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
-    <value>Checking for updates</value>
+    <value>Checking for updates...</value>
     <comment>Notification message for Sync Status: CheckingForUpdates</comment>
+  </data>
+  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
+    <value>Templates updated.</value>
+    <comment>Notification message for Sync Status: Updated</comment>
   </data>
 </root>

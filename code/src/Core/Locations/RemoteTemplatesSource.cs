@@ -85,7 +85,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 if (ex.Status == WebExceptionStatus.RequestCanceled)
                 {
-                    throw new OperationCanceledException();
+                    throw new OperationCanceledException(ct);
                 }
                 else
                 {

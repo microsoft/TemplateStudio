@@ -88,7 +88,7 @@ namespace Microsoft.Templates.UI.Controls
 
         public void RemoveNotification()
         {
-            Notification.Remove();
+            Notification?.Remove();
         }
 
         private void RemoveCategoriesToOverride(IEnumerable<Category> categoriesToOverride)

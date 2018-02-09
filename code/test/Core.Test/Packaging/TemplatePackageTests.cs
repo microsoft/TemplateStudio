@@ -332,17 +332,19 @@ namespace Microsoft.Templates.Core.Test.Locations
         public async Task TestRemoteSource_AcquireAsync()
         {
             RemoteTemplatesSource rts = new RemoteTemplatesSource();
-            rts.LoadConfig();
+            CancellationTokenSource cts = new CancellationTokenSource();
+
+            await rts.LoadConfigAsync(cts.Token);
             var package = rts.Config.Latest;
 
-            await rts.AcquireAsync(package);
+            await rts.AcquireAsync(package, cts.Token);
 
             string acquiredContentFolder = package.LocalPath;
 
             Assert.NotNull(acquiredContentFolder);
 
             // Ensure package is not downloaded again if already downloaded
-            await rts.AcquireAsync(package);
+            await rts.AcquireAsync(package, cts.Token);
             Assert.True(acquiredContentFolder == package.LocalPath);
 
             // Reset localPath and ensure it is acquired again
@@ -351,7 +353,7 @@ namespace Microsoft.Templates.Core.Test.Locations
                 Directory.Delete(Path.GetDirectoryName(package.LocalPath), true);
             }
 
-            await rts.AcquireAsync(package);
+            await rts.AcquireAsync(package, cts.Token);
 
             Assert.True(package.LocalPath != acquiredContentFolder);
 
@@ -370,10 +372,11 @@ namespace Microsoft.Templates.Core.Test.Locations
             try
             {
                 RemoteTemplatesSource rts = new RemoteTemplatesSource();
-                rts.LoadConfig();
+                CancellationTokenSource cts = new CancellationTokenSource();
+                await rts.LoadConfigAsync(cts.Token);
                 var package = rts.Config.Latest;
 
-                await rts.AcquireAsync(package);
+                await rts.AcquireAsync(package, cts.Token);
                 var contentInfo = await rts.GetContentAsync(package, testDir);
 
                 Assert.True(Directory.Exists(contentInfo.Path));
