@@ -6,6 +6,7 @@
     <Thickness x:Key="Margin_XS_LeftRight">4,0,4,0</Thickness>
     <Thickness x:Key="Margin_XS_Bottom">0,0,0,4</Thickness>
     <Thickness x:Key="Margin_XS_Top">0,4,0,0</Thickness>
+    <Thickness x:Key="Margin_XS_TopBottom">0,4,0,4</Thickness>
 
     <Thickness x:Key="Margin_XS2_TopBottom">0,6,0,6</Thickness>
     <Thickness x:Key="Margin_XS2_Top">0,6,0,0</Thickness>
