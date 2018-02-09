@@ -79,7 +79,7 @@ namespace Microsoft.Templates.Core.Locations
             });
         }
 
-        public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder)
+        public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
             string targetFolder = Path.Combine(workingFolder, packageInfo.Version.ToString());
 

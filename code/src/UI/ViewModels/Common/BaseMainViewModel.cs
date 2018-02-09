@@ -27,7 +27,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private Window _mainView;
         private int _step;
         private int _origStep;
-        private bool _canCancel = true;
         private bool _canGoBack = false;
         private bool _canGoForward = true;
         private bool _canFinish;
@@ -70,7 +69,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ObservableCollection<Step> Steps { get; } = new ObservableCollection<Step>();
 
-        public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel, () => _canCancel));
+        public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
 
         public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(() => Step--, () => _canGoBack && !WizardStatus.IsBusy));
 
@@ -143,12 +142,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             GoForwardCommand.OnCanExecuteChanged();
         }
 
-        protected void SetCanCancel(bool canCancel)
-        {
-            _canCancel = canCancel;
-            CancelCommand.OnCanExecuteChanged();
-        }
-
         protected void SetCanFinish(bool canFinish)
         {
             _canFinish = canFinish;
@@ -203,15 +196,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             if (args.Status == SyncStatus.NoUpdates || args.Status == SyncStatus.Ready)
             {
                 NotificationsControl.Instance.RemoveNotification();
-            }
-
-            if (args.Status == SyncStatus.Preparing || args.Status == SyncStatus.Copying || args.Status == SyncStatus.Updating)
-            {
-                SetCanCancel(false);
-            }
-            else
-            {
-                SetCanCancel(true);
             }
 
             if (args.Status == SyncStatus.Updated || args.Status == SyncStatus.Ready)

@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public abstract Task LoadConfigAsync(CancellationToken ct);
 
-        public abstract Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder);
+        public abstract Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct);
 
         public abstract Task AcquireAsync(TemplatesPackageInfo packageInfo, CancellationToken ct);
 

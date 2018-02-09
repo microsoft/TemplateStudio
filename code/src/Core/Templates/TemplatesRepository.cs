@@ -58,8 +58,12 @@ namespace Microsoft.Templates.Core
             await Sync.GetNewContentAsync(_cts.Token);
             if (!_cts.Token.IsCancellationRequested)
             {
-                await Sync.EnsureContentAsync(force);
-                await Sync.RefreshTemplateCacheAsync(force);
+                await Sync.EnsureContentAsync(force, _cts.Token);
+                if (!_cts.Token.IsCancellationRequested)
+                {
+                    await Sync.RefreshTemplateCacheAsync(force);
+                }
+
                 Sync.CheckForWizardUpdates();
             }
         }

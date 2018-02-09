@@ -119,7 +119,7 @@ namespace Microsoft.Templates.Core.Locations
 
                 if (latestPackage.LocalPath != null)
                 {
-                    TemplatesContentInfo content = await Source.GetContentAsync(latestPackage, TemplatesFolder);
+                    TemplatesContentInfo content = await Source.GetContentAsync(latestPackage, TemplatesFolder, ct);
 
                     var alreadyExists = All.Where(p => p.Version == latestPackage.Version).FirstOrDefault();
                     if (alreadyExists != null)
@@ -177,14 +177,14 @@ namespace Microsoft.Templates.Core.Locations
             return installedPackage;
         }
 
-        internal async Task GetInstalledContentAsync(TemplatesPackageInfo packageInfo)
+        internal async Task GetInstalledContentAsync(TemplatesPackageInfo packageInfo, CancellationToken ct)
         {
             try
             {
                 Source.GetContentProgress += OnGetContentProgress;
                 Source.CopyProgress += OnCopyProgress;
 
-                var package = await Source.GetContentAsync(packageInfo, TemplatesFolder);
+                var package = await Source.GetContentAsync(packageInfo, TemplatesFolder, ct);
                 Current = package;
                 All.Add(package);
             }

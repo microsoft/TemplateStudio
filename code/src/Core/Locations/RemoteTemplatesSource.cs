@@ -20,9 +20,9 @@ namespace Microsoft.Templates.Core.Locations
 
         private Version _version;
 
-        public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder)
+        public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
-            var extractionFolder = await ExtractAsync(packageInfo);
+            var extractionFolder = await ExtractAsync(packageInfo, true, ct);
 
             var finalDestination = Path.Combine(workingFolder, packageInfo.Version.ToString());
 
@@ -105,12 +105,12 @@ namespace Microsoft.Templates.Core.Locations
             OnNewVersionAcquisitionProgress(this, new ProgressEventArgs() { Version = _version, Progress = e.ProgressPercentage });
         }
 
-        private async Task<string> ExtractAsync(TemplatesPackageInfo packageInfo, bool verifyPackageSignatures = true)
+        private async Task<string> ExtractAsync(TemplatesPackageInfo packageInfo, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
         {
             _version = packageInfo.Version;
             if (!string.IsNullOrEmpty(packageInfo.LocalPath))
             {
-                await ExtractAsync(packageInfo.LocalPath, Path.GetDirectoryName(packageInfo.LocalPath), verifyPackageSignatures);
+                await ExtractAsync(packageInfo.LocalPath, Path.GetDirectoryName(packageInfo.LocalPath), verifyPackageSignatures, ct);
                 return Path.GetDirectoryName(packageInfo.LocalPath);
             }
             else
@@ -120,14 +120,14 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task ExtractAsync(string mstxFilePath, string versionedFolder, bool verifyPackageSignatures = true)
+        private async Task ExtractAsync(string mstxFilePath, string versionedFolder, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
         {
             try
             {
-                await TemplatePackage.ExtractAsync(mstxFilePath, versionedFolder, verifyPackageSignatures, ReportExtractionProgress);
+                await TemplatePackage.ExtractAsync(mstxFilePath, versionedFolder, verifyPackageSignatures, ReportExtractionProgress, ct);
                 AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {versionedFolder}.").FireAndForget();
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex.GetType() != typeof(OperationCanceledException))
             {
                 AppHealth.Current.Exception.TrackAsync(ex, StringRes.TemplatesSourceExtractContentMessage).FireAndForget();
                 throw;

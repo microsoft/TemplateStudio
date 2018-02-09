@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Core.Locations
             CurrentWizardVersion = wizardVersion;
         }
 
-        public async Task EnsureContentAsync(bool force = false)
+        public async Task EnsureContentAsync(bool force = false, CancellationToken ct = default(CancellationToken))
         {
             await EnsureVsInstancesSyncingAsync();
 
@@ -56,7 +56,7 @@ namespace Microsoft.Templates.Core.Locations
                         _content.GetContentProgress += OnGetContentProgress;
                         _content.CopyProgress += OnCopyProgress;
 
-                        await ExtractInstalledContentAsync();
+                        await ExtractInstalledContentAsync(ct);
                     }
 
                     TelemetryService.Current.SetContentVersionToContext(CurrentContent.Version);
@@ -100,6 +100,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 try
                 {
+
                     bool notifiedCheckingforUpdates = await LoadConfigFileAsync(ct);
 
                     _content.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
@@ -190,7 +191,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private async Task ExtractInstalledContentAsync()
+        private async Task ExtractInstalledContentAsync(CancellationToken ct)
         {
             try
             {
@@ -198,9 +199,12 @@ namespace Microsoft.Templates.Core.Locations
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing, Version = installedPackage.Version });
 
-                await _content.GetInstalledContentAsync(installedPackage);
+                await _content.GetInstalledContentAsync(installedPackage, ct);
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });
+            }
+            catch (OperationCanceledException)
+            {
             }
             catch (Exception ex)
             {
