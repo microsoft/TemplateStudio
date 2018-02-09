@@ -21,15 +21,14 @@ namespace Microsoft.Templates.Test
     {
         public override string Id => "TestLegacy" + GetAgentName();
 
-        public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder)
+        public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
-            CancellationTokenSource cts = new CancellationTokenSource();
-            await LoadConfigAsync(cts.Token);
+            await LoadConfigAsync(ct);
             var package = Config.Latest;
 
-            await AcquireAsync(package, cts.Token);
+            await AcquireAsync(package, ct);
 
-            return await base.GetContentAsync(package, workingFolder);
+            return await base.GetContentAsync(package, workingFolder, ct);
         }
 
         private static string GetAgentName()

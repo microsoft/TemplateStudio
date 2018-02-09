@@ -100,7 +100,6 @@ namespace Microsoft.Templates.Core.Locations
             {
                 try
                 {
-
                     bool notifiedCheckingforUpdates = await LoadConfigFileAsync(ct);
 
                     _content.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
@@ -200,8 +199,6 @@ namespace Microsoft.Templates.Core.Locations
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing, Version = installedPackage.Version });
 
                 await _content.GetInstalledContentAsync(installedPackage, ct);
-
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Prepared });
             }
             catch (OperationCanceledException)
             {

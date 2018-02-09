@@ -119,7 +119,6 @@ namespace Microsoft.Templates.Core.Packaging
 
             if (!ct.IsCancellationRequested)
             {
-                ;
                 using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     bool isSignatureValid = false;

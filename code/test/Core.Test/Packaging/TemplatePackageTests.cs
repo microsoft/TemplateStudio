@@ -377,7 +377,7 @@ namespace Microsoft.Templates.Core.Test.Locations
                 var package = rts.Config.Latest;
 
                 await rts.AcquireAsync(package, cts.Token);
-                var contentInfo = await rts.GetContentAsync(package, testDir);
+                var contentInfo = await rts.GetContentAsync(package, testDir, cts.Token);
 
                 Assert.True(Directory.Exists(contentInfo.Path));
             }
