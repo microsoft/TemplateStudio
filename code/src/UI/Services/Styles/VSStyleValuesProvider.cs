@@ -343,6 +343,51 @@ namespace Microsoft.Templates.UI.Services
                     return GetColor(EnvironmentColors.PageSideBarExpanderSeparatorBrushKey);
                 case "PageSideBarExpanderText":
                     return GetColor(EnvironmentColors.PageSideBarExpanderTextBrushKey);
+
+                case "SystemScrollBar":
+                    return GetColor(EnvironmentColors.SystemScrollBarBrushKey);
+                case "ScrollBarArrowBackground":
+                    return GetColor(EnvironmentColors.ScrollBarArrowBackgroundBrushKey);
+                case "ScrollBarArrowDisabledBackground":
+                    return GetColor(EnvironmentColors.ScrollBarArrowDisabledBackgroundBrushKey);
+                case "ScrollBarArrowGlyph":
+                    return GetColor(EnvironmentColors.ScrollBarArrowGlyphBrushKey);
+                case "ScrollBarArrowGlyphDisabled":
+                    return GetColor(EnvironmentColors.ScrollBarArrowGlyphDisabledBrushKey);
+                case "ScrollBarArrowGlyphMouseOver":
+                    return GetColor(EnvironmentColors.ScrollBarArrowGlyphMouseOverBrushKey);
+                case "ScrollBarArrowGlyphPressed":
+                    return GetColor(EnvironmentColors.ScrollBarArrowGlyphPressedBrushKey);
+                case "ScrollBarArrowMouseOverBackground":
+                    return GetColor(EnvironmentColors.ScrollBarArrowMouseOverBackgroundBrushKey);
+                case "ScrollBarArrowPressedBackground":
+                    return GetColor(EnvironmentColors.ScrollBarArrowPressedBackgroundBrushKey);
+                case "ScrollBarBackground":
+                    return GetColor(EnvironmentColors.ScrollBarBackgroundBrushKey);
+                case "ScrollBarBorder":
+                    return GetColor(EnvironmentColors.ScrollBarBorderBrushKey);
+                case "ScrollBarDisabledBackground":
+                    return GetColor(EnvironmentColors.ScrollBarDisabledBackgroundBrushKey);
+                case "ScrollBarThumbBackground":
+                    return GetColor(EnvironmentColors.ScrollBarThumbBackgroundBrushKey);
+                case "ScrollBarThumbBorder":
+                    return GetColor(EnvironmentColors.ScrollBarThumbBorderBrushKey);
+                case "ScrollBarThumbDisabled":
+                    return GetColor(EnvironmentColors.ScrollBarThumbDisabledBrushKey);
+                case "ScrollBarThumbGlyph":
+                    return GetColor(EnvironmentColors.ScrollBarThumbGlyphBrushKey);
+                case "ScrollBarThumbGlyphMouseOverBorder":
+                    return GetColor(EnvironmentColors.ScrollBarThumbGlyphMouseOverBorderBrushKey);
+                case "ScrollBarThumbGlyphPressedBorder":
+                    return GetColor(EnvironmentColors.ScrollBarThumbGlyphPressedBorderBrushKey);
+                case "ScrollBarThumbMouseOverBackground":
+                    return GetColor(EnvironmentColors.ScrollBarThumbMouseOverBackgroundBrushKey);
+                case "ScrollBarThumbMouseOverBorder":
+                    return GetColor(EnvironmentColors.ScrollBarThumbMouseOverBorderBrushKey);
+                case "ScrollBarThumbPressedBackground":
+                    return GetColor(EnvironmentColors.ScrollBarThumbPressedBackgroundBrushKey);
+                case "ScrollBarThumbPressedBorder":
+                    return GetColor(EnvironmentColors.ScrollBarThumbPressedBorderBrushKey);
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
@@ -461,6 +506,8 @@ namespace Microsoft.Templates.UI.Services
 
                 case "DialogInfoIcon":
                     return GetColor(WindowsTemplateStudioColors.DialogInfoIconBrushKey);
+                case "DialogInfoCharIcon":
+                    return GetColor(WindowsTemplateStudioColors.DialogInfoCharIconBrushKey);
                 case "DialogErrorIcon":
                     return GetColor(WindowsTemplateStudioColors.DialogErrorIconBrushKey);
                 case "DialogWarningIcon":

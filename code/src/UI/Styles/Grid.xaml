@@ -2,6 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <Style TargetType="Grid" x:Key="WtsGridBasePage">
         <Setter Property="Background" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
@@ -25,6 +29,13 @@
 
     <Style TargetType="Grid" x:Key="WtsGridNotification">
         <Setter Property="Background" Value="{Binding IBInfoBarBackground, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+    <Style TargetType="Grid" x:Key="WtsGridNotificationIcon">
+        <Setter Property="Width" Value="25" />
+        <Setter Property="Height" Value="25" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="{StaticResource Margin_M_Left}" />
     </Style>
 
     <Style TargetType="Grid" x:Key="WtsGridSavedTemplate">

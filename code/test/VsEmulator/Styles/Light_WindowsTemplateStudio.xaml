@@ -59,6 +59,9 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DialogErrorIconBrushKey}" Color="#FFFF0000" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.DialogErrorIconColorKey}" A="255" R="255" G="0" B="0" />
 
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DialogInfoCharIconBrushKey}" Color="#FFFFFFFF" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.DialogInfoCharIconColorKey}" A="255" R="255" G="255" B="255" />
+
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DialogInfoIconBrushKey}" Color="#FF007ACC" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.DialogInfoIconColorKey}" A="255" R="0" G="122" B="204" />
 

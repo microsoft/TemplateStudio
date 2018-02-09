@@ -7,7 +7,6 @@ using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.UI.Services
 {
-// This is a code generated class
 #pragma warning disable SA1306 // Field names must begin with lower-case letter
 #pragma warning disable SA1516 // Elements must be separated by blank line
 #pragma warning disable SA1502 // Element must not be on a single line
@@ -109,6 +108,11 @@ namespace Microsoft.Templates.UI.Services
         private static ThemeResourceKey _DialogErrorIconBrushKey;
         public static ThemeResourceKey DialogErrorIconColorKey { get { return _DialogErrorIconColorKey ?? (_DialogErrorIconColorKey = new ThemeResourceKey(Category, "DialogErrorIcon", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey DialogErrorIconBrushKey { get { return _DialogErrorIconBrushKey ?? (_DialogErrorIconBrushKey = new ThemeResourceKey(Category, "DialogErrorIcon", ThemeResourceKeyType.BackgroundBrush)); } }
+
+        private static ThemeResourceKey _DialogInfoCharIconColorKey;
+        private static ThemeResourceKey _DialogInfoCharIconBrushKey;
+        public static ThemeResourceKey DialogInfoCharIconColorKey { get { return _DialogInfoCharIconColorKey ?? (_DialogInfoCharIconColorKey = new ThemeResourceKey(Category, "DialogInfoCharIcon", ThemeResourceKeyType.BackgroundColor)); } }
+        public static ThemeResourceKey DialogInfoCharIconBrushKey { get { return _DialogInfoCharIconBrushKey ?? (_DialogInfoCharIconBrushKey = new ThemeResourceKey(Category, "DialogInfoCharIcon", ThemeResourceKeyType.BackgroundBrush)); } }
 
         private static ThemeResourceKey _DialogInfoIconColorKey;
         private static ThemeResourceKey _DialogInfoIconBrushKey;

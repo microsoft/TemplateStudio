@@ -25,7 +25,7 @@
             Text="{x:Static strings:StringRes.AddFeaturesTitle}"
             Margin="{StaticResource Margin_L_LeftRight_M2_Top}"
             Style="{StaticResource WtsTextBlockSectionTitle}" />
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer Grid.Row="1" Style="{StaticResource WtsScrollViewer}">
             <ItemsControl
                 Focusable="False"
                 ItemsSource="{Binding Groups}"

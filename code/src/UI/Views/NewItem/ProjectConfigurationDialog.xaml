@@ -18,7 +18,7 @@
                 <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="MetadataDisplayNameTemplate">
-                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
+                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
             </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
@@ -40,13 +40,13 @@
 
 
             <StackPanel  Grid.Row="2">
-                <TextBlock Text="{x:Static strings:StringRes.ProjectConfigurationSelectProjectType}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource ProjectConfigurationComboBoxHeaderStyle}" />
+                <TextBlock Text="{x:Static strings:StringRes.ProjectConfigurationSelectProjectType}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}" />
                 <ComboBox ItemsSource="{Binding ProjectTypes}" SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}" Margin="{StaticResource Margin_S_TopBottom}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}" />
-                <TextBlock Text="{Binding SelectedProjectType.Summary}" Margin="{StaticResource Margin_S_Bottom}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
+                <TextBlock Text="{Binding SelectedProjectType.Summary}" Margin="{StaticResource Margin_S_Bottom}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
 
-                <TextBlock Text="{x:Static strings:StringRes.ProjectConfigurationSelectFramework}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource ProjectConfigurationComboBoxHeaderStyle}"/>
+                <TextBlock Text="{x:Static strings:StringRes.ProjectConfigurationSelectFramework}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}"/>
                 <ComboBox ItemsSource="{Binding Frameworks}" SelectedItem="{Binding SelectedFramework, Mode=TwoWay}" Margin="{StaticResource Margin_S_TopBottom}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"  />
-                <TextBlock Text="{Binding SelectedFramework.Summary}" Margin="{StaticResource Margin_S_Bottom}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
+                <TextBlock Text="{Binding SelectedFramework.Summary}" Margin="{StaticResource Margin_S_Bottom}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">

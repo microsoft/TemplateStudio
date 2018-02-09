@@ -35,7 +35,7 @@
                 Text="{x:Static strings:StringRes.TemplateSelectionTitle}"
                 Margin="{StaticResource Margin_L_LeftRight_M2_Top}"
                 Style="{StaticResource WtsTextBlockSectionTitle}" />
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+            <ScrollViewer Grid.Row="1" Style="{StaticResource WtsScrollViewer}">
                 <ItemsControl
                     Focusable="False"
                     ItemsSource="{Binding TemplateSelection.Groups}"
