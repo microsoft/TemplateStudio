@@ -628,7 +628,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error refreshing templates. See output for more details..
+        ///   Looks up a localized string similar to Error refreshing templates. See output window for more details..
         /// </summary>
         public static string NotificationSyncError_Refresh {
             get {
@@ -925,6 +925,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creating Windows Template Studio project....
+        /// </summary>
+        public static string StatusBarCreatingProject {
+            get {
+                return ResourceManager.GetString("StatusBarCreatingProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
         /// </summary>
         public static string StatusBarGeneratingFeatureMessage {
@@ -1002,15 +1011,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string StatusBarRestoring {
             get {
                 return ResourceManager.GetString("StatusBarRestoring", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Creating Windows Template Studio project....
-        /// </summary>
-        public static string StatusBarRunFinished {
-            get {
-                return ResourceManager.GetString("StatusBarRunFinished", resourceCulture);
             }
         }
         

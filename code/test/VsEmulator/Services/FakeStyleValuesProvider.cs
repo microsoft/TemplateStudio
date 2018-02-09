@@ -370,6 +370,51 @@ namespace Microsoft.Templates.VsEmulator.Services
                     return GetColor(Environment.PageSideBarExpanderSeparatorBrushKey);
                 case "PageSideBarExpanderText":
                     return GetColor(Environment.PageSideBarExpanderTextBrushKey);
+
+                case "SystemScrollBar":
+                    return GetColor(Environment.ScrollBarBrushKey);
+                case "ScrollBarArrowBackground":
+                    return GetColor(Environment.ScrollBarArrowBackgroundBrushKey);
+                case "ScrollBarArrowDisabledBackground":
+                    return GetColor(Environment.ScrollBarArrowDisabledBackgroundBrushKey);
+                case "ScrollBarArrowGlyph":
+                    return GetColor(Environment.ScrollBarArrowGlyphBrushKey);
+                case "ScrollBarArrowGlyphDisabled":
+                    return GetColor(Environment.ScrollBarArrowGlyphDisabledBrushKey);
+                case "ScrollBarArrowGlyphMouseOver":
+                    return GetColor(Environment.ScrollBarArrowGlyphMouseOverBrushKey);
+                case "ScrollBarArrowGlyphPressed":
+                    return GetColor(Environment.ScrollBarArrowGlyphPressedBrushKey);
+                case "ScrollBarArrowMouseOverBackground":
+                    return GetColor(Environment.ScrollBarArrowMouseOverBackgroundBrushKey);
+                case "ScrollBarArrowPressedBackground":
+                    return GetColor(Environment.ScrollBarArrowPressedBackgroundBrushKey);
+                case "ScrollBarBackground":
+                    return GetColor(Environment.ScrollBarBackgroundBrushKey);
+                case "ScrollBarBorder":
+                    return GetColor(Environment.ScrollBarBorderBrushKey);
+                case "ScrollBarDisabledBackground":
+                    return GetColor(Environment.ScrollBarDisabledBackgroundBrushKey);
+                case "ScrollBarThumbBackground":
+                    return GetColor(Environment.ScrollBarThumbBackgroundBrushKey);
+                case "ScrollBarThumbBorder":
+                    return GetColor(Environment.ScrollBarThumbBorderBrushKey);
+                case "ScrollBarThumbDisabled":
+                    return GetColor(Environment.ScrollBarThumbDisabledBrushKey);
+                case "ScrollBarThumbGlyph":
+                    return GetColor(Environment.ScrollBarThumbGlyphBrushKey);
+                case "ScrollBarThumbGlyphMouseOverBorder":
+                    return GetColor(Environment.ScrollBarThumbGlyphMouseOverBorderBrushKey);
+                case "ScrollBarThumbGlyphPressedBorder":
+                    return GetColor(Environment.ScrollBarThumbGlyphPressedBorderBrushKey);
+                case "ScrollBarThumbMouseOverBackground":
+                    return GetColor(Environment.ScrollBarThumbMouseOverBackgroundBrushKey);
+                case "ScrollBarThumbMouseOverBorder":
+                    return GetColor(Environment.ScrollBarThumbMouseOverBorderBrushKey);
+                case "ScrollBarThumbPressedBackground":
+                    return GetColor(Environment.ScrollBarThumbPressedBackgroundBrushKey);
+                case "ScrollBarThumbPressedBorder":
+                    return GetColor(Environment.ScrollBarThumbPressedBorderBrushKey);
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
             }
@@ -488,6 +533,8 @@ namespace Microsoft.Templates.VsEmulator.Services
 
                 case "DialogInfoIcon":
                     return GetColor(WindowsTemplateStudio.DialogInfoIconBrushKey);
+                case "DialogInfoCharIcon":
+                    return GetColor(WindowsTemplateStudio.DialogInfoCharIconBrushKey);
                 case "DialogErrorIcon":
                     return GetColor(WindowsTemplateStudio.DialogErrorIconBrushKey);
                 case "DialogWarningIcon":

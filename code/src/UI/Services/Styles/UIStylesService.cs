@@ -204,6 +204,30 @@ namespace Microsoft.Templates.UI.Services
             PageSideBarExpanderHeaderPressed = _stylesProvider.GetColor("Environment", "PageSideBarExpanderHeaderPressed");
             PageSideBarExpanderSeparator = _stylesProvider.GetColor("Environment", "PageSideBarExpanderSeparator");
             PageSideBarExpanderText = _stylesProvider.GetColor("Environment", "PageSideBarExpanderText");
+
+            SystemScrollBar = _stylesProvider.GetColor("Environment", "SystemScrollBar");
+            ScrollBarArrowBackground = _stylesProvider.GetColor("Environment", "ScrollBarArrowBackground");
+            ScrollBarArrowDisabledBackground = _stylesProvider.GetColor("Environment", "ScrollBarArrowDisabledBackground");
+            ScrollBarArrowGlyph = _stylesProvider.GetColor("Environment", "ScrollBarArrowGlyph"); // Used
+            ScrollBarArrowGlyphDisabled = _stylesProvider.GetColor("Environment", "ScrollBarArrowGlyphDisabled"); // Used
+            ScrollBarArrowGlyphMouseOver = _stylesProvider.GetColor("Environment", "ScrollBarArrowGlyphMouseOver"); // Used
+            ScrollBarArrowGlyphPressed = _stylesProvider.GetColor("Environment", "ScrollBarArrowGlyphPressed"); // Used
+            ScrollBarArrowMouseOverBackground = _stylesProvider.GetColor("Environment", "ScrollBarArrowMouseOverBackground");
+            ScrollBarArrowPressedBackground = _stylesProvider.GetColor("Environment", "ScrollBarArrowPressedBackground");
+            ScrollBarBackground = _stylesProvider.GetColor("Environment", "ScrollBarBackground"); // Used
+            ScrollBarBorder = _stylesProvider.GetColor("Environment", "ScrollBarBorder"); // Used
+            ScrollBarDisabledBackground = _stylesProvider.GetColor("Environment", "ScrollBarDisabledBackground");
+
+            ScrollBarThumbBackground = _stylesProvider.GetColor("Environment", "ScrollBarThumbBackground"); // Used
+            ScrollBarThumbBorder = _stylesProvider.GetColor("Environment", "ScrollBarThumbBorder");
+            ScrollBarThumbDisabled = _stylesProvider.GetColor("Environment", "ScrollBarThumbDisabled");
+            ScrollBarThumbGlyph = _stylesProvider.GetColor("Environment", "ScrollBarThumbGlyph");
+            ScrollBarThumbGlyphMouseOverBorder = _stylesProvider.GetColor("Environment", "ScrollBarThumbGlyphMouseOverBorder");
+            ScrollBarThumbGlyphPressedBorder = _stylesProvider.GetColor("Environment", "ScrollBarThumbGlyphPressedBorder");
+            ScrollBarThumbMouseOverBackground = _stylesProvider.GetColor("Environment", "ScrollBarThumbMouseOverBackground"); // Used
+            ScrollBarThumbMouseOverBorder = _stylesProvider.GetColor("Environment", "ScrollBarThumbMouseOverBorder");
+            ScrollBarThumbPressedBackground = _stylesProvider.GetColor("Environment", "ScrollBarThumbPressedBackground"); // Used
+            ScrollBarThumbPressedBorder = _stylesProvider.GetColor("Environment", "ScrollBarThumbPressedBorder");
         }
 
         private void SetInfoBarColors()
@@ -265,6 +289,7 @@ namespace Microsoft.Templates.UI.Services
             ChangesSummaryDetailFileHeaderBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeaderBackground");
 
             DialogInfoIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoIcon");
+            DialogInfoCharIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoCharIcon");
             DialogErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogErrorIcon");
             DialogWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogWarningIcon");
 

@@ -302,7 +302,7 @@
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
-    <value>Error refreshing templates. See output for more details.</value>
+    <value>Error refreshing templates. See output window for more details.</value>
     <comment>Error message for sync refresh</comment>
   </data>
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
@@ -465,7 +465,7 @@
     <value>Restoring packages...</value>
     <comment>Status bar message for restoring</comment>
   </data>
-  <data name="StatusBarRunFinished" xml:space="preserve">
+  <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Creating Windows Template Studio project...</value>
     <comment>Status bar message for solution wizard run finished</comment>
   </data>

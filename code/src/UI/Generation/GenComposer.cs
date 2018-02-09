@@ -129,8 +129,10 @@ namespace Microsoft.Templates.UI
 
         public static IEnumerable<TemplateLicense> GetAllLicences(ITemplateInfo template, string framework)
         {
-            return GetAllDependencies(template, framework)
-                .SelectMany(s => s.GetLicenses())
+            var templates = new List<ITemplateInfo>();
+            templates.Add(template);
+            templates.AddRange(GetAllDependencies(template, framework));
+            return templates.SelectMany(s => s.GetLicenses())
                 .Distinct(new TemplateLicenseEqualityComparer())
                 .ToList();
         }

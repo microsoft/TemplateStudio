@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource WtsDialogWarningIcon}" Margin="{StaticResource Margin_M_Right}"/>
+            <TextBlock Style="{StaticResource WtsTextBlockDialogWarningIcon}" Margin="{StaticResource Margin_M_Right}"/>
             <TextBlock Grid.Column="1" Text="{Binding Title}" Style="{StaticResource WtsTextBlockDialogTitle}" />
             <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" Style="{StaticResource WtsTextBlockDialogDescription}" Margin="{StaticResource Margin_XS_Top}"/>
         </Grid>

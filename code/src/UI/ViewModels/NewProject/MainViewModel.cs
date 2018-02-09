@@ -30,9 +30,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public static MainViewModel Instance { get; private set; }
 
-        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(() => Instance.IsSelectionEnabled(MetadataType.ProjectType));
+        public ProjectTypeViewModel ProjectType { get; } = new ProjectTypeViewModel(() => Instance.IsSelectionEnabled(MetadataType.ProjectType), () => Instance.OnProjectTypeSelected());
 
-        public FrameworkViewModel Framework { get; } = new FrameworkViewModel(() => Instance.IsSelectionEnabled(MetadataType.Framework));
+        public FrameworkViewModel Framework { get; } = new FrameworkViewModel(() => Instance.IsSelectionEnabled(MetadataType.Framework), () => Instance.OnFrameworkSelected());
 
         public AddPagesViewModel AddPages { get; } = new AddPagesViewModel();
 
@@ -180,22 +180,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (metadata.MetadataType == MetadataType.ProjectType)
                 {
-                    if (ProjectType.Select(metadata))
-                    {
-                        Framework.LoadData(metadata.Name);
-                        EventService.Instance.RaiseOnProjectTypeChange(metadata);
-                    }
+                    ProjectType.Selected = metadata;
                 }
                 else if (metadata.MetadataType == MetadataType.Framework)
                 {
-                    if (Framework.Select(metadata))
-                    {
-                        AddPages.LoadData(metadata.Name);
-                        AddFeatures.LoadData(metadata.Name);
-                        UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
-                        WizardStatus.IsLoading = false;
-                        EventService.Instance.RaiseOnFrameworkChange(metadata);
-                    }
+                    Framework.Selected = metadata;
                 }
             }
             else if (item is TemplateInfoViewModel template)
@@ -203,6 +192,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 _selectedTemplate = template;
                 AddTemplate(template);
             }
+        }
+
+        private void OnProjectTypeSelected()
+        {
+            Framework.LoadData(ProjectType.Selected.Name);
+            EventService.Instance.RaiseOnProjectTypeChange(ProjectType.Selected);
+        }
+
+        private void OnFrameworkSelected()
+        {
+            AddPages.LoadData(Framework.Selected.Name);
+            AddFeatures.LoadData(Framework.Selected.Name);
+            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
+            WizardStatus.IsLoading = false;
+            EventService.Instance.RaiseOnFrameworkChange(Framework.Selected);
         }
 
         protected async Task OnRefreshTemplatesAsync()

@@ -232,7 +232,7 @@
         <Setter Property="Text" Value="i" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="{Binding IBInfoBarBackground, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding DialogInfoCharIcon, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
     <!--TemplateDetails-->
@@ -253,7 +253,6 @@
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Margin" Value="{StaticResource Margin_M_Left}" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockNewItemFileSubject">
@@ -308,7 +307,7 @@
     </Style>
 
     <!--Project Configuration-->
-    <Style TargetType="TextBlock" x:Key="ProjectConfigurationDescriptionStyle">
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockProjectConfigurationDescriptionStyle">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
         <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -316,7 +315,8 @@
         <Setter Property="TextWrapping" Value="Wrap" />
 
     </Style>
-    <Style TargetType="TextBlock" x:Key="ProjectConfigurationComboBoxHeaderStyle">
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockProjectConfigurationComboBoxHeaderStyle">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
@@ -324,21 +324,14 @@
     </Style>
 
     <!-- Dialog icons -->
-    <Style x:Key="WtsDialogErrorIcon" TargetType="TextBlock">
+    <Style x:Key="WtsTextBlockDialogErrorIcon" TargetType="TextBlock">
         <Setter Property="Text" Value="&#xEB90;" />
         <Setter Property="FontSize" Value="{Binding Environment310PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
         <Setter Property="Foreground" Value="{Binding DialogErrorIcon, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
     </Style>
 
-    <Style x:Key="WtsDialogInfoIcon" TargetType="TextBlock">
-        <Setter Property="Text" Value="&#xF167;" />
-        <Setter Property="FontSize" Value="{Binding Environment310PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
-        <Setter Property="Foreground" Value="{Binding DialogInfoIcon, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
-    </Style>
-    
-    <Style x:Key="WtsDialogWarningIcon" TargetType="TextBlock">
+    <Style x:Key="WtsTextBlockDialogWarningIcon" TargetType="TextBlock">
         <Setter Property="Text" Value="&#xE814;" />
         <Setter Property="FontSize" Value="{Binding Environment310PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
         <Setter Property="Foreground" Value="{Binding DialogWarningIcon, Source={x:Static services:UIStylesService.Instance}}" />
