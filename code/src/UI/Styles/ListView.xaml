@@ -215,6 +215,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="AutomationProperties.AutomationId" Value="{Binding Path=LayoutIndex, StringFormat=Step{0:}}" />
         <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnPreviewMouseLeftButtonDown" />
         <Setter Property="Template">
             <Setter.Value>
