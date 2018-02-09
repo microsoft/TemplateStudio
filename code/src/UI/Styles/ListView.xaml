@@ -12,6 +12,7 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Ellipse.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Image.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/ImageEx.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/ScrollViewer.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/TextBlock.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -75,7 +76,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
                     <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="0" Margin="0" SnapsToDevicePixels="true">
-                        <ScrollViewer Focusable="false" Margin="0" Padding="0">
+                        <ScrollViewer Focusable="false" Margin="0" Padding="0" Style="{StaticResource WtsScrollViewer}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="0"/>
                         </ScrollViewer>
                     </Border>
@@ -144,20 +145,32 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <!--<Trigger Property="IsSelected" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding CardBorderSelected, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Background" TargetName="border" Value="{Binding CardBackgroundSelected, Source={x:Static services:UIStylesService.Instance}}" />
-                        </Trigger>-->
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{Binding CardBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Background" TargetName="border" Value="{Binding CardBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Visibility" TargetName="addIcon" Value="Visible" />
                         </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
+                                <Condition Binding="{Binding CanBeAdded}" Value="true" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="Visibility" TargetName="addIcon" Value="Visible" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                         <Trigger Property="IsFocused" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="{Binding CardBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Background" TargetName="border" Value="{Binding CardBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Visibility" TargetName="addIcon" Value="Visible" />
                         </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="true" />
+                                <Condition Binding="{Binding CanBeAdded}" Value="true" />
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="Visibility" TargetName="addIcon" Value="Visible" />
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

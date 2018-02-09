@@ -64,7 +64,9 @@ namespace Microsoft.Templates.UI.Services
                                     !t.GetIsHidden())
                                     .Select(t => new TemplateInfoViewModel(t, frameworkName));
 
-                var groups = templates.GroupBy(t => t.Group)
+                var groups = templates
+                    .OrderBy(t => t.Order)
+                    .GroupBy(t => t.Group)
                     .Select(gr => new TemplateGroupViewModel(gr))
                     .OrderBy(gr => gr.Name);
                 templateGroups.AddRange(groups);

@@ -45,6 +45,7 @@
         <Setter Property="Height" Value="18" />
     </Style>
     <Style TargetType="Button" x:Key="TextButton">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Width" Value="96" />
         <Setter Property="Height" Value="22" />
     </Style>
@@ -73,5 +74,11 @@
     <!-- Templates Content -->
     <Style TargetType="ListBox" x:Key="ListContent">
         <Setter Property="Margin" Value="0,8,0,8" />
+    </Style>
+
+    <Style TargetType="ComboBox" x:Key="VSEmulatorComboBox">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Width" Value="96" />
+        <Setter Property="Height" Value="22" />
     </Style>
 </ResourceDictionary>

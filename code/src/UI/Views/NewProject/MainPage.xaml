@@ -43,7 +43,7 @@
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
             <Grid Grid.Column="3" Style="{StaticResource WtsGridSectionDividerVertical}" />
-            <ScrollViewer Grid.Column="4" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Column="4" Style="{StaticResource WtsScrollViewer}">
                 <StackPanel>
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSectionTitle}"

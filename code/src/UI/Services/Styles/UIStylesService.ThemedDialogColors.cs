@@ -41,14 +41,6 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(HeaderTextProperty, value); }
         }
 
-        public static readonly DependencyProperty HeaderTextSecondaryProperty = DependencyProperty.Register("HeaderTextSecondary", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush HeaderTextSecondary
-        {
-            get { return (Brush)GetValue(HeaderTextSecondaryProperty); }
-            set { SetValue(HeaderTextSecondaryProperty, value); }
-        }
-
         public static readonly DependencyProperty HyperlinkProperty = DependencyProperty.Register("Hyperlink", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush Hyperlink
@@ -239,14 +231,6 @@ namespace Microsoft.Templates.UI.Services
         {
             get { return (Brush)GetValue(WizardFooterProperty); }
             set { SetValue(WizardFooterProperty, value); }
-        }
-
-        public static readonly DependencyProperty WizardFooterTextProperty = DependencyProperty.Register("WizardFooterText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush WizardFooterText
-        {
-            get { return (Brush)GetValue(WizardFooterTextProperty); }
-            set { SetValue(WizardFooterTextProperty, value); }
         }
 
         public static readonly DependencyProperty ListItemTextProperty = DependencyProperty.Register("ListItemText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));

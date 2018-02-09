@@ -15,6 +15,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     public class BasicInfoViewModel : Selectable
     {
         private string _title;
+        private string _summary;
         private string _description;
         private string _author;
         private string _version;
@@ -32,6 +33,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             get => _title;
             set => SetProperty(ref _title, value);
+        }
+
+        public string Summary
+        {
+            get => _summary;
+            set => SetProperty(ref _summary, value);
         }
 
         public string Description

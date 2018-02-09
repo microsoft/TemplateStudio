@@ -16,6 +16,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private T _selected;
         private T _origSelected;
         private Func<bool> _isSelectionEnabled;
+        private Action _onSelected;
 
         public T Selected
         {
@@ -25,12 +26,13 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ObservableCollection<T> Items { get; } = new ObservableCollection<T>();
 
-        public SelectableGroup(Func<bool> isSelectionEnabled)
+        public SelectableGroup(Func<bool> isSelectionEnabled, Action onSelected = null)
         {
             _isSelectionEnabled = isSelectionEnabled;
+            _onSelected = onSelected;
         }
 
-        public bool Select(T value)
+        private bool Select(T value)
         {
             if (value != null)
             {
@@ -49,6 +51,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
                     _selected.IsSelected = true;
                     OnPropertyChanged(nameof(Selected));
+                    _onSelected?.Invoke();
                     return true;
                 }
                 else
