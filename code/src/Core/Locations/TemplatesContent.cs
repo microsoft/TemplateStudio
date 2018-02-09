@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
@@ -74,9 +75,9 @@ namespace Microsoft.Templates.Core.Locations
         public bool IsNewVersionAvailable(out Version version)
         {
             version = Source.Config?.ResolvePackage(WizardVersion)?.Version;
-            if (Current != null)
+            if (Current != null && !Current.Version.IsNull() && Directory.Exists(Current.Path))
             {
-                return !Current.Version.IsNull() && Current.Version < version;
+                return Current.Version < version;
             }
             else
             {
@@ -90,7 +91,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (Current != null)
             {
-                var result = WizardVersion.Major < Source.Config.Latest.Version.Major || WizardVersion.Minor < Source.Config.Latest.Version.Minor;
+                var result = WizardVersion.Major < Source.Config?.Latest.Version.Major || WizardVersion.Minor < Source.Config?.Latest.Version.Minor;
                 if (result == true)
                 {
                     version = new Version(Source.Config.Latest.Version.Major, Source.Config.Latest.Version.Minor);
@@ -104,7 +105,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public async Task GetNewVersionContentAsync()
+        public async Task GetNewVersionContentAsync(CancellationToken ct)
         {
             try
             {
@@ -114,11 +115,11 @@ namespace Microsoft.Templates.Core.Locations
                 Source.GetContentProgress += OnGetContentProgress;
                 Source.CopyProgress += OnCopyProgress;
 
-                await Source.AcquireAsync(latestPackage);
+                await Source.AcquireAsync(latestPackage, ct);
 
                 if (latestPackage.LocalPath != null)
                 {
-                    TemplatesContentInfo content = await Source.GetContentAsync(latestPackage, TemplatesFolder);
+                    TemplatesContentInfo content = await Source.GetContentAsync(latestPackage, TemplatesFolder, ct);
 
                     var alreadyExists = All.Where(p => p.Version == latestPackage.Version).FirstOrDefault();
                     if (alreadyExists != null)
@@ -176,14 +177,14 @@ namespace Microsoft.Templates.Core.Locations
             return installedPackage;
         }
 
-        internal async Task GetInstalledContentAsync(TemplatesPackageInfo packageInfo)
+        internal async Task GetInstalledContentAsync(TemplatesPackageInfo packageInfo, CancellationToken ct)
         {
             try
             {
                 Source.GetContentProgress += OnGetContentProgress;
                 Source.CopyProgress += OnCopyProgress;
 
-                var package = await Source.GetContentAsync(packageInfo, TemplatesFolder);
+                var package = await Source.GetContentAsync(packageInfo, TemplatesFolder, ct);
                 Current = package;
                 All.Add(package);
             }

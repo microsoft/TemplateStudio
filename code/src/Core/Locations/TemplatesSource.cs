@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
@@ -31,11 +32,11 @@ namespace Microsoft.Templates.Core.Locations
 
         protected virtual bool VerifyPackageSignatures { get => true; }
 
-        public abstract void LoadConfig();
+        public abstract Task LoadConfigAsync(CancellationToken ct);
 
-        public abstract Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder);
+        public abstract Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct);
 
-        public abstract Task AcquireAsync(TemplatesPackageInfo packageInfo);
+        public abstract Task AcquireAsync(TemplatesPackageInfo packageInfo, CancellationToken ct);
 
         protected virtual void OnNewVersionAcquisitionProgress(object sender, ProgressEventArgs eventArgs)
         {

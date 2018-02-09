@@ -118,6 +118,12 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
+        public void Remove()
+        {
+            _closeTimer.Interval = TimeSpan.FromSeconds(1);
+            _closeTimer?.Start();
+        }
+
         public static Notification Information(string message, Category category = Category.None, TimerType timerType = TimerType.Short, bool canClose = true)
         {
             return new Notification(timerType)

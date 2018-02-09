@@ -193,14 +193,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 await NotificationsControl.Instance.AddNotificationAsync(notification);
             }
 
-            System.Diagnostics.Debug.WriteLine(GenContext.ToolBox.TemplatesVersion);
+            if (args.Status == SyncStatus.NoUpdates || args.Status == SyncStatus.Ready)
+            {
+                NotificationsControl.Instance.RemoveNotification();
+            }
+
             if (args.Status == SyncStatus.Updated || args.Status == SyncStatus.Ready)
             {
                 await OnTemplatesAvailableAsync();
-            }
-            else if (args.Status == SyncStatus.Acquired)
-            {
-                // TODO: Turn on the light that indicates that there are templates updates.
             }
         }
 

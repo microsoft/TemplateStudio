@@ -12,6 +12,7 @@ using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
@@ -108,7 +109,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        public static async Task ExtractAsync(string signedFilePack, string targetDirectory, bool verifySignatures = true, Action<int> reportProgress = null)
+        public static async Task ExtractAsync(string signedFilePack, string targetDirectory, bool verifySignatures = true, Action<int> reportProgress = null, CancellationToken ct = default(CancellationToken))
         {
             string currentDir = Environment.CurrentDirectory;
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);
@@ -116,23 +117,26 @@ namespace Microsoft.Templates.Core.Packaging
 
             EnsureDirectory(outDir);
 
-            using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read, FileShare.Read))
+            if (!ct.IsCancellationRequested)
             {
-                bool isSignatureValid = false;
-
-                if (verifySignatures)
+                using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    isSignatureValid = ValidateSignatures(package);
-                }
+                    bool isSignatureValid = false;
 
-                if (isSignatureValid || !verifySignatures)
-                {
-                    await ExtractContentAsync(outDir, package, reportProgress);
-                }
+                    if (verifySignatures)
+                    {
+                        isSignatureValid = ValidateSignatures(package);
+                    }
 
-                if (!isSignatureValid && verifySignatures)
-                {
-                    throw new InvalidSignatureException(string.Format(StringRes.TemplatePackageExtractMessage, signedFilePack));
+                    if (isSignatureValid || !verifySignatures)
+                    {
+                        await ExtractContentAsync(outDir, package, reportProgress, ct);
+                    }
+
+                    if (!isSignatureValid && verifySignatures)
+                    {
+                        throw new InvalidSignatureException(string.Format(StringRes.TemplatePackageExtractMessage, signedFilePack));
+                    }
                 }
             }
         }
@@ -150,7 +154,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static async Task ExtractContentAsync(string outDir, Package package, Action<int> reportProgress)
+        private static async Task ExtractContentAsync(string outDir, Package package, Action<int> reportProgress, CancellationToken ct)
         {
             PackagePart packagePartDocument = null;
             int partCounter = 0;
@@ -159,6 +163,7 @@ namespace Microsoft.Templates.Core.Packaging
 
             foreach (PackageRelationship relationship in package.GetRelationshipsByType(TemplatesContentRelationshipType))
             {
+                ct.ThrowIfCancellationRequested();
                 partCounter++;
 
                 var progress = Convert.ToInt32((partCounter * 100) / totalParts);
