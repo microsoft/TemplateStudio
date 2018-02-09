@@ -10,20 +10,17 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
 using Xunit;
-using Task = System.Threading.Tasks.Task;
 
 namespace Microsoft.UI.Test.VisualTests
 {
-    [Collection("UI-Visuals")]
-    [Trait("ExecutionSet", "ManualOnly")]
-    [Trait("Type", "WinAppDriver")]
-    public class AutomatedWizardTestingHelpers : IDisposable
+    public class AutomatedWizardTestingBase : IDisposable
     {
-        private readonly List<string> nonDefaultVsCultures = new List<string>
+        protected List<string> NonDefaultVsCultures => new List<string>
         {
             "cs-CZ",
             "de-DE",
@@ -40,14 +37,16 @@ namespace Microsoft.UI.Test.VisualTests
             "zh-TW"
         };
 
-        private readonly List<string> allVsCultures = new List<string>();
+        protected string DefaultCulture => "en-US";
 
-        private WindowsDriver<WindowsElement> wizardSession;
+        protected List<string> AllVsCultures => new List<string>();
 
-        public AutomatedWizardTestingHelpers()
+        protected WindowsDriver<WindowsElement> WizardSession { get; private set; }
+
+        protected AutomatedWizardTestingBase()
         {
-            allVsCultures.Add("en-US");
-            allVsCultures.AddRange(nonDefaultVsCultures);
+            AllVsCultures.Add(DefaultCulture);
+            AllVsCultures.AddRange(NonDefaultVsCultures);
 
             CheckWinAppDriverInstalled();
             StartWinAppDriverIfNotRunning();
@@ -55,27 +54,12 @@ namespace Microsoft.UI.Test.VisualTests
 
         public void Dispose()
         {
-            wizardSession?.Dispose();
+            WizardSession?.Dispose();
 
             StopWinAppDriverIfRunning();
         }
 
-        [Fact]
-        public async Task EnsureLaunchPageVisualsAreEquivalentAsync()
-        {
-            var defaultText = GetDefaultText();
-
-            foreach (var culture in nonDefaultVsCultures)
-            {
-                var localizedText = GetAllUiText(culture);
-
-                // compare localizedText with defaultText
-            }
-        }
-
-        // This isn't a real test, it just captures screenshots for manual review
-        [Fact]
-        public void GetScreenshotsOfEveryPage()
+        protected static string GetRootFolderForTestOutput()
         {
             var testRoot = @"C:\UIT";
 
@@ -84,33 +68,18 @@ namespace Microsoft.UI.Test.VisualTests
             var theseTestsRoot = Path.Combine(wizardScreenshotsRoot, DateTime.Now.FormatAsDateHoursMinutes());
 
             Directory.CreateDirectory(theseTestsRoot);
-            foreach (var culture in allVsCultures)
-            {
-                ForEachPageInApp(culture, true, pageName =>
-                {
-                    var screenshot = wizardSession.GetScreenshot();
-                    screenshot.SaveAsFile(Path.Combine(theseTestsRoot, $"{culture}_{Uri.EscapeUriString(pageName)}.png"), ImageFormat.Png);
-                });
-            }
+            return theseTestsRoot;
         }
 
-        private Dictionary<string, string> GetDefaultText()
+        protected void TakeScreenshot(string fileName)
         {
-            return GetAllUiText();
+            var screenshot = WizardSession.GetScreenshot();
+            screenshot.SaveAsFile(fileName, ImageFormat.Png);
         }
 
-        private Dictionary<string, string> GetAllUiText(string culture = "")
+        protected void ForEachPageInProjectWizard(string culture, string progLanguage, bool includeDetails, Action<string> action)
         {
-            var result = new Dictionary<string, string>();
-
-            ForEachPageInApp(culture, false, pageName => { result.Add(pageName, "XXXX"); });
-
-            return result;
-        }
-
-        private void ForEachPageInApp(string culture, bool includeDetails, Action<string> action)
-        {
-            LaunchApp(culture);
+            LaunchApp(culture, progLanguage);
 
             action.Invoke("ProjectType");
 
@@ -150,7 +119,7 @@ namespace Microsoft.UI.Test.VisualTests
         {
             var scrollCount = 0;
 
-            if (wizardSession.TryFindElementsByClassName("ListBoxItem", out ReadOnlyCollection<WindowsElement> items))
+            if (WizardSession.TryFindElementsByClassName("ListBoxItem", out ReadOnlyCollection<WindowsElement> items))
             {
                 var itemCount = 0;
 
@@ -159,14 +128,14 @@ namespace Microsoft.UI.Test.VisualTests
                     var elementName = item.GetAttribute("Name");
 
                     if (elementName == "Microsoft.Templates.UI.ViewModels.Common.MetadataInfoViewModel"
-                     || elementName == "Microsoft.Templates.UI.ViewModels.Common.TemplateInfoViewModel")
+                        || elementName == "Microsoft.Templates.UI.ViewModels.Common.TemplateInfoViewModel")
                     {
                         itemCount++;
 
                         if ((stepName == "Pages" && itemCount == 7)
-                         || (stepName == "Features" && new[] { 6, 9 }.Contains(itemCount)))
+                            || (stepName == "Features" && new[] { 6, 9 }.Contains(itemCount)))
                         {
-                            if (wizardSession.TryFindElementByAutomationId("RepeatButton", "PageDown", out WindowsElement pageDownButton))
+                            if (WizardSession.TryFindElementByAutomationId("RepeatButton", "PageDown", out WindowsElement pageDownButton))
                             {
                                 pageDownButton.Click();
 
@@ -179,7 +148,7 @@ namespace Microsoft.UI.Test.VisualTests
 
                         if (itemName == ":")
                         {
-                            itemName = "Uri Scheme"; // Hack for icon actually being text ("://")
+                            itemName = "Uri Scheme"; // Work around for icon actually being text ("://")
                         }
 
                         var detailsLink = item.FindElement(OpenQA.Selenium.By.ClassName("Hyperlink"));
@@ -188,7 +157,7 @@ namespace Microsoft.UI.Test.VisualTests
                         Pause();
                         action.Invoke($"{stepName}_{itemName}");
 
-                        if (wizardSession.TryFindElementByClassNameAndText("Hyperlink", "Back", out WindowsElement backlink))
+                        if (WizardSession.TryFindElementByClassNameAndText("Hyperlink", "Back", out WindowsElement backlink))
                         {
                             backlink.Click();
                         }
@@ -199,41 +168,46 @@ namespace Microsoft.UI.Test.VisualTests
 
         private void SelectStep(int stepNumber)
         {
-            if (wizardSession.TryFindElementByAutomationId("ListBoxItem", $"Step{stepNumber}.", out var listItem))
+            if (WizardSession.TryFindElementByAutomationId("ListBoxItem", $"Step{stepNumber}.", out var listItem))
             {
                 listItem.Click();
                 Pause();
             }
         }
 
-        private void Pause()
+        // Default value was arbitrarily chosen to allow UI to update. Extend if needed but will have a big impact on tests as this may be called hundreds of times.
+        protected void Pause(double seconds = 1)
         {
 #pragma warning disable VSTHRD002 // Avoid problematic synchronous waits - VS specific check but this doesn't run in VS context
-            Task.Delay(TimeSpan.FromSeconds(1)).Wait();
+            Task.Delay(TimeSpan.FromSeconds(seconds)).Wait();
 #pragma warning restore VSTHRD002 // Avoid problematic synchronous waits
         }
 
         private void CloseApp()
         {
-            if (wizardSession.TryFindElementByAutomationId("Button", "CancelButton", out var cancelButton))
+            if (WizardSession.TryFindElementByAutomationId("Button", "CancelButton", out var cancelButton))
             {
                 cancelButton.Click();
             }
         }
 
-        private void LaunchApp(string culture, string progLang = ProgrammingLanguages.CSharp, string appName = "")
+        private void LaunchApp(string culture, string progLang = ProgrammingLanguages.CSharp, string appName = "", string ui = "Project")
         {
             var appCapabilities = new DesiredCapabilities();
 
-            // TODO [ML] need to get relative path working
-              appCapabilities.SetCapability("app", @"..\..\..\TestWizardLauncher\bin\Debug\TestWizardLauncher.exe");
-            //appCapabilities.SetCapability("app", @"C:\Users\matt\Documents\GitHub\WTSMyFork\WindowsTemplateStudio\code\test\TestWizardLauncher\bin\Debug\TestWizardLauncher.exe");
-            appCapabilities.SetCapability("appArguments", $"{culture} {progLang} {appName}");
+            appCapabilities.SetCapability("app", @"..\..\..\VsEmulator\bin\Debug\VsEmulator.exe");
 
-            // TODO [ML] use current directory?
+            var cmdLineArgs = $"-c {culture} -l {progLang} -u {ui}";
+
+            if (!string.IsNullOrWhiteSpace(appName))
+            {
+                cmdLineArgs += $" -n {appName}";
+            }
+
+            appCapabilities.SetCapability("appArguments", cmdLineArgs);  // e.g. -c en-US -l C# -n testapp -u Project
             appCapabilities.SetCapability("appWorkingDir", Environment.CurrentDirectory);
 
-            wizardSession = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appCapabilities);
+            WizardSession = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appCapabilities);
         }
 
         private void CheckWinAppDriverInstalled()

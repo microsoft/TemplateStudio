@@ -204,8 +204,10 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VisualTests\AutomatedWizardTestingHelpers.cs" />
+    <Compile Include="VisualTests\AutomatedWizardTestingBase.cs" />
+    <Compile Include="VisualTests\CaptureWizardScreenshots.cs" />
     <Compile Include="VisualTests\WindowsElementExtensions.cs" />
+    <Compile Include="VisualTests\WizardLocalizationChecks.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\StyleCop.json">
