@@ -59,11 +59,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var group = Groups.FirstOrDefault();
             if (group != null)
             {
-                AddTemplate(group.Items.FirstOrDefault());
+                SelectTemplate(group.Items.FirstOrDefault());
             }
         }
 
-        public void AddTemplate(TemplateInfoViewModel template)
+        public void SelectTemplate(TemplateInfoViewModel template)
         {
             if (template != null)
             {
@@ -86,6 +86,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
                 OnPropertyChanged("Licenses");
                 OnPropertyChanged("Dependencies");
+                NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
             }
         }
 

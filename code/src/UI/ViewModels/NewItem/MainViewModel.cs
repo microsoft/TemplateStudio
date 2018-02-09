@@ -165,7 +165,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             if (item is TemplateInfoViewModel template)
             {
-                TemplateSelection.AddTemplate(template);
+                TemplateSelection.SelectTemplate(template);
             }
         }
 
