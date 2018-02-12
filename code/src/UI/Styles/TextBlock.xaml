@@ -221,14 +221,14 @@
         <Setter Property="Margin" Value="{StaticResource Margin_M_LeftTopRightBottom}" />
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationIcon">
+    <!--<Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationIcon">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Text" Value="i" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Foreground" Value="{Binding DialogInfoCharIcon, Source={x:Static services:UIStylesService.Instance}}" />
-    </Style>
+    </Style>-->
 
     <!--TemplateDetails-->
     <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsTitle">
@@ -317,22 +317,5 @@
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
-
-    <!-- Dialog icons -->
-    <Style x:Key="WtsTextBlockDialogErrorIcon" TargetType="TextBlock">
-        <Setter Property="Text" Value="&#xEB90;" />
-        <Setter Property="FontSize" Value="{Binding Environment310PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
-        <Setter Property="Foreground" Value="{Binding DialogErrorIcon, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
-    </Style>
-
-    <Style x:Key="WtsTextBlockDialogWarningIcon" TargetType="TextBlock">
-        <Setter Property="Text" Value="&#xE814;" />
-        <Setter Property="FontSize" Value="{Binding Environment310PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
-        <Setter Property="Foreground" Value="{Binding DialogWarningIcon, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
-    </Style>
-
-
 
 </ResourceDictionary>

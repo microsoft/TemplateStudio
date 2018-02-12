@@ -35,8 +35,10 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource WtsTextBlockDialogErrorIcon}" Margin="{StaticResource Margin_M_Right}"/>
-                <TextBlock Text="{Binding Title}" Grid.Column="1"
+            <Viewbox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="{StaticResource Margin_M_Right}" Style="{StaticResource WtsViewBoxDialogIcon}">
+                <Frame Source="/Microsoft.Templates.UI;component/Assets/StatusCriticalError.xaml" />
+            </Viewbox>
+            <TextBlock Text="{Binding Title}" Grid.Column="1"
                         Style="{StaticResource WtsTextBlockDialogTitle}"/>
             <TextBlock Grid.Row="1" Grid.Column="1"
                         Text="{Binding Description}"

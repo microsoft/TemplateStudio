@@ -27,16 +27,17 @@
         <Grid Margin="{StaticResource Margin_M2_LeftTopRightBottom}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Style="{StaticResource WtsTextBlockDialogWarningIcon}" Margin="{StaticResource Margin_M_Right}"/>
-            <TextBlock Grid.Column="1" Text="{Binding Title}" Style="{StaticResource WtsTextBlockDialogTitle}" />
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" Style="{StaticResource WtsTextBlockDialogDescription}" Margin="{StaticResource Margin_XS_Top}"/>
+            <Viewbox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="{StaticResource Margin_M_Right}" Style="{StaticResource WtsViewBoxDialogIcon}">
+                <Frame Source="/Microsoft.Templates.UI;component/Assets/StatusWarning.xaml" />
+            </Viewbox>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Style="{StaticResource WtsTextBlockDialogTitle}" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description}" Style="{StaticResource WtsTextBlockDialogDescription}" Margin="{StaticResource Margin_M_Top}" />
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_LeftTopRightBottom}">
