@@ -302,7 +302,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
-        <Setter Property="AutomationProperties.Name" Value="{Binding Title}" />
+        <Setter Property="AutomationProperties.Name" Value="{Binding Name}" />
         <Setter Property="extensions:FocusExtension.IsFocused" Value="{Binding IsFocused}" />
         <Setter Property="Template">
             <Setter.Value>
