@@ -2,13 +2,19 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.Views.NewItem;
@@ -17,6 +23,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
     public class MainViewModel : BaseMainViewModel
     {
+        private RelayCommand _refreshTemplatesCacheCommand;
+
         private NewItemGenerationResult _output;
 
         public TemplateType TemplateType { get; set; }
@@ -30,6 +38,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
 
         public ChangesSummaryViewModel ChangesSummary { get; } = new ChangesSummaryViewModel();
+
+        public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
+            () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
+
+
+
+        public Visibility RefreshTemplateCacheVisibility
+        {
+            get
+            {
+#if DEBUG
+                return Visibility.Visible;
+#else
+                return Visibility.Hidden;
+#endif
+            }
+        }
 
         public MainViewModel(WizardShell mainWindow)
             : base(mainWindow, false)
@@ -124,6 +149,26 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             TemplateSelection.LoadData(TemplateType, ConfigFramework);
             WizardStatus.IsLoading = false;
             return Task.CompletedTask;
+        }
+
+        protected async Task OnRefreshTemplatesAsync()
+        {
+            try
+            {
+                WizardStatus.IsLoading = true;
+                await GenContext.ToolBox.Repo.RefreshAsync(true);
+            }
+            catch (Exception ex)
+            {
+                await NotificationsControl.Instance.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
+
+                await AppHealth.Current.Error.TrackAsync(ex.ToString());
+                await AppHealth.Current.Exception.TrackAsync(ex);
+            }
+            finally
+            {
+                WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
+            }
         }
 
         private void SetProjectConfigInfo()
