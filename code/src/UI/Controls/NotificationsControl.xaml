@@ -23,10 +23,10 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Style="{StaticResource WtsGridNotificationIcon}">
+                    <!--<Grid Grid.Column="0" Style="{StaticResource WtsGridNotificationIcon}">
                         <Ellipse Fill="{Binding DialogInfoIcon, Source={x:Static services:UIStylesService.Instance}}" />
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
-                    </Grid>
+                    </Grid>-->
                     <TextBlock
                         Grid.Column="1"
                         extensions:TextBlockExtensions.FormatedText="{Binding Message}"
@@ -42,10 +42,10 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Style="{StaticResource WtsGridNotificationIcon}">
+                    <!--<Grid Grid.Column="0" Style="{StaticResource WtsGridNotificationIcon}">
                         <Ellipse Fill="{Binding DialogInfoIcon, Source={x:Static services:UIStylesService.Instance}}" />
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
-                    </Grid>
+                    </Grid>-->
                     <TextBlock
                         Grid.Column="1"
                         extensions:TextBlockExtensions.FormatedText="{Binding Message}"
@@ -60,10 +60,10 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Style="{StaticResource WtsGridNotificationIcon}">
+                    <!--<Grid Grid.Column="0" Style="{StaticResource WtsGridNotificationIcon}">
                         <Ellipse Fill="{Binding DialogInfoIcon, Source={x:Static services:UIStylesService.Instance}}" />
                         <TextBlock Style="{StaticResource WtsTextBlockNotificationIcon}" />
-                    </Grid>
+                    </Grid>-->
                     <TextBlock
                         Grid.Column="1"
                         extensions:TextBlockExtensions.FormatedText="{Binding Message}"

@@ -531,19 +531,12 @@ namespace Microsoft.Templates.VsEmulator.Services
                 case "ChangesSummaryDetailFileHeaderBackground":
                     return GetColor(WindowsTemplateStudio.ChangesSummaryDetailFileHeaderBackgroundBrushKey);
 
-                case "DialogInfoIcon":
-                    return GetColor(WindowsTemplateStudio.DialogInfoIconBrushKey);
-                case "DialogInfoCharIcon":
-                    return GetColor(WindowsTemplateStudio.DialogInfoCharIconBrushKey);
-                case "DialogErrorIcon":
-                    return GetColor(WindowsTemplateStudio.DialogErrorIconBrushKey);
-                case "DialogWarningIcon":
-                    return GetColor(WindowsTemplateStudio.DialogWarningIconBrushKey);
-
                 case "HeaderTextSecondary":
                     return GetColor(WindowsTemplateStudio.HeaderTextSecondaryBrushKey);
                 case "WizardFooterText":
                     return GetColor(WindowsTemplateStudio.WizardFooterTextBrushKey);
+                case "TemplateInfoPageDescription":
+                    return GetColor(WindowsTemplateStudio.TemplateInfoPageDescriptionBrushKey);
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");
