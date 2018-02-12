@@ -98,7 +98,7 @@
                 Margin="{StaticResource Margin_M2_LeftRight_S_Top}"
                 Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionText}" />
             <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}">
-                <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}">
+                <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
                     <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
                 </Hyperlink>
             </TextBlock>

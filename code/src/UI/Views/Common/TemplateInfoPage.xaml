@@ -32,7 +32,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Margin="{StaticResource Margin_L_Left_M2_Top}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding GoBackCommand}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding GoBackCommand}" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xE0A6;" Style="{StaticResource WtsTextBlockHyperlink}" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
                     <TextBlock Text="{x:Static res:StringRes.ButtonBack}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="{StaticResource Margin_S_Left}" VerticalAlignment="Center"/>

@@ -48,7 +48,7 @@
                     Style="{StaticResource WtsTextBlockCardDescription}"
                     Margin="{StaticResource Margin_XS_Top}" />
                 <TextBlock Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,-4">
-                    <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
+                    <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
                         <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" />
                     </Hyperlink>
                 </TextBlock>
@@ -89,7 +89,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Bottom">
-                        <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}">
+                        <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
                             <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" />
                         </Hyperlink>
                     </TextBlock>
@@ -172,7 +172,7 @@
 
     <DataTemplate x:Key="WtsItemTemplateDependency">
         <TextBlock Margin="{StaticResource Margin_S_TopBottom}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}" AutomationProperties.Name="{Binding Title}">
                 <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockHyperlink}" />
             </Hyperlink>
         </TextBlock>
@@ -180,7 +180,7 @@
 
     <DataTemplate x:Key="WtsItemTemplateLicense">
         <TextBlock Margin="{StaticResource Margin_XS2_TopBottom}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenCommand}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenCommand}" AutomationProperties.Name="{Binding Text}">
                 <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}" />
             </Hyperlink>
         </TextBlock>
@@ -288,7 +288,7 @@
                     Grid.Column="0"
                     ContentTemplateSelector="{StaticResource FileStatusTemplateSelector}" />
                 <TextBlock Grid.Column="1">
-                    <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding MoreDetailsCommand}">
+                    <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding MoreDetailsCommand}" AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
                         <TextBlock
                             Style="{StaticResource WtsTextBlockHyperlink}"
                             Text="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}" />

@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -490,6 +491,8 @@ namespace Microsoft.Templates.UI.Controls
             var result = Create<Hyperlink, Inline>(RunSpanGamut(linkText));
             result.Command = HyperlinkCommand;
             result.CommandParameter = url;
+            result.SetValue(AutomationProperties.NameProperty, linkText);
+
             if (LinkStyle != null)
             {
                 result.Style = LinkStyle;
