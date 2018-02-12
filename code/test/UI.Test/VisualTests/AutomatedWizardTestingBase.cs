@@ -132,6 +132,7 @@ namespace Microsoft.UI.Test.VisualTests
                     {
                         itemCount++;
 
+                        // TODO [ML]: these hardcoded values are based on a presumed screen size - need to add proper detection of items not clickable as off screen
                         if ((stepName == "Pages" && itemCount == 7)
                             || (stepName == "Features" && new[] { 6, 9 }.Contains(itemCount)))
                         {

@@ -49,6 +49,7 @@ namespace Microsoft.UI.Test.VisualTests
             }
         }
 
+        // TODO [ML]: need to launch through VS (not VSEMulator) to see "proper" theme support
         [Fact]
         public void GetScreenshots_Wizard_CS_DefaultCulture_HighContrast()
         {
@@ -85,6 +86,7 @@ namespace Microsoft.UI.Test.VisualTests
 
             var settingsSession = desktop.FindElementByName("Settings");
 
+            // TODO [ML]: The Insider Preview does this slightly differently - support both versions
             var highContrastOption = settingsSession.FindElementByName("High contrast theme");
             highContrastOption.Click();
 
@@ -92,6 +94,7 @@ namespace Microsoft.UI.Test.VisualTests
             var option1 = highContrastOption.FindElementByName(option);
             option1.Click();
 
+            // TODO [ML]: add a TabToButtonLabelled("Xxxx") helper
             if (option == "None")
             {
                 desktop.Keyboard.SendKeys(Keys.Tab);
