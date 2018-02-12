@@ -72,7 +72,7 @@
     </Style>
 
 
-    <!--Sequential Flow-->    
+    <!--Sequential Flow-->
     <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlow">
         <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
@@ -84,11 +84,6 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
-    </Style>
-
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlowCompleted" BasedOn="{StaticResource WtsTextBlockSequentialFlow}">
-        <Setter Property="Text" Value="&#xE001;" />
-        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
     </Style>
 
     <!--Card-->
