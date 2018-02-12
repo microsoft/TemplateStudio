@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    x:Class="Microsoft.Templates.UI.V2Styles.ListView"
+                    x:Class="Microsoft.Templates.UI.Styles.ListView"
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
                     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
@@ -235,27 +235,21 @@
                     <Grid>
                         <Grid x:Name="selectedGrid" Background="Transparent" />
                         <Grid MinHeight="35">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="tick" Style="{StaticResource WtsTextBlockSequentialFlowCompleted}" Visibility="{Binding Completed, Converter={StaticResource BoolToVisibilityConverter}}" />
-                            <TextBlock Grid.Column="0" x:Name="index" Text="{Binding LayoutIndex}" Style="{StaticResource WtsTextBlockSequentialFlow}" Visibility="{Binding Completed, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
-                            <TextBlock Grid.Column="1" x:Name="text" Text="{Binding Title}" Style="{StaticResource WtsTextBlockSequentialFlow}" />
+                            <TextBlock
+                                x:Name="text"
+                                Style="{StaticResource WtsTextBlockSequentialFlow}"
+                                extensions:TextBlockExtensions.SequentialFlowStep="{Binding}"
+                                extensions:TextBlockExtensions.SequentialFlowStepCompleted="{Binding Completed}" />
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsSelected}" Value="true">
                             <Setter Property="Background" TargetName="selectedGrid" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Foreground" TargetName="tick" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Foreground" TargetName="index" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="text" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
                         </DataTrigger>
                         <Trigger Property="IsFocused" Value="true">
                             <Setter Property="Background" TargetName="selectedGrid" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Opacity" TargetName="selectedGrid" Value="0.8" />
-                            <Setter Property="Foreground" TargetName="tick" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Foreground" TargetName="index" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="text" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <MultiDataTrigger>
