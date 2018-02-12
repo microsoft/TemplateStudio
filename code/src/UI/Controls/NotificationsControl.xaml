@@ -83,6 +83,7 @@
         <StackPanel VerticalAlignment="Bottom">
             <ContentControl
                 Height="50"
+                Focusable="False"
                 Content="{Binding Notification, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:NotificationsControl}}}"
                 ContentTemplateSelector="{StaticResource NotificationTemplateSelector}" />
             <Grid x:Name="fakeGrid" Height="50"/>
