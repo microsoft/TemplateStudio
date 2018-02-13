@@ -247,11 +247,13 @@
                             <Setter Property="Background" TargetName="selectedGrid" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="text" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
                         </DataTrigger>
-                        <Trigger Property="IsFocused" Value="true">
-                            <Setter Property="Background" TargetName="selectedGrid" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="Opacity" TargetName="selectedGrid" Value="0.8" />
-                            <Setter Property="Foreground" TargetName="text" Value="{Binding WindowPanel, Source={x:Static services:UIStylesService.Instance}}" />
-                        </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding IsSelected}" Value="false" />
+                                <Condition Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="true" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Background" TargetName="selectedGrid" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                        </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsSelected}" Value="false" />
