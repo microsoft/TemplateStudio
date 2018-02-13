@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -43,10 +44,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             _host = host;
             _wizardVersion = "0.0.0.0";
             _templatesVersion = "0.0.0.0";
-            Themes.Add("Light Theme");
-            Themes.Add("Dark Theme");
+            Themes.Add("Light");
+            Themes.Add("Dark");
             SelectedTheme = Themes.First();
         }
+
+        public static string ThemeName { get; private set; }
 
         public string ProjectName { get; private set; }
 
@@ -57,7 +60,11 @@ namespace Microsoft.Templates.VsEmulator.Main
         public string SelectedTheme
         {
             get => _selectedTheme;
-            set => SetProperty(ref _selectedTheme, value);
+            set
+            {
+                SetProperty(ref _selectedTheme, value);
+                ThemeName = value;
+            }
         }
 
         public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
@@ -73,6 +80,10 @@ namespace Microsoft.Templates.VsEmulator.Main
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
 
         public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
+
+        public RelayCommand AnalyzeCSharpSelectionCommand => new RelayCommand(AnalyzeCSharpSelection);
+
+        public RelayCommand AnalyzeVisualBasicSelectionCommand => new RelayCommand(AnalyzeVisualBasicSelection);
 
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
 
@@ -188,6 +199,24 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
+        private void AnalyzeCSharpSelection()
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                AnalyzeNewProject(ProgrammingLanguages.CSharp);
+            });
+        }
+
+        private void AnalyzeVisualBasicSelection()
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                AnalyzeNewProject(ProgrammingLanguages.VisualBasic);
+            });
+        }
+
         private void NewVisualBasicProject()
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
@@ -195,22 +224,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 await NewProjectAsync(ProgrammingLanguages.VisualBasic);
             });
-        }
-
-        private void LoadTheme()
-        {
-            if (SelectedTheme == Themes[0])
-            {
-                App.LoadLightTheme();
-            }
-            else if (SelectedTheme == Themes[1])
-            {
-                App.LoadDarkTheme();
-            }
-            else
-            {
-                throw new Exception("Unrecognized theme");
-            }
         }
 
         private async Task NewProjectAsync(string language)
@@ -228,7 +241,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                     ProjectPath = projectPath;
                     OutputPath = projectPath;
                     SolutionName = null;
-                    LoadTheme();
                     UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                     var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
@@ -257,6 +269,102 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
+        private void AnalyzeNewProject(string language)
+        {
+            SetCurrentLanguage(language);
+            try
+            {
+                var newProjectName = "AnalyzeSelection" + Path.GetFileNameWithoutExtension(Path.GetTempFileName());
+                var newProjectLocation = Path.GetTempPath();
+
+                var projectPath = Path.Combine(newProjectLocation, newProjectName, newProjectName);
+                GenContext.Current = this;
+                ProjectName = newProjectName;
+                ProjectPath = projectPath;
+                OutputPath = projectPath;
+                UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
+                var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
+
+                if (userSelection != null)
+                {
+                    ClearContext();
+
+                    AnalyzeSelectionOutput(userSelection);
+                    AddLog("See debug window for analysis");
+                }
+            }
+            catch (WizardBackoutException)
+            {
+                CleanUp();
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+            }
+            catch (WizardCancelledException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+        }
+
+        private void AnalyzeSelectionOutput(UserSelection userSelection)
+        {
+            var generatedFileList = new Dictionary<string, List<string>>();
+
+            var genItems = GenComposer.Compose(userSelection).ToList();
+
+            Debug.WriteLine("Template output");
+            Debug.WriteLine("===============");
+
+            foreach (var genItem in genItems)
+            {
+                var configLoc = genItem.Template.ConfigPlace.Replace("/.template.config/template.json", string.Empty);
+                Debug.WriteLine($"{genItem.Template.Identity} ({configLoc})");
+
+                var fullConfigLoc = $"{GenContext.ToolBox.Repo.CurrentContentFolder}{configLoc.Replace("/", "\\")}";
+                var files = Directory.EnumerateFiles(fullConfigLoc, "*.*", SearchOption.AllDirectories)
+                                     .Where(f => !f.Contains(".template.config"))
+                                     .ToList();
+
+                foreach (var file in files)
+                {
+                    var shortFilePath = file.Replace(fullConfigLoc, string.Empty);
+
+                    Debug.WriteLine($" - {shortFilePath}");
+
+                    var configuredName = shortFilePath.Replace("wts.ItemName", genItem.Name).Replace("_postaction", string.Empty);
+
+                    if (!generatedFileList.ContainsKey(configuredName))
+                    {
+                        generatedFileList.Add(configuredName, new List<string>());
+                    }
+
+                    if (file.Contains("_postaction"))
+                    {
+                        generatedFileList[configuredName].Add($"{shortFilePath} ({configLoc})");
+                    }
+                }
+
+                Debug.WriteLine(string.Empty);
+            }
+
+            Debug.WriteLine(string.Empty);
+
+            Debug.WriteLine("File output");
+            Debug.WriteLine("===========");
+
+            foreach (var genFile in generatedFileList.OrderBy(g => g.Key.Substring(1).Contains("\\")).ThenBy(f => f.Key))
+            {
+                Debug.WriteLine(genFile.Key);
+
+                foreach (var extraFile in genFile.Value)
+                {
+                    Debug.WriteLine($" + {extraFile}");
+                }
+
+                Debug.WriteLine(string.Empty);
+            }
+
+            Debug.WriteLine(string.Empty);
+        }
+
         private void CleanUp()
         {
             if (GenContext.ToolBox.Repo.SyncInProgress)
@@ -272,7 +380,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                LoadTheme();
                 UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
 
@@ -308,7 +415,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                LoadTheme();
                 UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
 

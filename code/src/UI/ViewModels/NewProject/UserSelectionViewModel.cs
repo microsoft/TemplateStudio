@@ -50,8 +50,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public UserSelectionViewModel()
         {
-            EventService.Instance.OnDeleteTemplateClicked += OnRemove;
-            EventService.Instance.OnReorderTemplate += OnReorderTemplate;
         }
 
         public void Initialize(string projectTypeName, string frameworkName, string language)
@@ -270,7 +268,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return dependencyItem;
         }
 
-        private async void OnRemove(object sender, SavedTemplateViewModel savedTemplate)
+        public async Task RemoveTemplateAsync(SavedTemplateViewModel savedTemplate)
         {
             var dependency = await RemoveAsync(savedTemplate);
             if (dependency != null)
@@ -281,7 +279,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        private void OnReorderTemplate(object sender, EventArgs e)
+        public void ReorderTemplate()
         {
             UpdateHomePage();
         }

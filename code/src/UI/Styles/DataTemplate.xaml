@@ -171,15 +171,15 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WtsItemTemplateDependency">
-        <TextBlock Margin="{StaticResource Margin_XS_TopBottom}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}" AutomationProperties.Name="{Binding Title}">
+        <TextBlock Margin="{StaticResource Margin_XS_Bottom}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}"  AutomationProperties.Name="{Binding Title}">
                 <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockHyperlink}" />
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
 
     <DataTemplate x:Key="WtsItemTemplateLicense">
-        <TextBlock Margin="{StaticResource Margin_XS_TopBottom}">
+        <TextBlock Margin="{StaticResource Margin_XS_Bottom}">
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenCommand}" AutomationProperties.Name="{Binding Text}">
                 <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}" />
             </Hyperlink>
