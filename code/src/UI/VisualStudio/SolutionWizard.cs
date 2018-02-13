@@ -109,7 +109,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 if (GenContext.ToolBox.Repo.SyncInProgress)
                 {
-                    GenContext.ToolBox.Repo.Sync.CleanUp();
+                    GenContext.ToolBox.Repo.CancelSynchronization();
                 }
 
                 CleanupDirectories(projectDirectory, solutionDirectory);

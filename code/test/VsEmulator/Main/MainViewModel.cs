@@ -227,6 +227,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     ProjectName = newProjectInfo.name;
                     ProjectPath = projectPath;
                     OutputPath = projectPath;
+                    SolutionName = null;
                     LoadTheme();
                     UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                     var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
@@ -234,7 +235,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                     if (userSelection != null)
                     {
                         ClearContext();
-                        SolutionName = null;
 
                         await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
 
@@ -261,7 +261,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         {
             if (GenContext.ToolBox.Repo.SyncInProgress)
             {
-                GenContext.ToolBox.Repo.Sync.CleanUp();
+                GenContext.ToolBox.Repo.CancelSynchronization();
             }
         }
 

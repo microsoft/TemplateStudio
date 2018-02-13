@@ -55,18 +55,6 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DeleteTemplateIconBrushKey}" Color="#FFE51400" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.DeleteTemplateIconColorKey}" A="255" R="229" G="20" B="0" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DialogErrorIconBrushKey}" Color="#FFFF0000" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.DialogErrorIconColorKey}" A="255" R="255" G="0" B="0" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DialogInfoCharIconBrushKey}" Color="#FFFFFFFF" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.DialogInfoCharIconColorKey}" A="255" R="255" G="255" B="255" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DialogInfoIconBrushKey}" Color="#FF007ACC" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.DialogInfoIconColorKey}" A="255" R="0" G="122" B="204" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DialogWarningIconBrushKey}" Color="#FFFFCC00" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.DialogWarningIconColorKey}" A="255" R="255" G="204" B="0" />
-
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.GridHeadingBackgroundBrushKey}" Color="#00000000" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.GridHeadingBackgroundColorKey}" A="0" R="0" G="0" B="0" />
 
@@ -144,6 +132,9 @@
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.SelectedItemInactiveColorKey}" A="255" R="63" G="63" B="70" />
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.SelectedItemInactiveTextBrushKey}" Color="#FFFFFFFF" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.SelectedItemInactiveTextColorKey}" A="255" R="255" G="255" B="255" />
+
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.TemplateInfoPageDescriptionBrushKey}" Color="#FF888D8F" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.TemplateInfoPageDescriptionColorKey}" A="255" R="136" G="141" B="143" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowBorderBrushKey}" Color="#FF3F3F46" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowBorderColorKey}" A="255" R="63" G="63" B="70" />

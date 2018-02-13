@@ -504,19 +504,12 @@ namespace Microsoft.Templates.UI.Services
                 case "ChangesSummaryDetailFileHeaderBackground":
                     return GetColor(WindowsTemplateStudioColors.ChangesSummaryDetailFileHeaderBackgroundBrushKey);
 
-                case "DialogInfoIcon":
-                    return GetColor(WindowsTemplateStudioColors.DialogInfoIconBrushKey);
-                case "DialogInfoCharIcon":
-                    return GetColor(WindowsTemplateStudioColors.DialogInfoCharIconBrushKey);
-                case "DialogErrorIcon":
-                    return GetColor(WindowsTemplateStudioColors.DialogErrorIconBrushKey);
-                case "DialogWarningIcon":
-                    return GetColor(WindowsTemplateStudioColors.DialogWarningIconBrushKey);
-
                 case "HeaderTextSecondary":
                     return GetColor(WindowsTemplateStudioColors.HeaderTextSecondaryBrushKey);
                 case "WizardFooterText":
                     return GetColor(WindowsTemplateStudioColors.WizardFooterTextBrushKey);
+                case "TemplateInfoPageDescription":
+                    return GetColor(WindowsTemplateStudioColors.TemplateInfoPageDescriptionBrushKey);
 
                 default:
                     throw new Exception($"The color key value '{memberName}' is not found");

@@ -20,7 +20,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid>
+    <Grid Style="{StaticResource WtsGridBasePage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -45,7 +45,7 @@
             <Grid Margin="{StaticResource Margin_S_Top}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="36" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
@@ -63,14 +63,14 @@
 
                 <TextBlock
                     Grid.Row="2"
-                    Margin="{StaticResource Margin_M_Top}"
+                    Margin="{StaticResource Margin_L_Top}"
                     Text="{x:Static res:StringRes.TemplateDetailsAuthor}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"                    
                     Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}}" />
                 <TextBlock
                     Grid.Row="2"
                     Grid.Column="2"
-                    Margin="{StaticResource Margin_M_Top}"
+                    Margin="{StaticResource Margin_L_Top}"
                     Text="{Binding Author}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}"                    
                     Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}}" />
@@ -98,10 +98,10 @@
                 <ItemsControl
                     Grid.Row="4"
                     Grid.Column="2"
-                    Margin="{StaticResource Margin_XS2_Top}"
+                    Margin="0,8,0,0"
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding Licenses}"
-                    ItemTemplate="{StaticResource WtsItemTemplateLicense}"
+                    ItemTemplate="{StaticResource WtsItemTemplateLicense}"                    
                     Visibility="{Binding Licenses, Converter={StaticResource HasItemsVisibilityConverter}}" />
 
                 <TextBlock
@@ -113,7 +113,7 @@
                 <ItemsControl
                     Grid.Row="5"
                     Grid.Column="2"
-                    Margin="{StaticResource Margin_XS_Top}"
+                    Margin="0,8,0,0"
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding Dependencies}"
                     ItemTemplate="{StaticResource WtsItemTemplateDependency}"

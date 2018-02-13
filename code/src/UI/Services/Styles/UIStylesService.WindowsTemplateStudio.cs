@@ -209,38 +209,6 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(ChangesSummaryDetailFileHeaderBackgroundProperty, value); }
         }
 
-        public static readonly DependencyProperty DialogInfoIconProperty = DependencyProperty.Register("DialogInfoIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush DialogInfoIcon
-        {
-            get { return (Brush)GetValue(DialogInfoIconProperty); }
-            set { SetValue(DialogInfoIconProperty, value); }
-        }
-
-        public static readonly DependencyProperty DialogInfoCharIconProperty = DependencyProperty.Register("DialogInfoCharIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush DialogInfoCharIcon
-        {
-            get { return (Brush)GetValue(DialogInfoCharIconProperty); }
-            set { SetValue(DialogInfoCharIconProperty, value); }
-        }
-
-        public static readonly DependencyProperty DialogErrorIconProperty = DependencyProperty.Register("DialogErrorIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush DialogErrorIcon
-        {
-            get { return (Brush)GetValue(DialogErrorIconProperty); }
-            set { SetValue(DialogErrorIconProperty, value); }
-        }
-
-        public static readonly DependencyProperty DialogWarningIconProperty = DependencyProperty.Register("DialogWarningIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush DialogWarningIcon
-        {
-            get { return (Brush)GetValue(DialogWarningIconProperty); }
-            set { SetValue(DialogWarningIconProperty, value); }
-        }
-
         public static readonly DependencyProperty HeaderTextSecondaryProperty = DependencyProperty.Register("HeaderTextSecondary", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush HeaderTextSecondary
@@ -255,6 +223,14 @@ namespace Microsoft.Templates.UI.Services
         {
             get { return (Brush)GetValue(WizardFooterTextProperty); }
             set { SetValue(WizardFooterTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty TemplateInfoPageDescriptionProperty = DependencyProperty.Register("TemplateInfoPageDescription", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush TemplateInfoPageDescription
+        {
+            get { return (Brush)GetValue(TemplateInfoPageDescriptionProperty); }
+            set { SetValue(TemplateInfoPageDescriptionProperty, value); }
         }
     }
 }

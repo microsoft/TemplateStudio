@@ -10,11 +10,11 @@
         <Setter Property="TextAlignment" Value="Left" />
         <Setter Property="PagePadding" Value="0" />
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding TemplateInfoPageDescription, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
     <Style x:Key="BaseMarkdownText" TargetType="Paragraph">
-        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding TemplateInfoPageDescription, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />

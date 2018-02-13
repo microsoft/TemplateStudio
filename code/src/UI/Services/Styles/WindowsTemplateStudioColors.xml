@@ -170,17 +170,8 @@
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
       </Color>
-      <Color Name="DialogInfoIcon">
-        <Background Type="CT_RAW" Source="FF007ACC" />
-      </Color>
-      <Color Name="DialogErrorIcon">
-        <Background Type="CT_RAW" Source="FFFF0000" />
-      </Color>
-      <Color Name="DialogWarningIcon">
-        <Background Type="CT_RAW" Source="FFFFCC00" />
-      </Color>
-      <Color Name="DialogInfoCharIcon">
-        <Background Type="CT_RAW" Source="FFFFFFFF" />
+      <Color Name="TemplateInfoPageDescription">
+        <Background Type="CT_RAW" Source="FF888D8F" />
       </Color>
     </Category>
   </Theme>
@@ -355,17 +346,8 @@
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
       </Color>
-      <Color Name="DialogInfoIcon">
-        <Background Type="CT_RAW" Source="FF007ACC" />
-      </Color>
-      <Color Name="DialogErrorIcon">
-        <Background Type="CT_RAW" Source="FFFF0000" />
-      </Color>
-      <Color Name="DialogWarningIcon">
-        <Background Type="CT_RAW" Source="FFFFCC00" />
-      </Color>
-      <Color Name="DialogInfoCharIcon">
-        <Background Type="CT_RAW" Source="FFFFFFFF" />
+      <Color Name="TemplateInfoPageDescription">
+        <Background Type="CT_RAW" Source="FF888D8F" />
       </Color>
     </Category>
   </Theme>
@@ -540,17 +522,8 @@
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
       </Color>
-      <Color Name="DialogInfoIcon">
-        <Background Type="CT_RAW" Source="FF007ACC" />
-      </Color>
-      <Color Name="DialogErrorIcon">
-        <Background Type="CT_RAW" Source="FFFF0000" />
-      </Color>
-      <Color Name="DialogWarningIcon">
-        <Background Type="CT_RAW" Source="FFFFCC00" />
-      </Color>
-      <Color Name="DialogInfoCharIcon">
-        <Background Type="CT_RAW" Source="FFFFFFFF" />
+      <Color Name="TemplateInfoPageDescription">
+        <Background Type="CT_RAW" Source="FF888D8F" />
       </Color>
     </Category>
   </Theme>
@@ -725,17 +698,8 @@
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
       </Color>
-      <Color Name="DialogInfoIcon">
-        <Background Type="CT_RAW" Source="FF007ACC" />
-      </Color>
-      <Color Name="DialogErrorIcon">
-        <Background Type="CT_RAW" Source="FFFF0000" />
-      </Color>
-      <Color Name="DialogWarningIcon">
-        <Background Type="CT_RAW" Source="FFFFCC00" />
-      </Color>
-      <Color Name="DialogInfoCharIcon">
-        <Background Type="CT_RAW" Source="FFFFFFFF" />
+      <Color Name="TemplateInfoPageDescription">
+        <Background Type="CT_RAW" Source="FF888D8F" />
       </Color>
     </Category>
   </Theme>
