@@ -42,7 +42,6 @@ namespace Microsoft.Templates.UI.Views.NewProject
                 comboBox.IsDropDownOpen = !comboBox.IsDropDownOpen;
             }
 
-
             if (comboBox != null && !comboBox.IsDropDownOpen)
             {
                 if (e.Key == Key.Left
