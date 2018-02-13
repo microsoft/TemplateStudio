@@ -19,9 +19,8 @@ namespace Microsoft.Templates.UI.Controls
     public class ImageEx : ContentControl
     {
         private const string XamlExtension = ".xaml";
-        private Color _updatedColor;
         private bool _isInitialized;
-        private bool _isLayoutUpdatedAttached;
+        private bool _isColorChanged;
 
         public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(ImageEx), new PropertyMetadata(Stretch.Uniform));
 
@@ -79,21 +78,11 @@ namespace Microsoft.Templates.UI.Controls
             else
             {
                 Content = CreateFromBitmap();
-                if (_isLayoutUpdatedAttached)
+                if (!_isColorChanged)
                 {
-                    LayoutUpdated += ImageEx_LayoutUpdated;
-                    _isLayoutUpdatedAttached = true;
+                    ChangeColorOfBitmap(Content, (Foreground as SolidColorBrush).Color);
+                    _isColorChanged = true;
                 }
-            }
-        }
-
-        private void ImageEx_LayoutUpdated(object sender, EventArgs e)
-        {
-            if ((Foreground as SolidColorBrush).Color != _updatedColor)
-            {
-                _updatedColor = (Foreground as SolidColorBrush).Color;
-
-                ChangeColorOfBitmap(Content, (Foreground as SolidColorBrush).Color);
             }
         }
 
