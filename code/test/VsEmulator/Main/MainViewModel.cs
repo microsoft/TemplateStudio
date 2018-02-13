@@ -282,7 +282,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProjectName = newProjectName;
                 ProjectPath = projectPath;
                 OutputPath = projectPath;
-                LoadTheme();
                 UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                 var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
