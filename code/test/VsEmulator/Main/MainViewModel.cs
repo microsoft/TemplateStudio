@@ -44,10 +44,12 @@ namespace Microsoft.Templates.VsEmulator.Main
             _host = host;
             _wizardVersion = "0.0.0.0";
             _templatesVersion = "0.0.0.0";
-            Themes.Add("Light Theme");
-            Themes.Add("Dark Theme");
+            Themes.Add("Light");
+            Themes.Add("Dark");
             SelectedTheme = Themes.First();
         }
+
+        public static string ThemeName { get; private set; }
 
         public string ProjectName { get; private set; }
 
@@ -58,7 +60,11 @@ namespace Microsoft.Templates.VsEmulator.Main
         public string SelectedTheme
         {
             get => _selectedTheme;
-            set => SetProperty(ref _selectedTheme, value);
+            set
+            {
+                SetProperty(ref _selectedTheme, value);
+                ThemeName = value;
+            }
         }
 
         public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
@@ -220,22 +226,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
-        private void LoadTheme()
-        {
-            if (SelectedTheme == Themes[0])
-            {
-                App.LoadLightTheme();
-            }
-            else if (SelectedTheme == Themes[1])
-            {
-                App.LoadDarkTheme();
-            }
-            else
-            {
-                throw new Exception("Unrecognized theme");
-            }
-        }
-
         private async Task NewProjectAsync(string language)
         {
             SetCurrentLanguage(language);
@@ -251,7 +241,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                     ProjectPath = projectPath;
                     OutputPath = projectPath;
                     SolutionName = null;
-                    LoadTheme();
                     UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                     var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
@@ -293,7 +282,6 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProjectName = newProjectName;
                 ProjectPath = projectPath;
                 OutputPath = projectPath;
-                LoadTheme();
                 UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                 var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
@@ -392,7 +380,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                LoadTheme();
                 UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
 
@@ -428,7 +415,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                LoadTheme();
                 UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
 
