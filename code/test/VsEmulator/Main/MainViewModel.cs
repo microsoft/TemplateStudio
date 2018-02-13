@@ -198,7 +198,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await AnalyzeNewProjectAsync(ProgrammingLanguages.CSharp);
+                AnalyzeNewProject(ProgrammingLanguages.CSharp);
             });
         }
 
@@ -207,7 +207,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await AnalyzeNewProjectAsync(ProgrammingLanguages.VisualBasic);
+                AnalyzeNewProject(ProgrammingLanguages.VisualBasic);
             });
         }
 
@@ -280,7 +280,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private async Task AnalyzeNewProjectAsync(string language)
+        private void AnalyzeNewProject(string language)
         {
             SetCurrentLanguage(language);
             try
@@ -301,7 +301,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 {
                     ClearContext();
 
-                    await AnalyzeSelectionOutput(userSelection);
+                    AnalyzeSelectionOutput(userSelection);
                     AddLog("See debug window for analysis");
                 }
             }
@@ -316,14 +316,8 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private async Task AnalyzeSelectionOutput(UserSelection userSelection)
+        private void AnalyzeSelectionOutput(UserSelection userSelection)
         {
-            //  await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
-
-            /*
-                build list of output files, template providing entry, & file that contributes to final output
-           */
-
             var generatedFileList = new Dictionary<string, List<string>>();
 
             var genItems = GenComposer.Compose(userSelection).ToList();
