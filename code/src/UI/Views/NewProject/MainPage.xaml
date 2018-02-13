@@ -61,6 +61,7 @@
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
+                        AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}"
                         PreviewKeyDown="ComboBox_PreviewKeyDown" />
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSubSectionTitle}"
@@ -74,6 +75,7 @@
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
+                        AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"
                         PreviewKeyDown="ComboBox_PreviewKeyDown" />
 
                     <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
@@ -124,7 +126,7 @@
                         Margin="{StaticResource Margin_M2_LeftRight_S_Top}"
                         Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionText}" />
                     <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}">
-                        <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}">
+                        <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
                             <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
                         </Hyperlink>
                     </TextBlock>

@@ -25,11 +25,10 @@
             Content="{Binding ChangesSummary.Selected}"
             ContentTemplate="{StaticResource WtsDataTemplateChangesSummaryDetailTemplate}" />
         <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
-        <ScrollViewer Grid.Column="2" Style="{StaticResource WtsScrollViewer}">
-            <ItemsControl
+        <ItemsControl Grid.Column="2" 
                 ItemsSource="{Binding ChangesSummary.FileGroups}"
-                ItemTemplate="{StaticResource WtsNewItemFileGroup}" />
-        </ScrollViewer>
+                ItemTemplate="{StaticResource WtsNewItemFileGroup}"
+                Style="{StaticResource WtsItemsControlWithScroll}"/>
     </Grid>
 
 </Page>

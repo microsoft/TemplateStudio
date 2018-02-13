@@ -31,6 +31,17 @@ namespace Microsoft.Templates.UI.Views.NewProject
         private void ComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             var comboBox = sender as ComboBox;
+
+            if (comboBox == null)
+            {
+                return;
+            }
+
+            if (e.Key == Key.Space)
+            {
+                comboBox.IsDropDownOpen = !comboBox.IsDropDownOpen;
+            }
+
             if (comboBox != null && !comboBox.IsDropDownOpen)
             {
                 if (e.Key == Key.Left
