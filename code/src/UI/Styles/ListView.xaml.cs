@@ -11,7 +11,7 @@ using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
 
-namespace Microsoft.Templates.UI.V2Styles
+namespace Microsoft.Templates.UI.Styles
 {
     public partial class ListView
     {
