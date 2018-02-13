@@ -33,10 +33,13 @@
 
         <TextBlock Margin="{StaticResource Margin_L_Left_M2_Top}">
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding GoBackCommand}">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="&#xE0A6;" Style="{StaticResource WtsTextBlockHyperlink}" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
-                    <TextBlock Text="{x:Static res:StringRes.ButtonBack}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="{StaticResource Margin_S_Left}" VerticalAlignment="Center"/>
-                </StackPanel>                
+                <TextBlock VerticalAlignment="Center">
+                    <TextBlock.Inlines>
+                        <Run Text="&#xE0A6;" Style="{StaticResource WtsRunHyperlink}" FontFamily="Segoe MDL2 Assets" />
+                        <Run Text=" " Style="{StaticResource WtsRunHyperlink}" />
+                        <Run Text="{x:Static res:StringRes.ButtonBack}" Style="{StaticResource WtsRunHyperlink}" />
+                    </TextBlock.Inlines>
+                </TextBlock>
             </Hyperlink>
         </TextBlock>
 
@@ -77,28 +80,28 @@
 
                 <TextBlock
                     Grid.Row="3"
-                    Margin="{StaticResource Margin_M_Top}"
+                    Margin="{StaticResource Margin_XS_Top}"
                     Text="{x:Static res:StringRes.TemplateDetailsVersion}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}}" />
                 <TextBlock
                     Grid.Row="3"
                     Grid.Column="2"
-                    Margin="{StaticResource Margin_M_Top}"
+                    Margin="{StaticResource Margin_XS_Top}"
                     Text="{Binding Version}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyValue}"
                     Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}}" />
 
                 <TextBlock
                     Grid.Row="4"
-                    Margin="{StaticResource Margin_M_Top}"
+                    Margin="{StaticResource Margin_XS_Top}"
                     Text="{x:Static res:StringRes.TemplateDetailsLicenses}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding Licenses, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
                     Grid.Row="4"
                     Grid.Column="2"
-                    Margin="0,8,0,0"
+                    Margin="{StaticResource Margin_XS_Top}"
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding Licenses}"
                     ItemTemplate="{StaticResource WtsItemTemplateLicense}"                    
@@ -106,14 +109,14 @@
 
                 <TextBlock
                     Grid.Row="5"
-                    Margin="{StaticResource Margin_M_Top}"
+                    Margin="{StaticResource Margin_XS_Top}"
                     Text="{x:Static res:StringRes.TemplateDetailsDependencies}"
                     Style="{StaticResource WtsTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding Dependencies, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
                     Grid.Row="5"
                     Grid.Column="2"
-                    Margin="0,8,0,0"
+                    Margin="{StaticResource Margin_XS_Top}"
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding Dependencies}"
                     ItemTemplate="{StaticResource WtsItemTemplateDependency}"
