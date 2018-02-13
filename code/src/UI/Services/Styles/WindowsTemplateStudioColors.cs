@@ -104,26 +104,6 @@ namespace Microsoft.Templates.UI.Services
         public static ThemeResourceKey DeleteTemplateIconColorKey { get { return _DeleteTemplateIconColorKey ?? (_DeleteTemplateIconColorKey = new ThemeResourceKey(Category, "DeleteTemplateIcon", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey DeleteTemplateIconBrushKey { get { return _DeleteTemplateIconBrushKey ?? (_DeleteTemplateIconBrushKey = new ThemeResourceKey(Category, "DeleteTemplateIcon", ThemeResourceKeyType.BackgroundBrush)); } }
 
-        private static ThemeResourceKey _DialogErrorIconColorKey;
-        private static ThemeResourceKey _DialogErrorIconBrushKey;
-        public static ThemeResourceKey DialogErrorIconColorKey { get { return _DialogErrorIconColorKey ?? (_DialogErrorIconColorKey = new ThemeResourceKey(Category, "DialogErrorIcon", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey DialogErrorIconBrushKey { get { return _DialogErrorIconBrushKey ?? (_DialogErrorIconBrushKey = new ThemeResourceKey(Category, "DialogErrorIcon", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _DialogInfoCharIconColorKey;
-        private static ThemeResourceKey _DialogInfoCharIconBrushKey;
-        public static ThemeResourceKey DialogInfoCharIconColorKey { get { return _DialogInfoCharIconColorKey ?? (_DialogInfoCharIconColorKey = new ThemeResourceKey(Category, "DialogInfoCharIcon", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey DialogInfoCharIconBrushKey { get { return _DialogInfoCharIconBrushKey ?? (_DialogInfoCharIconBrushKey = new ThemeResourceKey(Category, "DialogInfoCharIcon", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _DialogInfoIconColorKey;
-        private static ThemeResourceKey _DialogInfoIconBrushKey;
-        public static ThemeResourceKey DialogInfoIconColorKey { get { return _DialogInfoIconColorKey ?? (_DialogInfoIconColorKey = new ThemeResourceKey(Category, "DialogInfoIcon", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey DialogInfoIconBrushKey { get { return _DialogInfoIconBrushKey ?? (_DialogInfoIconBrushKey = new ThemeResourceKey(Category, "DialogInfoIcon", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _DialogWarningIconColorKey;
-        private static ThemeResourceKey _DialogWarningIconBrushKey;
-        public static ThemeResourceKey DialogWarningIconColorKey { get { return _DialogWarningIconColorKey ?? (_DialogWarningIconColorKey = new ThemeResourceKey(Category, "DialogWarningIcon", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey DialogWarningIconBrushKey { get { return _DialogWarningIconBrushKey ?? (_DialogWarningIconBrushKey = new ThemeResourceKey(Category, "DialogWarningIcon", ThemeResourceKeyType.BackgroundBrush)); } }
-
         private static ThemeResourceKey _GridHeadingBackgroundColorKey;
         private static ThemeResourceKey _GridHeadingBackgroundBrushKey;
         public static ThemeResourceKey GridHeadingBackgroundColorKey { get { return _GridHeadingBackgroundColorKey ?? (_GridHeadingBackgroundColorKey = new ThemeResourceKey(Category, "GridHeadingBackground", ThemeResourceKeyType.BackgroundColor)); } }
@@ -255,6 +235,11 @@ namespace Microsoft.Templates.UI.Services
         public static ThemeResourceKey SelectedItemInactiveBrushKey { get { return _SelectedItemInactiveBrushKey ?? (_SelectedItemInactiveBrushKey = new ThemeResourceKey(Category, "SelectedItemInactive", ThemeResourceKeyType.BackgroundBrush)); } }
         public static ThemeResourceKey SelectedItemInactiveTextColorKey { get { return _SelectedItemInactiveTextColorKey ?? (_SelectedItemInactiveTextColorKey = new ThemeResourceKey(Category, "SelectedItemInactive", ThemeResourceKeyType.ForegroundColor)); } }
         public static ThemeResourceKey SelectedItemInactiveTextBrushKey { get { return _SelectedItemInactiveTextBrushKey ?? (_SelectedItemInactiveTextBrushKey = new ThemeResourceKey(Category, "SelectedItemInactive", ThemeResourceKeyType.ForegroundBrush)); } }
+
+        private static ThemeResourceKey _TemplateInfoPageDescriptionColorKey;
+        private static ThemeResourceKey _TemplateInfoPageDescriptionBrushKey;
+        public static ThemeResourceKey TemplateInfoPageDescriptionColorKey { get { return _TemplateInfoPageDescriptionColorKey ?? (_TemplateInfoPageDescriptionColorKey = new ThemeResourceKey(Category, "TemplateInfoPageDescription", ThemeResourceKeyType.BackgroundColor)); } }
+        public static ThemeResourceKey TemplateInfoPageDescriptionBrushKey { get { return _TemplateInfoPageDescriptionBrushKey ?? (_TemplateInfoPageDescriptionBrushKey = new ThemeResourceKey(Category, "TemplateInfoPageDescription", ThemeResourceKeyType.BackgroundBrush)); } }
 
         private static ThemeResourceKey _WindowBorderColorKey;
         private static ThemeResourceKey _WindowBorderBrushKey;
