@@ -197,7 +197,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private void OnProjectTypeSelected()
         {
             Framework.LoadData(ProjectType.Selected.Name);
-            EventService.Instance.RaiseOnProjectTypeChange(ProjectType.Selected);
         }
 
         private void OnFrameworkSelected()
@@ -206,7 +205,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             AddFeatures.LoadData(Framework.Selected.Name);
             UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
             WizardStatus.IsLoading = false;
-            EventService.Instance.RaiseOnFrameworkChange(Framework.Selected);
         }
 
         protected async Task OnRefreshTemplatesAsync()

@@ -59,10 +59,6 @@
                     Text="{Binding TemplateSelection.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Margin="{StaticResource Margin_M2_LeftRight_M_TopBottom}"
                     IsEnabled="{Binding TemplateSelection.NameEditable}" />
-                <!--
-                    extensions:TextBoxExtensions.IsFocused="{Binding TemplateSelection.IsFocused}"            
-                    extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding TemplateSelection.LostKeyboardFocusCommand}"
-                    -->
             </Grid>
 
             <StackPanel Visibility="{Binding TemplateSelection.Dependencies, Converter={StaticResource HasItemsVisibilityConverter}}">

@@ -165,11 +165,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
-        public void OnDelete()
+        public async void OnDelete()
         {
             if (!IsHome)
             {
-                EventService.Instance.RaiseOnDeleteTemplateClicked(this);
+                await MainViewModel.Instance.UserSelection.RemoveTemplateAsync(this);
             }
         }
 
