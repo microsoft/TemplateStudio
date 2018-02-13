@@ -92,16 +92,17 @@ namespace Microsoft.Templates.UI.Extensions
             textBlock.Inlines.Clear();
             if (completed)
             {
-                textBlock.Inlines.Add(new Run(step.LayoutIndex)
+                textBlock.Inlines.Add(new Run()
                 {
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                    Text = char.ConvertFromUtf32(0xE001).ToString()
+                    Text = char.ConvertFromUtf32(0xE001).ToString(),
+                    BaselineAlignment = BaselineAlignment.Center
                 });
                 textBlock.Inlines.Add($" {step.Title}");
             }
             else
             {
-                textBlock.Inlines.Add($"{step.LayoutIndex} {step.Title}");
+                textBlock.Inlines.Add($"{step.Index + 1}.  {step.Title}");
             }
         }
     }
