@@ -20,7 +20,6 @@ namespace Microsoft.Templates.UI.Controls
     {
         private const string XamlExtension = ".xaml";
         private bool _isInitialized;
-        private bool _isColorChanged;
 
         public static readonly DependencyProperty StretchProperty = DependencyProperty.Register("Stretch", typeof(Stretch), typeof(ImageEx), new PropertyMetadata(Stretch.Uniform));
 
@@ -78,11 +77,7 @@ namespace Microsoft.Templates.UI.Controls
             else
             {
                 Content = CreateFromBitmap();
-                if (!_isColorChanged)
-                {
-                    ChangeColorOfBitmap(Content, (Foreground as SolidColorBrush).Color);
-                    _isColorChanged = true;
-                }
+                ChangeColorOfBitmap(Content, (Foreground as SolidColorBrush).Color);
             }
         }
 
