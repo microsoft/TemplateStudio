@@ -42,8 +42,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
 
-
-
         public Visibility RefreshTemplateCacheVisibility
         {
             get
