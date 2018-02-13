@@ -16,4 +16,10 @@
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
+    <Style TargetType="Viewbox" x:Key="WtsViewBoxCloseIcon">
+        <Setter Property="Width" Value="14" />
+        <Setter Property="Height" Value="14" />
+        <Setter Property="StretchDirection" Value="Both" />
+    </Style>
+
 </ResourceDictionary>
