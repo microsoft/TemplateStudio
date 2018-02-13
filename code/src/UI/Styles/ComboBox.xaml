@@ -3,16 +3,6 @@
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
                     xmlns:Themes="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0">
 
-    <Style x:Key="ComboBoxFocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Border BorderThickness="1" BorderBrush="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" Background="Transparent" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="IsTabStop" Value="True" />
@@ -149,9 +139,9 @@
                                 MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
                                 <Border
                                     x:Name="dropDownBorder"
-                                    BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
+                                    BorderBrush="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}"
                                     BorderThickness="1"
-                                    Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                                    Background="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}">
                                     <ScrollViewer x:Name="DropDownScrollViewer">
                                         <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                             <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
