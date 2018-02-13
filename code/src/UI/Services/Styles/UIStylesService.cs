@@ -288,13 +288,9 @@ namespace Microsoft.Templates.UI.Services
 
             ChangesSummaryDetailFileHeaderBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeaderBackground");
 
-            DialogInfoIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoIcon");
-            DialogInfoCharIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogInfoCharIcon");
-            DialogErrorIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogErrorIcon");
-            DialogWarningIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DialogWarningIcon");
-
             HeaderTextSecondary = _stylesProvider.GetColor("WindowsTemplateStudio", "HeaderTextSecondary");
             WizardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooterText");
+            TemplateInfoPageDescription = _stylesProvider.GetColor("WindowsTemplateStudio", "TemplateInfoPageDescription");
         }
 
         // Font Sizes and Font Family

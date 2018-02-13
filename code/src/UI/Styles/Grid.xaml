@@ -30,13 +30,6 @@
     <Style TargetType="Grid" x:Key="WtsGridNotification">
         <Setter Property="Background" Value="{Binding IBInfoBarBackground, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
-    <Style TargetType="Grid" x:Key="WtsGridNotificationIcon">
-        <Setter Property="Width" Value="25" />
-        <Setter Property="Height" Value="25" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Margin" Value="{StaticResource Margin_M_Left}" />
-    </Style>
 
     <Style TargetType="Grid" x:Key="WtsGridSavedTemplate">
         <Setter Property="Background" Value="Transparent" />

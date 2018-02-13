@@ -155,9 +155,12 @@ namespace Microsoft.Templates.UI.Controls
                                 .ChildrenOfType<Shapes.Shape>(true)
                                 .ToList();
 
-                if (shapes.Any())
+                foreach (var shape in shapes)
                 {
-                    shapes.ForEach(s => BindingOperations.SetBinding(s, Shapes.Shape.StrokeProperty, CreateBinding(this, nameof(Foreground))));
+                    BindingOperations.SetBinding(
+                        shape,
+                        shape.StrokeThickness > 0 ? Shapes.Shape.StrokeProperty : Shapes.Shape.FillProperty,
+                        CreateBinding(this, nameof(Foreground)));
                 }
 
                 return element;

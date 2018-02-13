@@ -19,6 +19,8 @@
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/ScrollViewer.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/TextBlock.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/TextBox.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Viewbox.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Window.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

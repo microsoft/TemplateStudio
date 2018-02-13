@@ -64,18 +64,6 @@ namespace Microsoft.Templates.VsEmulator.Services
         public static string DeleteTemplateIconColorKey { get { return "DeleteTemplateIconColorKey"; } }
         public static string DeleteTemplateIconBrushKey { get { return "DeleteTemplateIconBrushKey"; } }
 
-        public static string DialogErrorIconColorKey { get { return "DialogErrorIconColorKey"; } }
-        public static string DialogErrorIconBrushKey { get { return "DialogErrorIconBrushKey"; } }
-
-        public static string DialogInfoCharIconColorKey { get { return "DialogInfoCharIconColorKey"; } }
-        public static string DialogInfoCharIconBrushKey { get { return "DialogInfoCharIconBrushKey"; } }
-
-        public static string DialogInfoIconColorKey { get { return "DialogInfoIconColorKey"; } }
-        public static string DialogInfoIconBrushKey { get { return "DialogInfoIconBrushKey"; } }
-
-        public static string DialogWarningIconColorKey { get { return "DialogWarningIconColorKey"; } }
-        public static string DialogWarningIconBrushKey { get { return "DialogWarningIconBrushKey"; } }
-
         public static string GridHeadingBackgroundColorKey { get { return "GridHeadingBackgroundColorKey"; } }
         public static string GridHeadingBackgroundBrushKey { get { return "GridHeadingBackgroundBrushKey"; } }
 
@@ -153,6 +141,9 @@ namespace Microsoft.Templates.VsEmulator.Services
         public static string SelectedItemInactiveBrushKey { get { return "SelectedItemInactiveBrushKey"; } }
         public static string SelectedItemInactiveTextColorKey { get { return "SelectedItemInactiveTextColorKey"; } }
         public static string SelectedItemInactiveTextBrushKey { get { return "SelectedItemInactiveTextBrushKey"; } }
+
+        public static string TemplateInfoPageDescriptionColorKey { get { return "TemplateInfoPageDescriptionColorKey"; } }
+        public static string TemplateInfoPageDescriptionBrushKey { get { return "TemplateInfoPageDescriptionBrushKey"; } }
 
         public static string WindowBorderColorKey { get { return "WindowBorderColorKey"; } }
         public static string WindowBorderBrushKey { get { return "WindowBorderBrushKey"; } }
