@@ -15,7 +15,7 @@
 
     <Style x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Focusable" Value="True" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="ClickMode" Value="Press" />
@@ -124,7 +124,6 @@
         <Setter Property="Padding" Value="6,3,5,3" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
-        <Setter Property="Focusable" Value="False" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource WtsComboBoxItemStyle}" />
         <Setter Property="Template">

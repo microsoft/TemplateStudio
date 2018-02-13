@@ -61,6 +61,7 @@
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
+                        AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}"
                         PreviewKeyDown="ComboBox_PreviewKeyDown" />
                     <TextBlock
                         Style="{StaticResource WtsTextBlockSubSectionTitle}"
@@ -74,6 +75,7 @@
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
                         Style="{StaticResource WtsComboBoxStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
+                        AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"
                         PreviewKeyDown="ComboBox_PreviewKeyDown" />
 
                     <StackPanel Visibility="{Binding UserSelection.Pages, Converter={StaticResource HasItemsVisibilityConverter}}">
