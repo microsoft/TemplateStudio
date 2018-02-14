@@ -13,6 +13,7 @@
     MinHeight="400"
     Width="{Binding WizardStatus.Width}"
     Height="{Binding WizardStatus.Height}"
+    AutomationProperties.Name="{x:Static strings:StringRes.WindowsTemplateStudio}"
     KeyDown="OnKeyDown"
     mc:Ignorable="d">
 

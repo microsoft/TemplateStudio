@@ -593,4 +593,28 @@
     <value>Templates updated.</value>
     <comment>Notification message for Sync Status: Updated</comment>
   </data>
+  <data name="AccessibilityNotificationPanel" xml:space="preserve">
+    <value>Notification panel</value>
+    <comment> Notification panel label to accessibility</comment>
+  </data>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>Edit page</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNavigationMenu" xml:space="preserve">
+    <value>Navigation menu</value>
+    <comment>Navigation menu label</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>Project types list</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
+    <value>Sequential flow control</value>
+    <comment>Sequential flow control label to accessibility</comment>
+  </data>
+  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
+    <value>User selection pages</value>
+    <comment>User selection page list to accessibility</comment>
+  </data>
 </root>

@@ -47,7 +47,7 @@
                     Text="{Binding Summary}"
                     Style="{StaticResource WtsTextBlockCardDescription}"
                     Margin="{StaticResource Margin_XS_Top}" />
-                <TextBlock Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,-4">
+                <TextBlock Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,-4" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
                     <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
                         <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" />
                     </Hyperlink>
@@ -88,7 +88,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock VerticalAlignment="Bottom">
+                    <TextBlock VerticalAlignment="Bottom" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
                         <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
                             <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" />
                         </Hyperlink>
@@ -171,15 +171,15 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WtsItemTemplateDependency">
-        <TextBlock Margin="{StaticResource Margin_XS_Bottom}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}"  AutomationProperties.Name="{Binding Title}">
+        <TextBlock Margin="{StaticResource Margin_XS_Bottom}" AutomationProperties.Name="{Binding Title}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}" AutomationProperties.Name="{Binding Title}">
                 <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockHyperlink}" />
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
 
     <DataTemplate x:Key="WtsItemTemplateLicense">
-        <TextBlock Margin="{StaticResource Margin_XS_Bottom}">
+        <TextBlock Margin="{StaticResource Margin_XS_Bottom}" AutomationProperties.Name="{Binding Text}">
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenCommand}" AutomationProperties.Name="{Binding Text}">
                 <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}" />
             </Hyperlink>
@@ -287,7 +287,7 @@
                 <ContentPresenter
                     Grid.Column="0"
                     ContentTemplateSelector="{StaticResource FileStatusTemplateSelector}" />
-                <TextBlock Grid.Column="1">
+                <TextBlock Grid.Column="1" AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
                     <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding MoreDetailsCommand}" AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
                         <TextBlock
                             Style="{StaticResource WtsTextBlockHyperlink}"
