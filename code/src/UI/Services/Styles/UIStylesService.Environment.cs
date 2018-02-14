@@ -66,14 +66,6 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(PageSideBarExpanderTextProperty, value); }
         }
 
-        public static readonly DependencyProperty SystemScrollBarProperty = DependencyProperty.Register("SystemScrollBar", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush SystemScrollBar
-        {
-            get { return (Brush)GetValue(SystemScrollBarProperty); }
-            set { SetValue(SystemScrollBarProperty, value); }
-        }
-
         public static readonly DependencyProperty ScrollBarArrowBackgroundProperty = DependencyProperty.Register("ScrollBarArrowBackground", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush ScrollBarArrowBackground
