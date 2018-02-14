@@ -69,7 +69,7 @@
                 <ItemsControl
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding TemplateSelection.Dependencies}"
-                    Margin="{StaticResource Margin_L_Left_S_TopRightBottom}"
+                    Margin="20,4,4,4"
                     ItemTemplate="{StaticResource WtsItemTemplateDependency}" />
             </StackPanel>
 
@@ -81,7 +81,7 @@
                 <ItemsControl
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding TemplateSelection.Licenses}"
-                    Margin="{StaticResource Margin_L_Left_S_TopRightBottom}"
+                    Margin="20,4,4,4"
                     ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
             </StackPanel>
 
