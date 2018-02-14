@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
+                    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
                     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
@@ -218,7 +219,7 @@
 
     <DataTemplate x:Key="WtsDataTemplateChangesSummaryImageViewer">
         <Image
-            Source="{Binding TempFile}"
+            extensions:ImageExtensions.DisposableSource="{Binding TempFile}"
             Style="{StaticResource WtsImageNewItemImageFiles}" />
     </DataTemplate>
 
