@@ -33,7 +33,6 @@ namespace Microsoft.Templates.UI.Services
         private void SetStyles()
         {
             // VS Colors
-            SetThemedDialogColors();
             SetCommonDocumentColors();
             SetCommonControlColors();
             SetEnvironmentColors();
@@ -47,38 +46,6 @@ namespace Microsoft.Templates.UI.Services
         }
 
         // VS Colors
-        private void SetThemedDialogColors()
-        {
-            WindowPanel = _stylesProvider.GetColor("ThemedDialog", "WindowPanel");
-            WindowPanelText = _stylesProvider.GetColor("ThemedDialog", "WindowPanelText");
-            WindowBorder = _stylesProvider.GetColor("ThemedDialog", "WindowBorder");
-            HeaderText = _stylesProvider.GetColor("ThemedDialog", "HeaderText");
-            Hyperlink = _stylesProvider.GetColor("ThemedDialog", "Hyperlink");
-            HyperlinkHover = _stylesProvider.GetColor("ThemedDialog", "HyperlinkHover");
-            HyperlinkPressed = _stylesProvider.GetColor("ThemedDialog", "HyperlinkPressed");
-            HyperlinkDisabled = _stylesProvider.GetColor("ThemedDialog", "HyperlinkDisabled");
-            ListItemMouseOver = _stylesProvider.GetColor("ThemedDialog", "ListItemMouseOver");
-            ListItemDisabledText = _stylesProvider.GetColor("ThemedDialog", "ListItemDisabledText");
-            GridHeadingBackground = _stylesProvider.GetColor("ThemedDialog", "GridHeadingBackground");
-            GridHeadingHoverBackground = _stylesProvider.GetColor("ThemedDialog", "GridHeadingHoverBackground");
-            GridHeadingText = _stylesProvider.GetColor("ThemedDialog", "GridHeadingText");
-            GridHeadingHoverText = _stylesProvider.GetColor("ThemedDialog", "GridHeadingHoverText");
-            GridLine = _stylesProvider.GetColor("ThemedDialog", "GridLine");
-            SectionDivider = _stylesProvider.GetColor("ThemedDialog", "SectionDivider");
-
-            WindowButton = _stylesProvider.GetColor("ThemedDialog", "WindowButton");
-            WindowButtonHover = _stylesProvider.GetColor("ThemedDialog", "WindowButtonHover");
-            WindowButtonDown = _stylesProvider.GetColor("ThemedDialog", "WindowButtonDown");
-            WindowButtonBorder = _stylesProvider.GetColor("ThemedDialog", "WindowButtonBorder");
-            WindowButtonHoverBorder = _stylesProvider.GetColor("ThemedDialog", "WindowButtonHoverBorder");
-            WindowButtonDownBorder = _stylesProvider.GetColor("ThemedDialog", "WindowButtonDownBorder");
-            WindowButtonGlyph = _stylesProvider.GetColor("ThemedDialog", "WindowButtonGlyph");
-            WindowButtonHoverGlyph = _stylesProvider.GetColor("ThemedDialog", "WindowButtonHoverGlyph");
-            WindowButtonDownGlyph = _stylesProvider.GetColor("ThemedDialog", "WindowButtonDownGlyph");
-
-            WizardFooter = _stylesProvider.GetColor("ThemedDialog", "WizardFooter");
-        }
-
         private void SetCommonDocumentColors()
         {
             ListItemText = _stylesProvider.GetColor("CommonDocument", "ListItemText");
@@ -274,6 +241,22 @@ namespace Microsoft.Templates.UI.Services
             CardIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "CardIcon");
             CardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardFooterText");
 
+            Hyperlink = _stylesProvider.GetColor("WindowsTemplateStudio", "Hyperlink");
+            HyperlinkHover = _stylesProvider.GetColor("WindowsTemplateStudio", "HyperlinkHover");
+            HyperlinkPressed = _stylesProvider.GetColor("WindowsTemplateStudio", "HyperlinkPressed");
+            HyperlinkDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "HyperlinkDisabled");
+
+            ListItemMouseOver = _stylesProvider.GetColor("WindowsTemplateStudio", "ListItemMouseOver");
+            ListItemDisabledText = _stylesProvider.GetColor("WindowsTemplateStudio", "ListItemDisabledText");
+
+            GridHeadingBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingBackground");
+            GridHeadingHoverBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingHoverBackground");
+            GridHeadingText = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingText");
+            GridHeadingHoverText = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingHoverText");
+
+            GridLine = _stylesProvider.GetColor("WindowsTemplateStudio", "GridLine");
+            SectionDivider = _stylesProvider.GetColor("WindowsTemplateStudio", "SectionDivider");
+
             DeleteTemplateIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DeleteTemplateIcon");
             SavedTemplateBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "SavedTemplateBackgroundHover");
 
@@ -286,7 +269,9 @@ namespace Microsoft.Templates.UI.Services
 
             ChangesSummaryDetailFileHeaderBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeaderBackground");
 
+            HeaderText = _stylesProvider.GetColor("WindowsTemplateStudio", "HeaderText");
             HeaderTextSecondary = _stylesProvider.GetColor("WindowsTemplateStudio", "HeaderTextSecondary");
+            WizardFooter = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooter");
             WizardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooterText");
             TemplateInfoPageDescription = _stylesProvider.GetColor("WindowsTemplateStudio", "TemplateInfoPageDescription");
 
@@ -294,6 +279,40 @@ namespace Microsoft.Templates.UI.Services
             SelectedItemActiveText = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemActiveText");
             SelectedItemInactive = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemInactive");
             SelectedItemInactiveText = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemInactiveText");
+
+            WindowButton = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButton");
+            WindowButtonHover = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHover");
+            WindowButtonDown = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDown");
+            WindowButtonBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonBorder");
+
+            WindowButtonHoverBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHoverBorder");
+            WindowButtonDownBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDownBorder");
+            WindowButtonGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonGlyph");
+            WindowButtonHoverGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHoverGlyph");
+            WindowButtonDownGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDownGlyph");
+
+            // New
+            WindowButtonFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocus");
+
+            // New
+            WindowButtonFocusBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocusBorder");
+
+            // New
+            WindowButtonDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDisabled");
+
+            // New
+            WindowButtonDisabledBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDisabledBorder");
+
+            // New
+            WindowButtonDisabledGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDisabledGlyph");
+
+            // New
+            WindowButtonFocusGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocusGlyph");
+
+            WindowPanel = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowPanel");
+            WindowPanelText = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowPanelText");
+            WindowBorder = _stylesProvider.GetColor("ThemedDialog", "WindowBorder");
+
         }
 
         // Font Sizes and Font Family

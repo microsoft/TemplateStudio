@@ -30,9 +30,6 @@ namespace Microsoft.Templates.UI.Services
             Type classType = null;
             switch (className)
             {
-                case "ThemedDialog":
-                    classType = typeof(ThemedDialogColors);
-                    break;
                 case "CommonDocument":
                     classType = typeof(CommonDocumentColors);
                     break;
