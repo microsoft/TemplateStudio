@@ -73,22 +73,6 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(HyperlinkDisabledProperty, value); }
         }
 
-        public static readonly DependencyProperty SelectedItemActiveProperty = DependencyProperty.Register("SelectedItemActive", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush SelectedItemActive
-        {
-            get { return (Brush)GetValue(SelectedItemActiveProperty); }
-            set { SetValue(SelectedItemActiveProperty, value); }
-        }
-
-        public static readonly DependencyProperty SelectedItemInactiveProperty = DependencyProperty.Register("SelectedItemInactive", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush SelectedItemInactive
-        {
-            get { return (Brush)GetValue(SelectedItemInactiveProperty); }
-            set { SetValue(SelectedItemInactiveProperty, value); }
-        }
-
         public static readonly DependencyProperty ListItemMouseOverProperty = DependencyProperty.Register("ListItemMouseOver", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush ListItemMouseOver

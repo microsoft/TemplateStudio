@@ -232,5 +232,37 @@ namespace Microsoft.Templates.UI.Services
             get { return (Brush)GetValue(TemplateInfoPageDescriptionProperty); }
             set { SetValue(TemplateInfoPageDescriptionProperty, value); }
         }
+
+        public static readonly DependencyProperty SelectedItemActiveProperty = DependencyProperty.Register("SelectedItemActive", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush SelectedItemActive
+        {
+            get { return (Brush)GetValue(SelectedItemActiveProperty); }
+            set { SetValue(SelectedItemActiveProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedItemActiveTextProperty = DependencyProperty.Register("SelectedItemActiveText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush SelectedItemActiveText
+        {
+            get { return (Brush)GetValue(SelectedItemActiveTextProperty); }
+            set { SetValue(SelectedItemActiveTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedItemInactiveProperty = DependencyProperty.Register("SelectedItemInactive", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush SelectedItemInactive
+        {
+            get { return (Brush)GetValue(SelectedItemInactiveProperty); }
+            set { SetValue(SelectedItemInactiveProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedItemInactiveTextProperty = DependencyProperty.Register("SelectedItemInactiveText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush SelectedItemInactiveText
+        {
+            get { return (Brush)GetValue(SelectedItemInactiveTextProperty); }
+            set { SetValue(SelectedItemInactiveTextProperty, value); }
+        }
     }
 }
