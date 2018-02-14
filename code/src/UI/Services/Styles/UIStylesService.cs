@@ -170,7 +170,6 @@ namespace Microsoft.Templates.UI.Services
             PageSideBarExpanderSeparator = _stylesProvider.GetColor("Environment", "PageSideBarExpanderSeparator");
             PageSideBarExpanderText = _stylesProvider.GetColor("Environment", "PageSideBarExpanderText");
 
-            SystemScrollBar = _stylesProvider.GetColor("Environment", "SystemScrollBar");
             ScrollBarArrowBackground = _stylesProvider.GetColor("Environment", "ScrollBarArrowBackground");
             ScrollBarArrowDisabledBackground = _stylesProvider.GetColor("Environment", "ScrollBarArrowDisabledBackground");
             ScrollBarArrowGlyph = _stylesProvider.GetColor("Environment", "ScrollBarArrowGlyph"); // Used
