@@ -31,8 +31,6 @@
                     <RowDefinition Height="Auto" />
                     <!--Description-->
                     <RowDefinition Height="*" />
-                    <!--Detail-->
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <controls:ImageEx
                     Grid.Row="0"
@@ -46,13 +44,15 @@
                     Grid.Row="2"
                     Text="{Binding Summary}"
                     Style="{StaticResource WtsTextBlockCardDescription}"
-                    Margin="{StaticResource Margin_XS_Top}" />
-                <TextBlock Grid.Row="3" VerticalAlignment="Bottom" Margin="0,0,0,-4">
-                    <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
-                        <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" />
-                    </Hyperlink>
-                </TextBlock>
+                    Margin="0,4,0,12" />
             </Grid>
+            <TextBlock VerticalAlignment="Bottom">
+                <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
+                    <Grid Background="Transparent">
+                        <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="12,8,12,8" />
+                    </Grid>
+                </Hyperlink>
+            </TextBlock>
         </Grid>
     </DataTemplate>
 
@@ -67,7 +67,7 @@
                     <!--Description-->
                     <RowDefinition Height="*" />
                     <!--Detail / Status-->
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="16" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Grid.RowSpan="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent"/>
                 <controls:ImageEx
@@ -84,24 +84,15 @@
                     Style="{StaticResource WtsTextBlockCardDescription}"
                     Margin="{StaticResource Margin_XS_Top}"/>
                 <Grid Grid.Row="3" Margin="0,0,0,-4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock VerticalAlignment="Bottom">
-                        <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
-                            <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" />
-                        </Hyperlink>
-                    </TextBlock>
                     <!--Multiple Instance added feedback-->
-                    <Grid Grid.Column="1" Visibility="{Binding MultipleInstance, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid Visibility="{Binding MultipleInstance, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Right">
                         <Grid Width="18" Height="18" VerticalAlignment="Bottom" Visibility="{Binding Count, Converter={StaticResource IntegerVisibilityConverter}}">
                             <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}"/>
                             <TextBlock Text="{Binding Count}" Style="{StaticResource WtsTextBlockCardTemplatesCount}" />
                         </Grid>
                     </Grid>
                     <!--Single Instance added feedback-->
-                    <StackPanel Orientation="Horizontal" Grid.Column="1" Visibility="{Binding ShowAddedText, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal" Visibility="{Binding ShowAddedText, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Right">
                         <TextBlock Text="{x:Static res:StringRes.TemplateAdded}" Style="{StaticResource WtsTextBlockCardAddedText}" />
                         <Grid Width="18" Height="18" VerticalAlignment="Bottom" Margin="{StaticResource Margin_XS_Left}">
                             <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -110,6 +101,13 @@
                     </StackPanel>
                 </Grid>
             </Grid>
+            <TextBlock VerticalAlignment="Bottom">
+                <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
+                    <Grid Background="Transparent">
+                        <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="12,8,12,8" />
+                    </Grid>
+                </Hyperlink>
+            </TextBlock>
         </Grid>
     </DataTemplate>
 
@@ -171,17 +169,21 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WtsItemTemplateDependency">
-        <TextBlock Margin="{StaticResource Margin_XS_Bottom}">
+        <TextBlock>
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}"  AutomationProperties.Name="{Binding Title}">
-                <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockHyperlink}" />
+                <Grid Background="Transparent">
+                    <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="4,4,4,4" />
+                </Grid>
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
 
     <DataTemplate x:Key="WtsItemTemplateLicense">
-        <TextBlock Margin="{StaticResource Margin_XS_Bottom}">
+        <TextBlock>
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenCommand}" AutomationProperties.Name="{Binding Text}">
-                <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}" />
+                <Grid Background="Transparent">
+                    <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="4,4,4,4" />
+                </Grid>
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
@@ -279,19 +281,23 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <ContentPresenter
                     Grid.Column="0"
+                    Margin="{StaticResource Margin_M_LeftTopRightBottom}"
                     ContentTemplateSelector="{StaticResource FileStatusTemplateSelector}" />
                 <TextBlock Grid.Column="1">
                     <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding MoreDetailsCommand}" AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
-                        <TextBlock
-                            Style="{StaticResource WtsTextBlockHyperlink}"
-                            Text="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}" />
+                        <Grid Background="Transparent">
+                            <TextBlock
+                                Style="{StaticResource WtsTextBlockHyperlink}"
+                                Margin="{StaticResource Margin_M_LeftTopRightBottom}"
+                                Text="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}" />
+                        </Grid>
                     </Hyperlink>
                 </TextBlock>
             </Grid>

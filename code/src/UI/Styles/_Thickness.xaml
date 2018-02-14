@@ -6,16 +6,11 @@
     <Thickness x:Key="Margin_XS_LeftRight">4,0,4,0</Thickness>
     <Thickness x:Key="Margin_XS_Bottom">0,0,0,4</Thickness>
     <Thickness x:Key="Margin_XS_Top">0,4,0,0</Thickness>
-    <Thickness x:Key="Margin_XS_TopBottom">0,4,0,4</Thickness>
-
-    <Thickness x:Key="Margin_XS2_TopBottom">0,6,0,6</Thickness>
-    <Thickness x:Key="Margin_XS2_Top">0,6,0,0</Thickness>
 
     <Thickness x:Key="Margin_S_Left">8,0,0,0</Thickness>
     <Thickness x:Key="Margin_S_LeftTopRightBottom">8,8,8,8</Thickness>
     <Thickness x:Key="Margin_S_LeftTop">8,8,0,0</Thickness>
     <Thickness x:Key="Margin_S_Top">0,8,0,0</Thickness>
-    <Thickness x:Key="Margin_S_LeftRight">8,0,8,0</Thickness>
     <Thickness x:Key="Margin_S_TopBottom">0,8,0,8</Thickness>
     <Thickness x:Key="Margin_S_Bottom">0,0,0,8</Thickness>
 
@@ -48,16 +43,11 @@
 
     <Thickness x:Key="Margin_L_Left">24,0,0,0</Thickness>
     <Thickness x:Key="Margin_L_LeftTop">24,24,0,0</Thickness>
-    <Thickness x:Key="Margin_L_LeftTopRightBottom">24,24,24,24</Thickness>
     <Thickness x:Key="Margin_L_LeftRight">24,0,24,0</Thickness>
-    <Thickness x:Key="Margin_L_LeftTopRight">24,24,24,0</Thickness>
     <Thickness x:Key="Margin_L_Top">0,24,0,0</Thickness>
 
-    <Thickness x:Key="Margin_L_Left_S_TopRightBottom">24,8,8,8</Thickness>
     <Thickness x:Key="Margin_L_LeftRight_M_Top">24,12,24,0</Thickness>
-    <Thickness x:Key="Margin_L_Left_M_Top">24,12,0,0</Thickness>
     <Thickness x:Key="Margin_L_LeftRight_M2_Top">24,16,24,0</Thickness>
-    <Thickness x:Key="Margin_L_Left_M2_Top">24,16,0,0</Thickness>
 
     <Thickness x:Key="CardBorderThickness">1.5,1.5,1.5,1.5</Thickness>
 
