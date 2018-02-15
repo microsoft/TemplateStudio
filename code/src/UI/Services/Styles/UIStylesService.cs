@@ -270,21 +270,7 @@ namespace Microsoft.Templates.UI.Services
             SelectedItemInactiveText = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemInactiveText");
             TemplateInfoPageDescription = _stylesProvider.GetColor("WindowsTemplateStudio", "TemplateInfoPageDescription");
             WindowBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowBorder");
-            WindowButton = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButton");
-            WindowButtonBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonBorder");
-            WindowButtonDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDisabled");
-            WindowButtonDisabledBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDisabledBorder");
-            WindowButtonDisabledGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDisabledGlyph");
-            WindowButtonDown = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDown");
-            WindowButtonDownBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDownBorder");
-            WindowButtonDownGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDownGlyph");
-            WindowButtonFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocus");
-            WindowButtonFocusBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocusBorder");
-            WindowButtonFocusGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocusGlyph");
-            WindowButtonGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonGlyph");
-            WindowButtonHover = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHover");
-            WindowButtonHoverBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHoverBorder");
-            WindowButtonHoverGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHoverGlyph");
+
             WindowPanel = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowPanel");
             WindowPanelText = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowPanelText");
             WizardFooter = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooter");
