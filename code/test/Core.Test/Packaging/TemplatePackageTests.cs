@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core.Test.Locations
     public class TemplatePackageTests
     {
         [Fact]
-        public void Pack_Folder()
+        public async Task Pack_FolderAsync()
         {
             int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
             var inFolder = Environment.CurrentDirectory;
@@ -33,9 +33,9 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outFile = Path.Combine(outDir, "JustPacked.mstx");
             var extractDir = Path.Combine(outDir, "Extraction");
 
-            TemplatePackage.Pack(inFolder, outFile, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAsync(inFolder, outFile, MediaTypeNames.Text.Plain);
 
-            TemplatePackage.Extract(outFile, extractDir, false);
+            await TemplatePackage.ExtractAsync(outFile, extractDir, false);
 
             int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -44,16 +44,16 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void Pack_FolderWithDefaultNaming()
+        public async Task Pack_FolderWithDefaultNamingAsync()
         {
             int filesInCurrentFolder = new DirectoryInfo(Environment.CurrentDirectory).GetFiles("*", SearchOption.AllDirectories).Count();
             var inFolder = Environment.CurrentDirectory;
             var outDir = @"C:\Temp\PackTests";
             var extractDir = Path.Combine(outDir, "Extraction");
 
-            var outFile = TemplatePackage.Pack(inFolder);
+            var outFile = await TemplatePackage.PackAsync(inFolder);
 
-            TemplatePackage.Extract(outFile, extractDir, false);
+            await TemplatePackage.ExtractAsync(outFile, extractDir, false);
 
             int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -63,7 +63,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void PackAndSign_Folder()
+        public async Task PackAndSign_FolderAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -72,8 +72,8 @@ namespace Microsoft.Templates.Core.Test.Locations
             var inFolder = Environment.CurrentDirectory;
             var outDir = @"OutFolder\Extraction";
 
-            string signedFile = TemplatePackage.PackAndSign(inFolder, cert);
-            TemplatePackage.Extract(signedFile, outDir);
+            string signedFile = await TemplatePackage.PackAndSignAsync(inFolder, cert);
+            await TemplatePackage.ExtractAsync(signedFile, outDir);
 
             int filesInExtractionFolder = new DirectoryInfo(outDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void PackAndSign_FolderExtractToAbsoluteDir()
+        public async Task PackAndSign_FolderExtractToAbsoluteDirAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -92,8 +92,8 @@ namespace Microsoft.Templates.Core.Test.Locations
             var inFolder = Environment.CurrentDirectory;
             var outDir = @"C:\Temp\OutFolder\Extraction";
 
-            string signedFile = TemplatePackage.PackAndSign(inFolder, cert);
-            TemplatePackage.Extract(signedFile, outDir);
+            string signedFile = await TemplatePackage.PackAndSignAsync(inFolder, cert);
+            await TemplatePackage.ExtractAsync(signedFile, outDir);
 
             int filesInExtractionFolder = new DirectoryInfo(outDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -103,16 +103,16 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void PackAndSign_CertNotFound()
+        public async Task PackAndSign_CertNotFoundAsync()
         {
-            Exception ex = Assert.Throws<SignCertNotFoundException>(() =>
+            SignCertNotFoundException ex = await Assert.ThrowsAsync<SignCertNotFoundException>(async () =>
             {
-                TemplatePackage.PackAndSign(@"Packaging\SampleContent.txt", "SignedContent.package", "CERT_NOT_FOUND", MediaTypeNames.Text.Plain);
+                await TemplatePackage.PackAndSignAsync(@"Packaging\SampleContent.txt", "SignedContent.package", "CERT_NOT_FOUND", MediaTypeNames.Text.Plain);
             });
         }
 
         [Fact]
-        public void PackAndSign_CertFromFile_RelativeInOutPath()
+        public async Task PackAndSign_CertFromFile_RelativeInOutPathAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -120,13 +120,13 @@ namespace Microsoft.Templates.Core.Test.Locations
             var inFile = @"Packaging\SampleContent.txt";
             var outFile = @"Packaging\SignedContent.package";
 
-            TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
             Assert.True(File.Exists(outFile));
             File.Delete(outFile);
         }
 
         [Fact]
-        public void PackAndSign_CertFromFile_AbsoluteInRelativeOutPath()
+        public async Task PackAndSign_CertFromFile_AbsoluteInRelativeOutPathAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -134,13 +134,13 @@ namespace Microsoft.Templates.Core.Test.Locations
             var inFile = Path.Combine(Environment.CurrentDirectory, @"Packaging\SampleContent.txt");
             var outFile = @"Packaging\SignedContent.package";
 
-            TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
             Assert.True(File.Exists(outFile));
             File.Delete(outFile);
         }
 
         [Fact]
-        public void PackAndSign_CertFromFile_RelativeInAbsouluteOutPath()
+        public async Task PackAndSign_CertFromFile_RelativeInAbsouluteOutPathAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -148,13 +148,13 @@ namespace Microsoft.Templates.Core.Test.Locations
             var inFile = @"Packaging\SampleContent.txt";
             var outFile = @"C:\temp\Packaging\SignedContent.package";
 
-            TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
             Assert.True(File.Exists(outFile));
             File.Delete(outFile);
         }
 
         [Fact]
-        public void PackAndSign_CertFromFile_AbsouluteInOutPath()
+        public async Task PackAndSign_CertFromFile_AbsouluteInOutPathAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -162,27 +162,27 @@ namespace Microsoft.Templates.Core.Test.Locations
             var inFile = Path.Combine(Environment.CurrentDirectory, @"Packaging\SampleContent.txt");
             var outFile = @"C:\temp\Packaging\SignedContent.package";
 
-            TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
             Assert.True(File.Exists(outFile));
             File.Delete(outFile);
         }
 
         [Fact]
-        public void PackAndSign_WithThumbprint()
+        public async Task PackAndSign_WithThumbprintAsync()
         {
             EnsureTestCertificateInStore();
 
             var inFile = Path.Combine(Environment.CurrentDirectory, @"Packaging\SampleContent.txt");
             var outFile = @"C:\temp\Packaging\SignedContent.package";
 
-            TemplatePackage.PackAndSign(inFile, outFile, "B584589A382B2AD20B54D2DD1634BB487792A970", MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, "B584589A382B2AD20B54D2DD1634BB487792A970", MediaTypeNames.Text.Plain);
 
             Assert.True(File.Exists(outFile));
             File.Delete(outFile);
         }
 
         [Fact]
-        public void ExtractRelativeDirs()
+        public async Task ExtractRelativeDirsAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -191,9 +191,9 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outFile = @"Packaging\ToExtract.package";
             var extractionDir = "NewDirToExtract";
 
-            TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            TemplatePackage.Extract(outFile, extractionDir);
+            await TemplatePackage.ExtractAsync(outFile, extractionDir);
 
             Assert.True(Directory.Exists(extractionDir));
             Assert.True(File.Exists(Path.Combine(extractionDir, inFile)));
@@ -203,7 +203,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void ExtractAbsoluteDirs()
+        public async Task ExtractAbsoluteDirsAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -212,9 +212,9 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outFile = @"C:\Temp\MyPackage\ToExtract.package";
             var extractionDir = @"C:\Temp\NewContent\Extracted";
 
-            TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            TemplatePackage.Extract(outFile, extractionDir);
+            await TemplatePackage.ExtractAsync(outFile, extractionDir);
 
             Assert.True(Directory.Exists(extractionDir));
             Assert.True(File.Exists(Path.Combine(extractionDir, @"Packaging\SampleContent.txt")));
@@ -224,7 +224,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void ExtractFileAndPacksInCurrentDir()
+        public async Task ExtractFileAndPacksInCurrentDirAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -234,9 +234,9 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outFile = @"ToExtract.package";
             var extractionDir = Environment.CurrentDirectory;
 
-            TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            TemplatePackage.Extract(outFile, extractionDir);
+            await TemplatePackage.ExtractAsync(outFile, extractionDir);
 
             Assert.True(Directory.Exists(extractionDir));
             Assert.True(File.Exists(Path.Combine(extractionDir, Path.GetFileName(inFile))));
@@ -245,7 +245,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void ExtractFileCurrentDir()
+        public async Task ExtractFileCurrentDirAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -254,9 +254,9 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outFile = @"ToExtract.package";
             var extractionDir = string.Empty;
 
-            TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            TemplatePackage.Extract(outFile, extractionDir);
+            await TemplatePackage.ExtractAsync(outFile, extractionDir);
 
             Assert.True(File.Exists(outFile));
 
@@ -270,11 +270,8 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outDir1 = @"C:\Temp\OutFolder\Concurrent1";
             var outDir2 = @"C:\Temp\OutFolder\Concurrent2";
 
-            Task t1 = new Task(() => TemplatePackage.Extract(inFile, outDir1));
-            Task t2 = new Task(() => TemplatePackage.Extract(inFile, outDir2));
-
-            t1.Start();
-            t2.Start();
+            Task t1 = Task.Run(async () => await TemplatePackage.ExtractAsync(inFile, outDir1));
+            Task t2 = Task.Run(async () => await TemplatePackage.ExtractAsync(inFile, outDir2));
 
             await Task.WhenAll(t1, t2);
 
@@ -283,7 +280,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void ExtractFileTampered()
+        public async Task ExtractFileTamperedAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -292,13 +289,13 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outFile = @"Packaging\ToExtract.package";
             var extractionDir = "SubDir";
 
-            TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
             ModifyContent(outFile, "SampleContent.txt");
 
-            Exception ex = Assert.Throws<InvalidSignatureException>(() =>
+            InvalidSignatureException ex = await Assert.ThrowsAsync<InvalidSignatureException>(async () =>
             {
-                TemplatePackage.Extract(outFile, extractionDir);
+                await TemplatePackage.ExtractAsync(outFile, extractionDir);
             });
 
             File.Delete(outFile);
@@ -306,7 +303,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void ValidateSignatureTamperedPackage()
+        public async Task ValidateSignatureTamperedPackageAsync()
         {
             var certPass = GetTestCertPassword();
             X509Certificate2 cert = TemplatePackage.LoadCert(@"Packaging\TestCert.pfx", certPass);
@@ -314,7 +311,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             var inFile = @"Packaging\SampleContent.txt";
             var outFile = @"Packaging\ToExtract.package";
 
-            TemplatePackage.PackAndSign(inFile, outFile, cert, MediaTypeNames.Text.Plain);
+            await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
             ModifyContent(outFile, "SampleContent.txt");
 
@@ -332,20 +329,22 @@ namespace Microsoft.Templates.Core.Test.Locations
 
         // TODO: Refactor this methods to other class
         [Fact]
-        public void TestRemoteSource_Acquire()
+        public async Task TestRemoteSource_AcquireAsync()
         {
             RemoteTemplatesSource rts = new RemoteTemplatesSource();
-            rts.LoadConfig();
+            CancellationTokenSource cts = new CancellationTokenSource();
+
+            await rts.LoadConfigAsync(cts.Token);
             var package = rts.Config.Latest;
 
-            rts.Acquire(ref package);
+            await rts.AcquireAsync(package, cts.Token);
 
             string acquiredContentFolder = package.LocalPath;
 
             Assert.NotNull(acquiredContentFolder);
 
             // Ensure package is not downloaded again if already downloaded
-            rts.Acquire(ref package);
+            await rts.AcquireAsync(package, cts.Token);
             Assert.True(acquiredContentFolder == package.LocalPath);
 
             // Reset localPath and ensure it is acquired again
@@ -354,7 +353,7 @@ namespace Microsoft.Templates.Core.Test.Locations
                 Directory.Delete(Path.GetDirectoryName(package.LocalPath), true);
             }
 
-            rts.Acquire(ref package);
+            await rts.AcquireAsync(package, cts.Token);
 
             Assert.True(package.LocalPath != acquiredContentFolder);
 
@@ -365,7 +364,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         }
 
         [Fact]
-        public void TestRemoteSource_GetContent()
+        public async Task TestRemoteSource_GetContentAsync()
         {
             string drive = Path.GetPathRoot(new Uri(typeof(TemplatePackageTests).Assembly.CodeBase).LocalPath);
             string testDir = Path.Combine(drive, $@"Temp\TestRts{Process.GetCurrentProcess().Id}_{Thread.CurrentThread.ManagedThreadId}");
@@ -373,11 +372,12 @@ namespace Microsoft.Templates.Core.Test.Locations
             try
             {
                 RemoteTemplatesSource rts = new RemoteTemplatesSource();
-                rts.LoadConfig();
+                CancellationTokenSource cts = new CancellationTokenSource();
+                await rts.LoadConfigAsync(cts.Token);
                 var package = rts.Config.Latest;
 
-                rts.Acquire(ref package);
-                var contentInfo = rts.GetContent(package, testDir);
+                await rts.AcquireAsync(package, cts.Token);
+                var contentInfo = await rts.GetContentAsync(package, testDir, cts.Token);
 
                 Assert.True(Directory.Exists(contentInfo.Path));
             }

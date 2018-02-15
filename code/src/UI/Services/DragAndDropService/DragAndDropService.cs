@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,7 +10,6 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-
 using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Services
@@ -17,8 +17,9 @@ namespace Microsoft.Templates.UI.Services
     public partial class DragAndDropService<T>
         where T : class
     {
-        public DragAndDropService(ListView listView)
+        public DragAndDropService(ListView listView, Func<T, T, bool> canDrop)
         {
+            _canDrop = canDrop;
             _canInitiateDrag = false;
             _dragAdornerLayerOpacity = 0.7;
             _indexToSelect = -1;
@@ -58,6 +59,8 @@ namespace Microsoft.Templates.UI.Services
                 {
                     _mouseDownPosition = MouseUtilities.GetMousePosition(_listView);
                     _indexToSelect = index;
+
+                    ConfigureAllowDropToItems(index);
                 }
                 else
                 {
@@ -79,7 +82,6 @@ namespace Microsoft.Templates.UI.Services
                 if (_listView.SelectedItem != null)
                 {
                     var itemToDrag = _listView.GetCurrentListViewItem();
-
                     if (itemToDrag != null)
                     {
                         var adornerLayer = ShowDragAdornerLayerResolved ? InitializeAdornerLayer(itemToDrag) : null;
@@ -258,6 +260,11 @@ namespace Microsoft.Templates.UI.Services
 
         private bool IsMouseOver(Visual target)
         {
+            if (target == null)
+            {
+                return false;
+            }
+
             var descendantBounds = VisualTreeHelper.GetDescendantBounds(target);
             var mousePosition = MouseUtilities.GetMousePosition(target);
             return descendantBounds.Contains(mousePosition);
@@ -287,6 +294,17 @@ namespace Microsoft.Templates.UI.Services
                 double top = itemLoc.Y + mousePosition.Y - _mouseDownPosition.Y;
 
                 _dragAdornerLayer.SetOffsets(left, top);
+            }
+        }
+
+        private void ConfigureAllowDropToItems(int dragItemIndex)
+        {
+            var dragItem = _listView.Items[dragItemIndex] as T;
+
+            foreach (T dropItem in _listView.Items)
+            {
+                var listViewItem = GetListViewItem(dropItem);
+                listViewItem.AllowDrop = _canDrop(dragItem, dropItem);
             }
         }
     }

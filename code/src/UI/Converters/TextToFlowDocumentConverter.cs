@@ -6,7 +6,6 @@ using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-
 using Microsoft.Templates.UI.Controls;
 
 namespace Microsoft.Templates.UI.Converters

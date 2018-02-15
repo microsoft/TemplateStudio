@@ -8,8 +8,7 @@
         Title="New Project" 
         KeyDown="Window_KeyDown"
         Height="180" Width="960" 
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen">
 
         <Grid Style="{StaticResource NewProjectContainer}">
             <Grid.ColumnDefinitions>
@@ -37,7 +36,7 @@
             <CheckBox Grid.Row="2" Grid.Column="2" IsChecked="{Binding CreateDirectory, Mode=TwoWay}" Content="Create directory for solution" Style="{StaticResource NewProjectOption}"  />
 
             <StackPanel Grid.Row="3" Grid.Column="2" Style="{StaticResource CommandsContainer}">
-                <Button Content="OK" Command="{Binding OkCommand}" Style="{StaticResource CommandButton}" />
+                <Button x:Name="okButton" Content="OK" Command="{Binding OkCommand}" Style="{StaticResource CommandButton}" />
                 <Button Content="Cancel" Command="{Binding CloseCommand}" Style="{StaticResource CommandButton}" />
             </StackPanel>
         </Grid>

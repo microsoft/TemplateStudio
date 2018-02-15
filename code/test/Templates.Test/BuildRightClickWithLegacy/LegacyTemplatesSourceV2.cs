@@ -5,11 +5,15 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Packaging;
 using Microsoft.Templates.Core.Resources;
+using Microsoft.Templates.UI.Threading;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.Test
 {
@@ -17,12 +21,14 @@ namespace Microsoft.Templates.Test
     {
         public override string Id => "TestLegacy" + GetAgentName();
 
-        public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
+        public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
-            LoadConfig();
+            await LoadConfigAsync(ct);
             var package = Config.Latest;
-            Acquire(ref package);
-            return base.GetContent(package, workingFolder);
+
+            await AcquireAsync(package, ct);
+
+            return await base.GetContentAsync(package, workingFolder, ct);
         }
 
         private static string GetAgentName()

@@ -4,7 +4,6 @@
 
 using System.Collections.Generic;
 using System.Linq;
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.ViewModels.Common;
 
@@ -12,15 +11,9 @@ namespace Microsoft.Templates.UI.Services
 {
     public static class LicensesService
     {
-        public static void RebuildLicenses(IList<SummaryLicenseViewModel> licenses, string language)
+        public static void SyncLicenses(IEnumerable<TemplateLicense> genLicenses, IList<LicenseViewModel> licenses)
         {
-            var getLicenses = GenComposer.GetAllLicences(UserSelectionService.CreateUserSelection(language));
-            SyncLicenses(getLicenses, licenses);
-        }
-
-        private static void SyncLicenses(IEnumerable<TemplateLicense> genLicenses, IList<SummaryLicenseViewModel> licenses)
-        {
-            var toRemove = new List<SummaryLicenseViewModel>();
+            var toRemove = new List<LicenseViewModel>();
 
             foreach (var summaryLicense in licenses)
             {
@@ -39,7 +32,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 if (!licenses.Any(l => l.Url == license.Url))
                 {
-                    licenses.Add(new SummaryLicenseViewModel(license));
+                    licenses.Add(new LicenseViewModel(license));
                 }
             }
         }

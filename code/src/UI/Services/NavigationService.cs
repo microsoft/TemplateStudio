@@ -8,25 +8,31 @@ namespace Microsoft.Templates.UI.Services
 {
     public static class NavigationService
     {
-        private static Frame _frame;
+        private static Frame _mainFrame;
+        private static Frame _secondaryFrame;
 
-        public static void Initialize(Frame frame, object content)
+        public static bool CanGoBackMainFrame => _mainFrame.CanGoBack;
+
+        public static bool CanGoBackSecondaryFrame => _secondaryFrame.CanGoBack;
+
+        public static void InitializeMainFrame(Frame mainFrame, object content)
         {
-            _frame = frame;
-            _frame.Content = content;
+            _mainFrame = mainFrame;
+            _mainFrame.Content = content;
         }
 
-        public static void Navigate(object content)
+        public static void InitializeSecondaryFrame(Frame secondaryFrame, object content)
         {
-            _frame.Navigate(content);
+            _secondaryFrame = secondaryFrame;
+            _secondaryFrame.Content = content;
         }
 
-        public static void GoBack()
-        {
-            if (_frame.CanGoBack)
-            {
-                _frame.GoBack();
-            }
-        }
+        public static bool NavigateMainFrame(object content) => _mainFrame.Navigate(content);
+
+        public static bool NavigateSecondaryFrame(object content) => _secondaryFrame.Navigate(content);
+
+        public static void GoBackMainFrame() => _mainFrame.GoBack();
+
+        public static void GoBackSecondaryFrame() => _secondaryFrame.GoBack();
     }
 }
