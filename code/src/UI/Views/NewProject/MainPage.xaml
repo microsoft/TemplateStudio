@@ -29,14 +29,14 @@
         </Grid.RowDefinitions>
         <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*" />
-                <!--20% Sequential flow-->
+                <!--Sequential flow-->
+                <ColumnDefinition Width="220" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="57*" />
-                <!--57% Selection area-->
+                <!--Selection area-->
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="23*" />
-                <!--23% Project details-->
+                <!--Project details-->
+                <ColumnDefinition Width="252" />
             </Grid.ColumnDefinitions>
             <controls:SequentialFlow Steps="{Binding Steps}" />
             <!--Step="{Binding Step, Mode=OneWay}"-->
@@ -55,7 +55,7 @@
                         Text="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}" />
                     <ComboBox
                         x:Name="projectTypeCombo"
-                        Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
+                        Margin="16,12,26,0"
                         ItemsSource="{Binding ProjectType.Items}"
                         SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
@@ -69,7 +69,7 @@
                         Text="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}" />
                     <ComboBox
                         x:Name="frameworkCombo"
-                        Margin="{StaticResource Margin_M2_LeftRight_M_Top}"
+                        Margin="16,12,26,0"
                         ItemsSource="{Binding Framework.Items}"
                         SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
                         ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
@@ -136,7 +136,8 @@
                         Text="{Binding WizardStatus.Versions}"
                         AutomationProperties.Name="{Binding Text, RelativeSource={RelativeSource Self}}"/>
                     <Button
-                        Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}" Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                        Margin="16,8,26,8"
+                        Style="{StaticResource ButtonRefreshTemplatesStyle}"
                         Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
                         Command="{Binding RefreshTemplatesCacheCommand}"
                         Visibility="{Binding RefreshTemplateCacheVisibility}" />
@@ -152,7 +153,7 @@
                 Grid.Column="0"
                 Text="{x:Static strings:StringRes.TermsAndConditionsText}"
                 Style="{StaticResource WtsTextBlockTermsAndConditions}" />
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_Right}">
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,26,0">
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}"/>
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding GoForwardCommand}" />
                 <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="{StaticResource Margin_S_Left}" Command="{Binding FinishCommand}" />

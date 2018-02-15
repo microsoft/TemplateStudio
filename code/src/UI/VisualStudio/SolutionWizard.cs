@@ -78,7 +78,11 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
 
-            PostGenerationActions();
+            SafeThreading.JoinableTaskFactory.RunAsync(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                PostGenerationActions();
+            });
         }
 
         private static void PostGenerationActions()

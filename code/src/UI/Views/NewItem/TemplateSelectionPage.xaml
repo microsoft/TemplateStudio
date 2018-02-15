@@ -58,7 +58,7 @@
                 <TextBox
                     Style="{StaticResource WtsTextBoxStyle}"
                     Text="{Binding TemplateSelection.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="{StaticResource Margin_M2_LeftRight_M_TopBottom}"
+                    Margin="16,12,26,12"
                     Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}}" />
                 <TextBlock
                     Text="{Binding TemplateSelection.Name, Mode=OneWay}"
@@ -109,7 +109,8 @@
                 Margin="{StaticResource Margin_M1_LeftRight}"
                 Text="{Binding WizardStatus.Versions}"/>
             <Button
-                Margin="{StaticResource Margin_M2_LeftRight_S_Top}" Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                Margin="16,8,26,0"
+                Style="{StaticResource ButtonRefreshTemplatesStyle}"
                 Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
                 Command="{Binding RefreshTemplatesCacheCommand}"
                 Visibility="{Binding RefreshTemplateCacheVisibility}" />
