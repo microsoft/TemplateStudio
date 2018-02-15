@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             get => _name;
             set => SetProperty(ref _name, value);
         }
-        
+
         public string AccessibleName
         {
             get => !string.IsNullOrEmpty(_name) ? _name : "templateview";
