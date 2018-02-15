@@ -377,7 +377,6 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(WizardFooterProperty, value); }
         }
 
-
         public static readonly DependencyProperty WizardFooterTextProperty = DependencyProperty.Register("WizardFooterText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush WizardFooterText
