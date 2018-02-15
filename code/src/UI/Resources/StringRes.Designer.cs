@@ -61,6 +61,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Design pattern list.
+        /// </summary>
+        public static string AccessibilityDesignPatternList {
+            get {
+                return ResourceManager.GetString("AccessibilityDesignPatternList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit page.
         /// </summary>
         public static string AccessibilityEditPageItem {
@@ -102,6 +111,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string AccessibilitySequentialFlowControl {
             get {
                 return ResourceManager.GetString("AccessibilitySequentialFlowControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates list.
+        /// </summary>
+        public static string AccessibilityTemplatesList {
+            get {
+                return ResourceManager.GetString("AccessibilityTemplatesList", resourceCulture);
             }
         }
         

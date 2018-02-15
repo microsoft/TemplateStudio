@@ -128,6 +128,7 @@
                 Style="{StaticResource WtsListViewMultipleSelection}"
                 ItemsSource="{Binding Items}"
                 ItemTemplate="{StaticResource WtsItemTemplatePageFeature}"
+                AutomationProperties.Name="{Binding AccessibleName}"
                 SelectedItem="{Binding Selected, Mode=TwoWay}" />
         </Grid>
     </DataTemplate>
@@ -147,7 +148,8 @@
                 Grid.Row="1"
                 Style="{StaticResource WtsListViewSingleSelectionWithoutScroll}"
                 ItemsSource="{Binding Items}"
-                ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}" />
+                ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}"
+                AutomationProperties.Name="{Binding AccessibleName}" />
         </Grid>
     </DataTemplate>
 
