@@ -139,7 +139,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
-                    <Grid Margin="0" Width="182" Height="210">
+                    <Grid Margin="0" Width="182" Height="220">
                         <Border Margin="14,2,2,14" BorderThickness="1.5" BorderBrush="{TemplateBinding BorderBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}" Visibility="{Binding HasMoreThanTwo, Converter={StaticResource BoolToVisibilityConverter}}" />
                         <Border Margin="11,5,5,11" BorderThickness="1.5" BorderBrush="{TemplateBinding BorderBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}" Visibility="{Binding HasMoreThanOne, Converter={StaticResource BoolToVisibilityConverter}}" />
 
@@ -282,7 +282,7 @@
 
     <Style x:Key="WtsListViewSequentialFlow" TargetType="{x:Type ListView}">
         <Setter Property="Background" Value="LightGreen" />
-        <Setter Property="Margin" Value="24,20" />
+        <Setter Property="Margin" Value="26,20" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="SelectionMode" Value="Single" />

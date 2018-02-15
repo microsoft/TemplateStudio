@@ -23,7 +23,7 @@
     <converters:IntegerVisibilityConverter x:Key="IntegerVisibilityConverter" />
 
     <DataTemplate x:Key="WtsItemTemplateBasicInfo">
-        <Grid Width="162" Height="190">
+        <Grid Width="162" Height="200">
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <Grid.RowDefinitions>
                     <!--Image-->
