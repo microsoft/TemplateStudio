@@ -64,6 +64,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 SetProperty(ref _selectedTheme, value);
                 ThemeName = value;
+                Services.FakeStyleValuesProvider.Instance.LoadResources();
             }
         }
 
@@ -241,7 +242,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     ProjectPath = projectPath;
                     OutputPath = projectPath;
                     SolutionName = null;
-                    UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
+                    UI.Services.UIStylesService.Instance.Initialize(Services.FakeStyleValuesProvider.Instance);
                     var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
                     if (userSelection != null)
@@ -282,7 +283,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProjectName = newProjectName;
                 ProjectPath = projectPath;
                 OutputPath = projectPath;
-                UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
+                UI.Services.UIStylesService.Instance.Initialize(Services.FakeStyleValuesProvider.Instance);
                 var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
 
                 if (userSelection != null)
@@ -380,7 +381,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
+                UI.Services.UIStylesService.Instance.Initialize(Services.FakeStyleValuesProvider.Instance);
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
 
                 if (userSelection != null)
@@ -415,7 +416,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                UI.Services.UIStylesService.Instance.Initialize(new Services.FakeStyleValuesProvider());
+                UI.Services.UIStylesService.Instance.Initialize(Services.FakeStyleValuesProvider.Instance);
                 var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
 
                 if (userSelection != null)

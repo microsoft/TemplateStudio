@@ -57,8 +57,6 @@ namespace Microsoft.Templates.UI.Services
             HyperlinkHover = _stylesProvider.GetColor("ThemedDialog", "HyperlinkHover");
             HyperlinkPressed = _stylesProvider.GetColor("ThemedDialog", "HyperlinkPressed");
             HyperlinkDisabled = _stylesProvider.GetColor("ThemedDialog", "HyperlinkDisabled");
-            SelectedItemActive = _stylesProvider.GetColor("ThemedDialog", "SelectedItemActive");
-            SelectedItemInactive = _stylesProvider.GetColor("ThemedDialog", "SelectedItemInactive");
             ListItemMouseOver = _stylesProvider.GetColor("ThemedDialog", "ListItemMouseOver");
             ListItemDisabledText = _stylesProvider.GetColor("ThemedDialog", "ListItemDisabledText");
             GridHeadingBackground = _stylesProvider.GetColor("ThemedDialog", "GridHeadingBackground");
@@ -205,7 +203,6 @@ namespace Microsoft.Templates.UI.Services
             PageSideBarExpanderSeparator = _stylesProvider.GetColor("Environment", "PageSideBarExpanderSeparator");
             PageSideBarExpanderText = _stylesProvider.GetColor("Environment", "PageSideBarExpanderText");
 
-            SystemScrollBar = _stylesProvider.GetColor("Environment", "SystemScrollBar");
             ScrollBarArrowBackground = _stylesProvider.GetColor("Environment", "ScrollBarArrowBackground");
             ScrollBarArrowDisabledBackground = _stylesProvider.GetColor("Environment", "ScrollBarArrowDisabledBackground");
             ScrollBarArrowGlyph = _stylesProvider.GetColor("Environment", "ScrollBarArrowGlyph"); // Used
@@ -291,6 +288,11 @@ namespace Microsoft.Templates.UI.Services
             HeaderTextSecondary = _stylesProvider.GetColor("WindowsTemplateStudio", "HeaderTextSecondary");
             WizardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooterText");
             TemplateInfoPageDescription = _stylesProvider.GetColor("WindowsTemplateStudio", "TemplateInfoPageDescription");
+
+            SelectedItemActive = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemActive");
+            SelectedItemActiveText = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemActiveText");
+            SelectedItemInactive = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemInactive");
+            SelectedItemInactiveText = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemInactiveText");
         }
 
         // Font Sizes and Font Family

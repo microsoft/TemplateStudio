@@ -11,7 +11,7 @@
                     <Setter Property="Control.Template">
                         <Setter.Value>
                             <ControlTemplate>
-                                <Grid Height="2" Background="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" VerticalAlignment="Bottom"/>
+                                <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" StrokeThickness="1" StrokeDashArray="1 2"/>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
