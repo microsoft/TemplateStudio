@@ -8,8 +8,7 @@
         Title="New Project" 
         KeyDown="Window_KeyDown"
         Height="180" Width="960" 
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen">
 
         <Grid Style="{StaticResource NewProjectContainer}">
             <Grid.ColumnDefinitions>

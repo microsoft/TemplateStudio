@@ -222,7 +222,7 @@
         <Setter Property="Content">
             <Setter.Value>
                 <Viewbox Style="{StaticResource WtsViewBoxCloseIcon}">
-                    <Frame Source="/Microsoft.Templates.UI;component/Assets/Close.xaml" />
+                    <Frame Source="/Microsoft.Templates.UI;component/Assets/Close.xaml" IsTabStop="False" Focusable="False" />
                 </Viewbox>
             </Setter.Value>
         </Setter>

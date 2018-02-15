@@ -125,7 +125,7 @@
                         Style="{StaticResource WtsTextBlockAboutSubSectionText}"
                         Margin="{StaticResource Margin_M2_LeftRight_S_Top}"
                         Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionText}" />
-                    <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}">
+                    <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
                         <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
                             <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
                         </Hyperlink>
@@ -133,7 +133,8 @@
                     <TextBox
                         Style="{StaticResource WtsTextBoxVersion}"
                         Margin="{StaticResource Margin_M1_LeftRight}"
-                        Text="{Binding WizardStatus.Versions}"/>
+                        Text="{Binding WizardStatus.Versions}"
+                        AutomationProperties.Name="{Binding Text, RelativeSource={RelativeSource Self}}"/>
                     <Button
                         Margin="16,8,26,8"
                         Style="{StaticResource ButtonRefreshTemplatesStyle}"

@@ -21,6 +21,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _name, value);
         }
 
+        public string AccessibleName
+        {
+            get => !string.IsNullOrEmpty(_name) ? _name : "templateview";
+        }
+
         public ObservableCollection<TemplateInfoViewModel> Items { get; }
 
         public TemplateGroupViewModel(IGrouping<string, TemplateInfoViewModel> templateGroup)

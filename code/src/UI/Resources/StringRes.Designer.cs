@@ -61,6 +61,78 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Design pattern list.
+        /// </summary>
+        public static string AccessibilityDesignPatternList {
+            get {
+                return ResourceManager.GetString("AccessibilityDesignPatternList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit page.
+        /// </summary>
+        public static string AccessibilityEditPageItem {
+            get {
+                return ResourceManager.GetString("AccessibilityEditPageItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigation menu.
+        /// </summary>
+        public static string AccessibilityNavigationMenu {
+            get {
+                return ResourceManager.GetString("AccessibilityNavigationMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notification panel.
+        /// </summary>
+        public static string AccessibilityNotificationPanel {
+            get {
+                return ResourceManager.GetString("AccessibilityNotificationPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project types list.
+        /// </summary>
+        public static string AccessibilityProjectTypesList {
+            get {
+                return ResourceManager.GetString("AccessibilityProjectTypesList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sequential flow control.
+        /// </summary>
+        public static string AccessibilitySequentialFlowControl {
+            get {
+                return ResourceManager.GetString("AccessibilitySequentialFlowControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates list.
+        /// </summary>
+        public static string AccessibilityTemplatesList {
+            get {
+                return ResourceManager.GetString("AccessibilityTemplatesList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User selection pages.
+        /// </summary>
+        public static string AccessibilityUserSelectionPageList {
+            get {
+                return ResourceManager.GetString("AccessibilityUserSelectionPageList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add features.
         /// </summary>
         public static string AddFeaturesTitle {

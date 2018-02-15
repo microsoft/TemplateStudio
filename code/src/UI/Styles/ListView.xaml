@@ -4,7 +4,8 @@
                     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
                     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
                     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
-                    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions">
+                    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
+                    xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
@@ -289,6 +290,7 @@
         <Setter Property="Focusable" Value="False" />
         <EventSetter Event="PreviewKeyDown" Handler="OnPreviewKeyDown" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemSequentialFlow}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static strings:StringRes.AccessibilityNavigationMenu}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
@@ -342,6 +344,7 @@
                                         Style="{StaticResource WtsTextBoxStyle}"
                                         Margin="{StaticResource Margin_XS_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        AutomationProperties.Name="{x:Static strings:StringRes.AccessibilityEditPageItem}"
                                         extensions:TextBoxExtensions.ListenIsFocused="True"
                                         extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}">
                                         <TextBox.InputBindings>
@@ -417,6 +420,7 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource WtsListViewItemProjectDetailsTemplates}" />
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="Focusable" Value="False" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static strings:StringRes.AccessibilityUserSelectionPageList}" />
         <EventSetter Event="PreviewKeyDown" Handler="OnProjectDetailsTemplatesPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>
