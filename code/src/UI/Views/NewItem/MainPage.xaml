@@ -54,7 +54,7 @@
                 Margin="{StaticResource Margin_M_LeftRight}"
                 IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}"
                 Visibility="{Binding Step, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=1}" />
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,12,0">
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,26,0">
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}"/>
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="8,0,0,0" Command="{Binding GoForwardCommand}" />
                 <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="8,0,0,0" Command="{Binding FinishCommand}" />

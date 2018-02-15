@@ -282,7 +282,7 @@
 
     <Style x:Key="WtsListViewSequentialFlow" TargetType="{x:Type ListView}">
         <Setter Property="Background" Value="LightGreen" />
-        <Setter Property="Margin" Value="24,20" />
+        <Setter Property="Margin" Value="26,20" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="SelectionMode" Value="Single" />
