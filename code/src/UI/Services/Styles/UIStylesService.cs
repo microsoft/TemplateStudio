@@ -223,95 +223,106 @@ namespace Microsoft.Templates.UI.Services
         // New Color additions
         private void SetWindowsTemplateStudioColors()
         {
-            CardTitleText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardTitleText");
-            CardDescriptionText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardDescriptionText");
             CardBackgroundDefault = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundDefault");
+            //// Not Used
+            CardBackgroundDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundDisabled");
+            //// Not Used
             CardBackgroundFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundFocus");
             CardBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundHover");
+            //// Not Used
             CardBackgroundPressed = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundPressed");
             CardBackgroundSelected = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundSelected");
-            CardBackgroundDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundDisabled");
             CardBorderDefault = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderDefault");
+            //// Not Used
+            CardBorderDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderDisabled");
+            //// Not Used
             CardBorderFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderFocus");
             CardBorderHover = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderHover");
+            //// Not Used
             CardBorderPressed = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderPressed");
             CardBorderSelected = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderSelected");
-            CardBorderDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderDisabled");
-            CardIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "CardIcon");
+            CardDescriptionText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardDescriptionText");
             CardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardFooterText");
-
-            Hyperlink = _stylesProvider.GetColor("WindowsTemplateStudio", "Hyperlink");
-            HyperlinkHover = _stylesProvider.GetColor("WindowsTemplateStudio", "HyperlinkHover");
-            HyperlinkPressed = _stylesProvider.GetColor("WindowsTemplateStudio", "HyperlinkPressed");
-            HyperlinkDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "HyperlinkDisabled");
-
-            ListItemMouseOver = _stylesProvider.GetColor("WindowsTemplateStudio", "ListItemMouseOver");
-            ListItemDisabledText = _stylesProvider.GetColor("WindowsTemplateStudio", "ListItemDisabledText");
-
-            GridHeadingBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingBackground");
-            GridHeadingHoverBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingHoverBackground");
-            GridHeadingText = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingText");
-            GridHeadingHoverText = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingHoverText");
-
-            GridLine = _stylesProvider.GetColor("WindowsTemplateStudio", "GridLine");
-            SectionDivider = _stylesProvider.GetColor("WindowsTemplateStudio", "SectionDivider");
+            CardIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "CardIcon");
+            CardTitleText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardTitleText");
+            ChangesSummaryDetailFileHeaderBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeaderBackground");
 
             DeleteTemplateIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DeleteTemplateIcon");
-            SavedTemplateBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "SavedTemplateBackgroundHover");
 
-            NewItemFileStatusNewFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusNewFile");
-            NewItemFileStatusModifiedFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusModifiedFile");
-            NewItemFileStatusConflictingFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusConflictingFile");
-            NewItemFileStatusConflictingStylesFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusConflictingStylesFile");
-            NewItemFileStatusWarningFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusWarningFile");
-            NewItemFileStatusUnchangedFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusUnchangedFile");
-
-            ChangesSummaryDetailFileHeaderBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeaderBackground");
+            //// Not Used
+            GridHeadingBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingBackground");
+            //// Not Used
+            GridHeadingHoverBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingHoverBackground");
+            //// Not Used
+            GridHeadingHoverText = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingHoverText");
+            //// Not Used
+            GridHeadingText = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingText");
+            //// Not Used
+            GridLine = _stylesProvider.GetColor("WindowsTemplateStudio", "GridLine");
 
             HeaderText = _stylesProvider.GetColor("WindowsTemplateStudio", "HeaderText");
             HeaderTextSecondary = _stylesProvider.GetColor("WindowsTemplateStudio", "HeaderTextSecondary");
-            WizardFooter = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooter");
-            WizardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooterText");
+            Hyperlink = _stylesProvider.GetColor("WindowsTemplateStudio", "Hyperlink");
+            HyperlinkDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "HyperlinkDisabled");
+            HyperlinkHover = _stylesProvider.GetColor("WindowsTemplateStudio", "HyperlinkHover");
+            //// Not Used
+            HyperlinkPressed = _stylesProvider.GetColor("WindowsTemplateStudio", "HyperlinkPressed");
+
+            //// Not Used
+            ListItemDisabledText = _stylesProvider.GetColor("WindowsTemplateStudio", "ListItemDisabledText");
+            ListItemMouseOver = _stylesProvider.GetColor("WindowsTemplateStudio", "ListItemMouseOver");
+            NewItemFileStatusConflictingFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusConflictingFile");
+            NewItemFileStatusConflictingStylesFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusConflictingStylesFile");
+            NewItemFileStatusModifiedFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusModifiedFile");
+            NewItemFileStatusNewFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusNewFile");
+            NewItemFileStatusUnchangedFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusUnchangedFile");
+            NewItemFileStatusWarningFile = _stylesProvider.GetColor("WindowsTemplateStudio", "NewItemFileStatusWarningFile");
+            // New //// Not Used
+            NotificationText = _stylesProvider.GetColor("WindowsTemplateStudio", "NotificationText");
+
+            SavedTemplateBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "SavedTemplateBackgroundHover");
+            SectionDivider = _stylesProvider.GetColor("WindowsTemplateStudio", "SectionDivider");
+            SelectedItemActive = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemActive");
+            //// Not Used
+            SelectedItemInactive = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemInactive");
+
             TemplateInfoPageDescription = _stylesProvider.GetColor("WindowsTemplateStudio", "TemplateInfoPageDescription");
 
-            SelectedItemActive = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemActive");
-            SelectedItemActiveText = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemActiveText");
-            SelectedItemInactive = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemInactive");
-            SelectedItemInactiveText = _stylesProvider.GetColor("WindowsTemplateStudio", "SelectedItemInactiveText");
-
+            //// Not Used
+            WindowBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowBorder");
+            //// Not Used
             WindowButton = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButton");
-            WindowButtonHover = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHover");
-            WindowButtonDown = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDown");
+            //// Not Used
             WindowButtonBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonBorder");
-
-            WindowButtonHoverBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHoverBorder");
-            WindowButtonDownBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDownBorder");
-            WindowButtonGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonGlyph");
-            WindowButtonHoverGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHoverGlyph");
-            WindowButtonDownGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDownGlyph");
-
-            // New
-            WindowButtonFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocus");
-
-            // New
-            WindowButtonFocusBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocusBorder");
-
-            // New
+            //// New //// Not Used
             WindowButtonDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDisabled");
-
-            // New
+            //// New //// Not Used
             WindowButtonDisabledBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDisabledBorder");
-
-            // New
+            //// New //// Not Used
             WindowButtonDisabledGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDisabledGlyph");
-
-            // New
+            //// Not Used
+            WindowButtonDown = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDown");
+            //// Not Used
+            WindowButtonDownBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDownBorder");
+            //// Not Used
+            WindowButtonDownGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonDownGlyph");
+            //// New//// Not Used
+            WindowButtonFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocus");
+            //// New//// Not Used
+            WindowButtonFocusBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocusBorder");
+            //// New//// Not Used
             WindowButtonFocusGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonFocusGlyph");
-
+            //// Not Used
+            WindowButtonGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonGlyph");
+            //// Not Used
+            WindowButtonHover = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHover");
+            //// Not Used
+            WindowButtonHoverBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHoverBorder");
+            //// Not Used
+            WindowButtonHoverGlyph = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowButtonHoverGlyph");
             WindowPanel = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowPanel");
-            WindowPanelText = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowPanelText");
-            WindowBorder = _stylesProvider.GetColor("ThemedDialog", "WindowBorder");
-
+            WizardFooter = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooter");
+            WizardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooterText");
         }
 
         // Font Sizes and Font Family

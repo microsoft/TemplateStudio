@@ -154,6 +154,15 @@ namespace Microsoft.Templates.VsEmulator.Services
         public static string WindowButtonBorderColorKey { get { return "WindowButtonBorderColorKey"; } }
         public static string WindowButtonBorderBrushKey { get { return "WindowButtonBorderBrushKey"; } }
 
+        public static string WindowButtonDisabledColorKey { get { return "WindowButtonDisabledColorKey"; } }
+        public static string WindowButtonDisabledBrushKey { get { return "WindowButtonDisabledBrushKey"; } }
+
+        public static string WindowButtonDisabledBorderColorKey { get { return "WindowButtonDisabledBorderColorKey"; } }
+        public static string WindowButtonDisabledBorderBrushKey { get { return "WindowButtonDisabledBorderBrushKey"; } }
+
+        public static string WindowButtonDisabledGlyphColorKey { get { return "WindowButtonDisabledGlyphColorKey"; } }
+        public static string WindowButtonDisabledGlyphBrushKey { get { return "WindowButtonDisabledGlyphBrushKey"; } }
+
         public static string WindowButtonDownColorKey { get { return "WindowButtonDownColorKey"; } }
         public static string WindowButtonDownBrushKey { get { return "WindowButtonDownBrushKey"; } }
 
@@ -162,6 +171,15 @@ namespace Microsoft.Templates.VsEmulator.Services
 
         public static string WindowButtonDownGlyphColorKey { get { return "WindowButtonDownGlyphColorKey"; } }
         public static string WindowButtonDownGlyphBrushKey { get { return "WindowButtonDownGlyphBrushKey"; } }
+
+        public static string WindowButtonFocusColorKey { get { return "WindowButtonFocusColorKey"; } }
+        public static string WindowButtonFocusBrushKey { get { return "WindowButtonFocusBrushKey"; } }
+
+        public static string WindowButtonFocusBorderColorKey { get { return "WindowButtonFocusBorderColorKey"; } }
+        public static string WindowButtonFocusBorderBrushKey { get { return "WindowButtonFocusBorderBrushKey"; } }
+
+        public static string WindowButtonFocusGlyphColorKey { get { return "WindowButtonFocusGlyphColorKey"; } }
+        public static string WindowButtonFocusGlyphBrushKey { get { return "WindowButtonFocusGlyphBrushKey"; } }
 
         public static string WindowButtonGlyphColorKey { get { return "WindowButtonGlyphColorKey"; } }
         public static string WindowButtonGlyphBrushKey { get { return "WindowButtonGlyphBrushKey"; } }

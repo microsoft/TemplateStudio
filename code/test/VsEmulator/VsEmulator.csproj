@@ -166,7 +166,6 @@
     <Compile Include="Main\MainViewModel.cs" />
     <Compile Include="Services\CommonControls.cs" />
     <Compile Include="Services\Environment.cs" />
-    <Compile Include="Services\ThemedDialog.cs" />
     <Compile Include="Services\CommonDocument.cs" />
     <Compile Include="Services\InfoBar.cs" />
     <Compile Include="Services\XXXXXXX.cs" />
@@ -212,10 +211,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\Dark_ThemedDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Styles\Dark_WindowsTemplateStudio.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -229,10 +224,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Light_Environment.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\Light_ThemedDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

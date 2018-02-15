@@ -146,6 +146,15 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonBorderBrushKey}" Color="#00000000" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonBorderColorKey}" A="0" R="0" G="0" B="0" />
 
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDisabledBrushKey}" Color="#FFF5F5F5" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDisabledColorKey}" A="255" R="245" G="245" B="245" />
+
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDisabledBorderBrushKey}" Color="#FFCCCEDB" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDisabledBorderColorKey}" A="255" R="204" G="206" B="219" />
+
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDisabledGlyphBrushKey}" Color="#FFA2A4A5" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDisabledGlyphColorKey}" A="255" R="162" G="164" B="165" />
+
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDownBrushKey}" Color="#FF007ACC" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDownColorKey}" A="255" R="0" G="122" B="204" />
 
@@ -154,6 +163,15 @@
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDownGlyphBrushKey}" Color="#FFFFFFFF" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDownGlyphColorKey}" A="255" R="255" G="255" B="255" />
+
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonFocusBrushKey}" Color="#FFECECF0" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonFocusColorKey}" A="255" R="236" G="236" B="240" />
+
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonFocusBorderBrushKey}" Color="#FF3399FF" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonFocusBorderColorKey}" A="255" R="51" G="153" B="255" />
+
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonFocusGlyphBrushKey}" Color="#FF1E1E1E" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonFocusGlyphColorKey}" A="255" R="30" G="30" B="30" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonGlyphBrushKey}" Color="#FF1E1E1E" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonGlyphColorKey}" A="255" R="30" G="30" B="30" />
