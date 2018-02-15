@@ -31,7 +31,7 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Margin="14,6,14,0">
+        <TextBlock Margin="14,6,14,0" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding GoBackCommand}" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
                 <Grid Background="Transparent">
                     <TextBlock VerticalAlignment="Center" Margin="10,10,10,10">

@@ -20,7 +20,7 @@
     {
         "name": "CodeBehind",
         "displayName": "Code Behind",
-        "summary": "This is the traditional model for an application where logic is handled in the code-behind.  For a quick application, this is a great option.",
+        "summary": "This is the traditional model for an application where logic is handled in the code-behind.",
         "author": "Microsoft",
         "order": "1",
         "licenses": "",

@@ -8,8 +8,7 @@
         KeyDown="OnKeyDown"
         Title="Visual Studio Emulator" 
         Height="480" Width="800" 
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <Image x:Key="VsImage" Source="/VsEmulator;component/Assets/vs.jpg"/>

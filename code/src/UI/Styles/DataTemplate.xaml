@@ -47,7 +47,7 @@
                     Style="{StaticResource WtsTextBlockCardDescription}"
                     Margin="0,4,0,12" />
             </Grid>
-            <TextBlock VerticalAlignment="Bottom">
+            <TextBlock VerticalAlignment="Bottom" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
                 <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
                     <Grid Background="Transparent">
                         <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="12,8,12,8" />
@@ -102,7 +102,7 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-            <TextBlock VerticalAlignment="Bottom">
+            <TextBlock VerticalAlignment="Bottom" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
                 <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
                     <Grid Background="Transparent">
                         <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="12,8,12,8" />
@@ -128,6 +128,7 @@
                 Style="{StaticResource WtsListViewMultipleSelection}"
                 ItemsSource="{Binding Items}"
                 ItemTemplate="{StaticResource WtsItemTemplatePageFeature}"
+                AutomationProperties.Name="{Binding AccessibleName}"
                 SelectedItem="{Binding Selected, Mode=TwoWay}" />
         </Grid>
     </DataTemplate>
@@ -147,7 +148,8 @@
                 Grid.Row="1"
                 Style="{StaticResource WtsListViewSingleSelectionWithoutScroll}"
                 ItemsSource="{Binding Items}"
-                ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}" />
+                ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}"
+                AutomationProperties.Name="{Binding AccessibleName}" />
         </Grid>
     </DataTemplate>
 
@@ -170,7 +172,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WtsItemTemplateDependency">
-        <TextBlock>
+        <TextBlock AutomationProperties.Name="{Binding Title}">
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding DetailsCommand}"  AutomationProperties.Name="{Binding Title}">
                 <Grid Background="Transparent">
                     <TextBlock Text="{Binding Title}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="4,4,4,4" />
@@ -180,7 +182,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="WtsItemTemplateLicense">
-        <TextBlock>
+        <TextBlock AutomationProperties.Name="{Binding Text}">
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenCommand}" AutomationProperties.Name="{Binding Text}">
                 <Grid Background="Transparent">
                     <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="4,4,4,4" />
@@ -291,7 +293,7 @@
                     Grid.Column="0"
                     Margin="{StaticResource Margin_M_LeftTopRightBottom}"
                     ContentTemplateSelector="{StaticResource FileStatusTemplateSelector}" />
-                <TextBlock Grid.Column="1">
+                <TextBlock Grid.Column="1" AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
                     <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding MoreDetailsCommand}" AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
                         <Grid Background="Transparent">
                             <TextBlock
