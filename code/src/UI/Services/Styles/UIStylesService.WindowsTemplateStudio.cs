@@ -257,6 +257,14 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(ListItemMouseOverProperty, value); }
         }
 
+        public static readonly DependencyProperty ListItemMouseOverTextProperty = DependencyProperty.Register("ListItemMouseOverText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ListItemMouseOverText
+        {
+            get { return (Brush)GetValue(ListItemMouseOverTextProperty); }
+            set { SetValue(ListItemMouseOverTextProperty, value); }
+        }
+
         public static readonly DependencyProperty NewItemFileStatusConflictingFileProperty = DependencyProperty.Register("NewItemFileStatusConflictingFile", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush NewItemFileStatusConflictingFile
