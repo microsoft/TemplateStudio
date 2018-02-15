@@ -247,18 +247,18 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
                     <Grid>
-                        <Grid x:Name="selectedGrid" Background="Transparent" />
-                        <Grid MinHeight="35">
+                        <Border x:Name="bd" MinHeight="35" Background="{TemplateBinding Background}">
                             <TextBlock
                                 x:Name="text"
+                                Foreground="{TemplateBinding Foreground}"
                                 Style="{StaticResource WtsTextBlockSequentialFlow}"
                                 extensions:TextBlockExtensions.SequentialFlowStep="{Binding}"
                                 extensions:TextBlockExtensions.SequentialFlowStepCompleted="{Binding Completed}" />
-                        </Grid>
+                        </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsSelected}" Value="true">
-                            <Setter Property="Background" TargetName="selectedGrid" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="bd" Value="{Binding SelectedItemActive, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Foreground" TargetName="text" Value="{Binding SelectedItemActiveText, Source={x:Static services:UIStylesService.Instance}}" />
                         </DataTrigger>
                         <MultiDataTrigger>
@@ -266,15 +266,20 @@
                                 <Condition Binding="{Binding IsSelected}" Value="false" />
                                 <Condition Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="true" />
                             </MultiDataTrigger.Conditions>
-                            <Setter Property="Background" TargetName="selectedGrid" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsSelected}" Value="false" />
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                             </MultiDataTrigger.Conditions>
-                            <Setter Property="Background" TargetName="selectedGrid" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" TargetName="text" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -363,7 +368,7 @@
                                     Command="{Binding DeleteCommand}" />
                             </Grid>
                         </Grid>
-                        <Grid x:Name="dropGridMask" Visibility="Collapsed" Opacity="0.5" Background="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                        <Grid x:Name="dropGridMask" Visibility="Collapsed" Background="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
@@ -476,6 +481,7 @@
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="fileName" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -483,7 +489,11 @@
                                 <Condition Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="true" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="bd" Value="{Binding ListItemMouseOver, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Foreground" TargetName="fileName" Value="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
                         </MultiDataTrigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" TargetName="fileName" Value="{Binding ListItemDisabledText, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
