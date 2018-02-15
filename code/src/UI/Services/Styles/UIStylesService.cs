@@ -225,12 +225,10 @@ namespace Microsoft.Templates.UI.Services
         {
             CardBackgroundDefault = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundDefault");
             CardBackgroundDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundDisabled");
-            CardBackgroundFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundFocus");
             CardBackgroundHover = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundHover");
             CardBackgroundSelected = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBackgroundSelected");
             CardBorderDefault = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderDefault");
             CardBorderDisabled = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderDisabled");
-            CardBorderFocus = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderFocus");
             CardBorderHover = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderHover");
             CardBorderSelected = _stylesProvider.GetColor("WindowsTemplateStudio", "CardBorderSelected");
             CardDescriptionText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardDescriptionText");

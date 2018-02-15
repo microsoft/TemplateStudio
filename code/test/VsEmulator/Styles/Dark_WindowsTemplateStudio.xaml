@@ -8,9 +8,6 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundDisabledBrushKey}" Color="#FF2D2D30" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundDisabledColorKey}" A="255" R="45" G="45" B="48" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundFocusBrushKey}" Color="#FF252526" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundFocusColorKey}" A="255" R="37" G="37" B="38" />
-
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundHoverBrushKey}" Color="#FF2D2D30" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundHoverColorKey}" A="255" R="45" G="45" B="48" />
 
@@ -22,9 +19,6 @@
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderDisabledBrushKey}" Color="#FF3F3F46" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderDisabledColorKey}" A="255" R="63" G="63" B="70" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderFocusBrushKey}" Color="#FF007ACC" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderFocusColorKey}" A="255" R="0" G="122" B="204" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderHoverBrushKey}" Color="#FF999999" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderHoverColorKey}" A="255" R="153" G="153" B="153" />

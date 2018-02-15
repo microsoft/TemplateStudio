@@ -4,7 +4,7 @@
 
 namespace Microsoft.Templates.VsEmulator.Services
 {
-// This is a code generated class
+    // This is a code generated class
 #pragma warning disable SA1306 // Field names must begin with lower-case letter
 #pragma warning disable SA1516 // Elements must be separated by blank line
 #pragma warning disable SA1502 // Element must not be on a single line
@@ -15,9 +15,6 @@ namespace Microsoft.Templates.VsEmulator.Services
 
         public static string CardBackgroundDisabledColorKey { get { return "CardBackgroundDisabledColorKey"; } }
         public static string CardBackgroundDisabledBrushKey { get { return "CardBackgroundDisabledBrushKey"; } }
-
-        public static string CardBackgroundFocusColorKey { get { return "CardBackgroundFocusColorKey"; } }
-        public static string CardBackgroundFocusBrushKey { get { return "CardBackgroundFocusBrushKey"; } }
 
         public static string CardBackgroundHoverColorKey { get { return "CardBackgroundHoverColorKey"; } }
         public static string CardBackgroundHoverBrushKey { get { return "CardBackgroundHoverBrushKey"; } }
@@ -30,9 +27,6 @@ namespace Microsoft.Templates.VsEmulator.Services
 
         public static string CardBorderDisabledColorKey { get { return "CardBorderDisabledColorKey"; } }
         public static string CardBorderDisabledBrushKey { get { return "CardBorderDisabledBrushKey"; } }
-
-        public static string CardBorderFocusColorKey { get { return "CardBorderFocusColorKey"; } }
-        public static string CardBorderFocusBrushKey { get { return "CardBorderFocusBrushKey"; } }
 
         public static string CardBorderHoverColorKey { get { return "CardBorderHoverColorKey"; } }
         public static string CardBorderHoverBrushKey { get { return "CardBorderHoverBrushKey"; } }

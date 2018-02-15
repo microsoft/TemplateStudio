@@ -71,9 +71,6 @@
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_RAW" Source="FFFFFFFF" />
       </Color>
-      <Color Name="CardBackgroundFocus">
-        <Background Type="CT_RAW" Source="FFFFFFFF" />
-      </Color>
       <Color Name="CardBackgroundHover">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
       </Color>
@@ -85,9 +82,6 @@
       </Color>
       <Color Name="CardBorderDefault">
         <Background Type="CT_RAW" Source="FFBFBFBF" />
-      </Color>
-      <Color Name="CardBorderFocus">
-        <Background Type="CT_RAW" Source="FF3399FF" />
       </Color>
       <Color Name="CardBorderHover">
         <Background Type="CT_RAW" Source="FF9A9A9A" />
@@ -208,9 +202,6 @@
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_RAW" Source="FF252526" />
       </Color>
-      <Color Name="CardBackgroundFocus">
-        <Background Type="CT_RAW" Source="FF252526" />
-      </Color>
       <Color Name="CardBackgroundHover">
         <Background Type="CT_RAW" Source="FF2D2D30" />
       </Color>
@@ -222,9 +213,6 @@
       </Color>
       <Color Name="CardBorderDefault">
         <Background Type="CT_RAW" Source="FF555555" />
-      </Color>
-      <Color Name="CardBorderFocus">
-        <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
       <Color Name="CardBorderHover">
         <Background Type="CT_RAW" Source="FF999999" />
@@ -345,9 +333,6 @@
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_RAW" Source="FFFFFFFF" />
       </Color>
-      <Color Name="CardBackgroundFocus">
-        <Background Type="CT_RAW" Source="FFFFFFFF" />
-      </Color>
       <Color Name="CardBackgroundHover">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
       </Color>
@@ -359,9 +344,6 @@
       </Color>
       <Color Name="CardBorderDefault">
         <Background Type="CT_RAW" Source="FFBFBFBF" />
-      </Color>
-      <Color Name="CardBorderFocus">
-        <Background Type="CT_RAW" Source="FFE5C365" />
       </Color>
       <Color Name="CardBorderHover">
         <Background Type="CT_RAW" Source="FF9A9A9A" />
@@ -482,9 +464,6 @@
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_SYSCOLOR" Source="0000000F" />
       </Color>
-      <Color Name="CardBackgroundFocus">
-        <Background Type="CT_SYSCOLOR" Source="0000000F" />
-      </Color>
       <Color Name="CardBackgroundHover">
         <Background Type="CT_SYSCOLOR" Source="00000010" />
       </Color>
@@ -496,9 +475,6 @@
       </Color>
       <Color Name="CardBorderDefault">
         <Background Type="CT_SYSCOLOR" Source="00000010" />
-      </Color>
-      <Color Name="CardBorderFocus">
-        <Background Type="CT_SYSCOLOR" Source="0000000E" />
       </Color>
       <Color Name="CardBorderHover">
         <Background Type="CT_SYSCOLOR" Source="0000000E" />

@@ -24,11 +24,6 @@ namespace Microsoft.Templates.UI.Services
         public static ThemeResourceKey CardBackgroundDisabledColorKey { get { return _CardBackgroundDisabledColorKey ?? (_CardBackgroundDisabledColorKey = new ThemeResourceKey(Category, "CardBackgroundDisabled", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey CardBackgroundDisabledBrushKey { get { return _CardBackgroundDisabledBrushKey ?? (_CardBackgroundDisabledBrushKey = new ThemeResourceKey(Category, "CardBackgroundDisabled", ThemeResourceKeyType.BackgroundBrush)); } }
 
-        private static ThemeResourceKey _CardBackgroundFocusColorKey;
-        private static ThemeResourceKey _CardBackgroundFocusBrushKey;
-        public static ThemeResourceKey CardBackgroundFocusColorKey { get { return _CardBackgroundFocusColorKey ?? (_CardBackgroundFocusColorKey = new ThemeResourceKey(Category, "CardBackgroundFocus", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey CardBackgroundFocusBrushKey { get { return _CardBackgroundFocusBrushKey ?? (_CardBackgroundFocusBrushKey = new ThemeResourceKey(Category, "CardBackgroundFocus", ThemeResourceKeyType.BackgroundBrush)); } }
-
         private static ThemeResourceKey _CardBackgroundHoverColorKey;
         private static ThemeResourceKey _CardBackgroundHoverBrushKey;
         public static ThemeResourceKey CardBackgroundHoverColorKey { get { return _CardBackgroundHoverColorKey ?? (_CardBackgroundHoverColorKey = new ThemeResourceKey(Category, "CardBackgroundHover", ThemeResourceKeyType.BackgroundColor)); } }
@@ -48,11 +43,6 @@ namespace Microsoft.Templates.UI.Services
         private static ThemeResourceKey _CardBorderDisabledBrushKey;
         public static ThemeResourceKey CardBorderDisabledColorKey { get { return _CardBorderDisabledColorKey ?? (_CardBorderDisabledColorKey = new ThemeResourceKey(Category, "CardBorderDisabled", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey CardBorderDisabledBrushKey { get { return _CardBorderDisabledBrushKey ?? (_CardBorderDisabledBrushKey = new ThemeResourceKey(Category, "CardBorderDisabled", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _CardBorderFocusColorKey;
-        private static ThemeResourceKey _CardBorderFocusBrushKey;
-        public static ThemeResourceKey CardBorderFocusColorKey { get { return _CardBorderFocusColorKey ?? (_CardBorderFocusColorKey = new ThemeResourceKey(Category, "CardBorderFocus", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey CardBorderFocusBrushKey { get { return _CardBorderFocusBrushKey ?? (_CardBorderFocusBrushKey = new ThemeResourceKey(Category, "CardBorderFocus", ThemeResourceKeyType.BackgroundBrush)); } }
 
         private static ThemeResourceKey _CardBorderHoverColorKey;
         private static ThemeResourceKey _CardBorderHoverBrushKey;

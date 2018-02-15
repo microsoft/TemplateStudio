@@ -25,14 +25,6 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(CardBackgroundDisabledProperty, value); }
         }
 
-        public static readonly DependencyProperty CardBackgroundFocusProperty = DependencyProperty.Register("CardBackgroundFocus", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush CardBackgroundFocus
-        {
-            get { return (Brush)GetValue(CardBackgroundFocusProperty); }
-            set { SetValue(CardBackgroundFocusProperty, value); }
-        }
-
         public static readonly DependencyProperty CardBackgroundHoverProperty = DependencyProperty.Register("CardBackgroundHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush CardBackgroundHover
@@ -63,14 +55,6 @@ namespace Microsoft.Templates.UI.Services
         {
             get { return (Brush)GetValue(CardBorderDisabledProperty); }
             set { SetValue(CardBorderDisabledProperty, value); }
-        }
-
-        public static readonly DependencyProperty CardBorderFocusProperty = DependencyProperty.Register("CardBorderFocus", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush CardBorderFocus
-        {
-            get { return (Brush)GetValue(CardBorderFocusProperty); }
-            set { SetValue(CardBorderFocusProperty, value); }
         }
 
         public static readonly DependencyProperty CardBorderHoverProperty = DependencyProperty.Register("CardBorderHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
