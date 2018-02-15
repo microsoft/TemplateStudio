@@ -12,15 +12,44 @@ namespace Microsoft.Templates.VsEmulator.Services
 {
     public class FakeStyleValuesProvider : IStyleValuesProvider
     {
+        private static FakeStyleValuesProvider _instance;
+
+        private ResourceDictionary _commonControls;
+        private ResourceDictionary _commonDocument;
+        private ResourceDictionary _environment;
+        private ResourceDictionary _infoBar;
+        private ResourceDictionary _themedDialog;
+        private ResourceDictionary _windowsTemplateStudio;
+
+        public static FakeStyleValuesProvider Instance => _instance ?? (_instance = new FakeStyleValuesProvider());
+
+        private FakeStyleValuesProvider()
+        {
+        }
+
         private double _baseFontSize = 12;
 
         public event EventHandler ThemeChanged;
 
         public Brush GetColor(string className, string memberName)
         {
-            var dictionaryName = $"{MainViewModel.ThemeName}_{className}";
-            var resourceName = $"{memberName}BrushKey";
-            return GetColorFromResourceDictionary(dictionaryName, resourceName);
+            switch (className)
+            {
+                case "CommonControls":
+                    return GetColorFromResourceDictionary(_commonControls, $"{memberName}BrushKey");
+                case "CommonDocument":
+                    return GetColorFromResourceDictionary(_commonDocument, $"{memberName}BrushKey");
+                case "Environment":
+                    return GetColorFromResourceDictionary(_environment, $"{memberName}BrushKey");
+                case "InfoBar":
+                    return GetColorFromResourceDictionary(_infoBar, $"{memberName}BrushKey");
+                case "ThemedDialog":
+                    return GetColorFromResourceDictionary(_themedDialog, $"{memberName}BrushKey");
+                case "WindowsTemplateStudio":
+                    return GetColorFromResourceDictionary(_windowsTemplateStudio, $"{memberName}BrushKey");
+                default:
+                    throw new Exception($"The class name '{className}' is not recognized");
+            }
         }
 
         public double GetFontSize(string fontSizeResourceKey)
@@ -59,18 +88,44 @@ namespace Microsoft.Templates.VsEmulator.Services
             ThemeChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        private Brush GetColorFromResourceDictionary(string dictionaryName, string resourceName)
+        private Brush GetColorFromResourceDictionary(ResourceDictionary dictionary, string resourceName)
         {
-            var colorsDictionary = new ResourceDictionary();
-            colorsDictionary.Source = new Uri($"/VsEmulator;component/Styles/{dictionaryName}.xaml", UriKind.RelativeOrAbsolute);
-            if (colorsDictionary.Contains(resourceName))
+            if (dictionary.Contains(resourceName))
             {
-                return colorsDictionary[resourceName] as SolidColorBrush;
+                return dictionary[resourceName] as SolidColorBrush;
             }
             else
             {
-                return default(SolidColorBrush);
+                throw new Exception($"The member name '{resourceName}' is not recognized");
             }
+        }
+
+        public void LoadResources()
+        {
+            _commonControls = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_CommonControls.xaml", UriKind.RelativeOrAbsolute)
+            };
+            _commonDocument = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_CommonDocument.xaml", UriKind.RelativeOrAbsolute)
+            };
+            _environment = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_Environment.xaml", UriKind.RelativeOrAbsolute)
+            };
+            _infoBar = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_InfoBar.xaml", UriKind.RelativeOrAbsolute)
+            };
+            _themedDialog = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_ThemedDialog.xaml", UriKind.RelativeOrAbsolute)
+            };
+            _windowsTemplateStudio = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_WindowsTemplateStudio.xaml", UriKind.RelativeOrAbsolute)
+            };
         }
 
         public SolidColorBrush GetColor(string resourceKey) => Application.Current.FindResource(resourceKey) as SolidColorBrush;
