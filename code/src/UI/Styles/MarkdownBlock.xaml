@@ -33,9 +33,9 @@
     </Style>
 
     <Style x:Key="H4Style" TargetType="Paragraph" BasedOn="{StaticResource BaseMarkdownText}">
-        <Setter Property="FontSize" Value="{Binding Environment90PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
-
+    
     <Style x:Key="ImageStyle" TargetType="Image">
         <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
         <Style.Triggers>

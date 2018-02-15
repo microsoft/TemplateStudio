@@ -74,8 +74,6 @@ namespace Microsoft.Templates.VsEmulator.Services
                     return _baseFontSize * 3.3;
                 case "Environment375PercentFontSize":
                     return _baseFontSize * 3.75;
-                case "Environment90PercentFontSize":
-                    return _baseFontSize * 0.9;
                 default:
                     throw new Exception($"The font size value '{fontSizeResourceKey}' is not found");
             }

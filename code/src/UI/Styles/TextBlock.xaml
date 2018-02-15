@@ -55,7 +55,7 @@
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockAboutSubSectionText" BasedOn="{StaticResource WtsTextBlockSubSectionText}">
-        <Setter Property="FontSize" Value="{Binding Environment90PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockTermsAndConditions">
@@ -182,7 +182,7 @@
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockHyperlinkAbout" BasedOn="{StaticResource WtsTextBlockHyperlink}">
-        <Setter Property="FontSize" Value="{Binding Environment90PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
     <!--Project Details-->
