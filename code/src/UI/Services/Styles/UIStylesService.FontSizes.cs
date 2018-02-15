@@ -9,14 +9,6 @@ namespace Microsoft.Templates.UI.Services
 {
     public partial class UIStylesService
     {
-        public static readonly DependencyProperty Environment90PercentFontSizeProperty = DependencyProperty.Register("Environment90PercentFontSize", typeof(double), typeof(UIStylesService), new PropertyMetadata(0.0));
-
-        public double Environment90PercentFontSize
-        {
-            get { return (double)GetValue(Environment90PercentFontSizeProperty); }
-            set { SetValue(Environment90PercentFontSizeProperty, value); }
-        }
-
         public static readonly DependencyProperty Environment100PercentFontSizeProperty = DependencyProperty.Register("Environment100PercentFontSize", typeof(double), typeof(UIStylesService), new PropertyMetadata(0.0));
 
         public double Environment100PercentFontSize

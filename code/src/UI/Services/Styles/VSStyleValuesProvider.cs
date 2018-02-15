@@ -91,8 +91,6 @@ namespace Microsoft.Templates.UI.Services
                     return GetVSFontSize(VsFonts.Environment330PercentFontSizeKey);
                 case "Environment375PercentFontSize":
                     return GetVSFontSize(VsFonts.Environment375PercentFontSizeKey);
-                case "Environment90PercentFontSize":
-                    return GetVSFontSize(VsFonts.Environment90PercentFontSizeKey);
                 default:
                     throw new Exception($"The font size value '{fontSizeResourceKey}' is not found");
             }

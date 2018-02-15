@@ -299,7 +299,6 @@ namespace Microsoft.Templates.UI.Services
         private void SetFontProperties()
         {
             // FontSizes
-            Environment90PercentFontSize = _stylesProvider.GetFontSize("Environment90PercentFontSize");
             Environment100PercentFontSize = _stylesProvider.GetFontSize("Environment100PercentFontSize");
             Environment111PercentFontSize = _stylesProvider.GetFontSize("Environment111PercentFontSize");
             Environment122PercentFontSize = _stylesProvider.GetFontSize("Environment122PercentFontSize");
