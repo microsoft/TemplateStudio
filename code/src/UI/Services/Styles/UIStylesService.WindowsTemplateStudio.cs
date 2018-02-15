@@ -41,14 +41,6 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(CardBackgroundHoverProperty, value); }
         }
 
-        public static readonly DependencyProperty CardBackgroundPressedProperty = DependencyProperty.Register("CardBackgroundPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush CardBackgroundPressed
-        {
-            get { return (Brush)GetValue(CardBackgroundPressedProperty); }
-            set { SetValue(CardBackgroundPressedProperty, value); }
-        }
-
         public static readonly DependencyProperty CardBackgroundSelectedProperty = DependencyProperty.Register("CardBackgroundSelected", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush CardBackgroundSelected
@@ -87,14 +79,6 @@ namespace Microsoft.Templates.UI.Services
         {
             get { return (Brush)GetValue(CardBorderHoverProperty); }
             set { SetValue(CardBorderHoverProperty, value); }
-        }
-
-        public static readonly DependencyProperty CardBorderPressedProperty = DependencyProperty.Register("CardBorderPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush CardBorderPressed
-        {
-            get { return (Brush)GetValue(CardBorderPressedProperty); }
-            set { SetValue(CardBorderPressedProperty, value); }
         }
 
         public static readonly DependencyProperty CardBorderSelectedProperty = DependencyProperty.Register("CardBorderSelected", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
@@ -233,14 +217,6 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(HyperlinkHoverProperty, value); }
         }
 
-        public static readonly DependencyProperty HyperlinkPressedProperty = DependencyProperty.Register("HyperlinkPressed", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush HyperlinkPressed
-        {
-            get { return (Brush)GetValue(HyperlinkPressedProperty); }
-            set { SetValue(HyperlinkPressedProperty, value); }
-        }
-
         public static readonly DependencyProperty ListItemDisabledTextProperty = DependencyProperty.Register("ListItemDisabledText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush ListItemDisabledText
@@ -311,14 +287,6 @@ namespace Microsoft.Templates.UI.Services
         {
             get { return (Brush)GetValue(NewItemFileStatusWarningFileProperty); }
             set { SetValue(NewItemFileStatusWarningFileProperty, value); }
-        }
-
-        public static readonly DependencyProperty NotificationTextProperty = DependencyProperty.Register("NotificationText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
-
-        public Brush NotificationText
-        {
-            get { return (Brush)GetValue(NotificationTextProperty); }
-            set { SetValue(NotificationTextProperty, value); }
         }
 
         public static readonly DependencyProperty SavedTemplateBackgroundHoverProperty = DependencyProperty.Register("SavedTemplateBackgroundHover", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
