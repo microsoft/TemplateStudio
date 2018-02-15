@@ -31,21 +31,23 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Margin="{StaticResource Margin_L_Left_M2_Top}">
+        <TextBlock Margin="14,6,14,0">
             <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding GoBackCommand}" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
-                <TextBlock VerticalAlignment="Center">
-                    <TextBlock.Inlines>
-                        <Run Text="&#xE0A6;" Style="{StaticResource WtsRunHyperlink}" FontFamily="Segoe MDL2 Assets" />
-                        <Run Text=" " Style="{StaticResource WtsRunHyperlink}" />
-                        <Run Text="{x:Static res:StringRes.ButtonBack}" Style="{StaticResource WtsRunHyperlink}" />
-                    </TextBlock.Inlines>
-                </TextBlock>
+                <Grid Background="Transparent">
+                    <TextBlock VerticalAlignment="Center" Margin="10,10,10,10">
+                        <TextBlock.Inlines>
+                            <Run Text="&#xE0A6;" Style="{StaticResource WtsRunHyperlink}" FontFamily="Segoe MDL2 Assets" />
+                            <Run Text=" " Style="{StaticResource WtsRunHyperlink}" />
+                            <Run Text="{x:Static res:StringRes.ButtonBack}" Style="{StaticResource WtsRunHyperlink}" />
+                        </TextBlock.Inlines>
+                    </TextBlock>
+                </Grid>
             </Hyperlink>
         </TextBlock>
-
-        <controls:ImageEx Grid.Row="1" Grid.Column="0" SourcePath="{Binding Icon}" Style="{StaticResource WtsImageEx}" Margin="{StaticResource Margin_L_Left_M_Top}" />
+        
+        <controls:ImageEx Grid.Row="1" Grid.Column="0" SourcePath="{Binding Icon}" Style="{StaticResource WtsImageEx}" Margin="{StaticResource Margin_L_Left}" />
         <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
-            <Grid Margin="{StaticResource Margin_S_Top}">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="36" />
@@ -101,7 +103,7 @@
                 <ItemsControl
                     Grid.Row="4"
                     Grid.Column="2"
-                    Margin="{StaticResource Margin_XS_Top}"
+                    Margin="-4,0,0,0"
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding Licenses}"
                     ItemTemplate="{StaticResource WtsItemTemplateLicense}"                    
@@ -116,7 +118,7 @@
                 <ItemsControl
                     Grid.Row="5"
                     Grid.Column="2"
-                    Margin="{StaticResource Margin_XS_Top}"
+                    Margin="-4,0,0,0"
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding Dependencies}"
                     ItemTemplate="{StaticResource WtsItemTemplateDependency}"
