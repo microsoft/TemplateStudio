@@ -18,7 +18,6 @@ namespace Microsoft.Templates.VsEmulator.Services
         private ResourceDictionary _commonDocument;
         private ResourceDictionary _environment;
         private ResourceDictionary _infoBar;
-        private ResourceDictionary _themedDialog;
         private ResourceDictionary _windowsTemplateStudio;
 
         public static FakeStyleValuesProvider Instance => _instance ?? (_instance = new FakeStyleValuesProvider());
@@ -43,8 +42,6 @@ namespace Microsoft.Templates.VsEmulator.Services
                     return GetColorFromResourceDictionary(_environment, $"{memberName}BrushKey");
                 case "InfoBar":
                     return GetColorFromResourceDictionary(_infoBar, $"{memberName}BrushKey");
-                case "ThemedDialog":
-                    return GetColorFromResourceDictionary(_themedDialog, $"{memberName}BrushKey");
                 case "WindowsTemplateStudio":
                     return GetColorFromResourceDictionary(_windowsTemplateStudio, $"{memberName}BrushKey");
                 default:
@@ -115,10 +112,6 @@ namespace Microsoft.Templates.VsEmulator.Services
             _infoBar = new ResourceDictionary()
             {
                 Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_InfoBar.xaml", UriKind.RelativeOrAbsolute)
-            };
-            _themedDialog = new ResourceDictionary()
-            {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_ThemedDialog.xaml", UriKind.RelativeOrAbsolute)
             };
             _windowsTemplateStudio = new ResourceDictionary()
             {

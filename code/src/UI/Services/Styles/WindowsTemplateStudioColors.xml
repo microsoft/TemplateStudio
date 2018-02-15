@@ -17,9 +17,6 @@
       <Color Name="HyperlinkHover">
         <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
-      <Color Name="HyperlinkPressed">
-        <Background Type="CT_RAW" Source="FF0E70C0" />
-      </Color>
       <Color Name="HyperlinkDisabled">
         <Background Type="CT_RAW" Source="FFA2A4A5" />
       </Color>
@@ -59,33 +56,6 @@
       <Color Name="SectionDivider">
         <Background Type="CT_RAW" Source="FFCCCEDB" />
       </Color>
-      <Color Name="WindowButton">
-        <Background Type="CT_RAW" Source="00000000" />
-      </Color>
-      <Color Name="WindowButtonHover">
-        <Background Type="CT_RAW" Source="FFC9DEF5" />
-      </Color>
-      <Color Name="WindowButtonDown">
-        <Background Type="CT_RAW" Source="FF007ACC" />
-      </Color>
-      <Color Name="WindowButtonBorder">
-        <Background Type="CT_RAW" Source="00000000" />
-      </Color>
-      <Color Name="WindowButtonHoverBorder">
-        <Background Type="CT_RAW" Source="FFC9DEF5" />
-      </Color>
-      <Color Name="WindowButtonDownBorder">
-        <Background Type="CT_RAW" Source="FF007ACC" />
-      </Color>
-      <Color Name="WindowButtonGlyph">
-        <Background Type="CT_RAW" Source="FF1E1E1E" />
-      </Color>
-      <Color Name="WindowButtonHoverGlyph">
-        <Background Type="CT_RAW" Source="FF1E1E1E" />
-      </Color>
-      <Color Name="WindowButtonDownGlyph">
-        <Background Type="CT_RAW" Source="FFFFFFFF" />
-      </Color>
       <Color Name="HeaderTextSecondary">
         <Background Type="CT_RAW" Source="FF828282" />
       </Color>
@@ -101,13 +71,7 @@
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_RAW" Source="FFFFFFFF" />
       </Color>
-      <Color Name="CardBackgroundFocus">
-        <Background Type="CT_RAW" Source="FFFFFFFF" />
-      </Color>
       <Color Name="CardBackgroundHover">
-        <Background Type="CT_RAW" Source="FFEFEFF2" />
-      </Color>
-      <Color Name="CardBackgroundPressed">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
       </Color>
       <Color Name="CardBackgroundSelected">
@@ -119,23 +83,14 @@
       <Color Name="CardBorderDefault">
         <Background Type="CT_RAW" Source="FFBFBFBF" />
       </Color>
-      <Color Name="CardBorderFocus">
-        <Background Type="CT_RAW" Source="FF3399FF" />
-      </Color>
       <Color Name="CardBorderHover">
         <Background Type="CT_RAW" Source="FF9A9A9A" />
-      </Color>
-      <Color Name="CardBorderPressed">
-        <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
       <Color Name="CardBorderSelected">
         <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
       <Color Name="CardBorderDisabled">
         <Background Type="CT_RAW" Source="FFCCCEDB" />
-      </Color>
-      <Color Name="NotificationText">
-        <Background Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
       <Color Name="DeleteTemplateIcon">
         <Background Type="CT_RAW" Source="FFE51400" />
@@ -193,9 +148,6 @@
       <Color Name="HyperlinkHover">
         <Background Type="CT_RAW" Source="FF55AAFF" />
       </Color>
-      <Color Name="HyperlinkPressed">
-        <Background Type="CT_RAW" Source="FF0097FB" />
-      </Color>
       <Color Name="HyperlinkDisabled">
         <Background Type="CT_RAW" Source="FF656565" />
       </Color>
@@ -235,33 +187,6 @@
       <Color Name="SectionDivider">
         <Background Type="CT_RAW" Source="FF3F3F46" />
       </Color>
-      <Color Name="WindowButton">
-        <Background Type="CT_RAW" Source="00000000" />
-      </Color>
-      <Color Name="WindowButtonHover">
-        <Background Type="CT_RAW" Source="FF3E3E40" />
-      </Color>
-      <Color Name="WindowButtonDown">
-        <Background Type="CT_RAW" Source="FF007ACC" />
-      </Color>
-      <Color Name="WindowButtonBorder">
-        <Background Type="CT_RAW" Source="00000000" />
-      </Color>
-      <Color Name="WindowButtonHoverBorder">
-        <Background Type="CT_RAW" Source="FF3E3E40" />
-      </Color>
-      <Color Name="WindowButtonDownBorder">
-        <Background Type="CT_RAW" Source="FF007ACC" />
-      </Color>
-      <Color Name="WindowButtonGlyph">
-        <Background Type="CT_RAW" Source="FFF1F1F1" />
-      </Color>
-      <Color Name="WindowButtonHoverGlyph">
-        <Background Type="CT_RAW" Source="FFF1F1F1" />
-      </Color>
-      <Color Name="WindowButtonDownGlyph">
-        <Background Type="CT_RAW" Source="FFFFFFFF" />
-      </Color>
       <Color Name="HeaderTextSecondary">
         <Background Type="CT_RAW" Source="FFA2A4A5" />
       </Color>
@@ -277,13 +202,7 @@
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_RAW" Source="FF252526" />
       </Color>
-      <Color Name="CardBackgroundFocus">
-        <Background Type="CT_RAW" Source="FF252526" />
-      </Color>
       <Color Name="CardBackgroundHover">
-        <Background Type="CT_RAW" Source="FF2D2D30" />
-      </Color>
-      <Color Name="CardBackgroundPressed">
         <Background Type="CT_RAW" Source="FF2D2D30" />
       </Color>
       <Color Name="CardBackgroundSelected">
@@ -295,23 +214,14 @@
       <Color Name="CardBorderDefault">
         <Background Type="CT_RAW" Source="FF555555" />
       </Color>
-      <Color Name="CardBorderFocus">
-        <Background Type="CT_RAW" Source="FF007ACC" />
-      </Color>
       <Color Name="CardBorderHover">
         <Background Type="CT_RAW" Source="FF999999" />
-      </Color>
-      <Color Name="CardBorderPressed">
-        <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
       <Color Name="CardBorderSelected">
         <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
       <Color Name="CardBorderDisabled">
         <Background Type="CT_RAW" Source="FF3F3F46" />
-      </Color>
-      <Color Name="NotificationText">
-        <Background Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
       <Color Name="DeleteTemplateIcon">
         <Background Type="CT_RAW" Source="FFE51400" />
@@ -369,9 +279,6 @@
       <Color Name="HyperlinkHover">
         <Background Type="CT_RAW" Source="FF3399FF" />
       </Color>
-      <Color Name="HyperlinkPressed">
-        <Background Type="CT_RAW" Source="FF3399FF" />
-      </Color>
       <Color Name="HyperlinkDisabled">
         <Background Type="CT_RAW" Source="FFA2A4A5" />
       </Color>
@@ -411,33 +318,6 @@
       <Color Name="SectionDivider">
         <Background Type="CT_RAW" Source="FFCCCEDB" />
       </Color>
-      <Color Name="WindowButton">
-        <Background Type="CT_RAW" Source="00000000" />
-      </Color>
-      <Color Name="WindowButtonHover">
-        <Background Type="CT_RAW" Source="FFFDF4BF" />
-      </Color>
-      <Color Name="WindowButtonDown">
-        <Background Type="CT_RAW" Source="FFFFF29D" />
-      </Color>
-      <Color Name="WindowButtonBorder">
-        <Background Type="CT_RAW" Source="00000000" />
-      </Color>
-      <Color Name="WindowButtonHoverBorder">
-        <Background Type="CT_RAW" Source="FFE5C365" />
-      </Color>
-      <Color Name="WindowButtonDownBorder">
-        <Background Type="CT_RAW" Source="FFE5C365" />
-      </Color>
-      <Color Name="WindowButtonGlyph">
-        <Background Type="CT_RAW" Source="FF1B293E" />
-      </Color>
-      <Color Name="WindowButtonHoverGlyph">
-        <Background Type="CT_RAW" Source="FF000000" />
-      </Color>
-      <Color Name="WindowButtonDownGlyph">
-        <Background Type="CT_RAW" Source="FF000000" />
-      </Color>
       <Color Name="HeaderTextSecondary">
         <Background Type="CT_RAW" Source="FF6D6D6D" />
       </Color>
@@ -453,13 +333,7 @@
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_RAW" Source="FFFFFFFF" />
       </Color>
-      <Color Name="CardBackgroundFocus">
-        <Background Type="CT_RAW" Source="FFFFFFFF" />
-      </Color>
       <Color Name="CardBackgroundHover">
-        <Background Type="CT_RAW" Source="FFEFEFF2" />
-      </Color>
-      <Color Name="CardBackgroundPressed">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
       </Color>
       <Color Name="CardBackgroundSelected">
@@ -471,23 +345,14 @@
       <Color Name="CardBorderDefault">
         <Background Type="CT_RAW" Source="FFBFBFBF" />
       </Color>
-      <Color Name="CardBorderFocus">
-        <Background Type="CT_RAW" Source="FFE5C365" />
-      </Color>
       <Color Name="CardBorderHover">
         <Background Type="CT_RAW" Source="FF9A9A9A" />
-      </Color>
-      <Color Name="CardBorderPressed">
-        <Background Type="CT_RAW" Source="FFE5C365" />
       </Color>
       <Color Name="CardBorderSelected">
         <Background Type="CT_RAW" Source="FFE5C365" />
       </Color>
       <Color Name="CardBorderDisabled">
         <Background Type="CT_RAW" Source="FFE1E1E1" />
-      </Color>
-      <Color Name="NotificationText">
-        <Background Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
       <Color Name="DeleteTemplateIcon">
         <Background Type="CT_RAW" Source="FFE51400" />
@@ -545,9 +410,6 @@
       <Color Name="HyperlinkHover">
         <Background Type="CT_SYSCOLOR" Source="0000001A" />
       </Color>
-      <Color Name="HyperlinkPressed">
-        <Background Type="CT_SYSCOLOR" Source="0000001A" />
-      </Color>
       <Color Name="HyperlinkDisabled">
         <Background Type="CT_SYSCOLOR" Source="00000011" />
       </Color>
@@ -587,33 +449,6 @@
       <Color Name="SectionDivider">
         <Background Type="CT_SYSCOLOR" Source="00000010" />
       </Color>
-      <Color Name="WindowButton">
-        <Background Type="CT_SYSCOLOR" Source="0000000F" />
-      </Color>
-      <Color Name="WindowButtonHover">
-        <Background Type="CT_SYSCOLOR" Source="0000000D" />
-      </Color>
-      <Color Name="WindowButtonDown">
-        <Background Type="CT_SYSCOLOR" Source="0000000D" />
-      </Color>
-      <Color Name="WindowButtonBorder">
-        <Background Type="CT_SYSCOLOR" Source="0000000F" />
-      </Color>
-      <Color Name="WindowButtonHoverBorder">
-        <Background Type="CT_SYSCOLOR" Source="0000000E" />
-      </Color>
-      <Color Name="WindowButtonDownBorder">
-        <Background Type="CT_SYSCOLOR" Source="0000000E" />
-      </Color>
-      <Color Name="WindowButtonGlyph">
-        <Background Type="CT_SYSCOLOR" Source="00000007" />
-      </Color>
-      <Color Name="WindowButtonHoverGlyph">
-        <Background Type="CT_SYSCOLOR" Source="0000000E" />
-      </Color>
-      <Color Name="WindowButtonDownGlyph">
-        <Background Type="CT_SYSCOLOR" Source="0000000E" />
-      </Color>
       <Color Name="HeaderTextSecondary">
         <Background Type="CT_SYSCOLOR" Source="00000012" />
       </Color>
@@ -629,13 +464,7 @@
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_SYSCOLOR" Source="0000000F" />
       </Color>
-      <Color Name="CardBackgroundFocus">
-        <Background Type="CT_SYSCOLOR" Source="0000000F" />
-      </Color>
       <Color Name="CardBackgroundHover">
-        <Background Type="CT_SYSCOLOR" Source="00000010" />
-      </Color>
-      <Color Name="CardBackgroundPressed">
         <Background Type="CT_SYSCOLOR" Source="00000010" />
       </Color>
       <Color Name="CardBackgroundSelected">
@@ -647,13 +476,7 @@
       <Color Name="CardBorderDefault">
         <Background Type="CT_SYSCOLOR" Source="00000010" />
       </Color>
-      <Color Name="CardBorderFocus">
-        <Background Type="CT_SYSCOLOR" Source="0000000E" />
-      </Color>
       <Color Name="CardBorderHover">
-        <Background Type="CT_SYSCOLOR" Source="0000000E" />
-      </Color>
-      <Color Name="CardBorderPressed">
         <Background Type="CT_SYSCOLOR" Source="0000000E" />
       </Color>
       <Color Name="CardBorderSelected">
@@ -661,9 +484,6 @@
       </Color>
       <Color Name="CardBorderDisabled">
         <Background Type="CT_SYSCOLOR" Source="0000000E" />
-      </Color>
-      <Color Name="NotificationText">
-        <Background Type="CT_SYSCOLOR" Source="00000012" />
       </Color>
       <Color Name="DeleteTemplateIcon">
         <Background Type="CT_SYSCOLOR" Source="00000012" />

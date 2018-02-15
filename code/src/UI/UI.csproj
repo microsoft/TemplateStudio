@@ -355,7 +355,7 @@
     <Compile Include="Services\ResourcesService.cs" />
     <Compile Include="Services\Styles\IStyleValuesProvider.cs" />
     <Compile Include="Services\Styles\UIStylesService.Environment.cs" />
-    <Compile Include="Services\Styles\UIStylesService.ThemedDialogColors.cs" />
+    <Compile Include="Services\Styles\UIStylesService.CommonDocumentColors.cs" />
     <Compile Include="Services\Styles\UIStylesService.cs" />
     <Compile Include="Services\Styles\UIStylesService.FontSizes.cs" />
     <Compile Include="Services\Styles\UIStylesService.CommonControlColors.cs" />

@@ -1,20 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:colors="clr-namespace:Microsoft.Templates.VsEmulator.Services">
+
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundDefaultBrushKey}" Color="#FF252526" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundDefaultColorKey}" A="255" R="37" G="37" B="38" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundDisabledBrushKey}" Color="#FF2D2D30" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundDisabledColorKey}" A="255" R="45" G="45" B="48" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundFocusBrushKey}" Color="#FF252526" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundFocusColorKey}" A="255" R="37" G="37" B="38" />
-
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundHoverBrushKey}" Color="#FF2D2D30" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundHoverColorKey}" A="255" R="45" G="45" B="48" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundPressedBrushKey}" Color="#FF2D2D30" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundPressedColorKey}" A="255" R="45" G="45" B="48" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundSelectedBrushKey}" Color="#FF252526" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBackgroundSelectedColorKey}" A="255" R="37" G="37" B="38" />
@@ -25,14 +20,8 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderDisabledBrushKey}" Color="#FF3F3F46" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderDisabledColorKey}" A="255" R="63" G="63" B="70" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderFocusBrushKey}" Color="#FF007ACC" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderFocusColorKey}" A="255" R="0" G="122" B="204" />
-
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderHoverBrushKey}" Color="#FF999999" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderHoverColorKey}" A="255" R="153" G="153" B="153" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderPressedBrushKey}" Color="#FF007ACC" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderPressedColorKey}" A="255" R="0" G="122" B="204" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderSelectedBrushKey}" Color="#FF007ACC" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderSelectedColorKey}" A="255" R="0" G="122" B="204" />
@@ -85,9 +74,6 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.HyperlinkHoverBrushKey}" Color="#FF55AAFF" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.HyperlinkHoverColorKey}" A="255" R="85" G="170" B="255" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.HyperlinkPressedBrushKey}" Color="#FF0097FB" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.HyperlinkPressedColorKey}" A="255" R="0" G="151" B="251" />
-
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ListItemDisabledTextBrushKey}" Color="#FF656565" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.ListItemDisabledTextColorKey}" A="255" R="101" G="101" B="101" />
 
@@ -114,9 +100,6 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusWarningFileBrushKey}" Color="#FFFFB900" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusWarningFileColorKey}" A="255" R="255" G="185" B="0" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NotificationTextBrushKey}" Color="#FF1E1E1E" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.NotificationTextColorKey}" A="255" R="30" G="30" B="30" />
-
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.SavedTemplateBackgroundHoverBrushKey}" Color="#FF2D2D30" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.SavedTemplateBackgroundHoverColorKey}" A="255" R="45" G="45" B="48" />
 
@@ -138,33 +121,6 @@
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowBorderBrushKey}" Color="#FF3F3F46" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowBorderColorKey}" A="255" R="63" G="63" B="70" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonBrushKey}" Color="#00000000" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonColorKey}" A="0" R="0" G="0" B="0" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonBorderBrushKey}" Color="#00000000" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonBorderColorKey}" A="0" R="0" G="0" B="0" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDownBrushKey}" Color="#FF007ACC" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDownColorKey}" A="255" R="0" G="122" B="204" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDownBorderBrushKey}" Color="#FF007ACC" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDownBorderColorKey}" A="255" R="0" G="122" B="204" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDownGlyphBrushKey}" Color="#FFFFFFFF" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonDownGlyphColorKey}" A="255" R="255" G="255" B="255" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonGlyphBrushKey}" Color="#FFF1F1F1" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonGlyphColorKey}" A="255" R="241" G="241" B="241" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonHoverBrushKey}" Color="#FF3E3E40" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonHoverColorKey}" A="255" R="62" G="62" B="64" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonHoverBorderBrushKey}" Color="#FF3E3E40" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonHoverBorderColorKey}" A="255" R="62" G="62" B="64" />
-
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonHoverGlyphBrushKey}" Color="#FFF1F1F1" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowButtonHoverGlyphColorKey}" A="255" R="241" G="241" B="241" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowPanelBrushKey}" Color="#FF252526" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowPanelColorKey}" A="255" R="37" G="37" B="38" />
