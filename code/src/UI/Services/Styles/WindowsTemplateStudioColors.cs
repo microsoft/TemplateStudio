@@ -34,11 +34,6 @@ namespace Microsoft.Templates.UI.Services
         public static ThemeResourceKey CardBackgroundHoverColorKey { get { return _CardBackgroundHoverColorKey ?? (_CardBackgroundHoverColorKey = new ThemeResourceKey(Category, "CardBackgroundHover", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey CardBackgroundHoverBrushKey { get { return _CardBackgroundHoverBrushKey ?? (_CardBackgroundHoverBrushKey = new ThemeResourceKey(Category, "CardBackgroundHover", ThemeResourceKeyType.BackgroundBrush)); } }
 
-        private static ThemeResourceKey _CardBackgroundPressedColorKey;
-        private static ThemeResourceKey _CardBackgroundPressedBrushKey;
-        public static ThemeResourceKey CardBackgroundPressedColorKey { get { return _CardBackgroundPressedColorKey ?? (_CardBackgroundPressedColorKey = new ThemeResourceKey(Category, "CardBackgroundPressed", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey CardBackgroundPressedBrushKey { get { return _CardBackgroundPressedBrushKey ?? (_CardBackgroundPressedBrushKey = new ThemeResourceKey(Category, "CardBackgroundPressed", ThemeResourceKeyType.BackgroundBrush)); } }
-
         private static ThemeResourceKey _CardBackgroundSelectedColorKey;
         private static ThemeResourceKey _CardBackgroundSelectedBrushKey;
         public static ThemeResourceKey CardBackgroundSelectedColorKey { get { return _CardBackgroundSelectedColorKey ?? (_CardBackgroundSelectedColorKey = new ThemeResourceKey(Category, "CardBackgroundSelected", ThemeResourceKeyType.BackgroundColor)); } }
@@ -63,11 +58,6 @@ namespace Microsoft.Templates.UI.Services
         private static ThemeResourceKey _CardBorderHoverBrushKey;
         public static ThemeResourceKey CardBorderHoverColorKey { get { return _CardBorderHoverColorKey ?? (_CardBorderHoverColorKey = new ThemeResourceKey(Category, "CardBorderHover", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey CardBorderHoverBrushKey { get { return _CardBorderHoverBrushKey ?? (_CardBorderHoverBrushKey = new ThemeResourceKey(Category, "CardBorderHover", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _CardBorderPressedColorKey;
-        private static ThemeResourceKey _CardBorderPressedBrushKey;
-        public static ThemeResourceKey CardBorderPressedColorKey { get { return _CardBorderPressedColorKey ?? (_CardBorderPressedColorKey = new ThemeResourceKey(Category, "CardBorderPressed", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey CardBorderPressedBrushKey { get { return _CardBorderPressedBrushKey ?? (_CardBorderPressedBrushKey = new ThemeResourceKey(Category, "CardBorderPressed", ThemeResourceKeyType.BackgroundBrush)); } }
 
         private static ThemeResourceKey _CardBorderSelectedColorKey;
         private static ThemeResourceKey _CardBorderSelectedBrushKey;
@@ -154,11 +144,6 @@ namespace Microsoft.Templates.UI.Services
         public static ThemeResourceKey HyperlinkHoverColorKey { get { return _HyperlinkHoverColorKey ?? (_HyperlinkHoverColorKey = new ThemeResourceKey(Category, "HyperlinkHover", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey HyperlinkHoverBrushKey { get { return _HyperlinkHoverBrushKey ?? (_HyperlinkHoverBrushKey = new ThemeResourceKey(Category, "HyperlinkHover", ThemeResourceKeyType.BackgroundBrush)); } }
 
-        private static ThemeResourceKey _HyperlinkPressedColorKey;
-        private static ThemeResourceKey _HyperlinkPressedBrushKey;
-        public static ThemeResourceKey HyperlinkPressedColorKey { get { return _HyperlinkPressedColorKey ?? (_HyperlinkPressedColorKey = new ThemeResourceKey(Category, "HyperlinkPressed", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey HyperlinkPressedBrushKey { get { return _HyperlinkPressedBrushKey ?? (_HyperlinkPressedBrushKey = new ThemeResourceKey(Category, "HyperlinkPressed", ThemeResourceKeyType.BackgroundBrush)); } }
-
         private static ThemeResourceKey _ListItemDisabledTextColorKey;
         private static ThemeResourceKey _ListItemDisabledTextBrushKey;
         public static ThemeResourceKey ListItemDisabledTextColorKey { get { return _ListItemDisabledTextColorKey ?? (_ListItemDisabledTextColorKey = new ThemeResourceKey(Category, "ListItemDisabledText", ThemeResourceKeyType.BackgroundColor)); } }
@@ -203,11 +188,6 @@ namespace Microsoft.Templates.UI.Services
         public static ThemeResourceKey NewItemFileStatusWarningFileColorKey { get { return _NewItemFileStatusWarningFileColorKey ?? (_NewItemFileStatusWarningFileColorKey = new ThemeResourceKey(Category, "NewItemFileStatusWarningFile", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey NewItemFileStatusWarningFileBrushKey { get { return _NewItemFileStatusWarningFileBrushKey ?? (_NewItemFileStatusWarningFileBrushKey = new ThemeResourceKey(Category, "NewItemFileStatusWarningFile", ThemeResourceKeyType.BackgroundBrush)); } }
 
-        private static ThemeResourceKey _NotificationTextColorKey;
-        private static ThemeResourceKey _NotificationTextBrushKey;
-        public static ThemeResourceKey NotificationTextColorKey { get { return _NotificationTextColorKey ?? (_NotificationTextColorKey = new ThemeResourceKey(Category, "NotificationText", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey NotificationTextBrushKey { get { return _NotificationTextBrushKey ?? (_NotificationTextBrushKey = new ThemeResourceKey(Category, "NotificationText", ThemeResourceKeyType.BackgroundBrush)); } }
-
         private static ThemeResourceKey _SavedTemplateBackgroundHoverColorKey;
         private static ThemeResourceKey _SavedTemplateBackgroundHoverBrushKey;
         public static ThemeResourceKey SavedTemplateBackgroundHoverColorKey { get { return _SavedTemplateBackgroundHoverColorKey ?? (_SavedTemplateBackgroundHoverColorKey = new ThemeResourceKey(Category, "SavedTemplateBackgroundHover", ThemeResourceKeyType.BackgroundColor)); } }
@@ -245,81 +225,6 @@ namespace Microsoft.Templates.UI.Services
         private static ThemeResourceKey _WindowBorderBrushKey;
         public static ThemeResourceKey WindowBorderColorKey { get { return _WindowBorderColorKey ?? (_WindowBorderColorKey = new ThemeResourceKey(Category, "WindowBorder", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey WindowBorderBrushKey { get { return _WindowBorderBrushKey ?? (_WindowBorderBrushKey = new ThemeResourceKey(Category, "WindowBorder", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonColorKey;
-        private static ThemeResourceKey _WindowButtonBrushKey;
-        public static ThemeResourceKey WindowButtonColorKey { get { return _WindowButtonColorKey ?? (_WindowButtonColorKey = new ThemeResourceKey(Category, "WindowButton", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonBrushKey { get { return _WindowButtonBrushKey ?? (_WindowButtonBrushKey = new ThemeResourceKey(Category, "WindowButton", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonBorderColorKey;
-        private static ThemeResourceKey _WindowButtonBorderBrushKey;
-        public static ThemeResourceKey WindowButtonBorderColorKey { get { return _WindowButtonBorderColorKey ?? (_WindowButtonBorderColorKey = new ThemeResourceKey(Category, "WindowButtonBorder", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonBorderBrushKey { get { return _WindowButtonBorderBrushKey ?? (_WindowButtonBorderBrushKey = new ThemeResourceKey(Category, "WindowButtonBorder", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonDisabledColorKey;
-        private static ThemeResourceKey _WindowButtonDisabledBrushKey;
-        public static ThemeResourceKey WindowButtonDisabledColorKey { get { return _WindowButtonDisabledColorKey ?? (_WindowButtonDisabledColorKey = new ThemeResourceKey(Category, "WindowButtonDisabled", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonDisabledBrushKey { get { return _WindowButtonDisabledBrushKey ?? (_WindowButtonDisabledBrushKey = new ThemeResourceKey(Category, "WindowButtonDisabled", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonDisabledBorderColorKey;
-        private static ThemeResourceKey _WindowButtonDisabledBorderBrushKey;
-        public static ThemeResourceKey WindowButtonDisabledBorderColorKey { get { return _WindowButtonDisabledBorderColorKey ?? (_WindowButtonDisabledBorderColorKey = new ThemeResourceKey(Category, "WindowButtonDisabledBorder", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonDisabledBorderBrushKey { get { return _WindowButtonDisabledBorderBrushKey ?? (_WindowButtonDisabledBorderBrushKey = new ThemeResourceKey(Category, "WindowButtonDisabledBorder", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonDisabledGlyphColorKey;
-        private static ThemeResourceKey _WindowButtonDisabledGlyphBrushKey;
-        public static ThemeResourceKey WindowButtonDisabledGlyphColorKey { get { return _WindowButtonDisabledGlyphColorKey ?? (_WindowButtonDisabledGlyphColorKey = new ThemeResourceKey(Category, "WindowButtonDisabledGlyph", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonDisabledGlyphBrushKey { get { return _WindowButtonDisabledGlyphBrushKey ?? (_WindowButtonDisabledGlyphBrushKey = new ThemeResourceKey(Category, "WindowButtonDisabledGlyph", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonDownColorKey;
-        private static ThemeResourceKey _WindowButtonDownBrushKey;
-        public static ThemeResourceKey WindowButtonDownColorKey { get { return _WindowButtonDownColorKey ?? (_WindowButtonDownColorKey = new ThemeResourceKey(Category, "WindowButtonDown", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonDownBrushKey { get { return _WindowButtonDownBrushKey ?? (_WindowButtonDownBrushKey = new ThemeResourceKey(Category, "WindowButtonDown", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonDownBorderColorKey;
-        private static ThemeResourceKey _WindowButtonDownBorderBrushKey;
-        public static ThemeResourceKey WindowButtonDownBorderColorKey { get { return _WindowButtonDownBorderColorKey ?? (_WindowButtonDownBorderColorKey = new ThemeResourceKey(Category, "WindowButtonDownBorder", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonDownBorderBrushKey { get { return _WindowButtonDownBorderBrushKey ?? (_WindowButtonDownBorderBrushKey = new ThemeResourceKey(Category, "WindowButtonDownBorder", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonDownGlyphColorKey;
-        private static ThemeResourceKey _WindowButtonDownGlyphBrushKey;
-        public static ThemeResourceKey WindowButtonDownGlyphColorKey { get { return _WindowButtonDownGlyphColorKey ?? (_WindowButtonDownGlyphColorKey = new ThemeResourceKey(Category, "WindowButtonDownGlyph", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonDownGlyphBrushKey { get { return _WindowButtonDownGlyphBrushKey ?? (_WindowButtonDownGlyphBrushKey = new ThemeResourceKey(Category, "WindowButtonDownGlyph", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonFocusColorKey;
-        private static ThemeResourceKey _WindowButtonFocusBrushKey;
-        public static ThemeResourceKey WindowButtonFocusColorKey { get { return _WindowButtonFocusColorKey ?? (_WindowButtonFocusColorKey = new ThemeResourceKey(Category, "WindowButtonFocus", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonFocusBrushKey { get { return _WindowButtonFocusBrushKey ?? (_WindowButtonFocusBrushKey = new ThemeResourceKey(Category, "WindowButtonFocus", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonFocusBorderColorKey;
-        private static ThemeResourceKey _WindowButtonFocusBorderBrushKey;
-        public static ThemeResourceKey WindowButtonFocusBorderColorKey { get { return _WindowButtonFocusBorderColorKey ?? (_WindowButtonFocusBorderColorKey = new ThemeResourceKey(Category, "WindowButtonFocusBorder", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonFocusBorderBrushKey { get { return _WindowButtonFocusBorderBrushKey ?? (_WindowButtonFocusBorderBrushKey = new ThemeResourceKey(Category, "WindowButtonFocusBorder", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonFocusGlyphColorKey;
-        private static ThemeResourceKey _WindowButtonFocusGlyphBrushKey;
-        public static ThemeResourceKey WindowButtonFocusGlyphColorKey { get { return _WindowButtonFocusGlyphColorKey ?? (_WindowButtonFocusGlyphColorKey = new ThemeResourceKey(Category, "WindowButtonFocusGlyph", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonFocusGlyphBrushKey { get { return _WindowButtonFocusGlyphBrushKey ?? (_WindowButtonFocusGlyphBrushKey = new ThemeResourceKey(Category, "WindowButtonFocusGlyph", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonGlyphColorKey;
-        private static ThemeResourceKey _WindowButtonGlyphBrushKey;
-        public static ThemeResourceKey WindowButtonGlyphColorKey { get { return _WindowButtonGlyphColorKey ?? (_WindowButtonGlyphColorKey = new ThemeResourceKey(Category, "WindowButtonGlyph", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonGlyphBrushKey { get { return _WindowButtonGlyphBrushKey ?? (_WindowButtonGlyphBrushKey = new ThemeResourceKey(Category, "WindowButtonGlyph", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonHoverColorKey;
-        private static ThemeResourceKey _WindowButtonHoverBrushKey;
-        public static ThemeResourceKey WindowButtonHoverColorKey { get { return _WindowButtonHoverColorKey ?? (_WindowButtonHoverColorKey = new ThemeResourceKey(Category, "WindowButtonHover", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonHoverBrushKey { get { return _WindowButtonHoverBrushKey ?? (_WindowButtonHoverBrushKey = new ThemeResourceKey(Category, "WindowButtonHover", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonHoverBorderColorKey;
-        private static ThemeResourceKey _WindowButtonHoverBorderBrushKey;
-        public static ThemeResourceKey WindowButtonHoverBorderColorKey { get { return _WindowButtonHoverBorderColorKey ?? (_WindowButtonHoverBorderColorKey = new ThemeResourceKey(Category, "WindowButtonHoverBorder", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonHoverBorderBrushKey { get { return _WindowButtonHoverBorderBrushKey ?? (_WindowButtonHoverBorderBrushKey = new ThemeResourceKey(Category, "WindowButtonHoverBorder", ThemeResourceKeyType.BackgroundBrush)); } }
-
-        private static ThemeResourceKey _WindowButtonHoverGlyphColorKey;
-        private static ThemeResourceKey _WindowButtonHoverGlyphBrushKey;
-        public static ThemeResourceKey WindowButtonHoverGlyphColorKey { get { return _WindowButtonHoverGlyphColorKey ?? (_WindowButtonHoverGlyphColorKey = new ThemeResourceKey(Category, "WindowButtonHoverGlyph", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey WindowButtonHoverGlyphBrushKey { get { return _WindowButtonHoverGlyphBrushKey ?? (_WindowButtonHoverGlyphBrushKey = new ThemeResourceKey(Category, "WindowButtonHoverGlyph", ThemeResourceKeyType.BackgroundBrush)); } }
 
         private static ThemeResourceKey _WindowPanelColorKey;
         private static ThemeResourceKey _WindowPanelBrushKey;

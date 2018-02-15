@@ -22,9 +22,6 @@ namespace Microsoft.Templates.VsEmulator.Services
         public static string CardBackgroundHoverColorKey { get { return "CardBackgroundHoverColorKey"; } }
         public static string CardBackgroundHoverBrushKey { get { return "CardBackgroundHoverBrushKey"; } }
 
-        public static string CardBackgroundPressedColorKey { get { return "CardBackgroundPressedColorKey"; } }
-        public static string CardBackgroundPressedBrushKey { get { return "CardBackgroundPressedBrushKey"; } }
-
         public static string CardBackgroundSelectedColorKey { get { return "CardBackgroundSelectedColorKey"; } }
         public static string CardBackgroundSelectedBrushKey { get { return "CardBackgroundSelectedBrushKey"; } }
 
@@ -39,9 +36,6 @@ namespace Microsoft.Templates.VsEmulator.Services
 
         public static string CardBorderHoverColorKey { get { return "CardBorderHoverColorKey"; } }
         public static string CardBorderHoverBrushKey { get { return "CardBorderHoverBrushKey"; } }
-
-        public static string CardBorderPressedColorKey { get { return "CardBorderPressedColorKey"; } }
-        public static string CardBorderPressedBrushKey { get { return "CardBorderPressedBrushKey"; } }
 
         public static string CardBorderSelectedColorKey { get { return "CardBorderSelectedColorKey"; } }
         public static string CardBorderSelectedBrushKey { get { return "CardBorderSelectedBrushKey"; } }
@@ -94,9 +88,6 @@ namespace Microsoft.Templates.VsEmulator.Services
         public static string HyperlinkHoverColorKey { get { return "HyperlinkHoverColorKey"; } }
         public static string HyperlinkHoverBrushKey { get { return "HyperlinkHoverBrushKey"; } }
 
-        public static string HyperlinkPressedColorKey { get { return "HyperlinkPressedColorKey"; } }
-        public static string HyperlinkPressedBrushKey { get { return "HyperlinkPressedBrushKey"; } }
-
         public static string ListItemDisabledTextColorKey { get { return "ListItemDisabledTextColorKey"; } }
         public static string ListItemDisabledTextBrushKey { get { return "ListItemDisabledTextBrushKey"; } }
 
@@ -123,9 +114,6 @@ namespace Microsoft.Templates.VsEmulator.Services
         public static string NewItemFileStatusWarningFileColorKey { get { return "NewItemFileStatusWarningFileColorKey"; } }
         public static string NewItemFileStatusWarningFileBrushKey { get { return "NewItemFileStatusWarningFileBrushKey"; } }
 
-        public static string NotificationTextColorKey { get { return "NotificationTextColorKey"; } }
-        public static string NotificationTextBrushKey { get { return "NotificationTextBrushKey"; } }
-
         public static string SavedTemplateBackgroundHoverColorKey { get { return "SavedTemplateBackgroundHoverColorKey"; } }
         public static string SavedTemplateBackgroundHoverBrushKey { get { return "SavedTemplateBackgroundHoverBrushKey"; } }
 
@@ -147,51 +135,6 @@ namespace Microsoft.Templates.VsEmulator.Services
 
         public static string WindowBorderColorKey { get { return "WindowBorderColorKey"; } }
         public static string WindowBorderBrushKey { get { return "WindowBorderBrushKey"; } }
-
-        public static string WindowButtonColorKey { get { return "WindowButtonColorKey"; } }
-        public static string WindowButtonBrushKey { get { return "WindowButtonBrushKey"; } }
-
-        public static string WindowButtonBorderColorKey { get { return "WindowButtonBorderColorKey"; } }
-        public static string WindowButtonBorderBrushKey { get { return "WindowButtonBorderBrushKey"; } }
-
-        public static string WindowButtonDisabledColorKey { get { return "WindowButtonDisabledColorKey"; } }
-        public static string WindowButtonDisabledBrushKey { get { return "WindowButtonDisabledBrushKey"; } }
-
-        public static string WindowButtonDisabledBorderColorKey { get { return "WindowButtonDisabledBorderColorKey"; } }
-        public static string WindowButtonDisabledBorderBrushKey { get { return "WindowButtonDisabledBorderBrushKey"; } }
-
-        public static string WindowButtonDisabledGlyphColorKey { get { return "WindowButtonDisabledGlyphColorKey"; } }
-        public static string WindowButtonDisabledGlyphBrushKey { get { return "WindowButtonDisabledGlyphBrushKey"; } }
-
-        public static string WindowButtonDownColorKey { get { return "WindowButtonDownColorKey"; } }
-        public static string WindowButtonDownBrushKey { get { return "WindowButtonDownBrushKey"; } }
-
-        public static string WindowButtonDownBorderColorKey { get { return "WindowButtonDownBorderColorKey"; } }
-        public static string WindowButtonDownBorderBrushKey { get { return "WindowButtonDownBorderBrushKey"; } }
-
-        public static string WindowButtonDownGlyphColorKey { get { return "WindowButtonDownGlyphColorKey"; } }
-        public static string WindowButtonDownGlyphBrushKey { get { return "WindowButtonDownGlyphBrushKey"; } }
-
-        public static string WindowButtonFocusColorKey { get { return "WindowButtonFocusColorKey"; } }
-        public static string WindowButtonFocusBrushKey { get { return "WindowButtonFocusBrushKey"; } }
-
-        public static string WindowButtonFocusBorderColorKey { get { return "WindowButtonFocusBorderColorKey"; } }
-        public static string WindowButtonFocusBorderBrushKey { get { return "WindowButtonFocusBorderBrushKey"; } }
-
-        public static string WindowButtonFocusGlyphColorKey { get { return "WindowButtonFocusGlyphColorKey"; } }
-        public static string WindowButtonFocusGlyphBrushKey { get { return "WindowButtonFocusGlyphBrushKey"; } }
-
-        public static string WindowButtonGlyphColorKey { get { return "WindowButtonGlyphColorKey"; } }
-        public static string WindowButtonGlyphBrushKey { get { return "WindowButtonGlyphBrushKey"; } }
-
-        public static string WindowButtonHoverColorKey { get { return "WindowButtonHoverColorKey"; } }
-        public static string WindowButtonHoverBrushKey { get { return "WindowButtonHoverBrushKey"; } }
-
-        public static string WindowButtonHoverBorderColorKey { get { return "WindowButtonHoverBorderColorKey"; } }
-        public static string WindowButtonHoverBorderBrushKey { get { return "WindowButtonHoverBorderBrushKey"; } }
-
-        public static string WindowButtonHoverGlyphColorKey { get { return "WindowButtonHoverGlyphColorKey"; } }
-        public static string WindowButtonHoverGlyphBrushKey { get { return "WindowButtonHoverGlyphBrushKey"; } }
 
         public static string WindowPanelColorKey { get { return "WindowPanelColorKey"; } }
         public static string WindowPanelBrushKey { get { return "WindowPanelBrushKey"; } }
