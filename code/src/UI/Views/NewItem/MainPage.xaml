@@ -28,10 +28,10 @@
         </Grid.RowDefinitions>
         <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*" />
                 <!--20% Sequential flow-->
+                <ColumnDefinition Width="220" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="80*" />
+                <ColumnDefinition Width="*" />
                 <!--80% Selection area-->
             </Grid.ColumnDefinitions>
             <controls:SequentialFlow Steps="{Binding Steps}" />
