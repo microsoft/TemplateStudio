@@ -22,6 +22,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private string _name;
         private bool _nameEditable;
         private bool _hasErrors;
+        private bool _isFocused;
+        private ICommand _setFocusCommand;
+        private ICommand _lostKeyboardFocusCommand;
 
         public string Name
         {
@@ -41,6 +44,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _hasErrors, value);
         }
 
+        public bool IsFocused
+        {
+            get => _isFocused;
+            set
+            {
+                if (_isFocused == value)
+                {
+                    SetProperty(ref _isFocused, false);
+                }
+
+                SetProperty(ref _isFocused, value);
+            }
+        }
+
         public ITemplateInfo Template { get; private set; }
 
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
@@ -49,8 +66,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ObservableCollection<BasicInfoViewModel> Dependencies { get; } = new ObservableCollection<BasicInfoViewModel>();
 
+        public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
+
+        public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
+
         public TemplateSelectionViewModel()
         {
+        }
+
+        public void Focus()
+        {
+            EventService.Instance.RaiseOnSavedTemplateFocused(Name);
         }
 
         public void LoadData(TemplateType templateType, string framework)
@@ -87,6 +113,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 OnPropertyChanged("Licenses");
                 OnPropertyChanged("Dependencies");
                 NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                if (NameEditable)
+                {
+                    Focus();
+                }
             }
         }
 
@@ -108,6 +138,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
 
             SetProperty(ref _name, newName, nameof(Name));
+        }
+
+        private void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs args)
+        {
+            if (HasErrors)
+            {
+                var textBox = args.Source as TextBox;
+                textBox.Focus();
+            }
         }
     }
 }

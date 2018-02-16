@@ -59,7 +59,13 @@
                     Style="{StaticResource WtsTextBoxStyle}"
                     Text="{Binding TemplateSelection.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Margin="16,12,26,12"
-                    Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
+                    extensions:TextBoxExtensions.ListenIsFocused="True"
+                    extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding TemplateSelection.LostKeyboardFocusCommand}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding TemplateSelection.SetFocusCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
                 <TextBlock
                     Text="{Binding TemplateSelection.Name, Mode=OneWay}"
                     Style="{StaticResource WtsTextBlockSavedTemplateName}"

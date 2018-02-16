@@ -39,6 +39,8 @@ namespace Microsoft.Templates.UI.Styles
                     default:
                         break;
                 }
+
+                e.Handled = true;
             }
         }
 
@@ -66,6 +68,8 @@ namespace Microsoft.Templates.UI.Styles
                     default:
                         break;
                 }
+
+                e.Handled = true;
             }
         }
 

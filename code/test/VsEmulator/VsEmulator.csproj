@@ -168,7 +168,6 @@
     <Compile Include="Services\Environment.cs" />
     <Compile Include="Services\CommonDocument.cs" />
     <Compile Include="Services\InfoBar.cs" />
-    <Compile Include="Services\XXXXXXX.cs" />
     <Compile Include="Services\FakeStyleValuesProvider.cs" />
     <Compile Include="Services\WindowsTemplateStudio.cs" />
     <Compile Include="TemplatesContent\TemplatesContentView.xaml.cs">
@@ -234,14 +233,6 @@
     <Page Include="Styles\Light_InfoBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\Dark_XXXXXXX.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\Light_XXXXXXX.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TemplatesContent\TemplatesContentView.xaml">
       <Generator>MSBuild:Compile</Generator>

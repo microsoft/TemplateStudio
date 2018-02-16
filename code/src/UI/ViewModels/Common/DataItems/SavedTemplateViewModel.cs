@@ -133,7 +133,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public void Focus()
         {
-            EventService.Instance.RaiseOnSavedTemplateFocused(this);
+            EventService.Instance.RaiseOnSavedTemplateFocused(Name);
         }
 
         private void SetName(string newName)
