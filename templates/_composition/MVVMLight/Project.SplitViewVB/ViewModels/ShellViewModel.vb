@@ -1,4 +1,4 @@
-﻿Imports Microsoft.Practices.ServiceLocation
+﻿Imports CommonServiceLocator
 Imports GalaSoft.MvvmLight
 Imports GalaSoft.MvvmLight.Command
 Imports wts.ItemName.Services
