@@ -14,12 +14,12 @@ namespace Microsoft.Templates.UI.Services
 
         public static EventService Instance => _instance ?? (_instance = new EventService());
 
-        public event EventHandler<SavedTemplateViewModel> OnSavedTemplateFocused;
+        public event EventHandler<string> OnSavedTemplateFocused;
 
         private EventService()
         {
         }
 
-        public void RaiseOnSavedTemplateFocused(SavedTemplateViewModel template) => OnSavedTemplateFocused?.Invoke(this, template);
+        public void RaiseOnSavedTemplateFocused(string templateName) => OnSavedTemplateFocused?.Invoke(this, templateName);
     }
 }
