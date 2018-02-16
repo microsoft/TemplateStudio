@@ -49,6 +49,12 @@ namespace Microsoft.Templates.VsEmulator.Services
             }
         }
 
+        public System.Drawing.Color GetThemedColor(string className, string memberName)
+        {
+            var color = GetColor(className, memberName) as SolidColorBrush;
+            return System.Drawing.Color.FromArgb(color.Color.A, color.Color.R, color.Color.G, color.Color.B);
+        }
+
         public double GetFontSize(string fontSizeResourceKey)
         {
             switch (fontSizeResourceKey)
