@@ -345,12 +345,28 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(WindowPanelProperty, value); }
         }
 
+        public static readonly DependencyProperty WindowPanelColorProperty = DependencyProperty.Register("WindowPanelColor", typeof(System.Drawing.Color), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public System.Drawing.Color WindowPanelColor
+        {
+            get { return (System.Drawing.Color)GetValue(WindowPanelColorProperty); }
+            set { SetValue(WindowPanelColorProperty, value); }
+        }
+
         public static readonly DependencyProperty WindowPanelTextProperty = DependencyProperty.Register("WindowPanelText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
         public Brush WindowPanelText
         {
             get { return (Brush)GetValue(WindowPanelTextProperty); }
             set { SetValue(WindowPanelTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty WindowPanelTextColorProperty = DependencyProperty.Register("WindowPanelTextColor", typeof(System.Drawing.Color), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public System.Drawing.Color WindowPanelTextColor
+        {
+            get { return (System.Drawing.Color)GetValue(WindowPanelTextColorProperty); }
+            set { SetValue(WindowPanelTextColorProperty, value); }
         }
 
         public static readonly DependencyProperty WizardFooterProperty = DependencyProperty.Register("WizardFooter", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));

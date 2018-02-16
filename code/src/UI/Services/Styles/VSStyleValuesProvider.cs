@@ -27,6 +27,18 @@ namespace Microsoft.Templates.UI.Services
 
         public Brush GetColor(string className, string memberName)
         {
+            var color = GetThemedColor(className, memberName);
+            return new SolidColorBrush(new Color()
+            {
+                A = color.A,
+                R = color.R,
+                G = color.G,
+                B = color.B
+            });
+        }
+
+        public System.Drawing.Color GetThemedColor(string className, string memberName)
+        {
             Type classType = null;
             switch (className)
             {
@@ -57,13 +69,7 @@ namespace Microsoft.Templates.UI.Services
 
             var themeResourceKey = member.GetMethod.Invoke(null, null) as ThemeResourceKey;
             var themeColor = VSColorTheme.GetThemedColor(themeResourceKey);
-            return new SolidColorBrush(new Color()
-            {
-                A = themeColor.A,
-                R = themeColor.R,
-                G = themeColor.G,
-                B = themeColor.B
-            });
+            return themeColor;
         }
 
         public double GetFontSize(string fontSizeResourceKey)

@@ -82,13 +82,25 @@ namespace Microsoft.Templates.UI.Controls
                 patternText = patternText
                     .Replace("##ExecutingDirectory##", executingDirectory)
                     .Replace("##renderSideBySide##", renderSideBySide ? "true" : "false")
-                    .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty)
+                    .Replace("##theme##", GetTheme())
                     .Replace("##fontSize##", $"fontSize: {CodeFontSize},");
                 if (_currentHtml != patternText)
                 {
                     webBrowser.NavigateToString(patternText);
                     _currentHtml = patternText;
                 }
+            }
+        }
+
+        private static string GetTheme()
+        {
+            if (SystemService.Instance.IsHighContrast)
+            {
+                return "theme: 'hc-black',";
+            }
+            else
+            {
+                return (UIStylesService.Instance.WindowPanelColor.GetBrightness() < UIStylesService.Instance.WindowPanelTextColor.GetBrightness()) ? "theme: 'vs-dark'," : "theme: 'vs',";
             }
         }
 
