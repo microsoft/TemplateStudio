@@ -183,10 +183,15 @@
 
     <DataTemplate x:Key="WtsItemTemplateLicense">
         <TextBlock AutomationProperties.Name="{Binding Text}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenCommand}" AutomationProperties.Name="{Binding Text}">
+            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding OpenCommand}" AutomationProperties.Name="{Binding Text}" >
                 <Grid Background="Transparent">
                     <TextBlock Text="{Binding Text}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="4,4,4,4" />
                 </Grid>
+                <Hyperlink.ToolTip>
+                    <ToolTip
+                        Content="{Binding Text}"
+                        ContentStringFormat="{x:Static res:StringRes.ExternalHyperlinkTooltipFormat}" />
+                </Hyperlink.ToolTip>
             </Hyperlink>
         </TextBlock>
     </DataTemplate>
@@ -294,7 +299,14 @@
                     Margin="{StaticResource Margin_M_LeftTopRightBottom}"
                     ContentTemplateSelector="{StaticResource FileStatusTemplateSelector}" />
                 <TextBlock Grid.Column="1" AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
-                    <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding MoreDetailsCommand}" AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
+                    <Hyperlink Style="{StaticResource WtsHyperlink}"
+                               Command="{Binding MoreDetailsCommand}"
+                               AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
+                        <Hyperlink.ToolTip>
+                        <ToolTip
+                            Content="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}"
+                            ContentStringFormat="{x:Static res:StringRes.ExternalHyperlinkTooltipFormat}" />
+                        </Hyperlink.ToolTip>
                         <Grid Background="Transparent">
                             <TextBlock
                                 Style="{StaticResource WtsTextBlockHyperlink}"

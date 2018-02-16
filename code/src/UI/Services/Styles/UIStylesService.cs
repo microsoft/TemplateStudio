@@ -265,7 +265,9 @@ namespace Microsoft.Templates.UI.Services
             TemplateInfoPageDescription = _stylesProvider.GetColor("WindowsTemplateStudio", "TemplateInfoPageDescription");
             WindowBorder = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowBorder");
             WindowPanel = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowPanel");
+            WindowPanelColor = _stylesProvider.GetThemedColor("WindowsTemplateStudio", "WindowPanel");
             WindowPanelText = _stylesProvider.GetColor("WindowsTemplateStudio", "WindowPanelText");
+            WindowPanelTextColor = _stylesProvider.GetThemedColor("WindowsTemplateStudio", "WindowPanelText");
             WizardFooter = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooter");
             WizardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "WizardFooterText");
         }

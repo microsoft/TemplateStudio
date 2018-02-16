@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
@@ -17,6 +18,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -485,12 +487,13 @@ namespace Microsoft.Templates.UI.Controls
             }
 
             string linkText = match.Groups[2].Value;
-            string url = match.Groups[3].Value;
+            string url = HttpUtility.UrlDecode(match.Groups[3].Value);
             string title = match.Groups[6].Value;
 
             var result = Create<Hyperlink, Inline>(RunSpanGamut(linkText));
             result.Command = HyperlinkCommand;
             result.CommandParameter = url;
+            result.ToolTip = string.Format(StringRes.ExternalHyperlinkTooltipFormat, linkText);
             result.SetValue(AutomationProperties.NameProperty, linkText);
 
             if (LinkStyle != null)
