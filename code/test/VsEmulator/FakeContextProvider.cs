@@ -17,14 +17,14 @@ namespace Microsoft.Templates.VsEmulator
 
         public string ProjectPath { get; set; }
 
-        public List<string> ProjectItems { get; }
+        public List<string> ProjectItems { get; set; }
 
-        public List<string> FilesToOpen { get; }
+        public List<string> FilesToOpen { get; set; }
 
-        public List<FailedMergePostAction> FailedMergePostActions { get; }
+        public List<FailedMergePostAction> FailedMergePostActions { get; set; }
 
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
+        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; set; }
 
-        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; }
+        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; set; }
     }
 }

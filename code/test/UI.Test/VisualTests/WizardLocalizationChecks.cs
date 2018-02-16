@@ -35,8 +35,11 @@ namespace Microsoft.UI.Test.VisualTests
         {
             var result = new Dictionary<string, string>();
 
-            // TODO [ML]: implement this
-            ForEachPageInProjectWizard(culture, ProgrammingLanguages.CSharp, false, pageName => { result.Add(pageName, "XXXX"); });
+            // TODO [ML]: implement this (GetAllUiText)
+            ForEachPageInProjectWizard(culture, ProgrammingLanguages.CSharp, false, pageName =>
+            {
+                result.Add(pageName, "XXXX");
+            });
 
             return result;
         }

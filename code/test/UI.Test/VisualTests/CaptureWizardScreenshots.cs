@@ -49,6 +49,20 @@ namespace Microsoft.UI.Test.VisualTests
             }
         }
 
+        [Fact]
+        public void GetScreenshots_AddPage_CSandVB_DefaultCulture()
+        {
+            var testOutputRoot = GetRootFolderForTestOutput();
+
+            foreach (var progLang in ProgrammingLanguages.GetAllLanguages())
+            {
+                ForEachStepInAddPageWizard(DefaultCulture, progLang, true, pageName =>
+                {
+                    TakeScreenshot(Path.Combine(testOutputRoot, $"{DefaultCulture}_{progLang}_{Uri.EscapeUriString(pageName)}.png"));
+                });
+            }
+        }
+
         // TODO [ML]: need to launch through VS (not VSEMulator) to see "proper" theme support
         [Fact]
         public void GetScreenshots_Wizard_CS_DefaultCulture_HighContrast()

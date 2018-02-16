@@ -115,6 +115,18 @@ namespace Microsoft.UI.Test.VisualTests
             CloseApp();
         }
 
+        protected void ForEachStepInAddPageWizard(string culture, string progLanguage, bool includeDetails, Action<string> action)
+        {
+            LaunchApp(culture, progLanguage, ui: "PAGE");
+
+            action.Invoke("AddPage_Select");
+
+            SelectStep(2);
+            action.Invoke("AddPage_Summary");
+
+            CloseApp();
+        }
+
         private void ViewAllDetails(string stepName, Action<string> action)
         {
             var scrollCount = 0;

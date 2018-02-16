@@ -3,13 +3,17 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Microsoft.Templates.UI.Services;
@@ -109,7 +113,7 @@ namespace Microsoft.Templates.VsEmulator
                         var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
                         fakeShell?.SetCurrentLanguage(progLanguage);
 
-                        var newProjectLocation = Path.GetTempPath();
+                        var newProjectLocation = Path.Combine(Path.GetTempPath(), "UiTest");
 
                         var projectPath = Path.Combine(newProjectLocation, newProjectName, newProjectName);
 
@@ -117,22 +121,67 @@ namespace Microsoft.Templates.VsEmulator
                         {
                             ProjectName = newProjectName,
                             ProjectPath = projectPath,
-                            OutputPath = projectPath
+                            OutputPath = Path.Combine(Path.GetTempPath(), newProjectName, newProjectName),
+                            FailedMergePostActions = new List<FailedMergePostAction>(),
+                            MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>(),
+                            FilesToOpen = new List<string>(),
+                            ProjectItems = new List<string>(),
+                            ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>()
                         };
 
                         GenContext.Current = context;
 
                         App.LoadLightTheme();
                         UIStylesService.Instance.Initialize(new FakeStyleValuesProvider());
-                        var userSelectionIsNotUsed = NewProjectGenController.Instance.GetUserSelection(progLanguage);
+
+                        switch (options.UI.ToUpperInvariant())
+                        {
+                            case "PAGE":
+                                Directory.CreateDirectory(projectPath);
+
+                                // Add a manifest file with enough info for the wizard to function
+                                var fakeAppxManifest = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<Package
+  xmlns=""http://schemas.microsoft.com/appx/manifest/foundation/windows10""
+  xmlns:mp=""http://schemas.microsoft.com/appx/2014/phone/manifest""
+  xmlns:uap=""http://schemas.microsoft.com/appx/manifest/uap/windows10""
+  xmlns:genTemplate=""http://schemas.microsoft.com/appx/developer/windowsTemplateStudio""
+  IgnorableNamespaces=""uap mp genTemplate"">
+  <genTemplate:Metadata>
+    <genTemplate:Item Name=""generator"" Value=""Windows Template Studio""/>
+    <genTemplate:Item Name=""wizardVersion"" Version=""v0.0.0.0"" />
+    <genTemplate:Item Name=""templatesVersion"" Version=""v0.0.0.0"" />
+    <genTemplate:Item Name=""projectType"" Value=""Blank"" />
+    <genTemplate:Item Name=""framework"" Value=""CodeBehind"" />
+  </genTemplate:Metadata>
+</Package>
+";
+
+                                File.WriteAllText(Path.Combine(projectPath, "package.appxmanifest"), fakeAppxManifest);
+
+                                var userPageSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
+
+                                break;
+
+                            case "FEATURE":
+                                var userFeatureSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
+
+                                break;
+
+                            case "PROJECT":
+                            default:
+                                var userSelectionIsNotUsed = NewProjectGenController.Instance.GetUserSelection(progLanguage);
+
+                                break;
+                        }
                     }
                     else
                     {
                         try
                         {
+                            // Ensure there's a console window available to display output
                             if (!NativeMethods.AttachConsole(-1))
                             {
-                                // allocate a new console
                                 NativeMethods.AllocConsole();
                             }
 
