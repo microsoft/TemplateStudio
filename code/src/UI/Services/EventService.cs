@@ -14,34 +14,12 @@ namespace Microsoft.Templates.UI.Services
 
         public static EventService Instance => _instance ?? (_instance = new EventService());
 
-        public event EventHandler<SavedTemplateViewModel> OnDeleteTemplateClicked;
-
-        public event EventHandler<SavedTemplateViewModel> OnSavedTemplateFocused;
-
-        public event EventHandler<MetadataInfoViewModel> OnProjectTypeChange;
-
-        public event EventHandler<MetadataInfoViewModel> OnFrameworkChange;
-
-        public event EventHandler OnReorderTemplate;
+        public event EventHandler<string> OnSavedTemplateFocused;
 
         private EventService()
         {
         }
 
-        public void RaiseOnDeleteTemplateClicked(SavedTemplateViewModel savedTemplate)
-        {
-            if (savedTemplate != null)
-            {
-                OnDeleteTemplateClicked?.Invoke(this, savedTemplate);
-            }
-        }
-
-        public void RaiseOnReorderTemplate() => OnReorderTemplate?.Invoke(this, EventArgs.Empty);
-
-        public void RaiseOnProjectTypeChange(MetadataInfoViewModel projectType) => OnProjectTypeChange?.Invoke(this, projectType);
-
-        public void RaiseOnFrameworkChange(MetadataInfoViewModel framework) => OnFrameworkChange?.Invoke(this, framework);
-
-        public void RaiseOnSavedTemplateFocused(SavedTemplateViewModel template) => OnSavedTemplateFocused?.Invoke(this, template);
+        public void RaiseOnSavedTemplateFocused(string templateName) => OnSavedTemplateFocused?.Invoke(this, templateName);
     }
 }

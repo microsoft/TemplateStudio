@@ -51,9 +51,9 @@ namespace Microsoft.Templates.UI.Extensions
             var textBox = d as TextBox;
             if (textBox != null)
             {
-                EventService.Instance.OnSavedTemplateFocused += (sender, template) =>
+                EventService.Instance.OnSavedTemplateFocused += (sender, templateName) =>
                 {
-                    _currentFocusTemplateName = template.Name;
+                    _currentFocusTemplateName = templateName;
                     ProcessFocus(textBox);
                 };
                 ProcessFocus(textBox);

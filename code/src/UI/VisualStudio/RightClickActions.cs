@@ -12,6 +12,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI.VisualStudio
@@ -53,7 +54,12 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     if (userSelection != null)
                     {
-                        NewItemGenController.Instance.FinishGeneration(userSelection);
+                        SafeThreading.JoinableTaskFactory.RunAsync(async () =>
+                        {
+                            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                            NewItemGenController.Instance.FinishGeneration(userSelection);
+                        });
+
                         _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                     }
                 }
@@ -75,7 +81,11 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     if (userSelection != null)
                     {
-                        NewItemGenController.Instance.FinishGeneration(userSelection);
+                        SafeThreading.JoinableTaskFactory.RunAsync(async () =>
+                        {
+                            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                            NewItemGenController.Instance.FinishGeneration(userSelection);
+                        });
                         _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                     }
                 }

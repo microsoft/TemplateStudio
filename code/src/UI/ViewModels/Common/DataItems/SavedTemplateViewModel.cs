@@ -133,7 +133,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public void Focus()
         {
-            EventService.Instance.RaiseOnSavedTemplateFocused(this);
+            EventService.Instance.RaiseOnSavedTemplateFocused(Name);
         }
 
         private void SetName(string newName)
@@ -165,11 +165,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
-        public void OnDelete()
+        public async void OnDelete()
         {
             if (!IsHome)
             {
-                EventService.Instance.RaiseOnDeleteTemplateClicked(this);
+                await MainViewModel.Instance.UserSelection.RemoveTemplateAsync(this);
             }
         }
 

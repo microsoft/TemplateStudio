@@ -16,14 +16,15 @@
             </ResourceDictionary.MergedDictionaries>
             <converters:HasItemsVisibilityConverter x:Key="HasItemsVisibilityConverter" />
             <converters:SavedTemplateGridConverter x:Key="SavedTemplateGridConverter" />
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         </ResourceDictionary>
     </Page.Resources>
 
     <Grid Style="{StaticResource WtsGridMainPage}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="71*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="29*" />
+            <ColumnDefinition Width="252" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
@@ -57,12 +58,19 @@
                 <TextBox
                     Style="{StaticResource WtsTextBoxStyle}"
                     Text="{Binding TemplateSelection.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="{StaticResource Margin_M2_LeftRight_M_TopBottom}"
-                    IsEnabled="{Binding TemplateSelection.NameEditable}" />
-                <!--
-                    extensions:TextBoxExtensions.IsFocused="{Binding TemplateSelection.IsFocused}"            
-                    extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding TemplateSelection.LostKeyboardFocusCommand}"
-                    -->
+                    Margin="16,12,26,12"
+                    Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
+                    extensions:TextBoxExtensions.ListenIsFocused="True"
+                    extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding TemplateSelection.LostKeyboardFocusCommand}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding TemplateSelection.SetFocusCommand}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBlock
+                    Text="{Binding TemplateSelection.Name, Mode=OneWay}"
+                    Style="{StaticResource WtsTextBlockSavedTemplateName}"
+                    Margin="23,17,16,17"
+                    Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
             </Grid>
 
             <StackPanel Visibility="{Binding TemplateSelection.Dependencies, Converter={StaticResource HasItemsVisibilityConverter}}">
@@ -73,7 +81,7 @@
                 <ItemsControl
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding TemplateSelection.Dependencies}"
-                    Margin="{StaticResource Margin_L_Left_S_TopRightBottom}"
+                    Margin="20,4,4,4"
                     ItemTemplate="{StaticResource WtsItemTemplateDependency}" />
             </StackPanel>
 
@@ -85,7 +93,7 @@
                 <ItemsControl
                     Style="{StaticResource WtsItemsControl}"
                     ItemsSource="{Binding TemplateSelection.Licenses}"
-                    Margin="{StaticResource Margin_L_Left_S_TopRightBottom}"
+                    Margin="20,4,4,4"
                     ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
             </StackPanel>
 
@@ -97,8 +105,8 @@
                 Style="{StaticResource WtsTextBlockAboutSubSectionText}"
                 Margin="{StaticResource Margin_M2_LeftRight_S_Top}"
                 Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionText}" />
-            <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}">
-                <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}">
+            <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
+                <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}">
                     <TextBlock Text="{x:Static strings:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
                 </Hyperlink>
             </TextBlock>
@@ -107,7 +115,8 @@
                 Margin="{StaticResource Margin_M1_LeftRight}"
                 Text="{Binding WizardStatus.Versions}"/>
             <Button
-                Margin="{StaticResource Margin_M2_LeftRight_S_Top}" Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                Margin="16,8,26,0"
+                Style="{StaticResource ButtonRefreshTemplatesStyle}"
                 Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
                 Command="{Binding RefreshTemplatesCacheCommand}"
                 Visibility="{Binding RefreshTemplateCacheVisibility}" />

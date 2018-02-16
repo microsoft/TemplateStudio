@@ -29,7 +29,8 @@
             Grid.Row="1"
             Style="{StaticResource WtsListViewSingleSelection}"
             ItemsSource="{Binding Items}"
-            ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}" />
+            ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}"
+            AutomationProperties.Name="{x:Static strings:StringRes.AccessibilityDesignPatternList}" />
     </Grid>
 
 </Page>

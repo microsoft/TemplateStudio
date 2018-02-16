@@ -68,7 +68,7 @@ namespace Microsoft.Templates.UI.Services
             if (AreCompatibleItems(oldIndex, newIndex))
             {
                 Pages.Move(oldIndex, newIndex);
-                EventService.Instance.RaiseOnReorderTemplate();
+                MainViewModel.Instance.UserSelection.ReorderTemplate();
 
                 _listView.UpdateLayout();
                 var item = _listView.ItemContainerGenerator.ContainerFromIndex(newIndex) as ListBoxItem;

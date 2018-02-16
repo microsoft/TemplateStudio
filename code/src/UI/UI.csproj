@@ -225,6 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
+    <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
@@ -354,7 +355,7 @@
     <Compile Include="Services\ResourcesService.cs" />
     <Compile Include="Services\Styles\IStyleValuesProvider.cs" />
     <Compile Include="Services\Styles\UIStylesService.Environment.cs" />
-    <Compile Include="Services\Styles\UIStylesService.ThemedDialogColors.cs" />
+    <Compile Include="Services\Styles\UIStylesService.CommonDocumentColors.cs" />
     <Compile Include="Services\Styles\UIStylesService.cs" />
     <Compile Include="Services\Styles\UIStylesService.FontSizes.cs" />
     <Compile Include="Services\Styles\UIStylesService.CommonControlColors.cs" />
@@ -588,10 +589,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\_Thickness.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\XXXXXXX.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

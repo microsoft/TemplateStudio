@@ -14,8 +14,6 @@ namespace Microsoft.Templates.UI.Controls
 
         public int Index { get; }
 
-        public string LayoutIndex => $"{Index + 1}.";
-
         public string Title { get; }
 
         public bool Completed

@@ -11,6 +11,8 @@ namespace Microsoft.Templates.UI.Services
     {
         Brush GetColor(string className, string memberName);
 
+        System.Drawing.Color GetThemedColor(string className, string memberName);
+
         double GetFontSize(string fontSizeResourceKey);
 
         FontFamily GetFontFamily();

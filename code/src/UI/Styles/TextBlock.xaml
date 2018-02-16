@@ -14,7 +14,7 @@
         <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="TextTrimming" Value="WordEllipsis"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -28,7 +28,7 @@
         <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -38,7 +38,7 @@
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Bold" />
@@ -48,22 +48,22 @@
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockAboutSubSectionText" BasedOn="{StaticResource WtsTextBlockSubSectionText}">
-        <Setter Property="FontSize" Value="{Binding Environment90PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockTermsAndConditions">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WizardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Margin" Value="{StaticResource Margin_M_LeftRight}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="Margin" Value="26,0,0,0" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="NoWrap" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -73,14 +73,13 @@
 
 
     <!--Sequential Flow-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlow">
-        <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockSequentialFlow">        
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Margin" Value="10,5,0,5" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="TextTrimming" Value="WordEllipsis"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -91,7 +90,7 @@
         <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding CardTitleText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="TextTrimming" Value="WordEllipsis"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -101,7 +100,7 @@
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding CardDescriptionText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="TextTrimming" Value="WordEllipsis"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -112,7 +111,7 @@
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="TextTrimming" Value="WordEllipsis"/>
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -152,24 +151,27 @@
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
     </Style>
 
+    <Style TargetType="Run" x:Key="WtsRunHyperlink">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontStyle" Value="Normal" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="BaselineAlignment" Value="Center" />
+    </Style>
     <Style TargetType="TextBlock" x:Key="WtsTextBlockHyperlink">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="Margin" Value="0"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="{Binding HyperlinkHover, Source={x:Static services:UIStylesService.Instance}}"/>
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBlock" x:Key="WtsTextBlockHyperlinkAbout" BasedOn="{StaticResource WtsTextBlockHyperlink}">
-        <Setter Property="FontSize" Value="{Binding Environment90PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
     <!--Project Details-->
@@ -178,7 +180,7 @@
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -190,7 +192,7 @@
         <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -212,7 +214,7 @@
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding IBInfoBarBackgroundText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -247,7 +249,7 @@
         <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="TextWrapping" Value="NoWrap" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
     </Style>
 
     <!--Changes Summary-->
@@ -255,7 +257,7 @@
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -265,7 +267,7 @@
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="NoWrap" />
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
@@ -278,7 +280,7 @@
         <Setter Property="Foreground" Value="{Binding HeaderText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextAlignment" Value="Left" />
     </Style>
 
@@ -288,7 +290,7 @@
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextAlignment" Value="Left" />
     </Style>
 

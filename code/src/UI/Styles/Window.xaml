@@ -5,6 +5,8 @@
 
     <Style x:Key="WtsWindow" TargetType="Window">
         <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="BorderBrush" Value="{Binding WindowBorder, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="BorderThickness" Value="2" />
         <Setter Property="shell:WindowChrome.WindowChrome">
             <Setter.Value>
                 <shell:WindowChrome ResizeBorderThickness="1" CaptionHeight="0">

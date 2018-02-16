@@ -6,7 +6,7 @@
   "name": "Web View",
   "groupIdentity": "wts.Page.WebView",
   "identity": "wts.Page.WebView.CodeBehind",
-  "description": "The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine.",
+  "description": "The web view page renders web content using the Microsoft Edge rendering engine.",
   "tags": {
     "language": "C#",
     "type": "item",

@@ -41,6 +41,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public string FailedPostaction { get; private set; }
 
+        public string MoreInfoLink => $"{Configuration.Current.GitHubDocsUrl}newitem.md";
+
         public ICommand MoreDetailsCommand => _moreDetailsCommand ?? (_moreDetailsCommand = new RelayCommand(OnMoreDetails));
 
         private NewItemFileViewModel(FileStatus fileStatus, string subject, Func<string, string> updateTextAction = null)
@@ -89,7 +91,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             return new NewItemFileViewModel(FileStatus.WarningFile, file.FileName, AsUserFriendlyPostAction);
         }
 
-        private void OnMoreDetails() => Process.Start($"{Configuration.Current.GitHubDocsUrl}newitem.md");
+        private void OnMoreDetails() => Process.Start(MoreInfoLink);
 
         private string GetIcon()
         {
