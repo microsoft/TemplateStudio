@@ -17,9 +17,9 @@
 
     <Grid Style="{StaticResource WtsGridMainPage}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="71*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="29*" />
+            <ColumnDefinition Width="252" />
         </Grid.ColumnDefinitions>
         <ContentPresenter
             Content="{Binding ChangesSummary.Selected}"
