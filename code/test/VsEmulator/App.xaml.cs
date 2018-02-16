@@ -69,7 +69,6 @@ namespace Microsoft.Templates.VsEmulator
                             ? Path.GetFileName(Path.GetTempFileName().Replace(".", string.Empty))
                             : options.ProjectName;
 
-                        // TODO [ML]: add support for right-click wizards too.
                         GenContext.Bootstrap(
                             new LocalTemplatesSource("0.0.0.0", string.Empty),
                             new FakeGenShell(progLanguage),
@@ -107,33 +106,13 @@ namespace Microsoft.Templates.VsEmulator
                         switch (options.UI.ToUpperInvariant())
                         {
                             case "PAGE":
-                                Directory.CreateDirectory(projectPath);
-
-                                // Add a manifest file with enough info for the wizard to function
-                                var fakeAppxManifest = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<Package
-  xmlns=""http://schemas.microsoft.com/appx/manifest/foundation/windows10""
-  xmlns:mp=""http://schemas.microsoft.com/appx/2014/phone/manifest""
-  xmlns:uap=""http://schemas.microsoft.com/appx/manifest/uap/windows10""
-  xmlns:genTemplate=""http://schemas.microsoft.com/appx/developer/windowsTemplateStudio""
-  IgnorableNamespaces=""uap mp genTemplate"">
-  <genTemplate:Metadata>
-    <genTemplate:Item Name=""generator"" Value=""Windows Template Studio""/>
-    <genTemplate:Item Name=""wizardVersion"" Version=""v0.0.0.0"" />
-    <genTemplate:Item Name=""templatesVersion"" Version=""v0.0.0.0"" />
-    <genTemplate:Item Name=""projectType"" Value=""Blank"" />
-    <genTemplate:Item Name=""framework"" Value=""CodeBehind"" />
-  </genTemplate:Metadata>
-</Package>
-";
-
-                                File.WriteAllText(Path.Combine(projectPath, "package.appxmanifest"), fakeAppxManifest);
-
+                                EnableRightClickSupportForProject(projectPath);
                                 var userPageSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
 
                                 break;
 
                             case "FEATURE":
+                                EnableRightClickSupportForProject(projectPath, progLanguage);
                                 var userFeatureSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
 
                                 break;
@@ -177,6 +156,44 @@ namespace Microsoft.Templates.VsEmulator
 
                 Application.Current.Shutdown(exitCode);
             });
+        }
+
+        private void EnableRightClickSupportForProject(string projectPath, string progLanguage = null)
+        {
+            Directory.CreateDirectory(projectPath);
+
+            // Add a manifest file with enough info for the wizard to function
+            var fakeAppxManifest = @"<?xml version=""1.0"" encoding=""utf-8""?>
+<Package
+  xmlns=""http://schemas.microsoft.com/appx/manifest/foundation/windows10""
+  xmlns:mp=""http://schemas.microsoft.com/appx/2014/phone/manifest""
+  xmlns:uap=""http://schemas.microsoft.com/appx/manifest/uap/windows10""
+  xmlns:genTemplate=""http://schemas.microsoft.com/appx/developer/windowsTemplateStudio""
+  IgnorableNamespaces=""uap mp genTemplate"">
+  <genTemplate:Metadata>
+    <genTemplate:Item Name=""generator"" Value=""Windows Template Studio""/>
+    <genTemplate:Item Name=""wizardVersion"" Version=""v0.0.0.0"" />
+    <genTemplate:Item Name=""templatesVersion"" Version=""v0.0.0.0"" />
+    <genTemplate:Item Name=""projectType"" Value=""Blank"" />
+    <genTemplate:Item Name=""framework"" Value=""CodeBehind"" />
+  </genTemplate:Metadata>
+</Package>
+";
+
+            File.WriteAllText(Path.Combine(projectPath, "package.appxmanifest"), fakeAppxManifest);
+
+            if (!string.IsNullOrWhiteSpace(progLanguage))
+            {
+                switch (progLanguage)
+                {
+                    case ProgrammingLanguages.CSharp:
+                        File.WriteAllText(Path.Combine(projectPath, ".csproj"), "Placeholder for C# project file.");
+                        break;
+                    case ProgrammingLanguages.VisualBasic:
+                        File.WriteAllText(Path.Combine(projectPath, ".vbproj"), "Placeholder for VB.Net project file.");
+                        break;
+                }
+            }
         }
     }
 }

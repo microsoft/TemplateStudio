@@ -127,6 +127,18 @@ namespace Microsoft.UI.Test.VisualTests
             CloseApp();
         }
 
+        protected void ForEachStepInAddFeatureWizard(string culture, string progLanguage, bool includeDetails, Action<string> action)
+        {
+            LaunchApp(culture, progLanguage, ui: "FEATURE");
+
+            action.Invoke("AddFeature_Select");
+
+            SelectStep(2);
+            action.Invoke("AddFeature_Summary");
+
+            CloseApp();
+        }
+
         private void ViewAllDetails(string stepName, Action<string> action)
         {
             var scrollCount = 0;
@@ -181,7 +193,7 @@ namespace Microsoft.UI.Test.VisualTests
 
         private void SelectStep(int stepNumber)
         {
-            if (WizardSession.TryFindElementByAutomationId("ListBoxItem", $"Step{stepNumber-1}", out var listItem))
+            if (WizardSession.TryFindElementByAutomationId("ListBoxItem", $"Step{stepNumber - 1}", out var listItem))
             {
                 listItem.Click();
                 Pause();
