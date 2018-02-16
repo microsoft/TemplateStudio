@@ -181,7 +181,7 @@ namespace Microsoft.UI.Test.VisualTests
 
         private void SelectStep(int stepNumber)
         {
-            if (WizardSession.TryFindElementByAutomationId("ListBoxItem", $"Step{stepNumber}.", out var listItem))
+            if (WizardSession.TryFindElementByAutomationId("ListBoxItem", $"Step{stepNumber-1}", out var listItem))
             {
                 listItem.Click();
                 Pause();

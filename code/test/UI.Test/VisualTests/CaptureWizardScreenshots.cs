@@ -15,14 +15,14 @@ using Xunit;
 
 namespace Microsoft.UI.Test.VisualTests
 {
-    // The methods in this class aren't real test, they just use the test infrastructure to captures screenshots for manual review
+    // The methods in this class aren't real tests, they just use the test infrastructure to captures screenshots for manual review
     [Collection("UI-Visuals")]
     [Trait("ExecutionSet", "ManualOnly")]
     [Trait("Type", "WinAppDriver")]
     public class CaptureWizardScreenshots : AutomatedWizardTestingBase
     {
         [Fact]
-        public void GetScreenshots_Wizard_CS_AllCultures()
+        public void GetScreenshots_NewProject_CS_AllCultures()
         {
             var testOutputRoot = GetRootFolderForTestOutput();
 
@@ -36,7 +36,7 @@ namespace Microsoft.UI.Test.VisualTests
         }
 
         [Fact]
-        public void GetScreenshots_Wizard_CSandVB_DefaultCulture()
+        public void GetScreenshots_NewProject_CSandVB_DefaultCulture()
         {
             var testOutputRoot = GetRootFolderForTestOutput();
 

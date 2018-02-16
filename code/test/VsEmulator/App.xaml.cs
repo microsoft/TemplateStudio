@@ -18,6 +18,7 @@ using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
+using Microsoft.Templates.VsEmulator.Main;
 using Microsoft.Templates.VsEmulator.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 
@@ -99,8 +100,9 @@ namespace Microsoft.Templates.VsEmulator
 
                         GenContext.Current = context;
 
-                        App.LoadLightTheme();
-                        UIStylesService.Instance.Initialize(new FakeStyleValuesProvider());
+                        // Need to create a MainViewModel as the styles in the UI of all pages is set up by it
+                        var vm = new MainViewModel(null);
+                        UIStylesService.Instance.Initialize(FakeStyleValuesProvider.Instance);
 
                         switch (options.UI.ToUpperInvariant())
                         {
