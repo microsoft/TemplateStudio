@@ -39,11 +39,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             get => _count;
             private set
             {
-                SetProperty(ref _count, value);
                 HasMoreThanOne = value > 1;
                 HasMoreThanTwo = value > 2;
-                ShowAddedText = !MultipleInstance && Count > 0;
-                CanBeAdded = MultipleInstance || Count == 0;
+                ShowAddedText = !MultipleInstance && value > 0;
+                CanBeAdded = MultipleInstance || value == 0;
+                if (MultipleInstance)
+                {
+                    SetProperty(ref _count, value);
+                }
             }
         }
 
