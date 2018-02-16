@@ -547,6 +547,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open {0} in a new browser tab.
+        /// </summary>
+        public static string ExternalHyperlinkTooltipFormat {
+            get {
+                return ResourceManager.GetString("ExternalHyperlinkTooltipFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a design pattern.
         /// </summary>
         public static string FrameworkTitle {
