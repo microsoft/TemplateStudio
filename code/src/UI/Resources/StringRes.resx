@@ -625,4 +625,8 @@
     <value>Templates list</value>
     <comment>Templates list label to accessibility</comment>
   </data>
+  <data name="ExternalHyperlinkTooltipFormat" xml:space="preserve">
+    <value>Open {0} in a new browser tab</value>
+    <comment>External hyperlink tooltip string format</comment>
+  </data>
 </root>
