@@ -79,6 +79,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public WizardStatus WizardStatus { get; } = new WizardStatus();
 
+        public async Task<bool> IsStepAvailableAsync() => await IsStepAvailableAsync(Step);
+
         protected virtual async Task<bool> IsStepAvailableAsync(int step)
         {
             await Task.CompletedTask;
