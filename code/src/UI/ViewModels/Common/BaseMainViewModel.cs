@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         protected virtual async Task<bool> IsStepAvailableAsync(int step)
         {
             await Task.CompletedTask;
-            return true;
+            return !WizardStatus.HasValidationErrors;
         }
 
         protected virtual void UpdateStep()
