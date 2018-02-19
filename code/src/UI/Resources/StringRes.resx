@@ -629,4 +629,8 @@
     <value>Open {0} in a new browser tab</value>
     <comment>External hyperlink tooltip string format</comment>
   </data>
+  <data name="ReorderPageHelpText" xml:space="preserve">
+    <value>Use ctrl+up arrow or ctrl+down arrow to change page order</value>
+    <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data>
 </root>

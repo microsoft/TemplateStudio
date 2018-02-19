@@ -1006,6 +1006,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use ctrl+up arrow or ctrl+down arrow to change page order.
+        /// </summary>
+        public static string ReorderPageHelpText {
+            get {
+                return ResourceManager.GetString("ReorderPageHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creating Windows Template Studio project....
         /// </summary>
         public static string StatusBarCreatingProject {
