@@ -210,7 +210,8 @@
             HeaderTemplate="{StaticResource WtsNewItemFileGroupHeader}">
             <ListView
                 ItemsSource="{Binding Items}"
-                Style="{StaticResource WtsListViewNewItemFile}" />
+                Style="{StaticResource WtsListViewNewItemFile}"
+                AutomationProperties.Name="{Binding Title}"/>
         </Expander>
     </DataTemplate>
 

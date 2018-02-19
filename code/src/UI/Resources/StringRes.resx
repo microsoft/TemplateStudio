@@ -629,4 +629,16 @@
     <value>Open {0} in a new browser tab</value>
     <comment>External hyperlink tooltip string format</comment>
   </data>
+  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
+    <value>Code viewer</value>
+    <comment>Code viewer label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
+    <value>New item file icon</value>
+    <comment>New item file icon label to accessibility</comment>
+  </data>
+  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
+    <value>Error text description</value>
+    <comment>Error dialog accessible name to description textbox</comment>
+  </data>
 </root>
