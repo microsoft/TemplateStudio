@@ -361,7 +361,7 @@
                                     Style="{StaticResource WtsImageExProjectDetails}" />
                                 <Grid
                                     Grid.Column="2">
-                                    <TextBox                                    
+                                    <TextBox
                                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         Style="{StaticResource WtsTextBoxStyle}"
                                         Margin="{StaticResource Margin_XS_Left}"
@@ -387,7 +387,7 @@
                                     Command="{Binding DeleteCommand}" />
                             </Grid>
                         </Grid>
-                        <Grid x:Name="dropGridMask" Visibility="Collapsed" Background="{Binding ListItemMouseOverText, Source={x:Static services:UIStylesService.Instance}}" />
+                        <Grid x:Name="dropGridMask" Visibility="Collapsed" Opacity="0.4" Background="{Binding SavedTemplateBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
