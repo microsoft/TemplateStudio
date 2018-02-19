@@ -641,4 +641,8 @@
     <value>Error text description</value>
     <comment>Error dialog accessible name to description textbox</comment>
   </data>
+  <data name="ReorderPageHelpText" xml:space="preserve">
+    <value>Use ctrl+up arrow or ctrl+down arrow to change page order</value>
+    <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data>
 </root>
