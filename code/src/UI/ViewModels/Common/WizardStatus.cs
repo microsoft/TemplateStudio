@@ -5,7 +5,9 @@
 using System;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Resources;
@@ -20,6 +22,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _isBusy;
         private bool _isNotBusy;
         private bool _hasValidationErrors;
+        private bool _isSequentialFlowEnabled;
         private bool _isLoading = true;
         private ICommand _openWebSiteCommand;
 
@@ -53,13 +56,19 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             private set => SetProperty(ref _isNotBusy, value);
         }
 
+        public bool IsSequentialFlowEnabled
+        {
+            get => _isSequentialFlowEnabled;
+            private set => SetProperty(ref _isSequentialFlowEnabled, value);
+        }
+
         public bool HasValidationErrors
         {
             get => _hasValidationErrors;
             set
             {
                 SetProperty(ref _hasValidationErrors, value);
-                UpdateIsBusy();
+                UpdateIsBusyAsync().FireAndForget();
             }
         }
 
@@ -69,7 +78,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set
             {
                 SetProperty(ref _isLoading, value);
-                UpdateIsBusy();
+                UpdateIsBusyAsync().FireAndForget();
             }
         }
 
@@ -83,7 +92,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             var size = SystemService.Instance.GetMainWindowSize();
             Width = size.width;
             Height = size.height;
-            UpdateIsBusy();
+            UpdateIsBusyAsync().FireAndForget();
             SetVersions();
         }
 
@@ -99,11 +108,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
-        private void UpdateIsBusy()
+        private async Task UpdateIsBusyAsync()
         {
             IsBusy = IsLoading || HasValidationErrors;
             IsNotBusy = !IsBusy;
             IsBusyChanged?.Invoke(this, true);
+            IsSequentialFlowEnabled = await BaseMainViewModel.BaseInstance.IsStepAvailableAsync();
         }
 
         private void OnOpenWebSite() => Process.Start("https://aka.ms/wts");

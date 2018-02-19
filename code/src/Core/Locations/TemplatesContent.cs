@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Core.Locations
             version = Source.Config?.ResolvePackage(WizardVersion)?.Version;
             if (Current != null && !Current.Version.IsNull() && Directory.Exists(Current.Path))
             {
-                return Current.Version < version;
+                return Current.Version < version && (WizardVersion != version);
             }
             else
             {

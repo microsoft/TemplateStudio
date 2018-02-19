@@ -20,6 +20,7 @@
 
     <ListView
         x:Name="listView"
+        IsEnabled="{Binding IsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SequentialFlow}}}"
         ItemsSource="{Binding Steps, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SequentialFlow}}}"
         Style="{DynamicResource WtsListViewSequentialFlow}" />
 

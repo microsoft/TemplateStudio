@@ -70,7 +70,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         protected override async Task<bool> IsStepAvailableAsync(int step)
         {
-            if (step == 1)
+            if (step == 1 && !WizardStatus.HasValidationErrors)
             {
                 _output = await CleanupAndGenerateNewItemAsync();
                 if (!_output.HasChangesToApply)
