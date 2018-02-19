@@ -50,7 +50,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Viewbox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="{StaticResource Margin_M_Right}" Style="{StaticResource WtsViewBoxDialogIcon}">
-                <Frame Source="/Microsoft.Templates.UI;component/Assets/StatusWarning.xaml" />
+                <Frame Source="/Microsoft.Templates.UI;component/Assets/StatusWarning.xaml" Focusable="False" IsTabStop="False" />
             </Viewbox>
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Style="{StaticResource WtsTextBlockDialogTitle}" />
             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Description}" Style="{StaticResource WtsTextBlockDialogDescription}" Margin="{StaticResource Margin_M_Top}" />

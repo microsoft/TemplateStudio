@@ -61,7 +61,8 @@
                     Margin="16,12,26,12"
                     Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
                     extensions:TextBoxExtensions.ListenIsFocused="True"
-                    extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding TemplateSelection.LostKeyboardFocusCommand}">
+                    extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding TemplateSelection.LostKeyboardFocusCommand}"
+                    AutomationProperties.Name="{x:Static strings:StringRes.AccessibilityEditPageItem}">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Enter" Command="{Binding TemplateSelection.SetFocusCommand}" />
                     </TextBox.InputBindings>
@@ -113,7 +114,8 @@
             <TextBox
                 Style="{StaticResource WtsTextBoxVersion}"
                 Margin="{StaticResource Margin_M1_LeftRight}"
-                Text="{Binding WizardStatus.Versions}"/>
+                Text="{Binding WizardStatus.Versions}"
+                AutomationProperties.Name="{Binding Text, RelativeSource={RelativeSource Self}}"/>
             <Button
                 Margin="16,8,26,0"
                 Style="{StaticResource ButtonRefreshTemplatesStyle}"

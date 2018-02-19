@@ -427,6 +427,9 @@
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
+                        <DataTrigger Binding="{Binding IsReorderEnabled}" Value="true">
+                            <Setter Property="AutomationProperties.HelpText" Value="{x:Static strings:StringRes.ReorderPageHelpText}" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

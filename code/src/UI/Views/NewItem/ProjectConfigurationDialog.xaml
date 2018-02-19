@@ -56,13 +56,37 @@
 
 
             <StackPanel  Grid.Row="2">
-                <TextBlock Text="{x:Static strings:StringRes.ProjectConfigurationSelectProjectType}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}" />
-                <ComboBox ItemsSource="{Binding ProjectTypes}" SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}" Margin="{StaticResource Margin_S_TopBottom}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}" />
-                <TextBlock Text="{Binding SelectedProjectType.Summary}" Margin="{StaticResource Margin_S_Bottom}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
+                <TextBlock
+                    Text="{x:Static strings:StringRes.ProjectConfigurationSelectProjectType}"
+                    Margin="{StaticResource Margin_M_Top}"
+                    Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}" />
+                <ComboBox
+                    ItemsSource="{Binding ProjectTypes}"
+                    SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}"
+                    Margin="{StaticResource Margin_S_TopBottom}"
+                    ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"
+                    Style="{StaticResource WtsComboBoxStyle}"
+                    AutomationProperties.Name="{x:Static strings:StringRes.ProjectConfigurationSelectProjectType}"/>
+                <TextBlock
+                    Text="{Binding SelectedProjectType.Summary}"
+                    Margin="{StaticResource Margin_S_Bottom}"
+                    Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
 
-                <TextBlock Text="{x:Static strings:StringRes.ProjectConfigurationSelectFramework}" Margin="{StaticResource Margin_M_Top}" Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}"/>
-                <ComboBox ItemsSource="{Binding Frameworks}" SelectedItem="{Binding SelectedFramework, Mode=TwoWay}" Margin="{StaticResource Margin_S_TopBottom}" ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"  />
-                <TextBlock Text="{Binding SelectedFramework.Summary}" Margin="{StaticResource Margin_S_Bottom}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
+                <TextBlock
+                    Text="{x:Static strings:StringRes.ProjectConfigurationSelectFramework}"
+                    Margin="{StaticResource Margin_M_Top}"
+                    Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}"/>
+                <ComboBox
+                    ItemsSource="{Binding Frameworks}"
+                    SelectedItem="{Binding SelectedFramework, Mode=TwoWay}"
+                    Margin="{StaticResource Margin_S_TopBottom}"
+                    ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"
+                    Style="{StaticResource WtsComboBoxStyle}"
+                    AutomationProperties.Name="{x:Static strings:StringRes.ProjectConfigurationSelectFramework}" />
+                <TextBlock
+                    Text="{Binding SelectedFramework.Summary}"
+                    Margin="{StaticResource Margin_S_Bottom}"
+                    Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">

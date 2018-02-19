@@ -61,6 +61,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Code viewer.
+        /// </summary>
+        public static string AccessibilityCodeViewerControl {
+            get {
+                return ResourceManager.GetString("AccessibilityCodeViewerControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Design pattern list.
         /// </summary>
         public static string AccessibilityDesignPatternList {
@@ -79,11 +88,29 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error text description.
+        /// </summary>
+        public static string AccessibilityErrorDialogDescriptionTextboxName {
+            get {
+                return ResourceManager.GetString("AccessibilityErrorDialogDescriptionTextboxName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Navigation menu.
         /// </summary>
         public static string AccessibilityNavigationMenu {
             get {
                 return ResourceManager.GetString("AccessibilityNavigationMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New item file icon.
+        /// </summary>
+        public static string AccessibilityNewItemFileIcon {
+            get {
+                return ResourceManager.GetString("AccessibilityNewItemFileIcon", resourceCulture);
             }
         }
         
@@ -547,11 +574,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open {0} in a new browser tab.
+        ///   Looks up a localized string similar to Open in a new browser tab.
         /// </summary>
-        public static string ExternalHyperlinkTooltipFormat {
+        public static string ExternalHyperlinkTooltipMessage {
             get {
-                return ResourceManager.GetString("ExternalHyperlinkTooltipFormat", resourceCulture);
+                return ResourceManager.GetString("ExternalHyperlinkTooltipMessage", resourceCulture);
             }
         }
         
@@ -1002,6 +1029,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ProjectTypeTitle {
             get {
                 return ResourceManager.GetString("ProjectTypeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use ctrl+up arrow or ctrl+down arrow to change page order.
+        /// </summary>
+        public static string ReorderPageHelpText {
+            get {
+                return ResourceManager.GetString("ReorderPageHelpText", resourceCulture);
             }
         }
         
