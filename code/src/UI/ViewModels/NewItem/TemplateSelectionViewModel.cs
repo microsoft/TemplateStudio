@@ -101,6 +101,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 template.IsSelected = true;
                 NameEditable = template.ItemNameEditable;
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
+                HasErrors = false;
+                WizardStatus.Current.HasValidationErrors = false;
                 Template = template.Template;
                 var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework);
                 LicensesService.SyncLicenses(licenses, Licenses);
