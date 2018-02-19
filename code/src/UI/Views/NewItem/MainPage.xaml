@@ -35,7 +35,7 @@
                 <ColumnDefinition Width="*" />
                 <!--80% Selection area-->
             </Grid.ColumnDefinitions>
-            <controls:SequentialFlow Steps="{Binding Steps}" />
+            <controls:SequentialFlow Steps="{Binding Steps}" IsEnabled="{Binding WizardStatus.IsSequentialFlowEnabled}" />
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
         </Grid>
