@@ -361,7 +361,7 @@
                                     Style="{StaticResource WtsImageExProjectDetails}" />
                                 <Grid
                                     Grid.Column="2">
-                                    <TextBox x:Name="PageText"
+                                    <TextBox
                                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         Style="{StaticResource WtsTextBoxStyle}"
                                         Margin="{StaticResource Margin_XS_Left}"
@@ -403,9 +403,6 @@
                         <EventTrigger RoutedEvent="DragEnter">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <BooleanAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PageText" Storyboard.TargetProperty="(UIElement.IsEnabled)">
-                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
-                                    </BooleanAnimationUsingKeyFrames>
                                     <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="dropGridMask" Storyboard.TargetProperty="(UIElement.Visibility)">
                                         <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
                                     </ObjectAnimationUsingKeyFrames>
@@ -415,9 +412,6 @@
                         <EventTrigger RoutedEvent="DragLeave">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <BooleanAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PageText" Storyboard.TargetProperty="(UIElement.IsEnabled)">
-                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
-                                    </BooleanAnimationUsingKeyFrames>
                                     <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="dropGridMask" Storyboard.TargetProperty="(UIElement.Visibility)">
                                         <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
                                     </ObjectAnimationUsingKeyFrames>
@@ -427,9 +421,6 @@
                         <EventTrigger RoutedEvent="Drop">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <BooleanAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PageText" Storyboard.TargetProperty="(UIElement.IsEnabled)">
-                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
-                                    </BooleanAnimationUsingKeyFrames>
                                     <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="dropGridMask" Storyboard.TargetProperty="(UIElement.Visibility)">
                                         <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
                                     </ObjectAnimationUsingKeyFrames>
