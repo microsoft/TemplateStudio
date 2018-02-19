@@ -574,11 +574,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open {0} in a new browser tab.
+        ///   Looks up a localized string similar to Open in a new browser tab.
         /// </summary>
-        public static string ExternalHyperlinkTooltipFormat {
+        public static string ExternalHyperlinkTooltipMessage {
             get {
-                return ResourceManager.GetString("ExternalHyperlinkTooltipFormat", resourceCulture);
+                return ResourceManager.GetString("ExternalHyperlinkTooltipMessage", resourceCulture);
             }
         }
         
