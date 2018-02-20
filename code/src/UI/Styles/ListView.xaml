@@ -400,6 +400,11 @@
                             <Setter Property="Opacity" TargetName="mouseOverDragAndDropTextBlock" Value="1" />
                             <Setter Property="Opacity" TargetName="mouseOverDeleteTemplateButton" Value="1" />
                         </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="true">
+                            <Setter Property="Opacity" TargetName="mouseOverGrid" Value="1" />
+                            <Setter Property="Opacity" TargetName="mouseOverDragAndDropTextBlock" Value="1" />
+                            <Setter Property="Opacity" TargetName="mouseOverDeleteTemplateButton" Value="1" />
+                        </Trigger>
                         <EventTrigger RoutedEvent="DragEnter">
                             <BeginStoryboard>
                                 <Storyboard>
