@@ -108,8 +108,12 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
+                        <Trigger Property="IsFocused" Value="true">
                             <Setter Property="Background" TargetName="border" Value="{Binding ButtonHover, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{Binding ButtonFocused, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" Value="{Binding ButtonBorderFocused, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Background" TargetName="border" Value="{Binding ButtonPressed, Source={x:Static services:UIStylesService.Instance}}" />
@@ -208,19 +212,6 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonRemove}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRemove}" />
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" StrokeThickness="1" StrokeDashArray="1 2"/>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style TargetType="Button" x:Key="WtsButtonCloseWindow" BasedOn="{StaticResource WtsBaseButton}">
