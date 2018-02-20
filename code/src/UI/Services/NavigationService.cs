@@ -3,11 +3,14 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows.Controls;
+using System.Windows.Navigation;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Services
 {
     public static class NavigationService
     {
+        private static bool _updateStep = false;
         private static Frame _mainFrame;
         private static Frame _secondaryFrame;
 
@@ -25,6 +28,25 @@ namespace Microsoft.Templates.UI.Services
         {
             _secondaryFrame = secondaryFrame;
             _secondaryFrame.Content = content;
+            _secondaryFrame.Navigated += SecondaryFrameNavigated;
+            _secondaryFrame.Navigating += SecondaryFrameNavigating;
+        }
+
+        private static void SecondaryFrameNavigating(object sender, NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Back || e.NavigationMode == NavigationMode.Forward)
+            {
+                _updateStep = true;
+            }
+        }
+
+        private static void SecondaryFrameNavigated(object sender, NavigationEventArgs e)
+        {
+            if (_updateStep)
+            {
+                BaseMainViewModel.BaseInstance.RefreshStep(e.Content);
+                _updateStep = false;
+            }
         }
 
         public static bool NavigateMainFrame(object content) => _mainFrame.Navigate(content);

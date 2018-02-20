@@ -14,6 +14,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -54,11 +55,13 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     if (userSelection != null)
                     {
-                        SafeThreading.JoinableTaskFactory.RunAsync(async () =>
+                        SafeThreading.JoinableTaskFactory.Run(
+                        async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                             NewItemGenController.Instance.FinishGeneration(userSelection);
-                        });
+                        },
+                        JoinableTaskCreationOptions.LongRunning);
 
                         _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                     }
@@ -81,11 +84,14 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     if (userSelection != null)
                     {
-                        SafeThreading.JoinableTaskFactory.RunAsync(async () =>
+                        SafeThreading.JoinableTaskFactory.Run(
+                        async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                             NewItemGenController.Instance.FinishGeneration(userSelection);
-                        });
+                        },
+                        JoinableTaskCreationOptions.LongRunning);
+
                         _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                     }
                 }
