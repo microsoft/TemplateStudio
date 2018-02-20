@@ -40,6 +40,15 @@ namespace Microsoft.Templates.UI.Views.NewProject
             if (e.Key == Key.Escape)
             {
                 Close();
+                return;
+            }
+
+            if (e.Key == Key.Back
+                && NavigationService.CanGoBackMainFrame
+                && sender is WizardShell shell
+                && shell.mainFrame.NavigationService.Content is TemplateInfoPage)
+            {
+                NavigationService.GoBackMainFrame();
             }
         }
 
