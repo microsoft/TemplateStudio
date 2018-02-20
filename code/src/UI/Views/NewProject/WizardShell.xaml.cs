@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.UI.Views.Common;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
