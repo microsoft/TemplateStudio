@@ -206,9 +206,21 @@
         <Setter Property="Foreground" Value="{Binding DeleteTemplateIcon, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Content" Value="&#xE10A;" />
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonRemove}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRemove}" />
+        <Setter Property="FocusVisualStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="Button" x:Key="WtsButtonCloseWindow" BasedOn="{StaticResource WtsBaseButton}">
