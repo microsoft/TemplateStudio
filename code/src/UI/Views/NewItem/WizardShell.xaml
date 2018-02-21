@@ -8,6 +8,8 @@
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+    Loaded="OnLoaded"
+    Unloaded="OnUnloaded"
     WindowStartupLocation="CenterScreen"
     MouseLeftButtonDown="OnMouseLeftButtonDown"
     MinWidth="800"

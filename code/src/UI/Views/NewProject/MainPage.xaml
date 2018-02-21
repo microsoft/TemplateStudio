@@ -6,6 +6,8 @@
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
       xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources"
       xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
+      Loaded="OnLoaded"
+      Unloaded="OnUnloaded"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="MainPage">

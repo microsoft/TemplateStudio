@@ -8,6 +8,8 @@
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
       xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
       xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+      Loaded="OnLoaded"
+      Unloaded="OnUnloaded"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 

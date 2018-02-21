@@ -35,6 +35,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private RelayCommand _goBackCommand;
         private RelayCommand _goForwardCommand;
         private RelayCommand _finishCommand;
+        private BaseStyleValuesProvider _provider;
 
         protected string Language { get; private set; }
 
@@ -43,6 +44,64 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             get => _step;
             private set => SetStepAsync(value).FireAndForget();
         }
+
+        public ObservableCollection<Step> Steps { get; }
+
+        public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
+
+        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(() => Step--, () => _canGoBack && !WizardStatus.IsBusy));
+
+        public RelayCommand GoForwardCommand => _goForwardCommand ?? (_goForwardCommand = new RelayCommand(() => Step++, () => _canGoForward && !WizardStatus.IsBusy));
+
+        public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, () => _canFinish && !WizardStatus.IsBusy));
+
+        public WizardStatus WizardStatus { get; }
+
+        public SystemService SystemService { get; }
+
+        public UIStylesService StylesService { get; }
+
+        public BaseMainViewModel(Window mainView, BaseStyleValuesProvider provider, bool canFinish = true)
+        {
+            BaseInstance = this;
+            _mainView = mainView;
+            _provider = provider;
+            _canFinish = canFinish;
+            Steps = new ObservableCollection<Step>();
+            SystemService = new SystemService();
+            WizardStatus = new WizardStatus();
+            StylesService = new UIStylesService(provider);
+            ResourcesService.Instance.Initialize(mainView);
+        }
+
+        public abstract bool IsSelectionEnabled(MetadataType metadataType);
+
+        public abstract void ProcessItem(object item);
+
+        protected abstract void OnCancel();
+
+        protected abstract Task OnTemplatesAvailableAsync();
+
+        protected abstract IEnumerable<Step> GetSteps();
+
+        public void RefreshStep(object navigatedPage)
+        {
+            var step = Steps.FirstOrDefault(s => s.Equals(navigatedPage.GetType()));
+            if (step != null)
+            {
+                SetStepAsync(step.Index, false).FireAndForget();
+            }
+        }
+
+        public void UnsuscribeEventHandlers()
+        {
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= OnSyncStatusChanged;
+            WizardStatus.IsBusyChanged -= IsBusyChanged;
+            SystemService.UnsuscribeEventHandlers();
+            StylesService.UnsuscribeEventHandlers();
+        }
+
+        public async Task<bool> IsStepAvailableAsync() => await IsStepAvailableAsync(Step);
 
         public async Task SetStepAsync(int step, bool navigate = true)
         {
@@ -67,26 +126,26 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
-        public ObservableCollection<Step> Steps { get; } = new ObservableCollection<Step>();
-
-        public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
-
-        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(() => Step--, () => _canGoBack && !WizardStatus.IsBusy));
-
-        public RelayCommand GoForwardCommand => _goForwardCommand ?? (_goForwardCommand = new RelayCommand(() => Step++, () => _canGoForward && !WizardStatus.IsBusy));
-
-        public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, () => _canFinish && !WizardStatus.IsBusy));
-
-        public WizardStatus WizardStatus { get; } = new WizardStatus();
-
-        public async Task<bool> IsStepAvailableAsync() => await IsStepAvailableAsync(Step);
-
-        public void RefreshStep(object navigatedPage)
+        public virtual async Task InitializeAsync(string language)
         {
-            var step = Steps.FirstOrDefault(s => s.Equals(navigatedPage.GetType()));
-            if (step != null)
+            Language = language;
+            Steps.Clear();
+            foreach (var step in GetSteps())
             {
-                SetStepAsync(step.Index, false).FireAndForget();
+                Steps.Add(step);
+            }
+
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
+            WizardStatus.IsBusyChanged += IsBusyChanged;
+            SystemService.Initialize();
+            try
+            {
+                await GenContext.ToolBox.Repo.SynchronizeAsync();
+            }
+            catch (Exception ex)
+            {
+                await AppHealth.Current.Error.TrackAsync(ex.ToString());
+                await AppHealth.Current.Exception.TrackAsync(ex);
             }
         }
 
@@ -123,25 +182,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             SetCanGoForward(Step < Steps.Count - 1);
         }
 
-        protected abstract void OnCancel();
-
-        protected abstract Task OnTemplatesAvailableAsync();
-
-        protected abstract IEnumerable<Step> GetSteps();
-
-        public abstract bool IsSelectionEnabled(MetadataType metadataType);
-
-        public abstract void ProcessItem(object item);
-
-        public BaseMainViewModel(Window mainView, bool canFinish = true)
-        {
-            BaseInstance = this;
-            _mainView = mainView;
-            _canFinish = canFinish;
-            ResourcesService.Instance.Initialize(mainView);
-            WizardStatus.IsBusyChanged += IsBusyChanged;
-        }
-
         protected virtual void OnFinish()
         {
             _mainView.DialogResult = true;
@@ -172,29 +212,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             GoBackCommand.OnCanExecuteChanged();
             GoForwardCommand.OnCanExecuteChanged();
         }
-
-        public virtual async Task InitializeAsync(string language)
-        {
-            Language = language;
-            Steps.Clear();
-            foreach (var step in GetSteps())
-            {
-                Steps.Add(step);
-            }
-
-            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
-            try
-            {
-                await GenContext.ToolBox.Repo.SynchronizeAsync();
-            }
-            catch (Exception ex)
-            {
-                await AppHealth.Current.Error.TrackAsync(ex.ToString());
-                await AppHealth.Current.Exception.TrackAsync(ex);
-            }
-        }
-
-        public void UnsuscribeEventHandlers() => GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= OnSyncStatusChanged;
 
         private async void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)
         {

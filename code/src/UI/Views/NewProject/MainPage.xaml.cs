@@ -16,16 +16,21 @@ namespace Microsoft.Templates.UI.Views.NewProject
         {
             DataContext = MainViewModel.Instance;
             InitializeComponent();
-            Services.NavigationService.InitializeSecondaryFrame(stepFrame, new ProjectTypePage());
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            Services.NavigationService.InitializeSecondaryFrame(stepFrame, new ProjectTypePage());
             var listView = sender as ListView;
             if (listView != null)
             {
                 Services.OrderingService.Initialize(listView);
             }
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            Services.NavigationService.UnsuscribeEventHandlers();
         }
 
         private void ComboBox_PreviewKeyDown(object sender, KeyEventArgs e)

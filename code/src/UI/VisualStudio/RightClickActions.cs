@@ -51,7 +51,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 try
                 {
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage());
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
 
                     if (userSelection != null)
                     {
@@ -80,7 +80,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 SetContext();
                 try
                 {
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage());
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
 
                     if (userSelection != null)
                     {
@@ -129,8 +129,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         private void SetContext()
         {
             EnsureGenContextInitialized();
-            UIStylesService.Instance.Initialize(new VSStyleValuesProvider());
-
             if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {
                 ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
