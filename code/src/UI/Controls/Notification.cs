@@ -86,6 +86,11 @@ namespace Microsoft.Templates.UI.Controls
             _closeTimer.Tick += OnTick;
         }
 
+        internal void UnsuscribeEventHandlers()
+        {
+            _closeTimer.Tick -= OnTick;
+        }
+
         private static double GetInterval(TimerType timerType)
         {
             double interval = 0.0;

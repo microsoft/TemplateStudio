@@ -5,6 +5,7 @@
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 
@@ -33,6 +34,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
             Unloaded += (sender, e) =>
             {
                 ViewModel.UnsuscribeEventHandlers();
+                NotificationsControl.Instance.UnsuscribeEventHandlers();
             };
         }
 
