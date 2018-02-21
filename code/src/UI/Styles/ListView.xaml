@@ -367,7 +367,7 @@
                                         Margin="{StaticResource Margin_XS_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
                                         AutomationProperties.Name="{x:Static strings:StringRes.AccessibilityEditPageItem}"
-                                        extensions:TextBoxExtensions.ListenIsFocused="True"
+                                        extensions:TextBoxExtensions.IsTextSelected="{Binding IsTextSelected}"
                                         extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}">
                                         <TextBox.InputBindings>
                                             <KeyBinding Key="Enter" Command="{Binding SetFocusCommand}" />

@@ -348,7 +348,6 @@
     <Compile Include="Services\DragAndDropService\ListViewItemDragState.cs" />
     <Compile Include="Services\DragAndDropService\MouseUtilities.cs" />
     <Compile Include="Services\DragAndDropService\NativeMethods.cs" />
-    <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\LicensesService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\OrderingService.cs" />

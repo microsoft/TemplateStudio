@@ -14,11 +14,11 @@ namespace Microsoft.Templates.UI.Extensions
     {
         private static string _currentFocusTemplateName;
 
-        public static readonly DependencyProperty ListenIsFocusedProperty = DependencyProperty.RegisterAttached(
-          "ListenIsFocused",
-          typeof(bool),
-          typeof(TextBoxExtensions),
-          new PropertyMetadata(false, OnListenIsFocusedPropertyChanged));
+        public static readonly DependencyProperty IsTextSelectedProperty = DependencyProperty.RegisterAttached(
+        "IsTextSelected",
+        typeof(bool),
+        typeof(TextBoxExtensions),
+        new UIPropertyMetadata(false, OnIsTextSelectedPropertyChanged));
 
         public static readonly DependencyProperty LostKeyboardFocusCommandProperty = DependencyProperty.RegisterAttached(
           "LostKeyboardFocusCommand",
@@ -26,14 +26,14 @@ namespace Microsoft.Templates.UI.Extensions
           typeof(TextBoxExtensions),
           new PropertyMetadata(null, OnLostKeyboardFocusCommandPropertyChanged));
 
-        public static void SetListenIsFocused(UIElement element, bool value)
+        public static bool GetIsTextSelected(DependencyObject obj)
         {
-            element.SetValue(ListenIsFocusedProperty, value);
+            return (bool)obj.GetValue(IsTextSelectedProperty);
         }
 
-        public static bool GetListenIsFocused(UIElement element)
+        public static void SetIsTextSelected(DependencyObject obj, bool value)
         {
-            return (bool)element.GetValue(ListenIsFocusedProperty);
+            obj.SetValue(IsTextSelectedProperty, value);
         }
 
         public static void SetLostKeyboardFocusCommand(UIElement element, ICommand value)
@@ -46,27 +46,14 @@ namespace Microsoft.Templates.UI.Extensions
             return (ICommand)element.GetValue(LostKeyboardFocusCommandProperty);
         }
 
-        private static void OnListenIsFocusedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnIsTextSelectedPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var textBox = d as TextBox;
-            if (textBox != null)
-            {
-                EventService.Instance.OnSavedTemplateFocused += (sender, templateName) =>
-                {
-                    _currentFocusTemplateName = templateName;
-                    ProcessFocus(textBox);
-                };
-                ProcessFocus(textBox);
-            }
-        }
 
-        private static void ProcessFocus(TextBox textBox)
-        {
-            if (textBox.Text == _currentFocusTemplateName)
+            if ((bool)e.NewValue)
             {
-                textBox.Focus();
+                textBox?.Focus();
                 textBox.Select(0, textBox.Text.Length);
-                _currentFocusTemplateName = string.Empty;
             }
         }
 

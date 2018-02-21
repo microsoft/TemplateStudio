@@ -23,6 +23,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private bool _nameEditable;
         private bool _hasErrors;
         private bool _isFocused;
+        private bool _isTextSelected;
         private ICommand _setFocusCommand;
         private ICommand _lostKeyboardFocusCommand;
 
@@ -58,6 +59,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
+        public bool IsTextSelected
+        {
+            get => _isTextSelected;
+            set
+            {
+                if (_isTextSelected == value)
+                {
+                    SetProperty(ref _isTextSelected, false);
+                }
+
+                SetProperty(ref _isTextSelected, value);
+            }
+        }
+
         public ITemplateInfo Template { get; private set; }
 
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
@@ -76,7 +91,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public void Focus()
         {
-            EventService.Instance.RaiseOnSavedTemplateFocused(Name);
+            IsTextSelected = true;
         }
 
         public void LoadData(TemplateType templateType, string framework)

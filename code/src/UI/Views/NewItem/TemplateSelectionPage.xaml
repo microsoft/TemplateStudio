@@ -60,8 +60,8 @@
                     Text="{Binding TemplateSelection.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Margin="16,12,26,12"
                     Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
-                    extensions:TextBoxExtensions.ListenIsFocused="True"
                     extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding TemplateSelection.LostKeyboardFocusCommand}"
+                    extensions:TextBoxExtensions.IsTextSelected="{Binding TemplateSelection.IsTextSelected}"
                     AutomationProperties.Name="{x:Static strings:StringRes.AccessibilityEditPageItem}">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Enter" Command="{Binding TemplateSelection.SetFocusCommand}" />
