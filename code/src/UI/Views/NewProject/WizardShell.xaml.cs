@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.Templates.UI.Views.Common;
 
 namespace Microsoft.Templates.UI.Views.NewProject
 {
@@ -42,6 +43,15 @@ namespace Microsoft.Templates.UI.Views.NewProject
             if (e.Key == Key.Escape)
             {
                 Close();
+                return;
+            }
+
+            if (e.Key == Key.Back
+                && NavigationService.CanGoBackMainFrame
+                && sender is WizardShell shell
+                && shell.mainFrame.NavigationService.Content is TemplateInfoPage)
+            {
+                NavigationService.GoBackMainFrame();
             }
         }
 
