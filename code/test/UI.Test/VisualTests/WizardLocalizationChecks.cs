@@ -2,7 +2,11 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using Microsoft.Templates.Core;
 using Xunit;
 
@@ -16,30 +20,71 @@ namespace Microsoft.UI.Test.VisualTests
         [Fact]
         public void EnsureLaunchPageVisualsAreEquivalentAsync()
         {
+            var errorOutput = new List<string>();
+
             var defaultText = GetDefaultText();
 
             foreach (var culture in NonDefaultVsCultures)
             {
                 var localizedText = GetAllUiText(culture);
 
-                // compare localizedText with defaultText
+                foreach (var page in defaultText)
+                {
+                    foreach (var defaultString in page.Value)
+                    {
+                        if (localizedText[page.Key].Contains(defaultString))
+                        {
+                            if (!IsKnownLocalizationException(culture, page.Key, defaultString))
+                            {
+                                errorOutput.Add($"In {culture}, page {page.Key} includes unlocalized text '{defaultString}'");
+                            }
+                        }
+                    }
+                }
             }
+
+            Assert.True(errorOutput.Count == 0, string.Join(Environment.NewLine, errorOutput));
         }
 
-        private Dictionary<string, string> GetDefaultText()
+        public bool IsKnownLocalizationException(string culture, string page, string textContent)
+        {
+            var textValidOnAnyPage = new[] { "http://aka.ms/wts", "Windows Template Studio", "Microsoft.Toolkit.Uwp" };
+
+            // TODO [ML]: add per page exceptions
+            // TODO [ML]: add per culture AND page exceptions
+            if (textValidOnAnyPage.Contains(textContent))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private Dictionary<string, List<string>> GetDefaultText()
         {
             return GetAllUiText();
         }
 
-        private Dictionary<string, string> GetAllUiText(string culture = "")
+        private Dictionary<string, List<string>> GetAllUiText(string culture = "en-US")
         {
-            var result = new Dictionary<string, string>();
+            var result = new Dictionary<string, List<string>>();
 
-            // TODO [ML]: implement this (GetAllUiText)
             ForEachPageInProjectWizard(culture, ProgrammingLanguages.CSharp, false, pageName =>
             {
-                result.Add(pageName, "XXXX");
+                result.Add(pageName, GetAllTextOnScreen());
             });
+
+            return result;
+        }
+
+        private List<string> GetAllTextOnScreen()
+        {
+            var result = new List<string>();
+
+            foreach (var element in WizardSession.FindElementsByClassName("TextBlock"))
+            {
+                result.Add(element.Text);
+            }
 
             return result;
         }
