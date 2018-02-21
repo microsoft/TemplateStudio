@@ -118,141 +118,141 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdditionalMessageString" xml:space="preserve">
-    <value>Дополнительное сообщение</value>
+    <value>Additional Message</value>
   </data>
   <data name="AddtionalExceptionInfoString" xml:space="preserve">
-    <value>Дополнительные сведения об исключении</value>
+    <value>Addtional Exception Info</value>
   </data>
   <data name="AssemblyFileVersionString" xml:space="preserve">
-    <value>Версия файла сборки</value>
+    <value>Assembly File Version</value>
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
-    <value>Запрос "{0}" недопустим. Разрешенные операторы: "==" или "!=". Несколько условий следует разделять символом "&amp;".</value>
+    <value>The query "{0}" is not valid. Allowed operators are '==' or '!='. Multiple conditions are separated by '&amp;'.</value>
     <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
-    <value>Файл конфигурации загружен</value>
+    <value>Configuration file loaded</value>
   </data>
   <data name="CurrentContentExpirationString" xml:space="preserve">
-    <value>Срок действия текущего содержимого</value>
+    <value>Current content expiration</value>
   </data>
   <data name="ExceptionInfoString" xml:space="preserve">
-    <value>Сведения об исключении</value>
+    <value>Exception Info</value>
   </data>
   <data name="ExceptionString" xml:space="preserve">
-    <value>Исключение</value>
+    <value>Exception</value>
   </data>
   <data name="ExceptionTrackedString" xml:space="preserve">
-    <value>Отслеживаемое исключение</value>
+    <value>Exception Tracked</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Не удалось найти файл "{0}" для включения следующих изменений. Проверьте блоки кода, чтобы включить изменения вручную там, где они нужны в проекте. </value>
+    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. </value>
     <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Не удалось найти ожидаемую строку "{0}" в файле "{1}". Объедините содержимое из файла завершающего действия вручную.</value>
+    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
     <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>Невозможно скопировать файл {0} в {1}. Ошибка: {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
-    <value>Папку {0} невозможно удалить. Ошибка: {1}</value>
+    <value>The folder {0} can't be delete. Error: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
-    <value>Файл {0} невозможно удалить. Ошибка: {1}</value>
+    <value>The file {0} can't be delete. Error: {1}</value>
     <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
-    <value>Папку {0} невозможно переместить в {1}. Ошибка: {2}</value>
+    <value>The folder {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
-    <value>Произошла критическая ошибка при инициализации GenContext.</value>
+    <value>Critical error initializating GenContext.</value>
   </data>
   <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
-    <value>Нет контекста для выполнения текущего создания; сначала вызовите Current_set.</value>
+    <value>There is no context for the current gen execution, call Current_set first</value>
   </data>
   <data name="GenerateTestCertificatePostActionExecute" xml:space="preserve">
-    <value>Произошла ошибка при создании сертификата.</value>
+    <value>Error generating certificate.</value>
   </data>
   <data name="LogStartedString" xml:space="preserve">
-    <value>Журнал запущен</value>
+    <value>Log started</value>
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
-    <value>*Рекомендуемое средство просмотра Markdown: [Расширение VS редактора Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>Нет целевого объекта объединения для файла "{0}".</value>
+    <value>There is no merge target for file '{0}'</value>
     <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Строка {0} не найдена в файле "{1}".</value>
+    <value>Line {0} not found in file '{1}'</value>
     <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
-    <value>Не удалось определить имя. Слишком много итераций</value>
+    <value>Unable to infer a name. Too many iterations</value>
   </data>
   <data name="PackageCertificateString" xml:space="preserve">
-    <value>Сертификат пакета</value>
+    <value>Package certificate</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
-    <value>Произошла ошибка при скачивании из {0}. Для скачивания обновлений шаблона требуется подключение к Интернету.</value>
+    <value>Error downloading from {0}. Internet connection is required to download template updates.</value>
     <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
-    <value>Содержимое шаблона сейчас невозможно скачать; повторите попытку позже.</value>
+    <value>Templates content can't be downloaded right now, we will try it later.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
-    <value>Содержимое шаблона скачано в {0} из {1}.</value>
+    <value>Templates content downloaded to {0} from {1}.</value>
     <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
-    <value>Произошла ошибка при синхронизации шаблонов. Состояние:</value>
+    <value>Error syncing templates. Status:</value>
   </data>
   <data name="StatusAddingItems" xml:space="preserve">
-    <value>Добавляются элементы в проект...</value>
+    <value>Adding items to project ...</value>
   </data>
   <data name="StatusOpeningItems" xml:space="preserve">
-    <value>Открываются созданные файлы...</value>
+    <value>Opening generated files ...</value>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
-    <value>Шаги для включения нового элемента generation.md</value>
+    <value>Steps to include new item generation.md</value>
   </data>
   <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
-    <value>## Конфликтующие файлы:
-Эти файлы уже существуют в проекте, они были созданы в рамках нового элемента.
-Сравните их и убедитесь, что все стоит на своих местах:
+    <value>## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place:
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncInstructionsSectionModifiedFiles" xml:space="preserve">
-    <value>## Измененные файлы:
-Чтобы интегрировать новый элемент в существующий проект, примените следующие изменения.
+    <value>## Modified files:
+To integrate your new item with the existing project apply the following changes:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncInstructionsTemplateModifiedFiles)</comment>
   </data>
   <data name="SyncInstructionsSectionNewFiles" xml:space="preserve">
-    <value>## Новые файлы:
-Скопируйте и добавьте в проект следующие файлы:
+    <value>## New files:
+Copy and add the following files to your project:
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
   <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
-    <value>## Неизмененные файлы:
-Эти файлы уже существуют в проекте, действия не требуются:
+    <value>## Unchanged files:
+These files already exist in your project, no action is necessary:
 {0}</value>
     <comment>{0}: List of unchanged files</comment>
   </data>
   <data name="SyncInstructionsTemplate" xml:space="preserve">
-    <value>*Рекомендуемое средство просмотра Markdown: [Расширение VS редактора Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
-# Шаги для включения нового элемента generation.md
-Следуйте инструкциям, чтобы включить новый элемент в проект.
+# Steps to include new item generation
+Please follow the instructions to include the new item into you project:
 
-Все файлы, на которые указывает ссылка, можно найти во временной папке создания: {0}
+You can find all referenced files in the temporary generation folder: {0}
 
 {1}
 {2}
@@ -266,15 +266,15 @@
   </data>
   <data name="SyncInstructionsTemplateModifiedFile" xml:space="preserve">
     <value>
-### Изменения, требуемые в файле "{0}":
+### Changes required in file '{0}':
 {1}
-Предварительный просмотр изменений в: {2}</value>
+Preview the changes in: {2}</value>
     <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
   </data>
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
-    <value>## Конфликтующие файлы:
-Эти файлы уже существуют в проекте, они были созданы в рамках нового элемента.
-Сравните их и убедитесь, что все стоит на своих местах.
+    <value>## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
@@ -282,15 +282,15 @@
     <value>GenerationSummary.md</value>
   </data>
   <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
-    <value>## Измененные файлы:
-Были применены следующие изменения:
+    <value>## Modified files:
+The following changes have been applied:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncSummaryTemplateModifiedFiles)</comment>
   </data>
   <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
     <value>
-### Изменения в файле "{0}":
-Просмотрите конечный результат: {2}
+### Changes in file '{0}':
+See the final result: {2}
 
 {1}</value>
     <comment>{0}:FileName, 
@@ -298,8 +298,8 @@
 {2}:MergeResult,</comment>
   </data>
   <data name="SyncSummarySectionNewFiles" xml:space="preserve">
-    <value>## Новые файлы:
-Эти файлы были добавлены в проект.
+    <value>## New files:
+These files have been added to your project.
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
@@ -307,12 +307,12 @@
     <value>Temp</value>
   </data>
   <data name="SyncSummaryTemplate" xml:space="preserve">
-    <value>*Рекомендуемое средство просмотра Markdown: [Расширение VS редактора Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
-# Сводка создания
-Следующие изменения были встроены в проект:
+# Generation summary
+The following changes have been incorporated into your project:
 
-Файлы в рамках создания можно найти во временной папке создания: {0}
+You can find the files from the generation in the temporary generation folder: {0}
 
 {1}
 {2}
@@ -325,59 +325,59 @@
 {4}: Conflicting Files</comment>
   </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
-    <value>Шаблоны извлечены в</value>
+    <value>Templates extracted to</value>
   </data>
   <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
-    <value>Шаблоны невозможно извлечь.</value>
+    <value>The templates can't be extracted.</value>
   </data>
   <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
-    <value>Не удалось очистить старое содержимое.</value>
+    <value>Unable to purge old content.</value>
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
-    <value>Недопустимые цифровые подписи в "{0}". Содержимое было незаконно изменено, либо сертификат отсутствует, недопустим или запрещен.  Не удалось продолжить.</value>
+    <value>Invalid digital signatures in '{0}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.</value>
     <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
-    <value>Найдены сертификаты ({0}), соответствующие отпечатку {1} в хранилище {2}.</value>
+    <value>Found {0} certificates matching the thumbprint {1} in the store {2}</value>
     <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
-    <value>У найденного сертификата нет закрытого ключа.</value>
+    <value>The certificate found does not have private key.</value>
   </data>
   <data name="TemplatePackageFindCertificateNotOneMessage" xml:space="preserve">
-    <value>Найдено несколько сертификатов, соответствующих отпечатку. Возвращается первый сертификат.</value>
+    <value>More than one certificate found matching the thumbrint. Returning the first one.</value>
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
-    <value>Указанный источник "{0}" недопустим. Файл не существует, или папка пуста.</value>
+    <value>The specified source '{0}' is invalid, the file does not exist, or the folder is empty.</value>
     <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
-    <value>Не найдены сертификаты, соответствующие отпечатку {0}. Поиск велся в хранилищах CurrentUser/My и LocalMachine/My.</value>
+    <value>No certificate found matching the thumbrint {0}. Searched on CurrentUser/My and LocalMachine/My stores.</value>
     <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
-    <value>Не удается найти сертификат с отпечатком {0} в CurrentUser/My или LocalMachine/My.</value>
+    <value>The certificate with thumbprint {0} can't be found in CurrentUser/My or LocalMachine/My.</value>
     <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
-    <value>Произошла ошибка при подписании пакета.</value>
+    <value>Error signing package.</value>
   </data>
   <data name="TemplatePackageValidatePackageCertificatesMessage" xml:space="preserve">
-    <value>Проверка сертификата подписи пакета не пройдена.</value>
+    <value>Package signature certificate validation not passed.</value>
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
-    <value>Проверка сертификата "{0}" завершена с состоянием "{1}"</value>
+    <value>Certificate '{0}' verification finished with status '{1}'</value>
     <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
-    <value>## Неудавшиеся изменения в файлах:
-Сбой объединений в следующих файлах:
+    <value>## Failed changes in files:
+Merges in the following files failed:
 {0}</value>
   </data>
   <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
     <value>
-### Изменения в файле "{0}":
-Не удалось внедрить следующие изменения: {2}
+### Changes in file '{0}':
+The following changes could not be integrated: {2}
 {1}</value>
     <comment>{0}:FileName, 
 {1}: Postaction Code,
@@ -387,32 +387,32 @@
     <value>ProjectFile</value>
   </data>
   <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
-    <value>Другой экземпляр синхронизирует шаблоны... Ожидание: пять секунд.</value>
+    <value>Other instance is syncing templates... Waiting 5 seconds.</value>
   </data>
   <data name="TemplatesSynchronizationWarnCreatingLockFileMessage" xml:space="preserve">
-    <value>Произошла ошибка при создании файла блокировки экземпляра.</value>
+    <value>Error creating the instance locking file.</value>
   </data>
   <data name="TemplatesSynchronizationWarnDeletingLockFileMessage" xml:space="preserve">
-    <value>Произошла ошибка при удалении файла блокировки экземпляра.</value>
+    <value>Error deleting the instance locking file.</value>
   </data>
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
-    <value>Произошла ошибка при чтении файла блокировки экземпляра.</value>
+    <value>Error reading the instance locking file.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>Для стиля с ключом "{0}" уже задано другое значение или другие элементы в файле. Ознакомьтесь со стилями, чтобы включить изменения вручную там, где они нужны в проекте.</value>
+    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project.</value>
     <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Ошибка получения содержимого.</value>
+    <value>Error acquiring content.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Ошибка при извлечении содержимого установленных шаблонов.</value>
+    <value>Error extracting installed templates content..</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Ошибка при обновлении содержимого шаблонов.</value>
+    <value>Error updating templates content.</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Не удается отключить защиту от записи для файла {0}</value>
+    <value>Cannot remove readonly protection from file {0}</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
