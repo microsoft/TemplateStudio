@@ -5,7 +5,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.Views.NewProject
@@ -21,16 +20,13 @@ namespace Microsoft.Templates.UI.Views.NewProject
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             Services.NavigationService.InitializeSecondaryFrame(stepFrame, new ProjectTypePage());
-            var listView = sender as ListView;
-            if (listView != null)
-            {
-                Services.OrderingService.Initialize(listView);
-            }
+            Services.OrderingService.Initialize(pagesList);
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             Services.NavigationService.UnsuscribeEventHandlers();
+            Services.OrderingService.UnsuscribeEventHandlers();
         }
 
         private void ComboBox_PreviewKeyDown(object sender, KeyEventArgs e)

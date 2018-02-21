@@ -85,10 +85,10 @@
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                             Text="{x:Static strings:StringRes.ProjectDetailsPagesSectionTitle}" />
                         <ListView
+                            x:Name="pagesList"
                             Style="{StaticResource WtsListViewProjectDetailsTemplates}"
                             ItemsSource="{Binding UserSelection.Pages}"
-                            SelectedItem="{Binding UserSelection.SelectedPage}"
-                            Loaded="OnLoaded">
+                            SelectedItem="{Binding UserSelection.SelectedPage}">
                             <ListView.InputBindings>
                                 <KeyBinding Modifiers="Ctrl" Key="Up" Command="{Binding UserSelection.MovePageUpCommand}" />
                                 <KeyBinding Modifiers="Ctrl" Key="Down" Command="{Binding UserSelection.MovePageDownCommand}" />
