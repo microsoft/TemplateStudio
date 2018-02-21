@@ -30,6 +30,7 @@ namespace Microsoft.Templates.UI.Services
 
         public static void UnsuscribeEventHandlers()
         {
+            _service.UnsuscribeEventHandlers();
             _service.ProcessDrop -= OnDrop;
         }
 
