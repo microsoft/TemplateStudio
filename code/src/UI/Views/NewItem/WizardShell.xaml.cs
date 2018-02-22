@@ -14,29 +14,24 @@ namespace Microsoft.Templates.UI.Views.NewItem
 {
     public partial class WizardShell : Window
     {
+        private TemplateType _templateType;
+        private string _language;
+
         public static WizardShell Current { get; private set; }
 
         public UserSelection Result { get; set; }
 
         public MainViewModel ViewModel { get; }
 
-        public WizardShell(TemplateType templateType, string language)
+        public WizardShell(TemplateType templateType, string language, BaseStyleValuesProvider provider)
         {
-            ViewModel = new MainViewModel(this);
+            _templateType = templateType;
+            _language = language;
+            ViewModel = new MainViewModel(this, provider);
             Current = this;
             DataContext = ViewModel;
             InitializeComponent();
             NavigationService.InitializeMainFrame(mainFrame, new MainPage());
-            Loaded += async (sender, args) =>
-            {
-                await MainViewModel.Instance.InitializeAsync(templateType, language);
-            };
-
-            Unloaded += (sender, e) =>
-            {
-                ViewModel.UnsuscribeEventHandlers();
-                NotificationsControl.Instance.UnsuscribeEventHandlers();
-            };
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
@@ -60,6 +55,17 @@ namespace Microsoft.Templates.UI.Views.NewItem
         {
             OnMouseLeftButtonDown(e);
             DragMove();
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await MainViewModel.Instance.InitializeAsync(_templateType, _language);
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.UnsuscribeEventHandlers();
+            NotificationsControl.Instance.UnsuscribeEventHandlers();
         }
     }
 }

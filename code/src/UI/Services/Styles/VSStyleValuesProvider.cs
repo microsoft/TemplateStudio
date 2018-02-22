@@ -11,7 +11,7 @@ using Microsoft.VisualStudio.Shell;
 
 namespace Microsoft.Templates.UI.Services
 {
-    public class VSStyleValuesProvider : IStyleValuesProvider
+    public class VSStyleValuesProvider : BaseStyleValuesProvider
     {
         public VSStyleValuesProvider()
         {
@@ -23,9 +23,15 @@ namespace Microsoft.Templates.UI.Services
             ThemeChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public event EventHandler ThemeChanged;
+        public override void UnsuscribeEventHandlers()
+        {
+            base.UnsuscribeEventHandlers();
+            VSColorTheme.ThemeChanged -= OnThemeChanged;
+        }
 
-        public Brush GetColor(string className, string memberName)
+        public override event EventHandler ThemeChanged;
+
+        public override Brush GetColor(string className, string memberName)
         {
             var color = GetThemedColor(className, memberName);
             return new SolidColorBrush(new Color()
@@ -37,7 +43,7 @@ namespace Microsoft.Templates.UI.Services
             });
         }
 
-        public System.Drawing.Color GetThemedColor(string className, string memberName)
+        public override System.Drawing.Color GetThemedColor(string className, string memberName)
         {
             Type classType = null;
             switch (className)
@@ -72,7 +78,7 @@ namespace Microsoft.Templates.UI.Services
             return themeColor;
         }
 
-        public double GetFontSize(string fontSizeResourceKey)
+        public override double GetFontSize(string fontSizeResourceKey)
         {
             switch (fontSizeResourceKey)
             {
@@ -99,7 +105,7 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        public FontFamily GetFontFamily()
+        public override FontFamily GetFontFamily()
         {
             var fontFamily = Application.Current.FindResource(VsFonts.EnvironmentFontFamilyKey);
             if (fontFamily is FontFamily)

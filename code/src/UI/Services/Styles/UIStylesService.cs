@@ -8,21 +8,22 @@ namespace Microsoft.Templates.UI.Services
 {
     public partial class UIStylesService : DependencyObject
     {
-        private IStyleValuesProvider _stylesProvider;
+        private BaseStyleValuesProvider _stylesProvider;
 
-        private static UIStylesService _instance;
+        public static UIStylesService Instance { get; private set; }
 
-        public static UIStylesService Instance => _instance ?? (_instance = new UIStylesService());
-
-        public UIStylesService()
+        public UIStylesService(BaseStyleValuesProvider stylesProvider)
         {
-        }
-
-        public void Initialize(IStyleValuesProvider stylesProvider)
-        {
+            Instance = this;
             _stylesProvider = stylesProvider;
             _stylesProvider.ThemeChanged += StylesProvider_ThemeChanged;
             SetStyles();
+        }
+
+        public void UnsuscribeEventHandlers()
+        {
+            _stylesProvider.ThemeChanged -= StylesProvider_ThemeChanged;
+            _stylesProvider.UnsuscribeEventHandlers();
         }
 
         private void StylesProvider_ThemeChanged(object sender, System.EventArgs e)

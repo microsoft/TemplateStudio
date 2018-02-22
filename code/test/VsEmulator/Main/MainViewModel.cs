@@ -242,8 +242,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     ProjectPath = projectPath;
                     OutputPath = projectPath;
                     SolutionName = null;
-                    UI.Services.UIStylesService.Instance.Initialize(Services.FakeStyleValuesProvider.Instance);
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection(language, Services.FakeStyleValuesProvider.Instance);
 
                     if (userSelection != null)
                     {
@@ -283,8 +282,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 ProjectName = newProjectName;
                 ProjectPath = projectPath;
                 OutputPath = projectPath;
-                UI.Services.UIStylesService.Instance.Initialize(Services.FakeStyleValuesProvider.Instance);
-                var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
+                var userSelection = NewProjectGenController.Instance.GetUserSelection(language, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
@@ -381,8 +379,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                UI.Services.UIStylesService.Instance.Initialize(Services.FakeStyleValuesProvider.Instance);
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
@@ -416,8 +413,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                UI.Services.UIStylesService.Instance.Initialize(Services.FakeStyleValuesProvider.Instance);
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {

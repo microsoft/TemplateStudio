@@ -27,6 +27,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _isReorderEnabled;
         private bool _isDragging;
         private bool _isFocused;
+        private bool _isTextSelected;
         private ICommand _lostKeyboardFocusCommand;
         private ICommand _setFocusCommand;
         private RelayCommand _deleteCommand;
@@ -108,6 +109,20 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
+        public bool IsTextSelected
+        {
+            get => _isTextSelected;
+            set
+            {
+                if (_isTextSelected == value)
+                {
+                    SetProperty(ref _isTextSelected, false);
+                }
+
+                SetProperty(ref _isTextSelected, value);
+            }
+        }
+
         public TemplateOrigin TemplateOrigin { get; }
 
         public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
@@ -133,7 +148,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public void Focus()
         {
-            EventService.Instance.RaiseOnSavedTemplateFocused(Name);
+            IsTextSelected = true;
         }
 
         private void SetName(string newName)
