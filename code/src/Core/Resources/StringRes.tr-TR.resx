@@ -118,141 +118,141 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdditionalMessageString" xml:space="preserve">
-    <value>Ek İleti</value>
+    <value>Additional Message</value>
   </data>
   <data name="AddtionalExceptionInfoString" xml:space="preserve">
-    <value>Ek Özel Durum Bilgisi</value>
+    <value>Addtional Exception Info</value>
   </data>
   <data name="AssemblyFileVersionString" xml:space="preserve">
-    <value>Derleme Dosyası Sürümü</value>
+    <value>Assembly File Version</value>
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
-    <value>"{0}" sorgusu geçerli değil. İzin verilen işleçler şunlardır: "==" veya "!=". Birden çok koşul "&amp;" ile ayrılır.</value>
+    <value>The query "{0}" is not valid. Allowed operators are '==' or '!='. Multiple conditions are separated by '&amp;'.</value>
     <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
-    <value>Yapılandırma dosyası yüklendi</value>
+    <value>Configuration file loaded</value>
   </data>
   <data name="CurrentContentExpirationString" xml:space="preserve">
-    <value>Geçerli içeriğin kullanım süresi doldu</value>
+    <value>Current content expiration</value>
   </data>
   <data name="ExceptionInfoString" xml:space="preserve">
-    <value>Özel Durum Bilgisi</value>
+    <value>Exception Info</value>
   </data>
   <data name="ExceptionString" xml:space="preserve">
-    <value>Özel Durum</value>
+    <value>Exception</value>
   </data>
   <data name="ExceptionTrackedString" xml:space="preserve">
-    <value>Özel Durum İzleniyor</value>
+    <value>Exception Tracked</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Aşağıdaki değişiklikleri içeren "{0}" dosyası bulunamadı. Lütfen gerektiğinde projenize değişiklikleri el ile dahil etmek için kod bloklarını gözden geçirin. </value>
+    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. </value>
     <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>"{1}" dosyasında beklenen "{0}" satırı bulunamadı. Lütfen içeriği eylem sonrası dosyadan el ile birleştirin.</value>
+    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
     <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>{0} dosyası {1} hedefine kopyalanamıyor. Hata: {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
-    <value>{0} klasörü silinemiyor. Hata: {1}</value>
+    <value>The folder {0} can't be delete. Error: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
-    <value>{0} dosyası silinemiyor. Hata: {1}</value>
+    <value>The file {0} can't be delete. Error: {1}</value>
     <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
-    <value>{0} klasörü {1} konumuna taşınamıyor. Hata: {2}</value>
+    <value>The folder {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
-    <value>GenContext başlatılırken kritik bir hata oluştu.</value>
+    <value>Critical error initializating GenContext.</value>
   </data>
   <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
-    <value>Geçerli oluşturma yürütme işlemi için içerik yok. Önce Current_set yordamını çağırın</value>
+    <value>There is no context for the current gen execution, call Current_set first</value>
   </data>
   <data name="GenerateTestCertificatePostActionExecute" xml:space="preserve">
-    <value>Sertifika oluşturulurken bir hata oluştu.</value>
+    <value>Error generating certificate.</value>
   </data>
   <data name="LogStartedString" xml:space="preserve">
-    <value>Günlük başlatıldı</value>
+    <value>Log started</value>
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
-    <value>*Önerilen Markdown görüntüleyicisi: [Markdown Düzenleyicisi VS Uzantısı](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>"{0}" dosyası için birleştirme hedefi yok</value>
+    <value>There is no merge target for file '{0}'</value>
     <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>"{1}" dosyasında {0} satırı bulunamadı</value>
+    <value>Line {0} not found in file '{1}'</value>
     <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
-    <value>Ad çıkarılamıyor. Çok fazla yineleme var</value>
+    <value>Unable to infer a name. Too many iterations</value>
   </data>
   <data name="PackageCertificateString" xml:space="preserve">
-    <value>Paket sertifikası</value>
+    <value>Package certificate</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
-    <value>{0} konumundan indirilirken bir hata oluştu. Şablon güncelleştirmelerini indirmek için internet bağlantısı gerekiyor.</value>
+    <value>Error downloading from {0}. Internet connection is required to download template updates.</value>
     <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
-    <value>Şablonların içeriği şu anda indirilemiyor, daha sonra tekrar deneyeceğiz.</value>
+    <value>Templates content can't be downloaded right now, we will try it later.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
-    <value>Şablonların içeriği {1} üzerinden {0} konumuna indirildi.</value>
+    <value>Templates content downloaded to {0} from {1}.</value>
     <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
-    <value>Şablonlar eşitlenirken bir hata oluştu. Durum:</value>
+    <value>Error syncing templates. Status:</value>
   </data>
   <data name="StatusAddingItems" xml:space="preserve">
-    <value>Öğeler projeye ekleniyor...</value>
+    <value>Adding items to project ...</value>
   </data>
   <data name="StatusOpeningItems" xml:space="preserve">
-    <value>Oluşturulan dosyalar açılıyor...</value>
+    <value>Opening generated files ...</value>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
-    <value>Yeni öğe oluşturma.md öğesini dahil etme adımları</value>
+    <value>Steps to include new item generation.md</value>
   </data>
   <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
-    <value>## Çakışan dosyalar:
-Bu dosyalar projenizde zaten var ve yeni öğenin parçası olarak da oluşturuldular.
-Lütfen karşılaştırın ve tüm içeriğin doğru yerde olduğundan emin olun:
+    <value>## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place:
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncInstructionsSectionModifiedFiles" xml:space="preserve">
-    <value>## Değiştirilen dosyalar:
-Yeni öğenizi mevcut projeyle tümleştirmek için aşağıdaki değişiklikleri uygulayın:
+    <value>## Modified files:
+To integrate your new item with the existing project apply the following changes:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncInstructionsTemplateModifiedFiles)</comment>
   </data>
   <data name="SyncInstructionsSectionNewFiles" xml:space="preserve">
-    <value>## Yeni dosyalar:
-Aşağıdaki dosyaları kopyalayıp projenize ekleyin:
+    <value>## New files:
+Copy and add the following files to your project:
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
   <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
-    <value>## Değiştirilmeyen dosyalar:
-Bu dosyalar projenizde zaten var. Başka bir işlem yapılması gerekmiyor:
+    <value>## Unchanged files:
+These files already exist in your project, no action is necessary:
 {0}</value>
     <comment>{0}: List of unchanged files</comment>
   </data>
   <data name="SyncInstructionsTemplate" xml:space="preserve">
-    <value>*Önerilen Markdown görüntüleyicisi: [Markdown Düzenleyicisi VS Uzantısı](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
-# Yeni öğe oluşturmayı dahil etme adımları
-Yeni öğeyi projenize dahil etmek için aşağıdaki yönergeleri izleyin:
+# Steps to include new item generation
+Please follow the instructions to include the new item into you project:
 
-Tüm başvurulan dosyaları geçici oluşturma klasöründe bulabilirsiniz: {0}
+You can find all referenced files in the temporary generation folder: {0}
 
 {1}
 {2}
@@ -266,15 +266,15 @@ Tüm başvurulan dosyaları geçici oluşturma klasöründe bulabilirsiniz: {0}
   </data>
   <data name="SyncInstructionsTemplateModifiedFile" xml:space="preserve">
     <value>
-### "{0}" dosyasında yapılması gereken değişiklikler:
+### Changes required in file '{0}':
 {1}
-Değişikliklerin önizlemesi için: {2}</value>
+Preview the changes in: {2}</value>
     <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
   </data>
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
-    <value>## Çakışan dosyalar:
-Bu dosyalar projenizde zaten var ve yeni öğenin parçası olarak da oluşturuldular.
-Lütfen karşılaştırın ve tüm içeriğin doğru yerde olduğundan emin olun.
+    <value>## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
@@ -282,15 +282,15 @@ Lütfen karşılaştırın ve tüm içeriğin doğru yerde olduğundan emin olun
     <value>GenerationSummary.md</value>
   </data>
   <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
-    <value>## Değiştirilen dosyalar:
-Aşağıdaki değişiklikler uygulandı:
+    <value>## Modified files:
+The following changes have been applied:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncSummaryTemplateModifiedFiles)</comment>
   </data>
   <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
     <value>
-### "{0}" dosyasındaki değişiklikler:
-Kesin sonuca bakın: {2}
+### Changes in file '{0}':
+See the final result: {2}
 
 {1}</value>
     <comment>{0}:FileName, 
@@ -298,21 +298,21 @@ Kesin sonuca bakın: {2}
 {2}:MergeResult,</comment>
   </data>
   <data name="SyncSummarySectionNewFiles" xml:space="preserve">
-    <value>## Yeni dosyalar:
-Bu dosyalar projenize eklendi.
+    <value>## New files:
+These files have been added to your project.
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
   <data name="SyncSummaryTempGenerationFile" xml:space="preserve">
-    <value>Geçici</value>
+    <value>Temp</value>
   </data>
   <data name="SyncSummaryTemplate" xml:space="preserve">
-    <value>*Önerilen Markdown görüntüleyicisi: [Markdown Düzenleyicisi VS Uzantısı](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
-# Oluşturma özeti
-Aşağıdaki değişiklikler projenizle birleştirildi:
+# Generation summary
+The following changes have been incorporated into your project:
 
-Oluşturma işleminden elde edilen dosyaları geçici oluşturma klasöründe bulabilirsiniz: {0}
+You can find the files from the generation in the temporary generation folder: {0}
 
 {1}
 {2}
@@ -325,59 +325,59 @@ Oluşturma işleminden elde edilen dosyaları geçici oluşturma klasöründe bu
 {4}: Conflicting Files</comment>
   </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
-    <value>Şablonların ayıklandığı konum:</value>
+    <value>Templates extracted to</value>
   </data>
   <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
-    <value>Şablonlar ayıklanamıyor.</value>
+    <value>The templates can't be extracted.</value>
   </data>
   <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
-    <value>Eski içerik temizlenemiyor.</value>
+    <value>Unable to purge old content.</value>
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
-    <value>"{0}" içinde geçersiz dijital imzalar var. İçerik değiştirilmiş veya sertifika mevcut değil, geçersiz ya da izin verilmiyor.  Devam edilemiyor.</value>
+    <value>Invalid digital signatures in '{0}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.</value>
     <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
-    <value>{2} mağazasında {1} parmak iziyle eşleşen {0} sertifika bulundu</value>
+    <value>Found {0} certificates matching the thumbprint {1} in the store {2}</value>
     <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
-    <value>Bulunan sertifikanın özel anahtarı yok.</value>
+    <value>The certificate found does not have private key.</value>
   </data>
   <data name="TemplatePackageFindCertificateNotOneMessage" xml:space="preserve">
-    <value>Parmak iziyle eşleşen birden fazla sertifika bulundu. İlk sertifika döndürülüyor.</value>
+    <value>More than one certificate found matching the thumbrint. Returning the first one.</value>
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
-    <value>Belirtilen "{0}" kaynağı geçersiz, dosya mevcut değil veya klasör boş.</value>
+    <value>The specified source '{0}' is invalid, the file does not exist, or the folder is empty.</value>
     <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
-    <value>{0} parmak iziyle eşleşen bir sertifika bulunamadı. GeçerliKullanıcı/Benim ve YerelMakine/Benim mağazalarında arandı.</value>
+    <value>No certificate found matching the thumbrint {0}. Searched on CurrentUser/My and LocalMachine/My stores.</value>
     <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
-    <value>{0} parmak izine sahip sertifika GeçerliKullanıcı/Benim veya YerelMakine/Benim içinde bulunamadı.</value>
+    <value>The certificate with thumbprint {0} can't be found in CurrentUser/My or LocalMachine/My.</value>
     <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
-    <value>Paket imzalanırken bir hata oluştu.</value>
+    <value>Error signing package.</value>
   </data>
   <data name="TemplatePackageValidatePackageCertificatesMessage" xml:space="preserve">
-    <value>Paket imzası, sertifika doğrulamasından geçemedi.</value>
+    <value>Package signature certificate validation not passed.</value>
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
-    <value>"{0}" sertifikasını doğrulama işlemi "{1}" durumuyla sonlandı</value>
+    <value>Certificate '{0}' verification finished with status '{1}'</value>
     <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
-    <value>## Dosyalardaki başarısız olan değişiklikler:
-Aşağıdaki dosyalardaki birleştirmeler başarısız oldu:
+    <value>## Failed changes in files:
+Merges in the following files failed:
 {0}</value>
   </data>
   <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
     <value>
-### "{0}" dosyasındaki değişiklikler:
-Aşağıdaki değişiklikler tümleştirilemedi: {2}
+### Changes in file '{0}':
+The following changes could not be integrated: {2}
 {1}</value>
     <comment>{0}:FileName, 
 {1}: Postaction Code,
@@ -387,32 +387,32 @@ Aşağıdaki değişiklikler tümleştirilemedi: {2}
     <value>ProjectFile</value>
   </data>
   <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
-    <value>Diğer kurulum şablonları eşitliyor... 5 saniye bekleniyor.</value>
+    <value>Other instance is syncing templates... Waiting 5 seconds.</value>
   </data>
   <data name="TemplatesSynchronizationWarnCreatingLockFileMessage" xml:space="preserve">
-    <value>Kurulum kilitleme dosyası oluşturulurken bir hata oluştu.</value>
+    <value>Error creating the instance locking file.</value>
   </data>
   <data name="TemplatesSynchronizationWarnDeletingLockFileMessage" xml:space="preserve">
-    <value>Kurulum kilitleme dosyası silinirken bir hata oluştu.</value>
+    <value>Error deleting the instance locking file.</value>
   </data>
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
-    <value>Kurulum kilitleme dosyası okunurken bir hata oluştu.</value>
+    <value>Error reading the instance locking file.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>"{0}" anahtarına sahip stil bu dosyada farklı değer veya öğelerle zaten tanımlanmış. Lütfen gerektiğinde projenize değişiklikleri el ile dahil etmek için stilleri gözden geçirin.</value>
+    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project.</value>
     <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>İçerik alınırken hata oluştu.</value>
+    <value>Error acquiring content.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Yüklü şablon içeriği ayıklanırken hata oluştu.</value>
+    <value>Error extracting installed templates content..</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Şablon içeriği güncelleştirilirken hata oluştu.</value>
+    <value>Error updating templates content.</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>{0} dosyasından salt okunur koruma kaldırılamıyor</value>
+    <value>Cannot remove readonly protection from file {0}</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">

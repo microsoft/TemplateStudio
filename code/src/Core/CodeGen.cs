@@ -92,7 +92,7 @@ namespace Microsoft.Templates.Core
 
         private static ITemplateEngineHost CreateHost(string locationId, string hostVersion)
         {
-            return new DefaultTemplateEngineHost($"{locationId}", hostVersion, CultureInfo.CurrentUICulture.Name, new Dictionary<string, string>());
+            return new DefaultTemplateEngineHost($"{locationId}", hostVersion, "en-US", new Dictionary<string, string>());
         }
     }
 }

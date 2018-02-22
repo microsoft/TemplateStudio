@@ -117,7 +117,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 NameEditable = template.ItemNameEditable;
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
                 HasErrors = false;
-                WizardStatus.Current.HasValidationErrors = false;
                 Template = template.Template;
                 var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework);
                 LicensesService.SyncLicenses(licenses, Licenses);
@@ -130,6 +129,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 OnPropertyChanged("Licenses");
                 OnPropertyChanged("Dependencies");
                 NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                WizardStatus.Current.HasValidationErrors = false;
                 if (NameEditable)
                 {
                     Focus();
