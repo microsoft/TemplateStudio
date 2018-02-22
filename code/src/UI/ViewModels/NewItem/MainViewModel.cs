@@ -54,8 +54,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public MainViewModel(WizardShell mainWindow)
-            : base(mainWindow, false)
+        public MainViewModel(WizardShell mainWindow, BaseStyleValuesProvider provider)
+            : base(mainWindow, provider, false)
         {
             Instance = this;
         }

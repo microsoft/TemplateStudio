@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
+using System.Windows.Input;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Views.Common
@@ -15,6 +16,12 @@ namespace Microsoft.Templates.UI.Views.Common
             vm.CloseAction = () => Close();
             vm.Initialize();
             InitializeComponent();
+        }
+
+        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            OnMouseLeftButtonDown(e);
+            DragMove();
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿<Page x:Class="Microsoft.Templates.UI.Views.NewItem.TemplateSelectionPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources"
-      xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
-      xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300">
+﻿<Page
+    x:Class="Microsoft.Templates.UI.Views.NewItem.TemplateSelectionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources"
+    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
+    xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="300">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -60,9 +61,10 @@
                     Text="{Binding TemplateSelection.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Margin="16,12,26,12"
                     Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
-                    extensions:TextBoxExtensions.ListenIsFocused="True"
-                    extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding TemplateSelection.LostKeyboardFocusCommand}"
-                    AutomationProperties.Name="{x:Static strings:StringRes.AccessibilityEditPageItem}">
+                    extensions:TextBoxExtensions.IsTextSelected="{Binding TemplateSelection.IsTextSelected}"
+                    AutomationProperties.Name="{x:Static strings:StringRes.AccessibilityEditPageItem}"
+                    Tag="{Binding TemplateSelection.LostKeyboardFocusCommand}"
+                    LostKeyboardFocus="OnLostKeyboardFocus">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Enter" Command="{Binding TemplateSelection.SetFocusCommand}" />
                     </TextBox.InputBindings>
