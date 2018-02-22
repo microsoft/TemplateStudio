@@ -14,7 +14,7 @@
     "wts.framework": "Prism",
     "wts.version": "1.0.0",
     "wts.displayOrder": "5",
-    "wts.dependencies": "wts.Feat.SampleDataService",
+    "wts.dependencies": "wts.Feat.SampleDataService.Prism",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true" 
   },
