@@ -14,7 +14,7 @@
     Title="{x:Static strings:StringRes.WindowsTemplateStudio}"
     MouseLeftButtonDown="OnMouseLeftButtonDown"
     mc:Ignorable="d"
-    MinHeight="200" MaxHeight="500" Width="500">
+    MinHeight="180" MaxHeight="450" Width="450">
     <Window.Style>
         <Style TargetType="Window">
             <Setter Property="WindowStyle" Value="None" />
@@ -44,7 +44,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Margin="16,30,16,16">
+        <Grid Margin="20,30,20,20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />

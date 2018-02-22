@@ -12,9 +12,9 @@
     Title="{x:Static strings:StringRes.WindowsTemplateStudio}"
     MouseLeftButtonDown="OnMouseLeftButtonDown"
     WindowStartupLocation="CenterScreen"
-    MinWidth="500"
-    Width="500"
-    MinHeight="350"
+    MinWidth="450"
+    Width="450"
+    MinHeight="180"
     mc:Ignorable="d">
     <Window.Style>
         <Style TargetType="Window">
@@ -46,7 +46,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Margin="{StaticResource Margin_M2_LeftTopRightBottom}">
+        <Grid Margin="{StaticResource Margin_M3_LeftTopRightBottom}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
