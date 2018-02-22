@@ -8,6 +8,8 @@
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+    Loaded="OnLoaded"
+    Unloaded="OnUnloaded"
     WindowStartupLocation="CenterScreen"
     MouseLeftButtonDown="OnMouseLeftButtonDown"
     MinWidth="800"
@@ -24,7 +26,7 @@
             <Setter Property="BorderThickness" Value="2" />
             <Setter Property="shell:WindowChrome.WindowChrome">
                 <Setter.Value>
-                    <shell:WindowChrome ResizeBorderThickness="1" CaptionHeight="0">
+                    <shell:WindowChrome ResizeBorderThickness="5" CaptionHeight="0">
                     </shell:WindowChrome>
                 </Setter.Value>
             </Setter>

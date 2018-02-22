@@ -55,8 +55,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public MainViewModel(Window mainView)
-            : base(mainView)
+        public MainViewModel(Window mainView, BaseStyleValuesProvider provider)
+            : base(mainView, provider)
         {
             Instance = this;
             ValidationService.Initialize(UserSelection.GetNames);

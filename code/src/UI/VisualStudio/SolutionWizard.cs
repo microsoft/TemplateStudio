@@ -52,7 +52,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), language);
 #endif
-                UIStylesService.Instance.Initialize(new VSStyleValuesProvider());
             }
         }
 
@@ -108,7 +107,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection(GenContext.CurrentLanguage);
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection(GenContext.CurrentLanguage, new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)

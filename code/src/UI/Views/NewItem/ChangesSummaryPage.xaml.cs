@@ -9,15 +9,19 @@ namespace Microsoft.Templates.UI.Views.NewItem
 {
     public partial class ChangesSummaryPage : Page
     {
+        private NewItemGenerationResult _output;
+
         public ChangesSummaryPage(NewItemGenerationResult output)
         {
+            _output = output;
             DataContext = MainViewModel.Instance;
 
             InitializeComponent();
-            Loaded += (sender, args) =>
-            {
-                MainViewModel.Instance.ChangesSummary.Initialize(output);
-            };
+        }
+
+        private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MainViewModel.Instance.ChangesSummary.Initialize(_output);
         }
     }
 }

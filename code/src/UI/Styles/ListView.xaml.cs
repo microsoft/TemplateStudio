@@ -136,5 +136,15 @@ namespace Microsoft.Templates.UI.Styles
 
             return false;
         }
+
+        private void OnLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                var command = textBox.Tag as ICommand;
+                command?.Execute(e);
+            }
+        }
     }
 }

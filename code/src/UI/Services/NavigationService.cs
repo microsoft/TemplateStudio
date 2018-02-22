@@ -32,6 +32,12 @@ namespace Microsoft.Templates.UI.Services
             _secondaryFrame.Navigating += SecondaryFrameNavigating;
         }
 
+        public static void UnsuscribeEventHandlers()
+        {
+            _secondaryFrame.Navigated -= SecondaryFrameNavigated;
+            _secondaryFrame.Navigating -= SecondaryFrameNavigating;
+        }
+
         private static void SecondaryFrameNavigating(object sender, NavigatingCancelEventArgs e)
         {
             if (e.NavigationMode == NavigationMode.Back || e.NavigationMode == NavigationMode.Forward)
