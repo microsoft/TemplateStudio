@@ -10,6 +10,7 @@
     ResizeMode="NoResize"
     SizeToContent="Height"
     Title="{x:Static strings:StringRes.WindowsTemplateStudio}"
+    MouseLeftButtonDown="OnMouseLeftButtonDown"
     WindowStartupLocation="CenterScreen"
     MinWidth="500"
     Width="500"
