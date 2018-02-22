@@ -118,141 +118,141 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdditionalMessageString" xml:space="preserve">
-    <value>Další zpráva</value>
+    <value>Additional Message</value>
   </data>
   <data name="AddtionalExceptionInfoString" xml:space="preserve">
-    <value>Další informace o výjimce</value>
+    <value>Addtional Exception Info</value>
   </data>
   <data name="AssemblyFileVersionString" xml:space="preserve">
-    <value>Verze souboru sestavení</value>
+    <value>Assembly File Version</value>
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
-    <value>Dotaz {0} není platný. Jsou povolené operátory == a !=. K oddělování jednotlivých podmínek se používá znak &amp;.</value>
+    <value>The query "{0}" is not valid. Allowed operators are '==' or '!='. Multiple conditions are separated by '&amp;'.</value>
     <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
-    <value>Konfigurační soubor byl načten.</value>
+    <value>Configuration file loaded</value>
   </data>
   <data name="CurrentContentExpirationString" xml:space="preserve">
-    <value>Vypršení platnosti aktuálního obsahu</value>
+    <value>Current content expiration</value>
   </data>
   <data name="ExceptionInfoString" xml:space="preserve">
-    <value>Informace o výjimce</value>
+    <value>Exception Info</value>
   </data>
   <data name="ExceptionString" xml:space="preserve">
-    <value>Výjimka</value>
+    <value>Exception</value>
   </data>
   <data name="ExceptionTrackedString" xml:space="preserve">
-    <value>Sledovaná výjimka</value>
+    <value>Exception Tracked</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Nebyl nalezen soubor {0} pro zahrnutí následujících změn. Projděte bloky kódu a na místech, kde to projekt vyžaduje, vložte změny ručně. </value>
+    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. </value>
     <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Nebyl nalezen očekávaný řádek {0} v souboru {1}. Slučte obsah z následně vytvořeného souboru ručně.</value>
+    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
     <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>Soubor {0} nelze zkopírovat do {1}. Chyba: {2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
-    <value>Složku {0} nelze odstranit. Chyba: {1}</value>
+    <value>The folder {0} can't be delete. Error: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
-    <value>Soubor {0} nelze odstranit. Chyba: {1}</value>
+    <value>The file {0} can't be delete. Error: {1}</value>
     <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
-    <value>Složku {0} nelze přesunout do {1}. Chyba: {2}</value>
+    <value>The folder {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
-    <value>Při inicializaci GenContext došlo ke kritické chybě.</value>
+    <value>Critical error initializating GenContext.</value>
   </data>
   <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
-    <value>Není k dispozici žádný kontext pro provedení aktuálního generování, nejprve vyvolejte Current_set.</value>
+    <value>There is no context for the current gen execution, call Current_set first</value>
   </data>
   <data name="GenerateTestCertificatePostActionExecute" xml:space="preserve">
-    <value>Při generování certifikátu došlo k chybě.</value>
+    <value>Error generating certificate.</value>
   </data>
   <data name="LogStartedString" xml:space="preserve">
-    <value>Bylo zahájeno protokolování.</value>
+    <value>Log started</value>
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
-    <value>* Doporučený prohlížeč pro Markdown: [Rozšíření VS – editor pro Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>Neexistuje žádný cíl sloučení pro soubor {0}.</value>
+    <value>There is no merge target for file '{0}'</value>
     <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Nebyl nalezen řádek {0} v souboru {1}.</value>
+    <value>Line {0} not found in file '{1}'</value>
     <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
-    <value>Nelze odvodit název. Příliš mnoho iterací.</value>
+    <value>Unable to infer a name. Too many iterations</value>
   </data>
   <data name="PackageCertificateString" xml:space="preserve">
-    <value>Certifikát balíčku</value>
+    <value>Package certificate</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
-    <value>Při stahování z {0} došlo k chybě. Ke stažení aktualizací šablony je vyžadováno připojení k internetu.</value>
+    <value>Error downloading from {0}. Internet connection is required to download template updates.</value>
     <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
-    <value>Obsah šablon nelze právě teď stáhnout, zkusíme to později.</value>
+    <value>Templates content can't be downloaded right now, we will try it later.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
-    <value>Obsah šablon byl stažen z {1} do {0}.</value>
+    <value>Templates content downloaded to {0} from {1}.</value>
     <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
-    <value>Při synchronizaci šablon došlo k chybě. Stav:</value>
+    <value>Error syncing templates. Status:</value>
   </data>
   <data name="StatusAddingItems" xml:space="preserve">
-    <value>Přidávání položek do projektu...</value>
+    <value>Adding items to project ...</value>
   </data>
   <data name="StatusOpeningItems" xml:space="preserve">
-    <value>Otevírání generovaných souborů...</value>
+    <value>Opening generated files ...</value>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
-    <value>Kroky pro zahrnutí generování nové položky.md</value>
+    <value>Steps to include new item generation.md</value>
   </data>
   <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
-    <value>## Konfliktní soubory:
-Tyto soubory ve vašem projektu už existují a byly také generovány jako součást nové položky.
-Porovnejte je a ujistěte se, že je všechno na správném místě:
+    <value>## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place:
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncInstructionsSectionModifiedFiles" xml:space="preserve">
-    <value>## Upravené soubory:
-Pokud chcete integrovat novou položku se stávajícím projektem, proveďte následující změny:
+    <value>## Modified files:
+To integrate your new item with the existing project apply the following changes:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncInstructionsTemplateModifiedFiles)</comment>
   </data>
   <data name="SyncInstructionsSectionNewFiles" xml:space="preserve">
-    <value>## Nové soubory:
-Zkopírujte a přidejte následující soubory do projektu:
+    <value>## New files:
+Copy and add the following files to your project:
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
   <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
-    <value>## Neupravené soubory:
-Tyto soubory ve vašem projektu už existují, není třeba provést žádnou akci:
+    <value>## Unchanged files:
+These files already exist in your project, no action is necessary:
 {0}</value>
     <comment>{0}: List of unchanged files</comment>
   </data>
   <data name="SyncInstructionsTemplate" xml:space="preserve">
-    <value>* Doporučený prohlížeč pro Markdown: [Rozšíření VS – editor pro Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
-# Kroky pro zahrnutí generování nové položky
-Při zahrnování nové položky do projektu postupujte podle následujících pokynů:
+# Steps to include new item generation
+Please follow the instructions to include the new item into you project:
 
-Všechny odkazované soubory najdete v dočasné složce pro generování: {0}
+You can find all referenced files in the temporary generation folder: {0}
 
 {1}
 {2}
@@ -266,15 +266,15 @@ Všechny odkazované soubory najdete v dočasné složce pro generování: {0}
   </data>
   <data name="SyncInstructionsTemplateModifiedFile" xml:space="preserve">
     <value>
-### Změny vyžadované v souboru {0}:
+### Changes required in file '{0}':
 {1}
-Zobrazit náhled změn v: {2}</value>
+Preview the changes in: {2}</value>
     <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
   </data>
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
-    <value>## Konfliktní soubory:
-Tyto soubory ve vašem projektu už existují a byly také generovány jako součást nové položky.
-Porovnejte je a ujistěte se, že je všechno na správném místě.
+    <value>## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
@@ -282,15 +282,15 @@ Porovnejte je a ujistěte se, že je všechno na správném místě.
     <value>GenerationSummary.md</value>
   </data>
   <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
-    <value>## Upravené soubory:
-Byly provedeny následující změny:
+    <value>## Modified files:
+The following changes have been applied:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncSummaryTemplateModifiedFiles)</comment>
   </data>
   <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
     <value>
-### Změny v souboru {0}:
-Podívejte se na konečný výsledek: {2}
+### Changes in file '{0}':
+See the final result: {2}
 
 {1}</value>
     <comment>{0}:FileName, 
@@ -298,8 +298,8 @@ Podívejte se na konečný výsledek: {2}
 {2}:MergeResult,</comment>
   </data>
   <data name="SyncSummarySectionNewFiles" xml:space="preserve">
-    <value>## Nové soubory:
-Tyto soubory byly přidány do projektu.
+    <value>## New files:
+These files have been added to your project.
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
@@ -307,12 +307,12 @@ Tyto soubory byly přidány do projektu.
     <value>Temp</value>
   </data>
   <data name="SyncSummaryTemplate" xml:space="preserve">
-    <value>* Doporučený prohlížeč pro Markdown: [Rozšíření VS – editor pro Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
-# Souhrnné informace o generování
-Do projektu byly začleněny následující změny:
+# Generation summary
+The following changes have been incorporated into your project:
 
-Soubory vytvořené při generování najdete v dočasné složce pro generování: {0}
+You can find the files from the generation in the temporary generation folder: {0}
 
 {1}
 {2}
@@ -325,59 +325,59 @@ Soubory vytvořené při generování najdete v dočasné složce pro generová
 {4}: Conflicting Files</comment>
   </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
-    <value>Šablony byly extrahovány do</value>
+    <value>Templates extracted to</value>
   </data>
   <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
-    <value>Šablony nelze extrahovat.</value>
+    <value>The templates can't be extracted.</value>
   </data>
   <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
-    <value>Nelze vymazat starý obsah.</value>
+    <value>Unable to purge old content.</value>
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
-    <value>V {0} jsou neplatné digitální podpisy. Příčinou může být neoprávněná změna obsahu nebo chybějící, neplatný nebo nepovolený certifikát.  Nelze pokračovat.</value>
+    <value>Invalid digital signatures in '{0}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.</value>
     <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
-    <value>V úložišti {2} bylo nalezeno {0} certifikátů odpovídajících kryptografickému otisku {1}.</value>
+    <value>Found {0} certificates matching the thumbprint {1} in the store {2}</value>
     <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
-    <value>Nalezený certifikát nemá privátní klíč.</value>
+    <value>The certificate found does not have private key.</value>
   </data>
   <data name="TemplatePackageFindCertificateNotOneMessage" xml:space="preserve">
-    <value>Kryptografickému otisku odpovídá více než jeden certifikát. Vrací se první z nich.</value>
+    <value>More than one certificate found matching the thumbrint. Returning the first one.</value>
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
-    <value>Zadaný zdroj {0} je neplatný, soubor neexistuje nebo je složka prázdná.</value>
+    <value>The specified source '{0}' is invalid, the file does not exist, or the folder is empty.</value>
     <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
-    <value>Nebyl nalezen certifikát, který odpovídá kryptografickému otisku {0}. Byla prohledána úložiště CurrentUser/My a LocalMachine/My.</value>
+    <value>No certificate found matching the thumbrint {0}. Searched on CurrentUser/My and LocalMachine/My stores.</value>
     <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
-    <value>Certifikát s kryptografickým otiskem {0} nelze najít v úložišti CurrentUser/My ani v úložišti LocalMachine/My.</value>
+    <value>The certificate with thumbprint {0} can't be found in CurrentUser/My or LocalMachine/My.</value>
     <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
-    <value>Při podepisování balíčku došlo k chybě.</value>
+    <value>Error signing package.</value>
   </data>
   <data name="TemplatePackageValidatePackageCertificatesMessage" xml:space="preserve">
-    <value>Ověření certifikátu podpisu balíčku bylo neúspěšné.</value>
+    <value>Package signature certificate validation not passed.</value>
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
-    <value>Ověření certifikátu {0} bylo dokončeno se stavem {1}.</value>
+    <value>Certificate '{0}' verification finished with status '{1}'</value>
     <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
-    <value>## Neúspěšné změny v souborech:
-Nezdařila se sloučení v následujících souborech:
+    <value>## Failed changes in files:
+Merges in the following files failed:
 {0}</value>
   </data>
   <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
     <value>
-### Změny v souboru {0}:
-Nemohly být integrovány následující změny: {2}
+### Changes in file '{0}':
+The following changes could not be integrated: {2}
 {1}</value>
     <comment>{0}:FileName, 
 {1}: Postaction Code,
@@ -387,32 +387,32 @@ Nemohly být integrovány následující změny: {2}
     <value>ProjectFile</value>
   </data>
   <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
-    <value>Další instance synchronizuje šablony... Čekání po dobu 5 sekund</value>
+    <value>Other instance is syncing templates... Waiting 5 seconds.</value>
   </data>
   <data name="TemplatesSynchronizationWarnCreatingLockFileMessage" xml:space="preserve">
-    <value>Při vytváření souboru zamknutí instance došlo k chybě.</value>
+    <value>Error creating the instance locking file.</value>
   </data>
   <data name="TemplatesSynchronizationWarnDeletingLockFileMessage" xml:space="preserve">
-    <value>Při odstraňování souboru zamknutí instance došlo k chybě.</value>
+    <value>Error deleting the instance locking file.</value>
   </data>
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
-    <value>Při čtení souboru zamknutí instance došlo k chybě.</value>
+    <value>Error reading the instance locking file.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>Styl s klíčem {0} je v tomto souboru už definován s odlišnou hodnotou nebo odlišnými elementy. Projděte styly a na místech, kde to projekt vyžaduje, vložte změny ručně.</value>
+    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project.</value>
     <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Při získávání obsahu došlo k chybě.</value>
+    <value>Error acquiring content.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Při extrahování obsahu nainstalovaných šablon došlo k chybě.</value>
+    <value>Error extracting installed templates content..</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Při aktualizaci obsahu šablon došlo k chybě.</value>
+    <value>Error updating templates content.</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Nelze odebrat ochranu prostřednictvím nastavení jen pro čtení ze souboru: {0}</value>
+    <value>Cannot remove readonly protection from file {0}</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">

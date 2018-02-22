@@ -584,10 +584,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\Window.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Styles\_Thickness.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

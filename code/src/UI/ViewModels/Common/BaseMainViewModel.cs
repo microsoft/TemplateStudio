@@ -44,7 +44,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             private set => SetStepAsync(value).FireAndForget();
         }
 
-        public async Task SetStepAsync(int step)
+        public async Task SetStepAsync(int step, bool navigate = true)
         {
             _origStep = _step;
             if (step != _step)
@@ -55,7 +55,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             if (await IsStepAvailableAsync(step))
             {
                 OnPropertyChanged(nameof(Step));
-                UpdateStep();
+                UpdateStep(navigate);
             }
             else
             {
@@ -81,15 +81,24 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public async Task<bool> IsStepAvailableAsync() => await IsStepAvailableAsync(Step);
 
+        public void RefreshStep(object navigatedPage)
+        {
+            var step = Steps.FirstOrDefault(s => s.Equals(navigatedPage.GetType()));
+            if (step != null)
+            {
+                SetStepAsync(step.Index, false).FireAndForget();
+            }
+        }
+
         protected virtual async Task<bool> IsStepAvailableAsync(int step)
         {
             await Task.CompletedTask;
             return !WizardStatus.HasValidationErrors;
         }
 
-        protected virtual void UpdateStep()
+        protected virtual void UpdateStep(bool navigate)
         {
-            var compleatedSteps = Steps.Where(s => s.Index <= Step);
+            var compleatedSteps = Steps.Where(s => s.IsPrevious(Step));
             foreach (var step in compleatedSteps)
             {
                 step.Completed = true;
@@ -100,11 +109,18 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 step.IsSelected = false;
             }
 
-            var selectedStep = Steps.FirstOrDefault(step => step.Index == Step);
+            var selectedStep = Steps.FirstOrDefault(step => step.Equals(Step));
             if (selectedStep != null)
             {
                 selectedStep.IsSelected = true;
+                if (navigate)
+                {
+                    NavigationService.NavigateSecondaryFrame(selectedStep.GetPage());
+                }
             }
+
+            SetCanGoBack(Step > 0);
+            SetCanGoForward(Step < Steps.Count - 1);
         }
 
         protected abstract void OnCancel();

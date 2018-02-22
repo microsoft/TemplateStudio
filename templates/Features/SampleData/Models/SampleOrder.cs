@@ -27,16 +27,6 @@ namespace Param_ItemNamespace.Models
             get { return (char)Symbol; }
         }
 
-        public string HashIdentIcon
-        {
-            get { return GetHashCode().ToString() + "-icon"; }
-        }
-
-        public string HashIdentTitle
-        {
-            get { return GetHashCode().ToString() + "-title"; }
-        }
-
         public override string ToString()
         {
             return $"{Company} {Status}";

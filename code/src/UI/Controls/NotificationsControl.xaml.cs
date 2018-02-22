@@ -64,6 +64,14 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
+        internal void UnsuscribeEventHandlers()
+        {
+            foreach (var notification in _notifications)
+            {
+                notification.UnsuscribeEventHandlers();
+            }
+        }
+
         public async Task AddNotificationAsync(Notification notification)
         {
             if (notification != null)
@@ -81,7 +89,7 @@ namespace Microsoft.Templates.UI.Controls
 
                 if (Notification == null || Notification.IsLowerOrEqualPriority(notification))
                 {
-                    await ShowNotificationAsync(notification);
+                    await ShowNotificationAsync();
                 }
             }
         }
@@ -120,14 +128,14 @@ namespace Microsoft.Templates.UI.Controls
 
             if (_notifications.Any())
             {
-                await ShowNotificationAsync(_notifications.First());
+                await ShowNotificationAsync();
             }
         }
 
-        private async Task ShowNotificationAsync(Notification notification)
+        private async Task ShowNotificationAsync()
         {
             Notification?.StopCloseTimer();
-            Notification = notification;
+            Notification = _notifications.First();
             await fakeGrid.AnimateDoublePropertyAsync("Height", 50, 0, 500);
             Notification.StartCloseTimer();
         }

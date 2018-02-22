@@ -118,141 +118,141 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdditionalMessageString" xml:space="preserve">
-    <value>其他消息</value>
+    <value>Additional Message</value>
   </data>
   <data name="AddtionalExceptionInfoString" xml:space="preserve">
-    <value>其他异常信息</value>
+    <value>Addtional Exception Info</value>
   </data>
   <data name="AssemblyFileVersionString" xml:space="preserve">
-    <value>程序集文件版本</value>
+    <value>Assembly File Version</value>
   </data>
   <data name="CompositionQueryParseMessage" xml:space="preserve">
-    <value>查询“{0}”无效。允许的运算符是 "==" 或 "!="。多个条件用 "&amp;" 分隔。</value>
+    <value>The query "{0}" is not valid. Allowed operators are '==' or '!='. Multiple conditions are separated by '&amp;'.</value>
     <comment>{0}: Query</comment>
   </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
-    <value>配置文件已加载</value>
+    <value>Configuration file loaded</value>
   </data>
   <data name="CurrentContentExpirationString" xml:space="preserve">
-    <value>当前内容到期</value>
+    <value>Current content expiration</value>
   </data>
   <data name="ExceptionInfoString" xml:space="preserve">
-    <value>异常信息</value>
+    <value>Exception Info</value>
   </data>
   <data name="ExceptionString" xml:space="preserve">
-    <value>异常</value>
+    <value>Exception</value>
   </data>
   <data name="ExceptionTrackedString" xml:space="preserve">
-    <value>异常已跟踪</value>
+    <value>Exception Tracked</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>找不到文件“{0}”，无法包括以下更改。请查看代码块，以将这些更改手动包括在项目中的所需位置。</value>
+    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. </value>
     <comment>{0}:Relative path to original file </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>在文件“{1}”中找不到应有的行 "{0}"。请手动合并操作后文件中的内容。</value>
+    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually.</value>
     <comment>{0}: Code line, {1}: Relative path to original file</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
-    <value>无法将文件 {0} 复制到 {1}。错误:{2}</value>
+    <value>The file {0} can't be copied to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="FsSafeDeleteDirectoryMessage" xml:space="preserve">
-    <value>无法删除文件夹 {0}。错误:{1}</value>
+    <value>The folder {0} can't be delete. Error: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="FsSafeDeleteFileMessage" xml:space="preserve">
-    <value>无法删除文件 {0}。错误:{1}</value>
+    <value>The file {0} can't be delete. Error: {1}</value>
     <comment>{0}: File Path, {1}: Error</comment>
   </data>
   <data name="FsSafeMoveDirectoryMessage" xml:space="preserve">
-    <value>无法将文件夹 {0} 移动到 {1}。错误:{2}</value>
+    <value>The folder {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source Folder Path, {1}: Destination folder path, {2}: Error</comment>
   </data>
   <data name="GenContextBootstrapError" xml:space="preserve">
-    <value>初始化 GenContext 时出现严重错误。</value>
+    <value>Critical error initializating GenContext.</value>
   </data>
   <data name="GenContextCurrentInvalidOperationMessage" xml:space="preserve">
-    <value>没有可供执行当前 gen 操作的上下文，请先调用 Current_set</value>
+    <value>There is no context for the current gen execution, call Current_set first</value>
   </data>
   <data name="GenerateTestCertificatePostActionExecute" xml:space="preserve">
-    <value>生成证书时出错。</value>
+    <value>Error generating certificate.</value>
   </data>
   <data name="LogStartedString" xml:space="preserve">
-    <value>日志已启动</value>
+    <value>Log started</value>
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
-    <value>*建议的 Markdown 查看器:[Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>没有文件“{0}”的合并目标</value>
+    <value>There is no merge target for file '{0}'</value>
     <comment>{0}: Postaction file path</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>在文件“{1}”中找不到行 {0}</value>
+    <value>Line {0} not found in file '{1}'</value>
     <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
-    <value>无法推断名称。迭代次数过多</value>
+    <value>Unable to infer a name. Too many iterations</value>
   </data>
   <data name="PackageCertificateString" xml:space="preserve">
-    <value>程序包证书</value>
+    <value>Package certificate</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
-    <value>从 {0} 下载时出错。需要 Internet 连接才能下载模板更新。</value>
+    <value>Error downloading from {0}. Internet connection is required to download template updates.</value>
     <comment>{0}:Url</comment>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoInfoMessage" xml:space="preserve">
-    <value>无法立即下载模板内容，我们将稍后重试。</value>
+    <value>Templates content can't be downloaded right now, we will try it later.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
-    <value>模板内容已从 {1} 下载到 {0}。</value>
+    <value>Templates content downloaded to {0} from {1}.</value>
     <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
-    <value>同步模板时出错。状态:</value>
+    <value>Error syncing templates. Status:</value>
   </data>
   <data name="StatusAddingItems" xml:space="preserve">
-    <value>正在向项目中添加项...</value>
+    <value>Adding items to project ...</value>
   </data>
   <data name="StatusOpeningItems" xml:space="preserve">
-    <value>正在打开生成的文件...</value>
+    <value>Opening generated files ...</value>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
-    <value>包括新项 generation.md 的步骤</value>
+    <value>Steps to include new item generation.md</value>
   </data>
   <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
-    <value>## 冲突的文件:
-这些文件已存在于你的项目中，同时也是作为新项目的一部分生成的。
-请比较所有内容并确保其都在正确的位置:
+    <value>## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place:
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncInstructionsSectionModifiedFiles" xml:space="preserve">
-    <value>## 已修改的文件:
-若要将新项集成到现有的项目中，请应用以下更改:
+    <value>## Modified files:
+To integrate your new item with the existing project apply the following changes:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncInstructionsTemplateModifiedFiles)</comment>
   </data>
   <data name="SyncInstructionsSectionNewFiles" xml:space="preserve">
-    <value>## 新文件:
-将以下文件复制并添加到你的项目:
+    <value>## New files:
+Copy and add the following files to your project:
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
   <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
-    <value>## 未更改的文件:
-这些文件已存在于你的项目中，不需要执行任何操作:
+    <value>## Unchanged files:
+These files already exist in your project, no action is necessary:
 {0}</value>
     <comment>{0}: List of unchanged files</comment>
   </data>
   <data name="SyncInstructionsTemplate" xml:space="preserve">
-    <value>*建议的 Markdown 查看器:[Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
-# 包括新项 generation.md 的步骤
-请按照说明将新项包括在你的项目中:
+# Steps to include new item generation
+Please follow the instructions to include the new item into you project:
 
-你可以在临时生成文件夹中找到所有引用的文件:{0}
+You can find all referenced files in the temporary generation folder: {0}
 
 {1}
 {2}
@@ -266,15 +266,15 @@
   </data>
   <data name="SyncInstructionsTemplateModifiedFile" xml:space="preserve">
     <value>
-### 文件“{0}”中所需的更改:
+### Changes required in file '{0}':
 {1}
-请在以下位置中预览更改:{2}</value>
+Preview the changes in: {2}</value>
     <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
   </data>
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
-    <value>## 冲突的文件:
-这些文件已存在于你的项目中，同时也是作为新项目的一部分生成的。
-请比较所有内容并确保其都在正确的位置。
+    <value>## Conflicting files:
+These files already exist in your project and were also generated as part of the new item.
+Please compare and make sure everything is in the right place.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
@@ -282,15 +282,15 @@
     <value>GenerationSummary.md</value>
   </data>
   <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
-    <value>## 已修改的文件:
-已应用以下更改:
+    <value>## Modified files:
+The following changes have been applied:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncSummaryTemplateModifiedFiles)</comment>
   </data>
   <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
     <value>
-### 文件“{0}”中的更改:
-查看最终结果:{2}
+### Changes in file '{0}':
+See the final result: {2}
 
 {1}</value>
     <comment>{0}:FileName, 
@@ -298,8 +298,8 @@
 {2}:MergeResult,</comment>
   </data>
   <data name="SyncSummarySectionNewFiles" xml:space="preserve">
-    <value>## 新文件:
-这些文件已添加到你的项目中。
+    <value>## New files:
+These files have been added to your project.
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
@@ -307,12 +307,12 @@
     <value>Temp</value>
   </data>
   <data name="SyncSummaryTemplate" xml:space="preserve">
-    <value>*建议的 Markdown 查看器:[Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
 
-# 生成摘要
-以下更改已合并到你的项目中:
+# Generation summary
+The following changes have been incorporated into your project:
 
-你可以在临时生成文件夹中找到生成文件:{0}
+You can find the files from the generation in the temporary generation folder: {0}
 
 {1}
 {2}
@@ -325,59 +325,59 @@
 {4}: Conflicting Files</comment>
   </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
-    <value>模板已提取到</value>
+    <value>Templates extracted to</value>
   </data>
   <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
-    <value>无法提取模板。</value>
+    <value>The templates can't be extracted.</value>
   </data>
   <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
-    <value>无法清除旧内容。</value>
+    <value>Unable to purge old content.</value>
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
-    <value>“{0}”中的数字签名无效。内容已篡改，或证书不存在、无效或不允许使用。无法继续。</value>
+    <value>Invalid digital signatures in '{0}'. The content has been tampered or the certificate is not present, not valid or not allowed.  Unable to continue.</value>
     <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
-    <value>在存储区 {2} 中找到与指纹 {1} 匹配的 {0} 证书</value>
+    <value>Found {0} certificates matching the thumbprint {1} in the store {2}</value>
     <comment>{0}:Number of certs found, {1}:Thumbprint, {2}: StoreLocation</comment>
   </data>
   <data name="TemplatePackageFindCertificateNoPkMessage" xml:space="preserve">
-    <value>找到的证书没有私钥。</value>
+    <value>The certificate found does not have private key.</value>
   </data>
   <data name="TemplatePackageFindCertificateNotOneMessage" xml:space="preserve">
-    <value>找到多个与指纹匹配的证书。正在返回第一个证书。</value>
+    <value>More than one certificate found matching the thumbrint. Returning the first one.</value>
   </data>
   <data name="TemplatePackageGetSourceFilesMessage" xml:space="preserve">
-    <value>指定的源“{0}”无效，文件不存在，或文件夹为空。</value>
+    <value>The specified source '{0}' is invalid, the file does not exist, or the folder is empty.</value>
     <comment>{0}: Source File Path</comment>
   </data>
   <data name="TemplatePackageLoadCertMessage" xml:space="preserve">
-    <value>找不到与指纹 {0} 匹配的证书。已在 CurrentUser/My 和 LocalMachine/My 存储区中搜索。</value>
+    <value>No certificate found matching the thumbrint {0}. Searched on CurrentUser/My and LocalMachine/My stores.</value>
     <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackagePackAndSignMessage" xml:space="preserve">
-    <value>在 CurrentUser/My 或 LocalMachine/My 中找不到与指纹 {0} 匹配的证书。</value>
+    <value>The certificate with thumbprint {0} can't be found in CurrentUser/My or LocalMachine/My.</value>
     <comment>{0}:Thumbprint</comment>
   </data>
   <data name="TemplatePackageSignAllPartsMessage" xml:space="preserve">
-    <value>签署程序包时出错。</value>
+    <value>Error signing package.</value>
   </data>
   <data name="TemplatePackageValidatePackageCertificatesMessage" xml:space="preserve">
-    <value>未传递程序包签名证书验证。</value>
+    <value>Package signature certificate validation not passed.</value>
   </data>
   <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
-    <value>证书“{0}”验证已完成，状态为“{1}”。</value>
+    <value>Certificate '{0}' verification finished with status '{1}'</value>
     <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
-    <value>## 文件中的失败更改:
-以下文件中的合并失败:
+    <value>## Failed changes in files:
+Merges in the following files failed:
 {0}</value>
   </data>
   <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
     <value>
-### 文件“{0}”中的更改:
-无法集成以下更改:{2}
+### Changes in file '{0}':
+The following changes could not be integrated: {2}
 {1}</value>
     <comment>{0}:FileName, 
 {1}: Postaction Code,
@@ -387,32 +387,32 @@
     <value>ProjectFile</value>
   </data>
   <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
-    <value>其他实例正在同步模板...请等待 5 秒钟。</value>
+    <value>Other instance is syncing templates... Waiting 5 seconds.</value>
   </data>
   <data name="TemplatesSynchronizationWarnCreatingLockFileMessage" xml:space="preserve">
-    <value>创建实例锁定文件时出错。</value>
+    <value>Error creating the instance locking file.</value>
   </data>
   <data name="TemplatesSynchronizationWarnDeletingLockFileMessage" xml:space="preserve">
-    <value>删除实例锁定文件时出错。</value>
+    <value>Error deleting the instance locking file.</value>
   </data>
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
-    <value>读取实例锁定文件时出错。</value>
+    <value>Error reading the instance locking file.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>已使用此文件中的不同值或元素定义密钥为“{0}”的样式。请查看这些样式，以将这些更改手动包括在项目中的所需位置。</value>
+    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project.</value>
     <comment>{0}: Key of the XmlNode</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>获取内容时出错。</value>
+    <value>Error acquiring content.</value>
   </data>
   <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>提取已安装的模板内容时出错。</value>
+    <value>Error extracting installed templates content..</value>
   </data>
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>更新模板内容时出错。</value>
+    <value>Error updating templates content.</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>无法删除文件 {0} 的只读保护</value>
+    <value>Cannot remove readonly protection from file {0}</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">

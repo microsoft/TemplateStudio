@@ -274,9 +274,15 @@
         </templateSelector:FileStatusTemplateSelector.UnchangedFileTemplate>
         <templateSelector:FileStatusTemplateSelector.WarningFileTemplate>
             <DataTemplate>
-                <TextBlock
-                    Text="{x:Static res:StringRes.ChangesSummaryGroupWarningFilesDescription}"
-                    Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                <StackPanel>
+                    <TextBlock
+                        Text="{x:Static res:StringRes.ChangesSummaryGroupWarningFilesDescription}"
+                        Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                    <TextBlock
+                        Margin="{StaticResource Margin_XS_Top}"
+                        Text="{Binding Description}"
+                        Style="{StaticResource WtsTextBlockFileStatusDescription}" />
+                </StackPanel>
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.WarningFileTemplate>
     </templateSelector:FileStatusTemplateSelector>

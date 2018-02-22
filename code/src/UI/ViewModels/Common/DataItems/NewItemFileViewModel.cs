@@ -88,7 +88,10 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public static NewItemFileViewModel WarningFile(FailedMergePostAction file)
         {
-            return new NewItemFileViewModel(FileStatus.WarningFile, file.FileName, AsUserFriendlyPostAction);
+            return new NewItemFileViewModel(FileStatus.WarningFile, file.FailedFileName, AsUserFriendlyPostAction)
+            {
+                Description = file.Description
+            };
         }
 
         private void OnMoreDetails() => Process.Start(MoreInfoLink);
