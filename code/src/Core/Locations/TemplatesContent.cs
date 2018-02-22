@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (Current != null)
             {
-                var result = WizardVersion.Major < Source.Config?.Latest.Version.Major || WizardVersion.Minor < Source.Config?.Latest.Version.Minor;
+                var result = WizardVersion.Major < Source.Config?.Latest.Version.Major || ((WizardVersion.Major == Source.Config?.Latest.Version.Major) && (WizardVersion.Minor < Source.Config?.Latest.Version.Minor));
                 if (result == true)
                 {
                     version = new Version(Source.Config.Latest.Version.Major, Source.Config.Latest.Version.Minor);
