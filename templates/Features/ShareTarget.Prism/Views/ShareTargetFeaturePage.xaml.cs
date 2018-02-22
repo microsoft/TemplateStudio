@@ -13,7 +13,7 @@ namespace Param_ItemNamespace.Views
     {
         public ShareTargetFeatureViewModel ViewModel { get; } = new ShareTargetFeatureViewModel();
 
-        public wts.ItemNamePage()
+        public ShareTargetFeaturePage()
         {
             InitializeComponent();
         }
