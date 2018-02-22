@@ -11,81 +11,6 @@ namespace Microsoft.Templates.UI.Extensions
 {
     public static class AnimationExtensions
     {
-        public static Storyboard FadeIn(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
-        {
-            if (element == null)
-            {
-                throw new ArgumentNullException(nameof(element));
-            }
-
-            if (element.Opacity < 1.0)
-            {
-                var animation = AnimateDoubleProperty(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
-                animation.Begin();
-                return animation;
-            }
-
-            return null;
-        }
-
-        public static async Task FadeInAsync(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
-        {
-            if (element.Opacity < 1.0)
-            {
-                await AnimateDoublePropertyAsync(element, "Opacity", element.Opacity, 1.0, duration, easingFunction);
-            }
-        }
-
-        public static Storyboard FadeOut(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
-        {
-            if (element == null)
-            {
-                throw new ArgumentNullException(nameof(element));
-            }
-
-            if (element.Opacity > 0.0)
-            {
-                var animation = AnimateDoubleProperty(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
-                animation.Begin();
-                return animation;
-            }
-
-            return null;
-        }
-
-        public static async Task FadeOutAsync(this UIElement element, double duration = 250, EasingFunctionBase easingFunction = null)
-        {
-            if (element.Opacity > 0.0)
-            {
-                await AnimateDoublePropertyAsync(element, "Opacity", element.Opacity, 0.0, duration, easingFunction);
-            }
-        }
-
-        public static Storyboard AnimateWidth(this FrameworkElement element, double width, double duration = 250, EasingFunctionBase easingFunction = null)
-        {
-            if (element == null)
-            {
-                throw new ArgumentNullException(nameof(element));
-            }
-
-            if (element.ActualWidth != width)
-            {
-                var animation = AnimateDoubleProperty(element, "Width", element.ActualWidth, width, duration, easingFunction);
-                animation.Begin();
-                return animation;
-            }
-
-            return null;
-        }
-
-        public static async Task AnimateWidthAsync(this FrameworkElement element, double width, double duration = 250, EasingFunctionBase easingFunction = null)
-        {
-            if (element.ActualWidth != width)
-            {
-                await AnimateDoublePropertyAsync(element, "Width", element.ActualWidth, width, duration, easingFunction);
-            }
-        }
-
         public static Task AnimateDoublePropertyAsync(this DependencyObject target, string property, double from, double to, double duration = 250, EasingFunctionBase easingFunction = null)
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
@@ -94,10 +19,13 @@ namespace Microsoft.Templates.UI.Extensions
 #pragma warning disable VSTHRD103 // Llame a métodos asincrónicos cuando esté en un método asincrónico
             Storyboard storyboard = AnimateDoubleProperty(target, property, from, to, duration, easingFunction);
 #pragma warning restore VSTHRD103 // Llame a métodos asincrónicos cuando esté en un método asincrónico
-            storyboard.Completed += (sender, e) =>
+            EventHandler callback = null;
+            callback = (sender, e) =>
             {
+                storyboard.Completed -= callback;
                 tcs.SetResult(true);
             };
+            storyboard.Completed += callback;
             storyboard.Begin();
             return tcs.Task;
         }
