@@ -30,7 +30,16 @@
       "path": ".\\ViewModels\\SharedDataWebLinkViewModel.cs"
     },
     {
-    "path": ".\\Helpers\\ShareOperationExtensions.cs"
+      "path": ".\\Helpers\\ShareOperationExtensions.cs"
+    },
+    {
+      "path": ".\\ViewModels\\ShareTargetFeatureViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\ShareTargetFeaturePage.xaml"
+    },
+    {
+      "path": ".\\Views\\ShareTargetFeaturePage.xaml.cs"
     }
   ],
   "symbols": {

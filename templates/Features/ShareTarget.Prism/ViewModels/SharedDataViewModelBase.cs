@@ -5,6 +5,8 @@ using Prism.Mvvm;
 
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 
+using Param_ItemNamespace.Helpers;
+
 
 namespace Param_ItemNamespace.ViewModels
 {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel.DataTransfer;
@@ -9,7 +9,7 @@ using Prism.Commands;
 
 namespace Param_ItemNamespace.ViewModels
 {
-    public class wts.ItemNameViewModel : BindableBase
+    public class ShareTargetFeatureViewModel : BindableBase
     {
         private ShareOperation _shareOperation;
 
@@ -25,7 +25,7 @@ namespace Param_ItemNamespace.ViewModels
 
         public ICommand CompleteCommand => _completeCommand ?? (_completeCommand = new DelegateCommand(OnComplete));
 
-        public wts.ItemNameViewModel()
+        public ShareTargetFeatureViewModel()
         {
         }
 
