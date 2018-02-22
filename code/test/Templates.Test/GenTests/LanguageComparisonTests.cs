@@ -241,7 +241,7 @@ namespace Microsoft.Templates.Test
                 var csCode = new StreamReader(csFile).ReadToEnd();
                 var csTree = Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree.ParseText(csCode);
                 var csRoot = (Microsoft.CodeAnalysis.CSharp.Syntax.CompilationUnitSyntax)csTree.GetRoot();
-                var csProperties = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax>().Select(p => p.Identifier.Text + "-"+ p.Type.ToString().ToLowerInvariant()).ToList();
+                var csProperties = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax>().Select(p => p.Identifier.Text + "-" + p.Type.ToString().ToLowerInvariant()).ToList();
                 var csMethods = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>().Select(m => m.Identifier.Text).ToList();
                 var csEvents = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.EventFieldDeclarationSyntax>().Select(e => e.Declaration.Variables.First().Identifier.Text).ToList();
                 csEvents.AddRange(csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.EventDeclarationSyntax>().Select(e => e.Identifier.Text).ToList());
