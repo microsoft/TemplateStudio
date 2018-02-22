@@ -13,7 +13,16 @@ namespace Microsoft.Templates.UI.Views.NewItem
         {
             DataContext = MainViewModel.Instance;
             InitializeComponent();
+        }
+
+        private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
+        {
             Services.NavigationService.InitializeSecondaryFrame(stepFrame, new TemplateSelectionPage());
+        }
+
+        private void OnUnloaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Services.NavigationService.UnsuscribeEventHandlers();
         }
     }
 }

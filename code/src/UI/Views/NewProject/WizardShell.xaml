@@ -10,6 +10,8 @@
     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
     WindowStartupLocation="CenterScreen"
     MouseLeftButtonDown="OnMouseLeftButtonDown"
+    Loaded="OnLoaded"
+    Unloaded="OnUnloaded"
     MinWidth="800"
     MinHeight="400"
     Width="{Binding WizardStatus.Width}"
@@ -22,9 +24,10 @@
             <Setter Property="WindowStyle" Value="None" />
             <Setter Property="BorderBrush" Value="{Binding WindowBorder, Source={x:Static services:UIStylesService.Instance}}" />
             <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="AllowsTransparency" Value="True" />
             <Setter Property="shell:WindowChrome.WindowChrome">
                 <Setter.Value>
-                    <shell:WindowChrome ResizeBorderThickness="1" CaptionHeight="0">
+                    <shell:WindowChrome ResizeBorderThickness="5" CaptionHeight="0">
                     </shell:WindowChrome>
                 </Setter.Value>
             </Setter>
