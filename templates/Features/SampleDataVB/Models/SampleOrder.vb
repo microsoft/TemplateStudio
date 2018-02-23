@@ -15,7 +15,7 @@
 
         Public Property Status As String
 
-        Public Property Symbol As String
+        Public Property Symbol As Symbol
 
         Public ReadOnly Property SymbolAsChar As Char
             Get

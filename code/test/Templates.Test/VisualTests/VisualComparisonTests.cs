@@ -42,6 +42,7 @@ namespace Microsoft.Templates.Test
                         "wts.Page.ImageGallery",
                         "wts.Page.MasterDetail",
                         "wts.Page.TabbedPivot",
+                        "wts.Page.Grid",
                     };
 
                     foreach (var page in pagesThatSupportUiTesting)
@@ -87,7 +88,8 @@ namespace Microsoft.Templates.Test
 
             var outputMessages = string.Join(Environment.NewLine, testOutput);
 
-            if (Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
+            if (Directory.Exists(testProjectDetails.imagesFolder)
+             && Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
             {
                 Assert.True(
                     testSuccess,
