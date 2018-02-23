@@ -14,6 +14,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -50,15 +51,17 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 try
                 {
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage());
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
 
                     if (userSelection != null)
                     {
-                        SafeThreading.JoinableTaskFactory.RunAsync(async () =>
+                        SafeThreading.JoinableTaskFactory.Run(
+                        async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                             NewItemGenController.Instance.FinishGeneration(userSelection);
-                        });
+                        },
+                        JoinableTaskCreationOptions.LongRunning);
 
                         _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                     }
@@ -77,15 +80,18 @@ namespace Microsoft.Templates.UI.VisualStudio
                 SetContext();
                 try
                 {
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage());
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
 
                     if (userSelection != null)
                     {
-                        SafeThreading.JoinableTaskFactory.RunAsync(async () =>
+                        SafeThreading.JoinableTaskFactory.Run(
+                        async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                             NewItemGenController.Instance.FinishGeneration(userSelection);
-                        });
+                        },
+                        JoinableTaskCreationOptions.LongRunning);
+
                         _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                     }
                 }
@@ -123,8 +129,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         private void SetContext()
         {
             EnsureGenContextInitialized();
-            UIStylesService.Instance.Initialize(new VSStyleValuesProvider());
-
             if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {
                 ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();

@@ -8,6 +8,8 @@
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
       xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
       xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
+      Loaded="OnLoaded"
+      Unloaded="OnUnloaded"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
@@ -35,7 +37,7 @@
                 <ColumnDefinition Width="*" />
                 <!--80% Selection area-->
             </Grid.ColumnDefinitions>
-            <controls:SequentialFlow Steps="{Binding Steps}" />
+            <controls:SequentialFlow Steps="{Binding Steps}" IsEnabled="{Binding WizardStatus.IsSequentialFlowEnabled}" />
             <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
             <Frame Grid.Column="2" x:Name="stepFrame" NavigationUIVisibility="Hidden" Focusable="False" />
         </Grid>

@@ -12,11 +12,11 @@ namespace Microsoft.Templates.UI.Services
 {
     public class SystemService : DependencyObject
     {
-        private static SystemService _instance;
+        public SystemService()
+        {
+        }
 
-        public static SystemService Instance => _instance ?? (_instance = new SystemService());
-
-        private SystemService()
+        public void Initialize()
         {
             SystemParameters.StaticPropertyChanged += OnStaticPropertyChanged;
         }
@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Services
             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
             if (e.PropertyName == "HighContrast")
             {
-                Instance.IsHighContrast = SystemParameters.HighContrast;
+                IsHighContrast = SystemParameters.HighContrast;
             }
         }
 
@@ -36,6 +36,11 @@ namespace Microsoft.Templates.UI.Services
         {
             get => (bool)GetValue(IsHighContrastProperty);
             private set => SetValue(IsHighContrastProperty, value);
+        }
+
+        public void UnsuscribeEventHandlers()
+        {
+            SystemParameters.StaticPropertyChanged -= OnStaticPropertyChanged;
         }
 
         public double GetCodeFontSize()

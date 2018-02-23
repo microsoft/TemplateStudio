@@ -625,8 +625,24 @@
     <value>Templates list</value>
     <comment>Templates list label to accessibility</comment>
   </data>
-  <data name="ExternalHyperlinkTooltipFormat" xml:space="preserve">
-    <value>Open {0} in a new browser tab</value>
-    <comment>External hyperlink tooltip string format</comment>
+  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
+    <value>Open in a new browser tab</value>
+    <comment>External hyperlink tooltip message</comment>
+  </data>
+  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
+    <value>Code viewer</value>
+    <comment>Code viewer label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
+    <value>New item file icon</value>
+    <comment>New item file icon label to accessibility</comment>
+  </data>
+  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
+    <value>Error text description</value>
+    <comment>Error dialog accessible name to description textbox</comment>
+  </data>
+  <data name="ReorderPageHelpText" xml:space="preserve">
+    <value>Use ctrl+up arrow or ctrl+down arrow to change page order</value>
+    <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
 </root>

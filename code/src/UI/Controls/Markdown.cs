@@ -493,7 +493,7 @@ namespace Microsoft.Templates.UI.Controls
             var result = Create<Hyperlink, Inline>(RunSpanGamut(linkText));
             result.Command = HyperlinkCommand;
             result.CommandParameter = url;
-            result.ToolTip = string.Format(StringRes.ExternalHyperlinkTooltipFormat, linkText);
+            result.ToolTip = StringRes.ExternalHyperlinkTooltipMessage;
             result.SetValue(AutomationProperties.NameProperty, linkText);
 
             if (LinkStyle != null)

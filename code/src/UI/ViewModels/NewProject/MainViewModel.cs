@@ -55,8 +55,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public MainViewModel(Window mainView)
-            : base(mainView)
+        public MainViewModel(Window mainView, BaseStyleValuesProvider provider)
+            : base(mainView, provider)
         {
             Instance = this;
             ValidationService.Initialize(UserSelection.GetNames);
@@ -69,34 +69,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         protected override void OnCancel() => WizardShell.Current.Close();
-
-        protected override void UpdateStep()
-        {
-            base.UpdateStep();
-            Page destinationPage = null;
-            switch (Step)
-            {
-                case 0:
-                    destinationPage = new ProjectTypePage();
-                    break;
-                case 1:
-                    destinationPage = new FrameworkPage();
-                    break;
-                case 2:
-                    destinationPage = new AddPagesPage();
-                    break;
-                case 3:
-                    destinationPage = new AddFeaturesPage();
-                    break;
-            }
-
-            if (destinationPage != null)
-            {
-                NavigationService.NavigateSecondaryFrame(destinationPage);
-                SetCanGoBack(Step > 0);
-                SetCanGoForward(Step < 3);
-            }
-        }
 
         protected override void OnFinish()
         {
@@ -168,10 +140,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         protected override IEnumerable<Step> GetSteps()
         {
-            yield return new Step(0, StringRes.NewProjectStepOne, true, true);
-            yield return new Step(1, StringRes.NewProjectStepTwo);
-            yield return new Step(2, StringRes.NewProjectStepThree);
-            yield return new Step(3, StringRes.NewProjectStepFour);
+            yield return new Step(0, StringRes.NewProjectStepOne, () => new ProjectTypePage(), true, true);
+            yield return new Step(1, StringRes.NewProjectStepTwo, () => new FrameworkPage());
+            yield return new Step(2, StringRes.NewProjectStepThree, () => new AddPagesPage());
+            yield return new Step(3, StringRes.NewProjectStepFour, () => new AddFeaturesPage());
         }
 
         public override void ProcessItem(object item)

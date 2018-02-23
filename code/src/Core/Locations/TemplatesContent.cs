@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Core.Locations
             version = Source.Config?.ResolvePackage(WizardVersion)?.Version;
             if (Current != null && !Current.Version.IsNull() && Directory.Exists(Current.Path))
             {
-                return Current.Version < version;
+                return Current.Version < version && (WizardVersion != version);
             }
             else
             {
@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (Current != null)
             {
-                var result = WizardVersion.Major < Source.Config?.Latest.Version.Major || WizardVersion.Minor < Source.Config?.Latest.Version.Minor;
+                var result = WizardVersion.Major < Source.Config?.Latest.Version.Major || ((WizardVersion.Major == Source.Config?.Latest.Version.Major) && (WizardVersion.Minor < Source.Config?.Latest.Version.Minor));
                 if (result == true)
                 {
                     version = new Version(Source.Config.Latest.Version.Major, Source.Config.Latest.Version.Minor);

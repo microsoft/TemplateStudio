@@ -348,12 +348,11 @@
     <Compile Include="Services\DragAndDropService\ListViewItemDragState.cs" />
     <Compile Include="Services\DragAndDropService\MouseUtilities.cs" />
     <Compile Include="Services\DragAndDropService\NativeMethods.cs" />
-    <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\LicensesService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\OrderingService.cs" />
     <Compile Include="Services\ResourcesService.cs" />
-    <Compile Include="Services\Styles\IStyleValuesProvider.cs" />
+    <Compile Include="Services\Styles\BaseStyleValuesProvider.cs" />
     <Compile Include="Services\Styles\UIStylesService.Environment.cs" />
     <Compile Include="Services\Styles\UIStylesService.CommonDocumentColors.cs" />
     <Compile Include="Services\Styles\UIStylesService.cs" />
@@ -581,10 +580,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\Viewbox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

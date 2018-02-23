@@ -5,35 +5,33 @@
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewItem;
+using Microsoft.Templates.UI.Views.Common;
 
 namespace Microsoft.Templates.UI.Views.NewItem
 {
     public partial class WizardShell : Window
     {
+        private TemplateType _templateType;
+        private string _language;
+
         public static WizardShell Current { get; private set; }
 
         public UserSelection Result { get; set; }
 
         public MainViewModel ViewModel { get; }
 
-        public WizardShell(TemplateType templateType, string language)
+        public WizardShell(TemplateType templateType, string language, BaseStyleValuesProvider provider)
         {
-            ViewModel = new MainViewModel(this);
+            _templateType = templateType;
+            _language = language;
+            ViewModel = new MainViewModel(this, provider);
             Current = this;
             DataContext = ViewModel;
             InitializeComponent();
             NavigationService.InitializeMainFrame(mainFrame, new MainPage());
-            Loaded += async (sender, args) =>
-            {
-                await MainViewModel.Instance.InitializeAsync(templateType, language);
-            };
-
-            Unloaded += (sender, e) =>
-            {
-                ViewModel.UnsuscribeEventHandlers();
-            };
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
@@ -41,6 +39,15 @@ namespace Microsoft.Templates.UI.Views.NewItem
             if (e.Key == Key.Escape)
             {
                 Close();
+                return;
+            }
+
+            if (e.Key == Key.Back
+                && NavigationService.CanGoBackMainFrame
+                && sender is WizardShell shell
+                && shell.mainFrame.NavigationService.Content is TemplateInfoPage)
+            {
+                NavigationService.GoBackMainFrame();
             }
         }
 
@@ -48,6 +55,17 @@ namespace Microsoft.Templates.UI.Views.NewItem
         {
             OnMouseLeftButtonDown(e);
             DragMove();
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await MainViewModel.Instance.InitializeAsync(_templateType, _language);
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.UnsuscribeEventHandlers();
+            NotificationsControl.Instance.UnsuscribeEventHandlers();
         }
     }
 }
