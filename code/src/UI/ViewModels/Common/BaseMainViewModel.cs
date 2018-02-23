@@ -126,6 +126,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
+        public Step GetCurrentStep() => Steps.FirstOrDefault(step => step.Equals(Step));
+
         public virtual async Task InitializeAsync(string language)
         {
             Language = language;
@@ -168,7 +170,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 step.IsSelected = false;
             }
 
-            var selectedStep = Steps.FirstOrDefault(step => step.Equals(Step));
+            var selectedStep = GetCurrentStep();
             if (selectedStep != null)
             {
                 selectedStep.IsSelected = true;
