@@ -3,11 +3,14 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Param_ItemNamespace.Models;
+using Param_ItemNamespace.ViewModels;
 
 namespace Param_ItemNamespace.Views
 {
     public sealed partial class ImageGalleryViewDetailPage : Page
     {
+        public ImageGalleryViewDetailViewModel ViewModel => DataContext as ImageGalleryViewDetailViewModel;
+
         public ImageGalleryViewDetailPage()
         {
             InitializeComponent();
