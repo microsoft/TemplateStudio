@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public WizardStatus()
         {
             Current = this;
-            var size = SystemService.Instance.GetMainWindowSize();
+            var size = BaseMainViewModel.BaseInstance.SystemService.GetMainWindowSize();
             Width = size.width;
             Height = size.height;
             UpdateIsBusyAsync().FireAndForget();
