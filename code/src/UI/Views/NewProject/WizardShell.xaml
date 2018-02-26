@@ -25,6 +25,7 @@
             <Setter Property="BorderBrush" Value="{Binding WindowBorder, Source={x:Static services:UIStylesService.Instance}}" />
             <Setter Property="BorderThickness" Value="2" />
             <Setter Property="AllowsTransparency" Value="True" />
+            <Setter Property="ShowInTaskbar" Value="False" />
             <Setter Property="shell:WindowChrome.WindowChrome">
                 <Setter.Value>
                     <shell:WindowChrome ResizeBorderThickness="5" CaptionHeight="0">

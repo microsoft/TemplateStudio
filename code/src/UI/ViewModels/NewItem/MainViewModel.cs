@@ -165,6 +165,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 var vm = new ProjectConfigurationViewModel();
                 ProjectConfigurationDialog projectConfig = new ProjectConfigurationDialog(vm);
+                projectConfig.Owner = WizardShell.Current;
                 projectConfig.ShowDialog();
 
                 if (vm.Result == DialogResult.Accept)
