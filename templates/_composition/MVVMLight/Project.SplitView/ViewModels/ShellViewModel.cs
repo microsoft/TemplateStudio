@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Microsoft.Practices.ServiceLocation;
+using CommonServiceLocator;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,7 +26,7 @@ namespace wts.ItemName.ViewModels
         {
             get
             {
-                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+                return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }
 
