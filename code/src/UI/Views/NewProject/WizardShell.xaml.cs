@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Templates.UI.Controls;
@@ -48,6 +49,8 @@ namespace Microsoft.Templates.UI.Views.NewProject
             }
         }
 
+        public async Task LoadAsync() => await MainViewModel.Instance.InitializeAsync(_language);
+
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             OnMouseLeftButtonDown(e);
@@ -56,13 +59,13 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            await MainViewModel.Instance.InitializeAsync(_language);
+            await LoadAsync();
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             ViewModel.UnsuscribeEventHandlers();
-            NotificationsControl.Instance.UnsuscribeEventHandlers();
+            NotificationsControl.UnsuscribeEventHandlers();
         }
     }
 }
