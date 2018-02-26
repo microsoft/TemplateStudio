@@ -55,9 +55,9 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Viewbox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="{StaticResource Margin_M_Right}" Style="{StaticResource WtsViewBoxDialogIcon}">
-                <Frame Source="/Microsoft.Templates.UI;component/Assets/StatusCriticalError.xaml" Focusable="False" IsTabStop="False" />
-            </Viewbox>
+            <Image Source="{StaticResource WtsIconError}"
+                   Style="{StaticResource WtsImageDialogIcon}"
+                   Grid.RowSpan="2" />
             <TextBlock
                 Grid.Column="1"
                 Text="{Binding Title}"
