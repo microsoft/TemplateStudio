@@ -87,6 +87,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 var vm = new QuestionDialogViewModel(metadataType);
                 var questionDialog = new QuestionDialogWindow(vm);
+                questionDialog.Owner = WizardShell.Current;
                 questionDialog.ShowDialog();
 
                 if (vm.Result == DialogResult.Accept)
