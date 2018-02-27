@@ -49,8 +49,6 @@ namespace Microsoft.Templates.UI.Views.NewProject
             }
         }
 
-        public async Task LoadAsync() => await MainViewModel.Instance.InitializeAsync(_language);
-
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             OnMouseLeftButtonDown(e);
@@ -59,7 +57,7 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            await LoadAsync();
+            await MainViewModel.Instance.InitializeAsync(_language);
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)

@@ -30,5 +30,10 @@ namespace Microsoft.UI.Test
         {
             return System.Drawing.Color.FromArgb(255, System.Drawing.Color.Black);
         }
+
+        private void OnThemeChanged()
+        {
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

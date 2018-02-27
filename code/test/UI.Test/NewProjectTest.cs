@@ -51,7 +51,8 @@ namespace Microsoft.UI.Test
         public async Task ProjectInitDefaultAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel(null, new UITestStyleValuesProvider());
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
 
             Assert.True(viewModel.ProjectType.Items.Count == 3);
@@ -66,7 +67,8 @@ namespace Microsoft.UI.Test
         public async Task ProjectInitUpdatedConfigurationAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel(null, new UITestStyleValuesProvider());
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
 
             var userSelection = viewModel.UserSelection.GetUserSelection();
@@ -85,7 +87,8 @@ namespace Microsoft.UI.Test
         public async Task ResolveDependenciesAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel(null, new UITestStyleValuesProvider());
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
             AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
@@ -98,7 +101,8 @@ namespace Microsoft.UI.Test
         public async Task ResolveDependenciesAndLicensesAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel(null, new UITestStyleValuesProvider());
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
@@ -115,7 +119,8 @@ namespace Microsoft.UI.Test
         public async Task RemovePageAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel(null, new UITestStyleValuesProvider());
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
             AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
@@ -129,7 +134,8 @@ namespace Microsoft.UI.Test
         public async Task CanNotRemoveHomePageAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel(null, new UITestStyleValuesProvider());
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
             RemoveTemplate(viewModel.UserSelection.Pages, 0);
             var userSelection = viewModel.UserSelection.GetUserSelection();
@@ -140,7 +146,8 @@ namespace Microsoft.UI.Test
         public async Task CanNotRemoveTemplateWithDependencyAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel(null, new UITestStyleValuesProvider());
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
             AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
@@ -154,7 +161,8 @@ namespace Microsoft.UI.Test
         public async Task RemoveHiddenFeaturesAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel(null, new UITestStyleValuesProvider());
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
             AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageChartCodeBehind));
             AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageGridCodeBehind));
@@ -175,7 +183,8 @@ namespace Microsoft.UI.Test
         public async Task ReorderPagesUsingKeyboardAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel(null, new UITestStyleValuesProvider());
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
             AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
             AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
@@ -205,7 +214,8 @@ namespace Microsoft.UI.Test
         public async Task UpdateHomePageAsync()
         {
             // Default configuration: SplitView, CodeBehind, Blank page
-            var viewModel = new MainViewModel(null, new UITestStyleValuesProvider());
+            var stylesProviders = new UITestStyleValuesProvider();
+            var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
             AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();

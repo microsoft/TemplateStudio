@@ -35,7 +35,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private RelayCommand _goBackCommand;
         private RelayCommand _goForwardCommand;
         private RelayCommand _finishCommand;
-        private BaseStyleValuesProvider _provider;
 
         protected string Language { get; private set; }
 
@@ -65,7 +64,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             BaseInstance = this;
             _mainView = mainView;
-            _provider = provider;
             _canFinish = canFinish;
             Steps = new ObservableCollection<Step>();
             SystemService = new SystemService();
