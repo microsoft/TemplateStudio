@@ -254,7 +254,7 @@
         <Background Type="CT_RAW" Source="FF999999" />
       </Color>
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
-        <Background Type="CT_RAW" Source="FFEFEFF2" />
+        <Background Type="CT_RAW" Source="FF2D2D30" />
       </Color>
       <Color Name="TemplateInfoPageDescription">
         <Background Type="CT_RAW" Source="FF888D8F" />
@@ -480,7 +480,7 @@
         <Background Type="CT_SYSCOLOR" Source="0000000E" />
       </Color>
       <Color Name="CardBorderSelected">
-        <Background Type="CT_SYSCOLOR" Source="0000000E" />
+        <Background Type="CT_SYSCOLOR" Source="0000000D" />
       </Color>
       <Color Name="CardBorderDisabled">
         <Background Type="CT_SYSCOLOR" Source="0000000E" />
@@ -516,7 +516,7 @@
         <Background Type="CT_SYSCOLOR" Source="00000011" />
       </Color>
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
-        <Background Type="CT_RAW" Source="FFEFEFF2" />
+        <Background Type="CT_SYSCOLOR" Source="0000000D" />
       </Color>
       <Color Name="TemplateInfoPageDescription">
         <Background Type="CT_RAW" Source="FF888D8F" />
