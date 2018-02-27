@@ -190,7 +190,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             catch (Exception ex)
             {
-                await NotificationsControl.Instance.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
+                await NotificationsControl.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);

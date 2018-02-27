@@ -35,7 +35,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private RelayCommand _goBackCommand;
         private RelayCommand _goForwardCommand;
         private RelayCommand _finishCommand;
-        private BaseStyleValuesProvider _provider;
 
         protected string Language { get; private set; }
 
@@ -65,7 +64,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             BaseInstance = this;
             _mainView = mainView;
-            _provider = provider;
             _canFinish = canFinish;
             Steps = new ObservableCollection<Step>();
             SystemService = new SystemService();
@@ -186,8 +184,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         protected virtual void OnFinish()
         {
-            _mainView.DialogResult = true;
-            _mainView.Close();
+            if (_mainView != null)
+            {
+                _mainView.DialogResult = true;
+                _mainView?.Close();
+            }
         }
 
         protected void SetCanGoBack(bool canGoBack)
@@ -223,16 +224,16 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             var notification = args.GetNotification();
             if (notification?.Category == Category.TemplatesSync)
             {
-                await NotificationsControl.Instance.AddOrUpdateNotificationAsync(notification);
+                await NotificationsControl.AddOrUpdateNotificationAsync(notification);
             }
             else
             {
-                await NotificationsControl.Instance.AddNotificationAsync(notification);
+                await NotificationsControl.AddNotificationAsync(notification);
             }
 
             if (args.Status == SyncStatus.NoUpdates || args.Status == SyncStatus.Ready)
             {
-                NotificationsControl.Instance.RemoveNotification();
+                NotificationsControl.RemoveNotification();
             }
 
             if (args.Status == SyncStatus.Updated || args.Status == SyncStatus.Ready)

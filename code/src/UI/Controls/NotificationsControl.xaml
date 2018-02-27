@@ -24,9 +24,9 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Viewbox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource WtsViewBoxNotificationIcon}">
-                        <Frame Source="/Microsoft.Templates.UI;component/Assets/StatusInformation.xaml" />
-                    </Viewbox>
+                    <Image Source="{StaticResource WtsIconInfo}"
+                        Style="{StaticResource WtsImageNotificationIcon}"
+                        Grid.RowSpan="2" />
                     <TextBlock
                         Grid.Column="1"
                         extensions:TextBlockExtensions.FormatedText="{Binding Message}"
@@ -42,9 +42,9 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Viewbox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource WtsViewBoxNotificationIcon}">
-                        <Frame Source="/Microsoft.Templates.UI;component/Assets/StatusInformation.xaml" />
-                    </Viewbox>
+                    <Image Source="{StaticResource WtsIconInfo}"
+                        Style="{StaticResource WtsImageNotificationIcon}"
+                        Grid.RowSpan="2" />
                     <TextBlock
                         Grid.Column="1"
                         extensions:TextBlockExtensions.FormatedText="{Binding Message}"
@@ -59,9 +59,9 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Viewbox Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="{StaticResource Margin_M_Left}" Style="{StaticResource WtsViewBoxNotificationIcon}">
-                        <Frame Source="/Microsoft.Templates.UI;component/Assets/StatusInformation.xaml" />
-                    </Viewbox>
+                    <Image Source="{StaticResource WtsIconInfo}"
+                        Style="{StaticResource WtsImageNotificationIcon}"
+                        Grid.RowSpan="2" />
                     <TextBlock
                         Grid.Column="1"
                         extensions:TextBlockExtensions.FormatedText="{Binding Message}"

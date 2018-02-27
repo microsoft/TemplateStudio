@@ -166,13 +166,13 @@ namespace Microsoft.Templates.UI.Controls
 
         private async void OnClose()
         {
-            await NotificationsControl.Instance.CloseAsync();
+            await NotificationsControl.CloseAsync();
         }
 
         private async void OnTick(object sender, EventArgs e)
         {
             _closeTimer?.Stop();
-            await NotificationsControl.Instance.CloseAsync();
+            await NotificationsControl.CloseAsync();
         }
 
         public void StartCloseTimer()

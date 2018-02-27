@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     var message = TemplateType == TemplateType.Page ? StringRes.NewItemHasNoChangesPage : StringRes.NewItemHasNoChangesFeature;
                     message = string.Format(message, TemplateSelection.Name);
                     var notification = Notification.Warning(message, Category.RightClickItemHasNoChanges);
-                    NotificationsControl.Instance.AddNotificationAsync(notification).FireAndForget();
+                    NotificationsControl.AddNotificationAsync(notification).FireAndForget();
                 }
 
                 return _output.HasChangesToApply;
@@ -90,6 +90,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override void UpdateStep(bool navigate)
         {
             base.UpdateStep(navigate);
+            if (Step == 0)
+            {
+                ChangesSummary.ClearSelected();
+            }
+
             SetCanFinish(Step > 0);
         }
 
@@ -147,7 +152,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
             catch (Exception ex)
             {
-                await NotificationsControl.Instance.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
+                await NotificationsControl.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
