@@ -120,7 +120,7 @@
         <Background Type="CT_RAW" Source="FF888D8F" />
       </Color>
       <Color Name="CardFooterText">
-        <Background Type="CT_RAW" Source="FF575757" />
+        <Background Type="CT_RAW" Source="FF717171" />
       </Color>
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
@@ -251,7 +251,7 @@
         <Background Type="CT_RAW" Source="FF888D8F" />
       </Color>
       <Color Name="CardFooterText">
-        <Background Type="CT_RAW" Source="FF575757" />
+        <Background Type="CT_RAW" Source="FF999999" />
       </Color>
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
@@ -382,7 +382,7 @@
         <Background Type="CT_RAW" Source="FF888D8F" />
       </Color>
       <Color Name="CardFooterText">
-        <Background Type="CT_RAW" Source="FF575757" />
+        <Background Type="CT_RAW" Source="FF717171" />
       </Color>
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
@@ -513,7 +513,7 @@
         <Background Type="CT_RAW" Source="FF888D8F" />
       </Color>
       <Color Name="CardFooterText">
-        <Background Type="CT_RAW" Source="FF575757" />
+        <Background Type="CT_SYSCOLOR" Source="00000011" />
       </Color>
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
         <Background Type="CT_RAW" Source="FFEFEFF2" />

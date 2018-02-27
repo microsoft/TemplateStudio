@@ -29,8 +29,8 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardDescriptionTextBrushKey}" Color="#FF999999" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardDescriptionTextColorKey}" A="255" R="153" G="153" B="153" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextBrushKey}" Color="#FF575757" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextColorKey}" A="255" R="87" G="87" B="87" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextBrushKey}" Color="#FF999999" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextColorKey}" A="255" R="153" G="153" B="153" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardIconBrushKey}" Color="#FF888D8F" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardIconColorKey}" A="255" R="136" G="141" B="143" />
