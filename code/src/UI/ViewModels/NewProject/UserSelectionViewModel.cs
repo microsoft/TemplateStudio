@@ -362,7 +362,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             var message = string.Format(StringRes.NotificationRemoveError_Dependency, name, dependencyName);
             var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
-            await NotificationsControl.Instance.AddNotificationAsync(notification);
+            await NotificationsControl.AddNotificationAsync(notification);
         }
     }
 }
