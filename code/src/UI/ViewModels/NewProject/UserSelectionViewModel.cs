@@ -213,7 +213,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 if (savedTemplate.HasErrors)
                 {
-                    await NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation);
+                    await NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation);
                     WizardStatus.Current.HasValidationErrors = false;
                 }
 
@@ -276,7 +276,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 var message = string.Format(StringRes.NotificationRemoveError_Dependency, savedTemplate.Name, dependency.Name);
                 var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
-                await NotificationsControl.Instance.AddNotificationAsync(notification);
+                await NotificationsControl.AddNotificationAsync(notification);
             }
         }
 
