@@ -67,10 +67,10 @@ Following are described the contents for each folder:
   * [ProjectTemplates](../code/src/ProjectTemplates): This folder contains the [Visual Studio Project Templates](https://msdn.microsoft.com/library/ms247121.aspx) deployed with the extension to enable the "File --> New Project..." experience. There are separate templates for the C# and Visual basic versions of the template.
   * [UI](../code/src/UI): This project handles the generation as well as the UI dialogs required by the generation workflow.
 * [test](../code/test)
-  * [Artifacts](../code/test/Artifacts): Common test elements.
+  * [Fakes](../code/test/Fakes): Common test elements.
   * [Core.Test](../code/test/Core.Test): Contains unit test for Core assembly.
   * [Templates.Test](../code/test/Templates.Test): Contains integration automated test for the Templates. This project scans the Templates folder and ensure that every template is generating and building properly.
-  * [UI.Test] (../code/test/UI.Test): Contains unit test for UI assembly.
+  * [UI.Test](../code/test/UI.Test): Contains unit test for UI assembly.
   * [VsEmulator](../code/test/VsEmulator): test application able to run End-To-End the generation using the local templates repository without deploying the VSIX to VS Experimental instance.
 
 ## Test execution

@@ -1,5 +1,5 @@
 ﻿'{[{
-Imports Microsoft.Practices.ServiceLocation
+Imports CommonServiceLocator
 '}]}
 Namespace Services
     Friend Class SuspendAndResumeService

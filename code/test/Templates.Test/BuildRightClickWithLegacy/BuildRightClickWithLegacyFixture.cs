@@ -45,6 +45,12 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in frameworks)
                     {
+                        // See https://github.com/Microsoft/WindowsTemplateStudio/issues/1985
+                        if (framework == "MVVMLight")
+                        {
+                            continue;
+                        }
+
                         result.Add(new object[] { projectType, framework, language });
                     }
                 }
