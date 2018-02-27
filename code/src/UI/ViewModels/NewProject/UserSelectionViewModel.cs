@@ -237,7 +237,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
                 if (savedTemplate.HasErrors)
                 {
-                    await NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation);
+                    await NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation);
                     WizardStatus.Current.HasValidationErrors = false;
                 }
 

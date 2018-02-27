@@ -128,7 +128,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
                 OnPropertyChanged("Licenses");
                 OnPropertyChanged("Dependencies");
-                NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
                 WizardStatus.Current.HasValidationErrors = false;
                 if (NameEditable)
                 {
@@ -146,11 +146,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
                 if (validationResult.IsValid)
                 {
-                    NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                    NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
                 }
                 else
                 {
-                    NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
+                    NotificationsControl.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
                 }
             }
 
