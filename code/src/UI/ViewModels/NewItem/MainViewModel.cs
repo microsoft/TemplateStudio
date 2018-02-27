@@ -90,6 +90,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         protected override void UpdateStep(bool navigate)
         {
             base.UpdateStep(navigate);
+            if (Step == 0)
+            {
+                ChangesSummary.ClearSelected();
+            }
+
             SetCanFinish(Step > 0);
         }
 
