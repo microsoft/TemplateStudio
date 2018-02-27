@@ -4,8 +4,9 @@
                     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_DrawingImage.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
-        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Viewbox.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Image.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="Button" x:Key="WtsBaseButton">
@@ -226,9 +227,8 @@
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonClose}" />
         <Setter Property="Content">
             <Setter.Value>
-                <Viewbox Style="{StaticResource WtsViewBoxCloseIcon}">
-                    <Frame Source="/Microsoft.Templates.UI;component/Assets/Close.xaml" IsTabStop="False" Focusable="False" />
-                </Viewbox>
+                <Image Source="{StaticResource WtsIconCloseWindow}"
+                   Style="{StaticResource WtsImageCloseButtonIcon}" />
             </Setter.Value>
         </Setter>
     </Style>
