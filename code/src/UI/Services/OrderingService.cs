@@ -77,9 +77,12 @@ namespace Microsoft.Templates.UI.Services
                 Pages.Move(oldIndex, newIndex);
                 MainViewModel.Instance.UserSelection.ReorderTemplate();
 
-                _listView.UpdateLayout();
-                var item = _listView.ItemContainerGenerator.ContainerFromIndex(newIndex) as ListBoxItem;
-                item?.Focus();
+                if (_listView != null)
+                {
+                    _listView.UpdateLayout();
+                    var item = _listView.ItemContainerGenerator.ContainerFromIndex(newIndex) as ListBoxItem;
+                    item?.Focus();
+                }
             }
         }
     }
