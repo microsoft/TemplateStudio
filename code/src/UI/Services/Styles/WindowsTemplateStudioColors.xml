@@ -492,25 +492,25 @@
         <Background Type="CT_SYSCOLOR" Source="00000010" />
       </Color>
       <Color Name="NewItemFileStatusNewFile">
-        <Background Type="CT_RAW" Source="FF00CC6A" />
+        <Background Type="CT_SYSCOLOR" Source="0000000D" />
       </Color>
       <Color Name="NewItemFileStatusModifiedFile">
         <Background Type="CT_SYSCOLOR" Source="0000000D" />
       </Color>
       <Color Name="NewItemFileStatusConflictingFile">
-        <Background Type="CT_SYSCOLOR" Source="00000012" />
+        <Background Type="CT_SYSCOLOR" Source="0000000D" />
       </Color>
       <Color Name="NewItemFileStatusConflictingStylesFile">
-        <Background Type="CT_RAW" Source="FFFFB900" />
+        <Background Type="CT_SYSCOLOR" Source="0000000D" />
       </Color>
       <Color Name="NewItemFileStatusWarningFile">
-        <Background Type="CT_RAW" Source="FFFFB900" />
+        <Background Type="CT_SYSCOLOR" Source="0000000D" />
       </Color>
       <Color Name="NewItemFileStatusUnchangedFile">
-        <Background Type="CT_SYSCOLOR" Source="0000001A" />
+        <Background Type="CT_SYSCOLOR" Source="0000000D" />
       </Color>
       <Color Name="CardIcon">
-        <Background Type="CT_RAW" Source="FF888D8F" />
+        <Background Type="CT_SYSCOLOR" Source="00000012" />
       </Color>
       <Color Name="CardFooterText">
         <Background Type="CT_SYSCOLOR" Source="00000011" />
@@ -519,7 +519,7 @@
         <Background Type="CT_SYSCOLOR" Source="0000000D" />
       </Color>
       <Color Name="TemplateInfoPageDescription">
-        <Background Type="CT_RAW" Source="FF888D8F" />
+        <Background Type="CT_SYSCOLOR" Source="00000012" />
       </Color>
     </Category>
   </Theme>

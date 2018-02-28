@@ -33,8 +33,8 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextBrushKey}" Color="{x:Static SystemColors.GrayTextColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextColorKey}"  />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardIconBrushKey}" Color="#FF888D8F" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardIconColorKey}" A="255" R="136" G="141" B="143" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardIconBrushKey}" Color="{x:Static SystemColors.ControlTextColor}" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardIconColorKey}" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardTitleTextBrushKey}" Color="{x:Static SystemColors.ControlTextColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardTitleTextColorKey}"  />
@@ -83,23 +83,23 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ListItemMouseOverTextBrushKey}" Color="{x:Static SystemColors.WindowTextColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.ListItemMouseOverTextColorKey}"  />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusConflictingFileBrushKey}" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusConflictingFileBrushKey}" Color="{x:Static SystemColors.HighlightColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusConflictingFileColorKey}"  />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusConflictingStylesFileBrushKey}" Color="#FFFFB900" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusConflictingStylesFileColorKey}" A="255" R="255" G="185" B="0" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusConflictingStylesFileBrushKey}" Color="{x:Static SystemColors.HighlightColor}" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusConflictingStylesFileColorKey}" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusModifiedFileBrushKey}" Color="{x:Static SystemColors.HighlightColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusModifiedFileColorKey}"  />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusNewFileBrushKey}" Color="#FF00CC6A" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusNewFileColorKey}" A="255" R="0" G="204" B="106" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusNewFileBrushKey}" Color="{x:Static SystemColors.HighlightColor}" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusNewFileColorKey}" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusUnchangedFileBrushKey}" Color="{x:Static SystemColors.HotTrackColor}" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusUnchangedFileBrushKey}" Color="{x:Static SystemColors.HighlightColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusUnchangedFileColorKey}"  />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusWarningFileBrushKey}" Color="#FFFFB900" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusWarningFileColorKey}" A="255" R="255" G="185" B="0" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusWarningFileBrushKey}" Color="{x:Static SystemColors.HighlightColor}" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusWarningFileColorKey}" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.SavedTemplateBackgroundHoverBrushKey}" Color="{x:Static SystemColors.ControlDarkColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.SavedTemplateBackgroundHoverColorKey}"  />
@@ -117,8 +117,8 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.SelectedItemInactiveTextBrushKey}" Color="{x:Static SystemColors.HighlightTextColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.SelectedItemInactiveTextColorKey}"  />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.TemplateInfoPageDescriptionBrushKey}" Color="#FF888D8F" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.TemplateInfoPageDescriptionColorKey}" A="255" R="136" G="141" B="143" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.TemplateInfoPageDescriptionBrushKey}" Color="{x:Static SystemColors.ControlTextColor}" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.TemplateInfoPageDescriptionColorKey}" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.WindowBorderBrushKey}" Color="{x:Static SystemColors.ControlDarkColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.WindowBorderColorKey}"  />
