@@ -6,6 +6,7 @@
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
     xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
+    xmlns:core="clr-namespace:Microsoft.Templates.Core;assembly=Microsoft.Templates.Core"
     xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources">
 
     <ResourceDictionary.MergedDictionaries>
@@ -381,12 +382,22 @@
                                         Margin="{StaticResource Margin_M_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                                 </Grid>
-                                <Button
-                                    Grid.Column="3"
-                                    x:Name="mouseOverDeleteTemplateButton"                                    
-                                    Opacity="0"
-                                    Style="{StaticResource WtsButtonDeleteTemplate}"
-                                    Command="{Binding DeleteCommand}" />
+                                <Button x:Name="mouseOverDeleteTemplateButton" Grid.Column="3">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource WtsButtonDeleteTemplate}">
+                                            <Setter Property="Opacity" Value="0" />
+                                            <Setter Property="CommandParameter" Value="{Binding}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Page}">
+                                                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeletePageCommand}" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Feature}">
+                                                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeleteFeatureCommand}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </Grid>
                         </Grid>
                         <Grid x:Name="dropGridMask" Visibility="Collapsed" Opacity="0.4" Background="{Binding SavedTemplateBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
@@ -453,7 +464,6 @@
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="{x:Static strings:StringRes.AccessibilityUserSelectionPageList}" />
-        <EventSetter Event="PreviewKeyDown" Handler="OnProjectDetailsTemplatesPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
