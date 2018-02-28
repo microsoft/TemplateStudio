@@ -84,27 +84,27 @@ namespace Microsoft.Templates.VsEmulator.Services
 
         public override FontFamily GetFontFamily() => new FontFamily("Segoe UI");
 
-        public void LoadResources()
+        public void LoadResources(string themeName)
         {
             _commonControls = new ResourceDictionary()
             {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_CommonControls.xaml", UriKind.RelativeOrAbsolute)
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_CommonControls.xaml", UriKind.RelativeOrAbsolute)
             };
             _commonDocument = new ResourceDictionary()
             {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_CommonDocument.xaml", UriKind.RelativeOrAbsolute)
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_CommonDocument.xaml", UriKind.RelativeOrAbsolute)
             };
             _environment = new ResourceDictionary()
             {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_Environment.xaml", UriKind.RelativeOrAbsolute)
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_Environment.xaml", UriKind.RelativeOrAbsolute)
             };
             _infoBar = new ResourceDictionary()
             {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_InfoBar.xaml", UriKind.RelativeOrAbsolute)
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_InfoBar.xaml", UriKind.RelativeOrAbsolute)
             };
             _windowsTemplateStudio = new ResourceDictionary()
             {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_WindowsTemplateStudio.xaml", UriKind.RelativeOrAbsolute)
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_WindowsTemplateStudio.xaml", UriKind.RelativeOrAbsolute)
             };
         }
 
