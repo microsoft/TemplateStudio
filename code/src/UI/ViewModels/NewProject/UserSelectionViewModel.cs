@@ -27,10 +27,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
     public class UserSelectionViewModel : Observable
     {
+        private SavedTemplateViewModel _selectedPage;
+        private SavedTemplateViewModel _selectedFeature;
         private bool _isInitialized;
         private string _projectTypeName;
         private string _frameworkName;
         private string _language;
+        private ICommand _editPageCommand;
+        private ICommand _deletePageCommand;
+        private ICommand _editFeatureCommand;
+        private ICommand _deleteFeatureCommand;
         private ICommand _movePageUpCommand;
         private ICommand _movePageDownCommand;
 
@@ -40,13 +46,31 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
 
+        public ICommand EditPageCommand => _editPageCommand ?? (_editPageCommand = new RelayCommand<SavedTemplateViewModel>((page) => page.IsTextSelected = true, (page) => page != null));
+
+        public ICommand DeletePageCommand => _deletePageCommand ?? (_deletePageCommand = new RelayCommand<SavedTemplateViewModel>((page) => OnDeletePageAsync(page).FireAndForget(), (page) => page != null && !page.IsHome));
+
+        public ICommand EditFeatureCommand => _editFeatureCommand ?? (_editFeatureCommand = new RelayCommand<SavedTemplateViewModel>((feature) => feature.IsTextSelected = true, (feature) => feature != null));
+
+        public ICommand DeleteFeatureCommand => _deleteFeatureCommand ?? (_deleteFeatureCommand = new RelayCommand<SavedTemplateViewModel>((feature) => OnDeleteFeatureAsync(feature).FireAndForget(), (feature) => feature != null && !feature.IsHome));
+
         public ICommand MovePageUpCommand => _movePageUpCommand ?? (_movePageUpCommand = new RelayCommand(() => OrderingService.MoveUp(SelectedPage)));
 
         public ICommand MovePageDownCommand => _movePageDownCommand ?? (_movePageDownCommand = new RelayCommand(() => OrderingService.MoveDown(SelectedPage)));
 
         public bool HasItemsAddedByUser { get; private set; }
 
-        public SavedTemplateViewModel SelectedPage { get; set; }
+        public SavedTemplateViewModel SelectedPage
+        {
+            get => _selectedPage;
+            set => SetProperty(ref _selectedPage, value);
+        }
+
+        public SavedTemplateViewModel SelectedFeature
+        {
+            get => _selectedFeature;
+            set => SetProperty(ref _selectedFeature, value);
+        }
 
         public UserSelectionViewModel()
         {
@@ -122,7 +146,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 BuildLicenses();
                 if (focus)
                 {
-                    savedTemplate.Focus();
+                    savedTemplate.IsTextSelected = true;
                 }
             }
         }
@@ -269,22 +293,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return dependencyItem;
         }
 
-        public async Task RemoveTemplateAsync(SavedTemplateViewModel savedTemplate)
-        {
-            var dependency = await RemoveAsync(savedTemplate);
-            if (dependency != null)
-            {
-                var message = string.Format(StringRes.NotificationRemoveError_Dependency, savedTemplate.Name, dependency.Name);
-                var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
-                await NotificationsControl.AddNotificationAsync(notification);
-            }
-        }
-
-        public void ReorderTemplate()
-        {
-            UpdateHomePage();
-        }
-
         private void UpdateHasItemsAddedByUser()
         {
             foreach (var page in Pages)
@@ -308,15 +316,53 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             HasItemsAddedByUser = false;
         }
 
-        private void UpdateHomePage()
+        public void UpdateHomePage()
         {
             foreach (var page in Pages)
             {
-                page.SetHome(false);
+                page.IsHome = Pages.IndexOf(page) == 0;
             }
+        }
 
-            var home = Pages.FirstOrDefault();
-            home?.SetHome(true);
+        public async Task OnDeletePageAsync(SavedTemplateViewModel page)
+        {
+            int newIndex = Pages.IndexOf(page) - 1;
+            newIndex = newIndex >= 0 ? newIndex : 0;
+
+            var dependency = await RemoveAsync(page);
+            if (dependency != null)
+            {
+                await ShowDependencyNotificationAsync(page.Name, dependency.Name);
+            }
+            else
+            {
+                SelectedPage = Pages.ElementAt(newIndex);
+                SelectedPage.IsFocused = true;
+            }
+        }
+
+        public async Task OnDeleteFeatureAsync(SavedTemplateViewModel feature)
+        {
+            int newIndex = Features.IndexOf(feature) - 1;
+            newIndex = newIndex >= 0 ? newIndex : 0;
+
+            var dependency = await RemoveAsync(feature);
+            if (dependency != null)
+            {
+                await ShowDependencyNotificationAsync(feature.Name, dependency.Name);
+            }
+            else
+            {
+                SelectedFeature = Features.ElementAt(newIndex);
+                SelectedFeature.IsFocused = true;
+            }
+        }
+
+        private async Task ShowDependencyNotificationAsync(string name, string dependencyName)
+        {
+            var message = string.Format(StringRes.NotificationRemoveError_Dependency, name, dependencyName);
+            var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
+            await NotificationsControl.AddNotificationAsync(notification);
         }
     }
 }

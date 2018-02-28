@@ -125,7 +125,7 @@ namespace Microsoft.UI.Test
             AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageBlankCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
-            RemoveTemplate(viewModel.UserSelection.Pages, 1);
+            DeletePage(viewModel.UserSelection, 1);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
         }
@@ -137,7 +137,7 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(GenContext.CurrentLanguage);
-            RemoveTemplate(viewModel.UserSelection.Pages, 0);
+            DeletePage(viewModel.UserSelection, 0);
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
         }
@@ -152,7 +152,7 @@ namespace Microsoft.UI.Test
             AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind));
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Features.Count == 1);
-            RemoveTemplate(viewModel.UserSelection.Features, 0);
+            DeleteFeature(viewModel.UserSelection, 0);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Features.Count == 1);
         }
@@ -169,11 +169,11 @@ namespace Microsoft.UI.Test
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 3);
             Assert.True(userSelection.Features.Count == 1);
-            RemoveTemplate(viewModel.UserSelection.Pages, 2);
+            DeletePage(viewModel.UserSelection, 2);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
             Assert.True(userSelection.Features.Count == 1);
-            RemoveTemplate(viewModel.UserSelection.Pages, 1);
+            DeletePage(viewModel.UserSelection, 1);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
             Assert.True(userSelection.Features.Count == 0);
@@ -245,9 +245,22 @@ namespace Microsoft.UI.Test
             viewModel.ProcessItem(template);
         }
 
-        private void RemoveTemplate(ObservableCollection<SavedTemplateViewModel> templates, int index)
+        private void DeletePage(UserSelectionViewModel viewmodel, int index)
         {
-            templates.ElementAt(index).DeleteCommand.Execute(null);
+            var page = viewmodel.Pages.ElementAt(index);
+            if (viewmodel.DeletePageCommand.CanExecute(page))
+            {
+                viewmodel.DeletePageCommand.Execute(page);
+            }
+        }
+
+        private void DeleteFeature(UserSelectionViewModel viewmodel, int index)
+        {
+            var feature = viewmodel.Features.ElementAt(index);
+            if (viewmodel.DeleteFeatureCommand.CanExecute(feature))
+            {
+                viewmodel.DeleteFeatureCommand.Execute(feature);
+            }
         }
 
         private TemplateInfoViewModel GetTemplate(ObservableCollection<TemplateGroupViewModel> groups, string templateIdentity)
