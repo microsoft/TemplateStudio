@@ -5,17 +5,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
 using EnvDTE;
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -56,7 +56,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), language);
 #endif
-                }
+            }
         }
 
         public void BeforeOpeningFile(ProjectItem projectItem)
@@ -73,21 +73,29 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void RunFinished()
         {
-            AppHealth.Current.Info.TrackAsync(StringRes.SolutionWizardRunFinishedMessage).FireAndForget();
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
-            });
+            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
+            SafeThreading.JoinableTaskFactory.Run(
+                async () =>
+                {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
+                },
+                JoinableTaskCreationOptions.LongRunning);
 
-            AppHealth.Current.Info.TrackAsync(StringRes.GenerationFinishedString).FireAndForget();
+            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
 
-            PostGenerationActions();
+            SafeThreading.JoinableTaskFactory.Run(
+                async () =>
+                {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    PostGenerationActions();
+                },
+                JoinableTaskCreationOptions.LongRunning);
         }
 
         private static void PostGenerationActions()
         {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.RestoringMessage);
+            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusBarRestoring);
             GenContext.ToolBox.Shell.RestorePackages();
 
             GenContext.ToolBox.Shell.CollapseSolutionItems();
@@ -103,11 +111,19 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage);
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)
             {
+                var projectDirectory = replacementsDictionary["$destinationdirectory$"];
+                var solutionDirectory = replacementsDictionary["$solutiondirectory$"];
+
+                if (GenContext.ToolBox.Repo.SyncInProgress)
+                {
+                    GenContext.ToolBox.Repo.CancelSynchronization();
+                }
+
                 CleanupDirectories(DestinationPath);
 
                 throw;

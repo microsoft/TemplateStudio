@@ -1,5 +1,5 @@
 ﻿Imports GalaSoft.MvvmLight.Ioc
-Imports Microsoft.Practices.ServiceLocation
+Imports CommonServiceLocator
 Imports Param_RootNamespace.Services
 Imports Param_RootNamespace.Views
 

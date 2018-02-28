@@ -8,10 +8,8 @@ using System.Reflection;
 using System.Web;
 using System.Windows;
 using System.Windows.Controls;
-
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
-using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -38,14 +36,14 @@ namespace Microsoft.Templates.UI.Controls
             set => SetValue(CodeFontSizeProperty, value);
         }
 
-        public static readonly DependencyProperty CodeFontSizeProperty = DependencyProperty.Register(nameof(CodeFontSize), typeof(double), typeof(CodeViewer), new PropertyMetadata(SystemService.Instance.GetCodeFontSize(), OnItemChanged));
+        public static readonly DependencyProperty CodeFontSizeProperty = DependencyProperty.Register(nameof(CodeFontSize), typeof(double), typeof(CodeViewer), new PropertyMetadata(BaseMainViewModel.BaseInstance.SystemService.GetCodeFontSize(), OnItemChanged));
 
         public CodeViewer()
         {
             InitializeComponent();
             _isInitialized = true;
 
-            if (Item is BaseFileViewModel item)
+            if (Item is NewItemFileViewModel item)
             {
                 UpdateCodeView(item);
             }
@@ -84,13 +82,25 @@ namespace Microsoft.Templates.UI.Controls
                 patternText = patternText
                     .Replace("##ExecutingDirectory##", executingDirectory)
                     .Replace("##renderSideBySide##", renderSideBySide ? "true" : "false")
-                    .Replace("##theme##", SystemService.Instance.IsHighContrast ? "theme: 'hc-black'," : string.Empty)
+                    .Replace("##theme##", GetTheme())
                     .Replace("##fontSize##", $"fontSize: {CodeFontSize},");
                 if (_currentHtml != patternText)
                 {
                     webBrowser.NavigateToString(patternText);
                     _currentHtml = patternText;
                 }
+            }
+        }
+
+        private static string GetTheme()
+        {
+            if (BaseMainViewModel.BaseInstance.SystemService.IsHighContrast)
+            {
+                return "theme: 'hc-black',";
+            }
+            else
+            {
+                return (UIStylesService.Instance.WindowPanelColor.GetBrightness() < UIStylesService.Instance.WindowPanelTextColor.GetBrightness()) ? "theme: 'vs-dark'," : "theme: 'vs',";
             }
         }
 
@@ -129,7 +139,11 @@ namespace Microsoft.Templates.UI.Controls
             if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
             {
                 string fileText = File.ReadAllText(filePath);
-                fileText = updateTextAction(fileText);
+                if (updateTextAction != null)
+                {
+                    fileText = updateTextAction(fileText);
+                }
+
                 return HttpUtility.JavaScriptStringEncode(fileText);
             }
 
@@ -139,20 +153,20 @@ namespace Microsoft.Templates.UI.Controls
         private static void OnItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as CodeViewer;
-            var item = control.Item as BaseFileViewModel;
+            var item = control.Item as NewItemFileViewModel;
             if (control != null && item != null)
             {
                 control.UpdateCodeView(item);
             }
         }
 
-        public void UpdateCodeView(BaseFileViewModel item)
+        public void UpdateCodeView(NewItemFileViewModel item)
         {
             switch (item.FileStatus)
             {
                 case FileStatus.NewFile:
                 case FileStatus.WarningFile:
-                case FileStatus.Unchanged:
+                case FileStatus.UnchangedFile:
                     UpdateCodeView(item.UpdateTextAction, item.TempFile);
                     break;
                 case FileStatus.ModifiedFile:

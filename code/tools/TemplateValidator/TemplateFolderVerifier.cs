@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Xml;
 using Microsoft.Templates.Core.Composition;
 using Newtonsoft.Json;
 
@@ -170,6 +171,11 @@ namespace TemplateValidator
                         }
                     }
                 }
+
+                if (!results.Any())
+                {
+                    CheckIconXamlFiles(templateFolders, results);
+                }
             }
 
             var success = results.Count == 0;
@@ -180,6 +186,50 @@ namespace TemplateValidator
             }
 
             return new VerifierResult(success, results);
+        }
+
+        private static void CheckIconXamlFiles(string[] templateFolders, List<string> results)
+        {
+            var iconFiles = new List<string>();
+
+            foreach (var rootFolder in templateFolders)
+            {
+                iconFiles.AddRange(new DirectoryInfo(rootFolder)
+                    .GetFiles("icon.xaml", SearchOption.AllDirectories)
+                    .Select(file => file.FullName));
+            }
+
+            foreach (var iconFile in iconFiles)
+            {
+                var doc = new XmlDocument();
+                doc.Load(iconFile);
+
+                var ellipses = doc.GetElementsByTagName("Ellipse");
+
+                foreach (XmlNode ellipse in ellipses)
+                {
+                    if (ellipse.Attributes != null && ellipse.Attributes.Count > 1
+                        && ellipse.Attributes["Fill"] != null && ellipse.Attributes["Stroke"] != null)
+                    {
+                        results.Add(
+                            $"'{iconFile}' contains an Ellipse with both Fill and Stroke specified when use of only one is supported.");
+                        break;
+                    }
+                }
+
+                var rectangles = doc.GetElementsByTagName("Rectangle");
+
+                foreach (XmlNode rectangle in rectangles)
+                {
+                    if (rectangle.Attributes != null && rectangle.Attributes.Count > 1
+                        && rectangle.Attributes["Fill"] != null && rectangle.Attributes["Stroke"] != null)
+                    {
+                        results.Add(
+                            $"'{iconFile}' contains a Rectangle with both Fill and Stroke specified when use of only one is supported.");
+                        break;
+                    }
+                }
+            }
         }
 
         private static string GetFileHash(string filePath)

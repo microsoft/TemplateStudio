@@ -194,6 +194,10 @@
     <VSCTCompile Include="Commands\RelayCommandPackage.zh-TW.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
+    <Content Include="Colors\WindowsTemplateStudioColors.pkgdef">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="zh-CN\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

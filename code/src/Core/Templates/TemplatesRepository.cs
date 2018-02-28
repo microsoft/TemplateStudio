@@ -8,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
@@ -41,6 +42,8 @@ namespace Microsoft.Templates.Core
 
         public bool SyncInProgress { get => TemplatesSynchronization.SyncInProgress; }
 
+        private CancellationTokenSource _cts;
+
         public TemplatesRepository(TemplatesSource source, Version wizardVersion, string language)
         {
             CurrentLanguage = language;
@@ -50,20 +53,30 @@ namespace Microsoft.Templates.Core
 
         public async Task SynchronizeAsync(bool force = false)
         {
-            await Sync.EnsureContentAsync(force);
-            await Sync.RefreshTemplateCacheAsync(force);
-            await Sync.CheckForNewContentAsync();
-        }
+            _cts = new CancellationTokenSource();
 
-        public async Task CheckForUpdatesAsync()
-        {
-            await Sync.CheckForUpdatesAsync();
+            await Sync.GetNewContentAsync(_cts.Token);
+            if (!_cts.Token.IsCancellationRequested)
+            {
+                await Sync.EnsureContentAsync(force, _cts.Token);
+                if (!_cts.Token.IsCancellationRequested)
+                {
+                    await Sync.RefreshTemplateCacheAsync(force);
+                }
+
+                Sync.CheckForWizardUpdates();
+            }
         }
 
         public async Task RefreshAsync(bool force = false)
         {
             await Sync.EnsureContentAsync();
             await Sync.RefreshTemplateCacheAsync(force);
+        }
+
+        public void CancelSynchronization()
+        {
+            _cts?.Cancel();
         }
 
         public IEnumerable<ITemplateInfo> GetAll()
@@ -149,7 +162,7 @@ namespace Microsoft.Templates.Core
 
             metadata.ForEach(m => SetMetadataDescription(m, folderName, type));
             metadata.ForEach(m => SetMetadataIcon(m, folderName, type));
-            metadata.ForEach(m => m.MetadataType = type);
+            metadata.ForEach(m => m.MetadataType = type == "projectTypes" ? MetadataType.ProjectType : MetadataType.Framework);
             metadata.ForEach(m => SetLicenseTerms(m));
 
             return metadata.OrderBy(m => m.Order);

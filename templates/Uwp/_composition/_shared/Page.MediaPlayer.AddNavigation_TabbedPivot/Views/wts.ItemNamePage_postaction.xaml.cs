@@ -19,7 +19,7 @@ namespace Param_ItemNamespace.Views
         private void wts.ItemNamePage_Loaded(object sender, RoutedEventArgs e)
         {
             var element = this as FrameworkElement;
-            var pivotPage = element.FindParent<Pivot>();
+            var pivotPage = element.FindAscendant<Pivot>();
 
             if (pivotPage != null)
             {
@@ -32,8 +32,8 @@ namespace Param_ItemNamespace.Views
 
         private void PivotPage_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            bool navigatedTo = e.AddedItems.Cast<PivotItem>().Any(p => p.FindChild<wts.ItemNamePage>() != null);
-            bool navigatedFrom = e.RemovedItems.Cast<PivotItem>().Any(p => p.FindChild<wts.ItemNamePage>() != null);
+            bool navigatedTo = e.AddedItems.Cast<PivotItem>().Any(p => p.FindDescendant<wts.ItemNamePage>() != null);
+            bool navigatedFrom = e.RemovedItems.Cast<PivotItem>().Any(p => p.FindDescendant<wts.ItemNamePage>() != null);
 
             if (navigatedTo)
             {

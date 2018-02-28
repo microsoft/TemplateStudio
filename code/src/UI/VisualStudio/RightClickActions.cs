@@ -12,7 +12,10 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
+using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -53,17 +56,24 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 try
                 {
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage());
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
 
                     if (userSelection != null)
                     {
-                        NewItemGenController.Instance.FinishGeneration(userSelection);
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddPageSuccessStatusMsg, userSelection.Pages[0].name));
+                        SafeThreading.JoinableTaskFactory.Run(
+                        async () =>
+                        {
+                            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                            NewItemGenController.Instance.FinishGeneration(userSelection);
+                        },
+                        JoinableTaskCreationOptions.LongRunning);
+
+                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                     }
                 }
                 catch (WizardBackoutException)
                 {
-                    _shell.ShowStatusBarMessage(StringRes.NewItemAddPageCancelled);
+                    _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddPageCancelled);
                 }
             }
         }
@@ -75,17 +85,24 @@ namespace Microsoft.Templates.UI.VisualStudio
                 SetContext();
                 try
                 {
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage());
+                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
 
                     if (userSelection != null)
                     {
-                        NewItemGenController.Instance.FinishGeneration(userSelection);
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.NewItemAddFeatureSuccessStatusMsg, userSelection.Features[0].name));
+                        SafeThreading.JoinableTaskFactory.Run(
+                        async () =>
+                        {
+                            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                            NewItemGenController.Instance.FinishGeneration(userSelection);
+                        },
+                        JoinableTaskCreationOptions.LongRunning);
+
+                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                     }
                 }
                 catch (WizardBackoutException)
                 {
-                    _shell.ShowStatusBarMessage(StringRes.NewItemAddFeatureCancelled);
+                    _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddFeatureCancelled);
                 }
             }
         }
@@ -117,7 +134,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         private void SetContext()
         {
             EnsureGenContextInitialized();
-
             if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {
                 var projectConfig = ProjectConfigInfo.ReadProjectConfiguration();

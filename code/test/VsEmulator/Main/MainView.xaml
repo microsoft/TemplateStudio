@@ -8,8 +8,7 @@
         KeyDown="OnKeyDown"
         Title="Visual Studio Emulator" 
         Height="480" Width="800" 
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <Image x:Key="VsImage" Source="/VsEmulator;component/Assets/vs.jpg"/>
@@ -34,13 +33,13 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <TextBlock>
-                        <Hyperlink Command="{Binding NewUwpCSharpProjectCommand}">
+                        <Hyperlink x:Name="newCSharpProjectButton" Command="{Binding NewUwpCSharpProjectCommand}">
                             <TextBlock Text="New Uwp C# project..."/>
                         </Hyperlink>
                     </TextBlock>
@@ -60,17 +59,24 @@
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>
+                        <Hyperlink Command="{Binding AnalyzeCSharpSelectionCommand}">
+                            <TextBlock Text="Analyze C# project selection"/>
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock>
+                        <Hyperlink Command="{Binding AnalyzeVisualBasicSelectionCommand}">
+                            <TextBlock Text="Analyze VB project selection"/>
+                        </Hyperlink>
+                    </TextBlock>
+                    <ComboBox SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" ItemsSource="{Binding Themes}" Margin="0,8,0,0" Style="{StaticResource VSEmulatorComboBox}"/>
+                    <TextBlock Margin="0,20,0,0">
                         <Hyperlink Command="{Binding ConfigureVersionsCommand}">
                             <TextBlock Text="Configure versions..."/>
                         </Hyperlink>
                     </TextBlock>
-                    <TextBlock>
-                        <Button Command="{Binding RefreshTemplateCacheCommand}" Content="Refresh Cache" Style="{StaticResource TextButton}" Margin="0,6,0,0" ToolTip="Refresh template cache"/>
-                    </TextBlock>
-
+                    <Button Command="{Binding RefreshTemplateCacheCommand}" Content="Refresh Cache" Style="{StaticResource TextButton}" Margin="0,8,0,0" ToolTip="Refresh template cache"/>
                 </StackPanel>
-                
-                <ScrollViewer x:Name="logScroll" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto" Height="200">
+                <ScrollViewer x:Name="logScroll" Margin="0,8" Grid.Row="1" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Auto">
                     <TextBlock Text="{Binding Log}" TextWrapping="Wrap"></TextBlock>
                 </ScrollViewer>
                 <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Bottom">

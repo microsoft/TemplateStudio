@@ -3,8 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
 
@@ -33,6 +35,34 @@ namespace Microsoft.Templates.Core
             {
                 CopyRecursive(directory, Path.Combine(targetDir, Path.GetFileName(directory)), overwrite);
             }
+        }
+
+        public static async Task<int> CopyRecursiveAsync(string sourceDir, string targetDir, int totalNumber, int counter, int latestProgress, bool overwrite = false, Action<int> reportProgress = null)
+        {
+            Directory.CreateDirectory(targetDir);
+
+            foreach (var file in Directory.GetFiles(sourceDir))
+            {
+                counter++;
+                var progress = Convert.ToInt32((counter * 100) / totalNumber);
+                if (progress != latestProgress)
+                {
+                    reportProgress?.Invoke(progress);
+                    latestProgress = progress;
+                }
+
+                await Task.Run(() =>
+                {
+                    File.Copy(file, Path.Combine(targetDir, Path.GetFileName(file)), overwrite);
+                });
+            }
+
+            foreach (var directory in Directory.GetDirectories(sourceDir))
+            {
+                counter = await CopyRecursiveAsync(directory, Path.Combine(targetDir, Path.GetFileName(directory)), totalNumber, counter, latestProgress, overwrite, reportProgress);
+            }
+
+            return counter;
         }
 
         public static void SafeCopyFile(string sourceFile, string destFolder, bool overwrite)
@@ -74,13 +104,14 @@ namespace Microsoft.Templates.Core
             }
         }
 
-        public static void SafeMoveDirectory(string sourceDir, string targetDir, bool overwrite = false)
+        public static async Task SafeMoveDirectoryAsync(string sourceDir, string targetDir, bool overwrite = false, Action<int> reportProgress = null)
         {
             try
             {
                 if (Directory.Exists(sourceDir))
                 {
-                    CopyRecursive(sourceDir, targetDir, overwrite);
+                    var totalFiles = Directory.GetFiles(sourceDir, "*.*", SearchOption.AllDirectories).Length;
+                    await CopyRecursiveAsync(sourceDir, targetDir, totalFiles, 0, 0, overwrite, reportProgress);
                     SafeDeleteDirectory(sourceDir);
                 }
             }

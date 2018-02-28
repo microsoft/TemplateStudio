@@ -14,7 +14,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Views.Common;
+using Microsoft.Templates.UI.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI
@@ -35,9 +35,9 @@ namespace Microsoft.Templates.UI
             PostactionFactory = postactionFactory;
         }
 
-        public UserSelection GetUserSelection(string platform, string language)
+        public UserSelection GetUserSelection(string platform, string language, BaseStyleValuesProvider provider)
         {
-            var mainView = new Views.NewProject.MainView(platform, language);
+            var mainView = new Views.NewProject.WizardShell(platform, language, provider);
 
             try
             {
@@ -124,7 +124,7 @@ namespace Microsoft.Templates.UI
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Exception.TrackAsync(ex, StringRes.TrackTelemetryException).FireAndForget();
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.ErrorTrackTelemetryException).FireAndForget();
             }
         }
     }

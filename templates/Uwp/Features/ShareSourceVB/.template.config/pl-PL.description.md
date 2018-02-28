@@ -1,11 +1,10 @@
-﻿ShareSource provides you with a class that allows you to share data  in a simple and straight-forward manner.
-It allows you to quickly share data, such as:
+﻿ShareSource oferuje klasę, za pomocą której możesz udostępniać dane w prosty i bezpośredni sposób. Umożliwia szybkie udostępnianie danych, takich jak:
 
-  * Text
-  * Links
-  * Images
+  * Tekst
+  * Łącza
+  * Obrazy
   * Html
-  * Deferred content that is loaded when the target app requests it.
+  * Odroczone treści ładowane na żądanie aplikacji docelowej.
 
-For more info about sharing data between apps, consult 
+Więcej informacji na temat udostępniania aplikacji między aplikacjami można znaleźć na stronie 
 [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/app-to-app/share-data)

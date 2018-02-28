@@ -3,7 +3,7 @@
 Projects created with Windows Template Studio are intended as a starting point, and will require modification and extension before they're finished. This page explains common ways to extend what is generated for you.
 
 ## Understanding generated code from Windows Template Studio 
-The final generated code is the result of a project configuration (project type and framework) and a multiple template choice (pages and features). There are a few concepts to understand before start working on the generated code.
+The final generated code is the result of a project configuration (project type and design pattern) and a multiple template choice (pages and features). There are a few concepts to understand before start working on the generated code.
 
 - [Application activation](activation.md)
 - [Navigation between pages](navigation.md)
@@ -22,15 +22,17 @@ Windows Template Studio approaches UWP app creation using the following four att
 | [Navigation Pane](projectTypes/navigationpane.md) | This project includes a navigation pane (or 'hamburger menu') at the side of the screen to enable easy user navigation between pages. This style is popular in mobile apps, but also works well on larger screens. The menu can be hidden when space is limited, or when it isn't needed.|
 | Pivot and Tabs | Tabs across the top allow for quickly navigating between pages. The pivot control is useful for navigating between related or frequently accessed pages. The user can navigate between pivot panes (pages) by selecting from the text headers, which are always displayed.|
 
-### Frameworks
+### Design patterns
 
-**App frameworks** define the coding pattern that will be used across the project, tying your UI and code together. Windows Template Studio currently supports the three most common patterns:
+**App Design patterns** define the coding pattern that will be used across the project, tying your UI and code together. Windows Template Studio currently supports the three most common patterns:
 
-| Framework    | Description |
-|-------------:|:------------|
-| Code Behind  | Code is coupled directly with a XAML file using a .xaml.cs extension. If you developed in WinForms and feel comfortable with that style of development, this is a great option for you. |
-| MVVM Basic   | A generic implementation of the [Model-View-ViewModel (MVVM) pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel), which can be used on all XAML platforms. Its intent is to provide a clean separation of concerns between the user interface (UI) controls and their logic. |
-| MVVM Light   | [The MVVM Light Toolkit](http://www.mvvmlight.net/) is a popular, 3rd party framework by Laurent Bugnion, which is based on the [Model-View-ViewModel (MVVM) pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel). The MVVM Light Toolkit helps you separate your View from your Model, which creates applications that are cleaner and easier to extend and maintain. This toolkit puts a special emphasis on the "blend ability" of the created application (the ability to open and edit the user interface into Blend), including the creation of design-time data to enable Blend users to "see something" when they work with data controls. |
+| Design pattern| Description |
+|--------------:|:------------|
+| Code Behind   | Code is coupled directly with a XAML file using a .xaml.cs extension. If you developed in WinForms and feel comfortable with that style of development, this is a great option for you. |
+| MVVM Basic    | A generic implementation of the [Model-View-ViewModel (MVVM) pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel), which can be used on all XAML platforms. Its intent is to provide a clean separation of concerns between the user interface (UI) controls and their logic. |
+| MVVMLight    | [The MVVM Light Toolkit](http://www.mvvmlight.net/) is a popular, 3rd party framework by Laurent Bugnion, which is based on the [Model-View-ViewModel (MVVM) pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel). The MVVM Light Toolkit helps you separate your View from your Model, which creates applications that are cleaner and easier to extend and maintain. This toolkit puts a special emphasis on the "blend ability" of the created application (the ability to open and edit the user interface into Blend), including the creation of design-time data to enable Blend users to "see something" when they work with data controls. |
+| Caliburn.Micro  | [Caliburn.Micro](https://caliburnmicro.com/) is a small, yet powerful framework, designed for building applications across all XAML platforms. Its strong support for MV* patterns will enable you to build your solution quickly, without the need to sacrifice code quality or testability.<br />WTS only supports the use of Caliburn.Micro with projects created in C#. |
+| Prism  | [Prism](https://github.com/PrismLibrary/Prism) is a framework for building loosely coupled, maintainable, and testable XAML applications.<br />WTS only supports the use of Prism with projects created in C#. |
 
 ### Pages
 

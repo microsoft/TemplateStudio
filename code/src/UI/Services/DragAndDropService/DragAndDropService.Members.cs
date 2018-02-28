@@ -9,13 +9,13 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
-
 using Microsoft.Templates.UI.Extensions;
 
 namespace Microsoft.Templates.UI.Services
 {
     public partial class DragAndDropService<T>
     {
+        private Func<T, T, bool> _canDrop;
         private bool _canInitiateDrag;
         private bool _showDragAdornerLayer;
         private int _indexToSelect;

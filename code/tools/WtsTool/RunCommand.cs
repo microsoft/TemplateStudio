@@ -16,15 +16,17 @@ namespace WtsTool
     {
         public static int Package(PackageOptions options, TextWriter output, TextWriter error)
         {
+#pragma warning disable VSTHRD002 // Ignoring as this is only a helper tool, that is called from console
             var action = InferPackageAction(options);
 
             switch (action)
             {
                 case PackageTask.Create:
-                    PackageWorker.Create(options.CreateNew, options.OutFile, options.CertThumbprint, output, error);
+                    PackageWorker.CreateAsync(options.CreateNew, options.OutFile, options.CertThumbprint, output, error).Wait();
+
                     break;
                 case PackageTask.Extract:
-                    PackageWorker.Extract(options.Extract, options.DestionationDir, output, error);
+                    PackageWorker.ExtractAsync(options.Extract, options.DestionationDir, output, error).Wait();
                     break;
                 case PackageTask.Info:
                     PackageWorker.GetInfo(options.Info, output, error);
@@ -38,6 +40,7 @@ namespace WtsTool
             }
 
             return 0;
+#pragma warning restore VSTHRD002 // Avoid problematic synchronous waits
         }
 
         public static int Publish(RemoteSourcePublishOptions publishOpts, TextWriter output, TextWriter error)

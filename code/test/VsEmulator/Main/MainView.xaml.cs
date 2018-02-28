@@ -24,6 +24,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             Loaded += async (sender, e) =>
             {
                 await ViewModel.InitializeAsync();
+                newCSharpProjectButton.Focus();
             };
         }
 

@@ -64,7 +64,7 @@ namespace Param_ItemNamespace.ViewModels
             Center = new Geopoint(_defaultPosition);
             ZoomLevel = DefaultZoomLevel;
 
-            // TODO WTS: Set your map service token. If you don't have it, request at https://www.bingmapsportal.com/
+            // TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
             MapServiceToken = string.Empty;
         }
 

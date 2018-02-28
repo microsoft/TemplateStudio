@@ -42,10 +42,6 @@ if($buildNumber -match $VersionRegEx){
   Write-Output "Parsed Date From Build: $dateFromBuildNumber"
 
   $revision =  [int]::Parse($matches[4]).ToString()
-
-  if($buildNumber.ToLower().StartsWith("dev")){
-    $revision = (65000 + [int]::Parse($matches[4])).ToString();
-  }
   
   $versionNumber = [int]::Parse($matches[1]).ToString() + "." + [int]::Parse($matches[2]).ToString() + "." + [int]::Parse($matches[3]).ToString() + "." + $revision
   Write-Host "Version Number" $versionNumber
