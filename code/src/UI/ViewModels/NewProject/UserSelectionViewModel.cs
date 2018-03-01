@@ -34,7 +34,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private string _frameworkName;
         private string _language;
         private ICommand _editPageCommand;
-        private ICommand _deletePageCommand;
+        private RelayCommand<SavedTemplateViewModel> _deletePageCommand;
         private ICommand _editFeatureCommand;
         private ICommand _deleteFeatureCommand;
         private ICommand _movePageUpCommand;
@@ -48,7 +48,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ICommand EditPageCommand => _editPageCommand ?? (_editPageCommand = new RelayCommand<SavedTemplateViewModel>((page) => page.IsTextSelected = true, (page) => page != null));
 
-        public ICommand DeletePageCommand => _deletePageCommand ?? (_deletePageCommand = new RelayCommand<SavedTemplateViewModel>((page) => OnDeletePageAsync(page).FireAndForget(), (page) => page != null && !page.IsHome));
+        public RelayCommand<SavedTemplateViewModel> DeletePageCommand => _deletePageCommand ?? (_deletePageCommand = new RelayCommand<SavedTemplateViewModel>(OnDeletePage, CanDeletePage));
 
         public ICommand EditFeatureCommand => _editFeatureCommand ?? (_editFeatureCommand = new RelayCommand<SavedTemplateViewModel>((feature) => feature.IsTextSelected = true, (feature) => feature != null));
 
@@ -316,12 +316,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             HasItemsAddedByUser = false;
         }
 
+        private bool CanDeletePage(SavedTemplateViewModel page) => page != null && !page.IsHome;
+
+        private void OnDeletePage(SavedTemplateViewModel page)
+        {
+            OnDeletePageAsync(page).FireAndForget();
+        }
+
         public void UpdateHomePage()
         {
             foreach (var page in Pages)
             {
                 page.IsHome = Pages.IndexOf(page) == 0;
             }
+
+            DeletePageCommand.OnCanExecuteChanged();
         }
 
         public async Task OnDeletePageAsync(SavedTemplateViewModel page)
