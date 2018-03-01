@@ -26,6 +26,11 @@ namespace Microsoft.Templates.VsEmulator.Main
                 await ViewModel.InitializeAsync();
                 newCSharpProjectButton.Focus();
             };
+
+            Unloaded += (sender, e) =>
+            {
+                ViewModel.SystemService.UnsuscribeEventHandlers();
+            };
         }
 
         private void OnKeyDown(object sender, System.Windows.Input.KeyEventArgs e)

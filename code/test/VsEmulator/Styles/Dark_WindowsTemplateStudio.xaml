@@ -29,8 +29,8 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardDescriptionTextBrushKey}" Color="#FF999999" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardDescriptionTextColorKey}" A="255" R="153" G="153" B="153" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextBrushKey}" Color="#FF575757" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextColorKey}" A="255" R="87" G="87" B="87" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextBrushKey}" Color="#FF999999" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextColorKey}" A="255" R="153" G="153" B="153" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardIconBrushKey}" Color="#FF888D8F" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardIconColorKey}" A="255" R="136" G="141" B="143" />
@@ -38,8 +38,8 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardTitleTextBrushKey}" Color="#FFF1F1F1" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardTitleTextColorKey}" A="255" R="241" G="241" B="241" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderBackgroundBrushKey}" Color="#FFEFEFF2" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderBackgroundColorKey}" A="255" R="239" G="239" B="242" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderBackgroundBrushKey}" Color="#FF2D2D30" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderBackgroundColorKey}" A="255" R="45" G="45" B="48" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DeleteTemplateIconBrushKey}" Color="#FFE51400" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.DeleteTemplateIconColorKey}" A="255" R="229" G="20" B="0" />

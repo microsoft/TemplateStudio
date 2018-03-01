@@ -22,6 +22,7 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.VsEmulator.LoadProject;
@@ -48,10 +49,8 @@ namespace Microsoft.Templates.VsEmulator.Main
             _templatesVersion = "0.0.0.0";
             Themes.Add("Light");
             Themes.Add("Dark");
-            SelectedTheme = Themes.First();
+            SystemService = new SystemService();
         }
-
-        public static string ThemeName { get; private set; }
 
         public string ProjectName { get; private set; }
 
@@ -59,14 +58,16 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string DestinationPath { get; private set; }
 
+        public SystemService SystemService { get; }
+
         public string SelectedTheme
         {
             get => _selectedTheme;
             set
             {
                 SetProperty(ref _selectedTheme, value);
-                ThemeName = value;
-                Services.FakeStyleValuesProvider.Instance.LoadResources();
+                var themeName = SystemService.IsHighContrast ? "HighContrast" : value;
+                Services.FakeStyleValuesProvider.Instance.LoadResources(themeName);
             }
         }
 
@@ -195,6 +196,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public async Task InitializeAsync()
         {
+            SystemService.Initialize();
+            SelectedTheme = Themes.First();
             SolutionName = null;
             await ConfigureGenContextAsync();
         }
