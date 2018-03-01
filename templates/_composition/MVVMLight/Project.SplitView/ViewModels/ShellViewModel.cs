@@ -95,7 +95,7 @@ namespace wts.ItemName.ViewModels
             {
                 if (_itemSelected == null)
                 {
-                    _itemSelected = new RelayCommand<HamburgetMenuItemInvokedEventArgs>(ItemSelected);
+                    _itemSelected = new RelayCommand<HamburgerMenuItemInvokedEventArgs>(ItemSelected);
                 }
 
                 return _itemSelected;
@@ -173,7 +173,7 @@ namespace wts.ItemName.ViewModels
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
-        private void ItemSelected(HamburgetMenuItemInvokedEventArgs args)
+        private void ItemSelected(HamburgerMenuItemInvokedEventArgs args)
         {
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
