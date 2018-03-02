@@ -30,6 +30,9 @@
     },
     {
       "path": ".\\ViewModels\\ChartViewViewModel.cs"
+    },
+    {
+      "path": ".\\Models\\DataPoint.cs"
     }
   ],
   "symbols": {
