@@ -291,7 +291,7 @@
         <Foreground Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
       <Color Name="ListItemMouseOver">
-        <Background Type="CT_RAW" Source="FFFDF4BF" />
+        <Background Type="CT_RAW" Source="FFC9DEF5" />
         <Foreground Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
       <Color Name="ListItemDisabledText">
@@ -349,7 +349,7 @@
         <Background Type="CT_RAW" Source="FF9A9A9A" />
       </Color>
       <Color Name="CardBorderSelected">
-        <Background Type="CT_RAW" Source="FFE5C365" />
+        <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
       <Color Name="CardBorderDisabled">
         <Background Type="CT_RAW" Source="FFE1E1E1" />
