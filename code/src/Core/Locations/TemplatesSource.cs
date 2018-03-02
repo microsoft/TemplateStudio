@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
@@ -17,6 +18,12 @@ namespace Microsoft.Templates.Core.Locations
 {
     public abstract class TemplatesSource
     {
+        public event Action<object, ProgressEventArgs> NewVersionAcquisitionProgress;
+
+        public event Action<object, ProgressEventArgs> GetContentProgress;
+
+        public event Action<object, ProgressEventArgs> CopyProgress;
+
         protected const string TemplatesFolderName = "Templates";
 
         public TemplatesSourceConfig Config { get; protected set; }
@@ -25,10 +32,25 @@ namespace Microsoft.Templates.Core.Locations
 
         protected virtual bool VerifyPackageSignatures { get => true; }
 
-        public abstract void LoadConfig();
+        public abstract Task LoadConfigAsync(CancellationToken ct);
 
-        public abstract TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder);
+        public abstract Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct);
 
-        public abstract void Acquire(ref TemplatesPackageInfo packageInfo);
+        public abstract Task AcquireAsync(TemplatesPackageInfo packageInfo, CancellationToken ct);
+
+        protected virtual void OnNewVersionAcquisitionProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            NewVersionAcquisitionProgress?.Invoke(this, eventArgs);
+        }
+
+        protected virtual void OnGetContentProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            GetContentProgress?.Invoke(this, eventArgs);
+        }
+
+        protected virtual void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            CopyProgress?.Invoke(this, eventArgs);
+        }
     }
 }

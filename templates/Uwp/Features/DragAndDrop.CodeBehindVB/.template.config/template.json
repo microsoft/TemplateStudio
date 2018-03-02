@@ -4,7 +4,7 @@
   "name": "Drag & Drop",
   "groupIdentity": "wts.Feat.DragAndDrop.VB",
   "identity": "wts.Feat.DragAndDrop.CodeBehind.VB",
-  "description": "The Drag & Drop feature provides a wrapper service over the standard UWP Drag and Drop functionallity to simplify the required code to create drag and drop ready apps.",
+  "description": "The Drag & Drop feature provides a service to simplify the creation of drag and drop ready apps.",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -16,8 +16,8 @@
     "wts.group": "UserInteraction",
     "wts.defaultInstance": "DragAndDropFeature",
     "wts.multipleInstance": "false",
-    "wts.genGroup": "0",
-    "wts.rightClickEnabled": "true"
+    "wts.genGroup": "0",    
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "DragAndDropFeature",
   "preferNameDirectory": true,

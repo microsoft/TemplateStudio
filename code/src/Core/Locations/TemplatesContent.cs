@@ -7,14 +7,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Resources;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Core.Locations
 {
     public class TemplatesContent
     {
         private const string TemplatesFolderName = "Templates";
+
+        public event Action<object, ProgressEventArgs> NewVersionAcquisitionProgress;
+
+        public event Action<object, ProgressEventArgs> GetContentProgress;
+
+        public event Action<object, ProgressEventArgs> CopyProgress;
 
         public string TemplatesFolder { get; private set; }
 
@@ -44,7 +50,14 @@ namespace Microsoft.Templates.Core.Locations
 
         public bool Exists()
         {
-            return Current != null;
+            if (Current != null)
+            {
+                return Directory.Exists(Current.Path);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool RequiresContentUpdate()
@@ -61,20 +74,14 @@ namespace Microsoft.Templates.Core.Locations
 
         public bool IsNewVersionAvailable(out Version version)
         {
-            version = null;
-            if (Current != null)
+            version = Source.Config?.ResolvePackage(WizardVersion)?.Version;
+            if (Current != null && !Current.Version.IsNull() && Directory.Exists(Current.Path))
             {
-                var result = !Current.Version.IsNull() && Current.Version < Source.Config.ResolvePackage(WizardVersion)?.Version;
-                if (result == true)
-                {
-                    version = Source.Config.ResolvePackage(WizardVersion)?.Version;
-                }
-
-                return result;
+                return Current.Version < version && (WizardVersion != version);
             }
             else
             {
-                return false;
+                return WizardVersion < version;
             }
         }
 
@@ -84,7 +91,7 @@ namespace Microsoft.Templates.Core.Locations
 
             if (Current != null)
             {
-                var result = !Current.Version.IsNull() && (Current.Version.Major < Source.Config.Latest.Version.Major || Current.Version.Minor < Source.Config.Latest.Version.Minor);
+                var result = WizardVersion.Major < Source.Config?.Latest.Version.Major || ((WizardVersion.Major == Source.Config?.Latest.Version.Major) && (WizardVersion.Minor < Source.Config?.Latest.Version.Minor));
                 if (result == true)
                 {
                     version = new Version(Source.Config.Latest.Version.Major, Source.Config.Latest.Version.Minor);
@@ -98,19 +105,53 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public void GetNewVersionContent()
+        public async Task GetNewVersionContentAsync(CancellationToken ct)
         {
-            var latestPackage = Source.Config.ResolvePackage(WizardVersion);
-            Source.Acquire(ref latestPackage);
-
-            TemplatesContentInfo content = Source.GetContent(latestPackage, TemplatesFolder);
-            var alreadyExists = All.Where(p => p.Version == latestPackage.Version).FirstOrDefault();
-            if (alreadyExists != null)
+            try
             {
-                All.Remove(alreadyExists);
-            }
+                var latestPackage = Source.Config.ResolvePackage(WizardVersion);
 
-            All.Add(content);
+                Source.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
+                Source.GetContentProgress += OnGetContentProgress;
+                Source.CopyProgress += OnCopyProgress;
+
+                await Source.AcquireAsync(latestPackage, ct);
+
+                if (latestPackage.LocalPath != null)
+                {
+                    TemplatesContentInfo content = await Source.GetContentAsync(latestPackage, TemplatesFolder, ct);
+
+                    var alreadyExists = All.Where(p => p.Version == latestPackage.Version).FirstOrDefault();
+                    if (alreadyExists != null)
+                    {
+                        All.Remove(alreadyExists);
+                    }
+
+                    Current = content;
+                    All.Add(content);
+                }
+            }
+            finally
+            {
+                Source.NewVersionAcquisitionProgress -= OnNewVersionAcquisitionProgress;
+                Source.GetContentProgress -= OnGetContentProgress;
+                Source.CopyProgress -= OnCopyProgress;
+            }
+        }
+
+        private void OnNewVersionAcquisitionProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            NewVersionAcquisitionProgress?.Invoke(this, eventArgs);
+        }
+
+        private void OnGetContentProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            GetContentProgress?.Invoke(this, eventArgs);
+        }
+
+        private void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
+        {
+            CopyProgress?.Invoke(this, eventArgs);
         }
 
         internal TemplatesPackageInfo ResolveInstalledContent()
@@ -136,11 +177,22 @@ namespace Microsoft.Templates.Core.Locations
             return installedPackage;
         }
 
-        internal void GetInstalledContent(TemplatesPackageInfo packageInfo)
+        internal async Task GetInstalledContentAsync(TemplatesPackageInfo packageInfo, CancellationToken ct)
         {
-            var package = Source.GetContent(packageInfo, TemplatesFolder);
-            Current = package;
-            All.Add(package);
+            try
+            {
+                Source.GetContentProgress += OnGetContentProgress;
+                Source.CopyProgress += OnCopyProgress;
+
+                var package = await Source.GetContentAsync(packageInfo, TemplatesFolder, ct);
+                Current = package;
+                All.Add(package);
+            }
+            finally
+            {
+                Source.GetContentProgress -= OnGetContentProgress;
+                Source.CopyProgress -= OnCopyProgress;
+            }
         }
 
         public void Purge()

@@ -12,13 +12,6 @@ using System.Globalization;
             return LaunchApplicationAsync(PageTokens.Param_HomeNamePage, null);
         }
 
-        /// <summary>
-        /// Application-code (e.g. setting the theme and initial page navigation) to be executed
-        /// when the application is launched (e.g. through the Start menu) or activated (e.g. through URI scheme activation).
-        /// </summary>
-        /// <param name="page">The page to launch to.</param>
-        /// <param name="launchParam">An object parameter to be passed to the launch page.</param>
-        /// <returns>Task returned for async method</returns>
         private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             NavigationService.Navigate(page, launchParam);

@@ -20,6 +20,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 using Newtonsoft.Json;
 
@@ -41,10 +42,9 @@ namespace Microsoft.Templates.UI
             PostactionFactory = postactionFactory;
         }
 
-        public UserSelection GetUserSelectionNewFeature(string language)
+        public UserSelection GetUserSelectionNewFeature(string language, BaseStyleValuesProvider provider)
         {
-            var newItem = new Views.NewItem.MainView(TemplateType.Feature, language);
-
+            var newItem = new Views.NewItem.WizardShell(TemplateType.Feature, language, provider);
             try
             {
                 CleanStatusBar();
@@ -72,10 +72,9 @@ namespace Microsoft.Templates.UI
             return null;
         }
 
-        public UserSelection GetUserSelectionNewPage(string language)
+        public UserSelection GetUserSelectionNewPage(string language, BaseStyleValuesProvider provider)
         {
-            var newItem = new Views.NewItem.MainView(TemplateType.Page, language);
-
+            var newItem = new Views.NewItem.WizardShell(TemplateType.Page, language, provider);
             try
             {
                 CleanStatusBar();
@@ -365,7 +364,7 @@ namespace Microsoft.Templates.UI
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Exception.TrackAsync(ex, StringRes.TrackTelemetryException).FireAndForget();
+                AppHealth.Current.Exception.TrackAsync(ex, StringRes.ErrorTrackTelemetryException).FireAndForget();
             }
         }
 

@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var postactionFileName = GetRelativePath(Config.FilePath);
 
             var failedFileName = GetFailedPostActionFileName();
-            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo(sourceFileName, Config.FilePath, failedFileName, description, mergeFailureType));
+            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo(sourceFileName, Config.FilePath, GetRelativePath(failedFileName), description, mergeFailureType));
             File.Copy(Config.FilePath, failedFileName, true);
         }
 

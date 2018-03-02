@@ -5,13 +5,13 @@ Windows Template Studio (WTS) is a Visual Studio 2017 Extension that accelerates
 **Example scenario:**
 I need an app that uses MVVM Light, uses master detail, can suspend and resume, settings, maps on one of the pages and will need Azure hub notifications.   It will need a background service that does a query every 5 minutes.
 
-![Windows Template Studio screenshot](docs/resources/getting-started/WTS%20-%20Project%20Type%20and%20Framework.png)
+![Windows Template Studio screenshot](docs/resources/getting-started/WTS%20-%20Project%20Type.png)
 
 ## Build Status
 
 |Branch   |CI                |Test Version|Version|
 |:--------|:----------------:|:---------------:|:---------------:|
-|master|[![Build status](https://ci.appveyor.com/api/projects/status/nf8r35r45o4yqbqs/branch/master?svg=true)](https://ci.appveyor.com/project/ralarcon/windowstemplatestudio/branch/master)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
+|master|[![Build status](https://ci.appveyor.com/api/projects/status/nf8r35r45o4yqbqs/branch/master?svg=true)](https://ci.appveyor.com/project/ralarcon/windowstemplatestudio/branch/master)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg?maxAge=600)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
 |dev|[![Build status](https://ci.appveyor.com/api/projects/status/nf8r35r45o4yqbqs/branch/dev?svg=true)](https://ci.appveyor.com/project/ralarcon/windowstemplatestudio/branch/dev)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
 
 |Branch   |Gen Tests        |Full Tests       |WACK Tests       |
@@ -30,7 +30,7 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 Windows Template Studio approaches UWP app creation using the following four attribute sets:
 
 * **Project type**: First, how do you want your app's UI navigation to behave? We currently support three project types: *basic*, *[navigation pane](docs/projectTypes/navigationpane.md)*, and *pivot and tabs*.
-* **App framework**: Next, what coding pattern do you want to use in your project, we currently support three common patterns: *code behind*, *basic MVVM*, *[MVVM Light](http://www.mvvmlight.net/)*, and *[CaliburnMicro](https://caliburnmicro.com/)*.
+* **App design pattern**: Next, what coding pattern do you want to use in your project, we currently support three common patterns: *code behind*, *basic MVVM*, *[MVVMLight](http://www.mvvmlight.net/)*, *[Caliburn.Micro](https://caliburnmicro.com/)*, and *[Prism](https://github.com/PrismLibrary/Prism)*.
 * **App pages**: To accelerate app creation, we provide a number of app page templates that you can use to add common UI pages into your new app. We currently include page templates from the *blank page* to the common layouts (*e.g., master/detail, tabbed, web view*) to pages that implement common patterns (*e.g., [app settings](docs/pages/settings.md), map control*). Using the wizard, add as many of the pages as you need, providing a name for each one, and we'll generate them for you.
 * **Windows 10 features**: Lastly, you specify which UWP capabilities you want to use in your app, and we'll build out the framework for the features into your app, tagging 'TODO' items. Currently supported features cover application lifecycle (*settings storage, suspend and resume*), background tasks, and user interaction (*app notifications, Live tiles, and Azure Notification Hub*).
 
@@ -45,7 +45,7 @@ Once you select the attributes you want your new UWP app to have, you can quickl
 * [Authoring Templates](docs/templates.md)
 
 ## Known issues
-
+* Issue ([#1753](https://github.com/Microsoft/WindowsTemplateStudio/issues/1753)): Wack tests are currently failing in our build server due to a machine configuration issue. All tests pass correctly if locally executed. We are working on getting them back to green.
 * Issue ([#1629](https://github.com/Microsoft/WindowsTemplateStudio/issues/1629)): the Master-Detail view has an issue if you set the background to Transparent in the MastertDetailControl. We are actively working with the UWPCommunityTookit team to get this solved as soon as possible.
 * Issue ([#1532](https://github.com/Microsoft/WindowsTemplateStudio/issues/1532)): when uninstalling / upgrading where you may get an error of "A value for 'Component' needs to be specified in the catalog."  If you get this error, we need logs to help track this with the help of the Visual Studio team.  We don't know how to reproduce it but we know a few people have hit this scenario.  We have how to capture these logs in the [tracking issue on GitHub.](https://github.com/Microsoft/WindowsTemplateStudio/issues/1532)
 * You can't have side-by-side versions (nightly/pre-release/release) of WindowsTemplateStudio VSPackage into a single instance of Visual Studio.

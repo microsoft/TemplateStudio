@@ -60,8 +60,15 @@ namespace Param_RootNamespace.Services
                 }
             }
 
-            var navigationResult = Frame.Navigate(page, parameter, infoOverride);
-            return navigationResult;
+            if (Frame.Content?.GetType() != page)
+            {
+                var navigationResult = Frame.Navigate(page, parameter, infoOverride);
+                return navigationResult;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void Configure(string key, Type pageType)

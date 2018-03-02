@@ -44,6 +44,6 @@ $keys = Get-AzureRmStorageAccountKey -StorageAccountName "wtsrepository" -Resour
 $context = New-AzureStorageContext -StorageAccountName "wtsrepository" -StorageAccountKey $keys[0].value
 
 Write-Host "Uploading badge to wtsrepository badges container..."
-$properties = @{"ContentType"="image/svg+xml"; "CacheControl"="public, max-age=0"}
+$properties = @{"ContentType"="image/svg+xml"; "CacheControl"="no-cache"}
 Set-AzureStorageBlobContent -Container "badges" -File $file -Properties $properties -Context $context -Force
 

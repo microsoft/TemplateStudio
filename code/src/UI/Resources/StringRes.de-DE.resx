@@ -117,578 +117,539 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddFeaturesTitle" xml:space="preserve">
+    <value>Add features</value>
+    <comment>AddFeatures title on AddFeaturesPage</comment>
+  </data>
+  <data name="AddPagesTitle" xml:space="preserve">
+    <value>Add pages</value>
+    <comment>Add pages title on AddPagesPage</comment>
+  </data>
   <data name="ButtonBack" xml:space="preserve">
-    <value>Zurück</value>
-    <comment>Wizard back button content</comment>
+    <value>Back</value>
+    <comment>MainPage Back button</comment>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
-    <value>Abbrechen</value>
-    <comment>Wizard cancel button content</comment>
+    <value>Cancel</value>
+    <comment>MainPage Cancel button</comment>
   </data>
   <data name="ButtonClose" xml:space="preserve">
-    <value>Schließen</value>
-    <comment>Wizard close button content</comment>
+    <value>Close</value>
+    <comment>Notification button close</comment>
   </data>
   <data name="ButtonCreate" xml:space="preserve">
-    <value>Erstellen</value>
-    <comment>Wizard create button content</comment>
+    <value>Create</value>
+    <comment>MainPage Create button</comment>
   </data>
   <data name="ButtonNext" xml:space="preserve">
-    <value>Weiter</value>
-    <comment>Wizard next button content</comment>
+    <value>Next</value>
+    <comment>MainPage Next button</comment>
+  </data>
+  <data name="ButtonNo" xml:space="preserve">
+    <value>No</value>
+    <comment>No Button</comment>
   </data>
   <data name="ButtonOk" xml:space="preserve">
-    <value>OK</value>
+    <value>Ok</value>
     <comment>Error dialog and information window ok button content</comment>
   </data>
-  <data name="ErrorSync" xml:space="preserve">
-    <value>Fehler beim Synchronisieren von Vorlagen. Weitere Details finden Sie in der Ausgabe.</value>
-    <comment>Error message for syncing</comment>
-  </data>
-  <data name="ExceptionDependencyCircularReference" xml:space="preserve">
-    <value>Ringabhängigkeit für Vorlage {0} mit {1} entdeckt.</value>
-    <comment>Log text for Circular Reference exception, {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ExceptionDependencyMultipleInstance" xml:space="preserve">
-    <value>Ungültiges Abhängigkeitsobjekt {0}. Abhängigkeiten müssen als „multipleInstance = false“ konfiguriert werden.</value>
-    <comment>Log text for Multiple Instance exception. {0}:Dependency template id</comment>
-  </data>
-  <data name="ExceptionDependencyType" xml:space="preserve">
-    <value>Ungültiges Abhängigkeitsobjekt {0}. Abhängigkeitsobjekte müssen den Typ „Seite“ oder „Feature“ besitzen.</value>
-    <comment>Log text for Type exception. {0}: Dependency template id</comment>
-  </data>
-  <data name="ExceptionGenerating" xml:space="preserve">
-    <value>Vorlage „{0}“, Name: „{1}“, Grund: '{2}'</value>
-    <comment>Log text for Generating exception. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ExceptionLayoutType" xml:space="preserve">
-    <value>Ungültiges Layoutobjekt {0}. Layoutobjekte müssen den Typ „Seite“ oder „Feature“ besitzen.</value>
-    <comment>Log text for Layout Type exception. {0}: Layout template id</comment>
-  </data>
-  <data name="GeneratingFeatureMessage" xml:space="preserve">
-    <value>Feature „{0}“ wird erstellt...</value>
-    <comment>Generating feature log message. {0}: Feature and Template name</comment>
-  </data>
-  <data name="GeneratingPageMessage" xml:space="preserve">
-    <value>Seite „{0}“ wird erstellt...</value>
-    <comment>Generating page log message. {0}: Page and Template name</comment>
-  </data>
-  <data name="GeneratingProjectMessage" xml:space="preserve">
-    <value>Projekt „{0}“ wird erstellt...</value>
-    <comment>Generating project log message. {0}: Project name</comment>
-  </data>
-  <data name="GroupFeaturesHeader_SF" xml:space="preserve">
-    <value>Features ({0}) – mehrere hinzufügen</value>
-    <comment>Wizard new project group feature header string format.{0}: Feature count</comment>
-  </data>
-  <data name="GroupFrameworkHeader_SF" xml:space="preserve">
-    <value>Framework ({0}) – eines auswählen</value>
-    <comment>Wizard new project group framework header string format. {0}: Framework count</comment>
-  </data>
-  <data name="GroupPagesHeader_SF" xml:space="preserve">
-    <value>Seiten ({0}) – mehrere hinzufügen</value>
-    <comment>Wizard new project group page header string format.{0}: Pages count</comment>
-  </data>
-  <data name="GroupProjectTypeHeader_SF" xml:space="preserve">
-    <value>Projekttyp ({0}) – einen auswählen</value>
-    <comment>Wizard new project group project type header string format. {0}: Project type count</comment>
-  </data>
-  <data name="NoContentText" xml:space="preserve">
-    <value>Kein Inhalt verfügbar</value>
-    <comment>No templates content loaded error message in Wizard</comment>
-  </data>
-  <data name="NoData" xml:space="preserve">
-    <value>Keine Daten</value>
-    <comment>Error view model no data message</comment>
-  </data>
-  <data name="ProjectSetupTitle" xml:space="preserve">
-    <value>Projekttyp und framework auswählen</value>
-    <comment>Wizard new project tiltle for step 1</comment>
-  </data>
-  <data name="ResetSelection" xml:space="preserve">
-    <value>Sie haben die Auswahl des Projekttyps oder des frameworks geändert. Die Auswahl von Seiten und Features geht verloren, wenn Sie den Vorgang fortsetzen. Ihre Auswahl war zuvor: {0} und {1}.</value>
-    <comment>Wizard new project reset selection error message. {0}:Project Type, {1}: Framework</comment>
-  </data>
-  <data name="RestoringMessage" xml:space="preserve">
-    <value>Pakete werden wiederhergestellt...</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
-  <data name="StatusUpdated" xml:space="preserve">
-    <value>Die Vorlagen wurden aktualisiert.</value>
-    <comment>Status message for sync status updated</comment>
-  </data>
-  <data name="SummaryFeaturesTitle" xml:space="preserve">
-    <value>Features</value>
-    <comment>New project wizard summary title for features</comment>
-  </data>
-  <data name="SummaryFrameworkTitle" xml:space="preserve">
-    <value>Framework</value>
-    <comment>New project wizard summary title for framework</comment>
-  </data>
-  <data name="SummaryLicenseTitle" xml:space="preserve">
-    <value>Lizenzen</value>
-    <comment>New project wizard summary title for licenses</comment>
-  </data>
-  <data name="SummaryPagesTitle" xml:space="preserve">
-    <value>Seiten</value>
-    <comment>New project wizard summary title for pages</comment>
-  </data>
-  <data name="SummaryProjectTypeTitle" xml:space="preserve">
-    <value>Projekttyp</value>
-    <comment>New project wizard summary title for project type</comment>
-  </data>
-  <data name="SummaryTerms" xml:space="preserve">
-    <value>Wenn Sie diesen Vorgang fortsetzen, stimmen Sie den Bestimmungen aller Lizenzen zu, die im Lizenzabschnitt oben aufgelistet werden.</value>
-    <comment>New project wizard summary text for project terms</comment>
-  </data>
-  <data name="SummaryTitle" xml:space="preserve">
-    <value>Übersicht</value>
-    <comment>New project wizard summary title</comment>
-  </data>
-  <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
-    <value>Anwendungslebenszyklus</value>
-    <comment>Group header for application lifecycle templates</comment>
-  </data>
-  <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
-    <value>Hintergrundaufgabe</value>
-    <comment>Group header for background work templates</comment>
-  </data>
-  <data name="TemplateGroup_UserInteraction" xml:space="preserve">
-    <value>Benutzerinteraktion</value>
-    <comment>Group header for user interaction templates</comment>
-  </data>
-  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
-    <value>Anwendung wird gestartet</value>
-    <comment>Group header for Application Launching templates</comment>
-  </data>
-  <data name="TemplatesVersion" xml:space="preserve">
-    <value>Vorlagen:</value>
-    <comment>Templates version title</comment>
-  </data>
-  <data name="TemplateTypeFeature" xml:space="preserve">
-    <value>Feature</value>
-    <comment>Template type string for new item wizard title</comment>
-  </data>
-  <data name="TemplateTypeFramework" xml:space="preserve">
-    <value>Framework</value>
-    <comment>Template type string for new item wizard title</comment>
-  </data>
-  <data name="TemplateTypePage" xml:space="preserve">
-    <value>Seite</value>
-    <comment>Template type string for new item wizard title</comment>
-  </data>
-  <data name="TemplateTypeProjectType" xml:space="preserve">
-    <value>Projekttyp</value>
-    <comment>Template type string for new item wizard title</comment>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Windows Template Studio</value>
-    <comment>Wizard header title</comment>
-  </data>
-  <data name="ValidationError_AlreadyExists" xml:space="preserve">
-    <value>Name bereits vorhanden</value>
-    <comment>Template name validation error message for already exists</comment>
-  </data>
-  <data name="ValidationError_BadFormat" xml:space="preserve">
-    <value>Es sind nur alphanumerische Zeichen und „_“ zulässig.</value>
-    <comment>Template name validation error message for bad format</comment>
-  </data>
-  <data name="ValidationError_CanNotRemoveTemplate_SF" xml:space="preserve">
-    <value>Sie können {0} nicht entfernen, da {1} hiervon abhängig ist.</value>
-    <comment>Template name validation error message for can not remove template string format. {0}:Template name, {1}:Dependency template name</comment>
-  </data>
-  <data name="ValidationError_Empty" xml:space="preserve">
-    <value>Name darf nicht leer sein</value>
-    <comment>Template name validation error message for empty</comment>
-  </data>
-  <data name="ValidationError_RenameNotAllowed" xml:space="preserve">
-    <value>Es kann kein benutzerdefinierter Name festgelegt werden.</value>
-    <comment>Template name validation error message for rename not allowed</comment>
-  </data>
-  <data name="ValidationError_ReservedName" xml:space="preserve">
-    <value>Name ist reserviert</value>
-    <comment>Template name validation error message for reserved name</comment>
-  </data>
-  <data name="WizardVersion" xml:space="preserve">
-    <value>Assistent:</value>
-  </data>
-  <data name="ErrorDialogTitle" xml:space="preserve">
-    <value>Etwas hat nicht funktioniert :-(</value>
-    <comment>Error dialog title</comment>
-  </data>
-  <data name="ErrorViewProblemDetails" xml:space="preserve">
-    <value>Details des Problems anzeigen</value>
-    <comment>Error dialog view promplem details link button</comment>
-  </data>
-  <data name="EditTemplateDescription" xml:space="preserve">
-    <value>Einen Namen eingeben</value>
-    <comment>New template enter a name description text</comment>
-  </data>
-  <data name="InfoModalAuthor" xml:space="preserve">
-    <value>Autor:</value>
-    <comment>Template author title for ListView DataTemplate and Information modal</comment>
-  </data>
-  <data name="InfoModalDependencies" xml:space="preserve">
-    <value>Abhängigkeiten:</value>
-    <comment>Template dependencies title for ListView DataTemplate and Information modal</comment>
-  </data>
-  <data name="InfoModalLicenses" xml:space="preserve">
-    <value>Lizenzen:</value>
-    <comment>Template licenses title for ListView DataTemplate and Information modal</comment>
-  </data>
-  <data name="InfoModalVersion" xml:space="preserve">
-    <value>Version:</value>
-    <comment>Template version title for ListView DataTemplate and Information modal</comment>
-  </data>
-  <data name="SummaryNoFeatures" xml:space="preserve">
-    <value>Keine ausgewählt</value>
-    <comment>New project wizard summary no featured added text</comment>
-  </data>
-  <data name="SummaryNoLicenses" xml:space="preserve">
-    <value>Keine</value>
-    <comment>New project wizard summary no licenses added text</comment>
-  </data>
-  <data name="SummaryNoPages" xml:space="preserve">
-    <value>Keine ausgewählt</value>
-    <comment>New project wizard summary no pages added text</comment>
-  </data>
-  <data name="StatusPrepared" xml:space="preserve">
-    <value>Die Vorlagen sind bereit.</value>
-    <comment>Status message for sync status prepared</comment>
-  </data>
-  <data name="UnableAddItemsToProject" xml:space="preserve">
-    <value>Es können keine Projektobjekte hinzugefügt werden. Stellen Sie sicher, dass Sie den erforderlichen SDK besitzen.</value>
-    <comment>Track event message for unable add items to project</comment>
-  </data>
-  <data name="UnableAddProjectToSolution" xml:space="preserve">
-    <value>Das Projekt kann der Lösung nicht hinzugefügt werden. Stellen Sie sicher, dass Sie den erwarteten SDK installiert haben.</value>
-    <comment>Track event message for unable add project to solution</comment>
-  </data>
-  <data name="SummaryOptionDelete" xml:space="preserve">
-    <value>Löschen</value>
-    <comment>New project wizard summary template delete</comment>
-  </data>
-  <data name="SummaryOptionRename" xml:space="preserve">
-    <value>Umbenennen</value>
-    <comment>New project wizard summary template rename</comment>
-  </data>
-  <data name="UnableToRefreshProject" xml:space="preserve">
-    <value>Das Projekt kann nicht aktualisiert werden. Versuchen Sie, es manuell zu aktualisieren.</value>
-    <comment>Track event message for unable to refresh project</comment>
-  </data>
-  <data name="InformationWindowInitializeViewModelMessage" xml:space="preserve">
-    <value>„{0} wird für das Informationsfenster nicht als gültiger Typ erwartet.“</value>
-    <comment>Exception message for Information Window, {0}: window type</comment>
-  </data>
-  <data name="UndefinedErrorString" xml:space="preserve">
-    <value>Nicht definierter Fehler</value>
-    <comment>New template defult error</comment>
-  </data>
-  <data name="GenerationFinishedString" xml:space="preserve">
-    <value>Generierung fertig gestellt</value>
-    <comment>Generation finished log message</comment>
-  </data>
-  <data name="SolutionWizardRunFinishedMessage" xml:space="preserve">
-    <value>Das Windows Template Studio-Projekt wird erstellt...</value>
-    <comment>Track event message for solution wizard run finished</comment>
-  </data>
-  <data name="VsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
-    <value>Beim Ausblenden der Lösungsstruktur ist ein Fehler aufgetreten. Beispiel:</value>
-    <comment>Track event message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="VsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>Beim Wiederherstellen der Pakete ist ein Fehler aufgetreten. Beispiel:</value>
-    <comment>Track event message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="VsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Die NuGet-Pakete für die Lösung können nicht automatisch wiederhergestellt werden. Stellen Sie die NuGet-Pakete manuell wieder her.</value>
-    <comment>Track event message for Vs GenShell restore packages warning</comment>
-  </data>
-  <data name="VsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>Fehler beim Anzeigen der Statusmeldung. Beispiel:</value>
-    <comment>Track event message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="SummaryDragAndDrop" xml:space="preserve">
-    <value>Neu anordnen (STRG + Pfeiltasten)</value>
-    <comment>Drag and drop button tooltip text</comment>
-  </data>
-  <data name="SummaryOpenMenu" xml:space="preserve">
-    <value>Optionsmenü</value>
-    <comment>New project wizard summary template options menu tooltip</comment>
-  </data>
-  <data name="SummaryOpenMenuClose" xml:space="preserve">
-    <value>Schließen</value>
-    <comment>New project wizard summary template open menu</comment>
-  </data>
-  <data name="NewItemTitlePage" xml:space="preserve">
-    <value>Neue Seite</value>
-    <comment>New item wizard title string format</comment>
-  </data>
-  <data name="NewItemTitleFeature" xml:space="preserve">
-    <value>Neues Feature</value>
-    <comment>New item wizard title string format</comment>
-  </data>
-  <data name="GroupFeatureHeader_SF" xml:space="preserve">
-    <value>Features ({0}) – ein Feature auswählen</value>
-    <comment>Wizard new item group feature header string format. {0}: Feature count</comment>
-  </data>
-  <data name="GroupPageHeader_SF" xml:space="preserve">
-    <value>Seiten ({0}) – eine Seite auswählen</value>
-    <comment>Wizard new item group page header string format. {0}: Pages count</comment>
-  </data>
-  <data name="NewItemName" xml:space="preserve">
-    <value>Name:</value>
-    <comment>New item wizard New template item name title</comment>
-  </data>
-  <data name="ButtonFinish" xml:space="preserve">
-    <value>Fertig stellen</value>
-    <comment>Wizard finish new item button content</comment>
-  </data>
-  <data name="WTSDescription" xml:space="preserve">
-    <value>Ein benutzerfreundlicher Assistent für die Erstellung einer robusten Grundlage für Ihre UWP-App.</value>
-    <comment>WTS description on wizard overlay box control</comment>
-  </data>
-  <data name="ButtonRefreshTemplates" xml:space="preserve">
-    <value>Vorlagen aktualisieren</value>
-    <comment>Refresh templates button content on overlay box control</comment>
-  </data>
-  <data name="NewVersionAvailable" xml:space="preserve">
-    <value>Klicken Sie auf „Aktualisieren“, um die neuesten Updates abzurufen (die aktuelle Auswahl wird zurückgesetzt).</value>
-    <comment>New version available decription on overlay box control</comment>
-  </data>
-  <data name="CheckForUpdates" xml:space="preserve">
-    <value>Auf neue Vorlagen prüfen</value>
-    <comment>check for templates updates button content on overlay box control</comment>
-  </data>
-  <data name="ChangesSummaryTitlePage" xml:space="preserve">
-    <value>Übersicht über Änderungen: Seite „{0}“ hinzufügen </value>
-    <comment>New item wizard title for pages. {0}: Page/Template name</comment>
-  </data>
-  <data name="ChangesSummaryCategoryFailedMerges" xml:space="preserve">
-    <value>Fehlgeschlagene Zusammenführungen</value>
-    <comment>Category name of failed merges</comment>
-  </data>
-  <data name="ChangesSummaryCategoryConflictingFiles" xml:space="preserve">
-    <value>Dateien in Konflikt</value>
-    <comment>Category name of conflicting files</comment>
-  </data>
-  <data name="ChangesSummaryCategotyModifiedFiles" xml:space="preserve">
-    <value>Geänderte Dateien</value>
-    <comment>Category name of modified files</comment>
-  </data>
-  <data name="ChangesSummaryCategoryNewFiles" xml:space="preserve">
-    <value>Neue Dateien</value>
-    <comment>Category name of new files</comment>
-  </data>
-  <data name="ConflictingDetailDescription_SF" xml:space="preserve">
-    <value>Diese Datei ist bereits vorhanden. Wenn Sie den Vorgang fortsetzen, wird diese Datei ersetzt.</value>
-    <comment>Detail description for conflicting files.</comment>
-  </data>
-  <data name="ChangesSummaryCategoryUnchangedFiles" xml:space="preserve">
-    <value>Nicht geänderte Dateien</value>
-    <comment>Category name of unchanged files</comment>
-  </data>
-  <data name="ErrorSyncRefresh" xml:space="preserve">
-    <value>Fehler beim Aktualisieren von Vorlagen. Weitere Details finden Sie in der Ausgabe.</value>
-    <comment>Error message for sync refresh</comment>
-  </data>
-  <data name="ChangesSummaryDetailDescriptionFailedMerges" xml:space="preserve">
-    <value>Die erforderlichen Änderungen können nicht eingeführt werden. Wenn notwendig, können Sie nach dem Abschluss des Vorgangs auf die generierte Datei zugreifen.</value>
-    <comment>New Item description for failed merges.</comment>
-  </data>
-  <data name="ChangesSummaryDetailTitleFailedMerges" xml:space="preserve">
-    <value>Fehlgeschlagene Zusammenführungen</value>
-    <comment>New Item title for failed merges.</comment>
-  </data>
-  <data name="ChangesSummaryDetailDescriptionNewFiles" xml:space="preserve">
-    <value>Diese Datei wird Ihrem Projekt als neue Datei hinzugefügt.</value>
-    <comment>New Item description for new files.</comment>
-  </data>
-  <data name="ChangesSummaryDetailTitleNewFiles" xml:space="preserve">
-    <value>Neue Datei</value>
-    <comment>New Item title for new files.</comment>
-  </data>
-  <data name="ChangesSummaryDetailDescriptionModifiedFiles" xml:space="preserve">
-    <value>Diese Datei wird geändert, um die erforderlichen Inhalte zu integrieren.</value>
-    <comment>New Item description for modified files.</comment>
-  </data>
-  <data name="ChangesSummaryDetailTitleModifiedFiles" xml:space="preserve">
-    <value>Geänderte Datei</value>
-    <comment>New Item title for modified files.</comment>
-  </data>
-  <data name="ChangesSummaryDetailDescriptionConflictingFiles" xml:space="preserve">
-    <value>Diese Datei ist in Ihrem Projekt bereits vorhanden, wurde jedoch auch als Teil des neuen Objekts generiert. Die aktuelle Datei wird nicht geändert oder überschrieben. Führen Sie einen Vergleich durch, und stellen Sie sicher, dass alles an der richtigen Stelle ist. Wenn notwendig, können Sie nach dem Abschluss des Vorgangs auf die generierte Datei zugreifen.</value>
-    <comment>New Item description for conflicting files.</comment>
-  </data>
-  <data name="ChangesSummaryDetailDescriptionUnchangedFiles" xml:space="preserve">
-    <value>Diese Datei ist in Ihrem Projekt bereits vorhanden. Es ist keine weitere Aktion notwendig. Die Datei wird nicht verändert.</value>
-    <comment>New Item description for unchanged files.</comment>
-  </data>
-  <data name="ChangesSummaryDetailTitleConflictingFiles" xml:space="preserve">
-    <value>Datei in Konflikt</value>
-    <comment>New Item title for conflicting files.</comment>
-  </data>
-  <data name="ChangesSummaryDetailTitleUnchangedFiles" xml:space="preserve">
-    <value>Nicht geänderte Datei</value>
-    <comment>New Item title for unchanged files.</comment>
-  </data>
-  <data name="NewItemAddFeatureCancelled" xml:space="preserve">
-    <value>Hinzufügen eines neuen Features abgebrochen</value>
-    <comment>Status bar message for Add new feature cancelled</comment>
-  </data>
-  <data name="NewItemAddFeatureSuccessStatusMsg" xml:space="preserve">
-    <value>Das Feature {0} wurde erfolgreich hinzugefügt.</value>
-    <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
-  </data>
-  <data name="NewItemAddPageCancelled" xml:space="preserve">
-    <value>Hinzufügen einer neuen Seite abgebrochen</value>
-    <comment>Status bar message for Add new page cancelled</comment>
-  </data>
-  <data name="NewItemAddPageSuccessStatusMsg" xml:space="preserve">
-    <value>Die Seite {0} wurde erfolgreich hinzugefügt.</value>
-    <comment>Status bar message for Page successfully added, {0}: Page Name</comment>
-  </data>
-  <data name="ChangesSummaryCategoryLicenses" xml:space="preserve">
-    <value>Lizenzen</value>
-    <comment>Category name of licenses</comment>
+  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
+    <value>Refresh templates cache</value>
+    <comment>Refresh templates cache button</comment>
+  </data>
+  <data name="ButtonRemove" xml:space="preserve">
+    <value>Remove</value>
+    <comment>Remove template button</comment>
+  </data>
+  <data name="ButtonYes" xml:space="preserve">
+    <value>Yes</value>
+    <comment>Yes Button</comment>
   </data>
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
-    <value>Die Änderungen sollen nicht zusammengeführt werden (in einem temporären Ordner generieren).</value>
-    <comment>New Item do not merge changes checkbox content</comment>
+    <value>Do not merge changes (generate in a temp folder).</value>
+    <comment>Do not merge changes checkbox text</comment>
   </data>
-  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
-    <value>Die Metadaten für die Projektkonfiguration wurden in der Datei Package.appxmanifest nicht gefunden. Geben Sie die von Ihnen beim Erstellen des Projekts ausgewählte Projektkonfiguration an.</value>
-    <comment>ProjectConfiguration view description</comment>
+  <data name="ChangesSummaryGroupConflictingFiles" xml:space="preserve">
+    <value>Conflicting files</value>
+    <comment>Changes summary group title for: Conflicting files</comment>
   </data>
-  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
-    <value>framework auswählen</value>
-    <comment>Project configuration window select framework title</comment>
+  <data name="ChangesSummaryGroupConflictingFilesDescription" xml:space="preserve">
+    <value>This file already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
+    <comment>Changes summary description for: Conflicting files</comment>
   </data>
-  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
-    <value>Projekttyp auswählen</value>
-    <comment>Project configuration window select project type title</comment>
+  <data name="ChangesSummaryGroupConflictingStylesFiles" xml:space="preserve">
+    <value>Conflicting styles files</value>
+    <comment>Changes summary group title for: Conflicting styles files</comment>
   </data>
-  <data name="LearnMore" xml:space="preserve">
-    <value>Weitere Informationen</value>
-    <comment>LearnMore button content, name and tooltip properties</comment>
+  <data name="ChangesSummaryGroupConflictingStylesFilesDescription" xml:space="preserve">
+    <value>We are not able to introduce the styles in the resource dictionary.</value>
+    <comment>Changes summary description for: Conflicting styles files</comment>
   </data>
-  <data name="ChangesSummaryConflictExistingFile" xml:space="preserve">
-    <value>Vorhandene Datei</value>
-    <comment>Conflict file existing file title</comment>
+  <data name="ChangesSummaryGroupModifiedFiles" xml:space="preserve">
+    <value>Modified files</value>
+    <comment>Changes summary group title for: Modified files</comment>
   </data>
-  <data name="ChangesSummaryConflictGeneratedFile" xml:space="preserve">
-    <value>Generierte Datei</value>
-    <comment>Conflict file generated file title</comment>
+  <data name="ChangesSummaryGroupModifiedFilesDescription" xml:space="preserve">
+    <value>This file will be modified to include required content.</value>
+    <comment>Changes summary description for: Modified files</comment>
   </data>
-  <data name="ButtonAddTemplate" xml:space="preserve">
-    <value>Hinzufügen</value>
-    <comment>Add template add button tooltip and name</comment>
+  <data name="ChangesSummaryGroupNewFiles" xml:space="preserve">
+    <value>New files</value>
+    <comment>Changes summary group title for: New files</comment>
   </data>
-  <data name="ButtonConfirmTemplate" xml:space="preserve">
-    <value>Bestätigen</value>
-    <comment>Add template confirm button tooltip and name</comment>
+  <data name="ChangesSummaryGroupNewFilesDescription" xml:space="preserve">
+    <value>This file will be added as new file to your project.</value>
+    <comment>Changes summary description for: New files</comment>
   </data>
-  <data name="ButtonViewInfo" xml:space="preserve">
-    <value>Informationen anzeigen</value>
-    <comment>Wizard top bar view info button tooltip and name</comment>
+  <data name="ChangesSummaryGroupUnchangedFiles" xml:space="preserve">
+    <value>Unchanged files</value>
+    <comment>Changes summary group title for: Unchanged files</comment>
   </data>
-  <data name="ButtonCloseStatusButton" xml:space="preserve">
-    <value>Statusfeld schließen</value>
-    <comment>Status bar close button name</comment>
+  <data name="ChangesSummaryGroupUnchangedFilesDescription" xml:space="preserve">
+    <value>This file already exists in your project and no further action is necessary. The file will remain unchanged.</value>
+    <comment>Changes summary description for: Unchanged files</comment>
   </data>
-  <data name="ZoomInButtonTooltip" xml:space="preserve">
-    <value>Vergrößern</value>
-    <comment>Zoom in button tooltip on changes summary view</comment>
+  <data name="ChangesSummaryGroupWarningFiles" xml:space="preserve">
+    <value>Warning files</value>
+    <comment>Changes summary group title for: Warning files</comment>
   </data>
-  <data name="ZoomOutButtonTooltip" xml:space="preserve">
-    <value>Verkleinern</value>
-    <comment>Zoom out button tooltip on changes summary view</comment>
+  <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
+    <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
+    <comment>Changes summary description for: Warning files</comment>
   </data>
-  <data name="ProjectFeaturesTitle" xml:space="preserve">
-    <value>Features auswählen</value>
-    <comment>New Project Wizard title for features</comment>
+  <data name="ErrorDialogShowDetails" xml:space="preserve">
+    <value>Show details</value>
+    <comment>Error dialog show details link button</comment>
   </data>
-  <data name="ProjectPagesTitle" xml:space="preserve">
-    <value>Seiten auswählen</value>
-    <comment>New Project Wizard title for pages</comment>
+  <data name="ErrorDialogTitle" xml:space="preserve">
+    <value>Something went wrong :-(</value>
+    <comment>Error dialog title</comment>
   </data>
-  <data name="ExceptionDependencyMissing" xml:space="preserve">
-    <value>Die Abhängigkeitsvorlage {0} für die Benutzerauswahl wurde nicht gefunden.</value>
-    <comment>Log text for misssing dependency exception. {0}: Dependency template id</comment>
+  <data name="ErrorDialogWindowTitle" xml:space="preserve">
+    <value>Windows Template Studio Error</value>
+    <comment>Error dialog window title</comment>
+  </data>
+  <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
+    <value>more info</value>
+    <comment>Changes summary more info link</comment>
+  </data>
+  <data name="FrameworkTitle" xml:space="preserve">
+    <value>Select a design pattern</value>
+    <comment>Title on FrameworkPage</comment>
+  </data>
+  <data name="NewItemHasNoChangesFeature" xml:space="preserve">
+    <value>{0} is already part of your project. Please choose another feature.</value>
+    <comment>Feature already added {0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
     <value>{0} is already part of your project. Please choose another page.</value>
-    <comment>{0}:Page name.</comment>
+    <comment>Page already added {0}: Page name</comment>
   </data>
-  <data name="ChangesSummaryCategoryFailedStyleMerges" xml:space="preserve">
-    <value>Fehlgeschlagene Formatvorlagenzusammenführungen</value>
+  <data name="NewItemStepOne" xml:space="preserve">
+    <value>Template selection</value>
+    <comment>New Item: Naviagtion step one </comment>
   </data>
-  <data name="ChangesSummaryDetailTitleFailedStyleMerges" xml:space="preserve">
-    <value>Fehlgeschlagene Formatvorlagenzusammenführung</value>
+  <data name="NewItemStepTwo" xml:space="preserve">
+    <value>Changes summary</value>
+    <comment>New Item: Naviagtion step two</comment>
   </data>
-  <data name="ChangesSummaryDetailDescriptionFailedStyleMerges" xml:space="preserve">
-    <value>Die Formatvorlagen konnten nicht in das Ressourcenverzeichnis eingeführt werden.</value>
+  <data name="NewItemTemplateDetailsDependenciesSectionTitle" xml:space="preserve">
+    <value>Dependencies</value>
+    <comment>New item: Dependencies section</comment>
   </data>
-  <data name="TrackTelemetryException" xml:space="preserve">
+  <data name="NewItemTemplateDetailsLicensesSectionTitle" xml:space="preserve">
+    <value>Licenses</value>
+    <comment>New item: Licenses section</comment>
+  </data>
+  <data name="NewItemTemplateDetailsNameSectionTitle" xml:space="preserve">
+    <value>Name</value>
+    <comment>New item: Name section</comment>
+  </data>
+  <data name="NewItemTemplateDetailsTitle" xml:space="preserve">
+    <value>Template Details</value>
+    <comment>New item: Template Details</comment>
+  </data>
+  <data name="NewItemTitleFeature" xml:space="preserve">
+    <value>New feature</value>
+    <comment>New item: new feature title</comment>
+  </data>
+  <data name="NewItemTitlePage" xml:space="preserve">
+    <value>New page</value>
+    <comment>New item: new page title</comment>
+  </data>
+  <data name="NewProjectStepFour" xml:space="preserve">
+    <value>Features</value>
+    <comment>New project: Navigation step four</comment>
+  </data>
+  <data name="NewProjectStepOne" xml:space="preserve">
+    <value>Project type</value>
+    <comment>New project: Navigation step one</comment>
+  </data>
+  <data name="NewProjectStepThree" xml:space="preserve">
+    <value>Pages</value>
+    <comment>New project: Navigation step three</comment>
+  </data>
+  <data name="NewProjectStepTwo" xml:space="preserve">
+    <value>Design pattern</value>
+    <comment>New project: Navigation step two</comment>
+  </data>
+  <data name="NewProjectTitle" xml:space="preserve">
+    <value>New Universal Windows Platform app</value>
+    <comment>Wizard title on WizardShell page</comment>
+  </data>
+  <data name="NotificationRemoveError_Dependency" xml:space="preserve">
+    <value>You can not remove *{0}* because *{1}* depends on it.</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+  </data>
+  <data name="NotificationSyncError_Refresh" xml:space="preserve">
+    <value>Error refreshing templates. See output window for more details.</value>
+    <comment>Error message for sync refresh</comment>
+  </data>
+  <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
+    <value>There are new templates available (v{0}). Downloading… {1}%</value>
+    <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
+  </data>
+  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
+    <value>Copying templates (v{0})... {1}%</value>
+    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
+  </data>
+  <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
+    <value>Error downloading templates (v{0}). We'll try later again.</value>
+    <comment>Notification message for Sync Error, {0}:Version</comment>
+  </data>
+  <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
+    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
+  </data>
+  <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
+    <value>Preparing templates (v{0})... {1}%</value>
+    <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
+  </data>
+  <data name="NotificationSyncStatus_Updating" xml:space="preserve">
+    <value>Refreshing templates cache…</value>
+    <comment>Notification message for Sync Status: Updating</comment>
+  </data>
+  <data name="NotificationValidationError_AlreadyExists" xml:space="preserve">
+    <value>Name already exists</value>
+    <comment>Validation error message: Already exists</comment>
+  </data>
+  <data name="NotificationValidationError_BadFormat" xml:space="preserve">
+    <value>Only alphanumeric and '_' characters are allowed</value>
+    <comment>Validation error message: Bad format</comment>
+  </data>
+  <data name="NotificationValidationError_Empty" xml:space="preserve">
+    <value>Name cannot be empty</value>
+    <comment>Validation error message: Empty</comment>
+  </data>
+  <data name="NotificationValidationError_ReservedName" xml:space="preserve">
+    <value>Name is reserved</value>
+    <comment>Validation error message: Reserved name</comment>
+  </data>
+  <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
+    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?</value>
+    <comment>ProjectConfiguration view description</comment>
+  </data>
+  <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
+    <value>Select design pattern:</value>
+    <comment>Project configuration window select framework title</comment>
+  </data>
+  <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
+    <value>Select project type:</value>
+    <comment>Project configuration window select project type title</comment>
+  </data>
+  <data name="ProjectConfigurationTitleText" xml:space="preserve">
+    <value>Choose project configuration</value>
+    <comment>Project configuration window title</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
+    <value>https://aka.ms/wts</value>
+    <comment>About section link</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
+    <value>Templates version:</value>
+    <comment>About section templates version</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionText" xml:space="preserve">
+    <value>Windows Template Studio</value>
+    <comment>About section text</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
+    <value>About</value>
+    <comment>About section title</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionWizardVersion" xml:space="preserve">
+    <value>Wizard version:</value>
+    <comment>About section wizard version</comment>
+  </data>
+  <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
+    <value>Features</value>
+    <comment>Feature list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
+    <value>You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <comment>Framework changed message</comment>
+  </data>
+  <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
+    <value>Design pattern changed</value>
+    <comment>Framework changed title</comment>
+  </data>
+  <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
+    <value>Design pattern</value>
+    <comment>Framework combobox header on project details</comment>
+  </data>
+  <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
+    <value>Licenses</value>
+    <comment>New project: Licenses section</comment>
+  </data>
+  <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
+    <value>Pages</value>
+    <comment>Page list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
+    <value>You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <comment>Project type changed message</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
+    <value>Project type changed</value>
+    <comment>Project type changed title</comment>
+  </data>
+  <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
+    <value>Project type</value>
+    <comment>Project type combobox header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTitle" xml:space="preserve">
+    <value>Your project details</value>
+    <comment>Project details header on MainPage</comment>
+  </data>
+  <data name="ProjectTypeTitle" xml:space="preserve">
+    <value>Select a project type</value>
+    <comment>ProjectType Title on ProjectTypePage</comment>
+  </data>
+  <data name="TemplateDetailsAuthor" xml:space="preserve">
+    <value>Author:</value>
+    <comment>Template details: Autor</comment>
+  </data>
+  <data name="TemplateDetailsDependencies" xml:space="preserve">
+    <value>Dependencies:</value>
+    <comment>Template details: Dependencies</comment>
+  </data>
+  <data name="TemplateDetailsLicenses" xml:space="preserve">
+    <value>Licenses:</value>
+    <comment>Template details: Licenses</comment>
+  </data>
+  <data name="TemplateDetailsVersion" xml:space="preserve">
+    <value>Version:</value>
+    <comment>Template details: Version</comment>
+  </data>
+  <data name="TemplateSelectionTitle" xml:space="preserve">
+    <value>Select the template you want to add</value>
+    <comment>Template selection title</comment>
+  </data>
+  <data name="TermsAndConditionsText" xml:space="preserve">
+    <value>By continuing, you agree to the terms of all the licenses in the licenses section.</value>
+    <comment>Licenses Terms and conditions text</comment>
+  </data>
+  <data name="WindowsTemplateStudio" xml:space="preserve">
+    <value>Windows Template Studio</value>
+    <comment>Windows template studio label</comment>
+  </data>
+  <data name="StatusBarGenerationFinished" xml:space="preserve">
+    <value>Generation finished</value>
+    <comment>Status bar message generation finished</comment>
+  </data>
+  <data name="StatusBarRestoring" xml:space="preserve">
+    <value>Restoring packages...</value>
+    <comment>Status bar message for restoring</comment>
+  </data>
+  <data name="StatusBarCreatingProject" xml:space="preserve">
+    <value>Creating Windows Template Studio project...</value>
+    <comment>Status bar message for solution wizard run finished</comment>
+  </data>
+  <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
+    <value>Add new feature cancelled</value>
+    <comment>Status bar message for Add new feature cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddFeatureSuccess" xml:space="preserve">
+    <value>Feature {0} successfully added</value>
+    <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarNewItemAddPageCancelled" xml:space="preserve">
+    <value>Add new page cancelled</value>
+    <comment>Status bar message for Add new page cancelled</comment>
+  </data>
+  <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
+    <value>Page {0} successfully added</value>
+    <comment>Status bar message for Page successfully added, {0}: Page name</comment>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
     <value>Exception tracking telemetry during generation.</value>
+    <comment>Exception tracking telemetry during generation.</comment>
+  </data>
+  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
+    <value>Unable add project items. Ensure you have the required SDK.</value>
+    <comment>Error message for unable add items to project</comment>
+  </data>
+  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
+    <value>Unable to add the project to the solution. Make sure you have the expected SDK installed.</value>
+    <comment>Error message for unable add project to solution</comment>
+  </data>
+  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
+    <value>Unable to refresh the project. Try to refresh it manually.</value>
+    <comment>Error message for unable to refresh project</comment>
+  </data>
+  <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
+    <value>There was an error collapsing the solution tree. Ex:</value>
+    <comment>Error message for VS GenShell collapse solution Items</comment>
+  </data>
+  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
+    <value>There was an error restoring the packages. Ex:</value>
+    <comment>Error message for Vs GenShell restore packages error</comment>
+  </data>
+  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
+    <value>Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages.</value>
+    <comment>Error message for Vs GenShell restore packages warning</comment>
+  </data>
+  <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
+    <value>There was an error showing status message. Ex:</value>
+    <comment>Error message for Vs GenShell show status bar message</comment>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>Circular dependency detected on template {0} with {1}.</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>Dependency template {0} not found on user selection.</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>Creating '{0}' feature ...</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>Creating '{0}' page ...</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>Creating project '{0}'...</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
+    <value>Application Launching</value>
+    <comment>Group header for Application Launching templates</comment>
+  </data>
+  <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
+    <value>Application Lifecycle</value>
+    <comment>Group header for application lifecycle templates</comment>
+  </data>
+  <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
+    <value>Background Work</value>
+    <comment>Group header for background work templates</comment>
   </data>
   <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
-    <value>Verbundene Anwendungen</value>
+    <value>Connected Experiences</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
-  <data name="ChangesSummaryTitleFeature" xml:space="preserve">
-    <value>Übersicht über Änderungen: Feature „{0}“ hinzufügen</value>
-    <comment>New item wizard title for features {0}: Feature/Template name</comment>
+  <data name="TemplateGroup_UserInteraction" xml:space="preserve">
+    <value>User Interaction</value>
+    <comment>Group header for user interaction templates</comment>
   </data>
-  <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} ist bereits Teil Ihres Projekts. Wählen Sie ein anderes Feature aus.</value>
-    <comment>{0}:Feature name.</comment>
+  <data name="ButtonDetails" xml:space="preserve">
+    <value>Details</value>
+    <comment>Details button</comment>
   </data>
-  <data name="StatusAcquired" xml:space="preserve">
-    <value>Download completed.</value>
-    <comment>Status message for sync new version available</comment>
+  <data name="TemplateAdded" xml:space="preserve">
+    <value>Added</value>
+    <comment>Template added label</comment>
   </data>
-  <data name="StatusAcquiring" xml:space="preserve">
-    <value>There are new templates available (v{0}). Downloading…</value>
-    <comment>Status message for sync acquiring</comment>
+  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
+    <value>Checking for updates...</value>
+    <comment>Notification message for Sync Status: CheckingForUpdates</comment>
   </data>
-  <data name="StatusCheckedForUpdates" xml:space="preserve">
-    <value>Done.</value>
-    <comment>Status message for finished checking for updates</comment>
+  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
+    <value>Templates updated.</value>
+    <comment>Notification message for Sync Status: Updated</comment>
   </data>
-  <data name="StatusCheckingForUpdates" xml:space="preserve">
-    <value>Checking for template updates...</value>
-    <comment>Status message for checking for updates</comment>
+  <data name="AccessibilityNotificationPanel" xml:space="preserve">
+    <value>Notification panel</value>
+    <comment> Notification panel label to accessibility</comment>
   </data>
-  <data name="StatusNewWizardVersionAvailable" xml:space="preserve">
-    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
-    <comment>Status error message for sync over version no content</comment>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>Edit page</value>
+    <comment>Edit page label to accessibility</comment>
   </data>
-  <data name="StatusPreparing" xml:space="preserve">
-    <value>Preparing templates (v{0})...</value>
-    <comment>Status message for sync status preparing</comment>
+  <data name="AccessibilityNavigationMenu" xml:space="preserve">
+    <value>Navigation menu</value>
+    <comment>Navigation menu label</comment>
   </data>
-  <data name="StatusUpdating" xml:space="preserve">
-    <value>Refreshing templates cache…</value>
-    <comment>Status message for sync status updating</comment>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>Project types list</value>
+    <comment>Project types list label to accessibility</comment>
   </data>
-  <data name="ExceptionLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Log text for Layout Not Found exception. {0}:Layout group identity, {1}:Framework, {2}: Platform</comment>
+  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
+    <value>Sequential flow control</value>
+    <comment>Sequential flow control label to accessibility</comment>
   </data>
-  <data name="ExceptionDependencyNotFound" xml:space="preserve">
+  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
+    <value>User selection pages</value>
+    <comment>User selection page list to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>Design pattern list</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="AccessibilityTemplatesList" xml:space="preserve">
+    <value>Templates list</value>
+    <comment>Templates list label to accessibility</comment>
+  </data>
+  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
+    <value>Open in a new browser tab</value>
+    <comment>External hyperlink tooltip message</comment>
+  </data>
+  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
+    <value>Code viewer</value>
+    <comment>Code viewer label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
+    <value>New item file icon</value>
+    <comment>New item file icon label to accessibility</comment>
+  </data>
+  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
+    <value>Error text description</value>
+    <comment>Error dialog accessible name to description textbox</comment>
+  </data>
+  <data name="ReorderPageHelpText" xml:space="preserve">
+    <value>Use ctrl+up arrow or ctrl+down arrow to change page order</value>
+    <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
     <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Log text for Not Found exception. {0}: Dependency template id, {1}: Framework, {2}: Platform</comment>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Unable to resolve platform.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>Select platform</value>
     <comment>Project configuration window select platform title</comment>
-  </data>
-  <data name="ExceptionUnableResolvePlatform" xml:space="preserve">
-    <value>Unable to resolve platform. </value>
-  </data>
-  <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
-    <value>Refresh templates cache</value>
-    <comment>Refresh templates cache button content on overlay box control</comment>
   </data>
 </root>

@@ -1,5 +1,5 @@
 ﻿//{[{
-using Microsoft.Practices.ServiceLocation;
+using CommonServiceLocator;
 //}]}
 namespace Param_ItemNamespace.Services
 {

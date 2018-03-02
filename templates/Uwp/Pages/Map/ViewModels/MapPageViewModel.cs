@@ -72,7 +72,7 @@ namespace Param_ItemNamespace.ViewModels
 
             if (map != null)
             {
-                // TODO WTS: Set your map service token. If you don't have one, request at https://www.bingmapsportal.com/
+                // TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
                 map.MapServiceToken = string.Empty;
 
                 AddMapIcon(map, Center, "Map_YourLocation".GetLocalized());

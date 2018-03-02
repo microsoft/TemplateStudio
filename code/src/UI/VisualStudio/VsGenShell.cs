@@ -7,9 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
-
 using EnvDTE;
-
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
@@ -23,7 +21,6 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Flavor;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
-
 using NuGet.VisualStudio;
 
 namespace Microsoft.Templates.UI.VisualStudio
@@ -92,7 +89,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
                 else
                 {
-                    AppHealth.Current.Error.TrackAsync(StringRes.UnableAddItemsToProject).FireAndForget();
+                    AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddItemsToProject).FireAndForget();
                 }
             }
         }
@@ -114,7 +111,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception)
             {
                 // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
-                AppHealth.Current.Info.TrackAsync(StringRes.UnableToRefreshProject).FireAndForget();
+                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableToRefreshProject).FireAndForget();
             }
         }
 
@@ -167,7 +164,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception)
             {
                 // WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
-                AppHealth.Current.Info.TrackAsync(StringRes.UnableAddProjectToSolution).FireAndForget();
+                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableAddProjectToSolution).FireAndForget();
             }
         }
 
@@ -201,7 +198,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellShowStatusBarMessageMessage} {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellShowStatusBarMessageMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -503,12 +500,12 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
                 else
                 {
-                    AppHealth.Current.Warning.TrackAsync(StringRes.VsGenShellRestorePackagesWarningMessage).FireAndForget();
+                    AppHealth.Current.Warning.TrackAsync(StringRes.ErrorVsGenShellRestorePackagesWarningMessage).FireAndForget();
                 }
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
             }
         }
 
@@ -526,7 +523,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.VsGenShellCollapseSolutionItemsMessage} {ex.ToString()}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellCollapseSolutionItemsMessage} {ex.ToString()}").FireAndForget();
             }
         }
 

@@ -65,7 +65,7 @@ Namespace ViewModels
             End If
 
             If map IsNot Nothing Then
-                ' TODO WTS: Set your map service token. If you don't have one, request at https://www.bingmapsportal.com/
+                ' TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
                 map.MapServiceToken = String.Empty
 
                 AddMapIcon(map, Center, "Map_YourLocation".GetLocalized())

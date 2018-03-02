@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 
@@ -68,16 +69,17 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public override void LoadConfig()
+        public override async Task LoadConfigAsync(CancellationToken ct)
         {
+            await Task.Run(() =>
             Config = new TemplatesSourceConfig()
             {
                 Versions = availablePackages,
                 Latest = availablePackages.OrderByDescending(p => p.Version).FirstOrDefault()
-            };
+            });
         }
 
-        public override TemplatesContentInfo GetContent(TemplatesPackageInfo packageInfo, string workingFolder)
+        public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
             string targetFolder = Path.Combine(workingFolder, packageInfo.Version.ToString());
 
@@ -86,7 +88,10 @@ namespace Microsoft.Templates.Core.Locations
                 Fs.SafeDeleteDirectory(targetFolder);
             }
 
-            JunctionNativeMethods.CreateJunction(Origin, targetFolder, true);
+            await Task.Run(() =>
+            {
+                JunctionNativeMethods.CreateJunction(Origin, targetFolder, true);
+            });
 
             return new TemplatesContentInfo()
             {
@@ -96,9 +101,12 @@ namespace Microsoft.Templates.Core.Locations
             };
         }
 
-        public override void Acquire(ref TemplatesPackageInfo packageInfo)
+        public override async Task AcquireAsync(TemplatesPackageInfo packageInfo, CancellationToken ct)
         {
-            packageInfo.LocalPath = Origin;
+            await Task.Run(() =>
+            {
+                packageInfo.LocalPath = Origin;
+            });
         }
 
         protected static string GetAgentName()

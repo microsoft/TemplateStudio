@@ -12,7 +12,8 @@ using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
-
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
 
@@ -30,25 +31,25 @@ namespace Microsoft.Templates.Core.Packaging
             return source + DefaultExtension;
         }
 
-        public static string PackAndSign(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
+        public static async Task<string> PackAndSignAsync(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
             string outFile = CreateSourcePath(source);
 
-            PackAndSign(source, outFile, certThumbprint, mimeMediaType);
+            await PackAndSignAsync(source, outFile, certThumbprint, mimeMediaType);
 
             return outFile;
         }
 
-        public static string PackAndSign(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
+        public static async Task<string> PackAndSignAsync(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
             string outFile = CreateSourcePath(source);
 
-            PackAndSign(source, outFile, signingCert, mimeMediaType);
+            await PackAndSignAsync(source, outFile, signingCert, mimeMediaType);
 
             return outFile;
         }
 
-        public static void PackAndSign(string source, string outFile, string certThumbprint, string mimeMediaType)
+        public static async Task PackAndSignAsync(string source, string outFile, string certThumbprint, string mimeMediaType)
         {
             X509Certificate cert = LoadCert(certThumbprint);
 
@@ -57,25 +58,25 @@ namespace Microsoft.Templates.Core.Packaging
                 throw new SignCertNotFoundException(string.Format(StringRes.TemplatePackagePackAndSignMessage, certThumbprint));
             }
 
-            PackAndSign(source, outFile, cert, mimeMediaType);
+            await PackAndSignAsync(source, outFile, cert, mimeMediaType);
         }
 
-        public static void PackAndSign(string source, string outFile, X509Certificate signingCert, string mimeMediaType)
+        public static async Task PackAndSignAsync(string source, string outFile, X509Certificate signingCert, string mimeMediaType)
         {
-            Pack(source, outFile, mimeMediaType);
+            await PackAsync(source, outFile, mimeMediaType);
             Sign(outFile, signingCert);
         }
 
-        public static string Pack(string source, string mimeMediaType = MediaTypeNames.Text.Plain)
+        public static async Task<string> PackAsync(string source, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
             string outFile = source + DefaultExtension;
 
-            Pack(source, outFile, mimeMediaType);
+            await PackAsync(source, outFile, mimeMediaType);
 
             return outFile;
         }
 
-        public static void Pack(string source, string outFile, string mimeMediaType)
+        public static async Task PackAsync(string source, string outFile, string mimeMediaType)
         {
             if (string.IsNullOrWhiteSpace(source))
             {
@@ -99,7 +100,7 @@ namespace Microsoft.Templates.Core.Packaging
                     Uri partUriFile = GetPartUriFile(rootUri, file);
                     PackagePart packagePart = package.CreatePart(partUriFile, mimeMediaType, CompressionOption.Maximum);
 
-                    AddContentToPackagePart(file, packagePart);
+                    await AddContentToPackagePartAsync(file, packagePart);
 
                     package.CreateRelationship(packagePart.Uri, TargetMode.Internal, TemplatesContentRelationshipType);
                 }
@@ -108,7 +109,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        public static void Extract(string signedFilePack, string targetDirectory, bool verifySignatures = true)
+        public static async Task ExtractAsync(string signedFilePack, string targetDirectory, bool verifySignatures = true, Action<int> reportProgress = null, CancellationToken ct = default(CancellationToken))
         {
             string currentDir = Environment.CurrentDirectory;
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);
@@ -116,23 +117,26 @@ namespace Microsoft.Templates.Core.Packaging
 
             EnsureDirectory(outDir);
 
-            using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read, FileShare.Read))
+            if (!ct.IsCancellationRequested)
             {
-                bool isSignatureValid = false;
-
-                if (verifySignatures)
+                using (Package package = Package.Open(inFilePack, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    isSignatureValid = ValidateSignatures(package);
-                }
+                    bool isSignatureValid = false;
 
-                if (isSignatureValid || !verifySignatures)
-                {
-                    ExtractContent(outDir, package);
-                }
+                    if (verifySignatures)
+                    {
+                        isSignatureValid = ValidateSignatures(package);
+                    }
 
-                if (!isSignatureValid && verifySignatures)
-                {
-                    throw new InvalidSignatureException(string.Format(StringRes.TemplatePackageExtractMessage, signedFilePack));
+                    if (isSignatureValid || !verifySignatures)
+                    {
+                        await ExtractContentAsync(outDir, package, reportProgress, ct);
+                    }
+
+                    if (!isSignatureValid && verifySignatures)
+                    {
+                        throw new InvalidSignatureException(string.Format(StringRes.TemplatePackageExtractMessage, signedFilePack));
+                    }
                 }
             }
         }
@@ -150,15 +154,28 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static void ExtractContent(string outDir, Package package)
+        private static async Task ExtractContentAsync(string outDir, Package package, Action<int> reportProgress, CancellationToken ct)
         {
             PackagePart packagePartDocument = null;
+            int partCounter = 0;
+            int totalParts = package.GetRelationshipsByType(TemplatesContentRelationshipType).Count();
+            int latestProgress = 0;
 
             foreach (PackageRelationship relationship in package.GetRelationshipsByType(TemplatesContentRelationshipType))
             {
+                ct.ThrowIfCancellationRequested();
+                partCounter++;
+
+                var progress = Convert.ToInt32((partCounter * 100) / totalParts);
+                if (progress != latestProgress)
+                {
+                    reportProgress?.Invoke(progress);
+                    latestProgress = progress;
+                }
+
                 // Open the Document part, write the contents to a file.
                 packagePartDocument = package.GetPart(relationship.TargetUri);
-                ExtractPart(packagePartDocument, outDir);
+                await ExtractPartAsync(packagePartDocument, outDir);
             }
         }
 
@@ -218,7 +235,7 @@ namespace Microsoft.Templates.Core.Packaging
             return certFound;
         }
 
-        private static void ExtractPart(PackagePart packagePart, string targetDirectory)
+        private static async Task ExtractPartAsync(PackagePart packagePart, string targetDirectory)
         {
             string stringPart = packagePart.Uri.ToString().TrimStart('/');
             var partUri = new Uri(stringPart, UriKind.Relative);
@@ -231,7 +248,7 @@ namespace Microsoft.Templates.Core.Packaging
 
             using (var fileStream = new FileStream(System.Net.WebUtility.UrlDecode(uriFullPartPath.LocalPath), FileMode.Create))
             {
-                CopyStream(packagePart.GetStream(), fileStream);
+                await CopyStreamAsync(packagePart.GetStream(), fileStream);
             }
         }
 
@@ -405,14 +422,14 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static void CopyStream(Stream source, Stream target)
+        private static async Task CopyStreamAsync(Stream source, Stream target)
         {
             var buf = new byte[BufSize];
             int bytesRead = 0;
 
-            while ((bytesRead = source.Read(buf, 0, BufSize)) > 0)
+            while ((bytesRead = await source.ReadAsync(buf, 0, BufSize)) > 0)
             {
-                target.Write(buf, 0, bytesRead);
+                await target.WriteAsync(buf, 0, bytesRead);
             }
         }
 
@@ -427,11 +444,11 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        private static void AddContentToPackagePart(FileInfo file, PackagePart packagePart)
+        private static async Task AddContentToPackagePartAsync(FileInfo file, PackagePart packagePart)
         {
             using (var fileStream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read))
             {
-                CopyStream(fileStream, packagePart.GetStream());
+                await CopyStreamAsync(fileStream, packagePart.GetStream());
             }
         }
 

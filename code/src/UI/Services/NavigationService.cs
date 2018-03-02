@@ -3,30 +3,64 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows.Controls;
+using System.Windows.Navigation;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Services
 {
     public static class NavigationService
     {
-        private static Frame _frame;
+        private static bool _updateStep = false;
+        private static Frame _mainFrame;
+        private static Frame _secondaryFrame;
 
-        public static void Initialize(Frame frame, object content)
+        public static bool CanGoBackMainFrame => _mainFrame.CanGoBack;
+
+        public static bool CanGoBackSecondaryFrame => _secondaryFrame.CanGoBack;
+
+        public static void InitializeMainFrame(Frame mainFrame, object content)
         {
-            _frame = frame;
-            _frame.Content = content;
+            _mainFrame = mainFrame;
+            _mainFrame.Content = content;
         }
 
-        public static void Navigate(object content)
+        public static void InitializeSecondaryFrame(Frame secondaryFrame, object content)
         {
-            _frame.Navigate(content);
+            _secondaryFrame = secondaryFrame;
+            _secondaryFrame.Content = content;
+            _secondaryFrame.Navigated += SecondaryFrameNavigated;
+            _secondaryFrame.Navigating += SecondaryFrameNavigating;
         }
 
-        public static void GoBack()
+        public static void UnsuscribeEventHandlers()
         {
-            if (_frame.CanGoBack)
+            _secondaryFrame.Navigated -= SecondaryFrameNavigated;
+            _secondaryFrame.Navigating -= SecondaryFrameNavigating;
+        }
+
+        private static void SecondaryFrameNavigating(object sender, NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Back || e.NavigationMode == NavigationMode.Forward)
             {
-                _frame.GoBack();
+                _updateStep = true;
             }
         }
+
+        private static void SecondaryFrameNavigated(object sender, NavigationEventArgs e)
+        {
+            if (_updateStep)
+            {
+                BaseMainViewModel.BaseInstance.RefreshStep(e.Content);
+                _updateStep = false;
+            }
+        }
+
+        public static bool NavigateMainFrame(object content) => _mainFrame.Navigate(content);
+
+        public static bool NavigateSecondaryFrame(object content) => _secondaryFrame.Navigate(content);
+
+        public static void GoBackMainFrame() => _mainFrame.GoBack();
+
+        public static void GoBackSecondaryFrame() => _secondaryFrame.GoBack();
     }
 }

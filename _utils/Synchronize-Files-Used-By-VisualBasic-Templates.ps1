@@ -23,7 +23,8 @@ function Format-Json([Parameter(Mandatory, ValueFromPipeline)][String] $json) {
         # This line contains [ or {, increment the indentation level
         $indent++
       }
-      $line
+      # Regex ensures that output isn't encoded in the powershell unicode style. (We want '&', not '\u0026')
+      [regex]::Unescape($line)
   }) -Join "`n"
 }
 
@@ -37,12 +38,13 @@ Get-ChildItem ..\templates\* -Recurse -include *template.json | where { $_.FullN
 
     Try
     {
-    $vbJson = (Get-Content $vbFile) -join "`n" | ConvertFrom-Json;
+        $vbJson = (Get-Content $vbFile) -join "`n" | ConvertFrom-Json;
     }
     Catch
     {
         Write-Output $vbFile;
     }
+
     $csJson = (Get-Content $csFile) -join "`n" | ConvertFrom-Json;
 
     $vbEquivIdentity = $vbJson.identity -replace ".VB", "";

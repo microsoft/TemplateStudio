@@ -3,16 +3,18 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
-using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 
@@ -20,255 +22,233 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public abstract class BaseMainViewModel : Observable
     {
+        public static BaseMainViewModel BaseInstance { get; private set; }
+
         private Window _mainView;
-
-        private bool _canGoBack;
-
-        private bool _canGoForward;
-
+        private int _step;
+        private int _origStep;
+        private bool _canGoBack = false;
+        private bool _canGoForward = true;
         private bool _canFinish;
 
-        private bool _canCheckingUpdates;
-
-        private bool _templatesAvailable;
-
-        private bool _hasValidationErrors;
-
         private RelayCommand _cancelCommand;
+        private RelayCommand _goBackCommand;
+        private RelayCommand _goForwardCommand;
+        private RelayCommand _finishCommand;
 
-        private RelayCommand _closeCommand;
+        protected string Language { get; private set; }
 
-        private RelayCommand _backCommand;
+        protected string Platform { get; private set; }
 
-        private RelayCommand _nextCommand;
+        public int Step
+        {
+            get => _step;
+            private set => SetStepAsync(value).FireAndForget();
+        }
 
-        private RelayCommand<string> _finishCommand;
-
-        private RelayCommand _checkUpdatesCommand;
-
-        private RelayCommand _refreshTemplatesCommand;
-
-        private RelayCommand _refreshTemplatesCacheCommand;
-
-        protected int CurrentStep { get; private set; }
-
-        public WizardStatus WizardStatus { get; } = new WizardStatus();
+        public ObservableCollection<Step> Steps { get; }
 
         public RelayCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new RelayCommand(OnCancel));
 
-        public RelayCommand CloseCommand => _closeCommand ?? (_closeCommand = new RelayCommand(OnClose));
+        public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(() => Step--, () => _canGoBack && !WizardStatus.IsBusy));
 
-        public RelayCommand BackCommand => _backCommand ?? (_backCommand = new RelayCommand(OnGoBack, () => _canGoBack));
+        public RelayCommand GoForwardCommand => _goForwardCommand ?? (_goForwardCommand = new RelayCommand(() => Step++, () => _canGoForward && !WizardStatus.IsBusy));
 
-        public RelayCommand NextCommand => _nextCommand ?? (_nextCommand = new RelayCommand(OnNext, () => _templatesAvailable && !_hasValidationErrors && _canGoForward));
+        public RelayCommand FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand(OnFinish, () => _canFinish && !WizardStatus.IsBusy));
 
-        public RelayCommand<string> FinishCommand => _finishCommand ?? (_finishCommand = new RelayCommand<string>(OnFinish, (parameter) => !_hasValidationErrors && _canFinish));
+        public WizardStatus WizardStatus { get; }
 
-        public RelayCommand CheckUpdatesCommand => _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(
-            () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnCheckUpdatesAsync()),
-            () => _canCheckingUpdates));
+        public SystemService SystemService { get; }
 
-        public RelayCommand RefreshTemplatesCommand => _refreshTemplatesCommand ?? (_refreshTemplatesCommand = new RelayCommand(
-            () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
+        public UIStylesService StylesService { get; }
 
-        public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
-            () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync(true))));
-
-        public bool CanForceRefreshTemplateCache
+        public BaseMainViewModel(Window mainView, BaseStyleValuesProvider provider, bool canFinish = true)
         {
-            get
-            {
-                #if DEBUG
-                    return true;
-                #else
-                    return false;
-                #endif
-            }
+            BaseInstance = this;
+            _mainView = mainView;
+            _canFinish = canFinish;
+            Steps = new ObservableCollection<Step>();
+            SystemService = new SystemService();
+            WizardStatus = new WizardStatus();
+            StylesService = new UIStylesService(provider);
+            ResourcesService.Instance.Initialize(mainView);
         }
 
-        public BaseMainViewModel()
-        {
-        }
+        public abstract bool IsSelectionEnabled(MetadataType metadataType);
 
-        public virtual void SetView(Window window)
-        {
-            _mainView = window;
-            ResourceService.Initialize(_mainView);
-        }
+        public abstract void ProcessItem(object item);
 
         protected abstract void OnCancel();
 
-        protected abstract void OnClose();
+        protected abstract Task OnTemplatesAvailableAsync();
 
-        protected virtual void OnGoBack()
-        {
-            UpdateCanFinish(false);
-            NavigationService.GoBack();
-            CurrentStep--;
-            UpdateCanGoBack(CurrentStep > 0);
-        }
+        protected abstract IEnumerable<Step> GetSteps();
 
-        protected virtual void OnNext()
+        public void RefreshStep(object navigatedPage)
         {
-            UpdateCanGoBack(true);
-            WizardStatus.IsOverlayBoxVisible = false;
-            CurrentStep++;
-        }
-
-        protected virtual void OnFinish(string parameter)
-        {
-            _mainView.DialogResult = true;
-            _mainView.Close();
-        }
-
-        private void UpdateCanGoBack(bool canGoBack)
-        {
-            _canGoBack = canGoBack;
-            BackCommand.OnCanExecuteChanged();
-        }
-
-        public void UpdateCanGoForward(bool canGoForward)
-        {
-            _canGoForward = canGoForward;
-            NextCommand.OnCanExecuteChanged();
-        }
-
-        public void UpdateCanFinish(bool canFinish)
-        {
-            _canFinish = canFinish;
-            FinishCommand.OnCanExecuteChanged();
-            WizardStatus.ShowFinishButton = canFinish;
-        }
-
-        private void UpdateCanCheckUpdates(bool value)
-        {
-            _canCheckingUpdates = value;
-            CheckUpdatesCommand.OnCanExecuteChanged();
-        }
-
-        private void UpdateHasValidationErrors(bool value)
-        {
-            _hasValidationErrors = value;
-            NextCommand.OnCanExecuteChanged();
-            FinishCommand.OnCanExecuteChanged();
-        }
-
-        public void SetValidationErrors(string errorMessage, StatusType statusType = StatusType.Error)
-        {
-            WizardStatus.SetStatus(new StatusViewModel(statusType, errorMessage));
-            UpdateHasValidationErrors(true);
-        }
-
-        public void CleanStatus(bool cleanValidationError = false)
-        {
-            WizardStatus.ClearStatus();
-            if (cleanValidationError)
+            var step = Steps.FirstOrDefault(s => s.Equals(navigatedPage.GetType()));
+            if (step != null)
             {
-                UpdateHasValidationErrors(false);
+                SetStepAsync(step.Index, false).FireAndForget();
             }
         }
 
-        protected abstract Task OnTemplatesAvailableAsync();
-
-        protected abstract Task OnNewTemplatesAvailableAsync();
-
-        protected async Task BaseInitializeAsync()
+        public void UnsuscribeEventHandlers()
         {
-            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += SyncSyncStatusChanged;
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= OnSyncStatusChanged;
+            WizardStatus.IsBusyChanged -= IsBusyChanged;
+            SystemService.UnsuscribeEventHandlers();
+            StylesService.UnsuscribeEventHandlers();
+        }
+
+        public async Task<bool> IsStepAvailableAsync() => await IsStepAvailableAsync(Step);
+
+        public async Task SetStepAsync(int step, bool navigate = true)
+        {
+            _origStep = _step;
+            if (step != _step)
+            {
+                _step = step;
+            }
+
+            if (await IsStepAvailableAsync(step))
+            {
+                OnPropertyChanged(nameof(Step));
+                UpdateStep(navigate);
+            }
+            else
+            {
+                DispatcherService.BeginInvoke(() =>
+                {
+                    _step = _origStep;
+                    OnPropertyChanged(nameof(Step));
+                });
+            }
+        }
+
+        public Step GetCurrentStep() => Steps.FirstOrDefault(step => step.Equals(Step));
+
+        public virtual async Task InitializeAsync(string platform, string language)
+        {
+            Platform = platform;
+            Language = language;
+            Steps.Clear();
+            foreach (var step in GetSteps())
+            {
+                Steps.Add(step);
+            }
+
+            GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
+            WizardStatus.IsBusyChanged += IsBusyChanged;
+            SystemService.Initialize();
             try
             {
                 await GenContext.ToolBox.Repo.SynchronizeAsync();
-
-                WizardStatus.TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
-                WizardStatus.WizardVersion = GenContext.ToolBox.WizardVersion;
             }
             catch (Exception ex)
             {
-                WizardStatus.SetStatus(StatusViewModel.Information(StringRes.ErrorSync));
-
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
             }
-            finally
+        }
+
+        protected virtual async Task<bool> IsStepAvailableAsync(int step)
+        {
+            await Task.CompletedTask;
+            return !WizardStatus.HasValidationErrors;
+        }
+
+        protected virtual void UpdateStep(bool navigate)
+        {
+            var compleatedSteps = Steps.Where(s => s.IsPrevious(Step));
+            foreach (var step in compleatedSteps)
             {
-                WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
-                UpdateCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
+                step.Completed = true;
+            }
+
+            foreach (var step in Steps)
+            {
+                step.IsSelected = false;
+            }
+
+            var selectedStep = GetCurrentStep();
+            if (selectedStep != null)
+            {
+                selectedStep.IsSelected = true;
+                if (navigate)
+                {
+                    NavigationService.NavigateSecondaryFrame(selectedStep.GetPage());
+                }
+            }
+
+            SetCanGoBack(Step > 0);
+            SetCanGoForward(Step < Steps.Count - 1);
+        }
+
+        protected virtual void OnFinish()
+        {
+            if (_mainView != null)
+            {
+                _mainView.DialogResult = true;
+                _mainView?.Close();
             }
         }
 
-        private async void SyncSyncStatusChanged(object sender, SyncStatusEventArgs status)
+        protected void SetCanGoBack(bool canGoBack)
         {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    WizardStatus.SetStatus(status.Status.GetStatusViewModel(status.Version));
-            });
+            _canGoBack = canGoBack;
+            GoBackCommand.OnCanExecuteChanged();
+        }
 
-            if (status.Status == SyncStatus.Ready || status.Status == SyncStatus.Updated)
-            {
-                WizardStatus.TemplatesVersion = GenContext.ToolBox.Repo.TemplatesVersion;
+        protected void SetCanGoForward(bool canGoForward)
+        {
+            _canGoForward = canGoForward;
+            GoForwardCommand.OnCanExecuteChanged();
+        }
 
-                UpdateTemplatesAvailable(true);
+        protected void SetCanFinish(bool canFinish)
+        {
+            _canFinish = canFinish;
+            FinishCommand.OnCanExecuteChanged();
+        }
+
+        protected virtual void IsBusyChanged(object sender, bool e)
+        {
+            FinishCommand.OnCanExecuteChanged();
+            GoBackCommand.OnCanExecuteChanged();
+            GoForwardCommand.OnCanExecuteChanged();
+        }
+
+        private async void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)
+        {
+            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+            WizardStatus.SetVersions();
+
+            var notification = args.GetNotification();
+            if (notification?.Category == Category.TemplatesSync)
+            {
+                await NotificationsControl.AddOrUpdateNotificationAsync(notification);
+            }
+            else
+            {
+                await NotificationsControl.AddNotificationAsync(notification);
+            }
+
+            if (args.Status == SyncStatus.NoUpdates || args.Status == SyncStatus.Ready)
+            {
+                NotificationsControl.RemoveNotification();
+            }
+
+            if (args.Status == SyncStatus.Updated || args.Status == SyncStatus.Ready)
+            {
                 await OnTemplatesAvailableAsync();
-                WizardStatus.IsLoading = false;
-                UpdateCanCheckUpdates(true);
-            }
-
-            if (status.Status == SyncStatus.Acquired)
-            {
-                WizardStatus.NewVersionAvailable = true;
             }
         }
 
-        public void UnsuscribeEventHandlers() => GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= SyncSyncStatusChanged;
-
-        private async Task OnRefreshTemplatesAsync(bool force = false)
+        private void OnResetSelection(object sender, EventArgs e)
         {
-            try
-            {
-                await GenContext.ToolBox.Repo.RefreshAsync(force);
-                WizardStatus.TemplatesVersion = GenContext.ToolBox.TemplatesVersion;
-                await OnNewTemplatesAvailableAsync();
-                WizardStatus.NewVersionAvailable = false;
-                WizardStatus.SetStatus(StatusViewModel.Information(StringRes.StatusUpdated, true, 5));
-            }
-            catch (Exception ex)
-            {
-                WizardStatus.SetStatus(StatusViewModel.Information(StringRes.ErrorSyncRefresh));
-
-                await AppHealth.Current.Error.TrackAsync(ex.ToString());
-                await AppHealth.Current.Exception.TrackAsync(ex);
-            }
-            finally
-            {
-                WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
-            }
-        }
-
-        private async Task OnCheckUpdatesAsync()
-        {
-            try
-            {
-                UpdateCanCheckUpdates(false);
-                await GenContext.ToolBox.Repo.CheckForUpdatesAsync();
-            }
-            catch (Exception ex)
-            {
-                WizardStatus.SetStatus(StatusViewModel.Information(StringRes.ErrorSyncRefresh));
-                await AppHealth.Current.Error.TrackAsync(ex.ToString());
-                await AppHealth.Current.Exception.TrackAsync(ex);
-            }
-            finally
-            {
-                WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
-                UpdateCanCheckUpdates(!GenContext.ToolBox.Repo.SyncInProgress);
-            }
-        }
-
-        private void UpdateTemplatesAvailable(bool value)
-        {
-            _templatesAvailable = value;
-            NextCommand.OnCanExecuteChanged();
+            _step = _origStep;
+            OnPropertyChanged("Step");
         }
     }
 }

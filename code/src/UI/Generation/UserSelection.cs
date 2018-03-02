@@ -102,5 +102,17 @@ namespace Microsoft.Templates.UI
 
             return sb.ToString();
         }
+
+        public void Add((string name, ITemplateInfo template) template)
+        {
+            if (template.template.GetTemplateType() == TemplateType.Page)
+            {
+                Pages.Add(template);
+            }
+            else if (template.template.GetTemplateType() == TemplateType.Feature)
+            {
+                Features.Add(template);
+            }
+        }
     }
 }

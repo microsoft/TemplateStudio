@@ -9,7 +9,9 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Threading.Tasks;
 using System.Xml;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.TemplateEngine.Orchestrator.RunnableProjects;
 using Microsoft.Templates.Core;
 
@@ -37,8 +39,8 @@ namespace Microsoft.Templates.Test
             var genIdentities = GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(projectType, framework).ToList();
 
 #pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - C#7.0 feature StyleCop can't handle
-            var (csResultPath, csProjectName) = await SetUpComparisonProjectAsync(Platforms.Uwp, ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
-            var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(Platforms.Uwp, ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
+            var (csResultPath, csProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
+            var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
 #pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
             EnsureAllEquivalentFileNamesAreUsed(csResultPath, vbResultPath);
@@ -239,7 +241,7 @@ namespace Microsoft.Templates.Test
                 var csCode = new StreamReader(csFile).ReadToEnd();
                 var csTree = Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree.ParseText(csCode);
                 var csRoot = (Microsoft.CodeAnalysis.CSharp.Syntax.CompilationUnitSyntax)csTree.GetRoot();
-                var csProperties = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax>().Select(p => p.Identifier.Text).ToList();
+                var csProperties = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.PropertyDeclarationSyntax>().Select(p => p.Identifier.Text + "-" + p.Type.ToString().ToLowerInvariant()).ToList();
                 var csMethods = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>().Select(m => m.Identifier.Text).ToList();
                 var csEvents = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.EventFieldDeclarationSyntax>().Select(e => e.Declaration.Variables.First().Identifier.Text).ToList();
                 csEvents.AddRange(csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.EventDeclarationSyntax>().Select(e => e.Identifier.Text).ToList());
@@ -262,16 +264,16 @@ namespace Microsoft.Templates.Test
                 }
 
                 var vbCode = new StreamReader(vbFile).ReadToEnd();
-                var vbTree = Microsoft.CodeAnalysis.VisualBasic.VisualBasicSyntaxTree.ParseText(vbCode);
-                var vbRoot = (Microsoft.CodeAnalysis.VisualBasic.Syntax.CompilationUnitSyntax)vbTree.GetRoot();
-                var vbProperties = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.PropertyStatementSyntax>().Select(p => p.Identifier.Text).ToList();
-                var vbMethods = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.MethodStatementSyntax>().Select(m => m.Identifier.Text.Replace("[", string.Empty).Replace("]", string.Empty)).ToList();
-                var vbEvents = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.EventStatementSyntax>().Select(e => e.Identifier.Text).ToList();
-                var vbEnumItems = vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.EnumMemberDeclarationSyntax>().Select(e => (e.Parent as Microsoft.CodeAnalysis.VisualBasic.Syntax.EnumBlockSyntax).EnumStatement.Identifier.ToString() + e.Identifier).ToList();
+                var vbTree = VisualBasicSyntaxTree.ParseText(vbCode);
+                var vbRoot = (CompilationUnitSyntax)vbTree.GetRoot();
+                var vbProperties = GetVBPropertiesForComparison(vbRoot);
+                var vbMethods = vbRoot.DescendantNodes().OfType<MethodStatementSyntax>().Select(m => m.Identifier.Text.Replace("[", string.Empty).Replace("]", string.Empty)).ToList();
+                var vbEvents = vbRoot.DescendantNodes().OfType<EventStatementSyntax>().Select(e => e.Identifier.Text).ToList();
+                var vbEnumItems = vbRoot.DescendantNodes().OfType<EnumMemberDeclarationSyntax>().Select(e => (e.Parent as EnumBlockSyntax).EnumStatement.Identifier.ToString() + e.Identifier).ToList();
 
                 var vbConstants = new List<string>();
 
-                foreach (var field in vbRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.VisualBasic.Syntax.FieldDeclarationSyntax>())
+                foreach (var field in vbRoot.DescendantNodes().OfType<FieldDeclarationSyntax>())
                 {
                     foreach (var modifier in field.Modifiers)
                     {
@@ -314,9 +316,9 @@ namespace Microsoft.Templates.Test
 
                 foreach (var csEvent in csEvents)
                 {
-                    if (vbEvents.Contains(csEvent.ToString()))
+                    if (vbEvents.Contains(csEvent))
                     {
-                        vbEvents.Remove(csEvent.ToString());
+                        vbEvents.Remove(csEvent);
                     }
                     else
                     {
@@ -356,6 +358,65 @@ namespace Microsoft.Templates.Test
             }
 
             Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));
+        }
+
+        private List<string> GetVBPropertiesForComparison(CompilationUnitSyntax vbRoot)
+        {
+           List<SyntaxNode> syntaxNodes = vbRoot.DescendantNodes().OfType<PropertyStatementSyntax>().Select(p => p as SyntaxNode).ToList();
+
+            syntaxNodes.AddRange(vbRoot.DescendantNodes().OfType<PropertyBlockSyntax>().ToList());
+
+            var result = new List<string>(syntaxNodes.Count);
+
+            foreach (var syntaxNode in syntaxNodes)
+            {
+                var identifier = syntaxNode.ChildTokens().FirstOrDefault(t => t.RawKind == (int)SyntaxKind.IdentifierToken).ValueText;
+
+                if (identifier == null && syntaxNode is PropertyBlockSyntax)
+                {
+                    identifier = (syntaxNode as PropertyBlockSyntax).PropertyStatement.Identifier.ValueText;
+                }
+
+                var descendentNodes = syntaxNode.DescendantNodes().ToList();
+
+                string propertyType;
+
+                if (descendentNodes.Any(n => n is SimpleAsClauseSyntax))
+                {
+                    propertyType = descendentNodes.OfType<SimpleAsClauseSyntax>().FirstOrDefault()?.Type.ToString();
+                }
+                else if (descendentNodes.Any(n => n is GenericNameSyntax))
+                {
+                    propertyType = descendentNodes.OfType<GenericNameSyntax>().FirstOrDefault()?.ToString();
+                }
+                else if (descendentNodes.Any(n => n is PredefinedTypeSyntax))
+                {
+                    propertyType = descendentNodes.OfType<PredefinedTypeSyntax>().FirstOrDefault()?.Keyword.ValueText;
+                }
+                else if (descendentNodes.Any(n => n is ObjectCreationExpressionSyntax))
+                {
+                    propertyType = descendentNodes.OfType<ObjectCreationExpressionSyntax>().FirstOrDefault()?.Type.ToString();
+                }
+                else
+                {
+                    throw new ArgumentException($"Unknown type for property {identifier}");
+                }
+
+                var csEquivType = GetCSharpEquivalentProperty(propertyType);
+
+                result.Add($"{identifier}-{csEquivType}");
+            }
+
+            return result.Distinct().ToList();
+        }
+
+        private object GetCSharpEquivalentProperty(string propertyType)
+        {
+            return propertyType.ToLowerInvariant()
+                               .Replace("boolean", "bool")
+                               .Replace("integer", "int")
+                               .Replace("(of ", "<")
+                               .Replace(")", ">");
         }
 
         private static string VbFileToCsEquivalent(string vbFilePath)

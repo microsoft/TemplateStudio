@@ -81,12 +81,7 @@ namespace Microsoft.Templates.Core
         public static string GetRichDescription(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
-            var descriptionFile = Directory.EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md").FirstOrDefault();
-            if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
-            {
-                descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
-            }
-
+            var descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
             if (!string.IsNullOrEmpty(descriptionFile))
             {
                 return File.ReadAllText(descriptionFile);
