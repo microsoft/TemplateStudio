@@ -122,7 +122,7 @@
                 Visibility="{Binding Name, Converter={StaticResource StringVisibilityConverter}}"
                 Text="{Binding Name}"
                 Margin="{StaticResource Margin_L_LeftRight_M_Top}"
-                Style="{StaticResource WtsTextBlockSectionTitle}" />
+                Style="{StaticResource WtsTextBlockSubSectionTitle}" />
             <ListView
                 Grid.Row="1"
                 Style="{StaticResource WtsListViewMultipleSelection}"
