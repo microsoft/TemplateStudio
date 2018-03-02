@@ -4,7 +4,7 @@
     {
         //^^
         //{[{
-        public const string wts.ItemNameDetailPage = "wts.ItemNameDetail";
+        public const string ImageGalleryViewDetailPage = "ImageGalleryViewDetail";
         //}]}
     }
 }
