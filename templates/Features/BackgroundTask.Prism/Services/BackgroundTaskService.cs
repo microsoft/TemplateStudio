@@ -18,17 +18,8 @@ namespace Param_ItemNamespace.Services
         private static readonly Lazy<IEnumerable<BackgroundTask>> BackgroundTaskInstances =
             new Lazy<IEnumerable<BackgroundTask>>(() => CreateInstances());
 
-        public async Task RegisterBackgroundTasksAsync()
+        public void RegisterBackgroundTasks()
         {
-            BackgroundExecutionManager.RemoveAccess();
-            var result = await BackgroundExecutionManager.RequestAccessAsync();
-
-            if (result == BackgroundAccessStatus.DeniedBySystemPolicy
-                || result == BackgroundAccessStatus.DeniedByUser)
-            {
-                return;
-            }
-
             foreach (var task in BackgroundTasks)
             {
                 task.Register();

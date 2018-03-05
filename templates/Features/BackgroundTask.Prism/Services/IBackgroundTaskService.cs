@@ -1,11 +1,10 @@
-﻿using System.Threading.Tasks;
-using Windows.ApplicationModel.Background;
+﻿using Windows.ApplicationModel.Background;
 
 namespace Param_ItemNamespace.Services
 {
     internal interface IBackgroundTaskService
     {
-        Task RegisterBackgroundTasksAsync();
+        void RegisterBackgroundTasks();
 
         void Start(IBackgroundTaskInstance taskInstance);
     }

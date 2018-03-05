@@ -15,7 +15,7 @@ namespace Param_ItemNamespace.Services
         private async Task InitializeAsync()
         {
             //{[{
-            await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
+            Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasks();
             //}]}
         }
 
