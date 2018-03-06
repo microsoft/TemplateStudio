@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using Prism.Commands;
 using Param_RootNamespace.Services;
 using Windows.ApplicationModel;
+using Prism.Windows.Navigation;
 using Windows.UI.Xaml;
 
 namespace Param_ItemNamespace.ViewModels
@@ -52,8 +54,10 @@ namespace Param_ItemNamespace.ViewModels
         {
         }
 
-        public void Initialize()
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
+            base.OnNavigatedTo(e, viewModelState);
+
             VersionDescription = GetVersionDescription();
         }
 
