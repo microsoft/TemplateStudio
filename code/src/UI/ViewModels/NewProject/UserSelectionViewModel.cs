@@ -329,8 +329,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 page.IsHome = Pages.IndexOf(page) == 0;
             }
-
-            DeletePageCommand.OnCanExecuteChanged();
         }
 
         public async Task OnDeletePageAsync(SavedTemplateViewModel page)

@@ -608,7 +608,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void UpdateCanRefreshTemplateCache(bool canRefreshTemplateCache)
         {
             _canRefreshTemplateCache = canRefreshTemplateCache;
-            RefreshTemplateCacheCommand.OnCanExecuteChanged();
+            RefreshTemplateCacheCommand.RaiseCanExecuteChanged();
         }
 
         [SuppressMessage(
