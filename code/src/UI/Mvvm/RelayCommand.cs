@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 
-namespace Microsoft.Templates.Core.Mvvm
+namespace Microsoft.Templates.UI.Mvvm
 {
     public class RelayCommand : ICommand
     {

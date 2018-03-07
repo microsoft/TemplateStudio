@@ -225,6 +225,8 @@
     </Compile>
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
+    <Compile Include="Mvvm\Observable.cs" />
+    <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

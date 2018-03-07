@@ -6,7 +6,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Forms;
 
-using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Mvvm;
 
 namespace Microsoft.Templates.VsEmulator.LoadProject
 {
