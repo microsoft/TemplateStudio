@@ -180,5 +180,10 @@ namespace Microsoft.Templates.UI.Controls
                     break;
             }
         }
+
+        private void WebBrowser_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            webBrowser.Visibility = Visibility.Visible;
+        }
     }
 }
