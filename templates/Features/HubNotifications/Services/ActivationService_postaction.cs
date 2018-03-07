@@ -14,6 +14,7 @@ namespace Param_ItemNamespace.Services
     {
         private async Task StartupAsync()
         {
+//^^
 //{[{
 
             // TODO WTS: Configure and enable Azure Notification Hub integration.

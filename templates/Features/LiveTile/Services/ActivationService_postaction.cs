@@ -22,6 +22,7 @@ namespace Param_ItemNamespace.Services
 
         private async Task StartupAsync()
         {
+            //^^
             //{[{
             Singleton<LiveTileFeatureService>.Instance.SampleUpdate();
             //}]}

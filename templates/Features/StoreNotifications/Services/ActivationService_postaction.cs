@@ -14,6 +14,7 @@ namespace Param_ItemNamespace.Services
     {
         private async Task StartupAsync()
         {
+            //^^
             //{[{
             await Singleton<StoreNotificationsFeatureService>.Instance.InitializeAsync();
             //}]}
