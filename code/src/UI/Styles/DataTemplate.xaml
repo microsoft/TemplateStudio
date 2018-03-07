@@ -343,4 +343,41 @@
         </Grid>
     </DataTemplate>
 
+    <DataTemplate x:Key="GenInfoItemTemplate">
+        <Grid>
+            <StackPanel>
+                <TextBlock Text="{Binding Template.Identity}"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GenInfoGroupItemTemplate">
+        <Grid>
+            <ItemsControl
+                Visibility="{Binding IsCompositionGroup, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}"
+                ItemsSource="{Binding Items}"
+                ItemTemplate="{StaticResource GenInfoItemTemplate}" />
+            <Expander
+                Header="{Binding Name}"
+                IsExpanded="False"
+                Visibility="{Binding IsCompositionGroup, Converter={StaticResource BoolToVisibilityConverter}}"
+                Style="{StaticResource WtsExpander}">
+                <ItemsControl
+                    ItemsSource="{Binding Items}"
+                    ItemTemplate="{StaticResource GenInfoItemTemplate}" />
+            </Expander>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GenGroupItemTemplate">
+        <Expander            
+            Header="{Binding Name}"
+            IsExpanded="False"
+            Style="{StaticResource WtsExpander}">
+            <ItemsControl
+                ItemsSource="{Binding Items}"
+                ItemTemplate="{StaticResource GenInfoGroupItemTemplate}" />
+        </Expander>
+    </DataTemplate>
+
 </ResourceDictionary>
