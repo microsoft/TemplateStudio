@@ -70,7 +70,6 @@ namespace Microsoft.Templates.Test
 
             List<object[]> result = new List<object[]>();
 
-            // TODO: Add Stylecop tests for xamarin
             // foreach (var platform in Platforms.GetAllPlatforms())
             var platform = Platforms.Uwp;
             var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);

@@ -6,7 +6,7 @@
         "author": "Microsoft",
         "order": "3",
         "licenses": "",
-        "platforms": ["Uwp", "Xamarin"],
+        "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {
@@ -26,7 +26,7 @@
         "author": "Microsoft",
         "order": "1",
         "licenses": "",
-        "platforms": ["Uwp", "Xamarin"],
+        "platforms": ["Uwp"],
 		"languages": [ "C#", "VisualBasic" ]
     },
     {

@@ -6,7 +6,7 @@
         "author": "Microsoft",
         "order": "2",
         "licenses": "",
-        "platforms": ["Uwp", "Xamarin"],
+        "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {
@@ -18,16 +18,6 @@
         "licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",
         "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
-    },
-    {
-        "name": "MasterDetailXamarin",
-        "displayName": "Master Detail",
-        "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
-        "author": "Microsoft",
-        "order": "1",
-        "licenses": "",
-        "platforms": ["Xamarin"],
-        "languages": [ "C#" ]
     },
     {
         "name": "TabbedPivot",

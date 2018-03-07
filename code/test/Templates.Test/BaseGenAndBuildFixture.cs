@@ -208,7 +208,7 @@ namespace Microsoft.Templates.Test
             // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
 
-            var batFile = platform == Platforms.Xamarin ? "RestoreAndBuildXamarin.bat" : "RestoreAndBuild.bat";
+            var batFile = "RestoreAndBuild.bat";
 
             var batPath = Path.GetDirectoryName(GetPath(batFile));
 

@@ -94,8 +94,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public RelayCommand NewUwpVisualBasicProjectCommand => new RelayCommand(NewUwpVisualBasicProject);
 
-        public RelayCommand NewXamarinCSharpProjectCommand => new RelayCommand(NewXamarinCSharpProject);
-
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
 
         public RelayCommand RefreshTemplateCacheCommand => _refreshTemplateCacheCommand ?? (_refreshTemplateCacheCommand = new RelayCommand(
@@ -234,15 +232,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.VisualBasic);
-            });
-        }
-
-        private void NewXamarinCSharpProject()
-        {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectAsync(Platforms.Xamarin, ProgrammingLanguages.CSharp);
             });
         }
 

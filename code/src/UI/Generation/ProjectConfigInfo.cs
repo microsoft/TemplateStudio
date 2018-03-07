@@ -28,7 +28,6 @@ namespace Microsoft.Templates.UI.Generation
         private const string ProjTypeTabbedPivot = "TabbedPivot";
 
         private const string PlUwp = "Uwp";
-        private const string PlXamarin = "Xamarin";
 
         private const string ProjectTypeLiteral = "projectType";
         private const string FrameworkLiteral = "framework";
@@ -43,7 +42,6 @@ namespace Microsoft.Templates.UI.Generation
         {
             try
             {
-                // TODO: Adapt to read project configuration for xamarin forms (X-ref: https://github.com/Microsoft/WindowsTemplateStudio/issues/1350)
                 var path = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Package.appxmanifest");
                 if (File.Exists(path))
                 {
@@ -140,7 +138,6 @@ namespace Microsoft.Templates.UI.Generation
                 return (projectType, framework, platform);
             }
 
-            // TODO: Infer projectType y framework for Xamarin forms
             return (string.Empty, string.Empty, string.Empty);
         }
 
@@ -174,36 +171,12 @@ namespace Microsoft.Templates.UI.Generation
 
         public static string InferPlatform()
         {
-            if (IsXamarin())
-            {
-                return Platforms.Xamarin;
-            }
-
             if (IsUwp())
             {
                 return Platforms.Uwp;
             }
 
             throw new Exception(StringRes.ExceptionUnableResolvePlatform);
-        }
-
-        private static bool IsXamarin()
-        {
-            var searchPath = new DirectoryInfo(GenContext.ToolBox.Shell.GetActiveProjectPath()).Parent.FullName;
-            string[] fileExtensions = { ".json", ".config", ".csproj" };
-
-            var files = Directory.GetFiles(searchPath, "*.*", SearchOption.AllDirectories)
-                    .Where(f => fileExtensions.Contains(Path.GetExtension(f)));
-
-            foreach (string file in files)
-            {
-                if (File.ReadAllText(file).Contains("Xamarin.Forms"))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         private static bool IsUwp()

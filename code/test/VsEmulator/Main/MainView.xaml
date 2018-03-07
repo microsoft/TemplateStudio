@@ -49,11 +49,6 @@
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>
-                        <Hyperlink Command="{Binding NewXamarinCSharpProjectCommand}">
-                            <TextBlock Text="New Xamarin C# project..."/>
-                        </Hyperlink>
-                    </TextBlock>
-                    <TextBlock>
                         <Hyperlink Command="{Binding LoadProjectCommand}">
                             <TextBlock Text="Load project..."/>
                         </Hyperlink>
