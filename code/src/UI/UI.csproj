@@ -357,8 +357,10 @@
     <Compile Include="TemplateSelectors\NotificationTemplateSelector.cs" />
     <Compile Include="ViewModels\Common\BaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\CompositionFile.cs" />
     <Compile Include="ViewModels\Common\CompositionTool\CompositionToolViewModel.cs" />
     <Compile Include="ViewModels\Common\CompositionTool\GenGroup.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\GenInfoComposition.cs" />
     <Compile Include="ViewModels\Common\CompositionTool\GenInfoGroup.cs" />
     <Compile Include="ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\FileExtension.cs" />

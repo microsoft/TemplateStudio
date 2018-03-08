@@ -10,7 +10,8 @@
     WindowStartupLocation="CenterScreen"
     Title="{x:Static strings:StringRes.ButtonCompositionTool}"
     Loaded="OnLoaded"
-    MinHeight="600" MinWidth="900">
+    MinHeight="600" MinWidth="900"
+    MaxHeight="800" MaxWidth="1000">
 
     <Window.Resources>
         <ResourceDictionary>

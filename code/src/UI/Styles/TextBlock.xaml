@@ -311,4 +311,19 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
 
+    <!--Composition Tool-->
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockCompositionToolFieldNameStyle">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
+        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockCompositionToolFieldValueStyle">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
+        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Margin" Value="0,4" />
+    </Style>
 </ResourceDictionary>

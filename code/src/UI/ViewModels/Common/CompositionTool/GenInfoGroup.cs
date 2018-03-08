@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
@@ -11,14 +12,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         public string Name { get; set; }
 
-        public IEnumerable<GenInfo> Items { get; set; }
+        public IEnumerable<GenInfoComposition> Items { get; set; }
 
         public bool IsCompositionGroup { get; set; }
 
         public GenInfoGroup(string name, IEnumerable<GenInfo> items)
         {
             Name = name;
-            Items = items;
+            Items = items.Select(item => new GenInfoComposition(item));
             IsCompositionGroup = name == "composition";
         }
     }
