@@ -11,6 +11,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class GenInfoComposition : GenInfo
     {
+        public string TemplatePath { get; set; }
+
         public ObservableCollection<CompositionFile> Files { get; } = new ObservableCollection<CompositionFile>();
 
         public GenInfoComposition(GenInfo item)
@@ -27,6 +29,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         private void LoadFiles()
         {
+            TemplatePath = $"{GenContext.ToolBox.Repo.CurrentContentFolder}{Template.ConfigPlace.Replace("/", "\\")}";
             var configLoc = Template.ConfigPlace.Replace("/.template.config/template.json", string.Empty);
             var fullConfigLoc = $"{GenContext.ToolBox.Repo.CurrentContentFolder}{configLoc.Replace("/", "\\")}";
             var files = Directory.EnumerateFiles(fullConfigLoc, "*.*", SearchOption.AllDirectories)

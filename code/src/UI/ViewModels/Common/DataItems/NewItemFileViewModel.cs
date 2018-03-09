@@ -31,11 +31,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public Brush CircleColor { get; private set; }
 
-        public FileExtension FileExtension { get; }
+        public FileExtension FileExtension { get; private set; }
 
         public Func<string, string> UpdateTextAction { get; }
 
-        public string TempFile { get; }
+        public string TempFile { get; private set; }
 
         public string ProjectFile { get; }
 
@@ -44,6 +44,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public string MoreInfoLink => $"{Configuration.Current.GitHubDocsUrl}newitem.md";
 
         public ICommand MoreDetailsCommand => _moreDetailsCommand ?? (_moreDetailsCommand = new RelayCommand(OnMoreDetails));
+
+        private NewItemFileViewModel()
+            : base(false)
+        {
+        }
 
         private NewItemFileViewModel(FileStatus fileStatus, string subject, Func<string, string> updateTextAction = null)
             : base(false)
@@ -76,6 +81,16 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public static NewItemFileViewModel UnchangedFile(NewItemGenerationFileInfo file)
         {
             return new NewItemFileViewModel(FileStatus.UnchangedFile, file.Name);
+        }
+
+        public static NewItemFileViewModel CompositionToolFile(string filePath)
+        {
+            return new NewItemFileViewModel()
+            {
+                FileStatus = FileStatus.NewFile,
+                TempFile = filePath,
+                FileExtension = GetFileExtension(filePath)
+            };
         }
 
         public static NewItemFileViewModel ConflictingStylesFile(FailedMergePostAction file)
@@ -144,7 +159,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
-        private FileExtension GetFileExtension(string subject)
+        private static FileExtension GetFileExtension(string subject)
         {
             switch (Path.GetExtension(subject))
             {

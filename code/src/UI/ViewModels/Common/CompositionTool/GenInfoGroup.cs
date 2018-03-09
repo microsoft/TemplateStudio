@@ -12,14 +12,14 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         public string Name { get; set; }
 
-        public IEnumerable<GenInfoComposition> Items { get; set; }
+        public IEnumerable<GenInfoComposition> Compositions { get; set; }
 
         public bool IsCompositionGroup { get; set; }
 
-        public GenInfoGroup(string name, IEnumerable<GenInfo> items)
+        public GenInfoGroup(string name, IEnumerable<GenInfo> compositions)
         {
             Name = name;
-            Items = items.Select(item => new GenInfoComposition(item));
+            Compositions = compositions.Select(item => new GenInfoComposition(item));
             IsCompositionGroup = name == "composition";
         }
     }

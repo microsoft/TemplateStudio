@@ -12,12 +12,12 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         public string Name { get; set; }
 
-        public IEnumerable<GenInfoGroup> Items { get; set; }
+        public IEnumerable<GenInfoGroup> GenGroups { get; set; }
 
-        public GenGroup(string name, IEnumerable<GenInfo> items)
+        public GenGroup(string name, IEnumerable<GenInfo> genGroups)
         {
             Name = name;
-            Items = items
+            GenGroups = genGroups
                 .GroupBy(WtsType)
                 .Select(group => new GenInfoGroup(group.Key, group));
         }

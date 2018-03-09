@@ -63,11 +63,6 @@
                             <TextBlock Text="Analyze VB project selection"/>
                         </Hyperlink>
                     </TextBlock>
-                    <TextBlock>
-                        <Hyperlink x:Name="compositionToolCommandButton" Command="{Binding CompositionToolCommand}">
-                            <TextBlock Text="Composition Tool"/>
-                        </Hyperlink>
-                    </TextBlock>
                     <ComboBox SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" ItemsSource="{Binding Themes}" Margin="0,12,0,0" Style="{StaticResource VSEmulatorComboBox}"/>
                     <TextBlock Margin="0,20,0,0">
                         <Hyperlink Command="{Binding ConfigureVersionsCommand}">

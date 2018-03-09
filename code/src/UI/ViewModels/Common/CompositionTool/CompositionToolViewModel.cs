@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Utils;
 using Microsoft.Templates.Core.Gen;
@@ -16,6 +17,21 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class CompositionToolViewModel : Observable
     {
+        private NewItemFileViewModel _selectedFile;
+        private bool _isSelectedFileVisible;
+
+        public NewItemFileViewModel SelectedFile
+        {
+            get => _selectedFile;
+            set => SetProperty(ref _selectedFile, value);
+        }
+
+        public bool IsSelectedFileVisible
+        {
+            get => _isSelectedFileVisible;
+            set => SetProperty(ref _isSelectedFileVisible, value);
+        }
+
         public CompositionToolViewModel()
         {
         }
@@ -29,6 +45,24 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 .Select(genGroup => new GenGroup(genGroup.Key, genGroup));
             GenInfoGroups.Clear();
             GenInfoGroups.AddRange(groups);
+        }
+
+        public void SelectItem(object selectedItem)
+        {
+            switch (selectedItem)
+            {
+                case CompositionFile file:
+                    SelectedFile = NewItemFileViewModel.CompositionToolFile(file.Path);
+                    IsSelectedFileVisible = true;
+                    return;
+                case GenInfoComposition composition:
+                    SelectedFile = NewItemFileViewModel.CompositionToolFile(composition.TemplatePath);
+                    IsSelectedFileVisible = true;
+                    break;
+                default:
+                    IsSelectedFileVisible = false;
+                    break;
+            }
         }
     }
 }

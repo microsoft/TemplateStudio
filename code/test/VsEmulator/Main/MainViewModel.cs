@@ -89,8 +89,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
 
-        public RelayCommand CompositionToolCommand => new RelayCommand(CompositionTool);
-
         public RelayCommand LoadProjectCommand => new RelayCommand(LoadProject);
 
         public RelayCommand RefreshTemplateCacheCommand => _refreshTemplateCacheCommand ?? (_refreshTemplateCacheCommand = new RelayCommand(
@@ -229,21 +227,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 await NewProjectAsync(ProgrammingLanguages.VisualBasic);
-            });
-        }
-
-        private void CompositionTool()
-        {
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-                var dialog = new CompositionToolView()
-                {
-                    Owner = _host
-                };
-
-                var result = dialog.ShowDialog();
             });
         }
 
