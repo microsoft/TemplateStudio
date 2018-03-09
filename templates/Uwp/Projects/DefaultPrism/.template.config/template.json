@@ -53,6 +53,11 @@
       "type": "parameter",
       "replaces": "Param_Framework"
     },
+    "wts.generationPlatform":
+    {
+      "type": "parameter",
+      "replaces": "Param_Platform"
+    },
     "copyrightYear": {
         "type": "generated",
         "generator": "now",
@@ -61,5 +66,16 @@
           "format": "yyyy"
       }
     }
-  }
+  },
+  "postActions": [
+    {
+      "description": "Generate Test Certificate",
+      "manualInstructions": [ ],
+      "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
+      "args": {
+        "files" : "0"
+      },
+      "continueOnError": "true"
+    }
+  ]
 }
