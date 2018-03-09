@@ -115,17 +115,12 @@ Namespace ViewModels
             Select Case stateName
                 Case PanoramicStateName
                     DisplayMode = SplitViewDisplayMode.CompactInline
-                    Exit Select
                 Case WideStateName
                     DisplayMode = SplitViewDisplayMode.CompactInline
                     IsPaneOpen = False
-                    Exit Select
                 Case NarrowStateName
                     DisplayMode = SplitViewDisplayMode.Overlay
                     IsPaneOpen = False
-                    Exit Select
-                Case Else
-                    Exit Select
             End Select
         End Sub
 
