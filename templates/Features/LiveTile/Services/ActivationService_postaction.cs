@@ -26,6 +26,7 @@ namespace Param_ItemNamespace.Services
             //{[{
             Singleton<LiveTileFeatureService>.Instance.SampleUpdate();
             //}]}
+            await Task.CompletedTask;
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()
