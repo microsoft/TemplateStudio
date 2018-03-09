@@ -9,7 +9,8 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CaliburnMicro & $projectType == TabbedPivot & identity == wts.Page.MediaPlayer"
+    "wts.compositionFilter": "$framework == CaliburnMicro & $projectType == TabbedPivot & identity == wts.Page.MediaPlayer",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
