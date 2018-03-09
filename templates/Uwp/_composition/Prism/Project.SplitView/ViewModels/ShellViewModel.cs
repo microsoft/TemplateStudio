@@ -30,7 +30,7 @@ namespace wts.ItemName.ViewModels
             _navigationService = navigationServiceInstance;
 
             OpenPaneCommand = new DelegateCommand(() => IsPaneOpen = !_isPaneOpen);
-            ItemSelectedCommand = new DelegateCommand<HamburgetMenuItemInvokedEventArgs>(ItemSelected);
+            ItemSelectedCommand = new DelegateCommand<HamburgerMenuItemInvokedEventArgs>(ItemSelected);
             StateChangedCommand = new DelegateCommand<VisualStateChangedEventArgs>(args => GoToState(args.NewState.Name));
         }
 
@@ -136,7 +136,7 @@ namespace wts.ItemName.ViewModels
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
-        private void ItemSelected(HamburgetMenuItemInvokedEventArgs args)
+        private void ItemSelected(HamburgerMenuItemInvokedEventArgs args)
         {
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
