@@ -14,6 +14,7 @@ namespace Param_ItemNamespace.Services
             //{[{
             await WhatsNewDisplayService.ShowIfAppropriateAsync();
             //}]}
+            await Task.CompletedTask;
         }
     }
 }
