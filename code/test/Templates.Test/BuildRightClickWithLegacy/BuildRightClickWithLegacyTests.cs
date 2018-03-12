@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
+        [MemberData("GetProjectTemplatesForBuild", "LegacyFrameworks")]
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
+        [MemberData("GetProjectTemplatesForBuild", "LegacyFrameworks")]
         [Trait("ExecutionSet", "ManualOnly")]
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
         public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string language)
