@@ -32,9 +32,9 @@ namespace Microsoft.Templates.Test
 
         private static bool syncExecuted;
 
-        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync()
+        public static IEnumerable<object[]> GetProjectTemplates()
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSource("TstBld"));
+            InitializeTemplates(new LocalTemplatesSource("TstBld"));
 
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
@@ -68,9 +68,9 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync()
+        public static IEnumerable<object[]> GetPageAndFeatureTemplates()
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSource("TstBld"));
+            InitializeTemplates(new LocalTemplatesSource("TstBld"));
 
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
@@ -114,22 +114,26 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesAsync(TemplatesSource source)
+        [SuppressMessage(
+         "Usage",
+         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
+         Justification = "Required for unit testing.")]
+        private static void InitializeTemplates(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 
             if (!syncExecuted)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync(true);
+                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
                 syncExecuted = true;
             }
         }
 
-        public override async Task InitializeFixtureAsync(IContextProvider contextProvider, string framework = "")
+        public override void InitializeFixture(IContextProvider contextProvider, string framework = "")
         {
             GenContext.Current = contextProvider;
 
-            await InitializeTemplatesAsync(Source);
+            InitializeTemplates(Source);
         }
     }
 }

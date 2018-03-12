@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace Microsoft.Templates.Test
 
         private static bool syncExecuted;
 
-        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync()
+        public static IEnumerable<object[]> GetProjectTemplates()
         {
             List<object[]> result = new List<object[]>();
 
@@ -34,7 +35,7 @@ namespace Microsoft.Templates.Test
             {
                 Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-                await InitializeTemplatesAsync(new LegacyTemplatesSourceV2(), language);
+                InitializeTemplates(new LegacyTemplatesSourceV2(), language);
 
                 // TODO: Re-enable for all platforms
                 ////foreach (var language in Platforms.GetAllPlarforms())
@@ -65,14 +66,18 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesAsync(TemplatesSource source, string language)
+        [SuppressMessage(
+         "Usage",
+         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
+         Justification = "Required for unit testing.")]
+        private static void InitializeTemplates(TemplatesSource source, string language)
         {
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
             GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), new Version("1.7"), language);
             if (!syncExecuted)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync(true);
+                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
 
                 syncExecuted = true;
             }
@@ -85,12 +90,12 @@ namespace Microsoft.Templates.Test
         }
 
         // Renamed second parameter as this fixture needs the language while others don't
-        public override async Task InitializeFixtureAsync(IContextProvider contextProvider, string language = "")
+        public override void InitializeFixture(IContextProvider contextProvider, string language = "")
         {
             GenContext.Current = contextProvider;
             Configuration.Current.Environment = "Pro";
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
-            await InitializeTemplatesAsync(Source, language);
+            InitializeTemplates(Source, language);
         }
     }
 }

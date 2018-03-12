@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Test
         public WindowsAppCertKitTests(BuildFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixtureAsync(this);
+            _fixture.InitializeFixture(this);
         }
 
         //// *** WARNING ***
@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Test
         //// - Running a Administrator (for the WACK tests or you'll get UAC prompts)
         //// - Control of the machine (as WACK tests will launch and try and control the generated app. If you're doing other things it may cause the test to fail incorrectly)
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "")]
+        [MemberData("GetProjectTemplatesForBuild", "")]
         public async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
             Func<ITemplateInfo, bool> selector =
