@@ -1,8 +1,8 @@
-#Setting Storage Extensions
+# Setting Storage Extensions
 
 SettingsStorageExtensions is a helper class that groups extension methods to facilitate the use of serialization, handling and storing of any content in a UWP application. This extension wraps the handling and storing of content (for example: custom content, key-values, files, etc.) in the same way as simple settings for a consistent interface.
 
-##Advantages:
+## Advantages:
  - All methods of handling and storing content can be found in the same class and using a similar nomenclature. 
  - Facilitate the serialization and deserialization of data content and make it transparent for the developers.
  - Using methods that avoid problems in the serialization process (for example: big files that can take a long time to process).
@@ -16,7 +16,7 @@ This helper contains extension methods for handling and storing content in:
 More info: [https://docs.microsoft.com/es-es/windows/uwp/design/app-settings/store-and-retrieve-app-data](https://docs.microsoft.com/es-es/windows/uwp/design/app-settings/store-and-retrieve-app-data).
 
 
-##Examples of use:
+## Examples of use:
 
 To use these extension methods you have to add a reference to:
 ```csharp
@@ -31,7 +31,7 @@ public class MyData
     public string Name { get; set; }
 }
 ```
-###Application Data
+### Application Data
 
 - Save to ApplicationData: saves MyData object as a key-value pair where the value is serialized in json.
 
@@ -56,7 +56,7 @@ private async Task<MyData> ReadMyDataAsync()
     return await ApplicationData.Current.LocalSettings.ReadAsync<MyData>(key);
 }
 ```
-###Storage folder
+### Storage folder
 - Save content to StorageFolder: saves the serialized MyData object in json to a file in the StorageFolder.
 ```csharp
 private async Task SaveMyDataAsync()
