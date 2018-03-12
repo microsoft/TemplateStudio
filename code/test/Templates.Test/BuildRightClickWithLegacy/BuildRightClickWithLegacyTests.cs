@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            await _fixture.InitializeFixtureAsync(this, language);
+            _fixture.InitializeFixture(this, language);
 
             var projectName = $"{projectType}{framework}Legacy";
 
@@ -63,7 +63,7 @@ namespace Microsoft.Templates.Test
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
         public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
-            await _fixture.InitializeFixtureAsync(this, language);
+            _fixture.InitializeFixture(this, language);
 
             var projectName = $"{projectType}{framework}AllLegacy";
 

@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test
         public VisualComparisonTests(GenerationFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixtureAsync(this);
+            _fixture.InitializeFixture(this);
         }
 
         public static IEnumerable<object[]> GetAllSinglePageApps()
