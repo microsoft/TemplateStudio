@@ -1,5 +1,8 @@
 # Setting Storage Extensions
 
+:heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./setting-storage.md) :heavy_exclamation_mark: |
+---------------------------------------------------------------------------------------------------------------------------------------- |
+
 SettingsStorageExtensions is a helper class that groups extension methods to facilitate the use of serialization, handling and storing of any content in a UWP application. This extension wraps the handling and storing of content (for example: custom content, key-values, files, etc.) in the same way as simple settings for a consistent interface.
 
 ## Advantages:
