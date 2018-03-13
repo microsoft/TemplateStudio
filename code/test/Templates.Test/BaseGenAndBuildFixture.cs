@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Test
 
         public abstract string GetTestRunPath();
 
-        public abstract Task InitializeFixtureAsync(IContextProvider contextProvider, string framework = "");
+        public abstract void InitializeFixture(IContextProvider contextProvider, string framework = "");
 
         public string TestProjectsPath => Path.GetFullPath(Path.Combine(GetTestRunPath(), "Proj"));
 

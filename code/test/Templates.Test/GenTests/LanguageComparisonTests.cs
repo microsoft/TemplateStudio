@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Test
         public LanguageComparisonTests(GenerationFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixtureAsync(this);
+            _fixture.InitializeFixture(this);
         }
 
         // This test is manual only as it will fail when C# templates are updated but their VB equivalents haven't been.

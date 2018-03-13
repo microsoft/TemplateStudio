@@ -18,7 +18,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
     [Collection("Unit Test Templates")]
     [Trait("ExecutionSet", "Minimum")]
-
     public class GenerateTestCertificatePostActionTest : IContextProvider
     {
         private TemplatesFixture _fixture;

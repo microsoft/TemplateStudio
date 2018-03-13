@@ -34,9 +34,9 @@ namespace Microsoft.Templates.Test
 
         public TemplatesSource Source => new LocalTemplatesSource(ShortFrameworkName(_framework));
 
-        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync(string frameworkFilter, string programmingLanguage, string selectedPlatform)
+        public static IEnumerable<object[]> GetProjectTemplates(string frameworkFilter, string programmingLanguage, string selectedPlatform)
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
+            InitializeTemplates(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
 
             List<object[]> result = new List<object[]>();
 
@@ -88,9 +88,9 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static async Task<IEnumerable<object[]>> GetPageAndFeatureTemplatesAsync(string frameworkFilter)
+        public static IEnumerable<object[]> GetPageAndFeatureTemplates(string frameworkFilter)
         {
-            await InitializeTemplatesAsync(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
+            InitializeTemplates(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
 
             List<object[]> result = new List<object[]>();
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
@@ -134,7 +134,11 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesAsync(TemplatesSource source)
+        [SuppressMessage(
+         "Usage",
+         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
+         Justification = "Required for unit testing.")]
+        private static void InitializeTemplates(TemplatesSource source)
         {
             GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 
@@ -143,17 +147,17 @@ namespace Microsoft.Templates.Test
                 return;
             }
 
-            await GenContext.ToolBox.Repo.SynchronizeAsync(true);
+            GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
 
             syncExecuted.Add(source.Id, true);
         }
 
-        public override async Task InitializeFixtureAsync(IContextProvider contextProvider, string framework)
+        public override void InitializeFixture(IContextProvider contextProvider, string framework)
         {
             GenContext.Current = contextProvider;
             _framework = framework;
 
-            await InitializeTemplatesAsync(Source);
+            InitializeTemplates(Source);
         }
 
         private static string ShortFrameworkName(string framework)
