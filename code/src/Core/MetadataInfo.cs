@@ -32,6 +32,8 @@ namespace Microsoft.Templates.Core
 
         public IEnumerable<TemplateLicense> LicenseTerms { get; set; }
 
+        public IEnumerable<string> Platforms { get; set; }
+
         public IEnumerable<string> Languages { get; set; }
     }
 }

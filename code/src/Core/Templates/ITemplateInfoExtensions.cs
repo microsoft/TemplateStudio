@@ -187,6 +187,11 @@ namespace Microsoft.Templates.Core
             return result;
         }
 
+        public static string GetPlatform(this ITemplateInfo ti)
+        {
+            return GetValueFromTag(ti, TagPrefix + "platform") ?? string.Empty;
+        }
+
         public static List<string> GetDependencyList(this ITemplateInfo ti)
         {
             var dependencies = GetValueFromTag(ti, TagPrefix + "dependencies");
@@ -345,6 +350,21 @@ namespace Microsoft.Templates.Core
         public static bool GetItemNameEditable(this ITemplateInfo ti)
         {
             return ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance();
+        }
+
+        public static bool GetOutputToParent(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "outputToParent");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (bool.TryParse(result, out bool boolResult))
+                {
+                    return boolResult;
+                }
+            }
+
+            return false;
         }
 
         private static string GetConfigDir(ITemplateInfo ti)

@@ -94,9 +94,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             IsTextSelected = true;
         }
 
-        public void LoadData(TemplateType templateType, string framework)
+        public void LoadData(TemplateType templateType, string framework, string platform)
         {
-            DataService.LoadTemplateGroups(Groups, templateType, framework);
+            DataService.LoadTemplatesGroups(Groups, templateType, framework, platform);
             var group = Groups.FirstOrDefault();
             if (group != null)
             {
@@ -118,7 +118,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
                 HasErrors = false;
                 Template = template.Template;
-                var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework);
+                var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework, MainViewModel.Instance.ConfigPlatform);
                 LicensesService.SyncLicenses(licenses, Licenses);
                 Dependencies.Clear();
                 foreach (var dependency in template.Dependencies)

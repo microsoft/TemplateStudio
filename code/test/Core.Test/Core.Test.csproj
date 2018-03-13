@@ -199,10 +199,12 @@
     <Compile Include="Localization\LocalizationTest.cs" />
     <Compile Include="Locations\UnitTestsTemplatesSource.cs" />
     <Compile Include="Packaging\TemplatePackageTests.cs" />
+    <Compile Include="PostActions\Catalog\FakeCreationPath.cs" />
     <Compile Include="PostActions\Catalog\HandleRemovalsTest.cs" />
     <Compile Include="PostActions\Catalog\MergeResourceDictionaryPostactionTest.cs" />
     <Compile Include="PostActions\Catalog\SortImportsTest.cs" />
     <Compile Include="PostActions\Catalog\SortUsingsTest.cs" />
+    <Compile Include="PostActions\Catalog\FakeTemplateDefinedPostAction.cs" />
     <Compile Include="Templates\ITemplateInfoExtensionsTest.cs" />
     <Compile Include="Naming\NamingTests.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidatorTests.cs" />

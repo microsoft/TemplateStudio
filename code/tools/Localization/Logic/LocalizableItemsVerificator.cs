@@ -214,7 +214,7 @@ namespace Localization
 
             foreach (var res in resWithDistinctFormats)
             {
-                _errors.Add($"Format Error: {cultureFile} contains distint string format that default.");
+                _errors.Add($"Format Error: {cultureFile} contains distinct string format that default in {res.Key}.");
             }
         }
 

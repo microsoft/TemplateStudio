@@ -112,9 +112,19 @@ namespace Microsoft.Templates.Core
             return GetMetadataInfo("projectTypes");
         }
 
+        public IEnumerable<MetadataInfo> GetProjectTypes(string platform)
+        {
+            return GetProjectTypes().Where(m => m.Platforms.Contains(platform));
+        }
+
         public IEnumerable<MetadataInfo> GetFrameworks()
         {
             return GetMetadataInfo("frameworks");
+        }
+
+        public IEnumerable<MetadataInfo> GetFrameworks(string platform)
+        {
+            return GetFrameworks().Where(m => m.Platforms.Contains(platform));
         }
 
         private IEnumerable<MetadataInfo> GetMetadataInfo(string type)
@@ -127,7 +137,7 @@ namespace Microsoft.Templates.Core
             }
 
             var metadataFile = Path.Combine(folderName, $"{type}.json");
-            var metadataFileLocalized = Path.Combine(folderName, $"{type}.json");
+            var metadataFileLocalized = Path.Combine(folderName, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{type}.json");
             var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
 
             if (metadata.Any(m => m.Languages != null))
@@ -185,7 +195,12 @@ namespace Microsoft.Templates.Core
 
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)
         {
-            var descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");
+            var descriptionFile = Path.Combine(folderName, type, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{mInfo.Name}.md");
+
+            if (!File.Exists(descriptionFile))
+            {
+                descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");
+            }
 
             if (File.Exists(descriptionFile))
             {

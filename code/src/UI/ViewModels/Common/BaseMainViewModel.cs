@@ -38,6 +38,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         protected string Language { get; private set; }
 
+        protected string Platform { get; private set; }
+
         public int Step
         {
             get => _step;
@@ -126,8 +128,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public Step GetCurrentStep() => Steps.FirstOrDefault(step => step.Equals(Step));
 
-        public virtual async Task InitializeAsync(string language)
+        public virtual async Task InitializeAsync(string platform, string language)
         {
+            Platform = platform;
             Language = language;
             Steps.Clear();
             foreach (var step in GetSteps())

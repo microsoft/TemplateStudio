@@ -39,6 +39,9 @@
             <DataTemplate x:Key="MetadataDisplayNameTemplate">
                 <TextBlock Text="{Binding DisplayName}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}" />
             </DataTemplate>
+            <DataTemplate x:Key="SimpleDisplayNameTemplate">
+                <TextBlock Text="{Binding}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
@@ -59,6 +62,15 @@
 
 
             <StackPanel  Grid.Row="2">
+                <TextBlock
+                    Text="{x:Static strings:StringRes.ProjectConfigurationSelectPlatform}"
+                    Margin="{StaticResource Margin_L_Top}"
+                    Style="{StaticResource ProjectConfigurationComboBoxHeaderStyle}" />
+                <ComboBox
+                    ItemsSource="{Binding Platforms}"
+                    SelectedItem="{Binding SelectedPlatform, Mode=TwoWay}"
+                    Margin="{StaticResource Margin_S_Top}"
+                    ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"/>
                 <TextBlock
                     Text="{x:Static strings:StringRes.ProjectConfigurationSelectProjectType}"
                     Margin="{StaticResource Margin_M_Top}"

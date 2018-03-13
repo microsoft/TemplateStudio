@@ -32,6 +32,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         private bool _isInitialized;
         private string _projectTypeName;
         private string _frameworkName;
+        private string _platform;
         private string _language;
         private ICommand _editPageCommand;
         private RelayCommand<SavedTemplateViewModel> _deletePageCommand;
@@ -76,10 +77,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
         }
 
-        public void Initialize(string projectTypeName, string frameworkName, string language)
+        public void Initialize(string projectTypeName, string frameworkName, string platform, string language)
         {
             _projectTypeName = projectTypeName;
             _frameworkName = frameworkName;
+            _platform = platform;
             _language = language;
             if (_isInitialized)
             {
@@ -87,7 +89,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 Features.Clear();
             }
 
-            var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName);
+            var layout = GenComposer.GetLayoutTemplates(projectTypeName, frameworkName, platform);
             foreach (var item in layout)
             {
                 if (item.Template != null)
@@ -109,14 +111,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public void Add(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null)
         {
-            var dependencies = GenComposer.GetAllDependencies(template.Template, _frameworkName);
+            var dependencies = GenComposer.GetAllDependencies(template.Template, _frameworkName, _platform);
             foreach (var dependency in dependencies)
             {
                 var dependencyTemplate = MainViewModel.Instance.GetTemplate(dependency);
                 if (dependencyTemplate == null)
                 {
                     // Case of hidden templates, it's not found on templat lists
-                    dependencyTemplate = new TemplateInfoViewModel(dependency, _frameworkName);
+                    dependencyTemplate = new TemplateInfoViewModel(dependency, _frameworkName, _platform);
                 }
 
                 Add(TemplateOrigin.Dependency, dependencyTemplate);
@@ -200,7 +202,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public UserSelection GetUserSelection()
         {
-            var selection = new UserSelection(_projectTypeName, _frameworkName, _language);
+            var selection = new UserSelection(_projectTypeName, _frameworkName, _platform, _language);
 
             if (Pages.Any())
             {

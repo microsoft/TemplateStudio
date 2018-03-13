@@ -430,7 +430,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dependency template {0} not found for framework {1}..
+        ///   Looks up a localized string similar to Dependency template {0} not found for framework {1} and platform {2}..
         /// </summary>
         public static string ErrorDependencyNotFound {
             get {
@@ -484,7 +484,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Layout template {0} not found for framework {1}..
+        ///   Looks up a localized string similar to Layout template {0} not found for framework {1} and platform {2}..
         /// </summary>
         public static string ErrorLayoutNotFound {
             get {
@@ -570,6 +570,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ErrorVsGenShellShowStatusBarMessageMessage {
             get {
                 return ResourceManager.GetString("ErrorVsGenShellShowStatusBarMessageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to resolve platform..
+        /// </summary>
+        public static string ExceptionUnableResolvePlatform {
+            get {
+                return ResourceManager.GetString("ExceptionUnableResolvePlatform", resourceCulture);
             }
         }
         
@@ -867,6 +876,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ProjectConfigurationSelectFramework {
             get {
                 return ResourceManager.GetString("ProjectConfigurationSelectFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select platform.
+        /// </summary>
+        public static string ProjectConfigurationSelectPlatform {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectPlatform", resourceCulture);
             }
         }
         

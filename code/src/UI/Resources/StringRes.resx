@@ -526,8 +526,8 @@
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Dependency template {0} not found for framework {1}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name</comment>
+    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorDependencyType" xml:space="preserve">
     <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
@@ -538,8 +538,8 @@
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework</comment>
+    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
     <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
@@ -644,5 +644,12 @@
   <data name="ReorderPageHelpText" xml:space="preserve">
     <value>Use ctrl+up arrow or ctrl+down arrow to change page order</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data>
+  <data name="ExceptionUnableResolvePlatform" xml:space="preserve">
+    <value>Unable to resolve platform.</value>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Select platform</value>
+    <comment>Project configuration window select platform title</comment>
   </data>
 </root>

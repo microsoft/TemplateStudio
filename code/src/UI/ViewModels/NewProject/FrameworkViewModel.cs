@@ -16,9 +16,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
         }
 
-        public void LoadData(string projectTypeName)
+        public void LoadData(string projectTypeName, string platform)
         {
-            if (DataService.LoadFrameworks(Items, projectTypeName))
+            if (DataService.LoadFrameworks(Items, projectTypeName, platform))
             {
                 BaseMainViewModel.BaseInstance.ProcessItem(Items.First());
             }

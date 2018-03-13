@@ -55,7 +55,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             FileExtension = GetFileExtension(subject);
             Subject = subject;
             TempFile = Path.Combine(GenContext.Current.OutputPath, subject);
-            ProjectFile = Path.Combine(GenContext.Current.ProjectPath, subject);
+            ProjectFile = Path.Combine(GenContext.Current.DestinationPath, subject);
         }
 
         public static NewItemFileViewModel NewFile(NewItemGenerationFileInfo file)
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             return new NewItemFileViewModel(FileStatus.UnchangedFile, file.Name);
         }
 
-        public static NewItemFileViewModel ConflictingStylesFile(FailedMergePostAction file)
+        public static NewItemFileViewModel ConflictingStylesFile(FailedMergePostActionInfo file)
         {
             return new NewItemFileViewModel(FileStatus.ConflictingStylesFile, file.FileName, AsUserFriendlyPostAction)
             {
@@ -86,7 +86,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             };
         }
 
-        public static NewItemFileViewModel WarningFile(FailedMergePostAction file)
+        public static NewItemFileViewModel WarningFile(FailedMergePostActionInfo file)
         {
             return new NewItemFileViewModel(FileStatus.WarningFile, file.FailedFileName, AsUserFriendlyPostAction)
             {

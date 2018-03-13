@@ -19,12 +19,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + @")\.";
 
-        public SearchAndReplacePostAction(string config)
-            : base(config)
+        public SearchAndReplacePostAction(string relatedTemplate, string config)
+            : base(relatedTemplate, config)
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             string originalFilePath = GetFilePath();
 

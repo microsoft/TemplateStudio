@@ -177,6 +177,9 @@ namespace TemplateValidator
                     case "wts.projecttype":
                         VerifyWtsProjecttypeTagValue(tag, results);
                         break;
+                    case "wts.platform":
+                        VerifyPlatformTagValue(tag, results);
+                        break;
                     case "wts.version":
                         VerifyWtsVersionTagValue(tag, results);
                         break;
@@ -218,6 +221,14 @@ namespace TemplateValidator
                         results.Add($"Unknown tag '{tag.Value}' specified in the file.");
                         break;
                 }
+            }
+        }
+
+        private static void VerifyPlatformTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            if (!new[] { Platforms.Uwp }.Contains(tag.Value))
+            {
+                results.Add($"Invalid value '{tag.Value}' specified in the platform tag.");
             }
         }
 
