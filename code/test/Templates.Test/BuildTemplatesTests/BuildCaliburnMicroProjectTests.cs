@@ -19,11 +19,11 @@ namespace Microsoft.Templates.Test
         public BuildCaliburnMicroProjectTests(BuildTemplatesTestFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixtureAsync(this, "CaliburnMicro");
+            _fixture.InitializeFixture(this, "CaliburnMicro");
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
+        [MemberData("GetProjectTemplatesForBuild", "CaliburnMicro")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
+        [MemberData("GetProjectTemplatesForBuild", "CaliburnMicro")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
@@ -63,7 +63,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
+        [MemberData("GetProjectTemplatesForBuild", "CaliburnMicro")]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimum")]
@@ -85,7 +85,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
+        [MemberData("GetProjectTemplatesForBuild", "CaliburnMicro")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -97,7 +97,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "CaliburnMicro")]
+        [MemberData("GetProjectTemplatesForBuild", "CaliburnMicro")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -109,7 +109,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesForBuildAsync", "CaliburnMicro")]
+        [MemberData("GetPageAndFeatureTemplatesForBuild", "CaliburnMicro")]
         [Trait("Type", "BuildOneByOneCaliburnMicro")]
         public async Task BuildCaliburnMicroOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
