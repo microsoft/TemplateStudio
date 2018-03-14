@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "CodeBehind", ProgrammingLanguages.VisualBasic)]
+        [MemberData("GetProjectTemplatesForBuild", "CodeBehind", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimumVB")]
