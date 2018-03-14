@@ -11,11 +11,11 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "MVVMBasic|MVVMLight|CaliburnMicro|Prism",
+    "wts.framework": "MVVMLight|CaliburnMicro|Prism",
     "wts.version": "1.0.0",
     "wts.displayOrder": "4",
-    "wts.genGroup": "0",    
-    "wts.rightClickEnabled":"true" 
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "MediaPlayerView",
   "preferNameDirectory": true,

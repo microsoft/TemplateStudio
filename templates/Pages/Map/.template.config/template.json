@@ -9,11 +9,11 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "MVVMBasic|MVVMLight",
+    "wts.framework": "MVVMLight",
     "wts.version": "1.0.0",
     "wts.displayOrder": "9",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true" 
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "MapPage",
   "preferNameDirectory": true,

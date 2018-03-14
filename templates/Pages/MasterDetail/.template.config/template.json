@@ -11,12 +11,12 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "MVVMBasic|MVVMLight",
+    "wts.framework": "MVVMLight",
     "wts.version": "1.0.0",
     "wts.displayOrder": "5",
     "wts.dependencies": "wts.Feat.SampleDataService",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true" 
+    "wts.rightClickEnabled":"true"
   },
   "sourceName": "MasterDetailView",
   "preferNameDirectory": true,
