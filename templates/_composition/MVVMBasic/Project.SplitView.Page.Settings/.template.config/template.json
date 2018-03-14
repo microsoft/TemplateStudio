@@ -3,13 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Project.SplitView.AddToPrimaryNavigationItems",
+  "name": "MVVMBasic.Project.SplitView.Page.Settings",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings & $framework == MVVMBasic & $projectType == SplitView"
+    "wts.compositionFilter": "$framework == MVVMBasic & $projectType == SplitView & identity == wts.Page.Settings"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
