@@ -185,7 +185,11 @@ namespace Microsoft.Templates.Core
 
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)
         {
-            var descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");
+            var descriptionFile = Path.Combine(folderName, type, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{mInfo.Name}.md");
+            if (!File.Exists(descriptionFile))
+            {
+                descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");
+            }
 
             if (File.Exists(descriptionFile))
             {
