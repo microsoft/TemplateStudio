@@ -12,7 +12,7 @@
   {
     "name": "CodeBehind",
     "displayName": "Code Behind",
-    "summary": "これは、ロジックが code-behind で処理されるアプリケーションの従来型のモデルです。簡単なアプリケーションでは、これは優れたオプションです。"
+    "summary": "これは、ロジックが code-behind で処理されるアプリケーションの従来型のモデルです。"
   },
   {
     "name": "CaliburnMicro",
