@@ -14,6 +14,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace Microsoft.Templates.UI
@@ -34,9 +35,9 @@ namespace Microsoft.Templates.UI
             PostactionFactory = postactionFactory;
         }
 
-        public UserSelection GetUserSelection(string language)
+        public UserSelection GetUserSelection(string language, BaseStyleValuesProvider provider)
         {
-            var mainView = new Views.NewProject.WizardShell(language);
+            var mainView = new Views.NewProject.WizardShell(language, provider);
 
             try
             {

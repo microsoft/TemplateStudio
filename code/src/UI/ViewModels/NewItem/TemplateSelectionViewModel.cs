@@ -23,6 +23,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private bool _nameEditable;
         private bool _hasErrors;
         private bool _isFocused;
+        private bool _isTextSelected;
         private ICommand _setFocusCommand;
         private ICommand _lostKeyboardFocusCommand;
 
@@ -58,6 +59,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
+        public bool IsTextSelected
+        {
+            get => _isTextSelected;
+            set
+            {
+                if (_isTextSelected == value)
+                {
+                    SetProperty(ref _isTextSelected, false);
+                }
+
+                SetProperty(ref _isTextSelected, value);
+            }
+        }
+
         public ITemplateInfo Template { get; private set; }
 
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
@@ -76,7 +91,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public void Focus()
         {
-            EventService.Instance.RaiseOnSavedTemplateFocused(Name);
+            IsTextSelected = true;
         }
 
         public void LoadData(TemplateType templateType, string framework)
@@ -102,7 +117,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 NameEditable = template.ItemNameEditable;
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
                 HasErrors = false;
-                WizardStatus.Current.HasValidationErrors = false;
                 Template = template.Template;
                 var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework);
                 LicensesService.SyncLicenses(licenses, Licenses);
@@ -114,7 +128,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
                 OnPropertyChanged("Licenses");
                 OnPropertyChanged("Dependencies");
-                NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                WizardStatus.Current.HasValidationErrors = false;
                 if (NameEditable)
                 {
                     Focus();
@@ -131,11 +146,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
                 if (validationResult.IsValid)
                 {
-                    NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                    NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
                 }
                 else
                 {
-                    NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
+                    NotificationsControl.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
                 }
             }
 

@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.Controls
@@ -16,18 +15,38 @@ namespace Microsoft.Templates.UI.Controls
 
         public string Title { get; }
 
+        public Func<object> GetPage { get; }
+
         public bool Completed
         {
             get => _completed;
             set => SetProperty(ref _completed, value);
         }
 
-        public Step(int index, string title, bool completed = false, bool isSelected = false)
+        public Step(int index, string title, Func<object> getPage, bool completed = false, bool isSelected = false)
             : base(isSelected)
         {
             Index = index;
             Title = title;
+            GetPage = getPage;
             Completed = completed;
         }
+
+        public override bool Equals(object obj)
+        {
+            switch (obj)
+            {
+                case int index:
+                    return Index.Equals(index);
+                case Type type:
+                    return type.Equals(GetPage().GetType());
+                default:
+                    return base.Equals(obj);
+            }
+        }
+
+        public override int GetHashCode() => base.GetHashCode();
+
+        public bool IsPrevious(int index) => Index <= index;
     }
 }

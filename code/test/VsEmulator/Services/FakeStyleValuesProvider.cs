@@ -10,7 +10,7 @@ using Microsoft.Templates.VsEmulator.Main;
 
 namespace Microsoft.Templates.VsEmulator.Services
 {
-    public class FakeStyleValuesProvider : IStyleValuesProvider
+    public class FakeStyleValuesProvider : BaseStyleValuesProvider
     {
         private static FakeStyleValuesProvider _instance;
 
@@ -28,9 +28,9 @@ namespace Microsoft.Templates.VsEmulator.Services
 
         private double _baseFontSize = 12;
 
-        public event EventHandler ThemeChanged;
+        public override event EventHandler ThemeChanged;
 
-        public Brush GetColor(string className, string memberName)
+        public override Brush GetColor(string className, string memberName)
         {
             switch (className)
             {
@@ -49,13 +49,13 @@ namespace Microsoft.Templates.VsEmulator.Services
             }
         }
 
-        public System.Drawing.Color GetThemedColor(string className, string memberName)
+        public override System.Drawing.Color GetThemedColor(string className, string memberName)
         {
             var color = GetColor(className, memberName) as SolidColorBrush;
             return System.Drawing.Color.FromArgb(color.Color.A, color.Color.R, color.Color.G, color.Color.B);
         }
 
-        public double GetFontSize(string fontSizeResourceKey)
+        public override double GetFontSize(string fontSizeResourceKey)
         {
             switch (fontSizeResourceKey)
             {
@@ -82,7 +82,31 @@ namespace Microsoft.Templates.VsEmulator.Services
             }
         }
 
-        public FontFamily GetFontFamily() => new FontFamily("Segoe UI");
+        public override FontFamily GetFontFamily() => new FontFamily("Segoe UI");
+
+        public void LoadResources(string themeName)
+        {
+            _commonControls = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_CommonControls.xaml", UriKind.RelativeOrAbsolute)
+            };
+            _commonDocument = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_CommonDocument.xaml", UriKind.RelativeOrAbsolute)
+            };
+            _environment = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_Environment.xaml", UriKind.RelativeOrAbsolute)
+            };
+            _infoBar = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_InfoBar.xaml", UriKind.RelativeOrAbsolute)
+            };
+            _windowsTemplateStudio = new ResourceDictionary()
+            {
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_WindowsTemplateStudio.xaml", UriKind.RelativeOrAbsolute)
+            };
+        }
 
         private void OnThemeChanged()
         {
@@ -99,30 +123,6 @@ namespace Microsoft.Templates.VsEmulator.Services
             {
                 throw new Exception($"The member name '{resourceName}' is not recognized");
             }
-        }
-
-        public void LoadResources()
-        {
-            _commonControls = new ResourceDictionary()
-            {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_CommonControls.xaml", UriKind.RelativeOrAbsolute)
-            };
-            _commonDocument = new ResourceDictionary()
-            {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_CommonDocument.xaml", UriKind.RelativeOrAbsolute)
-            };
-            _environment = new ResourceDictionary()
-            {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_Environment.xaml", UriKind.RelativeOrAbsolute)
-            };
-            _infoBar = new ResourceDictionary()
-            {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_InfoBar.xaml", UriKind.RelativeOrAbsolute)
-            };
-            _windowsTemplateStudio = new ResourceDictionary()
-            {
-                Source = new Uri($"/VsEmulator;component/Styles/{MainViewModel.ThemeName}_WindowsTemplateStudio.xaml", UriKind.RelativeOrAbsolute)
-            };
         }
 
         public SolidColorBrush GetColor(string resourceKey) => Application.Current.FindResource(resourceKey) as SolidColorBrush;

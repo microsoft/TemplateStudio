@@ -15,6 +15,7 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -51,7 +52,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 #else
                 GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), language);
 #endif
-                UIStylesService.Instance.Initialize(new VSStyleValuesProvider());
             }
         }
 
@@ -70,19 +70,23 @@ namespace Microsoft.Templates.UI.VisualStudio
         public void RunFinished()
         {
             AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
-            SafeThreading.JoinableTaskFactory.Run(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
-            });
+            SafeThreading.JoinableTaskFactory.Run(
+                async () =>
+                {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
+                },
+                JoinableTaskCreationOptions.LongRunning);
 
             AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
 
-            SafeThreading.JoinableTaskFactory.RunAsync(async () =>
-            {
-                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                PostGenerationActions();
-            });
+            SafeThreading.JoinableTaskFactory.Run(
+                async () =>
+                {
+                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    PostGenerationActions();
+                },
+                JoinableTaskCreationOptions.LongRunning);
         }
 
         private static void PostGenerationActions()
@@ -103,7 +107,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection(GenContext.CurrentLanguage);
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection(GenContext.CurrentLanguage, new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)

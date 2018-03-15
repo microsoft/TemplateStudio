@@ -14,7 +14,7 @@ namespace Microsoft.Templates.UI.Controls
 {
     public partial class NotificationsControl : UserControl
     {
-        public static NotificationsControl Instance { get; set; }
+        private static NotificationsControl _instance;
 
         public Notification Notification
         {
@@ -28,11 +28,63 @@ namespace Microsoft.Templates.UI.Controls
 
         public NotificationsControl()
         {
-            Instance = this;
+            _instance = this;
             InitializeComponent();
         }
 
-        public async Task AddOrUpdateNotificationAsync(Notification notification)
+        public static async Task AddOrUpdateNotificationAsync(Notification notification)
+        {
+            await SafeInvokeAsync(async () =>
+            {
+                await _instance.InternalAddOrUpdateNotificationAsync(notification);
+            });
+        }
+
+        public static void UnsuscribeEventHandlers() => SafeInvoke(() => _instance.InternalUnsuscribeEventHandlers());
+
+        public static async Task AddNotificationAsync(Notification notification)
+        {
+            await SafeInvokeAsync(async () =>
+            {
+                await _instance.InternalAddNotificationAsync(notification);
+            });
+        }
+
+        public static void RemoveNotification() => SafeInvoke(() => _instance.InternalRemoveNotification());
+
+        public static async Task CleanErrorNotificationsAsync(ErrorCategory replacementCategory)
+        {
+            await SafeInvokeAsync(async () =>
+            {
+                await _instance.InternalCleanErrorNotificationsAsync(replacementCategory);
+            });
+        }
+
+        public static async Task CloseAsync()
+        {
+            await SafeInvokeAsync(async () =>
+            {
+                await _instance.InternalCloseAsync();
+            });
+        }
+
+        private static async Task SafeInvokeAsync(Func<Task> func)
+        {
+            if (_instance != null)
+            {
+                await func();
+            }
+        }
+
+        private static void SafeInvoke(Action func)
+        {
+            if (_instance != null)
+            {
+                func();
+            }
+        }
+
+        private async Task InternalAddOrUpdateNotificationAsync(Notification notification)
         {
             bool isCurrent = false;
             if (notification != null)
@@ -64,7 +116,15 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        public async Task AddNotificationAsync(Notification notification)
+        private void InternalUnsuscribeEventHandlers()
+        {
+            foreach (var notification in _notifications)
+            {
+                notification.UnsuscribeEventHandlers();
+            }
+        }
+
+        private async Task InternalAddNotificationAsync(Notification notification)
         {
             if (notification != null)
             {
@@ -81,12 +141,12 @@ namespace Microsoft.Templates.UI.Controls
 
                 if (Notification == null || Notification.IsLowerOrEqualPriority(notification))
                 {
-                    await ShowNotificationAsync(notification);
+                    await ShowNotificationAsync();
                 }
             }
         }
 
-        public void RemoveNotification()
+        private void InternalRemoveNotification()
         {
             Notification?.Remove();
         }
@@ -102,16 +162,16 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        public async Task CleanErrorNotificationsAsync(ErrorCategory replacementCategory)
+        private async Task InternalCleanErrorNotificationsAsync(ErrorCategory replacementCategory)
         {
             RemoveErrorCategoryNotifications(replacementCategory);
             if (Notification?.ErrorCategory == replacementCategory)
             {
-                await CloseAsync();
+                await InternalCloseAsync();
             }
         }
 
-        public async Task CloseAsync()
+        private async Task InternalCloseAsync()
         {
             Notification.StopCloseTimer();
             await fakeGrid.AnimateDoublePropertyAsync("Height", 0, 50, 500);
@@ -120,14 +180,14 @@ namespace Microsoft.Templates.UI.Controls
 
             if (_notifications.Any())
             {
-                await ShowNotificationAsync(_notifications.First());
+                await ShowNotificationAsync();
             }
         }
 
-        private async Task ShowNotificationAsync(Notification notification)
+        private async Task ShowNotificationAsync()
         {
             Notification?.StopCloseTimer();
-            Notification = notification;
+            Notification = _notifications.First();
             await fakeGrid.AnimateDoublePropertyAsync("Height", 50, 0, 500);
             Notification.StartCloseTimer();
         }

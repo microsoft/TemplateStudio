@@ -36,7 +36,7 @@ namespace Microsoft.Templates.UI.Controls
             set => SetValue(CodeFontSizeProperty, value);
         }
 
-        public static readonly DependencyProperty CodeFontSizeProperty = DependencyProperty.Register(nameof(CodeFontSize), typeof(double), typeof(CodeViewer), new PropertyMetadata(SystemService.Instance.GetCodeFontSize(), OnItemChanged));
+        public static readonly DependencyProperty CodeFontSizeProperty = DependencyProperty.Register(nameof(CodeFontSize), typeof(double), typeof(CodeViewer), new PropertyMetadata(BaseMainViewModel.BaseInstance.SystemService.GetCodeFontSize(), OnItemChanged));
 
         public CodeViewer()
         {
@@ -94,7 +94,7 @@ namespace Microsoft.Templates.UI.Controls
 
         private static string GetTheme()
         {
-            if (SystemService.Instance.IsHighContrast)
+            if (BaseMainViewModel.BaseInstance.SystemService.IsHighContrast)
             {
                 return "theme: 'hc-black',";
             }
@@ -179,6 +179,11 @@ namespace Microsoft.Templates.UI.Controls
                     UpdateCodeView(item.UpdateTextAction, item.FailedPostaction);
                     break;
             }
+        }
+
+        private void WebBrowser_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            webBrowser.Visibility = Visibility.Visible;
         }
     }
 }

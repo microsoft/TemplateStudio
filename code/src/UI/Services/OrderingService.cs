@@ -13,6 +13,7 @@ namespace Microsoft.Templates.UI.Services
     public static class OrderingService
     {
         private static ListView _listView;
+        private static DragAndDropService<SavedTemplateViewModel> _service;
 
         private static ObservableCollection<SavedTemplateViewModel> Pages
         {
@@ -23,8 +24,14 @@ namespace Microsoft.Templates.UI.Services
         {
             _listView = listView;
 
-            var service = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
-            service.ProcessDrop += OnDrop;
+            _service = new DragAndDropService<SavedTemplateViewModel>(listView, AreCompatibleItems);
+            _service.ProcessDrop += OnDrop;
+        }
+
+        public static void UnsuscribeEventHandlers()
+        {
+            _service.UnsuscribeEventHandlers();
+            _service.ProcessDrop -= OnDrop;
         }
 
         public static void MoveUp(SavedTemplateViewModel item)
@@ -68,11 +75,14 @@ namespace Microsoft.Templates.UI.Services
             if (AreCompatibleItems(oldIndex, newIndex))
             {
                 Pages.Move(oldIndex, newIndex);
-                MainViewModel.Instance.UserSelection.ReorderTemplate();
+                MainViewModel.Instance.UserSelection.UpdateHomePage();
 
-                _listView.UpdateLayout();
-                var item = _listView.ItemContainerGenerator.ContainerFromIndex(newIndex) as ListBoxItem;
-                item?.Focus();
+                if (_listView != null)
+                {
+                    _listView.UpdateLayout();
+                    var item = _listView.ItemContainerGenerator.ContainerFromIndex(newIndex) as ListBoxItem;
+                    item?.Focus();
+                }
             }
         }
     }

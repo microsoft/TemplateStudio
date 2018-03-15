@@ -118,175 +118,175 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddFeaturesTitle" xml:space="preserve">
-    <value>Add features</value>
+    <value>Özellik ekle</value>
     <comment>AddFeatures title on AddFeaturesPage</comment>
   </data>
   <data name="AddPagesTitle" xml:space="preserve">
-    <value>Add pages</value>
+    <value>Sayfa ekle</value>
     <comment>Add pages title on AddPagesPage</comment>
   </data>
   <data name="ButtonBack" xml:space="preserve">
-    <value>Back</value>
+    <value>Geri</value>
     <comment>MainPage Back button</comment>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>İptal</value>
     <comment>MainPage Cancel button</comment>
   </data>
   <data name="ButtonClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Kapat</value>
     <comment>Notification button close</comment>
   </data>
   <data name="ButtonCreate" xml:space="preserve">
-    <value>Create</value>
+    <value>Oluştur</value>
     <comment>MainPage Create button</comment>
   </data>
   <data name="ButtonNext" xml:space="preserve">
-    <value>Next</value>
+    <value>İleri</value>
     <comment>MainPage Next button</comment>
   </data>
   <data name="ButtonNo" xml:space="preserve">
-    <value>No</value>
+    <value>Hayır</value>
     <comment>No Button</comment>
   </data>
   <data name="ButtonOk" xml:space="preserve">
-    <value>Ok</value>
+    <value>Tamam</value>
     <comment>Error dialog and information window ok button content</comment>
   </data>
   <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
-    <value>Refresh templates cache</value>
+    <value>Şablon önbelleğini yenile</value>
     <comment>Refresh templates cache button</comment>
   </data>
   <data name="ButtonRemove" xml:space="preserve">
-    <value>Remove</value>
+    <value>Kaldır</value>
     <comment>Remove template button</comment>
   </data>
   <data name="ButtonYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Evet</value>
     <comment>Yes Button</comment>
   </data>
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
-    <value>Do not merge changes (generate in a temp folder).</value>
+    <value>Değişiklikleri birleştirmeyin (geçici klasörde oluşturun).</value>
     <comment>Do not merge changes checkbox text</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingFiles" xml:space="preserve">
-    <value>Conflicting files</value>
+    <value>Çakışan dosyalar</value>
     <comment>Changes summary group title for: Conflicting files</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingFilesDescription" xml:space="preserve">
-    <value>This file already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
+    <value>Bu dosya, projenizde zaten var ancak yeni öğenin parçası olarak da oluşturuldu. Geçerli dosyanız değiştirilmeyecek veya üzerine yazılmayacaktır. Lütfen karşılaştırın ve tüm içeriğin doğru olduğundan emin olun. Oluşturulan dosyaya gerekirse bu işlemi tamamladıktan sonra erişebilirsiniz.</value>
     <comment>Changes summary description for: Conflicting files</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingStylesFiles" xml:space="preserve">
-    <value>Conflicting styles files</value>
+    <value>Çakışan stil dosyaları</value>
     <comment>Changes summary group title for: Conflicting styles files</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingStylesFilesDescription" xml:space="preserve">
-    <value>We are not able to introduce the styles in the resource dictionary.</value>
+    <value>Kaynak sözlüğündeki stilleri kullanamıyoruz.</value>
     <comment>Changes summary description for: Conflicting styles files</comment>
   </data>
   <data name="ChangesSummaryGroupModifiedFiles" xml:space="preserve">
-    <value>Modified files</value>
+    <value>Değiştirilen dosyalar</value>
     <comment>Changes summary group title for: Modified files</comment>
   </data>
   <data name="ChangesSummaryGroupModifiedFilesDescription" xml:space="preserve">
-    <value>This file will be modified to include required content.</value>
+    <value>Bu dosya gerekli içerik dahil edilecek şekilde değiştirilecektir.</value>
     <comment>Changes summary description for: Modified files</comment>
   </data>
   <data name="ChangesSummaryGroupNewFiles" xml:space="preserve">
-    <value>New files</value>
+    <value>Yeni dosyalar</value>
     <comment>Changes summary group title for: New files</comment>
   </data>
   <data name="ChangesSummaryGroupNewFilesDescription" xml:space="preserve">
-    <value>This file will be added as new file to your project.</value>
+    <value>Bu dosya, projenize yeni dosya olarak eklenecektir.</value>
     <comment>Changes summary description for: New files</comment>
   </data>
   <data name="ChangesSummaryGroupUnchangedFiles" xml:space="preserve">
-    <value>Unchanged files</value>
+    <value>Değiştirilmeyen dosyalar</value>
     <comment>Changes summary group title for: Unchanged files</comment>
   </data>
   <data name="ChangesSummaryGroupUnchangedFilesDescription" xml:space="preserve">
-    <value>This file already exists in your project and no further action is necessary. The file will remain unchanged.</value>
+    <value>Bu dosya, projenizde zaten var ve başka bir işlem yapılması gerekmiyor. Dosya değiştirilmeden kalacaktır.</value>
     <comment>Changes summary description for: Unchanged files</comment>
   </data>
   <data name="ChangesSummaryGroupWarningFiles" xml:space="preserve">
-    <value>Warning files</value>
+    <value>Uyarı dosyaları</value>
     <comment>Changes summary group title for: Warning files</comment>
   </data>
   <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
-    <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
+    <value>Gerekli değişiklikleri yapamıyoruz. Oluşturulan dosyaya gerekirse bu işlemi tamamladıktan sonra erişebilirsiniz.</value>
     <comment>Changes summary description for: Warning files</comment>
   </data>
   <data name="ErrorDialogShowDetails" xml:space="preserve">
-    <value>Show details</value>
+    <value>Ayrıntıları göster</value>
     <comment>Error dialog show details link button</comment>
   </data>
   <data name="ErrorDialogTitle" xml:space="preserve">
-    <value>Something went wrong :-(</value>
+    <value>Bir sorun oluştu :-(</value>
     <comment>Error dialog title</comment>
   </data>
   <data name="ErrorDialogWindowTitle" xml:space="preserve">
-    <value>Windows Template Studio Error</value>
+    <value>Windows Şablon Stüdyosu Hatası</value>
     <comment>Error dialog window title</comment>
   </data>
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
-    <value>more info</value>
+    <value>diğer bilgiler</value>
     <comment>Changes summary more info link</comment>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
-    <value>Select a design pattern</value>
+    <value>Bir design pattern seçin</value>
     <comment>Title on FrameworkPage</comment>
   </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another feature.</value>
+    <value>{0} zaten projenizin bir parçası. Lütfen başka bir özellik seçin.</value>
     <comment>Feature already added {0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another page.</value>
+    <value>{0} zaten projenizin bir parçası. Lütfen başka bir sayfa seçin.</value>
     <comment>Page already added {0}: Page name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
-    <value>Template selection</value>
+    <value>Şablon seçimi</value>
     <comment>New Item: Naviagtion step one </comment>
   </data>
   <data name="NewItemStepTwo" xml:space="preserve">
-    <value>Changes summary</value>
+    <value>Değişiklik özeti</value>
     <comment>New Item: Naviagtion step two</comment>
   </data>
   <data name="NewItemTemplateDetailsDependenciesSectionTitle" xml:space="preserve">
-    <value>Dependencies</value>
+    <value>Bağımlılıklar</value>
     <comment>New item: Dependencies section</comment>
   </data>
   <data name="NewItemTemplateDetailsLicensesSectionTitle" xml:space="preserve">
-    <value>Licenses</value>
+    <value>Lisanslar</value>
     <comment>New item: Licenses section</comment>
   </data>
   <data name="NewItemTemplateDetailsNameSectionTitle" xml:space="preserve">
-    <value>Name</value>
+    <value>Ad</value>
     <comment>New item: Name section</comment>
   </data>
   <data name="NewItemTemplateDetailsTitle" xml:space="preserve">
-    <value>Template Details</value>
+    <value>Şablon Ayrıntıları</value>
     <comment>New item: Template Details</comment>
   </data>
   <data name="NewItemTitleFeature" xml:space="preserve">
-    <value>New feature</value>
+    <value>Yeni özellik</value>
     <comment>New item: new feature title</comment>
   </data>
   <data name="NewItemTitlePage" xml:space="preserve">
-    <value>New page</value>
+    <value>Yeni sayfa</value>
     <comment>New item: new page title</comment>
   </data>
   <data name="NewProjectStepFour" xml:space="preserve">
-    <value>Features</value>
+    <value>Özellikler</value>
     <comment>New project: Navigation step four</comment>
   </data>
   <data name="NewProjectStepOne" xml:space="preserve">
-    <value>Project type</value>
+    <value>Proje türü</value>
     <comment>New project: Navigation step one</comment>
   </data>
   <data name="NewProjectStepThree" xml:space="preserve">
-    <value>Pages</value>
+    <value>Sayfalar</value>
     <comment>New project: Navigation step three</comment>
   </data>
   <data name="NewProjectStepTwo" xml:space="preserve">
@@ -294,75 +294,71 @@
     <comment>New project: Navigation step two</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
-    <value>New Universal Windows Platform app</value>
+    <value>Yeni Evrensel Windows Platformu uygulaması</value>
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>You can not remove *{0}* because *{1}* depends on it.</value>
+    <value>*{1}* bağımlı olduğundan *{0}* öğesini kaldıramazsınız.</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
-    <value>Error refreshing templates. See output window for more details.</value>
+    <value>Şablonlar yenilenirken hata oluştu. Diğer ayrıntılar için çıkış penceresine bakın.</value>
     <comment>Error message for sync refresh</comment>
   </data>
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
-    <value>There are new templates available (v{0}). Downloading… {1}%</value>
+    <value>Kullanılabilir yeni şablonlar var (v{0}). İndiriliyor… %{1}</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>Copying templates (v{0})... {1}%</value>
+    <value>Şablonlar kopyalanıyor (v{0})... {1}%</value>
     <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
-    <value>Error downloading templates (v{0}). We'll try later again.</value>
+    <value>Şablonlar indirilirken hata oluştu (v{0}). Daha sonra tekrar deneyeceğiz.</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <value>Windows Şablon Stüdyosu Sürüm {0} kullanılabilir. En yeni özellikleri kullanabilmek için uzantıyı güncelleştirin.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
-    <value>Preparing templates (v{0})... {1}%</value>
+    <value>Şablonlar hazırlanıyor (v{0})... {1}%</value>
     <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
-    <value>Templates updated.</value>
-    <comment>Notification message for Sync Status: Updated</comment>
-  </data>
   <data name="NotificationSyncStatus_Updating" xml:space="preserve">
-    <value>Refreshing templates cache…</value>
+    <value>Şablon önbelleği yenileniyor…</value>
     <comment>Notification message for Sync Status: Updating</comment>
   </data>
   <data name="NotificationValidationError_AlreadyExists" xml:space="preserve">
-    <value>Name already exists</value>
+    <value>Ad zaten var</value>
     <comment>Validation error message: Already exists</comment>
   </data>
   <data name="NotificationValidationError_BadFormat" xml:space="preserve">
-    <value>Only alphanumeric and '_' characters are allowed</value>
+    <value>Yalnızca alfasayısal karakterlere ve "_" karakterine izin verilir</value>
     <comment>Validation error message: Bad format</comment>
   </data>
   <data name="NotificationValidationError_Empty" xml:space="preserve">
-    <value>Name cannot be empty</value>
+    <value>Ad boş olamaz</value>
     <comment>Validation error message: Empty</comment>
   </data>
   <data name="NotificationValidationError_ReservedName" xml:space="preserve">
-    <value>Name is reserved</value>
+    <value>Ad ayrıldı</value>
     <comment>Validation error message: Reserved name</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
-    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?</value>
+    <value>Package.appxmanifest dosyasında proje yapılandırma meta verilerini bulamıyoruz. Lütfen proje oluşturulurken seçtiğiniz proje yapılandırmasını belirtin.</value>
     <comment>ProjectConfiguration view description</comment>
   </data>
   <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
-    <value>Select design pattern:</value>
+    <value>Bir design pattern seçin:</value>
     <comment>Project configuration window select framework title</comment>
   </data>
   <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
-    <value>Select project type:</value>
+    <value>Proje türünü seçin:</value>
     <comment>Project configuration window select project type title</comment>
   </data>
   <data name="ProjectConfigurationTitleText" xml:space="preserve">
-    <value>Choose project configuration</value>
+    <value>Proje yapılandırması seçin</value>
     <comment>Project configuration window title</comment>
   </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
@@ -370,31 +366,31 @@
     <comment>About section link</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
-    <value>Templates version:</value>
+    <value>Şablon sürümü:</value>
     <comment>About section templates version</comment>
   </data>
   <data name="ProjectDetailsAboutSectionText" xml:space="preserve">
-    <value>Windows Template Studio</value>
+    <value>Windows Şablon Stüdyosu</value>
     <comment>About section text</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
-    <value>About</value>
+    <value>Hakkında</value>
     <comment>About section title</comment>
   </data>
   <data name="ProjectDetailsAboutSectionWizardVersion" xml:space="preserve">
-    <value>Wizard version:</value>
+    <value>Sihirbaz sürümü:</value>
     <comment>About section wizard version</comment>
   </data>
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
-    <value>Features</value>
+    <value>Özellikler</value>
     <comment>Feature list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
-    <value>You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <value>Design pattern seçiminizi değiştirdiniz. Seçtiğiniz sayfalar ve özellikler kaybolacak. Devam etmek istiyor musunuz?</value>
     <comment>Framework changed message</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
-    <value>Design pattern changed</value>
+    <value>Design pattern değiştirildi</value>
     <comment>Framework changed title</comment>
   </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
@@ -402,195 +398,251 @@
     <comment>Framework combobox header on project details</comment>
   </data>
   <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
-    <value>Licenses</value>
+    <value>Lisanslar</value>
     <comment>New project: Licenses section</comment>
   </data>
   <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
-    <value>Pages</value>
+    <value>Sayfalar</value>
     <comment>Page list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <value>Proje türü seçiminizi değiştirdiniz. Seçtiğiniz sayfalar ve özellikler kaybolacak. Devam etmek istiyor musunuz?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
-    <value>Project type changed</value>
+    <value>Proje türü değiştirildi</value>
     <comment>Project type changed title</comment>
   </data>
   <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
-    <value>Project type</value>
+    <value>Proje türü</value>
     <comment>Project type combobox header on project details</comment>
   </data>
   <data name="ProjectDetailsTitle" xml:space="preserve">
-    <value>Your project details</value>
+    <value>Proje ayrıntılarınız</value>
     <comment>Project details header on MainPage</comment>
   </data>
   <data name="ProjectTypeTitle" xml:space="preserve">
-    <value>Select a project type</value>
+    <value>Proje türünü seçin</value>
     <comment>ProjectType Title on ProjectTypePage</comment>
   </data>
   <data name="TemplateDetailsAuthor" xml:space="preserve">
-    <value>Author:</value>
+    <value>Yazar:</value>
     <comment>Template details: Autor</comment>
   </data>
   <data name="TemplateDetailsDependencies" xml:space="preserve">
-    <value>Dependencies:</value>
+    <value>Bağımlılıklar:</value>
     <comment>Template details: Dependencies</comment>
   </data>
   <data name="TemplateDetailsLicenses" xml:space="preserve">
-    <value>Licenses:</value>
+    <value>Lisanslar:</value>
     <comment>Template details: Licenses</comment>
   </data>
   <data name="TemplateDetailsVersion" xml:space="preserve">
-    <value>Version:</value>
+    <value>Sürüm:</value>
     <comment>Template details: Version</comment>
   </data>
   <data name="TemplateSelectionTitle" xml:space="preserve">
-    <value>Select the template you want to add</value>
+    <value>Eklemek istediğiniz şablonu seçin</value>
     <comment>Template selection title</comment>
   </data>
   <data name="TermsAndConditionsText" xml:space="preserve">
-    <value>By continuing, you agree to the terms of all the licenses in the licenses section.</value>
+    <value>Devam ederseniz lisanslar bölümündeki tüm lisansların koşullarını kabul etmiş olursunuz.</value>
     <comment>Licenses Terms and conditions text</comment>
   </data>
   <data name="WindowsTemplateStudio" xml:space="preserve">
-    <value>Windows Template Studio</value>
+    <value>Windows Şablon Stüdyosu</value>
     <comment>Windows template studio label</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
-    <value>Generation finished</value>
+    <value>Oluşturma tamamlandı</value>
     <comment>Status bar message generation finished</comment>
   </data>
   <data name="StatusBarRestoring" xml:space="preserve">
-    <value>Restoring packages...</value>
+    <value>Paketler geri yükleniyor...</value>
     <comment>Status bar message for restoring</comment>
   </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>Creating Windows Template Studio project...</value>
+    <value>Windows Şablon Stüdyosu projesi oluşturuluyor...</value>
     <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
-    <value>Add new feature cancelled</value>
+    <value>Yeni özellik ekleme işlemi iptal edildi</value>
     <comment>Status bar message for Add new feature cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureSuccess" xml:space="preserve">
-    <value>Feature {0} successfully added</value>
+    <value>{0} özelliği başarıyla eklendi</value>
     <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
   </data>
   <data name="StatusBarNewItemAddPageCancelled" xml:space="preserve">
-    <value>Add new page cancelled</value>
+    <value>Yeni sayfa ekleme işlemi iptal edildi</value>
     <comment>Status bar message for Add new page cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
-    <value>Page {0} successfully added</value>
+    <value>{0} sayfası başarıyla eklendi</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
   <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Exception tracking telemetry during generation.</value>
+    <value>Oluşturma sırasında özel durum izleme telemetrisi.</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Unable add project items. Ensure you have the required SDK.</value>
+    <value>Proje öğeleri eklenemiyor. Gerekli SDK'nin olduğundan emin olun.</value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Unable to add the project to the solution. Make sure you have the expected SDK installed.</value>
+    <value>Proje çözüme eklenemiyor. Beklenen SDK'nin yüklü olduğundan emin olun.</value>
     <comment>Error message for unable add project to solution</comment>
   </data>
   <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>Unable to refresh the project. Try to refresh it manually.</value>
+    <value>Proje yenilenemiyor. El ile yenilemeyi deneyin.</value>
     <comment>Error message for unable to refresh project</comment>
   </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
-    <value>There was an error collapsing the solution tree. Ex:</value>
+    <value>Çözüm ağacı daraltılırken bir hata oluştu. Ör:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
   <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>There was an error restoring the packages. Ex:</value>
+    <value>Paketler geri yüklenirken bir hata oluştu. Ör:</value>
     <comment>Error message for Vs GenShell restore packages error</comment>
   </data>
   <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages.</value>
+    <value>Çözüm için NuGet Paketlerini Geri Yükle işlemi otomatik olarak gerçekleştirilemiyor. NuGet paketlerini el ile geri yükleyin.</value>
     <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>There was an error showing status message. Ex:</value>
+    <value>Durum iletisi gösterilirken bir hata oluştu. Ör:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
   </data>
   <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>Circular dependency detected on template {0} with {1}.</value>
+    <value>{0} şablonunda {1} ile döngüsel bağımlılık algılandı.</value>
     <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>Dependency template {0} not found on user selection.</value>
+    <value>{0} bağımlılık şablonu kullanıcı seçiminde bulunamadı.</value>
     <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
+    <value>Bağımlılık öğesi {0} geçersiz. Bağımlılıkların multipleInstance = yanlış olarak yapılandırılması gerekir.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Dependency template {0} not found for framework {1}.</value>
+    <value>framework {1} için {0} bağımlılık şablonu bulunamadı.</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name</comment>
   </data>
   <data name="ErrorDependencyType" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
+    <value>Bağımlılık öğesi {0} geçersiz. Bağımlılık öğeleri Sayfa veya Özellik türünde olmalıdır.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorGenerating" xml:space="preserve">
-    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
+    <value>Şablon "{0}", adı: "{1}", neden: '{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1}.</value>
+    <value>framework {1} için {0} düzen şablonu bulunamadı.</value>
     <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
-    <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
+    <value>Düzen öğesi {0} geçersiz. Düzen öğeleri Sayfa veya Özellik türünde olmalıdır.</value>
     <comment>Layout Type exception message. {0}: Layout template id</comment>
   </data>
   <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>Creating '{0}' feature ...</value>
+    <value>"{0}" özelliği oluşturuluyor...</value>
     <comment>Status bar message generating feature. {0}: Feature name</comment>
   </data>
   <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>Creating '{0}' page ...</value>
+    <value>"{0}" sayfası oluşturuluyor...</value>
     <comment>Status bar message generating page. {0}: Page name</comment>
   </data>
   <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>Creating project '{0}'...</value>
+    <value>"{0}" projesi oluşturuluyor...</value>
     <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
-    <value>Application Launching</value>
+    <value>Uygulama Başlatma</value>
     <comment>Group header for Application Launching templates</comment>
   </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
-    <value>Application Lifecycle</value>
+    <value>Uygulama Yaşam Döngüsü</value>
     <comment>Group header for application lifecycle templates</comment>
   </data>
   <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
-    <value>Background Work</value>
+    <value>Arka Plan Çalışması</value>
     <comment>Group header for background work templates</comment>
   </data>
   <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
-    <value>Connected Experiences</value>
+    <value>Bağlı Deneyimler</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
   <data name="TemplateGroup_UserInteraction" xml:space="preserve">
-    <value>User Interaction</value>
+    <value>Kullanıcı Etkileşimi</value>
     <comment>Group header for user interaction templates</comment>
   </data>
   <data name="ButtonDetails" xml:space="preserve">
-    <value>Details</value>
+    <value>Ayrıntılar</value>
     <comment>Details button</comment>
   </data>
   <data name="TemplateAdded" xml:space="preserve">
-    <value>Added</value>
+    <value>Eklendi</value>
     <comment>Template added label</comment>
   </data>
   <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
-    <value>Checking for updates...</value>
+    <value>Güncelleştirmeler denetleniyor...</value>
     <comment>Notification message for Sync Status: CheckingForUpdates</comment>
+  </data>
+  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
+    <value>Şablonlar güncelleştirildi.</value>
+    <comment>Notification message for Sync Status: Updated</comment>
+  </data>
+  <data name="AccessibilityNotificationPanel" xml:space="preserve">
+    <value>Bildirim paneli</value>
+    <comment> Notification panel label to accessibility</comment>
+  </data>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>Sayfayı düzenle</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNavigationMenu" xml:space="preserve">
+    <value>Gezinme menüsü</value>
+    <comment>Navigation menu label</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>Proje türleri listesi</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
+    <value>Ardışık akış denetimi</value>
+    <comment>Sequential flow control label to accessibility</comment>
+  </data>
+  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
+    <value>Kullanıcı seçimi sayfaları</value>
+    <comment>User selection page list to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>Design pattern listesi</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="AccessibilityTemplatesList" xml:space="preserve">
+    <value>Şablonlar listesi</value>
+    <comment>Templates list label to accessibility</comment>
+  </data>
+  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
+    <value>Yeni tarayıcı sekmesinde aç</value>
+    <comment>External hyperlink tooltip message</comment>
+  </data>
+  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
+    <value>Kod görüntüleyicisi</value>
+    <comment>Code viewer label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
+    <value>Yeni öğe dosyası simgesi</value>
+    <comment>New item file icon label to accessibility</comment>
+  </data>
+  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
+    <value>Hata metni açıklaması</value>
+    <comment>Error dialog accessible name to description textbox</comment>
+  </data>
+  <data name="ReorderPageHelpText" xml:space="preserve">
+    <value>Sayfa sırasını değiştirmek için Ctrl+yukarı ok veya Ctrl+aşağı ok tuşlarını kullanın</value>
+    <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
 </root>

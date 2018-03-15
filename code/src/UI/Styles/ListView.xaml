@@ -1,11 +1,13 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    x:Class="Microsoft.Templates.UI.Styles.ListView"
-                    xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
-                    xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
-                    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
-                    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
-                    xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="Microsoft.Templates.UI.Styles.ListView"
+    xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
+    xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
+    xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
+    xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
+    xmlns:core="clr-namespace:Microsoft.Templates.Core;assembly=Microsoft.Templates.Core"
+    xmlns:strings="clr-namespace:Microsoft.Templates.UI.Resources">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
@@ -162,7 +164,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
-                    <Grid Margin="0" Width="182" Height="220">
+                    <Grid Margin="0" Width="181" Height="219">
                         <Border Margin="14,2,2,14" BorderThickness="1.5" BorderBrush="{TemplateBinding BorderBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}" Visibility="{Binding HasMoreThanTwo, Converter={StaticResource BoolToVisibilityConverter}}" />
                         <Border Margin="11,5,5,11" BorderThickness="1.5" BorderBrush="{TemplateBinding BorderBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}" Visibility="{Binding HasMoreThanOne, Converter={StaticResource BoolToVisibilityConverter}}" />
 
@@ -367,8 +369,9 @@
                                         Margin="{StaticResource Margin_XS_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
                                         AutomationProperties.Name="{x:Static strings:StringRes.AccessibilityEditPageItem}"
-                                        extensions:TextBoxExtensions.ListenIsFocused="True"
-                                        extensions:TextBoxExtensions.LostKeyboardFocusCommand="{Binding LostKeyboardFocusCommand}">
+                                        extensions:TextBoxExtensions.IsTextSelected="{Binding IsTextSelected}"
+                                        Tag="{Binding LostKeyboardFocusCommand}"
+                                        LostKeyboardFocus="OnLostKeyboardFocus">
                                         <TextBox.InputBindings>
                                             <KeyBinding Key="Enter" Command="{Binding SetFocusCommand}" />
                                         </TextBox.InputBindings>
@@ -379,12 +382,22 @@
                                         Margin="{StaticResource Margin_M_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                                 </Grid>
-                                <Button
-                                    Grid.Column="3"
-                                    x:Name="mouseOverDeleteTemplateButton"                                    
-                                    Opacity="0"
-                                    Style="{StaticResource WtsButtonDeleteTemplate}"
-                                    Command="{Binding DeleteCommand}" />
+                                <Button x:Name="mouseOverDeleteTemplateButton" Grid.Column="3">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource WtsButtonDeleteTemplate}">
+                                            <Setter Property="Opacity" Value="0" />
+                                            <Setter Property="CommandParameter" Value="{Binding}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Page}">
+                                                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeletePageCommand}" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding TemplateType}" Value="{x:Static core:TemplateType.Feature}">
+                                                    <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=ListView},Path=DataContext.UserSelection.DeleteFeatureCommand}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </Grid>
                         </Grid>
                         <Grid x:Name="dropGridMask" Visibility="Collapsed" Opacity="0.4" Background="{Binding SavedTemplateBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
@@ -396,6 +409,11 @@
                             <Setter Property="Opacity" TargetName="mouseOverDeleteTemplateButton" Value="1" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="Opacity" TargetName="mouseOverGrid" Value="1" />
+                            <Setter Property="Opacity" TargetName="mouseOverDragAndDropTextBlock" Value="1" />
+                            <Setter Property="Opacity" TargetName="mouseOverDeleteTemplateButton" Value="1" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="true">
                             <Setter Property="Opacity" TargetName="mouseOverGrid" Value="1" />
                             <Setter Property="Opacity" TargetName="mouseOverDragAndDropTextBlock" Value="1" />
                             <Setter Property="Opacity" TargetName="mouseOverDeleteTemplateButton" Value="1" />
@@ -446,7 +464,6 @@
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="{x:Static strings:StringRes.AccessibilityUserSelectionPageList}" />
-        <EventSetter Event="PreviewKeyDown" Handler="OnProjectDetailsTemplatesPreviewKeyDown" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">

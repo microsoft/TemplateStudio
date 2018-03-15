@@ -7,9 +7,9 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "composition",    
-    "wts.version": "1.0.0",    
-    "wts.licenses": "[MVVM Light](http://mvvmlight.codeplex.com/license)",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.licenses": "[MVVMLight](http://www.galasoft.ch/license_MIT.txt)",
     "wts.compositionFilter": "$framework == MVVMLight & wts.type == project"
   },
   "sourceName": "wts.ItemName",

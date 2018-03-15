@@ -9,7 +9,7 @@
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="TextAlignment" Value="Left" />
         <Setter Property="PagePadding" Value="0" />
-        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Foreground" Value="{Binding TemplateInfoPageDescription, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
@@ -17,23 +17,23 @@
         <Setter Property="Foreground" Value="{Binding TemplateInfoPageDescription, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
-    </Style>
-
-    <Style x:Key="H1Style" TargetType="Paragraph" BasedOn="{StaticResource BaseMarkdownText}">
-        <Setter Property="FontSize" Value="{Binding Environment133PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
-    </Style>
-
-    <Style x:Key="H2Style" TargetType="Paragraph" BasedOn="{StaticResource BaseMarkdownText}">
         <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
+    <Style x:Key="H1Style" TargetType="Paragraph" BasedOn="{StaticResource BaseMarkdownText}">
+        <Setter Property="FontSize" Value="{Binding Environment155PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
+    <Style x:Key="H2Style" TargetType="Paragraph" BasedOn="{StaticResource BaseMarkdownText}">
+        <Setter Property="FontSize" Value="{Binding Environment133PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+    </Style>
+
     <Style x:Key="H3Style" TargetType="Paragraph" BasedOn="{StaticResource BaseMarkdownText}">
-        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment133PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
     <Style x:Key="H4Style" TargetType="Paragraph" BasedOn="{StaticResource BaseMarkdownText}">
-        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontSize" Value="{Binding Environment122PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
     
     <Style x:Key="ImageStyle" TargetType="Image">

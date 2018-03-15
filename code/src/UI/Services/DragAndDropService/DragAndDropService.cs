@@ -44,6 +44,16 @@ namespace Microsoft.Templates.UI.Services
             _listView.Drop += OnDrop;
         }
 
+        public void UnsuscribeEventHandlers()
+        {
+            _listView.PreviewMouseLeftButtonDown -= OnPreviewMouseLeftButtonDown;
+            _listView.PreviewMouseMove -= OnPreviewMouseMove;
+            _listView.DragOver -= OnDragOver;
+            _listView.DragLeave -= OnDragLeave;
+            _listView.DragEnter -= OnDragEnter;
+            _listView.Drop -= OnDrop;
+        }
+
         private void OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (IsMouseOverScrollbar)

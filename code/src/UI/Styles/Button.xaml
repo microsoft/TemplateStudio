@@ -4,8 +4,9 @@
                     xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_DrawingImage.xaml" />
         <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/_Thickness.xaml" />
-        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Viewbox.xaml" />
+        <ResourceDictionary Source="/Microsoft.Templates.UI;component/Styles/Image.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="Button" x:Key="WtsBaseButton">
@@ -108,8 +109,12 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsDefaulted" Value="true">
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
+                        <Trigger Property="IsFocused" Value="true">
                             <Setter Property="Background" TargetName="border" Value="{Binding ButtonHover, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{Binding ButtonFocused, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" Value="{Binding ButtonBorderFocused, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Background" TargetName="border" Value="{Binding ButtonPressed, Source={x:Static services:UIStylesService.Instance}}" />
@@ -144,17 +149,7 @@
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonClose}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonClose}" />
 
-        <Setter Property="FocusVisualStyle">
-            <Setter.Value>
-                <Style>
-                    <Setter Property="Control.Template">
-                        <Setter.Value>
-                            <ControlTemplate/>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -190,14 +185,14 @@
                             <Setter Property="Background" TargetName="border" Value="{Binding IBButtonDisabled, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="BorderBrush" TargetName="border" Value="{Binding IBButtonDisabledBorder, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{Binding IBButtonFocus, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding IBButtonFocusBorder, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsFocused" Value="true">
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style TargetType="Button" x:Key="WtsButtonDeleteTemplate" BasedOn="{StaticResource WtsButtonIcon}">
@@ -206,7 +201,6 @@
         <Setter Property="Foreground" Value="{Binding DeleteTemplateIcon, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Content" Value="&#xE10A;" />
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonRemove}" />
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRemove}" />
     </Style>
@@ -215,7 +209,7 @@
         <Setter Property="Padding" Value="{StaticResource Margin_S_LeftTopRightBottom}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Margin" Value="0,0,1,0" />
+        <Setter Property="Margin" Value="0,-0.5,0,0" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="HorizontalAlignment" Value="Right" />
@@ -223,9 +217,8 @@
         <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonClose}" />
         <Setter Property="Content">
             <Setter.Value>
-                <Viewbox Style="{StaticResource WtsViewBoxCloseIcon}">
-                    <Frame Source="/Microsoft.Templates.UI;component/Assets/Close.xaml" IsTabStop="False" Focusable="False" />
-                </Viewbox>
+                <Image Source="{StaticResource WtsIconCloseWindow}"
+                   Style="{StaticResource WtsImageCloseButtonIcon}" />
             </Setter.Value>
         </Setter>
     </Style>

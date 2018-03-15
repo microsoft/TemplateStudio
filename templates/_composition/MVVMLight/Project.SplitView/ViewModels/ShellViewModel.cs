@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using Microsoft.Practices.ServiceLocation;
+using CommonServiceLocator;
 using Microsoft.Toolkit.Uwp.UI.Controls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,7 +26,7 @@ namespace wts.ItemName.ViewModels
         {
             get
             {
-                return Microsoft.Practices.ServiceLocation.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+                return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }
 
@@ -95,7 +95,7 @@ namespace wts.ItemName.ViewModels
             {
                 if (_itemSelected == null)
                 {
-                    _itemSelected = new RelayCommand<HamburgetMenuItemInvokedEventArgs>(ItemSelected);
+                    _itemSelected = new RelayCommand<HamburgerMenuItemInvokedEventArgs>(ItemSelected);
                 }
 
                 return _itemSelected;
@@ -173,7 +173,7 @@ namespace wts.ItemName.ViewModels
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
         }
 
-        private void ItemSelected(HamburgetMenuItemInvokedEventArgs args)
+        private void ItemSelected(HamburgerMenuItemInvokedEventArgs args)
         {
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {

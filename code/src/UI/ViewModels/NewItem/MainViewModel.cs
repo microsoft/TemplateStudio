@@ -54,8 +54,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        public MainViewModel(WizardShell mainWindow)
-            : base(mainWindow, false)
+        public MainViewModel(WizardShell mainWindow, BaseStyleValuesProvider provider)
+            : base(mainWindow, provider, false)
         {
             Instance = this;
         }
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     var message = TemplateType == TemplateType.Page ? StringRes.NewItemHasNoChangesPage : StringRes.NewItemHasNoChangesFeature;
                     message = string.Format(message, TemplateSelection.Name);
                     var notification = Notification.Warning(message, Category.RightClickItemHasNoChanges);
-                    NotificationsControl.Instance.AddNotificationAsync(notification).FireAndForget();
+                    NotificationsControl.AddNotificationAsync(notification).FireAndForget();
                 }
 
                 return _output.HasChangesToApply;
@@ -87,21 +87,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             return await base.IsStepAvailableAsync(step);
         }
 
-        protected override void UpdateStep()
+        protected override void UpdateStep(bool navigate)
         {
-            base.UpdateStep();
+            base.UpdateStep(navigate);
             if (Step == 0)
             {
-                NavigationService.NavigateSecondaryFrame(new TemplateSelectionPage());
-            }
-            else if (Step == 1)
-            {
-                NavigationService.NavigateSecondaryFrame(new ChangesSummaryPage(_output));
+                ChangesSummary.ClearSelected();
             }
 
-            SetCanGoBack(Step > 0);
             SetCanFinish(Step > 0);
-            SetCanGoForward(Step < 1);
         }
 
         private async Task<NewItemGenerationResult> CleanupAndGenerateNewItemAsync()
@@ -158,7 +152,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
             catch (Exception ex)
             {
-                await NotificationsControl.Instance.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
+                await NotificationsControl.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
@@ -176,6 +170,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 var vm = new ProjectConfigurationViewModel();
                 ProjectConfigurationDialog projectConfig = new ProjectConfigurationDialog(vm);
+                projectConfig.Owner = WizardShell.Current;
                 projectConfig.ShowDialog();
 
                 if (vm.Result == DialogResult.Accept)
@@ -200,8 +195,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         protected override IEnumerable<Step> GetSteps()
         {
-            yield return new Step(0, StringRes.NewItemStepOne, true, true);
-            yield return new Step(1, StringRes.NewItemStepTwo);
+            yield return new Step(0, StringRes.NewItemStepOne, () => new TemplateSelectionPage(), true, true);
+            yield return new Step(1, StringRes.NewItemStepTwo, () => new ChangesSummaryPage(_output));
         }
 
         public override void ProcessItem(object item)
