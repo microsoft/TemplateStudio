@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Dev Center Notifications",
-  "description": "Inscrivez votre application pour recevoir des notifications de la part du Microsoft Store et les gérer dans le cadre du lancement de l'application.",
+  "description": "Inscrivez votre application pour recevoir des notifications de la part du Microsoft Store.",
   "identity": "wts.Feat.StoreNotifications"
 }

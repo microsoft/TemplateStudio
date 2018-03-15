@@ -19,11 +19,11 @@ namespace Microsoft.Templates.Test
         public BuildMVVMLightProjectTests(BuildTemplatesTestFixture fixture)
         {
             _fixture = fixture;
-            _fixture.InitializeFixtureAsync(this, "MVVMLight");
+            _fixture.InitializeFixture(this, "MVVMLight");
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
+        [MemberData("GetProjectTemplatesForBuild", "MVVMLight")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string language)
         {
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
+        [MemberData("GetProjectTemplatesForBuild", "MVVMLight")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight", ProgrammingLanguages.CSharp)]
+        [MemberData("GetProjectTemplatesForBuild", "MVVMLight", ProgrammingLanguages.CSharp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimum")]
@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight", ProgrammingLanguages.VisualBasic)]
+        [MemberData("GetProjectTemplatesForBuild", "MVVMLight", ProgrammingLanguages.VisualBasic)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimumVB")]
@@ -97,7 +97,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
+        [MemberData("GetProjectTemplatesForBuild", "MVVMLight")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
@@ -109,7 +109,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "MVVMLight")]
+        [MemberData("GetProjectTemplatesForBuild", "MVVMLight")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
@@ -121,7 +121,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesForBuildAsync", "MVVMLight")]
+        [MemberData("GetPageAndFeatureTemplatesForBuild", "MVVMLight")]
         [Trait("Type", "BuildOneByOneMVVMLight")]
         public async Task BuildMVVMLightOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
         {

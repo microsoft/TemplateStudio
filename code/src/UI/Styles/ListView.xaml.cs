@@ -95,35 +95,6 @@ namespace Microsoft.Templates.UI.Styles
 
         private void SelectFile(NewItemFileViewModel file) => ViewModels.NewItem.MainViewModel.Instance.ChangesSummary.SelectFile(file);
 
-        private void OnProjectDetailsTemplatesPreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            var listView = sender as System.Windows.Controls.ListView;
-            if (listView != null)
-            {
-                var savedTemplate = listView.SelectedItem as SavedTemplateViewModel;
-                if (savedTemplate != null)
-                {
-                    if (e.Key == Key.F2)
-                    {
-                        savedTemplate.Focus();
-                    }
-                    else if (e.Key == Key.Delete)
-                    {
-                        int currentIndex = listView.SelectedIndex;
-                        savedTemplate.OnDelete();
-                        if (currentIndex > 0)
-                        {
-                            currentIndex--;
-                        }
-
-                        listView.SelectedIndex = currentIndex;
-                        var item = listView.ItemContainerGenerator.ContainerFromIndex(currentIndex) as ListViewItem;
-                        item?.Focus();
-                    }
-                }
-            }
-        }
-
         private bool IsOnDetailsLink(TextBlock textBlock)
         {
             if (textBlock != null)

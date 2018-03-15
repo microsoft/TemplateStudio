@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Web View",
-  "description": "Web görünümü sayfası, bir görünümü Microsoft Edge işleme motorunu kullanarak web içeriğini işleyen uygulamanıza katıştırır.",
+  "description": "Web görünümü sayfası, web içeriğini Microsoft Edge işleme altyapısını kullanarak işler.",
   "identity": "wts.Page.WebView"
 }

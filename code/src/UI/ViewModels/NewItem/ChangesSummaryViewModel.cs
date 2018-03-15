@@ -2,7 +2,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Templates.Core.Gen;
@@ -52,14 +51,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             SelectFile(FileGroups.First().Items.First());
         }
 
-        private void AddGroup(ItemsGroupViewModel<NewItemFileViewModel> group)
-        {
-            if (group.Items.Any())
-            {
-                FileGroups.Add(group);
-            }
-        }
-
         public void SelectFile(NewItemFileViewModel file)
         {
             foreach (var group in FileGroups)
@@ -69,6 +60,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
             Selected = file;
             Selected.IsSelected = true;
+        }
+
+        public void ClearSelected() => Selected = null;
+
+        private void AddGroup(ItemsGroupViewModel<NewItemFileViewModel> group)
+        {
+            if (group.Items.Any())
+            {
+                FileGroups.Add(group);
+            }
         }
     }
 }

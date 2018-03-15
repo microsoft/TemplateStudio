@@ -30,7 +30,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _isTextSelected;
         private ICommand _lostKeyboardFocusCommand;
         private ICommand _setFocusCommand;
-        private RelayCommand _deleteCommand;
         private Guid _id;
 
         public ITemplateInfo Template { get; }
@@ -76,11 +75,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public bool IsHome
         {
             get => _isHome;
-            private set
-            {
-                SetProperty(ref _isHome, value);
-                DeleteCommand.OnCanExecuteChanged();
-            }
+            set => SetProperty(ref _isHome, value);
         }
 
         public bool IsDragging
@@ -129,8 +124,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
-        public RelayCommand DeleteCommand => _deleteCommand ?? (_deleteCommand = new RelayCommand(OnDelete, () => !IsHome));
-
         public SavedTemplateViewModel(TemplateInfoViewModel template, TemplateOrigin templateOrigin)
         {
             _id = Guid.NewGuid();
@@ -146,11 +139,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             IsReorderEnabled = template.TemplateType == TemplateType.Page;
         }
 
-        public void Focus()
-        {
-            IsTextSelected = true;
-        }
-
         private void SetName(string newName)
         {
             if (ItemNameEditable)
@@ -160,11 +148,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 MainViewModel.Instance.WizardStatus.HasValidationErrors = !validationResult.IsValid;
                 if (validationResult.IsValid)
                 {
-                    NotificationsControl.Instance.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                    NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
                 }
                 else
                 {
-                    NotificationsControl.Instance.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
+                    NotificationsControl.AddNotificationAsync(validationResult.GetNotification()).FireAndForget();
                 }
             }
 
@@ -177,14 +165,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 var textBox = args.Source as TextBox;
                 textBox.Focus();
-            }
-        }
-
-        public async void OnDelete()
-        {
-            if (!IsHome)
-            {
-                await MainViewModel.Instance.UserSelection.RemoveTemplateAsync(this);
             }
         }
 
@@ -208,7 +188,5 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 #pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         public (string name, ITemplateInfo template) GetUserSelection() => (Name, Template);
 #pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
-
-        public void SetHome(bool isHome) => IsHome = isHome;
     }
 }

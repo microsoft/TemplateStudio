@@ -83,9 +83,9 @@ namespace Microsoft.Templates.Core.Locations
         {
             string targetFolder = Path.Combine(workingFolder, packageInfo.Version.ToString());
 
-            if (Directory.Exists(targetFolder))
+            if (Directory.Exists(workingFolder))
             {
-                Fs.SafeDeleteDirectory(targetFolder);
+                Fs.SafeDeleteDirectory(workingFolder);
             }
 
             await Task.Run(() =>
