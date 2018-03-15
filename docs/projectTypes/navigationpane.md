@@ -10,7 +10,7 @@ This document covers:
 * [Modifying the menu items](#menu)
 * [Using the navigation pane with command bars](#commandbar)
 * [Have the menu item invoke code rather than navigate](#invokecode)
-* [Remove adaptative behaviors from HamburgerControl](#adaptativebehaviors)
+* [Remove adaptative behaviors from HamburgerMenu](#adaptativebehaviors)
 
 <a name="menu"></a>
 
@@ -262,31 +262,30 @@ _secondaryItems.Add(
 
 <a name="adaptativebehaviors"></a>
 
-## Remove adaptative behaviors from HamburgerControl
+## Remove adaptative behaviors from HamburgerMenu
 
-The NavigationPane project type is based on UWP Community Toolkit HamburgerControl and this is based on SplitView control of UWP Toolkit. This HamburgerControl contains a property UseNavigationViewWhenPossible that allows it to use the NavigationView Control for UWP if the app is running on a device with Windows Version Fall Creators Update (10.16299) or upper.
+WTS generates code that includes AdaptativeTriggers to provide responsive adaptation on screen size changes. If you want to remove this behavior because your app doesn't need it or because you prefere not to use it, please follow this documentation.
 
-Windows Template Studio generation resulting code that use HamburgerControl also includes AdaptativeTriggers that can be removed to get a easier to understand code but  it will remove  the screen resize adaptations on different pages.
-
-The first thing we must to remove is the VisualStates on ShellView.xaml.
+The first thing you have to remove is the VisualStates and the DisplayMode property on ShellView.xaml.
 
 ### Mvvm Basic - ShellView.xaml
+**Remove the commented code**
 ```xml
-<!--Only remove the DisplayMode propery and the VisualStateManager.VisualStateGroups-->
-
-<!--
 <controls:HamburgerMenu
     x:Name="NavigationMenu"
     UseNavigationViewWhenPossible="True"
-    SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"-->
-    DisplayMode="{x:Bind ViewModel.DisplayMode, Mode=OneWay}"
-    <!--IsPaneOpen="{x:Bind ViewModel.IsPaneOpen, Mode=TwoWay}"
+    SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
+    IsPaneOpen="{x:Bind ViewModel.IsPaneOpen, Mode=TwoWay}"
     ItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
     ItemsSource="{x:Bind ViewModel.PrimaryItems}"
     OptionsItemTemplate="{StaticResource NavigationMenuItemDataTemplate}"
     OptionsItemsSource="{x:Bind ViewModel.SecondaryItems}"
     PaneBackground="{ThemeResource SystemControlBackgroundAltHighBrush}"
     PaneForeground="{ThemeResource SystemControlForegroundBaseHighBrush}">
+    <!--
+    Remove this property from HamburgerMenu
+    DisplayMode="{x:Bind ViewModel.DisplayMode, Mode=OneWay}"
+    -->
     <i:Interaction.Behaviors>
         <ic:EventTriggerBehavior EventName="ItemInvoked">
             <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
@@ -294,7 +293,8 @@ The first thing we must to remove is the VisualStates on ShellView.xaml.
     </i:Interaction.Behaviors>
     <Grid Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <Frame x:Name="shellFrame"/>
-    </Grid>-->
+    </Grid>
+    <!--
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="WindowStates">
             <VisualState x:Name="PanoramicState">
@@ -314,110 +314,108 @@ The first thing we must to remove is the VisualStates on ShellView.xaml.
             </VisualState>
         </VisualStateGroup>
     </VisualStateManager.VisualStateGroups>
-<!--</controls:HamburgerMenu>-->
+    -->
+</controls:HamburgerMenu>
 ```
 
-We also have to remove the CurrentStateChanged management code.
+You also have to remove the CurrentStateChanged management code from ShellViewModel.cs.
 
+### Mvvm Basic - ShellViewModel.cs
 
-### Mvvm Basic
+**Remove the commented code**
 
 ```csharp
-private const string PanoramicStateName = "PanoramicState";
-private const string WideStateName = "WideState";
-private const string NarrowStateName = "NarrowState";
-private const double WideStateMinWindowWidth = 640;
-private const double PanoramicStateMinWindowWidth = 1024;
+// private const string PanoramicStateName = "PanoramicState";
+// private const string WideStateName = "WideState";
+// private const string NarrowStateName = "NarrowState";
+// private const double WideStateMinWindowWidth = 640;
+// private const double PanoramicStateMinWindowWidth = 1024;
 
-private SplitViewDisplayMode _displayMode = SplitViewDisplayMode.CompactInline;
+// private SplitViewDisplayMode _displayMode = SplitViewDisplayMode.CompactInline;
 
-public SplitViewDisplayMode DisplayMode
-{
-    get { return _displayMode; }
-    set { Set(ref _displayMode, value); }
-}
-
-private ICommand _stateChangedCommand;
-
-public ICommand StateChangedCommand
-{
-    get
-    {
-        if (_stateChangedCommand == null)
-        {
-            _stateChangedCommand = new RelayCommand<Windows.UI.Xaml.VisualStateChangedEventArgs>(args => GoToState(args.NewState.Name));
-        }
-
-        return _stateChangedCommand;
-    }
-}
-
-private void GoToState(string stateName)
-{
-    switch (stateName)
-    {
-        case PanoramicStateName:
-            DisplayMode = SplitViewDisplayMode.CompactInline;
-            break;
-        case WideStateName:
-            DisplayMode = SplitViewDisplayMode.CompactInline;
-            IsPaneOpen = false;
-            break;
-        case NarrowStateName:
-            DisplayMode = SplitViewDisplayMode.Overlay;
-            IsPaneOpen = false;
-            break;
-        default:
-            break;
-    }
-}
-
-private void InitializeState(double windowWith)
-{
-    if (windowWith < WideStateMinWindowWidth)
-    {
-        GoToState(NarrowStateName);
-    }
-    else if (windowWith < PanoramicStateMinWindowWidth)
-    {
-        GoToState(WideStateName);
-    }
-    else
-    {
-        GoToState(PanoramicStateName);
-    }
-}
-
-// public void Initialize(Frame frame)
+// public SplitViewDisplayMode DisplayMode
 // {
-    // NavigationService.Frame = frame;
-    // NavigationService.Navigated += Frame_Navigated;
-    // PopulateNavItems();
+//         get { return _displayMode; }
+//         set { Set(ref _displayMode, value); }
+// }
+
+// private ICommand _stateChangedCommand;
+
+// public ICommand StateChangedCommand
+// {
+//     get
+//     {
+//         if (_stateChangedCommand == null)
+//         {
+//             _stateChangedCommand = new   RelayCommand<Windows.UI.Xaml.VisualStateChangedEventArgs>(args => GoToState(args.NewState.Name));
+//         }
+
+//         return _stateChangedCommand;
+//     }
+// }
+
+// private void GoToState(string stateName)
+// {
+//     switch (stateName)
+//     {
+//         case PanoramicStateName:
+//             DisplayMode = SplitViewDisplayMode.CompactInline;
+//             break;
+//         case WideStateName:
+//             DisplayMode = SplitViewDisplayMode.CompactInline;
+//             IsPaneOpen = false;
+//             break;
+//         case NarrowStateName:
+//             DisplayMode = SplitViewDisplayMode.Overlay;
+//             IsPaneOpen = false;
+//             break;
+//         default:
+//             break;
+//     }
+// }
+
+// private void InitializeState(double windowWith)
+// {
+//     if (windowWith < WideStateMinWindowWidth)
+//     {
+//         GoToState(NarrowStateName);
+//     }
+//     else if (windowWith < PanoramicStateMinWindowWidth)
+//     {
+//         GoToState(WideStateName);
+//     }
+//     else
+//     {
+//         GoToState(PanoramicStateName);
+//     }
+// }
+
+public void Initialize(Frame frame)
+{
+    NavigationService.Frame = frame;
+    NavigationService.Navigated += Frame_Navigated;
+    PopulateNavItems();
 
     // Only remove the InitializeState call.
-    InitializeState(Window.Current.Bounds.Width);
-// }
+    // InitializeState(Window.Current.Bounds.Width);
+}
 
-// private void ItemSelected(HamburgerMenuItemInvokedEventArgs args)
-// {
+private void ItemSelected(HamburgerMenuItemInvokedEventArgs args)
+{
     // Only remove this parth of the method.
-    if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
-    {
-        IsPaneOpen = false;
-    }
+    // if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
+    // {
+    //    IsPaneOpen = false;
+    // }
 
-    // Navigate(args.InvokedItem);
-// }
-
+    Navigate(args.InvokedItem);
+}
 ```
 
-Now we should remove the adaptative triggers on each page that implement these kind of adaptation code (i.e. Blank Page).
+Now you have to remove the adaptative triggers on each page that implements it (i.e. Blank Page).
 
+**Remove the commented code**
 ```xml
-<!--
-Remove only the adaptative triggers.
--->
-<!--
 <Page
     x:Class="App.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -442,13 +440,14 @@ Remove only the adaptative triggers.
             x:Uid="Main_Title"
             Style="{StaticResource PageTitleStyle}" />
 
-        <Grid 
-            Grid.Row="1" 
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">-->
+        <Grid
+            Grid.Row="1"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
                 Place your content here.-->
-        <!--</Grid>-->
+        </Grid>
         <!--  Adaptive triggers  -->
+        <!--
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
                 <VisualState x:Name="WideState">
@@ -466,12 +465,10 @@ Remove only the adaptative triggers.
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-    <!--
+        -->
     </Grid>
 </Page>
--->
 ```
 
-This removed code doesn't add adaptative behaviors to HamburgerControl when the app is running on a device with Creators Update if the app is running Fall Creators Update Windows version or upper it would use the NavigationView Control with includes adaptative triggers. If you would to always use HamburgerControl instead of NavigationView you could set te property UseNavigationViewWhenPossible to False in HamburgerMenu (in file ShellPage.xaml).
-
-Windows Template Studio will update the NavigationPane Project Type to use NavigationView instead of Hamburger control in projects generated with versions when Spring Creators Update will be launched.
+The NavigationPane project type is based on UWP Community Toolkit HamburgerMenu. This HamburgerMenu contains a property UseNavigationViewWhenPossible that allows it to use the NavigationView Control for UWP if the app is running on a device with Windows Fall Creators Update (10.16299) or higher.
+There are several HamburgerMenu properties that have no effect when the HamburgerMenu is using the NavigationView check [HamburgerMenu documentation](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/docs/controls/HamburgerMenu.md) for more details.
