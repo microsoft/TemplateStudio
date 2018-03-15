@@ -1,4 +1,4 @@
-using Param_ItemNamespace.Models;
+﻿using Param_ItemNamespace.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +21,7 @@ namespace Param_ItemNamespace.Services
                     OrderId = 70,
                     OrderDate = new DateTime(2017, 05, 24),
                     Company = "Company F",
-                    ShipTo = "Francisco Pérez-Olaeta",
+                    ShipTo = "Francisco PÃ©rez-Olaeta",
                     OrderTotal = 2490.00,
                     Status = "Closed",
                     Symbol = Symbol.Globe
@@ -71,7 +71,7 @@ namespace Param_ItemNamespace.Services
                     OrderId = 75,
                     OrderDate = new DateTime(2017, 06, 07),
                     Company = "Company F",
-                    ShipTo = "Francisco Pérez-Olaeta",
+                    ShipTo = "Francisco PÃ©rez-Olaeta",
                     OrderTotal = 810.00,
                     Status = "Shipped",
                     Symbol = Symbol.Contact
