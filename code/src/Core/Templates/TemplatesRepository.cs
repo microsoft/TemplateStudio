@@ -127,7 +127,7 @@ namespace Microsoft.Templates.Core
             }
 
             var metadataFile = Path.Combine(folderName, $"{type}.json");
-            var metadataFileLocalized = Path.Combine(folderName, $"{type}.json");
+            var metadataFileLocalized = Path.Combine(folderName, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{type}.json");
             var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
 
             if (metadata.Any(m => m.Languages != null))
