@@ -9,7 +9,8 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & $projectType == TabbedPivot & identity == wts.Page.MediaPlayer.VB|wts.Page.MediaPlayer.CodeBehind.VB"
+    "wts.compositionFilter": "$framework == CodeBehind & $projectType == TabbedPivot & identity == wts.Page.MediaPlayer.VB|wts.Page.MediaPlayer.CodeBehind.VB",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

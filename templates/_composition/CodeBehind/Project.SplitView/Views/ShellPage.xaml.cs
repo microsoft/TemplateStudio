@@ -143,7 +143,7 @@ namespace wts.ItemName.Views
             }
         }
 
-        private void ItemInvoked(object sender, HamburgetMenuItemInvokedEventArgs e)
+        private void ItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
         {
             if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
             {
