@@ -5,6 +5,7 @@
     {
 //^^
 //{[{
+
         ObservableCollection<DataPoint> GetChartSampleData();
 //}]}
     }
