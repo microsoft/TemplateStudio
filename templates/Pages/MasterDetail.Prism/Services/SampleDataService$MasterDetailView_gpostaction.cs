@@ -8,7 +8,6 @@ namespace Param_ItemNamespace.Services
     {
 //^^
 //{[{
-
         // TODO WTS: Remove this once your MasterDetail pages are displaying real data
         public async Task<IEnumerable<SampleOrder>> GetSampleModelDataAsync()
         {

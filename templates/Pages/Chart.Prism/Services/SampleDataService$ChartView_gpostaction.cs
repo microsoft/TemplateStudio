@@ -4,7 +4,6 @@
     {
 //^^
 //{[{
-
         // TODO WTS: Remove this once your chart page is displaying real data
         public ObservableCollection<DataPoint> GetChartSampleData()
         {

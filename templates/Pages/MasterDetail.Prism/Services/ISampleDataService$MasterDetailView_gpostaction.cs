@@ -5,7 +5,6 @@
     {
 //^^
 //{[{
-
         Task<IEnumerable<SampleOrder>> GetSampleModelDataAsync();
 //}]}
     }

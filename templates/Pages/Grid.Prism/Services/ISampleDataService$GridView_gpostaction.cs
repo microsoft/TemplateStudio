@@ -5,7 +5,6 @@
     {
 //^^
 //{[{
-
         ObservableCollection<SampleOrder> GetGridSampleData();
 //}]}
     }

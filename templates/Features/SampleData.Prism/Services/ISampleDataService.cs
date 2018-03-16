@@ -9,6 +9,5 @@ namespace Param_ItemNamespace.Services
     // TODO WTS: Delete this file once your app is using real data.
     public interface ISampleDataService
     {
-
     }
 }

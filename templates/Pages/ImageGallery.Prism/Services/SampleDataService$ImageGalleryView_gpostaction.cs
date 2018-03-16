@@ -5,7 +5,6 @@ namespace Param_ItemNamespace.Services
 {
     public class SampleDataService : ISampleDataService
     {
-
 //^^
 //{[{
         // TODO WTS: Remove this once your image gallery page is displaying real data
