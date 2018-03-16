@@ -69,8 +69,8 @@ namespace Param_ItemNamespace.ViewModels
         private void OnsItemSelected(ItemClickEventArgs args)
         {
             var selected = args.ClickedItem as SampleImage;
-            _imagesGridView.PrepareConnectedAnimation(ImageGalleryAnimationOpen, selected, "galleryImage");
-            _navigationService.Navigate(PageTokens.ImageGalleryDetailPage, args.ClickedItem);
+            _imagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage");
+            _navigationService.Navigate(PageTokens.ImageGalleryViewDetailPage, args.ClickedItem);
         }
     }
 }
