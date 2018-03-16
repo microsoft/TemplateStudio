@@ -43,10 +43,11 @@ A template is just code (some source files and folders structure) with some meta
 The [Templates Repository](../templates) has the following structure:
 
 * [_catalog](../templates/_catalog): this folder contains the catalog of available Frameworks and Project Types, including the required information and metadata (descriptions, icons, images, etc.) to be displayed in the Wizard. You can consider all the content within the *_catalog* folder as metadata for frameworks and project types.
-* [_composition](../templates/_composition): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
-* [Projects](../templates/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
-* [Pages](../templates/Pages): Page templates define the source files needed to create a page of a certain type.
-* [Features](../templates/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
+* [Uwp](_templates/Uwp): this folder contains all templates used for UWP platform projects
+  * [_composition](../templates/Uwp/_composition): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
+  * [Projects](../templates/Uwp/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
+  * [Pages](../templates/Uwp/Pages): Page templates define the source files needed to create a page of a certain type.
+  * [Features](../templates/Uwp/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
 
 ## Anatomy of templates
 
@@ -112,6 +113,7 @@ The replacements are done based on the configuration established in the `templat
     "type": "item",
     "wts.type": "page",
     "wts.framework": "MVVMBasic|MVVMLight",       //Frameworks where this template can be used.
+    "wts.platform": "Uwp",                        //Platform where this template can be used
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",                      //This tag is used to order the templates in the wizard.
     "wts.rightClickEnabled":"true",               //If set to 'true' then this feature or page is available from right click on an existing project.
@@ -205,6 +207,7 @@ The structure of files and folders within the `_composition` folder is just for 
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
+    "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Proj.Blank",
     "wts.compositionOrder" : "1"
