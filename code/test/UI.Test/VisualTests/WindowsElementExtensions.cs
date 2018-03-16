@@ -74,12 +74,20 @@ namespace Microsoft.UI.Test.VisualTests
                 {
                     var possibleElement = session.FindElement(By.Id(windowsElement.Id));
 
-                    foreach (var textblock in possibleElement.FindElements(By.ClassName("TextBlock")))
+                    if (possibleElement.Text == text)
                     {
-                        if (textblock.GetAttribute("Name") == text)
+                        element = possibleElement;
+                        return true;
+                    }
+                    else
+                    {
+                        foreach (var textblock in possibleElement.FindElements(By.ClassName("TextBlock")))
                         {
-                            element = possibleElement;
-                            return true;
+                            if (textblock.GetAttribute("Name") == text)
+                            {
+                                element = possibleElement;
+                                return true;
+                            }
                         }
                     }
                 }

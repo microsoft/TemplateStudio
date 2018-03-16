@@ -99,27 +99,26 @@ namespace Microsoft.Templates.VsEmulator
 
                         GenContext.Current = context;
 
-                        // Need to create a MainViewModel as the styles in the UI of all pages is set up by it
-                        var vm = new MainViewModel(null);
-                        UIStylesService.Instance.Initialize(FakeStyleValuesProvider.Instance);
+                        // Set resources to be used for the UI
+                        FakeStyleValuesProvider.Instance.LoadResources("Light");
 
                         switch (options.UI.ToUpperInvariant())
                         {
                             case "PAGE":
                                 EnableRightClickSupportForProject(projectPath);
-                                var userPageSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
+                                var userPageSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
 
                             case "FEATURE":
                                 EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userFeatureSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
+                                var userFeatureSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
 
                             case "PROJECT":
                             default:
-                                var userSelectionIsNotUsed = NewProjectGenController.Instance.GetUserSelection(progLanguage);
+                                var userSelectionIsNotUsed = NewProjectGenController.Instance.GetUserSelection(progLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
                         }

@@ -151,8 +151,9 @@ namespace Microsoft.UI.Test.VisualTests
                 {
                     var elementName = item.GetAttribute("Name");
 
-                    if (elementName == "Microsoft.Templates.UI.ViewModels.Common.MetadataInfoViewModel"
-                        || elementName == "Microsoft.Templates.UI.ViewModels.Common.TemplateInfoViewModel")
+                    //if (elementName == "Microsoft.Templates.UI.ViewModels.Common.MetadataInfoViewModel"
+                    //    || elementName == "Microsoft.Templates.UI.ViewModels.Common.TemplateInfoViewModel")
+                    if (elementName != "Microsoft.Templates.UI.Controls.Step")
                     {
                         itemCount++;
 

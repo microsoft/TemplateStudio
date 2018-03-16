@@ -42,7 +42,7 @@ namespace Microsoft.UI.Test.VisualTests
 
             foreach (var progLang in ProgrammingLanguages.GetAllLanguages())
             {
-                ForEachPageInProjectWizard(DefaultCulture, progLang, true, pageName =>
+                ForEachPageInProjectWizard(DefaultCulture, progLang, includeDetails: true, action: pageName =>
                 {
                     TakeScreenshot(Path.Combine(testOutputRoot, $"{DefaultCulture}_{progLang}_{Uri.EscapeUriString(pageName)}.png"));
                 });
@@ -78,7 +78,7 @@ namespace Microsoft.UI.Test.VisualTests
         }
 
         // TODO [ML]: need to launch through VS (not VSEMulator) to see "proper" theme support
-        [Fact]
+       // [Fact]
         public void GetScreenshots_Wizard_CS_DefaultCulture_HighContrast()
         {
             try
