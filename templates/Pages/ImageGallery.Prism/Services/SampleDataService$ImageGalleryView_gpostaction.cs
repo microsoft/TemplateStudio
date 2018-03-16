@@ -7,6 +7,7 @@ namespace Param_ItemNamespace.Services
     {
 //^^
 //{[{
+
         // TODO WTS: Remove this once your image gallery page is displaying real data
         public ObservableCollection<SampleImage> GetGallerySampleData()
         {
