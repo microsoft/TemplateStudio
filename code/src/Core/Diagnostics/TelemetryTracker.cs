@@ -47,6 +47,9 @@ namespace Microsoft.Templates.Core.Diagnostics
             };
 
             TelemetryService.Current.SetContentVsProductVersionToContext(vsProductVersion);
+
+            TelemetryService.Current.SafeTrackWizardCancelledVsTelemetry(properties);
+
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
 
