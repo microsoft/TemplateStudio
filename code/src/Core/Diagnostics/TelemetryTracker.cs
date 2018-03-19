@@ -36,13 +36,14 @@ namespace Microsoft.Templates.Core.Diagnostics
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.Wizard, properties).ConfigureAwait(false);
         }
 
-        public async Task TrackWizardCancelledAsync(WizardTypeEnum wizardType, string vsProductVersion)
+        public async Task TrackWizardCancelledAsync(WizardTypeEnum wizardType, string vsProductVersion, bool syncInProgress)
         {
             var properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Cancelled.ToString() },
                 { TelemetryProperties.WizardType, wizardType.ToString() },
-                { TelemetryProperties.EventName, TelemetryEvents.Wizard }
+                { TelemetryProperties.EventName, TelemetryEvents.Wizard },
+                { TelemetryProperties.SyncInProgress, syncInProgress.ToString() }
             };
 
             TelemetryService.Current.SetContentVsProductVersionToContext(vsProductVersion);

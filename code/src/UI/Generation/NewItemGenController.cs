@@ -58,7 +58,7 @@ namespace Microsoft.Templates.UI
                 }
                 else
                 {
-                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddFeature, GenContext.ToolBox.Shell.GetVsVersion()).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddFeature, GenContext.ToolBox.Shell.GetVsVersion(), GenContext.ToolBox.Repo.SyncInProgress).FireAndForget();
                 }
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
@@ -88,7 +88,7 @@ namespace Microsoft.Templates.UI
                 }
                 else
                 {
-                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddPage, GenContext.ToolBox.Shell.GetVsVersion()).FireAndForget();
+                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.AddPage, GenContext.ToolBox.Shell.GetVsVersion(), GenContext.ToolBox.Repo.SyncInProgress).FireAndForget();
                 }
             }
             catch (Exception ex) when (!(ex is WizardBackoutException))
