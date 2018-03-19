@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "Sürükle ve Bırak özelliği, sürükle ve bırak seçeneğinin kullanılabildiği uygulamalar oluşturmak için gereken kodu basitleştirmek üzere standart UWP Sürükle ve Bırak işlevselliği üzerinde bir sarmalayıcı hizmeti sunar.",
+  "description": "Sürükle ve Bırak özelliği, sürükle ve bırak seçeneğinin kullanılabildiği uygulamaların oluşturulmasını basitleştiren bir hizmet sunar.",
   "identity": "wts.Feat.DragAndDrop.CodeBehind"
 }

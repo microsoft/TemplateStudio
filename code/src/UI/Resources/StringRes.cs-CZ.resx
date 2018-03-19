@@ -118,247 +118,247 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddFeaturesTitle" xml:space="preserve">
-    <value>Add features</value>
+    <value>Přidat funkce</value>
     <comment>AddFeatures title on AddFeaturesPage</comment>
   </data>
   <data name="AddPagesTitle" xml:space="preserve">
-    <value>Add pages</value>
+    <value>Přidat stránky</value>
     <comment>Add pages title on AddPagesPage</comment>
   </data>
   <data name="ButtonBack" xml:space="preserve">
-    <value>Back</value>
+    <value>Zpět</value>
     <comment>MainPage Back button</comment>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Zrušit</value>
     <comment>MainPage Cancel button</comment>
   </data>
   <data name="ButtonClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Zavřít</value>
     <comment>Notification button close</comment>
   </data>
   <data name="ButtonCreate" xml:space="preserve">
-    <value>Create</value>
+    <value>Vytvořit</value>
     <comment>MainPage Create button</comment>
   </data>
   <data name="ButtonNext" xml:space="preserve">
-    <value>Next</value>
+    <value>Další</value>
     <comment>MainPage Next button</comment>
   </data>
   <data name="ButtonNo" xml:space="preserve">
-    <value>No</value>
+    <value>Ne</value>
     <comment>No Button</comment>
   </data>
   <data name="ButtonOk" xml:space="preserve">
-    <value>Ok</value>
+    <value>OK</value>
     <comment>Error dialog and information window ok button content</comment>
   </data>
   <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
-    <value>Refresh templates cache</value>
+    <value>Aktualizovat mezipaměť šablon</value>
     <comment>Refresh templates cache button</comment>
   </data>
   <data name="ButtonRemove" xml:space="preserve">
-    <value>Remove</value>
+    <value>Odebrat</value>
     <comment>Remove template button</comment>
   </data>
   <data name="ButtonYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Ano</value>
     <comment>Yes Button</comment>
   </data>
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
-    <value>Do not merge changes (generate in a temp folder).</value>
+    <value>Neslučovat změny (generovat do dočasné složky)</value>
     <comment>Do not merge changes checkbox text</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingFiles" xml:space="preserve">
-    <value>Conflicting files</value>
+    <value>Konfliktní soubory</value>
     <comment>Changes summary group title for: Conflicting files</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingFilesDescription" xml:space="preserve">
-    <value>This file already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
+    <value>Tento soubor ve vašem projektu už existuje, byl ale také vygenerován jakou součást nové položky. Aktuální soubor nebude upraven ani přepsán. Porovnejte je a ujistěte se, že je všechno na správném místě. V případě potřeby můžete přistupovat ke generovanému souboru po dokončení.</value>
     <comment>Changes summary description for: Conflicting files</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingStylesFiles" xml:space="preserve">
-    <value>Conflicting styles files</value>
+    <value>Konfliktní soubory stylů</value>
     <comment>Changes summary group title for: Conflicting styles files</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingStylesFilesDescription" xml:space="preserve">
-    <value>We are not able to introduce the styles in the resource dictionary.</value>
+    <value>Nemůžeme zahrnout styly do slovníku prostředků.</value>
     <comment>Changes summary description for: Conflicting styles files</comment>
   </data>
   <data name="ChangesSummaryGroupModifiedFiles" xml:space="preserve">
-    <value>Modified files</value>
+    <value>Upravené soubory</value>
     <comment>Changes summary group title for: Modified files</comment>
   </data>
   <data name="ChangesSummaryGroupModifiedFilesDescription" xml:space="preserve">
-    <value>This file will be modified to include required content.</value>
+    <value>Tento soubor bude upraven tak, aby zahrnoval požadovaný obsah.</value>
     <comment>Changes summary description for: Modified files</comment>
   </data>
   <data name="ChangesSummaryGroupNewFiles" xml:space="preserve">
-    <value>New files</value>
+    <value>Nové soubory</value>
     <comment>Changes summary group title for: New files</comment>
   </data>
   <data name="ChangesSummaryGroupNewFilesDescription" xml:space="preserve">
-    <value>This file will be added as new file to your project.</value>
+    <value>Tento soubor bude přidán jako nový soubor do projektu.</value>
     <comment>Changes summary description for: New files</comment>
   </data>
   <data name="ChangesSummaryGroupUnchangedFiles" xml:space="preserve">
-    <value>Unchanged files</value>
+    <value>Nezměněné soubory</value>
     <comment>Changes summary group title for: Unchanged files</comment>
   </data>
   <data name="ChangesSummaryGroupUnchangedFilesDescription" xml:space="preserve">
-    <value>This file already exists in your project and no further action is necessary. The file will remain unchanged.</value>
+    <value>Tento soubor ve vašem projektu už existuje a není třeba provést žádnou další akci. Soubor zůstane beze změn.</value>
     <comment>Changes summary description for: Unchanged files</comment>
   </data>
   <data name="ChangesSummaryGroupWarningFiles" xml:space="preserve">
-    <value>Warning files</value>
+    <value>Soubory varování</value>
     <comment>Changes summary group title for: Warning files</comment>
   </data>
   <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
-    <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
+    <value>Nemůžeme zahrnout požadované změny. V případě potřeby můžete přistupovat ke generovanému souboru po dokončení.</value>
     <comment>Changes summary description for: Warning files</comment>
   </data>
   <data name="ErrorDialogShowDetails" xml:space="preserve">
-    <value>Show details</value>
+    <value>Zobrazit podrobnosti</value>
     <comment>Error dialog show details link button</comment>
   </data>
   <data name="ErrorDialogTitle" xml:space="preserve">
-    <value>Something went wrong :-(</value>
+    <value>Něco se nepovedlo :-(</value>
     <comment>Error dialog title</comment>
   </data>
   <data name="ErrorDialogWindowTitle" xml:space="preserve">
-    <value>Windows Template Studio Error</value>
+    <value>Chyba Windows Template Studia</value>
     <comment>Error dialog window title</comment>
   </data>
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
-    <value>more info</value>
+    <value>další informace</value>
     <comment>Changes summary more info link</comment>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
-    <value>Select a design pattern</value>
+    <value>Vybrat návrhový vzor (design pattern)</value>
     <comment>Title on FrameworkPage</comment>
   </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another feature.</value>
+    <value>{0} je už součástí vašeho projektu. Zvolte jinou funkci.</value>
     <comment>Feature already added {0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another page.</value>
+    <value>{0} je už součástí vašeho projektu. Zvolte jinou stránku.</value>
     <comment>Page already added {0}: Page name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
-    <value>Template selection</value>
+    <value>Výběr šablon</value>
     <comment>New Item: Naviagtion step one </comment>
   </data>
   <data name="NewItemStepTwo" xml:space="preserve">
-    <value>Changes summary</value>
+    <value>Souhrn změn</value>
     <comment>New Item: Naviagtion step two</comment>
   </data>
   <data name="NewItemTemplateDetailsDependenciesSectionTitle" xml:space="preserve">
-    <value>Dependencies</value>
+    <value>Závislosti</value>
     <comment>New item: Dependencies section</comment>
   </data>
   <data name="NewItemTemplateDetailsLicensesSectionTitle" xml:space="preserve">
-    <value>Licenses</value>
+    <value>Licence</value>
     <comment>New item: Licenses section</comment>
   </data>
   <data name="NewItemTemplateDetailsNameSectionTitle" xml:space="preserve">
-    <value>Name</value>
+    <value>Název</value>
     <comment>New item: Name section</comment>
   </data>
   <data name="NewItemTemplateDetailsTitle" xml:space="preserve">
-    <value>Template Details</value>
+    <value>Informace o šabloně</value>
     <comment>New item: Template Details</comment>
   </data>
   <data name="NewItemTitleFeature" xml:space="preserve">
-    <value>New feature</value>
+    <value>Nová funkce</value>
     <comment>New item: new feature title</comment>
   </data>
   <data name="NewItemTitlePage" xml:space="preserve">
-    <value>New page</value>
+    <value>Nová stránka</value>
     <comment>New item: new page title</comment>
   </data>
   <data name="NewProjectStepFour" xml:space="preserve">
-    <value>Features</value>
+    <value>Funkce</value>
     <comment>New project: Navigation step four</comment>
   </data>
   <data name="NewProjectStepOne" xml:space="preserve">
-    <value>Project type</value>
+    <value>Typ projektu</value>
     <comment>New project: Navigation step one</comment>
   </data>
   <data name="NewProjectStepThree" xml:space="preserve">
-    <value>Pages</value>
+    <value>Stránky</value>
     <comment>New project: Navigation step three</comment>
   </data>
   <data name="NewProjectStepTwo" xml:space="preserve">
-    <value>Design pattern</value>
+    <value>Návrhový vzor (design pattern)</value>
     <comment>New project: Navigation step two</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
-    <value>New Universal Windows Platform app</value>
+    <value>Nová aplikace UWP</value>
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>You can not remove *{0}* because *{1}* depends on it.</value>
+    <value>Nelze odebrat šablonu *{0}*, protože na ní závisí šablona *{1}*.</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
-    <value>Error refreshing templates. See output window for more details.</value>
+    <value>Při aktualizaci šablon došlo k chybě. Podrobnější informace najdete v okně výstupu.</value>
     <comment>Error message for sync refresh</comment>
   </data>
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
-    <value>There are new templates available (v{0}). Downloading… {1}%</value>
+    <value>Jsou dostupné nové šablony (verze {0}). Probíhá stahování... {1} %</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>Copying templates (v{0})... {1}%</value>
+    <value>Kopírování šablon (verze {0})... {1}%</value>
     <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
-    <value>Error downloading templates (v{0}). We'll try later again.</value>
+    <value>Při stahování šablon (verze {0}) došlo k chybě. Zkusíme to znovu později.</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <value>Je dostupná verze Windows Template Studio {0}. Aktualizací rozšíření získáte přístup k nejnovějším funkcím.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
-    <value>Preparing templates (v{0})... {1}%</value>
+    <value>Příprava šablon (verze {0})... {1}%</value>
     <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_Updating" xml:space="preserve">
-    <value>Refreshing templates cache…</value>
+    <value>Aktualizace mezipaměti šablon...</value>
     <comment>Notification message for Sync Status: Updating</comment>
   </data>
   <data name="NotificationValidationError_AlreadyExists" xml:space="preserve">
-    <value>Name already exists</value>
+    <value>Název už existuje.</value>
     <comment>Validation error message: Already exists</comment>
   </data>
   <data name="NotificationValidationError_BadFormat" xml:space="preserve">
-    <value>Only alphanumeric and '_' characters are allowed</value>
+    <value>Jsou povoleny jen alfanumerické znaky a znak podtržítka (_).</value>
     <comment>Validation error message: Bad format</comment>
   </data>
   <data name="NotificationValidationError_Empty" xml:space="preserve">
-    <value>Name cannot be empty</value>
+    <value>Název nesmí být prázdný.</value>
     <comment>Validation error message: Empty</comment>
   </data>
   <data name="NotificationValidationError_ReservedName" xml:space="preserve">
-    <value>Name is reserved</value>
+    <value>Název je vyhrazený.</value>
     <comment>Validation error message: Reserved name</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
-    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?</value>
+    <value>Nemůžeme najít metadata konfigurace projektu v souboru Package.appxmanifest. Můžete poskytnout konfiguraci projektu, kterou jste vybrali při jeho vytváření?</value>
     <comment>ProjectConfiguration view description</comment>
   </data>
   <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
-    <value>Select design pattern:</value>
+    <value>Vybrat návrhový vzor (design pattern):</value>
     <comment>Project configuration window select framework title</comment>
   </data>
   <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
-    <value>Select project type:</value>
+    <value>Vybrat typ projektu:</value>
     <comment>Project configuration window select project type title</comment>
   </data>
   <data name="ProjectConfigurationTitleText" xml:space="preserve">
-    <value>Choose project configuration</value>
+    <value>Vybrat konfiguraci projektu</value>
     <comment>Project configuration window title</comment>
   </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
@@ -366,7 +366,7 @@
     <comment>About section link</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
-    <value>Templates version:</value>
+    <value>Verze šablon:</value>
     <comment>About section templates version</comment>
   </data>
   <data name="ProjectDetailsAboutSectionText" xml:space="preserve">
@@ -374,79 +374,79 @@
     <comment>About section text</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
-    <value>About</value>
+    <value>O nástroji</value>
     <comment>About section title</comment>
   </data>
   <data name="ProjectDetailsAboutSectionWizardVersion" xml:space="preserve">
-    <value>Wizard version:</value>
+    <value>Verze průvodce:</value>
     <comment>About section wizard version</comment>
   </data>
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
-    <value>Features</value>
+    <value>Funkce</value>
     <comment>Feature list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
-    <value>You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <value>Změnili jste svůj výběr návrhového vzoru (design pattern). Přijdete o stránky a funkce, které jste zvolili. Chcete pokračovat?</value>
     <comment>Framework changed message</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
-    <value>Design pattern changed</value>
+    <value>Byl změněn návrhový vzor (design pattern).</value>
     <comment>Framework changed title</comment>
   </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
-    <value>Design pattern</value>
+    <value>Návrhový vzor (design pattern)</value>
     <comment>Framework combobox header on project details</comment>
   </data>
   <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
-    <value>Licenses</value>
+    <value>Licence</value>
     <comment>New project: Licenses section</comment>
   </data>
   <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
-    <value>Pages</value>
+    <value>Stránky</value>
     <comment>Page list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <value>Změnili jste svůj výběr typu projektu. Přijdete o stránky a funkce, které jste zvolili. Chcete pokračovat?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
-    <value>Project type changed</value>
+    <value>Byl změněn typ projektu.</value>
     <comment>Project type changed title</comment>
   </data>
   <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
-    <value>Project type</value>
+    <value>Typ projektu</value>
     <comment>Project type combobox header on project details</comment>
   </data>
   <data name="ProjectDetailsTitle" xml:space="preserve">
-    <value>Your project details</value>
+    <value>Informace o vašem projektu</value>
     <comment>Project details header on MainPage</comment>
   </data>
   <data name="ProjectTypeTitle" xml:space="preserve">
-    <value>Select a project type</value>
+    <value>Vybrat typ projektu</value>
     <comment>ProjectType Title on ProjectTypePage</comment>
   </data>
   <data name="TemplateDetailsAuthor" xml:space="preserve">
-    <value>Author:</value>
+    <value>Autor:</value>
     <comment>Template details: Autor</comment>
   </data>
   <data name="TemplateDetailsDependencies" xml:space="preserve">
-    <value>Dependencies:</value>
+    <value>Závislosti:</value>
     <comment>Template details: Dependencies</comment>
   </data>
   <data name="TemplateDetailsLicenses" xml:space="preserve">
-    <value>Licenses:</value>
+    <value>Licence:</value>
     <comment>Template details: Licenses</comment>
   </data>
   <data name="TemplateDetailsVersion" xml:space="preserve">
-    <value>Version:</value>
+    <value>Verze:</value>
     <comment>Template details: Version</comment>
   </data>
   <data name="TemplateSelectionTitle" xml:space="preserve">
-    <value>Select the template you want to add</value>
+    <value>Vyberte šablonu, kterou chcete přidat.</value>
     <comment>Template selection title</comment>
   </data>
   <data name="TermsAndConditionsText" xml:space="preserve">
-    <value>By continuing, you agree to the terms of all the licenses in the licenses section.</value>
+    <value>Pokud budete pokračovat, vyjádříte tím souhlas s podmínkami všech licencí v oblasti pro licence.</value>
     <comment>Licenses Terms and conditions text</comment>
   </data>
   <data name="WindowsTemplateStudio" xml:space="preserve">
@@ -454,195 +454,195 @@
     <comment>Windows template studio label</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
-    <value>Generation finished</value>
+    <value>Generování bylo dokončeno.</value>
     <comment>Status bar message generation finished</comment>
   </data>
   <data name="StatusBarRestoring" xml:space="preserve">
-    <value>Restoring packages...</value>
+    <value>Obnovování balíčků...</value>
     <comment>Status bar message for restoring</comment>
   </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>Creating Windows Template Studio project...</value>
+    <value>Vytváření projektu ve Windows Template Studiu...</value>
     <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
-    <value>Add new feature cancelled</value>
+    <value>Přidání nové funkce bylo zrušeno.</value>
     <comment>Status bar message for Add new feature cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureSuccess" xml:space="preserve">
-    <value>Feature {0} successfully added</value>
+    <value>Funkce {0} byla úspěšně přidána.</value>
     <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
   </data>
   <data name="StatusBarNewItemAddPageCancelled" xml:space="preserve">
-    <value>Add new page cancelled</value>
+    <value>Přidání nové stránky bylo zrušeno.</value>
     <comment>Status bar message for Add new page cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
-    <value>Page {0} successfully added</value>
+    <value>Stránka {0} byla úspěšně přidána.</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
   <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Exception tracking telemetry during generation.</value>
+    <value>Telemetrie sledování výjimky během generování</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Unable add project items. Ensure you have the required SDK.</value>
+    <value>Nelze přidat položky projektu. Ujistěte se, že máte požadovanou sadu SDK.</value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Unable to add the project to the solution. Make sure you have the expected SDK installed.</value>
+    <value>Nelze přidat projekt do řešení. Ujistěte se, že je nainstalovaná očekávaná sada SDK.</value>
     <comment>Error message for unable add project to solution</comment>
   </data>
   <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>Unable to refresh the project. Try to refresh it manually.</value>
+    <value>Nelze aktualizovat projekt. Zkuste ho aktualizovat ručně.</value>
     <comment>Error message for unable to refresh project</comment>
   </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
-    <value>There was an error collapsing the solution tree. Ex:</value>
+    <value>Při sbalování stromu řešení došlo k chybě. Příklad:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
   <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>There was an error restoring the packages. Ex:</value>
+    <value>Při obnovování balíčků došlo k chybě. Příklad:</value>
     <comment>Error message for Vs GenShell restore packages error</comment>
   </data>
   <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages.</value>
+    <value>Nelze automaticky obnovit balíčky NuGet pro řešení. Obnovte balíčky NuGet ručně.</value>
     <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>There was an error showing status message. Ex:</value>
+    <value>Při zobrazování stavové zprávy došlo k chybě. Příklad:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
   </data>
   <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>Circular dependency detected on template {0} with {1}.</value>
+    <value>V šabloně {0} byla zjištěna cyklická závislost se šablonou {1}.</value>
     <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>Dependency template {0} not found on user selection.</value>
+    <value>Ve výběru uživatele nebyla nalezena závislá šablona {0}.</value>
     <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
+    <value>Závislá položka {0} je neplatná. Závislosti je nutné nakonfigurovat jako multipleInstance = false.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Dependency template {0} not found for framework {1}.</value>
+    <value>Nebyla nalezena závislá šablona {0} pro rámec (framework) {1}.</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name</comment>
   </data>
   <data name="ErrorDependencyType" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
+    <value>Závislá položka {0} je neplatná. Závislé položky musí být typu Stránka nebo Funkce.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorGenerating" xml:space="preserve">
-    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
+    <value>Šablona {0}, název: {1}, důvod: '{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1}.</value>
+    <value>Nebyla nalezena šablona rozložení {0} pro rámec (framework) {1}.</value>
     <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
-    <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
+    <value>Položka rozložení {0} je neplatná. Položky rozvržení musí být typu Stránka nebo Funkce.</value>
     <comment>Layout Type exception message. {0}: Layout template id</comment>
   </data>
   <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>Creating '{0}' feature ...</value>
+    <value>Vytváření funkce {0}...</value>
     <comment>Status bar message generating feature. {0}: Feature name</comment>
   </data>
   <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>Creating '{0}' page ...</value>
+    <value>Vytváření stránky {0}...</value>
     <comment>Status bar message generating page. {0}: Page name</comment>
   </data>
   <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>Creating project '{0}'...</value>
+    <value>Vytváření projektu {0}...</value>
     <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
-    <value>Application Launching</value>
+    <value>Spuštění aplikace</value>
     <comment>Group header for Application Launching templates</comment>
   </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
-    <value>Application Lifecycle</value>
+    <value>Životní cyklus aplikace</value>
     <comment>Group header for application lifecycle templates</comment>
   </data>
   <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
-    <value>Background Work</value>
+    <value>Práce na pozadí</value>
     <comment>Group header for background work templates</comment>
   </data>
   <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
-    <value>Connected Experiences</value>
+    <value>Propojená prostředí</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
   <data name="TemplateGroup_UserInteraction" xml:space="preserve">
-    <value>User Interaction</value>
+    <value>Interakce uživatele</value>
     <comment>Group header for user interaction templates</comment>
   </data>
   <data name="ButtonDetails" xml:space="preserve">
-    <value>Details</value>
+    <value>Podrobnosti</value>
     <comment>Details button</comment>
   </data>
   <data name="TemplateAdded" xml:space="preserve">
-    <value>Added</value>
+    <value>Přidáno</value>
     <comment>Template added label</comment>
   </data>
   <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
-    <value>Checking for updates...</value>
+    <value>Kontrola dostupnosti aktualizací...</value>
     <comment>Notification message for Sync Status: CheckingForUpdates</comment>
   </data>
   <data name="NotificationSyncStatus_Updated" xml:space="preserve">
-    <value>Templates updated.</value>
+    <value>Šablony byly aktualizovány.</value>
     <comment>Notification message for Sync Status: Updated</comment>
   </data>
   <data name="AccessibilityNotificationPanel" xml:space="preserve">
-    <value>Notification panel</value>
+    <value>Oznamovací panel</value>
     <comment> Notification panel label to accessibility</comment>
   </data>
   <data name="AccessibilityEditPageItem" xml:space="preserve">
-    <value>Edit page</value>
+    <value>Upravit stránku</value>
     <comment>Edit page label to accessibility</comment>
   </data>
   <data name="AccessibilityNavigationMenu" xml:space="preserve">
-    <value>Navigation menu</value>
+    <value>Navigační nabídka</value>
     <comment>Navigation menu label</comment>
   </data>
   <data name="AccessibilityProjectTypesList" xml:space="preserve">
-    <value>Project types list</value>
+    <value>Seznam typů projektů</value>
     <comment>Project types list label to accessibility</comment>
   </data>
   <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
-    <value>Sequential flow control</value>
+    <value>Ovládací prvek sekvenčního toku</value>
     <comment>Sequential flow control label to accessibility</comment>
   </data>
   <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
-    <value>User selection pages</value>
+    <value>Stránky výběru uživatele</value>
     <comment>User selection page list to accessibility</comment>
   </data>
   <data name="AccessibilityDesignPatternList" xml:space="preserve">
-    <value>Design pattern list</value>
+    <value>Seznam návrhových vzorů (design pattern)</value>
     <comment>Design pattern list to accessibility</comment>
   </data>
   <data name="AccessibilityTemplatesList" xml:space="preserve">
-    <value>Templates list</value>
+    <value>Seznam šablon</value>
     <comment>Templates list label to accessibility</comment>
   </data>
   <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
-    <value>Open in a new browser tab</value>
+    <value>Otevřít na nové záložce prohlížeče</value>
     <comment>External hyperlink tooltip message</comment>
   </data>
   <data name="AccessibilityCodeViewerControl" xml:space="preserve">
-    <value>Code viewer</value>
+    <value>Prohlížeč kódu</value>
     <comment>Code viewer label to accessibility</comment>
   </data>
   <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
-    <value>New item file icon</value>
+    <value>Ikona nového souboru položek</value>
     <comment>New item file icon label to accessibility</comment>
   </data>
   <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
-    <value>Error text description</value>
+    <value>Popisný text chyby</value>
     <comment>Error dialog accessible name to description textbox</comment>
   </data>
   <data name="ReorderPageHelpText" xml:space="preserve">
-    <value>Use ctrl+up arrow or ctrl+down arrow to change page order</value>
+    <value>Pořadí stránek můžete změnit klávesovými zkratkami Ctrl+Šipka nahoru a Ctrl+Šipka dolů.</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">

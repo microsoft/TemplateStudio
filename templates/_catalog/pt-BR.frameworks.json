@@ -12,7 +12,7 @@
   {
     "name": "CodeBehind",
     "displayName": "Code Behind",
-    "summary": "Esse é o modelo tradicional para um aplicativo em que a lógica é tratada no code-behind.  Para um aplicativo rápido, essa é uma ótima opção."
+    "summary": "Esse é o modelo tradicional para um aplicativo em que a lógica é tratada no code-behind."
   },
   {
     "name": "CaliburnMicro",
