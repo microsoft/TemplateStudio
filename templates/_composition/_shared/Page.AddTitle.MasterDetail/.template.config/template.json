@@ -3,13 +3,13 @@
     "classifications": [
       "Universal"
     ],
-    "name": "Page.AddTitle.Blank",
+    "name": "Page.AddTitle.MasterDetail",
     "tags": {
       "language": "C#",
       "type": "item",
       "wts.type": "composition",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$projectType != SplitView & identity == wts.Page.Blank"
+      "wts.compositionFilter": "$projectType != SplitView & identity == wts.Page.MasterDetail"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

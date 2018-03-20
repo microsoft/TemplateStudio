@@ -11,7 +11,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "MVVMLight",
+    "wts.framework": "MVVMBasic|MVVMLight",
     "wts.version": "1.0.0",
     "wts.displayOrder": "10",
     "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",

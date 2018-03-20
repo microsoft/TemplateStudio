@@ -1,0 +1,28 @@
+{
+    "author": "Microsoft Community",
+    "classifications": [
+      "Universal"
+    ],
+    "name": "Page.AddTitle",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType != SplitView & identity == wts.Page.Blank|wts.Page.Chart|wts.Page.Grid|wts.Page.Camera"
+  },
+    "sourceName": "wts.ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+      "wts.rootNamespace": {
+        "type": "parameter",
+        "replaces": "Param_RootNamespace"
+      },
+      "wts.itemNamespace": {
+        "type": "parameter",
+        "replaces": "Param_ItemNamespace"
+      }
+    }
+  }

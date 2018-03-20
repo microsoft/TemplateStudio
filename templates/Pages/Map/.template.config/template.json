@@ -9,7 +9,7 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.framework": "MVVMLight",
+    "wts.framework": "MVVMBasic|MVVMLight",
     "wts.version": "1.0.0",
     "wts.displayOrder": "9",
     "wts.genGroup": "0",

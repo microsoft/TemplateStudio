@@ -7,7 +7,7 @@
   <!--{[{-->
   <data name="wts.ItemName_Title.Text" xml:space="preserve">
     <value>wts.ItemName</value>
-    <comment>Page title for wts.ItemName</comment>
+    <comment>Page title for wts.ItemNamePage</comment>
   </data>
   <!--}]}-->
 </root>
