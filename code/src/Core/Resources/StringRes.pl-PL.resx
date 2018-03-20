@@ -432,9 +432,9 @@ Nie można zinterpretować następujących zmian: {2}
     <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
-    <value>Error reading source config file.</value>
+    <value>Wystąpił błąd podczas odczytu źródłowego pliku konfiguracji.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
-    <value>Templates local path is empty.</value>
+    <value>Lokalna ścieżka do szablonów jest pusta.</value>
   </data>
 </root>

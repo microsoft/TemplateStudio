@@ -645,7 +645,7 @@
     <value>Use ctrl+up arrow or ctrl+down arrow to change page order</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
-  <data name="ExceptionUnableResolvePlatform" xml:space="preserve">
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
     <value>Unable to resolve platform.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">

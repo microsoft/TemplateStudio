@@ -118,175 +118,175 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddFeaturesTitle" xml:space="preserve">
-    <value>Add features</value>
+    <value>添加功能</value>
     <comment>AddFeatures title on AddFeaturesPage</comment>
   </data>
   <data name="AddPagesTitle" xml:space="preserve">
-    <value>Add pages</value>
+    <value>添加页面</value>
     <comment>Add pages title on AddPagesPage</comment>
   </data>
   <data name="ButtonBack" xml:space="preserve">
-    <value>Back</value>
+    <value>上一步</value>
     <comment>MainPage Back button</comment>
   </data>
   <data name="ButtonCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>取消</value>
     <comment>MainPage Cancel button</comment>
   </data>
   <data name="ButtonClose" xml:space="preserve">
-    <value>Close</value>
+    <value>关闭</value>
     <comment>Notification button close</comment>
   </data>
   <data name="ButtonCreate" xml:space="preserve">
-    <value>Create</value>
+    <value>创建</value>
     <comment>MainPage Create button</comment>
   </data>
   <data name="ButtonNext" xml:space="preserve">
-    <value>Next</value>
+    <value>下一步</value>
     <comment>MainPage Next button</comment>
   </data>
   <data name="ButtonNo" xml:space="preserve">
-    <value>No</value>
+    <value>否</value>
     <comment>No Button</comment>
   </data>
   <data name="ButtonOk" xml:space="preserve">
-    <value>Ok</value>
+    <value>确定</value>
     <comment>Error dialog and information window ok button content</comment>
   </data>
   <data name="ButtonRefreshTemplatesCache" xml:space="preserve">
-    <value>Refresh templates cache</value>
+    <value>刷新模板缓存</value>
     <comment>Refresh templates cache button</comment>
   </data>
   <data name="ButtonRemove" xml:space="preserve">
-    <value>Remove</value>
+    <value>删除</value>
     <comment>Remove template button</comment>
   </data>
   <data name="ButtonYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>是</value>
     <comment>Yes Button</comment>
   </data>
   <data name="ChangesSummaryCheckBoxText" xml:space="preserve">
-    <value>Do not merge changes (generate in a temp folder).</value>
+    <value>不合并更改(在 temp 文件夹中生成)。</value>
     <comment>Do not merge changes checkbox text</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingFiles" xml:space="preserve">
-    <value>Conflicting files</value>
+    <value>冲突的文件</value>
     <comment>Changes summary group title for: Conflicting files</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingFilesDescription" xml:space="preserve">
-    <value>This file already exists in your project but was also generated as part of the new item. Your current file will not be modified or overwritten. Please compare and make sure everything is the right place. If needed, you can access to the generated file after finishing.</value>
+    <value>此文件已存在于你的项目中，但同时也是作为新项目的一部分生成的。将不修改或覆盖你的当前文件。请比较所有内容并确保其都在正确的位置。如果需要，你可以在完成后访问生成的文件。</value>
     <comment>Changes summary description for: Conflicting files</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingStylesFiles" xml:space="preserve">
-    <value>Conflicting styles files</value>
+    <value>冲突的样式文件</value>
     <comment>Changes summary group title for: Conflicting styles files</comment>
   </data>
   <data name="ChangesSummaryGroupConflictingStylesFilesDescription" xml:space="preserve">
-    <value>We are not able to introduce the styles in the resource dictionary.</value>
+    <value>我们无法将样式引入资源字典中。</value>
     <comment>Changes summary description for: Conflicting styles files</comment>
   </data>
   <data name="ChangesSummaryGroupModifiedFiles" xml:space="preserve">
-    <value>Modified files</value>
+    <value>已修改的文件</value>
     <comment>Changes summary group title for: Modified files</comment>
   </data>
   <data name="ChangesSummaryGroupModifiedFilesDescription" xml:space="preserve">
-    <value>This file will be modified to include required content.</value>
+    <value>将修改此文件以包括所需的内容。</value>
     <comment>Changes summary description for: Modified files</comment>
   </data>
   <data name="ChangesSummaryGroupNewFiles" xml:space="preserve">
-    <value>New files</value>
+    <value>新文件</value>
     <comment>Changes summary group title for: New files</comment>
   </data>
   <data name="ChangesSummaryGroupNewFilesDescription" xml:space="preserve">
-    <value>This file will be added as new file to your project.</value>
+    <value>此文件将作为新文件添加到你的项目中。</value>
     <comment>Changes summary description for: New files</comment>
   </data>
   <data name="ChangesSummaryGroupUnchangedFiles" xml:space="preserve">
-    <value>Unchanged files</value>
+    <value>未更改的文件</value>
     <comment>Changes summary group title for: Unchanged files</comment>
   </data>
   <data name="ChangesSummaryGroupUnchangedFilesDescription" xml:space="preserve">
-    <value>This file already exists in your project and no further action is necessary. The file will remain unchanged.</value>
+    <value>此文件已存在于你的项目中，不需要执行进一步的操作。该文件将保持不变。</value>
     <comment>Changes summary description for: Unchanged files</comment>
   </data>
   <data name="ChangesSummaryGroupWarningFiles" xml:space="preserve">
-    <value>Warning files</value>
+    <value>警告文件</value>
     <comment>Changes summary group title for: Warning files</comment>
   </data>
   <data name="ChangesSummaryGroupWarningFilesDescription" xml:space="preserve">
-    <value>We are not able to introduce the modifications required. If needed, you can access the generated file after finishing.</value>
+    <value>我们无法引入所需的修改。如果需要，你可以在完成后访问生成的文件。</value>
     <comment>Changes summary description for: Warning files</comment>
   </data>
   <data name="ErrorDialogShowDetails" xml:space="preserve">
-    <value>Show details</value>
+    <value>显示详细信息</value>
     <comment>Error dialog show details link button</comment>
   </data>
   <data name="ErrorDialogTitle" xml:space="preserve">
-    <value>Something went wrong :-(</value>
+    <value>出现错误 :-(</value>
     <comment>Error dialog title</comment>
   </data>
   <data name="ErrorDialogWindowTitle" xml:space="preserve">
-    <value>Windows Template Studio Error</value>
+    <value>Windows Template Studio 错误</value>
     <comment>Error dialog window title</comment>
   </data>
   <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
-    <value>more info</value>
+    <value>更多信息</value>
     <comment>Changes summary more info link</comment>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
-    <value>Select a design pattern</value>
+    <value>选择 design pattern</value>
     <comment>Title on FrameworkPage</comment>
   </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another feature.</value>
+    <value>{0} 已是项目的一部分。请选择其他功能。</value>
     <comment>Feature already added {0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another page.</value>
+    <value>{0} 已是项目的一部分。请选择其他页面。</value>
     <comment>Page already added {0}: Page name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
-    <value>Template selection</value>
+    <value>模板选择</value>
     <comment>New Item: Naviagtion step one </comment>
   </data>
   <data name="NewItemStepTwo" xml:space="preserve">
-    <value>Changes summary</value>
+    <value>更改摘要</value>
     <comment>New Item: Naviagtion step two</comment>
   </data>
   <data name="NewItemTemplateDetailsDependenciesSectionTitle" xml:space="preserve">
-    <value>Dependencies</value>
+    <value>依赖项</value>
     <comment>New item: Dependencies section</comment>
   </data>
   <data name="NewItemTemplateDetailsLicensesSectionTitle" xml:space="preserve">
-    <value>Licenses</value>
+    <value>许可证</value>
     <comment>New item: Licenses section</comment>
   </data>
   <data name="NewItemTemplateDetailsNameSectionTitle" xml:space="preserve">
-    <value>Name</value>
+    <value>名称</value>
     <comment>New item: Name section</comment>
   </data>
   <data name="NewItemTemplateDetailsTitle" xml:space="preserve">
-    <value>Template Details</value>
+    <value>模板详细信息</value>
     <comment>New item: Template Details</comment>
   </data>
   <data name="NewItemTitleFeature" xml:space="preserve">
-    <value>New feature</value>
+    <value>新功能</value>
     <comment>New item: new feature title</comment>
   </data>
   <data name="NewItemTitlePage" xml:space="preserve">
-    <value>New page</value>
+    <value>新页面</value>
     <comment>New item: new page title</comment>
   </data>
   <data name="NewProjectStepFour" xml:space="preserve">
-    <value>Features</value>
+    <value>功能</value>
     <comment>New project: Navigation step four</comment>
   </data>
   <data name="NewProjectStepOne" xml:space="preserve">
-    <value>Project type</value>
+    <value>项目类型</value>
     <comment>New project: Navigation step one</comment>
   </data>
   <data name="NewProjectStepThree" xml:space="preserve">
-    <value>Pages</value>
+    <value>页面</value>
     <comment>New project: Navigation step three</comment>
   </data>
   <data name="NewProjectStepTwo" xml:space="preserve">
@@ -294,71 +294,71 @@
     <comment>New project: Navigation step two</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
-    <value>New Universal Windows Platform app</value>
+    <value>全新通用 Windows 平台应用</value>
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>You can not remove *{0}* because *{1}* depends on it.</value>
+    <value>不能删除 *{0}*，因为 *{1}* 依赖于它。</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
-    <value>Error refreshing templates. See output window for more details.</value>
+    <value>刷新模板时出错。有关更多详细信息，请参阅输出窗口。</value>
     <comment>Error message for sync refresh</comment>
   </data>
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
-    <value>There are new templates available (v{0}). Downloading… {1}%</value>
+    <value>有可用的新模板 (v{0})。正在下载... {1}%</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>Copying templates (v{0})... {1}%</value>
+    <value>正在复制模板 (v{0})...{1}%</value>
     <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
-    <value>Error downloading templates (v{0}). We'll try later again.</value>
+    <value>下载模板 (v{0}) 时出错。我们将稍后重试。</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>Windows Template Studio Version {0} is available. Update the extension to enjoy the latest features.</value>
+    <value>Windows Template Studio 版本 {0} 已发布。请更新扩展以使用最新功能。</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
-    <value>Preparing templates (v{0})... {1}%</value>
+    <value>正在准备模板 (v{0})...{1}%</value>
     <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_Updating" xml:space="preserve">
-    <value>Refreshing templates cache…</value>
+    <value>正在刷新模板缓存...</value>
     <comment>Notification message for Sync Status: Updating</comment>
   </data>
   <data name="NotificationValidationError_AlreadyExists" xml:space="preserve">
-    <value>Name already exists</value>
+    <value>名称已存在</value>
     <comment>Validation error message: Already exists</comment>
   </data>
   <data name="NotificationValidationError_BadFormat" xml:space="preserve">
-    <value>Only alphanumeric and '_' characters are allowed</value>
+    <value>仅允许使用字母数字和 "_" 字符</value>
     <comment>Validation error message: Bad format</comment>
   </data>
   <data name="NotificationValidationError_Empty" xml:space="preserve">
-    <value>Name cannot be empty</value>
+    <value>名称不能为空</value>
     <comment>Validation error message: Empty</comment>
   </data>
   <data name="NotificationValidationError_ReservedName" xml:space="preserve">
-    <value>Name is reserved</value>
+    <value>名称已保留</value>
     <comment>Validation error message: Reserved name</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
-    <value>We are unable to find the project configuration metadata in the Package.appxmanifest file. Can you please provide the project configuration you selected when the project was created?</value>
+    <value>我们在 Package.appxmanifest 文件中未能找到项目配置元数据。能否请你在项目创建时提供所选的项目配置?</value>
     <comment>ProjectConfiguration view description</comment>
   </data>
   <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
-    <value>Select design pattern:</value>
+    <value>选择 design pattern:</value>
     <comment>Project configuration window select framework title</comment>
   </data>
   <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
-    <value>Select project type:</value>
+    <value>选择项目类型:</value>
     <comment>Project configuration window select project type title</comment>
   </data>
   <data name="ProjectConfigurationTitleText" xml:space="preserve">
-    <value>Choose project configuration</value>
+    <value>选择项目配置</value>
     <comment>Project configuration window title</comment>
   </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
@@ -366,7 +366,7 @@
     <comment>About section link</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
-    <value>Templates version:</value>
+    <value>模板版本:</value>
     <comment>About section templates version</comment>
   </data>
   <data name="ProjectDetailsAboutSectionText" xml:space="preserve">
@@ -374,23 +374,23 @@
     <comment>About section text</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTitle" xml:space="preserve">
-    <value>About</value>
+    <value>关于</value>
     <comment>About section title</comment>
   </data>
   <data name="ProjectDetailsAboutSectionWizardVersion" xml:space="preserve">
-    <value>Wizard version:</value>
+    <value>向导版本:</value>
     <comment>About section wizard version</comment>
   </data>
   <data name="ProjectDetailsFeaturesSectionTitle" xml:space="preserve">
-    <value>Features</value>
+    <value>功能</value>
     <comment>Feature list header on project details</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
-    <value>You have changed your design pattern selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <value>你已更改所选的 design pattern。你选择的页面和功能将会丢失。是否要继续?</value>
     <comment>Framework changed message</comment>
   </data>
   <data name="ProjectDetailsFrameworkResetTitle" xml:space="preserve">
-    <value>Design pattern changed</value>
+    <value>Design pattern 已更改</value>
     <comment>Framework changed title</comment>
   </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
@@ -398,55 +398,55 @@
     <comment>Framework combobox header on project details</comment>
   </data>
   <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
-    <value>Licenses</value>
+    <value>许可证</value>
     <comment>New project: Licenses section</comment>
   </data>
   <data name="ProjectDetailsPagesSectionTitle" xml:space="preserve">
-    <value>Pages</value>
+    <value>页面</value>
     <comment>Page list header on project details</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetDescription" xml:space="preserve">
-    <value>You have changed your project type selection. The pages and features you have selected will be lost. Do you want to continue?</value>
+    <value>你已更改所选的项目类型。你选择的页面和功能将会丢失。是否要继续?</value>
     <comment>Project type changed message</comment>
   </data>
   <data name="ProjectDetailsProjectTypeResetTitle" xml:space="preserve">
-    <value>Project type changed</value>
+    <value>已更改项目类型</value>
     <comment>Project type changed title</comment>
   </data>
   <data name="ProjectDetailsProjectTypeSectionTitle" xml:space="preserve">
-    <value>Project type</value>
+    <value>项目类型</value>
     <comment>Project type combobox header on project details</comment>
   </data>
   <data name="ProjectDetailsTitle" xml:space="preserve">
-    <value>Your project details</value>
+    <value>项目详细信息</value>
     <comment>Project details header on MainPage</comment>
   </data>
   <data name="ProjectTypeTitle" xml:space="preserve">
-    <value>Select a project type</value>
+    <value>选择项目类型</value>
     <comment>ProjectType Title on ProjectTypePage</comment>
   </data>
   <data name="TemplateDetailsAuthor" xml:space="preserve">
-    <value>Author:</value>
+    <value>作者:</value>
     <comment>Template details: Autor</comment>
   </data>
   <data name="TemplateDetailsDependencies" xml:space="preserve">
-    <value>Dependencies:</value>
+    <value>依赖项:</value>
     <comment>Template details: Dependencies</comment>
   </data>
   <data name="TemplateDetailsLicenses" xml:space="preserve">
-    <value>Licenses:</value>
+    <value>许可证:</value>
     <comment>Template details: Licenses</comment>
   </data>
   <data name="TemplateDetailsVersion" xml:space="preserve">
-    <value>Version:</value>
+    <value>版本:</value>
     <comment>Template details: Version</comment>
   </data>
   <data name="TemplateSelectionTitle" xml:space="preserve">
-    <value>Select the template you want to add</value>
+    <value>选择你希望添加的模板</value>
     <comment>Template selection title</comment>
   </data>
   <data name="TermsAndConditionsText" xml:space="preserve">
-    <value>By continuing, you agree to the terms of all the licenses in the licenses section.</value>
+    <value>如果继续，则表示你同意许可部分中的所有许可条款。</value>
     <comment>Licenses Terms and conditions text</comment>
   </data>
   <data name="WindowsTemplateStudio" xml:space="preserve">
@@ -454,187 +454,187 @@
     <comment>Windows template studio label</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
-    <value>Generation finished</value>
+    <value>已完成生成</value>
     <comment>Status bar message generation finished</comment>
   </data>
   <data name="StatusBarRestoring" xml:space="preserve">
-    <value>Restoring packages...</value>
+    <value>正在还原程序包...</value>
     <comment>Status bar message for restoring</comment>
   </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>Creating Windows Template Studio project...</value>
+    <value>正在创建 Windows Template Studio 项目...</value>
     <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
-    <value>Add new feature cancelled</value>
+    <value>已取消添加新功能</value>
     <comment>Status bar message for Add new feature cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureSuccess" xml:space="preserve">
-    <value>Feature {0} successfully added</value>
+    <value>已成功添加功能 {0}</value>
     <comment>Status bar message for Feature successfully added, {0}: Feature name</comment>
   </data>
   <data name="StatusBarNewItemAddPageCancelled" xml:space="preserve">
-    <value>Add new page cancelled</value>
+    <value>已取消添加新页面</value>
     <comment>Status bar message for Add new page cancelled</comment>
   </data>
   <data name="StatusBarNewItemAddPageSuccess" xml:space="preserve">
-    <value>Page {0} successfully added</value>
+    <value>已成功添加页面 {0}</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
   <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Exception tracking telemetry during generation.</value>
+    <value>在生成过程中跟踪遥测时出现异常。</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Unable add project items. Ensure you have the required SDK.</value>
+    <value>无法添加项目项。请确保你拥有必需的 SDK。</value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Unable to add the project to the solution. Make sure you have the expected SDK installed.</value>
+    <value>无法将项目添加到解决方案。请确保你已安装应有的 SDK。</value>
     <comment>Error message for unable add project to solution</comment>
   </data>
   <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>Unable to refresh the project. Try to refresh it manually.</value>
+    <value>无法刷新项目。请尝试手动刷新该项目。</value>
     <comment>Error message for unable to refresh project</comment>
   </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
-    <value>There was an error collapsing the solution tree. Ex:</value>
+    <value>折叠解决方案树时出错。例如:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
   <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>There was an error restoring the packages. Ex:</value>
+    <value>还原程序包时出错。例如:</value>
     <comment>Error message for Vs GenShell restore packages error</comment>
   </data>
   <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages.</value>
+    <value>无法自动还原解决方案的 NuGet 程序包。请手动还原 NuGet 程序包。</value>
     <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>There was an error showing status message. Ex:</value>
+    <value>显示状态消息时出错。例如:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
   </data>
   <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>Circular dependency detected on template {0} with {1}.</value>
+    <value>在包含 {1} 的模板 {0} 中检测到循环依赖项。</value>
     <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>Dependency template {0} not found on user selection.</value>
+    <value>在用户所选内容中未找到依赖项模板 {0}。</value>
     <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
+    <value>依赖项 {0} 无效。必须将依赖项配置为 multipleInstance = false。</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyType" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
+    <value>依赖项 {0} 无效。依赖项必须属于“页面”或“功能”类型。</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorGenerating" xml:space="preserve">
-    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
+    <value>模板“{0}”，名称:“{1}”，原因:'{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
-    <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
+    <value>布局项 {0} 无效。布局项必须属于“页面”或“功能”类型。</value>
     <comment>Layout Type exception message. {0}: Layout template id</comment>
   </data>
   <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>Creating '{0}' feature ...</value>
+    <value>正在创建“{0}”功能...</value>
     <comment>Status bar message generating feature. {0}: Feature name</comment>
   </data>
   <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>Creating '{0}' page ...</value>
+    <value>正在创建“{0}”页面...</value>
     <comment>Status bar message generating page. {0}: Page name</comment>
   </data>
   <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>Creating project '{0}'...</value>
+    <value>正在创建项目“{0}”...</value>
     <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
-    <value>Application Launching</value>
+    <value>应用程序启动</value>
     <comment>Group header for Application Launching templates</comment>
   </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
-    <value>Application Lifecycle</value>
+    <value>应用程序生命周期</value>
     <comment>Group header for application lifecycle templates</comment>
   </data>
   <data name="TemplateGroup_BackgroundWork" xml:space="preserve">
-    <value>Background Work</value>
+    <value>后台工作</value>
     <comment>Group header for background work templates</comment>
   </data>
   <data name="TemplateGroup_ConnectedExperiences" xml:space="preserve">
-    <value>Connected Experiences</value>
+    <value>互联体验</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
   <data name="TemplateGroup_UserInteraction" xml:space="preserve">
-    <value>User Interaction</value>
+    <value>用户交互</value>
     <comment>Group header for user interaction templates</comment>
   </data>
   <data name="ButtonDetails" xml:space="preserve">
-    <value>Details</value>
+    <value>详细信息</value>
     <comment>Details button</comment>
   </data>
   <data name="TemplateAdded" xml:space="preserve">
-    <value>Added</value>
+    <value>已添加</value>
     <comment>Template added label</comment>
   </data>
   <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
-    <value>Checking for updates...</value>
+    <value>正在检查更新...</value>
     <comment>Notification message for Sync Status: CheckingForUpdates</comment>
   </data>
   <data name="NotificationSyncStatus_Updated" xml:space="preserve">
-    <value>Templates updated.</value>
+    <value>模板已更新。</value>
     <comment>Notification message for Sync Status: Updated</comment>
   </data>
   <data name="AccessibilityNotificationPanel" xml:space="preserve">
-    <value>Notification panel</value>
+    <value>通知面板</value>
     <comment> Notification panel label to accessibility</comment>
   </data>
   <data name="AccessibilityEditPageItem" xml:space="preserve">
-    <value>Edit page</value>
+    <value>编辑页面</value>
     <comment>Edit page label to accessibility</comment>
   </data>
   <data name="AccessibilityNavigationMenu" xml:space="preserve">
-    <value>Navigation menu</value>
+    <value>导航菜单</value>
     <comment>Navigation menu label</comment>
   </data>
   <data name="AccessibilityProjectTypesList" xml:space="preserve">
-    <value>Project types list</value>
+    <value>项目类型列表</value>
     <comment>Project types list label to accessibility</comment>
   </data>
   <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
-    <value>Sequential flow control</value>
+    <value>顺序流控制</value>
     <comment>Sequential flow control label to accessibility</comment>
   </data>
   <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
-    <value>User selection pages</value>
+    <value>用户选择页面</value>
     <comment>User selection page list to accessibility</comment>
   </data>
   <data name="AccessibilityDesignPatternList" xml:space="preserve">
-    <value>Design pattern list</value>
+    <value>Design pattern 列表</value>
     <comment>Design pattern list to accessibility</comment>
   </data>
   <data name="AccessibilityTemplatesList" xml:space="preserve">
-    <value>Templates list</value>
+    <value>模板列表</value>
     <comment>Templates list label to accessibility</comment>
   </data>
   <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
-    <value>Open in a new browser tab</value>
+    <value>在新的浏览器标签页中打开</value>
     <comment>External hyperlink tooltip message</comment>
   </data>
   <data name="AccessibilityCodeViewerControl" xml:space="preserve">
-    <value>Code viewer</value>
+    <value>代码查看器</value>
     <comment>Code viewer label to accessibility</comment>
   </data>
   <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
-    <value>New item file icon</value>
+    <value>新的项目文件图标</value>
     <comment>New item file icon label to accessibility</comment>
   </data>
   <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
-    <value>Error text description</value>
+    <value>错误文本描述</value>
     <comment>Error dialog accessible name to description textbox</comment>
   </data>
   <data name="ReorderPageHelpText" xml:space="preserve">
-    <value>Use ctrl+up arrow or ctrl+down arrow to change page order</value>
+    <value>使用 Ctrl+ 向上键或 Ctrl+ 向下键来更改页面顺序</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">

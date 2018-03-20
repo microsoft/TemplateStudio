@@ -432,9 +432,9 @@ Aşağıdaki değişiklikler tümleştirilemedi: {2}
     <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
-    <value>Error reading source config file.</value>
+    <value>Kaynak yapılandırma dosyası okunurken bir hata oluştu.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
-    <value>Templates local path is empty.</value>
+    <value>Şablonlar yerel yolu boş.</value>
   </data>
 </root>
