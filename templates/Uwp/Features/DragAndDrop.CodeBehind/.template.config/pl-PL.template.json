@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "Funkcja Przeciągnij i upuść oferuje usługę otoki wokół standardowej funkcji Przeciągnij i upuść UWP, dzięki czemu kod wymagany do tworzenia obsługujących ją aplikacji jest prostszy i zgodny ze strukturą aplikacji.",
+  "description": "Funkcja Przeciągnij i upuść oferuje usługę upraszczającą tworzenie aplikacji, które mają obsługiwać tę funkcję.",
   "identity": "wts.Feat.DragAndDrop.CodeBehind"
 }

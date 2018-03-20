@@ -176,7 +176,7 @@ namespace Microsoft.Templates.UI.Generation
                 return Platforms.Uwp;
             }
 
-            throw new Exception(StringRes.ExceptionUnableResolvePlatform);
+            throw new Exception(StringRes.ErrorUnableResolvePlatform);
         }
 
         private static bool IsUwp()

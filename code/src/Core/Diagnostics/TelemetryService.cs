@@ -325,6 +325,39 @@ namespace Microsoft.Templates.Core.Diagnostics
             VsTelem.TelemetryService.DefaultSession.PostEvent(e);
         }
 
+        public void SafeTrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success = true)
+        {
+            try
+            {
+                if (vsTelemAvailable)
+                {
+                    TrackWizardCancelledVsTelemetry(properties, success);
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceInformation($"Exception tracking Wizard Cancelled in VsTelemetry:\r\n" + ex.ToString());
+            }
+        }
+
+        private void TrackWizardCancelledVsTelemetry(Dictionary<string, string> properties, bool success)
+        {
+            VsTelem.TelemetryResult result = success ? VsTelem.TelemetryResult.Success : VsTelem.TelemetryResult.Failure;
+
+            VsTelem.UserTaskEvent e = new VsTelem.UserTaskEvent(VsTelemetryEvents.WtsWizard, result, "Wizard cancelled");
+
+            foreach (var key in properties.Keys)
+            {
+                string renamedKey = key.Replace(TelemetryEvents.Prefix, VsTelemetryEvents.Prefix);
+                if (!string.IsNullOrEmpty(properties[key]))
+                {
+                    e.Properties[renamedKey] = properties[key];
+                }
+            }
+
+            VsTelem.TelemetryService.DefaultSession.PostEvent(e);
+        }
+
         private async Task SafeExecuteAsync(Action action)
         {
             try

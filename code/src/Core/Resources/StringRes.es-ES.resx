@@ -293,8 +293,8 @@ Se ha aplicado las siguientes modificaciones:
   </data>
   <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
     <value>
-### Changes in file '{0}':
-See the final result: {2}
+### Modificaciones en el archivo '{0}':
+Ver el resultado final: {2}
 
 {1}</value>
     <comment>{0}:FileName, 
@@ -338,10 +338,10 @@ No se pueden integrar las modificaciones siguientes: {2}
 {2}:MergeResult,</comment>
   </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
-    <value>Templates extracted to</value>
+    <value>Plantillas extraídas a</value>
   </data>
   <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
-    <value>The templates can't be extracted.</value>
+    <value>Las plantillas no se pueden extraer.</value>
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>Firmas digitales no válidas en '{0}'. Se ha alterado el contenido o el certificado no está presente, no es válido o no está permitido.  No se puede continuar.</value>
@@ -381,6 +381,23 @@ No se pueden integrar las modificaciones siguientes: {2}
   </data>
   <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
     <value>Unable to purge old content.</value>
+  </data>
+  <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
+    <value>## Error en las modificaciones de los archivos:
+Error en las combinaciones de los siguientes archivos:
+{0}</value>
+  </data>
+  <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
+    <value>
+### Modificaciones en el archivo '{0}':
+No se pueden integrar las modificaciones siguientes: {2}
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
+  </data>
+  <data name="SyncSummaryProjectFile" xml:space="preserve">
+    <value>ProjectFile</value>
   </data>
   <data name="TemplatesSynchronizationWaitingOtherInstanceMessage" xml:space="preserve">
     <value>Hay ora instancia sincronizando plantillas... Esperando 5 segundos.</value>
@@ -432,9 +449,9 @@ No se pueden integrar las modificaciones siguientes: {2}
     <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
-    <value>Error reading source config file.</value>
+    <value>Error al leer el archivo de configuración de origen.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
-    <value>Templates local path is empty.</value>
+    <value>La ruta de acceso local de las plantillas está vacía.</value>
   </data>
 </root>
