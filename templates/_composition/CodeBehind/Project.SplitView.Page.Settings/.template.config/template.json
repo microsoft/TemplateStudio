@@ -3,14 +3,14 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Project.SplitView.AddToSecondaryNavigation",
+  "name": "CodeBehind.Project.SplitView.Page.Settings",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Page.Settings.CodeBehind & $projectType == SplitView"
- },
+    "wts.compositionFilter": "$framework == CodeBehind & $projectType == SplitView & identity == wts.Page.Settings.CodeBehind"
+  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [

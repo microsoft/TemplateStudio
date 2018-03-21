@@ -19,8 +19,6 @@
             Grid.Row="1"
             <!--}]}-->
             x:Name="ContentArea">
-            <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
-            </StackPanel>
         </StackPanel>
     </Grid>    
 </Page>

@@ -2,7 +2,7 @@ using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace wts.ItemName.Extensions
+namespace wts.ItemName.Helpers
 {
     public class NavigationViewItemExtensions
     {

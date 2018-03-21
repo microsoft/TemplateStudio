@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Project.SplitView.AddToPrimaryNavigation",
+  "name": "CodeBehind.Project.SplitView.AddNavigationViewItem",
   "tags": {
     "language": "C#",
     "type": "item",
