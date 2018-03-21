@@ -17,8 +17,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     {
         private const string Divider = "^^^-searchabove-replacebelow-vvv";
 
-        public const string Extension = "_" + MergeConfiguration.SearchReplaceSuffix + ".";
-
         public const string PostactionRegex = @"(\$\S*)?(_" + MergeConfiguration.SearchReplaceSuffix + @")\.";
 
         public SearchAndReplacePostAction(MergeConfiguration config)
@@ -86,7 +84,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
-            if (Path.GetFileName(Config.FilePath).StartsWith(Extension, StringComparison.Ordinal))
+            if (Path.GetFileName(Config.FilePath).StartsWith(MergeConfiguration.SearchReplaceExtension, StringComparison.Ordinal))
             {
                 var extension = Path.GetExtension(Config.FilePath);
                 var directory = Path.GetDirectoryName(Config.FilePath);

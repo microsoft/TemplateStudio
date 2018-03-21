@@ -22,6 +22,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public const string FailedPostactionRegex = @"(\$\S*)?(_" + NewSuffix + "|_g" + NewSuffix + @")(\d)?\.";
 
         public const string Extension = "_" + Suffix + ".";
+        public const string SearchReplaceExtension = "_" + SearchReplaceSuffix + ".";
         public const string GlobalExtension = "$*_g" + Suffix + ".";
 
         public const string ResourceDictionaryMatch = @"<ResourceDictionary

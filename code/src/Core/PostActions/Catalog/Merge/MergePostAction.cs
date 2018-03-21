@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 if (Config.FailOnError )
                 {
-                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, originalFilePath));
+                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, Config.FilePath));
                 }
                 else
                 {

@@ -58,11 +58,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetMergeFileFromDirectory(string directory)
         {
-            if (Path.GetFileName(Config).StartsWith(MergeConfiguration.Extension, StringComparison.OrdinalIgnoreCase) || Path.GetFileName(Config).StartsWith(MergeConfiguration.SearchReplaceSuffix, StringComparison.OrdinalIgnoreCase))
+            if (Path.GetFileName(Config).StartsWith(MergeConfiguration.Extension, StringComparison.OrdinalIgnoreCase) || Path.GetFileName(Config).StartsWith(MergeConfiguration.SearchReplaceExtension, StringComparison.OrdinalIgnoreCase))
             {
                 var extension = Path.GetExtension(Config);
 
-                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !Regex.IsMatch(f, MergeConfiguration.PostactionRegex) && !f.Contains(MergeConfiguration.SearchReplaceSuffix));
+                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !Regex.IsMatch(f, MergeConfiguration.PostactionAndSearchReplaceRegex));
             }
             else
             {
