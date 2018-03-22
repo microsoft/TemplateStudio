@@ -6,7 +6,6 @@ using Windows.UI.Xaml.Navigation;
 using wts.ItemName.Services;
 using wts.ItemName.Views;
 using wts.ItemName.Helpers;
-using wts.ItemName.Extensions;
 
 namespace wts.ItemName.ViewModels
 {
