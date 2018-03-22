@@ -1,0 +1,18 @@
+<!--{**-->
+<!--This code adds the new page to the NavigationView control in ShellPage -->
+<!--**}-->
+
+<Page
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <NavigationView
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+        <NavigationView.MenuItems>
+            <!--^^-->
+            <!--{[{-->
+            <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavigationViewItemExtensions.PageKey="Param_ItemNamespace.ViewModels.wts.ItemNameViewModel" />
+            <!--}]}-->
+        </NavigationView.MenuItems>        
+    </NavigationView>
+</Page>

@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Project.SplitView.AddToPrimaryNavigationItems",
+  "name": "MVVMLight.Project.SplitView.AddNavigationViewItem",
   "tags": {
     "language": "C#",
     "type": "item",
