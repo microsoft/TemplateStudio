@@ -211,6 +211,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\NotificationMarkdownBlock.xaml.cs">
+      <DependentUpon>NotificationMarkdownBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
@@ -481,6 +484,10 @@
     <Page Include="Controls\MarkdownBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NotificationMarkdownBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\NotificationsControl.xaml">
       <SubType>Designer</SubType>
