@@ -12,10 +12,9 @@ Add-Type -Assembly System.IO.Compression.FileSystem
 
 $vsix = [IO.Compression.ZipFile]::OpenRead($vsixFilePath)
 Write-Output "Listing entries"
-$entries=$vsix.Entries | where {$_.FullName -like '*.dll' -or $_.FullName -like '*.js' -and ($_.FullName.StartsWith('Microsoft.Templates') -or -not $_.FullName.StartsWith('Microsoft'))} 
+$entries=$vsix.Entries | where {$_.FullName -like '*.dll' -or $_.FullName -like '*.js' -and ($_.FullName.StartsWith('Microsoft.Templates') -or -not $_.FullName.StartsWith('Microsoft')) -and -not $_.FullName.StartsWith('System')} 
 
 Write-Output $entries.FullName 
-
 
 New-Item -ItemType Directory -Path $outputPath -Force
 
