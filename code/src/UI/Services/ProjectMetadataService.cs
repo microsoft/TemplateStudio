@@ -16,9 +16,11 @@ namespace Microsoft.Templates.UI.Services
     {
         private const string ProjectTypeLiteral = "projectType";
         private const string FrameworkLiteral = "framework";
+        private const string TemplatesVersionLiteral = "templatesVersion";
         private const string MetadataLiteral = "Metadata";
         private const string NameAttribLiteral = "Name";
         private const string ValueAttribLiteral = "Value";
+        private const string VersionAttribLiteral = "Version";
         private const string ItemLiteral = "Item";
 
         public static ProjectMetadata GetProjectMetadata()
@@ -35,9 +37,9 @@ namespace Microsoft.Templates.UI.Services
 
                     var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
 
-                    // TODO: Falta la version!!
                     projectMetadata.ProjectType = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == ProjectTypeLiteral)?.Attribute(ValueAttribLiteral)?.Value;
                     projectMetadata.Framework = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == FrameworkLiteral)?.Attribute(ValueAttribLiteral)?.Value;
+                    projectMetadata.TemplatesVersion = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == TemplatesVersionLiteral)?.Attribute(VersionAttribLiteral)?.Value;
                 }
             }
             catch (Exception ex)
@@ -75,7 +77,7 @@ namespace Microsoft.Templates.UI.Services
 
     public class ProjectMetadata
     {
-        public string TemplateVersion { get; set; }
+        public string TemplatesVersion { get; set; }
 
         public string ProjectType { get; set; }
 

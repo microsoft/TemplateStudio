@@ -29,21 +29,20 @@ namespace Microsoft.Templates.UI.Generation
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
         public static (string ProjectType, string Framework) ReadProjectConfiguration()
         {
-            
-                var projectMetadata = ProjectMetadataService.GetProjectMetadata();
+            var projectMetadata = ProjectMetadataService.GetProjectMetadata();
 
-                if (!string.IsNullOrEmpty(projectMetadata.ProjectType) && !string.IsNullOrEmpty(projectMetadata.Framework))
-                {
-                    return (projectMetadata.ProjectType, projectMetadata.Framework);
-                }
+            if (!string.IsNullOrEmpty(projectMetadata.ProjectType) && !string.IsNullOrEmpty(projectMetadata.Framework))
+            {
+                return (projectMetadata.ProjectType, projectMetadata.Framework);
+            }
 
-                var inferredConfig = InferProjectConfiguration();
-                if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework))
-                {
-                    ProjectMetadataService.SaveProjectMetadata(inferredConfig.ProjectType, inferredConfig.Framework);
-                }
+            var inferredConfig = InferProjectConfiguration();
+            if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework))
+            {
+                ProjectMetadataService.SaveProjectMetadata(inferredConfig.ProjectType, inferredConfig.Framework);
+            }
 
-                return inferredConfig;
+            return inferredConfig;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
