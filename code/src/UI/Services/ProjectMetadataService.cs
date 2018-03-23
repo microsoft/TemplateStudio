@@ -72,7 +72,7 @@ namespace Microsoft.Templates.UI.Services
                 AppHealth.Current.Warning.TrackAsync("Exception saving inferred projectType and framework to Package.appxmanifest", ex).FireAndForget();
                 throw;
             }
-        }
+        }        
     }
 
     public class ProjectMetadata

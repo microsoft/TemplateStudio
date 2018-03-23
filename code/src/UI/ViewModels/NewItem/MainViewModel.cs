@@ -135,15 +135,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             return userSelection;
         }
 
-        protected override Task OnTemplatesAvailableAsync()
+        protected override async Task OnTemplatesAvailableAsync()
         {
             SetProjectConfigInfo();
             TemplateSelection.LoadData(TemplateType, ConfigFramework);
             WizardStatus.IsLoading = false;
-            return Task.CompletedTask;
 
-            // var notification = Notification.Warning(StringRes.NotificationDemoText, Category.RightClickItemHasNoChanges);
-            // await NotificationsControl.AddNotificationAsync(notification);
+            if (BreakingChangesValidatorService.HasNavigationViewBreakingChange())
+            {
+                var notification = Notification.Warning("Show navigationView breaking change message");
+                await NotificationsControl.AddNotificationAsync(notification);
+            }
         }
 
         protected async Task OnRefreshTemplatesAsync()
