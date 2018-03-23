@@ -141,6 +141,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             TemplateSelection.LoadData(TemplateType, ConfigFramework);
             WizardStatus.IsLoading = false;
             return Task.CompletedTask;
+
+            // var notification = Notification.Warning(StringRes.NotificationDemoText, Category.RightClickItemHasNoChanges);
+            // await NotificationsControl.AddNotificationAsync(notification);
         }
 
         protected async Task OnRefreshTemplatesAsync()
@@ -177,7 +180,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 {
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
-                    ProjectConfigInfo.SaveProjectConfiguration(configInfo.ProjectType, configInfo.Framework);
+                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework);
                     ConfigFramework = configInfo.Framework;
                     ConfigProjectType = configInfo.ProjectType;
                 }

@@ -10,6 +10,7 @@ using System.Xml.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Generation
 {
@@ -25,75 +26,24 @@ namespace Microsoft.Templates.UI.Generation
         private const string ProjTypeSplitView = "SplitView";
         private const string ProjTypeTabbedPivot = "TabbedPivot";
 
-        private const string ProjectTypeLiteral = "projectType";
-        private const string FrameworkLiteral = "framework";
-        private const string MetadataLiteral = "Metadata";
-        private const string NameAttribLiteral = "Name";
-        private const string ValueAttribLiteral = "Value";
-        private const string ItemLiteral = "Item";
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
         public static (string ProjectType, string Framework) ReadProjectConfiguration()
         {
-            try
-            {
-                var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
-                if (File.Exists(path))
+            
+                var projectMetadata = ProjectMetadataService.GetProjectMetadata();
+
+                if (!string.IsNullOrEmpty(projectMetadata.ProjectType) && !string.IsNullOrEmpty(projectMetadata.Framework))
                 {
-                    var manifest = XElement.Load(path);
-                    XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
-
-                    var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
-
-                    var projectType = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == ProjectTypeLiteral)?.Attribute(ValueAttribLiteral)?.Value;
-                    var framework = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == FrameworkLiteral)?.Attribute(ValueAttribLiteral)?.Value;
-                    if (!string.IsNullOrEmpty(projectType) && !string.IsNullOrEmpty(framework))
-                    {
-                        return (projectType, framework);
-                    }
-                    else
-                    {
-                        var inferredConfig = InferProjectConfiguration();
-                        if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework))
-                        {
-                            SaveProjectConfiguration(inferredConfig.ProjectType, inferredConfig.Framework);
-                        }
-
-                        return inferredConfig;
-                    }
+                    return (projectMetadata.ProjectType, projectMetadata.Framework);
                 }
 
-                return (string.Empty, string.Empty);
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Warning.TrackAsync("Exception reading projectType and framework from Package.appxmanifest", ex).FireAndForget();
-                return (string.Empty, string.Empty);
-            }
-        }
-
-        public static void SaveProjectConfiguration(string projectType, string framework)
-        {
-            try
-            {
-                var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
-                if (File.Exists(path))
+                var inferredConfig = InferProjectConfiguration();
+                if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework))
                 {
-                    var manifest = XElement.Load(path);
-                    XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
-
-                    var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
-                    metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, ProjectTypeLiteral), new XAttribute(ValueAttribLiteral, projectType)));
-                    metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, FrameworkLiteral), new XAttribute(ValueAttribLiteral, framework)));
-
-                    manifest.Save(path);
+                    ProjectMetadataService.SaveProjectMetadata(inferredConfig.ProjectType, inferredConfig.Framework);
                 }
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Warning.TrackAsync("Exception saving inferred projectType and framework to Package.appxmanifest", ex).FireAndForget();
-                throw;
-            }
+
+                return inferredConfig;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
