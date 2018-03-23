@@ -13,7 +13,7 @@ Add-Type -Assembly System.IO.Compression
 
 $files= Get-ChildItem $inputPath -rec | where {!$_.PSIsContainer}
 
-$vsix = [IO.Compression.ZipFile]::Open($vsixFilePath, [System.IO.Compression.ZipArchiveMode]::Update)
+$vsix = [System.IO.Compression.ZipFile]::Open($vsixFilePath, [System.IO.Compression.ZipArchiveMode]::Update)
 
 foreach ($file in $files)
 {
