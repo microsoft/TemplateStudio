@@ -8,7 +8,7 @@
 
     <Grid x:Name="ContentArea">
         <Pivot
-            x:Name="controlPivot">
+            x:Name="Items">
             <PivotItem x:Uid="TabbedPivotPage_PivotItem1">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <!--

@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.Project.SplitView.AddToPrimaryNavigationItems",
+  "name": "CaliburnMicro.Project.SplitView.AddNavigationViewItem",
   "tags": {
     "language": "C#",
     "type": "item",

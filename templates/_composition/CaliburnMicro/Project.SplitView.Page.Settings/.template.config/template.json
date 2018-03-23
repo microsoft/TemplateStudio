@@ -1,15 +1,15 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.Project.SplitView.AddToSecondaryNavigationItems",
+  "name": "CaliburnMicro.Project.SplitView.Page.Settings",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & groupidentity == wts.Page.Settings & $framework == CaliburnMicro & $projectType == SplitView"
+    "wts.compositionFilter": "$framework == CaliburnMicro & $projectType == SplitView & identity == wts.Page.Settings.CaliburnMicro"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
