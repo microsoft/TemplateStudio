@@ -8,7 +8,7 @@
 
 
 Add-Type -Assembly System.IO.Compression
-
+Add-Type -Assembly System.IO.Compression.FileSystem
 
 
 $files= Get-ChildItem $inputPath -rec | where {!$_.PSIsContainer}
