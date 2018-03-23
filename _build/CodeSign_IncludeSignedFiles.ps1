@@ -14,11 +14,12 @@ Add-Type -Assembly System.IO.Compression.FileSystem
 $files= Get-ChildItem $inputPath -rec | where {!$_.PSIsContainer}
 
 $vsix = [System.IO.Compression.ZipFile]::Open($vsixFilePath, [System.IO.Compression.ZipArchiveMode]::Update)
+$inputDir = (get-Item "$inputPath\").Target
 
 foreach ($file in $files)
 {
     Write-Host "Processing file "$file.FullName
-    $newFileName = $file.FullName.Replace("$inputPath\", '').Replace("\", "/")
+    $newFileName = $file.FullName.Replace("$inputDir\", '').Replace("\", "/")
 
     $entry = $vsix.Entries | where {$_.FullName -eq $newFileName}
 
@@ -29,7 +30,7 @@ foreach ($file in $files)
     }
     else
     {
-        Write-Host $newFileName not in zip
+        Write-Error "$newFileName not in zip"
     }
 
     Write-Host Adding file $newFileName 
