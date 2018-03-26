@@ -14,7 +14,7 @@ Namespace Services
                     .ShipTo = "Francisco Pérez-Olaeta",
                     .OrderTotal = 2490.0,
                     .Status = "Closed",
-                    .Symbol = Symbol.Globe
+                    .Symbol = ChrW(57643)  ' Symbol.Globe
                 },
                 New SampleOrder() With {
                     .OrderId = 71,
@@ -23,7 +23,7 @@ Namespace Services
                     .ShipTo = "Soo Jung Lee",
                     .OrderTotal = 1760.0,
                     .Status = "Closed",
-                    .Symbol = Symbol.Audio
+                    .Symbol = ChrW(57737)  ' Symbol.Audio
                 },
                 New SampleOrder() With {
                     .OrderId = 72,
@@ -32,7 +32,7 @@ Namespace Services
                     .ShipTo = "Run Liu",
                     .OrderTotal = 2310.0,
                     .Status = "Closed",
-                    .Symbol = Symbol.Calendar
+                    .Symbol = ChrW(57699)  ' Symbol.Calendar
                 },
                 New SampleOrder() With {
                     .OrderId = 73,
@@ -41,7 +41,7 @@ Namespace Services
                     .ShipTo = "John Rodman",
                     .OrderTotal = 665.0,
                     .Status = "Closed",
-                    .Symbol = Symbol.Camera
+                    .Symbol = ChrW(57620)  ' Symbol.Camera
                 },
                 New SampleOrder() With {
                     .OrderId = 74,
@@ -50,7 +50,7 @@ Namespace Services
                     .ShipTo = "Elizabeth Andersen",
                     .OrderTotal = 560.0,
                     .Status = "Shipped",
-                    .Symbol = Symbol.Clock
+                    .Symbol = ChrW(57633)  ' Symbol.Clock
                 },
                 New SampleOrder() With {
                     .OrderId = 75,
@@ -59,7 +59,7 @@ Namespace Services
                     .ShipTo = "Francisco Pérez-Olaeta",
                     .OrderTotal = 810.0,
                     .Status = "Shipped",
-                    .Symbol = Symbol.Contact
+                    .Symbol = ChrW(57661)  ' Symbol.Contact
                 },
                 New SampleOrder() With {
                     .OrderId = 76,
@@ -68,7 +68,7 @@ Namespace Services
                     .ShipTo = "Sven Mortensen",
                     .OrderTotal = 196.5,
                     .Status = "Shipped",
-                    .Symbol = Symbol.Favorite
+                    .Symbol = ChrW(57619)  ' Symbol.Favorite
                 },
                 New SampleOrder() With {
                     .OrderId = 77,
@@ -77,7 +77,7 @@ Namespace Services
                     .ShipTo = "Amritansh Raghav",
                     .OrderTotal = 270.0,
                     .Status = "New",
-                    .Symbol = Symbol.Home
+                    .Symbol = ChrW(57615)  ' Symbol.Home
                 },
                 New SampleOrder() With {
                     .OrderId = 78,
@@ -86,7 +86,7 @@ Namespace Services
                     .ShipTo = "Anna Bedecs",
                     .OrderTotal = 736.0,
                     .Status = "New",
-                    .Symbol = Symbol.Mail
+                    .Symbol = ChrW(57625)  ' Symbol.Mail
                 },
                 New SampleOrder() With {
                     .OrderId = 79,
@@ -95,7 +95,7 @@ Namespace Services
                     .ShipTo = "Peter Krschne",
                     .OrderTotal = 800.0,
                     .Status = "New",
-                    .Symbol = Symbol.OutlineStar
+                    .Symbol = ChrW(57806)  ' Symbol.OutlineStar
                 }
             }
 

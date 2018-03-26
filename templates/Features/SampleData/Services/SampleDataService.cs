@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Windows.UI.Xaml.Controls;
 
 namespace Param_ItemNamespace.Services
 {
@@ -23,7 +22,7 @@ namespace Param_ItemNamespace.Services
                     ShipTo = "Francisco Pérez-Olaeta",
                     OrderTotal = 2490.00,
                     Status = "Closed",
-                    Symbol = Symbol.Globe
+                    Symbol = (char)57643 // Symbol.Globe
                 },
                 new SampleOrder
                 {
@@ -33,7 +32,7 @@ namespace Param_ItemNamespace.Services
                     ShipTo = "Soo Jung Lee",
                     OrderTotal = 1760.00,
                     Status = "Closed",
-                    Symbol = Symbol.Audio
+                    Symbol = (char)57737 // Symbol.Audio
                 },
                 new SampleOrder
                 {
@@ -43,7 +42,7 @@ namespace Param_ItemNamespace.Services
                     ShipTo = "Run Liu",
                     OrderTotal = 2310.00,
                     Status = "Closed",
-                    Symbol = Symbol.Calendar
+                    Symbol = (char)57699 // Symbol.Calendar
                 },
                 new SampleOrder
                 {
@@ -53,7 +52,7 @@ namespace Param_ItemNamespace.Services
                     ShipTo = "John Rodman",
                     OrderTotal = 665.00,
                     Status = "Closed",
-                    Symbol = Symbol.Camera
+                    Symbol = (char)57620 // Symbol.Camera
                 },
                 new SampleOrder
                 {
@@ -63,7 +62,7 @@ namespace Param_ItemNamespace.Services
                     ShipTo = "Elizabeth Andersen",
                     OrderTotal = 560.00,
                     Status = "Shipped",
-                    Symbol = Symbol.Clock
+                    Symbol = (char)57633 // Symbol.Clock
                 },
                 new SampleOrder
                 {
@@ -73,7 +72,7 @@ namespace Param_ItemNamespace.Services
                     ShipTo = "Francisco Pérez-Olaeta",
                     OrderTotal = 810.00,
                     Status = "Shipped",
-                    Symbol = Symbol.Contact
+                    Symbol = (char)57661 // Symbol.Contact
                 },
                 new SampleOrder
                 {
@@ -83,7 +82,7 @@ namespace Param_ItemNamespace.Services
                     ShipTo = "Sven Mortensen",
                     OrderTotal = 196.50,
                     Status = "Shipped",
-                    Symbol = Symbol.Favorite
+                    Symbol = (char)57619 // Symbol.Favorite
                 },
                 new SampleOrder
                 {
@@ -93,7 +92,7 @@ namespace Param_ItemNamespace.Services
                     ShipTo = "Amritansh Raghav",
                     OrderTotal = 270.00,
                     Status = "New",
-                    Symbol = Symbol.Home
+                    Symbol = (char)57615 // Symbol.Home
                 },
                 new SampleOrder
                 {
@@ -103,7 +102,7 @@ namespace Param_ItemNamespace.Services
                     ShipTo = "Anna Bedecs",
                     OrderTotal = 736.00,
                     Status = "New",
-                    Symbol = Symbol.Mail
+                    Symbol = (char)57625 // Symbol.Mail
                 },
                 new SampleOrder
                 {
@@ -113,7 +112,7 @@ namespace Param_ItemNamespace.Services
                     ShipTo = "Peter Krschne",
                     OrderTotal = 800.00,
                     Status = "New",
-                    Symbol = Symbol.OutlineStar
+                    Symbol = (char)57806 // Symbol.OutlineStar
                 },
             };
 

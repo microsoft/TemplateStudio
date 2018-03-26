@@ -14,7 +14,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,8,0,0">
                 <FontIcon
                     FontSize="40"
-                    Glyph="{x:Bind ViewModel.Item.SymbolAsChar, Mode=OneWay}"
+                    Glyph="{x:Bind ViewModel.Item.Symbol, Mode=OneWay}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"/>
                 <TextBlock
