@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Grid",
+  "name": "Telerik Data Grid",
   "groupIdentity": "wts.Page.Grid.VB",
   "identity": "wts.Page.Grid.VB",
   "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
