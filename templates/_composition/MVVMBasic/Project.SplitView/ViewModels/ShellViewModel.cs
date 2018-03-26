@@ -39,20 +39,20 @@ namespace wts.ItemName.ViewModels
             var item = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageType = item.GetValue(NavHelpers.NavigateToProperty) as Type;
+            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
             NavigationService.Navigate(pageType);
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
-           Selected = _navigationView.MenuItems
+            Selected = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .First(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
         }
 
         private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
-            var pageType = menuItem.GetValue(NavHelpers.NavigateToProperty) as Type;
+            var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
             return pageType == sourcePageType;
         }
     }

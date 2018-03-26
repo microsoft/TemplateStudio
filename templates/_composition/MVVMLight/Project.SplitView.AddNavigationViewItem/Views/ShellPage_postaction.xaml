@@ -1,4 +1,4 @@
-<!--{**-->
+﻿<!--{**-->
 <!--This code adds the new page to the NavigationView control in ShellPage -->
 <!--**}-->
 
@@ -11,7 +11,7 @@
         <NavigationView.MenuItems>
             <!--^^-->
             <!--{[{-->
-            <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelpers.NavigateTo="Param_ItemNamespace.ViewModels.wts.ItemNameViewModel" />
+            <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelper.NavigateTo="Param_ItemNamespace.ViewModels.wts.ItemNameViewModel" />
             <!--}]}-->
         </NavigationView.MenuItems>        
     </NavigationView>

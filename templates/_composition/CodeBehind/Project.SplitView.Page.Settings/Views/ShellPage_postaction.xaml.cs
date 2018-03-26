@@ -1,4 +1,4 @@
-//{**
+﻿//{**
 //This code block adds the logic to handle SettingsItem in NavigationView control from ShellPage code behind.
 //**}
 namespace Param_ItemNamespace.Views
@@ -13,6 +13,7 @@ namespace Param_ItemNamespace.Views
                 Selected = navigationView.SettingsItem;
                 return;
             }
+
             //}]}
         }
 
@@ -24,6 +25,7 @@ namespace Param_ItemNamespace.Views
                 NavigationService.Navigate(typeof(wts.ItemNamePage));
                 return;
             }
+
             //}]}
         }
     }

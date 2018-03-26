@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace wts.ItemName.Helpers
 {
-    public class NavHelpers
+    public class NavHelper
     {
         public static Type GetNavigateTo(NavigationViewItem item)
         {
@@ -17,7 +17,6 @@ namespace wts.ItemName.Helpers
         }
 
         public static readonly DependencyProperty NavigateToProperty =
-          DependencyProperty.RegisterAttached("NavigateTo", typeof(Type),
-            typeof(NavHelpers), new PropertyMetadata(null));
+            DependencyProperty.RegisterAttached("NavigateTo", typeof(Type), typeof(NavHelper), new PropertyMetadata(null));
     }
 }

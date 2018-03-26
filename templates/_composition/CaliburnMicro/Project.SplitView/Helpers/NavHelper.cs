@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -17,7 +17,6 @@ namespace wts.ItemName.Helpers
         }
 
         public static readonly DependencyProperty NavigateToProperty =
-          DependencyProperty.RegisterAttached("NavigateTo", typeof(Type),
-            typeof(NavHelper), new PropertyMetadata(null));
+            DependencyProperty.RegisterAttached("NavigateTo", typeof(Type), typeof(NavHelper), new PropertyMetadata(null));
     }
 }

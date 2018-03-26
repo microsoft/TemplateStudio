@@ -52,7 +52,7 @@ namespace wts.ItemName.ViewModels
 
         private void NavigationService_Navigated(object sender, NavigationEventArgs e)
         {
-           Selected = _navigationView.MenuItems
+            Selected = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .First(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
         }
