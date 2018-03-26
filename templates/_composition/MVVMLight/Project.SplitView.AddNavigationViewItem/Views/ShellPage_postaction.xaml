@@ -11,7 +11,7 @@
         <NavigationView.MenuItems>
             <!--^^-->
             <!--{[{-->
-            <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavigationViewItemExtensions.PageKey="Param_ItemNamespace.ViewModels.wts.ItemNameViewModel" />
+            <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelpers.NavigateTo="Param_ItemNamespace.ViewModels.wts.ItemNameViewModel" />
             <!--}]}-->
         </NavigationView.MenuItems>        
     </NavigationView>
