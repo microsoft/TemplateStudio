@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForGeneration")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationProjects")]
         public async Task GenEmptyProjectAsync(string projectType, string framework, string language)
         {
@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForGeneration")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationProjects")]
         public async Task GenEmptyProjectCorrectInferProjectConfigInfoAsync(string projectType, string framework, string language)
         {
@@ -101,7 +101,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForGeneration")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationAllPagesAndFeatures")]
         public async Task GenAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
@@ -118,7 +118,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForGeneration")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRandomNames")]
         public async Task GenAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
         {
@@ -135,7 +135,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForGeneration")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRightClick")]
         public async Task GenEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
@@ -146,7 +146,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForGeneration")]
+        [MemberData("GetProjectTemplatesForGenerationAsync")]
         [Trait("Type", "GenerationRightClick")]
         public async Task GenCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
