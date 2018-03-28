@@ -2,175 +2,120 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.Windows;
+using System;
+using System.Diagnostics;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
     public class WizardStatus : Observable
     {
-        private bool _isOverlayBoxVisible;
+        private string _title;
+        private string _versions;
+        private bool _isBusy;
+        private bool _isNotBusy;
+        private bool _hasValidationErrors;
+        private bool _isSequentialFlowEnabled;
+        private bool _isLoading = true;
+        private ICommand _openWebSiteCommand;
 
-        public bool IsOverlayBoxVisible
-        {
-            get => _isOverlayBoxVisible;
-            set => SetProperty(ref _isOverlayBoxVisible, value);
-        }
-
-        private bool _isLoading;
-
-        public bool IsLoading
-        {
-            get => _isLoading;
-            set => SetProperty(ref _isLoading, value);
-        }
-
-        private string _wizardTitle;
-
-        public string WizardTitle
-        {
-            get => _wizardTitle;
-            set => SetProperty(ref _wizardTitle, value);
-        }
-
-        private string _wizardVersion;
-
-        public string WizardVersion
-        {
-            get => _wizardVersion;
-            set => SetProperty(ref _wizardVersion, value);
-        }
-
-        private string _templatesVersion;
-
-        public string TemplatesVersion
-        {
-            get => _templatesVersion;
-            set => SetProperty(ref _templatesVersion, value);
-        }
-
-        private bool _hasOverlayBox = true;
-
-        public bool HasOverlayBox
-        {
-            get => _hasOverlayBox;
-            set => SetProperty(ref _hasOverlayBox, value);
-        }
-
-        private Visibility _infoShapeVisibility = Visibility.Collapsed;
-
-        public Visibility InfoShapeVisibility
-        {
-            get => _infoShapeVisibility;
-            set => SetProperty(ref _infoShapeVisibility, value);
-        }
-
-        private bool _hasContent;
-
-        public bool HasContent
-        {
-            get => _hasContent;
-            set => SetProperty(ref _hasContent, value);
-        }
-
-        private StatusViewModel _status = StatusViewModel.EmptyStatus;
-
-        public StatusViewModel Status
-        {
-            get => _status;
-            private set => SetProperty(ref _status, value);
-        }
-
-        private StatusViewModel _overlayStatus = StatusViewModel.EmptyStatus;
-
-        public StatusViewModel OverlayStatus
-        {
-            get => _overlayStatus;
-            private set => SetProperty(ref _overlayStatus, value);
-        }
-
-        private bool _newVersionAvailable;
-
-        public bool NewVersionAvailable
-        {
-            get => _newVersionAvailable;
-            set => SetProperty(ref _newVersionAvailable, value);
-        }
-
-        private bool _showFinishButton;
-
-        public bool ShowFinishButton
-        {
-            get => _showFinishButton;
-            set => SetProperty(ref _showFinishButton, value);
-        }
+        public static WizardStatus Current { get; private set; }
 
         public double Width { get; }
 
         public double Height { get; }
 
+        public string Title
+        {
+            get => _title;
+            set => SetProperty(ref _title, value);
+        }
+
+        public string Versions
+        {
+            get => _versions;
+            set => SetProperty(ref _versions, value);
+        }
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            private set => SetProperty(ref _isBusy, value);
+        }
+
+        public bool IsNotBusy
+        {
+            get => _isNotBusy;
+            private set => SetProperty(ref _isNotBusy, value);
+        }
+
+        public bool IsSequentialFlowEnabled
+        {
+            get => _isSequentialFlowEnabled;
+            private set => SetProperty(ref _isSequentialFlowEnabled, value);
+        }
+
+        public bool HasValidationErrors
+        {
+            get => _hasValidationErrors;
+            set
+            {
+                SetProperty(ref _hasValidationErrors, value);
+                UpdateIsBusyAsync().FireAndForget();
+            }
+        }
+
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                SetProperty(ref _isLoading, value);
+                UpdateIsBusyAsync().FireAndForget();
+            }
+        }
+
+        public ICommand OpenWebSiteCommand => _openWebSiteCommand ?? (_openWebSiteCommand = new RelayCommand(OnOpenWebSite));
+
+        public event EventHandler<bool> IsBusyChanged;
+
         public WizardStatus()
         {
-            IsLoading = true;
-            var size = SystemService.Instance.GetMainWindowSize();
+            Current = this;
+            var size = BaseMainViewModel.BaseInstance.SystemService.GetMainWindowSize();
             Width = size.width;
             Height = size.height;
+            UpdateIsBusyAsync().FireAndForget();
+            SetVersions();
         }
 
-        public void SetStatus(StatusViewModel status)
+        public void SetVersions()
         {
-            if (status.Status == StatusType.Empty)
+            var versionsStringBuilder = new StringBuilder();
+            versionsStringBuilder.AppendLine($"{StringRes.ProjectDetailsAboutSectionTemplatesVersion} {GenContext.ToolBox.TemplatesVersion}");
+            versionsStringBuilder.Append($"{StringRes.ProjectDetailsAboutSectionWizardVersion} {GenContext.ToolBox.WizardVersion}");
+            var versionsText = versionsStringBuilder.ToString();
+            if (string.IsNullOrEmpty(Versions) || !Versions.Equals(versionsText))
             {
-                OverlayStatus = status;
-                Status = status;
-            }
-            else
-            {
-                if (status.Status == StatusType.Information && IsOverlayBoxVisible)
-                {
-                    OverlayStatus = status;
-                }
-                else
-                {
-                    Status = status;
-                }
+                Versions = versionsText;
             }
         }
 
-        public void ClearStatus()
+        private async Task UpdateIsBusyAsync()
         {
-            if (Status.CanBeCleared)
-            {
-                SetStatus(StatusViewModel.EmptyStatus);
-            }
+            IsBusy = IsLoading || HasValidationErrors;
+            IsNotBusy = !IsBusy;
+            IsBusyChanged?.Invoke(this, true);
+            IsSequentialFlowEnabled = await BaseMainViewModel.BaseInstance.IsStepAvailableAsync();
         }
 
-        public void TryHideOverlayBox(MouseButtonEventArgs args)
-        {
-            if (args == null || args.Source == null)
-            {
-                return;
-            }
-
-            var element = args.Source as FrameworkElement;
-            var originalSource = args.OriginalSource as FrameworkElement;
-            if (element is OverlayBox)
-            {
-                return;
-            }
-            else if (element?.Tag != null && element.Tag?.ToString() == "AllowOverlay")
-            {
-                return;
-            }
-            else if (originalSource?.Tag != null && originalSource.Tag?.ToString() == "AllowOverlay")
-            {
-                return;
-            }
-
-            IsOverlayBoxVisible = false;
-        }
+        private void OnOpenWebSite() => Process.Start("https://aka.ms/wts");
     }
 }

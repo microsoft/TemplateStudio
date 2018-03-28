@@ -11,5 +11,7 @@ namespace Microsoft.Templates.Core.Locations
         public SyncStatus Status { get; set; }
 
         public Version Version { get; set; }
+
+        public int Progress { get; set; }
     }
 }

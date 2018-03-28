@@ -194,12 +194,14 @@
     <Compile Include="Gen\IContextProvider.cs" />
     <Compile Include="Locations\JunctionNativeMethods.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
+    <Compile Include="Locations\ProgressEventArgs.cs" />
     <Compile Include="Locations\RemoteTemplatesSource.cs" />
     <Compile Include="Locations\TemplatesContent.cs" />
     <Compile Include="Locations\TemplatesContentInfo.cs" />
     <Compile Include="Locations\TemplatesPackageInfo.cs" />
     <Compile Include="Locations\TemplatesSourceConfig.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
+    <Compile Include="MetadataType.cs" />
     <Compile Include="Mvvm\Observable.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />

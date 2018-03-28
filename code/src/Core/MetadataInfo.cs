@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Core
 
         public int Order { get; set; }
 
-        public string MetadataType { get; set; }
+        public MetadataType MetadataType { get; set; }
 
         public string Licenses { get; set; }
 

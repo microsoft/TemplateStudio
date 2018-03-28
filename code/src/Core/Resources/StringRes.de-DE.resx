@@ -416,9 +416,9 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
-    <value>Error reading source config file.</value>
+    <value>Fehler beim Lesen der Quellkonfigurationsdatei.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
-    <value>Templates local path is empty.</value>
+    <value>Der lokale Pfad für Vorlagen ist leer.</value>
   </data>
 </root>

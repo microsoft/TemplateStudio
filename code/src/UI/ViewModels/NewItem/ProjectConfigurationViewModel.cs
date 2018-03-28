@@ -4,24 +4,15 @@
 
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Generation;
-using Microsoft.Templates.UI.Views.NewItem;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
-    public class ProjectConfigurationViewModel : Observable
+    public class ProjectConfigurationViewModel : BaseDialogViewModel
     {
-        private ProjectConfigurationWindow _window;
-
-        public ICommand OkCommand => new RelayCommand(OnOkCommand);
-
-        public ICommand CancelCommand => new RelayCommand(Cancel);
-
         public ObservableCollection<MetadataInfo> ProjectTypes { get; } = new ObservableCollection<MetadataInfo>();
 
         public ObservableCollection<MetadataInfo> Frameworks { get; } = new ObservableCollection<MetadataInfo>();
@@ -34,7 +25,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set
             {
                 SetProperty(ref _selectedProjectType, value);
-                LoadFrameworks();
+                if (value != null)
+                {
+                    LoadFrameworks();
+                }
             }
         }
 
@@ -46,9 +40,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             set => SetProperty(ref _selectedFramework, value);
         }
 
-        public ProjectConfigurationViewModel(ProjectConfigurationWindow window)
+        public ProjectConfigurationViewModel()
         {
-            _window = window;
+            Title = StringRes.ProjectConfigurationTitleText;
+            Description = StringRes.ProjectConfigurationDescriptionText;
         }
 
         public void Initialize()
@@ -69,19 +64,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 SelectedFramework = Frameworks.FirstOrDefault();
             }
-        }
-
-        private void OnOkCommand()
-        {
-            ProjectConfigInfo.SaveProjectConfiguration(SelectedProjectType.Name, SelectedFramework.Name);
-            _window.DialogResult = true;
-            _window.Close();
-        }
-
-        private void Cancel()
-        {
-            _window.DialogResult = false;
-            _window.Close();
         }
     }
 }

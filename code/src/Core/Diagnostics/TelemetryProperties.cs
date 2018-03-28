@@ -55,5 +55,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public static string NewItemType { get; private set; } = TelemetryEvents.Prefix + "NewItemType";
 
         public static string GenSource { get; private set; } = TelemetryEvents.Prefix + "GenSource";
+
+        public static string SyncInProgress { get; private set; } = TelemetryEvents.Prefix + "SyncInProgress";
     }
 }

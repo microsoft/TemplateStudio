@@ -9,13 +9,13 @@ namespace Microsoft.Templates.Core.Locations
         None = 0,
         Updating = 1,
         Updated = 2,
-        Acquiring = 3,
-        Acquired = 4,
-        Preparing = 5,
-        Prepared = 6,
+        CheckingForUpdates = 3,
+        NoUpdates = 4,
+        Acquiring = 5,
+        Preparing = 6,
         NewWizardVersionAvailable = 7,
-        CheckingForUpdates = 8,
-        CheckedForUpdates = 9,
-        Ready = 10
+        Ready = 8,
+        ErrorAcquiring = 9,
+        Copying = 10
     }
 }
