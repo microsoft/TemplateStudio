@@ -364,6 +364,20 @@ namespace Microsoft.Templates.Core
             return Path.GetFullPath(mountPoint.Info.Place + file.Parent.FullPath);
         }
 
+        public static string GetTelemetryName(this ITemplateInfo ti)
+        {
+            var telemName = GetValueFromTag(ti, TagPrefix + "telemName");
+
+            if (telemName != null)
+            {
+                return telemName;
+            }
+            else
+            {
+                return ti.Name;
+            }
+        }
+
         private static string GetValueFromTag(this ITemplateInfo templateInfo, string tagName)
         {
             if (templateInfo.Tags != null && !string.IsNullOrEmpty(tagName) && templateInfo.Tags.TryGetValue(tagName, out ICacheTag tagValue))

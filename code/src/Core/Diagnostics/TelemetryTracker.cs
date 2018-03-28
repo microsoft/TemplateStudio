@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
             GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;
 
-            await TrackProjectAsync(telemetryStatus, template.Name, appProjectType, appFx, vsProjectId, language, pagesCount, featuresCount, pageIdentities, featureIdentitites, timeSpent, performanceCounters, result.Status, result.Message);
+            await TrackProjectAsync(telemetryStatus, template.GetTelemetryName(), appProjectType, appFx, vsProjectId, language, pagesCount, featuresCount, pageIdentities, featureIdentitites, timeSpent, performanceCounters, result.Status, result.Message);
         }
 
         public async Task TrackItemGenAsync(ITemplateInfo template, GenSourceEnum genSource, string appProjectType, string appFx, TemplateCreationResult result)
@@ -198,7 +198,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         {
             GenStatusEnum telemetryStatus = result.Status == CreationResultStatus.Success ? GenStatusEnum.Completed : GenStatusEnum.Error;
 
-            await TrackItemGenAsync(eventToTrack, telemetryStatus, appProjectType, appFx, template.Name, genSource, result.Status, result.Message);
+            await TrackItemGenAsync(eventToTrack, telemetryStatus, appProjectType, appFx, template.GetTelemetryName(), genSource, result.Status, result.Message);
         }
 
         private async Task TrackItemGenAsync(string eventToTrack, GenStatusEnum status, string appType, string pageFx, string templateName, GenSourceEnum genSource, CreationResultStatus genStatus = CreationResultStatus.Success, string message = "")
