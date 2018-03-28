@@ -387,7 +387,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsTypeTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "composition", "page", "feature" }.Contains(tag.Value))
+            if (!new[] { "composition", "page", "feature", "projectfeature" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.type tag.");
             }

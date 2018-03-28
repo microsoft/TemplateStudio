@@ -105,13 +105,15 @@ namespace Microsoft.Templates.UI
 
         public void Add((string name, ITemplateInfo template) template)
         {
-            if (template.template.GetTemplateType() == TemplateType.Page)
+            switch (template.template.GetTemplateType())
             {
-                Pages.Add(template);
-            }
-            else if (template.template.GetTemplateType() == TemplateType.Feature)
-            {
-                Features.Add(template);
+                case TemplateType.Page:
+                    Pages.Add(template);
+                    break;
+                case TemplateType.Feature:
+                case TemplateType.ProjectFeature:
+                    Features.Add(template);
+                    break;
             }
         }
     }

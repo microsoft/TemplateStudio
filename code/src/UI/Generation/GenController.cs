@@ -169,6 +169,7 @@ namespace Microsoft.Templates.UI
                 case TemplateType.Page:
                     return string.Format(StringRes.StatusBarGeneratingPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 case TemplateType.Feature:
+                case TemplateType.ProjectFeature:
                     return string.Format(StringRes.StatusBarGeneratingFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 default:
                     return null;

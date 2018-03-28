@@ -96,7 +96,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public void LoadData(TemplateType templateType, string framework, string platform)
         {
-            DataService.LoadTemplatesGroups(Groups, templateType, framework, platform);
+            if (templateType == TemplateType.Feature)
+            {
+                DataService.LoadTemplatesGroups(Groups, new [] { TemplateType.Feature, TemplateType.ProjectFeature }, framework, platform);
+            }
+            else
+            {
+                DataService.LoadTemplatesGroups(Groups, templateType, framework, platform);
+            }
+
             var group = Groups.FirstOrDefault();
             if (group != null)
             {

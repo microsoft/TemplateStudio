@@ -36,6 +36,8 @@ namespace Microsoft.Templates.Core
                     return TemplateType.Feature;
                 case "COMPOSITION":
                     return TemplateType.Composition;
+                case "PROJECTFEATURE":
+                    return TemplateType.ProjectFeature;
                 default:
                     return TemplateType.Unspecified;
             }

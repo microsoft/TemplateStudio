@@ -343,10 +343,10 @@ namespace Microsoft.Templates.UI
         {
             try
             {
-                int pagesAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Count();
-                int featuresAdded = genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Count();
+                int pagesAdded = genItems.Count(t => t.Template.GetTemplateType() == TemplateType.Page);
+                int featuresAdded = genItems.Count(t => t.Template.GetTemplateType() == TemplateType.Feature || t.Template.GetTemplateType() == TemplateType.ProjectFeature);
                 var pageIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Select(t => t.Template.Identity));
-                var featureIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Select(t => t.Template.Identity));
+                var featureIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature || t.Template.GetTemplateType() == TemplateType.ProjectFeature).Select(t => t.Template.Identity));
 
                 AppHealth.Current.Telemetry.TrackNewItemAsync(templateType, appProjectType, appFx, appPlatform, GenContext.ToolBox.Shell.GetVsProjectId(), pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
 

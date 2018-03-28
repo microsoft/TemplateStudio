@@ -63,6 +63,7 @@ namespace Microsoft.Templates.Core.PostActions
             switch (genInfo.Template.GetTemplateType())
             {
                 case TemplateType.Project:
+                case TemplateType.ProjectFeature:
                     postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
                     break;
                 case TemplateType.Page:
