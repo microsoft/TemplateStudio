@@ -17,9 +17,11 @@ Namespace Services
         End Function
 
         Private Async Function StartupAsync() As Task
+            '^^
             '{[{
             Singleton(Of LiveTileFeatureService).Instance.SampleUpdate()
             '}]}
+            Await Task.CompletedTask
         End Function
 
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)

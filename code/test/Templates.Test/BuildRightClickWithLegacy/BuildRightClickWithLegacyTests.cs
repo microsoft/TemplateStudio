@@ -3,17 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
-using Microsoft.VisualStudio.Threading;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
@@ -31,12 +24,12 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
+        [MemberData("GetProjectTemplatesForBuild", "LegacyFrameworks")]
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
         {
-            await _fixture.InitializeFixtureAsync(this);
+            _fixture.InitializeFixture(this, language);
 
             var projectName = $"{projectType}{framework}Legacy";
 
@@ -50,7 +43,7 @@ namespace Microsoft.Templates.Test
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
 
             var fixture = _fixture as BuildRightClickWithLegacyFixture;
-            await fixture.ChangeTemplatesSourceAsync(fixture.LocalSource);
+            await fixture.ChangeTemplatesSourceAsync(fixture.LocalSource, language);
 
             var rightClickTemplates = _fixture.Templates().Where(
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
@@ -65,12 +58,12 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "LegacyFrameworks")]
+        [MemberData("GetProjectTemplatesForBuild", "LegacyFrameworks")]
         [Trait("ExecutionSet", "ManualOnly")]
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
         public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string language)
         {
-            await _fixture.InitializeFixtureAsync(this);
+            _fixture.InitializeFixture(this, language);
 
             var projectName = $"{projectType}{framework}AllLegacy";
 

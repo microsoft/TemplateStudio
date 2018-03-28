@@ -10,9 +10,11 @@ Imports Param_RootNamespace.Helpers
 Namespace Services
     Friend Class ActivationService
         Private Async Function StartupAsync() As Task
+            '^^
             '{[{
             Await Singleton(Of StoreNotificationsFeatureService).Instance.InitializeAsync()
             '}]}
+            Await Task.CompletedTask
         End Function
 
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)

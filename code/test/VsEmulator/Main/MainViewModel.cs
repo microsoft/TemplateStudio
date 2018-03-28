@@ -4,6 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -20,6 +22,7 @@ using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
+using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.VsEmulator.LoadProject;
 using Microsoft.Templates.VsEmulator.NewProject;
@@ -33,6 +36,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private readonly MainView _host;
 
         private bool _canRefreshTemplateCache;
+        private string _selectedTheme;
 
         private RelayCommand _refreshTemplateCacheCommand;
 
@@ -41,6 +45,9 @@ namespace Microsoft.Templates.VsEmulator.Main
             _host = host;
             _wizardVersion = "0.0.0.0";
             _templatesVersion = "0.0.0.0";
+            Themes.Add("Light");
+            Themes.Add("Dark");
+            SystemService = new SystemService();
         }
 
         public string ProjectName { get; private set; }
@@ -48,6 +55,21 @@ namespace Microsoft.Templates.VsEmulator.Main
         public string OutputPath { get; private set; }
 
         public string ProjectPath { get; private set; }
+
+        public SystemService SystemService { get; }
+
+        public string SelectedTheme
+        {
+            get => _selectedTheme;
+            set
+            {
+                SetProperty(ref _selectedTheme, value);
+                var themeName = SystemService.IsHighContrast ? "HighContrast" : value;
+                Services.FakeStyleValuesProvider.Instance.LoadResources(themeName);
+            }
+        }
+
+        public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
 
         public List<string> ProjectItems { get; } = new List<string>();
 
@@ -60,6 +82,10 @@ namespace Microsoft.Templates.VsEmulator.Main
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
 
         public RelayCommand NewCSharpProjectCommand => new RelayCommand(NewCSharpProject);
+
+        public RelayCommand AnalyzeCSharpSelectionCommand => new RelayCommand(AnalyzeCSharpSelection);
+
+        public RelayCommand AnalyzeVisualBasicSelectionCommand => new RelayCommand(AnalyzeVisualBasicSelection);
 
         public RelayCommand NewVisualBasicProjectCommand => new RelayCommand(NewVisualBasicProject);
 
@@ -162,6 +188,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public async Task InitializeAsync()
         {
+            SystemService.Initialize();
+            SelectedTheme = Themes.First();
             SolutionName = null;
             await ConfigureGenContextAsync();
         }
@@ -172,6 +200,24 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 await NewProjectAsync(ProgrammingLanguages.CSharp);
+            });
+        }
+
+        private void AnalyzeCSharpSelection()
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                AnalyzeNewProject(ProgrammingLanguages.CSharp);
+            });
+        }
+
+        private void AnalyzeVisualBasicSelection()
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                AnalyzeNewProject(ProgrammingLanguages.VisualBasic);
             });
         }
 
@@ -194,19 +240,16 @@ namespace Microsoft.Templates.VsEmulator.Main
                 if (!string.IsNullOrEmpty(newProjectInfo.name))
                 {
                     var projectPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
-
                     GenContext.Current = this;
-
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection(language);
+                    ProjectName = newProjectInfo.name;
+                    ProjectPath = projectPath;
+                    OutputPath = projectPath;
+                    SolutionName = null;
+                    var userSelection = NewProjectGenController.Instance.GetUserSelection(language, Services.FakeStyleValuesProvider.Instance);
 
                     if (userSelection != null)
                     {
-                        ProjectName = newProjectInfo.name;
-                        ProjectPath = projectPath;
-                        OutputPath = projectPath;
-
                         ClearContext();
-                        SolutionName = null;
 
                         await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
 
@@ -220,11 +263,115 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+                CleanUp();
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
             {
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+        }
+
+        private void AnalyzeNewProject(string language)
+        {
+            SetCurrentLanguage(language);
+            try
+            {
+                var newProjectName = "AnalyzeSelection" + Path.GetFileNameWithoutExtension(Path.GetTempFileName());
+                var newProjectLocation = Path.GetTempPath();
+
+                var projectPath = Path.Combine(newProjectLocation, newProjectName, newProjectName);
+                GenContext.Current = this;
+                ProjectName = newProjectName;
+                ProjectPath = projectPath;
+                OutputPath = projectPath;
+                var userSelection = NewProjectGenController.Instance.GetUserSelection(language, Services.FakeStyleValuesProvider.Instance);
+
+                if (userSelection != null)
+                {
+                    ClearContext();
+
+                    AnalyzeSelectionOutput(userSelection);
+                    AddLog("See debug window for analysis");
+                }
+            }
+            catch (WizardBackoutException)
+            {
+                CleanUp();
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
+            }
+            catch (WizardCancelledException)
+            {
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
+            }
+        }
+
+        private void AnalyzeSelectionOutput(UserSelection userSelection)
+        {
+            var generatedFileList = new Dictionary<string, List<string>>();
+
+            var genItems = GenComposer.Compose(userSelection).ToList();
+
+            Debug.WriteLine("Template output");
+            Debug.WriteLine("===============");
+
+            foreach (var genItem in genItems)
+            {
+                var configLoc = genItem.Template.ConfigPlace.Replace("/.template.config/template.json", string.Empty);
+                Debug.WriteLine($"{genItem.Template.Identity} ({configLoc})");
+
+                var fullConfigLoc = $"{GenContext.ToolBox.Repo.CurrentContentFolder}{configLoc.Replace("/", "\\")}";
+                var files = Directory.EnumerateFiles(fullConfigLoc, "*.*", SearchOption.AllDirectories)
+                                     .Where(f => !f.Contains(".template.config"))
+                                     .ToList();
+
+                foreach (var file in files)
+                {
+                    var shortFilePath = file.Replace(fullConfigLoc, string.Empty);
+
+                    Debug.WriteLine($" - {shortFilePath}");
+
+                    var configuredName = shortFilePath.Replace("wts.ItemName", genItem.Name).Replace("_postaction", string.Empty);
+
+                    if (!generatedFileList.ContainsKey(configuredName))
+                    {
+                        generatedFileList.Add(configuredName, new List<string>());
+                    }
+
+                    if (file.Contains("_postaction"))
+                    {
+                        generatedFileList[configuredName].Add($"{shortFilePath} ({configLoc})");
+                    }
+                }
+
+                Debug.WriteLine(string.Empty);
+            }
+
+            Debug.WriteLine(string.Empty);
+
+            Debug.WriteLine("File output");
+            Debug.WriteLine("===========");
+
+            foreach (var genFile in generatedFileList.OrderBy(g => g.Key.Substring(1).Contains("\\")).ThenBy(f => f.Key))
+            {
+                Debug.WriteLine(genFile.Key);
+
+                foreach (var extraFile in genFile.Value)
+                {
+                    Debug.WriteLine($" + {extraFile}");
+                }
+
+                Debug.WriteLine(string.Empty);
+            }
+
+            Debug.WriteLine(string.Empty);
+        }
+
+        private void CleanUp()
+        {
+            if (GenContext.ToolBox.Repo.SyncInProgress)
+            {
+                GenContext.ToolBox.Repo.CancelSynchronization();
             }
         }
 
@@ -235,7 +382,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
@@ -246,6 +393,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+                CleanUp();
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)
@@ -268,7 +416,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage);
+                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
@@ -279,6 +427,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
             catch (WizardBackoutException)
             {
+                CleanUp();
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
             }
             catch (WizardCancelledException)

@@ -4,16 +4,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -32,18 +27,15 @@ namespace Microsoft.Templates.Test
 
         private static bool syncExecuted;
 
-        public static async Task<IEnumerable<object[]>> GetProjectTemplatesAsync()
+        public static IEnumerable<object[]> GetProjectTemplates()
         {
             List<object[]> result = new List<object[]>();
 
-            // TODO: X-Ref https://github.com/Microsoft/WindowsTemplateStudio/issues/1325
-            // Re-enable for all languages
-            ////foreach (var language in ProgrammingLanguages.GetAllLanguages())
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
-                const string language = ProgrammingLanguages.CSharp;
                 Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-                await InitializeTemplatesAsync(new LegacyTemplatesSourceV2());
+                InitializeTemplates(new LegacyTemplatesSourceV2(), language);
 
                 var projectTypes = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
                                                           && t.GetLanguage() == language).SelectMany(p => p.GetProjectTypeList()).Distinct();
@@ -54,6 +46,12 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in frameworks)
                     {
+                        // See https://github.com/Microsoft/WindowsTemplateStudio/issues/1985
+                        if (framework == "MVVMLight")
+                        {
+                            continue;
+                        }
+
                         result.Add(new object[] { projectType, framework, language });
                     }
                 }
@@ -62,31 +60,36 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private static async Task InitializeTemplatesAsync(TemplatesSource source)
+        [SuppressMessage(
+         "Usage",
+         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
+         Justification = "Required for unit testing.")]
+        private static void InitializeTemplates(TemplatesSource source, string language)
         {
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), new Version("1.6"), ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(source, new FakeGenShell(language), new Version("1.7"), language);
             if (!syncExecuted)
             {
-                await GenContext.ToolBox.Repo.SynchronizeAsync(true);
+                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
 
                 syncExecuted = true;
             }
         }
 
-        public async Task ChangeTemplatesSourceAsync(TemplatesSource source)
+        public async Task ChangeTemplatesSourceAsync(TemplatesSource source, string language)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(source, new FakeGenShell(language), language);
             await GenContext.ToolBox.Repo.SynchronizeAsync(true);
         }
 
-        public override async Task InitializeFixtureAsync(IContextProvider contextProvider, string framework = "")
+        // Renamed second parameter as this fixture needs the language while others don't
+        public override void InitializeFixture(IContextProvider contextProvider, string language = "")
         {
             GenContext.Current = contextProvider;
             Configuration.Current.Environment = "Pro";
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
-            await InitializeTemplatesAsync(Source);
+            InitializeTemplates(Source, language);
         }
     }
 }

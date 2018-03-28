@@ -14,9 +14,9 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <FontIcon Grid.Column="0" Tag="{x:Bind ViewModel.Item.HashIdentIcon}" FontSize="40" Glyph="{x:Bind ViewModel.Item.SymbolAsChar}" VerticalAlignment="Center" />
+        <FontIcon Grid.Column="0" FontSize="40" Glyph="{x:Bind ViewModel.Item.SymbolAsChar}" VerticalAlignment="Center" />
         <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
-            <TextBlock Text="{x:Bind ViewModel.Item.Company}" Tag="{x:Bind ViewModel.Item.HashIdentTitle}" Style="{ThemeResource ListTitleStyle}"/>
+            <TextBlock Text="{x:Bind ViewModel.Item.Company}" Style="{ThemeResource ListTitleStyle}"/>
             <TextBlock Text="{x:Bind ViewModel.Item.Status}" Style="{StaticResource ListSubTitleStyle}"/>
         </StackPanel>
     </Grid>

@@ -135,7 +135,7 @@ Namespace Views
             End If
         End Sub
 
-        Private Sub ItemInvoked(sender As Object, e As HamburgetMenuItemInvokedEventArgs)
+        Private Sub ItemInvoked(sender As Object, e As HamburgerMenuItemInvokedEventArgs)
             If DisplayMode = SplitViewDisplayMode.CompactOverlay OrElse DisplayMode = SplitViewDisplayMode.Overlay Then
                 IsPaneOpen = False
             End If
