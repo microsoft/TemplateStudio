@@ -1195,6 +1195,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analytics.
+        /// </summary>
+        public static string TemplateGroup_Analytics {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Analytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application Launching.
         /// </summary>
         public static string TemplateGroup_ApplicationLaunching {
