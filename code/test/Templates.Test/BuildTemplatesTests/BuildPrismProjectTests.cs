@@ -32,9 +32,9 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "Prism", ProgrammingLanguages.CSharp)]
+        [MemberData("GetProjectTemplatesForBuild", "Prism")]
         [Trait("Type", "BuildProjects")]
-        public async Task BuildEmptyProjectAsync(string projectType, string framework, string language)
+        public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
@@ -43,17 +43,17 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}";
+            var projectName = $"{ShortProjectType(projectType)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, null, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, false);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "Prism", ProgrammingLanguages.CSharp)]
+        [MemberData("GetProjectTemplatesForBuild", "Prism")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
-        public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string language)
+        public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
@@ -62,19 +62,19 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}All";
+            var projectName = $"{ShortProjectType(projectType)}All";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, GenerationFixture.GetDefaultName, false);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "Prism", ProgrammingLanguages.CSharp)]
+        [MemberData("GetProjectTemplatesForBuild", "Prism")]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimum")]
-        public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string language)
+        public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
@@ -83,45 +83,45 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
-            var projectName = $"{projectType}AllRandom";
+            var projectName = $"{ShortProjectType(projectType)}AllRandom";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, language, GenerationFixture.GetRandomName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, GenerationFixture.GetRandomName, false);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "Prism", ProgrammingLanguages.CSharp)]
+        [MemberData("GetProjectTemplatesForBuild", "Prism")]
         [Trait("Type", "BuildRightClick")]
-        public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
-            var projectName = $"{projectType}AllRightClick";
+            var projectName = $"{ShortProjectType(projectType)}AllRightClick";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, true, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, true, false);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "Prism", ProgrammingLanguages.CSharp)]
+        [MemberData("GetProjectTemplatesForBuild", "Prism")]
         [Trait("Type", "BuildRightClick")]
-        public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string language)
+        public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
-            var projectName = $"{projectType}AllRightClick2";
+            var projectName = $"{ShortProjectType(projectType)}AllRightClick2";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, language, false, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform,  language, false, false);
 
-            AssertBuildProjectAsync(projectPath, projectName);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
         [MemberData("GetPageAndFeatureTemplatesForBuild", "Prism")]
         [Trait("Type", "BuildOneByOnePrism")]
-        public async Task BuildPrismOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string language)
+        public async Task BuildPrismOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, itemId, language, false);
+            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId,  language, false);
 
-            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName);
+            AssertBuildProjectAsync(result.ProjectPath, result.ProjecName, platform);
         }
     }
 }

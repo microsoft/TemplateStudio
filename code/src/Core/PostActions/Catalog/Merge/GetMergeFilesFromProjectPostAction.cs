@@ -14,12 +14,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public class GetMergeFilesFromProjectPostAction : PostAction<string>
     {
-        public GetMergeFilesFromProjectPostAction(string config)
-            : base(config)
+        public GetMergeFilesFromProjectPostAction(string relatedTemplate, string config)
+            : base(relatedTemplate, config)
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             if (Regex.IsMatch(Config, MergeConfiguration.GlobalExtension))
             {
@@ -36,17 +36,42 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private void GetFileFromProject()
         {
-            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath)));
-            var relFilePath = filePath.Replace(GenContext.Current.ProjectPath + Path.DirectorySeparatorChar, string.Empty);
+            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config.Replace(GenContext.Current.OutputPath, GetReplacementPath())));
+            var relFilePath = GetRelativePath(filePath, GenContext.Current.DestinationParentPath + Path.DirectorySeparatorChar);
 
             if (!GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {
                 GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
                 if (File.Exists(filePath))
                 {
-                    var destFile = filePath.Replace(GenContext.Current.ProjectPath, GenContext.Current.OutputPath);
+                    var destFile = filePath.Replace(GetReplacementPath(), GenContext.Current.OutputPath);
                     File.Copy(filePath, destFile, true);
                 }
+            }
+        }
+
+        private string GetRelativePath(string filePath, string rootPath)
+        {
+            var index = filePath.IndexOf(rootPath, StringComparison.OrdinalIgnoreCase);
+            if (index == 0)
+            {
+                return filePath.Remove(0, rootPath.Length);
+            }
+            else
+            {
+                return filePath;
+            }
+        }
+
+        private string GetReplacementPath()
+        {
+            if (GenContext.Current.OutputPath == GenContext.Current.TempGenerationPath)
+            {
+                return GenContext.Current.DestinationParentPath;
+            }
+            else
+            {
+                return GenContext.Current.DestinationPath;
             }
         }
 

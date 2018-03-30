@@ -50,7 +50,7 @@ namespace TemplateValidator
         public IReadOnlyDictionary<string, ICacheTag> Tags { get; }
 
         // We just use strings for tags. The template engine uses a converter but this is fine for testing purposes
-        [ApiAnalysisMandatoryKeys("language", "type", "wts.type")]
+        [ApiAnalysisMandatoryKeys("language", "type", "wts.type", "wts.platform")]
         [ApiAnalysisOptionalKeys("wts.displayOrder", "wts.compositionOrder", "wts.framework", "wts.projecttype", "wts.version", "wts.genGroup", "wts.rightClickEnabled", "wts.compositionFilter", "wts.licenses", "wts.group", "wts.multipleInstance", "wts.dependencies", "wts.defaultInstance", "wts.export.baseclass", "wts.export.setter", "wts.isHidden")]
         [JsonProperty("tags")]
         public IReadOnlyDictionary<string, string> TemplateTags { get; set; }

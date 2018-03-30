@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WtsXamarin.Views.WebViewPage"
+             Title="WebView">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <WebView x:Name="webView"
+                 Grid.Row="0"
+                 Source="{Binding Source}"
+                 CanGoBack="{Binding CanGoBack}" 
+                 CanGoForward="{Binding CanGoForward}" />
+
+            <StackLayout Grid.Row="1"
+                     Orientation="Horizontal"
+                     BackgroundColor="LightGray">
+
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="Button">
+                            <Setter Property="BorderWidth" Value="0" />
+                            <Setter Property="BorderColor" Value="Transparent" />
+                            <Setter Property="BackgroundColor" Value="Transparent" />
+                            <Setter Property="TextColor" Value="Black" />
+                            <Setter Property="FontSize" Value="Large" />
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+
+                <Button Text="&#x2190;"
+                    Command="{Binding GoBack}" />
+
+                <Button Text="&#x2192;"
+                    Command="{Binding GoForward}" />
+
+                <Button Text="Refresh" FontSize="Small"
+                    Command="{Binding Refresh}" />
+
+                <Button Text="Open" FontSize="Small"
+                    Command="{Binding OpenInBrowser}" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

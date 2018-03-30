@@ -183,6 +183,7 @@
     <Compile Include="Diagnostics\WizardTypeEnum.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\ICreationPathExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\VersionExtensions.cs" />
@@ -209,9 +210,11 @@
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\ResourceDictionaryWriter.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\ListStringExtensions.cs" />
+    <Compile Include="PostActions\TemplateDefinedPostAction.cs" />
+    <Compile Include="Platforms.cs" />
     <Compile Include="ProgrammingLanguages.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidator.cs" />
-    <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\FailedMergePostActionInfo.cs" />
     <Compile Include="Fs.cs" />
     <Compile Include="Gen\TempGenerationResult.cs" />
     <Compile Include="Packaging\InvalidSignatureException.cs" />
@@ -311,6 +314,7 @@
     </Compile>
     <Compile Include="PostActions\NewItemPostActionFactory.cs" />
     <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
+    <Compile Include="Gen\FileRenameParameterReplacements.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
     <Compile Include="Packaging\SignCertNotFoundException.cs" />

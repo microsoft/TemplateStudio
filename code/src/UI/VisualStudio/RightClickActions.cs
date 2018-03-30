@@ -10,6 +10,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -24,15 +25,19 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string ProjectName { get; private set; }
 
-        public string OutputPath { get; private set; }
+        public string OutputPath { get; set; }
 
-        public string ProjectPath { get; private set; }
+        public string DestinationPath { get; private set; }
+
+        public string DestinationParentPath { get; private set; }
+
+        public string TempGenerationPath { get; private set; }
 
         public List<string> ProjectItems { get; private set; }
 
         public List<string> FilesToOpen { get; private set; }
 
-        public List<FailedMergePostAction> FailedMergePostActions { get; private set; }
+        public List<FailedMergePostActionInfo> FailedMergePostActions { get; private set; }
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; private set; }
 
@@ -131,12 +136,18 @@ namespace Microsoft.Templates.UI.VisualStudio
             EnsureGenContextInitialized();
             if (GenContext.CurrentLanguage == _shell.GetActiveProjectLanguage())
             {
-                ProjectPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
-                ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
-                OutputPath = GenContext.GetTempGenerationPath(ProjectName);
+                var projectConfig = ProjectConfigInfo.ReadProjectConfiguration();
+                if (projectConfig.Platform == Platforms.Uwp)
+                {
+                    DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
+                    DestinationParentPath = new DirectoryInfo(DestinationPath).Parent.FullName;
+                    ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
+                }
+
+                TempGenerationPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
-                FailedMergePostActions = new List<FailedMergePostAction>();
+                FailedMergePostActions = new List<FailedMergePostActionInfo>();
                 MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
                 ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>();
 

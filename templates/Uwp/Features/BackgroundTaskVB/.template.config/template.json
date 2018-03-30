@@ -1,0 +1,47 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": ["Universal"],
+  "name": "Background Task",
+  "groupIdentity": "wts.Feat.BackgroundTask.VB",
+  "identity": "wts.Feat.BackgroundTask.VB",
+  "description": "Add an in-process background task ready to run code even while the app is not in the foreground.",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.group": "BackgroundWork",
+    "wts.multipleInstance": "true",
+    "wts.genGroup": "0",    
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "BackgroundTaskFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\BackgroundTaskService.vb"
+    },
+    {
+      "path": ".\\BackgroundTasks\\BackgroundTask.vb"
+    },
+    {
+      "path": ".\\BackgroundTasks\\BackgroundTaskFeature.vb"
+    },
+    {
+      "path": ".\\Helpers\\TaskExtensions.vb"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

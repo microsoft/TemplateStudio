@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -17,6 +18,7 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Flavor;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 using NuGet.VisualStudio;
@@ -64,19 +66,31 @@ namespace Microsoft.Templates.UI.VisualStudio
                 return;
             }
 
-            var proj = GetActiveProject();
-            if (proj != null && proj.ProjectItems != null)
-            {
-                foreach (var item in itemsFullPath)
-                {
-                    proj.ProjectItems.AddFromFile(item);
-                }
+            var filesByProject = ResolveProjectFiles(itemsFullPath);
 
-                proj.Save();
-            }
-            else
+            foreach (var projectFile in filesByProject)
             {
-                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddItemsToProject).FireAndForget();
+                var proj = GetProjectByPath(projectFile.Key);
+                if (proj != null && proj.ProjectItems != null)
+                {
+                    var isSharedProject = Path.GetExtension(proj.FileName).Equals(".shproj", StringComparison.OrdinalIgnoreCase);
+                    foreach (var file in projectFile.Value)
+                    {
+                        var newItem = proj.ProjectItems.AddFromFile(file);
+
+                        if (isSharedProject && Path.GetExtension(file).Equals(".xaml", StringComparison.OrdinalIgnoreCase))
+                        {
+                            newItem.Properties.Item("ItemType").Value = "EmbeddedResource";
+                            newItem.Properties.Item("Generator").Value = "MSBuild:UpdateDesignTimeXaml";
+                        }
+                    }
+
+                    proj.Save();
+                }
+                else
+                {
+                    AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddItemsToProject).FireAndForget();
+                }
             }
         }
 
@@ -101,7 +115,17 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
+        public override bool SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
+        {
+            var defaultProject = GetProjectByGuid(projectGuid);
+
+            SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
+            SetStartupProject(defaultProject);
+
+            return true;
+        }
+
+        private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
         {
             foreach (SolutionConfiguration solConfiguration in Dte.Solution.SolutionBuild.SolutionConfigurations)
             {
@@ -109,7 +133,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     foreach (SolutionContext context in solConfiguration.SolutionContexts)
                     {
-                        if (context.PlatformName == platformName)
+                        if (context.PlatformName == platformName && context.ProjectName == project.UniqueName)
                         {
                             solConfiguration.Activate();
 
@@ -120,6 +144,15 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return false;
+        }
+
+        private void SetStartupProject(Project project)
+        {
+            if (project != null)
+            {
+                var solution = GetSolution();
+                solution.Properties.Item("StartupProject").Value = project.Name;
+            }
         }
 
         public override void AddProjectToSolution(string projectFullPath)
@@ -228,6 +261,46 @@ namespace Microsoft.Templates.UI.VisualStudio
             return string.Empty;
         }
 
+        public override string GetActiveProjectTypeGuids()
+        {
+            var project = GetActiveProject();
+            return GetProjectTypeGuid(project);
+        }
+
+        private string GetProjectTypeGuid(Project project)
+        {
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            if (project != null)
+            {
+                VSSolution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
+
+                if (hierarchy is IVsAggregatableProjectCorrected aggregatableProject)
+                {
+                    aggregatableProject.GetAggregateProjectTypeGuids(out string projTypeGuids);
+
+                    return projTypeGuids;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        private Project GetProjectByGuid(string projectTypeGuid)
+        {
+            foreach (var p in Dte?.Solution?.Projects?.Cast<Project>())
+            {
+                var projectGuid = GetProjectTypeGuid(p);
+
+                if (projectGuid.ToUpperInvariant().Split(';').Contains($"{{{projectTypeGuid}}}"))
+                {
+                    return p;
+                }
+            }
+
+            return null;
+        }
+
         protected override string GetSelectedItemPath()
         {
             if (Dte.SelectedItems.Count > 0)
@@ -264,6 +337,19 @@ namespace Microsoft.Templates.UI.VisualStudio
             if (p != null)
             {
                 return Path.GetDirectoryName(p.FileName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public override string GetSolutionPath()
+        {
+            var s = GetSolution();
+            if (s != null)
+            {
+                return Path.GetDirectoryName(s.FileName);
             }
             else
             {
@@ -318,6 +404,55 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return p;
+        }
+
+        private Project GetProjectByPath(string projFile)
+        {
+            Project p = null;
+            try
+            {
+                if (_dte != null)
+                {
+                    Projects projects = Dte.Solution.Projects;
+                    if (projects?.Count >= 1)
+                    {
+                        foreach (var proj in projects)
+                        {
+                            if (((Project)proj).FullName.Equals(projFile, StringComparison.OrdinalIgnoreCase))
+                            {
+                                return (Project)proj;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+               p = null;
+            }
+
+            return p;
+        }
+
+        private Solution GetSolution()
+        {
+            Solution s = null;
+
+            try
+            {
+                if (_dte != null)
+                {
+                    s = Dte.Solution;
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                s = null;
+            }
+
+            return s;
         }
 
         private async System.Threading.Tasks.Task ShowTaskListAsync()

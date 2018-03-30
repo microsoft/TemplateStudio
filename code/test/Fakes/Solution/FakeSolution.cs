@@ -6,14 +6,16 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Fakes
 {
     public class FakeSolution
     {
-        private const string GlobalSectionText = "GlobalSection(ProjectConfigurationPlatforms) = postSolution";
+        private const string ProjectConfigurationPlatformsText = "GlobalSection(ProjectConfigurationPlatforms) = postSolution";
 
-        private const string ConfigurationTemplate = @"		{0}.Debug|ARM.ActiveCfg = Debug|ARM
+        private const string UwpProjectConfigurationTemplate = @"		{0}.Debug|ARM.ActiveCfg = Debug|ARM
 		{0}.Debug|ARM.Build.0 = Debug|ARM
 		{0}.Debug|ARM.Deploy.0 = Debug|ARM
 		{0}.Debug|x64.ActiveCfg = Debug|x64
@@ -33,11 +35,15 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.Deploy.0 = Release|x86
 ";
 
-        private const string ProjectTemplateCS = @"Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""{name}"", ""{name}\{name}.csproj"", ""{id}""
+        private const string ProjectTemplateCS = @"Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""{name}"", ""{path}"", ""{id}""
 EndProject
 ";
 
-        private const string ProjectTemplateVB = @"Project(""{F184B08F-C81C-45F6-A57F-5ABD9991F28F}"") = ""{name}"", ""{name}\{name}.vbproj"", ""{id}""
+        private const string ProjectTemplateVB = @"Project(""{F184B08F-C81C-45F6-A57F-5ABD9991F28F}"") = ""{name}"", ""{path}"", ""{id}""
+EndProject
+";
+
+        private const string ProjectTemplateShared = @"Project(""{D954291E-2A0B-460D-934E-DC6B0785DB48}"") = ""{name}"", ""{path}"", ""{{id}}""
 EndProject
 ";
 
@@ -48,40 +54,83 @@ EndProject
             _path = path;
         }
 
-        public static FakeSolution Create(string path)
+        public static FakeSolution LoadOrCreate(string platform, string path)
         {
-            var solutionTemplate = ReadTemplate();
-            File.WriteAllText(path, solutionTemplate, Encoding.UTF8);
+            if (!File.Exists(path))
+            {
+                var solutionTemplate = ReadTemplate(platform);
+
+                File.WriteAllText(path, solutionTemplate, Encoding.UTF8);
+            }
 
             return new FakeSolution(path);
         }
 
-        public void AddProjectToSolution(string projectName, string projectGuid, bool isCSharp)
+        public void AddProjectToSolution(string platform, string projectName, string projectGuid, string projectRelativeToSolutionPath)
         {
             var slnContent = File.ReadAllText(_path);
 
             if (slnContent.IndexOf(projectName, StringComparison.Ordinal) == -1)
             {
                 var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
-                var projectTemplate = isCSharp ? ProjectTemplateCS : ProjectTemplateVB;
+                var projectTemplate = GetProjectTemplate(Path.GetExtension(projectRelativeToSolutionPath));
                 var projectContent = projectTemplate
                                             .Replace("{name}", projectName)
+                                            .Replace("{path}", projectRelativeToSolutionPath)
                                             .Replace("{id}", projectGuid);
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var globalSectionIndex = slnContent.IndexOf(GlobalSectionText, StringComparison.Ordinal);
-                var projectConfigContent = string.Format(ConfigurationTemplate, projectGuid);
+                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectName);
+                if (!string.IsNullOrEmpty(projectConfigurationTemplate))
+                {
+                    var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
 
-                slnContent = slnContent.Insert(globalSectionIndex + GlobalSectionText.Length + 1, projectConfigContent);
+                    var endGobalSectionIndex = slnContent.IndexOf("EndGlobalSection", globalSectionIndex, StringComparison.Ordinal);
+
+                    var projectConfigContent = string.Format(projectConfigurationTemplate, projectGuid);
+
+                    slnContent = slnContent.Insert(endGobalSectionIndex - 1, projectConfigContent);
+                }
             }
 
             File.WriteAllText(_path, slnContent, Encoding.UTF8);
         }
 
-        private static string ReadTemplate()
+        private static string GetProjectTemplate(string projectExtension)
         {
-            return File.ReadAllText(@"Solution\SolutionTemplate.txt");
+            switch (projectExtension)
+            {
+                case ".csproj":
+                    return ProjectTemplateCS;
+                case ".vbproj":
+                    return ProjectTemplateVB;
+                case ".shproj":
+                    return ProjectTemplateShared;
+            }
+
+            return string.Empty;
+        }
+
+        private static string GetProjectConfigurationTemplate(string platform, string projectName)
+        {
+            if (platform == Platforms.Uwp)
+            {
+                return UwpProjectConfigurationTemplate;
+            }
+
+            return string.Empty;
+        }
+
+        private static string ReadTemplate(string platform)
+        {
+            switch (platform)
+            {
+                case Platforms.Uwp:
+                    return File.ReadAllText(@"Solution\UwpSolutionTemplate.txt");
+            }
+
+            throw new InvalidDataException(nameof(platform));
         }
     }
 }

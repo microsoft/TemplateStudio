@@ -124,6 +124,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find project file for item {0}.
+        /// </summary>
+        public static string ExceptionProjectNotFound {
+            get {
+                return ResourceManager.GetString("ExceptionProjectNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception.
         /// </summary>
         public static string ExceptionString {
@@ -142,7 +151,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not find file &apos;{0}&apos; to include the following changes. Please review the code blocks to include the changes manually where required in your project. .
+        ///   Looks up a localized string similar to Could not find file &apos;{0}&apos; to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: &apos;{1}&apos;..
         /// </summary>
         public static string FailedMergePostActionFileNotFound {
             get {
@@ -151,7 +160,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The style with key &apos;{0}&apos; is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project..
+        ///   Looks up a localized string similar to The style with key &apos;{0}&apos; is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project. Related Template: &apos;{1}&apos;..
         /// </summary>
         public static string FailedMergePostActionKeyAlreadyDefined {
             get {
@@ -160,7 +169,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not find the expected line `{0}` in file &apos;{1}&apos;. Please merge the content from the postaction file manually..
+        ///   Looks up a localized string similar to Could not find the expected line `{0}` in file &apos;{1}&apos;. Please merge the content from the postaction file manually. Related Template: &apos;{2}&apos;..
         /// </summary>
         public static string FailedMergePostActionLineNotFound {
             get {
@@ -259,7 +268,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There is no merge target for file &apos;{0}&apos;.
+        ///   Looks up a localized string similar to There is no merge target for file &apos;{0}&apos;. Related Template: &apos;{1}&apos;..
         /// </summary>
         public static string MergeFileNotFoundExceptionMessage {
             get {
@@ -268,7 +277,7 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Line {0} not found in file &apos;{1}&apos;.
+        ///   Looks up a localized string similar to Line {0} not found in file &apos;{1}&apos;. Related Template: &apos;{2}&apos;..
         /// </summary>
         public static string MergeLineNotFoundExceptionMessage {
             get {
@@ -291,6 +300,42 @@ namespace Microsoft.Templates.Core.Resources {
         public static string PackageCertificateString {
             get {
                 return ResourceManager.GetString("PackageCertificateString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error executing &apos;{0}&apos;. Ignoring the error as Continue on Error is enabled. Related template: {1}..
+        /// </summary>
+        public static string PostActionContinuerOnErrorWarning {
+            get {
+                return ResourceManager.GetString("PostActionContinuerOnErrorWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error executing &apos;{0}&apos;. Related template: {1}..
+        /// </summary>
+        public static string PostActionException {
+            get {
+                return ResourceManager.GetString("PostActionException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The PostAction.ActionId &apos;{0}&apos; defined in the template does not match with the expected class ActionId &apos;{1}&apos;. Can&apos;t continue. Related template: {2}..
+        /// </summary>
+        public static string PostActionIdsNotMatchError {
+            get {
+                return ResourceManager.GetString("PostActionIdsNotMatchError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string PostActionRelatedNone {
+            get {
+                return ResourceManager.GetString("PostActionRelatedNone", resourceCulture);
             }
         }
         
