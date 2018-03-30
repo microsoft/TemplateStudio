@@ -1,3 +1,5 @@
-﻿This creates an in-process background task. This will allow you to run code even while the app is not in the foreground. The in-process model enhances the application lifecycle with improved notifications for when your app is in the foreground or in the background.
+﻿Windows Application Driver is a service to support Selenium-like UI Test Automation on Windows Applications. This service supports testing Universal Windows Platform (UWP) and Classic Windows (Win32) apps on Windows 10 PCs.
 
-To find out more about in-process background tasks, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task).
+Including this feature adds a new project to the solution that is set up for hosting UI tests of your UWP app that are powered by WinAppDriver.
+
+Learn more about the Windows Application Driver and creating tests with it at https://github.com/Microsoft/WinAppDriver
