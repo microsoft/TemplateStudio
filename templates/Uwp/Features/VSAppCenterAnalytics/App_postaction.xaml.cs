@@ -1,15 +1,8 @@
-﻿
-using System;
-
-//{[{
+﻿//{[{
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 //}]}
 
-namespace Param_RootNamespace
-{
-    public sealed partial class App : Application
-    {
         public App()
         {
             InitializeComponent();
@@ -19,5 +12,3 @@ namespace Param_RootNamespace
             AppCenter.Start("{Your App Secret}", typeof(Analytics));
 //}]}
         }
-    }
-}
