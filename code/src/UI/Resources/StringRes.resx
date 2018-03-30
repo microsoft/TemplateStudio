@@ -652,4 +652,8 @@
     <value>Select platform</value>
     <comment>Project configuration window select platform title</comment>
   </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
+  </data>
 </root>
