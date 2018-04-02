@@ -2,32 +2,30 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.Templates.Core.Gen;
-using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Templates.Core.Validation;
+using Microsoft.Templates.UI.Validators;
 
 namespace Microsoft.Templates.UI.Services
 {
     public static class BreakingChangesValidatorService
     {
-        public static bool HasNavigationViewBreakingChange()
+        // add breaking changes validators
+        private static List<IValidator> _validators = new List<IValidator>
         {
-            var hamgurguerVersion = new Version("1.7.0.0");
-            var templatesVersion = GenContext.ToolBox.TemplatesVersion.ToVersion();
-            var projectVersion = ProjectMetadataService.GetProjectMetadata().TemplatesVersion.ToVersion();
+            new HamburgerMenuValidation()
+        };
 
-            // TODO - Missing  check navigationView/HamburguerMenu file
-            return projectVersion <= hamgurguerVersion && templatesVersion > hamgurguerVersion;
-        }
-
-        private static Version ToVersion(this string stringVersion)
+        public static ValidationResult Validate()
         {
-            if (string.IsNullOrEmpty(stringVersion))
+            var validations = _validators.Select(v => v.Validate()).ToList();
+
+            return new ValidationResult
             {
-                return new Version();
-            }
-
-            var projectVersion = stringVersion.TrimStart('v');
-            return new Version(projectVersion);
+                IsValid = validations.All(v => v.IsValid),
+                ErrorMessages = validations.SelectMany(v => v.ErrorMessages).ToList()
+            };
         }
     }
 }

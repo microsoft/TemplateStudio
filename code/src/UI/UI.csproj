@@ -360,6 +360,7 @@
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\NotificationTemplateSelector.cs" />
+    <Compile Include="Validators\HamburgerMenuValidation.cs" />
     <Compile Include="ViewModels\Common\BaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\BasicInfoViewModel.cs" />

@@ -335,6 +335,9 @@
     <Compile Include="Templates\TemplateType.cs" />
     <Compile Include="ValidationErrorType.cs" />
     <Compile Include="ValidationResult.cs" />
+    <Compile Include="Validation\BaseValidator.cs" />
+    <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\StyleCop.json">

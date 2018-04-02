@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
@@ -141,9 +142,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             TemplateSelection.LoadData(TemplateType, ConfigFramework);
             WizardStatus.IsLoading = false;
 
-            if (BreakingChangesValidatorService.HasNavigationViewBreakingChange())
+            var result = BreakingChangesValidatorService.Validate();
+            if (!result.IsValid)
             {
-                var notification = Notification.Warning("Show navigationView breaking change message");
+                var message = string.Join(",", result.ErrorMessages);
+                var notification = Notification.Warning(message);
                 await NotificationsControl.AddNotificationAsync(notification);
             }
         }
