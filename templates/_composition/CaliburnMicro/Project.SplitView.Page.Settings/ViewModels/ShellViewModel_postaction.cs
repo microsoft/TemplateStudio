@@ -14,6 +14,7 @@ namespace Param_ItemNamespace.ViewModels
                 _navigationService.Navigate(typeof(wts.ItemNamePage));
                 return;
             }
+
             //}]}
         }
 
@@ -25,6 +26,7 @@ namespace Param_ItemNamespace.ViewModels
                 Selected = _navigationView.SettingsItem;
                 return;
             }
+
             //}]}
         }
     }

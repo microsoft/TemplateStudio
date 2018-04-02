@@ -52,7 +52,7 @@ namespace wts.ItemName.ViewModels
             var item = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageKey = item.GetValue(NavigationViewItemExtensions.PageKeyProperty) as string;
+            var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
             NavigationService.Navigate(pageKey);
         }
 
@@ -66,7 +66,7 @@ namespace wts.ItemName.ViewModels
         private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
             var navigatedPageKey = NavigationService.GetNameOfRegisteredPage(sourcePageType);
-            var pageKey = menuItem.GetValue(NavigationViewItemExtensions.PageKeyProperty) as string;
+            var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
             return pageKey == navigatedPageKey;
         }
     }

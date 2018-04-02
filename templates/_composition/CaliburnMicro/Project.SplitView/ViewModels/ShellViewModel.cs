@@ -45,14 +45,14 @@ namespace wts.ItemName.ViewModels
             var item = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageType = item.GetValue(NavigationViewItemExtensions.PageTypeProperty) as Type;
+            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
             var viewModelType = ViewModelLocator.LocateTypeForViewType(pageType, false);
             _navigationService.NavigateToViewModel(viewModelType);
         }
 
         private void NavigationService_Navigated(object sender, NavigationEventArgs e)
         {
-           Selected = _navigationView.MenuItems
+            Selected = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .First(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
         }
@@ -60,7 +60,7 @@ namespace wts.ItemName.ViewModels
         private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
             var sourceViewModelType = ViewModelLocator.LocateTypeForViewType(sourcePageType, false);
-            var pageType = menuItem.GetValue(NavigationViewItemExtensions.PageTypeProperty) as Type;
+            var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
             var viewModelType = ViewModelLocator.LocateTypeForViewType(pageType, false);
             return viewModelType == sourceViewModelType;
         }

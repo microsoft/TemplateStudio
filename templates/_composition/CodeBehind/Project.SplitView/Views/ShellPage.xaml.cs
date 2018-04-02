@@ -38,12 +38,12 @@ namespace wts.ItemName.Views
         {
             Selected = navigationView.MenuItems
                             .OfType<NavigationViewItem>()
-                            .First(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
+                            .First(menuItem => IsNavHelperForPageType(menuItem, e.SourcePageType));
         }
 
-        private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
+        private bool IsNavHelperForPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
-            var pageType = menuItem.GetValue(NavigationViewItemExtensions.PageTypeProperty) as Type;
+            var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
             return pageType == sourcePageType;
         }
 
@@ -52,7 +52,7 @@ namespace wts.ItemName.Views
             var item = navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageType = item.GetValue(NavigationViewItemExtensions.PageTypeProperty) as Type;
+            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
             NavigationService.Navigate(pageType);
         }
 
