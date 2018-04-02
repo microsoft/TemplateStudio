@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.IO;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Validation;
 using Microsoft.Templates.UI.Services;
@@ -15,12 +16,14 @@ namespace Microsoft.Templates.UI.Validators
         {
             var result = new ValidationResult();
 
+            // TODO - Set the last hamburger menu version
             var hamgurguerVersion = new Version("1.7.0.0");
             var templatesVersion = GetVersion(GenContext.ToolBox.TemplatesVersion);
             var projectVersion = GetVersion(ProjectMetadataService.GetProjectMetadata().TemplatesVersion);
 
-            // TODO - Missing  check navigationView/HamburguerMenu file
-            if (projectVersion <= hamgurguerVersion && templatesVersion > hamgurguerVersion)
+            if (projectVersion <= hamgurguerVersion
+                && templatesVersion > hamgurguerVersion
+                && CheckHamburgerMenuControl())
             {
                 result.IsValid = false;
                 result.ErrorMessages.Add("hamburguer menu breaking change detected");
@@ -38,6 +41,30 @@ namespace Microsoft.Templates.UI.Validators
 
             var projectVersion = stringVersion.TrimStart('v');
             return new Version(projectVersion);
+        }
+
+        private bool CheckHamburgerMenuControl()
+        {
+            var file = Path.Combine(GenContext.Current.ProjectPath, "Views", "ShellPage.xaml");
+            var fileContent = GetFileContent(file);
+            return fileContent.Contains("controls:HamburgerMenu");
+        }
+
+        private string GetFileContent(string file)
+        {
+            if (!File.Exists(file))
+            {
+                return string.Empty;
+            }
+
+            try
+            {
+                return File.ReadAllText(file);
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
         }
     }
 }
