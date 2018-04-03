@@ -15,14 +15,17 @@ namespace Microsoft.Templates.UI.Validators
         public override ValidationResult Validate()
         {
             var result = new ValidationResult();
+            var projectMetadata = ProjectMetadataService.GetProjectMetadata();
 
             // TODO - Set the last hamburger menu version
             var hamgurguerVersion = new Version("1.7.0.0");
             var templatesVersion = GetVersion(GenContext.ToolBox.TemplatesVersion);
-            var projectVersion = GetVersion(ProjectMetadataService.GetProjectMetadata().TemplatesVersion);
+            var projectVersion = GetVersion(projectMetadata.TemplatesVersion);
+            var projectType = projectMetadata.ProjectType;
 
             if (projectVersion <= hamgurguerVersion
                 && templatesVersion > hamgurguerVersion
+                && projectType == "SplitView"
                 && CheckHamburgerMenuControl())
             {
                 result.IsValid = false;
