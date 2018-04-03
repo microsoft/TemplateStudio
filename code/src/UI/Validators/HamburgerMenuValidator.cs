@@ -10,7 +10,7 @@ using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Validators
 {
-    public class HamburgerMenuValidation : IValidator
+    public class HamburgerMenuValidator : IValidator
     {
         public ValidationResult Validate()
         {

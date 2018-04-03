@@ -14,7 +14,7 @@ namespace Microsoft.Templates.UI.Services
         // add breaking changes validators
         private static List<IValidator> _validators = new List<IValidator>
         {
-            new HamburgerMenuValidation()
+            new HamburgerMenuValidator()
         };
 
         public static ValidationResult Validate()
