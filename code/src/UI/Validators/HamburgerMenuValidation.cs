@@ -10,9 +10,9 @@ using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Validators
 {
-    public class HamburgerMenuValidation : BaseValidator
+    public class HamburgerMenuValidation : IValidator
     {
-        public override ValidationResult Validate()
+        public ValidationResult Validate()
         {
             var result = new ValidationResult();
             var projectMetadata = ProjectMetadataService.GetProjectMetadata();

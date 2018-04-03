@@ -6,8 +6,6 @@ namespace Microsoft.Templates.Core.Validation
 {
     public interface IValidator
     {
-        bool IsValid();
-
         ValidationResult Validate();
     }
 }
