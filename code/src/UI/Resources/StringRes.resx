@@ -645,8 +645,8 @@
     <value>Use ctrl+up arrow or ctrl+down arrow to change page order</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
-  <data name="ValidatorHamburguerMenuErrorMessage" xml:space="preserve">
-    <value>HamburgerMenu control is obsolete. See [documentation]({0}projectTypes/updatetonavigationview.md) to update to NavigationView.</value>
-    <comment>Hamburguer menu validation error message</comment>
+  <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
+    <value>HamburgerMenu control is obsolete and WTS now supports NavigationView. See [documentation]({0}projectTypes/updatetonavigationview.md) to update.</value>
+    <comment>Has navigation view validation error message</comment>
   </data>
 </root>

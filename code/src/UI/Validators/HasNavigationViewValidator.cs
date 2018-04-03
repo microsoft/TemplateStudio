@@ -10,27 +10,20 @@ using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Validators
 {
-    public class HamburgerMenuValidator : IValidator
+    public class HasNavigationViewValidator : IBreakingChangeValidator
     {
-        // TODO - Change when  xxxxxxxxxxxxx  Set the last hamburger menu version
-        private readonly Version lastHamburgerMenuControlVersion = new Version("2.0.18088.1");
+        // TODO - This is last version with Hamburguer menu control in templates. Change when set the last hamburger menu version
+        public Version BreakingVersion { get; } = new Version("2.0.18088.1");
 
         public ValidationResult Validate()
         {
             var result = new ValidationResult();
-            var projectMetadata = ProjectMetadataService.GetProjectMetadata();
+            var projectType = ProjectMetadataService.GetProjectMetadata().ProjectType;
 
-            var templatesVersion = GetVersion(GenContext.ToolBox.TemplatesVersion);
-            var projectVersion = GetVersion(projectMetadata.TemplatesVersion);
-            var projectType = projectMetadata.ProjectType;
-
-            if (projectVersion <= lastHamburgerMenuControlVersion
-                && templatesVersion > lastHamburgerMenuControlVersion
-                && projectType == "SplitView"
-                && CheckHamburgerMenuControl())
+            if (projectType == "SplitView" && !HasNavigationView())
             {
                 var message = string.Format(
-                    Resources.StringRes.ValidatorHamburguerMenuErrorMessage,
+                    Resources.StringRes.ValidatorHasNavigationViewMessage,
                     Core.Configuration.Current.GitHubDocsUrl);
 
                 result.IsValid = false;
@@ -40,22 +33,11 @@ namespace Microsoft.Templates.UI.Validators
             return result;
         }
 
-        private Version GetVersion(string stringVersion)
-        {
-            if (string.IsNullOrEmpty(stringVersion))
-            {
-                return new Version();
-            }
-
-            var projectVersion = stringVersion.TrimStart('v');
-            return new Version(projectVersion);
-        }
-
-        private bool CheckHamburgerMenuControl()
+        private bool HasNavigationView()
         {
             var file = Path.Combine(GenContext.Current.ProjectPath, "Views", "ShellPage.xaml");
             var fileContent = GetFileContent(file);
-            return fileContent.Contains("controls:HamburgerMenu");
+            return fileContent.Contains("<NavigationView");
         }
 
         private string GetFileContent(string file)

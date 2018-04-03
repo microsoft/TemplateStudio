@@ -1240,11 +1240,11 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HamburgerMenu control is obsolete. See [documentation]({0}projectTypes/updatetonavigationview.md) to update to NavigationView..
+        ///   Looks up a localized string similar to HamburgerMenu control is obsolete and WTS now supports NavigationView. See [documentation]({0}projectTypes/updatetonavigationview.md) to update..
         /// </summary>
-        public static string ValidatorHamburguerMenuErrorMessage {
+        public static string ValidatorHasNavigationViewMessage {
             get {
-                return ResourceManager.GetString("ValidatorHamburguerMenuErrorMessage", resourceCulture);
+                return ResourceManager.GetString("ValidatorHasNavigationViewMessage", resourceCulture);
             }
         }
         
