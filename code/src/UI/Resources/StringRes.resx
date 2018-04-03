@@ -652,4 +652,8 @@
     <value>Select platform</value>
     <comment>Project configuration window select platform title</comment>
   </data>
+  <data name="TemplateGroup_Analytics" xml:space="preserve">
+    <value>Analytics</value>
+    <comment>Group header for analytics templates</comment>
+  </data>
 </root>
