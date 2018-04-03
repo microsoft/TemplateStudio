@@ -3,13 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Prism.Project.SplitView.AddToSecondaryNavigationItems",
+  "name": "Prism.Project.SplitView.AddNavigationViewItem",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == Prism & $projectType == SplitView & identity == wts.Page.Settings.Prism"
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.Prism & $framework == Prism & $projectType == SplitView"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

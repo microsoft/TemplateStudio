@@ -9,7 +9,7 @@
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == Blank & identity == wts.Page.Blank|wts.Page.Blank.CodeBehind|wts.Page.Chart|wts.Page.Chart.CodeBehind|wts.Page.Grid|wts.Page.Grid.CodeBehind|wts.Page.Camera|wts.Page.Camera.CodeBehind|wts.Page.Camera.CaliburnMicro"
+    "wts.compositionFilter": "$projectType == Blank & identity == wts.Page.Blank|wts.Page.Blank.CodeBehind|wts.Page.Chart|wts.Page.Chart.CodeBehind|wts.Page.Chart.Prism|wts.Page.Grid|wts.Page.Grid.CodeBehind|wts.Page.Grid.Prism|wts.Page.Camera|wts.Page.Camera.CodeBehind|wts.Page.Camera.CaliburnMicro|wts.Page.Camera.Prism"
   },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,
