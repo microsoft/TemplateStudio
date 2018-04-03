@@ -57,7 +57,7 @@ Namespace Views
             OnPropertyChanged(propertyName)
         End Sub
 
-        Private Sub OnPropertyChanged(ByVal propertyName As String)
+        Private Sub OnPropertyChanged(propertyName As String)
             RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
         End Sub
     End Class

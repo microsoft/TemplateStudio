@@ -14,9 +14,9 @@ namespace wts.ItemName.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private NavigationView _navigationView;
         private object _selected;
-        private readonly INavigationService _navigationService;
 
         public ICommand ItemInvokedCommand { get; }
 
@@ -30,7 +30,7 @@ namespace wts.ItemName.ViewModels
         {
             _navigationService = navigationServiceInstance;
             ItemInvokedCommand = new DelegateCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked);
-        }        
+        }
 
         public void Initialize(Frame frame, NavigationView navigationView)
         {
