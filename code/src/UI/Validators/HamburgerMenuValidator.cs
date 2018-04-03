@@ -12,24 +12,29 @@ namespace Microsoft.Templates.UI.Validators
 {
     public class HamburgerMenuValidator : IValidator
     {
+        // TODO - Change when  xxxxxxxxxxxxx  Set the last hamburger menu version
+        private readonly Version lastHamburgerMenuControlVersion = new Version("2.0.18088.1");
+
         public ValidationResult Validate()
         {
             var result = new ValidationResult();
             var projectMetadata = ProjectMetadataService.GetProjectMetadata();
 
-            // TODO - Set the last hamburger menu version
-            var hamgurguerVersion = new Version("1.7.0.0");
             var templatesVersion = GetVersion(GenContext.ToolBox.TemplatesVersion);
             var projectVersion = GetVersion(projectMetadata.TemplatesVersion);
             var projectType = projectMetadata.ProjectType;
 
-            if (projectVersion <= hamgurguerVersion
-                && templatesVersion > hamgurguerVersion
+            if (projectVersion <= lastHamburgerMenuControlVersion
+                && templatesVersion > lastHamburgerMenuControlVersion
                 && projectType == "SplitView"
                 && CheckHamburgerMenuControl())
             {
+                var message = string.Format(
+                    Resources.StringRes.ValidatorHamburguerMenuErrorMessage,
+                    Core.Configuration.Current.GitHubDocsUrl);
+
                 result.IsValid = false;
-                result.ErrorMessages.Add("hamburguer menu breaking change detected");
+                result.ErrorMessages.Add(message);
             }
 
             return result;

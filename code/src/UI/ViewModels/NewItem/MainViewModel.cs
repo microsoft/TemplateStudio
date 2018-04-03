@@ -145,8 +145,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var result = BreakingChangesValidatorService.Validate();
             if (!result.IsValid)
             {
-                var message = string.Join(",", result.ErrorMessages);
-                var notification = Notification.Warning(message);
+                var message = string.Join(Environment.NewLine, result.ErrorMessages);
+                var notification = Notification.Warning(message, Category.None, TimerType.None);
                 await NotificationsControl.AddNotificationAsync(notification);
             }
         }

@@ -1240,6 +1240,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HamburgerMenu control is obsolete. See [documentation]({0}projectTypes/updatetonavigationview.md) to update to NavigationView..
+        /// </summary>
+        public static string ValidatorHamburguerMenuErrorMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHamburguerMenuErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Windows Template Studio.
         /// </summary>
         public static string WindowsTemplateStudio {
