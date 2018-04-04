@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.PostActions
 
             AddPredefinedActions(genInfo, genResult, postActions);
             AddMergeActions(postActions, $"*{MergeConfiguration.Extension}*", true);
-            AddSearchAndReplaceActions(postActions, $"*{SearchAndReplacePostAction.Extension}*");
+            AddSearchAndReplaceActions(postActions, $"*{MergeConfiguration.SearchReplaceExtension}*", true);
 
             return postActions;
         }
