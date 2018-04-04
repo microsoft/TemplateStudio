@@ -645,4 +645,7 @@
     <value>Utilisez ctrl + flèche du haut ou ctrl + flèche du bas pour changer l'ordre des pages</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Composition tool</value>
+  </data>
 </root>

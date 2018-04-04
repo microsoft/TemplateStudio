@@ -645,4 +645,7 @@
     <value>ctrl + 위쪽/아래쪽 화살표를 사용하여 페이지 순서 변경</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Composition tool</value>
+  </data>
 </root>

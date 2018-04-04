@@ -10,7 +10,7 @@ This document covers:
 * [Modifying the menu items](#menu)
 * [Using the navigation pane with command bars](#commandbar)
 * [Have the menu item invoke code rather than navigate](#invokecode)
-* [Remove adaptative behaviors from HamburgerMenu](#adaptativebehaviors)
+* [Remove adaptive behaviors from HamburgerMenu](#adaptivebehaviors)
 
 <a name="menu"></a>
 
@@ -260,15 +260,15 @@ _secondaryItems.Add(
         }));
 ```
 
-<a name="adaptativebehaviors"></a>
+<a name="adaptivebehaviors"></a>
 
-## Remove adaptative behaviors from HamburgerMenu
+## Remove adaptive behaviors from HamburgerMenu
 
-WTS generates code that includes AdaptativeTriggers to provide responsive adaptation on screen size changes. If you want to remove this behavior because your app doesn't need it or because you prefere not to use it, please follow this documentation.
+WTS generates code that includes AdaptiveTriggers to provide responsive adaptation on window size changes. If you want to remove this behavior because your app doesn't need it or because you prefer not to use it, please follow this documentation.
 
 The first thing you have to remove is the VisualStates and the DisplayMode property on ShellView.xaml.
 
-### Mvvm Basic - ShellView.xaml
+### MVVM Basic - ShellView.xaml
 **Remove the commented code**
 ```xml
 <controls:HamburgerMenu
@@ -320,7 +320,7 @@ The first thing you have to remove is the VisualStates and the DisplayMode prope
 
 You also have to remove the CurrentStateChanged management code from ShellViewModel.cs.
 
-### Mvvm Basic - ShellViewModel.cs
+### MVVM Basic - ShellViewModel.cs
 
 **Remove the commented code**
 
@@ -402,7 +402,7 @@ public void Initialize(Frame frame)
 
 private void ItemSelected(HamburgerMenuItemInvokedEventArgs args)
 {
-    // Only remove this parth of the method.
+    // Only remove this part of the method.
     // if (DisplayMode == SplitViewDisplayMode.CompactOverlay || DisplayMode == SplitViewDisplayMode.Overlay)
     // {
     //    IsPaneOpen = false;
@@ -412,7 +412,7 @@ private void ItemSelected(HamburgerMenuItemInvokedEventArgs args)
 }
 ```
 
-Now you have to remove the adaptative triggers on each page that implements it (i.e. Blank Page).
+Now you have to remove the adaptive triggers on each page that implements them (i.e. Blank Page).
 
 **Remove the commented code**
 ```xml
@@ -470,5 +470,5 @@ Now you have to remove the adaptative triggers on each page that implements it (
 </Page>
 ```
 
-The NavigationPane project type is based on UWP Community Toolkit HamburgerMenu. This HamburgerMenu contains a property UseNavigationViewWhenPossible that allows it to use the NavigationView Control for UWP if the app is running on a device with Windows Fall Creators Update (10.16299) or higher.
-There are several HamburgerMenu properties that have no effect when the HamburgerMenu is using the NavigationView check [HamburgerMenu documentation](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/docs/controls/HamburgerMenu.md) for more details.
+The NavigationPane project type is based on the UWP Community Toolkit HamburgerMenu. This HamburgerMenu contains a property `UseNavigationViewWhenPossible` that allows it to use the NavigationView Control if the app is running on a device with Windows Fall Creators Update (10.16299) or higher.
+There are several HamburgerMenu properties that have no effect when using the NavigationView. See the [HamburgerMenu documentation](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/docs/controls/HamburgerMenu.md) for more details.

@@ -645,4 +645,7 @@
     <value>Kolejność stron można zmienić za pomocą klawiszy Ctrl+strzałka w górę i Ctrl+strzałka w dół</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Composition tool</value>
+  </data>
 </root>

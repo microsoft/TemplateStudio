@@ -645,4 +645,7 @@
     <value>Use ctrl+seta para cima ou ctrl+seta para baixo para alterar a ordem das páginas</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Composition tool</value>
+  </data>
 </root>

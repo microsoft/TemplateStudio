@@ -9,17 +9,11 @@
   
   <VisibilityConstraints>
     <VisibilityItem guid="guidRelayCommandPackageCmdSet"
-                        id="AddPageCommand" context="UICONTEXT_SolutionHasSingleProject" />
+                        id="AddPageCommand" context="UICONTEXT_SolutionHasAppContainerProject" />
     <VisibilityItem guid="guidRelayCommandPackageCmdSet"
-                    id="AddPageCommand" context="UICONTEXT_SolutionHasMultipleProjects" />
+                    id="AddFeatureCommand" context="UICONTEXT_SolutionHasAppContainerProject" />
     <VisibilityItem guid="guidRelayCommandPackageCmdSet"
-                    id="AddFeatureCommand" context="UICONTEXT_SolutionHasSingleProject" />
-    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
-                    id="AddFeatureCommand" context="UICONTEXT_SolutionHasMultipleProjects" />
-    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
-                    id="OpenTempFolder" context="UICONTEXT_SolutionHasSingleProject" />
-    <VisibilityItem guid="guidRelayCommandPackageCmdSet"
-                    id="OpenTempFolder" context="UICONTEXT_SolutionHasMultipleProjects" />
+                    id="OpenTempFolder" context="UICONTEXT_SolutionHasAppContainerProject" />
   </VisibilityConstraints>
   
   <Commands package="guidRelayCommandPackage">
