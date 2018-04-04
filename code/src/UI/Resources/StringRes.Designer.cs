@@ -205,6 +205,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Composition tool.
+        /// </summary>
+        public static string ButtonCompositionTool {
+            get {
+                return ResourceManager.GetString("ButtonCompositionTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string ButtonCreate {

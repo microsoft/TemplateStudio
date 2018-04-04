@@ -364,6 +364,11 @@
     <Compile Include="Validators\IBreakingChangeValidator.cs" />
     <Compile Include="ViewModels\Common\BaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\CompositionFile.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\CompositionToolViewModel.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\GenGroup.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\GenInfoComposition.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\GenInfoGroup.cs" />
     <Compile Include="ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\FileExtension.cs" />
     <Compile Include="ViewModels\Common\DataItems\FileStatus.cs" />
@@ -389,6 +394,9 @@
     <Compile Include="ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="ViewModels\NewProject\ProjectTypeViewModel.cs" />
     <Compile Include="ViewModels\NewProject\UserSelectionViewModel.cs" />
+    <Compile Include="Views\Common\CompositionToolWindow.xaml.cs">
+      <DependentUpon>CompositionToolWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Common\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
@@ -576,6 +584,10 @@
     <Page Include="Styles\Grid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Common\CompositionToolWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Common\ErrorDialog.xaml">
       <SubType>Designer</SubType>
