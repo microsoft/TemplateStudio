@@ -645,4 +645,7 @@
     <value>使用 ctrl+向上鍵或 ctrl+向下鍵變更頁面順序</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Composition tool</value>
+  </data>
 </root>
