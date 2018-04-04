@@ -112,7 +112,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Foreground" Value="{Binding ComboBoxText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding ComboBoxText, Source={x:Static services:UIStylesService.Instance}}" />        
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
@@ -166,7 +166,14 @@
                                 </Border>
                             </Themes:SystemDropShadowChrome>
                         </Popup>
-                        <ToggleButton x:Name="toggleButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButton}"/>
+                        <ToggleButton
+                            x:Name="toggleButton"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            Grid.ColumnSpan="2"
+                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            Style="{StaticResource ComboBoxToggleButton}" />
                         <ContentPresenter
                             x:Name="contentPresenter"
                             ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
@@ -202,6 +209,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="true">
+                <Setter Property="Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>
