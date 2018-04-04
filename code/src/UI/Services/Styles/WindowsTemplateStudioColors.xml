@@ -42,7 +42,7 @@
         <Background Type="CT_RAW" Source="00000000" />
       </Color>
       <Color Name="GridHeadingText">
-        <Background Type="CT_RAW" Source="FF717171" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="GridHeadingHoverText">
         <Background Type="CT_RAW" Source="FF1E1E1E" />
@@ -66,7 +66,7 @@
         <Background Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
       <Color Name="CardDescriptionText">
-        <Background Type="CT_RAW" Source="FF717171" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_RAW" Source="FFFFFFFF" />
@@ -120,7 +120,7 @@
         <Background Type="CT_RAW" Source="FF727779" />
       </Color>
       <Color Name="CardFooterText">
-        <Background Type="CT_RAW" Source="FF717171" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
@@ -304,7 +304,7 @@
         <Background Type="CT_RAW" Source="00000000" />
       </Color>
       <Color Name="GridHeadingText">
-        <Background Type="CT_RAW" Source="FF717171" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="GridHeadingHoverText">
         <Background Type="CT_RAW" Source="FF1E1E1E" />
@@ -328,7 +328,7 @@
         <Background Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
       <Color Name="CardDescriptionText">
-        <Background Type="CT_RAW" Source="FF717171" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_RAW" Source="FFFFFFFF" />
@@ -382,7 +382,7 @@
         <Background Type="CT_RAW" Source="FF727779" />
       </Color>
       <Color Name="CardFooterText">
-        <Background Type="CT_RAW" Source="FF717171" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="ChangesSummaryDetailFileHeaderBackground">
         <Background Type="CT_RAW" Source="FFEFEFF2" />
