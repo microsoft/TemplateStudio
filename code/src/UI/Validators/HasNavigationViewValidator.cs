@@ -12,8 +12,8 @@ namespace Microsoft.Templates.UI.Validators
 {
     public class HasNavigationViewValidator : IBreakingChangeValidator
     {
-        // TODO - This is last version with Hamburguer menu control in templates. Change when set the last hamburger menu version
-        public Version BreakingVersion { get; } = new Version("2.0.18088.1");
+        // This is last version with Hamburguer menu control in templates
+        public Version BreakingVersion { get; } = new Version("2.0.18093.1");
 
         public ValidationResult Validate()
         {
