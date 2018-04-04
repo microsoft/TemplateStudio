@@ -78,9 +78,9 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ListItemDisabledTextBrushKey}" Color="{x:Static SystemColors.GrayTextColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.ListItemDisabledTextColorKey}"  />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ListItemMouseOverBrushKey}" Color="{x:Static SystemColors.WindowColor}" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ListItemMouseOverBrushKey}" Color="{x:Static SystemColors.HighlightColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.ListItemMouseOverColorKey}"  />
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ListItemMouseOverTextBrushKey}" Color="{x:Static SystemColors.WindowTextColor}" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ListItemMouseOverTextBrushKey}" Color="{x:Static SystemColors.HighlightTextColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.ListItemMouseOverTextColorKey}"  />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.NewItemFileStatusConflictingFileBrushKey}" Color="{x:Static SystemColors.HighlightColor}" />
