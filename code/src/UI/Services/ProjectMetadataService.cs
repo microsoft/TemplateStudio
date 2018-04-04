@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -72,9 +73,13 @@ namespace Microsoft.Templates.UI.Services
                 AppHealth.Current.Warning.TrackAsync("Exception saving inferred projectType and framework to Package.appxmanifest", ex).FireAndForget();
                 throw;
             }
-        }        
+        }
     }
 
+    [SuppressMessage(
+       "StyleCop.CSharp.MaintainabilityRules",
+       "SA1402:File may only contain a single class",
+       Justification = "For simplicity we're allowing generic and non-generic versions in one file.")]
     public class ProjectMetadata
     {
         public string TemplatesVersion { get; set; }
