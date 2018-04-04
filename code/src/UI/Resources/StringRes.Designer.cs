@@ -223,6 +223,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Details of {0}.
+        /// </summary>
+        public static string ButtonDetailsHelpText {
+            get {
+                return ResourceManager.GetString("ButtonDetailsHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string ButtonNext {
