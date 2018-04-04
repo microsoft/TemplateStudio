@@ -117,7 +117,7 @@
         <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
       <Color Name="CardIcon">
-        <Background Type="CT_RAW" Source="FF888D8F" />
+        <Background Type="CT_RAW" Source="FF727779" />
       </Color>
       <Color Name="CardFooterText">
         <Background Type="CT_RAW" Source="FF717171" />
@@ -126,7 +126,7 @@
         <Background Type="CT_RAW" Source="FFEFEFF2" />
       </Color>
       <Color Name="TemplateInfoPageDescription">
-        <Background Type="CT_RAW" Source="FF888D8F" />
+        <Background Type="CT_RAW" Source="FF727779" />
       </Color>
     </Category>
   </Theme>
@@ -379,7 +379,7 @@
         <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
       <Color Name="CardIcon">
-        <Background Type="CT_RAW" Source="FF888D8F" />
+        <Background Type="CT_RAW" Source="FF727779" />
       </Color>
       <Color Name="CardFooterText">
         <Background Type="CT_RAW" Source="FF717171" />
@@ -388,7 +388,7 @@
         <Background Type="CT_RAW" Source="FFEFEFF2" />
       </Color>
       <Color Name="TemplateInfoPageDescription">
-        <Background Type="CT_RAW" Source="FF888D8F" />
+        <Background Type="CT_RAW" Source="FF727779" />
       </Color>
     </Category>
   </Theme>
