@@ -211,6 +211,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\NotificationMarkdownBlock.xaml.cs">
+      <DependentUpon>NotificationMarkdownBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
@@ -290,6 +293,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\BreakingChangesValidatorService.cs" />
+    <Compile Include="Services\ProjectMetadataService.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
@@ -355,6 +360,8 @@
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\NotificationTemplateSelector.cs" />
+    <Compile Include="Validators\HasNavigationViewValidator.cs" />
+    <Compile Include="Validators\IBreakingChangeValidator.cs" />
     <Compile Include="ViewModels\Common\BaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="ViewModels\Common\CompositionTool\CompositionFile.cs" />
@@ -489,6 +496,10 @@
     <Page Include="Controls\MarkdownBlock.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\NotificationMarkdownBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\NotificationsControl.xaml">
       <SubType>Designer</SubType>

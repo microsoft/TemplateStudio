@@ -298,7 +298,7 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>You can not remove *{0}* because *{1}* depends on it.</value>
+    <value>You can not remove **{0}** because **{1}** depends on it.</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
@@ -644,6 +644,10 @@
   <data name="ReorderPageHelpText" xml:space="preserve">
     <value>Use ctrl+up arrow or ctrl+down arrow to change page order</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data>
+  <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
+    <value>HamburgerMenu control is obsolete and WTS now supports NavigationView. See [documentation]({0}projectTypes/updatetonavigationview.md) to update.</value>
+    <comment>Has navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Composition tool</value>
