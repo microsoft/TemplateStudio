@@ -26,11 +26,11 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderSelectedBrushKey}" Color="#FF007ACC" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardBorderSelectedColorKey}" A="255" R="0" G="122" B="204" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardDescriptionTextBrushKey}" Color="#FF717171" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardDescriptionTextColorKey}" A="255" R="113" G="113" B="113" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardDescriptionTextBrushKey}" Color="#FF6C6C6C" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardDescriptionTextColorKey}" A="255" R="108" G="108" B="108" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextBrushKey}" Color="#FF717171" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextColorKey}" A="255" R="113" G="113" B="113" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextBrushKey}" Color="#FF6C6C6C" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardFooterTextColorKey}" A="255" R="108" G="108" B="108" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardIconBrushKey}" Color="#FF727779" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardIconColorKey}" A="255" R="114" G="119" B="121" />
@@ -53,8 +53,8 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.GridHeadingHoverTextBrushKey}" Color="#FF1E1E1E" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.GridHeadingHoverTextColorKey}" A="255" R="30" G="30" B="30" />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.GridHeadingTextBrushKey}" Color="#FF717171" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.GridHeadingTextColorKey}" A="255" R="113" G="113" B="113" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.GridHeadingTextBrushKey}" Color="#FF6C6C6C" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.GridHeadingTextColorKey}" A="255" R="108" G="108" B="108" />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.GridLineBrushKey}" Color="#FFCCCEDB" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.GridLineColorKey}" A="255" R="204" G="206" B="219" />
