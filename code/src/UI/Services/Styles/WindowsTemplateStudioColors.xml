@@ -422,8 +422,8 @@
         <Foreground Type="CT_SYSCOLOR" Source="0000000E" />
       </Color>
       <Color Name="ListItemMouseOver">
-        <Background Type="CT_SYSCOLOR" Source="00000005" />
-        <Foreground Type="CT_SYSCOLOR" Source="00000008" />
+        <Background Type="CT_SYSCOLOR" Source="0000000D" />
+        <Foreground Type="CT_SYSCOLOR" Source="0000000E" />
       </Color>
       <Color Name="ListItemDisabledText">
         <Background Type="CT_SYSCOLOR" Source="00000011" />
