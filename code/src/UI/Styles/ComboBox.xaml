@@ -98,9 +98,9 @@
                             <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding ComboBoxListItemBorderHover, Source={x:Static services:UIStylesService.Instance}}"/>
                         </Trigger>
                         <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                            <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{Binding ComboBoxListItemTextHover, Source={x:Static services:UIStylesService.Instance}}"/>
-                            <Setter Property="Background" TargetName="Bd" Value="{Binding ComboBoxListItemBackgroundHover, Source={x:Static services:UIStylesService.Instance}}"/>
-                            <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding ComboBoxListItemBorderHover, Source={x:Static services:UIStylesService.Instance}}"/>
+                            <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="Bd" Value="{Binding ComboBoxSelection, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{Binding ComboBoxSelection, Source={x:Static services:UIStylesService.Instance}}" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
