@@ -74,10 +74,14 @@ namespace Microsoft.Templates.UI.Services
         public static ThemeResourceKey CardTitleTextColorKey { get { return _CardTitleTextColorKey ?? (_CardTitleTextColorKey = new ThemeResourceKey(Category, "CardTitleText", ThemeResourceKeyType.BackgroundColor)); } }
         public static ThemeResourceKey CardTitleTextBrushKey { get { return _CardTitleTextBrushKey ?? (_CardTitleTextBrushKey = new ThemeResourceKey(Category, "CardTitleText", ThemeResourceKeyType.BackgroundBrush)); } }
 
-        private static ThemeResourceKey _ChangesSummaryDetailFileHeaderBackgroundColorKey;
-        private static ThemeResourceKey _ChangesSummaryDetailFileHeaderBackgroundBrushKey;
-        public static ThemeResourceKey ChangesSummaryDetailFileHeaderBackgroundColorKey { get { return _ChangesSummaryDetailFileHeaderBackgroundColorKey ?? (_ChangesSummaryDetailFileHeaderBackgroundColorKey = new ThemeResourceKey(Category, "ChangesSummaryDetailFileHeaderBackground", ThemeResourceKeyType.BackgroundColor)); } }
-        public static ThemeResourceKey ChangesSummaryDetailFileHeaderBackgroundBrushKey { get { return _ChangesSummaryDetailFileHeaderBackgroundBrushKey ?? (_ChangesSummaryDetailFileHeaderBackgroundBrushKey = new ThemeResourceKey(Category, "ChangesSummaryDetailFileHeaderBackground", ThemeResourceKeyType.BackgroundBrush)); } }
+        private static ThemeResourceKey _ChangesSummaryDetailFileHeaderColorKey;
+        private static ThemeResourceKey _ChangesSummaryDetailFileHeaderBrushKey;
+        private static ThemeResourceKey _ChangesSummaryDetailFileHeaderTextColorKey;
+        private static ThemeResourceKey _ChangesSummaryDetailFileHeaderTextBrushKey;
+        public static ThemeResourceKey ChangesSummaryDetailFileHeaderColorKey { get { return _ChangesSummaryDetailFileHeaderColorKey ?? (_ChangesSummaryDetailFileHeaderColorKey = new ThemeResourceKey(Category, "ChangesSummaryDetailFileHeader", ThemeResourceKeyType.BackgroundColor)); } }
+        public static ThemeResourceKey ChangesSummaryDetailFileHeaderBrushKey { get { return _ChangesSummaryDetailFileHeaderBrushKey ?? (_ChangesSummaryDetailFileHeaderBrushKey = new ThemeResourceKey(Category, "ChangesSummaryDetailFileHeader", ThemeResourceKeyType.BackgroundBrush)); } }
+        public static ThemeResourceKey ChangesSummaryDetailFileHeaderTextColorKey { get { return _ChangesSummaryDetailFileHeaderTextColorKey ?? (_ChangesSummaryDetailFileHeaderTextColorKey = new ThemeResourceKey(Category, "ChangesSummaryDetailFileHeader", ThemeResourceKeyType.ForegroundColor)); } }
+        public static ThemeResourceKey ChangesSummaryDetailFileHeaderTextBrushKey { get { return _ChangesSummaryDetailFileHeaderTextBrushKey ?? (_ChangesSummaryDetailFileHeaderTextBrushKey = new ThemeResourceKey(Category, "ChangesSummaryDetailFileHeader", ThemeResourceKeyType.ForegroundBrush)); } }
 
         private static ThemeResourceKey _DeleteTemplateIconColorKey;
         private static ThemeResourceKey _DeleteTemplateIconBrushKey;

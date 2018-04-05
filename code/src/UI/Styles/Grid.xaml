@@ -40,7 +40,7 @@
     </Style>
 
     <Style TargetType="Grid" x:Key="WtsGridChangesSummaryDetailFileHeader">
-        <Setter Property="Background" Value="{Binding ChangesSummaryDetailFileHeaderBackground, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Background" Value="{Binding ChangesSummaryDetailFileHeader, Source={x:Static services:UIStylesService.Instance}}" />
     </Style>
 
 </ResourceDictionary>

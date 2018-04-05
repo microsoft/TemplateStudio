@@ -236,7 +236,8 @@ namespace Microsoft.Templates.UI.Services
             CardFooterText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardFooterText");
             CardIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "CardIcon");
             CardTitleText = _stylesProvider.GetColor("WindowsTemplateStudio", "CardTitleText");
-            ChangesSummaryDetailFileHeaderBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeaderBackground");
+            ChangesSummaryDetailFileHeader = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeader");
+            ChangesSummaryDetailFileHeaderText = _stylesProvider.GetColor("WindowsTemplateStudio", "ChangesSummaryDetailFileHeaderText");
             DeleteTemplateIcon = _stylesProvider.GetColor("WindowsTemplateStudio", "DeleteTemplateIcon");
             GridHeadingBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingBackground");
             GridHeadingHoverBackground = _stylesProvider.GetColor("WindowsTemplateStudio", "GridHeadingHoverBackground");

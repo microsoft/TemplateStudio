@@ -39,8 +39,11 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.CardTitleTextBrushKey}" Color="{x:Static SystemColors.ControlTextColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.CardTitleTextColorKey}"  />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderBackgroundBrushKey}" Color="{x:Static SystemColors.HighlightColor}" />
-    <Color x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderBackgroundColorKey}"  />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderBrushKey}" Color="{x:Static SystemColors.HighlightColor}" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderColorKey}"  />
+
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderTextBrushKey}" Color="{x:Static SystemColors.HighlightTextColor}" />
+    <Color x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderTextColorKey}"  />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DeleteTemplateIconBrushKey}" Color="{x:Static SystemColors.ControlTextColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.DeleteTemplateIconColorKey}"  />

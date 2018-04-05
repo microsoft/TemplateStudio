@@ -105,12 +105,20 @@ namespace Microsoft.Templates.UI.Services
             set { SetValue(CardTitleTextProperty, value); }
         }
 
-        public static readonly DependencyProperty ChangesSummaryDetailFileHeaderBackgroundProperty = DependencyProperty.Register("ChangesSummaryDetailFileHeaderBackground", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+        public static readonly DependencyProperty ChangesSummaryDetailFileHeaderProperty = DependencyProperty.Register("ChangesSummaryDetailFileHeader", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
 
-        public Brush ChangesSummaryDetailFileHeaderBackground
+        public Brush ChangesSummaryDetailFileHeader
         {
-            get { return (Brush)GetValue(ChangesSummaryDetailFileHeaderBackgroundProperty); }
-            set { SetValue(ChangesSummaryDetailFileHeaderBackgroundProperty, value); }
+            get { return (Brush)GetValue(ChangesSummaryDetailFileHeaderProperty); }
+            set { SetValue(ChangesSummaryDetailFileHeaderProperty, value); }
+        }
+
+        public static readonly DependencyProperty ChangesSummaryDetailFileHeaderTextProperty = DependencyProperty.Register("ChangesSummaryDetailFileHeaderText", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
+
+        public Brush ChangesSummaryDetailFileHeaderText
+        {
+            get { return (Brush)GetValue(ChangesSummaryDetailFileHeaderTextProperty); }
+            set { SetValue(ChangesSummaryDetailFileHeaderTextProperty, value); }
         }
 
         public static readonly DependencyProperty DeleteTemplateIconProperty = DependencyProperty.Register("DeleteTemplateIcon", typeof(Brush), typeof(UIStylesService), new PropertyMetadata(null));
