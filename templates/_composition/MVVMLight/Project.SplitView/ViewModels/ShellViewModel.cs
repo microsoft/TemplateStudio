@@ -58,9 +58,14 @@ namespace wts.ItemName.ViewModels
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
-            Selected = _navigationView.MenuItems
+            var selectedItem = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
-                            .First(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
+                            .FirstOrDefault(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
+
+            if (selectedItem != null)
+            {
+                Selected = selectedItem;
+            }
         }
 
         private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
