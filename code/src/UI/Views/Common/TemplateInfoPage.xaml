@@ -6,7 +6,8 @@
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
       xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
       xmlns:res="clr-namespace:Microsoft.Templates.UI.Resources"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
+      FocusManager.FocusedElement="{Binding ElementName=backHyperlink}"
       d:DesignHeight="300" d:DesignWidth="300"
       Title="TemplateInfoPage">
 
@@ -32,7 +33,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.ColumnSpan="2" Margin="14,6,14,0" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
-            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding GoBackCommand}" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
+            <Hyperlink x:Name="backHyperlink" Style="{StaticResource WtsHyperlink}" Command="{Binding GoBackCommand}" AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}">
                 <Grid Background="Transparent">
                     <TextBlock VerticalAlignment="Center" Margin="10,10,10,10">
                         <TextBlock.Inlines>
