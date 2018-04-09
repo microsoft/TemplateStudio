@@ -1,5 +1,5 @@
-# Update from HamburgerMenu to NavigationView in MVVM Basic
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to NavigationView:
+# Update from HamburgerMenu to NavigationView in MVVM Light
+If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Light**  please follow these steps to update to NavigationView:
 
 ## 1. Update min target version in project properties
 NavigationView is a Fall Creators Update control, to start using it in your project is neccessary that you set FCU as min version.
@@ -28,8 +28,8 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding ShellViewModel, Source={StaticResource Locator}}"
     xmlns:helpers="using:SampleApp.Helpers"
-    xmlns:views="using:SampleApp.Views"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
@@ -47,7 +47,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <NavigationViewItem x:Uid="Shell_Main" Icon="Document"  helpers:NavHelper.NavigateTo="views:MainPage" />
+            <NavigationViewItem x:Uid="Shell_Main" Icon="Document"  helpers:NavHelper.NavigateTo="SampleApp.ViewModels.MainViewModel" />
             <!--
             Add here other menu item pages
             -->
@@ -82,7 +82,10 @@ The resulting code should look like this:
  ```csharp
 public sealed partial class ShellPage : Page
 {
-    public ShellViewModel ViewModel { get; } = new ShellViewModel();
+    private ShellViewModel ViewModel
+    {
+        get { return DataContext as ShellViewModel; }
+    }
 
     public ShellPage()
      {
@@ -116,6 +119,7 @@ public class NavHelper
 
 ## 5. Update ShellViewModel.cs
 ShellViewModel's complexity will be reduced significantly, these are the changes that you will have to implement on the class.
+
 ### C# code you will have to remove:
  - private **const properties** for Visual States (Panoramic, Wide, Narrow).
  - private field **_lastSelectedItem**
@@ -144,6 +148,7 @@ public class ShellViewModel : Observable
         private object _selected;
         private ICommand _itemInvokedCommand;
 
+
         public object Selected
         {
             get { return _selected; }
@@ -151,6 +156,7 @@ public class ShellViewModel : Observable
         }
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+
 
         public ShellViewModel()
         {
@@ -165,15 +171,27 @@ public class ShellViewModel : Observable
 
         private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
         {
+            if (args.IsSettingsInvoked)
+            {
+                NavigationService.Navigate(typeof(SettingsViewModel).FullName);
+                return;
+            }
+
             var item = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType);
+            var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
+            NavigationService.Navigate(pageKey);
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
+            if (e.SourcePageType == typeof(SettingsPage))
+            {
+                Selected = _navigationView.SettingsItem;
+                return;
+            }
+
             var selectedItem = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .FirstOrDefault(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
@@ -184,10 +202,11 @@ public class ShellViewModel : Observable
             }
         }
 
-        private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
+         private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
-            var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
-            return pageType == sourcePageType;
+            var navigatedPageKey = NavigationService.GetNameOfRegisteredPage(sourcePageType);
+            var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
+            return pageKey == navigatedPageKey;
         }
     }
 ```
@@ -214,6 +233,7 @@ The resulting code should look like this:
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"

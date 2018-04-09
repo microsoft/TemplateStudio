@@ -1,5 +1,5 @@
-# Update from HamburgerMenu to NavigationView in MVVM Basic
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to NavigationView:
+# Update from HamburgerMenu to NavigationView in Code Behind
+If you have an UWP project created with WTS with project type **NavigationPane** and framework **Code Behind**  please follow these steps to update to NavigationView:
 
 ## 1. Update min target version in project properties
 NavigationView is a Fall Creators Update control, to start using it in your project is neccessary that you set FCU as min version.
@@ -30,14 +30,13 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:SampleApp.Helpers"
     xmlns:views="using:SampleApp.Views"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
 
     <NavigationView
         x:Name="navigationView"
-        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
+        SelectedItem="{x:Bind Selected, Mode=OneWay}"
         Header="{Binding Selected.Title}"
+        ItemInvoked="OnItemInvoked"
         IsSettingsVisible="True"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
@@ -61,11 +60,6 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
                     Text="{Binding Selected.Content}" />
             </DataTemplate>
         </NavigationView.HeaderTemplate>
-        <i:Interaction.Behaviors>
-            <ic:EventTriggerBehavior EventName="ItemInvoked">
-                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
-            </ic:EventTriggerBehavior>
-        </i:Interaction.Behaviors>
         <Grid>
             <Frame x:Name="shellFrame" />
         </Grid>
@@ -73,24 +67,89 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
 </Page>
 ```
 ## 3. Update ShellPage.xaml.cs
-ShellViewModel will need the NavigationView instance (explained below), you will have to add it on initialization.
+ShellPage's codebehind complexity will be reduced significantly, these are the changes that you will have to implement on the class.
 
-### C# code you will have to modify:
- - Add the navigationView control to ViewModel initialization.
+### C# code you will have to remove:
+ - private **const properties** for Visual States (Panoramic, Wide, Narrow).
+ - private field **_lastSelectedItem**
+ - **IsPaneOpen** observable property.
+ - **DisplayMode** observable property.
+ - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
+ - **OpenPaneCommand** and handler method.
+ - **ItemInvoked** event handler.
+ - **OpenPane_Click** event handler.
+ - **WindowStates_CurrentStateChanged** event handler.
+ - **InitializeState**, **GoToState**, **ChangeSelected** and **Navigate** method.
+ - **PopulateNavItems** method and method call from Initialize.
+
+ ### C# code you will have to add _(implementation below)_:
+ - **OnItemInvoked** event handler.
+  - **IsNavHelperForPageType** method.
+
+### C# code you will have to update _(implementation below)_:
+ - **Initialize** method.
+ - **Frame_Navigated** method with the implementation below.
+
 
 The resulting code should look like this:
  ```csharp
-public sealed partial class ShellPage : Page
-{
-    public ShellViewModel ViewModel { get; } = new ShellViewModel();
+public sealed partial class ShellPage : Page, INotifyPropertyChanged
+    {
+        private object _selected;
 
-    public ShellPage()
-     {
-        InitializeComponent();
-        DataContext = ViewModel;
-        ViewModel.Initialize(shellFrame, navigationView);
+        public object Selected
+        {
+            get { return _selected; }
+            set { Set(ref _selected, value); }
+        }
+
+        public ShellPage()
+        {
+            InitializeComponent();
+            DataContext = this;
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            NavigationService.Frame = shellFrame;
+            NavigationService.Navigated += Frame_Navigated;
+        }
+
+
+        private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            if (args.IsSettingsInvoked)
+            {
+                NavigationService.Navigate(typeof(SettingsPage));
+                return;
+            }
+
+            var item = navigationView.MenuItems
+                            .OfType<NavigationViewItem>()
+                            .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
+            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
+            NavigationService.Navigate(pageType);
+        }
+
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            var selectedItem = navigationView.MenuItems
+                            .OfType<NavigationViewItem>()
+                            .FirstOrDefault(menuItem => IsNavHelperForPageType(menuItem, e.SourcePageType));
+
+            if (selectedItem != null)
+            {
+                Selected = selectedItem;
+            }
+        }
+
+        private bool IsNavHelperForPageType(NavigationViewItem menuItem, Type sourcePageType)
+        {
+            var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
+            return pageType == sourcePageType;
+        }
     }
-}
 ```
 
 ## 4. Add NavHelper.cs
@@ -114,84 +173,6 @@ public class NavHelper
 }
 ```
 
-## 5. Update ShellViewModel.cs
-ShellViewModel's complexity will be reduced significantly, these are the changes that you will have to implement on the class.
-### C# code you will have to remove:
- - private **const properties** for Visual States (Panoramic, Wide, Narrow).
- - private field **_lastSelectedItem**
- - **IsPaneOpen** observable property.
- - **DisplayMode** observable property.
- - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
- - **OpenPaneCommand** and handler method.
- - **ItemSelectedCommand** and handler method.
- - **StateChangedCommand** and handler method.
- - **InitializeState**, **GoToState**, **ChangeSelected** and **Navigate** method.
- - **PopulateNavItems** method and method call from Initialize.
-
-### C# code you will have to add _(implementation below)_:
- - **ItemInvokedCommand** and handler method.
-  - **IsNavigationViewItemFromPageType** method.
-
-### C# code you will have to update _(implementation below)_:
- - **Initialize** method.
- - **Frame_Navigated** method with the implementation below.
-
- The resulting code should look like this:
-```csharp
-public class ShellViewModel : Observable
-    {
-        private NavigationView _navigationView;
-        private object _selected;
-        private ICommand _itemInvokedCommand;
-
-        public object Selected
-        {
-            get { return _selected; }
-            set { Set(ref _selected, value); }
-        }
-
-        public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
-
-        public ShellViewModel()
-        {
-        }
-
-        public void Initialize(Frame frame, NavigationView navigationView)
-        {
-            _navigationView = navigationView;
-            NavigationService.Frame = frame;
-            NavigationService.Navigated += Frame_Navigated;
-        }
-
-        private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
-        {
-            var item = _navigationView.MenuItems
-                            .OfType<NavigationViewItem>()
-                            .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType);
-        }
-
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            var selectedItem = _navigationView.MenuItems
-                            .OfType<NavigationViewItem>()
-                            .FirstOrDefault(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
-
-            if (selectedItem != null)
-            {
-                Selected = selectedItem;
-            }
-        }
-
-        private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
-        {
-            var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
-            return pageType == sourcePageType;
-        }
-    }
-```
-
 ## 6. Remove ShellNavigationItem.cs
 ShellNavigationItem is no longer used and you should remove it from the project.
 
@@ -199,7 +180,7 @@ ShellNavigationItem is no longer used and you should remove it from the project.
 The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, because the page title will be displayed on the NavigationView HeaderTemplate and the responsive behaviors will be added by NavigationView control.
 
 ### XAML code you will have to remove:
- - **xmln namespaces** for fcu and cu.
+  - **xmln namespaces** for fcu and cu.
  - Textblock **TitlePage**
  - Main Grid **RowDefinitions**
  - VisualStateManager **VisualStateGroups**.
@@ -226,3 +207,7 @@ The resulting code should look like this:
     </Grid>
 </Page>
 ```
+
+## 8. Update Navigation View item name for all pages in Resources.resw
+As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
+(_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
