@@ -1,5 +1,5 @@
-# Update from HamburgerMenu to NavigationView in MVVM Basic
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to NavigationView:
+# Update from HamburgerMenu to NavigationView in Caliburn.Micro
+If you have an UWP project created with WTS with project type **NavigationPane** and framework **Caliburn.Micro**  please follow these steps to update to NavigationView:
 
 ## 1. Update min target version in project properties
 NavigationView is a Fall Creators Update control, to start using it in your project is neccessary that you set FCU as min version.
@@ -9,7 +9,7 @@ NavigationView is a Fall Creators Update control, to start using it in your proj
 The updated ShellPage will include the NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
 
 ### XAML code you will have to remove:
- - **xmln namespaces** for fcu and cu.
+ - **xmln namespaces** for fcu, cu and controls.
  - DataTemplate **NavigationMenuItemDataTemplate** in Page resources.
  - **HamburgerMenu** control.
   - **VisualStateGroups** at the bottom of the page's main grid.
@@ -30,8 +30,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:SampleApp.Helpers"
     xmlns:views="using:SampleApp.Views"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:cm="using:Caliburn.Micro"
     mc:Ignorable="d">
 
     <NavigationView
@@ -39,6 +38,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         Header="{Binding Selected.Title}"
         IsSettingsVisible="True"
+        cm:Message.Attach="[Event ItemInvoked] = [Action OnItemInvoked($eventArgs)]"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
             <!--
@@ -47,10 +47,8 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <NavigationViewItem x:Uid="Shell_Main" Icon="Document"  helpers:NavHelper.NavigateTo="views:MainPage" />
-            <!--
-            Add here other menu item pages
-            -->
+            <NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="views:MainPage" />
+            <NavigationViewItem x:Uid="Shell_Blank" Icon="Document" helpers:NavHelper.NavigateTo="views:BlankPage" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>
@@ -61,39 +59,63 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
                     Text="{Binding Selected.Content}" />
             </DataTemplate>
         </NavigationView.HeaderTemplate>
-        <i:Interaction.Behaviors>
-            <ic:EventTriggerBehavior EventName="ItemInvoked">
-                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
-            </ic:EventTriggerBehavior>
-        </i:Interaction.Behaviors>
         <Grid>
-            <Frame x:Name="shellFrame" />
+            <Frame x:Name="shellFrame" DataContext="{x:Null}" />
         </Grid>
     </NavigationView>
 </Page>
 ```
-## 3. Update ShellPage.xaml.cs
-ShellViewModel will need the NavigationView instance (explained below), you will have to add it on initialization.
+## 3. Update IShellView.cs
+ShellViewModel will need the NavigationView instance (explained below), you will have to add a method to obtain it to the IShellView.
+
+### C# code you will have to add:
+ - Add method `GetNavigationView()`
+
+ The resulting code should look like this:
+
+ ```csharp
+    public interface IShellView
+    {
+        INavigationService CreateNavigationService(WinRTContainer container);
+
+        NavigationView GetNavigationView();
+    }
+```
+ 
+
+## 4. Update ShellPage.xaml.cs
+ShellViewModel will need the NavigationView instance (explained below), you will have to add a method to obtain it.
+
+### C# code you can remove:
+ - Remove OnStateChanged, state changes are managed by NavigationView.
 
 ### C# code you will have to modify:
- - Add the navigationView control to ViewModel initialization.
+ - Add a method to obtain the NavigationView.
 
 The resulting code should look like this:
  ```csharp
-public sealed partial class ShellPage : Page
-{
-    public ShellViewModel ViewModel { get; } = new ShellViewModel();
+public sealed partial class ShellPage : IShellView
+    {
+        private ShellViewModel ViewModel => DataContext as ShellViewModel;
 
-    public ShellPage()
-     {
-        InitializeComponent();
-        DataContext = ViewModel;
-        ViewModel.Initialize(shellFrame, navigationView);
+        public ShellPage()
+        {
+            InitializeComponent();
+        }
+
+        public INavigationService CreateNavigationService(WinRTContainer container)
+        {
+            return container.RegisterNavigationService(shellFrame);
+        }
+
+        public NavigationView GetNavigationView()
+        {
+            return navigationView;
+        }
     }
-}
 ```
 
-## 4. Add NavHelper.cs
+## 5. Add NavHelper.cs
 
 Add this extension class in the **Helpers** folder to the project. This allows the NavigationViewItems to contain a Type property that is used for navigation.
 ```csharp
@@ -114,7 +136,7 @@ public class NavHelper
 }
 ```
 
-## 5. Update ShellViewModel.cs
+## 6. Update ShellViewModel.cs
 ShellViewModel's complexity will be reduced significantly, these are the changes that you will have to implement on the class.
 ### C# code you will have to remove:
  - private **const properties** for Visual States (Panoramic, Wide, Narrow).
@@ -122,18 +144,18 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
  - **IsPaneOpen** observable property.
  - **DisplayMode** observable property.
  - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
- - **OpenPaneCommand** and handler method.
- - **ItemSelectedCommand** and handler method.
- - **StateChangedCommand** and handler method.
+ - **Open**  method.
+ - **ItemSelected** event handler
+ - **StateChanged** event handler.
  - **InitializeState**, **GoToState**, **ChangeSelected** and **Navigate** method.
  - **PopulateNavItems** method and method call from Initialize.
 
 ### C# code you will have to add _(implementation below)_:
- - **ItemInvokedCommand** and handler method.
+ - **OnItemInvoked** event handler.
   - **IsNavigationViewItemFromPageType** method.
 
 ### C# code you will have to update _(implementation below)_:
- - **Initialize** method.
+ - **OnInitialize** method.
  - **Frame_Navigated** method with the implementation below.
 
  The resulting code should look like this:
@@ -150,30 +172,47 @@ public class ShellViewModel : Observable
             set { Set(ref _selected, value); }
         }
 
-        public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
-
         public ShellViewModel()
         {
         }
 
-        public void Initialize(Frame frame, NavigationView navigationView)
+        protected override void OnInitialize()
         {
-            _navigationView = navigationView;
-            NavigationService.Frame = frame;
-            NavigationService.Navigated += Frame_Navigated;
+            var view = GetView() as IShellView;
+
+            _navigationService = view?.CreateNavigationService(_container);
+            _navigationView = view?.GetNavigationView();
+
+            if (_navigationService != null)
+            {
+                _navigationService.Navigated += NavigationService_Navigated;
+            }
         }
 
         private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
         {
+            if (args.IsSettingsInvoked)
+            {
+                _navigationService.Navigate(typeof(SettingsPage));
+                return;
+            }
+
             var item = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType);
+            var viewModelType = ViewModelLocator.LocateTypeForViewType(pageType, false);
+            _navigationService.NavigateToViewModel(viewModelType);
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
+            if (e.SourcePageType == typeof(SettingsPage))
+            {
+                Selected = _navigationView.SettingsItem;
+                return;
+            }
+
             var selectedItem = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .FirstOrDefault(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
@@ -184,10 +223,12 @@ public class ShellViewModel : Observable
             }
         }
 
-        private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
+         private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
+            var sourceViewModelType = ViewModelLocator.LocateTypeForViewType(sourcePageType, false);
             var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
-            return pageType == sourcePageType;
+            var viewModelType = ViewModelLocator.LocateTypeForViewType(pageType, false);
+            return viewModelType == sourceViewModelType;
         }
     }
 ```
