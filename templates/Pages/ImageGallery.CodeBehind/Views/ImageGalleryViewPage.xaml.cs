@@ -62,6 +62,6 @@ namespace Param_ItemNamespace.Views
                     ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedIdKey, string.Empty);
                 }
             }
-        }        
+        }
     }
 }

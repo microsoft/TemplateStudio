@@ -58,6 +58,7 @@ namespace Param_ItemNamespace.ViewModels
                     SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
                 }
             }
+
             var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewViewModel.ImageGalleryViewAnimationOpen);
             animation?.TryStart(_image);
         }

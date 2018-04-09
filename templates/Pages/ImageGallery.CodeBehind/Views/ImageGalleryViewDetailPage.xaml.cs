@@ -60,6 +60,7 @@ namespace Param_ItemNamespace.Views
                     SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
                 }
             }
+
             var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewPage.ImageGalleryViewAnimationOpen);
             animation?.TryStart(previewImage);
             showFlipView.Begin();
