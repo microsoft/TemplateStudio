@@ -9,10 +9,10 @@ NavigationView is a Fall Creators Update control, to start using it in your proj
 The updated ShellPage will include the NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
 
 ### XAML code you will have to remove:
- - **xmln namespaces** for fcu and cu.
+ - **xmln namespaces** for fcu, cu, controls and vm (viewmodels).
  - DataTemplate **NavigationMenuItemDataTemplate** in Page resources.
  - **HamburgerMenu** control.
-  - **VisualStateGroups** at the bottom of the page's main grid.
+ - **VisualStateGroups** at the bottom of the page's main grid.
 
 ### XAML code you will have to add:
 - **namespaces**: xmlns:helpers="using:myAppNamespace.Helpers"
@@ -200,6 +200,8 @@ ShellNavigationItem is no longer used and you should remove it from the project.
 The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, because the page title will be displayed on the NavigationView HeaderTemplate and the responsive behaviors will be added by NavigationView control.
 
 ### XAML code you will have to remove:
+ - **xmln namespaces** for fcu and cu.
+ - Textblock **TitlePage**
  - Main Grid **RowDefinitions**
  - VisualStateManager **VisualStateGroups**.
  - **Grid.Row="1"** property  in the content Grid.

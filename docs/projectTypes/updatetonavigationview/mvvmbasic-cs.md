@@ -9,12 +9,13 @@ NavigationView is a Fall Creators Update control, to start using it in your proj
 The updated ShellPage will include the NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
 
 ### XAML code you will have to remove:
- - **xmln namespaces** for fcu and cu.
+ - **xmln namespaces** for fcu, cu, controls and vm (viewmodels).
  - DataTemplate **NavigationMenuItemDataTemplate** in Page resources.
  - **HamburgerMenu** control.
-  - **VisualStateGroups** at the bottom of the page's main grid.
+ - **VisualStateGroups** at the bottom of the page's main grid.
 
 ### XAML code you will have to add:
+- **namespaces**: xmlns:helpers="using:myAppNamespace.Helpers"
  - **NavigationView** control.
  - **MenuItems** inside of the NavigationView.
  - **HeaderTemplate** inside of the NavigationView.
@@ -122,14 +123,15 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
  - **DisplayMode** observable property.
  - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
  - **OpenPaneCommand** and handler method.
- - **ItemSelectedCommand** and handler method.
- - **StateChangedCommand** and handler method.
- - **GoToState** method.
+ - **ItemSelectedCommand** and handler method **ItemSelected**.
+ - **StateChangedCommand** and handler method **GoToState**.
  - **PopulateNavItems** method and method call from Initialize.
+ - **InitializeState**, **Navigate** and **ChangeSelected** methods.
 
 ### C# code you will have to add _(implementation below)_:
+ - **_navigationView** private property of type NavigationView.
  - **ItemInvokedCommand** and handler method.
-  - **IsNavigationViewItemFromPageType** method.
+ - **IsNavigationViewItemFromPageType** method.
 
 ### C# code you will have to update _(implementation below)_:
  - **Initialize** method.
@@ -198,6 +200,8 @@ ShellNavigationItem is no longer used and you should remove it from the project.
 The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, because the page title will be displayed on the NavigationView HeaderTemplate and the responsive behaviors will be added by NavigationView control.
 
 ### XAML code you will have to remove:
+ - **xmln namespaces** for fcu and cu.
+ - Textblock **TitlePage**
  - Main Grid **RowDefinitions**
  - VisualStateManager **VisualStateGroups**.
  - **Grid.Row="1"** property  in the content Grid.
