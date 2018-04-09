@@ -7,9 +7,11 @@
             ViewModel.Initialize(gridView)
         End Sub
 
-        Private Async Sub GridView_Loaded(sender As Object, e As RoutedEventArgs)
-            Dim gridView = TryCast(sender, GridView)
-            Await ViewModel.LoadAnimationAsync(gridView)
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
+            MyBase.OnNavigatedTo(e)
+            If e.NavigationMode = NavigationMode.Back Then
+                Await ViewModel.LoadAnimationAsync()
+            End If
         End Sub
     End Class
 End Namespace

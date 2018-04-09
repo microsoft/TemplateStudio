@@ -1,5 +1,6 @@
 ﻿Imports Windows.Storage
 Imports Windows.UI.Xaml.Media.Animation
+Imports Windows.UI.Xaml.Navigation
 
 Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.Models
@@ -43,10 +44,17 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
             Dim sampleImage = TryCast(e.Parameter, SampleImage)
-            SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImage.ID)
+            If sampleImage IsNot Nothing AndAlso e.NavigationMode = NavigationMode.New Then
+                SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImage.ID)
+            Else
+                Dim selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey)
+                If Not String.IsNullOrEmpty(selectedImageId) Then
+                    SelectedImage = Source.FirstOrDefault(Function(i) i.ID = selectedImageId)
+                End If
+            End If
             Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewPage.ImageGalleryViewAnimationOpen)
             animation?.TryStart(previewImage)
             showFlipView.Begin()
