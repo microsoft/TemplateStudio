@@ -1,5 +1,5 @@
-# Update from HamburgerMenu to NavigationView in MVVM Basic
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to NavigationView:
+# Update from HamburgerMenu to NavigationView in MVVM Light
+If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Light**  please follow these steps to update to NavigationView:
 
 ## 1. Update min target version in project properties
 NavigationView is a Fall Creators Update control, to start using it in your project is neccessary that you set FCU as min version.
@@ -9,13 +9,13 @@ NavigationView is a Fall Creators Update control, to start using it in your proj
 The updated ShellPage will include the NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
 
 ### XAML code you will have to remove:
- - **xmln namespaces** for fcu, cu, controls and vm (viewmodels).
+ - **xmln namespaces** for fcu and cu.
  - DataTemplate **NavigationMenuItemDataTemplate** in Page resources.
  - **HamburgerMenu** control.
- - **VisualStateGroups** at the bottom of the page's main grid.
+  - **VisualStateGroups** at the bottom of the page's main grid.
 
 ### XAML code you will have to add:
-- **namespaces**: xmlns:helpers="using:myAppNamespace.Helpers"
+ - **namespaces**: xmlns:helpers="using:myAppNamespace.Helpers"
  - **NavigationView** control.
  - **MenuItems** inside of the NavigationView.
  - **HeaderTemplate** inside of the NavigationView.
@@ -29,8 +29,8 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding ShellViewModel, Source={StaticResource Locator}}"
     xmlns:helpers="using:SampleApp.Helpers"
-    xmlns:views="using:SampleApp.Views"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
@@ -48,7 +48,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
             Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
-            <NavigationViewItem x:Uid="Shell_Main" Icon="Document"  helpers:NavHelper.NavigateTo="views:MainPage" />
+            <NavigationViewItem x:Uid="Shell_Main" Icon="Document"  helpers:NavHelper.NavigateTo="SampleApp.ViewModels.MainViewModel" />
             <!--
             Add here other menu item pages
             -->
@@ -73,7 +73,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
     </NavigationView>
 </Page>
 ```
-## 3. Update ShellPage.xaml.vb
+## 3. Update ShellPage.xaml.cs
 ShellViewModel will need the NavigationView instance (explained below), you will have to add it on initialization.
 
 ### VB code you will have to modify:
@@ -84,7 +84,11 @@ The resulting code should look like this:
 Public NotInheritable Partial Class ShellPage
     Inherits Page
 
-    Public ReadOnly Property ViewModel As New ShellViewModel
+    Private ReadOnly Property ViewModel As ShellViewModel
+        Get
+            Return TryCast(DataContext, ShellViewModel)
+        End Get
+    End Property
 
     Public Sub New()
         Me.InitializeComponent()
@@ -94,7 +98,7 @@ Public NotInheritable Partial Class ShellPage
 End Class
 ```
 
-## 4. Add NavHelper.vb
+## 4. Add NavHelper.cs
 
 Add this extension class in the **Helpers** folder to the project. This allows the NavigationViewItems to contain a Type property that is used for navigation.
 ```vbnet
@@ -113,23 +117,25 @@ Public Class NavHelper
 End Class
 ```
 
-## 5. Update ShellViewModel.vb
+## 5. Update ShellViewModel.cs
 ShellViewModel's complexity will be reduced significantly, these are the changes that you will have to implement on the class.
+
 ### VB code you will have to remove:
  - private **const properties** for Visual States (Panoramic, Wide, Narrow).
+ - private field **_lastSelectedItem**
  - **IsPaneOpen** observable property.
  - **DisplayMode** observable property.
  - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
  - **OpenPaneCommand** and handler method.
- - **ItemSelectedCommand** and handler method **ItemSelected**.
- - **StateChangedCommand** and handler method **GoToState**.
+ - **ItemSelectedCommand** and handler method.
+ - **StateChangedCommand** and handler method.
+ - **InitializeState**, **GoToState**, **ChangeSelected** and **Navigate** method.
  - **PopulateNavItems** method and method call from Initialize.
- - **InitializeState**, **Navigate** and **ChangeSelected** methods.
 
 ### VB code you will have to add _(implementation below)_:
  - **_navigationView** private property of type NavigationView.
- - **ItemInvokedCommand** and handler method **OnItemInvoked**.
- - **IsNavigationViewItemFromPageType** method.
+ - **ItemInvokedCommand** and handler method.
+  - **IsNavigationViewItemFromPageType** method.
 
 ### VB code you will have to update _(implementation below)_:
  - **Initialize** method.
@@ -138,13 +144,19 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
  The resulting code should look like this:
 ```vbnet
 Public Class ShellViewModel
-    Inherits Observable
+    Inherits ViewModelBase
 
     Private _navigationView As NavigationView
 
     Private _selected As Object
 
     Private _itemInvokedCommand As ICommand
+
+    Public ReadOnly Property NavigationService As NavigationServiceEx
+        Get
+            Return CommonServiceLocator.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()
+        End Get
+    End Property
 
     Public Property Selected As Object
         Get
@@ -174,8 +186,8 @@ Public Class ShellViewModel
 
     Private Sub OnItemInvoked(args As NavigationViewItemInvokedEventArgs)
         Dim item = _navigationView.MenuItems.OfType(Of NavigationViewItem)().First(Function(menuItem) CStr(menuItem.Content) = CStr(args.InvokedItem))
-        Dim pageType = TryCast(item.GetValue(NavHelper.NavigateToProperty), Type)
-        NavigationService.Navigate(pageType)
+        Dim pageKey = TryCast(item.GetValue(NavHelper.NavigateToProperty), String)
+        NavigationService.Navigate(pageKey)
     End Sub
 
     Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
@@ -187,13 +199,14 @@ Public Class ShellViewModel
     End Sub
 
     Private Function IsNavigationViewItemFromPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean
-        Dim pageType = TryCast(menuItem.GetValue(NavHelper.NavigateToProperty), Type)
-        Return pageType = sourcePageType
+        Dim navigatedPageKey = NavigationService.GetNameOfRegisteredPage(sourcePageType)
+        Dim pageKey = TryCast(menuItem.GetValue(NavHelper.NavigateToProperty), String)
+        Return pageKey = navigatedPageKey
     End Function
 End Class
 ```
 
-## 6. Remove ShellNavigationItem.vb
+## 6. Remove ShellNavigationItem.cs
 ShellNavigationItem is no longer used and you should remove it from the project.
 
 ## 7. Update XAML code for all pages
@@ -215,6 +228,7 @@ The resulting code should look like this:
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"
