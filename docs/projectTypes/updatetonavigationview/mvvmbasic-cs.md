@@ -3,7 +3,7 @@ If you have an UWP project created with WTS with project type **NavigationPane**
 
 ## 1. Update min target version in project properties
 NavigationView is a Fall Creators Update control, to start using it in your project is neccessary that you set FCU as min version.
-![](../resources/project-types/fcu-min-version.png)
+![](../../resources/project-types/fcu-min-version.png)
 
 ## 2. Update ShellPage.xaml
 The updated ShellPage will include the NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
