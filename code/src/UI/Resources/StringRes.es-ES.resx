@@ -644,5 +644,12 @@
   <data name="ReorderPageHelpText" xml:space="preserve">
     <value>Usar CTRL+flecha hacia arriba o CTRL+flecha hacia abajo para cambiar el orden de la página</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data><data name="ButtonDetailsHelpText" xml:space="preserve">
+    <value>Details of {0}</value>
+    <comment>Button details help text. {0}: name of template</comment>
+  </data>
+  <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
+    <value>Press enter to add {0}</value>
+    <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
 </root>

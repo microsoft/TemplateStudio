@@ -645,4 +645,12 @@
     <value>使用 Ctrl+ 向上键或 Ctrl+ 向下键来更改页面顺序</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
+  <data name="ButtonDetailsHelpText" xml:space="preserve">
+    <value>Details of {0}</value>
+    <comment>Button details help text. {0}: name of template</comment>
+  </data>
+  <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
+    <value>Press enter to add {0}</value>
+    <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
+  </data>
 </root>
