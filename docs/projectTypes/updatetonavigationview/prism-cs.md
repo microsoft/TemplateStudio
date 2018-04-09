@@ -129,14 +129,15 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
  - **DisplayMode** observable property.
  - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
  - **OpenPaneCommand** and handler method.
- - **ItemSelectedCommand** and handler method.
- - **StateChangedCommand** and handler method.
- - **InitializeState**, **GoToState**, **ChangeSelected**. **ItemSelected** and **Navigate** method.
+ - **ItemSelectedCommand** and handler method **ItemSelected**.
+ - **StateChangedCommand** and handler method **GoToState**.
  - **PopulateNavItems** method and method call from Initialize.
+ - **InitializeState**, **Navigate** and **ChangeSelected** methods.
 
 ### C# code you will have to add _(implementation below)_:
+ - **_navigationView** private property of type NavigationView.
  - **ItemInvokedCommand** and handler method.
-  - **IsNavigationViewItemFromPageType** method.
+ - **IsNavigationViewItemFromPageType** method.
 
 ### C# code you will have to update _(implementation below)_:
  - **ShellViewModel** constructor.

@@ -3,7 +3,7 @@ If you have an UWP project created with WTS with project type **NavigationPane**
 
 ## 1. Update min target version in project properties
 NavigationView is a Fall Creators Update control, to start using it in your project is neccessary that you set FCU as min version.
-![](../../resources/project-types/fcu-min-version.png)
+![](../resources/project-types/fcu-min-version.png)
 
 ## 2. Update ShellPage.xaml
 The updated ShellPage will include the NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
@@ -73,53 +73,50 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
     </NavigationView>
 </Page>
 ```
-## 3. Update ShellPage.xaml.cs
+## 3. Update ShellPage.xaml.vb
 ShellViewModel will need the NavigationView instance (explained below), you will have to add it on initialization.
 
-### C# code you will have to modify:
+### VB code you will have to modify:
  - Add the navigationView control to ViewModel initialization.
 
 The resulting code should look like this:
- ```csharp
-public sealed partial class ShellPage : Page
-{
-    public ShellViewModel ViewModel { get; } = new ShellViewModel();
+ ```vbnet
+Public NotInheritable Partial Class ShellPage
+    Inherits Page
 
-    public ShellPage()
-     {
-        InitializeComponent();
-        DataContext = ViewModel;
-        ViewModel.Initialize(shellFrame, navigationView);
-    }
-}
+    Public ReadOnly Property ViewModel As New ShellViewModel
+
+    Public Sub New()
+        Me.InitializeComponent()
+        DataContext = ViewModel
+        ViewModel.Initialize(shellFrame, navigationView)
+    End Sub
+End Class
 ```
 
-## 4. Add NavHelper.cs
+## 4. Add NavHelper.vb
 
 Add this extension class in the **Helpers** folder to the project. This allows the NavigationViewItems to contain a Type property that is used for navigation.
-```csharp
-public class NavHelper
-{
-    public static Type GetNavigateTo(NavigationViewItem item)
-    {
-        return (Type)item.GetValue(NavigateToProperty);
-    }
+```vbnet
+Public Class NavHelper
 
-    public static void SetNavigateTo(NavigationViewItem item, Type value)
-    {
-        item.SetValue(NavigateToProperty, value);
-    }
+    Public Shared Function GetNavigateTo(item As NavigationViewItem) As Type
+        Return CType(item.GetValue(NavigateToProperty), Type)
+    End Function
 
-    public static readonly DependencyProperty NavigateToProperty =
-        DependencyProperty.RegisterAttached("NavigateTo", typeof(Type), typeof(NavHelper), new PropertyMetadata(null));
-}
+    Public Shared Sub SetNavigateTo(item As NavigationViewItem, value As Type)
+        item.SetValue(NavigateToProperty, value)
+    End Sub
+
+    Public Shared ReadOnly NavigateToProperty As DependencyProperty =
+        DependencyProperty.RegisterAttached("NavigateTo", GetType(Type), GetType(NavHelper), New PropertyMetadata(Nothing))
+End Class
 ```
 
-## 5. Update ShellViewModel.cs
+## 5. Update ShellViewModel.vb
 ShellViewModel's complexity will be reduced significantly, these are the changes that you will have to implement on the class.
-### C# code you will have to remove:
+### VB code you will have to remove:
  - private **const properties** for Visual States (Panoramic, Wide, Narrow).
- - private field **_lastSelectedItem**
  - **IsPaneOpen** observable property.
  - **DisplayMode** observable property.
  - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
@@ -129,72 +126,74 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
  - **PopulateNavItems** method and method call from Initialize.
  - **InitializeState**, **Navigate** and **ChangeSelected** methods.
 
-### C# code you will have to add _(implementation below)_:
+### VB code you will have to add _(implementation below)_:
  - **_navigationView** private property of type NavigationView.
- - **ItemInvokedCommand** and handler method.
+ - **ItemInvokedCommand** and handler method **OnItemInvoked**.
  - **IsNavigationViewItemFromPageType** method.
 
-### C# code you will have to update _(implementation below)_:
+### VB code you will have to update _(implementation below)_:
  - **Initialize** method.
  - **Frame_Navigated** method with the implementation below.
 
  The resulting code should look like this:
-```csharp
-public class ShellViewModel : Observable
-    {
-        private NavigationView _navigationView;
-        private object _selected;
-        private ICommand _itemInvokedCommand;
+```vbnet
+Public Class ShellViewModel
+    Inherits Observable
 
-        public object Selected
-        {
-            get { return _selected; }
-            set { Set(ref _selected, value); }
-        }
+    Private _navigationView As NavigationView
 
-        public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+    Private _selected As Object
 
-        public ShellViewModel()
-        {
-        }
+    Private _itemInvokedCommand As ICommand
 
-        public void Initialize(Frame frame, NavigationView navigationView)
-        {
-            _navigationView = navigationView;
-            NavigationService.Frame = frame;
-            NavigationService.Navigated += Frame_Navigated;
-        }
+    Public Property Selected As Object
+        Get
+            Return _selected
+        End Get
 
-        private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
-        {
-            var item = _navigationView.MenuItems
-                            .OfType<NavigationViewItem>()
-                            .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType);
-        }
+        Set(value As Object)
+            [Set](_selected, value)
+        End Set
+    End Property
 
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            var selectedItem = _navigationView.MenuItems
-                            .OfType<NavigationViewItem>()
-                            .FirstOrDefault(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
+    Public ReadOnly Property ItemInvokedCommand As ICommand
+        Get
+            If _itemInvokedCommand Is Nothing Then
+                _itemInvokedCommand = New RelayCommand(Of NavigationViewItemInvokedEventArgs)(AddressOf OnItemInvoked)
+            End If
 
-            if (selectedItem != null)
-            {
-                Selected = selectedItem;
-            }
-        }
+            Return _itemInvokedCommand
+        End Get
+    End Property
 
-        private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
-        {
-            var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
-            return pageType == sourcePageType;
-        }
-    }
+    Public Sub Initialize(frame As Frame, navigationView As NavigationView)
+        _navigationView = navigationView
+        NavigationService.Frame = frame
+        AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
+    End Sub
+
+    Private Sub OnItemInvoked(args As NavigationViewItemInvokedEventArgs)
+        Dim item = _navigationView.MenuItems.OfType(Of NavigationViewItem)().First(Function(menuItem) CStr(menuItem.Content) = CStr(args.InvokedItem))
+        Dim pageType = TryCast(item.GetValue(NavHelper.NavigateToProperty), Type)
+        NavigationService.Navigate(pageType)
+    End Sub
+
+    Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+        Dim selectedItem = _navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsNavigationViewItemFromPageType(menuItem, e.SourcePageType))
+
+        If selectedItem IsNot Nothing Then
+            Selected = selectedItem
+        End If
+    End Sub
+
+    Private Function IsNavigationViewItemFromPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean
+        Dim pageType = TryCast(menuItem.GetValue(NavHelper.NavigateToProperty), Type)
+        Return pageType = sourcePageType
+    End Function
+End Class
 ```
 
-## 6. Remove ShellNavigationItem.cs
+## 6. Remove ShellNavigationItem.vb
 ShellNavigationItem is no longer used and you should remove it from the project.
 
 ## 7. Update XAML code for all pages
