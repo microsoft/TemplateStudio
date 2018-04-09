@@ -32,11 +32,7 @@ Namespace Views
         End Sub
 
         Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-            Dim selectedItem = navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsNavHelperForPageType(menuItem, e.SourcePageType))
-
-            If selectedItem IsNot Nothing Then
-                Selected = selectedItem
-            End If
+            Selected = navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsNavHelperForPageType(menuItem, e.SourcePageType))
         End Sub
 
         Private Function IsNavHelperForPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean

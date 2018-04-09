@@ -4,6 +4,7 @@
 
         Public Sub New()
             InitializeComponent()
+            ViewModel.Initialize(gridView)
         End Sub
 
         Private Async Sub GridView_Loaded(sender As Object, e As RoutedEventArgs)

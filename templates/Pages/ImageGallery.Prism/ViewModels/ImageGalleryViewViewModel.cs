@@ -47,9 +47,13 @@ namespace Param_ItemNamespace.ViewModels
             Source = _sampleDataService.GetGallerySampleData();
         }
 
-        public async Task LoadAnimationAsync(GridView imagesGridView)
+        public void Initialize(GridView imagesGridView)
         {
             _imagesGridView = imagesGridView;
+        }
+
+        public async Task LoadAnimationAsync()
+        {
             var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedIdKey);
             if (!string.IsNullOrEmpty(selectedImageId))
             {

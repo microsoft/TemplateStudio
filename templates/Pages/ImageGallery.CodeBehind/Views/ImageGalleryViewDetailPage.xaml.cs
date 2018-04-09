@@ -44,11 +44,22 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             var sampleImage = e.Parameter as SampleImage;
-            SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImage.ID);
+            if (sampleImage != null && e.NavigationMode == NavigationMode.New)
+            {
+                SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImage.ID);
+            }
+            else
+            {
+                var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey);
+                if (!string.IsNullOrEmpty(selectedImageId))
+                {
+                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
+                }
+            }
             var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewPage.ImageGalleryViewAnimationOpen);
             animation?.TryStart(previewImage);
             showFlipView.Begin();
