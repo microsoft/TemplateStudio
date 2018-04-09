@@ -3,7 +3,7 @@ If you have an UWP project created with WTS with project type **NavigationPane**
 
 ## 1. Update min target version in project properties
 NavigationView is a Fall Creators Update control, to start using it in your project is neccessary that you set FCU as min version.
-![](../resources/project-types/fcu-min-version.png)
+![](../../resources/project-types/fcu-min-version.png)
 
 ## 2. Update ShellPage.xaml
 The updated ShellPage will include the NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
@@ -85,7 +85,7 @@ public sealed partial class ShellPage : Page
     public ShellViewModel ViewModel { get; } = new ShellViewModel();
 
     public ShellPage()
-    {
+     {
         InitializeComponent();
         DataContext = ViewModel;
         ViewModel.Initialize(shellFrame, navigationView);
@@ -118,13 +118,14 @@ public class NavHelper
 ShellViewModel's complexity will be reduced significantly, these are the changes that you will have to implement on the class.
 ### C# code you will have to remove:
  - private **const properties** for Visual States (Panoramic, Wide, Narrow).
+ - private field **_lastSelectedItem**
  - **IsPaneOpen** observable property.
  - **DisplayMode** observable property.
  - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
  - **OpenPaneCommand** and handler method.
  - **ItemSelectedCommand** and handler method.
  - **StateChangedCommand** and handler method.
- - **GoToState** method.
+ - **InitializeState**, **GoToState**, **ChangeSelected** and **Navigate** method.
  - **PopulateNavItems** method and method call from Initialize.
 
 ### C# code you will have to add _(implementation below)_:
