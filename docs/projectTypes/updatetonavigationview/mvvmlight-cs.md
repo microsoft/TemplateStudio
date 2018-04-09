@@ -15,6 +15,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
   - **VisualStateGroups** at the bottom of the page's main grid.
 
 ### XAML code you will have to add:
+ - **namespaces**: xmlns:helpers="using:myAppNamespace.Helpers"
  - **NavigationView** control.
  - **MenuItems** inside of the NavigationView.
  - **HeaderTemplate** inside of the NavigationView.
@@ -133,6 +134,7 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
  - **PopulateNavItems** method and method call from Initialize.
 
 ### C# code you will have to add _(implementation below)_:
+ - **_navigationView** private property of type NavigationView.
  - **ItemInvokedCommand** and handler method.
   - **IsNavigationViewItemFromPageType** method.
 
