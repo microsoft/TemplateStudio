@@ -1,0 +1,13 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the BlankViewPage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="wts.ItemName_Title.Text" xml:space="preserve">
+    <value>wts.ItemName</value>
+    <comment>Page title for wts.ItemNamePage</comment>
+  </data>
+  <!--}]}-->
+</root>

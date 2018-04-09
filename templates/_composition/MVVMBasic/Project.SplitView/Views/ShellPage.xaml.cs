@@ -12,7 +12,7 @@ namespace wts.ItemName.Views
         {
             InitializeComponent();
             DataContext = ViewModel;
-            ViewModel.Initialize(shellFrame);
+            ViewModel.Initialize(shellFrame, navigationView);
         }
     }
 }

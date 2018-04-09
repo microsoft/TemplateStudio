@@ -645,4 +645,7 @@
     <value>Ctrl + 上方向キーまたは Ctrl + 下方向キーを使用して、ページの順序を変更します</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Composition tool</value>
+  </data>
 </root>

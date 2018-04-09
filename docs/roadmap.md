@@ -22,7 +22,7 @@ Major additions:
 * More & improved documentation
 * Provisional support for 3rd party templates
 
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A1.8)
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.1)
 
 ### 2.2 - April 2018
 
@@ -30,7 +30,7 @@ Major additions:
 * Improved testing
 * +more
 
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A1.9)
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.2)
 
 ### 2.5 - later in 2018
 

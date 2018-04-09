@@ -10,17 +10,8 @@
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
 
-        <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="48"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="ChartView_Title"
-            Style="{StaticResource PageTitleStyle}" />
-
-        <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <tc:RadCartesianChart>
                 <tc:RadCartesianChart.HorizontalAxis>
                     <tc:CategoricalAxis Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}">

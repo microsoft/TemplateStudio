@@ -12,18 +12,8 @@
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
-
-        <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="48"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="CameraView_Title"
-            Style="{StaticResource PageTitleStyle}" />
-
-        <Grid Grid.Row="1" Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <controls:CameraControl x:Uid="CameraViewPage_CameraControl">
                 <i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="PhotoTaken">
@@ -40,6 +30,5 @@
                 VerticalAlignment="Bottom"
                 Source="{x:Bind ViewModel.Photo, Mode=OneWay}"/>
         </Grid>
-        
     </Grid>
 </Page>
