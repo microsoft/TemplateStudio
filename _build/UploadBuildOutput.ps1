@@ -2,13 +2,13 @@ param
 (
 	[Parameter(Mandatory=$true)]
 	[string]$storageAccountName,
-  [Parameter(Mandatory=$true)]
+  	[Parameter(Mandatory=$true)]
 	[string]$containerName,
-  [Parameter(Mandatory=$true)]
+  	[Parameter(Mandatory=$true)]
 	[string]$sourceLocation,
-  [Parameter(Mandatory=$true)]
+  	[Parameter(Mandatory=$true)]
 	[string]$storageAccountKey,
-  [Parameter(Mandatory=$true)]
+  	[Parameter(Mandatory=$true)]
 	[string]$versionNumber
 )
 
@@ -18,9 +18,9 @@ $files = Get-ChildItem $sourceLocation -rec | where {!$_.PSIsContainer}
 
 foreach($file in $files)
 {
-  $fileName = $file.FullName
-  $blobName = "v$versionNumber/$file"
-  write-host "copying $fileName to $blobName"
+	$fileName = $file.FullName
+  	$blobName = "v$versionNumber/$file"
+  	write-host "copying $fileName to $blobName"
   
-  Set-AzureStorageBlobContent -File $fileName -Container $containerName -Blob $blobName -Context $blobContext -Force
+  	Set-AzureStorageBlobContent -File $fileName -Container $containerName -Blob $blobName -Context $blobContext -Force
 } 
