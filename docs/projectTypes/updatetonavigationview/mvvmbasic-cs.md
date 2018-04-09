@@ -85,7 +85,7 @@ public sealed partial class ShellPage : Page
     public ShellViewModel ViewModel { get; } = new ShellViewModel();
 
     public ShellPage()
-    {
+     {
         InitializeComponent();
         DataContext = ViewModel;
         ViewModel.Initialize(shellFrame, navigationView);
@@ -118,13 +118,14 @@ public class NavHelper
 ShellViewModel's complexity will be reduced significantly, these are the changes that you will have to implement on the class.
 ### C# code you will have to remove:
  - private **const properties** for Visual States (Panoramic, Wide, Narrow).
+ - private field **_lastSelectedItem**
  - **IsPaneOpen** observable property.
  - **DisplayMode** observable property.
  - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
  - **OpenPaneCommand** and handler method.
  - **ItemSelectedCommand** and handler method.
  - **StateChangedCommand** and handler method.
- - **GoToState** method.
+ - **InitializeState**, **GoToState**, **ChangeSelected** and **Navigate** method.
  - **PopulateNavItems** method and method call from Initialize.
 
 ### C# code you will have to add _(implementation below)_:
