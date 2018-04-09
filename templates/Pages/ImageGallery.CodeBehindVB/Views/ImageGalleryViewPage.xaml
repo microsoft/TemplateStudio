@@ -14,7 +14,6 @@
             ItemsSource="{x:Bind Source}"
             IsItemClickEnabled="True"
             Padding="{StaticResource MediumLeftRightMargin}"
-            Loaded="ImagesGridView_Loaded"
             ItemClick="ImagesGridView_ItemClick"
             SelectionMode="None">
             <GridView.ItemTemplate>

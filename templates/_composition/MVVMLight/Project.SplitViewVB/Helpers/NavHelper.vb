@@ -1,15 +1,15 @@
 ﻿Namespace Helpers
     Public Class NavHelper
 
-        Public Shared Function GetNavigateTo(item As NavigationViewItem) As Type
-            Return CType(item.GetValue(NavigateToProperty), Type)
+        Public Shared Function GetNavigateTo(item As NavigationViewItem) As String
+            Return TryCast(item.GetValue(NavigateToProperty), String)
         End Function
 
-        Public Shared Sub SetNavigateTo(item As NavigationViewItem, value As Type)
+        Public Shared Sub SetNavigateTo(item As NavigationViewItem, value As String)
             item.SetValue(NavigateToProperty, value)
         End Sub
 
         Public Shared ReadOnly NavigateToProperty As DependencyProperty =
-           DependencyProperty.RegisterAttached("NavigateTo", GetType(Type), GetType(NavHelper), New PropertyMetadata(Nothing))
+           DependencyProperty.RegisterAttached("NavigateTo", GetType(String), GetType(NavHelper), New PropertyMetadata(Nothing))
     End Class
 End Namespace

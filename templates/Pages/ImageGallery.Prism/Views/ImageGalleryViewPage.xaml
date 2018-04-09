@@ -12,10 +12,10 @@
 
     <Grid x:Name="ContentArea">
         <GridView
+            x:Name="gridView"
             ItemsSource="{x:Bind ViewModel.Source}"
             IsItemClickEnabled="True"
             Padding="{StaticResource MediumLeftRightMargin}"
-            Loaded="GridView_Loaded"
             SelectionMode="None">
             <i:Interaction.Behaviors>
                 <ic:EventTriggerBehavior EventName="ItemClick">

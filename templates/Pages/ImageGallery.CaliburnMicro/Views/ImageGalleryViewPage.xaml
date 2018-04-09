@@ -13,10 +13,10 @@
 
     <Grid x:Name="ContentArea">
         <GridView
+            x:Name="gridView"
             ItemsSource="{x:Bind ViewModel.Source}"
             IsItemClickEnabled="True"
             Padding="{StaticResource MediumLeftRightMargin}"
-            Loaded="GridView_Loaded"
             cm:Message.Attach="[Event ItemClick] = [OnImageSelected($clickedItem)]"
             SelectionMode="None">
             <GridView.ItemTemplate>

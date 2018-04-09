@@ -38,7 +38,7 @@ namespace wts.ItemName.Views
         {
             Selected = navigationView.MenuItems
                             .OfType<NavigationViewItem>()
-                            .First(menuItem => IsNavHelperForPageType(menuItem, e.SourcePageType));
+                            .FirstOrDefault(menuItem => IsNavHelperForPageType(menuItem, e.SourcePageType));
         }
 
         private bool IsNavHelperForPageType(NavigationViewItem menuItem, Type sourcePageType)

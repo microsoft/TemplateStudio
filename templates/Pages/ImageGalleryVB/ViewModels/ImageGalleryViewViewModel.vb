@@ -33,8 +33,11 @@ Namespace ViewModels
             Source = SampleDataService.GetGallerySampleData()
         End Sub
 
-        Public Async Function LoadAnimationAsync(imagesGridView As GridView) As Task
+        Public Function Initialize(imagesGridView As GridView)        
             _imagesGridView = imagesGridView
+        End Function
+
+        Public Async Function LoadAnimationAsync() As Task
             Dim selectedImageId = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewSelectedIdKey)
             If Not String.IsNullOrEmpty(selectedImageId) Then
                 Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose)
