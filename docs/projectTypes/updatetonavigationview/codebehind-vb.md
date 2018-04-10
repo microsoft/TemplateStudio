@@ -12,7 +12,6 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
  - **xmln namespaces** for fcu and cu.
  - DataTemplate **NavigationMenuItemDataTemplate** in Page resources.
  - **HamburgerMenu** control.
-  - **VisualStateGroups** at the bottom of the page's main grid.
 
 ### XAML code you will have to add:
  - **namespaces**: xmlns:helpers="using:myAppNamespace.Helpers"
@@ -38,7 +37,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
         SelectedItem="{x:Bind Selected, Mode=OneWay}"
         Header="{Binding Selected.Title}"
         ItemInvoked="OnItemInvoked"
-        IsSettingsVisible="True"
+        IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
             <!--
@@ -76,12 +75,12 @@ ShellPage's codebehind complexity will be reduced significantly, these are the c
  - **IsPaneOpen** observable property.
  - **DisplayMode** observable property.
  - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
- - **OpenPaneCommand** and handler method.
  - **ItemInvoked** event handler.
  - **OpenPane_Click** event handler.
  - **WindowStates_CurrentStateChanged** event handler.
- - **InitializeState**, **GoToState**, **ChangeSelected** and **Navigate** method.
+ - **GoToState**, **ChangeSelected** and **Navigate** method.
  - **PopulateNavItems** method and method call from Initialize.
+ - **InitializeState** method and method call from Initialize.
 
  ### VB code you will have to add _(implementation below)_:
  - **_navigationView** private property of type NavigationView.
@@ -89,9 +88,7 @@ ShellPage's codebehind complexity will be reduced significantly, these are the c
   - **IsNavHelperForPageType** method.
 
 ### VB code you will have to update _(implementation below)_:
- - **Initialize** method.
  - **Frame_Navigated** method with the implementation below.
-
 
 The resulting code should look like this:
  ```vbnet
@@ -184,9 +181,9 @@ ShellNavigationItem is no longer used and you should remove it from the project.
 The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, because the page title will be displayed on the NavigationView HeaderTemplate and the responsive behaviors will be added by NavigationView control.
 
 ### XAML code you will have to remove:
-  - **xmln namespaces** for fcu and cu.
+ - **xmln namespaces** for fcu and cu.
  - Textblock **TitlePage**
- - Main Grid **RowDefinitions**
+ - ContentArea Grid **RowDefinitions**
  - VisualStateManager **VisualStateGroups**.
  - **Grid.Row="1"** property  in the content Grid.
 
@@ -212,6 +209,17 @@ The resulting code should look like this:
 </Page>
 ```
 
-## 8. Update Navigation View item name for all pages in Resources.resw
+## 8. Settings Page
+If your project contains a SettingsPage you must perform the following steps:
+- **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- **ShellPage.xaml.cs"** go to **OnItemInvoked** method and add to the beginning:
+```vbnet
+If args.IsSettingsInvoked Then
+    NavigationService.Navigate(GetType(wts.ItemNamePage))
+    Return
+End If
+```
+
+## 9. Update Navigation View item name for all pages in Resources.resw
 As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
 (_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
