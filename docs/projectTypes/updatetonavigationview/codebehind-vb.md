@@ -215,7 +215,15 @@ If your project contains a SettingsPage you must perform the following steps:
 - **ShellPage.xaml.cs"** go to **OnItemInvoked** method and add to the beginning:
 ```vbnet
 If args.IsSettingsInvoked Then
-    NavigationService.Navigate(GetType(wts.ItemNamePage))
+    NavigationService.Navigate(GetType(SettingsPage))
+    Return
+End If
+```
+
+- **ShellPage.xaml.cs"** go to **Frame_Navigated** method and add to the beginning:
+```vbnet
+If e.SourcePageType = GetType(wts.ItemNamePage) Then
+    Selected = navigationView.SettingsItem
     Return
 End If
 ```

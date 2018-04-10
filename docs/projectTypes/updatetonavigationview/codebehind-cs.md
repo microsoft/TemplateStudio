@@ -212,6 +212,16 @@ if (args.IsSettingsInvoked)
 }
 ```
 
+- **ShellPage.xaml.cs"** go to **Frame_Navigated** method and add to the beginning:
+```csharp
+if (e.SourcePageType == typeof(SettingsPage))
+{
+	Selected = navigationView.SettingsItem;
+	return;
+}
+```
+
+
 ## 9. Update Navigation View item name for all pages in Resources.resw
 As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
 (_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
