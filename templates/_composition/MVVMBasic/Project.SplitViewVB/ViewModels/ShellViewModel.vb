@@ -48,10 +48,10 @@ Namespace ViewModels
         End Sub
 
         Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-            Selected = _navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsNavigationViewItemFromPageType(menuItem, e.SourcePageType))
+            Selected = _navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
         End Sub
 
-        Private Function IsNavigationViewItemFromPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean
+        Private Function IsMenuItemForPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean
             Dim pageType = TryCast(menuItem.GetValue(NavHelper.NavigateToProperty), Type)
             Return pageType = sourcePageType
         End Function
