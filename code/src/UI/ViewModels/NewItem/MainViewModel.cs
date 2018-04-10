@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
@@ -135,12 +136,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             return userSelection;
         }
 
-        protected override Task OnTemplatesAvailableAsync()
+        protected override async Task OnTemplatesAvailableAsync()
         {
             SetProjectConfigInfo();
             TemplateSelection.LoadData(TemplateType, ConfigFramework);
             WizardStatus.IsLoading = false;
-            return Task.CompletedTask;
+
+            var result = BreakingChangesValidatorService.Validate();
+            if (!result.IsValid)
+            {
+                var message = string.Join(Environment.NewLine, result.ErrorMessages);
+                var notification = Notification.Warning(message, Category.None, TimerType.None);
+                await NotificationsControl.AddNotificationAsync(notification);
+            }
         }
 
         protected async Task OnRefreshTemplatesAsync()
@@ -177,7 +185,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 {
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
-                    ProjectConfigInfo.SaveProjectConfiguration(configInfo.ProjectType, configInfo.Framework);
+                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework);
                     ConfigFramework = configInfo.Framework;
                     ConfigProjectType = configInfo.ProjectType;
                 }

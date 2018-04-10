@@ -228,7 +228,7 @@
     <Compile Include="PostActions\Catalog\SortNamespaces\SortNamespacesPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\UsingComparer.cs" />
-    <Compile Include="PostActions\Catalog\SearchAndReplacePostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\SearchAndReplacePostAction.cs" />
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />
@@ -335,6 +335,8 @@
     <Compile Include="Templates\TemplateType.cs" />
     <Compile Include="ValidationErrorType.cs" />
     <Compile Include="ValidationResult.cs" />
+    <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\StyleCop.json">

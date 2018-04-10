@@ -205,6 +205,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Composition tool.
+        /// </summary>
+        public static string ButtonCompositionTool {
+            get {
+                return ResourceManager.GetString("ButtonCompositionTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string ButtonCreate {
@@ -745,7 +754,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can not remove *{0}* because *{1}* depends on it..
+        ///   Looks up a localized string similar to You can not remove **{0}** because **{1}** depends on it..
         /// </summary>
         public static string NotificationRemoveError_Dependency {
             get {
@@ -1254,6 +1263,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TermsAndConditionsText {
             get {
                 return ResourceManager.GetString("TermsAndConditionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HamburgerMenu control is obsolete and WTS now supports NavigationView. See [documentation]({0}projectTypes/updatetonavigationview.md) to update..
+        /// </summary>
+        public static string ValidatorHasNavigationViewMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasNavigationViewMessage", resourceCulture);
             }
         }
         

@@ -149,6 +149,12 @@
                         Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
                         Command="{Binding RefreshTemplatesCacheCommand}"
                         Visibility="{Binding RefreshTemplateCacheVisibility}" />
+                    <Button
+                        Margin="16,8,26,8"
+                        Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                        Content="{x:Static strings:StringRes.ButtonCompositionTool}"
+                        Command="{Binding CompositionToolCommand}"
+                        Visibility="{Binding RefreshTemplateCacheVisibility}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
