@@ -33,9 +33,9 @@ Namespace ViewModels
             Source = SampleDataService.GetGallerySampleData()
         End Sub
 
-        Public Function Initialize(imagesGridView As GridView)        
+        Public Sub Initialize(imagesGridView As GridView)        
             _imagesGridView = imagesGridView
-        End Function
+        End Sub
 
         Public Async Function LoadAnimationAsync() As Task
             Dim selectedImageId = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewSelectedIdKey)
