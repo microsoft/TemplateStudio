@@ -37,20 +37,24 @@
                             VerticalScrollBarVisibility="Hidden"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="false">
-                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
-                        </Trigger>
-                        <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{Binding TextBoxBorderFocused, Source={x:Static services:UIStylesService.Instance}}"/>
-                            <Setter Property="Background" TargetName="border" Value="{Binding TextBoxBackgroundFocused, Source={x:Static services:UIStylesService.Instance}}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <Trigger Property="IsFocused" Value="true">
+                <Setter Property="BorderBrush" Value="{Binding TextBoxBorderFocused, Source={x:Static services:UIStylesService.Instance}}" />
+                <Setter Property="Background" Value="{Binding TextBoxBackgroundFocused, Source={x:Static services:UIStylesService.Instance}}" />
+                <Setter Property="Foreground" Value="{Binding TextBoxTextFocused, Source={x:Static services:UIStylesService.Instance}}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="BorderBrush" Value="{Binding TextBoxBorderDisabled, Source={x:Static services:UIStylesService.Instance}}" />
+                <Setter Property="Background" Value="{Binding TextBoxBackgroundDisabled, Source={x:Static services:UIStylesService.Instance}}" />
+                <Setter Property="Foreground" Value="{Binding TextBoxTextDisabled, Source={x:Static services:UIStylesService.Instance}}" />
+            </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
