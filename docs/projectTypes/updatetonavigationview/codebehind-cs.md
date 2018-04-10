@@ -202,8 +202,8 @@ The resulting code should look like this:
 ```
 ## 8. Settings Page
 If your project contains a SettingsPage you must perform the following steps:
-- **ShellPage.xaml** change **IsSettingsVisible** property to true.
-- **ShellPage.xaml.cs"** go to **OnItemInvoked** method and add to the beginning:
+- On **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- On **ShellPage.xaml.cs** go to **OnItemInvoked** method and add to the beginning:
 ```csharp
 if (args.IsSettingsInvoked)
 {
@@ -212,7 +212,7 @@ if (args.IsSettingsInvoked)
 }
 ```
 
-- **ShellPage.xaml.cs"** go to **Frame_Navigated** method and add to the beginning:
+- On **ShellPage.xaml.cs** go to **Frame_Navigated** method and add to the beginning:
 ```csharp
 if (e.SourcePageType == typeof(SettingsPage))
 {
