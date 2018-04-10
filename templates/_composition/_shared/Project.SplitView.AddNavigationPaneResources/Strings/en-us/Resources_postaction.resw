@@ -5,7 +5,7 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="Shell_wts.ItemName" xml:space="preserve">
+  <data name="Shell_wts.ItemName.Content" xml:space="preserve">
     <value>wts.ItemName</value>
     <comment>Navigation view item name for wts.ItemName</comment>
   </data>

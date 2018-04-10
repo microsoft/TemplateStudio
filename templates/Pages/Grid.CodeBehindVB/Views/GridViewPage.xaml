@@ -8,20 +8,8 @@
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"
-        Margin="12,0,12,0">
-
-        <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="48"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="GridView_Title"
-            Style="{StaticResource PageTitleStyle}" />
-
+        Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
-            Grid.Row="1" 
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind Source}" />
         </Grid>
