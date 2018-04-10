@@ -644,7 +644,8 @@
   <data name="ReorderPageHelpText" xml:space="preserve">
     <value>Sayfa sırasını değiştirmek için Ctrl+yukarı ok veya Ctrl+aşağı ok tuşlarını kullanın</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
-  </data><data name="ButtonDetailsHelpText" xml:space="preserve">
+  </data>
+  <data name="ButtonDetailsHelpText" xml:space="preserve">
     <value>Details of {0}</value>
     <comment>Button details help text. {0}: name of template</comment>
   </data>
@@ -654,5 +655,9 @@
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Composition tool</value>
+  </data>
+  <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
+    <value>HamburgerMenu control is obsolete and WTS now supports NavigationView. See [documentation]({0}projectTypes/updatetonavigationview.md) to update.</value>
+    <comment>Has navigation view validation error message</comment>
   </data>
 </root>

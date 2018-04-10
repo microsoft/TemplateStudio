@@ -49,17 +49,12 @@ namespace wts.ItemName.ViewModels
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
-            var selectedItem = _navigationView.MenuItems
+            Selected = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
-                            .FirstOrDefault(menuItem => IsNavigationViewItemFromPageType(menuItem, e.SourcePageType));
-
-            if (selectedItem != null)
-            {
-                Selected = selectedItem;
-            }
+                            .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
         }
 
-        private bool IsNavigationViewItemFromPageType(NavigationViewItem menuItem, Type sourcePageType)
+        private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
             var sourcePageKey = sourcePageType.ToString().Split('.').Last().Replace("Page", string.Empty);
             var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;

@@ -9,9 +9,9 @@ Namespace Views
             ViewModel.SetImage(previewImage)
         End Sub
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
-            ViewModel.Initialize(TryCast(e.Parameter, SampleImage))
+            Await ViewModel.InitializeAsync(TryCast(e.Parameter, SampleImage), e.NavigationMode)
             showFlipView.Begin()
         End Sub
 
