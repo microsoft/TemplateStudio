@@ -114,7 +114,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Background" Value="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderBrush" Value="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Foreground" Value="{Binding ComboBoxText, Source={x:Static services:UIStylesService.Instance}}" />        
+        <Setter Property="Foreground" Value="{Binding ComboBoxText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
@@ -220,6 +220,26 @@
 
 
     <!--ProjectType and Framework-->
+    <Style x:Key="ComboBoxMetadataToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="ClickMode" Value="Press" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border
+                        x:Name="templateRoot"
+                        Background="Transparent"
+                        BorderThickness="{TemplateBinding BorderThickness}"                        
+                        SnapsToDevicePixels="true">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="WtsComboBoxItemMetadataStyle" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Padding" Value="4"/>
@@ -306,82 +326,110 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
-                    <Grid x:Name="templateRoot" SnapsToDevicePixels="true" Background="{TemplateBinding Background}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0" />
-                        </Grid.ColumnDefinitions>
-                        <Popup
-                            x:Name="PART_Popup"
-                            AllowsTransparency="true"
-                            Grid.ColumnSpan="2"
-                            IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                            Margin="1"
-                            PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
-                            Placement="Bottom">
-                            <Themes:SystemDropShadowChrome
-                                x:Name="shadow"
-                                Color="Transparent"
-                                MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
-                                <Border
-                                    x:Name="dropDownBorder"
-                                    BorderBrush="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}"
-                                    BorderThickness="1"
-                                    Background="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}">
-                                    <ScrollViewer x:Name="DropDownScrollViewer">
-                                        <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
-                                            <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                                <Rectangle
-                                                    x:Name="opaqueRect"
-                                                    Fill="{Binding Background, ElementName=dropDownBorder}"
-                                                    Height="{Binding ActualHeight, ElementName=dropDownBorder}"
-                                                    Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
-                                            </Canvas>
-                                            <ItemsPresenter
-                                                x:Name="ItemsPresenter"
-                                                KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                            <!--KeyboardNavigation.DirectionalNavigation="Contained"-->
-                                        </Grid>
-                                    </ScrollViewer>
-                                </Border>
-                            </Themes:SystemDropShadowChrome>
-                        </Popup>
-                        <ToggleButton
-                            x:Name="toggleButton"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            Grid.ColumnSpan="2"
-                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                            Style="{StaticResource ComboBoxToggleButton}" />
-                        <Grid
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            IsHitTestVisible="false"
-                            Margin="{TemplateBinding Padding}"
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Border x:Name="templateRoot" SnapsToDevicePixels="true" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0" />
                             </Grid.ColumnDefinitions>
-                            <controls:ImageEx
-                                x:Name="icon"
-                                Grid.Column="0"
-                                SourcePath="{Binding ProjectType.Selected.Icon}"
-                                Style="{StaticResource WtsImageExProjectDetails}" />
-                            <TextBlock
+                            <Popup
+                                x:Name="PART_Popup"
+                                AllowsTransparency="true"
+                                Grid.ColumnSpan="2"
+                                IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                Margin="1"
+                                PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+                                Placement="Bottom">
+                                <Themes:SystemDropShadowChrome
+                                    x:Name="shadow"
+                                    Color="Transparent"
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                    MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+                                    <Border
+                                        x:Name="dropDownBorder"
+                                        BorderBrush="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}"
+                                        BorderThickness="1"
+                                        Background="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}">
+                                        <ScrollViewer x:Name="DropDownScrollViewer">
+                                            <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+                                                <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                                    <Rectangle
+                                                        x:Name="opaqueRect"
+                                                        Fill="{Binding Background, ElementName=dropDownBorder}"
+                                                        Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                                        Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                                </Canvas>
+                                                <ItemsPresenter
+                                                    x:Name="ItemsPresenter"
+                                                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                <!--KeyboardNavigation.DirectionalNavigation="Contained"-->
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Themes:SystemDropShadowChrome>
+                            </Popup>
+                            <ToggleButton
+                                x:Name="toggleButton"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                Grid.ColumnSpan="2"
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                Style="{StaticResource ComboBoxMetadataToggleButton}" />
+                            <Grid
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                IsHitTestVisible="false"
+                                Margin="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <controls:ImageEx
+                                    x:Name="icon"
+                                    Grid.Column="0"
+                                    SourcePath="{Binding ProjectType.Selected.Icon}"
+                                    Style="{StaticResource WtsImageExProjectDetails}" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Text="{Binding ProjectType.Selected.Title}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    Margin="{StaticResource Margin_M_Left}"
+                                    Style="{StaticResource WtsTextBlockComboBoxItem}" />
+                            </Grid>
+                            <Border
                                 Grid.Column="1"
-                                Text="{Binding ProjectType.Selected.Title}"
-                                Foreground="{TemplateBinding Foreground}"
-                                Margin="{StaticResource Margin_M_Left}"
-                                Style="{StaticResource WtsTextBlockComboBoxItem}" />
+                                BorderBrush="Transparent"
+                                HorizontalAlignment="Right"
+                                Margin="0"
+                                SnapsToDevicePixels="true"
+                                Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <Path
+                                    x:Name="arrow"
+                                    Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z"
+                                    Fill="{Binding ComboBoxGlyph, Source={x:Static services:UIStylesService.Instance}}"
+                                    HorizontalAlignment="Center"
+                                    Margin="0"
+                                    VerticalAlignment="Center"/>
+                            </Border>
                         </Grid>
-                    </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="true">
                             <Setter Property="Foreground" TargetName="icon" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="TextElement.Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" TargetName="icon" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="TextElement.Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                             <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
@@ -405,11 +453,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsFocused" Value="true">
-                <Setter Property="Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style x:Key="WtsComboBoxFrameworkStyle" TargetType="{x:Type ComboBox}">
@@ -428,82 +471,110 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
-                    <Grid x:Name="templateRoot" SnapsToDevicePixels="true" Background="{TemplateBinding Background}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0" />
-                        </Grid.ColumnDefinitions>
-                        <Popup
-                            x:Name="PART_Popup"
-                            AllowsTransparency="true"
-                            Grid.ColumnSpan="2"
-                            IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                            Margin="1"
-                            PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
-                            Placement="Bottom">
-                            <Themes:SystemDropShadowChrome
-                                x:Name="shadow"
-                                Color="Transparent"
-                                MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                                MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
-                                <Border
-                                    x:Name="dropDownBorder"
-                                    BorderBrush="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}"
-                                    BorderThickness="1"
-                                    Background="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}">
-                                    <ScrollViewer x:Name="DropDownScrollViewer">
-                                        <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
-                                            <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
-                                                <Rectangle
-                                                    x:Name="opaqueRect"
-                                                    Fill="{Binding Background, ElementName=dropDownBorder}"
-                                                    Height="{Binding ActualHeight, ElementName=dropDownBorder}"
-                                                    Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
-                                            </Canvas>
-                                            <ItemsPresenter
-                                                x:Name="ItemsPresenter"
-                                                KeyboardNavigation.DirectionalNavigation="Cycle"
-                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                            <!--KeyboardNavigation.DirectionalNavigation="Contained"-->
-                                        </Grid>
-                                    </ScrollViewer>
-                                </Border>
-                            </Themes:SystemDropShadowChrome>
-                        </Popup>
-                        <ToggleButton
-                            x:Name="toggleButton"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Background="{TemplateBinding Background}"
-                            Grid.ColumnSpan="2"
-                            IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                            Style="{StaticResource ComboBoxToggleButton}" />
-                        <Grid
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            IsHitTestVisible="false"
-                            Margin="{TemplateBinding Padding}"
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Border x:Name="templateRoot" SnapsToDevicePixels="true" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0" />
                             </Grid.ColumnDefinitions>
-                            <controls:ImageEx
-                                x:Name="icon"
-                                Grid.Column="0"
-                                SourcePath="{Binding Framework.Selected.Icon}"
-                                Style="{StaticResource WtsImageExProjectDetails}" />
-                            <TextBlock
+                            <Popup
+                                x:Name="PART_Popup"
+                                AllowsTransparency="true"
+                                Grid.ColumnSpan="2"
+                                IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                Margin="1"
+                                PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+                                Placement="Bottom">
+                                <Themes:SystemDropShadowChrome
+                                    x:Name="shadow"
+                                    Color="Transparent"
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                    MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+                                    <Border
+                                        x:Name="dropDownBorder"
+                                        BorderBrush="{Binding ComboBoxBorder, Source={x:Static services:UIStylesService.Instance}}"
+                                        BorderThickness="1"
+                                        Background="{Binding ComboBoxBackground, Source={x:Static services:UIStylesService.Instance}}">
+                                        <ScrollViewer x:Name="DropDownScrollViewer">
+                                            <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+                                                <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
+                                                    <Rectangle
+                                                        x:Name="opaqueRect"
+                                                        Fill="{Binding Background, ElementName=dropDownBorder}"
+                                                        Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                                        Width="{Binding ActualWidth, ElementName=dropDownBorder}"/>
+                                                </Canvas>
+                                                <ItemsPresenter
+                                                    x:Name="ItemsPresenter"
+                                                    KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                <!--KeyboardNavigation.DirectionalNavigation="Contained"-->
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Themes:SystemDropShadowChrome>
+                            </Popup>
+                            <ToggleButton
+                                x:Name="toggleButton"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                Grid.ColumnSpan="2"
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                Style="{StaticResource ComboBoxMetadataToggleButton}" />
+                            <Grid
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                IsHitTestVisible="false"
+                                Margin="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <controls:ImageEx
+                                    x:Name="icon"
+                                    Grid.Column="0"
+                                    SourcePath="{Binding Framework.Selected.Icon}"
+                                    Style="{StaticResource WtsImageExProjectDetails}" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Text="{Binding Framework.Selected.Title}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    Margin="{StaticResource Margin_M_Left}"
+                                    Style="{StaticResource WtsTextBlockComboBoxItem}" />
+                            </Grid>
+                            <Border
                                 Grid.Column="1"
-                                Text="{Binding Framework.Selected.Title}"
-                                Foreground="{TemplateBinding Foreground}"
-                                Margin="{StaticResource Margin_M_Left}"
-                                Style="{StaticResource WtsTextBlockComboBoxItem}" />
+                                BorderBrush="Transparent"
+                                HorizontalAlignment="Right"
+                                Margin="0"
+                                SnapsToDevicePixels="true"
+                                Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}">
+                                <Path
+                                    x:Name="arrow"
+                                    Data="F1 M 0,0 L 2.667,2.66665 L 5.3334,0 L 5.3334,-1.78168 L 2.6667,0.88501 L0,-1.78168 L0,0 Z"
+                                    Fill="{Binding ComboBoxGlyph, Source={x:Static services:UIStylesService.Instance}}"
+                                    HorizontalAlignment="Center"
+                                    Margin="0"
+                                    VerticalAlignment="Center"/>
+                            </Border>
                         </Grid>
-                    </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="true">
                             <Setter Property="Foreground" TargetName="icon" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="TextElement.Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" TargetName="icon" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="TextElement.Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
                             <Setter Property="Margin" TargetName="shadow" Value="0,0,5,5"/>
@@ -527,11 +598,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <Trigger Property="IsFocused" Value="true">
-                <Setter Property="Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>
