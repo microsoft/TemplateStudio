@@ -12,6 +12,7 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:vm="using:wts.ItemName.ViewModels"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="NavigationMenuItemDataTemplate" x:DataType="vm:ShellNavigationItem">
