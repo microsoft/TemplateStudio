@@ -12,8 +12,11 @@ namespace Microsoft.Templates.UI.Services
 {
     public class SystemService : DependencyObject
     {
+        public static SystemService Instance { get; private set; }
+
         public SystemService()
         {
+            Instance = this;
         }
 
         public void Initialize()

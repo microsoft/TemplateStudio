@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows.Controls;
+using System.Windows.Input;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Views.NewItem
@@ -17,6 +18,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
             Services.NavigationService.InitializeSecondaryFrame(stepFrame, new TemplateSelectionPage());
         }
 
