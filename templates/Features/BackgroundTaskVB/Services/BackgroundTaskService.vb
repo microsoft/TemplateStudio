@@ -16,11 +16,18 @@ Namespace Services
 
         Private Shared ReadOnly BackgroundTaskInstances As IEnumerable(Of BackgroundTask) = CreateInstances()
 
-        Public Sub RegisterBackgroundTasks()
+        Public Async Function RegisterBackgroundTasksAsync() As Task
+            BackgroundExecutionManager.RemoveAccess()
+            Dim result = Await BackgroundExecutionManager.RequestAccessAsync()
+
+            If result = BackgroundAccessStatus.DeniedBySystemPolicy Or result = BackgroundAccessStatus.DeniedByUser Then
+                Return
+            End If
+
             For Each task As BackgroundTask In BackgroundTasks
                 task.Register()
             Next
-        End Sub
+        End Function
 
         Public Shared Function GetBackgroundTasksRegistration(Of T As BackgroundTask)() As BackgroundTaskRegistration
             If Not BackgroundTaskRegistration.AllTasks.Any(Function(t1) t1.Value.Name = GetType(T).Name) Then
