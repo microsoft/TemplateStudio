@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Models;
 using Param_ItemNamespace.Services;
+using Param_ItemNamespace.Views;
 
 namespace Param_ItemNamespace.ViewModels
 {
@@ -34,13 +35,15 @@ namespace Param_ItemNamespace.ViewModels
         {
             base.OnInitialize();
 
+            var view = GetView() as IImageGalleryViewPage;
+            _imagesGridView = view.GetGridView();
+
             // TODO WTS: Replace this with your actual data
             Source.AddRange(SampleDataService.GetGallerySampleData());
         }
 
-        public async Task LoadAnimationAsync(GridView imagesGridView)
+        public async Task LoadAnimationAsync()
         {
-            _imagesGridView = imagesGridView;
             var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedIdKey);
             if (!string.IsNullOrEmpty(selectedImageId))
             {

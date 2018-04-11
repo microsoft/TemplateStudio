@@ -14,12 +14,6 @@ namespace Microsoft.Templates.UI.Extensions
 {
     public class TextBlockExtensions
     {
-        public static readonly DependencyProperty FormatedTextProperty = DependencyProperty.RegisterAttached(
-          "FormatedText",
-          typeof(string),
-          typeof(TextBlockExtensions),
-          new PropertyMetadata(string.Empty, OnFormatedTextPropertyChanged));
-
         public static readonly DependencyProperty SequentialFlowStepProperty = DependencyProperty.RegisterAttached(
           "SequentialFlowStep",
           typeof(Step),
@@ -31,16 +25,6 @@ namespace Microsoft.Templates.UI.Extensions
           typeof(bool),
           typeof(TextBlockExtensions),
           new PropertyMetadata(false, OnSequentialFlowStepChanged));
-
-        public static void SetFormatedText(UIElement element, string value)
-        {
-            element.SetValue(FormatedTextProperty, value);
-        }
-
-        public static string GetFormatedText(UIElement element)
-        {
-            return (string)element.GetValue(FormatedTextProperty);
-        }
 
         public static void SetSequentialFlowStep(UIElement element, Step value)
         {
@@ -60,28 +44,6 @@ namespace Microsoft.Templates.UI.Extensions
         public static bool GetSequentialFlowStepCompleted(UIElement element)
         {
             return (bool)element.GetValue(SequentialFlowStepCompletedProperty);
-        }
-
-        private static void OnFormatedTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var textBlock = d as TextBlock;
-            var formatedText = GetFormatedText(textBlock);
-            var formatSplits = formatedText.Split('*');
-            bool isBold = false;
-            textBlock.Inlines.Clear();
-            foreach (var split in formatSplits)
-            {
-                if (isBold)
-                {
-                    textBlock.Inlines.Add(new Run(split) { FontWeight = FontWeights.Bold });
-                }
-                else
-                {
-                    textBlock.Inlines.Add(split);
-                }
-
-                isBold = !isBold;
-            }
         }
 
         private static void OnSequentialFlowStepChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

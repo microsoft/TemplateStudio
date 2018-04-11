@@ -14,24 +14,30 @@ Param(
   [string]$buildNumber,
 
   [Parameter(Mandatory=$True,Position=5)]
-  [string]$vsixCommandMenuName,
+  [string]$vsixProjFile,
 
   [Parameter(Mandatory=$True,Position=6)]
-  [string]$packageGuid,
+  [string]$isProductComponent,
 
   [Parameter(Mandatory=$True,Position=7)]
+  [string]$vsixCommandMenuName,
+
+  [Parameter(Mandatory=$True,Position=8)]
+  [string]$packageGuid,
+
+  [Parameter(Mandatory=$True,Position=9)]
   [string]$cmdSetGuid,
 
-  [Parameter(Mandatory=$False,Position=8)]
+  [Parameter(Mandatory=$False,Position=10)]
   [string]$targetVsixCommandMenuName = "Windows Template Studio (local)",
 
-  [Parameter(Mandatory=$False,Position=9)]
+  [Parameter(Mandatory=$False,Position=11)]
   [string]$targetPackageGuid = "ae1b4c32-9c93-45b8-a36b-8734f4b120dd",
 
-  [Parameter(Mandatory=$False,Position=8)]
+  [Parameter(Mandatory=$False,Position=12)]
   [string]$targetCmdSetGuid = "caa4fb82-0dca-40fe-bae0-081e0f96226f",
   
-  [Parameter(Mandatory=$False,Position=10)]
+  [Parameter(Mandatory=$False,Position=13)]
   [string]$publicKeyToken = "e4ef4cc7a47ae0c5" #TestKey.snk
 )
 
@@ -86,6 +92,30 @@ if($vsixIdentity){
 }
 else{
   throw "Identity is mandatory."
+}
+
+
+## SET ISPRODUCTCOMPONENT IN VSIX PROJECT FILE
+if($isProductComponent){
+  Write-Host
+  Write-Host "Setting IsProductComponent in VSIX project file"
+  if(Test-Path($vsixProjFile)){
+    [xml]$projFileContent = Get-Content $vsixProjFile
+
+    $isProductComponentPropertyGroup = $projFileContent.Project.PropertyGroup | ? {$_.IsProductComponent}
+    $isProductComponentPropertyGroup.IsProductComponent = $isProductComponent
+   
+    $resolvedProjFilePath = Resolve-Path($vsixProjFile)
+    $projFileContent.Save($resolvedProjFilePath) 
+    Write-Host "$resolvedProjFilePath - IsProductComponent ($isProductComponent)"
+
+  }
+  else{
+    throw "No VSIX project file found."
+  }
+}
+else{
+  throw "IsProductComponent is mandatory."
 }
 
 ## REPLACE Command Guids

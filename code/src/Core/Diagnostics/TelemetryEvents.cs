@@ -31,5 +31,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         public const string Prefix = "Wts.";
 
         public static string WtsGen { get; private set; } = "vs/windowstemplatestudio/wts-generated";
+
+        public static string WtsWizard { get; private set; } = "vs/windowstemplatestudio/wts-wizard";
     }
 }

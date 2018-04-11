@@ -10,6 +10,9 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
+    <IsProductComponent>false</IsProductComponent>
+  </PropertyGroup>
+  <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>

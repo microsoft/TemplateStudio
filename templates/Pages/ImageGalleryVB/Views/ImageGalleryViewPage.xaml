@@ -11,24 +11,12 @@
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
-        <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="48"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="ImageGalleryView_Title"
-            Style="{StaticResource PageTitleStyle}"
-            Margin="12,0,12,7" />
-
         <GridView
-            Grid.Row="1"
+            x:Name="gridView"
             ItemsSource="{x:Bind ViewModel.Source}"
             IsItemClickEnabled="True"
-            SelectionMode="None"
             Padding="{StaticResource MediumLeftRightMargin}"
-            Loaded="GridView_Loaded">
+            SelectionMode="None">
             <i:Interaction.Behaviors>
                 <ic:EventTriggerBehavior EventName="ItemClick">
                     <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
