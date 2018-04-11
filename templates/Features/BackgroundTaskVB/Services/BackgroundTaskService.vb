@@ -20,7 +20,7 @@ Namespace Services
             BackgroundExecutionManager.RemoveAccess()
             Dim result = Await BackgroundExecutionManager.RequestAccessAsync()
 
-            If result = BackgroundAccessStatus.DeniedBySystemPolicy Or result = BackgroundAccessStatus.DeniedByUser Then
+            If result = BackgroundAccessStatus.DeniedBySystemPolicy OrElse result = BackgroundAccessStatus.DeniedByUser Then
                 Return
             End If
 
