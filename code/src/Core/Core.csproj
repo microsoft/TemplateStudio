@@ -202,7 +202,6 @@
     <Compile Include="Locations\TemplatesSourceConfig.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
     <Compile Include="MetadataType.cs" />
-    <Compile Include="Mvvm\Observable.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
@@ -315,7 +314,6 @@
     <Compile Include="Locations\TemplatesSynchronization.cs" />
     <Compile Include="Packaging\SignCertNotFoundException.cs" />
     <Compile Include="MetadataInfo.cs" />
-    <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Naming\Naming.cs" />
     <Compile Include="Templates\LayoutItem.cs" />
     <Compile Include="PostActions\Catalog\AddItemToContextPostAction.cs" />

@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 
-namespace Microsoft.Templates.Core.Mvvm
+namespace Microsoft.Templates.UI.Mvvm
 {
     public class RelayCommand : ICommand
     {
@@ -24,22 +24,17 @@ namespace Microsoft.Templates.Core.Mvvm
             _canExecute = canExecute;
         }
 
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
+        public event EventHandler CanExecuteChanged
         {
-            return _canExecute == null || _canExecute();
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public void Execute(object parameter)
-        {
-            _execute();
-        }
+        public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
 
-        public void OnCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
+        public void Execute(object parameter) => _execute();
+
+        public void RaiseCanExecuteChanged() => CommandManager.InvalidateRequerySuggested();
     }
 
     [SuppressMessage(
@@ -62,21 +57,16 @@ namespace Microsoft.Templates.Core.Mvvm
             _canExecute = canExecute;
         }
 
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
+        public event EventHandler CanExecuteChanged
         {
-            return _canExecute == null ? true : _canExecute((T)parameter);
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public void Execute(object parameter)
-        {
-            _execute((T)parameter);
-        }
+        public bool CanExecute(object parameter) => _canExecute == null ? true : _canExecute((T)parameter);
 
-        public void OnCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
+        public void Execute(object parameter) => _execute((T)parameter);
+
+        public void RaiseCanExecuteChanged() => CommandManager.InvalidateRequerySuggested();
     }
-}
+ }

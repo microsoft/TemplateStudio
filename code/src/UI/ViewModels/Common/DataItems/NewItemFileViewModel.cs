@@ -9,8 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.Common

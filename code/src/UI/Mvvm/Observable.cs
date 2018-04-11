@@ -4,7 +4,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Microsoft.Templates.Core.Mvvm
+namespace Microsoft.Templates.UI.Mvvm
 {
     public class Observable : INotifyPropertyChanged
     {

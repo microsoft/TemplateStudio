@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -47,7 +46,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public bool IsBusy
         {
             get => _isBusy;
-            private set => SetProperty(ref _isBusy, value);
+            private set
+            {
+                SetProperty(ref _isBusy, value);
+                CommandManager.InvalidateRequerySuggested();
+            }
         }
 
         public bool IsNotBusy
@@ -84,8 +87,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ICommand OpenWebSiteCommand => _openWebSiteCommand ?? (_openWebSiteCommand = new RelayCommand(OnOpenWebSite));
 
-        public event EventHandler<bool> IsBusyChanged;
-
         public WizardStatus()
         {
             Current = this;
@@ -112,7 +113,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             IsBusy = IsLoading || HasValidationErrors;
             IsNotBusy = !IsBusy;
-            IsBusyChanged?.Invoke(this, true);
             IsSequentialFlowEnabled = await BaseMainViewModel.BaseInstance.IsStepAvailableAsync();
         }
 
