@@ -126,7 +126,7 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 ### VB code you will have to add _(implementation below)_:
  - **_navigationView** private property of type NavigationView.
  - **ItemInvokedCommand** and handler method **OnItemInvoked**.
- - **IsNavigationViewItemFromPageType** method.
+ - **IsMenuItemForPageType** method.
 
 ### VB code you will have to update _(implementation below)_:
  - **Initialize** method.
