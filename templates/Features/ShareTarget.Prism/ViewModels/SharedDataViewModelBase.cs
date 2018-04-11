@@ -5,6 +5,7 @@ using Prism.Mvvm;
 
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 
+using Param_ItemNamespace.Helpers;
 
 namespace Param_ItemNamespace.ViewModels
 {
@@ -15,7 +16,7 @@ namespace Param_ItemNamespace.ViewModels
         public string DataFormat
         {
             get => _dataFormat;
-            set => Param_Setter(ref _dataFormat, value);
+            set => SetProperty(ref _dataFormat, value);
         }
 
         private string _pageTitle;
@@ -23,7 +24,7 @@ namespace Param_ItemNamespace.ViewModels
         public string PageTitle
         {
             get => _pageTitle;
-            set => Param_Setter(ref _pageTitle, value);
+            set => SetProperty(ref _pageTitle, value);
         }
 
         private string _title;
@@ -31,7 +32,7 @@ namespace Param_ItemNamespace.ViewModels
         public string Title
         {
             get => _title;
-            set => Param_Setter(ref _title, value);
+            set => SetProperty(ref _title, value);
         }
 
         public SharedDataViewModelBase()
