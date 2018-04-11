@@ -9,10 +9,9 @@ NavigationView is a Fall Creators Update control, to start using it in your proj
 The updated ShellPage will include the NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
 
 ### XAML code you will have to remove:
- - **xmln namespaces** for fcu and cu.
+ - **xmln namespaces** for fcu, cu, controls and vm (viewmodels).
  - DataTemplate **NavigationMenuItemDataTemplate** in Page resources.
  - **HamburgerMenu** control.
-  - **VisualStateGroups** at the bottom of the page's main grid.
 
 ### XAML code you will have to add:
  - **namespaces**: xmlns:helpers="using:myAppNamespace.Helpers"
@@ -39,7 +38,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
         x:Name="navigationView"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         Header="{Binding Selected.Title}"
-        IsSettingsVisible="True"
+        IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
             <!--
@@ -49,9 +48,6 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
             <NavigationViewItem x:Uid="Shell_Main" Icon="Document"  helpers:NavHelper.NavigateTo="SampleApp.ViewModels.MainViewModel" />
-            <!--
-            Add here other menu item pages
-            -->
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>
@@ -104,16 +100,16 @@ Add this extension class in the **Helpers** folder to the project. This allows t
 ```vbnet
 Public Class NavHelper
 
-    Public Shared Function GetNavigateTo(item As NavigationViewItem) As Type
-        Return CType(item.GetValue(NavigateToProperty), Type)
+    Public Shared Function GetNavigateTo(item As NavigationViewItem) As String
+        Return TryCast(item.GetValue(NavigateToProperty), String)
     End Function
 
-    Public Shared Sub SetNavigateTo(item As NavigationViewItem, value As Type)
+    Public Shared Sub SetNavigateTo(item As NavigationViewItem, value As String)
         item.SetValue(NavigateToProperty, value)
     End Sub
 
     Public Shared ReadOnly NavigateToProperty As DependencyProperty =
-        DependencyProperty.RegisterAttached("NavigateTo", GetType(Type), GetType(NavHelper), New PropertyMetadata(Nothing))
+        DependencyProperty.RegisterAttached("NavigateTo", GetType(String), GetType(NavHelper), New PropertyMetadata(Nothing))
 End Class
 ```
 
@@ -126,16 +122,17 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
  - **IsPaneOpen** observable property.
  - **DisplayMode** observable property.
  - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
- - **OpenPaneCommand** and handler method.
- - **ItemSelectedCommand** and handler method.
- - **StateChangedCommand** and handler method.
- - **InitializeState**, **GoToState**, **ChangeSelected** and **Navigate** method.
+ - **OpenPaneCommand**.
+ - **ItemSelectedCommand** and handler method **ItemSelected**.
+ - **StateChangedCommand** and handler method **GoToState**.
  - **PopulateNavItems** method and method call from Initialize.
+ - **InitializeState** method and method call from Initialize.
+ - **ChangeSelected** and **Navigate** method.
 
 ### VB code you will have to add _(implementation below)_:
  - **_navigationView** private property of type NavigationView.
- - **ItemInvokedCommand** and handler method.
-  - **IsNavigationViewItemFromPageType** method.
+ - **ItemInvokedCommand** and handler method **OnItemInvoked**.
+  - **IsMenuItemForPageType** method.
 
 ### VB code you will have to update _(implementation below)_:
  - **Initialize** method.
@@ -191,14 +188,10 @@ Public Class ShellViewModel
     End Sub
 
     Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-        Dim selectedItem = _navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsNavigationViewItemFromPageType(menuItem, e.SourcePageType))
-
-        If selectedItem IsNot Nothing Then
-            Selected = selectedItem
-        End If
+        Selected = _navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
     End Sub
 
-    Private Function IsNavigationViewItemFromPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean
+    Private Function IsMenuItemForPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean
         Dim navigatedPageKey = NavigationService.GetNameOfRegisteredPage(sourcePageType)
         Dim pageKey = TryCast(menuItem.GetValue(NavHelper.NavigateToProperty), String)
         Return pageKey = navigatedPageKey
@@ -215,7 +208,7 @@ The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, b
 ### XAML code you will have to remove:
  - **xmln namespaces** for fcu and cu.
  - Textblock **TitlePage**
- - Main Grid **RowDefinitions**
+ - ContentArea Grid **RowDefinitions**
  - VisualStateManager **VisualStateGroups**.
  - **Grid.Row="1"** property  in the content Grid.
 
@@ -240,4 +233,27 @@ The resulting code should look like this:
         </Grid>
     </Grid>
 </Page>
+```
+
+## 8. Update Navigation View item name for all pages in Resources.resw
+As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
+(_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
+
+## 9. Settings Page
+If your project contains a SettingsPage you must perform the following steps:
+- On **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
+```vbnet
+If args.IsSettingsInvoked Then
+	NavigationService.Navigate(GetType(SettingsViewModel).FullName)
+	Return
+End If
+```
+
+- On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
+```vbnet
+If e.SourcePageType = GetType(SettingsPage) Then
+	Selected = _navigationView.SettingsItem
+	Return
+End If
 ```
