@@ -12,10 +12,9 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
  - **xmln namespaces** for fcu, cu, controls and vm (viewmodels).
  - DataTemplate **NavigationMenuItemDataTemplate** in Page resources.
  - **HamburgerMenu** control.
- - **VisualStateGroups** at the bottom of the page's main grid.
 
 ### XAML code you will have to add:
-- **namespaces**: xmlns:helpers="using:myAppNamespace.Helpers"
+- **namespaces**: xmlns:helpers="using:myAppNamespace.Helpers" and xmlns:views="using:myAppNamespace.Views"
  - **NavigationView** control.
  - **MenuItems** inside of the NavigationView.
  - **HeaderTemplate** inside of the NavigationView.
@@ -39,7 +38,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
         x:Name="navigationView"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         Header="{Binding Selected.Title}"
-        IsSettingsVisible="True"
+        IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
             <!--
@@ -120,11 +119,12 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
  - **IsPaneOpen** observable property.
  - **DisplayMode** observable property.
  - **ObservableCollections** properties for **PrimaryItems** and **SecondaryItems**.
- - **OpenPaneCommand** and handler method.
+ - **OpenPaneCommand**.
  - **ItemSelectedCommand** and handler method **ItemSelected**.
  - **StateChangedCommand** and handler method **GoToState**.
  - **PopulateNavItems** method and method call from Initialize.
- - **InitializeState**, **Navigate** and **ChangeSelected** methods.
+ - **InitializeState** method and method call from Initialize.
+ - **Navigate** and **ChangeSelected** methods.
 
 ### VB code you will have to add _(implementation below)_:
  - **_navigationView** private property of type NavigationView.
@@ -202,7 +202,7 @@ The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, b
 ### XAML code you will have to remove:
  - **xmln namespaces** for fcu and cu.
  - Textblock **TitlePage**
- - Main Grid **RowDefinitions**
+ - ContentArea Grid **RowDefinitions**
  - VisualStateManager **VisualStateGroups**.
  - **Grid.Row="1"** property  in the content Grid.
 
@@ -227,3 +227,26 @@ The resulting code should look like this:
     </Grid>
 </Page>
 ```
+
+## 8. Settings Page
+If your project contains a SettingsPage you must perform the following steps:
+- On **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
+```vbnet
+If args.IsSettingsInvoked Then
+    NavigationService.Navigate(GetType(SettingsPage))
+    Return
+End If
+```
+
+- On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
+```vbnet
+If e.SourcePageType = GetType(wts.ItemNamePage) Then
+    Selected = navigationView.SettingsItem
+    Return
+End If
+```
+
+## 9. Update Navigation View item name for all pages in Resources.resw
+As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
+(_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
