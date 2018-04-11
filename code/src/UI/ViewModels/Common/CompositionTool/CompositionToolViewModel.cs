@@ -11,7 +11,7 @@ using System.Windows;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Utils;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Mvvm;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
