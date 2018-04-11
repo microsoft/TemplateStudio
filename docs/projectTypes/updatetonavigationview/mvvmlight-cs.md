@@ -143,59 +143,59 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 ```csharp
 public class ShellViewModel : ViewModelBase
 {
-        private NavigationView _navigationView;
-        private object _selected;
-        private ICommand _itemInvokedCommand;
+    private NavigationView _navigationView;
+    private object _selected;
+    private ICommand _itemInvokedCommand;
 
-        public NavigationServiceEx NavigationService
+    public NavigationServiceEx NavigationService
+    {
+        get
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-            }
+            return ServiceLocator.Current.GetInstance<NavigationServiceEx>();
         }
+    }
 
-        public object Selected
-        {
-            get { return _selected; }
-            set { Set(ref _selected, value); }
-        }
+    public object Selected
+    {
+        get { return _selected; }
+        set { Set(ref _selected, value); }
+    }
 
-        public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+    public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
-        public ShellViewModel()
-        {
-        }
+    public ShellViewModel()
+    {
+    }
 
-        public void Initialize(Frame frame, NavigationView navigationView)
-        {
-            _navigationView = navigationView;
-            NavigationService.Frame = frame;
-            NavigationService.Navigated += Frame_Navigated;
-        }
+    public void Initialize(Frame frame, NavigationView navigationView)
+    {
+        _navigationView = navigationView;
+        NavigationService.Frame = frame;
+        NavigationService.Navigated += Frame_Navigated;
+    }
 
-        private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
-        {
-            var item = _navigationView.MenuItems
-                            .OfType<NavigationViewItem>()
-                            .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
-            NavigationService.Navigate(pageKey);
-        }
+    private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
+    {
+        var item = _navigationView.MenuItems
+                        .OfType<NavigationViewItem>()
+                        .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
+        var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
+        NavigationService.Navigate(pageKey);
+    }
 
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            Selected = _navigationView.MenuItems
-                            .OfType<NavigationViewItem>()
-                            .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
-        }
+    private void Frame_Navigated(object sender, NavigationEventArgs e)
+    {
+        Selected = _navigationView.MenuItems
+                        .OfType<NavigationViewItem>()
+                        .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
+    }
 
-        private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
-        {
-            var navigatedPageKey = NavigationService.GetNameOfRegisteredPage(sourcePageType);
-            var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
-            return pageKey == navigatedPageKey;
-        }
+    private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
+    {
+        var navigatedPageKey = NavigationService.GetNameOfRegisteredPage(sourcePageType);
+        var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
+        return pageKey == navigatedPageKey;
+    }
 }
 ```
 
@@ -234,15 +234,19 @@ The resulting code should look like this:
     </Grid>
 </Page>
 ```
-## 8. Settings Page
+## 8. Update Navigation View item name for all pages in Resources.resw
+As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
+(_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
+
+## 9. Settings Page
 If your project contains a SettingsPage you must perform the following steps:
 - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
 - On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
 ```csharp
 if (args.IsSettingsInvoked)
 {
-    NavigationService.Navigate(typeof(SettingsPage));
-    return;
+	NavigationService.Navigate(typeof(SettingsViewModel).FullName);
+	return;
 }
 ```
 
@@ -250,11 +254,7 @@ if (args.IsSettingsInvoked)
 ```csharp
 if (e.SourcePageType == typeof(SettingsPage))
 {
-	Selected = navigationView.SettingsItem;
+	Selected = _navigationView.SettingsItem;
 	return;
 }
 ```
-
-## 9. Update Navigation View item name for all pages in Resources.resw
-As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
-(_for example `Shell_Main` should be changed to `Shell_Main.Content`_)

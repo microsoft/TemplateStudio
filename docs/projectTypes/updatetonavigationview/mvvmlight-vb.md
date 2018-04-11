@@ -188,11 +188,7 @@ Public Class ShellViewModel
     End Sub
 
     Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-        Dim selectedItem = _navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
-
-        If selectedItem IsNot Nothing Then
-            Selected = selectedItem
-        End If
+        Selected = _navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
     End Sub
 
     Private Function IsMenuItemForPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean
@@ -237,4 +233,27 @@ The resulting code should look like this:
         </Grid>
     </Grid>
 </Page>
+```
+
+## 8. Update Navigation View item name for all pages in Resources.resw
+As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
+(_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
+
+## 9. Settings Page
+If your project contains a SettingsPage you must perform the following steps:
+- On **ShellPage.xaml** change **IsSettingsVisible** property to true.
+- On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
+```vbnet
+If args.IsSettingsInvoked Then
+	NavigationService.Navigate(GetType(SettingsViewModel).FullName)
+	Return
+End If
+```
+
+- On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
+```vbnet
+If e.SourcePageType = GetType(SettingsPage) Then
+	Selected = _navigationView.SettingsItem
+	Return
+End If
 ```

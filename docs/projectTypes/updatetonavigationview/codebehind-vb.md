@@ -83,9 +83,8 @@ ShellPage's codebehind complexity will be reduced significantly, these are the c
  - **InitializeState** method and method call from Initialize.
 
  ### VB code you will have to add _(implementation below)_:
- - **_navigationView** private property of type NavigationView.
  - **OnItemInvoked** event handler.
-  - **IsNavHelperForPageType** method.
+  - **IsMenuItemForPageType** method.
 
 ### VB code you will have to update _(implementation below)_:
  - **Frame_Navigated** method with the implementation below.
@@ -120,14 +119,10 @@ Partial Public NotInheritable Class ShellPage
     End Sub
 
     Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-        Dim selectedItem = navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsNavHelperForPageType(menuItem, e.SourcePageType))
-
-        If selectedItem IsNot Nothing Then
-            Selected = selectedItem
-        End If
+        Selected = navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
     End Sub
 
-    Private Function IsNavHelperForPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean
+    Private Function IsMenuItemForPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean
         Dim pageType = TryCast(menuItem.GetValue(NavHelper.NavigateToProperty), Type)
         Return pageType = sourcePageType
     End Function
@@ -209,7 +204,11 @@ The resulting code should look like this:
 </Page>
 ```
 
-## 8. Settings Page
+## 8. Update Navigation View item name for all pages in Resources.resw
+As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
+(_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
+
+## 9. Settings Page
 If your project contains a SettingsPage you must perform the following steps:
 - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
 - On **ShellPage.xaml.cs** go to **OnItemInvoked** method and add to the beginning:
@@ -222,12 +221,8 @@ End If
 
 - On **ShellPage.xaml.cs** go to **Frame_Navigated** method and add to the beginning:
 ```vbnet
-If e.SourcePageType = GetType(wts.ItemNamePage) Then
+If e.SourcePageType = GetType(SettingsPage) Then
     Selected = navigationView.SettingsItem
     Return
 End If
 ```
-
-## 9. Update Navigation View item name for all pages in Resources.resw
-As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
-(_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
