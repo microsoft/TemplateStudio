@@ -1159,6 +1159,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh templates.
+        /// </summary>
+        public static string SyncTemplatesButtonText {
+            get {
+                return ResourceManager.GetString("SyncTemplatesButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to no content available..
+        /// </summary>
+        public static string SyncTemplatesMessage {
+            get {
+                return ResourceManager.GetString("SyncTemplatesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Added.
         /// </summary>
         public static string TemplateAdded {

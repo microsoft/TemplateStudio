@@ -233,4 +233,9 @@
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Height" Value="23" />
     </Style>
+
+    <Style TargetType="Button" x:Key="WtsButtonSyncTemplates" BasedOn="{StaticResource WtsBaseButton}">
+        <Setter Property="Height" Value="23" />
+        <Setter Property="Padding" Value="10, 0" />
+    </Style>
 </ResourceDictionary>
