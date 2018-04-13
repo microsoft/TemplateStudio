@@ -19,10 +19,10 @@ namespace Param_ItemNamespace.Views
             get { return DataContext as ImageGalleryViewDetailViewModel; }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel.Initialize(previewImage);
+            await ViewModel.InitializeAsync(previewImage, e.NavigationMode);
             showFlipView.Begin();
         }
 

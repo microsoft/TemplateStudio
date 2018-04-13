@@ -37,7 +37,7 @@ namespace Param_RootNamespace
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
 //{[{
-            Container.Resolve<IBackgroundTaskService>().RegisterBackgroundTasks();
+            await Container.Resolve<IBackgroundTaskService>().RegisterBackgroundTasksAsync();
 //}]}
             await base.OnInitializeAsync(args);
         }

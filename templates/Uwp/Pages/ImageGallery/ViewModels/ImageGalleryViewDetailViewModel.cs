@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Navigation;
 
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Models;
@@ -43,9 +44,21 @@ namespace Param_ItemNamespace.ViewModels
 
         public void SetImage(UIElement image) => _image = image;
 
-        public void Initialize(SampleImage sampleImage)
+        public async Task InitializeAsync(SampleImage sampleImage, NavigationMode navigationMode)
         {
-            SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImage.ID);
+            if (sampleImage != null && navigationMode == NavigationMode.New)
+            {
+                SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImage.ID);
+            }
+            else
+            {
+                var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
+                if (!string.IsNullOrEmpty(selectedImageId))
+                {
+                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
+                }
+            }
+
             var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewViewModel.ImageGalleryViewAnimationOpen);
             animation?.TryStart(_image);
         }

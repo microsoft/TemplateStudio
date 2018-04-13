@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Forms;
 
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Mvvm;
 
 namespace Microsoft.Templates.VsEmulator.NewProject
 {

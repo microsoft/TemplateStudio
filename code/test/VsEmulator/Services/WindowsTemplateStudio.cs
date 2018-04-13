@@ -46,8 +46,11 @@ namespace Microsoft.Templates.VsEmulator.Services
         public static string CardTitleTextColorKey { get { return "CardTitleTextColorKey"; } }
         public static string CardTitleTextBrushKey { get { return "CardTitleTextBrushKey"; } }
 
-        public static string ChangesSummaryDetailFileHeaderBackgroundColorKey { get { return "ChangesSummaryDetailFileHeaderBackgroundColorKey"; } }
-        public static string ChangesSummaryDetailFileHeaderBackgroundBrushKey { get { return "ChangesSummaryDetailFileHeaderBackgroundBrushKey"; } }
+        public static string ChangesSummaryDetailFileHeaderColorKey { get { return "ChangesSummaryDetailFileHeaderColorKey"; } }
+        public static string ChangesSummaryDetailFileHeaderBrushKey { get { return "ChangesSummaryDetailFileHeaderBrushKey"; } }
+
+        public static string ChangesSummaryDetailFileHeaderTextColorKey { get { return "ChangesSummaryDetailFileHeaderTextColorKey"; } }
+        public static string ChangesSummaryDetailFileHeaderTextBrushKey { get { return "ChangesSummaryDetailFileHeaderTextBrushKey"; } }
 
         public static string DeleteTemplateIconColorKey { get { return "DeleteTemplateIconColorKey"; } }
         public static string DeleteTemplateIconBrushKey { get { return "DeleteTemplateIconBrushKey"; } }

@@ -50,6 +50,18 @@ namespace Microsoft.Templates.UI.Controls
             Focusable = false;
         }
 
+        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+            if (e.Property == ForegroundProperty)
+            {
+                if (_isInitialized && Content != null && !IsXamlImage)
+                {
+                    ChangeColorOfBitmap(Content, (Foreground as SolidColorBrush).Color);
+                }
+            }
+        }
+
         public override void OnApplyTemplate()
         {
             _isInitialized = true;
@@ -68,9 +80,7 @@ namespace Microsoft.Templates.UI.Controls
                 Content = CreateFromBitmap();
             }
 
-            var sourceExtension = Path.GetExtension(SourcePath);
-
-            if (File.Exists(SourcePath) && sourceExtension?.Equals(XamlExtension, StringComparison.OrdinalIgnoreCase) == true)
+            if (IsXamlImage)
             {
                 Content = CreateFromXaml();
             }
@@ -78,6 +88,15 @@ namespace Microsoft.Templates.UI.Controls
             {
                 Content = CreateFromBitmap();
                 ChangeColorOfBitmap(Content, (Foreground as SolidColorBrush).Color);
+            }
+        }
+
+        private bool IsXamlImage
+        {
+            get
+            {
+                var sourceExtension = Path.GetExtension(SourcePath);
+                return File.Exists(SourcePath) && sourceExtension?.Equals(XamlExtension, StringComparison.OrdinalIgnoreCase) == true;
             }
         }
 

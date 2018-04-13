@@ -13,16 +13,12 @@ Namespace Helpers
               Select Case result
                 Case SimpleOrientation.Rotated90DegreesCounterclockwise
                     result = SimpleOrientation.NotRotated
-                    Exit Select
                 Case SimpleOrientation.Rotated180DegreesCounterclockwise
                     result = SimpleOrientation.Rotated90DegreesCounterclockwise
-                    Exit Select
                 Case SimpleOrientation.Rotated270DegreesCounterclockwise
                     result = SimpleOrientation.Rotated180DegreesCounterclockwise
-                    Exit Select
                 Case SimpleOrientation.NotRotated
                     result = SimpleOrientation.Rotated270DegreesCounterclockwise
-                    Exit Select
               End Select
           End If
 
