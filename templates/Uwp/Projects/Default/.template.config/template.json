@@ -9,9 +9,9 @@
     "language": "C#",
     "type": "project",
     "wts.type": "project",
-    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
+    "wts.framework": "CodeBehind|MVVMBasic|MVVMLight|CaliburnMicro",
     "wts.projecttype":"Blank|SplitView|TabbedPivot",
-    "wts.platform": "Uwp",
+	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1"
   },

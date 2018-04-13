@@ -21,9 +21,9 @@ namespace wts.ItemName.Views
             return container.RegisterNavigationService(shellFrame);
         }
 
-        private void OnStateChanged(object sender, VisualStateChangedEventArgs e)
+        public NavigationView GetNavigationView()
         {
-            ViewModel.StateChanged(e);
+            return navigationView;
         }
     }
 }

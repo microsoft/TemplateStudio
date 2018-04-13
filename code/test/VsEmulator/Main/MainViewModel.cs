@@ -12,16 +12,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Microsoft.Templates.UI.Generation;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.VsEmulator.LoadProject;
@@ -470,15 +469,16 @@ namespace Microsoft.Templates.VsEmulator.Main
                         .Union(Directory.EnumerateFiles(DestinationParentPath, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
                 var language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
-                var platform = ProjectConfigInfo.ReadProjectConfiguration().Platform;
-                SetCurrentLanguage(language);
-                SetCurrentPlatform(platform);
-
-                GenContext.Current = this;
 
                 ProjectName = Path.GetFileNameWithoutExtension(projFile);
                 DestinationPath = Path.GetDirectoryName(projFile);
                 OutputPath = DestinationPath;
+                GenContext.Current = this;
+
+                var platform = ProjectConfigInfo.ReadProjectConfiguration().Platform;
+                SetCurrentLanguage(language);
+                SetCurrentPlatform(platform);
+
                 IsWtsProject = GenContext.ToolBox.Shell.GetActiveProjectIsWts() ? Visibility.Visible : Visibility.Collapsed;
                 OnPropertyChanged(nameof(TempFolderAvailable));
                 ClearContext();
@@ -637,7 +637,7 @@ namespace Microsoft.Templates.VsEmulator.Main
         private void UpdateCanRefreshTemplateCache(bool canRefreshTemplateCache)
         {
             _canRefreshTemplateCache = canRefreshTemplateCache;
-            RefreshTemplateCacheCommand.OnCanExecuteChanged();
+            RefreshTemplateCacheCommand.RaiseCanExecuteChanged();
         }
 
         [SuppressMessage(

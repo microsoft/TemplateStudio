@@ -4,8 +4,7 @@
 
 using System;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.Common

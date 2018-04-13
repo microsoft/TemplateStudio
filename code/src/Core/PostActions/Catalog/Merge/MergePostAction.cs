@@ -100,7 +100,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFailedPostActionFileName()
         {
-            var newFileName = Path.GetFileNameWithoutExtension(Config.FilePath).Replace(MergeConfiguration.Suffix, MergeConfiguration.NewSuffix);
+            var splittedFileName = Path.GetFileName(Config.FilePath).Split('.');
+            splittedFileName[0] = splittedFileName[0].Replace(MergeConfiguration.Suffix, MergeConfiguration.NewSuffix);
             var folder = Path.GetDirectoryName(Config.FilePath);
             var extension = Path.GetExtension(Config.FilePath);
 
@@ -109,8 +110,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 new FileExistsValidator(Path.GetDirectoryName(Config.FilePath))
             };
 
-            newFileName = Naming.Infer(newFileName, validator);
-            return Path.Combine(folder, newFileName + extension);
+            splittedFileName[0] = Naming.Infer(splittedFileName[0], validator);
+            var newFileName = string.Join(".", splittedFileName);
+            return Path.Combine(folder, newFileName);
         }
 
         private string GetFilePath()

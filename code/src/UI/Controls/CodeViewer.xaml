@@ -13,6 +13,7 @@
         <WebBrowser x:Name="webBrowser"
                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
                     Visibility="Collapsed"
+                    AutomationProperties.Name="{x:Static strings:StringRes.AccessibilityCodeViewerControl}"
                     LoadCompleted="WebBrowser_LoadCompleted" />
     </Grid>
 </UserControl>

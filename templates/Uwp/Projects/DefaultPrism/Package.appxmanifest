@@ -33,10 +33,10 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="wts.DefaultProject.App">
       <uap:VisualElements
-        DisplayName="wts.DefaultProject"
+        DisplayName="ms-resource:AppDisplayName"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="wts.DefaultProject"
+        Description="ms-resource:AppDescription"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
@@ -57,5 +57,6 @@
     <genTemplate:Item Name="templatesVersion" Version="Param_Templates.Version" />
     <genTemplate:Item Name="projectType" Value="Param_ProjectType" />
     <genTemplate:Item Name="framework" Value="Param_Framework" />
+    <genTemplate:Item Name="platform" Value="Param_Platform" />
   </genTemplate:Metadata>
 </Package>

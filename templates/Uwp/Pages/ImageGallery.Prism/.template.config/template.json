@@ -12,11 +12,11 @@
     "type": "item",
     "wts.type": "page",
     "wts.framework": "Prism",
-    "wts.platform": "Uwp",
+	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "10",
     "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",
-    "wts.dependencies": "wts.Feat.SampleDataService|wts.Feat.SettingsStorage",
+    "wts.dependencies": "wts.Feat.SampleDataService.Prism|wts.Feat.SettingsStorage",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true"
   },
@@ -40,6 +40,42 @@
     },
     {
       "path": ".\\ViewModels\\ImageGalleryViewDetailViewModel.cs"
+    },
+    {
+      "path": ".\\Models\\SampleImage.cs"
+    },
+    {
+      "path": ".\\Assets\\PlaceholderImage.png"
+    },
+    {
+      "path": ".\\Assets\\SampleData\\SamplePhoto1.png"
+    },
+    {
+      "path": ".\\Assets\\SampleData\\SamplePhoto2.png"
+    },
+    {
+      "path": ".\\Assets\\SampleData\\SamplePhoto3.png"
+    },
+    {
+      "path": ".\\Assets\\SampleData\\SamplePhoto4.png"
+    },
+    {
+      "path": ".\\Assets\\SampleData\\SamplePhoto5.png"
+    },
+    {
+      "path": ".\\Assets\\SampleData\\SamplePhoto6.png"
+    },
+    {
+      "path": ".\\Assets\\SampleData\\SamplePhoto7.png"
+    },
+    {
+      "path": ".\\Assets\\SampleData\\SamplePhoto8.png"
+    },
+    {
+      "path": ".\\Assets\\SampleData\\SamplePhoto9.png"
+    },
+    {
+      "path": ".\\Assets\\SampleData\\SamplePhoto10.png"
     }
   ],
   "symbols": {

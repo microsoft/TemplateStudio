@@ -40,7 +40,7 @@
                 <TextBlock Text="{Binding DisplayName}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}" />
             </DataTemplate>
             <DataTemplate x:Key="SimpleDisplayNameTemplate">
-                <TextBlock Text="{Binding}" Style="{StaticResource ProjectConfigurationDescriptionStyle}"/>
+                <TextBlock Text="{Binding}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
             </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
@@ -65,12 +65,14 @@
                 <TextBlock
                     Text="{x:Static strings:StringRes.ProjectConfigurationSelectPlatform}"
                     Margin="{StaticResource Margin_L_Top}"
-                    Style="{StaticResource ProjectConfigurationComboBoxHeaderStyle}" />
+                    Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}" />
                 <ComboBox
                     ItemsSource="{Binding Platforms}"
                     SelectedItem="{Binding SelectedPlatform, Mode=TwoWay}"
                     Margin="{StaticResource Margin_S_Top}"
-                    ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"/>
+                    ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"
+                    Style="{StaticResource WtsComboBoxStyle}"
+                    AutomationProperties.Name="{x:Static strings:StringRes.ProjectConfigurationSelectPlatform}" />
                 <TextBlock
                     Text="{x:Static strings:StringRes.ProjectConfigurationSelectProjectType}"
                     Margin="{StaticResource Margin_M_Top}"
