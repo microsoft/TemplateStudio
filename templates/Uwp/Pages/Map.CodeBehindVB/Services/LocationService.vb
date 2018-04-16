@@ -35,10 +35,8 @@ Namespace Services
                         .MovementThreshold = movementThreshold
                     }
                     result = True
-                    Exit Select
                 Case Else
                     result = False
-                    Exit Select
             End Select
 
             Return result

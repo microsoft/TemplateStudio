@@ -432,9 +432,9 @@
     <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
-    <value>Error reading source config file.</value>
+    <value>讀取來源組態檔時發生錯誤。</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
-    <value>Templates local path is empty.</value>
+    <value>範本本機路徑是空的。</value>
   </data>
 </root>

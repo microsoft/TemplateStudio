@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Navigation;
 
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Models;
@@ -41,10 +42,22 @@ namespace Param_ItemNamespace.ViewModels
             Source.AddRange(SampleDataService.GetGallerySampleData());
         }
 
-        public void Initialize(UIElement image)
+        public async Task InitializeAsync(UIElement image, NavigationMode navigationMode)
         {
             _image = image;
-            SelectedImage = Source.FirstOrDefault(i => i.ID == ID);
+            if (navigationMode == NavigationMode.New)
+            {
+                SelectedImage = Source.FirstOrDefault(i => i.ID == ID);
+            }
+            else
+            {
+                var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
+                if (!string.IsNullOrEmpty(selectedImageId))
+                {
+                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
+                }
+            }
+
             var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewViewModel.ImageGalleryViewAnimationOpen);
             animation?.TryStart(_image);
         }

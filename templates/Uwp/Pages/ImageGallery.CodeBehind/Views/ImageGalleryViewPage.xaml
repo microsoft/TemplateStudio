@@ -7,27 +7,15 @@
     xmlns:models="using:Param_ItemNamespace.Models"
     NavigationCacheMode="Required"
     mc:Ignorable="d">
+
     <Grid x:Name="ContentArea">
-        <Grid.RowDefinitions>
-            <RowDefinition x:Name="TitleRow" Height="48"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock
-            x:Name="TitlePage"
-            x:Uid="ImageGalleryView_Title"
-            Style="{StaticResource PageTitleStyle}"
-            Margin="12,0,12,7" />
-
         <GridView
             x:Name="ImagesGridView"
-            Grid.Row="1"
             ItemsSource="{x:Bind Source}"
             IsItemClickEnabled="True"
-            SelectionMode="None"
             Padding="{StaticResource MediumLeftRightMargin}"
-            Loaded="ImagesGridView_Loaded"
-            ItemClick="ImagesGridView_ItemClick">
+            ItemClick="ImagesGridView_ItemClick"
+            SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">
                     <Image

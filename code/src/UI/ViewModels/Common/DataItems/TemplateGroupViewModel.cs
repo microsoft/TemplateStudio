@@ -6,7 +6,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 
 namespace Microsoft.Templates.UI.ViewModels.Common

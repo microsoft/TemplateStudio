@@ -1,4 +1,5 @@
-﻿Imports Param_ItemNamespace.Services
+﻿Imports Param_ItemNamespace.Helpers
+Imports Param_ItemNamespace.Services
 
 Namespace Views
     ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings-codebehind.vb.md
@@ -40,11 +41,12 @@ Namespace Views
         End Sub
 
         Private Function GetVersionDescription() As String
+            Dim appName = "AppDisplayName".GetLocalized()
             Dim package = Windows.ApplicationModel.Package.Current
             Dim packageId = package.Id
             Dim version = packageId.Version
 
-            Return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}"
+            Return $"{appName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}"
         End Function
 
         Private Async Sub ThemeChanged_CheckedAsync(sender As Object, e As RoutedEventArgs)

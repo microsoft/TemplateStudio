@@ -3,16 +3,17 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Grid",
+  "name": "Telerik Data Grid",
   "groupIdentity": "wts.Page.Grid",
   "identity": "wts.Page.Grid.CodeBehind",
   "description": "A page displaying a simple grid, powered by Telerik UI controls for UWP.",
   "tags": {
     "language": "C#",
     "type": "item",
+    "wts.telemName": "Grid",
     "wts.type": "page",
     "wts.framework": "CodeBehind",
-    "wts.platform": "Uwp",
+	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "6",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",

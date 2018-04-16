@@ -205,6 +205,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Composition tool.
+        /// </summary>
+        public static string ButtonCompositionTool {
+            get {
+                return ResourceManager.GetString("ButtonCompositionTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string ButtonCreate {
@@ -219,6 +228,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ButtonDetails {
             get {
                 return ResourceManager.GetString("ButtonDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details of {0}.
+        /// </summary>
+        public static string ButtonDetailsHelpText {
+            get {
+                return ResourceManager.GetString("ButtonDetailsHelpText", resourceCulture);
             }
         }
         
@@ -529,6 +547,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to resolve platform..
+        /// </summary>
+        public static string ErrorUnableResolvePlatform {
+            get {
+                return ResourceManager.GetString("ErrorUnableResolvePlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to refresh the project. Try to refresh it manually..
         /// </summary>
         public static string ErrorUnableToRefreshProject {
@@ -574,15 +601,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to resolve platform..
-        /// </summary>
-        public static string ExceptionUnableResolvePlatform {
-            get {
-                return ResourceManager.GetString("ExceptionUnableResolvePlatform", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Open in a new browser tab.
         /// </summary>
         public static string ExternalHyperlinkTooltipMessage {
@@ -597,6 +615,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string FrameworkTitle {
             get {
                 return ResourceManager.GetString("FrameworkTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press enter to add {0}.
+        /// </summary>
+        public static string HelpTextPressEnterToAddItem {
+            get {
+                return ResourceManager.GetString("HelpTextPressEnterToAddItem", resourceCulture);
             }
         }
         
@@ -736,7 +763,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can not remove *{0}* because *{1}* depends on it..
+        ///   Looks up a localized string similar to You can not remove **{0}** because **{1}** depends on it..
         /// </summary>
         public static string NotificationRemoveError_Dependency {
             get {
@@ -1195,6 +1222,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analytics.
+        /// </summary>
+        public static string TemplateGroup_Analytics {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Analytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application Launching.
         /// </summary>
         public static string TemplateGroup_ApplicationLaunching {
@@ -1254,6 +1290,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TermsAndConditionsText {
             get {
                 return ResourceManager.GetString("TermsAndConditionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HamburgerMenu control is obsolete and WTS now supports NavigationView. See [documentation]({0}projectTypes/updatetonavigationview.md) to update..
+        /// </summary>
+        public static string ValidatorHasNavigationViewMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasNavigationViewMessage", resourceCulture);
             }
         }
         

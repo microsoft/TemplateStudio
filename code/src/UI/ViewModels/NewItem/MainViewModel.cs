@@ -4,14 +4,15 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Generation;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -138,11 +139,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             return userSelection;
         }
 
-        protected override Task OnTemplatesAvailableAsync()
+        protected override async Task OnTemplatesAvailableAsync()
         {
             TemplateSelection.LoadData(TemplateType, ConfigFramework, ConfigPlatform);
             WizardStatus.IsLoading = false;
-            return Task.CompletedTask;
+
+            var result = BreakingChangesValidatorService.Validate();
+            if (!result.IsValid)
+            {
+                var message = string.Join(Environment.NewLine, result.ErrorMessages);
+                var notification = Notification.Warning(message, Category.None, TimerType.None);
+                await NotificationsControl.AddNotificationAsync(notification);
+            }
         }
 
         protected async Task OnRefreshTemplatesAsync()
@@ -180,9 +188,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
                     configInfo.Platform = vm.SelectedPlatform;
-                    ProjectConfigInfo.SaveProjectConfiguration(configInfo.ProjectType, configInfo.Framework, configInfo.Platform);
+                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework, configInfo.Platform);
                     ConfigFramework = configInfo.Framework;
                     ConfigProjectType = configInfo.ProjectType;
+                    ConfigPlatform = configInfo.Platform;
                 }
                 else
                 {

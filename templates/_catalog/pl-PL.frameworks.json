@@ -12,7 +12,7 @@
   {
     "name": "CodeBehind",
     "displayName": "Code Behind",
-    "summary": "Jest to tradycyjny model aplikacji, w którym logika jest obsługiwana za pomocą code-behind.  Ta opcja doskonale sprawdza się w przypadku szybkich aplikacji."
+    "summary": "Jest to tradycyjny model aplikacji, w którym logika jest obsługiwana za pomocą code-behind."
   },
   {
     "name": "CaliburnMicro",

@@ -13,7 +13,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,8,0,0">
                 <FontIcon
                     FontSize="40"
-                    Glyph="{x:Bind MasterMenuItem.SymbolAsChar, Mode=OneWay}"
+                    Glyph="{x:Bind MasterMenuItem.Symbol, Mode=OneWay}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"/>
                 <TextBlock

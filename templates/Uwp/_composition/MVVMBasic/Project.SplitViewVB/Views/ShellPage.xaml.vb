@@ -9,7 +9,7 @@ Namespace Views
         Public Sub New()
             Me.InitializeComponent()
             DataContext = ViewModel
-            ViewModel.Initialize(shellFrame)
+            ViewModel.Initialize(shellFrame, navigationView)
         End Sub
     End Class
 End Namespace

@@ -432,9 +432,9 @@ Nemohly být integrovány následující změny: {2}
     <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
-    <value>Error reading source config file.</value>
+    <value>Při čtení zdrojového konfiguračního souboru došlo k chybě.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
-    <value>Templates local path is empty.</value>
+    <value>Místní cesta k šablonám je prázdná.</value>
   </data>
 </root>
