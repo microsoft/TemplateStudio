@@ -19,6 +19,7 @@ namespace Param_RootNamespace.Services
         private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
 
         private Frame _frame;
+        private object _lastParamUsed;
 
         public Frame Frame
         {
@@ -60,9 +61,14 @@ namespace Param_RootNamespace.Services
                 }
             }
 
-            if (Frame.Content?.GetType() != page)
+            if (Frame.Content?.GetType() != page || (parameter != null && !parameter.Equals(_lastParamUsed)))
             {
                 var navigationResult = Frame.Navigate(page, parameter, infoOverride);
+                if (navigationResult)
+                {
+                    _lastParamUsed = parameter;
+                }
+
                 return navigationResult;
             }
             else
