@@ -8,6 +8,7 @@ Namespace Services
         Public Event NavigationFailed As NavigationFailedEventHandler
 
         Private _frame As Frame
+        Private _lastParamUsed As Object
 
         Public Property Frame As Frame
             Get
@@ -47,8 +48,12 @@ Namespace Services
 
         Public Function Navigate(pageType As Type, Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
             ' Don't open the same page multiple times
-            If Frame.Content?.GetType IsNot pageType Then
-                Return Frame.Navigate(pageType, parameter, infoOverride)
+            If Frame.Content?.GetType IsNot pageType Or parameter IsNot Nothing And Not parameter.Equals(_lastParamUsed) Then
+                Dim navigationResult = Frame.Navigate(pageType, parameter, infoOverride)
+                If navigationResult Then
+                    _lastParamUsed = parameter
+                End If
+                Return navigationResult
             Else
                 Return False
             End If
