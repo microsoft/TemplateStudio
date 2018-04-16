@@ -22,9 +22,12 @@ namespace Microsoft.Templates.UI.Validators
 
             if (projectType == "SplitView" && !HasNavigationView())
             {
-                var message = string.Format(
-                    Resources.StringRes.ValidatorHasNavigationViewMessage,
-                    Core.Configuration.Current.GitHubDocsUrl);
+                var message = new ValidationMessage
+                {
+                    Message = Resources.StringRes.ValidatorHasNavigationViewMessage,
+                    Url = string.Format(Resources.StringRes.ValidatorHasNavigationViewLink, Core.Configuration.Current.GitHubDocsUrl),
+                    HyperLinkMessage = Resources.StringRes.ValidatorHasNavigationViewLinkMessage,
+                };
 
                 result.IsValid = false;
                 result.ErrorMessages.Add(message);

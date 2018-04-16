@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -37,6 +38,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public static MainViewModel Instance { get; private set; }
 
         public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
+
+        public ObservableCollection<BreakingChangeMessageViewModel> BreakingChangesErrors { get; set; } = new ObservableCollection<BreakingChangeMessageViewModel>();
 
         public ChangesSummaryViewModel ChangesSummary { get; } = new ChangesSummaryViewModel();
 
@@ -145,9 +148,17 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var result = BreakingChangesValidatorService.Validate();
             if (!result.IsValid)
             {
-                var message = string.Join(Environment.NewLine, result.ErrorMessages);
-                var notification = Notification.Warning(message, Category.None, TimerType.None);
-                await NotificationsControl.AddNotificationAsync(notification);
+                var messages = result.ErrorMessages.Select(e => new BreakingChangeMessageViewModel(e));
+
+                // Show in side panel
+                BreakingChangesErrors.AddRange(messages);
+
+                // Show in window dialog
+                var vm = new BreakingChangesDialogViewModel(messages);
+                var error = new BreakingChangesDialog(vm);
+                GenContext.ToolBox.Shell.ShowModal(error);
+
+                await Task.CompletedTask;
             }
         }
 
