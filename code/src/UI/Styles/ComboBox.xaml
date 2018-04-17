@@ -46,7 +46,7 @@
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxSelection, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphPressed, Source={x:Static services:UIStylesService.Instance}}" />
@@ -61,7 +61,7 @@
                         <DataTrigger Binding="{Binding IsKeyboardFocused , RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}" Value="True">
                             <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxSelection, Source={x:Static services:UIStylesService.Instance}}" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -421,14 +421,14 @@
                             <Setter Property="Foreground" TargetName="icon" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="TextElement.Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxSelection, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Foreground" TargetName="icon" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="TextElement.Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxSelection, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
@@ -566,14 +566,14 @@
                             <Setter Property="Foreground" TargetName="icon" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="TextElement.Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxSelection, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Foreground" TargetName="icon" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="TextElement.Foreground" Value="{Binding ComboBoxTextHover, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Background" TargetName="templateRoot" Value="{Binding ComboBoxBackgroundHover, Source={x:Static services:UIStylesService.Instance}}" />
-                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxBorderHover, Source={x:Static services:UIStylesService.Instance}}" />
+                            <Setter Property="BorderBrush" TargetName="templateRoot" Value="{Binding ComboBoxSelection, Source={x:Static services:UIStylesService.Instance}}" />
                             <Setter Property="Fill" TargetName="arrow" Value="{Binding ComboBoxGlyphHover, Source={x:Static services:UIStylesService.Instance}}" />
                         </Trigger>
                         <Trigger Property="HasDropShadow" SourceName="PART_Popup" Value="true">
