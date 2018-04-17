@@ -30,19 +30,14 @@
             <!--Buttons area-->
         </Grid.RowDefinitions>
         <StackPanel
-            Visibility="{Binding ShowSyncTemplates, Converter={StaticResource BoolToVisibilityConverter}}"
+            Visibility="{Binding ShowNoContentPanel, Converter={StaticResource BoolToVisibilityConverter}}"
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
             <TextBlock 
                 Style="{StaticResource WtsTextBlockSectionTitle}"
-                Text="{x:Static strings:StringRes.SyncTemplatesMessage}" />
-            <Button
-                Style="{StaticResource WtsButtonSyncTemplates}"
-                Content="{x:Static strings:StringRes.SyncTemplatesButtonText}"
-                Margin="{StaticResource Margin_L_Top}"
-                Command="{Binding SyncTemplatesCommand}" />
+                Text="{x:Static strings:StringRes.NoContentPanelMessage}" />
         </StackPanel>
-        <Grid Visibility="{Binding ShowSyncTemplates, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+        <Grid Visibility="{Binding ShowNoContentPanel, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid.ColumnDefinitions>
                 <!--Sequential flow-->

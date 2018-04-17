@@ -660,12 +660,8 @@
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Composition tool</value>
   </data>
-  <data name="SyncTemplatesButtonText" xml:space="preserve">
-    <value>Refresh templates</value>
-    <comment>Message in button refresh templates page</comment>
-  </data>
-  <data name="SyncTemplatesMessage" xml:space="preserve">
+  <data name="NoContentPanelMessage" xml:space="preserve">
     <value>no content available.</value>
-    <comment>Message in refresh templates page</comment>
+    <comment>Message in no content panel</comment>
   </data>
 </root>

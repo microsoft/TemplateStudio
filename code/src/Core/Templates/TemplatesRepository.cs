@@ -50,12 +50,12 @@ namespace Microsoft.Templates.Core
             WizardVersion = wizardVersion.ToString();
             Sync = new TemplatesSynchronization(source, wizardVersion);
         }
-                
+
         public async Task SynchronizeAsync(bool force = false, bool removeTemplates = false)
         {
             if (removeTemplates)
             {
-                CleanTemplatesFolder();
+                Fs.SafeDeleteDirectory(CurrentContentFolder);
             }
 
             _cts = new CancellationTokenSource();
@@ -212,14 +212,6 @@ namespace Microsoft.Templates.Core
             if (File.Exists(iconFile))
             {
                 mInfo.Icon = iconFile;
-            }
-        }
-
-        private void CleanTemplatesFolder()
-        {
-            if (Directory.Exists(CurrentContentFolder))
-            {
-                Directory.Delete(CurrentContentFolder, true);
             }
         }
 

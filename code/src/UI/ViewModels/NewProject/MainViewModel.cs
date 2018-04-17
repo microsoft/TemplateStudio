@@ -25,7 +25,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
     public class MainViewModel : BaseMainViewModel
     {
-        private RelayCommand _syncTemplatesCommand;
         private RelayCommand _refreshTemplatesCacheCommand;
         private RelayCommand _compositionToolCommand;
 
@@ -47,9 +46,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
              () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesCacheAsync())));
-
-        public RelayCommand SyncTemplatesCommand => _syncTemplatesCommand ?? (_syncTemplatesCommand = new RelayCommand(
-             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnSyncTemplatesAsync())));
 
         public RelayCommand CompositionToolCommand => _compositionToolCommand ?? (_compositionToolCommand = new RelayCommand(() => OnCompositionTool()));
 
@@ -146,7 +142,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         protected override Task OnTemplatesAvailableAsync()
         {
             ProjectType.LoadData();
-            ShowSyncTemplates = !ProjectType.Items.Any();
+            ShowNoContentPanel = !ProjectType.Items.Any();
             return Task.CompletedTask;
         }
 
@@ -212,29 +208,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        protected async Task OnSyncTemplatesAsync()
-        {
-            try
-            {
-                ShowSyncTemplates = false;
-                WizardStatus.IsLoading = true;
-                UserSelection.ResetUserSelection();
-
-                await GenContext.ToolBox.Repo.SynchronizeAsync(removeTemplates: true);
-            }
-            catch (Exception ex)
-            {
-                await NotificationsControl.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
-
-                await AppHealth.Current.Error.TrackAsync(ex.ToString());
-                await AppHealth.Current.Exception.TrackAsync(ex);
-            }
-            finally
-            {
-                WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
-            }
-        }
-
         private void OnCompositionTool()
         {
             var compositionTool = new CompositionToolWindow(UserSelection.GetUserSelection());
@@ -242,12 +215,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             compositionTool.ShowDialog();
         }
 
-        private bool _showSyncTemplates;
+        private bool _showNoContentPanel;
 
-        public bool ShowSyncTemplates
+        public bool ShowNoContentPanel
         {
-            get => _showSyncTemplates;
-            set => SetProperty(ref _showSyncTemplates, value);
+            get => _showNoContentPanel;
+            set => SetProperty(ref _showNoContentPanel, value);
         }
     }
 }

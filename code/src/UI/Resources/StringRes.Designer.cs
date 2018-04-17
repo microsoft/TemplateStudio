@@ -754,6 +754,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to no content available..
+        /// </summary>
+        public static string NoContentPanelMessage {
+            get {
+                return ResourceManager.GetString("NoContentPanelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can not remove **{0}** because **{1}** depends on it..
         /// </summary>
         public static string NotificationRemoveError_Dependency {
@@ -1155,24 +1164,6 @@ namespace Microsoft.Templates.UI.Resources {
         public static string StatusBarRestoring {
             get {
                 return ResourceManager.GetString("StatusBarRestoring", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Refresh templates.
-        /// </summary>
-        public static string SyncTemplatesButtonText {
-            get {
-                return ResourceManager.GetString("SyncTemplatesButtonText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to no content available..
-        /// </summary>
-        public static string SyncTemplatesMessage {
-            get {
-                return ResourceManager.GetString("SyncTemplatesMessage", resourceCulture);
             }
         }
         
