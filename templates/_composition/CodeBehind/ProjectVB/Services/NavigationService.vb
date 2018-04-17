@@ -48,7 +48,7 @@ Namespace Services
 
         Public Function Navigate(pageType As Type, Optional parameter As Object = Nothing, Optional infoOverride As NavigationTransitionInfo = Nothing) As Boolean
             ' Don't open the same page multiple times
-            If Frame.Content?.GetType IsNot pageType  Or parameter IsNot Nothing And Not parameter.Equals(_lastParamUsed) Then
+            If Frame.Content?.GetType IsNot pageType  OrElse parameter IsNot Nothing AndAlso Not parameter.Equals(_lastParamUsed) Then
                 Dim navigationResult = Frame.Navigate(pageType, parameter, infoOverride)
                 If navigationResult Then
                     _lastParamUsed = parameter

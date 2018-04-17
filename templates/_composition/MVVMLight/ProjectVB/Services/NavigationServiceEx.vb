@@ -57,7 +57,7 @@ Namespace Services
                 End If
             End SyncLock
 
-            If Frame.Content?.GetType IsNot page Or parameter IsNot Nothing And Not parameter.Equals(_lastParamUsed) Then
+            If Frame.Content?.GetType IsNot page OrElse parameter IsNot Nothing AndAlso Not parameter.Equals(_lastParamUsed) Then
                 Dim navigationResult = Frame.Navigate(page, parameter, infoOverride)
                 If navigationResult Then
                     _lastParamUsed = parameter
