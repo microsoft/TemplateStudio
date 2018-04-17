@@ -10,7 +10,8 @@ This document covers:
 * [Modifying the menu items](#menu)
 * [Using the navigation pane with command bars](#commandbar)
 * [Invoke code on NavigationView](#invokecode)
-* [Update to navigation view](updatetonavigationview.md)
+
+To update to navigation view read the following [document](updatetonavigationview.md).
 
 <a name="menu"></a>
 
