@@ -149,14 +149,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             if (!result.IsValid)
             {
                 var messages = result.ErrorMessages.Select(e => new BreakingChangeMessageViewModel(e));
-
-                // Show in side panel
                 BreakingChangesErrors.AddRange(messages);
-
-                // Show in window dialog
-                var vm = new BreakingChangesDialogViewModel(messages);
-                var error = new BreakingChangesDialog(vm);
-                GenContext.ToolBox.Shell.ShowModal(error);
+                OnPropertyChanged(nameof(BreakingChangesErrors));
 
                 await Task.CompletedTask;
             }

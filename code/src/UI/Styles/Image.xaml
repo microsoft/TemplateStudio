@@ -34,7 +34,6 @@
         <Setter Property="Height" Value="20" />
         <Setter Property="StretchDirection" Value="Both" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Margin" Value="{StaticResource Margin_M_Left}" />
     </Style>
 
     <Style TargetType="Image" x:Key="WtsImageCloseButtonIcon">
