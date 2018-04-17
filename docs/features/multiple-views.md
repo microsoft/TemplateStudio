@@ -20,26 +20,39 @@ Files added by Multiple views feature:
 ## Using WindowManagerService
 In this example we are going to show how to open a photo detail in a new window.
 
-### 1. Open the detail page on a new window.
-Add a command to open the detail  page in a new window. (Add this Command in `PhotoListViewModel.cs` on **MVVMBasic, MVVMLight, Prism or Caliburn.Micro** framework or in `PhotoListPage.xaml.cs` if your are using **CodeBehind** framework.
+### 1. Create a new app with two pages
+Create a new application using Windows Template Studio and add another blank page named `Secondary`. The idea is to create a button in the `Main` page to open the `Secondary` page in a new window.
+
+### 2. Initialize WindowManagerService
+Call to `Initialize` method in `ActivationService InitializeAsync`.
 
 ```csharp
-private ICommand _openPhotoViewCommand;
-
-public ICommand OpenPhotoViewCommand => _openPhotoViewCommand ?? (_openPhotoViewCommand = new RelayCommand(OnOpenView));
-
-private async void OnOpenPhotoView()
+private async Task InitializeAsync()
 {
-    await WindowManagerService.Current.TryShowAsStandaloneAsync("PhotoDetail_Title.Text".GetLocalized(), typeof(PhotoDetailPage));
+    WindowManagerService.Current.Initialize();
 }
 ```
 
- ### 2. Handle the DetailPage released event.
+### 3. Open the secondary page on a new window.
+Add a command to open the secondary page in a new window. (Add this Command in `MainViewModel.cs` on **MVVMBasic, MVVMLight, Prism or Caliburn.Micro** framework or in `MainPage.xaml.cs` if your are using **CodeBehind** framework.
+
+```csharp
+private ICommand _openSecondaryPageCommand;
+
+public ICommand OpenSecondaryPageCommand => _openSecondaryPageCommand ?? (_openSecondaryPageCommand = new RelayCommand(OnOpenSecondaryPage));
+
+private async void OnOpenSecondaryPage()
+{
+    await WindowManagerService.Current.TryShowAsStandaloneAsync("Secondary_Title.Text".GetLocalized(), typeof(SecondaryPage));
+}
+```
+
+ ### 4. Handle the SecondaryPage released event.
  WindowManagerService holds a reference to each window opened. It's important to remove this reference once the window is closed to avoid memory leaks. Suscribe to the Release event on the window's ViewLifetimeControl instance to remove this page from `WindowManagerService.Current.SecondaryViews`:
 
 **MVVMBasic, MVVMLight, Prism and Caliburn.Micro**
 
-Override this method on `PhotoDetailPage.xaml.cs`.
+Override this method on `SecondaryPage.xaml.cs`.
 ```csharp
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
@@ -48,11 +61,11 @@ protected override void OnNavigatedTo(NavigationEventArgs e)
 }
 ```
 
-Add this code to `PhotoDetailViewModel.cs`.
+Add this code to `SecondaryViewModel.cs`.
 ```csharp
-private ViewLifetimeControl _viewLifetimeControl;    
+private ViewLifetimeControl _viewLifetimeControl;
 
-internal void Initialize(ViewLifetimeControl viewLifetimeControl)
+public void Initialize(ViewLifetimeControl viewLifetimeControl)
 {
     _viewLifetimeControl = viewLifetimeControl;
     _viewLifetimeControl.Released += OnViewLifetimeControlReleased;
@@ -70,9 +83,9 @@ private async void OnViewLifetimeControlReleased(object sender, EventArgs e)
 
 **CodeBehind**
 
-Add this code to `PhotoDetailViewModel.cs`.
+Add this code to `SecondaryViewModel.cs`.
 ```csharp
-public sealed partial class PhotoDetailPage : Page
+public sealed partial class SecondaryPage : Page
 {
     private ViewLifetimeControl _viewLifetimeControl;
 
