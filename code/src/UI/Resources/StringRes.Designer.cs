@@ -763,6 +763,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to no content available..
+        /// </summary>
+        public static string NoContentPanelMessage {
+            get {
+                return ResourceManager.GetString("NoContentPanelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can not remove **{0}** because **{1}** depends on it..
         /// </summary>
         public static string NotificationRemoveError_Dependency {

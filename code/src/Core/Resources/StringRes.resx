@@ -440,4 +440,8 @@ The following changes could not be integrated: {2}
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
     <value>Templates local path is empty.</value>
   </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>The folder {0} can't be rename. Error: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
+  </data>
 </root>

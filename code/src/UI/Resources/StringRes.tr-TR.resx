@@ -671,4 +671,8 @@
     <value>Analytics</value>
     <comment>Group header for analytics templates</comment>
   </data>
+  <data name="NoContentPanelMessage" xml:space="preserve">
+    <value>no content available.</value>
+    <comment>Message in no content panel</comment>
+  </data>
 </root>

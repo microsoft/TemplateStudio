@@ -177,5 +177,23 @@ namespace Microsoft.Templates.Core
                 }
             }
         }
+
+        public static void SafeRenameDirectory(string dir, string dirNewName, bool warnOnFailure = true)
+        {
+            try
+            {
+                if (Directory.Exists(dir))
+                {
+                    Directory.Move(dir, dirNewName);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (warnOnFailure)
+                {
+                    AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeRenameDirectoryMessage, dir, ex.Message), ex).FireAndForget();
+                }
+            }
+        }
     }
 }

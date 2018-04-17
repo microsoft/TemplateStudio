@@ -223,6 +223,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The folder {0} can&apos;t be rename. Error: {1}.
+        /// </summary>
+        public static string FsSafeRenameDirectoryMessage {
+            get {
+                return ResourceManager.GetString("FsSafeRenameDirectoryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Critical error initializating GenContext..
         /// </summary>
         public static string GenContextBootstrapError {
