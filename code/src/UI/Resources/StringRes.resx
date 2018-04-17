@@ -660,4 +660,8 @@
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Composition tool</value>
   </data>
+  <data name="NoContentPanelMessage" xml:space="preserve">
+    <value>no content available.</value>
+    <comment>Message in no content panel</comment>
+  </data>
 </root>

@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,7 +45,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public CompositionToolViewModel CompositionTool { get; } = new CompositionToolViewModel();
 
         public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
-             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
+             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesCacheAsync())));
 
         public RelayCommand CompositionToolCommand => _compositionToolCommand ?? (_compositionToolCommand = new RelayCommand(() => OnCompositionTool()));
 
@@ -141,6 +142,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         protected override Task OnTemplatesAvailableAsync()
         {
             ProjectType.LoadData();
+            ShowNoContentPanel = !ProjectType.Items.Any();
             return Task.CompletedTask;
         }
 
@@ -185,7 +187,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             WizardStatus.IsLoading = false;
         }
 
-        protected async Task OnRefreshTemplatesAsync()
+        protected async Task OnRefreshTemplatesCacheAsync()
         {
             try
             {
@@ -211,6 +213,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var compositionTool = new CompositionToolWindow(UserSelection.GetUserSelection());
             compositionTool.Owner = WizardShell.Current;
             compositionTool.ShowDialog();
+        }
+
+        private bool _showNoContentPanel;
+
+        public bool ShowNoContentPanel
+        {
+            get => _showNoContentPanel;
+            set => SetProperty(ref _showNoContentPanel, value);
         }
     }
 }

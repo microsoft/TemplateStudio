@@ -660,4 +660,8 @@
     <value>HamburgerMenu control is obsolete and WTS now supports NavigationView. See [documentation]({0}projectTypes/updatetonavigationview.md) to update.</value>
     <comment>Has navigation view validation error message</comment>
   </data>
+  <data name="NoContentPanelMessage" xml:space="preserve">
+    <value>no content available.</value>
+    <comment>Message in no content panel</comment>
+  </data>
 </root>
