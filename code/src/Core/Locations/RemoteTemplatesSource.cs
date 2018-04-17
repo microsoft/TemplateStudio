@@ -151,6 +151,11 @@ namespace Microsoft.Templates.Core.Locations
 
         private void RemoveTemplatesTempFolders(string workingFolder)
         {
+            if (!Directory.Exists(workingFolder))
+            {
+                return;
+            }
+
             var searchOptions = $"*{_tmpExtension}";
             var tempDirectories = Directory.EnumerateDirectories(workingFolder, searchOptions);
 
