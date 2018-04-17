@@ -8,11 +8,11 @@ For more information see the multiple view documentation on [docs.microsoft.com]
 
 ## Understanding the code
 Files added by Multiple views feature:
- - `Services/ViewLifetimeControl.cs`
  - `Services/WindowManagerService.cs`
+ - `Services/ViewLifetimeControl.cs`
 
 ### WindowManagerService
-`WindowManagerService` allows you open pages in a new window using the ApplicationViewSwitcher API. WindowManagerService also includes a method named `IsWindowOpen` that allows you to check if a page is already opened in a new window.
+`WindowManagerService` allows you open pages in a new window using the ApplicationViewSwitcher API. WindowManagerService also includes a method named `IsWindowOpen` that allows you to check if a page is already open in another window.
 
 ### ViewLifetimeControl
 `WindowManagerService` creates an instance of `ViewLifetimeControl` for each page being opened in a new window. This instance allows you to handle the view lifetime event `Released` and gives you access to the window's `Dispatcher` to run code on a safe thread.
@@ -35,7 +35,7 @@ private async void OnOpenPhotoView()
 ```
 
  ### 2. Handle the DetailPage released event.
- WindowManagerService holds a reference to each window opened. It's important to remove this reference once the window is closed to avoid memory leaks. Suscribe to Release event on the window's ViewLifetimeControl instance to remove this page from `WindowManagerService.Current.SecondaryViews`:
+ WindowManagerService holds a reference to each window opened. It's important to remove this reference once the window is closed to avoid memory leaks. Suscribe to the Release event on the window's ViewLifetimeControl instance to remove this page from `WindowManagerService.Current.SecondaryViews`:
 
 **MVVMBasic, MVVMLight, Prism and Caliburn.Micro**
 
