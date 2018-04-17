@@ -13,6 +13,7 @@ namespace Param_RootNamespace.Services
         public static event NavigationFailedEventHandler NavigationFailed;
 
         private static Frame _frame;
+        private static object _lastParamUsed;
 
         public static Frame Frame
         {
@@ -46,9 +47,15 @@ namespace Param_RootNamespace.Services
         public static bool Navigate(Type pageType, object parameter = null, NavigationTransitionInfo infoOverride = null)
         {
             // Don't open the same page multiple times
-            if (Frame.Content?.GetType() != pageType)
+            if (Frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParamUsed)))
             {
-                return Frame.Navigate(pageType, parameter, infoOverride);
+                var navigationResult = Frame.Navigate(pageType, parameter, infoOverride);
+                if (navigationResult)
+                {
+                    _lastParamUsed = parameter;
+                }
+
+                return navigationResult;
             }
             else
             {
