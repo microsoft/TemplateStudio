@@ -11,6 +11,7 @@ Namespace Services
         Private ReadOnly _pages As New Dictionary(Of String, Type)()
 
         Private Shared _frame As Frame
+        Private _lastParamUsed As Object
 
         Public Property Frame As Frame
             Get
@@ -56,8 +57,11 @@ Namespace Services
                 End If
             End SyncLock
 
-            If Frame.Content?.GetType IsNot page Then
+            If Frame.Content?.GetType IsNot page OrElse parameter IsNot Nothing AndAlso Not parameter.Equals(_lastParamUsed) Then
                 Dim navigationResult = Frame.Navigate(page, parameter, infoOverride)
+                If navigationResult Then
+                    _lastParamUsed = parameter
+                End If
                 Return navigationResult
             Else
                 Return False
