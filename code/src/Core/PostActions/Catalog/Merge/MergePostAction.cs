@@ -83,7 +83,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         protected string GetRelativePath(string path)
         {
-            return path.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
+            if (GenContext.Current.OutputPath == GenContext.Current.TempGenerationPath)
+            {
+                return path.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
+            }
+            else
+            {
+                return path.Replace(Directory.GetParent(GenContext.Current.OutputPath).FullName + Path.DirectorySeparatorChar, string.Empty);
+            }
         }
 
         private void AddFailedMergePostActionsFileNotFound(string originalFilePath)
