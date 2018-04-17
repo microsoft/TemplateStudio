@@ -16,6 +16,8 @@ namespace Microsoft.Templates.Core.Locations
 {
     public class RemoteTemplatesSource : TemplatesSource
     {
+        private readonly string _tmpExtension = "_tmp";
+
         private readonly string _cdnUrl = Configuration.Current.CdnUrl;
 
         private Version _version;
@@ -24,10 +26,13 @@ namespace Microsoft.Templates.Core.Locations
         {
             var extractionFolder = await ExtractAsync(packageInfo, true, ct);
 
+            RemoveTemplatesTempFolders(workingFolder);
             var finalDestination = Path.Combine(workingFolder, packageInfo.Version.ToString());
+            var finalDestinationTemp = string.Concat(finalDestination, _tmpExtension);
 
-            await Fs.SafeMoveDirectoryAsync(Path.Combine(extractionFolder, "Templates"), finalDestination, true, ReportCopyProgress);
+            await Fs.SafeMoveDirectoryAsync(Path.Combine(extractionFolder, "Templates"), finalDestinationTemp, true, ReportCopyProgress);
             Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
+            Fs.SafeRenameDirectory(finalDestinationTemp, finalDestination);
 
             var templatesInfo = new TemplatesContentInfo()
             {
@@ -142,6 +147,22 @@ namespace Microsoft.Templates.Core.Locations
         private void ReportCopyProgress(int progress)
         {
             OnCopyProgress(this, new ProgressEventArgs() { Version = _version, Progress = progress });
+        }
+
+        private void RemoveTemplatesTempFolders(string workingFolder)
+        {
+            if (!Directory.Exists(workingFolder))
+            {
+                return;
+            }
+
+            var searchOptions = $"*{_tmpExtension}";
+            var tempDirectories = Directory.EnumerateDirectories(workingFolder, searchOptions);
+
+            foreach (var dir in tempDirectories)
+            {
+                Fs.SafeDeleteDirectory(dir, true);
+            }
         }
     }
 }
