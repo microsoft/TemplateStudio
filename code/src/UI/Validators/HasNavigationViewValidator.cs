@@ -4,6 +4,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Validation;
 using Microsoft.Templates.UI.Services;
@@ -12,8 +13,14 @@ namespace Microsoft.Templates.UI.Validators
 {
     public class HasNavigationViewValidator : IBreakingChangeValidator
     {
-        // This is last version with Hamburguer menu control in templates
-        public Version BreakingVersion { get; } = new Version("2.0.18093.1");
+        public Version BreakingVersion { get; }
+
+        public HasNavigationViewValidator()
+        {
+            // This is last version with Hamburguer menu control in templates
+            var version = Core.Configuration.Current.BreakingChangesVersions.FirstOrDefault(c => c.Name == "AddNavigationView")?.BreakingVersion;
+            BreakingVersion = version ?? new Version();
+        }
 
         public ValidationResult Validate()
         {

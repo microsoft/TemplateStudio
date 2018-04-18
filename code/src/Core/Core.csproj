@@ -157,6 +157,7 @@
     <Compile Include="Composition\QueryablePropertyDictionary.cs" />
     <Compile Include="Composition\QueryNode.cs" />
     <Compile Include="Composition\QueryOperator.cs" />
+    <Compile Include="Configuration\BreakingChangeVersion.cs" />
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Diagnostics\EditItemActionEnum.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
