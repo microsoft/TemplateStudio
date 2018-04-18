@@ -53,7 +53,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 #if DEBUG
                 return Visibility.Visible;
 #else
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
 #endif
             }
         }
