@@ -145,14 +145,6 @@
   <data name="ExceptionTrackedString" xml:space="preserve">
     <value>Suivi de l'exception</value>
   </data>
-  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Impossible de trouver le fichier « {0} » pour inclure les modifications suivantes. Veuillez passer en revue les blocages de code pour inclure les modifications manuellement lorsque cela est nécessaire dans le cadre de votre projet. </value>
-    <comment>{0}:Relative path to original file </comment>
-  </data>
-  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Impossible de trouver la rangée « {0} » prévue dans le fichier « {1} ». Veuillez fusionner le contenu depuis le fichier de post-action manuellement.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
-  </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>Le fichier {0} ne peut pas être copié vers {1}. Erreur : {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
@@ -183,14 +175,6 @@
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
     <value>*Visualiseur Markdown recommandé : [Éditeur Markdown et Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
-  </data>
-  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>Aucune cible de fusion pour le fichier « {0} »</value>
-    <comment>{0}: Postaction file path</comment>
-  </data>
-  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Ligne {0} introuvable dans le fichier « {1} »</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Impossible de déduire un nom. Trop d'itérations</value>
@@ -398,10 +382,6 @@ Les modifications suivantes n'ont pu être intégrées : {2}
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
     <value>Une erreur est survenue lors de la lecture de l'instance de verrouillage du fichier.</value>
   </data>
-  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>Le style doté de la clé « {0} » a déjà été défini avec une valeur ou des éléments différents dans ce fichier. Veuillez passer en revue les styles pour inclure les modifications manuellement lorsque cela est nécessaire dans le cadre de votre projet.</value>
-    <comment>{0}: Key of the XmlNode</comment>
-  </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>Une erreur est survenue lors de l'acquisition du contenu.</value>
   </data>
@@ -411,9 +391,45 @@ Les modifications suivantes n'ont pu être intégrées : {2}
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Une erreur est survenue lors de la mise à jour du contenu des modèles.</value>
   </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Error executing '{0}'. Ignoring the error as Continue on Error is enabled. Related template: {1}.</value>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Error executing '{0}'. Related template: {1}.</value>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>The PostAction.ActionId '{0}' defined in the template does not match with the expected class ActionId '{1}'. Can't continue. Related template: {2}.</value>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
+    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
+  </data>
+  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
+    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project. Related Template: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
+    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually. Related Template: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
+  </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
     <value>Impossible d'annuler la protection du fichier {0} de manière aléatoire</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
+    <value>There is no merge target for file '{0}'. Related Template: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
+  </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>Line {0} not found in file '{1}'. Related Template: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
+  </data>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Could not find project file for item {0}</value>
+    <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
     <value>Une erreur est survenue lors de la lecture du fichier de configuration source.</value>

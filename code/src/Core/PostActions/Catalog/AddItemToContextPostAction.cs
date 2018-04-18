@@ -13,16 +13,20 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddItemToContextPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddItemToContextPostAction(IReadOnlyList<ICreationPath> config)
-            : base(config)
+        private Dictionary<string, string> _genParameters;
+
+        public AddItemToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
+            : base(relatedTemplate, config)
         {
+            _genParameters = genParameters;
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
+            // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
             var itemsToAdd = Config
                                 .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                                .Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, o.Path)))
+                                .Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, o.GetOutputPath(_genParameters))))
                                 .ToList();
 
             GenContext.Current.ProjectItems.AddRange(itemsToAdd);

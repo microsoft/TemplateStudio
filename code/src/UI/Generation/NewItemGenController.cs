@@ -121,11 +121,11 @@ namespace Microsoft.Templates.UI
             var genItems = GenComposer.ComposeNewItem(userSelection).ToList();
             var chrono = Stopwatch.StartNew();
 
-            var genResults = await GenerateItemsAsync(genItems);
+            var genResults = await GenerateItemsAsync(genItems, true);
 
             chrono.Stop();
 
-            TrackTelemery(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework);
+            TrackTelemery(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
         }
 
         private TempGenerationResult CompareTempGenerationWithProject()
@@ -138,10 +138,10 @@ namespace Microsoft.Templates.UI
 
             foreach (var file in files)
             {
-                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.ProjectPath);
+                var destFilePath = file.Replace(GenContext.Current.OutputPath, GenContext.Current.DestinationParentPath);
                 var fileName = file.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
 
-                var projectFileName = Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, fileName));
+                var projectFileName = Path.GetFullPath(Path.Combine(GenContext.Current.DestinationParentPath, fileName));
 
                 if (File.Exists(projectFileName))
                 {
@@ -183,31 +183,34 @@ namespace Microsoft.Templates.UI
 
         public NewItemGenerationResult CompareOutputAndProject()
         {
+            // Put outputpath back to solution level
+            GenContext.Current.OutputPath = GenContext.Current.TempGenerationPath;
+
             var compareResult = CompareTempGenerationWithProject();
             var result = new NewItemGenerationResult();
             result.NewFiles.AddRange(compareResult.NewFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                         n,
                         Path.Combine(GenContext.Current.OutputPath, n),
-                        Path.Combine(GenContext.Current.ProjectPath, n))));
+                        Path.Combine(GenContext.Current.DestinationParentPath, n))));
 
             result.ConflictingFiles.AddRange(compareResult.ConflictingFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                         n,
                         Path.Combine(GenContext.Current.OutputPath, n),
-                        Path.Combine(GenContext.Current.ProjectPath, n))));
+                        Path.Combine(GenContext.Current.DestinationParentPath, n))));
 
             result.ModifiedFiles.AddRange(compareResult.ModifiedFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                       n,
                       Path.Combine(GenContext.Current.OutputPath, n),
-                      Path.Combine(GenContext.Current.ProjectPath, n))));
+                      Path.Combine(GenContext.Current.DestinationParentPath, n))));
 
             result.UnchangedFiles.AddRange(compareResult.UnchangedFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                      n,
                      Path.Combine(GenContext.Current.OutputPath, n),
-                     Path.Combine(GenContext.Current.ProjectPath, n))));
+                     Path.Combine(GenContext.Current.DestinationParentPath, n))));
 
             result.HasChangesToApply = result.NewFiles.Any() || result.ModifiedFiles.Any() ? true : false;
             return result;
@@ -233,6 +236,9 @@ namespace Microsoft.Templates.UI
 
         public void UnsafeFinishGeneration(UserSelection userSelection)
         {
+            // Put outputpath back to solution level
+            GenContext.Current.OutputPath = GenContext.Current.TempGenerationPath;
+
             var compareResult = CompareTempGenerationWithProject();
             if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
             {
@@ -254,7 +260,7 @@ namespace Microsoft.Templates.UI
             GenContext.Current.ProjectItems.Clear();
             GenContext.Current.FilesToOpen.Clear();
 
-            var directory = GenContext.Current.OutputPath;
+            var directory = GenContext.Current.TempGenerationPath;
             try
             {
                 if (directory.Contains(Path.GetTempPath()))
@@ -298,7 +304,7 @@ namespace Microsoft.Templates.UI
 
             foreach (var file in modifiedFiles)
             {
-                var originalFile = Path.Combine(GenContext.Current.ProjectPath, file);
+                var originalFile = Path.Combine(GenContext.Current.DestinationPath, file);
                 var backupFile = Path.Combine(backupFolder, file);
                 var destDirectory = Path.GetDirectoryName(backupFile);
 
@@ -333,7 +339,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void TrackTelemery(TemplateType templateType, IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx)
+        private static void TrackTelemery(TemplateType templateType, IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string appPlatform)
         {
             try
             {
@@ -342,7 +348,7 @@ namespace Microsoft.Templates.UI
                 var pageIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Select(t => t.Template.Identity));
                 var featureIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Select(t => t.Template.Identity));
 
-                AppHealth.Current.Telemetry.TrackNewItemAsync(templateType, appProjectType, appFx, GenContext.ToolBox.Shell.GetVsProjectId(), pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
+                AppHealth.Current.Telemetry.TrackNewItemAsync(templateType, appProjectType, appFx, appPlatform, GenContext.ToolBox.Shell.GetVsProjectId(), pagesAdded, featuresAdded, pageIdentities, featureIdentities, timeSpent).FireAndForget();
 
                 foreach (var genInfo in genItems)
                 {

@@ -35,8 +35,7 @@ namespace Microsoft.Templates.Test
 
         private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
-
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
             if (Templates == null)
             {
                 await GenContext.ToolBox.Repo.SynchronizeAsync(true);
@@ -71,18 +70,25 @@ namespace Microsoft.Templates.Test
 
             List<object[]> result = new List<object[]>();
 
-            var projectTypes =
-                StyleCopGenerationTestsFixture.Templates.Where(
-                    t => t.GetTemplateType() == TemplateType.Project && t.Name != "Feature.Testing.StyleCop")
-                    .SelectMany(p => p.GetProjectTypeList()).Distinct();
+            // foreach (var platform in Platforms.GetAllPlatforms())
+            var platform = Platforms.Uwp;
+            var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
+
+            var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                        .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                        .Select(m => m.Name);
 
             foreach (var projectType in projectTypes)
             {
-                var frameworks = GenComposer.GetSupportedFx(projectType);
+                var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                foreach (var framework in frameworks)
+                var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
+                                            .Where(m => projectFrameworks.Contains(m.Name))
+                                            .Select(m => m.Name).ToList();
+
+                foreach (var framework in targetFrameworks)
                 {
-                    result.Add(new object[] { projectType, framework });
+                    result.Add(new object[] { projectType, framework, platform });
                 }
             }
 
@@ -127,7 +133,7 @@ namespace Microsoft.Templates.Test
 
             _usedNames.Add(itemName);
 
-            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework);
+            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework, userSelection.Platform);
 
             foreach (var item in dependencies)
             {

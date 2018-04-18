@@ -448,7 +448,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dependency template {0} not found for framework {1}..
+        ///   Looks up a localized string similar to Dependency template {0} not found for framework {1} and platform {2}..
         /// </summary>
         public static string ErrorDependencyNotFound {
             get {
@@ -502,7 +502,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Layout template {0} not found for framework {1}..
+        ///   Looks up a localized string similar to Layout template {0} not found for framework {1} and platform {2}..
         /// </summary>
         public static string ErrorLayoutNotFound {
             get {
@@ -543,6 +543,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ErrorUnableAddProjectToSolution {
             get {
                 return ResourceManager.GetString("ErrorUnableAddProjectToSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to resolve platform..
+        /// </summary>
+        public static string ErrorUnableResolvePlatform {
+            get {
+                return ResourceManager.GetString("ErrorUnableResolvePlatform", resourceCulture);
             }
         }
         
@@ -907,6 +916,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select platform.
+        /// </summary>
+        public static string ProjectConfigurationSelectPlatform {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectPlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select project type:.
         /// </summary>
         public static string ProjectConfigurationSelectProjectType {
@@ -1209,6 +1227,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TemplateDetailsVersion {
             get {
                 return ResourceManager.GetString("TemplateDetailsVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Analytics.
+        /// </summary>
+        public static string TemplateGroup_Analytics {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Analytics", resourceCulture);
             }
         }
         

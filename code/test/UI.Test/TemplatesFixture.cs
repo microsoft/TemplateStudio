@@ -20,15 +20,19 @@ namespace Microsoft.UI.Test
 
         public string ProjectName => "Test";
 
-        public string OutputPath => string.Empty;
+        public string OutputPath { get; set; }
 
-        public string ProjectPath => string.Empty;
+        public string DestinationPath => string.Empty;
+
+        public string DestinationParentPath => string.Empty;
+
+        public string TempGenerationPath => string.Empty;
 
         public List<string> ProjectItems => null;
 
         public List<string> FilesToOpen => null;
 
-        public List<FailedMergePostAction> FailedMergePostActions => null;
+        public List<FailedMergePostActionInfo> FailedMergePostActions => null;
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => null;
 
@@ -40,10 +44,10 @@ namespace Microsoft.UI.Test
         "Usage",
         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
         Justification = "Required por unit testing.")]
-        public void InitializeFixture(string language)
+        public void InitializeFixture(string platform, string language)
         {
             var source = new LocalTemplatesSource();
-            GenContext.Bootstrap(source, new FakeGenShell(language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
             GenContext.Current = this;
             if (!syncExecuted)
             {

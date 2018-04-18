@@ -30,6 +30,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public TemplateType TemplateType { get; set; }
 
+        public string ConfigPlatform { get; private set; }
+
         public string ConfigFramework { get; private set; }
 
         public string ConfigProjectType { get; private set; }
@@ -66,7 +68,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             TemplateType = templateType;
             var stringResource = templateType == TemplateType.Page ? StringRes.NewItemTitlePage : StringRes.NewItemTitleFeature;
             WizardStatus.Title = stringResource;
-            await InitializeAsync(language);
+            SetProjectConfigInfo();
+            await InitializeAsync(ConfigPlatform, language);
         }
 
         protected override async Task<bool> IsStepAvailableAsync(int step)
@@ -109,8 +112,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, Language) { HomeName = string.Empty };
-            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework);
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, Language) { HomeName = string.Empty };
+            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework, ConfigPlatform);
             userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
             foreach (var dependencyTemplate in dependencies)
             {
@@ -131,15 +134,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private UserSelection GetUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, Language);
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, Language);
             userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
             return userSelection;
         }
 
         protected override async Task OnTemplatesAvailableAsync()
         {
-            SetProjectConfigInfo();
-            TemplateSelection.LoadData(TemplateType, ConfigFramework);
+            TemplateSelection.LoadData(TemplateType, ConfigFramework, ConfigPlatform);
             WizardStatus.IsLoading = false;
 
             var result = BreakingChangesValidatorService.Validate();
@@ -185,9 +187,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 {
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
-                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework);
+                    configInfo.Platform = vm.SelectedPlatform;
+                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework, configInfo.Platform);
                     ConfigFramework = configInfo.Framework;
                     ConfigProjectType = configInfo.ProjectType;
+                    ConfigPlatform = configInfo.Platform;
                 }
                 else
                 {
@@ -198,6 +202,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 ConfigFramework = configInfo.Framework;
                 ConfigProjectType = configInfo.ProjectType;
+                ConfigPlatform = configInfo.Platform;
             }
         }
 

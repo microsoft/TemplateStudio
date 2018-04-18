@@ -27,13 +27,17 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string ProjectName => _replacementsDictionary["$safeprojectname$"];
 
-        public string ProjectPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
+        public string DestinationPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
-        public string OutputPath => ProjectPath;
+        public string DestinationParentPath => new DirectoryInfo(DestinationPath).Parent.FullName;
+
+        public string OutputPath { get; set; }
+
+        public string TempGenerationPath => string.Empty;
 
         public List<string> ProjectItems { get; } = new List<string>();
 
-        public List<FailedMergePostAction> FailedMergePostActions { get; } = new List<FailedMergePostAction>();
+        public List<FailedMergePostActionInfo> FailedMergePostActions { get; } = new List<FailedMergePostActionInfo>();
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; } = new Dictionary<string, List<MergeInfo>>();
 
@@ -107,7 +111,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection(GenContext.CurrentLanguage, new VSStyleValuesProvider());
+                    _userSelection = NewProjectGenController.Instance.GetUserSelection(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)
@@ -120,7 +124,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     GenContext.ToolBox.Repo.CancelSynchronization();
                 }
 
-                CleanupDirectories(projectDirectory, solutionDirectory);
+                CleanupDirectories(DestinationPath);
 
                 throw;
             }
@@ -131,15 +135,16 @@ namespace Microsoft.Templates.UI.VisualStudio
             return true;
         }
 
-        private void CleanupDirectories(string projectDirectory, string solutionDirectory)
+        private void CleanupDirectories(string projectDirectory)
         {
+            var parentDir = new DirectoryInfo(projectDirectory).Parent.FullName;
             Fs.SafeDeleteDirectory(projectDirectory);
 
-            if (Directory.Exists(solutionDirectory)
-                && !Directory.EnumerateDirectories(solutionDirectory).Any()
-                && !Directory.EnumerateFiles(solutionDirectory).Any())
+            if (Directory.Exists(parentDir)
+                && !Directory.EnumerateDirectories(parentDir).Any()
+                && !Directory.EnumerateFiles(parentDir).Any())
             {
-                Fs.SafeDeleteDirectory(solutionDirectory);
+                Fs.SafeDeleteDirectory(parentDir);
             }
         }
     }

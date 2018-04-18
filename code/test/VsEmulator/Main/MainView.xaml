@@ -39,13 +39,13 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <TextBlock>
-                        <Hyperlink x:Name="newCSharpProjectButton" Command="{Binding NewCSharpProjectCommand}">
-                            <TextBlock Text="New C# project..."/>
+                        <Hyperlink x:Name="newCSharpProjectButton" Command="{Binding NewUwpCSharpProjectCommand}">
+                            <TextBlock Text="New Uwp C# project..."/>
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>
-                        <Hyperlink Command="{Binding NewVisualBasicProjectCommand}">
-                            <TextBlock Text="New VB project..."/>
+                        <Hyperlink Command="{Binding NewUwpVisualBasicProjectCommand}">
+                            <TextBlock Text="New Uwp VB project..."/>
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>

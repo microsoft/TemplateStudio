@@ -6,6 +6,7 @@
         "author": "Microsoft",
         "order": "3",
         "licenses": "",
+        "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {
@@ -15,6 +16,7 @@
         "author": "Laurent Bugnion",
         "order": "2",
         "licenses": "[MVVMLight](http://www.galasoft.ch/license_MIT.txt)",
+        "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },
     {
@@ -24,6 +26,7 @@
         "author": "Microsoft",
         "order": "1",
         "licenses": "",
+        "platforms": ["Uwp"],
 		"languages": [ "C#", "VisualBasic" ]
     },
     {
@@ -33,6 +36,7 @@
         "author": "Nigel Sampson",
         "order": "4",
         "licenses": "[Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro/blob/master/License.txt)",
+        "platforms": ["Uwp"],
         "languages": [ "C#" ]
     },
     {
@@ -42,6 +46,7 @@
         "author": "Brian Lagunas, Bart Lannoeye, Dan Siegel",
         "order": "5",
         "licenses": "[Prism](https://github.com/PrismLibrary/Prism/blob/master/LICENSE)",
+        "platforms": ["Uwp"],
         "languages": [ "C#" ]
     }
 ]

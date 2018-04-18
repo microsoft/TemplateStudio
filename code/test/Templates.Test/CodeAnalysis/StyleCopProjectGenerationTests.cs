@@ -37,30 +37,32 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForStyleCopAsync")]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework)
+        public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework, string platform)
         {
             await SetUpFixtureForTestingAsync();
 
             var targetProjectTemplate = StyleCopGenerationTestsFixture.Templates
                 .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
                                      && t.GetLanguage() == ProgrammingLanguages.CSharp
-                                  && t.GetProjectTypeList().Contains(projectType)
-                                  && t.GetFrameworkList().Contains(framework));
+                                     && t.GetPlatform() == platform
+                                     && t.GetProjectTypeList().Contains(projectType)
+                                     && t.GetFrameworkList().Contains(framework));
 
             var projectName = $"{projectType}{framework}AllStyleCop";
 
             ProjectName = projectName;
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            OutputPath = ProjectPath;
+            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            OutputPath = DestinationPath;
 
-            var userSelection = new UserSelection(projectType, framework, ProgrammingLanguages.CSharp)
+            var userSelection = new UserSelection(projectType, framework, platform, ProgrammingLanguages.CSharp)
             {
                 HomeName = "Main"
             };
 
             AddLayoutItems(userSelection);
-            _fixture.AddItems(userSelection, GetTemplates(framework, TemplateType.Page), _fixture.GetDefaultName);
-            _fixture.AddItems(userSelection, GetTemplates(framework, TemplateType.Feature), _fixture.GetDefaultName);
+            _fixture.AddItems(userSelection, GetTemplates(framework, platform, TemplateType.Page), _fixture.GetDefaultName);
+            _fixture.AddItems(userSelection, GetTemplates(framework, platform, TemplateType.Feature), _fixture.GetDefaultName);
 
             var x = StyleCopGenerationTestsFixture.Templates.First(t => t.Name == "Feature.Testing.StyleCop");
 
@@ -88,16 +90,17 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
+        private IEnumerable<ITemplateInfo> GetTemplates(string framework, string platform, TemplateType templateType)
         {
             return StyleCopGenerationTestsFixture.Templates
                                          .Where(t => t.GetFrameworkList().Contains(framework)
+                                                  && t.GetPlatform() == platform
                                                   && t.GetTemplateType() == templateType);
         }
 
         private void AddLayoutItems(UserSelection userSelection)
         {
-            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework);
+            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
 
             foreach (var item in layouts)
             {

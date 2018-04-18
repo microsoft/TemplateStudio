@@ -35,7 +35,7 @@ namespace Microsoft.Templates.UI.Validators
 
         private bool HasNavigationView()
         {
-            var file = Path.Combine(GenContext.Current.ProjectPath, "Views", "ShellPage.xaml");
+            var file = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views", "ShellPage.xaml");
             var fileContent = GetFileContent(file);
             return fileContent.Contains("<NavigationView");
         }

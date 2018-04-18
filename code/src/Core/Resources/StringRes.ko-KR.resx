@@ -145,14 +145,6 @@
   <data name="ExceptionTrackedString" xml:space="preserve">
     <value>예외 추적</value>
   </data>
-  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>다음 변경 사항을 포함할 '{0}' 파일을 찾을 수 없습니다. 코드 블록을 검토하고 필요한 변경 사항을 프로젝트에 수동으로 추가하십시오. </value>
-    <comment>{0}:Relative path to original file </comment>
-  </data>
-  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>'{1}' 파일에서 '{0}' 줄을 찾을 수 없습니다. postaction 파일의 콘텐츠를 수동으로 병합하십시오.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
-  </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>{0} 파일을 {1}(으)로 복사할 수 없습니다. 오류: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
@@ -183,14 +175,6 @@
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
     <value>*권장하는 Markdown 뷰어: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
-  </data>
-  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>'{0}' 파일에 병합 대상이 없습니다.</value>
-    <comment>{0}: Postaction file path</comment>
-  </data>
-  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>'{1}'파일에 {0}줄이 없음</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>이름을 유추할 수 없습니다. 반복 횟수가 너무 많습니다</value>
@@ -398,10 +382,6 @@
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
     <value>인스턴스 잠금 파일을 읽는 중 오류가 발생했습니다.</value>
   </data>
-  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>'{0}' 키가 있는 스타일은 이미 파일에서 다른 값이나 다른 요소로 정의되어 있습니다. 스타일을 검토하고 필요한 변경 사항을 프로젝트에 수동으로 추가하십시오.</value>
-    <comment>{0}: Key of the XmlNode</comment>
-  </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>콘텐츠를 받는 데 오류가 발생했습니다.</value>
   </data>
@@ -411,9 +391,45 @@
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>템플릿 콘텐츠를 업데이트하는 중 오류가 발생했습니다.</value>
   </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Error executing '{0}'. Ignoring the error as Continue on Error is enabled. Related template: {1}.</value>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Error executing '{0}'. Related template: {1}.</value>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>The PostAction.ActionId '{0}' defined in the template does not match with the expected class ActionId '{1}'. Can't continue. Related template: {2}.</value>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
+    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
+  </data>
+  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
+    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project. Related Template: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
+    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually. Related Template: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
+  </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
     <value>{0} 파일의 읽기전용 보호를 제거할 수 없음</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
+    <value>There is no merge target for file '{0}'. Related Template: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
+  </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>Line {0} not found in file '{1}'. Related Template: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
+  </data>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Could not find project file for item {0}</value>
+    <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
     <value>원본 구성 파일을 읽는 중 오류가 발생했습니다.</value>

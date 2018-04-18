@@ -28,27 +28,62 @@ namespace Microsoft.Templates.Test
             return language == ProgrammingLanguages.CSharp ? "CS" : "VB";
         }
 
+        protected static string ShortProjectType(string projectType)
+        {
+            switch (projectType)
+            {
+                case "Blank":
+                    return "B";
+                case "SplitView":
+                    return "SV";
+                case "TabbedPivot":
+                    return "TP";
+                default:
+                    return projectType;
+            }
+        }
+
+        protected static string ShortFramework(string framework)
+        {
+            switch (framework)
+            {
+                case "CodeBehind":
+                    return "CB";
+                case "MVVMBasic":
+                    return "MB";
+                case "MVVMLight":
+                    return "ML";
+                case "CaliburnMicro":
+                    return "CM";
+                case "Prism":
+                    return "P";
+                default:
+                    return framework;
+            }
+        }
+
         protected static string GetProjectExtension(string language)
         {
             return language == ProgrammingLanguages.CSharp ? "csproj" : "vbproj";
         }
 
-        protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
+        protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
+            BaseGenAndBuildFixture.SetCurrentPlatform(platform);
 
             var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
 
             ProjectName = projectName;
 
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            OutputPath = ProjectPath;
+            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
 
-            var userSelection = _fixture.SetupProject(projectType, framework, language, getName);
+            var userSelection = _fixture.SetupProject(projectType, framework, platform, language, getName);
 
             if (getName != null)
             {
-                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework), getName);
+                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework, platform), getName);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
@@ -58,7 +93,11 @@ namespace Microsoft.Templates.Test
             // Assert
             Assert.True(Directory.Exists(resultPath));
             Assert.True(Directory.GetFiles(resultPath, "*.*", SearchOption.AllDirectories).Count() > 2);
-            AssertCorrectProjectConfigInfo(projectType, framework);
+
+            if (platform == Platforms.Uwp)
+            {
+                AssertCorrectProjectConfigInfo(projectType, framework, platform);
+            }
 
             // Clean
             if (cleanGeneration)
@@ -69,18 +108,19 @@ namespace Microsoft.Templates.Test
             return resultPath;
         }
 
-        protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework)
+        protected void AssertCorrectProjectConfigInfo(string expectedProjectType, string expectedFramework, string expectedPlatform)
         {
             var info = ProjectConfigInfo.ReadProjectConfiguration();
 
             Assert.Equal(expectedProjectType, info.ProjectType);
             Assert.Equal(expectedFramework, info.Framework);
+            Assert.Equal(expectedPlatform, info.Platform);
         }
 
-        protected void AssertBuildProjectAsync(string projectPath, string projectName)
+        protected void AssertBuildProjectAsync(string projectPath, string projectName, string platform)
         {
             // Build solution
-            var result = _fixture.BuildSolution(projectName, projectPath);
+            var result = _fixture.BuildSolution(projectName, projectPath, platform);
 
             // Assert
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
@@ -89,19 +129,20 @@ namespace Microsoft.Templates.Test
             Fs.SafeDeleteDirectory(projectPath);
         }
 
-        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string language, bool emptyProject, bool cleanGeneration = true)
+        protected async Task<string> AssertGenerateRightClickAsync(string projectName, string projectType, string framework, string platform, string language, bool emptyProject, bool cleanGeneration = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
+            BaseGenAndBuildFixture.SetCurrentPlatform(platform);
 
             ProjectName = projectName;
-            ProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
-            OutputPath = ProjectPath;
+            DestinationPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestNewItemPath, projectName);
 
-            var userSelection = _fixture.SetupProject(projectType, framework, language);
+            var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
             if (!emptyProject)
             {
-                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework), BaseGenAndBuildFixture.GetDefaultName);
+                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework, platform), BaseGenAndBuildFixture.GetDefaultName);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
@@ -117,10 +158,11 @@ namespace Microsoft.Templates.Test
             var rightClickTemplates = _fixture.Templates().Where(
                                            t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                              && t.GetFrameworkList().Contains(framework)
+                                             && t.GetPlatform() == platform
                                              && !t.GetIsHidden()
                                              && t.GetRightClickEnabled());
 
-            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, language);
+            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, platform, language);
 
             var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
             int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
@@ -143,14 +185,14 @@ namespace Microsoft.Templates.Test
             return finalProjectPath;
         }
 
-        protected async Task AddRightClickTemplatesAsync(IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string language)
+        protected async Task AddRightClickTemplatesAsync(IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string platform, string language)
         {
             // Add new items
             foreach (var item in rightClickTemplates)
             {
-                OutputPath = GenContext.GetTempGenerationPath(projectName);
+                TempGenerationPath = GenContext.GetTempGenerationPath(projectName);
 
-                var newUserSelection = new UserSelection(projectType, framework, language)
+                var newUserSelection = new UserSelection(projectType, framework, platform, language)
                 {
                     HomeName = string.Empty,
                     ItemGenerationType = ItemGenerationType.GenerateAndMerge
@@ -164,11 +206,12 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string itemId, string language, bool cleanGeneration = true)
+        protected async Task<(string ProjectPath, string ProjecName)> AssertGenerationOneByOneAsync(string itemName, string projectType, string framework, string platform, string itemId, string language, bool cleanGeneration = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
+            BaseGenAndBuildFixture.SetCurrentPlatform(platform);
 
-            var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
+            var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework) && t.GetPlatform() == platform);
             var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity == itemId);
             var finalName = itemTemplate.GetDefaultName();
             var validators = new List<Validator>
@@ -182,13 +225,14 @@ namespace Microsoft.Templates.Test
 
             finalName = Naming.Infer(finalName, validators);
 
-            var projectName = $"{projectType}{finalName}{ShortLanguageName(language)}";
+            var projectName = $"{ShortProjectType(projectType)}{finalName}{ShortLanguageName(language)}";
 
             ProjectName = projectName;
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            OutputPath = ProjectPath;
+            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            OutputPath = DestinationPath;
 
-            var userSelection = _fixture.SetupProject(projectType, framework, language);
+            var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
             _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
 
@@ -219,6 +263,7 @@ namespace Microsoft.Templates.Test
         protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
+            BaseGenAndBuildFixture.SetCurrentPlatform(Platforms.Uwp);
 
             var projectTemplate = _fixture.Templates().FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project && t.GetProjectTypeList().Contains(projectType) && t.GetFrameworkList().Contains(framework));
 
@@ -232,10 +277,10 @@ namespace Microsoft.Templates.Test
             }
 
             ProjectName = $"{projectType}{framework}Compare{singlePageName}{ShortLanguageName(language)}";
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
-            OutputPath = ProjectPath;
+            DestinationPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
+            OutputPath = DestinationPath;
 
-            var userSelection = _fixture.SetupProject(projectType, framework, language);
+            var userSelection = _fixture.SetupProject(projectType, framework, Platforms.Uwp, language);
 
             foreach (var identity in genIdentitiesList)
             {
@@ -337,30 +382,30 @@ namespace Microsoft.Templates.Test
         // Need overload with different number of params to work with XUnit.MemeberData
         public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework)
         {
-            return GetProjectTemplatesForBuild(framework, string.Empty);
+            return GetProjectTemplatesForBuild(framework, string.Empty, string.Empty);
         }
 
         // Set a single programming language to stop the fixture using all languages available to it
-        public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework, string programmingLanguage)
+        public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework, string programmingLanguage, string platform)
         {
             IEnumerable<object[]> result = new List<object[]>();
 
             switch (framework)
             {
                 case "CodeBehind":
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage);
+                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
                 case "MVVMBasic":
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage);
+                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
                 case "MVVMLight":
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage);
+                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
                 case "CaliburnMicro":
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage);
+                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
                 case "LegacyFrameworks":
@@ -368,7 +413,7 @@ namespace Microsoft.Templates.Test
                     break;
 
                 case "Prism":
-                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage);
+                    result = BuildTemplatesTestFixture.GetProjectTemplates(framework, programmingLanguage, platform);
                     break;
 
                 default:

@@ -68,10 +68,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             ValidationService.Initialize(UserSelection.GetNames);
         }
 
-        public override async Task InitializeAsync(string language)
+        public override async Task InitializeAsync(string platform, string language)
         {
             WizardStatus.Title = $" ({GenContext.Current.ProjectName})";
-            await base.InitializeAsync(language);
+            await base.InitializeAsync(platform, language);
         }
 
         protected override void OnCancel() => WizardShell.Current.Close();
@@ -141,7 +141,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         protected override Task OnTemplatesAvailableAsync()
         {
-            ProjectType.LoadData();
+            ProjectType.LoadData(Platform);
             ShowNoContentPanel = !ProjectType.Items.Any();
             return Task.CompletedTask;
         }
@@ -176,14 +176,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnProjectTypeSelected()
         {
-            Framework.LoadData(ProjectType.Selected.Name);
+            Framework.LoadData(ProjectType.Selected.Name, Platform);
         }
 
         private void OnFrameworkSelected()
         {
-            AddPages.LoadData(Framework.Selected.Name);
-            AddFeatures.LoadData(Framework.Selected.Name);
-            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
+            AddPages.LoadData(Framework.Selected.Name, Platform);
+            AddFeatures.LoadData(Framework.Selected.Name, Platform);
+            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
             WizardStatus.IsLoading = false;
         }
 
