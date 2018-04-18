@@ -52,12 +52,6 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in targetFrameworks)
                     {
-                        // See https://github.com/Microsoft/WindowsTemplateStudio/issues/1985
-                        if (framework == "MVVMLight")
-                        {
-                            continue;
-                        }
-
                         result.Add(new object[] { projectType, framework, Platforms.Uwp, language });
                     }
                 }
@@ -74,7 +68,7 @@ namespace Microsoft.Templates.Test
         {
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), new Version("1.7"), language);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), new Version("2.0"), language);
             if (!syncExecuted)
             {
                 GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
