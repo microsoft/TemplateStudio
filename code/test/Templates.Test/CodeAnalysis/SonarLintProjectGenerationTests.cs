@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetProjectTemplatesForSonarLintAsync")]
         [Trait("Type", "CodeStyle")]
-        public async Task GenerateAllPagesAndFeaturesAndCheckWithSonarLintAsync(string projectType, string framework)
+        public async Task GenerateAllPagesAndFeaturesAndCheckWithSonarLintAsync(string projectType, string framework, string platform)
         {
              await SetUpFixtureForTestingAsync();
 
@@ -47,10 +47,10 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}AllSonarLint";
 
             ProjectName = projectName;
-            ProjectPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            OutputPath = ProjectPath;
+            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+            OutputPath = DestinationPath;
 
-            var userSelection = new UserSelection(projectType, framework, ProgrammingLanguages.VisualBasic)
+            var userSelection = new UserSelection(projectType, framework, platform, ProgrammingLanguages.VisualBasic)
             {
                 HomeName = "Main"
             };
@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Test
 
         private void AddLayoutItems(UserSelection userSelection)
         {
-            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework);
+            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
 
             foreach (var item in layouts)
             {

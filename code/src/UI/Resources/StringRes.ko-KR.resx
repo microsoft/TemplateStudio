@@ -525,10 +525,6 @@
     <value>{0}의 종속성 항목이 잘못되었습니다. 종속성은 multipleInstance = false로 구성되어야 합니다.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>{1} framework에서 {0}종속성 템플릿을 찾을 수 없습니다.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name</comment>
-  </data>
   <data name="ErrorDependencyType" xml:space="preserve">
     <value>{0}의 종속성 항목이 잘못되었습니다. 종속성의 유형은 페이지 또는 기능이어야 합니다.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
@@ -536,10 +532,6 @@
   <data name="ErrorGenerating" xml:space="preserve">
     <value>템플릿 '{0}', 이름: {1}, 이유: '{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>{1}framework에 대한 {0} 레이아웃 템플릿이 없습니다.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
     <value>잘못된 레이아웃 항목 {0}. 레이아웃 유형은 페이지 또는 기능이어야 합니다.</value>
@@ -659,6 +651,29 @@
   <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
     <value>HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. </value>
     <comment>Has navigation view validation error message</comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Unable to resolve platform.</value>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Select platform</value>
+    <comment>Project configuration window select platform title</comment>
+  </data>
+  <data name="TemplateGroup_Analytics" xml:space="preserve">
+    <value>Analytics</value>
+    <comment>Group header for analytics templates</comment>
+  </data>
+  <data name="NoContentPanelMessage" xml:space="preserve">
+    <value>no content available.</value>
+    <comment>Message in no content panel</comment>
   </data>
   <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetonavigationview.md</value>

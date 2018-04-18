@@ -14,20 +14,23 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        public AddProjectToSolutionPostAction(IReadOnlyList<ICreationPath> config)
-            : base(config)
+        private Dictionary<string, string> _genParameters;
+
+        public AddProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
+            : base(relatedTemplate, config)
         {
+            _genParameters = genParameters;
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             var chrono = Stopwatch.StartNew();
             foreach (var output in Config)
             {
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
-                    var projectPath = Path.GetFullPath(Path.Combine(GenContext.Current.ProjectPath, output.Path));
-                    GenContext.ToolBox.Shell.AddProjectToSolution(projectPath);
+                    var solutionPath = Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, output.GetOutputPath(_genParameters)));
+                    GenContext.ToolBox.Shell.AddProjectToSolution(solutionPath);
                 }
             }
 

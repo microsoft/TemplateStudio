@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.cspro
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{11848CF0-5EFE-419F-9261-47F683109F96}"
 	ProjectSection(SolutionItems) = preProject
-		_tools\NuGet.exe = _tools\NuGet.exe
+		tools\nuget.exe = tools\nuget.exe
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "src\UI\UI.csproj", "{DCFD282D-D91C-49B5-8DBF-D943BAFEF5AA}"

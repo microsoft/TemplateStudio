@@ -12,17 +12,20 @@ namespace Microsoft.Templates.UI.Services
 {
     public static class DataService
     {
-        public static bool LoadProjectTypes(ObservableCollection<MetadataInfoViewModel> projectTypes)
+        public static bool LoadProjectTypes(ObservableCollection<MetadataInfoViewModel> projectTypes, string platform)
         {
-            projectTypes.Clear();
-            if (GenContext.ToolBox.Repo.GetProjectTypes().Any())
-            {
-                var data = GenContext.ToolBox.Repo.GetProjectTypes()
-                                                .Select(m => new MetadataInfoViewModel(m))
-                                                .OrderBy(pt => pt.Order)
-                                                .ToList();
+            var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
-                foreach (var projectType in data.Where(p => !string.IsNullOrEmpty(p.Description)))
+            var data = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                        .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                        .Select(m => new MetadataInfoViewModel(m))
+                        .OrderBy(pt => pt.Order).ToList();
+
+            projectTypes.Clear();
+
+            if (data.Any())
+            {
+                foreach (var projectType in data)
                 {
                     projectTypes.Add(projectType);
                 }
@@ -35,14 +38,15 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        public static bool LoadFrameworks(ObservableCollection<MetadataInfoViewModel> frameworks, string projectTypeName)
+        public static bool LoadFrameworks(ObservableCollection<MetadataInfoViewModel> frameworks, string projectTypeName, string platform)
         {
-            var projectFrameworks = GenComposer.GetSupportedFx(projectTypeName);
-            var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
-                                                                .Where(m => projectFrameworks.Contains(m.Name))
-                                                                .Select(m => new MetadataInfoViewModel(m))
-                                                                .OrderBy(f => f.Order)
-                                                                .ToList();
+            var templateFrameworks = GenComposer.GetSupportedFx(projectTypeName, platform);
+
+            var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
+                                        .Where(m => templateFrameworks.Contains(m.Name))
+                                        .Select(m => new MetadataInfoViewModel(m))
+                                        .OrderBy(f => f.Order)
+                                        .ToList();
 
             frameworks.Clear();
 
@@ -54,22 +58,23 @@ namespace Microsoft.Templates.UI.Services
             return frameworks.Any();
         }
 
-        public static int LoadTemplateGroups(ObservableCollection<TemplateGroupViewModel> templateGroups, TemplateType templateType, string frameworkName)
+        public static int LoadTemplatesGroups(ObservableCollection<TemplateGroupViewModel> templatesGroups, TemplateType templateType, string frameworkName, string platform)
         {
-            if (!templateGroups.Any())
+            if (!templatesGroups.Any())
             {
                 var templates = GenContext.ToolBox.Repo.Get(t =>
                                     t.GetTemplateType() == templateType &&
                                     t.GetFrameworkList().Contains(frameworkName) &&
+                                    t.GetPlatform() == platform &&
                                     !t.GetIsHidden())
-                                    .Select(t => new TemplateInfoViewModel(t, frameworkName));
+                                    .Select(t => new TemplateInfoViewModel(t, frameworkName, platform));
 
                 var groups = templates
                     .OrderBy(t => t.Order)
                     .GroupBy(t => t.Group)
                     .Select(gr => new TemplateGroupViewModel(gr))
                     .OrderBy(gr => gr.Name);
-                templateGroups.AddRange(groups);
+                templatesGroups.AddRange(groups);
                 return templates.Count();
             }
 

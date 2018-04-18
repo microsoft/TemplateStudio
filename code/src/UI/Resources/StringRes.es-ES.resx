@@ -525,10 +525,6 @@
     <value>Elemento de dependencia no válido {0}. Las dependencias deben configurarse como multipleInstance = false.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>No se encontró la plantilla de dependencia {0} para el framework {1}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name</comment>
-  </data>
   <data name="ErrorDependencyType" xml:space="preserve">
     <value>Elemento de dependencia no válido {0}. Los elementos de dependencia deben ser del tipo Página o Característica.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
@@ -536,10 +532,6 @@
   <data name="ErrorGenerating" xml:space="preserve">
     <value>Plantilla '{0}', nombre: '{1}', razón: '{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>No se encontró la plantilla de diseño {0} para el framework {1}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
     <value>Elemento de diseño no válido {0}. Los elementos de diseño deben ser del tipo Página o Característica.</value>
@@ -675,5 +667,28 @@
   <data name="BreakingChangesDialogMessage" xml:space="preserve">
     <value>We have detected incompatibilities between your project and the last templates version. Please review the changes:</value>
     <comment>Breaking change window dialog message description</comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Unable to resolve platform.</value>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Select platform</value>
+    <comment>Project configuration window select platform title</comment>
+  </data>
+  <data name="TemplateGroup_Analytics" xml:space="preserve">
+    <value>Analytics</value>
+    <comment>Group header for analytics templates</comment>
+  </data>
+  <data name="NoContentPanelMessage" xml:space="preserve">
+    <value>no content available.</value>
+    <comment>Message in no content panel</comment>
   </data>
 </root>

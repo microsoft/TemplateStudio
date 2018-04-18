@@ -17,6 +17,8 @@ namespace Microsoft.Templates.Fakes
 
         private string _path;
 
+        private bool _isProjitemsFile;
+
         private XElement _root;
 
         public string Name { get; }
@@ -39,9 +41,19 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
+        public string ProjectTypeGuids
+        {
+            get
+            {
+                var nsElement = _root.Descendants().FirstOrDefault(e => e.Name.LocalName == "ProjectTypeGuids");
+                return nsElement?.Value;
+            }
+        }
+
         private FakeMsBuildProject(string path)
         {
             _path = path;
+            _isProjitemsFile = Path.GetExtension(_path) == ".projitems" ? true : false;
             Name = Path.GetFileNameWithoutExtension(path);
             _root = XElement.Load(path);
         }
@@ -54,6 +66,12 @@ namespace Microsoft.Templates.Fakes
         public void AddItem(string itemPath)
         {
             var itemRelativePath = itemPath.Replace($@"{Path.GetDirectoryName(_path)}\", string.Empty).Replace(@".\", string.Empty);
+
+            if (_isProjitemsFile)
+            {
+                itemRelativePath = "$(MSBuildThisFileDirectory)" + itemRelativePath;
+            }
+
             if (ItemExists(itemRelativePath))
             {
                 return;
@@ -61,7 +79,7 @@ namespace Microsoft.Templates.Fakes
 
             var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
 
-            XElement element = GetItemType(itemRelativePath).GetXmlDefinition(itemRelativePath);
+            XElement element = GetItemType(itemRelativePath).GetXmlDefinition(itemRelativePath, _isProjitemsFile);
             ApplyNs(element);
             itemsContainer.Add(element);
 

@@ -43,10 +43,11 @@ A template is just code (some source files and folders structure) with some meta
 The [Templates Repository](../templates) has the following structure:
 
 * [_catalog](../templates/_catalog): this folder contains the catalog of available Frameworks and Project Types, including the required information and metadata (descriptions, icons, images, etc.) to be displayed in the Wizard. You can consider all the content within the *_catalog* folder as metadata for frameworks and project types.
-* [_composition](../templates/_composition): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
-* [Projects](../templates/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
-* [Pages](../templates/Pages): Page templates define the source files needed to create a page of a certain type.
-* [Features](../templates/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
+* [Uwp](_templates/Uwp): this folder contains all templates used for UWP platform projects
+  * [_composition](../templates/Uwp/_composition): this folder contains the partial code templates that will be generated when certain constraints are met, including framework specific templates.
+  * [Projects](../templates/Uwp/Projects): Project templates which define the actual folder structure, source files and auxiliary files to create a base project.
+  * [Pages](../templates/Uwp/Pages): Page templates define the source files needed to create a page of a certain type.
+  * [Features](../templates/Uwp/Features): Feature templates with the sources required to add different features and / or capabilities to the target app.
 
 ## Anatomy of templates
 
@@ -112,6 +113,7 @@ The replacements are done based on the configuration established in the `templat
     "type": "item",
     "wts.type": "page",
     "wts.framework": "MVVMBasic|MVVMLight",       //Frameworks where this template can be used.
+    "wts.platform": "Uwp",                        //Platform where this template can be used
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",                      //This tag is used to order the templates in the wizard.
     "wts.rightClickEnabled":"true",               //If set to 'true' then this feature or page is available from right click on an existing project.
@@ -205,6 +207,7 @@ The structure of files and folders within the `_composition` folder is just for 
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
+    "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "$framework == CodeBehind|MVVMBasic & identity == wts.Proj.Blank",
     "wts.compositionOrder" : "1"
@@ -262,29 +265,28 @@ If a template includes source files with the **_postaction** suffix, the Post-Ac
 
 For example, consider a SplitView project type with MVVM Basic framework, and adding several pages to the project. At the end, all the pages must be registered in the navigation and added to the navigation menu, some of the final generated code will look like:
 
-```csharp
+```xml
 
-//MVVM Basic, ShellViewModel.cs
+//MVVM Basic, ShellPage.xaml
 ...
-        private void PopulateNavItems()
-        {
-            _primaryItems.Clear();
-            _secondaryItems.Clear();
-
-            // More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
-            // Edit String/en-US/Resources.resw: Add a menu item title for each page
-            _primaryItems.Add(ShellNavigationItem.FromType<MainPage>("Shell_Main".GetLocalized(), Symbol.Document));
-            _primaryItems.Add(ShellNavigationItem.FromType<MapPage>("Shell_Map".GetLocalized(), Symbol.Document));
-            _primaryItems.Add(ShellNavigationItem.FromType<MasterDetailPage>("Shell_MasterDetail".GetLocalized(), Symbol.Document));
-            _secondaryItems.Add(ShellNavigationItem.FromType<SettingsPage>("Shell_Settings".GetLocalized(), Symbol.Document));
-            _primaryItems.Add(ShellNavigationItem.FromType<WebViewPage>("Shell_WebView".GetLocalized(), Symbol.Document));
-            _primaryItems.Add(ShellNavigationItem.FromType<TabbedPage>("Shell_Tabbed".GetLocalized(), Symbol.Document));
-        }
+        <NavigationView.MenuItems>
+            <!--
+              TODO WTS: Change the symbols for each item as appropriate for your app
+              More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
+              Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
+              Edit String/en-US/Resources.resw: Add a menu item title for each page
+            -->
+            <NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="views:MainPage" />
+            <NavigationViewItem x:Uid="Shell_Map" Icon="Document" helpers:NavHelper.NavigateTo="views:MapPage" />
+            <NavigationViewItem x:Uid="Shell_MasterDetail" Icon="Document" helpers:NavHelper.NavigateTo="views:MasterDetailPage" />
+            <NavigationViewItem x:Uid="Shell_WebView" Icon="Document" helpers:NavHelper.NavigateTo="views:WebViewPage" />
+            <NavigationViewItem x:Uid="Shell_Tabbed" Icon="Document" helpers:NavHelper.NavigateTo="views:TabbedPage" />
+        </NavigationView.MenuItems>
 ...
 
 ```
 
-During the generation, each page must add the required code to register itself in the *navigation items*, even the SettingsPage knows that it must be added to the `_secondaryItems` collection instead of the `_primaryItems`. To achieve this, we rely on the Merge Post-Action to identify files that must be merged to generate the code above. Let see the details of the composition template defined for that purpose.
+During the generation, each page must add the required code to register itself in the *navigation items*. To achieve this, we rely on the Merge Post-Action to identify files that must be merged to generate the code above. Let see the details of the composition template defined for that purpose.
 
 The `template.json` is defined as follows:
 
@@ -295,18 +297,19 @@ The `template.json` is defined as follows:
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Project.SplitView.AddToSecondaryNavigationItems",
+  "name": "MVVMBasic.Project.SplitView.AddNavigationViewItem",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
+    "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic & $projectType == SplitView & identity == wts.Page.Settings"
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings & $framework == MVVMBasic & $projectType == SplitView"
   },
 
 ```
 
-As you can see in the composition filter, this template will be applied when the context framework is *MVVMBasic* and the project type is *SplitView* and there is a template in the generation basket with the identity equals to *wts.Page.Settings*
+As you can see in the composition filter, this template will be applied when the context framework is *MVVMBasic* and the project type is *SplitView* and there is a template in the generation basket with the type equals to page and identity not equal to *wts.Page.Settings*
 
 Here is the template layout:
 
@@ -316,38 +319,38 @@ Here is the template layout:
 │       template.json
 │
 └───ViewModels
-        ShellViewModel_postaction.cs //This indicates that the content of this file must be handled by the Merge Post-Action
+        ShellPage_postaction.xaml //This indicates that the content of this file must be handled by the Merge Post-Action
 
 ```
 
-Here is the content of the ShellViewModel_postaction.cs:
+Here is the content of the ShellPage_postaction.xaml:
 
-```csharp
+```xml
 
-using ItemNamespace.Views;
-namespace ItemNamespace.ViewModels
-{
-    public class ShellViewModel : Observable
-    {
-        private void PopulateNavItems()
-        {
-            //^^
-            //{[{
-            _secondaryItems.Add(ShellNavigationItem.FromType<wts.ItemNamePage>("Shell_wts.ItemName".GetLocalized(), Symbol.Document));
-            //}]}
-        }
-    }
-}
+<Page
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <NavigationView
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+        <NavigationView.MenuItems>
+            <!--^^-->
+            <!--{[{-->
+            <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelper.NavigateTo="views:wts.ItemNamePage" />
+            <!--}]}-->
+        </NavigationView.MenuItems>        
+    </NavigationView>
+</Page>
 
 ```
 
 The merge post action will do the following:
-1. Locate a file called "ShellViewModel.cs" within the generated code.
-1. Using a basic source code matching, the post-action will locate content in the `_postaction` file that is not included in the `ShellViewModel.cs` file and will insert it in the correct place. In this case:
-    * Locate the namespace for the item (matching with the generated namespace for the item)
-    * Then a class with the name ShellViewModel inheriting from Observable
-    * Then the private method called PopularNavItems
-    * The symbols `//^^` indicates that the merge must be done at the end, just before the closing `}`, without this directive the line would be inserted just below the opening `{`.
+1. Locate a file called "ShellPage_postaction.xaml" within the generated code.
+1. Using a basic source code matching, the post-action will locate content in the `_postaction` file that is not included in the `ShellPage.xaml` file and will insert it in the correct place. In this case:
+    * Locate the page tag
+    * Then a NavigationView tag
+    * Then the NavigationView.MenuItems tag
+    * The symbols `//^^` indicates that the merge must be done at the end, just before the closing `</NavigationView.MenuItems>`, without this directive the line would be inserted just below the opening `<NavigationView.MenuItems>`.
 1. Once the place to insert the code has been found, the content contained between `{[{` and `}]}` is added in to the original source file.
 1. If any of the above directives are not found the merge is aborted and an merge failure is reported.
 

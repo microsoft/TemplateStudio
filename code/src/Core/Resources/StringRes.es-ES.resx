@@ -145,14 +145,6 @@
   <data name="ExceptionTrackedString" xml:space="preserve">
     <value>Seguimiento de la excepción</value>
   </data>
-  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>No se puede encontrar el archivo '{0}' para incluir las modificaciones siguientes. Revisa los bloques de código para incluir las modificaciones manualmente donde sea necesario en tu proyecto. </value>
-    <comment>{0}:Relative path to original file </comment>
-  </data>
-  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>No se puede encontrar la línea esperada `{0}` en el archivo '{1}'. Combina el contenido del archivo de la acción posterior manualmente.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
-  </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>El archivo {0} no se puede copiar en {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
@@ -184,19 +176,23 @@
   <data name="MarkdownHeader" xml:space="preserve">
     <value>*Visor de Markdown recomendado: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
-  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>No hay destino de combinación para el archivo '{0}'</value>
-    <comment>{0}: Postaction file path</comment>
-  </data>
-  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>La línea {0} no se encontró en el archivo '{1}'</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
-  </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>No se puede inferir un nombre. Demasiadas iteraciones</value>
   </data>
   <data name="PackageCertificateString" xml:space="preserve">
     <value>Certificado del paquete</value>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Error executing '{0}'. Ignoring the error as Continue on Error is enabled. Related template: {1}.</value>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Error executing '{0}'. Related template: {1}.</value>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>The PostAction.ActionId '{0}' defined in the template does not match with the expected class ActionId '{1}'. Can't continue. Related template: {2}.</value>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>None</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentKoErrorMessage" xml:space="preserve">
     <value>Error descargando desde {0}. Es necesaria una conexión a Internet para descargar las actualizaciones de plantillas.</value>
@@ -271,6 +267,12 @@ Puedes encontrar todos los archivos a los que se hace referencia en la carpeta d
 Obtén una lista previa de las modificaciones en: {2}</value>
     <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
   </data>
+  <data name="SyncSummaryFileName" xml:space="preserve">
+    <value>GenerationSummary.md</value>
+  </data>
+  <data name="SyncSummaryProjectFile" xml:space="preserve">
+    <value>ProjectFile</value>
+  </data>
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
     <value>## Archivos en conflicto:
 Estos archivos ya existen en tu proyecto y también se generaron como parte del elemento nuevo.
@@ -278,8 +280,10 @@ Compara y asegúrate de que todo está en su sitio.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
-  <data name="SyncSummaryFileName" xml:space="preserve">
-    <value>GenerationSummary.md</value>
+  <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
+    <value>## Error en las modificaciones de los archivos:
+Error en las combinaciones de los siguientes archivos:
+{0}</value>
   </data>
   <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
     <value>## Archivos modificados:
@@ -324,14 +328,20 @@ Puedes encontrar los archivos de la generación en la carpeta de generación tem
 {3}: Failed Merge Files, 
 {4}: Conflicting Files</comment>
   </data>
+  <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
+    <value>
+### Modificaciones en el archivo '{0}':
+No se pueden integrar las modificaciones siguientes: {2}
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
+  </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
     <value>Plantillas extraídas a</value>
   </data>
   <data name="TemplatesSourceExtractContentMessage" xml:space="preserve">
     <value>Las plantillas no se pueden extraer.</value>
-  </data>
-  <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
-    <value>No se puede purgar contenido antiguo.</value>
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>Firmas digitales no válidas en '{0}'. Se ha alterado el contenido o el certificado no está presente, no es válido o no está permitido.  No se puede continuar.</value>
@@ -369,6 +379,9 @@ Puedes encontrar los archivos de la generación en la carpeta de generación tem
     <value>La comprobación del certificado '{0}' se ha finalizado con estado '{1}'</value>
     <comment>{0}: Certificate subject, {1}: Status</comment>
   </data>
+  <data name="TemplatesSynchronizationPurgeContentAsyncMessage" xml:space="preserve">
+    <value>Unable to purge old content.</value>
+  </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
     <value>## Error en las modificaciones de los archivos:
 Error en las combinaciones de los siguientes archivos:
@@ -398,10 +411,6 @@ No se pueden integrar las modificaciones siguientes: {2}
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
     <value>Error al leer el archivo de bloqueo de la instancia.</value>
   </data>
-  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>El estilo con la clave '{0}' ya está definido con un valor o elementos diferentes en este archivo. Revisa los estilos para incluir las modificaciones manualmente donde sea necesario en tu proyecto.</value>
-    <comment>{0}: Key of the XmlNode</comment>
-  </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>Error al adquirir el contenido.</value>
   </data>
@@ -411,9 +420,33 @@ No se pueden integrar las modificaciones siguientes: {2}
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Error al actualizar el contenido de las plantillas.</value>
   </data>
+  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
+    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
+  </data>
+  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
+    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project. Related Template: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
+    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually. Related Template: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
+  </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
     <value>No se puede eliminar protección de solo lectura del archivo {0}</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  </data>
+  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
+    <value>There is no merge target for file '{0}'. Related Template: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
+  </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>Line {0} not found in file '{1}'. Related Template: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
+  </data>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Could not find project file for item {0}</value>
+    <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
     <value>Error al leer el archivo de configuración de origen.</value>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WtsXamarin.Views.ListViewPage"
+             Title="List View">
+    <ContentPage.Content>
+        <Grid Margin="5, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="listView"
+                  Grid.Column="0"
+                  ItemsSource="{Binding SampleData}"
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding OrderId}"
+                              Detail="{Binding Company}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout Grid.Column="1"
+                     BindingContext="{Binding Path=SelectedItem}">
+
+                <Label Text="Order Date" 
+                   Style="{DynamicResource CaptionStyle}" />
+
+                <Label Text="{Binding OrderDate}" 
+                   Style="{DynamicResource BodyStyle}" />
+
+                <Label Text="Company" 
+                   Style="{DynamicResource CaptionStyle}" />
+
+                <Label Text="{Binding Company}" 
+                   Style="{DynamicResource BodyStyle}" />
+
+                <Label Text="Ship to" 
+                   Style="{DynamicResource CaptionStyle}" />
+
+                <Label Text="{Binding ShipTo}" 
+                   Style="{DynamicResource BodyStyle}" />
+
+                <Label Text="Order Total" 
+                   Style="{DynamicResource CaptionStyle}" />
+
+                <Label Text="{Binding OrderTotal}" 
+                   Style="{DynamicResource BodyStyle}" />
+
+                <Label Text="Status" 
+                   Style="{DynamicResource CaptionStyle}" />
+
+                <Label Text="{Binding Status}" 
+                   Style="{DynamicResource BodyStyle}" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
