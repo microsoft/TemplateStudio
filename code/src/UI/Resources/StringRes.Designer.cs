@@ -178,6 +178,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Breaking changes.
+        /// </summary>
+        public static string BreakingChanges {
+            get {
+                return ResourceManager.GetString("BreakingChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We have detected incompatibilities between your project and the last templates version. Please review the changes:.
+        /// </summary>
+        public static string BreakingChangesDialogMessage {
+            get {
+                return ResourceManager.GetString("BreakingChangesDialogMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string ButtonBack {
@@ -1303,7 +1321,25 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HamburgerMenu control is obsolete and WTS now supports NavigationView. See [documentation]({0}projectTypes/updatetonavigationview.md) to update..
+        ///   Looks up a localized string similar to {0}projectTypes/updatetonavigationview.md.
+        /// </summary>
+        public static string ValidatorHasNavigationViewLink {
+            get {
+                return ResourceManager.GetString("ValidatorHasNavigationViewLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorHasNavigationViewLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasNavigationViewLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. .
         /// </summary>
         public static string ValidatorHasNavigationViewMessage {
             get {

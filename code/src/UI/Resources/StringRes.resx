@@ -654,7 +654,7 @@
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
   <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
-    <value>HamburgerMenu control is obsolete and WTS now supports NavigationView. See [documentation]({0}projectTypes/updatetonavigationview.md) to update.</value>
+    <value>HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. </value>
     <comment>Has navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
@@ -674,5 +674,21 @@
   <data name="NoContentPanelMessage" xml:space="preserve">
     <value>no content available.</value>
     <comment>Message in no content panel</comment>
+  </data>
+  <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetonavigationview.md</value>
+    <comment>Has navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has navigation view validation link documentation message</comment>
+  </data>
+  <data name="BreakingChanges" xml:space="preserve">
+    <value>Breaking changes</value>
+    <comment>Breaking changes title</comment>
+  </data>
+  <data name="BreakingChangesDialogMessage" xml:space="preserve">
+    <value>We have detected incompatibilities between your project and the last templates version. Please review the changes:</value>
+    <comment>Breaking change window dialog message description</comment>
   </data>
 </root>
