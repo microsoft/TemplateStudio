@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                             .Replace(IEnumerableExtensions.MacroStartDocumentation, UserFriendlyPostActionMacroStartDocumentation)
                             .Replace(IEnumerableExtensions.MacroEndDocumentation, UserFriendlyPostActionMacroEndDocumentation)
                             .Replace(IEnumerableExtensions.MacroStartGroup, UserFriendlyPostActionMacroStartGroup)
-                            .Replace(IEnumerableExtensions.MarcoEndGroup, UserFriendlyPostActionMacroEndGroup);
+                            .Replace(IEnumerableExtensions.MacroEndGroup, UserFriendlyPostActionMacroEndGroup);
 
             var cleanRemovals = output.Split(new[] { Environment.NewLine }, StringSplitOptions.None).RemoveRemovals();
             output = string.Join(Environment.NewLine, cleanRemovals);
