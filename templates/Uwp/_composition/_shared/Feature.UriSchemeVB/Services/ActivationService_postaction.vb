@@ -9,7 +9,8 @@ Namespace Services
             '}]}
 '{--{
 
-            Return'}--}
+            Return
+'}--}
         End Function
     End Class
 End Namespace
