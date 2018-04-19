@@ -13,7 +13,7 @@ Namespace ViewModels
 
         Private _navigationView As NavigationView
 
-        Private _selected As Object
+        Private _selected As NavigationViewItem
 
         Private _itemInvokedCommand As ICommand
 
@@ -23,12 +23,12 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public Property Selected As Object
+        Public Property Selected As NavigationViewItem
             Get
                 Return _selected
             End Get
 
-            Set(value As Object)
+            Set(value As NavigationViewItem)
                 [Set](_selected, value)
             End Set
         End Property

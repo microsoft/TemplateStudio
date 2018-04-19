@@ -8,14 +8,14 @@ Namespace Views
         Inherits Page
         Implements INotifyPropertyChanged
 
-        Private _selected As Object
+        Private _selected As NavigationViewItem
 
-        Public Property Selected As Object
+        Public Property Selected As NavigationViewItem
             Get
                 Return _selected
             End Get
 
-            Set(value As Object)
+            Set(value As NavigationViewItem)
                 [Set](_selected, value)
             End Set
         End Property

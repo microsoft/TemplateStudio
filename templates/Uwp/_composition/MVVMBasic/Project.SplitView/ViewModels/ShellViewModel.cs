@@ -12,10 +12,10 @@ namespace wts.ItemName.ViewModels
     public class ShellViewModel : Observable
     {
         private NavigationView _navigationView;
-        private object _selected;
+        private NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
 
-        public object Selected
+        public NavigationViewItem Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }

@@ -14,14 +14,14 @@ namespace wts.ItemName.ViewModels
         private readonly WinRTContainer _container;
         private INavigationService _navigationService;
         private NavigationView _navigationView;
-        private object _selected;
+        private NavigationViewItem _selected;
 
         public ShellViewModel(WinRTContainer container)
         {
             _container = container;
         }
 
-        public object Selected
+        public NavigationViewItem Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }
