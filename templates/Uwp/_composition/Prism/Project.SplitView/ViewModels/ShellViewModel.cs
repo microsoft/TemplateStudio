@@ -16,11 +16,11 @@ namespace wts.ItemName.ViewModels
     {
         private readonly INavigationService _navigationService;
         private NavigationView _navigationView;
-        private object _selected;
+        private NavigationViewItem _selected;
 
         public ICommand ItemInvokedCommand { get; }
 
-        public object Selected
+        public NavigationViewItem Selected
         {
             get { return _selected; }
             set { SetProperty(ref _selected, value); }

@@ -23,7 +23,7 @@ namespace Param_ItemNamespace.ViewModels
             //{[{
             if (e.SourcePageType == typeof(wts.ItemNamePage))
             {
-                Selected = _navigationView.SettingsItem;
+                Selected = _navigationView.SettingsItem as NavigationViewItem;
                 return;
             }
 
