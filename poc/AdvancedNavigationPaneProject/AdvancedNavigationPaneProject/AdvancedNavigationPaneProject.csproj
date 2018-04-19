@@ -188,16 +188,39 @@
     <Compile Include="Helpers\NavHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\PageStackEntryEx.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SecondShellViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\SecondOtherPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SecondMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SecondShellPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\SecondOtherPage.xaml.cs">
+      <DependentUpon>SecondOtherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SecondMainPage.xaml.cs">
+      <DependentUpon>SecondMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SecondShellPage.xaml.cs">
+      <DependentUpon>SecondShellPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>

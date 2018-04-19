@@ -23,7 +23,7 @@ namespace AdvancedNavigationPaneProject.Services
         private static bool _isFirstNewNavigation;
         private static Frame _mainFrame;
         private static Frame _secondaryFrame;
-        private static List<(NavigationFrame NavigationFrame, PageStackEntry PageStackEntry)> _backStack = new List<(NavigationFrame, PageStackEntry)>();
+        private static List<PageStackEntryEx> _backStack = new List<PageStackEntryEx>();
 
         public static void InitializeMainFrame(Frame mainFrame)
         {
@@ -35,6 +35,11 @@ namespace AdvancedNavigationPaneProject.Services
 
         public static void InitializeSecondaryFrame(Frame secondaryFrame)
         {
+            if (_secondaryFrame != null)
+            {
+                _secondaryFrame.Navigated -= OnSecondaryFrameNavigated;
+                _secondaryFrame.NavigationFailed -= OnSecondaryFrameNavigationFailed;
+            }
             _secondaryFrame = secondaryFrame;
             _secondaryFrame.Navigated += OnSecondaryFrameNavigated;
             _secondaryFrame.NavigationFailed += OnSecondaryFrameNavigationFailed;
@@ -52,8 +57,8 @@ namespace AdvancedNavigationPaneProject.Services
         {
             if (CanGoBack)
             {
-                var pageStackEntry = _backStack.First();
-                var frame = GetActiveFrame(pageStackEntry.NavigationFrame);
+                var stackEntry = _backStack.First();
+                var frame = GetActiveFrame(stackEntry.NavigationFrame);
                 frame.GoBack();
             }
         }
@@ -79,7 +84,16 @@ namespace AdvancedNavigationPaneProject.Services
 
         private static Frame GetActiveFrame(NavigationFrame navigationFrame)
         {
-            var frame = navigationFrame == NavigationFrame.Main ? _mainFrame : _secondaryFrame;
+            Frame frame = null;
+            switch (navigationFrame)
+            {
+                case NavigationFrame.Main:
+                    frame = _mainFrame;
+                    break;
+                case NavigationFrame.Secondary:
+                    frame = _secondaryFrame;
+                    break;
+            }
             if (frame == null)
             {
                 var methodName = navigationFrame == NavigationFrame.Main ? nameof(InitializeMainFrame) : nameof(InitializeSecondaryFrame);
@@ -112,11 +126,13 @@ namespace AdvancedNavigationPaneProject.Services
         {
             if (e.NavigationMode == NavigationMode.New && !_isFirstNewNavigation)
             {
-                _backStack.Insert(0, (navigationFrame, new PageStackEntry(e.SourcePageType, e.Parameter, e.NavigationTransitionInfo)));
+                _backStack.Insert(0, new PageStackEntryEx(navigationFrame, e));
+                System.Diagnostics.Debug.WriteLine($"**************ADD: {_backStack.First()}");
                 _isFirstNewNavigation = frame.Content == null;
             }
             else if (e.NavigationMode == NavigationMode.Back)
             {
+                System.Diagnostics.Debug.WriteLine($"**************REMOVE: {_backStack.First()}");
                 _backStack.RemoveAt(0);
             }
             Navigated?.Invoke(frame, new NavigationEventArgsEx(navigationFrame, e));

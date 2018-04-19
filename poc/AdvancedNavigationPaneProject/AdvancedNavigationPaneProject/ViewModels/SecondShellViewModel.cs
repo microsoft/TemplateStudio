@@ -10,12 +10,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace AdvancedNavigationPaneProject.ViewModels
 {
-    public class ShellViewModel : Observable
+    public class SecondShellViewModel : Observable
     {
         private NavigationView _navigationView;
         private NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
-        private ICommand _secondShellCommand;
         private ICommand _webSiteCommand;
         private ICommand _logOutCommand;
 
@@ -27,31 +26,23 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
-        public ICommand SecondShellCommand => _secondShellCommand ?? (_secondShellCommand = new RelayCommand(OnSecondShell));
-
         public ICommand WebSiteCommand => _webSiteCommand ?? (_webSiteCommand = new RelayCommand(OnWebSite));
 
         public ICommand LogOutCommand => _logOutCommand ?? (_logOutCommand = new RelayCommand(OnLogOut));
 
-        public ShellViewModel()
+        public SecondShellViewModel()
         {
         }
 
         public void Initialize(Frame frame, NavigationView navigationView)
         {
-            _navigationView = navigationView;
             NavigationService.InitializeSecondaryFrame(frame);
+            _navigationView = navigationView;
             NavigationService.Navigated += OnNavigated;
         }
 
         private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
         {
-            if (args.IsSettingsInvoked)
-            {
-                NavigationService.Navigate<SettingsPage>(new NavigateConfig(NavigationFrame.Secondary));
-                return;
-            }
-
             var item = _navigationView.MenuItems
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
@@ -63,12 +54,6 @@ namespace AdvancedNavigationPaneProject.ViewModels
         {
             if (e.NavigationFrame == NavigationFrame.Secondary)
             {
-                if (e.SourcePageType == typeof(SettingsPage))
-                {
-                    Selected = _navigationView.SettingsItem as NavigationViewItem;
-                    return;
-                }
-
                 Selected = _navigationView.MenuItems
                                 .OfType<NavigationViewItem>()
                                 .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
@@ -79,12 +64,6 @@ namespace AdvancedNavigationPaneProject.ViewModels
         {
             var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
             return pageType == sourcePageType;
-        }
-
-        private void OnSecondShell()
-        {
-            NavigationService.Navigate<SecondShellPage>(new NavigateConfig(NavigationFrame.Main));
-            NavigationService.Navigate<SecondMainPage>(new NavigateConfig(NavigationFrame.Secondary));
         }
 
         private void OnWebSite()

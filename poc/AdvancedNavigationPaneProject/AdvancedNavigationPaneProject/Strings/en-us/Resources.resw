@@ -242,4 +242,13 @@
   <data name="StartUpPage_Title.Text" xml:space="preserve">
     <value>StartUp page</value>
   </data>
+  <data name="Shell2_SecondMain.Content" xml:space="preserve">
+    <value>Second Main</value>
+  </data>
+  <data name="Shell2_SecondOther.Content" xml:space="preserve">
+    <value>Second Other</value>
+  </data>
+  <data name="Shell_SecondShell.Content" xml:space="preserve">
+    <value>Second Shell</value>
+  </data>
 </root>
