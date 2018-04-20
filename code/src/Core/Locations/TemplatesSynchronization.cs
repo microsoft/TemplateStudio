@@ -72,7 +72,7 @@ namespace Microsoft.Templates.Core.Locations
                     }
                 }
             }
-            catch (OperationCanceledException ex)
+            catch (OperationCanceledException)
             {
             }
         }
