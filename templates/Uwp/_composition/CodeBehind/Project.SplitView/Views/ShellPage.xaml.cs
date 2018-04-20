@@ -13,9 +13,9 @@ namespace wts.ItemName.Views
 {
     public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {
-        private object _selected;
+        private NavigationViewItem _selected;
 
-        public object Selected
+        public NavigationViewItem Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }

@@ -17,7 +17,7 @@ namespace wts.ItemName.ViewModels
     public class ShellViewModel : ViewModelBase
     {
         private NavigationView _navigationView;
-        private object _selected;
+        private NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
 
         public NavigationServiceEx NavigationService
@@ -28,7 +28,7 @@ namespace wts.ItemName.ViewModels
             }
         }
 
-        public object Selected
+        public NavigationViewItem Selected
         {
             get { return _selected; }
             set { Set(ref _selected, value); }

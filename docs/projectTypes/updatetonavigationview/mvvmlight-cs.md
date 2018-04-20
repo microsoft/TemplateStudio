@@ -37,7 +37,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
     <NavigationView
         x:Name="navigationView"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-        Header="{Binding Selected.Title}"
+        Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
         IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
@@ -55,7 +55,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
                     Style="{StaticResource TitleTextBlockStyle}"
                     Margin="12,0,0,0"
                     VerticalAlignment="Center"
-                    Text="{Binding Selected.Content}" />
+                    Text="{Binding}" />
             </DataTemplate>
         </NavigationView.HeaderTemplate>
         <i:Interaction.Behaviors>
@@ -144,7 +144,7 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 public class ShellViewModel : ViewModelBase
 {
     private NavigationView _navigationView;
-    private object _selected;
+    private NavigationViewItem _selected;
     private ICommand _itemInvokedCommand;
 
     public NavigationServiceEx NavigationService
@@ -155,7 +155,7 @@ public class ShellViewModel : ViewModelBase
         }
     }
 
-    public object Selected
+    public NavigationViewItem Selected
     {
         get { return _selected; }
         set { Set(ref _selected, value); }
@@ -254,7 +254,7 @@ if (args.IsSettingsInvoked)
 ```csharp
 if (e.SourcePageType == typeof(SettingsPage))
 {
-	Selected = _navigationView.SettingsItem;
+	Selected = _navigationView.SettingsItem as NavigationViewItem;
 	return;
 }
 ```

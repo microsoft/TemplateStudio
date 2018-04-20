@@ -385,6 +385,7 @@
     <Compile Include="ViewModels\Common\QuestionDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\Selectable.cs" />
     <Compile Include="ViewModels\Common\SelectableGroup`1.cs" />
+    <Compile Include="ViewModels\NewItem\BreakingChangeMessageViewModel.cs" />
     <Compile Include="ViewModels\Common\WizardStatus.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryViewModel.cs" />
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />

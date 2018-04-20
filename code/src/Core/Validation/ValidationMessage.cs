@@ -2,14 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System.Collections.Generic;
-
 namespace Microsoft.Templates.Core.Validation
 {
-    public class ValidationResult
+    public class ValidationMessage
     {
-        public bool IsValid { get; set; } = true;
+        public string Message { get; set; }
 
-        public List<ValidationMessage> ErrorMessages { get; set; } = new List<ValidationMessage>();
+        public string Url { get; set; }
+
+        public string HyperLinkMessage { get; set; }
     }
 }

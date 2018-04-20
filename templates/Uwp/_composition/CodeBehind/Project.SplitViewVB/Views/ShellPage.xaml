@@ -11,7 +11,7 @@
     <NavigationView
         x:Name="navigationView"
         SelectedItem="{x:Bind Selected, Mode=OneWay}"
-        Header="{Binding Selected.Title}"
+        Header="{x:Bind Selected.Content, Mode=OneWay}"
         ItemInvoked="OnItemInvoked"
         IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
@@ -29,7 +29,7 @@
                     Style="{StaticResource TitleTextBlockStyle}"
                     Margin="12,0,0,0"
                     VerticalAlignment="Center"
-                    Text="{Binding Selected.Content}" />
+                    Text="{Binding}" />
             </DataTemplate>
         </NavigationView.HeaderTemplate>
         <Grid>

@@ -35,7 +35,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
     <NavigationView
         x:Name="navigationView"
         SelectedItem="{x:Bind Selected, Mode=OneWay}"
-        Header="{Binding Selected.Title}"
+        Header="{x:Bind Selected.Content, Mode=OneWay}"
         ItemInvoked="OnItemInvoked"
         IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
@@ -57,7 +57,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
                     Style="{StaticResource TitleTextBlockStyle}"
                     Margin="12,0,0,0"
                     VerticalAlignment="Center"
-                    Text="{Binding Selected.Content}" />
+                    Text="{Binding}" />
             </DataTemplate>
         </NavigationView.HeaderTemplate>
         <Grid>
@@ -95,14 +95,14 @@ Partial Public NotInheritable Class ShellPage
     Inherits Page
     Implements INotifyPropertyChanged
 
-    Private _selected As Object
+    Private _selected As NavigationViewItem
 
-    Public Property Selected As Object
+    Public Property Selected As NavigationViewItem
         Get
             Return _selected
         End Get
 
-        Set(value As Object)
+        Set(value As NavigationViewItem)
             [Set](_selected, value)
         End Set
     End Property
@@ -222,7 +222,7 @@ End If
 - On **ShellPage.xaml.cs** go to **Frame_Navigated** method and add to the beginning:
 ```vbnet
 If e.SourcePageType = GetType(SettingsPage) Then
-    Selected = navigationView.SettingsItem
+    Selected = TryCast(_navigationView.SettingsItem, NavigationViewItem)
     Return
 End If
 ```

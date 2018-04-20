@@ -5,6 +5,7 @@
     <Style TargetType="Hyperlink" x:Key="WtsHyperlink">
         <Setter Property="Foreground" Value="{Binding Hyperlink, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="TextDecorations" Value="{x:Null}" />
+        <Setter Property="BaselineAlignment" Value="Bottom" />
         <Setter Property="FocusVisualStyle">
             <Setter.Value>
                 <Style>

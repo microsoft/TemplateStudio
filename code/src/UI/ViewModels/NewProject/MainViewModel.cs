@@ -56,7 +56,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 #if DEBUG
                 return Visibility.Visible;
 #else
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
 #endif
             }
         }
