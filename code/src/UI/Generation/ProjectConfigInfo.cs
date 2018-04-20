@@ -34,7 +34,7 @@ namespace Microsoft.Templates.UI.Generation
         {
             var projectMetadata = ProjectMetadataService.GetProjectMetadata();
 
-            if (!string.IsNullOrEmpty(projectMetadata.ProjectType) && !string.IsNullOrEmpty(projectMetadata.Framework))
+            if (!string.IsNullOrEmpty(projectMetadata.ProjectType) && !string.IsNullOrEmpty(projectMetadata.Framework) && !string.IsNullOrEmpty(projectMetadata.Platform))
             {
                 return (projectMetadata.ProjectType, projectMetadata.Framework, projectMetadata.Platform);
             }
