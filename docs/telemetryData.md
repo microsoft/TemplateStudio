@@ -1,67 +1,67 @@
-# Telemetry for Windows Template Studio - 2018.01
+# Telemetry for Windows Template Studio - 2018.03
 
-Changes are month over month.  As new features and pages roll out, the numbers will vary month over month.
+As new features and pages roll out, percentages  will adjust.
 
 ## Project Type
 
-|Project|Percentage|Change %|
-|:---|:---:|:---|
-|Navigation View|70.2%|-1.8%|
-|Tabbed / Pivot|14.9%|-0.3%|
-|Blank|14.9%|+3.1%|
+|Project|Percentage|
+|:---|:---:|
+|Navigation View|67.3%|
+|Blank|18.2%|
+|Tabbed / Pivot|14.9%|
 
 ## Framework
 
-|Framework Type|Percentage|Change %|
-|:---|:---:|:---|
-|CodeBehind|48.4%|-1.9%|
-|MVVM Light|21.3%|+4.1%|
-|MVVM Basic|20.6%|-3.5%|
-|Caliburn.Micro|5.5%|+1.0%|
-|Prism|0.2%|new|
+|Framework Type|Percentage|
+|:---|:---:|
+|CodeBehind|46.5%|
+|MVVM Light|20.0%|
+|MVVM Basic|19.9%|
+|Prism|9.%|
+|Caliburn.Micro|3.9%|
+
 
 ## Pages
 
-|Pages|Percentage|Change %|
-|:---|:---:|:---|
-|Blank|37.1%|+0.3%|
-|Settings|14.3%|+0.1%|
-|Master/Detail|11.2%|+0.9%|
-|Grid|7.3%|+0.1%|
-|Web View|6.4%|-2.9%|
-|Tabbed|6.0%|-0.6%|
-|Chart|4.3%|0.0%|
-|Image Gallery|4.2%|new|
-|Map|3.3%|-0.7%|
-|Media Player|3.2%|-1.1%|
-|Camera|2.6%|-0.3%|
+|Pages|Percentage|
+|:---|:---:|
+|Blank|38.8%|
+|Settings|14.3%|
+|Master/Detail|11.0%|
+|Grid|6.7%|
+|Tabbed|6.6%|
+|Web View|6.1%|
+|Chart|4.8%|
+|Image Gallery|4.2%|
+|Media Player|2.7%|
+|Map|2.5%|
+|Camera|2.4%|
 
 ## Features
 
-|Pages|Percentage|Change %|
-|:---|:---:|:---|
-|Settings Storage|22.3%|-0.4%|
-|Sample Data|16.3%|+1.0%|
-|Suspend and Resume|7.6%|-1.4%|
-|Background Task|6.2%|-1.1%|
-|Toast Notifications|7.6%|-1.7%|
-|Multiple views|5.8%|new|
-|First Run Prompt|5.4%|-1.1%|
-|Live Tile|4.9%|-1.5%|
-|What's New Prompt|4.6%|-1.1%|
-|Drag & Drop|4.2%|new|
-|Uri Scheme|4.0%|-0.8%|
-|Web to app link|2.9%|+1.0%|
-|Share Source|2.4%|+0.2%|
-|Feedback Hub Link|2.3%|-0.2%|
-|Share Target|2.0%|+0.1%|
-|Dev Center Notifications|1.9%|-0.2%|
-|Azure Notifications|1.2%|-0.4%|
-
+|Pages|Percentage|
+|:---|:---:|
+|Settings Storage|21.0%|
+|Sample Data|15.1%|
+|Background Task|8.1%|
+|First Run Prompt|8.1%|
+|What's New Prompt|7.0%|
+|Toast Notifications|6.3%|
+|Suspend and Resume|5.9%|
+|Live Tile|5.1%|
+|Multiple views|5.1%|
+|Feedback Hub Link|3.7%|
+|Drag & Drop|3.3%|
+|Share Source|2.9%|
+|Web to app link|2.6%|
+|Uri Scheme|2.2%|
+|Share Target|1.5%|
+|Azure Notifications|1.1%|
+|Dev Center Notifications|1.1%|
 
 ## Windows Template Studio entry point
-|Entry point|Percentage|Change %|
-|:---|:---:|:---|
-|NewProject|85.6%|-1.1|
-|Add Page|9.2%|0.0%|
-|Add Feature|5.3%|+1.2%|
+|Entry point|Percentage|
+|:---|:---:|
+|NewProject|83.5%|
+|Add Page|11.7%|
+|Add Feature|4.8%|

@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
-                .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionRegex))
+                .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionAndSearchReplaceRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GetMergeFilesFromProjectPostAction(genInfo.Template.Identity, f)));
         }
@@ -89,12 +89,12 @@ namespace Microsoft.Templates.Core.PostActions
                 .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError))));
         }
 
-        internal void AddSearchAndReplaceActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern)
+        internal void AddSearchAndReplaceActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, f)));
+                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError))));
         }
 
         private static void AddMergePostAction(GenInfo genInfo, List<PostAction> postActions, bool failOnError, string f)

@@ -180,6 +180,10 @@
       <OutputSubPath>Windows UAP</OutputSubPath>
       <Culture>1028</Culture>
     </VSTemplate>
+    <VSTemplate Include="VBNet.UWP.VS2017.Solution.ru-RU.vstemplate">
+      <OutputSubPath>Windows UAP</OutputSubPath>
+      <Culture>1049</Culture>
+    </VSTemplate>
     <Content Include="windowsTemplateStudio_Logo_256x256.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

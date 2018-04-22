@@ -1,4 +1,5 @@
-﻿Imports Param_RootNamespace.Services
+﻿Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Services
 
 Namespace ViewModels
     ' TODO WTS: Add other settings as necessary. For help see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/settings.md
@@ -51,11 +52,12 @@ Namespace ViewModels
         End Sub
 
         Private Function GetVersionDescription() As String
+            Dim appName = "AppDisplayName".GetLocalized()
             Dim package = Windows.ApplicationModel.Package.Current
             Dim packageId = package.Id
             Dim version = packageId.Version
 
-            Return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}"
+            Return $"{appName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}"
         End Function
     End Class
 End Namespace

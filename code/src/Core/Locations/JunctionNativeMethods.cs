@@ -63,6 +63,7 @@ namespace Microsoft.Templates.Core.Locations
         private const uint IO_REPARSE_TAG_MOUNT_POINT = 0xA0000003;
 
 #pragma warning restore SA1310 // Field names must not contain underscore
+
         /// <summary>
         /// This prefix indicates to NTFS that the path is to be treated as a non-interpreted
         /// path in the virtual file system.

@@ -217,10 +217,21 @@ namespace TemplateValidator
                     case "wts.isHidden":
                         VerifyWtsIshiddenTagValue(tag, results);
                         break;
+                    case "wts.telemName":
+                        VerifyWtsTelemNameTagValue(tag, results);
+                        break;
                     default:
                         results.Add($"Unknown tag '{tag.Value}' specified in the file.");
                         break;
                 }
+            }
+        }
+
+        private static void VerifyWtsTelemNameTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            if (string.IsNullOrWhiteSpace(tag.Value))
+            {
+                results.Add("The tag wts.telemName cannot be blank if specified.");
             }
         }
 
@@ -274,7 +285,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences" }.Contains(tag.Value))
+            if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.rightClickEnabled tag.");
             }

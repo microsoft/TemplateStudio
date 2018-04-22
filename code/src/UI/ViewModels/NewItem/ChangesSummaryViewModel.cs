@@ -5,8 +5,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.ViewModels.Common;
 

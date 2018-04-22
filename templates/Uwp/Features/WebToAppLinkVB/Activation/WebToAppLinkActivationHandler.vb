@@ -23,14 +23,11 @@ Namespace Activation
             Select Case args.Uri.AbsolutePath
                 Case Section1
                     ' Use NavigationService to Navigate to MySection1Page
-                    Exit Select
                 Case Section2
                     ' Use NavigationService to Navigate to MySection2Page
-                    Exit Select
                 Case Else
                     ' Launch the application with default page.
                     ' Use NavigationService to Navigate to MainPage
-                    Exit Select
             End Select
 
             Await Task.CompletedTask

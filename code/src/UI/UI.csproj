@@ -211,6 +211,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\NotificationMarkdownBlock.xaml.cs">
+      <DependentUpon>NotificationMarkdownBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\DependencyObjectExtensions.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
@@ -225,6 +228,8 @@
     </Compile>
     <Compile Include="Generation\NewProjectGenController.cs" />
     <Compile Include="Generation\NewItemGenController.cs" />
+    <Compile Include="Mvvm\Observable.cs" />
+    <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -290,6 +295,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\BreakingChangesValidatorService.cs" />
+    <Compile Include="Services\ProjectMetadataService.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
@@ -355,8 +362,15 @@
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\NotificationTemplateSelector.cs" />
+    <Compile Include="Validators\HasNavigationViewValidator.cs" />
+    <Compile Include="Validators\IBreakingChangeValidator.cs" />
     <Compile Include="ViewModels\Common\BaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\CompositionFile.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\CompositionToolViewModel.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\GenGroup.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\GenInfoComposition.cs" />
+    <Compile Include="ViewModels\Common\CompositionTool\GenInfoGroup.cs" />
     <Compile Include="ViewModels\Common\DataItems\BasicInfoViewModel.cs" />
     <Compile Include="ViewModels\Common\DataItems\FileExtension.cs" />
     <Compile Include="ViewModels\Common\DataItems\FileStatus.cs" />
@@ -371,6 +385,7 @@
     <Compile Include="ViewModels\Common\QuestionDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\Selectable.cs" />
     <Compile Include="ViewModels\Common\SelectableGroup`1.cs" />
+    <Compile Include="ViewModels\NewItem\BreakingChangeMessageViewModel.cs" />
     <Compile Include="ViewModels\Common\WizardStatus.cs" />
     <Compile Include="ViewModels\NewItem\ChangesSummaryViewModel.cs" />
     <Compile Include="ViewModels\NewItem\MainViewModel.cs" />
@@ -382,6 +397,9 @@
     <Compile Include="ViewModels\NewProject\MainViewModel.cs" />
     <Compile Include="ViewModels\NewProject\ProjectTypeViewModel.cs" />
     <Compile Include="ViewModels\NewProject\UserSelectionViewModel.cs" />
+    <Compile Include="Views\Common\CompositionToolWindow.xaml.cs">
+      <DependentUpon>CompositionToolWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Common\ErrorDialog.xaml.cs">
       <DependentUpon>ErrorDialog.xaml</DependentUpon>
     </Compile>
@@ -482,6 +500,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\NotificationMarkdownBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\NotificationsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -565,6 +587,10 @@
     <Page Include="Styles\Grid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Common\CompositionToolWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Common\ErrorDialog.xaml">
       <SubType>Designer</SubType>

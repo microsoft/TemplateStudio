@@ -42,7 +42,7 @@
         <Background Type="CT_RAW" Source="00000000" />
       </Color>
       <Color Name="GridHeadingText">
-        <Background Type="CT_RAW" Source="FF717171" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="GridHeadingHoverText">
         <Background Type="CT_RAW" Source="FF1E1E1E" />
@@ -66,7 +66,7 @@
         <Background Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
       <Color Name="CardDescriptionText">
-        <Background Type="CT_RAW" Source="FF717171" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_RAW" Source="FFFFFFFF" />
@@ -117,16 +117,17 @@
         <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
       <Color Name="CardIcon">
-        <Background Type="CT_RAW" Source="FF888D8F" />
+        <Background Type="CT_RAW" Source="FF727779" />
       </Color>
       <Color Name="CardFooterText">
-        <Background Type="CT_RAW" Source="FF717171" />
-      </Color>
-      <Color Name="ChangesSummaryDetailFileHeaderBackground">
-        <Background Type="CT_RAW" Source="FFEFEFF2" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="TemplateInfoPageDescription">
-        <Background Type="CT_RAW" Source="FF888D8F" />
+        <Background Type="CT_RAW" Source="FF727779" />
+      </Color>
+      <Color Name="ChangesSummaryDetailFileHeader">
+        <Background Type="CT_RAW" Source="FFEFEFF2" />
+        <Foreground Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
     </Category>
   </Theme>
@@ -253,11 +254,12 @@
       <Color Name="CardFooterText">
         <Background Type="CT_RAW" Source="FF999999" />
       </Color>
-      <Color Name="ChangesSummaryDetailFileHeaderBackground">
-        <Background Type="CT_RAW" Source="FF2D2D30" />
-      </Color>
       <Color Name="TemplateInfoPageDescription">
         <Background Type="CT_RAW" Source="FF888D8F" />
+      </Color>
+      <Color Name="ChangesSummaryDetailFileHeader">
+        <Background Type="CT_RAW" Source="FF2D2D30" />
+        <Foreground Type="CT_RAW" Source="FFF1F1F1" />
       </Color>
     </Category>
   </Theme>
@@ -304,7 +306,7 @@
         <Background Type="CT_RAW" Source="00000000" />
       </Color>
       <Color Name="GridHeadingText">
-        <Background Type="CT_RAW" Source="FF717171" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="GridHeadingHoverText">
         <Background Type="CT_RAW" Source="FF1E1E1E" />
@@ -328,7 +330,7 @@
         <Background Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
       <Color Name="CardDescriptionText">
-        <Background Type="CT_RAW" Source="FF717171" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="CardBackgroundDefault">
         <Background Type="CT_RAW" Source="FFFFFFFF" />
@@ -379,16 +381,17 @@
         <Background Type="CT_RAW" Source="FF007ACC" />
       </Color>
       <Color Name="CardIcon">
-        <Background Type="CT_RAW" Source="FF888D8F" />
+        <Background Type="CT_RAW" Source="FF727779" />
       </Color>
       <Color Name="CardFooterText">
-        <Background Type="CT_RAW" Source="FF717171" />
-      </Color>
-      <Color Name="ChangesSummaryDetailFileHeaderBackground">
-        <Background Type="CT_RAW" Source="FFEFEFF2" />
+        <Background Type="CT_RAW" Source="FF6C6C6C" />
       </Color>
       <Color Name="TemplateInfoPageDescription">
-        <Background Type="CT_RAW" Source="FF888D8F" />
+        <Background Type="CT_RAW" Source="FF727779" />
+      </Color>
+      <Color Name="ChangesSummaryDetailFileHeader">
+        <Background Type="CT_RAW" Source="FFEFEFF2" />
+        <Foreground Type="CT_RAW" Source="FF1E1E1E" />
       </Color>
     </Category>
   </Theme>
@@ -422,8 +425,8 @@
         <Foreground Type="CT_SYSCOLOR" Source="0000000E" />
       </Color>
       <Color Name="ListItemMouseOver">
-        <Background Type="CT_SYSCOLOR" Source="00000005" />
-        <Foreground Type="CT_SYSCOLOR" Source="00000008" />
+        <Background Type="CT_SYSCOLOR" Source="00000010" />
+        <Foreground Type="CT_SYSCOLOR" Source="00000012" />
       </Color>
       <Color Name="ListItemDisabledText">
         <Background Type="CT_SYSCOLOR" Source="00000011" />
@@ -515,11 +518,12 @@
       <Color Name="CardFooterText">
         <Background Type="CT_SYSCOLOR" Source="00000011" />
       </Color>
-      <Color Name="ChangesSummaryDetailFileHeaderBackground">
-        <Background Type="CT_SYSCOLOR" Source="0000000D" />
-      </Color>
       <Color Name="TemplateInfoPageDescription">
         <Background Type="CT_SYSCOLOR" Source="00000012" />
+      </Color>
+      <Color Name="ChangesSummaryDetailFileHeader">
+        <Background Type="CT_SYSCOLOR" Source="0000000D" />
+        <Foreground Type="CT_SYSCOLOR" Source="0000000E" />
       </Color>
     </Category>
   </Theme>
