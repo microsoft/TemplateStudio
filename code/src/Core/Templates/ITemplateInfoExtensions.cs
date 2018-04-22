@@ -81,7 +81,12 @@ namespace Microsoft.Templates.Core
         public static string GetRichDescription(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
-            var descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
+            var descriptionFile = Directory.EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md").FirstOrDefault();
+            if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
+            {
+                descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
+            }
+
             if (!string.IsNullOrEmpty(descriptionFile))
             {
                 return File.ReadAllText(descriptionFile);
@@ -344,7 +349,7 @@ namespace Microsoft.Templates.Core
 
         public static bool GetItemNameEditable(this ITemplateInfo ti)
         {
-            return ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance();
+            return ti.GetMultipleInstance();
         }
 
         private static string GetConfigDir(ITemplateInfo ti)
@@ -357,6 +362,20 @@ namespace Microsoft.Templates.Core
             }
 
             return Path.GetFullPath(mountPoint.Info.Place + file.Parent.FullPath);
+        }
+
+        public static string GetTelemetryName(this ITemplateInfo ti)
+        {
+            var telemName = GetValueFromTag(ti, TagPrefix + "telemName");
+
+            if (telemName != null)
+            {
+                return telemName;
+            }
+            else
+            {
+                return ti.Name;
+            }
         }
 
         private static string GetValueFromTag(this ITemplateInfo templateInfo, string tagName)

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Drag & Drop",
-  "description": "La fonctionnalité de glisser-déposer fournit un Service Wrapper sur la fonctionnalité de glisser-déposer UWP standard afin de simplifier le code requis pour créer des applications prêtes à prendre en charge les fonctions de glisser-déposer.",
+  "description": "La fonctionnalité de glisser-déposer fournit un service permettant de simplifier la création d'applications prenant en charge cette fonctionnalité.",
   "identity": "wts.Feat.DragAndDrop.CodeBehind"
 }

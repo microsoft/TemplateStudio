@@ -161,10 +161,11 @@
         <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnPreviewMouseLeftButtonDown" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="AutomationProperties.Name" Value="{Binding Title}" />
+        <Setter Property="AutomationProperties.HelpText" Value="{Binding Title, StringFormat={x:Static strings:StringRes.HelpTextPressEnterToAddItem}}" />        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
-                    <Grid Margin="0" Width="182" Height="220">
+                    <Grid Margin="0" Width="181" Height="219">
                         <Border Margin="14,2,2,14" BorderThickness="1.5" BorderBrush="{TemplateBinding BorderBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}" Visibility="{Binding HasMoreThanTwo, Converter={StaticResource BoolToVisibilityConverter}}" />
                         <Border Margin="11,5,5,11" BorderThickness="1.5" BorderBrush="{TemplateBinding BorderBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}" Visibility="{Binding HasMoreThanOne, Converter={StaticResource BoolToVisibilityConverter}}" />
 

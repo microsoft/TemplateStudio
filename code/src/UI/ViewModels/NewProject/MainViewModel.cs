@@ -11,8 +11,8 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -25,6 +25,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     public class MainViewModel : BaseMainViewModel
     {
         private RelayCommand _refreshTemplatesCacheCommand;
+        private RelayCommand _compositionToolCommand;
 
         private TemplateInfoViewModel _selectedTemplate;
 
@@ -40,8 +41,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public UserSelectionViewModel UserSelection { get; } = new UserSelectionViewModel();
 
+        public CompositionToolViewModel CompositionTool { get; } = new CompositionToolViewModel();
+
         public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
              () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
+
+        public RelayCommand CompositionToolCommand => _compositionToolCommand ?? (_compositionToolCommand = new RelayCommand(() => OnCompositionTool()));
 
         public Visibility RefreshTemplateCacheVisibility
         {
@@ -199,6 +204,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
             }
+        }
+
+        private void OnCompositionTool()
+        {
+            var compositionTool = new CompositionToolWindow(UserSelection.GetUserSelection());
+            compositionTool.Owner = WizardShell.Current;
+            compositionTool.ShowDialog();
         }
     }
 }

@@ -8,7 +8,6 @@ using Xunit;
 
 namespace Microsoft.Templates.Test
 {
-    [Collection("Unit Test Templates")]
     [Trait("ExecutionSet", "TemplateValidation")]
     [Trait("ExecutionSet", "Minimum")]
     public class TemplateFolderValidationTests

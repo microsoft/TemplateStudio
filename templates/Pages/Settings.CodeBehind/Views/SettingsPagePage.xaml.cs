@@ -1,4 +1,5 @@
 ﻿using System;
+using Param_RootNamespace.Helpers;
 using Param_ItemNamespace.Services;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
@@ -40,11 +41,12 @@ namespace Param_ItemNamespace.Views
 
         private string GetVersionDescription()
         {
+            var appName = "AppDisplayName".GetLocalized();
             var package = Package.Current;
             var packageId = package.Id;
             var version = packageId.Version;
 
-            return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            return $"{appName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
         }
 
         private async void ThemeChanged_CheckedAsync(object sender, RoutedEventArgs e)

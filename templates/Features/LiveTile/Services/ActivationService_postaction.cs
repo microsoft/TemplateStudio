@@ -22,9 +22,11 @@ namespace Param_ItemNamespace.Services
 
         private async Task StartupAsync()
         {
+            //^^
             //{[{
             Singleton<LiveTileFeatureService>.Instance.SampleUpdate();
             //}]}
+            await Task.CompletedTask;
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()

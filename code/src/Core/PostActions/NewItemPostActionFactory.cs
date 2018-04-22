@@ -21,6 +21,7 @@ namespace Microsoft.Templates.Core.PostActions
             AddGetMergeFilesFromProjectPostAction(postActions);
             AddGenerateMergeInfoPostAction(postActions);
             AddMergeActions(postActions, $"*{MergeConfiguration.Extension}*", false);
+            AddSearchAndReplaceActions(postActions, $"*{MergeConfiguration.SearchReplaceExtension}*", false);
 
             return postActions;
         }

@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Mvvm;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {

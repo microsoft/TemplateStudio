@@ -12,8 +12,11 @@ namespace Microsoft.Templates.UI.Services
 {
     public class SystemService : DependencyObject
     {
+        public static SystemService Instance { get; private set; }
+
         public SystemService()
         {
+            Instance = this;
         }
 
         public void Initialize()
@@ -61,7 +64,7 @@ namespace Microsoft.Templates.UI.Services
 
         public(double width, double height) GetMainWindowSize()
         {
-            double width = 1110; // 1277;
+            double width = 1120; // 1277;
             double height = 733; // 727
             double dpi = 0;
             if (Application.Current != null)
