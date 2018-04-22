@@ -36,10 +36,22 @@ namespace Microsoft.Templates.Core
                     return TemplateType.Feature;
                 case "COMPOSITION":
                     return TemplateType.Composition;
-                case "PROJECTFEATURE":
-                    return TemplateType.ProjectFeature;
                 default:
                     return TemplateType.Unspecified;
+            }
+        }
+
+        public static TemplateOutputType GetTemplateOutputType(this ITemplateInfo ti)
+        {
+            var type = GetValueFromTag(ti, "type");
+            switch (type?.ToUpperInvariant())
+            {
+                case "PROJECT":
+                    return TemplateOutputType.Project;
+                case "ITEM":
+                    return TemplateOutputType.Item;
+                default:
+                    return TemplateOutputType.Unspecified;
             }
         }
 

@@ -99,9 +99,9 @@ namespace Microsoft.Templates.UI
             try
             {
                 int pagesAdded = genItems.Count(t => t.Template.GetTemplateType() == TemplateType.Page);
-                int featuresAdded = genItems.Count(t => t.Template.GetTemplateType() == TemplateType.Feature || t.Template.GetTemplateType() == TemplateType.ProjectFeature);
+                int featuresAdded = genItems.Count(t => t.Template.GetTemplateType() == TemplateType.Feature);
                 var pageIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Page).Select(t => t.Template.Identity));
-                var featureIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature || t.Template.GetTemplateType() == TemplateType.ProjectFeature).Select(t => t.Template.Identity));
+                var featureIdentities = string.Join(",", genItems.Where(t => t.Template.GetTemplateType() == TemplateType.Feature).Select(t => t.Template.Identity));
 
                 foreach (var genInfo in genItems)
                 {

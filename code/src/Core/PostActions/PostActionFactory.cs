@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Core.PostActions
 
         internal void AddTemplateDefinedPostActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
-            var genCertificatePostAction = genResult.ResultInfo.PostActions.Where(x => x.ActionId == GenerateTestCertificatePostAction.Id).FirstOrDefault();
+            var genCertificatePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == GenerateTestCertificatePostAction.Id);
             if (genCertificatePostAction != null)
             {
                 postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
@@ -60,15 +60,12 @@ namespace Microsoft.Templates.Core.PostActions
 
         internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
-            switch (genInfo.Template.GetTemplateType())
+            switch (genInfo.Template.GetTemplateOutputType())
             {
-                case TemplateType.Project:
-                case TemplateType.ProjectFeature:
+                case TemplateOutputType.Project:
                     postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
                     break;
-                case TemplateType.Page:
-                case TemplateType.Feature:
-                case TemplateType.Composition:
+                case TemplateOutputType.Item:
                     postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
                     break;
                 default:

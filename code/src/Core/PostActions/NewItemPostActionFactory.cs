@@ -23,11 +23,6 @@ namespace Microsoft.Templates.Core.PostActions
             AddGenerateMergeInfoPostAction(genInfo, postActions);
             AddMergeActions(genInfo, postActions, $"*{MergeConfiguration.Extension}*", false);
 
-            if (genInfo.Template.GetTemplateType() == TemplateType.ProjectFeature)
-            {
-                postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
-            }
-
             return postActions;
         }
 

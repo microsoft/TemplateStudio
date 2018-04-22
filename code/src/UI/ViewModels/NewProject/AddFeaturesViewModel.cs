@@ -21,7 +21,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         public void LoadData(string frameworkName, string platform)
         {
             Groups.Clear();
-            DataService.LoadTemplatesGroups(Groups, new[] { TemplateType.Feature, TemplateType.ProjectFeature }, frameworkName, platform);
+            DataService.LoadTemplatesGroups(Groups, TemplateType.Feature, frameworkName, platform);
         }
 
         public void ResetTemplatesCount()

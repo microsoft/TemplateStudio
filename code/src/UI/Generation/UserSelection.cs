@@ -111,7 +111,6 @@ namespace Microsoft.Templates.UI
                     Pages.Add(template);
                     break;
                 case TemplateType.Feature:
-                case TemplateType.ProjectFeature:
                     Features.Add(template);
                     break;
             }
