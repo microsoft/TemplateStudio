@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Models;
 using Param_ItemNamespace.Services;
+using Param_ItemNamespace.Views;
 
 using Prism.Commands;
 using Prism.Windows.Navigation;
@@ -47,9 +48,13 @@ namespace Param_ItemNamespace.ViewModels
             Source = _sampleDataService.GetGallerySampleData();
         }
 
-        public async Task LoadAnimationAsync(GridView imagesGridView)
+        public void Initialize(GridView imagesGridView)
         {
             _imagesGridView = imagesGridView;
+        }
+
+        public async Task LoadAnimationAsync()
+        {
             var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedIdKey);
             if (!string.IsNullOrEmpty(selectedImageId))
             {
@@ -63,6 +68,13 @@ namespace Param_ItemNamespace.ViewModels
 
                 ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedIdKey, string.Empty);
             }
+        }
+
+        private void OnsItemSelected(ItemClickEventArgs args)
+        {
+            var selected = args.ClickedItem as SampleImage;
+            _imagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage");
+            _navigationService.Navigate(PageTokens.ImageGalleryViewDetailPage, args.ClickedItem);
         }
     }
 }

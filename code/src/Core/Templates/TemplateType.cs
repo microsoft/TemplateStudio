@@ -10,7 +10,6 @@ namespace Microsoft.Templates.Core
         Page = 2,
         Feature = 3,
         Composition = 4,
-        ProjectFeature = 5,
         Unspecified = 100
     }
 }

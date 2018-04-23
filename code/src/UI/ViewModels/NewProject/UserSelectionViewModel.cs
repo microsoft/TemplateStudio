@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
@@ -331,8 +331,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 page.IsHome = Pages.IndexOf(page) == 0;
             }
-
-            DeletePageCommand.OnCanExecuteChanged();
         }
 
         public async Task OnDeletePageAsync(SavedTemplateViewModel page)

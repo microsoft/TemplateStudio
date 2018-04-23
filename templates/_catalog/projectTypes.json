@@ -15,7 +15,6 @@
         "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
         "author": "Microsoft",
         "order": "1",
-        "licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/UWPCommunityToolkit/blob/master/license.md)",
         "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },

@@ -15,13 +15,7 @@
 
         Public Property Status As String
 
-        Public Property Symbol As Symbol
-
-        Public ReadOnly Property SymbolAsChar As Char
-            Get
-                Return ChrW(Symbol)
-            End Get
-        End Property
+        Public Property Symbol As Char
 
         Public Overrides Function ToString() As String
             Return $"{Company} {Status}"

@@ -2,16 +2,15 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 
@@ -96,14 +95,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public void LoadData(TemplateType templateType, string framework, string platform)
         {
-            if (templateType == TemplateType.Feature)
-            {
-                DataService.LoadTemplatesGroups(Groups, new [] { TemplateType.Feature, TemplateType.ProjectFeature }, framework, platform);
-            }
-            else
-            {
-                DataService.LoadTemplatesGroups(Groups, templateType, framework, platform);
-            }
+            DataService.LoadTemplatesGroups(Groups, templateType, framework, platform);
 
             var group = Groups.FirstOrDefault();
             if (group != null)

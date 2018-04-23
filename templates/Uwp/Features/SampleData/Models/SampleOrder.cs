@@ -1,5 +1,4 @@
 ﻿using System;
-using Windows.UI.Xaml.Controls;
 
 namespace Param_ItemNamespace.Models
 {
@@ -20,12 +19,7 @@ namespace Param_ItemNamespace.Models
 
         public string Status { get; set; }
 
-        public Symbol Symbol { get; set; }
-
-        public char SymbolAsChar
-        {
-            get { return (char)Symbol; }
-        }
+        public char Symbol { get; set; }
 
         public override string ToString()
         {

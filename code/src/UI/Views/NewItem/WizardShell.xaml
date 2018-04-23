@@ -49,26 +49,20 @@
             <RowDefinition Height="90*" />  <!--90%-->
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <TextBlock
+        <TextBlock
                 Grid.Column="0"
                 Text="{Binding WizardStatus.Title}"
                 Style="{StaticResource WtsTextBlockWizardTitle}"
                 Margin="{StaticResource Margin_L_Left}" />
-            <Button
-                Grid.Column="1"
-                Style="{StaticResource WtsButtonCloseWindow}"
-                Command="{Binding CancelCommand}" />
-        </Grid>
+        
         <Grid Grid.Row="1" Style="{StaticResource WtsGridSectionDividerHorizontal}" />
 
         <Frame Grid.Row="2" x:Name="mainFrame" NavigationUIVisibility="Hidden" Focusable="False" />
         <controls:NotificationsControl Grid.Row="2" VerticalAlignment="Top"/>
-
+        <Button
+                Grid.Column="1"
+                Style="{StaticResource WtsButtonCloseWindow}"
+                Command="{Binding CancelCommand}" />
     </Grid>
 
 </Window>

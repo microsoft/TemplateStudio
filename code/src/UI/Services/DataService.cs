@@ -60,15 +60,10 @@ namespace Microsoft.Templates.UI.Services
 
         public static int LoadTemplatesGroups(ObservableCollection<TemplateGroupViewModel> templatesGroups, TemplateType templateType, string frameworkName, string platform)
         {
-            return LoadTemplatesGroups(templatesGroups, new[] { templateType }, frameworkName, platform);
-        }
-
-        public static int LoadTemplatesGroups(ObservableCollection<TemplateGroupViewModel> templatesGroups, TemplateType[] templateTypes, string frameworkName, string platform)
-        {
             if (!templatesGroups.Any())
             {
                 var templates = GenContext.ToolBox.Repo.Get(t =>
-                                    templateTypes.Contains(t.GetTemplateType()) &&
+                                    t.GetTemplateType() == templateType &&
                                     t.GetFrameworkList().Contains(frameworkName) &&
                                     t.GetPlatform() == platform &&
                                     !t.GetIsHidden())

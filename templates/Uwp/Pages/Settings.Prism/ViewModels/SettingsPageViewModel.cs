@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Prism.Commands;
+using Param_RootNamespace.Helpers;
 using Param_RootNamespace.Services;
 using Windows.ApplicationModel;
 using Prism.Windows.Navigation;
@@ -63,11 +64,12 @@ namespace Param_ItemNamespace.ViewModels
 
         private string GetVersionDescription()
         {
+            var appName = "AppDisplayName".GetLocalized();
             var package = Package.Current;
             var packageId = package.Id;
             var version = packageId.Version;
 
-            return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            return $"{appName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
         }
     }
 }

@@ -29,7 +29,16 @@
             <RowDefinition Height="934*" />
             <!--Buttons area-->
         </Grid.RowDefinitions>
-        <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+        <StackPanel
+            Visibility="{Binding ShowNoContentPanel, Converter={StaticResource BoolToVisibilityConverter}}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <TextBlock 
+                Style="{StaticResource WtsTextBlockSectionTitle}"
+                Text="{x:Static strings:StringRes.NoContentPanelMessage}" />
+        </StackPanel>
+        <Grid Visibility="{Binding ShowNoContentPanel, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+            <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid.ColumnDefinitions>
                 <!--Sequential flow-->
                 <ColumnDefinition Width="220" />
@@ -59,8 +68,7 @@
                         Margin="16,12,26,0"
                         ItemsSource="{Binding ProjectType.Items}"
                         SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
-                        ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
-                        Style="{StaticResource WtsComboBoxStyle}"
+                        Style="{StaticResource WtsComboBoxProjectTypeStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
                         AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsProjectTypeSectionTitle}"
                         PreviewKeyDown="ComboBox_PreviewKeyDown" />
@@ -73,8 +81,7 @@
                         Margin="16,12,26,0"
                         ItemsSource="{Binding Framework.Items}"
                         SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
-                        ItemTemplate="{StaticResource WtsComboBoxProjectTypeFramework}"
-                        Style="{StaticResource WtsComboBoxStyle}"
+                        Style="{StaticResource WtsComboBoxFrameworkStyle}"
                         IsEnabled="{Binding WizardStatus.IsNotBusy}"
                         AutomationProperties.Name="{x:Static strings:StringRes.ProjectDetailsFrameworkSectionTitle}"
                         PreviewKeyDown="ComboBox_PreviewKeyDown" />
@@ -151,9 +158,17 @@
                         Content="{x:Static strings:StringRes.ButtonRefreshTemplatesCache}"
                         Command="{Binding RefreshTemplatesCacheCommand}"
                         Visibility="{Binding RefreshTemplateCacheVisibility}" />
+                    <Button
+                        Margin="16,8,26,8"
+                        Style="{StaticResource ButtonRefreshTemplatesStyle}"
+                        Content="{x:Static strings:StringRes.ButtonCompositionTool}"
+                        Command="{Binding CompositionToolCommand}"
+                        Visibility="{Binding RefreshTemplateCacheVisibility}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
+        </Grid>
+
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -161,8 +176,18 @@
             </Grid.ColumnDefinitions>
             <TextBlock
                 Grid.Column="0"
-                Text="{x:Static strings:StringRes.TermsAndConditionsText}"
-                Style="{StaticResource WtsTextBlockTermsAndConditions}" />
+                Text="{x:Static strings:StringRes.TermsAndConditionsText}">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource WtsTextBlockTermsAndConditions}">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ProjectType.Items.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,26,0">
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}"/>
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding GoForwardCommand}" />

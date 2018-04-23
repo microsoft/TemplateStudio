@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
-                .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionRegex))
+                .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionAndSearchReplaceRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GetMergeFilesFromProjectPostAction(genInfo.Template.Identity, f)));
         }
@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Core.PostActions
 
         internal void AddTemplateDefinedPostActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
-            var genCertificatePostAction = genResult.ResultInfo.PostActions.Where(x => x.ActionId == GenerateTestCertificatePostAction.Id).FirstOrDefault();
+            var genCertificatePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == GenerateTestCertificatePostAction.Id);
             if (genCertificatePostAction != null)
             {
                 postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
@@ -60,15 +60,12 @@ namespace Microsoft.Templates.Core.PostActions
 
         internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
-            switch (genInfo.Template.GetTemplateType())
+            switch (genInfo.Template.GetTemplateOutputType())
             {
-                case TemplateType.Project:
-                case TemplateType.ProjectFeature:
+                case TemplateOutputType.Project:
                     postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
                     break;
-                case TemplateType.Page:
-                case TemplateType.Feature:
-                case TemplateType.Composition:
+                case TemplateOutputType.Item:
                     postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
                     break;
                 default:
@@ -92,12 +89,12 @@ namespace Microsoft.Templates.Core.PostActions
                 .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError))));
         }
 
-        internal void AddSearchAndReplaceActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern)
+        internal void AddSearchAndReplaceActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, f)));
+                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError))));
         }
 
         private static void AddMergePostAction(GenInfo genInfo, List<PostAction> postActions, bool failOnError, string f)

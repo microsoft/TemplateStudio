@@ -4,14 +4,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Generation;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -39,6 +41,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
 
+        public ObservableCollection<BreakingChangeMessageViewModel> BreakingChangesErrors { get; set; } = new ObservableCollection<BreakingChangeMessageViewModel>();
+
         public ChangesSummaryViewModel ChangesSummary { get; } = new ChangesSummaryViewModel();
 
         public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
@@ -51,7 +55,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 #if DEBUG
                 return Visibility.Visible;
 #else
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
 #endif
             }
         }
@@ -138,11 +142,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             return userSelection;
         }
 
-        protected override Task OnTemplatesAvailableAsync()
+        protected override async Task OnTemplatesAvailableAsync()
         {
             TemplateSelection.LoadData(TemplateType, ConfigFramework, ConfigPlatform);
             WizardStatus.IsLoading = false;
-            return Task.CompletedTask;
+
+            var result = BreakingChangesValidatorService.Validate();
+            if (!result.IsValid)
+            {
+                var messages = result.ErrorMessages.Select(e => new BreakingChangeMessageViewModel(e));
+                BreakingChangesErrors.AddRange(messages);
+                OnPropertyChanged(nameof(BreakingChangesErrors));
+
+                await Task.CompletedTask;
+            }
         }
 
         protected async Task OnRefreshTemplatesAsync()
@@ -168,7 +181,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private void SetProjectConfigInfo()
         {
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
-            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
                 var vm = new ProjectConfigurationViewModel();
                 ProjectConfigurationDialog projectConfig = new ProjectConfigurationDialog(vm);
@@ -180,9 +193,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
                     configInfo.Platform = vm.SelectedPlatform;
-                    ProjectConfigInfo.SaveProjectConfiguration(configInfo.ProjectType, configInfo.Framework, configInfo.Platform);
+                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework, configInfo.Platform);
                     ConfigFramework = configInfo.Framework;
                     ConfigProjectType = configInfo.ProjectType;
+                    ConfigPlatform = configInfo.Platform;
                 }
                 else
                 {

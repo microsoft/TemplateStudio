@@ -47,8 +47,13 @@
                     Style="{StaticResource WtsTextBlockCardDescription}"
                     Margin="0,4,0,12" />
             </Grid>
-            <TextBlock VerticalAlignment="Bottom" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
-                <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
+            <TextBlock VerticalAlignment="Bottom"
+                       AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
+                       AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
+                <Hyperlink Command="{Binding DetailsCommand}"
+                           Style="{StaticResource WtsHyperlink}"
+                           AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
+                           AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
                     <Grid Background="Transparent">
                         <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="12,8,12,8" />
                     </Grid>
@@ -102,8 +107,13 @@
                     </StackPanel>
                 </Grid>
             </Grid>
-            <TextBlock VerticalAlignment="Bottom" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
-                <Hyperlink Command="{Binding DetailsCommand}" Style="{StaticResource WtsHyperlink}" AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}">
+            <TextBlock VerticalAlignment="Bottom"
+                       AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
+                       AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
+                <Hyperlink Command="{Binding DetailsCommand}"
+                           Style="{StaticResource WtsHyperlink}"
+                           AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
+                       AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
                     <Grid Background="Transparent">
                         <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource WtsTextBlockHyperlink}" Margin="12,8,12,8" />
                     </Grid>
@@ -150,24 +160,6 @@
                 ItemsSource="{Binding Items}"
                 ItemTemplate="{StaticResource WtsItemTemplateBasicInfo}"
                 AutomationProperties.Name="{Binding AccessibleName}" />
-        </Grid>
-    </DataTemplate>
-
-    <DataTemplate x:Key="WtsComboBoxProjectTypeFramework">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <controls:ImageEx
-                Grid.Column="0"
-                SourcePath="{Binding Icon}"
-                Style="{StaticResource WtsImageExProjectDetails}" />
-            <TextBlock
-                Grid.Column="1"
-                Text="{Binding Title}"
-                Margin="{StaticResource Margin_M_Left}"
-                Style="{StaticResource WtsTextBlockComboBoxItem}" />
         </Grid>
     </DataTemplate>
 
@@ -340,6 +332,28 @@
                 Content="{Binding}"
                 ContentTemplateSelector="{StaticResource fileExtensionTemplateSelector}"
                 Focusable="False" />
+        </Grid>
+    </DataTemplate>
+
+
+    <DataTemplate x:Key="WtsItemTemplateBreakingChanges">
+        <Grid Margin="{StaticResource Margin_M_Top}">
+            <BulletDecorator>
+                <BulletDecorator.Bullet>
+                    <TextBlock Style="{StaticResource WtsTextBlockBullet}"/>
+                </BulletDecorator.Bullet>
+                <TextBlock TextWrapping="Wrap" Margin="{StaticResource Margin_XS_Left}">
+                    <Run Text="{Binding Message}" />
+                    <Hyperlink Style="{StaticResource WtsHyperlink}"
+                           Command="{Binding OpenLinkCommand}"
+                           AutomationProperties.Name="{Binding HyperLinkMessage}"
+                           ToolTip="{x:Static res:StringRes.ExternalHyperlinkTooltipMessage}">
+                        <Grid Background="Transparent">
+                            <TextBlock Text="{Binding HyperLinkMessage}" Style="{StaticResource WtsTextBlockHyperlink}" />
+                        </Grid>
+                    </Hyperlink>
+                </TextBlock>
+            </BulletDecorator>
         </Grid>
     </DataTemplate>
 

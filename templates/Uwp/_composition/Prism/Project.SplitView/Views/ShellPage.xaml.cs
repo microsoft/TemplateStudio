@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
-using Prism.Windows.Mvvm;
 using wts.ItemName.ViewModels;
 
 namespace wts.ItemName.Views
@@ -19,7 +18,7 @@ namespace wts.ItemName.Views
         public void SetRootFrame(Frame frame)
         {
             shellFrame.Content = frame;
-            ViewModel.Initialize(frame);
+            ViewModel.Initialize(frame, navigationView);
         }
     }
 }

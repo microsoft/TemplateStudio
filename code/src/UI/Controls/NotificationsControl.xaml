@@ -27,10 +27,7 @@
                     <Image Source="{StaticResource WtsIconInfo}"
                         Style="{StaticResource WtsImageNotificationIcon}"
                         Grid.RowSpan="2" />
-                    <TextBlock
-                        Grid.Column="1"
-                        extensions:TextBlockExtensions.FormatedText="{Binding Message}"
-                        Style="{StaticResource WtsTextBlockNotificationText}" />
+                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsNotificationMarkdownStyle}"  />
                     <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotification}" Command="{Binding CloseCommand}" Visibility="{Binding CanClose, Converter={StaticResource BoolToVisibilityConverter}}" />
                 </Grid>
             </DataTemplate>
@@ -45,10 +42,7 @@
                     <Image Source="{StaticResource WtsIconInfo}"
                         Style="{StaticResource WtsImageNotificationIcon}"
                         Grid.RowSpan="2" />
-                    <TextBlock
-                        Grid.Column="1"
-                        extensions:TextBlockExtensions.FormatedText="{Binding Message}"
-                        Style="{StaticResource WtsTextBlockNotificationText}" />
+                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsNotificationMarkdownStyle}" />
                     <Button Grid.Column="2" Style="{StaticResource WtsButtonCloseNotification}" Command="{Binding CloseCommand}" />
                 </Grid>
             </DataTemplate>
@@ -62,10 +56,7 @@
                     <Image Source="{StaticResource WtsIconInfo}"
                         Style="{StaticResource WtsImageNotificationIcon}"
                         Grid.RowSpan="2" />
-                    <TextBlock
-                        Grid.Column="1"
-                        extensions:TextBlockExtensions.FormatedText="{Binding Message}"
-                        Style="{StaticResource WtsTextBlockNotificationText}" />
+                    <local:NotificationMarkdownBlock Grid.Column="1" Text="{Binding Message}" Style="{StaticResource WtsNotificationMarkdownStyle}" />
                 </Grid>
             </DataTemplate>
 

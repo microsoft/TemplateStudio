@@ -22,11 +22,7 @@ namespace Microsoft.Templates.Core.PostActions
             AddGetMergeFilesFromProjectPostAction(genInfo, postActions);
             AddGenerateMergeInfoPostAction(genInfo, postActions);
             AddMergeActions(genInfo, postActions, $"*{MergeConfiguration.Extension}*", false);
-
-            if (genInfo.Template.GetTemplateType() == TemplateType.ProjectFeature)
-            {
-                postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
-            }
+            AddSearchAndReplaceActions(genInfo, postActions, $"*{MergeConfiguration.SearchReplaceExtension}*", false);
 
             return postActions;
         }

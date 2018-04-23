@@ -11,7 +11,7 @@ Namespace Services
     Friend Class ActivationService
         Private Async Function InitializeAsync() As Task
             '{[{
-            Singleton(Of BackgroundTaskService).Instance.RegisterBackgroundTasks()
+            Await Singleton(Of BackgroundTaskService).Instance.RegisterBackgroundTasksAsync()
             '}]}
         End Function
 

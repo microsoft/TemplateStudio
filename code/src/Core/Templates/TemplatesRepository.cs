@@ -51,8 +51,13 @@ namespace Microsoft.Templates.Core
             Sync = new TemplatesSynchronization(source, wizardVersion);
         }
 
-        public async Task SynchronizeAsync(bool force = false)
+        public async Task SynchronizeAsync(bool force = false, bool removeTemplates = false)
         {
+            if (removeTemplates)
+            {
+                Fs.SafeDeleteDirectory(CurrentContentFolder);
+            }
+
             _cts = new CancellationTokenSource();
 
             await Sync.GetNewContentAsync(_cts.Token);

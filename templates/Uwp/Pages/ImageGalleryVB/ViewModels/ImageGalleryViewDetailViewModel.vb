@@ -1,5 +1,6 @@
 ﻿Imports Windows.Storage
 Imports Windows.UI.Xaml.Media.Animation
+Imports Windows.UI.Xaml.Navigation
 
 Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.Models
@@ -43,11 +44,18 @@ Namespace ViewModels
             _image = image
         End Sub
 
-        Public Sub Initialize(sampleImage As SampleImage)
-            SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImage.ID)
+        Public Async Function InitializeAsync(sampleImage As SampleImage, navigationMode as NavigationMode) As Task
+            If sampleImage IsNot Nothing AndAlso navigationMode = NavigationMode.New Then
+                SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImage.ID)
+            Else
+                Dim selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey)
+                If Not String.IsNullOrEmpty(selectedImageId) Then
+                    SelectedImage = Source.FirstOrDefault(Function(i) i.ID = selectedImageId)
+                End If
+            End If
             Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewViewModel.ImageGalleryViewAnimationOpen)
             animation?.TryStart(_image)
-        End Sub
+        End Function
 
         Public Sub SetAnimation()
             ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image)
