@@ -46,7 +46,7 @@ namespace Microsoft.Templates.UI
 
                 if (template == null)
                 {
-                    LogOrAlertException(string.Format(StringRes.ErrorLayoutNotFound, item.TemplateGroupIdentity, framework));
+                    LogOrAlertException(string.Format(StringRes.ErrorLayoutNotFound, item.TemplateGroupIdentity, framework, platform));
                 }
                 else
                 {
