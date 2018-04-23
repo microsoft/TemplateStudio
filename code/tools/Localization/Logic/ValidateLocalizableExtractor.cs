@@ -25,11 +25,34 @@ namespace Localization
             var originalVsix = _routesManager.GetFileFromSource(Routes.VsixRootDirPath, Routes.VsixManifestFile).FullName;
             var actualVsix = _routesManager.GetFileFromDestination(Routes.VsixRootDirPath, Routes.VsixManifestFile).FullName;
 
-            var (originalName, originalDescription) = RoutesExtensions.GetVsixValues(originalVsix);
-            var (actualName, actualDescription) = RoutesExtensions.GetVsixValues(actualVsix);
+            var originalManifest = XmlUtility.LoadXmlFile(originalVsix);
+            var originalName = originalManifest.GetNode("DisplayName").InnerText.Trim();
+            var originalDescription = originalManifest.GetNode("Description").InnerText.Trim();
 
-            return !(originalName == actualName
-                && originalDescription == actualDescription);
+            var actualManifest = XmlUtility.LoadXmlFile(originalVsix);
+            var actualName = actualManifest.GetNode("DisplayName").InnerText.Trim();
+            var actualDescription = actualManifest.GetNode("Description").InnerText.Trim();
+
+            return !(originalName == actualName && originalDescription == actualDescription);
+        }
+
+        public bool HasVsTemplatesChanges(string language)
+        {
+            var relativePath = language == "VB" ? Routes.ProjectTemplatePathVB : Routes.ProjectTemplatePathCS;
+            var fileName = language == "VB" ? Routes.ProjectTemplateFileVB : Routes.ProjectTemplateFileCS;
+
+            var originalVsTemplate = _routesManager.GetFileFromSource(relativePath, fileName).FullName;
+            var actualVsTemplate = _routesManager.GetFileFromDestination(relativePath, fileName).FullName;
+
+            var originalManifest = XmlUtility.LoadXmlFile(originalVsTemplate);
+            var originalName = originalManifest.GetNode("Name").InnerText.Trim();
+            var originalDescription = originalManifest.GetNode("Description").InnerText.Trim();
+
+            var actualManifest = XmlUtility.LoadXmlFile(actualVsTemplate);
+            var actualName = actualManifest.GetNode("Name").InnerText.Trim();
+            var actualDescription = actualManifest.GetNode("Description").InnerText.Trim();
+
+            return !(originalName == actualName && originalDescription == actualDescription);
         }
 
         internal bool HasChanges(string projectTemplateFileNameValidateCS)

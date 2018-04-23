@@ -36,13 +36,15 @@ namespace Localization
                  return;
             }
 
-            FileInfo manifiestFile = _routesManager.GetFileFromSource(Routes.VsixRootDirPath, Routes.VsixManifestFile);
-            var (name, description) = RoutesExtensions.GetVsixValues(manifiestFile.FullName);
+            var manifiestFile = _routesManager.GetFileFromSource(Routes.VsixRootDirPath, Routes.VsixManifestFile);
+            var manifest = XmlUtility.LoadXmlFile(manifiestFile.FullName);
+            string name = manifest.GetNode("DisplayName").InnerText.Trim();
+            string description = manifest.GetNode("Description").InnerText.Trim();
 
             foreach (var culture in _cultures)
             {
-                var vsixDesDirectory = _routesManager.GetOrCreateDestDirectory(Path.Combine(Routes.VsixRootDirPath, culture));
-                var langpackFile = new FileInfo(Path.Combine(vsixDesDirectory.FullName, Routes.VsixLangpackFile));
+                var desDirectory = _routesManager.GetOrCreateDestDirectory(Path.Combine(Routes.VsixRootDirPath, culture));
+                var langpackFile = new FileInfo(Path.Combine(desDirectory.FullName, Routes.VsixLangpackFile));
 
                 using (TextWriter writer = langpackFile.CreateText())
                 {
@@ -53,7 +55,7 @@ namespace Localization
 
         internal void ExtractProjectTemplates()
         {
-            if (_validator.HasChanges(Routes.ProjectTemplateFileNameValidateCS))
+            if (_validator.HasVsTemplatesChanges("CS"))
             {
                 ExtractProjectTemplatesByLanguage(
                     Routes.ProjectTemplatePathCS,
@@ -61,7 +63,7 @@ namespace Localization
                     Routes.ProjectTemplateFileNamePatternCS);
             }
 
-            if (_validator.HasChanges(Routes.ProjectTemplateFileNameValidateVB))
+            if (_validator.HasVsTemplatesChanges("VB"))
             {
                 ExtractProjectTemplatesByLanguage(
                     Routes.ProjectTemplatePathVB,

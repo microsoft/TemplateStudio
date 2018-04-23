@@ -44,14 +44,5 @@ namespace Localization.Extensions
 
             return file;
         }
-
-        public static (string name, string description) GetVsixValues(string path)
-        {
-            var manifest = XmlUtility.LoadXmlFile(path);
-            string name = manifest.GetNode("DisplayName").InnerText.Trim();
-            string description = manifest.GetNode("Description").InnerText.Trim();
-
-            return (name, description);
-        }
     }
 }
