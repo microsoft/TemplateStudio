@@ -56,6 +56,11 @@ namespace Localization
             "code\\src\\UI\\Resources"
         };
 
+        internal static string[] TemplatesPlatforms { get; } =
+        {
+            "Uwp"
+        };
+
         // Validate Routes
         internal const string VsixValidatePath = "code\\src\\Installer.2017\\source.extension.vsixmanifest";
         internal const string ProjectTemplateFileNameValidateCS = "code\\src\\ProjectTemplates\\CSharp.UWP.2017.Solution\\CSharp.UWP.VS2017.Solution.vstemplate";

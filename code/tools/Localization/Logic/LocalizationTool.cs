@@ -56,7 +56,8 @@ namespace Localization
 
                 var validator = new ValidateLocalizableExtractor(options);
                 var extractor = new LocalizableItemsExtractor(options.SourceDirectory, options.DestinationDirectory, cultures, validator);
-
+                var originalExt = new OriginalLocalizableItemsExtractor(options.SourceDirectory, options.DestinationDirectory);
+                originalExt.Extract();
                 Console.WriteLine("\nExtract vsix");
                 extractor.ExtractVsix();
 
