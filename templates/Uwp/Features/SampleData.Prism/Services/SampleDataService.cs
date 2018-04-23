@@ -21,7 +21,7 @@ namespace Param_ItemNamespace.Services
                     OrderId = 70,
                     OrderDate = new DateTime(2017, 05, 24),
                     Company = "Company F",
-                    ShipTo = "Francisco PÃ©rez-Olaeta",
+                    ShipTo = "Francisco Pérez-Olaeta",
                     OrderTotal = 2490.00,
                     Status = "Closed",
                     Symbol = (char)57643 // Symbol.Globe
@@ -71,7 +71,7 @@ namespace Param_ItemNamespace.Services
                     OrderId = 75,
                     OrderDate = new DateTime(2017, 06, 07),
                     Company = "Company F",
-                    ShipTo = "Francisco PÃ©rez-Olaeta",
+                    ShipTo = "Francisco Pérez-Olaeta",
                     OrderTotal = 810.00,
                     Status = "Shipped",
                     Symbol = (char)57661 // Symbol.Contact
