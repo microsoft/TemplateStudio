@@ -71,7 +71,7 @@ namespace Microsoft.Templates.VsEmulator
 
                         GenContext.Bootstrap(
                             new LocalTemplatesSource("0.0.0.0", string.Empty),
-                            new FakeGenShell(progLanguage),
+                            new FakeGenShell(Platforms.Uwp, progLanguage),
                             new Version("0.0.0.0"),
                             progLanguage);
 
@@ -118,7 +118,7 @@ namespace Microsoft.Templates.VsEmulator
 
                             case "PROJECT":
                             default:
-                                var userSelectionIsNotUsed = NewProjectGenController.Instance.GetUserSelection(progLanguage, FakeStyleValuesProvider.Instance);
+                                var userSelectionIsNotUsed = NewProjectGenController.Instance.GetUserSelection(Platforms.Uwp, progLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
                         }

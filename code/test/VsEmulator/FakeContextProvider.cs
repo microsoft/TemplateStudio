@@ -26,5 +26,13 @@ namespace Microsoft.Templates.VsEmulator
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; set; }
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; set; }
+
+        public string DestinationPath => throw new System.NotImplementedException();
+
+        public string DestinationParentPath => throw new System.NotImplementedException();
+
+        public string TempGenerationPath => throw new System.NotImplementedException();
+
+        List<FailedMergePostActionInfo> IContextProvider.FailedMergePostActions => throw new System.NotImplementedException();
     }
 }

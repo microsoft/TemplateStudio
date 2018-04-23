@@ -164,6 +164,7 @@
     </Compile>
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="FailedMergePostAction.cs" />
     <Compile Include="FakeContextProvider.cs" />
     <Compile Include="LoadProject\LoadProjectView.xaml.cs">
       <DependentUpon>LoadProjectView.xaml</DependentUpon>
