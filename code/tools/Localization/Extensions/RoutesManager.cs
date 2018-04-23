@@ -45,5 +45,15 @@ namespace Localization.Extensions
         {
             return RoutesExtensions.GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, path));
         }
+
+        public FileInfo GetFileFromDestination(string path)
+        {
+            return RoutesExtensions.GetFile(Path.Combine(_destinationDir.FullName, path));
+        }
+
+        public FileInfo GetFileFromDestination(string relativePath, string fileName)
+        {
+            return RoutesExtensions.GetFile(Path.Combine(_destinationDir.FullName, relativePath, fileName));
+        }
     }
 }

@@ -2,67 +2,39 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
+using System.IO;
 using System.Linq;
 using LibGit2Sharp;
+using Localization.Extensions;
 using Localization.Options;
 
 namespace Localization
 {
     public class ValidateLocalizableExtractor
     {
-        private string _repository;
-        private string _extractorParameter;
-        private ExtractorMode _extractorMode;
+        private RoutesManager _routesManager;
 
-        public ValidateLocalizableExtractor(ExtractOptions options)
+        public ValidateLocalizableExtractor(string originalExtractPath, string actualExtractPath)
         {
-            _repository = options.SourceDirectory;
-            _extractorMode = options.ExtractorMode;
-
-            switch (options.ExtractorMode)
-            {
-                case ExtractorMode.Commit:
-                    _extractorParameter = options.CommitSha;
-                    break;
-                case ExtractorMode.TagName:
-                    _extractorParameter = options.TagName;
-                    break;
-                default:
-                    _extractorParameter = string.Empty;
-                    break;
-            }
+            _routesManager = new RoutesManager(originalExtractPath, actualExtractPath);
         }
 
-        internal bool HasChanges(string file)
+        public bool HasVsixChanges()
         {
-            if (_extractorMode == ExtractorMode.All || string.IsNullOrEmpty(_extractorParameter))
-            {
-                return true;
-            }
+            var originalVsix = _routesManager.GetFileFromSource(Routes.VsixRootDirPath, Routes.VsixManifestFile).FullName;
+            var actualVsix = _routesManager.GetFileFromDestination(Routes.VsixRootDirPath, Routes.VsixManifestFile).FullName;
 
-            using (var repo = new Repository(_repository))
-            {
-                var filter = ConfigureFilter(repo);
+            var (originalName, originalDescription) = RoutesExtensions.GetVsixValues(originalVsix);
+            var (actualName, actualDescription) = RoutesExtensions.GetVsixValues(actualVsix);
 
-                var referenceCommitDate = repo.Lookup<Commit>(filter.ExcludeReachableFrom.ToString()).Author.When;
-
-                var commits = repo.Commits.QueryBy(file, filter).Where(c => c.Commit.Author.When > referenceCommitDate);
-
-                return commits.Any();
-            }
+            return !(originalName == actualName
+                && originalDescription == actualDescription);
         }
 
-        private CommitFilter ConfigureFilter(Repository repository)
+        internal bool HasChanges(string projectTemplateFileNameValidateCS)
         {
-            var excludeReachableFrom = _extractorMode == ExtractorMode.Commit
-                ? _extractorParameter
-                : repository.Tags[_extractorParameter].Target.Sha; // SHA from tag
-
-            return new CommitFilter
-            {
-                ExcludeReachableFrom = excludeReachableFrom,
-                IncludeReachableFrom = repository.Head.Tip.Sha // SHA from last commit
-            };
+            return true;
         }
     }
 }

@@ -69,5 +69,10 @@ namespace Localization
         internal const string VspackageFileNameValidate = "code\\src\\Installer.2017\\Commands\\VSPackage.en-US.resx";
         internal const string WtsProjectTypesValidate = "templates\\_catalog\\projectTypes.json";
         internal const string WtsFrameworksValidate = "templates\\_catalog\\frameworks.json";
+
+        // Extract files folders
+        internal const string OriginalExtractDirectory = "original";
+        internal const string ActualExtractDirectory = "actual";
+        internal const string DiffExtractDirectory = "diff";
     }
 }

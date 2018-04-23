@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using Localization.Extensions;
+using Localization.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,24 +22,22 @@ namespace Localization
         private ValidateLocalizableExtractor _validator;
         private IEnumerable<string> _cultures;
 
-        internal LocalizableItemsExtractor(string sourceDirPath, string destinationDirPath, IEnumerable<string> cultures, ValidateLocalizableExtractor validator)
+        internal LocalizableItemsExtractor(string sourceDir, string destDir, ValidateLocalizableExtractor validator, IEnumerable<string> cultures)
         {
-            _routesManager = new RoutesManager(sourceDirPath, destinationDirPath);
+            _routesManager = new RoutesManager(sourceDir, destDir);
             _cultures = cultures;
             _validator = validator;
         }
 
         internal void ExtractVsix()
         {
-            if (!_validator.HasChanges(Routes.VsixValidatePath))
+            if (!_validator.HasVsixChanges())
             {
                  return;
             }
 
             FileInfo manifiestFile = _routesManager.GetFileFromSource(Routes.VsixRootDirPath, Routes.VsixManifestFile);
-            XmlDocument xmlManifiestFile = XmlUtility.LoadXmlFile(manifiestFile.FullName);
-            string name = XmlUtility.GetNode(xmlManifiestFile, "DisplayName").InnerText.Trim();
-            string description = XmlUtility.GetNode(xmlManifiestFile, "Description").InnerText.Trim();
+            var (name, description) = RoutesExtensions.GetVsixValues(manifiestFile.FullName);
 
             foreach (var culture in _cultures)
             {
