@@ -37,6 +37,17 @@ namespace Localization
             return nodes[0];
         }
 
+        internal static XmlNode GetNodeByAttribute(this XmlDocument xmlFile, string xpath)
+        {
+            XmlNode node = xmlFile.SelectSingleNode(xpath);
+            if (node == null)
+            {
+                throw new Exception($"Node not found in XmlDocument.");
+            }
+
+            return node;
+        }
+
         internal static XmlNodeList GetNodes(this XmlDocument xmlFile, string nodeName)
         {
             XmlNodeList nodes = xmlFile.GetElementsByTagName(nodeName);

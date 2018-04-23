@@ -73,6 +73,27 @@ namespace Localization
             return !originalResources.SequenceEqual(actualResources);
         }
 
+        public bool HasVsPackageResxChanges()
+        {
+            var originalVsPackageFile = _routesManager.GetFileFromSource(Routes.CommandTemplateRootDirPath, Routes.VspackageFile).FullName;
+            var actualVsPackageFile = _routesManager.GetFileFromDestination(Routes.CommandTemplateRootDirPath, Routes.VspackageFile).FullName;
+
+            var (originalName, originalDescription) = GetVsPackageLocalizationValues(originalVsPackageFile);
+            var (actualName, actualDescription) = GetVsPackageLocalizationValues(actualVsPackageFile);
+
+            return !(originalName == actualName && originalDescription == actualDescription);
+        }
+
+        private (string name, string description) GetVsPackageLocalizationValues(string vspackagePath)
+        {
+            var xml = XmlUtility.LoadXmlFile(vspackagePath);
+
+            var name = xml.GetNodeByAttribute("//data[@name='110']").InnerText.Trim();
+            var description = xml.GetNodeByAttribute("//data[@name='112']").InnerText.Trim();
+
+            return (name, description);
+        }
+
         internal bool HasChanges(string projectTemplateFileNameValidateCS)
         {
             return true;

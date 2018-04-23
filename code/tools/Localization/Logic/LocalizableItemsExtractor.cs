@@ -91,7 +91,7 @@ namespace Localization
                 LocalizeFileType(Routes.RelayCommandFileNameValidate, Routes.RelayCommandFileNamePattern);
             }
 
-            if (_validator.HasChanges(Routes.VspackageFileNameValidate))
+            if (_validator.HasVsPackageResxChanges())
             {
                 LocalizeFileType(Routes.VspackageFileNameValidate, Routes.VspackageFileNamePattern);
             }

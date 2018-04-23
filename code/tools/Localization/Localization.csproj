@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="Extensions\ConsoleExt.cs" />
     <Compile Include="Extensions\JsonExtensions.cs" />
+    <Compile Include="Extensions\ResourcesExtensions.cs" />
     <Compile Include="Extensions\RoutesExtensions.cs" />
     <Compile Include="Extensions\RoutesManager.cs" />
     <Compile Include="Logic\OriginalLocalizableItemsExtractor.cs" />
