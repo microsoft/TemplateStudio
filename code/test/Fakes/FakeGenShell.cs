@@ -6,7 +6,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
-
 using Microsoft.Templates.Core.Gen;
 
 using Microsoft.VisualStudio.TemplateWizard;
@@ -20,6 +19,7 @@ namespace Microsoft.Templates.Fakes
         private readonly Window _owner;
 
         private string _language;
+        private string _platform;
 
         public string SolutionPath
         {
@@ -27,15 +27,16 @@ namespace Microsoft.Templates.Fakes
             {
                 if (GenContext.Current != null)
                 {
-                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.ProjectPath), $"{GenContext.Current.ProjectName}.sln");
+                    return Path.Combine(Path.GetDirectoryName(GenContext.Current.DestinationPath), $"{GenContext.Current.ProjectName}.sln");
                 }
 
                 return null;
             }
         }
 
-        public FakeGenShell(string language, Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
+        public FakeGenShell(string platform, string language, Action<string> changeStatus = null, Action<string> addLog = null, Window owner = null)
         {
+            _platform = platform;
             _language = language;
             _changeStatus = changeStatus;
             _addLog = addLog;
@@ -47,6 +48,11 @@ namespace Microsoft.Templates.Fakes
             _language = language;
         }
 
+        public void SetCurrentPlatform(string platform)
+        {
+            _platform = platform;
+        }
+
         public override void AddItems(params string[] itemsFullPath)
         {
             if (itemsFullPath == null || itemsFullPath.Length == 0)
@@ -54,32 +60,31 @@ namespace Microsoft.Templates.Fakes
                 return;
             }
 
-            var projectFileName = FindProject(GenContext.Current.ProjectPath);
+            var filesByProject = ResolveProjectFiles(itemsFullPath, true);
 
-            if (string.IsNullOrEmpty(projectFileName))
+            foreach (var projectFile in filesByProject)
             {
-                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
-            }
-
-            var msbuildProj = FakeMsBuildProject.Load(projectFileName);
-
-            if (msbuildProj != null)
-            {
-                foreach (var item in itemsFullPath)
+                var msbuildProj = FakeMsBuildProject.Load(projectFile.Key);
+                if (msbuildProj != null)
                 {
-                    msbuildProj.AddItem(item);
-                }
+                    foreach (var file in projectFile.Value)
+                    {
+                        msbuildProj.AddItem(file);
+                    }
 
-                msbuildProj.Save();
+                    msbuildProj.Save();
+                }
             }
         }
 
         public override void AddProjectToSolution(string projectFullPath)
         {
             var msbuildProj = FakeMsBuildProject.Load(projectFullPath);
-            var solutionFile = FakeSolution.Create(SolutionPath);
+            var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
-            solutionFile.AddProjectToSolution(msbuildProj.Name, msbuildProj.Guid, projectFullPath.EndsWith(".csproj", StringComparison.OrdinalIgnoreCase));
+            var projectRelativeToSolutionPath = projectFullPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
+
+            solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath);
         }
 
         public override string GetActiveProjectNamespace()
@@ -102,15 +107,28 @@ namespace Microsoft.Templates.Fakes
 
         public override string GetActiveProjectGuid()
         {
-            var projectFileName = FindProject(GenContext.Current.ProjectPath);
+            var projectFileName = FindProject(GenContext.Current.DestinationPath);
 
             if (string.IsNullOrEmpty(projectFileName))
             {
-                throw new Exception($"There is not project file in {GenContext.Current.ProjectPath}");
+                throw new Exception($"There is not project file in {GenContext.Current.DestinationPath}");
             }
 
             var msbuildProj = FakeMsBuildProject.Load(projectFileName);
             return msbuildProj.Guid;
+        }
+
+        public override string GetActiveProjectTypeGuids()
+        {
+            var projectFileName = FindProject(GenContext.Current.DestinationPath);
+
+            if (string.IsNullOrEmpty(projectFileName))
+            {
+                throw new Exception($"There is not project file in {GenContext.Current.DestinationPath}");
+            }
+
+            var msbuildProj = FakeMsBuildProject.Load(projectFileName);
+            return msbuildProj.ProjectTypeGuids;
         }
 
         public override string GetActiveProjectName()
@@ -120,7 +138,12 @@ namespace Microsoft.Templates.Fakes
 
         public override string GetActiveProjectPath()
         {
-            return (GenContext.Current != null) ? GenContext.Current.ProjectPath : string.Empty;
+            return (GenContext.Current != null) ? GenContext.Current.DestinationPath : string.Empty;
+        }
+
+        public override string GetSolutionPath()
+        {
+            return (GenContext.Current != null) ? GenContext.Current.DestinationParentPath : string.Empty;
         }
 
         public override string GetActiveProjectLanguage()
@@ -135,10 +158,10 @@ namespace Microsoft.Templates.Fakes
 
         private static string FindProject(string path)
         {
-            return Directory.EnumerateFiles(path, "*proj").FirstOrDefault();
+            return Directory.EnumerateFiles(path, "*proj", SearchOption.AllDirectories).FirstOrDefault();
         }
 
-        public override bool SetActiveConfigurationAndPlatform(string configurationName, string platformName)
+        public override bool SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectName)
         {
             return true;
         }

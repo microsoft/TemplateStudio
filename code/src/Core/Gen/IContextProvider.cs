@@ -12,15 +12,19 @@ namespace Microsoft.Templates.Core.Gen
     {
         string ProjectName { get; }
 
-        string OutputPath { get; }
+        string OutputPath { get; set; }
 
-        string ProjectPath { get; }
+        string DestinationPath { get; }
+
+        string DestinationParentPath { get; }
+
+        string TempGenerationPath { get; }
 
         List<string> ProjectItems { get; }
 
         List<string> FilesToOpen { get; }
 
-        List<FailedMergePostAction> FailedMergePostActions { get; }
+        List<FailedMergePostActionInfo> FailedMergePostActions { get; }
 
         Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
 

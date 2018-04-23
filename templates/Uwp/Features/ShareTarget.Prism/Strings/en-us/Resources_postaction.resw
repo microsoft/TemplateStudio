@@ -1,0 +1,21 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the BlankViewPage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="ShareTargetFeature_CompleteButton.Content" xml:space="preserve">
+    <value>Complete</value>
+    <comment>Complete button content text in ShareTargetFeature page</comment>
+  </data>
+  <data name="ShareTargetFeature_ImagesTitle" xml:space="preserve">
+    <value>Images shared with the application</value>
+    <comment>Page title for ShareTargetFeature when images are shared</comment>
+  </data>
+  <data name="ShareTargetFeature_WebLinkTitle" xml:space="preserve">
+    <value>Web link shared with the application</value>
+    <comment>Page title for ShareTargetFeature when web link is shared</comment>
+  </data>
+  <!--}]}-->
+</root>

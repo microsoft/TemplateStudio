@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,8 +12,8 @@ using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -25,6 +26,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     public class MainViewModel : BaseMainViewModel
     {
         private RelayCommand _refreshTemplatesCacheCommand;
+        private RelayCommand _compositionToolCommand;
 
         private TemplateInfoViewModel _selectedTemplate;
 
@@ -40,8 +42,12 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public UserSelectionViewModel UserSelection { get; } = new UserSelectionViewModel();
 
+        public CompositionToolViewModel CompositionTool { get; } = new CompositionToolViewModel();
+
         public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
-             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesAsync())));
+             () => SafeThreading.JoinableTaskFactory.RunAsync(async () => await OnRefreshTemplatesCacheAsync())));
+
+        public RelayCommand CompositionToolCommand => _compositionToolCommand ?? (_compositionToolCommand = new RelayCommand(() => OnCompositionTool()));
 
         public Visibility RefreshTemplateCacheVisibility
         {
@@ -50,7 +56,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 #if DEBUG
                 return Visibility.Visible;
 #else
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
 #endif
             }
         }
@@ -62,10 +68,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             ValidationService.Initialize(UserSelection.GetNames);
         }
 
-        public override async Task InitializeAsync(string language)
+        public override async Task InitializeAsync(string platform, string language)
         {
             WizardStatus.Title = $" ({GenContext.Current.ProjectName})";
-            await base.InitializeAsync(language);
+            await base.InitializeAsync(platform, language);
         }
 
         protected override void OnCancel() => WizardShell.Current.Close();
@@ -135,7 +141,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         protected override Task OnTemplatesAvailableAsync()
         {
-            ProjectType.LoadData();
+            ProjectType.LoadData(Platform);
+            ShowNoContentPanel = !ProjectType.Items.Any();
             return Task.CompletedTask;
         }
 
@@ -169,18 +176,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private void OnProjectTypeSelected()
         {
-            Framework.LoadData(ProjectType.Selected.Name);
+            Framework.LoadData(ProjectType.Selected.Name, Platform);
         }
 
         private void OnFrameworkSelected()
         {
-            AddPages.LoadData(Framework.Selected.Name);
-            AddFeatures.LoadData(Framework.Selected.Name);
-            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Language);
+            AddPages.LoadData(Framework.Selected.Name, Platform);
+            AddFeatures.LoadData(Framework.Selected.Name, Platform);
+            UserSelection.Initialize(ProjectType.Selected.Name, Framework.Selected.Name, Platform, Language);
             WizardStatus.IsLoading = false;
         }
 
-        protected async Task OnRefreshTemplatesAsync()
+        protected async Task OnRefreshTemplatesCacheAsync()
         {
             try
             {
@@ -199,6 +206,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 WizardStatus.IsLoading = GenContext.ToolBox.Repo.SyncInProgress;
             }
+        }
+
+        private void OnCompositionTool()
+        {
+            var compositionTool = new CompositionToolWindow(UserSelection.GetUserSelection());
+            compositionTool.Owner = WizardShell.Current;
+            compositionTool.ShowDialog();
+        }
+
+        private bool _showNoContentPanel;
+
+        public bool ShowNoContentPanel
+        {
+            get => _showNoContentPanel;
+            set => SetProperty(ref _showNoContentPanel, value);
         }
     }
 }

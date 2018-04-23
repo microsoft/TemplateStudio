@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Dev Center Notifications",
-    "description": "Zaregistrujte svou aplikaci, aby mohla přijímat oznámení z úložiště a zpracovávat je, což se používá při spouštění aplikace.",
-    "identity": "wts.Feat.StoreNotifications.VB"
-}

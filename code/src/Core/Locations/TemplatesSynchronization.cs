@@ -45,29 +45,35 @@ namespace Microsoft.Templates.Core.Locations
 
         public async Task EnsureContentAsync(bool force = false, CancellationToken ct = default(CancellationToken))
         {
-            await EnsureVsInstancesSyncingAsync();
-
-            if (LockSync())
+            try
             {
-                try
+                await EnsureVsInstancesSyncingAsync();
+
+                if (LockSync())
                 {
-                    if (!_content.Exists() || force || CurrentContent.Version < CurrentWizardVersion)
+                    try
                     {
-                        _content.GetContentProgress += OnGetContentProgress;
-                        _content.CopyProgress += OnCopyProgress;
+                        if (!_content.Exists() || force || CurrentContent.Version < CurrentWizardVersion)
+                        {
+                            _content.GetContentProgress += OnGetContentProgress;
+                            _content.CopyProgress += OnCopyProgress;
 
-                        await ExtractInstalledContentAsync(ct);
+                            await ExtractInstalledContentAsync(ct);
+                        }
+
+                        TelemetryService.Current.SetContentVersionToContext(CurrentContent.Version);
                     }
+                    finally
+                    {
+                        _content.GetContentProgress -= OnGetContentProgress;
+                        _content.CopyProgress -= OnCopyProgress;
 
-                    TelemetryService.Current.SetContentVersionToContext(CurrentContent.Version);
+                        UnlockSync();
+                    }
                 }
-                finally
-                {
-                    _content.GetContentProgress -= OnGetContentProgress;
-                    _content.CopyProgress -= OnCopyProgress;
-
-                    UnlockSync();
-                }
+            }
+            catch (OperationCanceledException)
+            {
             }
         }
 
@@ -200,18 +206,15 @@ namespace Microsoft.Templates.Core.Locations
 
                 await _content.GetInstalledContentAsync(installedPackage, ct);
             }
-            catch (OperationCanceledException)
-            {
-            }
-            catch (Exception ex)
+            catch (Exception ex) when (ex.GetType() != typeof(OperationCanceledException))
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
                 AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorExtracting, ex).FireAndForget();
             }
         }
 
-         private async Task UpdateTemplatesCacheAsync(bool force)
-         {
+        private async Task UpdateTemplatesCacheAsync(bool force)
+        {
             try
             {
                 if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0 || CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _content.Source.Id) != _content.LatestContentFolder)

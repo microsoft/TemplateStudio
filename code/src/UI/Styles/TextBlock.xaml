@@ -209,20 +209,6 @@
         <Setter Property="Margin" Value="0"/>
     </Style>
 
-    <!--Notification-->
-    <Style TargetType="TextBlock" x:Key="WtsTextBlockNotificationText">
-        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Foreground" Value="{Binding IBInfoBarBackgroundText, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="TextTrimming" Value="WordEllipsis" />
-        <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="FontStyle" Value="Normal" />
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Margin" Value="{StaticResource Margin_M_LeftTopRightBottom}" />
-    </Style>
-
     <!--TemplateDetails-->
     <Style TargetType="TextBlock" x:Key="WtsTextBlockTemplateDetailsTitle">
         <Setter Property="FontSize" Value="{Binding Environment133PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
@@ -246,7 +232,6 @@
     <Style TargetType="TextBlock" x:Key="WtsTextBlockNewItemFileSubject">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Foreground" Value="{Binding ListItemText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="TextWrapping" Value="NoWrap" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
@@ -266,7 +251,7 @@
     <Style TargetType="TextBlock" x:Key="WtsTextBlockChangesSummaryDetailFileHeader">
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="Foreground" Value="{Binding ChangesSummaryDetailFileHeaderText, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="TextTrimming" Value="WordEllipsis" />
         <Setter Property="TextWrapping" Value="NoWrap" />
         <Setter Property="FontStyle" Value="Normal" />
@@ -311,4 +296,18 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
     </Style>
 
+    <!--Composition Tool-->    
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockCompositionToolTreeViewText">
+        <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}"/>
+        <Setter Property="Foreground" Value="{Binding WindowPanelText, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontFamily" Value="{Binding EnvironmentFontFamily, Source={x:Static services:UIStylesService.Instance}}" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Margin" Value="0,4" />
+    </Style>
+
+    <!-- Bullet -->
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockBullet">
+        <Setter Property="Text" Value="&#xE915;" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+    </Style>
 </ResourceDictionary>

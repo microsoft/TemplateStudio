@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Test
 
         public TemplatesSource Source => new LocalTemplatesSource(ShortFrameworkName(_framework));
 
-        public static IEnumerable<object[]> GetProjectTemplates(string frameworkFilter, string programmingLanguage)
+        public static IEnumerable<object[]> GetProjectTemplates(string frameworkFilter, string programmingLanguage, string selectedPlatform)
         {
             InitializeTemplates(new LocalTemplatesSource(ShortFrameworkName(frameworkFilter)));
 
@@ -48,24 +48,38 @@ namespace Microsoft.Templates.Test
                 languagesOfInterest.Add(programmingLanguage);
             }
 
+            var platformsOfInterest = Platforms.GetAllPlatforms().ToList();
+
+            if (!string.IsNullOrWhiteSpace(selectedPlatform))
+            {
+                platformsOfInterest.Clear();
+                platformsOfInterest.Add(selectedPlatform);
+            }
+
             foreach (var language in languagesOfInterest)
             {
                 SetCurrentLanguage(language);
-
-                var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
-                                                         && t.GetLanguage() == language && t.GetFrameworkList().Contains(frameworkFilter));
-
-                foreach (var projectTemplate in projectTemplates)
+                foreach (var platform in platformsOfInterest)
                 {
-                    var projectTypeList = projectTemplate.GetProjectTypeList();
+                    SetCurrentPlatform(platform);
+                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
-                    foreach (var projectType in projectTypeList)
+                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                                .Select(m => m.Name);
+
+                    foreach (var projectType in projectTypes)
                     {
-                        var frameworks = GenComposer.GetSupportedFx(projectType).Where(f => f == frameworkFilter);
+                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                        foreach (var framework in frameworks)
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
+                                                    .Where(m => projectFrameworks.Contains(m.Name) && m.Name == frameworkFilter)
+                                                    .Select(m => m.Name)
+                                                    .ToList();
+
+                        foreach (var framework in targetFrameworks)
                         {
-                            result.Add(new object[] { projectType, framework, language });
+                            result.Add(new object[] { projectType, framework, platform, language });
                         }
                     }
                 }
@@ -82,29 +96,35 @@ namespace Microsoft.Templates.Test
             foreach (var language in ProgrammingLanguages.GetAllLanguages())
             {
                 SetCurrentLanguage(language);
-
-                var projectTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
-                                                && t.GetFrameworkList().Contains(frameworkFilter) && t.GetLanguage() == language);
-
-                foreach (var projectTemplate in projectTemplates)
+                foreach (var platform in Platforms.GetAllPlatforms())
                 {
-                    var projectTypeList = projectTemplate.GetProjectTypeList();
+                    SetCurrentPlatform(platform);
+                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
-                    foreach (var projectType in projectTypeList)
+                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                                .Select(m => m.Name);
+
+                    foreach (var projectType in projectTypes)
                     {
-                        var frameworks = GenComposer.GetSupportedFx(projectType).Where(f => f == frameworkFilter);
+                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                        foreach (var framework in frameworks)
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
+                                                    .Where(m => projectFrameworks.Contains(m.Name) && m.Name == frameworkFilter)
+                                                    .Select(m => m.Name).ToList();
+
+                        foreach (var framework in targetFrameworks)
                         {
                             var itemTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework)
-                                                                  && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                                                                  && t.GetLanguage() == language
-                                                                  && !t.GetIsHidden());
+                                                                 && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                                                                 && t.GetPlatform() == platform
+                                                                 && t.GetLanguage() == language
+                                                                 && !t.GetIsHidden());
 
                             foreach (var itemTemplate in itemTemplates)
                             {
                                 result.Add(new object[]
-                                    { itemTemplate.Name, projectType, framework, itemTemplate.Identity, language });
+                                    { itemTemplate.Name, projectType, framework, platform, itemTemplate.Identity, language });
                             }
                         }
                     }
@@ -120,7 +140,7 @@ namespace Microsoft.Templates.Test
          Justification = "Required for unit testing.")]
         private static void InitializeTemplates(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
 
             if (syncExecuted.ContainsKey(source.Id) && syncExecuted[ShortFrameworkName(source.Id)] == true)
             {

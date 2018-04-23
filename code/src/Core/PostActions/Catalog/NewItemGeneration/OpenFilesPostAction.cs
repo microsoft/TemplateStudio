@@ -9,7 +9,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class OpenFilesPostAction : PostAction
     {
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusOpeningItems);
             GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());

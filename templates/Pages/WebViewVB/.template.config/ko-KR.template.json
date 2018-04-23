@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Web View",
-    "description": "웹 뷰 페이지는 Microsoft Edge 렌더링 엔진을 사용하여 웹 콘텐츠가 렌더링되는 뷰를 앱에 제공합니다.",
-    "identity": "wts.Page.WebView.VB"
-}

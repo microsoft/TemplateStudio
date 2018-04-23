@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             var fileName = GetFileName();
             if (Config.SyncGeneration)
@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 var failedMergeFiles = BuildMergeFileSection(StringRes.SyncSummarySectionFailedMergeFiles, StringRes.SyncSummaryTemplateFailedMerges, GenContext.Current.MergeFilesFromProject.Where(f => GenContext.Current.FailedMergePostActions.Any(m => m.FileName == f.Key)));
                 var conflictingFiles = BuildConflictingFilesSection(StringRes.SyncSummarySectionConflictingFiles);
 
-                File.WriteAllText(fileName, string.Format(StringRes.SyncSummaryTemplate, GenContext.Current.OutputPath, newFiles, modifiedFiles, failedMergeFiles, conflictingFiles));
+                File.WriteAllText(fileName, string.Format(StringRes.SyncSummaryTemplate, GenContext.Current.TempGenerationPath, newFiles, modifiedFiles, failedMergeFiles, conflictingFiles));
             }
             else
             {
@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 var conflictingFiles = BuildConflictingFilesSection(StringRes.SyncInstructionsSectionConflictingFiles);
                 var unchangedFiles = BuildUnchangedFilesSection(StringRes.SyncInstructionsSectionUnchangedFiles);
 
-                File.WriteAllText(fileName, string.Format(StringRes.SyncInstructionsTemplate, GenContext.Current.OutputPath, newFiles, modifiedFiles, conflictingFiles, unchangedFiles));
+                File.WriteAllText(fileName, string.Format(StringRes.SyncInstructionsTemplate, GenContext.Current.TempGenerationPath, newFiles, modifiedFiles, conflictingFiles, unchangedFiles));
             }
 
             GenContext.Current.FilesToOpen.Add(fileName);
@@ -54,11 +54,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             if (Config.SyncGeneration)
             {
-                return Path.Combine(GenContext.Current.OutputPath, StringRes.SyncSummaryFileName);
+                return Path.Combine(GenContext.Current.TempGenerationPath, StringRes.SyncSummaryFileName);
             }
             else
             {
-                return Path.Combine(GenContext.Current.OutputPath, StringRes.SyncInstructionsFileName);
+                return Path.Combine(GenContext.Current.TempGenerationPath, StringRes.SyncInstructionsFileName);
             }
         }
 
@@ -173,7 +173,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             if (Config.SyncGeneration)
             {
-                var filePath = Path.Combine(GenContext.Current.ProjectPath, fileName);
+                var filePath = Path.Combine(GenContext.Current.DestinationParentPath, fileName);
                 return $"[{fileName}]({FormatFilePath(filePath)})";
             }
             else
@@ -189,7 +189,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private string GetCompareLink(string fileName)
         {
-            var filePath = Path.Combine(GenContext.Current.ProjectPath, fileName);
+            var filePath = Path.Combine(GenContext.Current.DestinationParentPath, fileName);
             return $"* {StringRes.SyncSummaryTempGenerationFile}: [{fileName}]({fileName}), {StringRes.SyncSummaryProjectFile}: [{fileName}]({FormatFilePath(filePath)})";
         }
     }

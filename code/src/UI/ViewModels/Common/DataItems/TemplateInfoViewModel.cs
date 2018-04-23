@@ -2,15 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Mvvm;
-using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -74,7 +68,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             set => SetProperty(ref _canBeAdded, value);
         }
 
-        public TemplateInfoViewModel(ITemplateInfo template, string frameworkName)
+        public TemplateInfoViewModel(ITemplateInfo template, string frameworkName, string platform)
         {
             // BasicInfo properties
             Name = template.Name;
@@ -87,8 +81,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             Icon = template.GetIcon();
             Order = template.GetDisplayOrder();
             IsHidden = template.GetIsHidden();
-            var dependencies = GenComposer.GetAllDependencies(template, frameworkName);
-            Dependencies = dependencies.Select(d => new TemplateInfoViewModel(d, frameworkName));
+            var dependencies = GenComposer.GetAllDependencies(template, frameworkName, platform);
+            Dependencies = dependencies.Select(d => new TemplateInfoViewModel(d, frameworkName, platform));
             Licenses = template.GetLicenses().Select(l => new LicenseViewModel(l));
 
             // ITemplateInfo properties
