@@ -30,7 +30,7 @@
                     Style="{StaticResource TitleTextBlockStyle}"
                     Margin="12,0,0,0"
                     VerticalAlignment="Center"
-                    Text="{Binding Selected.Content}" />
+                    Text="{Binding}" />
             </DataTemplate>
         </NavigationView.HeaderTemplate>
         <i:Interaction.Behaviors>
