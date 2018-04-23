@@ -7,14 +7,15 @@
   "description": "Add project for UI tests using Appium via Windows Application Driver.",
   "tags": {
     "language": "C#",
-    "type": "item",
-    "wts.type": "projectfeature",
+    "type": "project",
+    "wts.type": "feature",
     "wts.outputToParent": "true",
     "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro|Prism",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.group": "Testing",
+    "wts.defaultInstance": "WinAppDriverTests",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true"
