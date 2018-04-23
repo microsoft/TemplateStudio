@@ -37,6 +37,17 @@ namespace Localization
             return nodes[0];
         }
 
+        internal static XmlNodeList GetNodes(this XmlDocument xmlFile, string nodeName)
+        {
+            XmlNodeList nodes = xmlFile.GetElementsByTagName(nodeName);
+            if (nodes == null || nodes.Count == 0)
+            {
+                throw new Exception($"Node \"{nodeName}\" not found in XmlDocument.");
+            }
+
+            return nodes;
+        }
+
         internal static void SetNodeText(this XmlDocument xmlFile, string nodeName, string nodeText)
         {
             XmlNode node = GetNode(xmlFile, nodeName);
@@ -57,6 +68,24 @@ namespace Localization
             XmlNode newNode = xmlFile.CreateNode(XmlNodeType.Element, newNodeName, node.NamespaceURI);
             newNode.InnerText = newNodeText;
             node.AppendChild(newNode);
+        }
+
+        internal static IEnumerable<string> GetInnerText(this XmlNodeList nodes)
+        {
+            foreach (XmlNode node in nodes)
+            {
+                if (node.HasChildNodes)
+                {
+                    foreach (var text in node.ChildNodes.GetInnerText())
+                    {
+                        yield return text;
+                    }
+                }
+                else
+                {
+                    yield return node.InnerText.Trim();
+                }
+            }
         }
     }
 }

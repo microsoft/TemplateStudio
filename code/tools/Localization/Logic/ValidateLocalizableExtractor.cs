@@ -55,6 +55,24 @@ namespace Localization
             return !(originalName == actualName && originalDescription == actualDescription);
         }
 
+        public bool HasRelayCommandPackageChanges()
+        {
+            var originalRelayCommandFile = _routesManager.GetFileFromSource(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile).FullName;
+            var actualRelayCommandFile = _routesManager.GetFileFromDestination(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile).FullName;
+
+            var originalResources = XmlUtility
+                .LoadXmlFile(originalRelayCommandFile)
+                .GetNodes("Strings")
+                .GetInnerText();
+
+            var actualResources = XmlUtility
+                .LoadXmlFile(actualRelayCommandFile)
+                .GetNodes("Strings")
+                .GetInnerText();
+
+            return !originalResources.SequenceEqual(actualResources);
+        }
+
         internal bool HasChanges(string projectTemplateFileNameValidateCS)
         {
             return true;

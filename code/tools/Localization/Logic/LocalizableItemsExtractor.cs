@@ -86,7 +86,7 @@ namespace Localization
 
         internal void ExtractCommandTemplates()
         {
-            if (_validator.HasChanges(Routes.RelayCommandFileNameValidate))
+            if (_validator.HasRelayCommandPackageChanges())
             {
                 LocalizeFileType(Routes.RelayCommandFileNameValidate, Routes.RelayCommandFileNamePattern);
             }
