@@ -41,6 +41,20 @@ namespace Microsoft.Templates.Core
             }
         }
 
+        public static TemplateOutputType GetTemplateOutputType(this ITemplateInfo ti)
+        {
+            var type = GetValueFromTag(ti, "type");
+            switch (type?.ToUpperInvariant())
+            {
+                case "PROJECT":
+                    return TemplateOutputType.Project;
+                case "ITEM":
+                    return TemplateOutputType.Item;
+                default:
+                    return TemplateOutputType.Unspecified;
+            }
+        }
+
         public static string GetIcon(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
