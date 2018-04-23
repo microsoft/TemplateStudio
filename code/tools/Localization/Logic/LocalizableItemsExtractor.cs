@@ -277,6 +277,11 @@ namespace Localization
             return directory;
         }
 
+        private DirectoryInfo GetDirectoryFromSource(string path)
+        {
+            return GetDirectory(Path.Combine(_sourceDir.FullName, path));
+        }
+
         private DirectoryInfo GetOrCreateDirectory(string path)
         {
             var directory = new DirectoryInfo(path);
@@ -301,6 +306,11 @@ namespace Localization
             return file;
         }
 
+        private FileInfo GetFileFromSource(string path)
+        {
+            return GetFile(Path.Combine(_sourceDir.FullName, path));
+        }
+
         private string GetTemplateRelativePath(DirectoryInfo directory)
         {
             if (directory.Name == Routes.TemplatesRootDirPath)
@@ -310,6 +320,81 @@ namespace Localization
 
             var path = GetTemplateRelativePath(directory.Parent);
             return Path.Combine(path, directory.Name);
+        }
+
+        private void CopyFromSourceToDest(string relativePath, string fileName)
+        {
+            var sourceFile = GetFileFromSource(Path.Combine(relativePath, fileName));
+            var destDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, relativePath));
+            var destFile = Path.Combine(destDirectory.FullName, fileName);
+            sourceFile.CopyTo(destFile, true);
+        }
+
+        private void ExtractOriginalFiles()
+        {
+            // vsix
+            CopyFromSourceToDest(Routes.VsixRootDirPath, Routes.VsixManifestFile);
+
+            // project templates
+            CopyFromSourceToDest(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileCS);
+            CopyFromSourceToDest(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileVB);
+
+            // command templates
+            CopyFromSourceToDest(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile);
+            CopyFromSourceToDest(Routes.CommandTemplateRootDirPath, Routes.VspackageFile);
+
+            // templates
+            CopyTemplatesFiles(Routes.TemplatesPagesPatternPath);
+            CopyTemplatesFiles(Routes.TemplatesFeaturesPatternPath);
+
+            // _catalog
+            CopyCatalogType(Routes.WtsProjectTypes);
+            CopyCatalogType(Routes.WtsFrameworks);
+
+            // resources
+            foreach (string directory in Routes.ResoureceDirectories)
+            {
+                CopyFromSourceToDest(directory, Routes.ResourcesFilePath);
+            }
+        }
+
+        private void CopyCatalogType(string routeType)
+        {
+            CopyFromSourceToDest(Routes.WtsTemplatesRootDirPath, routeType + ".json");
+
+            var path = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType);
+            foreach (var name in GetNamesByRouteType(routeType))
+            {
+                CopyFromSourceToDest(path, name + ".md");
+            }
+        }
+
+        private IEnumerable<string> GetNamesByRouteType(string routeType)
+        {
+            var jsonFile = GetFileFromSource(Path.Combine(Routes.WtsTemplatesRootDirPath, routeType + ".json"));
+            var content = GetJsonContent(jsonFile.FullName);
+            return content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
+        }
+
+        private List<JObject> GetJsonContent(string jsonPath)
+        {
+            var fileContent = File.ReadAllText(jsonPath);
+            var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
+            return content;
+        }
+
+        private void CopyTemplatesFiles(string templateType)
+        {
+            var templatesDirectory = GetDirectoryFromSource(Routes.TemplatesRootDirPath);
+            var allDirectories = templatesDirectory.GetDirectories(templateType, SearchOption.AllDirectories);
+            var names = allDirectories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB"))).Select(d => d.Name);
+
+            foreach (var name in names)
+            {
+                var templatePath = Path.Combine(Routes.TemplatesRootDirPath, templateType, name, Routes.TemplateConfigDir);
+                CopyFromSourceToDest(templatePath, Routes.TemplateJsonFile);
+                CopyFromSourceToDest(templatePath, Routes.TemplateDescriptionFile);
+            }
         }
     }
 }
