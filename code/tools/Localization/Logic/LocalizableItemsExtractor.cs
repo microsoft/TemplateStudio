@@ -230,7 +230,7 @@ namespace Localization
             foreach (var name in projectNames)
             {
                 var mdFilePath = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType, name + ".md");
-                if (_validator.HasChanges(mdFilePath))
+                if (_validator.HasTemplateMdChanges(mdFilePath))
                 {
                     var mdFile = _routesManager.GetFileFromSource(mdFilePath);
                     var desDirectory = _routesManager.GetOrCreateDestDirectory(Path.Combine(Routes.WtsTemplatesRootDirPath, routeType));
