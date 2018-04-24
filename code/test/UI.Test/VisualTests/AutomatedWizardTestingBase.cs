@@ -39,7 +39,16 @@ namespace Microsoft.UI.Test.VisualTests
 
         protected string DefaultCulture => "en-US";
 
-        protected List<string> AllVsCultures => new List<string>();
+        protected List<string> AllVsCultures
+        {
+            get
+            {
+                var all = new List<string>();
+                all.Add(DefaultCulture);
+                all.AddRange(NonDefaultVsCultures);
+                return all;
+            }
+        }
 
         protected WindowsDriver<WindowsElement> WizardSession { get; private set; }
 
@@ -81,7 +90,7 @@ namespace Microsoft.UI.Test.VisualTests
         {
             LaunchApp(culture, progLanguage);
 
-            action.Invoke("ProjectType");
+            action.Invoke("1-ProjectType");
 
             if (includeDetails)
             {
@@ -89,7 +98,7 @@ namespace Microsoft.UI.Test.VisualTests
             }
 
             SelectStep(2);
-            action.Invoke("Framework");
+            action.Invoke("2-Framework");
 
             if (includeDetails)
             {
@@ -97,7 +106,7 @@ namespace Microsoft.UI.Test.VisualTests
             }
 
             SelectStep(3);
-            action.Invoke("Pages");
+            action.Invoke("3-Pages");
 
             if (includeDetails)
             {
@@ -105,7 +114,7 @@ namespace Microsoft.UI.Test.VisualTests
             }
 
             SelectStep(4);
-            action.Invoke("Features");
+            action.Invoke("4-Features");
 
             if (includeDetails)
             {
@@ -119,10 +128,11 @@ namespace Microsoft.UI.Test.VisualTests
         {
             LaunchApp(culture, progLanguage, ui: "PAGE");
 
-            action.Invoke("AddPage_Select");
+            action.Invoke("AddPage_1-Select");
 
-            SelectStep(2);
-            action.Invoke("AddPage_Summary");
+            // TODO: Issue#1869 Create enough of a stub project that will be able to use to create Step2
+            ////SelectStep(2);
+            ////action.Invoke("AddPage_2-Summary");
 
             CloseApp();
         }
@@ -131,63 +141,68 @@ namespace Microsoft.UI.Test.VisualTests
         {
             LaunchApp(culture, progLanguage, ui: "FEATURE");
 
-            action.Invoke("AddFeature_Select");
+            action.Invoke("AddFeature_1-Select");
 
-            SelectStep(2);
-            action.Invoke("AddFeature_Summary");
+            // TODO: Issue#1869 Create enough of a stub project that will be able to use to create Step2
+            ////SelectStep(2);
+            ////action.Invoke("AddFeature_2-Summary");
 
             CloseApp();
         }
 
         private void ViewAllDetails(string stepName, Action<string> action)
         {
-            var scrollCount = 0;
+            // TODO: Issue#1869 Need to reenable this functionality (and add to tests) once made more durable and language agnostic
+            return;
 
-            if (WizardSession.TryFindElementsByClassName("ListBoxItem", out ReadOnlyCollection<WindowsElement> items))
-            {
-                var itemCount = 0;
+            ////var scrollCount = 0;
 
-                foreach (var item in items)
-                {
-                    var elementName = item.GetAttribute("Name");
+            ////if (WizardSession.TryFindElementsByClassName("ListBoxItem", out ReadOnlyCollection<WindowsElement> items))
+            ////{
+            ////    var itemCount = 0;
 
-                    if (elementName != "Microsoft.Templates.UI.Controls.Step")
-                    {
-                        itemCount++;
+            ////    foreach (var item in items)
+            ////    {
+            ////        var elementName = item.GetAttribute("Name");
 
-                        // TODO [ML]: these hardcoded values are based on a presumed screen size - need to add proper detection of items not clickable as off screen
-                        if ((stepName == "Pages" && itemCount == 7)
-                            || (stepName == "Features" && new[] { 6, 9 }.Contains(itemCount)))
-                        {
-                            if (WizardSession.TryFindElementByAutomationId("RepeatButton", "PageDown", out WindowsElement pageDownButton))
-                            {
-                                pageDownButton.Click();
+            ////        if (elementName != "Microsoft.Templates.UI.Controls.Step")
+            ////        {
+            ////            itemCount++;
 
-                                Pause();
-                                action.Invoke($"{stepName}_scroll{++scrollCount}");
-                            }
-                        }
+            ////            // TODO: Issue#1869 Need to add proper detection of items not clickable as off screen
+            ////            // hardcoding (as here) doesn't account for differing screen sizes and different group orders for different languages
+            ////            if ((stepName == "Pages" && itemCount == 7)
+            ////                || (stepName == "Features" && new[] { 6, 9 }.Contains(itemCount)))
+            ////            {
+            ////                if (WizardSession.TryFindElementByAutomationId("RepeatButton", "PageDown", out WindowsElement pageDownButton))
+            ////                {
+            ////                    pageDownButton.Click();
 
-                        var itemName = item.FindElement(OpenQA.Selenium.By.ClassName("TextBlock")).Text.Replace("/", string.Empty);
+            ////                    Pause();
+            ////                    action.Invoke($"{stepName}_scroll{++scrollCount}");
+            ////                }
+            ////            }
 
-                        if (itemName == ":")
-                        {
-                            itemName = "Uri Scheme"; // Work around for icon actually being text ("://")
-                        }
+            ////            var itemName = item.FindElement(OpenQA.Selenium.By.ClassName("TextBlock")).Text.Replace("/", string.Empty);
 
-                        var detailsLink = item.FindElement(OpenQA.Selenium.By.ClassName("Hyperlink"));
-                        detailsLink.Click();
+            ////            if (itemName == ":")
+            ////            {
+            ////                itemName = "Uri Scheme"; // Work around for icon actually being text ("://")
+            ////            }
 
-                        Pause();
-                        action.Invoke($"{stepName}_{itemName}");
+            ////            var detailsLink = item.FindElement(OpenQA.Selenium.By.ClassName("Hyperlink"));
+            ////            detailsLink.Click();
 
-                        if (WizardSession.TryFindElementByClassNameAndText("Hyperlink", "Back", out WindowsElement backlink))
-                        {
-                            backlink.Click();
-                        }
-                    }
-                }
-            }
+            ////            Pause();
+            ////            action.Invoke($"{stepName}_{itemName}");
+
+            ////            if (WizardSession.TryFindElementByClassNameAndText("Hyperlink", "Back", out WindowsElement backlink))
+            ////            {
+            ////                backlink.Click();
+            ////            }
+            ////        }
+            ////    }
+            ////}
         }
 
         private void SelectStep(int stepNumber)
@@ -232,6 +247,8 @@ namespace Microsoft.UI.Test.VisualTests
             appCapabilities.SetCapability("appWorkingDir", Environment.CurrentDirectory);
 
             WizardSession = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), appCapabilities);
+
+            Pause(3); // Give the app achance to launch
         }
 
         private void CheckWinAppDriverInstalled()

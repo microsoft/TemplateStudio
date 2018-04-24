@@ -210,7 +210,6 @@
     <Compile Include="VisualTests\AutomatedWizardTestingBase.cs" />
     <Compile Include="VisualTests\CaptureWizardScreenshots.cs" />
     <Compile Include="VisualTests\WindowsElementExtensions.cs" />
-    <Compile Include="VisualTests\WizardLocalizationChecks.cs" />
     <Compile Include="TemplatesFixture.cs" />
     <Compile Include="UITestStyleValuesProvider.cs" />
   </ItemGroup>
