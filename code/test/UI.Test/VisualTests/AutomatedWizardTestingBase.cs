@@ -54,9 +54,6 @@ namespace Microsoft.UI.Test.VisualTests
 
         protected AutomatedWizardTestingBase()
         {
-            AllVsCultures.Add(DefaultCulture);
-            AllVsCultures.AddRange(NonDefaultVsCultures);
-
             CheckWinAppDriverInstalled();
             StartWinAppDriverIfNotRunning();
         }
