@@ -179,7 +179,7 @@ namespace Localization
 
         internal void ExtractWtsProjectTypes()
         {
-            if (_validator.HasChanges(Routes.WtsProjectTypesValidate))
+            if (_validator.HasCatalogJsonChanges(Routes.WtsProjectTypesValidate))
             {
                 ExtractWtsTemplateFiles(Routes.WtsProjectTypes);
             }
@@ -189,7 +189,7 @@ namespace Localization
 
         internal void ExtractWtsFrameworks()
         {
-            if (_validator.HasChanges(Routes.WtsFrameworksValidate))
+            if (_validator.HasCatalogJsonChanges(Routes.WtsFrameworksValidate))
             {
                 ExtractWtsTemplateFiles(Routes.WtsFrameworks);
             }

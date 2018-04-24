@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using LibGit2Sharp;
@@ -72,7 +73,8 @@ namespace Localization
                 .GetNodes("Strings")
                 .GetInnerText();
 
-            return !originalResources.SequenceEqual(actualResources);
+            return originalResources.Count() != actualResources.Count()
+                || !originalResources.SequenceEqual(actualResources);
         }
 
         public bool HasVsPackageResxChanges()
@@ -119,6 +121,25 @@ namespace Localization
             var actualMdContent = File.ReadAllText(actualMd);
 
             return originalMdContent != actualMdContent;
+        }
+
+        public bool HasCatalogJsonChanges(string jsonPath)
+        {
+            var originalJson = _routesManager.GetFileFromSource(jsonPath).FullName;
+            var actualJson = _routesManager.GetFileFromDestination(jsonPath).FullName;
+
+            var originalContent = JsonConvert
+                .DeserializeObject<IEnumerable<CatalogLocalizationValue>>(
+                File.ReadAllText(originalJson))
+                .OrderBy(v => v.Name);
+
+            var actualContent = JsonConvert
+                .DeserializeObject<IEnumerable<CatalogLocalizationValue>>(
+                File.ReadAllText(actualJson))
+                .OrderBy(v => v.Name);
+
+            return originalContent.Count() != actualContent.Count()
+                || !originalContent.SequenceEqual(actualContent);
         }
 
         internal bool HasChanges(string projectTemplateFileNameValidateCS)
