@@ -17,7 +17,6 @@ namespace Localization
 {
     internal class LocalizableItemsExtractor
     {
-
         private RoutesManager _routesManager;
         private ValidateLocalizableExtractor _validator;
         private IEnumerable<string> _cultures;

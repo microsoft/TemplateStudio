@@ -15,16 +15,16 @@ using Newtonsoft.Json.Linq;
 
 namespace Localization
 {
-    public class ValidateLocalizableExtractor
+    internal class ValidateLocalizableExtractor
     {
         private RoutesManager _routesManager;
 
-        public ValidateLocalizableExtractor(string originalExtractPath, string actualExtractPath)
+        internal ValidateLocalizableExtractor(string originalExtractPath, string actualExtractPath)
         {
             _routesManager = new RoutesManager(originalExtractPath, actualExtractPath);
         }
 
-        public bool HasVsixChanges()
+        internal bool HasVsixChanges()
         {
             var originalVsix = _routesManager.GetFileFromSource(Routes.VsixRootDirPath, Routes.VsixManifestFile).FullName;
             var actualVsix = _routesManager.GetFileFromDestination(Routes.VsixRootDirPath, Routes.VsixManifestFile).FullName;
@@ -40,7 +40,7 @@ namespace Localization
             return originalName != actualName || originalDescription != actualDescription;
         }
 
-        public bool HasVsTemplatesChanges(string language)
+        internal bool HasVsTemplatesChanges(string language)
         {
             var relativePath = language == "VB" ? Routes.ProjectTemplatePathVB : Routes.ProjectTemplatePathCS;
             var fileName = language == "VB" ? Routes.ProjectTemplateFileVB : Routes.ProjectTemplateFileCS;
@@ -59,7 +59,7 @@ namespace Localization
             return originalName != actualName || originalDescription != actualDescription;
         }
 
-        public bool HasRelayCommandPackageChanges()
+        internal bool HasRelayCommandPackageChanges()
         {
             var originalRelayCommandFile = _routesManager.GetFileFromSource(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile).FullName;
             var actualRelayCommandFile = _routesManager.GetFileFromDestination(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile).FullName;
@@ -78,7 +78,7 @@ namespace Localization
                 || !originalResources.SequenceEqual(actualResources);
         }
 
-        public bool HasVsPackageResxChanges()
+        internal bool HasVsPackageResxChanges()
         {
             var originalVsPackageFile = _routesManager.GetFileFromSource(Routes.CommandTemplateRootDirPath, Routes.VspackageFile).FullName;
             var actualVsPackageFile = _routesManager.GetFileFromDestination(Routes.CommandTemplateRootDirPath, Routes.VspackageFile).FullName;
@@ -99,7 +99,7 @@ namespace Localization
             return (name, description);
         }
 
-        public bool HasTemplateJsonChanges(string jsonPath)
+        internal bool HasTemplateJsonChanges(string jsonPath)
         {
             var originalJson = _routesManager.GetFileFromSource(jsonPath).FullName;
             var actualJson = _routesManager.GetFileFromDestination(jsonPath).FullName;
@@ -113,7 +113,7 @@ namespace Localization
             return originalDescription != actualDescription;
         }
 
-        public bool HasTemplateMdChanges(string mdPath)
+        internal bool HasTemplateMdChanges(string mdPath)
         {
             var originalMd = _routesManager.GetFileFromSource(mdPath).FullName;
             var actualMd = _routesManager.GetFileFromDestination(mdPath).FullName;
@@ -124,7 +124,7 @@ namespace Localization
             return originalMdContent != actualMdContent;
         }
 
-        public bool HasCatalogJsonChanges(string jsonPath)
+        internal bool HasCatalogJsonChanges(string jsonPath)
         {
             var originalJson = _routesManager.GetFileFromSource(jsonPath).FullName;
             var actualJson = _routesManager.GetFileFromDestination(jsonPath).FullName;

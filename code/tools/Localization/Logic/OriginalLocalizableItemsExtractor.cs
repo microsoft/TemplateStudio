@@ -9,16 +9,16 @@ using Localization.Extensions;
 
 namespace Localization
 {
-    public class OriginalLocalizableItemsExtractor
+    internal class OriginalLocalizableItemsExtractor
     {
         private RoutesManager _routesManager;
 
-        public OriginalLocalizableItemsExtractor(string sourceDirPath, string destinationDirPath)
+        internal OriginalLocalizableItemsExtractor(string sourceDirPath, string destinationDirPath)
         {
             _routesManager = new RoutesManager(sourceDirPath, destinationDirPath);
         }
 
-        public void Extract()
+        internal void Extract()
         {
             // vsix
             _routesManager.CopyFromSourceToDest(Routes.VsixRootDirPath, Routes.VsixManifestFile);
