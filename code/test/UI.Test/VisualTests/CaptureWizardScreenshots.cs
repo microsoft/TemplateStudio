@@ -15,6 +15,7 @@ namespace Microsoft.UI.Test.VisualTests
     [Trait("Type", "WinAppDriver")]
     public class CaptureWizardScreenshots : AutomatedWizardTestingBase
     {
+        [Trait("ExecutionSet", "ManualOnly")]
         [Fact]
         public void GetBasicScreenshots_NewProject_CSandVB_AllCultures()
         {
@@ -34,6 +35,7 @@ namespace Microsoft.UI.Test.VisualTests
             Assert.NotEmpty(Directory.GetFiles(testOutputRoot));
         }
 
+        [Trait("ExecutionSet", "ManualOnly")]
         [Fact]
         public void GetScreenshots_AddPage_CSandVB_AllCultures()
         {
@@ -53,6 +55,7 @@ namespace Microsoft.UI.Test.VisualTests
             Assert.NotEmpty(Directory.GetFiles(testOutputRoot));
         }
 
+        [Trait("ExecutionSet", "ManualOnly")]
         [Fact]
         public void GetScreenshots_AddFeature_CSandVB_AllCultures()
         {
