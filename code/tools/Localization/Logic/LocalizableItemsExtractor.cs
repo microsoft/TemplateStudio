@@ -248,7 +248,7 @@ namespace Localization
             foreach (string directory in Routes.ResoureceDirectories)
             {
                 var srcResFile = Path.Combine(directory, Routes.ResourcesFilePath);
-                if (_validator.HasChanges(srcResFile))
+                if (_validator.HasResourceChanges(srcResFile))
                 {
                     FileInfo resourceFile = _routesManager.GetFileFromSource(srcResFile);
                     var desDirectory = _routesManager.GetOrCreateDestDirectory(directory);

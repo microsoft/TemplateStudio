@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using LibGit2Sharp;
 using Localization.Extensions;
 using Localization.Options;
@@ -142,9 +143,33 @@ namespace Localization
                 || !originalContent.SequenceEqual(actualContent);
         }
 
-        internal bool HasChanges(string projectTemplateFileNameValidateCS)
+        internal bool HasResourceChanges(string resPath)
         {
-            return true;
+            var originalResxPath = _routesManager.GetFileFromSource(resPath).FullName;
+            var actualResxPath = _routesManager.GetFileFromDestination(resPath).FullName;
+
+            var originalResx = ResourcesExtensions.GetResourcesByFile(originalResxPath);
+            var actualResx = ResourcesExtensions.GetResourcesByFile(actualResxPath);
+
+            // compare num items
+            if (originalResx.Keys.Count != actualResx.Keys.Count)
+            {
+                return true;
+            }
+
+            // compare keys names
+            if (actualResx.Keys.Any(k => !originalResx.Keys.Contains(k)))
+            {
+                return true;
+            }
+
+            // compare values
+            if (actualResx.Any(i => i.Value != originalResx[i.Key]))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
