@@ -8,6 +8,8 @@ using System.Linq;
 using LibGit2Sharp;
 using Localization.Extensions;
 using Localization.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Localization
 {
@@ -33,7 +35,7 @@ namespace Localization
             var actualName = actualManifest.GetNode("DisplayName").InnerText.Trim();
             var actualDescription = actualManifest.GetNode("Description").InnerText.Trim();
 
-            return !(originalName == actualName && originalDescription == actualDescription);
+            return originalName != actualName || originalDescription != actualDescription;
         }
 
         public bool HasVsTemplatesChanges(string language)
@@ -52,7 +54,7 @@ namespace Localization
             var actualName = actualManifest.GetNode("Name").InnerText.Trim();
             var actualDescription = actualManifest.GetNode("Description").InnerText.Trim();
 
-            return !(originalName == actualName && originalDescription == actualDescription);
+            return originalName != actualName || originalDescription != actualDescription;
         }
 
         public bool HasRelayCommandPackageChanges()
@@ -92,6 +94,31 @@ namespace Localization
             var description = xml.GetNodeByAttribute("//data[@name='112']").InnerText.Trim();
 
             return (name, description);
+        }
+
+        public bool HasTemplateJsonChanges(string jsonPath)
+        {
+            var originalJson = _routesManager.GetFileFromSource(jsonPath).FullName;
+            var actualJson = _routesManager.GetFileFromDestination(jsonPath).FullName;
+
+            var originalJsonContent = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(originalJson));
+            var actualJsonContent = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(actualJson));
+
+            var originalDescription = originalJsonContent.GetValue("description", StringComparison.Ordinal).Value<string>();
+            var actualDescription = actualJsonContent.GetValue("description", StringComparison.Ordinal).Value<string>();
+
+            return originalDescription != actualDescription;
+        }
+
+        public bool HasTemplateMdChanges(string mdPath)
+        {
+            var originalMd = _routesManager.GetFileFromSource(mdPath).FullName;
+            var actualMd = _routesManager.GetFileFromDestination(mdPath).FullName;
+
+            var originalMdContent = File.ReadAllText(originalMd);
+            var actualMdContent = File.ReadAllText(actualMd);
+
+            return originalMdContent != actualMdContent;
         }
 
         internal bool HasChanges(string projectTemplateFileNameValidateCS)

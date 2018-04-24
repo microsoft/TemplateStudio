@@ -120,7 +120,7 @@ namespace Localization
 
         private void ExtractTemplateEngineTemplates(string patternPath)
         {
-            var srcDirectory =_routesManager.GetDirectoryFromSource(Routes.TemplatesRootDirPath);
+            var srcDirectory = _routesManager.GetDirectoryFromSource(Routes.TemplatesRootDirPath);
             var directories = srcDirectory.GetDirectories(patternPath, SearchOption.AllDirectories);
             var templatesDirectories = directories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB")));
 
@@ -139,7 +139,7 @@ namespace Localization
             string fileJson = Path.Combine(srcDirectory, Routes.TemplateJsonFile);
             FileInfo file = _routesManager.GetFileFromSource(fileJson);
 
-            if (file.Exists && _validator.HasChanges(fileJson))
+            if (file.Exists && _validator.HasTemplateJsonChanges(fileJson))
             {
                 var desDirectory = _routesManager.GetOrCreateDestDirectory(srcDirectory);
                 var metadata = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(file.FullName));
@@ -165,7 +165,7 @@ namespace Localization
             string fileMd = Path.Combine(srcDirectory, Routes.TemplateDescriptionFile);
             FileInfo file = _routesManager.GetFileFromSource(fileMd);
 
-            if (file.Exists && _validator.HasChanges(fileMd))
+            if (file.Exists && _validator.HasTemplateMdChanges(fileMd))
             {
                 var desDirectory = _routesManager.GetOrCreateDestDirectory(srcDirectory);
 
