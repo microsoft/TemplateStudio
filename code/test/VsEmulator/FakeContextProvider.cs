@@ -27,9 +27,21 @@ namespace Microsoft.Templates.VsEmulator
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; set; }
 
-        public string DestinationPath => throw new System.NotImplementedException();
+        public string DestinationPath
+        {
+            get
+            {
+                return this.ProjectPath;
+            }
+        }
 
-        public string DestinationParentPath => throw new System.NotImplementedException();
+        public string DestinationParentPath
+        {
+            get
+            {
+                return System.IO.Path.GetDirectoryName(this.ProjectPath);
+            }
+        }
 
         public string TempGenerationPath => throw new System.NotImplementedException();
 

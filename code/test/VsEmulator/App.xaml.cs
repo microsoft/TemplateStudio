@@ -105,7 +105,7 @@ namespace Microsoft.Templates.VsEmulator
                         switch (options.UI.ToUpperInvariant())
                         {
                             case "PAGE":
-                                EnableRightClickSupportForProject(projectPath);
+                                EnableRightClickSupportForProject(projectPath, progLanguage);
                                 var userPageSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
@@ -173,6 +173,7 @@ namespace Microsoft.Templates.VsEmulator
     <genTemplate:Item Name=""generator"" Value=""Windows Template Studio""/>
     <genTemplate:Item Name=""wizardVersion"" Version=""v0.0.0.0"" />
     <genTemplate:Item Name=""templatesVersion"" Version=""v0.0.0.0"" />
+    <genTemplate:Item Name=""platform"" Value=""Uwp"" />
     <genTemplate:Item Name=""projectType"" Value=""Blank"" />
     <genTemplate:Item Name=""framework"" Value=""CodeBehind"" />
   </genTemplate:Metadata>
