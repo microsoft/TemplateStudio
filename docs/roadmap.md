@@ -6,24 +6,34 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Next release
 
-**2.1 - April 2018**
+**2.1 - April/May 2018**
 
 Major additions:
 
+* Support for new (RS4) SDK
 * More & improved documentation
 * Provisional support for 3rd party templates
+* +more
 
 [Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.1)
 
 ## Upcoming releases
 
-### 2.2 - May 2018
+### 2.2 - June 2018
 
 * Ink pages
 * Improved testing
 * +more
 
 [Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.2)
+
+### 2.3 - July 2018
+
+* Early multi-project support
+* Data sources
+* +more
+
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.3)
 
 ### 2.5 - later in 2018
 

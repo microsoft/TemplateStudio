@@ -8,7 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
-
+using Localization.Extensions;
+using Localization.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -16,35 +17,33 @@ namespace Localization
 {
     internal class LocalizableItemsExtractor
     {
-        private DirectoryInfo _sourceDir;
-        private DirectoryInfo _destinationDir;
+        private RoutesManager _routesManager;
         private ValidateLocalizableExtractor _validator;
         private IEnumerable<string> _cultures;
 
-        internal LocalizableItemsExtractor(string sourceDirPath, string destinationDirPath, IEnumerable<string> cultures, ValidateLocalizableExtractor validator)
+        internal LocalizableItemsExtractor(string sourceDir, string destDir, ValidateLocalizableExtractor validator, IEnumerable<string> cultures)
         {
-            _sourceDir = GetDirectory(sourceDirPath);
-            _destinationDir = GetOrCreateDirectory(destinationDirPath);
+            _routesManager = new RoutesManager(sourceDir, destDir);
             _cultures = cultures;
             _validator = validator;
         }
 
         internal void ExtractVsix()
         {
-            if (!_validator.HasChanges(Routes.VsixValidatePath))
+            if (!_validator.HasVsixChanges())
             {
                  return;
             }
 
-            FileInfo manifiestFile = GetFile(Path.Combine(_sourceDir.FullName, Routes.VsixRootDirPath, Routes.VsixManifestFile));
-            XmlDocument xmlManifiestFile = XmlUtility.LoadXmlFile(manifiestFile.FullName);
-            string name = XmlUtility.GetNode(xmlManifiestFile, "DisplayName").InnerText.Trim();
-            string description = XmlUtility.GetNode(xmlManifiestFile, "Description").InnerText.Trim();
+            var manifiestFile = _routesManager.GetFileFromSource(Routes.VsixRootDirPath, Routes.VsixManifestFile);
+            var manifest = XmlUtility.LoadXmlFile(manifiestFile.FullName);
+            string name = manifest.GetNode("DisplayName").InnerText.Trim();
+            string description = manifest.GetNode("Description").InnerText.Trim();
 
             foreach (var culture in _cultures)
             {
-                var vsixDesDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.VsixRootDirPath, culture));
-                var langpackFile = new FileInfo(Path.Combine(vsixDesDirectory.FullName, Routes.VsixLangpackFile));
+                var desDirectory = _routesManager.GetOrCreateDestDirectory(Path.Combine(Routes.VsixRootDirPath, culture));
+                var langpackFile = new FileInfo(Path.Combine(desDirectory.FullName, Routes.VsixLangpackFile));
 
                 using (TextWriter writer = langpackFile.CreateText())
                 {
@@ -55,7 +54,8 @@ namespace Localization
 
         internal void ExtractProjectTemplates()
         {
-            if (_validator.HasChanges(Routes.ProjectTemplateFileNameValidateCS))
+            var csPath = Path.Combine(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileCS);
+            if (_validator.HasVsTemplatesChanges(csPath))
             {
                 ExtractProjectTemplatesByLanguage(
                     Routes.ProjectTemplatePathCS,
@@ -63,7 +63,8 @@ namespace Localization
                     Routes.ProjectTemplateFileNamePatternCS);
             }
 
-            if (_validator.HasChanges(Routes.ProjectTemplateFileNameValidateVB))
+            var vbPath = Path.Combine(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileVB);
+            if (_validator.HasVsTemplatesChanges(vbPath))
             {
                 ExtractProjectTemplatesByLanguage(
                     Routes.ProjectTemplatePathVB,
@@ -74,8 +75,8 @@ namespace Localization
 
         private void ExtractProjectTemplatesByLanguage(string projectTemplatePath, string projectTemplateFile, string projectTemplateFileNamePattern)
         {
-            FileInfo srcFile = GetFile(Path.Combine(_sourceDir.FullName, projectTemplatePath, projectTemplateFile));
-            var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, projectTemplatePath));
+            FileInfo srcFile = _routesManager.GetFileFromSource(Path.Combine(projectTemplatePath, projectTemplateFile));
+            var desDirectory = _routesManager.GetOrCreateDestDirectory(projectTemplatePath);
 
             foreach (string culture in _cultures)
             {
@@ -86,12 +87,12 @@ namespace Localization
 
         internal void ExtractCommandTemplates()
         {
-            if (_validator.HasChanges(Routes.RelayCommandFileNameValidate))
+            if (_validator.HasRelayCommandPackageChanges())
             {
                 LocalizeFileType(Routes.RelayCommandFileNameValidate, Routes.RelayCommandFileNamePattern);
             }
 
-            if (_validator.HasChanges(Routes.VspackageFileNameValidate))
+            if (_validator.HasVsPackageResxChanges())
             {
                 LocalizeFileType(Routes.VspackageFileNameValidate, Routes.VspackageFileNamePattern);
             }
@@ -99,8 +100,8 @@ namespace Localization
 
         private void LocalizeFileType(string filePath, string searchPattern)
         {
-            FileInfo file = GetFile(Path.Combine(_sourceDir.FullName, filePath));
-            DirectoryInfo desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.CommandTemplateRootDirPath));
+            FileInfo file = _routesManager.GetFileFromSource(filePath);
+            DirectoryInfo desDirectory = _routesManager.GetOrCreateDestDirectory(Routes.CommandTemplateRootDirPath);
 
             foreach (string culture in _cultures)
             {
@@ -120,7 +121,7 @@ namespace Localization
 
         private void ExtractTemplateEngineTemplates(string patternPath)
         {
-            var srcDirectory = GetDirectory(Path.Combine(_sourceDir.FullName, Routes.TemplatesRootDirPath));
+            var srcDirectory = _routesManager.GetDirectoryFromSource(Routes.TemplatesRootDirPath);
             var directories = srcDirectory.GetDirectories(patternPath, SearchOption.AllDirectories);
             var templatesDirectories = directories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB")));
 
@@ -137,11 +138,11 @@ namespace Localization
         private void ExtractTemplateJson(string srcDirectory)
         {
             string fileJson = Path.Combine(srcDirectory, Routes.TemplateJsonFile);
-            FileInfo file = new FileInfo(Path.Combine(_sourceDir.FullName, fileJson));
+            FileInfo file = _routesManager.GetFileFromSource(fileJson);
 
-            if (file.Exists && _validator.HasChanges(fileJson))
+            if (file.Exists && _validator.HasTemplateJsonChanges(fileJson))
             {
-                var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, srcDirectory));
+                var desDirectory = _routesManager.GetOrCreateDestDirectory(srcDirectory);
                 var metadata = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(file.FullName));
 
                 foreach (string culture in _cultures)
@@ -163,11 +164,11 @@ namespace Localization
         private void ExtractTemplateDescription(string srcDirectory)
         {
             string fileMd = Path.Combine(srcDirectory, Routes.TemplateDescriptionFile);
-            FileInfo file = new FileInfo(Path.Combine(_sourceDir.FullName, fileMd));
+            FileInfo file = _routesManager.GetFileFromSource(fileMd);
 
-            if (file.Exists && _validator.HasChanges(fileMd))
+            if (file.Exists && _validator.HasTemplateMdChanges(fileMd))
             {
-                var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, srcDirectory));
+                var desDirectory = _routesManager.GetOrCreateDestDirectory(srcDirectory);
 
                 foreach (string culture in _cultures)
                 {
@@ -179,7 +180,7 @@ namespace Localization
 
         internal void ExtractWtsProjectTypes()
         {
-            if (_validator.HasChanges(Routes.WtsProjectTypesValidate))
+            if (_validator.HasCatalogJsonChanges(Routes.WtsProjectTypesValidate))
             {
                 ExtractWtsTemplateFiles(Routes.WtsProjectTypes);
             }
@@ -189,7 +190,7 @@ namespace Localization
 
         internal void ExtractWtsFrameworks()
         {
-            if (_validator.HasChanges(Routes.WtsFrameworksValidate))
+            if (_validator.HasCatalogJsonChanges(Routes.WtsFrameworksValidate))
             {
                 ExtractWtsTemplateFiles(Routes.WtsFrameworks);
             }
@@ -199,9 +200,8 @@ namespace Localization
 
         private void ExtractWtsTemplateFiles(string routeType)
         {
-            var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath));
-            var srcDirectory = new DirectoryInfo(Path.Combine(_sourceDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
-            var srcFile = GetFile(srcDirectory.FullName + ".json");
+            var desDirectory = _routesManager.GetOrCreateDestDirectory(Routes.WtsTemplatesRootDirPath);
+            var srcFile = _routesManager.GetFileFromSource(Routes.WtsTemplatesRootDirPath, routeType + ".json");
 
             var fileContent = File.ReadAllText(srcFile.FullName);
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
@@ -223,9 +223,7 @@ namespace Localization
 
         private void ExtractWtsTemplateSubfolderFiles(string routeType)
         {
-            var srcDirectory = new DirectoryInfo(Path.Combine(_sourceDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
-
-            var srcFile = GetFile(srcDirectory.FullName + ".json");
+            var srcFile = _routesManager.GetFileFromSource(Routes.WtsTemplatesRootDirPath, routeType + ".json");
             var fileContent = File.ReadAllText(srcFile.FullName);
             var content = JsonConvert.DeserializeObject<List<JObject>>(fileContent);
             var projectNames = content.Select(json => json.GetValue("name", StringComparison.Ordinal).Value<string>());
@@ -233,13 +231,13 @@ namespace Localization
             foreach (var name in projectNames)
             {
                 var mdFilePath = Path.Combine(Routes.WtsTemplatesRootDirPath, routeType, name + ".md");
-                if (_validator.HasChanges(mdFilePath))
+                if (_validator.HasTemplateMdChanges(mdFilePath))
                 {
-                    var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, Routes.WtsTemplatesRootDirPath, routeType));
+                    var mdFile = _routesManager.GetFileFromSource(mdFilePath);
+                    var desDirectory = _routesManager.GetOrCreateDestDirectory(Path.Combine(Routes.WtsTemplatesRootDirPath, routeType));
 
                     foreach (string culture in _cultures)
                     {
-                        var mdFile = new FileInfo(Path.Combine(_sourceDir.FullName, mdFilePath));
                         mdFile.CopyTo(Path.Combine(desDirectory.FullName, culture + "." + name + ".md"), true);
                     }
                 }
@@ -251,10 +249,10 @@ namespace Localization
             foreach (string directory in Routes.ResoureceDirectories)
             {
                 var srcResFile = Path.Combine(directory, Routes.ResourcesFilePath);
-                if (_validator.HasChanges(srcResFile))
+                if (_validator.HasResourceChanges(srcResFile))
                 {
-                    var desDirectory = GetOrCreateDirectory(Path.Combine(_destinationDir.FullName, directory));
-                    FileInfo resourceFile = GetFile(Path.Combine(_sourceDir.FullName, srcResFile));
+                    FileInfo resourceFile = _routesManager.GetFileFromSource(srcResFile);
+                    var desDirectory = _routesManager.GetOrCreateDestDirectory(directory);
 
                     foreach (string culture in _cultures)
                     {
@@ -263,42 +261,6 @@ namespace Localization
                     }
                 }
             }
-        }
-
-        private DirectoryInfo GetDirectory(string path)
-        {
-            var directory = new DirectoryInfo(path);
-
-            if (!directory.Exists)
-            {
-                throw new DirectoryNotFoundException($"Source directory \"{directory.FullName}\" not found.");
-            }
-
-            return directory;
-        }
-
-        private DirectoryInfo GetOrCreateDirectory(string path)
-        {
-            var directory = new DirectoryInfo(path);
-
-            if (!directory.Exists)
-            {
-                directory.Create();
-            }
-
-            return directory;
-        }
-
-        private FileInfo GetFile(string path)
-        {
-            var file = new FileInfo(path);
-
-            if (!file.Exists)
-            {
-                throw new FileNotFoundException($"File \"{file.FullName}\" not found.");
-            }
-
-            return file;
         }
 
         private string GetTemplateRelativePath(DirectoryInfo directory)
