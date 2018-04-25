@@ -127,7 +127,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             catch (Exception ex)
             {
                 AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorUnableToSetDefaultConfiguration} {ex.ToString()}").FireAndForget();
-
             }
         }
 
