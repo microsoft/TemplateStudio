@@ -15,6 +15,8 @@ namespace Localization
 
         internal const string CommandTemplateRootDirPath = "code\\src\\Installer.2017\\Commands";
         internal const string RelayCommandFile = "RelayCommandPackage.en-US.vsct";
+        internal const string VspackageFile = "VSPackage.en-US.resx";
+
         internal const string RelayCommandFileNamePattern = "RelayCommandPackage.{0}.vsct";
         internal const string VspackageFileNamePattern = "VSPackage.{0}.resx";
 
@@ -54,13 +56,23 @@ namespace Localization
             "code\\src\\UI\\Resources"
         };
 
+        internal static string[] TemplatesPlatforms { get; } =
+        {
+            "Uwp"
+        };
+
         // Validate Routes
         internal const string VsixValidatePath = "code\\src\\Installer.2017\\source.extension.vsixmanifest";
         internal const string ProjectTemplateFileNameValidateCS = "code\\src\\ProjectTemplates\\CSharp.UWP.2017.Solution\\CSharp.UWP.VS2017.Solution.vstemplate";
-        internal const string ProjectTemplateFileNameValidateVB = "code\\src\\ProjectTemplates\\VBNet.UWP.2017.Solution\\VBNet.UWP.VS2017.Solution.vstemplate";
+        internal const string ProjectTemplateFileNameValidateVB = "code\\src\\ProjectTemplates\\VBNet.UWP.VS2017.Solution\\VBNet.UWP.VS2017.Solution.vstemplate";
         internal const string RelayCommandFileNameValidate = "code\\src\\Installer.2017\\Commands\\RelayCommandPackage.en-US.vsct";
         internal const string VspackageFileNameValidate = "code\\src\\Installer.2017\\Commands\\VSPackage.en-US.resx";
         internal const string WtsProjectTypesValidate = "templates\\_catalog\\projectTypes.json";
         internal const string WtsFrameworksValidate = "templates\\_catalog\\frameworks.json";
+
+        // Extract files folders
+        internal const string OriginalExtractDirectory = "original";
+        internal const string ActualExtractDirectory = "actual";
+        internal const string DiffExtractDirectory = "diff";
     }
 }
