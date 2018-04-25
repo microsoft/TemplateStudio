@@ -188,11 +188,11 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,26,0">
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}"/>
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding GoForwardCommand}" />
-                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="{StaticResource Margin_S_Left}" Command="{Binding FinishCommand}" />
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_Right}">
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding GoForwardCommand}" AutomationProperties.AutomationId="GoForwardButton" />
+                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="{StaticResource Margin_S_Left}" Command="{Binding FinishCommand}" AutomationProperties.AutomationId="FinishButton" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" AutomationProperties.AutomationId="CancelButton" />
             </StackPanel>
         </Grid>
     </Grid>

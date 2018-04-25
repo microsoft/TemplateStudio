@@ -21,7 +21,7 @@ namespace Localization
             return xmlFile;
         }
 
-        internal static XmlNode GetNode(XmlDocument xmlFile, string nodeName)
+        internal static XmlNode GetNode(this XmlDocument xmlFile, string nodeName)
         {
             XmlNodeList nodes = xmlFile.GetElementsByTagName(nodeName);
             if (nodes == null || nodes.Count == 0)
@@ -37,13 +37,35 @@ namespace Localization
             return nodes[0];
         }
 
-        internal static void SetNodeText(XmlDocument xmlFile, string nodeName, string nodeText)
+        internal static XmlNode GetNodeByAttribute(this XmlDocument xmlFile, string xpath)
+        {
+            XmlNode node = xmlFile.SelectSingleNode(xpath);
+            if (node == null)
+            {
+                throw new Exception($"Node not found in XmlDocument.");
+            }
+
+            return node;
+        }
+
+        internal static XmlNodeList GetNodes(this XmlDocument xmlFile, string nodeName)
+        {
+            XmlNodeList nodes = xmlFile.GetElementsByTagName(nodeName);
+            if (nodes == null || nodes.Count == 0)
+            {
+                throw new Exception($"Node \"{nodeName}\" not found in XmlDocument.");
+            }
+
+            return nodes;
+        }
+
+        internal static void SetNodeText(this XmlDocument xmlFile, string nodeName, string nodeText)
         {
             XmlNode node = GetNode(xmlFile, nodeName);
             node.InnerText = nodeText;
         }
 
-        internal static void InsertNewNodeAfter(XmlNode node, string newNodeName, string newNodeText)
+        internal static void InsertNewNodeAfter(this XmlNode node, string newNodeName, string newNodeText)
         {
             XmlDocument xmlFile = node.OwnerDocument;
             XmlNode newNode = xmlFile.CreateNode(XmlNodeType.Element, newNodeName, node.NamespaceURI);
@@ -51,12 +73,30 @@ namespace Localization
             node.ParentNode.InsertAfter(newNode, node);
         }
 
-        internal static void AppendNewChildNode(XmlDocument xmlFile, string nodeName, string newNodeName, string newNodeText)
+        internal static void AppendNewChildNode(this XmlDocument xmlFile, string nodeName, string newNodeName, string newNodeText)
         {
             XmlNode node = GetNode(xmlFile, nodeName);
             XmlNode newNode = xmlFile.CreateNode(XmlNodeType.Element, newNodeName, node.NamespaceURI);
             newNode.InnerText = newNodeText;
             node.AppendChild(newNode);
+        }
+
+        internal static IEnumerable<string> GetInnerText(this XmlNodeList nodes)
+        {
+            foreach (XmlNode node in nodes)
+            {
+                if (node.HasChildNodes)
+                {
+                    foreach (var text in node.ChildNodes.GetInnerText())
+                    {
+                        yield return text;
+                    }
+                }
+                else
+                {
+                    yield return node.InnerText.Trim();
+                }
+            }
         }
     }
 }
