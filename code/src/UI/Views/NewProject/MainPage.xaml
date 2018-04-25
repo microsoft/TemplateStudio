@@ -176,8 +176,18 @@
             </Grid.ColumnDefinitions>
             <TextBlock
                 Grid.Column="0"
-                Text="{x:Static strings:StringRes.TermsAndConditionsText}"
-                Style="{StaticResource WtsTextBlockTermsAndConditions}" />
+                Text="{x:Static strings:StringRes.TermsAndConditionsText}">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource WtsTextBlockTermsAndConditions}">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ProjectType.Items.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_Right}">
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
                 <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding GoForwardCommand}" AutomationProperties.AutomationId="GoForwardButton" />
