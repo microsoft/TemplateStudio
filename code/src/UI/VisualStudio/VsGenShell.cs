@@ -115,7 +115,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override bool SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
+        public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
         {
             try
             {
@@ -124,12 +124,11 @@ namespace Microsoft.Templates.UI.VisualStudio
                 SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
                 SetStartupProject(defaultProject);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableToSetDefaultConfiguration).FireAndForget();
-            }
+                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorUnableToSetDefaultConfiguration} {ex.ToString()}").FireAndForget();
 
-            return true;
+            }
         }
 
         private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
@@ -143,8 +142,6 @@ namespace Microsoft.Templates.UI.VisualStudio
                         if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
                         {
                             solConfiguration.Activate();
-
-                            return true;
                         }
                     }
                 }
