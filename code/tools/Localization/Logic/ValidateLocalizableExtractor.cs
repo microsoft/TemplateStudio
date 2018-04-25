@@ -26,51 +26,39 @@ namespace Localization
 
         internal bool HasVsixChanges()
         {
-            var originalVsix = _routesManager.GetFileFromSource(Routes.VsixRootDirPath, Routes.VsixManifestFile).FullName;
-            var actualVsix = _routesManager.GetFileFromDestination(Routes.VsixRootDirPath, Routes.VsixManifestFile).FullName;
+            var path = Path.Combine(Routes.VsixRootDirPath, Routes.VsixManifestFile);
+            var nodes = new[] { "DisplayName", "Description" };
+            var areEquals = CompareNodesToXmlFilesAreEquals(path, nodes);
 
-            var originalManifest = XmlUtility.LoadXmlFile(originalVsix);
-            var originalName = originalManifest.GetNode("DisplayName").InnerText.Trim();
-            var originalDescription = originalManifest.GetNode("Description").InnerText.Trim();
-
-            var actualManifest = XmlUtility.LoadXmlFile(originalVsix);
-            var actualName = actualManifest.GetNode("DisplayName").InnerText.Trim();
-            var actualDescription = actualManifest.GetNode("Description").InnerText.Trim();
-
-            return originalName != actualName || originalDescription != actualDescription;
+            return !areEquals;
         }
 
-        internal bool HasVsTemplatesChanges(string language)
+        internal bool HasVsTemplatesChanges(string path)
         {
-            var relativePath = language == "VB" ? Routes.ProjectTemplatePathVB : Routes.ProjectTemplatePathCS;
-            var fileName = language == "VB" ? Routes.ProjectTemplateFileVB : Routes.ProjectTemplateFileCS;
+            var nodes = new[] { "Name", "Description" };
+            var areEquals = CompareNodesToXmlFilesAreEquals(path, nodes);
 
-            var originalVsTemplate = _routesManager.GetFileFromSource(relativePath, fileName).FullName;
-            var actualVsTemplate = _routesManager.GetFileFromDestination(relativePath, fileName).FullName;
-
-            var originalManifest = XmlUtility.LoadXmlFile(originalVsTemplate);
-            var originalName = originalManifest.GetNode("Name").InnerText.Trim();
-            var originalDescription = originalManifest.GetNode("Description").InnerText.Trim();
-
-            var actualManifest = XmlUtility.LoadXmlFile(actualVsTemplate);
-            var actualName = actualManifest.GetNode("Name").InnerText.Trim();
-            var actualDescription = actualManifest.GetNode("Description").InnerText.Trim();
-
-            return originalName != actualName || originalDescription != actualDescription;
+            return !areEquals;
         }
 
         internal bool HasRelayCommandPackageChanges()
         {
-            var originalRelayCommandFile = _routesManager.GetFileFromSource(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile).FullName;
-            var actualRelayCommandFile = _routesManager.GetFileFromDestination(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile).FullName;
+            var relayCommandFilePath = Path.Combine(Routes.CommandTemplateRootDirPath, Routes.RelayCommandFile);
+            if (!_routesManager.ExistInSourceAndDestination(relayCommandFilePath))
+            {
+                return true;
+            }
+
+            var originalRelayCommandFile = _routesManager.GetFileFromSource(relayCommandFilePath);
+            var actualRelayCommandFile = _routesManager.GetFileFromDestination(relayCommandFilePath);
 
             var originalResources = XmlUtility
-                .LoadXmlFile(originalRelayCommandFile)
+                .LoadXmlFile(originalRelayCommandFile.FullName)
                 .GetNodes("Strings")
                 .GetInnerText();
 
             var actualResources = XmlUtility
-                .LoadXmlFile(actualRelayCommandFile)
+                .LoadXmlFile(actualRelayCommandFile.FullName)
                 .GetNodes("Strings")
                 .GetInnerText();
 
@@ -80,52 +68,44 @@ namespace Localization
 
         internal bool HasVsPackageResxChanges()
         {
-            var originalVsPackageFile = _routesManager.GetFileFromSource(Routes.CommandTemplateRootDirPath, Routes.VspackageFile).FullName;
-            var actualVsPackageFile = _routesManager.GetFileFromDestination(Routes.CommandTemplateRootDirPath, Routes.VspackageFile).FullName;
+            var path = Path.Combine(Routes.CommandTemplateRootDirPath, Routes.VspackageFile);
+            var attributes = new[] { "//data[@name='110']", "//data[@name='112']" };
+            var areEquals = CompareNodesToXmlFilesAreEquals(path, attributes, mode: "attribute");
 
-            var (originalName, originalDescription) = GetVsPackageLocalizationValues(originalVsPackageFile);
-            var (actualName, actualDescription) = GetVsPackageLocalizationValues(actualVsPackageFile);
-
-            return !(originalName == actualName && originalDescription == actualDescription);
+            return !areEquals;
         }
 
-        private (string name, string description) GetVsPackageLocalizationValues(string vspackagePath)
+        internal bool HasTemplateJsonChanges(string path)
         {
-            var xml = XmlUtility.LoadXmlFile(vspackagePath);
+            var nodes = new[] { "description" };
+            var areEquals = CompareJsonPropertiesAreEquals(path, nodes);
 
-            var name = xml.GetNodeByAttribute("//data[@name='110']").InnerText.Trim();
-            var description = xml.GetNodeByAttribute("//data[@name='112']").InnerText.Trim();
-
-            return (name, description);
-        }
-
-        internal bool HasTemplateJsonChanges(string jsonPath)
-        {
-            var originalJson = _routesManager.GetFileFromSource(jsonPath).FullName;
-            var actualJson = _routesManager.GetFileFromDestination(jsonPath).FullName;
-
-            var originalJsonContent = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(originalJson));
-            var actualJsonContent = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(actualJson));
-
-            var originalDescription = originalJsonContent.GetValue("description", StringComparison.Ordinal).Value<string>();
-            var actualDescription = actualJsonContent.GetValue("description", StringComparison.Ordinal).Value<string>();
-
-            return originalDescription != actualDescription;
+            return !areEquals;
         }
 
         internal bool HasTemplateMdChanges(string mdPath)
         {
-            var originalMd = _routesManager.GetFileFromSource(mdPath).FullName;
-            var actualMd = _routesManager.GetFileFromDestination(mdPath).FullName;
+            if (!_routesManager.ExistInSourceAndDestination(mdPath))
+            {
+                return true;
+            }
 
-            var originalMdContent = File.ReadAllText(originalMd);
-            var actualMdContent = File.ReadAllText(actualMd);
+            var originalMd = _routesManager.GetFileFromSource(mdPath);
+            var originalMdContent = File.ReadAllText(originalMd.FullName);
+
+            var actualMd = _routesManager.GetFileFromDestination(mdPath);
+            var actualMdContent = File.ReadAllText(actualMd.FullName);
 
             return originalMdContent != actualMdContent;
         }
 
         internal bool HasCatalogJsonChanges(string jsonPath)
         {
+            if (!_routesManager.ExistInSourceAndDestination(jsonPath))
+            {
+                return true;
+            }
+
             var originalJson = _routesManager.GetFileFromSource(jsonPath).FullName;
             var actualJson = _routesManager.GetFileFromDestination(jsonPath).FullName;
 
@@ -145,31 +125,79 @@ namespace Localization
 
         internal bool HasResourceChanges(string resPath)
         {
-            var originalResxPath = _routesManager.GetFileFromSource(resPath).FullName;
-            var actualResxPath = _routesManager.GetFileFromDestination(resPath).FullName;
-
-            var originalResx = ResourcesExtensions.GetResourcesByFile(originalResxPath);
-            var actualResx = ResourcesExtensions.GetResourcesByFile(actualResxPath);
-
-            // compare num items
-            if (originalResx.Keys.Count != actualResx.Keys.Count)
+            if (!_routesManager.ExistInSourceAndDestination(resPath))
             {
                 return true;
             }
 
-            // compare keys names
-            if (actualResx.Keys.Any(k => !originalResx.Keys.Contains(k)))
+            var originalResxPath = _routesManager.GetFileFromSource(resPath);
+            var originalResx = ResourcesExtensions.GetResourcesByFile(originalResxPath.FullName);
+
+            var actualResxPath = _routesManager.GetFileFromDestination(resPath);
+            var actualResx = ResourcesExtensions.GetResourcesByFile(actualResxPath.FullName);
+
+            return !originalResx.AreEquals(actualResx);
+        }
+
+        private bool CompareNodesToXmlFilesAreEquals(string path, IEnumerable<string> nodes, string mode = "name")
+        {
+            if (!_routesManager.ExistInSourceAndDestination(path))
             {
-                return true;
+                return false;
             }
 
-            // compare values
-            if (actualResx.Any(i => i.Value != originalResx[i.Key]))
+            var originalFile = _routesManager.GetFileFromSource(path);
+            var originalValues = GetNodesByXml(originalFile, nodes, mode);
+
+            var actualFile = _routesManager.GetFileFromDestination(path);
+            var actualValues = GetNodesByXml(actualFile, nodes, mode);
+
+            return originalValues.AreEquals(actualValues);
+        }
+
+        private Dictionary<string, string> GetNodesByXml(FileInfo file, IEnumerable<string> nodes, string mode = "name")
+        {
+            var result = new Dictionary<string, string>();
+            var xml = XmlUtility.LoadXmlFile(file.FullName);
+
+            foreach (var node in nodes)
             {
-                return true;
+                var xmlNode = mode == "attribute" ? xml.GetNodeByAttribute(node) : xml.GetNode(node);
+                var value = xmlNode.InnerText.Trim();
+                result.Add(node, value);
             }
 
-            return false;
+            return result;
+        }
+
+        private bool CompareJsonPropertiesAreEquals(string path, IEnumerable<string> properties)
+        {
+            if (!_routesManager.ExistInSourceAndDestination(path))
+            {
+                return false;
+            }
+
+            var originalFile = _routesManager.GetFileFromSource(path);
+            var originalValues = GetPropertiesByJson(originalFile, properties);
+
+            var actualFile = _routesManager.GetFileFromDestination(path);
+            var actualValues = GetPropertiesByJson(actualFile, properties);
+
+            return originalValues.AreEquals(actualValues);
+        }
+
+        private Dictionary<string, string> GetPropertiesByJson(FileInfo file, IEnumerable<string> properties)
+        {
+            var result = new Dictionary<string, string>();
+            var json = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(file.FullName));
+
+            foreach (var property in properties)
+            {
+                var value = json.GetValue(property, StringComparison.Ordinal).Value<string>();
+                result.Add(property, value);
+            }
+
+            return result;
         }
     }
 }

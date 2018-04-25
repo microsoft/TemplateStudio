@@ -38,7 +38,7 @@ namespace Localization.Extensions
 
         public FileInfo GetFileFromSource(string relativePath, string fileName)
         {
-            return RoutesExtensions.GetFile(Path.Combine(_sourceDir.FullName, relativePath, fileName));
+            return GetFileFromSource(Path.Combine(relativePath, fileName));
         }
 
         public DirectoryInfo GetOrCreateDestDirectory(string path)
@@ -53,7 +53,22 @@ namespace Localization.Extensions
 
         public FileInfo GetFileFromDestination(string relativePath, string fileName)
         {
-            return RoutesExtensions.GetFile(Path.Combine(_destinationDir.FullName, relativePath, fileName));
+            return this.GetFileFromDestination(Path.Combine(relativePath, fileName));
+        }
+
+        public bool ExistInSource(string relativePath)
+        {
+            return File.Exists(Path.Combine(_sourceDir.FullName, relativePath));
+        }
+
+        public bool ExistInDestination(string relativePath)
+        {
+            return File.Exists(Path.Combine(_destinationDir.FullName, relativePath));
+        }
+
+        public bool ExistInSourceAndDestination(string relativePath)
+        {
+            return ExistInSource(relativePath) && ExistInDestination(relativePath);
         }
     }
 }

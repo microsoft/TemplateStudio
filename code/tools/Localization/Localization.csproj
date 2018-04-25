@@ -93,6 +93,7 @@
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
     <Compile Include="Extensions\ConsoleExt.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\JsonExtensions.cs" />
     <Compile Include="Extensions\ResourcesExtensions.cs" />
     <Compile Include="Extensions\RoutesExtensions.cs" />

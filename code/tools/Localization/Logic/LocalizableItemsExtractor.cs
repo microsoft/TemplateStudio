@@ -54,7 +54,8 @@ namespace Localization
 
         internal void ExtractProjectTemplates()
         {
-            if (_validator.HasVsTemplatesChanges("CS"))
+            var csPath = Path.Combine(Routes.ProjectTemplatePathCS, Routes.ProjectTemplateFileCS);
+            if (_validator.HasVsTemplatesChanges(csPath))
             {
                 ExtractProjectTemplatesByLanguage(
                     Routes.ProjectTemplatePathCS,
@@ -62,7 +63,8 @@ namespace Localization
                     Routes.ProjectTemplateFileNamePatternCS);
             }
 
-            if (_validator.HasVsTemplatesChanges("VB"))
+            var vbPath = Path.Combine(Routes.ProjectTemplatePathVB, Routes.ProjectTemplateFileVB);
+            if (_validator.HasVsTemplatesChanges(vbPath))
             {
                 ExtractProjectTemplatesByLanguage(
                     Routes.ProjectTemplatePathVB,
