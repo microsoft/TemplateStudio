@@ -117,23 +117,30 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override bool SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
         {
-            var defaultProject = GetProjectByGuid(projectGuid);
+            try
+            {
+                var defaultProject = GetProjectByGuid(projectGuid);
 
-            SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
-            SetStartupProject(defaultProject);
+                SetActiveConfigurationAndPlatform(configurationName, platformName, defaultProject);
+                SetStartupProject(defaultProject);
+            }
+            catch (Exception)
+            {
+                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableToSetDefaultConfiguration).FireAndForget();
+            }
 
             return true;
         }
 
         private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
         {
-            foreach (SolutionConfiguration solConfiguration in Dte.Solution.SolutionBuild.SolutionConfigurations)
+            foreach (SolutionConfiguration solConfiguration in Dte.Solution?.SolutionBuild?.SolutionConfigurations)
             {
                 if (solConfiguration.Name == configurationName)
                 {
                     foreach (SolutionContext context in solConfiguration.SolutionContexts)
                     {
-                        if (context.PlatformName == platformName && context.ProjectName == project.UniqueName)
+                        if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
                         {
                             solConfiguration.Activate();
 

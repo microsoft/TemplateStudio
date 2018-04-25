@@ -648,7 +648,6 @@
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Composition tool</value>
   </data>
-  
   <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
     <value>HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. </value>
     <comment>Has navigation view validation error message</comment>
@@ -691,5 +690,9 @@
   <data name="BreakingChangesDialogMessage" xml:space="preserve">
     <value>We have detected incompatibilities between your project and the last templates version. Please review the changes:</value>
     <comment>Breaking change window dialog message description</comment>
+  </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Unable to set default solution configuration</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
   </data>
 </root>
