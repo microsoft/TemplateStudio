@@ -2,14 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-
-namespace Microsoft.Templates.Core
+namespace Microsoft.Templates.VsEmulator
 {
-    public class BreakingChangeVersion
+    public class FailedMergePostAction
     {
-        public string Name { get; set; }
-
-        public Version BreakingVersion { get; set; }
     }
 }
