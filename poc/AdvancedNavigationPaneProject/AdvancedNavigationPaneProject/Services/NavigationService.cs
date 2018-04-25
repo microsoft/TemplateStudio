@@ -3,51 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace AdvancedNavigationPaneProject.Services
 {
-    public enum NavigationFrame
-    {
-        Main,
-        Secondary
-    }
-
     public static class NavigationService
     {
+        public const string FrameKeyMain = "Main";
+
         public static event EventHandler<NavigationEventArgsEx> Navigated;
 
         public static event NavigationFailedEventHandler NavigationFailed;
 
         private static bool _isFirstNewNavigation;
-        private static Frame _mainFrame;
-        private static Frame _secondaryFrame;
+        private static Dictionary<string, Frame> _frames = new Dictionary<string, Frame>();
         private static List<PageStackEntryEx> _backStack = new List<PageStackEntryEx>();
 
-        public static void InitializeMainFrame(Frame mainFrame)
+        public static bool InitializeMainFrame(Frame mainFrame)
         {
-            _mainFrame = mainFrame;
-            _mainFrame.Navigated += OnMainFrameNavigated;
-            _mainFrame.NavigationFailed += OnMainFrameNavigationFailed;
-            Window.Current.Content = _mainFrame;
-        }
-
-        public static void InitializeSecondaryFrame(Frame secondaryFrame)
-        {
-            if (_secondaryFrame != null)
+            if(InitializeFrame(FrameKeyMain, mainFrame))
             {
-                _secondaryFrame.Navigated -= OnSecondaryFrameNavigated;
-                _secondaryFrame.NavigationFailed -= OnSecondaryFrameNavigationFailed;
+                Window.Current.Content = mainFrame;
+                return true;
             }
-            _secondaryFrame = secondaryFrame;
-            _secondaryFrame.Navigated += OnSecondaryFrameNavigated;
-            _secondaryFrame.NavigationFailed += OnSecondaryFrameNavigationFailed;
+            return false;
         }
 
-        public static bool IsInitialized(NavigationFrame navigationFrame)
+        public static bool InitializeFrame(string frameKey, Frame frame)
         {
-            var frame = navigationFrame == NavigationFrame.Main ? _mainFrame : _secondaryFrame;
+            if (!_frames.ContainsKey(frameKey))
+            {
+                frame.Tag = frameKey;
+                frame.Navigated += OnFrameNavigated;
+                frame.NavigationFailed += OnFrameNavigationFailed;
+                _frames.Add(frameKey, frame);
+                return true;
+            }
+            return false;
+        }
+
+        public static bool IsInitialized(string frameKey)
+        {
+            var frame = _frames.GetValueOrDefault(frameKey);
             return frame?.Content != null;
         }
 
@@ -58,7 +55,7 @@ namespace AdvancedNavigationPaneProject.Services
             if (CanGoBack)
             {
                 var stackEntry = _backStack.First();
-                var frame = GetActiveFrame(stackEntry.NavigationFrame);
+                var frame = GetActiveFrame(stackEntry.FrameKey);
                 frame.GoBack();
             }
         }
@@ -77,65 +74,55 @@ namespace AdvancedNavigationPaneProject.Services
         public static bool Navigate(Type pageType, NavigateConfig config = null)
         {
             config = config ?? NavigateConfig.Defaul;
-            var frame = GetActiveFrame(config.NavigationFrame);
+            var frame = GetActiveFrame(config.FrameKey);
             _isFirstNewNavigation = frame.Content == null || frame.Content.GetType() == pageType;
             return frame.Navigate(pageType, config.Parameter, config.InfoOverride);
         }
 
-        private static Frame GetActiveFrame(NavigationFrame navigationFrame)
+        public static void RestartNavigation()
         {
-            Frame frame = null;
-            switch (navigationFrame)
+            foreach (var frame in _frames.Values)
             {
-                case NavigationFrame.Main:
-                    frame = _mainFrame;
-                    break;
-                case NavigationFrame.Secondary:
-                    frame = _secondaryFrame;
-                    break;
+                frame.Navigated -= OnFrameNavigated;
+                frame.NavigationFailed -= OnFrameNavigationFailed;
             }
+            _frames.Clear();
+            _backStack.Clear();
+            InitializeMainFrame(new Frame());
+        }
+
+        private static Frame GetActiveFrame(string frameKey)
+        {
+            var frame = _frames.GetValueOrDefault(frameKey);
             if (frame == null)
             {
-                var methodName = navigationFrame == NavigationFrame.Main ? nameof(InitializeMainFrame) : nameof(InitializeSecondaryFrame);
+                var methodName = frameKey == FrameKeyMain ? nameof(InitializeMainFrame) : nameof(InitializeFrame);
                 throw new Exception($"Frame is not initialized, please call {methodName} before navigate.");
             }
             return frame;
         }
 
-        private static void OnMainFrameNavigated(object sender, NavigationEventArgs e)
+        private static void OnFrameNavigated(object sender, NavigationEventArgs e)
         {
-            SetupNavigated(NavigationFrame.Main, _mainFrame, e);
+            if (sender is Frame frame)
+            {
+                var frameKey = frame.Tag as string;
+                if (e.NavigationMode == NavigationMode.New && !_isFirstNewNavigation)
+                {
+                    _backStack.Insert(0, new PageStackEntryEx(frameKey, e));
+                    _isFirstNewNavigation = frame.Content == null;
+                }
+                else if (e.NavigationMode == NavigationMode.Back)
+                {
+                    _backStack.RemoveAt(0);
+                }
+                Navigated?.Invoke(frame, new NavigationEventArgsEx(frameKey, e));
+            }
         }
 
-        private static void OnMainFrameNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private static void OnFrameNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             NavigationFailed?.Invoke(sender, e);
-        }
-
-        private static void OnSecondaryFrameNavigated(object sender, NavigationEventArgs e)
-        {
-            SetupNavigated(NavigationFrame.Secondary, _secondaryFrame, e);
-        }
-
-        private static void OnSecondaryFrameNavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
-            NavigationFailed?.Invoke(sender, e);
-        }
-
-        private static void SetupNavigated(NavigationFrame navigationFrame, Frame frame, NavigationEventArgs e)
-        {
-            if (e.NavigationMode == NavigationMode.New && !_isFirstNewNavigation)
-            {
-                _backStack.Insert(0, new PageStackEntryEx(navigationFrame, e));
-                System.Diagnostics.Debug.WriteLine($"**************ADD: {_backStack.First()}");
-                _isFirstNewNavigation = frame.Content == null;
-            }
-            else if (e.NavigationMode == NavigationMode.Back)
-            {
-                System.Diagnostics.Debug.WriteLine($"**************REMOVE: {_backStack.First()}");
-                _backStack.RemoveAt(0);
-            }
-            Navigated?.Invoke(frame, new NavigationEventArgsEx(navigationFrame, e));
         }
     }
 }

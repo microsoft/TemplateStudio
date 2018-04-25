@@ -16,7 +16,6 @@ namespace AdvancedNavigationPaneProject.ViewModels
         private NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
         private ICommand _webSiteCommand;
-        private ICommand _logOutCommand;
 
         public NavigationViewItem Selected
         {
@@ -26,9 +25,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
-        public ICommand WebSiteCommand => _webSiteCommand ?? (_webSiteCommand = new RelayCommand(OnWebSite));
-
-        public ICommand LogOutCommand => _logOutCommand ?? (_logOutCommand = new RelayCommand(OnLogOut));
+        public ICommand WebSiteCommand => _webSiteCommand ?? (_webSiteCommand = new RelayCommand(OnWebSite));        
 
         public SecondShellViewModel()
         {
@@ -36,7 +33,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         public void Initialize(Frame frame, NavigationView navigationView)
         {
-            NavigationService.InitializeSecondaryFrame(frame);
+            NavigationService.InitializeFrame("Third", frame);
             _navigationView = navigationView;
             NavigationService.Navigated += OnNavigated;
         }
@@ -47,12 +44,12 @@ namespace AdvancedNavigationPaneProject.ViewModels
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType, new NavigateConfig(NavigationFrame.Secondary));
+            NavigationService.Navigate(pageType, new NavigateConfig("Third"));
         }
 
         private void OnNavigated(object sender, NavigationEventArgsEx e)
         {
-            if (e.NavigationFrame == NavigationFrame.Secondary)
+            if (e.FrameKey == "Third")
             {
                 Selected = _navigationView.MenuItems
                                 .OfType<NavigationViewItem>()
@@ -69,10 +66,6 @@ namespace AdvancedNavigationPaneProject.ViewModels
         private void OnWebSite()
         {
             NavigationService.Navigate<WebSitePage>();
-        }
-
-        private void OnLogOut()
-        {
         }
     }
 }

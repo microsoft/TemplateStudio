@@ -40,7 +40,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
         public void Initialize(Frame frame, NavigationView navigationView)
         {
             _navigationView = navigationView;
-            NavigationService.InitializeSecondaryFrame(frame);
+            NavigationService.InitializeFrame("Secondary", frame);
             NavigationService.Navigated += OnNavigated;
         }
 
@@ -48,7 +48,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
         {
             if (args.IsSettingsInvoked)
             {
-                NavigationService.Navigate<SettingsPage>(new NavigateConfig(NavigationFrame.Secondary));
+                NavigationService.Navigate<SettingsPage>(new NavigateConfig("Secondary"));
                 return;
             }
 
@@ -56,12 +56,12 @@ namespace AdvancedNavigationPaneProject.ViewModels
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType, new NavigateConfig(NavigationFrame.Secondary));
+            NavigationService.Navigate(pageType, new NavigateConfig("Secondary"));
         }
 
         private void OnNavigated(object sender, NavigationEventArgsEx e)
         {
-            if (e.NavigationFrame == NavigationFrame.Secondary)
+            if (e.FrameKey == "Secondary")
             {
                 if (e.SourcePageType == typeof(SettingsPage))
                 {
@@ -83,8 +83,8 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         private void OnSecondShell()
         {
-            NavigationService.Navigate<SecondShellPage>(new NavigateConfig(NavigationFrame.Main));
-            NavigationService.Navigate<SecondMainPage>(new NavigateConfig(NavigationFrame.Secondary));
+            NavigationService.Navigate<SecondShellPage>(new NavigateConfig("Main"));
+            NavigationService.Navigate<SecondMainPage>(new NavigateConfig("Third"));
         }
 
         private void OnWebSite()
@@ -94,6 +94,8 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         private void OnLogOut()
         {
+            NavigationService.RestartNavigation();
+            NavigationService.Navigate<StartUpPage>();
         }
     }
 }

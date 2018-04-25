@@ -9,30 +9,30 @@ namespace AdvancedNavigationPaneProject.Services
 {
     public class NavigateConfig
     {
-        public readonly NavigationFrame NavigationFrame;
+        public readonly string FrameKey;
 
         public readonly object Parameter;
 
         public readonly NavigationTransitionInfo InfoOverride;
 
-        public NavigateConfig(NavigationFrame navigationFrame)
+        public NavigateConfig(string frameKey)
         {
-            NavigationFrame = navigationFrame;
+            FrameKey = frameKey;
         }
 
-        public NavigateConfig(NavigationFrame navigationFrame, object parameter)
+        public NavigateConfig(string frameKey, object parameter)
         {
-            NavigationFrame = navigationFrame;
+            FrameKey = frameKey;
             Parameter = parameter;
         }
 
-        public NavigateConfig(NavigationFrame navigationFrame, object parameter, NavigationTransitionInfo infoOverride)
+        public NavigateConfig(string frameKey, object parameter, NavigationTransitionInfo infoOverride)
         {
-            NavigationFrame = navigationFrame;
+            FrameKey = frameKey;
             Parameter = parameter;
             InfoOverride = infoOverride;
         }
 
-        public static NavigateConfig Defaul => new NavigateConfig(NavigationFrame.Main);
+        public static NavigateConfig Defaul => new NavigateConfig("Main");
     }
 }

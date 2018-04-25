@@ -6,7 +6,7 @@ namespace AdvancedNavigationPaneProject.Services
 {
     public class NavigationEventArgsEx
     {
-        public readonly NavigationFrame NavigationFrame;
+        public readonly string FrameKey;
 
         public readonly Uri Uri;
 
@@ -20,9 +20,9 @@ namespace AdvancedNavigationPaneProject.Services
 
         public readonly NavigationTransitionInfo NavigationTransitionInfo;
 
-        public NavigationEventArgsEx(NavigationFrame navigationFrame, NavigationEventArgs args)
+        public NavigationEventArgsEx(string frameKey, NavigationEventArgs args)
         {
-            NavigationFrame = navigationFrame;
+            FrameKey = frameKey;
             Uri = args.Uri;
             Content = args.Content;
             NavigationMode = args.NavigationMode;

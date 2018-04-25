@@ -6,7 +6,7 @@ namespace AdvancedNavigationPaneProject.Services
 {
     public class PageStackEntryEx
     {
-        public readonly NavigationFrame NavigationFrame;
+        public readonly string FrameKey;
 
         public readonly NavigationTransitionInfo NavigationTransitionInfo;
 
@@ -14,9 +14,9 @@ namespace AdvancedNavigationPaneProject.Services
 
         public readonly Type SourcePageType;
 
-        public PageStackEntryEx(NavigationFrame navigationFrame, NavigationEventArgs args)
+        public PageStackEntryEx(string frameKey, NavigationEventArgs args)
         {
-            NavigationFrame = navigationFrame;
+            FrameKey = frameKey;
             NavigationTransitionInfo = args.NavigationTransitionInfo;
             Parameter = args.Parameter;
             SourcePageType = args.SourcePageType;
@@ -24,7 +24,7 @@ namespace AdvancedNavigationPaneProject.Services
 
         public override string ToString()
         {
-            return $"{NavigationFrame}: {SourcePageType.Name}";
+            return $"{FrameKey}: {SourcePageType.Name}";
         }
     }
 }

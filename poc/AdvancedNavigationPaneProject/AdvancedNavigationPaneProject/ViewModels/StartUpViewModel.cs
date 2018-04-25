@@ -18,8 +18,9 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         private void OnStartUp()
         {
+            NavigationService.RestartNavigation();
             NavigationService.Navigate<ShellPage>();
-            NavigationService.Navigate<MainPage>(new NavigateConfig(NavigationFrame.Secondary));
+            NavigationService.Navigate<MainPage>(new NavigateConfig("Secondary"));
         }
     }
 }
