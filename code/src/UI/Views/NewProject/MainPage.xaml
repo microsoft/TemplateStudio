@@ -29,7 +29,16 @@
             <RowDefinition Height="934*" />
             <!--Buttons area-->
         </Grid.RowDefinitions>
-        <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+        <StackPanel
+            Visibility="{Binding ShowNoContentPanel, Converter={StaticResource BoolToVisibilityConverter}}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <TextBlock 
+                Style="{StaticResource WtsTextBlockSectionTitle}"
+                Text="{x:Static strings:StringRes.NoContentPanelMessage}" />
+        </StackPanel>
+        <Grid Visibility="{Binding ShowNoContentPanel, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
+            <Grid Visibility="{Binding WizardStatus.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}">
             <Grid.ColumnDefinitions>
                 <!--Sequential flow-->
                 <ColumnDefinition Width="220" />
@@ -158,6 +167,8 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
+        </Grid>
+
         <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -165,13 +176,23 @@
             </Grid.ColumnDefinitions>
             <TextBlock
                 Grid.Column="0"
-                Text="{x:Static strings:StringRes.TermsAndConditionsText}"
-                Style="{StaticResource WtsTextBlockTermsAndConditions}" />
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,26,0">
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}"/>
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding GoForwardCommand}" />
-                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="{StaticResource Margin_S_Left}" Command="{Binding FinishCommand}" />
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
+                Text="{x:Static strings:StringRes.TermsAndConditionsText}">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource WtsTextBlockTermsAndConditions}">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ProjectType.Items.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_Right}">
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonBack}" Command="{Binding GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding GoForwardCommand}" AutomationProperties.AutomationId="GoForwardButton" />
+                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static strings:StringRes.ButtonCreate}" Margin="{StaticResource Margin_S_Left}" Command="{Binding FinishCommand}" AutomationProperties.AutomationId="FinishButton" />
+                <Button Style="{StaticResource WtsButton}" Content="{x:Static strings:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" AutomationProperties.AutomationId="CancelButton" />
             </StackPanel>
         </Grid>
     </Grid>

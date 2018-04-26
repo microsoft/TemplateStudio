@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,6 +31,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public TemplateType TemplateType { get; set; }
 
+        public string ConfigPlatform { get; private set; }
+
         public string ConfigFramework { get; private set; }
 
         public string ConfigProjectType { get; private set; }
@@ -37,6 +40,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public static MainViewModel Instance { get; private set; }
 
         public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
+
+        public ObservableCollection<BreakingChangeMessageViewModel> BreakingChangesErrors { get; set; } = new ObservableCollection<BreakingChangeMessageViewModel>();
 
         public ChangesSummaryViewModel ChangesSummary { get; } = new ChangesSummaryViewModel();
 
@@ -50,7 +55,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 #if DEBUG
                 return Visibility.Visible;
 #else
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
 #endif
             }
         }
@@ -66,7 +71,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             TemplateType = templateType;
             var stringResource = templateType == TemplateType.Page ? StringRes.NewItemTitlePage : StringRes.NewItemTitleFeature;
             WizardStatus.Title = stringResource;
-            await InitializeAsync(language);
+            SetProjectConfigInfo();
+            await InitializeAsync(ConfigPlatform, language);
         }
 
         protected override async Task<bool> IsStepAvailableAsync(int step)
@@ -109,8 +115,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private UserSelection CreateUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, Language) { HomeName = string.Empty };
-            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework);
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, Language) { HomeName = string.Empty };
+            var dependencies = GenComposer.GetAllDependencies(TemplateSelection.Template, ConfigFramework, ConfigPlatform);
             userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
             foreach (var dependencyTemplate in dependencies)
             {
@@ -131,23 +137,24 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private UserSelection GetUserSelection()
         {
-            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, Language);
+            var userSelection = new UserSelection(ConfigProjectType, ConfigFramework, ConfigPlatform, Language);
             userSelection.Add((TemplateSelection.Name, TemplateSelection.Template));
             return userSelection;
         }
 
         protected override async Task OnTemplatesAvailableAsync()
         {
-            SetProjectConfigInfo();
-            TemplateSelection.LoadData(TemplateType, ConfigFramework);
+            TemplateSelection.LoadData(TemplateType, ConfigFramework, ConfigPlatform);
             WizardStatus.IsLoading = false;
 
             var result = BreakingChangesValidatorService.Validate();
             if (!result.IsValid)
             {
-                var message = string.Join(Environment.NewLine, result.ErrorMessages);
-                var notification = Notification.Warning(message, Category.None, TimerType.None);
-                await NotificationsControl.AddNotificationAsync(notification);
+                var messages = result.ErrorMessages.Select(e => new BreakingChangeMessageViewModel(e));
+                BreakingChangesErrors.AddRange(messages);
+                OnPropertyChanged(nameof(BreakingChangesErrors));
+
+                await Task.CompletedTask;
             }
         }
 
@@ -174,7 +181,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private void SetProjectConfigInfo()
         {
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
-            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
                 var vm = new ProjectConfigurationViewModel();
                 ProjectConfigurationDialog projectConfig = new ProjectConfigurationDialog(vm);
@@ -185,9 +192,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 {
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
-                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework);
+                    configInfo.Platform = vm.SelectedPlatform;
+                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework, configInfo.Platform);
                     ConfigFramework = configInfo.Framework;
                     ConfigProjectType = configInfo.ProjectType;
+                    ConfigPlatform = configInfo.Platform;
                 }
                 else
                 {
@@ -198,6 +207,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 ConfigFramework = configInfo.Framework;
                 ConfigProjectType = configInfo.ProjectType;
+                ConfigPlatform = configInfo.Platform;
             }
         }
 

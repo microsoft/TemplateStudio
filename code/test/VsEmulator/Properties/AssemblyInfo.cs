@@ -55,3 +55,5 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("0.0.0.0")]
+
+[assembly: CommandLine.AssemblyUsage("Usage: VsEmulator -c en-US -l C# -n UITestApp -u Project")]

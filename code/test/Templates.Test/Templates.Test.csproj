@@ -267,7 +267,10 @@
     </AdditionalFiles>
     <Compile Include="TemplateFolderValidationTests.cs" />
     <Compile Include="TemplateJsonValidationTests.cs" />
-    <Compile Include="WindowsAppCertKitTests.cs" />
+    <Compile Include="WACK\WindowsAppCertKitTests.cs" />
+    <None Include="RestoreAndBuildXamarin.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="RunWackTest.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -343,6 +346,7 @@
     </None>
     <None Include="VisualTests\TestProjectSource\AutomatedUITests.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

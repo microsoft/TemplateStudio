@@ -10,6 +10,6 @@ namespace Microsoft.Templates.Core.Validation
     {
         public bool IsValid { get; set; } = true;
 
-        public List<string> ErrorMessages { get; set; } = new List<string>();
+        public List<ValidationMessage> ErrorMessages { get; set; } = new List<ValidationMessage>();
     }
 }

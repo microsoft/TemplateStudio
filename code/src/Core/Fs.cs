@@ -5,6 +5,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
@@ -151,6 +152,46 @@ namespace Microsoft.Templates.Core
                 if (warnOnFailure)
                 {
                     AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeDeleteDirectoryMessage, dir, ex.Message), ex).FireAndForget();
+                }
+            }
+        }
+
+        public static string FindFileAtOrAbove(string path, string extension)
+        {
+            var file = Directory.EnumerateFiles(path, extension, SearchOption.TopDirectoryOnly).FirstOrDefault();
+
+            if (file != null)
+            {
+                return file;
+            }
+            else
+            {
+                var parent = Directory.GetParent(path);
+                if (parent != null)
+                {
+                    return FindFileAtOrAbove(Directory.GetParent(path).FullName, extension);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        public static void SafeRenameDirectory(string dir, string dirNewName, bool warnOnFailure = true)
+        {
+            try
+            {
+                if (Directory.Exists(dir))
+                {
+                    Directory.Move(dir, dirNewName);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (warnOnFailure)
+                {
+                    AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeRenameDirectoryMessage, dir, ex.Message), ex).FireAndForget();
                 }
             }
         }

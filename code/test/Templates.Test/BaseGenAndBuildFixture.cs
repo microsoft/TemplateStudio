@@ -36,16 +36,16 @@ namespace Microsoft.Templates.Test
 
         public IEnumerable<ITemplateInfo> Templates() => GenContext.ToolBox.Repo.GetAll();
 
-        public IEnumerable<ITemplateInfo> GetTemplates(string framework)
+        public IEnumerable<ITemplateInfo> GetTemplates(string framework, string platform)
         {
-            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework));
+            return GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework) && t.GetPlatform() == platform);
         }
 
-        public UserSelection SetupProject(string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null)
+        public UserSelection SetupProject(string projectType, string framework, string platform, string language, Func<ITemplateInfo, string> getName = null)
         {
-            var userSelection = new UserSelection(projectType, framework, language);
+            var userSelection = new UserSelection(projectType, framework, platform, language);
 
-            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework);
+            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
 
             foreach (var item in layouts)
             {
@@ -105,7 +105,7 @@ namespace Microsoft.Templates.Test
                     break;
             }
 
-            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework);
+            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework, userSelection.Platform);
 
             foreach (var item in dependencies)
             {
@@ -201,20 +201,24 @@ namespace Microsoft.Templates.Test
         }
 
         [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
-        public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath)
+        public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
 
             // Build
             var solutionFile = Path.GetFullPath(outputPath + @"\" + solutionName + ".sln");
 
+            var batFile = "RestoreAndBuild.bat";
+
+            var batPath = Path.GetDirectoryName(GetPath(batFile));
+
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building");
-            Console.Out.Write($"### > Running following command: {GetPath("RestoreAndBuild.bat")} \"{solutionFile}\" {Platform} {Config}");
+            Console.Out.Write($"### > Running following command: {GetPath(batFile)} \"{solutionFile}\" {Platform} {Config}");
 
-            var startInfo = new ProcessStartInfo(GetPath("RestoreAndBuild.bat"))
+            var startInfo = new ProcessStartInfo(GetPath(batFile))
             {
-                Arguments = $"\"{solutionFile}\" {Platform} {Config}",
+                Arguments = $"\"{solutionFile}\" {Platform} {Config} {batPath}",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
@@ -273,6 +277,12 @@ namespace Microsoft.Templates.Test
             GenContext.SetCurrentLanguage(language);
             var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
             fakeShell.SetCurrentLanguage(language);
+        }
+
+        public static void SetCurrentPlatform(string platform)
+        {
+            var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
+            fakeShell.SetCurrentPlatform(platform);
         }
     }
 }

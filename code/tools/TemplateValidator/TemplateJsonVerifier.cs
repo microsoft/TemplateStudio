@@ -177,6 +177,9 @@ namespace TemplateValidator
                     case "wts.projecttype":
                         VerifyWtsProjecttypeTagValue(tag, results);
                         break;
+                    case "wts.platform":
+                        VerifyPlatformTagValue(tag, results);
+                        break;
                     case "wts.version":
                         VerifyWtsVersionTagValue(tag, results);
                         break;
@@ -232,6 +235,14 @@ namespace TemplateValidator
             }
         }
 
+        private static void VerifyPlatformTagValue(KeyValuePair<string, string> tag, List<string> results)
+        {
+            if (!new[] { Platforms.Uwp }.Contains(tag.Value))
+            {
+                results.Add($"Invalid value '{tag.Value}' specified in the platform tag.");
+            }
+        }
+
         private static void VerifyWtsIshiddenTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!BoolStrings.Contains(tag.Value))
@@ -274,7 +285,7 @@ namespace TemplateValidator
 
         private static void VerifyWtsGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences" }.Contains(tag.Value))
+            if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the wts.rightClickEnabled tag.");
             }
@@ -413,7 +424,7 @@ namespace TemplateValidator
 
         private static void VerifyTypeTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            if (!new[] { "item" }.Contains(tag.Value))
+            if (!new[] { "item", "project" }.Contains(tag.Value))
             {
                 results.Add($"Invalid value '{tag.Value}' specified in the type tag.");
             }

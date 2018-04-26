@@ -20,15 +20,19 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     {
         public string ProjectName => "TestResourceDictionaryPostAction";
 
-        public string OutputPath => Directory.GetCurrentDirectory();
+        public string OutputPath { get; set; }
 
-        public string ProjectPath => Directory.GetCurrentDirectory();
+        public string DestinationPath => Directory.GetCurrentDirectory();
+
+        public string DestinationParentPath => string.Empty;
+
+        public string TempGenerationPath => string.Empty;
 
         public List<string> ProjectItems => new List<string>();
 
         public List<string> FilesToOpen => new List<string>();
 
-        public List<FailedMergePostAction> FailedMergePostActions => new List<FailedMergePostAction>();
+        public List<FailedMergePostActionInfo> FailedMergePostActions => new List<FailedMergePostActionInfo>();
 
         public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => new Dictionary<string, List<MergeInfo>>();
 
@@ -43,7 +47,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var config = new MergeConfiguration(postaction, true);
 
-            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction(config);
+            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("Test", config);
             mergeResourceDictionaryPostAction.Execute();
 
             var result = File.ReadAllText(source).Replace("\r\n", string.Empty).Replace("\n", string.Empty);
@@ -61,10 +65,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = this;
             var config = new MergeConfiguration(postaction, true);
 
-            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction(config);
+            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("TestTemplate", config);
 
-            Exception ex = Assert.Throws<InvalidDataException>(() => mergeResourceDictionaryPostAction.Execute());
-            Assert.Equal(string.Format(Resources.StringRes.FailedMergePostActionKeyAlreadyDefined, "PageTitleStyle"), ex.Message);
+            Exception ex = Assert.Throws<Exception>(() => mergeResourceDictionaryPostAction.Execute());
+            Assert.NotNull(ex.InnerException);
+            Assert.Equal(typeof(System.IO.InvalidDataException), ex.InnerException.GetType());
+            Assert.Equal(string.Format(Resources.StringRes.PostActionException, "Microsoft.Templates.Core.PostActions.Catalog.Merge.MergeResourceDictionaryPostAction", "TestTemplate"), ex.Message);
         }
     }
 }

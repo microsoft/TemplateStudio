@@ -76,6 +76,9 @@ namespace Microsoft.Templates.Test
             var csResourcesString = File.ReadAllText(csReswFilePath);
             var vbResourcesString = File.ReadAllText(vbReswFilePath);
 
+            // Account for different project names in resources files
+            vbResourcesString = vbResourcesString.Replace(vbProjectName, csProjectName);
+
             var reswFilesMatch = csResourcesString == vbResourcesString;
             Assert.True(reswFilesMatch, $"Resource files do not match ({csResultPath.Replace("CS", "*")}).");
 
@@ -95,21 +98,24 @@ namespace Microsoft.Templates.Test
                 }
             }
 
-            foreach (var vbFile in new DirectoryInfo(Path.Combine(vbResultPath, vbProjectName)).GetFiles("*.vb", SearchOption.AllDirectories))
+            foreach (var filter in new[] { "*.vb", "Package.appxmanifest" })
             {
-                var vbFileContents = File.ReadAllText(vbFile.FullName);
-
-                for (var i = resourceKeys.Count - 1; i >= 0; i--)
+                foreach (var vbFile in new DirectoryInfo(Path.Combine(vbResultPath, vbProjectName)).GetFiles(filter, SearchOption.AllDirectories))
                 {
-                    if (vbFileContents.Contains(resourceKeys[i]))
+                    var vbFileContents = File.ReadAllText(vbFile.FullName);
+
+                    for (var i = resourceKeys.Count - 1; i >= 0; i--)
                     {
-                        resourceKeys.RemoveAt(i);
+                        if (vbFileContents.Contains(resourceKeys[i]))
+                        {
+                            resourceKeys.RemoveAt(i);
+                        }
                     }
-                }
 
-                if (!resourceKeys.Any())
-                {
-                    break;
+                    if (!resourceKeys.Any())
+                    {
+                        break;
+                    }
                 }
             }
 

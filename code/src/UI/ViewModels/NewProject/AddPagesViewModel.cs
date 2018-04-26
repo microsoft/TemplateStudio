@@ -18,10 +18,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
         }
 
-        public void LoadData(string frameworkName)
+        public void LoadData(string frameworkName, string platform)
         {
             Groups.Clear();
-            DataService.LoadTemplateGroups(Groups, TemplateType.Page, frameworkName);
+            DataService.LoadTemplatesGroups(Groups, TemplateType.Page, frameworkName, platform);
         }
 
         public void ResetUserSelection()

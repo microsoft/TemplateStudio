@@ -11,6 +11,8 @@ This document covers:
 * [Using the navigation pane with command bars](#commandbar)
 * [Invoke code on NavigationView](#invokecode)
 
+To update to navigation view read the following [document](updatetonavigationview.md).
+
 <a name="menu"></a>
 
 ## Modifying the menu items
@@ -153,6 +155,18 @@ To add `CommandBar` at the bottom of every page, modify the contents of `ShellPa
 The above approach can be used to put the bar above the `NavigationView` by swapping the rows in the grid.
 Alternatively, a bar can be added inside the NavigationView using the HeaderTemplate.
 
+Remove Header property from `NavigationView` declaration.
+
+**MVVM Design Patterns**
+```xml
+Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
+```
+
+**Code Behind**
+```xml
+Header="{x:Bind Selected.Content, Mode=OneWay}"
+```
+Adapt the HeaderTemplate setting Selected.Content to the Title TextBlock and adding the CommandBar.
 ```xml
 <NavigationView>
     <!--  Contents of NavigationView menu omitted to brevity  -->
@@ -164,7 +178,7 @@ Alternatively, a bar can be added inside the NavigationView using the HeaderTemp
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <CommandBar Grid.ColumnSpan="2">
-                    <AppBarButton Icon="Save" Label="Save" />
+                    <AppBarButton Icon="Save" Label="Save" Command="{Binding SaveCommand}" />
                 </CommandBar>
                 <TextBlock
                     Style="{StaticResource TitleTextBlockStyle}"

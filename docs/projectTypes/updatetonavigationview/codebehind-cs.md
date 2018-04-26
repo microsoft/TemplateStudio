@@ -35,7 +35,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
     <NavigationView
         x:Name="navigationView"
         SelectedItem="{x:Bind Selected, Mode=OneWay}"
-        Header="{Binding Selected.Title}"
+        Header="{x:Bind Selected.Content, Mode=OneWay}"
         ItemInvoked="OnItemInvoked"
         IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
@@ -57,7 +57,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
                     Style="{StaticResource TitleTextBlockStyle}"
                     Margin="12,0,0,0"
                     VerticalAlignment="Center"
-                    Text="{Binding Selected.Content}" />
+                    Text="{Binding}" />
             </DataTemplate>
         </NavigationView.HeaderTemplate>
         <Grid>
@@ -93,9 +93,9 @@ The resulting code should look like this:
  ```csharp
 public sealed partial class ShellPage : Page, INotifyPropertyChanged
 {
-    private object _selected;
+    private NavigationViewItem _selected;
 
-    public object Selected
+    public NavigationViewItem Selected
     {
         get { return _selected; }
         set { Set(ref _selected, value); }
@@ -215,7 +215,7 @@ if (args.IsSettingsInvoked)
 ```csharp
 if (e.SourcePageType == typeof(SettingsPage))
 {
-	Selected = navigationView.SettingsItem;
+	Selected = navigationView.SettingsItem as NavigationViewItem;
 	return;
 }
 ```

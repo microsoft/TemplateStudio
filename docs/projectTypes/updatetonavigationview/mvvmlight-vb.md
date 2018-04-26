@@ -37,7 +37,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
     <NavigationView
         x:Name="navigationView"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-        Header="{Binding Selected.Title}"
+        Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
         IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
@@ -55,7 +55,7 @@ The updated ShellPage will include the NavigationView and add the MenuItems dire
                     Style="{StaticResource TitleTextBlockStyle}"
                     Margin="12,0,0,0"
                     VerticalAlignment="Center"
-                    Text="{Binding Selected.Content}" />
+                    Text="{Binding}" />
             </DataTemplate>
         </NavigationView.HeaderTemplate>
         <i:Interaction.Behaviors>
@@ -145,7 +145,7 @@ Public Class ShellViewModel
 
     Private _navigationView As NavigationView
 
-    Private _selected As Object
+    Private _selected As NavigationViewItem
 
     Private _itemInvokedCommand As ICommand
 
@@ -155,12 +155,12 @@ Public Class ShellViewModel
         End Get
     End Property
 
-    Public Property Selected As Object
+    Public Property Selected As NavigationViewItem
         Get
             Return _selected
         End Get
 
-        Set(value As Object)
+        Set(value As NavigationViewItem)
             [Set](_selected, value)
         End Set
     End Property
@@ -253,7 +253,7 @@ End If
 - On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
 ```vbnet
 If e.SourcePageType = GetType(SettingsPage) Then
-	Selected = _navigationView.SettingsItem
+    Selected = TryCast(_navigationView.SettingsItem, NavigationViewItem)
 	Return
 End If
 ```

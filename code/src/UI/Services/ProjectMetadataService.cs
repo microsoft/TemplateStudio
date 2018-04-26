@@ -18,6 +18,7 @@ namespace Microsoft.Templates.UI.Services
         private const string ProjectTypeLiteral = "projectType";
         private const string FrameworkLiteral = "framework";
         private const string TemplatesVersionLiteral = "templatesVersion";
+        private const string PlatformLiteral = "platform";
         private const string MetadataLiteral = "Metadata";
         private const string NameAttribLiteral = "Name";
         private const string ValueAttribLiteral = "Value";
@@ -30,7 +31,7 @@ namespace Microsoft.Templates.UI.Services
 
             try
             {
-                var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
+                var path = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Package.appxmanifest");
                 if (File.Exists(path))
                 {
                     var manifest = XElement.Load(path);
@@ -40,6 +41,7 @@ namespace Microsoft.Templates.UI.Services
 
                     projectMetadata.ProjectType = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == ProjectTypeLiteral)?.Attribute(ValueAttribLiteral)?.Value;
                     projectMetadata.Framework = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == FrameworkLiteral)?.Attribute(ValueAttribLiteral)?.Value;
+                    projectMetadata.Platform = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == PlatformLiteral)?.Attribute(ValueAttribLiteral)?.Value;
                     projectMetadata.TemplatesVersion = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == TemplatesVersionLiteral)?.Attribute(VersionAttribLiteral)?.Value;
                 }
             }
@@ -51,19 +53,31 @@ namespace Microsoft.Templates.UI.Services
             return projectMetadata;
         }
 
-        public static void SaveProjectMetadata(string projectType, string framework)
+        public static void SaveProjectMetadata(string projectType, string framework, string platform)
         {
             try
             {
-                var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
+                var path = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Package.appxmanifest");
                 if (File.Exists(path))
                 {
                     var manifest = XElement.Load(path);
                     XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
 
                     var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
-                    metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, ProjectTypeLiteral), new XAttribute(ValueAttribLiteral, projectType)));
-                    metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, FrameworkLiteral), new XAttribute(ValueAttribLiteral, framework)));
+                    if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == ProjectTypeLiteral) == null)
+                    {
+                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, ProjectTypeLiteral), new XAttribute(ValueAttribLiteral, projectType)));
+                    }
+
+                    if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == FrameworkLiteral) == null)
+                    {
+                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, FrameworkLiteral), new XAttribute(ValueAttribLiteral, framework)));
+                    }
+
+                    if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == PlatformLiteral) == null)
+                    {
+                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, PlatformLiteral), new XAttribute(ValueAttribLiteral, platform)));
+                    }
 
                     manifest.Save(path);
                 }
@@ -87,5 +101,7 @@ namespace Microsoft.Templates.UI.Services
         public string ProjectType { get; set; }
 
         public string Framework { get; set; }
+
+        public string Platform { get; set; }
     }
 }
