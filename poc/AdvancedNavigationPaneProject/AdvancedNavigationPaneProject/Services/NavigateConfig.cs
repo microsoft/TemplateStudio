@@ -33,6 +33,6 @@ namespace AdvancedNavigationPaneProject.Services
             InfoOverride = infoOverride;
         }
 
-        public static NavigateConfig Defaul => new NavigateConfig("Main");
+        public static NavigateConfig Default => new NavigateConfig(NavigationService.FrameKeyMain);
     }
 }

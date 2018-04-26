@@ -10,12 +10,13 @@ namespace AdvancedNavigationPaneProject.Services
     public static class NavigationService
     {
         public const string FrameKeyMain = "Main";
+        public const string FrameKeySecondary = "Secondary";
+        public const string FrameKeyThird = "Third";
 
         public static event EventHandler<NavigationEventArgsEx> Navigated;
 
         public static event NavigationFailedEventHandler NavigationFailed;
 
-        private static bool _isFirstNewNavigation;
         private static Dictionary<string, Frame> _frames = new Dictionary<string, Frame>();
         private static List<PageStackEntryEx> _backStack = new List<PageStackEntryEx>();
 
@@ -55,7 +56,7 @@ namespace AdvancedNavigationPaneProject.Services
             if (CanGoBack)
             {
                 var stackEntry = _backStack.First();
-                var frame = GetActiveFrame(stackEntry.FrameKey);
+                var frame = GetFrame(stackEntry.FrameKey);
                 frame.GoBack();
             }
         }
@@ -73,10 +74,13 @@ namespace AdvancedNavigationPaneProject.Services
 
         public static bool Navigate(Type pageType, NavigateConfig config = null)
         {
-            config = config ?? NavigateConfig.Defaul;
-            var frame = GetActiveFrame(config.FrameKey);
-            _isFirstNewNavigation = frame.Content == null || frame.Content.GetType() == pageType;
-            return frame.Navigate(pageType, config.Parameter, config.InfoOverride);
+            config = config ?? NavigateConfig.Default;
+            var frame = GetFrame(config.FrameKey);
+            if (frame.Content == null || frame.Content.GetType() != pageType)
+            {
+                return frame.Navigate(pageType, config.Parameter, config.InfoOverride);
+            }
+            return false;
         }
 
         public static void RestartNavigation()
@@ -91,7 +95,7 @@ namespace AdvancedNavigationPaneProject.Services
             InitializeMainFrame(new Frame());
         }
 
-        private static Frame GetActiveFrame(string frameKey)
+        public static Frame GetFrame(string frameKey)
         {
             var frame = _frames.GetValueOrDefault(frameKey);
             if (frame == null)
@@ -107,10 +111,9 @@ namespace AdvancedNavigationPaneProject.Services
             if (sender is Frame frame)
             {
                 var frameKey = frame.Tag as string;
-                if (e.NavigationMode == NavigationMode.New && !_isFirstNewNavigation)
+                if (e.NavigationMode == NavigationMode.New && frame.CanGoBack)
                 {
                     _backStack.Insert(0, new PageStackEntryEx(frameKey, e));
-                    _isFirstNewNavigation = frame.Content == null;
                 }
                 else if (e.NavigationMode == NavigationMode.Back)
                 {

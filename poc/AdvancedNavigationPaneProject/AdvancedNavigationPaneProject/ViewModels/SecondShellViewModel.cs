@@ -33,7 +33,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         public void Initialize(Frame frame, NavigationView navigationView)
         {
-            NavigationService.InitializeFrame("Third", frame);
+            NavigationService.InitializeFrame(NavigationService.FrameKeyThird, frame);
             _navigationView = navigationView;
             NavigationService.Navigated += OnNavigated;
         }

@@ -21,10 +21,5 @@ namespace AdvancedNavigationPaneProject.Services
             Parameter = args.Parameter;
             SourcePageType = args.SourcePageType;
         }
-
-        public override string ToString()
-        {
-            return $"{FrameKey}: {SourcePageType.Name}";
-        }
     }
 }
