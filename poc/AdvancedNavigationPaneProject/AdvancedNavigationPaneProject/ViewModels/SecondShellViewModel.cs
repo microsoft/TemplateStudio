@@ -26,13 +26,18 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         public SecondShellViewModel()
         {
-            NavigationService.Navigated += OnNavigated;
         }
 
         public void Initialize(Frame frame, NavigationView navigationView)
         {
-            NavigationService.InitializeFrame(NavigationService.FrameKeyThird, frame);
             _navigationView = navigationView;
+            NavigationService.InitializeFrame(NavigationService.FrameKeyThird, frame);            
+            NavigationService.Navigated += OnNavigated;
+        }
+
+        public void UnregisterEvents()
+        {
+            NavigationService.Navigated -= OnNavigated;
         }
 
         private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)

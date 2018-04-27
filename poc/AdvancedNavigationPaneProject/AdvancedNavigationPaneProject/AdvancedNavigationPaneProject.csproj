@@ -190,7 +190,6 @@
     <Compile Include="Helpers\NavHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\NewNavigationEntry.cs" />
     <Compile Include="Services\PageStackEntryEx.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />

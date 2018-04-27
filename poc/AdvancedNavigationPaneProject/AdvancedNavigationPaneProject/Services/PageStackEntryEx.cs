@@ -1,25 +1,24 @@
 ﻿using System;
 using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Navigation;
 
 namespace AdvancedNavigationPaneProject.Services
 {
     public class PageStackEntryEx
     {
-        public readonly string FrameKey;
-
-        public readonly NavigationTransitionInfo NavigationTransitionInfo;
+        public readonly string FrameKey;        
 
         public readonly object Parameter;
 
         public readonly Type SourcePageType;
 
-        public PageStackEntryEx(string frameKey, NavigationEventArgs args)
+        public readonly NavigationTransitionInfo NavigationTransitionInfo;
+
+        public PageStackEntryEx(string frameKey, Type sourcePageType, NavigationConfig config)
         {
             FrameKey = frameKey;
-            NavigationTransitionInfo = args.NavigationTransitionInfo;
-            Parameter = args.Parameter;
-            SourcePageType = args.SourcePageType;
+            SourcePageType = sourcePageType;
+            Parameter = config.Parameter;
+            NavigationTransitionInfo = config.InfoOverride;
         }
     }
 }

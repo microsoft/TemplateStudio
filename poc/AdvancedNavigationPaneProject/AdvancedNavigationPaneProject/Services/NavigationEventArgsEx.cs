@@ -23,12 +23,22 @@ namespace AdvancedNavigationPaneProject.Services
         public NavigationEventArgsEx(string frameKey, NavigationEventArgs args)
         {
             FrameKey = frameKey;
-            Uri = args.Uri;
-            Content = args.Content;
-            NavigationMode = args.NavigationMode;
-            Parameter = args.Parameter;
             SourcePageType = args.SourcePageType;
+            Parameter = args.Parameter;
+            NavigationMode = args.NavigationMode;
+            Content = args.Content;
             NavigationTransitionInfo = args.NavigationTransitionInfo;
+            Uri = args.Uri;
+        }
+
+        public NavigationEventArgsEx(string frameKey, Type sourcePageType, NavigationConfig config, object content)
+        {
+            FrameKey = frameKey;
+            SourcePageType = sourcePageType;
+            Parameter = config.Parameter;
+            NavigationMode = NavigationMode.New;
+            Content = content;
+            NavigationTransitionInfo = config.InfoOverride;
         }
     }
 }

@@ -22,5 +22,11 @@ namespace AdvancedNavigationPaneProject.Views
             base.OnNavigatedTo(e);
             ViewModel.Initialize(shellFrame, navigationView);
         }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            ViewModel.UnregisterEvents();
+        }
     }
 }

@@ -37,8 +37,8 @@ namespace AdvancedNavigationPaneProject.ViewModels
         public void Initialize(Frame frame, NavigationView navigationView)
         {
             _navigationView = navigationView;
-            NavigationService.Navigated += OnNavigated;
             NavigationService.InitializeFrame(NavigationService.FrameKeySecondary, frame);
+            NavigationService.Navigated += OnNavigated;
         }
 
         public void UnregisterEvents()

@@ -14,14 +14,11 @@ namespace AdvancedNavigationPaneProject.Services
         public const string FrameKeyThird = "Third";
 
         public static event EventHandler<NavigationEventArgsEx> Navigated;
-
         public static event NavigationFailedEventHandler NavigationFailed;
 
-        private static readonly Dictionary<string, Frame> _frames = new Dictionary<string, Frame>();
-
-        private static readonly List<PageStackEntryEx> _backStack = new List<PageStackEntryEx>();
-        private static readonly List<NewNavigationEntry> _newNavigations = new List<NewNavigationEntry>();
         private static string _currentFrame;
+        private static readonly Dictionary<string, Frame> _frames = new Dictionary<string, Frame>();
+        private static readonly List<PageStackEntryEx> _backStack = new List<PageStackEntryEx>();
 
         public static bool InitializeMainFrame(Frame mainFrame)
         {
@@ -95,10 +92,24 @@ namespace AdvancedNavigationPaneProject.Services
             frameKey = frameKey ?? _currentFrame;
             config = config ?? NavigationConfig.Default;
             var frame = GetFrame(frameKey);
-            _newNavigations.Insert(0, new NewNavigationEntry(pageType, frameKey, config));
             if (frame.Content == null || frame.Content.GetType() != pageType)
             {
-                return frame.Navigate(pageType, config.Parameter, config.InfoOverride);
+                var result = frame.Navigate(pageType, config.Parameter, config.InfoOverride);
+                if (result)
+                {
+                    if (frame.CanGoBack)
+                    {
+                        if (config.RegisterOnBackStack)
+                        {
+                            _backStack.Insert(0, new PageStackEntryEx(frameKey, pageType, config));
+                        }
+                        else
+                        {
+                            frame.BackStack.RemoveAt(0);
+                        }
+                    }
+                    Navigated?.Invoke(frame, new NavigationEventArgsEx(frameKey, pageType, config, frame.Content));
+                }
             }
             return false;
         }
@@ -131,28 +142,14 @@ namespace AdvancedNavigationPaneProject.Services
             if (sender is Frame frame)
             {
                 var frameKey = frame.Tag as string;
-                if (e.NavigationMode == NavigationMode.New)
-                {
-                    var navigation = _newNavigations.First(n => n.FrameKey == frameKey);
-                    if (frame.CanGoBack)
-                    {
-                        if (navigation.RegisterOnBackStack)
-                        {
-                            _backStack.Insert(0, new PageStackEntryEx(frameKey, e));
-                        }
-                        else
-                        {
-                            frame.BackStack.RemoveAt(0);
-                        }
-                    }
-                    System.Diagnostics.Debug.WriteLine($"REMOVE: {navigation.FrameKey} {navigation.PageType.Name}");
-                    _newNavigations.Remove(navigation);
-                }
-                else if (e.NavigationMode == NavigationMode.Back)
+                if (e.NavigationMode == NavigationMode.Back)
                 {
                     _backStack.RemoveAt(0);
                 }
-                Navigated?.Invoke(frame, new NavigationEventArgsEx(frameKey, e));
+                if (e.NavigationMode != NavigationMode.New)
+                {
+                    Navigated?.Invoke(frame, new NavigationEventArgsEx(frameKey, e));
+                }
             }
         }
 
