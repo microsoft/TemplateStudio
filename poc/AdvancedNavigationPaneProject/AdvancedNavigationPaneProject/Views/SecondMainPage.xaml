@@ -9,8 +9,9 @@
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-        </Grid>
+        <StackPanel>
+            <TextBlock x:Uid="SecondMainPage_SubTitle" Style="{StaticResource SubheaderTextBlockStyle}" />
+            <TextBlock x:Uid="SecondMainPage_Description" Style="{StaticResource BodyTextBlockStyle}" />
+        </StackPanel>
     </Grid>
 </Page>

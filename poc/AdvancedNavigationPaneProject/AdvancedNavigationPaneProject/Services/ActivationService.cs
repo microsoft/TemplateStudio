@@ -67,8 +67,7 @@ namespace AdvancedNavigationPaneProject.Services
 
             if (IsInteractive(activationArgs))
             {
-                var frameKey = _shell == null ? "Main" : "Secondary";
-                var defaultHandler = new DefaultLaunchActivationHandler(frameKey, _defaultNavItem);
+                var defaultHandler = new DefaultLaunchActivationHandler(_defaultNavItem);
                 if (defaultHandler.CanHandle(activationArgs))
                 {
                     await defaultHandler.HandleAsync(activationArgs);

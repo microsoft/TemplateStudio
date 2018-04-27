@@ -92,3 +92,5 @@ public class StartViewModel : Observable
 The three pages in this sample and the order in which they can be navigated to are shown below.
 
 ![Mixed navigation sample](resources/navigation/MixedNavigationSample.png)
+
+You can also reach more advanced scenarios adding to the NavigationService the possibility to contain different Frames with different levels of Navigation. Here is an [Advanced Navigation Doc](navigation-advanced.md) that explains how to reach this.

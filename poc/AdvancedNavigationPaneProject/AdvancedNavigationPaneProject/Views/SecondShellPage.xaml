@@ -36,19 +36,6 @@
                     Text="{Binding}" />
             </DataTemplate>
         </NavigationView.HeaderTemplate>
-        <NavigationView.PaneFooter>
-            <StackPanel>
-                <NavigationViewItem
-                    x:Uid="Shell_WebSite"
-                    Icon="Globe">
-                    <i:Interaction.Behaviors>
-                        <ic:EventTriggerBehavior EventName="Tapped">
-                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.WebSiteCommand}" />
-                        </ic:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>
-                </NavigationViewItem>
-            </StackPanel>
-        </NavigationView.PaneFooter>
         <i:Interaction.Behaviors>
             <ic:EventTriggerBehavior EventName="ItemInvoked">
                 <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />

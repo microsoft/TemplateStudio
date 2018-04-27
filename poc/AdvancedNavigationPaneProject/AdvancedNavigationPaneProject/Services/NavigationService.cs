@@ -17,14 +17,18 @@ namespace AdvancedNavigationPaneProject.Services
 
         public static event NavigationFailedEventHandler NavigationFailed;
 
-        private static Dictionary<string, Frame> _frames = new Dictionary<string, Frame>();
-        private static List<PageStackEntryEx> _backStack = new List<PageStackEntryEx>();
+        private static readonly Dictionary<string, Frame> _frames = new Dictionary<string, Frame>();
+
+        private static readonly List<PageStackEntryEx> _backStack = new List<PageStackEntryEx>();
+        private static readonly List<NewNavigationEntry> _newNavigations = new List<NewNavigationEntry>();
+        private static string _currentFrame;
 
         public static bool InitializeMainFrame(Frame mainFrame)
         {
-            if(InitializeFrame(FrameKeyMain, mainFrame))
+            if (InitializeFrame(FrameKeyMain, mainFrame))
             {
                 Window.Current.Content = mainFrame;
+                _currentFrame = FrameKeyMain;
                 return true;
             }
             return false;
@@ -38,13 +42,16 @@ namespace AdvancedNavigationPaneProject.Services
                 frame.Navigated += OnFrameNavigated;
                 frame.NavigationFailed += OnFrameNavigationFailed;
                 _frames.Add(frameKey, frame);
+                _currentFrame = frameKey;
                 return true;
             }
+            _currentFrame = frameKey;
             return false;
         }
 
-        public static bool IsInitialized(string frameKey)
+        public static bool IsInitialized(string frameKey = null)
         {
+            frameKey = frameKey ?? _currentFrame;
             var frame = _frames.GetValueOrDefault(frameKey);
             return frame?.Content != null;
         }
@@ -63,19 +70,32 @@ namespace AdvancedNavigationPaneProject.Services
 
         public static bool Navigate<T>()
             where T : Page
-            => Navigate<T>(null);
+            => Navigate<T>(null, null);
 
-        public static bool Navigate<T>(NavigateConfig config)
+        public static bool Navigate<T>(string frameKey)
             where T : Page
-            => Navigate(typeof(T), config);
+            => Navigate<T>(frameKey, null);
 
-        public static bool Navigate(Type pageType)
-            => Navigate(pageType, null);
+        public static bool Navigate<T>(NavigationConfig config)
+            where T : Page
+            => Navigate<T>(null, config);
 
-        public static bool Navigate(Type pageType, NavigateConfig config = null)
+        public static bool Navigate<T>(string frameKey, NavigationConfig config)
+            where T : Page
+            => Navigate(typeof(T), frameKey, config);
+
+        public static bool Navigate(Type pageType, string frameKey)
+            => Navigate(pageType, frameKey, null);
+
+        public static bool Navigate(Type pageType, NavigationConfig config)
+            => Navigate(pageType, null, config);
+
+        public static bool Navigate(Type pageType, string frameKey = null, NavigationConfig config = null)
         {
-            config = config ?? NavigateConfig.Default;
-            var frame = GetFrame(config.FrameKey);
+            frameKey = frameKey ?? _currentFrame;
+            config = config ?? NavigationConfig.Default;
+            var frame = GetFrame(frameKey);
+            _newNavigations.Insert(0, new NewNavigationEntry(pageType, frameKey, config));
             if (frame.Content == null || frame.Content.GetType() != pageType)
             {
                 return frame.Navigate(pageType, config.Parameter, config.InfoOverride);
@@ -83,7 +103,7 @@ namespace AdvancedNavigationPaneProject.Services
             return false;
         }
 
-        public static void RestartNavigation()
+        public static void ResetNavigation()
         {
             foreach (var frame in _frames.Values)
             {
@@ -111,9 +131,22 @@ namespace AdvancedNavigationPaneProject.Services
             if (sender is Frame frame)
             {
                 var frameKey = frame.Tag as string;
-                if (e.NavigationMode == NavigationMode.New && frame.CanGoBack)
+                if (e.NavigationMode == NavigationMode.New)
                 {
-                    _backStack.Insert(0, new PageStackEntryEx(frameKey, e));
+                    var navigation = _newNavigations.First(n => n.FrameKey == frameKey);
+                    if (frame.CanGoBack)
+                    {
+                        if (navigation.RegisterOnBackStack)
+                        {
+                            _backStack.Insert(0, new PageStackEntryEx(frameKey, e));
+                        }
+                        else
+                        {
+                            frame.BackStack.RemoveAt(0);
+                        }
+                    }
+                    System.Diagnostics.Debug.WriteLine($"REMOVE: {navigation.FrameKey} {navigation.PageType.Name}");
+                    _newNavigations.Remove(navigation);
                 }
                 else if (e.NavigationMode == NavigationMode.Back)
                 {

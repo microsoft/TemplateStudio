@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using AdvancedNavigationPaneProject.Helpers;
 using AdvancedNavigationPaneProject.Services;
 using AdvancedNavigationPaneProject.Views;
@@ -12,23 +7,18 @@ namespace AdvancedNavigationPaneProject.ViewModels
 {
     public class MainViewModel : Observable
     {
-        private ICommand _expandCommand;
+        private ICommand _secondShellCommand;
 
-        public ICommand ExpandCommand => _expandCommand ?? (_expandCommand = new RelayCommand(OnExpand, CanExpand));
+        public ICommand SecondShellCommand => _secondShellCommand ?? (_secondShellCommand = new RelayCommand(OnSecondShell));
 
         public MainViewModel()
         {
         }
 
-        private void OnExpand()
+        private void OnSecondShell()
         {
-            NavigationService.Navigate<MainPage>();
-        }
-
-        private bool CanExpand()
-        {
-            var mainFrame = NavigationService.GetFrame(NavigationService.FrameKeyMain);
-            return mainFrame.Content != null && mainFrame.Content?.GetType() != typeof(MainPage);
+            NavigationService.Navigate<SecondShellPage>(NavigationService.FrameKeyMain);
+            NavigationService.Navigate<SecondMainPage>();
         }
     }
 }

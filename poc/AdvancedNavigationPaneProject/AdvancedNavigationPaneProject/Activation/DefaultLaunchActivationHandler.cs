@@ -9,12 +9,10 @@ namespace AdvancedNavigationPaneProject.Activation
 {
     internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {
-        private readonly string _frameKey;
         private readonly Type _navElement;
 
-        public DefaultLaunchActivationHandler(string frameKey, Type navElement)
+        public DefaultLaunchActivationHandler(Type navElement)
         {
-            _frameKey = frameKey;
             _navElement = navElement;
         }
 
@@ -22,7 +20,7 @@ namespace AdvancedNavigationPaneProject.Activation
         {
             // When the navigation stack isn't restored, navigate to the first page and configure
             // the new page by passing required information in the navigation parameter
-            NavigationService.Navigate(_navElement, new NavigateConfig(_frameKey, args.Arguments));
+            NavigationService.Navigate(_navElement, new NavigationConfig(true, args.Arguments));
 
             await Task.CompletedTask;
         }
@@ -30,7 +28,7 @@ namespace AdvancedNavigationPaneProject.Activation
         protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
         {
             // None of the ActivationHandlers has handled the app activation
-            return !NavigationService.IsInitialized(_frameKey);
+            return !NavigationService.IsInitialized();
         }
     }
 }

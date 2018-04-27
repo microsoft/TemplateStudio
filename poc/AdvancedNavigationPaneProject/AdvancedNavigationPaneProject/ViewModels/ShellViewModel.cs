@@ -15,7 +15,6 @@ namespace AdvancedNavigationPaneProject.ViewModels
         private NavigationView _navigationView;
         private NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
-        private ICommand _secondShellCommand;
         private ICommand _webSiteCommand;
         private ICommand _logOutCommand;
 
@@ -26,8 +25,6 @@ namespace AdvancedNavigationPaneProject.ViewModels
         }
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
-
-        public ICommand SecondShellCommand => _secondShellCommand ?? (_secondShellCommand = new RelayCommand(OnSecondShell));
 
         public ICommand WebSiteCommand => _webSiteCommand ?? (_webSiteCommand = new RelayCommand(OnWebSite));
 
@@ -40,15 +37,20 @@ namespace AdvancedNavigationPaneProject.ViewModels
         public void Initialize(Frame frame, NavigationView navigationView)
         {
             _navigationView = navigationView;
-            NavigationService.InitializeFrame("Secondary", frame);
             NavigationService.Navigated += OnNavigated;
+            NavigationService.InitializeFrame(NavigationService.FrameKeySecondary, frame);
+        }
+
+        public void UnregisterEvents()
+        {
+            NavigationService.Navigated -= OnNavigated;
         }
 
         private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
-                NavigationService.Navigate<SettingsPage>(new NavigateConfig("Secondary"));
+                NavigationService.Navigate<SettingsPage>(new NavigationConfig(false));
                 return;
             }
 
@@ -56,12 +58,12 @@ namespace AdvancedNavigationPaneProject.ViewModels
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType, new NavigateConfig("Secondary"));
+            NavigationService.Navigate(pageType, null, new NavigationConfig(false));
         }
 
         private void OnNavigated(object sender, NavigationEventArgsEx e)
         {
-            if (e.FrameKey == "Secondary")
+            if (e.FrameKey == NavigationService.FrameKeySecondary)
             {
                 if (e.SourcePageType == typeof(SettingsPage))
                 {
@@ -81,20 +83,14 @@ namespace AdvancedNavigationPaneProject.ViewModels
             return pageType == sourcePageType;
         }
 
-        private void OnSecondShell()
-        {
-            NavigationService.Navigate<SecondShellPage>(new NavigateConfig("Main"));
-            NavigationService.Navigate<SecondMainPage>(new NavigateConfig("Third"));
-        }
-
         private void OnWebSite()
         {
-            NavigationService.Navigate<WebSitePage>();
+            NavigationService.Navigate<WebSitePage>(NavigationService.FrameKeyMain);
         }
 
         private void OnLogOut()
         {
-            NavigationService.RestartNavigation();
+            NavigationService.ResetNavigation();
             NavigationService.Navigate<StartUpPage>();
         }
     }

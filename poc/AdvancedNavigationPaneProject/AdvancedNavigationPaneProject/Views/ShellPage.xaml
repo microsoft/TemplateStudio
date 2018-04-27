@@ -1,4 +1,4 @@
-<Page
+﻿<Page
     x:Class="AdvancedNavigationPaneProject.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
@@ -25,6 +25,7 @@
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
             <NavigationViewItem x:Uid="Shell_Main" Icon="Document" helpers:NavHelper.NavigateTo="views:MainPage" />
+            <NavigationViewItem x:Uid="Shell_Map" Icon="Document" helpers:NavHelper.NavigateTo="views:MapPage" />
         </NavigationView.MenuItems>
         <NavigationView.HeaderTemplate>
             <DataTemplate>
@@ -37,15 +38,6 @@
         </NavigationView.HeaderTemplate>
         <NavigationView.PaneFooter>
             <StackPanel>
-                <NavigationViewItem
-                    x:Uid="Shell_SecondShell"
-                    Icon="Document">
-                    <i:Interaction.Behaviors>
-                        <ic:EventTriggerBehavior EventName="Tapped">
-                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.SecondShellCommand}" />
-                        </ic:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>
-                </NavigationViewItem>
                 <NavigationViewItem
                     x:Uid="Shell_WebSite"
                     Icon="Globe">

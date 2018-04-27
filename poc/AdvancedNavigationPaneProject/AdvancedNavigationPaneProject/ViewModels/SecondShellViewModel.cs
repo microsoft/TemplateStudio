@@ -15,7 +15,6 @@ namespace AdvancedNavigationPaneProject.ViewModels
         private NavigationView _navigationView;
         private NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
-        private ICommand _webSiteCommand;
 
         public NavigationViewItem Selected
         {
@@ -25,17 +24,15 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
-        public ICommand WebSiteCommand => _webSiteCommand ?? (_webSiteCommand = new RelayCommand(OnWebSite));        
-
         public SecondShellViewModel()
         {
+            NavigationService.Navigated += OnNavigated;
         }
 
         public void Initialize(Frame frame, NavigationView navigationView)
         {
             NavigationService.InitializeFrame(NavigationService.FrameKeyThird, frame);
             _navigationView = navigationView;
-            NavigationService.Navigated += OnNavigated;
         }
 
         private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
@@ -44,12 +41,12 @@ namespace AdvancedNavigationPaneProject.ViewModels
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType, new NavigateConfig("Third"));
+            NavigationService.Navigate(pageType);
         }
 
         private void OnNavigated(object sender, NavigationEventArgsEx e)
         {
-            if (e.FrameKey == "Third")
+            if (e.FrameKey == NavigationService.FrameKeyThird)
             {
                 Selected = _navigationView.MenuItems
                                 .OfType<NavigationViewItem>()
@@ -61,11 +58,6 @@ namespace AdvancedNavigationPaneProject.ViewModels
         {
             var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
             return pageType == sourcePageType;
-        }
-
-        private void OnWebSite()
-        {
-            NavigationService.Navigate<WebSitePage>();
         }
     }
 }

@@ -152,6 +152,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\map.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -174,7 +175,8 @@
     <None Include="AdvancedNavigationPaneProject_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\NavigateConfig.cs" />
+    <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\NavigationConfig.cs" />
     <Compile Include="Services\NavigationEventArgsEx.cs" />
     <Compile Include="Services\NavigationService.cs" />
   </ItemGroup>
@@ -188,12 +190,18 @@
     <Compile Include="Helpers\NavHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\NewNavigationEntry.cs" />
     <Compile Include="Services\PageStackEntryEx.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\SecondShellViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\MapPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SecondOtherPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -212,6 +220,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\MapPage.xaml.cs">
+      <DependentUpon>MapPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SecondOtherPage.xaml.cs">
       <DependentUpon>SecondOtherPage.xaml</DependentUpon>
     </Compile>
