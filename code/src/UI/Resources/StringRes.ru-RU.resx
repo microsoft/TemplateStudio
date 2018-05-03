@@ -691,4 +691,8 @@
     <value>Обнаружена несовместимость между проектом и последней версией шаблонов. Ознакомьтесь с изменениями:</value>
     <comment>Breaking change window dialog message description</comment>
   </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Unable to set default solution configuration</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
 </root>

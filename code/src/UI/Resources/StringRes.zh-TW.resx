@@ -691,4 +691,8 @@
     <value>我們偵測到您的專案與上個範本版本之間不相容。請檢閱變更：</value>
     <comment>Breaking change window dialog message description</comment>
   </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Unable to set default solution configuration</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
 </root>

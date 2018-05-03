@@ -691,4 +691,8 @@
     <value>Abbiamo rilevato delle incompatibilità tra il progetto e l'ultima versione dei modelli. Rivedi le modifiche:</value>
     <comment>Breaking change window dialog message description</comment>
   </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Unable to set default solution configuration</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
 </root>

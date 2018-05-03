@@ -691,4 +691,8 @@
     <value>我们检测到你的项目与最新模板版本存在不兼容。请检查更改：</value>
     <comment>Breaking change window dialog message description</comment>
   </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Unable to set default solution configuration</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
 </root>

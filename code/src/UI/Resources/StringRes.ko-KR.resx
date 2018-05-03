@@ -691,4 +691,8 @@
     <value>프로젝트와 최근 템플릿 버전 간에 비호환성이 감지되었습니다. 다음 변경 사항을 검토하십시오:</value>
     <comment>Breaking change window dialog message description</comment>
   </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Unable to set default solution configuration</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
 </root>

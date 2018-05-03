@@ -691,4 +691,8 @@
     <value>Hemos detectado incompatibilidades entre tu proyecto y la versión más reciente de las plantillas. Revisa los cambios:</value>
     <comment>Breaking change window dialog message description</comment>
   </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Unable to set default solution configuration</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
 </root>
