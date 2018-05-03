@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Windows.Foundation.Metadata;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -24,6 +25,7 @@ namespace wts.ItemName.Views
         public ShellPage()
         {
             InitializeComponent();
+            HideNavViewBackButton();
             DataContext = this;
             Initialize();
         }
@@ -54,6 +56,14 @@ namespace wts.ItemName.Views
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
             NavigationService.Navigate(pageType);
+        }
+
+        private void HideNavViewBackButton()
+        {
+            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6))
+            {
+                navigationView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
