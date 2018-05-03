@@ -100,6 +100,7 @@ public sealed partial class ShellPage : IShellView
     public ShellPage()
     {
         InitializeComponent();
+        HideNavViewBackButton();
     }
 
     public INavigationService CreateNavigationService(WinRTContainer container)
@@ -110,6 +111,14 @@ public sealed partial class ShellPage : IShellView
     public NavigationView GetNavigationView()
     {
         return navigationView;
+    }
+
+    private void HideNavViewBackButton()
+    {
+        if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6))
+        {
+            navigationView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed;
+        }
     }
 }
 ```
