@@ -1,3 +1,3 @@
-﻿[App Center](https://appcenter.ms/) brings together multiple services, commonly used by mobile developers, into a single, integrated product. You can build, test, distribute, and monitor your apps, and also implement push notifications.
+﻿[App Center](https://appcenter.ms/) により、モバイル開発者が一般的に使用する複数のサービスが単一の製品に統合されました。アプリを構築、テスト、配布、監視できるほか、プッシュ通知を実装することもできます。
 
-Adding [App Center Analytics](https://docs.microsoft.com/en-us/appcenter/analytics/) will help you understand more about your app users and their behavior when using your app.
+[App Center Analytics](https://docs.microsoft.com/en-us/appcenter/analytics/) を追加すると、アプリ ユーザーの概要とアプリ使用時のユーザーの行動について理解を深めることができます。
