@@ -2,7 +2,6 @@
 Imports wts.ItemName.ViewModels
 Imports Windows.Foundation.Metadata
 
-
 Namespace Views
     Public NotInheritable Partial Class ShellPage
         Inherits Page
@@ -25,5 +24,6 @@ Namespace Views
                 navigationView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed
             End if
         End Sub
+
     End Class
 End Namespace
