@@ -298,11 +298,11 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>Вы не можете удалить компонент *{0}*, так как от него зависит *{1}*.</value>
+    <value>Невозможно удалить параметр **{0}**, так как **{1}** зависит от него.</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
-    <value>Ошибка при обновлении шаблонов. Дополнительные сведения см. в окне вывода.</value>
+    <value>Произошла ошибка при обновлении шаблонов. Дополнительные сведения см. в окне вывода.</value>
     <comment>Error message for sync refresh</comment>
   </data>
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
@@ -525,6 +525,10 @@
     <value>Недопустимый элемент зависимости {0}. Зависимости должны быть настроены с параметром multipleInstance = False.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Шаблон зависимостей {0} не найден для framework {1} и платформы {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
   <data name="ErrorDependencyType" xml:space="preserve">
     <value>Недопустимый элемент зависимости {0}. Элементы зависимостей должны иметь тип Page или Feature.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
@@ -532,6 +536,10 @@
   <data name="ErrorGenerating" xml:space="preserve">
     <value>Шаблон "{0}", имя: "{1}", причина: '{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Шаблон макета {0} не найден для framework {1} и платформы {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
     <value>Недопустимый элемент макета {0}. Элементы макетов должны иметь тип Page или Feature.</value>
@@ -638,41 +646,33 @@
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
   <data name="ButtonDetailsHelpText" xml:space="preserve">
-    <value>Details of {0}</value>
+    <value>Сведения {0}</value>
     <comment>Button details help text. {0}: name of template</comment>
   </data>
   <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
-    <value>Press enter to add {0}</value>
+    <value>Нажмите клавишу ВВОД, чтобы добавить {0}.</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
-  <data name="ButtonCompositionTool" xml:space="preserve">
-    <value>Composition tool</value>
-  </data>
   <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
-    <value>HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. </value>
+    <value>Элемент управления HamburgerMenu устарел. Теперь Windows Template Studio поддерживает NavigationView. </value>
     <comment>Has navigation view validation error message</comment>
   </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Средство композиции</value>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Unable to resolve platform.</value>
+    <value>Не удалось разрешить платформу.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
-    <value>Select platform</value>
+    <value>Выбрать платформу</value>
     <comment>Project configuration window select platform title</comment>
   </data>
   <data name="TemplateGroup_Analytics" xml:space="preserve">
-    <value>Analytics</value>
+    <value>Аналитика</value>
     <comment>Group header for analytics templates</comment>
   </data>
   <data name="NoContentPanelMessage" xml:space="preserve">
-    <value>no content available.</value>
+    <value>Содержимое недоступно.</value>
     <comment>Message in no content panel</comment>
   </data>
   <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
@@ -680,15 +680,15 @@
     <comment>Has navigation view validation link documentation</comment>
   </data>
   <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>Сведения об обновлении см. в документации.</value>
     <comment>Has navigation view validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
-    <value>Breaking changes</value>
+    <value>Критические изменения</value>
     <comment>Breaking changes title</comment>
   </data>
   <data name="BreakingChangesDialogMessage" xml:space="preserve">
-    <value>We have detected incompatibilities between your project and the last templates version. Please review the changes:</value>
+    <value>Обнаружена несовместимость между проектом и последней версией шаблонов. Ознакомьтесь с изменениями:</value>
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">

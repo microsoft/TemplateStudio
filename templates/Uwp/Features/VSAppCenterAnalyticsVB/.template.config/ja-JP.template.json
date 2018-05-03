@@ -1,6 +1,6 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "VS App Center Analytics",
-  "description": "Send analytics to the Visual Studio App Center.",
-  "identity": "wts.Feat.VSAppCenterAnalytics.VB"
+    "author": "Microsoft Community",
+    "name": "VS App Center Analytics",
+    "description": "分析を Visual Studio App Center に送信します。",
+    "identity": "wts.Feat.VSAppCenterAnalytics.VB"
 }

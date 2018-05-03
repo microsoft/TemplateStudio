@@ -1,3 +1,3 @@
-﻿[App Center](https://appcenter.ms/) brings together multiple services, commonly used by mobile developers, into a single, integrated product. You can build, test, distribute, and monitor your apps, and also implement push notifications.
+﻿[App Center](https://appcenter.ms/) regroupe plusieurs services, couramment utilisés par les développeurs mobiles, dans un seul produit intégré. Vous pouvez créer, tester, distribuer et surveiller vos applications, et également implémenter des notifications push.
 
-Adding [App Center Analytics](https://docs.microsoft.com/en-us/appcenter/analytics/) will help you understand more about your app users and their behavior when using your app.
+L'ajout de [App Center Analytics](https://docs.microsoft.com/en-us/appcenter/analytics/) vous aidera à mieux comprendre les utilisateurs de votre application et leur comportement lors de l'utilisation de votre application.

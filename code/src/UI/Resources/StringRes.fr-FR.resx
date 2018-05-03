@@ -298,7 +298,7 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>Vous ne pouvez pas supprimer *{0}* parce que *{1}* en dépend.</value>
+    <value>Vous ne pouvez pas supprimer **{0}** parce que **{1}** en dépend.</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
@@ -525,6 +525,10 @@
     <value>Élément de dépendance {0} non valide. Les dépendances doivent être configurées en tant que multipleInstance = false.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Le modèle de dépendance {0} n'a pas été trouvé pour la structure framework {1} et la plateforme {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
   <data name="ErrorDependencyType" xml:space="preserve">
     <value>Élément de dépendance {0} non valide. Les éléments de dépendance doivent être de type Page ou Fonctionnalité.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
@@ -532,6 +536,10 @@
   <data name="ErrorGenerating" xml:space="preserve">
     <value>Modèle « {0} », nom : « {1} », raison : '{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Le modèle de mise en page {0} n'a pas été trouvé pour la structure framework {1} et la plateforme {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
     <value>Élément de mise en page {0} non valide. Les éléments de mise en page doivent être de type Page ou Fonctionnalité.</value>
@@ -638,41 +646,33 @@
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
   <data name="ButtonDetailsHelpText" xml:space="preserve">
-    <value>Details of {0}</value>
+    <value>Détails de {0}</value>
     <comment>Button details help text. {0}: name of template</comment>
   </data>
   <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
-    <value>Press enter to add {0}</value>
+    <value>Appuyez sur Entrée pour ajouter {0}</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
-  <data name="ButtonCompositionTool" xml:space="preserve">
-    <value>Composition tool</value>
-  </data>
   <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
-    <value>HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. </value>
+    <value>La commande HamburgerMenu est obsolète et Windows Template Studio prend désormais en charge NavigationView. </value>
     <comment>Has navigation view validation error message</comment>
   </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Outil de composition</value>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Unable to resolve platform.</value>
+    <value>Impossible de résoudre la plateforme.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
-    <value>Select platform</value>
+    <value>Sélectionner la plateforme</value>
     <comment>Project configuration window select platform title</comment>
   </data>
   <data name="TemplateGroup_Analytics" xml:space="preserve">
-    <value>Analytics</value>
+    <value>Analyse</value>
     <comment>Group header for analytics templates</comment>
   </data>
   <data name="NoContentPanelMessage" xml:space="preserve">
-    <value>no content available.</value>
+    <value>aucun contenu disponible.</value>
     <comment>Message in no content panel</comment>
   </data>
   <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
@@ -680,15 +680,15 @@
     <comment>Has navigation view validation link documentation</comment>
   </data>
   <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>Afficher la documentation à mettre à jour.</value>
     <comment>Has navigation view validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
-    <value>Breaking changes</value>
+    <value>Changements cassants</value>
     <comment>Breaking changes title</comment>
   </data>
   <data name="BreakingChangesDialogMessage" xml:space="preserve">
-    <value>We have detected incompatibilities between your project and the last templates version. Please review the changes:</value>
+    <value>Nous avons détecté des incompatibilités entre votre projet et les versions des derniers modèles. Veuillez passer en revue les modifications :</value>
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">

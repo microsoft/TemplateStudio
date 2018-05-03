@@ -145,6 +145,14 @@
   <data name="ExceptionTrackedString" xml:space="preserve">
     <value>Wyjątku śledzony</value>
   </data>
+  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
+    <value>Nie można znaleźć pliku „{0}” do uwzględnienia następujących zmian. Sprawdź bloki kodu, aby wprowadzić zmiany ręcznie tam, gdzie jest to wymagane w projekcie. Powiązany szablon: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
+  </data>
+  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
+    <value>Nie można znaleźć oczekiwanego wiersza „{0}” w pliku „{1}”. Ręcznie scal zawartość z pliku akcji po operacji. Powiązany szablon: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
+  </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>Nie można skopiować pliku {0} do {1}. Błąd: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
@@ -174,7 +182,15 @@
     <value>Uruchomiono dziennik</value>
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
-    <value>*Zalecana przeglądarka Markdown: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
+    <value>*Zalecana przeglądarka Markdown: [Rozszerzenie Markdown Editor do programu VS](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
+  </data>
+  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
+    <value>Nie ma miejsca docelowego scalenia pliku „{0}”. Powiązany szablon: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
+  </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>Nie znaleziono wiersza {0} w pliku „{1}”. Powiązany szablon: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Nie można wywnioskować nazwy. Za dużo iteracji</value>
@@ -382,53 +398,40 @@ Nie można zinterpretować następujących zmian: {2}
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
     <value>Wystąpił błąd podczas odczytu pliku blokującego instancję.</value>
   </data>
-  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Wystąpił błąd podczas pobierania treści.</value>
-  </data>
-  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Wystąpił błąd podczas wyodrębniania zawartości szablonów.</value>
-  </data>
-  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Wystąpił błąd podczas aktualizowania zawartości szablonów.</value>
-  </data>
-  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
-    <value>Error executing '{0}'. Ignoring the error as Continue on Error is enabled. Related template: {1}.</value>
-  </data>
-  <data name="PostActionException" xml:space="preserve">
-    <value>Error executing '{0}'. Related template: {1}.</value>
-  </data>
-  <data name="PostActionIdsNotMatchError" xml:space="preserve">
-    <value>The PostAction.ActionId '{0}' defined in the template does not match with the expected class ActionId '{1}'. Can't continue. Related template: {2}.</value>
-  </data>
-  <data name="PostActionRelatedNone" xml:space="preserve">
-    <value>None</value>
-  </data>
-  <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Could not find file '{0}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: '{1}'.</value>
-    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
-  </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>The style with key '{0}' is already defined with different value or elements in this file. Please review the styles to include the changes manually where required in your project. Related Template: '{1}'.</value>
+    <value>Styl z kluczem „{0}” jest już zdefiniowany z inną wartością lub innymi elementami w tym pliku. Sprawdź style, aby wprowadzić zmiany ręcznie tam, gdzie jest to wymagane w projekcie. Powiązany szablon: '{1}'.</value>
     <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
   </data>
-  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Could not find the expected line `{0}` in file '{1}'. Please merge the content from the postaction file manually. Related Template: '{2}'.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Błąd wykonania „{0}”. Ignorowanie błędu, ponieważ opcja Kontynuuj przy błędzie jest włączona. Powiązany szablon: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Błąd wykonania „{0}”. Powiązany szablon: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>Identyfikator PostAction.ActionId „{0}” zdefiniowany w szablonie nie odpowiada identyfikatorowi ActionId „{1}” oczekiwanej klasy. Nie można kontynuować. Powiązany szablon: {2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>Brak</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
     <value>Nie można usunąć ochrony tylko do odczytu w pliku {0}</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
-  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>There is no merge target for file '{0}'. Related Template: '{1}'.</value>
-    <comment>{0}: Postaction file path, {1}: Template identity</comment>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Wystąpił błąd podczas pobierania treści.</value>
   </data>
-  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Line {0} not found in file '{1}'. Related Template: '{2}'.</value>
-    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
+  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
+    <value>Wystąpił błąd podczas wyodrębniania zawartości zainstalowanych szablonów.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
+    <value>Wystąpił błąd podczas aktualizowania zawartości szablonów.</value>
   </data>
   <data name="ExceptionProjectNotFound" xml:space="preserve">
-    <value>Could not find project file for item {0}</value>
+    <value>Nie można znaleźć pliku projektu dla elementu {0}</value>
     <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
@@ -436,5 +439,9 @@ Nie można zinterpretować następujących zmian: {2}
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
     <value>Lokalna ścieżka do szablonów jest pusta.</value>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>Nie można zmienić nazwy folderu {0}. Błąd: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
 </root>
