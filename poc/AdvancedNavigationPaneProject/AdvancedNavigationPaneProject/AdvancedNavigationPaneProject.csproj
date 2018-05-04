@@ -177,7 +177,7 @@
   <ItemGroup>
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\NavigationConfig.cs" />
-    <Compile Include="Services\NavigationEventArgsEx.cs" />
+    <Compile Include="Services\NavigationArgs.cs" />
     <Compile Include="Services\NavigationService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -190,7 +190,7 @@
     <Compile Include="Helpers\NavHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\PageStackEntryEx.cs" />
+    <Compile Include="Services\NavigationBackStackEntry.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\SecondShellViewModel.cs" />

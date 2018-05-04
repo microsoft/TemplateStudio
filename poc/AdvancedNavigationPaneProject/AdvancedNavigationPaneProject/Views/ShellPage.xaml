@@ -15,7 +15,6 @@
         x:Name="navigationView"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
-        IsBackButtonVisible="Collapsed"
         IsSettingsVisible="True"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
@@ -39,24 +38,22 @@
         </NavigationView.HeaderTemplate>
         <NavigationView.PaneFooter>
             <StackPanel>
-                <NavigationViewItem
-                    x:Uid="Shell_WebSite"
-                    Icon="Globe">
-                    <!--<i:Interaction.Behaviors>
+                <Grid>
+                    <NavigationViewItem x:Uid="Shell_WebSite" Icon="Globe" />
+                    <i:Interaction.Behaviors>
                         <ic:EventTriggerBehavior EventName="Tapped">
                             <ic:InvokeCommandAction Command="{x:Bind ViewModel.WebSiteCommand}" />
                         </ic:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>-->
-                </NavigationViewItem>
-                <NavigationViewItem
-                    x:Uid="Shell_Logout"
-                    Icon="BlockContact">
-                    <!--<i:Interaction.Behaviors>
+                    </i:Interaction.Behaviors>
+                </Grid>
+                <Grid>
+                    <NavigationViewItem x:Uid="Shell_Logout" Icon="BlockContact" />
+                    <i:Interaction.Behaviors>
                         <ic:EventTriggerBehavior EventName="Tapped">
                             <ic:InvokeCommandAction Command="{x:Bind ViewModel.LogOutCommand}" />
                         </ic:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>-->
-                </NavigationViewItem>
+                    </i:Interaction.Behaviors>
+                </Grid>
             </StackPanel>
         </NavigationView.PaneFooter>
         <i:Interaction.Behaviors>

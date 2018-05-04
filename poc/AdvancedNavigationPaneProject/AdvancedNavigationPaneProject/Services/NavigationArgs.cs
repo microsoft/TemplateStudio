@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace AdvancedNavigationPaneProject.Services
 {
-    public class NavigationEventArgsEx
+    public class NavigationArgs : EventArgs
     {
         public readonly string FrameKey;
 
@@ -20,7 +20,7 @@ namespace AdvancedNavigationPaneProject.Services
 
         public readonly NavigationTransitionInfo NavigationTransitionInfo;
 
-        public NavigationEventArgsEx(string frameKey, NavigationEventArgs args)
+        public NavigationArgs(string frameKey, NavigationEventArgs args)
         {
             FrameKey = frameKey;
             SourcePageType = args.SourcePageType;
@@ -31,7 +31,7 @@ namespace AdvancedNavigationPaneProject.Services
             Uri = args.Uri;
         }
 
-        public NavigationEventArgsEx(string frameKey, Type sourcePageType, NavigationConfig config, object content)
+        public NavigationArgs(string frameKey, Type sourcePageType, NavigationConfig config, object content)
         {
             FrameKey = frameKey;
             SourcePageType = sourcePageType;

@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace AdvancedNavigationPaneProject.Services
 {
-    public class PageStackEntryEx
+    public class NavigationBackStackEntry
     {
         public readonly string FrameKey;        
 
@@ -13,7 +13,7 @@ namespace AdvancedNavigationPaneProject.Services
 
         public readonly NavigationTransitionInfo NavigationTransitionInfo;
 
-        public PageStackEntryEx(string frameKey, Type sourcePageType, NavigationConfig config)
+        public NavigationBackStackEntry(string frameKey, Type sourcePageType, NavigationConfig config)
         {
             FrameKey = frameKey;
             SourcePageType = sourcePageType;

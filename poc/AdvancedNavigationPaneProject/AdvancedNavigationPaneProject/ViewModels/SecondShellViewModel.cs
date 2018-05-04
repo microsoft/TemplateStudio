@@ -49,7 +49,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
             NavigationService.Navigate(pageType);
         }
 
-        private void OnNavigated(object sender, NavigationEventArgsEx e)
+        private void OnNavigated(object sender, NavigationArgs e)
         {
             if (e.FrameKey == NavigationService.FrameKeyThird)
             {

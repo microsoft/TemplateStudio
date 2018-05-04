@@ -103,7 +103,7 @@ namespace AdvancedNavigationPaneProject.Services
             return args is IActivatedEventArgs;
         }
 
-        private void OnNavigated(object sender, NavigationEventArgsEx e)
+        private void OnNavigated(object sender, NavigationArgs e)
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }

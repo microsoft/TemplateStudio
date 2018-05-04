@@ -61,7 +61,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
             NavigationService.Navigate(pageType, null, new NavigationConfig(false));
         }
 
-        private void OnNavigated(object sender, NavigationEventArgsEx e)
+        private void OnNavigated(object sender, NavigationArgs e)
         {
             if (e.FrameKey == NavigationService.FrameKeySecondary)
             {
