@@ -75,7 +75,6 @@ namespace Param_ItemNamespace.Views
             {
                 // TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
                 // mapControl.MapServiceToken = string.Empty;
-
                 AddMapIcon(Center, "Map_YourLocation".GetLocalized());
             }
         }
