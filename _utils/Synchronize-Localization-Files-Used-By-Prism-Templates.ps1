@@ -20,7 +20,7 @@ function Format-Json([Parameter(Mandatory, ValueFromPipeline)][String] $json) {
 
 # This script updates all the localized string values in Prism template files from their C# equivalents.
 # This is needed as the files can't just be copied as they have Prism specific content.
-[string[]] $templatesPath = "..\templates\Pages","..\templates\Features";
+[string[]] $templatesPath = "..\templates\Uwp\Pages","..\templates\Uwp\Features";
 
 Get-ChildItem $templatesPath -Recurse -include *template.json | where { $_.FullName -Match ".Prism\\" } |  % { 
 

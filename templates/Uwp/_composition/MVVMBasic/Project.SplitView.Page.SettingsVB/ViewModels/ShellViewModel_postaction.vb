@@ -20,7 +20,7 @@ Namespace ViewModels
         Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             '{[{
             If e.SourcePageType = GetType(wts.ItemNamePage) Then
-                Selected = _navigationView.SettingsItem
+                Selected = TryCast(_navigationView.SettingsItem, NavigationViewItem)
                 Return
             End If
 

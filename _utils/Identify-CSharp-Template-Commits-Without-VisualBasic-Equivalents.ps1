@@ -7,7 +7,7 @@
 ## This script cannot be perfect in identifying everything. It should be used in combination with the script that looks at file last-modified times.
 
 # last param is the SHA of the commit to check from (this should normally be the last release)
-$files = git diff --name-only df0f996d22e0847337ee54aec72c50aa5bf21614
+$files = git diff --name-only 7a4c807bf03ad0b3f8fff045752e1b3375603b67
 
 function Get-CsEquivalentFile($vbfile)
 {

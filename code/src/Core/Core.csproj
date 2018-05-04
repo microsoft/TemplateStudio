@@ -333,6 +333,7 @@
     <Compile Include="Extensions\XElementExtensions.cs" />
     <Compile Include="Templates\TemplateLicense.cs" />
     <Compile Include="Templates\TemplateLicenseEqualityComparer.cs" />
+    <Compile Include="Templates\TemplateOutputType.cs" />
     <Compile Include="Templates\TemplatesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\TemplateType.cs" />

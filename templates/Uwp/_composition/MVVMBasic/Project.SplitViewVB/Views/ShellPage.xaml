@@ -13,7 +13,7 @@
     <NavigationView
         x:Name="navigationView"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-        Header="{Binding Selected.Title}"
+        Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
         IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <NavigationView.MenuItems>
@@ -30,7 +30,7 @@
                     Style="{StaticResource TitleTextBlockStyle}"
                     Margin="12,0,0,0"
                     VerticalAlignment="Center"
-                    Text="{Binding Selected.Content}" />
+                    Text="{Binding}" />
             </DataTemplate>
         </NavigationView.HeaderTemplate>
         <i:Interaction.Behaviors>

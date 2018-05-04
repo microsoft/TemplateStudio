@@ -298,7 +298,7 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>您無法移除 *{0}* 因為 *{1}* 與它相依。</value>
+    <value>您不可移除 **{0}** 因為 **{1}** 與它相依。</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
@@ -525,6 +525,10 @@
     <value>相依性項目 {0} 無效。相依性必須設定為 multipleInstance = false。</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>找不到 framework {1} 和平台 {2} 的相依性範本 {0}。</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
   <data name="ErrorDependencyType" xml:space="preserve">
     <value>相依性項目 {0} 無效。相依性項目的類型必須是頁面或功能。</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
@@ -532,6 +536,10 @@
   <data name="ErrorGenerating" xml:space="preserve">
     <value>範本 '{0}'，名稱：'{1}'，原因：'{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>找不到 framework {1} 和平台 {2} 的版面配置範本 {0}。</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
     <value>配置項目 {0} 無效。配置項目的類型必須是頁面或功能。</value>
@@ -638,42 +646,33 @@
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
   <data name="ButtonDetailsHelpText" xml:space="preserve">
-    <value>Details of {0}</value>
+    <value>{0} 的詳細資料</value>
     <comment>Button details help text. {0}: name of template</comment>
   </data>
   <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
-    <value>Press enter to add {0}</value>
+    <value>按 Enter 鍵以新增 {0}</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
-  <data name="ButtonCompositionTool" xml:space="preserve">
-    <value>Composition tool</value>
-  </data>
-  
   <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
-    <value>HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. </value>
+    <value>HamburgerMenu 控制項已淘汰，而 Windows Template Studio 現在支援 NavigationView。</value>
     <comment>Has navigation view validation error message</comment>
   </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>撰寫工具</value>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Unable to resolve platform.</value>
+    <value>無法解決平台。</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
-    <value>Select platform</value>
+    <value>選取平台</value>
     <comment>Project configuration window select platform title</comment>
   </data>
   <data name="TemplateGroup_Analytics" xml:space="preserve">
-    <value>Analytics</value>
+    <value>分析</value>
     <comment>Group header for analytics templates</comment>
   </data>
   <data name="NoContentPanelMessage" xml:space="preserve">
-    <value>no content available.</value>
+    <value>無內容可用。</value>
     <comment>Message in no content panel</comment>
   </data>
   <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
@@ -681,15 +680,19 @@
     <comment>Has navigation view validation link documentation</comment>
   </data>
   <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>請參閱文件以進行更新。</value>
     <comment>Has navigation view validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
-    <value>Breaking changes</value>
+    <value>中止變更</value>
     <comment>Breaking changes title</comment>
   </data>
   <data name="BreakingChangesDialogMessage" xml:space="preserve">
-    <value>We have detected incompatibilities between your project and the last templates version. Please review the changes:</value>
+    <value>我們偵測到您的專案與上個範本版本之間不相容。請檢閱變更：</value>
     <comment>Breaking change window dialog message description</comment>
+  </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Unable to set default solution configuration</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
   </data>
 </root>

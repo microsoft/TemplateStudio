@@ -181,7 +181,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private void SetProjectConfigInfo()
         {
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
-            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
                 var vm = new ProjectConfigurationViewModel();
                 ProjectConfigurationDialog projectConfig = new ProjectConfigurationDialog(vm);

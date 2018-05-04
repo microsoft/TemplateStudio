@@ -583,6 +583,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to set default solution configuration.
+        /// </summary>
+        public static string ErrorUnableToSetDefaultConfiguration {
+            get {
+                return ResourceManager.GetString("ErrorUnableToSetDefaultConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an error collapsing the solution tree. Ex:.
         /// </summary>
         public static string ErrorVsGenShellCollapseSolutionItemsMessage {

@@ -298,7 +298,7 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>*{1}*의 의존성 때문에 *{0}*을(를) 제거할 수 없습니다.</value>
+    <value>**{1}**의 종속성 때문에 **{0}**를 제거할 수 없습니다.</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
@@ -522,19 +522,27 @@
     <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>{0}의 종속성 항목이 잘못되었습니다. 종속성은 multipleInstance = false로 구성되어야 합니다.</value>
+    <value>{0} 종속성 항목이 잘못되었습니다. 종속성은 multipleInstance = false로 구성되어야 합니다.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>{1} framework 및 {2} 플랫폼에 대한 {0} 종속성 템플릿을 찾을 수 없습니다.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
   <data name="ErrorDependencyType" xml:space="preserve">
-    <value>{0}의 종속성 항목이 잘못되었습니다. 종속성의 유형은 페이지 또는 기능이어야 합니다.</value>
+    <value>{0} 종속성 항목이 잘못되었습니다. 종속성 항목의 유형은 페이지 또는 기능이어야 합니다.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorGenerating" xml:space="preserve">
     <value>템플릿 '{0}', 이름: {1}, 이유: '{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>{1} framework 및 {2} 플랫폼에 대한 {0} 레이아웃 템플릿을 찾을 수 없습니다.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
   <data name="ErrorLayoutType" xml:space="preserve">
-    <value>잘못된 레이아웃 항목 {0}. 레이아웃 유형은 페이지 또는 기능이어야 합니다.</value>
+    <value>{0} 레이아웃 항목이 잘못되었습니다. 레이아웃 항목의 유형은 페이지 또는 기능이어야 합니다.</value>
     <comment>Layout Type exception message. {0}: Layout template id</comment>
   </data>
   <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
@@ -634,45 +642,37 @@
     <comment>Error dialog accessible name to description textbox</comment>
   </data>
   <data name="ReorderPageHelpText" xml:space="preserve">
-    <value>ctrl + 위쪽/아래쪽 화살표를 사용하여 페이지 순서 변경</value>
+    <value>ctrl+위쪽/아래쪽 화살표를 사용하여 페이지 순서 변경</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
   <data name="ButtonDetailsHelpText" xml:space="preserve">
-    <value>Details of {0}</value>
+    <value>{0} 세부 정보</value>
     <comment>Button details help text. {0}: name of template</comment>
   </data>
   <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
-    <value>Press enter to add {0}</value>
+    <value>&lt;Enter&gt; 키를 눌러 {0}을(를) 추가합니다</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
-  <data name="ButtonCompositionTool" xml:space="preserve">
-    <value>Composition tool</value>
-  </data>
   <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
-    <value>HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. </value>
+    <value>HamburgerMenu 제어를 사용하지 않고 이제 Windows Template Studio는 NavigationView를 지원합니다. </value>
     <comment>Has navigation view validation error message</comment>
   </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>작성 도구</value>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Unable to resolve platform.</value>
+    <value>플랫폼을 알 수 없습니다.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
-    <value>Select platform</value>
+    <value>플랫폼 선택</value>
     <comment>Project configuration window select platform title</comment>
   </data>
   <data name="TemplateGroup_Analytics" xml:space="preserve">
-    <value>Analytics</value>
+    <value>분석</value>
     <comment>Group header for analytics templates</comment>
   </data>
   <data name="NoContentPanelMessage" xml:space="preserve">
-    <value>no content available.</value>
+    <value>사용 가능한 콘텐츠 없음.</value>
     <comment>Message in no content panel</comment>
   </data>
   <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
@@ -680,15 +680,19 @@
     <comment>Has navigation view validation link documentation</comment>
   </data>
   <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has navigation view validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
-    <value>Breaking changes</value>
+    <value>변경 사항 적용 중지</value>
     <comment>Breaking changes title</comment>
   </data>
   <data name="BreakingChangesDialogMessage" xml:space="preserve">
-    <value>We have detected incompatibilities between your project and the last templates version. Please review the changes:</value>
+    <value>프로젝트와 최근 템플릿 버전 간에 비호환성이 감지되었습니다. 다음 변경 사항을 검토하십시오:</value>
     <comment>Breaking change window dialog message description</comment>
+  </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Unable to set default solution configuration</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
   </data>
 </root>

@@ -75,6 +75,7 @@ namespace Microsoft.Templates.UI.Services
                     .Select(gr => new TemplateGroupViewModel(gr))
                     .OrderBy(gr => gr.Name);
                 templatesGroups.AddRange(groups);
+
                 return templates.Count();
             }
 
