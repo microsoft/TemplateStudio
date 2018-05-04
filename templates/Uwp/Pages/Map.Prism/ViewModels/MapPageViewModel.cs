@@ -65,7 +65,7 @@ namespace Param_ItemNamespace.ViewModels
             ZoomLevel = DefaultZoomLevel;
 
             // TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
-            MapServiceToken = string.Empty;
+            // MapServiceToken = string.Empty;
         }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
