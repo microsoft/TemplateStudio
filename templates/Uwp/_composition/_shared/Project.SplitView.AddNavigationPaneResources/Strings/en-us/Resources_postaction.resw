@@ -1,0 +1,13 @@
+﻿<!--{**-->
+<!--This xml block adds string resources from the wts.ItemNamePage in the NavigationPane to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="Shell_wts.ItemName.Content" xml:space="preserve">
+    <value>wts.ItemName</value>
+    <comment>Navigation view item name for wts.ItemName</comment>
+  </data>
+  <!--}]}-->
+</root>

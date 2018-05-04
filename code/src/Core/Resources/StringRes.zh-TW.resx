@@ -146,12 +146,12 @@
     <value>已追蹤例外狀況</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>找不到要包含以下變更的檔案 '{0}'。請檢閱要在您的專案所需的地方手動加入變更的程式碼區塊。</value>
-    <comment>{0}:Relative path to original file </comment>
+    <value>找不到要包含以下變更的檔案 '{0}'。請檢閱要在您的專案所需的地方手動加入變更的程式碼區塊。相關範本：'{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>在檔案 '{1}' 中找不到預期的行 `{0}`。請手動合併 postaction 檔案中的內容。</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
+    <value>在檔案 '{1}' 中找不到預期的行 `{0}`。請手動合併 postaction 檔案中的內容。相關範本：'{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>檔案 {0} 無法複製到 {1}。錯誤：{2}</value>
@@ -185,12 +185,12 @@
     <value>*建議的 Markdown 檢視器：[Markdown Editor VS 擴充功能](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>檔案 '{0}' 沒有合併目標</value>
-    <comment>{0}: Postaction file path</comment>
+    <value>檔案 '{0}' 沒有合併目標。相關範本：'{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>檔案 '{1}' 中找不到行 {0}</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
+    <value>檔案 '{1}' 中找不到行 {0}。相關範本：'{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>無法推斷名稱。有太多反覆項目</value>
@@ -399,8 +399,27 @@
     <value>讀取執行個體鎖定檔案時發生錯誤。</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>這個檔案中已經有包含金鑰 '{0}' 的樣式定義了不同的值或元素。請檢閱要在您的專案所需的地方手動加入變更的樣式。</value>
-    <comment>{0}: Key of the XmlNode</comment>
+    <value>這個檔案中已經有包含金鑰 '{0}' 的樣式定義了不同的值或元素。請檢閱要在您的專案所需的地方手動加入變更的樣式。相關範本：'{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>執行 '{0}' 時發生錯誤。正忽略該錯誤，因為已啟用 [發生錯誤時繼續]。相關範本：{1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>執行 '{0}' 時發生錯誤。相關範本：{1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>範本中定義的 PostAction.ActionId '{0}' 與預期的類別 ActionId '{1}' 不符。無法繼續。相關範本：{2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>無法從檔案 {0} 中移除唯讀保護</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>取得內容時發生錯誤。</value>
@@ -411,14 +430,18 @@
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>更新範本內容時發生錯誤。</value>
   </data>
-  <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>無法從檔案 {0} 中移除唯讀保護</value>
-    <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>在專案檔案中找不到項目 {0}。</value>
+    <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
     <value>讀取來源組態檔時發生錯誤。</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
     <value>範本本機路徑是空的。</value>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>無法重新命名資料夾 {0}。錯誤：{1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
 </root>

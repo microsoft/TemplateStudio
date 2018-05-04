@@ -335,4 +335,26 @@
         </Grid>
     </DataTemplate>
 
+
+    <DataTemplate x:Key="WtsItemTemplateBreakingChanges">
+        <Grid Margin="{StaticResource Margin_M_Top}">
+            <BulletDecorator>
+                <BulletDecorator.Bullet>
+                    <TextBlock Style="{StaticResource WtsTextBlockBullet}"/>
+                </BulletDecorator.Bullet>
+                <TextBlock TextWrapping="Wrap" Margin="{StaticResource Margin_XS_Left}">
+                    <Run Text="{Binding Message}" />
+                    <Hyperlink Style="{StaticResource WtsHyperlink}"
+                           Command="{Binding OpenLinkCommand}"
+                           AutomationProperties.Name="{Binding HyperLinkMessage}"
+                           ToolTip="{x:Static res:StringRes.ExternalHyperlinkTooltipMessage}">
+                        <Grid Background="Transparent">
+                            <TextBlock Text="{Binding HyperLinkMessage}" Style="{StaticResource WtsTextBlockHyperlink}" />
+                        </Grid>
+                    </Hyperlink>
+                </TextBlock>
+            </BulletDecorator>
+        </Grid>
+    </DataTemplate>
+
 </ResourceDictionary>

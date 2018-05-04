@@ -39,13 +39,13 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <TextBlock>
-                        <Hyperlink x:Name="newCSharpProjectButton" Command="{Binding NewCSharpProjectCommand}">
-                            <TextBlock Text="New C# project..."/>
+                        <Hyperlink x:Name="newCSharpProjectButton" Command="{Binding NewUwpCSharpProjectCommand}">
+                            <TextBlock Text="New Uwp C# project..."/>
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>
-                        <Hyperlink Command="{Binding NewVisualBasicProjectCommand}">
-                            <TextBlock Text="New VB project..."/>
+                        <Hyperlink Command="{Binding NewUwpVisualBasicProjectCommand}">
+                            <TextBlock Text="New Uwp VB project..."/>
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock>
@@ -63,7 +63,7 @@
                             <TextBlock Text="Analyze VB project selection"/>
                         </Hyperlink>
                     </TextBlock>
-                    <ComboBox SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" ItemsSource="{Binding Themes}" Margin="0,8,0,0" Style="{StaticResource VSEmulatorComboBox}"/>
+                    <ComboBox SelectedItem="{Binding SelectedTheme, Mode=TwoWay}" ItemsSource="{Binding Themes}" Margin="0,12,0,0" Style="{StaticResource VSEmulatorComboBox}"/>
                     <TextBlock Margin="0,20,0,0">
                         <Hyperlink Command="{Binding ConfigureVersionsCommand}">
                             <TextBlock Text="Configure versions..."/>

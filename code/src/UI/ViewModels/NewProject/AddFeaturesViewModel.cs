@@ -4,7 +4,7 @@
 
 using System.Collections.ObjectModel;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Mvvm;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 
@@ -18,10 +18,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
         }
 
-        public void LoadData(string frameworkName)
+        public void LoadData(string frameworkName, string platform)
         {
             Groups.Clear();
-            DataService.LoadTemplateGroups(Groups, TemplateType.Feature, frameworkName);
+            DataService.LoadTemplatesGroups(Groups, TemplateType.Feature, frameworkName, platform);
         }
 
         public void ResetTemplatesCount()

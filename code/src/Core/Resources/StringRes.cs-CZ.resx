@@ -146,12 +146,12 @@
     <value>Sledovaná výjimka</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Nebyl nalezen soubor {0} pro zahrnutí následujících změn. Projděte bloky kódu a na místech, kde to projekt vyžaduje, vložte změny ručně. </value>
-    <comment>{0}:Relative path to original file </comment>
+    <value>Nebyl nalezen soubor {0} pro zahrnutí následujících změn. Projděte bloky kódu a na místech, kde to projekt vyžaduje, vložte změny ručně. Související šablona: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Nebyl nalezen očekávaný řádek {0} v souboru {1}. Slučte obsah z následně vytvořeného souboru ručně.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
+    <value>Nebyl nalezen očekávaný řádek {0} v souboru {1}. Slučte obsah z následně vytvořeného souboru ručně. Související šablona: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>Soubor {0} nelze zkopírovat do {1}. Chyba: {2}</value>
@@ -185,12 +185,12 @@
     <value>* Doporučený prohlížeč pro Markdown: [Rozšíření VS – editor pro Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>Neexistuje žádný cíl sloučení pro soubor {0}.</value>
-    <comment>{0}: Postaction file path</comment>
+    <value>Neexistuje žádný cíl sloučení pro soubor {0}. Související šablona: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Nebyl nalezen řádek {0} v souboru {1}.</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
+    <value>Nebyl nalezen řádek {0} v souboru {1}. Související šablona: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Nelze odvodit název. Příliš mnoho iterací.</value>
@@ -399,8 +399,27 @@ Nemohly být integrovány následující změny: {2}
     <value>Při čtení souboru zamknutí instance došlo k chybě.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>Styl s klíčem {0} je v tomto souboru už definován s odlišnou hodnotou nebo odlišnými elementy. Projděte styly a na místech, kde to projekt vyžaduje, vložte změny ručně.</value>
-    <comment>{0}: Key of the XmlNode</comment>
+    <value>Styl s klíčem {0} je v tomto souboru už definován s odlišnou hodnotou nebo odlišnými elementy. Projděte styly a na místech, kde to projekt vyžaduje, vložte změny ručně. Související šablona: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Chyba při provádění následné akce {0}. Ignorování chyby prostřednictvím akce Pokračovat při chybě je povoleno. Související šablona: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Chyba při provádění následné akce {0}. Související šablona: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>Identifikátor PostAction.ActionId {0} definovaný v šabloně neodpovídá očekávanému identifikátoru třídy ActionId {1}. Není možné pokračovat. Související šablona: {2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>Žádné</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Nelze odebrat ochranu prostřednictvím nastavení jen pro čtení ze souboru: {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>Při získávání obsahu došlo k chybě.</value>
@@ -411,14 +430,18 @@ Nemohly být integrovány následující změny: {2}
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Při aktualizaci obsahu šablon došlo k chybě.</value>
   </data>
-  <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Nelze odebrat ochranu prostřednictvím nastavení jen pro čtení ze souboru: {0}</value>
-    <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Nebyl nalezen soubor projektu pro položku: {0}</value>
+    <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
     <value>Při čtení zdrojového konfiguračního souboru došlo k chybě.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
     <value>Místní cesta k šablonám je prázdná.</value>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>Složku {0} nelze přejmenovat. Chyba: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
 </root>

@@ -146,12 +146,12 @@
     <value>Отслеживаемое исключение</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Не удалось найти файл "{0}" для включения следующих изменений. Проверьте блоки кода, чтобы включить изменения вручную там, где они нужны в проекте. </value>
-    <comment>{0}:Relative path to original file </comment>
+    <value>Не удалось найти файл "{0}" для включения следующих изменений. Проверьте блоки кода, чтобы включить изменения вручную там, где они нужны в проекте. Связанный шаблон: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Не удалось найти ожидаемую строку "{0}" в файле "{1}". Объедините содержимое из файла завершающего действия вручную.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
+    <value>Не удалось найти ожидаемую строку "{0}" в файле "{1}". Добавьте содержимое из файла завершающего действия вручную. Связанный шаблон: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>Невозможно скопировать файл {0} в {1}. Ошибка: {2}</value>
@@ -185,12 +185,12 @@
     <value>*Рекомендуемое средство просмотра Markdown: [Расширение VS редактора Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>Нет целевого объекта объединения для файла "{0}".</value>
-    <comment>{0}: Postaction file path</comment>
+    <value>Нет целевого объекта объединения для файла "{0}". Связанный шаблон: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Строка {0} не найдена в файле "{1}".</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
+    <value>Строка {0} не найдена в файле "{1}". Связанный шаблон: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Не удалось определить имя. Слишком много итераций</value>
@@ -399,26 +399,49 @@
     <value>Произошла ошибка при чтении файла блокировки экземпляра.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>Для стиля с ключом "{0}" уже задано другое значение или другие элементы в файле. Ознакомьтесь со стилями, чтобы включить изменения вручную там, где они нужны в проекте.</value>
-    <comment>{0}: Key of the XmlNode</comment>
+    <value>Для стиля с ключом "{0}" уже задано другое значение или другие элементы в файле. Ознакомьтесь со стилями, чтобы включить изменения вручную там, где они нужны в проекте. Связанный шаблон: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
   </data>
-  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>Ошибка получения содержимого.</value>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Произошла ошибка при выполнении "{0}". Ошибка игнорируется, так как включен параметр "Продолжить при ошибке". Связанный шаблон: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
-  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>Ошибка при извлечении содержимого установленных шаблонов.</value>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Произошла ошибка при выполнении "{0}". Связанный шаблон: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
-  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>Ошибка при обновлении содержимого шаблонов.</value>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>PostAction.ActionId "{0}", заданный в шаблоне, не совпадает с ожидаемым ActionId "{1}" класса. Невозможно продолжить. Связанный шаблон: {2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>Нет</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
     <value>Не удается отключить защиту от записи для файла {0}.</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>Произошла ошибка при получении содержимого.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
+    <value>Произошла ошибка при извлечении содержимого установленных шаблонов.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
+    <value>Произошла ошибка при обновлении содержимого шаблонов.</value>
+  </data>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Не удалось найти файл проекта для элемента {0}</value>
+    <comment>{0}: Filepath</comment>
+  </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
-    <value>Ошибка при чтении исходного файла конфигурации.</value>
+    <value>Произошла ошибка при чтении исходного файла конфигурации.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
-    <value>Локальный путь к шаблонам пустой.</value>
+    <value>Локальный путь к шаблонам пуст.</value>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>Папку {0} невозможно переименовать. Ошибка: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
 </root>

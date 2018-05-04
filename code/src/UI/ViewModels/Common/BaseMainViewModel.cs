@@ -12,9 +12,9 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 
@@ -37,6 +37,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private RelayCommand _finishCommand;
 
         protected string Language { get; private set; }
+
+        protected string Platform { get; private set; }
 
         public int Step
         {
@@ -94,7 +96,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         public void UnsuscribeEventHandlers()
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= OnSyncStatusChanged;
-            WizardStatus.IsBusyChanged -= IsBusyChanged;
             SystemService.UnsuscribeEventHandlers();
             StylesService.UnsuscribeEventHandlers();
         }
@@ -126,8 +127,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public Step GetCurrentStep() => Steps.FirstOrDefault(step => step.Equals(Step));
 
-        public virtual async Task InitializeAsync(string language)
+        public virtual async Task InitializeAsync(string platform, string language)
         {
+            Platform = platform;
             Language = language;
             Steps.Clear();
             foreach (var step in GetSteps())
@@ -136,7 +138,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
 
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged += OnSyncStatusChanged;
-            WizardStatus.IsBusyChanged += IsBusyChanged;
             SystemService.Initialize();
             try
             {
@@ -178,8 +179,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
                 }
             }
 
-            SetCanGoBack(Step > 0);
-            SetCanGoForward(Step < Steps.Count - 1);
+            _canGoBack = Step > 0;
+            _canGoForward = Step < Steps.Count - 1;
         }
 
         protected virtual void OnFinish()
@@ -191,29 +192,9 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
-        protected void SetCanGoBack(bool canGoBack)
-        {
-            _canGoBack = canGoBack;
-            GoBackCommand.OnCanExecuteChanged();
-        }
-
-        protected void SetCanGoForward(bool canGoForward)
-        {
-            _canGoForward = canGoForward;
-            GoForwardCommand.OnCanExecuteChanged();
-        }
-
         protected void SetCanFinish(bool canFinish)
         {
             _canFinish = canFinish;
-            FinishCommand.OnCanExecuteChanged();
-        }
-
-        protected virtual void IsBusyChanged(object sender, bool e)
-        {
-            FinishCommand.OnCanExecuteChanged();
-            GoBackCommand.OnCanExecuteChanged();
-            GoForwardCommand.OnCanExecuteChanged();
         }
 
         private async void OnSyncStatusChanged(object sender, SyncStatusEventArgs args)

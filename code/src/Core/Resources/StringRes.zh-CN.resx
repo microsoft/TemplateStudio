@@ -146,12 +146,12 @@
     <value>异常已跟踪</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>找不到文件“{0}”，无法包括以下更改。请查看代码块，以将这些更改手动包括在项目中的所需位置。</value>
-    <comment>{0}:Relative path to original file </comment>
+    <value>找不到文件“{0}”，无法包括以下更改。请查看代码块，以将这些更改手动包括在项目中的所需位置。相关模板:'{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>在文件“{1}”中找不到应有的行 "{0}"。请手动合并操作后文件中的内容。</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
+    <value>在文件“{1}”中找不到应有的行“{0}”。请手动合并操作后文件中的内容。相关模板:'{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>无法将文件 {0} 复制到 {1}。错误:{2}</value>
@@ -185,12 +185,12 @@
     <value>*建议的 Markdown 查看器:[Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>没有文件“{0}”的合并目标</value>
-    <comment>{0}: Postaction file path</comment>
+    <value>没有文件“{0}”的合并目标。相关模板:'{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>在文件“{1}”中找不到行 {0}</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
+    <value>在文件“{1}”中找不到行 {0}。相关模板:'{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>无法推断名称。迭代次数过多</value>
@@ -399,8 +399,27 @@
     <value>读取实例锁定文件时出错。</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>已使用此文件中的不同值或元素定义密钥为“{0}”的样式。请查看这些样式，以将这些更改手动包括在项目中的所需位置。</value>
-    <comment>{0}: Key of the XmlNode</comment>
+    <value>已使用此文件中的不同值或元素定义密钥为“{0}”的样式。请查看这些样式，以将这些更改手动包括在项目中的所需位置。相关模板:'{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>执行“{0}”时出错。已启用“忽略错误并继续”。相关模板:{1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>执行“{0}”时出错。相关模板:{1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>模板中定义的 PostAction.ActionId“{0}”与预期的类 ActionId“{1}”不匹配。无法继续。相关模板:{2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>无法删除文件 {0} 的只读保护</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>获取内容时出错。</value>
@@ -411,14 +430,18 @@
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>更新模板内容时出错。</value>
   </data>
-  <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>无法删除文件 {0} 的只读保护</value>
-    <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>找不到项目 {0} 的项目文件</value>
+    <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
     <value>读取源配置文件时出错。</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
     <value>模板本地路径为空。</value>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>无法重命名文件夹 {0}。错误:{1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
 </root>

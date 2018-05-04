@@ -2,16 +2,15 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Mvvm;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
+using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 
@@ -94,9 +93,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             IsTextSelected = true;
         }
 
-        public void LoadData(TemplateType templateType, string framework)
+        public void LoadData(TemplateType templateType, string framework, string platform)
         {
-            DataService.LoadTemplateGroups(Groups, templateType, framework);
+            DataService.LoadTemplatesGroups(Groups, templateType, framework, platform);
+
             var group = Groups.FirstOrDefault();
             if (group != null)
             {
@@ -118,7 +118,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 Name = ValidationService.InferTemplateName(template.Name, false, template.ItemNameEditable);
                 HasErrors = false;
                 Template = template.Template;
-                var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework);
+                var licenses = GenComposer.GetAllLicences(template.Template, MainViewModel.Instance.ConfigFramework, MainViewModel.Instance.ConfigPlatform);
                 LicensesService.SyncLicenses(licenses, Licenses);
                 Dependencies.Clear();
                 foreach (var dependency in template.Dependencies)

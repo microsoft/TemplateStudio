@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Dev Center Notifications",
-    "description": "登錄您的應用程式，以便接收市集的通知，並加以處理來用於啟動應用程式。",
-    "identity": "wts.Feat.StoreNotifications.VB"
-}

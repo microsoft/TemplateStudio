@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Dev Center Notifications",
-    "description": "アプリを登録して、ストアから通知を受け取り、アプリの起動に使用する通知を処理します。",
-    "identity": "wts.Feat.StoreNotifications.VB"
-}

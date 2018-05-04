@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Drag & Drop",
+    "description": "La función de arrastrar y colocar proporciona un servicio para simplificar la creación de aplicaciones listas para arrastrar y colocar.",
+    "identity": "wts.Feat.DragAndDrop.CodeBehind.VB"
+}

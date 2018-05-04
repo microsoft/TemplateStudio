@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Test
 
         private static async Task InitializeTemplatesForLanguageAsync(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.VisualBasic), ProgrammingLanguages.VisualBasic);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.VisualBasic), ProgrammingLanguages.VisualBasic);
             if (Templates == null)
             {
                 await GenContext.ToolBox.Repo.SynchronizeAsync(true);
@@ -69,6 +69,7 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             await InitializeTemplatesForLanguageAsync(new LocalTemplatesSource("VBStyle"));
 
+            var platform = Platforms.Uwp;
             var projectTemplates =
                 VBStyleGenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project
                                                              && t.GetLanguage() == ProgrammingLanguages.VisualBasic
@@ -80,11 +81,11 @@ namespace Microsoft.Templates.Test
 
                 foreach (var projectType in projectTypeList)
                 {
-                    var frameworks = GenComposer.GetSupportedFx(projectType);
+                    var frameworks = GenComposer.GetSupportedFx(projectType, platform);
 
                     foreach (var framework in frameworks)
                     {
-                        result.Add(new object[] { projectType, framework });
+                        result.Add(new object[] { projectType, framework, platform });
                     }
                 }
             }
@@ -130,7 +131,7 @@ namespace Microsoft.Templates.Test
 
             _usedNames.Add(itemName);
 
-            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework);
+            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework, userSelection.Platform);
 
             foreach (var item in dependencies)
             {

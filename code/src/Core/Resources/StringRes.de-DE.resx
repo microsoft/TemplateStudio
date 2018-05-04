@@ -146,12 +146,12 @@
     <value>Ausnahme erfasst</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>„{0}“ konnte nicht gefunden werden, um die folgenden Änderungen zu integrieren. Überprüfen Sie die Codeblöcke, um die Änderungen manuell zu integrieren, wenn für Ihr Projekt erforderlich. </value>
-    <comment>{0}:Relative path to original file </comment>
+    <value>„{0}“ konnte nicht gefunden werden, um die folgenden Änderungen zu integrieren. Überprüfen Sie die Codeblöcke, um die Änderungen manuell zu integrieren, wenn für Ihr Projekt erforderlich. Verwandte Vorlage: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Die erwartete Zeile „{0}“ konnte in der Datei „{1}“ nicht gefunden werden. Führen Sie die Inhalte aus der Postaktionsdatei manuell zusammen.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
+    <value>Die erwartete Zeile „{0}“ konnte in der Datei „{1}“ nicht gefunden werden. Führen Sie die Inhalte aus der Postaktionsdatei manuell zusammen. Verwandte Vorlage: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>Die Datei {0} kann nicht zu {1} kopiert werden. Fehler: {2}</value>
@@ -185,12 +185,12 @@
     <value>*Empfohlener Markdown-Viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>Es gibt kein Zusammenführungsziel für die Datei „{0}“.</value>
-    <comment>{0}: Postaction file path</comment>
+    <value>Es gibt kein Zusammenführungsziel für die Datei „{0}“. Verwandte Vorlage: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Die Zeile {0} wurde in der Datei „{1}“ nicht gefunden.</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
+    <value>Die Zeile {0} wurde in der Datei „{1}“ nicht gefunden. Verwandte Vorlage: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Es ist nicht möglich, einen Namen abzuleiten. Es gibt zu viele Iterationen.</value>
@@ -399,8 +399,27 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
     <value>Fehler beim Lesen der instanzsperrenden Datei.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>Diese Formatvorlage mit dem Schlüssel „{0}“ wurde bereits mit einem anderen Wert oder anderen Elementen in dieser Datei definiert. Überprüfen Sie die Formatvorlagen, um die Änderungen manuell zu integrieren, wenn für Ihr Projekt erforderlich.</value>
-    <comment>{0}: Key of the XmlNode</comment>
+    <value>Diese Formatvorlage mit dem Schlüssel „{0}“ wurde bereits mit einem anderen Wert oder anderen Elementen in dieser Datei definiert. Überprüfen Sie die Formatvorlagen, um die Änderungen manuell zu integrieren, wenn für Ihr Projekt erforderlich. Verwandte Vorlage: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Fehler bei der Ausführung von „{0}“. Fehler wird ignoriert, da „Fortfahren bei Fehler“ aktiviert ist. Verwandte Vorlage: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Fehler bei der Ausführung von „{0}“. Verwandte Vorlage: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>Die in der Vorlage definierte PostAction.ActionId „{0}“ stimmt nicht mit der erwarteten ActionId „{1}“ der Klasse überein. Fortfahren nicht möglich. Verwandte Vorlage: {2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Der Schreibschutz für Datei {0} kann nicht entfernt werden.</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>Fehler beim Abrufen von Inhalten.</value>
@@ -411,14 +430,18 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Fehler beim Aktualisieren der Inhalte der Vorlagen.</value>
   </data>
-  <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Der Schreibschutz für Datei {0} kann nicht entfernt werden.</value>
-    <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Projektdatei für Objekt {0} nicht gefunden</value>
+    <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
     <value>Fehler beim Lesen der Quellkonfigurationsdatei.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
     <value>Der lokale Pfad für Vorlagen ist leer.</value>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>Der Ordner {0} kann nicht umbenannt werden. Fehler: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
 </root>

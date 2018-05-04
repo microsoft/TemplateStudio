@@ -178,6 +178,24 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Breaking changes.
+        /// </summary>
+        public static string BreakingChanges {
+            get {
+                return ResourceManager.GetString("BreakingChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We have detected incompatibilities between your project and the last templates version. Please review the changes:.
+        /// </summary>
+        public static string BreakingChangesDialogMessage {
+            get {
+                return ResourceManager.GetString("BreakingChangesDialogMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string ButtonBack {
@@ -201,6 +219,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ButtonClose {
             get {
                 return ResourceManager.GetString("ButtonClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Composition tool.
+        /// </summary>
+        public static string ButtonCompositionTool {
+            get {
+                return ResourceManager.GetString("ButtonCompositionTool", resourceCulture);
             }
         }
         
@@ -439,7 +466,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dependency template {0} not found for framework {1}..
+        ///   Looks up a localized string similar to Dependency template {0} not found for framework {1} and platform {2}..
         /// </summary>
         public static string ErrorDependencyNotFound {
             get {
@@ -493,7 +520,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Layout template {0} not found for framework {1}..
+        ///   Looks up a localized string similar to Layout template {0} not found for framework {1} and platform {2}..
         /// </summary>
         public static string ErrorLayoutNotFound {
             get {
@@ -538,11 +565,29 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to resolve platform..
+        /// </summary>
+        public static string ErrorUnableResolvePlatform {
+            get {
+                return ResourceManager.GetString("ErrorUnableResolvePlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to refresh the project. Try to refresh it manually..
         /// </summary>
         public static string ErrorUnableToRefreshProject {
             get {
                 return ResourceManager.GetString("ErrorUnableToRefreshProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to set default solution configuration.
+        /// </summary>
+        public static string ErrorUnableToSetDefaultConfiguration {
+            get {
+                return ResourceManager.GetString("ErrorUnableToSetDefaultConfiguration", resourceCulture);
             }
         }
         
@@ -745,7 +790,16 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can not remove *{0}* because *{1}* depends on it..
+        ///   Looks up a localized string similar to no content available..
+        /// </summary>
+        public static string NoContentPanelMessage {
+            get {
+                return ResourceManager.GetString("NoContentPanelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can not remove **{0}** because **{1}** depends on it..
         /// </summary>
         public static string NotificationRemoveError_Dependency {
             get {
@@ -885,6 +939,15 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ProjectConfigurationSelectFramework {
             get {
                 return ResourceManager.GetString("ProjectConfigurationSelectFramework", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select platform.
+        /// </summary>
+        public static string ProjectConfigurationSelectPlatform {
+            get {
+                return ResourceManager.GetString("ProjectConfigurationSelectPlatform", resourceCulture);
             }
         }
         
@@ -1195,6 +1258,15 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analytics.
+        /// </summary>
+        public static string TemplateGroup_Analytics {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Analytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application Launching.
         /// </summary>
         public static string TemplateGroup_ApplicationLaunching {
@@ -1254,6 +1326,33 @@ namespace Microsoft.Templates.UI.Resources {
         public static string TermsAndConditionsText {
             get {
                 return ResourceManager.GetString("TermsAndConditionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}projectTypes/updatetonavigationview.md.
+        /// </summary>
+        public static string ValidatorHasNavigationViewLink {
+            get {
+                return ResourceManager.GetString("ValidatorHasNavigationViewLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorHasNavigationViewLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasNavigationViewLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. .
+        /// </summary>
+        public static string ValidatorHasNavigationViewMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasNavigationViewMessage", resourceCulture);
             }
         }
         

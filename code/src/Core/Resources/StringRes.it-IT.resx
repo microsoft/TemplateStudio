@@ -146,12 +146,12 @@
     <value>Eccezione verificata</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Impossibile trovare il file '{0}' per includere le seguenti modifiche. Rivedi i blocchi di codice per includere le modifiche manualmente ove richiesto nel progetto. </value>
-    <comment>{0}:Relative path to original file </comment>
+    <value>Impossibile trovare il file '{0}' per includere le seguenti modifiche. Rivedi i blocchi di codice per includere le modifiche manualmente ove richiesto nel progetto. Modello relativo: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Impossibile trovare la riga prevista '{0}' nel file '{1}'. Unisci manualmente il contenuto dal file post-azione.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
+    <value>Impossibile trovare la riga prevista '{0}' nel file '{1}'. Unisci manualmente il contenuto dal file post-azione. Modello relativo: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>Impossibile copiare il file {0} in {1}. Errore: {2}</value>
@@ -185,12 +185,12 @@
     <value>*Visualizzatore markdown consigliato: [Estensione di VS Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>Nessuna destinazione di unione per il file '{0}'</value>
-    <comment>{0}: Postaction file path</comment>
+    <value>Nessuna destinazione di unione per il file '{0}'. Modello relativo: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Riga {0} non trovata nel file '{1}'</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
+    <value>Riga {0} non trovata nel file '{1}'. Modello relativo: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Impossibile dedurre un nome. Troppe iterazioni</value>
@@ -399,8 +399,27 @@ Impossibile integrare le seguenti modifiche: {2}
     <value>Errore durante la lettura del file di blocco dell'istanza.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>Lo stile con la chiave '{0}' è già definito con valore o elementi diversi in questo file. Rivedi gli stili per includere le modifiche manualmente ove richiesto nel progetto.</value>
-    <comment>{0}: Key of the XmlNode</comment>
+    <value>Lo stile con la chiave '{0}' è già definito con valore o elementi diversi in questo file. Rivedi gli stili per includere le modifiche manualmente ove richiesto nel progetto. Modello relativo: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Errore durante l'esecuzione di '{0}'. Ignora l'errore poiché è abilitato Continua in caso di errori. Modello relativo: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Errore durante l'esecuzione di '{0}'. Modello relativo: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>Il PostAction.ActionId '{0}' definito nel modello non corrisponde all'ActionId '{1}' atteso della classe. Impossibile proseguire. Modello relativo: {2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>Nessuno</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Impossibile rimuovere la protezione di sola lettura dal file {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>Errore durante l'acquisizione del contenuto.</value>
@@ -411,14 +430,18 @@ Impossibile integrare le seguenti modifiche: {2}
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Errore durante l'aggiornamento del contenuto dei modelli.</value>
   </data>
-  <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Impossibile rimuovere la protezione di sola lettura dal file {0}</value>
-    <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Impossibile trovare il file di progetto per l'elemento {0}</value>
+    <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
     <value>Errore durante la lettura del file di configurazione di origine.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
     <value>Il percorso locale dei modelli è vuoto.</value>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>Impossibile rinominare la cartella {0}. Errore: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
 </root>

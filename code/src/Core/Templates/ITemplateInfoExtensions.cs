@@ -41,6 +41,20 @@ namespace Microsoft.Templates.Core
             }
         }
 
+        public static TemplateOutputType GetTemplateOutputType(this ITemplateInfo ti)
+        {
+            var type = GetValueFromTag(ti, "type");
+            switch (type?.ToUpperInvariant())
+            {
+                case "PROJECT":
+                    return TemplateOutputType.Project;
+                case "ITEM":
+                    return TemplateOutputType.Item;
+                default:
+                    return TemplateOutputType.Unspecified;
+            }
+        }
+
         public static string GetIcon(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
@@ -81,15 +95,21 @@ namespace Microsoft.Templates.Core
         public static string GetRichDescription(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
-            var descriptionFile = Directory.EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md").FirstOrDefault();
-            if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
-            {
-                descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
-            }
 
-            if (!string.IsNullOrEmpty(descriptionFile))
+            if (configDir != null)
             {
-                return File.ReadAllText(descriptionFile);
+                var descriptionFile = Directory
+                    .EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md")
+                    .FirstOrDefault();
+                if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
+                {
+                    descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
+                }
+
+                if (!string.IsNullOrEmpty(descriptionFile))
+                {
+                    return File.ReadAllText(descriptionFile);
+                }
             }
 
             return null;
@@ -190,6 +210,11 @@ namespace Microsoft.Templates.Core
             }
 
             return result;
+        }
+
+        public static string GetPlatform(this ITemplateInfo ti)
+        {
+            return GetValueFromTag(ti, TagPrefix + "platform") ?? string.Empty;
         }
 
         public static List<string> GetDependencyList(this ITemplateInfo ti)
@@ -349,7 +374,22 @@ namespace Microsoft.Templates.Core
 
         public static bool GetItemNameEditable(this ITemplateInfo ti)
         {
-            return ti.GetTemplateType() == TemplateType.Page || ti.GetMultipleInstance();
+            return ti.GetMultipleInstance();
+        }
+
+        public static bool GetOutputToParent(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "outputToParent");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (bool.TryParse(result, out bool boolResult))
+                {
+                    return boolResult;
+                }
+            }
+
+            return false;
         }
 
         private static string GetConfigDir(ITemplateInfo ti)
@@ -362,6 +402,20 @@ namespace Microsoft.Templates.Core
             }
 
             return Path.GetFullPath(mountPoint.Info.Place + file.Parent.FullPath);
+        }
+
+        public static string GetTelemetryName(this ITemplateInfo ti)
+        {
+            var telemName = GetValueFromTag(ti, TagPrefix + "telemName");
+
+            if (telemName != null)
+            {
+                return telemName;
+            }
+            else
+            {
+                return ti.Name;
+            }
         }
 
         private static string GetValueFromTag(this ITemplateInfo templateInfo, string tagName)

@@ -146,12 +146,12 @@
     <value>예외 추적</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>다음 변경 사항을 포함할 '{0}' 파일을 찾을 수 없습니다. 코드 블록을 검토하고 필요한 변경 사항을 프로젝트에 수동으로 추가하십시오. </value>
-    <comment>{0}:Relative path to original file </comment>
+    <value>다음 변경 사항을 포함할 '{0}' 파일을 찾을 수 없습니다. 코드 블록을 검토하고 프로젝트에서 필요한 변경 사항을 수동으로 추가하십시오. 관련 템플릿: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>'{1}' 파일에서 '{0}' 줄을 찾을 수 없습니다. postaction 파일의 콘텐츠를 수동으로 병합하십시오.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
+    <value>'{1}' 파일에서 '{0}' 줄을 찾을 수 없습니다. postaction 파일의 콘텐츠를 수동으로 병합하십시오. 관련 템플릿: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>{0} 파일을 {1}(으)로 복사할 수 없습니다. 오류: {2}</value>
@@ -182,18 +182,18 @@
     <value>로그 시작됨</value>
   </data>
   <data name="MarkdownHeader" xml:space="preserve">
-    <value>*권장하는 Markdown 뷰어: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
+    <value>*권장하는 Markdown 뷰어: [Markdown Editor vs. Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>'{0}' 파일에 병합 대상이 없습니다.</value>
-    <comment>{0}: Postaction file path</comment>
+    <value>'{0}' 파일에 병합 대상이 없습니다. 관련 템플릿: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>'{1}'파일에 {0}줄이 없음</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
+    <value>'{1}'파일에 {0}줄이 없습니다. 관련 템플릿: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
-    <value>이름을 유추할 수 없습니다. 반복 횟수가 너무 많습니다</value>
+    <value>이름을 유추할 수 없습니다. 반복 횟수가 너무 많습니다.</value>
   </data>
   <data name="PackageCertificateString" xml:space="preserve">
     <value>패키지 인증</value>
@@ -399,26 +399,49 @@
     <value>인스턴스 잠금 파일을 읽는 중 오류가 발생했습니다.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>'{0}' 키가 있는 스타일은 이미 파일에서 다른 값이나 다른 요소로 정의되어 있습니다. 스타일을 검토하고 필요한 변경 사항을 프로젝트에 수동으로 추가하십시오.</value>
-    <comment>{0}: Key of the XmlNode</comment>
+    <value>'{0}' 키가 있는 스타일은 이미 파일에서 다른 값이나 다른 요소로 정의되어 있습니다. 스타일을 검토하고 프로젝트에 필요한 변경 사항을 수동으로 추가하십시오. 관련 템플릿: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
   </data>
-  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
-    <value>콘텐츠를 받는 데 오류가 발생했습니다.</value>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>'{0}' 실행 중 오류가 발생했습니다. "오류 상태에서 진행"이 활성화되어 있으므로 오류를 무시합니다. 관련 템플릿: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
-  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
-    <value>설치된 템플릿 콘텐츠를 추출하는 데 오류가 발생했습니다...</value>
+  <data name="PostActionException" xml:space="preserve">
+    <value>'{0}' 실행 중 오류가 발생했습니다. 관련 템플릿: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
-  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
-    <value>템플릿 콘텐츠를 업데이트하는 중 오류가 발생했습니다.</value>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>템플릿에 지정된 '{0}' PostAction.ActionId는 예정된 클래스 ActionId '{1}'와 일치하지 않습니다. 계속 진행할 수 없습니다. 관련 템플릿: {2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>없음</value>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
     <value>{0} 파일의 읽기전용 보호를 제거할 수 없음</value>
     <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
+  <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
+    <value>콘텐츠를 가져오는 중에 오류가 발생했습니다.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorExtracting" xml:space="preserve">
+    <value>설치된 템플릿 콘텐츠를 추출하는 중에 오류가 발생했습니다.</value>
+  </data>
+  <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
+    <value>템플릿 콘텐츠를 업데이트하는 중에 오류가 발생했습니다.</value>
+  </data>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>{0} 항목에 대한 프로젝트 파일을 찾을 수 없음</value>
+    <comment>{0}: Filepath</comment>
+  </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
-    <value>원본 구성 파일을 읽는 중 오류가 발생했습니다.</value>
+    <value>원본 구성 파일을 읽는 중에 오류가 발생했습니다.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
     <value>템플릿의 로컬 경로가 비어 있습니다.</value>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>{0} 폴더는 이름을 수정할 수 없습니다. 오류: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
 </root>

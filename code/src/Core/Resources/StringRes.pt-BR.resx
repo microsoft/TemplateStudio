@@ -146,12 +146,12 @@
     <value>Exceção Acompanhada</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Não foi possível localizar o arquivo '{0}' para incluir as alterações a seguir. Examine os blocos de código para incluir as alterações manualmente quando necessário no projeto. </value>
-    <comment>{0}:Relative path to original file </comment>
+    <value>Não foi possível localizar o arquivo '{0}' para incluir as alterações a seguir. Examine os blocos de código para incluir as alterações manualmente quando necessário no projeto. Modelo relacionado: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Não foi possível localizar a linha esperada `{0}` no arquivo '{1}'. Mescle o conteúdo do arquivo de pós-ação manualmente.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
+    <value>Não foi possível localizar a linha esperada `{0}` no arquivo '{1}'. Mescle o conteúdo do arquivo de pós-ação manualmente. Modelo relacionado: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>O arquivo {0} não pode ser copiado para {1}. Erro: {2}</value>
@@ -185,12 +185,12 @@
     <value>*Visualizador de Markdown recomendado: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>Não há destino de mesclagem para o arquivo '{0}'</value>
-    <comment>{0}: Postaction file path</comment>
+    <value>Não há destino de mesclagem para o arquivo '{0}'. Modelo relacionado: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>Linha {0} não encontrada no arquivo '{1}'</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
+    <value>Linha {0} não encontrada no arquivo '{1}'. Modelo relacionado: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Não é possível inferir um nome. Muitas iterações</value>
@@ -399,8 +399,27 @@ As seguintes alterações não puderam ser integradas: {2}
     <value>Erro ao ler o arquivo de bloqueio de instância.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>O estilo com a chave '{0}' já está definido com valores ou elementos diferentes neste arquivo. Examine os estilos para incluir as alterações manualmente quando necessário no projeto.</value>
-    <comment>{0}: Key of the XmlNode</comment>
+    <value>O estilo com a chave '{0}' já está definido com valores ou elementos diferentes neste arquivo. Examine os estilos para incluir as alterações manualmente quando necessário no projeto. Modelo relacionado: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>Erro ao executar '{0}'. Ignorando o erro porque Continuar se Houver Erro está habilitado. Modelo relacionado: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>Erro ao executar '{0}'. Modelo relacionado: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>O PostAction.ActionId '{0}' definido no modelo não corresponde ao ActionId de classe esperado '{1}'. Não é possível continuar. Modelo relacionado: {2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>Nenhum</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>Não é possível remover a proteção somente leitura do arquivo {0}</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>Erro ao adquirir conteúdo.</value>
@@ -411,14 +430,18 @@ As seguintes alterações não puderam ser integradas: {2}
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Erro ao atualizar conteúdo de modelos.</value>
   </data>
-  <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>Não é possível remover a proteção somente leitura do arquivo {0}</value>
-    <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>Não foi possível encontrar o arquivo de projeto para o item {0}</value>
+    <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
     <value>Erro ao ler arquivo de configuração de origem.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
     <value>O caminho local de modelos está vazio.</value>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>A pasta {0} não pode ser renomeada. Erro: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
 </root>

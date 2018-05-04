@@ -146,12 +146,12 @@
     <value>Özel Durum İzleniyor</value>
   </data>
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
-    <value>Aşağıdaki değişiklikleri içeren "{0}" dosyası bulunamadı. Lütfen gerektiğinde projenize değişiklikleri el ile dahil etmek için kod bloklarını gözden geçirin. </value>
-    <comment>{0}:Relative path to original file </comment>
+    <value>Aşağıdaki değişiklikleri içeren "{0}" dosyası bulunamadı. Lütfen gerektiğinde projenize değişiklikleri el ile dahil etmek için kod bloklarını gözden geçirin. İlgili Şablon: '{1}'.</value>
+    <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>"{1}" dosyasında beklenen "{0}" satırı bulunamadı. Lütfen içeriği eylem sonrası dosyadan el ile birleştirin.</value>
-    <comment>{0}: Code line, {1}: Relative path to original file</comment>
+    <value>"{1}" dosyasında beklenen "{0}" satırı bulunamadı. Lütfen içeriği eylem sonrası dosyadan el ile birleştirin. İlgili Şablon: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
     <value>{0} dosyası {1} hedefine kopyalanamıyor. Hata: {2}</value>
@@ -185,12 +185,12 @@
     <value>*Önerilen Markdown görüntüleyicisi: [Markdown Düzenleyicisi VS Uzantısı](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
   <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
-    <value>"{0}" dosyası için birleştirme hedefi yok</value>
-    <comment>{0}: Postaction file path</comment>
+    <value>"{0}" dosyası için birleştirme hedefi yok. İlgili Şablon: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
   </data>
   <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
-    <value>"{1}" dosyasında {0} satırı bulunamadı</value>
-    <comment>{0}: CodeLine, {1}: Original file Path</comment>
+    <value>"{1}" dosyasında {0} satırı bulunamadı. İlgili Şablon: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
   </data>
   <data name="NamingInferMessage" xml:space="preserve">
     <value>Ad çıkarılamıyor. Çok fazla yineleme var</value>
@@ -399,8 +399,27 @@ Aşağıdaki değişiklikler tümleştirilemedi: {2}
     <value>Kurulum kilitleme dosyası okunurken bir hata oluştu.</value>
   </data>
   <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
-    <value>"{0}" anahtarına sahip stil bu dosyada farklı değer veya öğelerle zaten tanımlanmış. Lütfen gerektiğinde projenize değişiklikleri el ile dahil etmek için stilleri gözden geçirin.</value>
-    <comment>{0}: Key of the XmlNode</comment>
+    <value>"{0}" anahtarına sahip stil bu dosyada farklı değer veya öğelerle zaten tanımlanmış. Lütfen gerektiğinde projenize değişiklikleri el ile dahil etmek için stilleri gözden geçirin. İlgili Şablon: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>"{0}" yürütülürken hata oluştu. Hatada Devam Et etkin olduğu için hata yok sayılıyor. İlgili şablon: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>"{0}" yürütülürken hata oluştu. İlgili şablon: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionIdsNotMatchError" xml:space="preserve">
+    <value>Şablon içinde tanımlanan PostAction.ActionId "{0}" beklenen sınıf ActionId "{1}" ile eşleşmiyor. Devam edilemiyor. İlgili şablon: {2}.</value>
+    <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
+  </data>
+  <data name="PostActionRelatedNone" xml:space="preserve">
+    <value>Yok</value>
+  </data>
+  <data name="FsEnsureFileEditableException" xml:space="preserve">
+    <value>{0} dosyasından salt okunur koruma kaldırılamıyor</value>
+    <comment>{0}: File path (C:\Sample\File.txt)</comment>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>İçerik alınırken hata oluştu.</value>
@@ -411,14 +430,18 @@ Aşağıdaki değişiklikler tümleştirilemedi: {2}
   <data name="TemplatesSynchronizationErrorUpdating" xml:space="preserve">
     <value>Şablon içeriği güncelleştirilirken hata oluştu.</value>
   </data>
-  <data name="FsEnsureFileEditableException" xml:space="preserve">
-    <value>{0} dosyasından salt okunur koruma kaldırılamıyor</value>
-    <comment>{0}: File path (C:\Sample\File.txt)</comment>
+  <data name="ExceptionProjectNotFound" xml:space="preserve">
+    <value>{0} için proje dosyası bulunamadı</value>
+    <comment>{0}: Filepath</comment>
   </data>
   <data name="TemplatesSourceErrorLoadingConfigFileMessage" xml:space="preserve">
     <value>Kaynak yapılandırma dosyası okunurken bir hata oluştu.</value>
   </data>
   <data name="TemplatesSourceLocalPathEmptyMessage" xml:space="preserve">
     <value>Şablonlar yerel yolu boş.</value>
+  </data>
+  <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
+    <value>{0} klasörü yeniden adlandırılamıyor. Hata: {1}</value>
+    <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
 </root>

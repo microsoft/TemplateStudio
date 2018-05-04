@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Test
 
         private static async Task InitializeTemplatesAsync(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(ProgrammingLanguages.VisualBasic), ProgrammingLanguages.VisualBasic);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.VisualBasic), ProgrammingLanguages.VisualBasic);
             if (Templates == null)
             {
                 await GenContext.ToolBox.Repo.SynchronizeAsync(true);
@@ -68,19 +68,26 @@ namespace Microsoft.Templates.Test
             List<object[]> result = new List<object[]>();
             await InitializeTemplatesAsync(new LocalTemplatesSource("SonarLint"));
 
-            var projectTypes =
-                SonarLintGenerationTestsFixture.Templates.Where(t => t.GetTemplateType() == TemplateType.Project
-                                                             && t.GetLanguage() == ProgrammingLanguages.VisualBasic
-                                                             && t.Name != "Feature.Testing.SonarLint.VB")
-                                                             .SelectMany(p => p.GetProjectTypeList()).Distinct();
-
-            foreach (var projectType in projectTypes)
+            foreach (var platform in Platforms.GetAllPlatforms())
             {
-                var frameworks = GenComposer.GetSupportedFx(projectType);
+                var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
 
-                foreach (var framework in frameworks)
+                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                            .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                            .Select(m => m.Name);
+
+                foreach (var projectType in projectTypes)
                 {
-                    result.Add(new object[] { projectType, framework });
+                    var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
+
+                    var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
+                                                .Where(m => projectFrameworks.Contains(m.Name))
+                                                .Select(m => m.Name).ToList();
+
+                    foreach (var framework in targetFrameworks)
+                    {
+                        result.Add(new object[] { projectType, framework, platform });
+                    }
                 }
             }
 
@@ -125,7 +132,7 @@ namespace Microsoft.Templates.Test
 
             _usedNames.Add(itemName);
 
-            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework);
+            var dependencies = GenComposer.GetAllDependencies(template, userSelection.Framework, userSelection.Platform);
 
             foreach (var item in dependencies)
             {

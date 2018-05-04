@@ -19,17 +19,17 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         public const string Extension = "_" + Suffix + ".";
         public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
 
-        public GenerateMergeInfoPostAction(string config)
-            : base(config)
+        public GenerateMergeInfoPostAction(string relatedTemplate, string config)
+            : base(relatedTemplate, config)
         {
         }
 
-        public override void Execute()
+        internal override void ExecuteInternal()
         {
             var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
             var sourceFile = GetFilePath();
             var mergeType = GetMergeType();
-            var relFilePath = sourceFile.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
+            var relFilePath = sourceFile.Replace(GenContext.Current.TempGenerationPath + Path.DirectorySeparatorChar, string.Empty);
 
             if (GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {

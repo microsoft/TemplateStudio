@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Dev Center Notifications",
-    "description": "Зарегистрируйте приложение, чтобы получать уведомления из магазина, и обрабатывайте их для запуска приложения.",
-    "identity": "wts.Feat.StoreNotifications.VB"
-}

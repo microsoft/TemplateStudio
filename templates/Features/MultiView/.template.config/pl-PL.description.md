@@ -1,3 +1,0 @@
-﻿Pozwala pracować wydajniej przez umożliwienie otwierania poszczególnych elementów aplikacji w oddzielnych oknach. Gdy tworzysz wiele okien dla aplikacji, każde z nich zachowuje się niezależnie. Na pasku zadań każde okno jest wyświetlane osobno. Użytkownik może przesuwać, zmieniać rozmiar, wyświetlać i ukrywać poszczególne okna aplikacji niezależnie od siebie i przełączać się między nimi, tak jakby były oddzielnymi aplikacjami. Każde okno jest obsługiwane przez oddzielny wątek.
-
-Aby dowiedzieć się więcej o wielu widokach, przejdź na stronę [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/design/layout/show-multiple-views).

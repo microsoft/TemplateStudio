@@ -10,6 +10,8 @@ using System.Xml.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Generation
 {
@@ -21,87 +23,79 @@ namespace Microsoft.Templates.UI.Generation
         public const string FxCaliburnMicro = "CaliburnMicro";
         public const string FxPrism = "Prism";
 
+        private const string PlUwp = "Uwp";
+
         private const string ProjTypeBlank = "Blank";
         private const string ProjTypeSplitView = "SplitView";
         private const string ProjTypeTabbedPivot = "TabbedPivot";
 
-        private const string ProjectTypeLiteral = "projectType";
-        private const string FrameworkLiteral = "framework";
-        private const string MetadataLiteral = "Metadata";
-        private const string NameAttribLiteral = "Name";
-        private const string ValueAttribLiteral = "Value";
-        private const string ItemLiteral = "Item";
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
-        public static (string ProjectType, string Framework) ReadProjectConfiguration()
+        public static (string ProjectType, string Framework, string Platform) ReadProjectConfiguration()
         {
-            try
+            var projectMetadata = ProjectMetadataService.GetProjectMetadata();
+
+            if (!string.IsNullOrEmpty(projectMetadata.ProjectType) && !string.IsNullOrEmpty(projectMetadata.Framework) && !string.IsNullOrEmpty(projectMetadata.Platform))
             {
-                var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
-                if (File.Exists(path))
-                {
-                    var manifest = XElement.Load(path);
-                    XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
-
-                    var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
-
-                    var projectType = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == ProjectTypeLiteral)?.Attribute(ValueAttribLiteral)?.Value;
-                    var framework = metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == FrameworkLiteral)?.Attribute(ValueAttribLiteral)?.Value;
-                    if (!string.IsNullOrEmpty(projectType) && !string.IsNullOrEmpty(framework))
-                    {
-                        return (projectType, framework);
-                    }
-                    else
-                    {
-                        var inferredConfig = InferProjectConfiguration();
-                        if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework))
-                        {
-                            SaveProjectConfiguration(inferredConfig.ProjectType, inferredConfig.Framework);
-                        }
-
-                        return inferredConfig;
-                    }
-                }
-
-                return (string.Empty, string.Empty);
+                return (projectMetadata.ProjectType, projectMetadata.Framework, projectMetadata.Platform);
             }
-            catch (Exception ex)
+
+            var inferredConfig = InferProjectConfiguration(projectMetadata.ProjectType, projectMetadata.Framework, projectMetadata.Platform);
+            if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework) && !string.IsNullOrEmpty(inferredConfig.Platform))
             {
-                AppHealth.Current.Warning.TrackAsync("Exception reading projectType and framework from Package.appxmanifest", ex).FireAndForget();
-                return (string.Empty, string.Empty);
+                ProjectMetadataService.SaveProjectMetadata(inferredConfig.ProjectType, inferredConfig.Framework, inferredConfig.Platform);
             }
-        }
 
-        public static void SaveProjectConfiguration(string projectType, string framework)
-        {
-            try
-            {
-                var path = Path.Combine(GenContext.Current.ProjectPath, "Package.appxmanifest");
-                if (File.Exists(path))
-                {
-                    var manifest = XElement.Load(path);
-                    XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
-
-                    var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
-                    metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, ProjectTypeLiteral), new XAttribute(ValueAttribLiteral, projectType)));
-                    metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, FrameworkLiteral), new XAttribute(ValueAttribLiteral, framework)));
-
-                    manifest.Save(path);
-                }
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Warning.TrackAsync("Exception saving inferred projectType and framework to Package.appxmanifest", ex).FireAndForget();
-                throw;
-            }
+            return inferredConfig;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
-        private static (string ProjectType, string Framework) InferProjectConfiguration()
+        private static (string ProjectType, string Framework, string Platform) InferProjectConfiguration(string projectType, string framework, string platform)
         {
-            var projectType = InferProjectType();
-            var framework = InferFramework();
-            return (projectType, framework);
+            if (string.IsNullOrEmpty(platform))
+            {
+                platform = InferPlatform();
+            }
+
+            if (platform == PlUwp)
+            {
+                if (string.IsNullOrEmpty(projectType))
+                {
+                    projectType = InferProjectType();
+                }
+
+                if (string.IsNullOrEmpty(framework))
+                {
+                    framework = InferFramework();
+                }
+
+                return (projectType, framework, platform);
+            }
+
+            return (string.Empty, string.Empty, string.Empty);
+        }
+
+        public static string InferPlatform()
+        {
+            if (IsUwp())
+            {
+                return Platforms.Uwp;
+            }
+
+            throw new Exception(StringRes.ErrorUnableResolvePlatform);
+        }
+
+        private static bool IsUwp()
+        {
+            var projectTypeGuids = GenContext.ToolBox.Shell.GetActiveProjectTypeGuids();
+
+            if (projectTypeGuids.ToUpperInvariant().Split(';').Contains("{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private static string InferFramework()
@@ -152,7 +146,7 @@ namespace Microsoft.Templates.UI.Generation
         {
             if (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
             {
-                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
                 foreach (string file in files)
                 {
                     if (File.ReadAllText(file).Contains("<PackageReference Include=\"MvvmLight\">"))
@@ -192,7 +186,7 @@ namespace Microsoft.Templates.UI.Generation
             {
                 if (ExistsFileInProjectPath("Services", "ActivationService.cs"))
                 {
-                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views"), "*.xaml.cs", SearchOption.TopDirectoryOnly).FirstOrDefault();
                     if (!string.IsNullOrEmpty(codebehindFile))
                     {
                         var fileContent = File.ReadAllText(codebehindFile);
@@ -205,7 +199,7 @@ namespace Microsoft.Templates.UI.Generation
             {
                 if (ExistsFileInProjectPath("Services", "ActivationService.vb"))
                 {
-                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
+                    var codebehindFile = Directory.GetFiles(Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views"), "*.xaml.vb", SearchOption.TopDirectoryOnly).FirstOrDefault();
                     if (!string.IsNullOrEmpty(codebehindFile))
                     {
                         var fileContent = File.ReadAllText(codebehindFile);
@@ -222,7 +216,7 @@ namespace Microsoft.Templates.UI.Generation
         {
             if (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
             {
-                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
                 foreach (string file in files)
                 {
                     if (File.ReadAllText(file).Contains("<PackageReference Include=\"Caliburn.Micro\">"))
@@ -239,7 +233,7 @@ namespace Microsoft.Templates.UI.Generation
         {
             if (ExistsFileInProjectPath("Constants", "PageTokens.cs"))
             {
-                var files = Directory.GetFiles(GenContext.Current.ProjectPath, "*.*proj", SearchOption.TopDirectoryOnly);
+                var files = Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
                 foreach (string file in files)
                 {
                     if (File.ReadAllText(file).Contains("<PackageReference Include=\"Prism.Unity\">"))
@@ -270,14 +264,14 @@ namespace Microsoft.Templates.UI.Generation
 
         private static bool IsCSharpProject()
         {
-            return Directory.GetFiles(GenContext.Current.ProjectPath, "*.csproj", SearchOption.TopDirectoryOnly).Any();
+            return Directory.GetFiles(GenContext.ToolBox.Shell.GetActiveProjectPath(), "*.csproj", SearchOption.TopDirectoryOnly).Any();
         }
 
         private static bool ExistsFileInProjectPath(string subPath, string fileName)
         {
             try
             {
-                return Directory.GetFiles(Path.Combine(GenContext.Current.ProjectPath, subPath), fileName, SearchOption.TopDirectoryOnly).Count() > 0;
+                return Directory.GetFiles(Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), subPath), fileName, SearchOption.TopDirectoryOnly).Count() > 0;
             }
             catch (DirectoryNotFoundException)
             {

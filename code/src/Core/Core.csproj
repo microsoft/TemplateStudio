@@ -157,6 +157,7 @@
     <Compile Include="Composition\QueryablePropertyDictionary.cs" />
     <Compile Include="Composition\QueryNode.cs" />
     <Compile Include="Composition\QueryOperator.cs" />
+    <Compile Include="Configuration\BreakingChangeVersion.cs" />
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Diagnostics\EditItemActionEnum.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Diagnostics\WizardTypeEnum.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\ICreationPathExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\VersionExtensions.cs" />
@@ -202,16 +204,17 @@
     <Compile Include="Locations\TemplatesSourceConfig.cs" />
     <Compile Include="Locations\TemplatesSource.cs" />
     <Compile Include="MetadataType.cs" />
-    <Compile Include="Mvvm\Observable.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\ResourceDictionaryWriter.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\ListStringExtensions.cs" />
+    <Compile Include="PostActions\TemplateDefinedPostAction.cs" />
+    <Compile Include="Platforms.cs" />
     <Compile Include="ProgrammingLanguages.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidator.cs" />
-    <Compile Include="PostActions\Catalog\Merge\FailedMergePostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\FailedMergePostActionInfo.cs" />
     <Compile Include="Fs.cs" />
     <Compile Include="Gen\TempGenerationResult.cs" />
     <Compile Include="Packaging\InvalidSignatureException.cs" />
@@ -228,7 +231,7 @@
     <Compile Include="PostActions\Catalog\SortNamespaces\SortNamespacesPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\UsingComparer.cs" />
-    <Compile Include="PostActions\Catalog\SearchAndReplacePostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\SearchAndReplacePostAction.cs" />
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />
@@ -311,11 +314,11 @@
     </Compile>
     <Compile Include="PostActions\NewItemPostActionFactory.cs" />
     <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
+    <Compile Include="Gen\FileRenameParameterReplacements.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
     <Compile Include="Packaging\SignCertNotFoundException.cs" />
     <Compile Include="MetadataInfo.cs" />
-    <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Naming\Naming.cs" />
     <Compile Include="Templates\LayoutItem.cs" />
     <Compile Include="PostActions\Catalog\AddItemToContextPostAction.cs" />
@@ -330,11 +333,15 @@
     <Compile Include="Extensions\XElementExtensions.cs" />
     <Compile Include="Templates\TemplateLicense.cs" />
     <Compile Include="Templates\TemplateLicenseEqualityComparer.cs" />
+    <Compile Include="Templates\TemplateOutputType.cs" />
     <Compile Include="Templates\TemplatesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\TemplateType.cs" />
     <Compile Include="ValidationErrorType.cs" />
     <Compile Include="ValidationResult.cs" />
+    <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="Validation\ValidationMessage.cs" />
+    <Compile Include="Validation\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\StyleCop.json">

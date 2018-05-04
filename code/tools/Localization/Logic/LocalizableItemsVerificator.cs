@@ -176,7 +176,7 @@ namespace Localization
         private void VerifyResourceContent(string directory, string fileName)
         {
             var resxFile = Path.Combine(_sourceDir.FullName, directory, fileName);
-            var resources = GetResourcesByFile(resxFile);
+            var resources = ResourcesExtensions.GetResourcesByFile(resxFile);
 
             foreach (var culture in _cultures)
             {
@@ -184,7 +184,7 @@ namespace Localization
 
                 if (cultureFile.Exists)
                 {
-                    var cultureResources = GetResourcesByFile(cultureFile.FullName);
+                    var cultureResources = ResourcesExtensions.GetResourcesByFile(cultureFile.FullName);
                     VerifyResourceValues(resources.Keys, cultureResources.Keys, resxFile, cultureFile.FullName);
                     VerifyResourcesFormat(resources, cultureResources, resxFile, cultureFile.FullName);
                 }
@@ -214,21 +214,7 @@ namespace Localization
 
             foreach (var res in resWithDistinctFormats)
             {
-                _errors.Add($"Format Error: {cultureFile} contains distint string format that default.");
-            }
-        }
-
-        private Dictionary<string, string> GetResourcesByFile(string filePath)
-        {
-            if (!File.Exists(filePath))
-            {
-                return new Dictionary<string, string>();
-            }
-
-            using (var resx = new ResXResourceReader(filePath))
-            {
-                return resx.Cast<DictionaryEntry>()
-                            .ToDictionary(k => k.Key.ToString(), v => v.Value.ToString());
+                _errors.Add($"Format Error: {cultureFile} contains distinct string format that default in {res.Key}.");
             }
         }
 

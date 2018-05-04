@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Dev Center Notifications",
-    "description": "Registra tu aplicación para recibir notificaciones de la Store y administrarlas cuando se usan para iniciar la aplicación.",
-    "identity": "wts.Feat.StoreNotifications.VB"
-}

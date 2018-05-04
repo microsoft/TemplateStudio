@@ -58,6 +58,9 @@
     <ApplicationIcon>WindowsTemplateStudio.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.TemplateEngine.Abstractions, Version=1.0.0.234, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.TemplateEngine.Abstractions.1.0.0-beta2-20170518-234\lib\net45\Microsoft.TemplateEngine.Abstractions.dll</HintPath>
     </Reference>
@@ -159,12 +162,16 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
+    <Compile Include="CommandLineOptions.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="FailedMergePostAction.cs" />
+    <Compile Include="FakeContextProvider.cs" />
     <Compile Include="LoadProject\LoadProjectView.xaml.cs">
       <DependentUpon>LoadProjectView.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoadProject\LoadProjectViewModel.cs" />
     <Compile Include="Main\MainViewModel.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Services\CommonControls.cs" />
     <Compile Include="Services\Environment.cs" />
     <Compile Include="Services\CommonDocument.cs" />
@@ -344,6 +351,7 @@
   <ItemGroup>
     <Resource Include="WindowsTemplateStudio.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.9\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets" Condition="Exists('..\..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.9\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
