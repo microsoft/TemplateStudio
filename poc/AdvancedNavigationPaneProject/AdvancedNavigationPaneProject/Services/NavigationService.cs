@@ -20,6 +20,10 @@ namespace AdvancedNavigationPaneProject.Services
         private static readonly Dictionary<string, Frame> _frames = new Dictionary<string, Frame>();
         private static readonly List<NavigationBackStackEntry> _backStack = new List<NavigationBackStackEntry>();
 
+        /// <summary>
+        /// Register the main frame in the NavigationService.
+        /// </summary>
+        /// <param name="mainFrame">New frame to register in the NavigationService</param>
         public static bool InitializeMainFrame(Frame mainFrame)
         {
             if (InitializeFrame(FrameKeyMain, mainFrame))
@@ -31,6 +35,11 @@ namespace AdvancedNavigationPaneProject.Services
             return false;
         }
 
+        /// <summary>
+        /// Register a frame in the NavigationService using a specific frame key.
+        /// </summary>
+        /// <param name="frameKey">Key that will identify the frame in the NavigationService.</param>
+        /// <param name="frame">New frame to register in the NavigationService.</param>
         public static bool InitializeFrame(string frameKey, Frame frame)
         {
             if (!_frames.ContainsKey(frameKey))
@@ -46,6 +55,10 @@ namespace AdvancedNavigationPaneProject.Services
             return false;
         }
 
+        /// <summary>
+        /// Gets a value that indicates whether there is a frame initialized identified with a key.
+        /// </summary>
+        /// <param name="frameKey">Key to identify the frame in the NavigationService.</param>
         public static bool IsInitialized(string frameKey = null)
         {
             frameKey = frameKey ?? _currentFrame;
@@ -53,8 +66,14 @@ namespace AdvancedNavigationPaneProject.Services
             return frame?.Content != null;
         }
 
+        /// <summary>
+        /// Gets a value that indicates whether there is at least one entry in back navigation history.
+        /// </summary>
         public static bool CanGoBack => _backStack.Any();
 
+        /// <summary>
+        /// Navigates to the most recent item in back navigation history.
+        /// </summary>
         public static void GoBack()
         {
             if (CanGoBack)
@@ -65,29 +84,72 @@ namespace AdvancedNavigationPaneProject.Services
             }
         }
 
+        /// <summary>
+        /// Navigate in the current frame using the default NavigationConfig.
+        /// </summary>
+        /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
         public static bool Navigate<T>()
             where T : Page
-            => Navigate<T>(null, null);
+            => Navigate(typeof(T));
 
+        /// <summary>
+        /// Navigate in the current frame using the default NavigationConfig.
+        /// </summary>
+        /// <param name="pageType">Source Page Type for Frame navigation.</param>
+        public static bool Navigate(Type pageType)
+            => Navigate(pageType, null, null);
+
+        /// <summary>
+        /// Navigate in a specific frame using the default NavigationConfig.
+        /// </summary>
+        /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
+        /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
         public static bool Navigate<T>(string frameKey)
             where T : Page
-            => Navigate<T>(frameKey, null);
+            => Navigate(typeof(T), frameKey);
 
+        /// <summary>
+        /// Navigate in a specific frame using the default NavigationConfig.
+        /// </summary>
+        /// <param name="pageType">Source Page Type for Frame navigation.</param>
+        /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
+        public static bool Navigate(Type pageType, string frameKey)
+            => Navigate(pageType, frameKey, null);
+
+        /// <summary>
+        /// Navigate in the current frame using a specific NavigationConfig.
+        /// </summary>
+        /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
+        /// <param name="config">Parameters configuration to customize the navigation.</param>
         public static bool Navigate<T>(NavigationConfig config)
             where T : Page
-            => Navigate<T>(null, config);
+            => Navigate(typeof(T), config);
 
+        /// <summary>
+        /// Navigate in the current frame using a specific NavigationConfig.
+        /// </summary>
+        /// <param name="pageType">Source Page Type for Frame navigation.</param>
+        /// <param name="config">Parameters configuration to customize the navigation.</param>
+        public static bool Navigate(Type pageType, NavigationConfig config)
+            => Navigate(pageType, null, config);
+
+        /// <summary>
+        /// Navigate in a specific frame using a specific NavigationConfig.
+        /// </summary>
+        /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
+        /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
+        /// <param name="config">Parameters configuration to customize the navigation.</param>
         public static bool Navigate<T>(string frameKey, NavigationConfig config)
             where T : Page
             => Navigate(typeof(T), frameKey, config);
 
-        public static bool Navigate(Type pageType, string frameKey)
-            => Navigate(pageType, frameKey, null);
-
-        public static bool Navigate(Type pageType, NavigationConfig config)
-            => Navigate(pageType, null, config);
-
-        public static bool Navigate(Type pageType, string frameKey = null, NavigationConfig config = null)
+        /// <summary>
+        /// Navigate in a specific frame using a specific NavigationConfig.
+        /// </summary>
+        /// <param name="pageType">Source Page Type for Frame navigation.</param>
+        /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
+        /// <param name="config">Parameters configuration to customize the navigation.</param>
+        public static bool Navigate(Type pageType, string frameKey, NavigationConfig config)
         {
             frameKey = frameKey ?? _currentFrame;
             config = config ?? NavigationConfig.Default;
@@ -128,7 +190,14 @@ namespace AdvancedNavigationPaneProject.Services
             ThemeSelectorService.SetRequestedTheme();
         }
 
-        public static Frame GetFrame(string frameKey)
+        public static bool IsPageInFrame<T>(string frameKey)
+            where T : Page
+        {
+            var frame = GetFrame(frameKey);
+            return frame.Content != null && frame.Content is T;
+        }
+
+        private static Frame GetFrame(string frameKey)
         {
             var frame = _frames.GetValueOrDefault(frameKey);
             if (frame == null)

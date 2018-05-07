@@ -122,8 +122,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         private bool CanExpand()
         {
-            var mainFrame = NavigationService.GetFrame(NavigationService.FrameKeyMain);
-            return mainFrame.Content != null && mainFrame.Content?.GetType() != typeof(MapPage);
+            return !NavigationService.IsPageInFrame<MapPage>(NavigationService.FrameKeyMain);
         }
     }
 }
