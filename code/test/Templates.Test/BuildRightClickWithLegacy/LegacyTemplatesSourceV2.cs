@@ -23,12 +23,9 @@ namespace Microsoft.Templates.Test
 
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
-            await LoadConfigAsync(ct);
-            var package = Config.Latest;
+            await AcquireAsync(packageInfo, ct);
 
-            await AcquireAsync(package, ct);
-
-            return await base.GetContentAsync(package, workingFolder, ct);
+            return await base.GetContentAsync(packageInfo, workingFolder, ct);
         }
 
         private static string GetAgentName()
