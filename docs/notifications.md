@@ -48,12 +48,13 @@ public void Initialize(ToastNotificationActivatedEventArgs args)
 }
 ```
 
-Full toast notification documentation for UWP [here](https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent).
+Full toast notification documentation for UWP [here](https://docs.microsoft.com/dotnet/api/microsoft.toolkit.uwp.notifications.toastcontent).
 
 ## Hub notifications
 HubNotificationsService is in change of configuring the application with the Azure notifications service to allow the application to receive push notifications from a remote service in Azure. The service contains the `InitializeAsync` method that sets up the Hub Notifications. You must specify the hub name and the access signature before start working with Hub Notifications. There is more documentation about how to create and connect an Azure notifications service [here](https://docs.microsoft.com/en-us/azure/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push).
 
-Toast Notifications sent from Azure notification service shoudl be handled in the same way as locally generated ones. See the above referenced [ToastNotificationSample](/samples/notifications/ToastNotificationSample) for more.
+@@ -48,7 +48,7 @@ public void Initialize(ToastNotificationActivatedEventArgs args)
+Toast Notifications sent from Azure notification service should be handled in the same way as locally generated ones. See the above referenced [ToastNotificationSample](/samples/notifications/ToastNotificationSample) for more.
 
 ## Store notifications
 StoreNotificationsService is in change of configuring the application with the Windows Dev Center notifications service to allow the application to receive push notifications from Windows Dev Center remote service. The service contains the `InitializeAsync` method that sets up the Store Notifications. This feature use the Store API to configure the notifications.
@@ -78,7 +79,7 @@ protected override async Task HandleInternalAsync(ToastNotificationActivatedEven
 ```
 
 Other interesting links about notifications
-- [Buttons in Toast Notifications](https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton)
+- [Buttons in Toast Notifications](https://docs.microsoft.com/dotnet/api/microsoft.toolkit.uwp.notifications.toastbutton)
 - [Toast Notification class](https://docs.microsoft.com/uwp/api/windows.ui.notifications.toastnotification)
 - [UWP Toast notification when application is in foreground](https://social.msdn.microsoft.com/Forums/en-US/ff8acad4-f0c2-4a36-ac90-84780276fd09/uwptoast-notification-when-application-is-in-foreground)
 - [Suppress Toast Notification when app is in the foreground](https://social.msdn.microsoft.com/Forums/en-US/21a374dc-6510-48ea-b058-a9d4424cda4b/uwpc-suppress-toast-notification-when-app-is-in-the-foreground)
