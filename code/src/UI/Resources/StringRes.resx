@@ -695,4 +695,8 @@
     <value>Unable to set default solution configuration</value>
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
+  <data name="TemplateGroup_Testing" xml:space="preserve">
+    <value>Testing</value>
+    <comment>Group header for Testing templates</comment>
+  </data>
 </root>
