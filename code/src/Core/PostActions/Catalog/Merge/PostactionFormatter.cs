@@ -3,11 +3,10 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-    public static class PostActionFormatter
+    public static class PostactionFormatter
     {
         private const string UserFriendlyPostActionMacroBeforeMode = "Include the following block at the end of the containing block.";
         private const string UserFriendlyPostActionMacroStartGroup = "Block to be included";

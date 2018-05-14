@@ -304,4 +304,10 @@
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="Margin" Value="0,4" />
     </Style>
+
+    <!-- Bullet -->
+    <Style TargetType="TextBlock" x:Key="WtsTextBlockBullet">
+        <Setter Property="Text" Value="&#xE915;" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+    </Style>
 </ResourceDictionary>

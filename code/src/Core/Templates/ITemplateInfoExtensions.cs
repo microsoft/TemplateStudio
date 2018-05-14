@@ -41,6 +41,20 @@ namespace Microsoft.Templates.Core
             }
         }
 
+        public static TemplateOutputType GetTemplateOutputType(this ITemplateInfo ti)
+        {
+            var type = GetValueFromTag(ti, "type");
+            switch (type?.ToUpperInvariant())
+            {
+                case "PROJECT":
+                    return TemplateOutputType.Project;
+                case "ITEM":
+                    return TemplateOutputType.Item;
+                default:
+                    return TemplateOutputType.Unspecified;
+            }
+        }
+
         public static string GetIcon(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
@@ -81,15 +95,21 @@ namespace Microsoft.Templates.Core
         public static string GetRichDescription(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
-            var descriptionFile = Directory.EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md").FirstOrDefault();
-            if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
-            {
-                descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
-            }
 
-            if (!string.IsNullOrEmpty(descriptionFile))
+            if (configDir != null)
             {
-                return File.ReadAllText(descriptionFile);
+                var descriptionFile = Directory
+                    .EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md")
+                    .FirstOrDefault();
+                if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
+                {
+                    descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
+                }
+
+                if (!string.IsNullOrEmpty(descriptionFile))
+                {
+                    return File.ReadAllText(descriptionFile);
+                }
             }
 
             return null;

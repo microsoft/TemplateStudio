@@ -29,10 +29,10 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Design pattern| Description |
 |--------------:|:------------|
 | Code Behind   | Code is coupled directly with a XAML file using a .xaml.cs extension. If you developed in WinForms and feel comfortable with that style of development, this is a great option for you. |
-| MVVM Basic    | A generic implementation of the [Model-View-ViewModel (MVVM) pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel), which can be used on all XAML platforms. Its intent is to provide a clean separation of concerns between the user interface (UI) controls and their logic. |
-| MVVMLight    | [The MVVM Light Toolkit](http://www.mvvmlight.net/) is a popular, 3rd party framework by Laurent Bugnion, which is based on the [Model-View-ViewModel (MVVM) pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel). The MVVM Light Toolkit helps you separate your View from your Model, which creates applications that are cleaner and easier to extend and maintain. This toolkit puts a special emphasis on the "blend ability" of the created application (the ability to open and edit the user interface into Blend), including the creation of design-time data to enable Blend users to "see something" when they work with data controls. |
-| Caliburn.Micro  | [Caliburn.Micro](https://caliburnmicro.com/) is a small, yet powerful framework, designed for building applications across all XAML platforms. Its strong support for MV* patterns will enable you to build your solution quickly, without the need to sacrifice code quality or testability.<br />WTS only supports the use of Caliburn.Micro with projects created in C#. |
-| Prism  | [Prism](https://github.com/PrismLibrary/Prism) is a framework for building loosely coupled, maintainable, and testable XAML applications.<br />WTS only supports the use of Prism with projects created in C#. |
+| MVVM Basic    | [MVVM Basic](./mvvmbasic.md) includes the minimum necessary to follow the MVVM pattern without including any extra libraries or dependencies. It is intended for people new to MVVM or who are unable to or do not wish to use a 3rd party framework. |
+| MVVMLight     | The [MVVM Light Toolkit](http://www.mvvmlight.net/) is a popular, 3rd party toolkit by Laurent Bugnion, which has the purpose of accelerating the creation and development of MVVM applications.  This toolkit puts a special emphasis on the "blend ability" of the created application (the ability to open and edit the user interface into Blend), including the creation of design-time data to enable Blend users to "see something" when they work with data controls.<br />As a toolkit, it provides a number of tools and features but there is no requirement to use all of them. This toolkit is popular with developers who want use parts of it to take care of the basics but still allow them to structure the code in their own way. |
+| Caliburn.Micro| [Caliburn.Micro](https://caliburnmicro.com/) is a small, yet powerful framework, designed for building applications across all XAML platforms. Its strong support for MV* patterns will enable you to build your solution quickly, without the need to sacrifice code quality or testability.<br />It uses a convention based approach to mapping actions/events, bindings, and views to view models. While this framework is highly opinionated about how it should be used and apps should be constructed, it does allow for customization of it's behavior.<br />WTS only supports the use of Caliburn.Micro with projects created in C#. |
+| Prism         | [Prism](https://github.com/PrismLibrary/Prism) is a framework for building loosely coupled, maintainable, and testable XAML applications. It was originally based on guidance from Microsoft's Patterns and Practices team but is now supported by an open source community. It is designed to help build rich client applications that are flexible and easy to maintain by composing different modules and following design patterns.<br />WTS only supports the use of Prism with projects created in C#. |
 
 ### Pages
 
@@ -43,7 +43,7 @@ Windows Template Studio approaches UWP app creation using the following four att
 | Web View | The web view page embeds a view into your app that renders web content using the Microsoft Edge rendering engine. |
 | Media Player | A page for displaying video. It includes the MediaPlayer and has the default Media Transport controls enabled.|
 | Master/Detail | The master-detail page has a master pane and a details pane for content. When an item in the master list is selected, the details pane is updated. This pattern is frequently used for email and address books. |
-| Grid | A page displaying a [RadDataGrid control](http://www.telerik.com/universal-windows-platform-ui/grid), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP). A native, rich and powerful rid with unmatched performance. The grid offers advanced UI virtualization, customizable columns, single and multi-column sorting, data editing, selection and filtering.|
+| Telerik Data Grid | A page displaying a [RadDataGrid control](http://www.telerik.com/universal-windows-platform-ui/grid), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP). A native, rich and powerful rid with unmatched performance. The grid offers advanced UI virtualization, customizable columns, single and multi-column sorting, data editing, selection and filtering.|
 | Chart | A page displaying a [RadChart control](http://www.telerik.com/universal-windows-platform-ui/chart), powered by [Telerik UI for UWP](http://www.telerik.com/universal-windows-platform-ui) which is available both [commercially](http://www.telerik.com/purchase/universal-windows-platform) and [open source](https://github.com/telerik/UI-For-UWP). RadChart control for Windows 10 apps features a rich set of chart series from Bar, Line, Area, Pie, Scatter and Polar charts to different financial series.|
 | Tabbed | The tabbed page is used for navigating frequently accessed, distinct content categories. |
 | Map | The map page is based around the Windows Map Control. Code includes adding a Map Icon and getting your location. |
@@ -52,24 +52,35 @@ Windows Template Studio approaches UWP app creation using the following four att
 
 ### Features
 
-| Application Lifecycle | Feature Description |
-|-------------------:|:------------|
-| Settings Storage | [Setting storage](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata) is a class that simplifies storage of your application's data, handling loading, saving, serialization, and simplifying access. |
-| Suspend and Resume | Enables your app to better handle when a user suspends your app. We do this by hooking into the suspend and resume service, so your app can resume right where it left off. |
-
-| Background Work    | Feature Description |
-|-------------------:|:------------|
-| Background Task | Creates an [in-process background task](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task), allowing your app to run code when it is not in the foreground. The in-process model enhances the lifecycle of your app with improved notifications, whether your app is in the foreground or background. |
-
-| User Interactions  | Feature Description |
-|-------------------:|:------------|
-| Toast Notification | Adaptive and interactive toast notifications let you create flexible pop-up notifications that provide users with content, optional inline images, and optional user interactions. You can use pictures, buttons, text inputs, actions, and more. |
-| Azure Notification Hubs | [Azure Notification Hubs](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview) provide an easy-to-use, multi-platform way to push targeted notifications at Scale. |
+| Analytics               | Feature Description |
+|------------------------:|:------------|
+| VS App Center Analytics | Adding analytics from the [Visual Studio App Center](https://appcenter.ms/) will help you understand more about your app users and their behavior when using your app. |
+| | |
+| **Application Launching** | **Feature Description** |
+| Uri Scheme                | Add the ability to launch and deep link into the app with a custom URI Scheme. |
+| Web to App link           | Associate your app with a website so that when someone opens a link to your website it is displayed in the app. |
+| | |
+| **Application Lifecycle** | **Feature Description** |
+| Settings Storage          | [Setting storage](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata) is a class that simplifies storage of your application's data, handling loading, saving, serialization, and simplifying access. |
+| Suspend and Resume        | Enables your app to better handle when a user suspends your app. We do this by hooking into the suspend and resume service, so your app can resume right where it left off. |
+| Multiple Views            | Enable different views within your app to be opened in separate windows. |
+| | |
+| **Background Work** | **Feature Description** |
+| Background Task     | Creates an [in-process background task](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/create-and-register-an-inproc-background-task), allowing your app to run code when it is not in the foreground. The in-process model enhances the lifecycle of your app with improved notifications, whether your app is in the foreground or background. |
+| | |
+| **Connected Experiences** | **Feature Description** |
+| Share Source              | Support the Share Contract to share data from your app with others. |
+| Share Target              | Allows you to receive data shared from other apps. |
+| | |
+| **User Interactions** | **Feature Description** |
+| Toast Notification    | Adaptive and interactive toast notifications let you create flexible pop-up notifications that provide users with content, optional inline images, and optional user interactions. You can use pictures, buttons, text inputs, actions, and more. |
+| Azure Notifications   | [Azure Notification Hubs](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview) provide an easy-to-use, multi-platform way to push targeted notifications at Scale. |
 | Dev Center Notification | Register your app to receive notifications from the store and handle them being used to launch the app. |
-| Live Tile | Enables modification and updates to your app's presence on the Windows 10 Start Menu, providing the ability to change the app's visual state and provide additional context or information. |
-| First Run Prompt | Display a prompt when the app is used for the first time. |
-| What's New Prompt | Display a prompt when the app is first used after an update. |
-| Uri Scheme | Add the ability to launch and deep link into the app with a custom URI scheme.|
+| Live Tile             | Enables modification and updates to your app's presence on the Windows 10 Start Menu, providing the ability to change the app's visual state and provide additional context or information. |
+| First Run Prompt      | Display a prompt when the app is used for the first time. |
+| What's New Prompt     | Display a prompt when the app is first used after an update. |
+| Feedback Hub Link     | Include a link on the settings page that opens the Feedback Hub for your app. |
+| Drag & Drop           | A service that simplifies the creation of drag and drop ready apps. |
 
 ## Table of Contents
 * [Installing / Using the extension](getting-started-extension.md)

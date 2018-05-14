@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,6 +41,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
 
+        public ObservableCollection<BreakingChangeMessageViewModel> BreakingChangesErrors { get; set; } = new ObservableCollection<BreakingChangeMessageViewModel>();
+
         public ChangesSummaryViewModel ChangesSummary { get; } = new ChangesSummaryViewModel();
 
         public RelayCommand RefreshTemplatesCacheCommand => _refreshTemplatesCacheCommand ?? (_refreshTemplatesCacheCommand = new RelayCommand(
@@ -52,7 +55,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 #if DEBUG
                 return Visibility.Visible;
 #else
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
 #endif
             }
         }
@@ -147,9 +150,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var result = BreakingChangesValidatorService.Validate();
             if (!result.IsValid)
             {
-                var message = string.Join(Environment.NewLine, result.ErrorMessages);
-                var notification = Notification.Warning(message, Category.None, TimerType.None);
-                await NotificationsControl.AddNotificationAsync(notification);
+                var messages = result.ErrorMessages.Select(e => new BreakingChangeMessageViewModel(e));
+                BreakingChangesErrors.AddRange(messages);
+                OnPropertyChanged(nameof(BreakingChangesErrors));
+
+                await Task.CompletedTask;
             }
         }
 
@@ -176,7 +181,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private void SetProjectConfigInfo()
         {
             var configInfo = ProjectConfigInfo.ReadProjectConfiguration();
-            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework))
+            if (string.IsNullOrEmpty(configInfo.ProjectType) || string.IsNullOrEmpty(configInfo.Framework) || string.IsNullOrEmpty(configInfo.Platform))
             {
                 var vm = new ProjectConfigurationViewModel();
                 ProjectConfigurationDialog projectConfig = new ProjectConfigurationDialog(vm);

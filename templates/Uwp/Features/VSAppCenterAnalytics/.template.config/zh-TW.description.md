@@ -1,3 +1,3 @@
-﻿[App Center](https://appcenter.ms/) brings together multiple services, commonly used by mobile developers, into a single, integrated product. You can build, test, distribute, and monitor your apps, and also implement push notifications.
+﻿[應用程式中心](https://appcenter.ms/) 將行動開發人員常用的多項服務匯集成單一整合的產品。您可以建置、測試、散發和監視您的應用程式，也可以實作推送通知。
 
-Adding [App Center Analytics](https://docs.microsoft.com/en-us/appcenter/analytics/) will help you understand more about your app users and their behavior when using your app.
+新增[應用程式中心分析](https://docs.microsoft.com/en-us/appcenter/analytics/) 將有助您更深入了解您的應用程式使用者，以及他們使用您的應用程式的行為。

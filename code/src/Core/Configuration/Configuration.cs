@@ -9,7 +9,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -39,6 +38,8 @@ namespace Microsoft.Templates.Core
         public int DaysToKeepDiagnosticsLogs { get; set; } = 5;
 
         public List<string> AllowedPublicKeysPins { get; set; } = new List<string>() { };
+
+        public List<BreakingChangeVersion> BreakingChangesVersions { get; set; } = new List<BreakingChangeVersion>() { };
 
         public string CustomTelemetryEndpoint { get; set; } = string.Empty;
 

@@ -10,7 +10,7 @@ namespace Param_ItemNamespace.Views
             //{[{
             if (e.SourcePageType == typeof(wts.ItemNamePage))
             {
-                Selected = navigationView.SettingsItem;
+                Selected = navigationView.SettingsItem as NavigationViewItem;
                 return;
             }
 

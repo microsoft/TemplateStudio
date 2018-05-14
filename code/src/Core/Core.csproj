@@ -157,6 +157,7 @@
     <Compile Include="Composition\QueryablePropertyDictionary.cs" />
     <Compile Include="Composition\QueryNode.cs" />
     <Compile Include="Composition\QueryOperator.cs" />
+    <Compile Include="Configuration\BreakingChangeVersion.cs" />
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Diagnostics\EditItemActionEnum.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Packaging\TemplatePackage.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeMode.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\PostactionFormatter.cs" />
     <Compile Include="PostActions\Catalog\Merge\ResourceDictionaryWriter.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\ListStringExtensions.cs" />
     <Compile Include="PostActions\TemplateDefinedPostAction.cs" />
@@ -234,7 +236,6 @@
     <Compile Include="PostActions\Catalog\Merge\SearchAndReplacePostAction.cs" />
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
-    <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSummaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GenerateMergeInfoPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GetMergeFilesFromProjectPostAction.cs" />
@@ -333,12 +334,14 @@
     <Compile Include="Extensions\XElementExtensions.cs" />
     <Compile Include="Templates\TemplateLicense.cs" />
     <Compile Include="Templates\TemplateLicenseEqualityComparer.cs" />
+    <Compile Include="Templates\TemplateOutputType.cs" />
     <Compile Include="Templates\TemplatesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\TemplateType.cs" />
     <Compile Include="ValidationErrorType.cs" />
     <Compile Include="ValidationResult.cs" />
     <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="Validation\ValidationMessage.cs" />
     <Compile Include="Validation\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,12 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-namespace Localization
+namespace Microsoft.Templates.Core.Validation
 {
-    public enum ExtractorMode
+    public class ValidationMessage
     {
-        All,
-        Commit,
-        TagName
+        public string Message { get; set; }
+
+        public string Url { get; set; }
+
+        public string HyperLinkMessage { get; set; }
     }
 }

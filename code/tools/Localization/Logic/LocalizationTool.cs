@@ -54,8 +54,17 @@ namespace Localization
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                var validator = new ValidateLocalizableExtractor(options);
-                var extractor = new LocalizableItemsExtractor(options.SourceDirectory, options.DestinationDirectory, cultures, validator);
+                Console.WriteLine("\nGet original localization files");
+                var originalExtractPath = GetOriginalLocalizationFiles(options);
+
+                Console.WriteLine("\nGet actual localization files");
+                var actualExtractPath = GetActualLocalizationFiles(options);
+
+                var sourceDir = options.ActualSourceDirectory;
+                var destDir = Path.Combine(options.DestinationDirectory, Routes.DiffExtractDirectory);
+
+                var validator = new ValidateLocalizableExtractor(originalExtractPath, actualExtractPath);
+                var extractor = new LocalizableItemsExtractor(sourceDir, destDir, validator, cultures);
 
                 Console.WriteLine("\nExtract vsix");
                 extractor.ExtractVsix();
@@ -113,6 +122,24 @@ namespace Localization
 
             Console.WriteLine("\nTarget directory is not empty. Existing files will be overwritten. Continue? (Y/N)");
             return Console.ReadLine().ToUpperInvariant() == "Y";
+        }
+
+        private string GetOriginalLocalizationFiles(ExtractOptions options)
+        {
+            var extractPath = Path.Combine(options.DestinationDirectory, Routes.OriginalExtractDirectory);
+            var extractor = new OriginalLocalizableItemsExtractor(options.OriginalSourceDirectory, extractPath);
+            extractor.Extract();
+
+            return extractPath;
+        }
+
+        private string GetActualLocalizationFiles(ExtractOptions options)
+        {
+            var extractPath = Path.Combine(options.DestinationDirectory, Routes.ActualExtractDirectory);
+            var extractor = new OriginalLocalizableItemsExtractor(options.ActualSourceDirectory, extractPath);
+            extractor.Extract();
+
+            return extractPath;
         }
     }
 }

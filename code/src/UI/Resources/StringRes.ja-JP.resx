@@ -298,7 +298,7 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>*{1}* が依存しているため、*{0}* を削除できません。</value>
+    <value>**{1}** が依存しているため、**{0}** を削除できません。</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
@@ -525,6 +525,10 @@
     <value>無効な依存関係項目 {0}。依存関係は、「multipleInstance = false」として構成する必要があります。</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>framework {1} とプラットフォーム {2} の依存関係テンプレート {0} が見つかりません。</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
   <data name="ErrorDependencyType" xml:space="preserve">
     <value>無効な依存関係項目 {0}。依存関係項目の種類は、「ページ」または「機能」である必要があります。</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
@@ -532,6 +536,10 @@
   <data name="ErrorGenerating" xml:space="preserve">
     <value>テンプレート '{0}'、名前: '{1}'、理由: '{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>framework {1} とプラットフォーム {2} のレイアウト テンプレート {0} が見つかりません。</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
     <value>無効なレイアウト項目 {0}。レイアウト項目の種類は、「ページ」または「機能」である必要があります。</value>
@@ -634,45 +642,57 @@
     <comment>Error dialog accessible name to description textbox</comment>
   </data>
   <data name="ReorderPageHelpText" xml:space="preserve">
-    <value>Ctrl + 上方向キーまたは Ctrl + 下方向キーを使用して、ページの順序を変更します</value>
+    <value>Ctrl キー + 上方向キーまたは Ctrl キー + 下方向キーを使用して、ページの順序を変更します</value>
     <comment>Reorder selected user pages message in accessibility help text</comment>
   </data>
   <data name="ButtonDetailsHelpText" xml:space="preserve">
-    <value>Details of {0}</value>
+    <value>{0} の詳細</value>
     <comment>Button details help text. {0}: name of template</comment>
   </data>
   <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
-    <value>Press enter to add {0}</value>
+    <value>{0} を追加するには Enter キーを押します</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
-  <data name="ButtonCompositionTool" xml:space="preserve">
-    <value>Composition tool</value>
-  </data>
   <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
-    <value>HamburgerMenu control is obsolete and WTS now supports NavigationView. See [documentation]({0}projectTypes/updatetonavigationview.md) to update.</value>
+    <value>HamburgerMenu コントロールは廃止されました。Windows Template Studio が現在サポートするのは NavigationView です。</value>
     <comment>Has navigation view validation error message</comment>
   </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>コンポジション ツール</value>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Unable to resolve platform.</value>
+    <value>プラットフォームを解決できませんでした。</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
-    <value>Select platform</value>
+    <value>プラットフォームの選択</value>
     <comment>Project configuration window select platform title</comment>
   </data>
   <data name="TemplateGroup_Analytics" xml:space="preserve">
-    <value>Analytics</value>
+    <value>分析</value>
     <comment>Group header for analytics templates</comment>
   </data>
   <data name="NoContentPanelMessage" xml:space="preserve">
-    <value>no content available.</value>
+    <value>コンテンツがありません。</value>
     <comment>Message in no content panel</comment>
+  </data>
+  <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetonavigationview.md</value>
+    <comment>Has navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
+    <value>更新するには、ドキュメントをご覧ください。</value>
+    <comment>Has navigation view validation link documentation message</comment>
+  </data>
+  <data name="BreakingChanges" xml:space="preserve">
+    <value>大きな変更点</value>
+    <comment>Breaking changes title</comment>
+  </data>
+  <data name="BreakingChangesDialogMessage" xml:space="preserve">
+    <value>プロジェクトと最後のテンプレート バージョンの不一致が検出されました。変更を確認してください。</value>
+    <comment>Breaking change window dialog message description</comment>
+  </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Unable to set default solution configuration</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
   </data>
 </root>
