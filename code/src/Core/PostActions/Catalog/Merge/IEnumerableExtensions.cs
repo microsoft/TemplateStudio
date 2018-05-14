@@ -79,17 +79,28 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 if (currentLineIndex > -1)
                 {
                     var linesAdded = TryAddBufferContent(insertionBuffer, result, lastLineIndex, currentLineIndex, beforeMode);
-                    lastLineIndex = currentLineIndex + linesAdded;
-
                     var linesRemoved = TryRemoveBufferContent(removalBuffer, result, lastLineIndex, currentLineIndex);
-                    lastLineIndex = currentLineIndex - linesRemoved;
+
+                    if (linesAdded > 0)
+                    {
+                        lastLineIndex = currentLineIndex + linesAdded;
+                    }
+
+                    if (linesRemoved > 0)
+                    {
+                        lastLineIndex = currentLineIndex - linesRemoved;
+                    }
 
                     if (beforeMode)
                     {
                         beforeMode = false;
                     }
 
-                    lastLineIndex = currentLineIndex + linesAdded;
+                    if (linesRemoved == 0 && linesAdded == 0)
+                    {
+                        lastLineIndex = currentLineIndex;
+                    }
+
                     insertionBuffer.Clear();
                     removalBuffer.Clear();
                 }
@@ -226,10 +237,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private static int TryRemoveBufferContent(List<string> removalBuffer, List<string> result, int lastLineIndex, int currentLineIndex = 0)
         {
-            if (removalBuffer.Any() && BlockExists(removalBuffer, result, currentLineIndex) && currentLineIndex > -1)
+            if (removalBuffer.Any() && BlockExists(removalBuffer, result, lastLineIndex) && currentLineIndex > -1)
             {
-                var index = result.SafeIndexOf(removalBuffer[0], currentLineIndex);
-                if (index < lastLineIndex)
+                var index = result.SafeIndexOf(removalBuffer[0], lastLineIndex);
+                if (index <= currentLineIndex)
                 {
                     result.RemoveRange(index, removalBuffer.Count);
                     return removalBuffer.Count;
