@@ -25,7 +25,8 @@ namespace Param_ItemNamespace.Services
             yield return Singleton<BackgroundTaskService>.Instance;
             //}]}
 //{--{
-            yield break;//}--}
+            yield break;
+//}--}
         }
     }
 }
