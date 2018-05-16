@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Gen
 
         protected abstract string GetSelectedItemPath();
 
-        public abstract bool SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid);
+        public abstract void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid);
 
         public abstract void ShowStatusBarMessage(string message);
 
