@@ -1,5 +1,5 @@
 ﻿//{**
-//This code block includes the SuspendAndResumeService Instance in the method 
+//This code block includes the SuspendAndResumeService Instance in the method
 //`GetActivationHandlers()` in the ActivationService of your project.
 //**}
 
@@ -18,7 +18,8 @@ namespace Param_ItemNamespace.Services
             yield return Singleton<SuspendAndResumeService>.Instance;
             //}]}
 //{--{
-            yield break;//}--}
+            yield break;
+//}--}
         }
     }
 }

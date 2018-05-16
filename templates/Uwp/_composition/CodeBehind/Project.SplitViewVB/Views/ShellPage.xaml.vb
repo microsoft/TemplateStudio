@@ -1,4 +1,5 @@
-﻿Imports Windows.UI.Xaml.Controls
+﻿Imports Windows.Foundation.Metadata
+Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Navigation
 Imports wts.ItemName.Services
 Imports wts.ItemName.Helpers
@@ -22,6 +23,7 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
+            HideNavViewBackButton()
             DataContext = Me
             Initialize()
         End Sub
@@ -44,6 +46,12 @@ Namespace Views
             Dim item = navigationView.MenuItems.OfType(Of NavigationViewItem)().First(Function(menuItem) CStr(menuItem.Content) = CStr(args.InvokedItem))
             Dim pageType = TryCast(item.GetValue(NavHelper.NavigateToProperty), Type)
             NavigationService.Navigate(pageType)
+        End Sub
+
+        Private Sub HideNavViewBackButton()
+            If ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6) Then
+                navigationView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed
+            End if
         End Sub
 
         Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged

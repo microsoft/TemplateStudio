@@ -105,6 +105,7 @@ public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {
         InitializeComponent();
         DataContext = this;
+        HideNavViewBackButton();
         Initialize();
     }
 
@@ -135,6 +136,14 @@ public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {
         var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
         return pageType == sourcePageType;
+    }
+
+    private void HideNavViewBackButton()
+    {
+        if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6))
+        {
+            navigationView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed;
+        }
     }
 }
 ```

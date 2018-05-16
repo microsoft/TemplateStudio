@@ -23,6 +23,7 @@ namespace Microsoft.Templates.Test
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
         {
             _fixture = fixture;
+            _fixture.InitializeFixture(this);
         }
 
         [Theory]
@@ -31,8 +32,6 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
-            _fixture.InitializeFixture(this, language);
-
             var projectName = $"{projectType}{framework}Legacy";
 
             Func<ITemplateInfo, bool> selector =
@@ -47,7 +46,7 @@ namespace Microsoft.Templates.Test
             var projectPath = await AssertGenerateProjectWithOutPlatformAsync(selector, projectName, projectType, framework, language, null, false);
 
             var fixture = _fixture as BuildRightClickWithLegacyFixture;
-            await fixture.ChangeTemplatesSourceAsync(fixture.LocalSource, language, Platforms.Uwp);
+            fixture.ChangeTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
 
             var rightClickTemplates = _fixture.Templates().Where(
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
@@ -68,8 +67,6 @@ namespace Microsoft.Templates.Test
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
         public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
-            _fixture.InitializeFixture(this, language);
-
             var projectName = $"{ShortProjectType(projectType)}{framework}AllLegacy";
 
             Func<ITemplateInfo, bool> selector =

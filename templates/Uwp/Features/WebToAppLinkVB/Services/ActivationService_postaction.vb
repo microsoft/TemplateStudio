@@ -9,7 +9,8 @@ Namespace Services
             Yield Singleton(Of WebToAppLinkActivationHandler).Instance
             '}]}
 '{--{
-            Exit Function'}--}
+            Exit Function
+'}--}
         End Function
     End Class
 End Namespace

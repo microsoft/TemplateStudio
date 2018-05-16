@@ -630,7 +630,8 @@ namespace Microsoft.Templates.VsEmulator.Main
                 new Version(WizardVersion),
                 ProgrammingLanguages.CSharp);
 
-            await GenContext.ToolBox.Repo.RefreshAsync();
+            await GenContext.ToolBox.Repo.SynchronizeAsync();
+
             UpdateCanRefreshTemplateCache(true);
         }
 

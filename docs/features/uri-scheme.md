@@ -27,7 +27,7 @@ The protocol name you specify MUST meet these rules:
 ![](../resources/uri-scheme/debug-when-my-code-starts.png)
 
 - Press F5 to start debugging your app
-- Then, in Edge, open a new tab and type in `wtsapp:sample?secret=mine` (or adjust depending on any changes you've made.) You could also launch it from another app using `LaunchUriAsync()` but for testing this is easier.
+- Then, in Microsoft Edge, open a new tab and type in `wtsapp:sample?secret=mine` (or adjust depending on any changes you've made.) You could also launch it from another app using `LaunchUriAsync()` but for testing this is easier.
 - Your app will launch in debug mode and you can debug it like normal.
 
 ## Supporting multiple protocols

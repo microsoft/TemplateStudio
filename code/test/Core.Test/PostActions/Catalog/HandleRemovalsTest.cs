@@ -26,7 +26,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "public void SomeMethod()",
                 "{",
                 "//{--{",
-                "    yield break;//}--}",
+                "    yield break;",
+                "//}--}",
                 "}"
             };
             var expected = new[]
@@ -35,7 +36,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "{",
                 "}"
             };
-            var result = source.HandleRemovals(merge);
+            var result = source.Merge(merge, out var errorLine);
 
             Assert.Equal(expected, result);
         }
@@ -58,7 +59,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    // Merge1",
                 "    //}]}",
                 "//{--{",
-                "    yield break;//}--}",
+                "    yield break;",
+                "//}--}",
                 "}"
             };
             var expected = new[]
@@ -68,8 +70,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    // Merge1",
                 "}"
             };
-            var result = source.HandleRemovals(merge1);
-            result = result.Merge(merge1.RemoveRemovals(), out string errorLine).ToList();
+            var result = source.Merge(merge1, out string errorLine);
 
             Assert.Equal(expected, result);
         }
@@ -92,7 +93,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    // Merge1",
                 "    //}]}",
                 "//{--{",
-                "    yield break;//}--}",
+                "    yield break;",
+                "//}--}",
                 "}"
             };
             var merge2 = new[]
@@ -103,7 +105,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    // Merge2",
                 "    //}]}",
                 "//{--{",
-                "    yield break;//}--}",
+                "    yield break;",
+                "//}--}",
                 "}"
             };
             var expected = new[]
@@ -115,10 +118,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    // Merge1",
                 "}"
             };
-            var result = source.HandleRemovals(merge1);
-            result = result.Merge(merge1.RemoveRemovals(), out string errorLine).ToList();
-            result = result.HandleRemovals(merge2);
-            result = result.Merge(merge2.RemoveRemovals(), out errorLine).ToList();
+            var result = source.Merge(merge1, out string errorLine).ToList();
+            result = result.Merge(merge2, out errorLine).ToList();
 
             Assert.Equal(expected, result);
         }
@@ -147,7 +148,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    yield break;",
                 "}"
             };
-            var result = source.HandleRemovals(merge);
+            var result = source.Merge(merge, out string errorLine);
 
             Assert.Equal(expected, result);
         }
@@ -166,7 +167,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "public void SomeMethod()",
                 "{",
                 "//{--{",
-                "    yield break;//}--}",
+                "    yield break;",
+                "//}--}",
                 "}"
             };
             var expected = new[]
@@ -175,7 +177,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "{",
                 "}"
             };
-            var result = source.HandleRemovals(merge);
+            var result = source.Merge(merge, out string errorLine);
 
             Assert.Equal(expected, result);
         }
@@ -193,7 +195,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 "Public Sub SomeMethod()",
                 "'{--{",
-                "    Exit Sub'}--}",
+                "    Exit Sub",
+                "'}--}",
                 "End Sub"
             };
             var expected = new[]
@@ -201,7 +204,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "Public Sub SomeMethod()",
                 "End Sub"
             };
-            var result = source.HandleRemovals(merge);
+            var result = source.Merge(merge, out string errorLine);
 
             Assert.Equal(expected, result);
         }
@@ -222,7 +225,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    ' Merge1",
                 "    '}]}",
                 "'{--{",
-                "    Exit Sub'}--}",
+                "    Exit Sub",
+                "'}--}",
                 "End Sub"
             };
             var expected = new[]
@@ -231,8 +235,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    ' Merge1",
                 "End Sub"
             };
-            var result = source.HandleRemovals(merge1);
-            result = result.Merge(merge1.RemoveRemovals(), out string errorLine).ToList();
+
+            var result = source.Merge(merge1, out string errorLine).ToList();
 
             Assert.Equal(expected, result);
         }
@@ -253,7 +257,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    ' Merge1",
                 "    '}]}",
                 "'{--{",
-                "    Exit Sub'}--}",
+                "    Exit Sub",
+                "'}--}",
                 "End Sub"
             };
             var merge2 = new[]
@@ -263,7 +268,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    ' Merge2",
                 "    '}]}",
                 "'{--{",
-                "    Exit Sub'}--}",
+                "    Exit Sub,",
+                "'}--}",
                 "End Sub"
             };
             var expected = new[]
@@ -274,10 +280,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    ' Merge1",
                 "End Sub"
             };
-            var result = source.HandleRemovals(merge1);
-            result = result.Merge(merge1.RemoveRemovals(), out string errorLine).ToList();
-            result = result.HandleRemovals(merge2);
-            result = result.Merge(merge2.RemoveRemovals(), out errorLine).ToList();
+            var result = source.Merge(merge1, out string errorLine).ToList();
+            result = result.Merge(merge2, out errorLine).ToList();
 
             Assert.Equal(expected, result);
         }
@@ -303,7 +307,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    Exit Sub",
                 "End Sub"
             };
-            var result = source.HandleRemovals(merge);
+            var result = source.Merge(merge, out string errorLine);
 
             Assert.Equal(expected, result);
         }
@@ -320,7 +324,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 "Public Sub SomeMethod()",
                 "'{--{",
-                "    Exit Sub'}--}",
+                "    Exit Sub",
+                "'}--}",
                 "End Sub"
             };
             var expected = new[]
@@ -328,7 +333,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "Public Sub SomeMethod()",
                 "End Sub"
             };
-            var result = source.HandleRemovals(merge);
+            var result = source.Merge(merge, out string errorLine);
 
             Assert.Equal(expected, result);
         }

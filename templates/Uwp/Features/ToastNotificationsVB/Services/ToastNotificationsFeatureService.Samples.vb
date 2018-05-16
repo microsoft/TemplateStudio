@@ -10,12 +10,12 @@ Namespace Services
             visual.BindingGeneric.Children.Add(New AdaptiveText() With { .Text = "Sample Toast Notification" })
             visual.BindingGeneric.Children.Add(New AdaptiveText() With { .Text = "Click OK to see how activation from a toast notification can be handled in the ToastNotificationService." })
 
-            ' More about Toast Buttons at https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastbutton
+            ' More about Toast Buttons at https://docs.microsoft.com/dotnet/api/microsoft.toolkit.uwp.notifications.toastcontent
             Dim actions = New ToastActionsCustom()
             actions.Buttons.Add(New ToastButton("OK", "ToastButtonActivationArguments") With { .ActivationType = ToastActivationType.Foreground })
             actions.Buttons.Add(New ToastButtonDismiss("Cancel"))
 
-            ' More about the Launch property at https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/api/microsoft_toolkit_uwp_notifications_toastcontent
+            ' More about the Launch property at https://docs.microsoft.com/dotnet/api/microsoft.toolkit.uwp.notifications.toastbutton
             Dim content = New ToastContent()
             content.Launch = "ToastContentActivationParams"
             content.Visual = visual
@@ -23,7 +23,7 @@ Namespace Services
 
             ' Add the content to the toast
             ' TODO WTS: Set a unique identifier for this notification within the notification group. (optional)
-            ' More details at https://docs.microsoft.com/en-gb/uwp/api/windows.ui.notifications.toastnotification#Windows_UI_Notifications_ToastNotification_Tag
+            ' More details at https://docs.microsoft.com/uwp/api/windows.ui.notifications.toastnotification.tag
             Dim toast = New ToastNotification(content.GetXml()) With { .Tag = "ToastTag" }
 
             ' And show the toast

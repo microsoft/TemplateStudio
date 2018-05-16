@@ -31,7 +31,8 @@ namespace Param_ItemNamespace.Services
             yield return Singleton<HubNotificationsFeatureService>.Instance;
 //}]}
 //{--{
-            yield break;//}--}
+            yield break;
+//}--}
         }
     }
 }
