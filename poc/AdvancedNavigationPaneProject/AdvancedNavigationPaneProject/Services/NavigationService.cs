@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AdvancedNavigationPaneProject.Views;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -85,61 +86,12 @@ namespace AdvancedNavigationPaneProject.Services
         }
 
         /// <summary>
-        /// Navigate in the current frame using the default NavigationConfig.
-        /// </summary>
-        /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
-        public static bool Navigate<T>()
-            where T : Page
-            => Navigate(typeof(T));
-
-        /// <summary>
-        /// Navigate in the current frame using the default NavigationConfig.
-        /// </summary>
-        /// <param name="pageType">Source Page Type for Frame navigation.</param>
-        public static bool Navigate(Type pageType)
-            => Navigate(pageType, null, null);
-
-        /// <summary>
-        /// Navigate in a specific frame using the default NavigationConfig.
-        /// </summary>
-        /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
-        /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
-        public static bool Navigate<T>(string frameKey)
-            where T : Page
-            => Navigate(typeof(T), frameKey);
-
-        /// <summary>
-        /// Navigate in a specific frame using the default NavigationConfig.
-        /// </summary>
-        /// <param name="pageType">Source Page Type for Frame navigation.</param>
-        /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
-        public static bool Navigate(Type pageType, string frameKey)
-            => Navigate(pageType, frameKey, null);
-
-        /// <summary>
-        /// Navigate in the current frame using a specific NavigationConfig.
-        /// </summary>
-        /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
-        /// <param name="config">Parameters configuration to customize the navigation.</param>
-        public static bool Navigate<T>(NavigationConfig config)
-            where T : Page
-            => Navigate(typeof(T), config);
-
-        /// <summary>
-        /// Navigate in the current frame using a specific NavigationConfig.
-        /// </summary>
-        /// <param name="pageType">Source Page Type for Frame navigation.</param>
-        /// <param name="config">Parameters configuration to customize the navigation.</param>
-        public static bool Navigate(Type pageType, NavigationConfig config)
-            => Navigate(pageType, null, config);
-
-        /// <summary>
         /// Navigate in a specific frame using a specific NavigationConfig.
         /// </summary>
         /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
         /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
         /// <param name="config">Parameters configuration to customize the navigation.</param>
-        public static bool Navigate<T>(string frameKey, NavigationConfig config)
+        public static bool Navigate<T>(string frameKey = null, NavigationConfig config = null)
             where T : Page
             => Navigate(typeof(T), frameKey, config);
 
@@ -149,10 +101,11 @@ namespace AdvancedNavigationPaneProject.Services
         /// <param name="pageType">Source Page Type for Frame navigation.</param>
         /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
         /// <param name="config">Parameters configuration to customize the navigation.</param>
-        public static bool Navigate(Type pageType, string frameKey, NavigationConfig config)
+        public static bool Navigate(Type pageType, string frameKey = null, NavigationConfig config = null)
         {
             frameKey = frameKey ?? _currentFrame;
             config = config ?? NavigationConfig.Default;
+
             var frame = GetFrame(frameKey);
             if (frame.Content == null || frame.Content.GetType() != pageType)
             {

@@ -13,30 +13,9 @@ namespace AdvancedNavigationPaneProject.Services
 
         public readonly object Parameter;
 
-        public readonly NavigationTransitionInfo InfoOverride;
+        public readonly NavigationTransitionInfo InfoOverride;        
 
-        public NavigationConfig()
-        {
-            RegisterOnBackStack = true;
-        }
-
-        public NavigationConfig(bool registerOnBackStack)
-        {
-            RegisterOnBackStack = registerOnBackStack;
-        }
-
-        public NavigationConfig(object parameter)
-        {
-            Parameter = parameter;
-        }
-
-        public NavigationConfig(bool registerOnBackStack, object parameter)
-        {
-            RegisterOnBackStack = registerOnBackStack;
-            Parameter = parameter;
-        }
-
-        public NavigationConfig(bool registerOnBackStack, object parameter, NavigationTransitionInfo infoOverride)
+        public NavigationConfig(bool registerOnBackStack = true, object parameter = null, NavigationTransitionInfo infoOverride = null)
         {
             RegisterOnBackStack = registerOnBackStack;
             Parameter = parameter;

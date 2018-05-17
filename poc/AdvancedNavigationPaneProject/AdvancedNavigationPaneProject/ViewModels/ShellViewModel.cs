@@ -50,7 +50,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
         {
             if (args.IsSettingsInvoked)
             {
-                NavigationService.Navigate<SettingsPage>(new NavigationConfig(false));
+                NavigationService.Navigate<SettingsPage>(config: new NavigationConfig(registerOnBackStack: false));
                 return;
             }
 
@@ -58,7 +58,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType, null, new NavigationConfig(false));
+            NavigationService.Navigate(pageType, config: new NavigationConfig(registerOnBackStack: false));
         }
 
         private void OnNavigated(object sender, NavigationArgs e)
