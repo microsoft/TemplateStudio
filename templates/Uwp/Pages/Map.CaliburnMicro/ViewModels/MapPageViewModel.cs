@@ -82,8 +82,7 @@ namespace Param_ItemNamespace.ViewModels
             }
 
             // TODO WTS: Set your map service token. If you don't have one, request from https://www.bingmapsportal.com/
-            MapServiceToken = string.Empty;
-
+            // MapServiceToken = string.Empty;
             var view = GetView() as IMapPageView;
 
             view?.AddMapIcon(Center, "Map_YourLocation".GetLocalized());
