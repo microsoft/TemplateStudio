@@ -210,6 +210,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             ShowTaskListAsync().FireAndForget();
         }
 
+        public override void OpenProjectOverview()
+        {
+            Dte.ExecuteCommand("Project.Overview");
+        }
+
         public override void ShowModal(System.Windows.Window dialog)
         {
             SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
