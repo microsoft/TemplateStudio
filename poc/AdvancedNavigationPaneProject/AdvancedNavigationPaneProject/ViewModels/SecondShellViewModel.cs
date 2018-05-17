@@ -46,7 +46,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType);
+            NavigationService.Navigate(pageType, NavigationService.FrameKeyThird);
         }
 
         private void OnNavigated(object sender, NavigationArgs e)

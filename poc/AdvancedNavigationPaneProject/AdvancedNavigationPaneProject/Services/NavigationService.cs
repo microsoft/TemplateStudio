@@ -17,7 +17,6 @@ namespace AdvancedNavigationPaneProject.Services
         public static event EventHandler<NavigationArgs> Navigated;
         public static event NavigationFailedEventHandler NavigationFailed;
 
-        private static string _currentFrame;
         private static readonly Dictionary<string, Frame> _frames = new Dictionary<string, Frame>();
         private static readonly List<NavigationBackStackEntry> _backStack = new List<NavigationBackStackEntry>();
 
@@ -30,7 +29,6 @@ namespace AdvancedNavigationPaneProject.Services
             if (InitializeFrame(FrameKeyMain, mainFrame))
             {
                 Window.Current.Content = mainFrame;
-                _currentFrame = FrameKeyMain;
                 return true;
             }
             return false;
@@ -49,10 +47,8 @@ namespace AdvancedNavigationPaneProject.Services
                 frame.Navigated += OnFrameNavigated;
                 frame.NavigationFailed += OnFrameNavigationFailed;
                 _frames.Add(frameKey, frame);
-                _currentFrame = frameKey;
                 return true;
             }
-            _currentFrame = frameKey;
             return false;
         }
 
@@ -60,9 +56,8 @@ namespace AdvancedNavigationPaneProject.Services
         /// Gets a value that indicates whether there is a frame initialized identified with a key.
         /// </summary>
         /// <param name="frameKey">Key to identify the frame in the NavigationService.</param>
-        public static bool IsInitialized(string frameKey = null)
+        public static bool IsInitialized(string frameKey)
         {
-            frameKey = frameKey ?? _currentFrame;
             var frame = _frames.GetValueOrDefault(frameKey);
             return frame?.Content != null;
         }
@@ -91,7 +86,7 @@ namespace AdvancedNavigationPaneProject.Services
         /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
         /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
         /// <param name="config">Parameters configuration to customize the navigation.</param>
-        public static bool Navigate<T>(string frameKey = null, NavigationConfig config = null)
+        public static bool Navigate<T>(string frameKey, NavigationConfig config = null)
             where T : Page
             => Navigate(typeof(T), frameKey, config);
 
@@ -101,9 +96,8 @@ namespace AdvancedNavigationPaneProject.Services
         /// <param name="pageType">Source Page Type for Frame navigation.</param>
         /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
         /// <param name="config">Parameters configuration to customize the navigation.</param>
-        public static bool Navigate(Type pageType, string frameKey = null, NavigationConfig config = null)
+        public static bool Navigate(Type pageType, string frameKey, NavigationConfig config = null)
         {
-            frameKey = frameKey ?? _currentFrame;
             config = config ?? NavigationConfig.Default;
 
             var frame = GetFrame(frameKey);

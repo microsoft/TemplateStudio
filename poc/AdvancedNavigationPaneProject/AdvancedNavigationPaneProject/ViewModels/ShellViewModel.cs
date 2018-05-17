@@ -50,7 +50,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
         {
             if (args.IsSettingsInvoked)
             {
-                NavigationService.Navigate<SettingsPage>(config: new NavigationConfig(registerOnBackStack: false));
+                NavigationService.Navigate<SettingsPage>(NavigationService.FrameKeySecondary, new NavigationConfig(registerOnBackStack: false));
                 return;
             }
 
@@ -58,7 +58,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
                             .OfType<NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType, config: new NavigationConfig(registerOnBackStack: false));
+            NavigationService.Navigate(pageType, NavigationService.FrameKeySecondary, new NavigationConfig(registerOnBackStack: false));
         }
 
         private void OnNavigated(object sender, NavigationArgs e)
@@ -91,7 +91,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
         private void OnLogOut()
         {
             NavigationService.ResetNavigation();
-            NavigationService.Navigate<StartUpPage>();
+            NavigationService.Navigate<StartUpPage>(NavigationService.FrameKeyMain);
         }
     }
 }

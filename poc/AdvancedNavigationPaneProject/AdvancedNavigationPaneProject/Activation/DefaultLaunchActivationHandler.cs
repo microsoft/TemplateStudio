@@ -20,7 +20,7 @@ namespace AdvancedNavigationPaneProject.Activation
         {
             // When the navigation stack isn't restored, navigate to the first page and configure
             // the new page by passing required information in the navigation parameter
-            NavigationService.Navigate(_navElement, config: new NavigationConfig(registerOnBackStack: true, parameter: args.Arguments));
+            NavigationService.Navigate(_navElement, NavigationService.FrameKeyMain, new NavigationConfig(registerOnBackStack: true, parameter: args.Arguments));
 
             await Task.CompletedTask;
         }
@@ -28,7 +28,7 @@ namespace AdvancedNavigationPaneProject.Activation
         protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
         {
             // None of the ActivationHandlers has handled the app activation
-            return !NavigationService.IsInitialized();
+            return !NavigationService.IsInitialized(NavigationService.FrameKeyMain);
         }
     }
 }

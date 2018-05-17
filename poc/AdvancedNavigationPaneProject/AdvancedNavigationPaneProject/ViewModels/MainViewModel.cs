@@ -18,7 +18,7 @@ namespace AdvancedNavigationPaneProject.ViewModels
         private void OnSecondShell()
         {
             NavigationService.Navigate<SecondShellPage>(NavigationService.FrameKeyMain);
-            NavigationService.Navigate<SecondMainPage>();
+            NavigationService.Navigate<SecondMainPage>(NavigationService.FrameKeySecondary);
         }
     }
 }

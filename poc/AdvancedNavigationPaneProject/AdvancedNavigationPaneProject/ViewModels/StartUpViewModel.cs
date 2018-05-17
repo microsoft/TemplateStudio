@@ -18,8 +18,8 @@ namespace AdvancedNavigationPaneProject.ViewModels
 
         private void OnStartUp()
         {
-            NavigationService.Navigate<ShellPage>(config: new NavigationConfig(registerOnBackStack: false));
-            NavigationService.Navigate<MainPage>();
+            NavigationService.Navigate<ShellPage>(NavigationService.FrameKeyMain, new NavigationConfig(registerOnBackStack: false));
+            NavigationService.Navigate<MainPage>(NavigationService.FrameKeySecondary);
         }
     }
 }
