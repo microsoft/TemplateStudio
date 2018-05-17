@@ -207,7 +207,9 @@
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
+    <Compile Include="PostActions\Catalog\Merge\MergeMode.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
+    <Compile Include="PostActions\Catalog\Merge\PostactionFormatter.cs" />
     <Compile Include="PostActions\Catalog\Merge\ResourceDictionaryWriter.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\ListStringExtensions.cs" />
     <Compile Include="PostActions\TemplateDefinedPostAction.cs" />
@@ -234,7 +236,6 @@
     <Compile Include="PostActions\Catalog\Merge\SearchAndReplacePostAction.cs" />
     <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
-    <Compile Include="PostActions\Catalog\Merge\PostActionFormatter.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSummaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GenerateMergeInfoPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GetMergeFilesFromProjectPostAction.cs" />

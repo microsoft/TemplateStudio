@@ -41,8 +41,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var source = File.ReadAllLines(originalFilePath).ToList();
             var merge = File.ReadAllLines(Config.FilePath).ToList();
 
-            IEnumerable<string> result = source.HandleRemovals(merge);
-            result = result.Merge(merge.RemoveRemovals(), out string errorLine);
+            IEnumerable<string> result = source.Merge(merge, out string errorLine);
 
             if (errorLine != string.Empty)
             {
