@@ -1,4 +1,5 @@
 ﻿Imports Windows.Storage
+Imports Windows.System
 Imports Windows.UI.Xaml.Media.Animation
 Imports Windows.UI.Xaml.Navigation
 
@@ -65,6 +66,17 @@ Namespace Views
             If e.NavigationMode = NavigationMode.Back Then
                 previewImage.Visibility = Visibility.Visible
                 ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewPage.ImageGalleryViewAnimationClose, previewImage)
+            End If
+        End Sub
+
+        Private Sub OnShowFlipViewCompleted(sender As Object, e As Object)
+            flipView.Focus(FocusState.Programmatic)
+        End Sub
+
+        Private Sub OnPageKeyDown(sender As Object, e As KeyRoutedEventArgs)
+            If e.Key = VirtualKey.Escape And NavigationService.CanGoBack Then
+                NavigationService.GoBack()
+                e.Handled = True
             End If
         End Sub
     End Class
