@@ -6,7 +6,7 @@ using System;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
-    public static class PostActionFormatter
+    public static class PostactionFormatter
     {
         private const string UserFriendlyPostActionMacroBeforeMode = "Include the following block at the end of the containing block.";
         private const string UserFriendlyPostActionMacroStartGroup = "Block to be included";
@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                             .Replace(IEnumerableExtensions.MacroStartDocumentation, UserFriendlyPostActionMacroStartDocumentation)
                             .Replace(IEnumerableExtensions.MacroEndDocumentation, UserFriendlyPostActionMacroEndDocumentation)
                             .Replace(IEnumerableExtensions.MacroStartGroup, UserFriendlyPostActionMacroStartGroup)
-                            .Replace(IEnumerableExtensions.MarcoEndGroup, UserFriendlyPostActionMacroEndGroup);
+                            .Replace(IEnumerableExtensions.MacroEndGroup, UserFriendlyPostActionMacroEndGroup);
 
             var cleanRemovals = output.Split(new[] { Environment.NewLine }, StringSplitOptions.None).RemoveRemovals();
             output = string.Join(Environment.NewLine, cleanRemovals);

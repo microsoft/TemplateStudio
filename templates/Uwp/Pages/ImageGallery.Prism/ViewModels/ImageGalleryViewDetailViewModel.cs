@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
@@ -13,11 +15,13 @@ using Param_ItemNamespace.Models;
 using Param_ItemNamespace.Services;
 
 using Prism.Windows.Mvvm;
+using Prism.Windows.Navigation;
 
 namespace Param_ItemNamespace.ViewModels
 {
     public class ImageGalleryViewDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        private readonly INavigationService _navigationService;
         private readonly ISampleDataService _sampleDataService;
         private static UIElement _image;
         private object _selectedImage;
@@ -39,8 +43,10 @@ namespace Param_ItemNamespace.ViewModels
             set => Param_Setter(ref _source, value);
         }
 
-        public ImageGalleryViewDetailViewModel(ISampleDataService sampleDataServiceInstance)
+        public ImageGalleryViewDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
         {
+            _navigationService = navigationServiceInstance;
+
             // TODO WTS: Replace this with your actual data
             _sampleDataService = sampleDataServiceInstance;
             Source = _sampleDataService.GetGallerySampleData();
@@ -70,6 +76,15 @@ namespace Param_ItemNamespace.ViewModels
         public void SetAnimation()
         {
             ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image);
+        }
+
+        public void HandleKeyDown(KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Escape && _navigationService.CanGoBack())
+            {
+                _navigationService.GoBack();
+                e.Handled = true;
+            }
         }
     }
 }

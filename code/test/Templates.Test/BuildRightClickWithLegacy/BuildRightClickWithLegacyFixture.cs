@@ -71,16 +71,20 @@ namespace Microsoft.Templates.Test
             GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), new Version("2.0"), language);
             if (!syncExecuted)
             {
-                GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
+                GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
 
                 syncExecuted = true;
             }
         }
 
-        public async Task ChangeTemplatesSourceAsync(TemplatesSource source, string language, string platform)
+        [SuppressMessage(
+         "Usage",
+         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
+         Justification = "Required for unit testing.")]
+        public void ChangeTemplatesSource(TemplatesSource source, string language, string platform)
         {
             GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
-            await GenContext.ToolBox.Repo.SynchronizeAsync(true);
+            GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
         }
 
         // Renamed second parameter as this fixture needs the language while others don't

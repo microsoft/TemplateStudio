@@ -15,7 +15,8 @@ Namespace Services
             '}]}
 '{--{
 
-            Exit Function'}--}
+            Exit Function
+'}--}
         End Function
     End Class
 End Namespace
