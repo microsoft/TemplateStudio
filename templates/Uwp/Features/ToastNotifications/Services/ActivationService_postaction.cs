@@ -1,5 +1,5 @@
 ﻿//{**
-// This code block include the ToastNotificationsFeatureService Instance in the method 
+// This code block include the ToastNotificationsFeatureService Instance in the method
 // `GetActivationHandlers()` in the ActivationService of your project.
 //**}
 
@@ -19,7 +19,8 @@ namespace Param_ItemNamespace.Services
             yield return Singleton<ToastNotificationsFeatureService>.Instance;
             //}]}
 //{--{
-            yield break;//}--}
+            yield break;
+//}--}
         }
     }
 }
