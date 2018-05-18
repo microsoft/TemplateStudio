@@ -222,11 +222,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             return selection;
         }
 
-        private async Task<SavedTemplateViewModel> RemoveAsync(SavedTemplateViewModel savedTemplate)
+        private async Task<IEnumerable<SavedTemplateViewModel>> RemoveAsync(SavedTemplateViewModel savedTemplate)
         {
             // Look if is there any templates that depends on item
-            var dependency = GetSavedTemplateDependency(savedTemplate);
-            if (dependency == null)
+            var dependencies = GetSavedTemplateDependencies(savedTemplate);
+            if (!dependencies.Any())
             {
                 if (Pages.Contains(savedTemplate))
                 {
@@ -254,7 +254,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 AppHealth.Current.Telemetry.TrackEditSummaryItemAsync(EditItemActionEnum.Remove).FireAndForget();
             }
 
-            return dependency;
+            return dependencies;
         }
 
         private async Task TryRemoveHiddenDependenciesAsync(SavedTemplateViewModel savedTemplate)
@@ -283,16 +283,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        private SavedTemplateViewModel GetSavedTemplateDependency(SavedTemplateViewModel savedTemplate)
+        private IEnumerable<SavedTemplateViewModel> GetSavedTemplateDependencies(SavedTemplateViewModel savedTemplate)
         {
-            SavedTemplateViewModel dependencyItem = null;
-            dependencyItem = Pages.FirstOrDefault(p => p.Dependencies.Any(d => d.Identity == savedTemplate.Identity));
-            if (dependencyItem == null)
+            List<SavedTemplateViewModel> dependencies = new List<SavedTemplateViewModel>();
+
+            foreach (var page in Pages.Where(p => p.Dependencies.Any(d => d.Identity == savedTemplate.Identity)))
             {
-                dependencyItem = Features.FirstOrDefault(f => f.Dependencies.Any(d => d.Identity == savedTemplate.Identity));
+                dependencies.Add(page);
             }
 
-            return dependencyItem;
+            foreach (var feature in Features.Where(f => f.Dependencies.Any(d => d.Identity == savedTemplate.Identity)))
+            {
+                dependencies.Add(feature);
+            }
+
+            return dependencies;
         }
 
         private void UpdateHasItemsAddedByUser()
@@ -338,10 +343,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             int newIndex = Pages.IndexOf(page) - 1;
             newIndex = newIndex >= 0 ? newIndex : 0;
 
-            var dependency = await RemoveAsync(page);
-            if (dependency != null)
+            var dependencies = await RemoveAsync(page);
+            if (dependencies != null && dependencies.Any())
             {
-                await ShowDependencyNotificationAsync(page.Name, dependency.Name);
+                await ShowDependencyNotificationAsync(page.Name, dependencies.Select(t => t.Name));
             }
             else
             {
@@ -355,10 +360,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             int newIndex = Features.IndexOf(feature) - 1;
             newIndex = newIndex >= 0 ? newIndex : 0;
 
-            var dependency = await RemoveAsync(feature);
-            if (dependency != null)
+            var dependencies = await RemoveAsync(feature);
+            if (dependencies != null && dependencies.Any())
             {
-                await ShowDependencyNotificationAsync(feature.Name, dependency.Name);
+                await ShowDependencyNotificationAsync(feature.Name, dependencies.Select(t => t.Name));
             }
             else
             {
@@ -367,9 +372,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        private async Task ShowDependencyNotificationAsync(string name, string dependencyName)
+        private async Task ShowDependencyNotificationAsync(string name, IEnumerable<string> dependencyNames)
         {
-            var message = string.Format(StringRes.NotificationRemoveError_Dependency, name, dependencyName);
+            var dependencyNamesFormated = string.Empty;
+            foreach (var dependencyName in dependencyNames.Take(3))
+            {
+                dependencyNamesFormated += $" **{dependencyName}**,";
+            }
+
+            dependencyNamesFormated = dependencyNamesFormated.Remove(dependencyNamesFormated.Length - 1);
+            if (dependencyNames.Count() > 3)
+            {
+                dependencyNamesFormated += "...";
+            }
+
+            var message = string.Format(StringRes.NotificationRemoveError_Dependency, name, dependencyNamesFormated);
             var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
             await NotificationsControl.AddNotificationAsync(notification);
         }
