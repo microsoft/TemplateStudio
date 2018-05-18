@@ -30,7 +30,7 @@ Namespace Views
         End Sub
 
         Private Sub OnPageKeyDown(sender As Object, e As KeyRoutedEventArgs)
-            If e.Key = VirtualKey.Escape And NavigationService.CanGoBack Then
+            If e.Key = VirtualKey.Escape AndAlso NavigationService.CanGoBack Then
                 NavigationService.GoBack()
                 e.Handled = True
             End If
