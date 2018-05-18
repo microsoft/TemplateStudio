@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
@@ -18,6 +20,7 @@ namespace Param_ItemNamespace.ViewModels
     public class ImageGalleryViewDetailViewModel : Screen
     {
         private static UIElement _image;
+        private readonly INavigationService _navigationService;
         private SampleImage _selectedImage;
 
         public SampleImage SelectedImage
@@ -33,6 +36,11 @@ namespace Param_ItemNamespace.ViewModels
         public string ID { get; set; }
 
         public BindableCollection<SampleImage> Source { get; } = new BindableCollection<SampleImage>();
+
+        public ImageGalleryViewDetailViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
 
         protected override void OnInitialize()
         {
@@ -65,6 +73,15 @@ namespace Param_ItemNamespace.ViewModels
         public void SetAnimation()
         {
             ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image);
+        }
+
+        public void OnKeyDown(KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Escape && _navigationService.CanGoBack)
+            {
+                _navigationService.GoBack();
+                e.Handled = true;
+            }
         }
     }
 }

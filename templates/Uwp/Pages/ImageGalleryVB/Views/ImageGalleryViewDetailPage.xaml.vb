@@ -1,4 +1,6 @@
 ﻿Imports Param_ItemNamespace.Models
+Imports Param_ItemNamespace.Services
+Imports Windows.System
 
 Namespace Views
     Public NotInheritable Partial Class ImageGalleryViewDetailPage
@@ -20,6 +22,17 @@ Namespace Views
             If e.NavigationMode = NavigationMode.Back Then
                 previewImage.Visibility = Visibility.Visible
                 ViewModel.SetAnimation()
+            End If
+        End Sub
+
+        Private Sub OnShowFlipViewCompleted(sender As Object, e As Object)
+            flipView.Focus(FocusState.Programmatic)
+        End Sub
+
+        Private Sub OnPageKeyDown(sender As Object, e As KeyRoutedEventArgs)
+            If e.Key = VirtualKey.Escape AndAlso NavigationService.CanGoBack Then
+                NavigationService.GoBack()
+                e.Handled = True
             End If
         End Sub
     End Class
