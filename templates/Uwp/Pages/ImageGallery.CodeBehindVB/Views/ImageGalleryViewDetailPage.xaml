@@ -5,10 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:Param_ItemNamespace.Models"
+    KeyDown="OnPageKeyDown"
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Storyboard x:Name="showFlipView">
+        <Storyboard x:Name="showFlipView" Completed="OnShowFlipViewCompleted">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="flipView" BeginTime="0:0:0.5">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
             </ObjectAnimationUsingKeyFrames>
@@ -25,6 +26,7 @@
         <FlipView
             x:Name="flipView"
             Visibility="Collapsed"
+            FocusVisualPrimaryThickness="1,1,1,1"
             ItemsSource="{x:Bind Source}"
             SelectedItem="{x:Bind SelectedImage, Mode=TwoWay}">
             <FlipView.ItemTemplate>

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
@@ -73,6 +75,17 @@ namespace Param_ItemNamespace.Views
             {
                 previewImage.Visibility = Visibility.Visible;
                 ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewPage.ImageGalleryViewAnimationClose, previewImage);
+            }
+        }
+
+        private void OnShowFlipViewCompleted(object sender, object e) => flipView.Focus(FocusState.Programmatic);
+
+        private void OnKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Escape && NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+                e.Handled = true;
             }
         }
     }
