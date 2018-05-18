@@ -9,8 +9,23 @@ This documentation describes the steps to modify the NavigationService to allow 
  - Navigate among the navigation pane pages with or without the possibility to navigate back using the back button.
  - Navigate to a page in full screen mode.
  - Navigate to a logout page that goes back to the startup page and resets the navigation.
+
+## Modifications in project:
+
+**Files to replace:**
+- NavigationService.cs
+
+**Files to add:**
+- NavigationArgs.cs
+- NavigationBackStackEntry.cs
+- NavigationConfig.cs
+
+**Files to modify:**
+- ActivationService.cs
+- DefaultLaunchActivationHandler.cs
  
-## NavigationService
+### 1. Replace NavigationService.cs
+
 The NavigationService allows you to handle different navigation levels and track the the whole navigation stack in different frames to go back across the navigation tree.
 
 You need to add this code replacing the current NavigationService class.
@@ -27,7 +42,7 @@ public static class NavigationService
     private static readonly List<NavigationBackStackEntry> _backStack = new List<NavigationBackStackEntry>();
 
     /// <summary>
-    /// Register the main frame in the NavigationService.
+    /// Initializes the main frame in the NavigationService.
     /// </summary>
     /// <param name="mainFrame">New frame to register in the NavigationService</param>
     public static bool InitializeMainFrame(Frame mainFrame)
@@ -41,7 +56,7 @@ public static class NavigationService
     }
 
     /// <summary>
-    /// Register a frame in the NavigationService using a specific frame key.
+    /// Initializes a frame in the NavigationService using a specific frame key.
     /// </summary>
     /// <param name="frameKey">Key that will identify the frame in the NavigationService.</param>
     /// <param name="frame">New frame to register in the NavigationService.</param>
@@ -163,7 +178,7 @@ public static class NavigationService
         if (frame == null)
         {
             var methodName = frameKey == FrameKeyMain ? nameof(InitializeMainFrame) : nameof(InitializeFrame);
-            throw new Exception($"Frame is not initialized, please call {methodName} before navigate.");
+            throw new Exception($"Frame is not initialized, please call {methodName} before navigating.");
         }
         return frame;
     }
@@ -191,10 +206,10 @@ public static class NavigationService
 }
 ```
 
-## NavigationArgs
-NavigationArgs containes navigation arguments and the framekey the navigation took place on.
+### 2. Add NavigationArgs.cs
+NavigationArgs contains navigation arguments and the framekey the navigation took place on.
 
-You need to add this additional class.
+You need to add this class.
 
 ```csharp
 public class NavigationArgs : EventArgs
@@ -236,9 +251,9 @@ public class NavigationArgs : EventArgs
 }
 ```
 
-## NavigationBackStackEntry
+### 3. Add NavigationBackStackEntry.cs
 NavigationBackStackEntry represents an entry on the navigation backstack.
-You need to add this additional class.
+You need to add this class.
 ```csharp
 public class NavigationBackStackEntry
 {
@@ -260,10 +275,10 @@ public class NavigationBackStackEntry
 }
 ```
 
-## NavigationConfig
+### 4. NavigationConfig.cs
 NavigationConfig represents the navigation configuration and allows you to specify navigation parameters and if you want to register the navigation on the back stack.
 
-You need to add this additional class.
+You need to add this class.
 ```csharp
 public class NavigationConfig
 {
@@ -283,9 +298,9 @@ public class NavigationConfig
     public static NavigationConfig Default => new NavigationConfig();
 }
 ```
-## Changes in project: 
-### Changes in ActivationService.cs
-- Initialize the main frame from `ActivateAsync()` replacing `Window.Current.Content = _shell?.Value ?? new Frame();` by 
+
+### 5. Changes in ActivationService.cs
+- Initialize the main frame from `ActivateAsync()` replacing `Window.Current.Content = _shell?.Value ?? new Frame();` with 
  ```csharp
 var frame = new Frame();
 if (_shell?.Value != null)
@@ -295,36 +310,42 @@ if (_shell?.Value != null)
 NavigationService.InitializeMainFrame(frame);
 ```
 
-- On the same method replace `NavigationService.Navigated += Frame_Navigated;` by `NavigationService.Navigated += OnNavigated;` and replace the event handler:
+- In the same method replace `NavigationService.Navigated += Frame_Navigated;` with `NavigationService.Navigated += OnNavigated;` and replace the event handler:
 
  ```csharp
- private void OnNavigated(object sender, NavigationArgs e)
+private void OnNavigated(object sender, NavigationArgs e)
 {
     SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
 }
 ```
-### Changes in DefaultLaunchActivationHandler.cs
+### 6. Changes in DefaultLaunchActivationHandler.cs
 -  Change HandleInternalAsync to 
 ```csharp
-NavigationService.Navigate(_navElement, NavigationService.FrameKeyMain, new NavigationConfig(registerOnBackStack: true, parameter: args.Arguments));
+protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
+{
+    // When the navigation stack isn't restored, navigate to the first page and configure
+    // the new page by passing required information in the navigation parameter
+    NavigationService.Navigate(_navElement, NavigationService.FrameKeyMain, new NavigationConfig(registerOnBackStack: true, parameter: args.Arguments));
+
+    await Task.CompletedTask;
+}
 ```
 
 - Change CanHandleInternal to 
 ```csharp
-return !NavigationService.IsInitialized(NavigationService.FrameKeyMain);
+protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
+{
+    // None of the ActivationHandlers has handled the app activation
+    return !NavigationService.IsInitialized(NavigationService.FrameKeyMain);
+}
 ```
 
-## Using the advanced NavigationService
+### 7. Changes in ShellPage.xaml, ShellPage.xaml.cs/ShellViewModel
 
-### Navigate to startup page
-- On App.xaml.cs in CreateActivationService replace the existing code with `return new ActivationService(this, typeof(Views.StartUpPage));` to navigate directly to the StartupPage
-
-### Navigate from StartUpPage to ShellPage
-#### ShellPage changes:
--  Add NavigationCacheMode="Required" to ShellPage.xaml.cs
+ - Add NavigationCacheMode="Required" to ShellPage.xaml
  - Initialize secondary frame on ShellPage adding the following code to Initialize method on ShellViewModel.cs or ShellPage.xaml.cs
  ```csharp
- NavigationService.InitializeFrame(NavigationService.FrameKeySecondary, shellFrame);
+ NavigationService.InitializeFrame(NavigationService.FrameKeySecondary, frame);
  ```
 
  - Subscribe to NavigationService.Navigated event, implement the eventHandler 
@@ -341,22 +362,7 @@ return !NavigationService.IsInitialized(NavigationService.FrameKeyMain);
 }
 ```
 - Unregister the event handler when navigating away.
-
-#### On the StartupPage:
-
- - Navigate to ShellPage (setting registerOnBackstack to false will cause the navigation not to be added to the backstack, so you won't be able to go back.
-
- - Navigate to MainPage to set the first page in the SecondFrame.
-
-```csharp
-NavigationService.Navigate<ShellPage>(NavigationService.FrameKeyMain, new NavigationConfig(registerOnBackStack: false));
-
-NavigationService.Navigate<MainPage>();
-```
-
-### Navigate among NavigationPane item pages.
-
-Navigate to NavigationViewItem using NavigationService.Navigate. 
+- Change OnItemInvoked to navigate among pages with the new NavigationService. 
 Specify registerOnBackStack = false to specify that this navigation will not be registered on navigation back-stack.
 
 ```csharp
@@ -376,7 +382,28 @@ private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
 }
 ```
 
-### Expand a Page to fullscreen/Navigate to a page on fullscreen
+## Sample Scenario implementation
+
+### Show a Startup page on app launching and navigate to a navigation pane shell page from there.
+
+#### 1.Navigate to StartUpPage
+- On App.xaml.cs in CreateActivationService replace the existing code with `return new ActivationService(this, typeof(Views.StartUpPage));` to navigate directly to the StartupPage
+
+#### 2. Navigate from StartUpPage to NavigationPane ShellPage
+
+**On the StartupPage:**
+
+ - Navigate to ShellPage (setting registerOnBackstack to false will cause the navigation not to be added to the backstack, so you won't be able to go back.
+
+ - Navigate to MainPage to set the first page in the SecondFrame.
+
+```csharp
+NavigationService.Navigate<ShellPage>(NavigationService.FrameKeyMain, new NavigationConfig(registerOnBackStack: false));
+
+NavigationService.Navigate<MainPage>();
+```
+
+### 3. Expand a Page to fullscreen/Navigate to a page on fullscreen
 
 To navigate to a page on fullscreen mode use NavigationService.Navigate specifying the MainFrame.
 
@@ -389,7 +416,7 @@ To determine if page is already in fullscreen use the following code:
 return !NavigationService.IsPageInFrame<MapPage>(NavigationService.FrameKeyMain);
 ```
 
-### Navigate to Logoutpage and reset navigation
+### 4. Navigate to Logoutpage and reset navigation
 
 - On Logout command reset navigation and navigate to startup page calling
 
