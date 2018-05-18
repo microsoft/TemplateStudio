@@ -10,9 +10,9 @@ This documentation describes the steps to modify the NavigationService to allow 
  - Navigate to a page in full screen mode.
  - Navigate to a logout page that goes back to the startup page and resets the navigation.
  
- The NavigationService allows you to handle different navigation levels and track all the navigation stack in different Frames to to go back across all the navigation tree.
-
 ## NavigationService
+The NavigationService allows you to handle different navigation levels and track the the whole navigation stack in different frames to go back across the navigation tree.
+
 You need to add this code replacing the current NavigationService class.
 ```csharp
 public static class NavigationService
@@ -59,7 +59,7 @@ public static class NavigationService
     }
 
     /// <summary>
-    /// Gets a value that indicates whether there is a frame initialized identified with a key.
+    /// Gets a value that indicates whether the frame with the specified key is initialized.
     /// </summary>
     /// <param name="frameKey">Key to identify the frame in the NavigationService.</param>
     public static bool IsInitialized(string frameKey)
@@ -128,7 +128,10 @@ public static class NavigationService
         }
         return false;
     }
-
+    
+    /// <summary>
+    /// Resets the navigation
+    /// </summary>
     public static void ResetNavigation()
     {
         foreach (var frame in _frames.Values)
@@ -143,6 +146,10 @@ public static class NavigationService
         ThemeSelectorService.SetRequestedTheme();
     }
 
+    /// <summary>
+    /// Gets a value that indicates whether the specified page is shown in the frame with the specified key
+    /// </summary>
+    /// <param name="frameKey">Key to identify the frame in the NavigationService.</param>
     public static bool IsPageInFrame<T>(string frameKey)
         where T : Page
     {
@@ -185,6 +192,8 @@ public static class NavigationService
 ```
 
 ## NavigationArgs
+NavigationArgs containes navigation arguments and the framekey the navigation took place on.
+
 You need to add this additional class.
 
 ```csharp
@@ -228,6 +237,7 @@ public class NavigationArgs : EventArgs
 ```
 
 ## NavigationBackStackEntry
+NavigationBackStackEntry represents an entry on the navigation backstack.
 You need to add this additional class.
 ```csharp
 public class NavigationBackStackEntry
@@ -251,6 +261,8 @@ public class NavigationBackStackEntry
 ```
 
 ## NavigationConfig
+NavigationConfig represents the navigation configuration and allows you to specify navigation parameters and if you want to register the navigation on the back stack.
+
 You need to add this additional class.
 ```csharp
 public class NavigationConfig
@@ -272,7 +284,8 @@ public class NavigationConfig
 }
 ```
 ## Changes in project: 
-- Initialize the main frame from ActivationService.ActivateAsync() replacing `Window.Current.Content = _shell?.Value ?? new Frame();` by 
+### Changes in ActivationService.cs
+- Initialize the main frame from `ActivateAsync()` replacing `Window.Current.Content = _shell?.Value ?? new Frame();` by 
  ```csharp
 var frame = new Frame();
 if (_shell?.Value != null)
@@ -282,7 +295,7 @@ if (_shell?.Value != null)
 NavigationService.InitializeMainFrame(frame);
 ```
 
-- Replace `NavigationService.Navigated += Frame_Navigated;` by `NavigationService.Navigated += OnNavigated;` and implement event handler:
+- On the same method replace `NavigationService.Navigated += Frame_Navigated;` by `NavigationService.Navigated += OnNavigated;` and replace the event handler:
 
  ```csharp
  private void OnNavigated(object sender, NavigationArgs e)
@@ -290,13 +303,16 @@ NavigationService.InitializeMainFrame(frame);
     SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
 }
 ```
+### Changes in DefaultLaunchActivationHandler.cs
+-  Change HandleInternalAsync to 
+```csharp
+NavigationService.Navigate(_navElement, NavigationService.FrameKeyMain, new NavigationConfig(registerOnBackStack: true, parameter: args.Arguments));
+```
 
--  Change HandleInternalAsync on DefaultLaunchActivationHandler 
-to `            NavigationService.Navigate(_navElement, NavigationService.FrameKeyMain, new NavigationConfig(registerOnBackStack: true, parameter: args.Arguments));
-`
-
-- Change CanHandleInternal on DefaultLaunchActivationHandler  to 
-`return !NavigationService.IsInitialized(NavigationService.FrameKeyMain);`
+- Change CanHandleInternal to 
+```csharp
+return !NavigationService.IsInitialized(NavigationService.FrameKeyMain);
+```
 
 ## Using the advanced NavigationService
 
@@ -306,10 +322,11 @@ to `            NavigationService.Navigate(_navElement, NavigationService.FrameK
 ### Navigate from StartUpPage to ShellPage
 #### ShellPage changes:
 -  Add NavigationCacheMode="Required" to ShellPage.xaml.cs
- - Initialize secondary frame on ShellPage adding the following code to Initialize method on ShellViewModel or ShellPage.xaml.cs
+ - Initialize secondary frame on ShellPage adding the following code to Initialize method on ShellViewModel.cs or ShellPage.xaml.cs
  ```csharp
  NavigationService.InitializeFrame(NavigationService.FrameKeySecondary, shellFrame);
  ```
+
  - Subscribe to NavigationService.Navigated event, implement the eventHandler 
  ```csharp
  private void OnNavigated(object sender, NavigationArgs e)
@@ -328,6 +345,7 @@ to `            NavigationService.Navigate(_navElement, NavigationService.FrameK
 #### On the StartupPage:
 
  - Navigate to ShellPage (setting registerOnBackstack to false will cause the navigation not to be added to the backstack, so you won't be able to go back.
+
  - Navigate to MainPage to set the first page in the SecondFrame.
 
 ```csharp
@@ -340,6 +358,7 @@ NavigationService.Navigate<MainPage>();
 
 Navigate to NavigationViewItem using NavigationService.Navigate. 
 Specify registerOnBackStack = false to specify that this navigation will not be registered on navigation back-stack.
+
 ```csharp
 private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
 {
