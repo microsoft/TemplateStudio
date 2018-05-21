@@ -64,8 +64,8 @@ namespace AutomatedUITests.Tests
             }
 
             var imageCompareResult = CheckImagesAreTheSame(TestAppInfo.ScreenshotsFolder, App1Filename, App2Filename);
-
-            Assert.IsTrue(imageCompareResult);
+            
+            Assert.IsTrue(imageCompareResult, $"Images do not match. See results in '{TestAppInfo.ScreenshotsFolder}'");
         }
 
         private void ClickYesIfPermissionDialogShown(WindowsDriver<WindowsElement> session)
@@ -85,11 +85,11 @@ namespace AutomatedUITests.Tests
             var image1 = Image.FromFile(imagePath1);
             var image2 = Image.FromFile(imagePath2);
 
-            var percentageDifference = ImageComparer.PercentageDifferent(image1, image2);
+            var percentageDifference = ImageComparer.PercentageDifferent(image1, image2, GetAllExclusionAreas());
 
             if (percentageDifference > 0f)
             {
-                var diffImage = image1.GetDifferenceImage(image2);
+                var diffImage = image1.GetDifferenceImage(image2, GetAllExclusionAreas());
 
                 diffImage.Save(Path.Combine(folder, DiffFilename), ImageFormat.Png);
 
@@ -99,6 +99,18 @@ namespace AutomatedUITests.Tests
             {
                 return true;
             }
+        }
+
+        private Rectangle[] GetAllExclusionAreas()
+        {
+            var result = new Rectangle[TestAppInfo.ExclusionAreas.Length + 1];
+
+            // We always include the area the app name occupies in the title bar as these will always be different
+            result[0] = new Rectangle(0, 0, 600, 40);
+
+            Array.Copy(TestAppInfo.ExclusionAreas, 0, result, 1, TestAppInfo.ExclusionAreas.Length);
+
+            return result;
         }
     }
 }

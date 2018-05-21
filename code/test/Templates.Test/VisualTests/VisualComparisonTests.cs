@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -43,6 +44,7 @@ namespace Microsoft.Templates.Test
                         "wts.Page.MasterDetail",
                         "wts.Page.TabbedPivot",
                         "wts.Page.Grid",
+                        "wts.Page.Settings",
                     };
 
                     foreach (var page in pagesThatSupportUiTesting)
@@ -50,6 +52,30 @@ namespace Microsoft.Templates.Test
                         yield return new object[] { projectType, framework, page };
                     }
                 }
+            }
+        }
+
+        // Returned rectangles are measured in pixels from the top left of the image/window
+        private string GetExclusionAreasForVisualEquivalencyTest(string projectType, string pageName)
+        {
+            switch (pageName)
+            {
+                case "wts.Page.Settings":
+                    switch (projectType)
+                    {
+                        case "SplitView":
+                            // App name in heading, name & version number
+                            return "new[] { new Rectangle(890, 44, 450, 60), new Rectangle(600, 410, 270, 40) }";
+                        case "TabbedPivot":
+                            return "new[] { new Rectangle(280, 410, 270, 40) }";
+                        case "Blank":
+                        default:
+                            // This is the area at the end of the app name and also covering the version number
+                            return "new[] { new Rectangle(180, 410, 270, 40) }";
+                    }
+
+                default:
+                    return string.Empty;
             }
         }
 
@@ -62,12 +88,13 @@ namespace Microsoft.Templates.Test
         {
             var genIdentities = new[] { page };
 
+            CheckRunningAsAdmin();
             CheckWinAppDriverInstalled();
 
             var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
             var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities, lastPageIsHome: true);
 
-            var testProjectDetails = SetUpTestProject(app1Details, app2Details);
+            var testProjectDetails = SetUpTestProject(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page));
 
 #pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
@@ -99,6 +126,13 @@ namespace Microsoft.Templates.Test
             {
                 Assert.True(testSuccess, outputMessages);
             }
+        }
+
+        private void CheckRunningAsAdmin()
+        {
+            Assert.True(
+                new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator),
+                "Must be running as Administrator to execute these tests.");
         }
 
         private void CheckWinAppDriverInstalled()
@@ -142,7 +176,7 @@ namespace Microsoft.Templates.Test
         }
 
 #pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
-        private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details)
+        private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null)
 #pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
         {
             var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
@@ -178,6 +212,11 @@ namespace Microsoft.Templates.Test
                 .Replace("***APP-NAME-1-GOES-HERE***", app1Details.ProjectName)
                 .Replace("***APP-NAME-2-GOES-HERE***", app2Details.ProjectName)
                 .Replace("***FOLDER-GOES-HERE***", imagesFolder);
+
+            if (!string.IsNullOrWhiteSpace(areasOfImageToExclude))
+            {
+                newAppInfoFileContents = newAppInfoFileContents.Replace("new Rectangle[0]", areasOfImageToExclude);
+            }
 
             File.WriteAllText(appInfoFileName, newAppInfoFileContents, Encoding.UTF8);
 
