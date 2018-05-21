@@ -1,16 +1,14 @@
 # Advanced App navigation
-This documentation describes the steps to modify the NavigationService to allow navigation in different frames and  navigation levels to support advanced navigation scenarios, like the following:
+This documentation describes the steps to modify the NavigationService to allow navigation in different frames and  navigation levels to support advanced navigation scenarios in a Navigation Pane project with frame work MVVM Basic or CodeBehind. 
 
-**App launching**
+Scenarios covered in this document:
+
  - Show a Startup page on app launching and navigate to a navigation pane shell page from there. 
- - Give the possibility to go back to the startup page or not.
- 
-**NavigationPane Scenarios**
- - Navigate among the navigation pane pages with or without the possibility to navigate back using the back button.
- - Navigate to a page in full screen mode.
- - Navigate to a logout page that goes back to the startup page and resets the navigation.
+ - Navigate from the navigation pane to a page in full screen mode.
+ - Navigate giving the possibility to go back using the back button or navigate without the posibility to go back.
+ - Reset navigation.
 
-## Modifications in project:
+## Modifications in project (for all scenarios):
 
 **Files to replace:**
 - NavigationService.cs
@@ -23,6 +21,7 @@ This documentation describes the steps to modify the NavigationService to allow 
 **Files to modify:**
 - ActivationService.cs
 - DefaultLaunchActivationHandler.cs
+- App.xaml.cs
  
 ### 1. Replace NavigationService.cs
 
@@ -32,8 +31,8 @@ You need to add this code replacing the current NavigationService class.
 ```csharp
 public static class NavigationService
 {
-    public const string FrameKeyMain = "Main";
-    public const string FrameKeySecondary = "Secondary";
+    private const string FrameKeyMain = "Main";
+    private const string FrameKeySecondary = "Secondary";
 
     public static event EventHandler<NavigationArgs> Navigated;
     public static event NavigationFailedEventHandler NavigationFailed;
@@ -56,11 +55,15 @@ public static class NavigationService
     }
 
     /// <summary>
-    /// Initializes a frame in the NavigationService using a specific frame key.
+    /// Initializes the secondary frame in the NavigationService.
     /// </summary>
-    /// <param name="frameKey">Key that will identify the frame in the NavigationService.</param>
-    /// <param name="frame">New frame to register in the NavigationService.</param>
-    public static bool InitializeFrame(string frameKey, Frame frame)
+    /// <param name="mainFrame">New frame to register in the NavigationService</param>
+    public static bool InitializeSecondaryFrame(Frame secondary)
+    {
+        return InitializeFrame(FrameKeySecondary, secondary);
+    }
+
+    private static bool InitializeFrame(string frameKey, Frame frame)
     {
         if (!_frames.ContainsKey(frameKey))
         {
@@ -74,10 +77,23 @@ public static class NavigationService
     }
 
     /// <summary>
-    /// Gets a value that indicates whether the frame with the specified key is initialized.
+    /// Indicates whether the main frame is initialized.
     /// </summary>
-    /// <param name="frameKey">Key to identify the frame in the NavigationService.</param>
-    public static bool IsInitialized(string frameKey)
+    public static bool IsMainFrameInitialized()
+    {
+        return IsInitialized(FrameKeyMain);
+    }
+
+    /// <summary>
+    /// Indicates whether the main frame is initialized.
+    /// </summary>
+    public static bool IsSecondaryFrameInitialized()
+    {
+        return IsInitialized(FrameKeySecondary);
+    }
+
+
+    private static bool IsInitialized(string frameKey)
     {
         var frame = _frames.GetValueOrDefault(frameKey);
         return frame?.Content != null;
@@ -102,22 +118,44 @@ public static class NavigationService
     }
 
     /// <summary>
-    /// Navigate in a specific frame using a specific NavigationConfig.
+    /// Navigate in the main frame using a specific NavigationConfig.
     /// </summary>
     /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
-    /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
     /// <param name="config">Parameters configuration to customize the navigation.</param>
-    public static bool Navigate<T>(string frameKey, NavigationConfig config = null)
+    public static bool NavigateInMainFrame<T>(NavigationConfig config = null)
+        where T : Page
+        => Navigate<T>(FrameKeyMain, config);
+
+    /// <summary>
+    /// Navigate in the secondary frame using a specific NavigationConfig.
+    /// </summary>
+    /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
+    /// <param name="config">Parameters configuration to customize the navigation.</param>
+    public static bool NavigateInSecondaryFrame<T>(NavigationConfig config = null)
+        where T : Page
+        => Navigate<T>(FrameKeySecondary, config);
+
+    private static bool Navigate<T>(string frameKey, NavigationConfig config = null)
         where T : Page
         => Navigate(typeof(T), frameKey, config);
 
     /// <summary>
-    /// Navigate in a specific frame using a specific NavigationConfig.
+    /// Navigate in the main frame using a specific NavigationConfig.
     /// </summary>
     /// <param name="pageType">Source Page Type for Frame navigation.</param>
-    /// <param name="frameKey">Key that identifies the Frame to navigate.</param>
     /// <param name="config">Parameters configuration to customize the navigation.</param>
-    public static bool Navigate(Type pageType, string frameKey, NavigationConfig config = null)
+    public static bool NavigateInMainFrame(Type pageType, NavigationConfig config = null)
+        => Navigate(pageType, FrameKeyMain, config);
+
+    /// <summary>
+    /// Navigate in the secondary frame using a specific NavigationConfig.
+    /// </summary>
+    /// <param name="pageType">Source Page Type for Frame navigation.</param>
+    /// <param name="config">Parameters configuration to customize the navigation.</param>
+    public static bool NavigateInSecondaryFrame(Type pageType, NavigationConfig config = null)
+        => Navigate(pageType, FrameKeySecondary, config);
+
+    private static bool Navigate(Type pageType, string frameKey, NavigationConfig config = null)
     {
         config = config ?? NavigationConfig.Default;
 
@@ -129,13 +167,13 @@ public static class NavigationService
             {
                 if (frame.CanGoBack)
                 {
-                    if (config.RegisterOnBackStack)
+                    if (config.DisableBackNavigation)
                     {
-                        _backStack.Insert(0, new NavigationBackStackEntry(frameKey, pageType, config));
+                        frame.BackStack.RemoveAt(0);
                     }
                     else
                     {
-                        frame.BackStack.RemoveAt(0);
+                        _backStack.Insert(0, new NavigationBackStackEntry(frameKey, pageType, config));
                     }
                 }
                 Navigated?.Invoke(frame, new NavigationArgs(frameKey, pageType, config, frame.Content));
@@ -143,9 +181,9 @@ public static class NavigationService
         }
         return false;
     }
-    
+
     /// <summary>
-    /// Resets the navigation
+    /// Resets all frames and backstack and initializes a new MainFrame.
     /// </summary>
     public static void ResetNavigation()
     {
@@ -158,18 +196,45 @@ public static class NavigationService
         _backStack.Clear();
         var newFrame = new Frame();
         InitializeMainFrame(newFrame);
-        ThemeSelectorService.SetRequestedTheme();
     }
 
     /// <summary>
-    /// Gets a value that indicates whether the specified page is shown in the frame with the specified key
+    /// Indicates whether the specified page is shown in the main frame
     /// </summary>
-    /// <param name="frameKey">Key to identify the frame in the NavigationService.</param>
-    public static bool IsPageInFrame<T>(string frameKey)
+    public static bool IsPageInMainFrame<T>()
+        where T : Page
+        => IsPageInFrame<T>(FrameKeyMain);
+
+    /// <summary>
+    /// Indicates whether the specified page is shown in the secondary frame
+    /// </summary>
+    public static bool IsPageInSecondaryFrame<T>()
+        where T : Page
+    => IsPageInFrame<T>(FrameKeySecondary);
+
+    private static bool IsPageInFrame<T>(string frameKey)
         where T : Page
     {
         var frame = GetFrame(frameKey);
         return frame.Content != null && frame.Content is T;
+    }
+
+    /// <summary>
+    /// Indicates whether the main frame has content
+    /// </summary>
+    public static bool HasContentMainFrame()
+        => HasContent(FrameKeyMain);
+
+    /// <summary>
+    /// Indicates whether the secondary frame has content
+    /// </summary>
+    public static bool HasContentSecondaryFrame()
+        => HasContent(FrameKeySecondary);
+
+    private static bool HasContent(string frameKey)
+    {
+        var frame = GetFrame(frameKey);
+        return frame.Content != null;
     }
 
     private static Frame GetFrame(string frameKey)
@@ -282,35 +347,132 @@ You need to add this class.
 ```csharp
 public class NavigationConfig
 {
-    public readonly bool RegisterOnBackStack;
+    public readonly bool DisableBackNavigation;
 
     public readonly object Parameter;
 
-    public readonly NavigationTransitionInfo InfoOverride;        
+    public readonly NavigationTransitionInfo InfoOverride;
 
-    public NavigationConfig(bool registerOnBackStack = true, object parameter = null, NavigationTransitionInfo infoOverride = null)
+    public NavigationConfig(bool disableBackNavigation = false, object parameter = null, NavigationTransitionInfo infoOverride = null)
     {
-        RegisterOnBackStack = registerOnBackStack;
+        DisableBackNavigation = disableBackNavigation;
         Parameter = parameter;
-        InfoOverride = infoOverride;            
+        InfoOverride = infoOverride;
     }
 
     public static NavigationConfig Default => new NavigationConfig();
 }
 ```
 
-### 5. Changes in ActivationService.cs
-- Initialize the main frame from `ActivateAsync()` replacing `Window.Current.Content = _shell?.Value ?? new Frame();` with 
- ```csharp
-var frame = new Frame();
-if (_shell?.Value != null)
-{
-    frame.Content = _shell.Value;
-}
-NavigationService.InitializeMainFrame(frame);
+### 5. Changes in DefaultLaunchActivationHandler.cs
+- Change the DefaultLaunchActivationHandler to:
+
+```csharp
+internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+    {
+        private readonly Type _navElement;
+        private readonly Type _shell;
+
+
+        public DefaultLaunchActivationHandler(Type navElement, Type shell = null)
+        {
+            _navElement = navElement;
+            _shell = shell;
+        }
+
+        protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
+        {
+            // When the navigation stack isn't restored, navigate to the first page and configure
+            // the new page by passing required information in the navigation parameter
+            if (_shell != null)
+            {
+                NavigationService.NavigateInMainFrame(_shell);
+                NavigationService.NavigateInSecondaryFrame(_navElement, new NavigationConfig(disableBackNavigation: false, parameter: args.Arguments));
+            }
+            else
+            {
+                NavigationService.NavigateInMainFrame(_navElement, new NavigationConfig(disableBackNavigation: false, parameter: args.Arguments));
+            }
+
+
+            await Task.CompletedTask;
+        }
+
+        protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
+        {
+            // None of the ActivationHandlers has handled the app activation
+            return !NavigationService.HasContentMainFrame();
+        }
+    }
 ```
 
-- In the same method replace `NavigationService.Navigated += Frame_Navigated;` with `NavigationService.Navigated += OnNavigated;` and replace the event handler:
+### 6. Changes in ActivationService.cs
+- Add property `private readonly Type _shell;`
+- Change constructor to 
+```csharp
+public ActivationService(App app, Type defaultNavItem, Type shell = null)
+{
+    _app = app;
+    _shell = shell;
+    _defaultNavItem = defaultNavItem;
+}
+``` 
+
+- Change the method `ActivateAsync()` to
+ ```csharp
+public async Task ActivateAsync(object activationArgs)
+{
+    if (IsInteractive(activationArgs))
+    {
+        // Initialize things like registering background task before the app is loaded
+        await InitializeAsync();
+
+        // Do not repeat app initialization when the Window already has content,
+        // just ensure that the window is active
+        if (Window.Current.Content == null)
+        {
+            NavigationService.NavigationFailed += (sender, e) =>
+            {
+                throw e.Exception;
+            };
+
+            var frame = new Frame();
+            NavigationService.InitializeMainFrame(frame);
+
+            NavigationService.Navigated += OnNavigated;
+            if (SystemNavigationManager.GetForCurrentView() != null)
+            {
+                SystemNavigationManager.GetForCurrentView().BackRequested += ActivationService_BackRequested;
+            }
+        }
+    }
+
+    var activationHandler = GetActivationHandlers()
+                                        .FirstOrDefault(h => h.CanHandle(activationArgs));
+
+    if (activationHandler != null)
+    {
+        await activationHandler.HandleAsync(activationArgs);
+    }
+
+    if (IsInteractive(activationArgs))
+    {
+        var defaultHandler = new DefaultLaunchActivationHandler(_defaultNavItem, _shell);
+        if (defaultHandler.CanHandle(activationArgs))
+        {
+            await defaultHandler.HandleAsync(activationArgs);
+        }
+
+        // Ensure the current window is active
+        Window.Current.Activate();
+
+        // Tasks after activation
+        await StartupAsync();
+    }
+}
+```
+
+- Replace the event handler Frame_Navigated with:
 
  ```csharp
 private void OnNavigated(object sender, NavigationArgs e)
@@ -318,59 +480,59 @@ private void OnNavigated(object sender, NavigationArgs e)
     SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
 }
 ```
-### 6. Changes in DefaultLaunchActivationHandler.cs
--  Change HandleInternalAsync to 
-```csharp
-protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
-{
-    // When the navigation stack isn't restored, navigate to the first page and configure
-    // the new page by passing required information in the navigation parameter
-    NavigationService.Navigate(_navElement, NavigationService.FrameKeyMain, new NavigationConfig(registerOnBackStack: true, parameter: args.Arguments));
 
-    await Task.CompletedTask;
+
+### 7. Change App.xaml.cs 
+#### 7.1 For startup on Startup page:
+
+- Change method `CreateActivationService()` to 
+```csharp
+private ActivationService CreateActivationService()
+{
+    return new ActivationService(this, typeof(Views.StartupPage));
 }
 ```
 
-- Change CanHandleInternal to 
+#### 7.2 For startup on NavigationPane page:
+- Change method `CreateActivationService()` to 
 ```csharp
-protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
+private ActivationService CreateActivationService()
 {
-    // None of the ActivationHandlers has handled the app activation
-    return !NavigationService.IsInitialized(NavigationService.FrameKeyMain);
+    return new ActivationService(this, typeof(Views.MainPage), typeof(Views.ShellPage));
 }
 ```
 
-### 7. Changes in ShellPage.xaml, ShellPage.xaml.cs/ShellViewModel
+### 8. Changes in ShellPage.xaml, ShellPage.xaml.cs/ShellViewModel
 
  - Add NavigationCacheMode="Required" to ShellPage.xaml
  - Initialize secondary frame on ShellPage adding the following code to Initialize method on ShellViewModel.cs or ShellPage.xaml.cs
  ```csharp
- NavigationService.InitializeFrame(NavigationService.FrameKeySecondary, frame);
+ NavigationService.InitializeSecondaryFrame(frame);
  ```
 
  - Subscribe to NavigationService.Navigated event, implement the eventHandler 
  ```csharp
  private void OnNavigated(object sender, NavigationArgs e)
 {
-    // Handle navigation only for navigations on secondary frame
-    if (e.FrameKey == NavigationService.FrameKeySecondary)
-    {
-        Selected = navigationView.MenuItems
+    // Handle navigation only when ShellPage in MainFrame
+    if (NavigationService.IsPageInMainFrame<ShellPage>())
+    { 
+        Selected = _navigationView.MenuItems
                     .OfType<NavigationViewItem>()
                     .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
     }
 }
 ```
-- Unregister the event handler when navigating away.
+
 - Change OnItemInvoked to navigate among pages with the new NavigationService. 
-Specify registerOnBackStack = false to specify that this navigation will not be registered on navigation back-stack.
+Specify disableBackNavigation = true to specify that there will be no possibility to navigate back.
 
 ```csharp
 private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
 {
     if (args.IsSettingsInvoked)
     {
-        NavigationService.Navigate<SettingsPage>(NavigationService.FrameKeySecondary, new NavigationConfig(registerOnBackStack: false));
+        NavigationService.Navigate<SettingsPage>(NavigationService.FrameKeySecondary);
         return;
     }
 
@@ -378,49 +540,27 @@ private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
                     .OfType<NavigationViewItem>()
                     .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
     var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-    NavigationService.Navigate(pageType, NavigationService.FrameKeySecondary, new NavigationConfig(registerOnBackStack: false));
-}
+    NavigationService.NavigateInSecondaryFrame(pageType);
 ```
 
-## Sample Scenario implementation
 
-### Show a Startup page on app launching and navigate to a navigation pane shell page from there.
+##  Expand a Page to fullscreen/Navigate to a page in fullscreen
 
-#### 1.Navigate to StartUpPage
-- On App.xaml.cs in CreateActivationService replace the existing code with `return new ActivationService(this, typeof(Views.StartUpPage));` to navigate directly to the StartupPage
-
-#### 2. Navigate from StartUpPage to NavigationPane ShellPage
-
-**On the StartupPage:**
-
- - Navigate to ShellPage (setting registerOnBackstack to false will cause the navigation not to be added to the backstack, so you won't be able to go back.
-
- - Navigate to MainPage to set the first page in the SecondFrame.
+To navigate to a page on fullscreen mode use NavigationService.NavigateInMainFrame.
 
 ```csharp
-NavigationService.Navigate<ShellPage>(NavigationService.FrameKeyMain, new NavigationConfig(registerOnBackStack: false));
-
-NavigationService.Navigate<MainPage>();
-```
-
-### 3. Expand a Page to fullscreen/Navigate to a page on fullscreen
-
-To navigate to a page on fullscreen mode use NavigationService.Navigate specifying the MainFrame.
-
-```csharp
-NavigationService.Navigate<MapPage>(NavigationService.FrameKeyMain);
+NavigationService.NavigateInMainFrame<MapPage>();
 ```
 
 To determine if page is already in fullscreen use the following code:
 ```csharp
-return !NavigationService.IsPageInFrame<MapPage>(NavigationService.FrameKeyMain);
+return !NavigationService.IsPageInMainFrame<MapPage>();
 ```
 
-### 4. Navigate to Logoutpage and reset navigation
-
-- On Logout command reset navigation and navigate to startup page calling
+## Reset navigation
+To reset all frames and backstack (for example before navigating to the startup page) use the following code:
 
 ```csharp
 NavigationService.ResetNavigation();
-NavigationService.Navigate<StartUpPage>(NavigationService.FrameKeyMain);
+NavigationService.IsPageInMainFrame<StartUpPage>();
 ```
