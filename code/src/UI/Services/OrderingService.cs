@@ -75,7 +75,6 @@ namespace Microsoft.Templates.UI.Services
             if (AreCompatibleItems(oldIndex, newIndex))
             {
                 Pages.Move(oldIndex, newIndex);
-                MainViewModel.Instance.UserSelection.UpdateHomePage();
 
                 if (_listView != null)
                 {
