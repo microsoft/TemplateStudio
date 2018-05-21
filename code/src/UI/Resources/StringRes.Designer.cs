@@ -799,7 +799,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can not remove **{0}** because these templates depends on it: {1}.
+        ///   Looks up a localized string similar to You can not remove **{0}** because these templates depend on it: {1}.
         /// </summary>
         public static string NotificationRemoveError_Dependency {
             get {
