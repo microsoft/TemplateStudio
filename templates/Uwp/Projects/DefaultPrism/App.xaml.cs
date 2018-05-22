@@ -9,6 +9,7 @@ using Windows.UI.Xaml;
 
 namespace wts.DefaultProject
 {
+    [Windows.UI.Xaml.Data.Bindable]
     public sealed partial class App : PrismUnityApplication
     {
         public App()

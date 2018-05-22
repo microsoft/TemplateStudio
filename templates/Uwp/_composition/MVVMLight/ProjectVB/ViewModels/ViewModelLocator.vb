@@ -4,6 +4,7 @@ Imports Param_RootNamespace.Services
 Imports Param_RootNamespace.Views
 
 Namespace ViewModels
+    <Windows.UI.Xaml.Data.Bindable>
     Public Class ViewModelLocator
         Public Sub New()
             ServiceLocator.SetLocatorProvider(Function() SimpleIoc.[Default])

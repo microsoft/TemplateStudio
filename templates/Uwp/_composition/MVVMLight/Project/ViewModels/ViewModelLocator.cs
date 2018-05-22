@@ -6,6 +6,7 @@ using Param_RootNamespace.Views;
 
 namespace Param_RootNamespace.ViewModels
 {
+    [Windows.UI.Xaml.Data.Bindable]
     public class ViewModelLocator
     {
         public ViewModelLocator()
