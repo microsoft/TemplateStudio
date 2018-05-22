@@ -23,7 +23,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _itemNameEditable;
         private bool _isHidden;
         private bool _hasErrors;
-        private bool _isHome;
         private bool _isReorderEnabled;
         private bool _isDragging;
         private bool _isFocused;
@@ -70,12 +69,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             get => _hasErrors;
             set => SetProperty(ref _hasErrors, value);
-        }
-
-        public bool IsHome
-        {
-            get => _isHome;
-            set => SetProperty(ref _isHome, value);
         }
 
         public bool IsDragging
