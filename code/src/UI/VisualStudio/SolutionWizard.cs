@@ -99,6 +99,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             GenContext.ToolBox.Shell.RestorePackages();
 
             GenContext.ToolBox.Shell.CollapseSolutionItems();
+            GenContext.ToolBox.Shell.OpenProjectOverview();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)

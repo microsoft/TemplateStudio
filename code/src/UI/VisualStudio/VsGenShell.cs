@@ -210,6 +210,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             ShowTaskListAsync().FireAndForget();
         }
 
+        public override void OpenProjectOverview()
+        {
+            Dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
+        }
+
         public override void ShowModal(System.Windows.Window dialog)
         {
             SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -559,6 +564,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return projectGuid;
+        }
+
+        private void SolutionEvents_Opened()
+        {
+            Dte.ExecuteCommand("Project.Overview");
+            Dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
         }
 
         private void Collapse(UIHierarchyItem item)
