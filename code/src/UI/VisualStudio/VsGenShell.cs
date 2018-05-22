@@ -49,7 +49,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             () =>
             {
                 SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                                return ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
+                return ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
             },
             true);
 
