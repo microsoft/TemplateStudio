@@ -49,10 +49,10 @@ namespace Param_ItemNamespace.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            var sampleImage = e.Parameter as SampleImage;
-            if (sampleImage != null && e.NavigationMode == NavigationMode.New)
+            var sampleImageId = e.Parameter as string;
+            if (!string.IsNullOrEmpty(sampleImageId) && e.NavigationMode == NavigationMode.New)
             {
-                SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImage.ID);
+                SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImageId);
             }
             else
             {

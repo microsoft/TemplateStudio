@@ -21,7 +21,7 @@ Namespace ViewModels
         Private Sub OnsItemSelected(args As ItemClickEventArgs)
             Dim selected = TryCast(args.ClickedItem, SampleImage)
             _imagesGridView.PrepareConnectedAnimation(wts.ItemNameAnimationOpen, selected, "galleryImage")
-            NavigationService.Navigate(GetType(wts.ItemNameDetailViewModel).FullName, args.ClickedItem)
+            NavigationService.Navigate(GetType(wts.ItemNameDetailViewModel).FullName, selected.ID)
         End Sub
         '}]}
     End Class
