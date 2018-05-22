@@ -14,9 +14,9 @@ Scenarios covered in this document:
 - NavigationService.cs
 
 **Files to add:**
+- NavigationConfig.cs
 - NavigationArgs.cs
 - NavigationBackStackEntry.cs
-- NavigationConfig.cs
 
 **Files to modify:**
 - ActivationService.cs
@@ -271,7 +271,31 @@ public static class NavigationService
 }
 ```
 
-### 2. Add NavigationArgs.cs
+### 2. NavigationConfig.cs
+NavigationConfig represents the navigation configuration and allows you to specify navigation parameters and if you want to register the navigation on the back stack.
+
+You need to add this class.
+```csharp
+public class NavigationConfig
+{
+    public readonly bool DisableBackNavigation;
+
+    public readonly object Parameter;
+
+    public readonly NavigationTransitionInfo InfoOverride;
+
+    public NavigationConfig(bool disableBackNavigation = false, object parameter = null, NavigationTransitionInfo infoOverride = null)
+    {
+        DisableBackNavigation = disableBackNavigation;
+        Parameter = parameter;
+        InfoOverride = infoOverride;
+    }
+
+    public static NavigationConfig Default => new NavigationConfig();
+}
+```
+
+### 3. Add NavigationArgs.cs
 NavigationArgs contains navigation arguments and the framekey the navigation took place on.
 
 You need to add this class.
@@ -316,7 +340,7 @@ public class NavigationArgs : EventArgs
 }
 ```
 
-### 3. Add NavigationBackStackEntry.cs
+### 4. Add NavigationBackStackEntry.cs
 NavigationBackStackEntry represents an entry on the navigation backstack.
 You need to add this class.
 ```csharp
@@ -337,30 +361,6 @@ public class NavigationBackStackEntry
         Parameter = config.Parameter;
         NavigationTransitionInfo = config.InfoOverride;
     }
-}
-```
-
-### 4. NavigationConfig.cs
-NavigationConfig represents the navigation configuration and allows you to specify navigation parameters and if you want to register the navigation on the back stack.
-
-You need to add this class.
-```csharp
-public class NavigationConfig
-{
-    public readonly bool DisableBackNavigation;
-
-    public readonly object Parameter;
-
-    public readonly NavigationTransitionInfo InfoOverride;
-
-    public NavigationConfig(bool disableBackNavigation = false, object parameter = null, NavigationTransitionInfo infoOverride = null)
-    {
-        DisableBackNavigation = disableBackNavigation;
-        Parameter = parameter;
-        InfoOverride = infoOverride;
-    }
-
-    public static NavigationConfig Default => new NavigationConfig();
 }
 ```
 
@@ -407,7 +407,8 @@ internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivate
 ```
 
 ### 6. Changes in ActivationService.cs
-- Add property `private readonly Type _shell;`
+- Replace the field `private readonly Lazy<UIElement> _shell;` with `private readonly Type _shell;`
+
 - Change constructor to 
 ```csharp
 public ActivationService(App app, Type defaultNavItem, Type shell = null)
@@ -532,7 +533,7 @@ private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
 {
     if (args.IsSettingsInvoked)
     {
-        NavigationService.Navigate<SettingsPage>(NavigationService.FrameKeySecondary);
+        NavigationService.NavigateInSecondaryFrame<SettingsPage>();
         return;
     }
 
@@ -543,10 +544,18 @@ private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
     NavigationService.NavigateInSecondaryFrame(pageType);
 ```
 
+##  Navigate from Startup Page to NavigationPane page 
+
+To navigate to the shell page in fullscreen mode use NavigationService.NavigateInMainFrame and NavigationService.NavigateInSecondaryFrame to show the mainpage in the naviagation pane
+
+```csharp
+NavigationService.NavigateInMainFrame<ShellPage>(new NavigationConfig(disableBackNavigation: true));
+NavigationService.NavigateInSecondaryFrame<MainPage>(); 
+```
 
 ##  Expand a Page to fullscreen/Navigate to a page in fullscreen
 
-To navigate to a page on fullscreen mode use NavigationService.NavigateInMainFrame.
+To navigate to a page in fullscreen mode use NavigationService.NavigateInMainFrame.
 
 ```csharp
 NavigationService.NavigateInMainFrame<MapPage>();
