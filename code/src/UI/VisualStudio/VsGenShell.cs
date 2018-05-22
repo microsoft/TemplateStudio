@@ -49,7 +49,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             () =>
             {
                 SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                return ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
+                                return ServiceProvider.GlobalProvider.GetService(typeof(SVsSolution)) as IVsSolution;
             },
             true);
 
@@ -212,7 +212,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void OpenProjectOverview()
         {
-            Dte.ExecuteCommand("Project.Overview");
+            Dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
         }
 
         public override void ShowModal(System.Windows.Window dialog)
@@ -564,6 +564,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return projectGuid;
+        }
+
+        private void SolutionEvents_Opened()
+        {
+            Dte.ExecuteCommand("Project.Overview");
+            Dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
         }
 
         private void Collapse(UIHierarchyItem item)
