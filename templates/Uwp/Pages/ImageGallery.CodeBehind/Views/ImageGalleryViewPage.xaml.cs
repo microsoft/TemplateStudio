@@ -40,7 +40,7 @@ namespace Param_ItemNamespace.Views
         {
             var selected = e.ClickedItem as SampleImage;
             ImagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage");
-            NavigationService.Navigate<ImageGalleryViewDetailPage>(e.ClickedItem);
+            NavigationService.Navigate<ImageGalleryViewDetailPage>(selected.ID);
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

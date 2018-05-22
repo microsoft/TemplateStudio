@@ -44,9 +44,9 @@ Namespace ViewModels
             _image = image
         End Sub
 
-        Public Async Function InitializeAsync(sampleImage As SampleImage, navigationMode as NavigationMode) As Task
-            If sampleImage IsNot Nothing AndAlso navigationMode = NavigationMode.New Then
-                SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImage.ID)
+        Public Async Function InitializeAsync(sampleImageId As String, navigationMode as NavigationMode) As Task
+            If Not String.IsNullOrEmpty(sampleImageId) AndAlso navigationMode = NavigationMode.New Then
+                SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImageId)
             Else
                 Dim selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey)
                 If Not String.IsNullOrEmpty(selectedImageId) Then

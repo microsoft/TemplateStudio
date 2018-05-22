@@ -20,7 +20,7 @@ namespace Param_ItemNamespace.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            await ViewModel.InitializeAsync(e.Parameter as SampleImage, e.NavigationMode);
+            await ViewModel.InitializeAsync(e.Parameter as string, e.NavigationMode);
             showFlipView.Begin();
         }
 

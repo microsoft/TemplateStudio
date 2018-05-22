@@ -13,7 +13,7 @@ Namespace Views
 
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
-            Await ViewModel.InitializeAsync(TryCast(e.Parameter, SampleImage), e.NavigationMode)
+            Await ViewModel.InitializeAsync(TryCast(e.Parameter, String), e.NavigationMode)
             showFlipView.Begin()
         End Sub
 
