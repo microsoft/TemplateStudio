@@ -1,0 +1,10 @@
+﻿<!--{**-->
+<!--This xml block adds a reference to Microsoft.Toolkit.Uwp.UI.Controls.DataGrid to your project.-->
+<!--**}-->
+
+<!-- Nuget package references -->
+<!--{[{-->
+<PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
+  <Version>3.1.0-preview1</Version>
+</PackageReference>
+<!--}]}-->
