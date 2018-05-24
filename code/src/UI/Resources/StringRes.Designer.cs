@@ -547,7 +547,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable add project items. Ensure you have the required SDK..
+        ///   Looks up a localized string similar to Unable add project items..
         /// </summary>
         public static string ErrorUnableAddItemsToProject {
             get {
