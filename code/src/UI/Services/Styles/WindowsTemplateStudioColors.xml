@@ -489,7 +489,7 @@
         <Background Type="CT_SYSCOLOR" Source="0000000E" />
       </Color>
       <Color Name="DeleteTemplateIcon">
-        <Background Type="CT_SYSCOLOR" Source="00000012" />
+        <Background Type="CT_SYSCOLOR" Source="0000000F" />
       </Color>
       <Color Name="SavedTemplateBackgroundHover">
         <Background Type="CT_SYSCOLOR" Source="00000010" />
