@@ -8,7 +8,6 @@
             yield return new SchemeActivationHandler(NavigationService);
 //}]}
 //{--{
-
             yield break;
 //}--}
         }
