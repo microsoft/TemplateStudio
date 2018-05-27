@@ -20,7 +20,6 @@ Namespace Services
             yield Singleton(Of BackgroundTaskService).Instance
             '}]}
 '{--{
-
             Exit Function
 '}--}
         End Function
