@@ -22,7 +22,7 @@ Scenarios covered in this document:
 - ActivationService.cs
 - DefaultLaunchActivationHandler.cs
 - App.xaml.cs
- 
+
 ### 1. Replace NavigationService.cs
 
 The NavigationService allows you to handle different navigation levels and track the the whole navigation stack in different frames to go back across the navigation tree.
@@ -31,8 +31,12 @@ You need to add this code replacing the current NavigationService class.
 ```csharp
 public static class NavigationService
 {
+    // This NavigationService can handle navigation in an application that uses various frames.
+    // The NavigationService manages a global backstack with entries from all frames.
+    // Internally the NavigationService uses these frame keys to idenitify the frame in navigation and manage the navigation back stack.
     private const string FrameKeyMain = "Main";
     private const string FrameKeySecondary = "Secondary";
+    // You can add more frame key constants if your app manage more frames.
 
     public static event EventHandler<NavigationArgs> Navigated;
     public static event NavigationFailedEventHandler NavigationFailed;
@@ -40,24 +44,17 @@ public static class NavigationService
     private static readonly Dictionary<string, Frame> _frames = new Dictionary<string, Frame>();
     private static readonly List<NavigationBackStackEntry> _backStack = new List<NavigationBackStackEntry>();
 
-    /// <summary>
-    /// Initializes the main frame in the NavigationService.
-    /// </summary>
-    /// <param name="mainFrame">New frame to register in the NavigationService</param>
     public static bool InitializeMainFrame(Frame mainFrame)
     {
         if (InitializeFrame(FrameKeyMain, mainFrame))
         {
+            // Place the main frame in the current Window
             Window.Current.Content = mainFrame;
             return true;
         }
         return false;
     }
 
-    /// <summary>
-    /// Initializes the secondary frame in the NavigationService.
-    /// </summary>
-    /// <param name="mainFrame">New frame to register in the NavigationService</param>
     public static bool InitializeSecondaryFrame(Frame secondary)
     {
         return InitializeFrame(FrameKeySecondary, secondary);
@@ -67,6 +64,7 @@ public static class NavigationService
     {
         if (!_frames.ContainsKey(frameKey))
         {
+            // When a new frame is initialized the frame key is associated with the frame's Tag property to recover it in navigation events.
             frame.Tag = frameKey;
             frame.Navigated += OnFrameNavigated;
             frame.NavigationFailed += OnFrameNavigationFailed;
@@ -76,17 +74,11 @@ public static class NavigationService
         return false;
     }
 
-    /// <summary>
-    /// Indicates whether the main frame is initialized.
-    /// </summary>
     public static bool IsMainFrameInitialized()
     {
         return IsInitialized(FrameKeyMain);
     }
 
-    /// <summary>
-    /// Indicates whether the main frame is initialized.
-    /// </summary>
     public static bool IsSecondaryFrameInitialized()
     {
         return IsInitialized(FrameKeySecondary);
@@ -99,14 +91,8 @@ public static class NavigationService
         return frame?.Content != null;
     }
 
-    /// <summary>
-    /// Gets a value that indicates whether there is at least one entry in back navigation history.
-    /// </summary>
     public static bool CanGoBack => _backStack.Any();
 
-    /// <summary>
-    /// Navigates to the most recent item in back navigation history.
-    /// </summary>
     public static void GoBack()
     {
         if (CanGoBack)
@@ -117,20 +103,10 @@ public static class NavigationService
         }
     }
 
-    /// <summary>
-    /// Navigate in the main frame using a specific NavigationConfig.
-    /// </summary>
-    /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
-    /// <param name="config">Parameters configuration to customize the navigation.</param>
     public static bool NavigateInMainFrame<T>(NavigationConfig config = null)
         where T : Page
         => Navigate<T>(FrameKeyMain, config);
 
-    /// <summary>
-    /// Navigate in the secondary frame using a specific NavigationConfig.
-    /// </summary>
-    /// <typeparam name="T">Source Page Type for Frame navigation.</typeparam>
-    /// <param name="config">Parameters configuration to customize the navigation.</param>
     public static bool NavigateInSecondaryFrame<T>(NavigationConfig config = null)
         where T : Page
         => Navigate<T>(FrameKeySecondary, config);
@@ -139,19 +115,9 @@ public static class NavigationService
         where T : Page
         => Navigate(typeof(T), frameKey, config);
 
-    /// <summary>
-    /// Navigate in the main frame using a specific NavigationConfig.
-    /// </summary>
-    /// <param name="pageType">Source Page Type for Frame navigation.</param>
-    /// <param name="config">Parameters configuration to customize the navigation.</param>
     public static bool NavigateInMainFrame(Type pageType, NavigationConfig config = null)
         => Navigate(pageType, FrameKeyMain, config);
 
-    /// <summary>
-    /// Navigate in the secondary frame using a specific NavigationConfig.
-    /// </summary>
-    /// <param name="pageType">Source Page Type for Frame navigation.</param>
-    /// <param name="config">Parameters configuration to customize the navigation.</param>
     public static bool NavigateInSecondaryFrame(Type pageType, NavigationConfig config = null)
         => Navigate(pageType, FrameKeySecondary, config);
 
@@ -165,28 +131,30 @@ public static class NavigationService
             var result = frame.Navigate(pageType, config.Parameter, config.InfoOverride);
             if (result)
             {
-                if (frame.CanGoBack)
+                if (frame.CanGoBack) // False on first navigation
                 {
                     if (config.DisableBackNavigation)
                     {
+                        // BackNavigation is disabled but the navigation is registered on the frame backstack. This navigation entry must be removed.
                         frame.BackStack.RemoveAt(0);
                     }
                     else
                     {
+                        // Track a new NavigationBackStackEntry in the NavigationService backstack
                         _backStack.Insert(0, new NavigationBackStackEntry(frameKey, pageType, config));
                     }
                 }
+
+                // Raise the Navigated Event for new navigations
                 Navigated?.Invoke(frame, new NavigationArgs(frameKey, pageType, config, frame.Content));
             }
         }
         return false;
     }
 
-    /// <summary>
-    /// Resets all frames and backstack and initializes a new MainFrame.
-    /// </summary>
     public static void ResetNavigation()
     {
+        // Unregister all frame events and clear frames and global backstack
         foreach (var frame in _frames.Values)
         {
             frame.Navigated -= OnFrameNavigated;
@@ -198,16 +166,10 @@ public static class NavigationService
         InitializeMainFrame(newFrame);
     }
 
-    /// <summary>
-    /// Indicates whether the specified page is shown in the main frame
-    /// </summary>
     public static bool IsPageInMainFrame<T>()
         where T : Page
         => IsPageInFrame<T>(FrameKeyMain);
 
-    /// <summary>
-    /// Indicates whether the specified page is shown in the secondary frame
-    /// </summary>
     public static bool IsPageInSecondaryFrame<T>()
         where T : Page
     => IsPageInFrame<T>(FrameKeySecondary);
@@ -219,15 +181,9 @@ public static class NavigationService
         return frame.Content != null && frame.Content is T;
     }
 
-    /// <summary>
-    /// Indicates whether the main frame has content
-    /// </summary>
     public static bool HasContentMainFrame()
         => HasContent(FrameKeyMain);
 
-    /// <summary>
-    /// Indicates whether the secondary frame has content
-    /// </summary>
     public static bool HasContentSecondaryFrame()
         => HasContent(FrameKeySecondary);
 
@@ -239,9 +195,11 @@ public static class NavigationService
 
     private static Frame GetFrame(string frameKey)
     {
+        // returns the frame associated with the frame key
         var frame = _frames.GetValueOrDefault(frameKey);
         if (frame == null)
         {
+            // throw error if the frame is not initialzed
             var methodName = frameKey == FrameKeyMain ? nameof(InitializeMainFrame) : nameof(InitializeFrame);
             throw new Exception($"Frame is not initialized, please call {methodName} before navigating.");
         }
@@ -255,10 +213,12 @@ public static class NavigationService
             var frameKey = frame.Tag as string;
             if (e.NavigationMode == NavigationMode.Back)
             {
+                // remove from global back stack
                 _backStack.RemoveAt(0);
             }
             if (e.NavigationMode != NavigationMode.New)
             {
+                // Raise Navigated event when NavigationMode is back or refresh.
                 Navigated?.Invoke(frame, new NavigationArgs(frameKey, e));
             }
         }
@@ -346,7 +306,7 @@ You need to add this class.
 ```csharp
 public class NavigationBackStackEntry
 {
-    public readonly string FrameKey;        
+    public readonly string FrameKey;
 
     public readonly object Parameter;
 
