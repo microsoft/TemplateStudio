@@ -45,7 +45,7 @@
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderTextBrushKey}" Color="{x:Static SystemColors.HighlightTextColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.ChangesSummaryDetailFileHeaderTextColorKey}"  />
 
-    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DeleteTemplateIconBrushKey}" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.DeleteTemplateIconBrushKey}" Color="{x:Static SystemColors.ControlColor}" />
     <Color x:Key="{x:Static colors:WindowsTemplateStudio.DeleteTemplateIconColorKey}"  />
 
     <SolidColorBrush x:Key="{x:Static colors:WindowsTemplateStudio.GridHeadingBackgroundBrushKey}" Color="{x:Static SystemColors.ControlColor}" />

@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Core.Locations
             LoadAvailableContents();
 
             Source = source;
-            SetCurrentContent(tengineCurrentContent);
+            SetCurrentContent(tengineCurrentContent, wizardVersion);
 
             WizardVersion = wizardVersion;
         }
@@ -293,9 +293,17 @@ namespace Microsoft.Templates.Core.Locations
             return All.OrderByDescending(c => c.Version).ThenByDescending(c => c.Date).FirstOrDefault();
         }
 
-        private void SetCurrentContent(string tengineCurrentContent)
+        private void SetCurrentContent(string tengineCurrentContent, Version wizardVersion)
         {
-            Current = All.Where(c => c.Path.Equals(tengineCurrentContent, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            if (!string.IsNullOrEmpty(tengineCurrentContent))
+            {
+                Current = All.Where(c => c.Path.Equals(tengineCurrentContent, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            }
+            else
+            {
+                var mainWizardVersion = $"{wizardVersion.Major.ToString()}.{wizardVersion.Minor.ToString()}";
+                Current = All.Where(c => c.MainVersion.Equals(mainWizardVersion, StringComparison.OrdinalIgnoreCase)).OrderByDescending(c => c.Version).ThenByDescending(c => c.Date).FirstOrDefault();
+            }
         }
 
         internal void RefreshContentFolder(string tengineCurrentContent)
