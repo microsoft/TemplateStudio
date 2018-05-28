@@ -35,7 +35,6 @@ namespace Param_ItemNamespace.Services
             yield return Singleton<LiveTileFeatureService>.Instance;
 //}]}
 //{--{
-
             yield break;
 //}--}
         }

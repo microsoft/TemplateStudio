@@ -8,7 +8,6 @@ Namespace Services
             Yield Singleton(Of SchemeActivationHandler).Instance
             '}]}
 '{--{
-
             Return
 '}--}
         End Function
