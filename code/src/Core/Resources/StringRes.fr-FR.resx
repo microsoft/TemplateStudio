@@ -444,4 +444,7 @@ Les modifications suivantes n'ont pu être intégrées : {2}
     <value>Le dossier {0} ne peut pas être renommé. Erreur : {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>Error downloading source config file.</value>
+  </data>
 </root>

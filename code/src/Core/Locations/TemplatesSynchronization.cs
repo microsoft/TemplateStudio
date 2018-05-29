@@ -147,21 +147,29 @@ namespace Microsoft.Templates.Core.Locations
         {
             bool notifyCheckingforUpdates = false;
 
-            Task[] downloadTasks = new Task[2];
-            downloadTasks[0] = _content.Source.LoadConfigAsync(ct);
-            downloadTasks[1] = Task.Delay(1000);
-
-            Task firstFinishedTask = await Task.WhenAny(downloadTasks);
-
-            if (firstFinishedTask.Id == downloadTasks[1].Id)
+            try
             {
-                notifyCheckingforUpdates = true;
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckingForUpdates });
-                await downloadTasks[0];
-            }
+                Task[] downloadTasks = new Task[2];
+                downloadTasks[0] = _content.Source.LoadConfigAsync(ct);
+                downloadTasks[1] = Task.Delay(1000);
 
-            return notifyCheckingforUpdates;
-        }
+                Task firstFinishedTask = await Task.WhenAny(downloadTasks);
+
+                if (firstFinishedTask.Id == downloadTasks[1].Id)
+                {
+                    notifyCheckingforUpdates = true;
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckingForUpdates });
+                    await downloadTasks[0];
+                }
+
+                return notifyCheckingforUpdates;
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorDownloadingConfig, ex).FireAndForget();
+                return notifyCheckingforUpdates;
+            }
+}
 
         private void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
         {

@@ -444,4 +444,7 @@ No se pueden integrar las modificaciones siguientes: {2}
     <value>No se puede cambiar el nombre de la carpeta {0}. Error: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>Error downloading source config file.</value>
+  </data>
 </root>
