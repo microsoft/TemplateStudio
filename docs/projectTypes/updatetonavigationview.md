@@ -6,17 +6,17 @@ The HamburgerMenu and NavigationView share the same concepts and provide the sam
 WTS projects used a class ShellNavigationItems to manage menu items on Hamburger Menu in two collections (primary and secondary items). This class is no longer necesary, as NavigationView provides the NavigationViewItem class to manage items. Settings page is shown/hidden by setting the property IsSettingsVisible. 
 
 Switch from HamburgerMenu to NavigationView is not a drop-in replacement, but we prepared the following step-by-step instructions:
-- [Framework: Codebehind, Language: C#](updatetonavigationview/codebehind-cs.md)
-- [Framework: MVVM Light, Language: C#](updatetonavigationview/mvvmlight-cs.md)
-- [Framework: MVVMBasic, Language: C#](updatetonavigationview/mvvmbasic-cs.md)
-- [Framework: Caliburn.Micro, Language: C#](updatetonavigationview/caliburnmicro-cs.md)
-- [Framework: Prism, Language: C#](updatetonavigationview/prism-cs.md)
+- [Framework: Codebehind, Language: C#](./updatetonavigationview/codebehind-cs.md)
+- [Framework: MVVM Light, Language: C#](./updatetonavigationview/mvvmlight-cs.md)
+- [Framework: MVVMBasic, Language: C#](./updatetonavigationview/mvvmbasic-cs.md)
+- [Framework: Caliburn.Micro, Language: C#](./updatetonavigationview/caliburnmicro-cs.md)
+- [Framework: Prism, Language: C#](./updatetonavigationview/prism-cs.md)
 
-- [Framework: Codebehind, Language: VB](updatetonavigationview/codebehind-vb.md)
-- [Framework: MVVM Light, Language: VB](updatetonavigationview/mvvmlight-vb.md)
-- [Framework: MVVMBasic, Language: VB](updatetonavigationview/mvvmbasic-vb.md)
+- [Framework: Codebehind, Language: VB](./updatetonavigationview/codebehind-vb.md)
+- [Framework: MVVM Light, Language: VB](./updatetonavigationview/mvvmlight-vb.md)
+- [Framework: MVVMBasic, Language: VB](./updatetonavigationview/mvvmbasic-vb.md)
 
-If you use actions on your menu, also look at this updated [document](navigationpane.md#invokecode)
+If you use actions on your menu, also look at this updated [document](./navigationpane.md#invokecode)
 
 You can find Community Toolkit's info regarding update from Hamburger Menu to Navigation view [here](https://docs.microsoft.com/en-us/windows/uwpcommunitytoolkit/controls/hamburgermenu#navview)
 and NavigationView's doc [here](https://docs.microsoft.com/en-us/windows/uwp/design/controls-and-patterns/navigationview)
