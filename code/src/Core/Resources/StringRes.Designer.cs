@@ -739,6 +739,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error downloading source config file..
+        /// </summary>
+        public static string TemplatesSynchronizationErrorDownloadingConfig {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationErrorDownloadingConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error extracting installed templates content...
         /// </summary>
         public static string TemplatesSynchronizationErrorExtracting {

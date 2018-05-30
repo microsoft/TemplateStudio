@@ -225,6 +225,7 @@ namespace Microsoft.Templates.UI
                     {
                         var depGenInfo = CreateGenInfo(dependencyTemplate.name, dependencyTemplate.template, genQueue);
                         depGenInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
+                        depGenInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
                     }
                 }
                 else
