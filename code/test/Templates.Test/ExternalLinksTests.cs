@@ -25,8 +25,9 @@ namespace Microsoft.Templates.Test
     [Trait("ExecutionSet", "ManualOnly")]
     public class ExternalLinksTests
     {
-        // This is the relative path from where the test assembly will run
+        // These are relative paths from where the test assembly will run
         private const string TemplatesRoot = "../../../../../Templates";
+        private const string DocsRoot = "../../../../../docs";
 
         private static List<string> knownGoodUrls = new List<string>();
 
@@ -108,6 +109,78 @@ namespace Microsoft.Templates.Test
 
             var errorMessage = new System.Text.StringBuilder();
             errorMessage.AppendLine("Some Description links failed:");
+
+            foreach (var brokenLink in filesWithBrokenLinks)
+            {
+                errorMessage.AppendLine($"Got a {brokenLink.statusCode} when requesting '{brokenLink.uri}' for '{brokenLink.file}'");
+            }
+
+            Assert.True(!filesWithBrokenLinks.Any(), errorMessage.ToString());
+        }
+
+        [Fact]
+        public async Task DocsLinksAreCorrectAsync()
+        {
+            var filesWithBrokenLinks = new List<(string file, string uri, int statusCode)>();
+
+            // Check all variations of the description files as localized descriptions may point to localized docs
+            foreach (var file in GetFiles(DocsRoot, "*.md"))
+            {
+                var fileContents = File.ReadAllText(file);
+                var links = Regex.Matches(fileContents, pattern, RegexOptions.IgnorePatternWhitespace);
+
+                var httpRoot = "https://github.com/Microsoft/WindowsTemplateStudio/tree/dev/docs";
+
+                foreach (Match link in links)
+                {
+                    var url = link.Groups[2].Value;
+
+                    var localFilePath = file.Substring(DocsRoot.Length).Replace('\\', '/');
+
+                    // Note. New files only added locally may cause false negatives
+                    if (url.StartsWith("/samples/"))
+                    {
+                        localFilePath = localFilePath.Substring(0, localFilePath.LastIndexOf('/'));
+                        url = httpRoot.Substring(0, httpRoot.LastIndexOf('/')) + localFilePath.Substring(0, localFilePath.LastIndexOf('/')) + url;
+                    }
+                    else if (url.StartsWith("../"))
+                    {
+                        localFilePath = localFilePath.Substring(0, localFilePath.LastIndexOf('/'));
+                        url = httpRoot + localFilePath.Substring(0, localFilePath.LastIndexOf('/')) + url.Substring(2);
+                    }
+                    else if (url.StartsWith("./"))
+                    {
+                        url = httpRoot + localFilePath.Substring(0, localFilePath.LastIndexOf('/')) + url.Substring(1);
+                    }
+                    else if (url.StartsWith("/"))
+                    {
+                        url = httpRoot + url;
+                    }
+                    else if (url.StartsWith("#"))
+                    {
+                        url = httpRoot + localFilePath + url;
+                    }
+                    else if (url == "_isAutomaticErrorReportingEnabled, value" || url == "Of T" || url == "_selected, value")
+                    {
+                        // Above is some code that is incorrectly picked up by the RegEx
+                        continue;
+                    }
+
+                    var statusCode = await GetStatusCodeAsync(url);
+
+                    switch (statusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            break;
+                        default:
+                            filesWithBrokenLinks.Add((file, url, (int)statusCode));
+                            break;
+                    }
+                }
+            }
+
+            var errorMessage = new System.Text.StringBuilder();
+            errorMessage.AppendLine("Some Docs links failed:");
 
             foreach (var brokenLink in filesWithBrokenLinks)
             {
