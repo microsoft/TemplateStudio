@@ -201,6 +201,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Commands\Resources\RelayCommandPackage.ico" />
     <Content Include="zh-CN\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -219,7 +220,6 @@
       <SubType>Designer</SubType>
     </VSCTCompile>
     <Content Include="Commands\Resources\RelayCommand.png" />
-    <Content Include="Commands\Resources\RelayCommandPackage.ico" />
     <Content Include="Content\EULA.rtf">
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
