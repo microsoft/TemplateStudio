@@ -73,7 +73,7 @@ Namespace Views
             flipView.Focus(FocusState.Programmatic)
         End Sub
 
-        Private Sub OnPageKeyDown(sender As Object, e As KeyRoutedEventArgs)
+        Private Sub OnKeyDown(sender As Object, e As KeyRoutedEventArgs)
             If e.Key = VirtualKey.Escape AndAlso NavigationService.CanGoBack Then
                 NavigationService.GoBack()
                 e.Handled = True
