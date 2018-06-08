@@ -181,7 +181,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetPageAndFeatureTemplatesForGeneration", "Prism")]
         [Trait("Type", "GenerationOneByOnePrism")]
-        public async Task GenPrismOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string platform, string language)
+        public async Task GenPrismOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language);
         }
