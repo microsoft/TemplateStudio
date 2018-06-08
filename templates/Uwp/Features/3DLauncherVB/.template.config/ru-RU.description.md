@@ -1,3 +1,3 @@
-﻿Include a 3D app launcher for when the app is used in a Mixed Reality environment.
+﻿Включите средство запуска 3D-приложений, когда приложение используется в среде со смешанной реальностью.
 
-The generated asset should be replaced with one appropriate to your app. For more details see [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
+Созданный ресурс должен быть заменен на один подходящий для вашего приложения. Для более подробной информации смотрите  [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).

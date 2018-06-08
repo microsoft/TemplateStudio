@@ -1,3 +1,3 @@
-﻿Include a 3D app launcher for when the app is used in a Mixed Reality environment.
+﻿アプリが混合現実環境で使用されるときのための3d アプリランチャーを含めます。
 
-The generated asset should be replaced with one appropriate to your app. For more details see [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
+生成されたアセットは、アプリに適切なものに置き換える必要があります。詳細については、 [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).

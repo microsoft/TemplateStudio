@@ -298,7 +298,7 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>**{1}**의 종속성 때문에 **{0}**를 제거할 수 없습니다.</value>
+    <value>제거할 수 없습니다 **{0}** 이러한 템플릿이 종속 되기 때문에: {1}</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
@@ -486,7 +486,7 @@
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>프로젝트 항목을 추가할 수 없습니다. 필수 SDK가 있는지 확인하십시오.</value>
+    <value>프로젝트 항목을 추가할 수 없습니다. </value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">

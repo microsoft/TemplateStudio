@@ -1,3 +1,3 @@
-﻿Include a 3D app launcher for when the app is used in a Mixed Reality environment.
+﻿Inclua um lançador de aplicativos 3D para quando o aplicativo for usado em um ambiente de realidade mista.
 
-The generated asset should be replaced with one appropriate to your app. For more details see [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
+O ativo gerado deve ser substituído por um apropriado para seu aplicativo. Para obter mais detalhes, consulte  [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).

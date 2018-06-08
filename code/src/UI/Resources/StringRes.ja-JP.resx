@@ -298,7 +298,7 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>**{1}** が依存しているため、**{0}** を削除できません。</value>
+    <value>これらのテンプレートはそれに依存しているため、**{0}** を削除できません: {1}</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
@@ -486,7 +486,7 @@
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>プロジェクト項目を追加できません。必要な SDK があることを確認してください。</value>
+    <value>プロジェクト項目を追加できません。</value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">

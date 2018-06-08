@@ -298,7 +298,7 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>No puedes eliminar **{0}** porque **{1}** depende de él.</value>
+    <value>No se puede quitar **{0}** porque estas plantillas dependen de ella: {1}</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
@@ -486,7 +486,7 @@
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>No se pueden agregar elementos del proyecto. Asegúrate de que tienes el SDK necesario.</value>
+    <value>No se pueden agregar elementos del proyecto. </value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">

@@ -1,3 +1,3 @@
-﻿Include a 3D app launcher for when the app is used in a Mixed Reality environment.
+﻿Uygulama karışık gerçeklik ortamında kullanıldığında 3D uygulama başlatıcısı içerir.
 
-The generated asset should be replaced with one appropriate to your app. For more details see [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
+Oluşturulan varlığın uygulamanız için uygun biri ile değiştirilmesi gerekir. Daha fazla ayrıntı için [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
