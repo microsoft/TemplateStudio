@@ -100,21 +100,17 @@ namespace Localization
                     case "EXT":
                         Console.WriteLine("Extract localizable items for different cultures.");
                         Console.WriteLine();
-                        Console.WriteLine("Localization ext -s \"sourceDirectory\" -d \"destinationDirectory\" [-c \"commitSHA\"] [-t \"tagName\"]");
+                        Console.WriteLine("Localization ext -o \"original_WTS_folder\" -a \"actual_WTS_folder\" -d \"destinationDirectory\"");
                         Console.WriteLine();
-                        Console.WriteLine($"\tsourceDirectory\t\t - path to the folder that contains{ArgumentNewLine}source files for data extraction{ArgumentNewLine}(it's root project folder).");
+                        Console.WriteLine($"\toriginal_WTS_folder\t - path to the folder that contains{ArgumentNewLine}old version of WTS to compare");
+                        Console.WriteLine();
+                        Console.WriteLine($"\tactual_WTS_folder\t - path to the folder that contains{ArgumentNewLine}actual version of WTS to compare");
                         Console.WriteLine();
                         Console.WriteLine($"\tdestinationDirectory\t - path to the folder in which will be{ArgumentNewLine}saved all extracted items.");
                         Console.WriteLine();
-                        Console.WriteLine($"\tcommitSHA (optional)\t - commit from where to look {ArgumentNewLine}for modified files");
-                        Console.WriteLine();
-                        Console.WriteLine($"\ttagName (optional)\t - indicate the tag name which marks {ArgumentNewLine}the commit from where to look {ArgumentNewLine}for modified files");
-                        Console.WriteLine();
                         Console.WriteLine("Example:");
                         Console.WriteLine();
-                        Console.WriteLine("\tLocalization ext -s \"C:\\Projects\\wts\" -d \"C:\\MyFolder\\Extracted\" -c \"f988be4c0878b2b51976e84ce827fce19cf294bf\"");
-                        Console.WriteLine("or");
-                        Console.WriteLine("\tLocalization ext -s \"C:\\Projects\\wts\" -d \"C:\\MyFolder\\Extracted\" -t \"v1.0\"");
+                        Console.WriteLine("\tLocalization ext -o \"C:\\Projects\\wts_old\" - a \"C:\\Projects\\wts\" - d \"C:\\MyFolder\\Extracted\"");
                         Console.WriteLine();
                         break;
                     case "GEN":

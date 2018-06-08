@@ -44,11 +44,11 @@ namespace Param_ItemNamespace.ViewModels
 
         public void SetImage(UIElement image) => _image = image;
 
-        public async Task InitializeAsync(SampleImage sampleImage, NavigationMode navigationMode)
+        public async Task InitializeAsync(string sampleImageId, NavigationMode navigationMode)
         {
-            if (sampleImage != null && navigationMode == NavigationMode.New)
+            if (!string.IsNullOrEmpty(sampleImageId) && navigationMode == NavigationMode.New)
             {
-                SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImage.ID);
+                SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImageId);
             }
             else
             {

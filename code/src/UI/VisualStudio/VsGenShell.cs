@@ -87,10 +87,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     proj.Save();
                 }
-                else
-                {
-                    AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddItemsToProject).FireAndForget();
-                }
             }
         }
 
@@ -208,6 +204,11 @@ namespace Microsoft.Templates.UI.VisualStudio
         public override void ShowTaskList()
         {
             ShowTaskListAsync().FireAndForget();
+        }
+
+        public override void OpenProjectOverview()
+        {
+            Dte.Events.SolutionEvents.Opened += SolutionEvents_Opened;
         }
 
         public override void ShowModal(System.Windows.Window dialog)
@@ -416,23 +417,16 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 if (_dte != null)
                 {
-                    Projects projects = Dte.Solution.Projects;
-                    if (projects?.Count >= 1)
-                    {
-                        foreach (var proj in projects)
-                        {
-                            if (((Project)proj).FullName.Equals(projFile, StringComparison.OrdinalIgnoreCase))
-                            {
-                                return (Project)proj;
-                            }
-                        }
-                    }
+                    SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                    VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
+                    ErrorHandler.ThrowOnFailure(hierarchy.GetProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ExtObject, out object obj));
+                    p = (Project)obj;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
-               p = null;
+                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddItemsToProject, ex).FireAndForget();
             }
 
             return p;
@@ -559,6 +553,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return projectGuid;
+        }
+
+        private void SolutionEvents_Opened()
+        {
+            Dte.ExecuteCommand("Project.Overview");
+            Dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
         }
 
         private void Collapse(UIHierarchyItem item)

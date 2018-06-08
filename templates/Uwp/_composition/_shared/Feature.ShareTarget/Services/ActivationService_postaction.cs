@@ -13,8 +13,8 @@ namespace Param_ItemNamespace.Services
             yield return Singleton<wts.ItemNameActivationHandler>.Instance;
 //}]}
 //{--{
-
-            yield break;//}--}
+            yield break;
+//}--}
         }
 
         //^^

@@ -13,8 +13,8 @@ namespace Param_ItemNamespace.Services
             yield return Singleton<SchemeActivationHandler>.Instance;
             //}]}
 //{--{
-
-            yield break;//}--}
+            yield break;
+//}--}
         }
     }
 }

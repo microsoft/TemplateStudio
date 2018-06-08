@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Test
         //// - Running a Administrator (for the WACK tests or you'll get UAC prompts)
         //// - Control of the machine (as WACK tests will launch and try and control the generated app. If you're doing other things it may cause the test to fail incorrectly)
         [Theory]
-        [MemberData("GetProjectTemplatesForBuildAsync", "", "", "Uwp")]
+        [MemberData("GetProjectTemplatesForBuild", "", "", "Uwp")]
         public async Task RunWackOnProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> selector =

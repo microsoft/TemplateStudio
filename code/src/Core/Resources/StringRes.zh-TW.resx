@@ -444,4 +444,7 @@
     <value>無法重新命名資料夾 {0}。錯誤：{1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>下載源設定檔時出錯。</value>
+  </data>
 </root>

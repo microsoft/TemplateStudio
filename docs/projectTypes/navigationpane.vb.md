@@ -11,7 +11,7 @@ This document covers:
 * [Using the navigation pane with command bars](#commandbar)
 * [Have the menu item invoke code rather than navigate](#invokecode)
 
-To update to navigation view read the following [document](updatetonavigationview.md).
+To update to navigation view read the following [document](./updatetonavigationview.md).
 
 <a name="menu"></a>
 

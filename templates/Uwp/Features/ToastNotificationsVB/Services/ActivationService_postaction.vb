@@ -14,8 +14,8 @@ Namespace Services
             yield Singleton(Of ToastNotificationsFeatureService).Instance
             '}]}
 '{--{
-
-            Exit Function'}--}
+            Exit Function
+'}--}
         End Function
     End Class
 End Namespace

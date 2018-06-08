@@ -16,7 +16,7 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.group": "Analytics",
-    "wts.licenses": "[Microsoft.AppCenter.Analytics](https://aka.ms/vbgfx2)",
+    "wts.licenses": "[Microsoft.AppCenter.Analytics](https://github.com/Microsoft/AppCenter-SDK-DotNet/blob/master/license.txt)",
     "wts.defaultInstance": "VSAppCenter",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",

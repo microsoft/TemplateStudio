@@ -444,4 +444,7 @@
     <value>{0} 폴더는 이름을 수정할 수 없습니다. 오류: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>원본 구성 파일 다운로드 중 오류가 발생 했습니다.</value>
+  </data>
 </root>

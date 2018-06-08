@@ -1,4 +1,5 @@
 ﻿Imports Windows.Storage
+Imports Windows.System
 Imports Windows.UI.Xaml.Media.Animation
 Imports Windows.UI.Xaml.Navigation
 
@@ -46,9 +47,9 @@ Namespace Views
 
         Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
-            Dim sampleImage = TryCast(e.Parameter, SampleImage)
-            If sampleImage IsNot Nothing AndAlso e.NavigationMode = NavigationMode.New Then
-                SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImage.ID)
+            Dim sampleImageId = TryCast(e.Parameter, String)
+            If Not String.IsNullOrEmpty(sampleImageId) AndAlso e.NavigationMode = NavigationMode.New Then
+                SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImageId)
             Else
                 Dim selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey)
                 If Not String.IsNullOrEmpty(selectedImageId) Then
@@ -65,6 +66,17 @@ Namespace Views
             If e.NavigationMode = NavigationMode.Back Then
                 previewImage.Visibility = Visibility.Visible
                 ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewPage.ImageGalleryViewAnimationClose, previewImage)
+            End If
+        End Sub
+
+        Private Sub OnShowFlipViewCompleted(sender As Object, e As Object)
+            flipView.Focus(FocusState.Programmatic)
+        End Sub
+
+        Private Sub OnPageKeyDown(sender As Object, e As KeyRoutedEventArgs)
+            If e.Key = VirtualKey.Escape AndAlso NavigationService.CanGoBack Then
+                NavigationService.GoBack()
+                e.Handled = True
             End If
         End Sub
     End Class

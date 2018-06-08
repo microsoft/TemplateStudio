@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Param_ItemNamespace.Models;
 using Param_ItemNamespace.ViewModels;
@@ -20,7 +21,7 @@ namespace Param_ItemNamespace.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            await ViewModel.InitializeAsync(e.Parameter as SampleImage, e.NavigationMode);
+            await ViewModel.InitializeAsync(e.Parameter as string, e.NavigationMode);
             showFlipView.Begin();
         }
 
@@ -32,6 +33,13 @@ namespace Param_ItemNamespace.Views
                 previewImage.Visibility = Visibility.Visible;
                 ViewModel.SetAnimation();
             }
+        }
+
+        private void OnShowFlipViewCompleted(object sender, object e) => flipView.Focus(FocusState.Programmatic);
+
+        private void OnKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            ViewModel.HandleKeyDown(e);
         }
     }
 }

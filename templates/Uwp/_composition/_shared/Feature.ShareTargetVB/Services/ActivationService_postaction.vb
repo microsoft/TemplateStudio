@@ -9,8 +9,8 @@ Namespace Services
             yield Singleton(Of wts.ItemNameActivationHandler).Instance
             '}]}
 '{--{
-
-            Exit Function'}--}
+            Exit Function
+'}--}
         End Function
 
         '^^

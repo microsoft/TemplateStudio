@@ -444,4 +444,7 @@ Aşağıdaki değişiklikler tümleştirilemedi: {2}
     <value>{0} klasörü yeniden adlandırılamıyor. Hata: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>Kaynak yapılandırma dosyası indirilirken hata oluştu.</value>
+  </data>
 </root>

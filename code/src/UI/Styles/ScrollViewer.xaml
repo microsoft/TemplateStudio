@@ -224,5 +224,6 @@
     <Style TargetType="ScrollViewer" x:Key="WtsScrollViewer">
         <Setter Property="Template" Value="{StaticResource WtsScrollViewerControlTemplate}" />
         <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="PanningMode" Value="VerticalFirst" />
     </Style>
 </ResourceDictionary>

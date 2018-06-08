@@ -444,4 +444,7 @@ Nemohly být integrovány následující změny: {2}
     <value>Složku {0} nelze přejmenovat. Chyba: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>Chyba při stahování zdrojového konfiguračního souboru.</value>
+  </data>
 </root>

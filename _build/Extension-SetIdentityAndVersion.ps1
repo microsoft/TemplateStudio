@@ -190,6 +190,27 @@ else
     Write-Warning "No files found to apply version."
 }
 
+
+## APPLY VERSION RelayCommandPackage
+Write-Host
+Write-Host "Applying version to RelayCommandPackage.cs"
+$files = Get-ChildItem -include "RelayCommandPackage.cs" -Recurse |  Where-Object{ $_.FullName -notmatch "\\Templates\\" }
+if($files)
+{
+    Write-Host "Will apply $versionNumber to $($files.count) files."
+
+    foreach ($file in $files) {
+        $filecontent = Get-Content($file)
+        attrib $file -r
+        $filecontent -replace $VersionRegex, $versionNumber | Out-File $file utf8
+        Write-Host "$file - version applied"
+    }
+}
+else
+{
+    Write-Warning "No relaycommandPackage found to apply version."
+}
+
 ## APPLY VERSION TO PROJECT TEMPLATE WIZARD REFERENCE
 if($publicKeyToken){
   Write-Host

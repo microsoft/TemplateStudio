@@ -547,7 +547,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable add project items. Ensure you have the required SDK..
+        ///   Looks up a localized string similar to Unable add project items..
         /// </summary>
         public static string ErrorUnableAddItemsToProject {
             get {
@@ -799,7 +799,7 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can not remove **{0}** because **{1}** depends on it..
+        ///   Looks up a localized string similar to You can not remove **{0}** because these templates depend on it: {1}.
         /// </summary>
         public static string NotificationRemoveError_Dependency {
             get {

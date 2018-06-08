@@ -67,7 +67,7 @@ The sample application was created using Windows Template Studio with the follow
 * Framework: MVVM Basic
 * Pages: MainPage and MarkdownPage
 
-For viewing the markdown a MarkdownTextBlock from the [UWP Community Toolkit](https://github.com/Microsoft/UWPCommunityToolkit) was added. 
+For viewing the markdown a MarkdownTextBlock from the [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit) was added. 
 
 ### Set up File Association Activation
 

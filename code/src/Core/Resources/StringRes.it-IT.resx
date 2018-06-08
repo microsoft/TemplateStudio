@@ -444,4 +444,7 @@ Impossibile integrare le seguenti modifiche: {2}
     <value>Impossibile rinominare la cartella {0}. Errore: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>Errore durante il download del file sorgente config.</value>
+  </data>
 </root>

@@ -39,6 +39,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void ShowTaskList();
 
+        public abstract void OpenProjectOverview();
+
         public abstract void ShowModal(Window dialog);
 
         public abstract void CancelWizard(bool back = true);

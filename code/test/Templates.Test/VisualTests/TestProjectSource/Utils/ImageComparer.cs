@@ -28,18 +28,18 @@ namespace AutomatedUITests.Utils
             new float[] {0, 0, 0, 0, 1}
         });
 
-        public static float PercentageDifferent(Image img1, Image img2)
+        public static float PercentageDifferent(Image img1, Image img2, params Rectangle[] exclusionAreas)
         {
-            var differences = img1.GetDifferences(img2);
+            var differences = img1.GetDifferences(img2, exclusionAreas);
             var diffPixels = differences.Cast<byte>().Count(b => b > 1);
 
             return diffPixels / 256f;
         }
 
-        public static Image GetDifferenceImage(this Image img1, Image img2)
+        public static Image GetDifferenceImage(this Image img1, Image img2, params Rectangle[] exclusionAreas)
         {
             int width = img1.Width / DivFactor, height = img1.Height / DivFactor;
-            var differences = img1.GetDifferences(img2);
+            var differences = img1.GetDifferences(img2, exclusionAreas);
             var originalImage = new Bitmap(img1, width * DiffImageGridSize + 1, height * DiffImageGridSize + 1);
             var g = Graphics.FromImage(originalImage);
 
@@ -57,22 +57,29 @@ namespace AutomatedUITests.Utils
             return originalImage.Resize(img1.Width, img1.Height);
         }
 
-        public static byte[,] GetDifferences(this Image img1, Image img2)
+        public static byte[,] GetDifferences(this Image img1, Image img2, params Rectangle[] exclusionAreas)
         {
             int width = img1.Width / DivFactor, height = img1.Height / DivFactor;
             var thisOne = (Bitmap)img1.Resize(width, height).GetGrayScaleVersion();
             var theOtherOne = (Bitmap)img2.Resize(width, height).GetGrayScaleVersion();
             var differences = new byte[width, height];
 
-            // exclusion area to cover app name (which may be different)
-            int exclusionAreaWidth = 600 / DivFactor;
-            int exclusionAreaHeight = 40 / DivFactor;
-
             for (var h = 0; h < height; h++)
             {
                 for (var w = 0; w < width; w++)
                 {
-                    if (w <= exclusionAreaWidth && h <= exclusionAreaHeight)
+                    var inExclusionArea = false;
+                    foreach (var exclusionArea in exclusionAreas)
+                    {
+                        if (w >= exclusionArea.Left / DivFactor && w <= exclusionArea.Right / DivFactor
+                         && h >= exclusionArea.Top / DivFactor && h <= exclusionArea.Bottom / DivFactor)
+                        {
+                            inExclusionArea = true;
+                            break;
+                        }
+                    }
+
+                    if (inExclusionArea)
                     {
                         differences[w, h] = 0;
                     }

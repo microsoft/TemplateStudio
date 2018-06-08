@@ -2,6 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Drawing;
+
 namespace AutomatedUITests
 {
     internal class TestAppInfo
@@ -11,5 +13,7 @@ namespace AutomatedUITests
         public const string AppName1 = "***APP-NAME-1-GOES-HERE***";
         public const string AppName2 = "***APP-NAME-2-GOES-HERE***";
         public const string ScreenshotsFolder = @"***FOLDER-GOES-HERE***";
+
+        public static Rectangle[] ExclusionAreas => new Rectangle[0];
     }
 }

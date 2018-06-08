@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "3D App Launcher",
+  "description": "Schließen Sie einen 3D-App-Launcher ein, wenn die app in einer Mixed-Reality-Umgebung verwendet wird.",
+  "identity": "wts.Feat.3DLauncher"
+}

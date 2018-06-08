@@ -27,7 +27,8 @@ namespace Param_ItemNamespace.Services
             yield return Singleton<StoreNotificationsFeatureService>.Instance;
             //}]}
 //{--{
-            yield break;//}--}
+            yield break;
+//}--}
         }
     }
 }
