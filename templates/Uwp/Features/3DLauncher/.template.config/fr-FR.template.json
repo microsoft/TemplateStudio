@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "3D App Launcher",
-  "description": "Include a 3D app launcher when the app is used in a Mixed Reality environment.",
+  "description": "Incluez un lanceur d'application 3D lorsque l'application est utilisée dans un environnement de réalité mixte.",
   "identity": "wts.Feat.3DLauncher"
 }

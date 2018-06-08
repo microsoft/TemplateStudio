@@ -445,6 +445,6 @@
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
-    <value>Error downloading source config file.</value>
+    <value>下载源配置文件时出错。</value>
   </data>
 </root>
