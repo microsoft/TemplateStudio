@@ -9,7 +9,7 @@
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid 
+        <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <controls:DataGrid ItemsSource="{x:Bind Source}" AutoGenerateColumns="True" />
         </Grid>

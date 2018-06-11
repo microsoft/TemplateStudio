@@ -227,6 +227,14 @@ namespace Microsoft.Templates.Test
                     {
                         "Await Singleton(Of HubNotificationsService).Instance.InitializeAsync()",
                         "await Singleton<HubNotificationsService>.Instance.InitializeAsync();"
+                    },
+                    {
+                        "mapControl.MapServiceToken = String.Empty",
+                        "mapControl.MapServiceToken = string.Empty;"
+                    },
+                    {
+                        "map.MapServiceToken = String.Empty",
+                        "map.MapServiceToken = string.Empty;"
                     }
                 };
 

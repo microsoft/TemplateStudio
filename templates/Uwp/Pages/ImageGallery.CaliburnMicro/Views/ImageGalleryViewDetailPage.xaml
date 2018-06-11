@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:Param_ItemNamespace.Models"
     xmlns:cm="using:Caliburn.Micro"
-    cm:Message.Attach="[Event KeyDown] = [OnKeyDown($eventArgs)]"
+    cm:Message.Attach="[Event KeyDown] = [OnPageKeyDown($eventArgs)]"
     mc:Ignorable="d">
 
     <Page.Resources>

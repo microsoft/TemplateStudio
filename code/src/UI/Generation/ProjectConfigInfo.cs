@@ -250,15 +250,14 @@ namespace Microsoft.Templates.UI.Generation
         {
             if (IsCSharpProject())
             {
-                return (ExistsFileInProjectPath("Services", "ActivationService.cs") && ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                    && (ExistsFileInProjectPath("Views", "ShellNavigationItem.cs") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs")))
-                    || (ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.cs") && ExistsFileInProjectPath("Constants", "PageTokens.cs"));
+                // Prism doesn't have an activation service, but will have PageToken constants
+                return ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                    && (ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Constants", "PageTokens.cs"));
             }
             else
             {
                 return ExistsFileInProjectPath("Services", "ActivationService.vb")
-                    && ExistsFileInProjectPath("Views", "ShellPage.xaml")
-                    && (ExistsFileInProjectPath("Views", "ShellNavigationItem.vb") || ExistsFileInProjectPath("ViewModels", "ShellNavigationItem.vb"));
+                    && ExistsFileInProjectPath("Views", "ShellPage.xaml");
             }
         }
 

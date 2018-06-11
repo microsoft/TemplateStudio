@@ -37,7 +37,7 @@ namespace Param_ItemNamespace.Views
 
         private void OnShowFlipViewCompleted(object sender, object e) => flipView.Focus(FocusState.Programmatic);
 
-        private void OnKeyDown(object sender, KeyRoutedEventArgs e)
+        private void OnPageKeyDown(object sender, KeyRoutedEventArgs e)
         {
             ViewModel.HandleKeyDown(e);
         }
