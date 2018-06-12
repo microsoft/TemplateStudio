@@ -56,6 +56,8 @@ Namespace BackgroundTasks
         End Function
 
         Public Overrides Sub OnCanceled(sender As IBackgroundTaskInstance, reason As BackgroundTaskCancellationReason)
+            _cancelRequested = True
+
             ' TODO WTS: Insert code to handle the cancelation request here.
             ' Documentation: https://docs.microsoft.com/windows/uwp/launch-resume/handle-a-cancelled-background-task
         End Sub
