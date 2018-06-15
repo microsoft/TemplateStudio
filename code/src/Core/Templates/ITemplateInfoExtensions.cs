@@ -285,6 +285,21 @@ namespace Microsoft.Templates.Core
             return false;
         }
 
+        public static bool GeUsesAnyCpu(this ITemplateInfo ti)
+        {
+            var result = GetValueFromTag(ti, TagPrefix + "usesAnyCPU");
+
+            if (!string.IsNullOrEmpty(result))
+            {
+                if (bool.TryParse(result, out bool boolResult))
+                {
+                    return boolResult;
+                }
+            }
+
+            return false;
+        }
+
         public static List<string> GetProjectTypeList(this ITemplateInfo ti)
         {
             var projectTypes = GetValueFromTag(ti, TagPrefix + "projecttype");

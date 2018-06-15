@@ -63,7 +63,15 @@ namespace Microsoft.Templates.Core.PostActions
             switch (genInfo.Template.GetTemplateOutputType())
             {
                 case TemplateOutputType.Project:
-                    postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                    if (genInfo.Template.GetIsHidden())
+                    {
+                        postActions.Add(new AddAnyCpuProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                    }
+                    else
+                    {
+                        postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                    }
+
                     break;
                 case TemplateOutputType.Item:
                     postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));

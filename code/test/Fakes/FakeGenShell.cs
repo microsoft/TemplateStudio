@@ -77,14 +77,14 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public override void AddProjectToSolution(string projectFullPath)
+        public override void AddProjectToSolution(string projectFullPath, bool usesAnyCpu)
         {
             var msbuildProj = FakeMsBuildProject.Load(projectFullPath);
             var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
             var projectRelativeToSolutionPath = projectFullPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
-            solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath);
+            solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, usesAnyCpu);
         }
 
         public override string GetActiveProjectNamespace()

@@ -30,7 +30,34 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
                     var solutionPath = Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, output.GetOutputPath(_genParameters)));
-                    GenContext.ToolBox.Shell.AddProjectToSolution(solutionPath);
+                    GenContext.ToolBox.Shell.AddProjectToSolution(solutionPath, usesAnyCpu: false);
+                }
+            }
+
+            chrono.Stop();
+            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
+        }
+    }
+
+    public class AddAnyCpuProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
+    {
+        private Dictionary<string, string> _genParameters;
+
+        public AddAnyCpuProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
+            : base(relatedTemplate, config)
+        {
+            _genParameters = genParameters;
+        }
+
+        internal override void ExecuteInternal()
+        {
+            var chrono = Stopwatch.StartNew();
+            foreach (var output in Config)
+            {
+                if (!string.IsNullOrWhiteSpace(output.Path))
+                {
+                    var solutionPath = Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, output.GetOutputPath(_genParameters)));
+                    GenContext.ToolBox.Shell.AddProjectToSolution(solutionPath, usesAnyCpu: true);
                 }
             }
 

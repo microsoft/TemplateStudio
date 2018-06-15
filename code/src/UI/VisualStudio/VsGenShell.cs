@@ -154,7 +154,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override void AddProjectToSolution(string projectFullPath)
+        public override void AddProjectToSolution(string projectFullPath, bool usesAnyCpu)
         {
             try
             {
