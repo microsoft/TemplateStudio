@@ -16,5 +16,6 @@ namespace Microsoft.Templates.Core.Gen
         public const string Framework = "wts.generationFramework";
         public const string Platform = "wts.generationPlatform";
         public const string ProjectName = "wts.projectName";
+        public const string CoreProjectGuid = "wts.coreProjectGuid";
     }
 }

@@ -45,6 +45,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; } = new Dictionary<ProjectMetricsEnum, double>();
 
+        public string CoreProjectGuid { get; set; }
+
         protected void Initialize(string language)
         {
             _language = language;

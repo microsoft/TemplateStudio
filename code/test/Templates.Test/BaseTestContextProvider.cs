@@ -30,5 +30,7 @@ namespace Microsoft.Templates.Test
         public List<string> FilesToOpen { get; } = new List<string>();
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; } = new Dictionary<ProjectMetricsEnum, double>();
+
+        public string CoreProjectGuid { get; set; }
     }
 }

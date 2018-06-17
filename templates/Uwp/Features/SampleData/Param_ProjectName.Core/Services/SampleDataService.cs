@@ -1,9 +1,9 @@
-﻿using Param_ItemNamespace.Models;
+﻿using Param_ItemNamespace.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Param_ItemNamespace.Services
+namespace Param_ItemNamespace.Core.Services
 {
     // This class holds sample data used by some generated pages to show how they can be used.
     // TODO WTS: Delete this file once your app is using real data.

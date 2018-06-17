@@ -38,6 +38,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics => new Dictionary<ProjectMetricsEnum, double>();
 
+        public string CoreProjectGuid { get; set; }
+
         [Fact]
         public void MergeResourceDictionaryPostaction()
         {

@@ -4,7 +4,7 @@
   "name": "Shared Core Project",
   "groupIdentity": "wts.Feat.CoreProject",
   "identity": "wts.Feat.CoreProject",
-  "description": "Add project for UI tests using Appium via Windows Application Driver.",
+  "description": "Add a .Net Standard library project for non-platforms-specific functionality.",
   "tags": {
     "language": "C#",
     "type": "project",

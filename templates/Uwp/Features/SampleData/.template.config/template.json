@@ -18,19 +18,24 @@
     "wts.isHidden": "true",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
-    "wts.dependencies": "wts.Feat.CoreProject"
+    "wts.dependencies": "wts.Feat.CoreProject",
+    "wts.outputToParent": "true"
   },
   "sourceName": "SampleDataServiceFeature",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\SampleDataService.cs"
+      "path": ".\\Param_ProjectName.Core\\Services\\SampleDataService.cs"
     },
     {
-      "path": ".\\Models\\SampleOrder.cs"
+      "path": ".\\Param_ProjectName.Core\\Models\\SampleOrder.cs"
     }
   ],
   "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName"
+    },
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"

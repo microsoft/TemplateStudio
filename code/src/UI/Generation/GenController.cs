@@ -46,7 +46,15 @@ namespace Microsoft.Templates.UI
 
                 AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
 
-                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false, null);
+                var parameters = genInfo.Parameters;
+
+                if (GenContext.Current.CoreProjectGuid != null)
+                {
+                    // Adding this here as it's not known when the genInfo is created
+                   parameters.Add(GenParams.CoreProjectGuid, GenContext.Current.CoreProjectGuid);
+                }
+
+                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, parameters, false, false, null);
 
                 genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 

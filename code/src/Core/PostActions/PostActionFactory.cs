@@ -56,6 +56,12 @@ namespace Microsoft.Templates.Core.PostActions
             {
                 postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
             }
+
+            var addProjectReference = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddProjectReferencePostAction.Id);
+            if (addProjectReference != null)
+            {
+                postActions.Add(new AddProjectReferencePostAction(genInfo.Template.Identity, addProjectReference, genInfo.Parameters));
+            }
         }
 
         internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
@@ -92,7 +98,7 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .EnumerateFiles(GenContext.Current.DestinationParentPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
                 .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError))));
         }

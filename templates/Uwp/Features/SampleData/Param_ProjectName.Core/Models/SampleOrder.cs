@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Param_ItemNamespace.Models
+namespace Param_ItemNamespace.Core.Models
 {
     // TODO WTS: Remove this class once your pages/features are using your data.
     // This is used by the SampleDataService.

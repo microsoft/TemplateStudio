@@ -12,11 +12,11 @@ using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
+    public class AddAnyCpuProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
         private Dictionary<string, string> _genParameters;
 
-        public AddProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
+        public AddAnyCpuProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
             : base(relatedTemplate, config)
         {
             _genParameters = genParameters;
@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
                     var solutionPath = Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, output.GetOutputPath(_genParameters)));
-                    GenContext.ToolBox.Shell.AddProjectToSolution(solutionPath, usesAnyCpu: false);
+                    GenContext.ToolBox.Shell.AddProjectToSolution(solutionPath, usesAnyCpu: true);
                 }
             }
 

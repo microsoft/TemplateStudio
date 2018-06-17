@@ -84,7 +84,14 @@ namespace Microsoft.Templates.Fakes
 
             var projectRelativeToSolutionPath = projectFullPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
-            solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, usesAnyCpu);
+            var guid = msbuildProj.Guid;
+
+            if (projectFullPath.Contains(".Core."))
+            {
+                GenContext.Current.CoreProjectGuid = guid;
+            }
+
+            solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, guid, projectRelativeToSolutionPath, usesAnyCpu);
         }
 
         public override string GetActiveProjectNamespace()

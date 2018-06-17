@@ -112,60 +112,70 @@ EndProject
                     slnContent = slnContent.Insert(endGobalSectionIndex - 1, projectConfigContent);
                 }
 
-                if (usesAnyCpu)
+                slnContent = AddAnyCpuSolutionConfigurations(slnContent, usesAnyCpu);
+                slnContent = AddAnyCpuProjectConfigutations(slnContent);
+            }
+
+            File.WriteAllText(_path, slnContent, Encoding.UTF8);
+        }
+
+        private string AddAnyCpuProjectConfigutations(string slnContent)
+        {
+            if (slnContent.Contains("|Any CPU = "))
+            {
+                // Ensure that all projects have 'Any CPU' platform configurations
+                var slnLines = slnContent.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+                var projectGuids = new List<string>();
+
+                foreach (var line in slnLines)
                 {
-                    if (!slnContent.Contains("Debug|Any CPU = Debug|Any CPU"))
+                    if (line.StartsWith("Project(\"{"))
                     {
-                        slnContent = slnContent.Replace("Debug|ARM = Debug|ARM", "Debug|Any CPU = Debug|Any CPU\r\n\t\tDebug|ARM = Debug|ARM");
+                        projectGuids.Add(line.Substring(line.LastIndexOf("{")).Trim(new[] { '{', '}', '"' }));
                     }
 
-                    if (!slnContent.Contains("Release|Any CPU = Release|Any CPU"))
+                    if (line.StartsWith("Global"))
                     {
-                        slnContent = slnContent.Replace("Release|ARM = Release|ARM", "Release|Any CPU = Release|Any CPU\r\n\t\tRelease|ARM = Release|ARM");
+                        break;
                     }
                 }
 
-                if (slnContent.Contains("|Any CPU = "))
+                // see if already have an entry
+                // if not, add them above the ARM entries
+                foreach (var projGuid in projectGuids)
                 {
-                    // Ensure that all projects have 'Any CPU' platform configurations
-
-                    // Get all project guids
-
-                    var slnLines = slnContent.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-                    var projectGuids = new List<string>();
-
-                    foreach (var line in slnLines)
+                    if (!slnContent.Contains($"{{{projGuid}}}.Debug|Any CPU.ActiveCfg"))
                     {
-                        if (line.StartsWith("Project(\"{"))
-                        {
-                            projectGuids.Add(line.Substring(line.LastIndexOf("{")).Trim(new[] { '{',  '}', '"' }));
-                        }
-
-                        if (line.StartsWith("Global"))
-                        {
-                            break;
-                        }
+                        slnContent = slnContent.Replace($"{{{projGuid}}}.Debug|ARM.ActiveCfg", $"{{{projGuid}}}.Debug|Any CPU.ActiveCfg = Debug|x86\r\n\t\t{{{projGuid}}}.Debug|ARM.ActiveCfg");
                     }
 
-                    // see if already have an entry
-                    // if not add above ARM entries
-                    foreach (var proj in projectGuids)
+                    if (!slnContent.Contains($"{{{projGuid}}}.Release|Any CPU.ActiveCfg"))
                     {
-                        if (!slnContent.Contains($"{{{proj}}}.Debug|Any CPU.ActiveCfg"))
-                        {
-                            slnContent = slnContent.Replace($"{{{proj}}}.Debug|ARM.ActiveCfg", $"{{{proj}}}.Debug|Any CPU.ActiveCfg = Debug|x86\r\n\t\t{{{proj}}}.Debug|ARM.ActiveCfg");
-                        }
-
-                        if (!slnContent.Contains($"{{{proj}}}.Release|Any CPU.ActiveCfg"))
-                        {
-                            slnContent = slnContent.Replace($"{{{proj}}}.Release|ARM.ActiveCfg", $"{{{proj}}}.Release|Any CPU.ActiveCfg = Release|x86\r\n\t\t{{{proj}}}.Release|ARM.ActiveCfg");
-                        }
+                        slnContent = slnContent.Replace($"{{{projGuid}}}.Release|ARM.ActiveCfg", $"{{{projGuid}}}.Release|Any CPU.ActiveCfg = Release|x86\r\n\t\t{{{projGuid}}}.Release|ARM.ActiveCfg");
                     }
                 }
             }
 
-            File.WriteAllText(_path, slnContent, Encoding.UTF8);
+            return slnContent;
+        }
+
+        private string AddAnyCpuSolutionConfigurations(string slnContent, bool usesAnyCpu)
+        {
+            if (usesAnyCpu)
+            {
+                if (!slnContent.Contains("Debug|Any CPU = Debug|Any CPU"))
+                {
+                    slnContent = slnContent.Replace("Debug|ARM = Debug|ARM", "Debug|Any CPU = Debug|Any CPU\r\n\t\tDebug|ARM = Debug|ARM");
+                }
+
+                if (!slnContent.Contains("Release|Any CPU = Release|Any CPU"))
+                {
+                    slnContent = slnContent.Replace("Release|ARM = Release|ARM", "Release|Any CPU = Release|Any CPU\r\n\t\tRelease|ARM = Release|ARM");
+                }
+            }
+
+            return slnContent;
         }
 
         private static string GetProjectTemplate(string projectExtension)
