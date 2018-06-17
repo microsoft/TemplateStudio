@@ -18,7 +18,7 @@
   "PrimaryOutputs": [
   ],
   "symbols": {
-    "wts.ProjectName": {
+    "wts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName"
     },
