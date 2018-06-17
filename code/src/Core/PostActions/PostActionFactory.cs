@@ -56,12 +56,6 @@ namespace Microsoft.Templates.Core.PostActions
             {
                 postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
             }
-
-            var addProjectReference = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddProjectReferencePostAction.Id);
-            if (addProjectReference != null)
-            {
-                postActions.Add(new AddProjectReferencePostAction(genInfo.Template.Identity, addProjectReference, genInfo.Parameters));
-            }
         }
 
         internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
