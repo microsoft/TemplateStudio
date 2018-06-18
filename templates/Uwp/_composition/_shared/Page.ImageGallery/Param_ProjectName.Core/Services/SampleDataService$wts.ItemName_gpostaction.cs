@@ -1,7 +1,7 @@
 ﻿//{**
 // This code block adds the method `GetSampleModelDataAsync()` to the SampleDataService of your project.
 //**}
-namespace Param_ItemNamespace.Services
+namespace Param_ItemNamespace.Core.Services
 {
     public static class SampleDataService
     {
