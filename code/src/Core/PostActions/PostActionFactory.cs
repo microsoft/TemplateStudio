@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Core.PostActions
             Directory
                 .EnumerateFiles(GenContext.Current.DestinationParentPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError))));
+                .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError, outputtingToParent: true))));
         }
 
         internal void AddSearchAndReplaceActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern, bool failOnError)
@@ -102,18 +102,18 @@ namespace Microsoft.Templates.Core.PostActions
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError))));
+                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, outputtingToParent: false))));
         }
 
         private static void AddMergePostAction(GenInfo genInfo, List<PostAction> postActions, bool failOnError, string f)
         {
             if (IsResourceDictionaryPostaction(f))
             {
-                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError)));
+                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, genInfo.Template.GetOutputToParent())));
             }
             else
             {
-                postActions.Add(new MergePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError)));
+                postActions.Add(new MergePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, genInfo.Template.GetOutputToParent())));
             }
         }
 
