@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 //}]}
 
-namespace Param_ItemNamespace.Services
+namespace Param_ItemNamespace.Core.Services
 {
     public static class SampleDataService
     {
