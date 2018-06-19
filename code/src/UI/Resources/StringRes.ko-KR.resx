@@ -650,7 +650,7 @@
     <comment>Button details help text. {0}: name of template</comment>
   </data>
   <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
-    <value><Enter> 키를 눌러 {0}을(를) 추가합니다</value>
+    <value>&lt;Enter&gt; 키를 눌러 {0}을(를) 추가합니다</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
   <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
