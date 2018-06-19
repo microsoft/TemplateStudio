@@ -16,24 +16,25 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "7",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
-    "wts.dependencies": "wts.Feat.SampleDataService.Prism",
+    "wts.dependencies": "wts.Feat.SampleDataService.Prism|wts.Feat.CoreProject",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true" 
+    "wts.rightClickEnabled":"true",
+    "wts.outputToParent": "true"
   },
   "sourceName": "ChartView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\ChartViewPage.xaml"
+      "path": ".\\Param_ProjectName\\Views\\ChartViewPage.xaml"
     },
     {
-      "path": ".\\Views\\ChartViewPage.xaml.cs"
+      "path": ".\\Param_ProjectName\\Views\\ChartViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\ChartViewViewModel.cs"
+      "path": ".\\Param_ProjectName\\ViewModels\\ChartViewViewModel.cs"
     },
     {
-      "path": ".\\Models\\DataPoint.cs"
+      "path": ".\\Param_ProjectName.Core\\Models\\DataPoint.cs"
     }
   ],
   "symbols": {

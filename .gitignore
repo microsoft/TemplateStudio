@@ -262,3 +262,4 @@ templates/_composition/_shared/Page.Chart.SampleDataService/Services/SampleDataS
 /code/AllButWhack.playlist
 /code/tools/Localization/Localization.sln
 /code/FinalTests.playlist
+templates/Uwp/Pages/Chart.Prism/Param_ProjectName.Core/Services/ISampleDataService$ChartView_gpostaction.cs

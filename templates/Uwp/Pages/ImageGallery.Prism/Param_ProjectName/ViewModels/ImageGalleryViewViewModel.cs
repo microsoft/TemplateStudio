@@ -10,37 +10,48 @@ using Windows.UI.Xaml.Media.Animation;
 
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Core.Services;
 using Param_ItemNamespace.Services;
+using Param_ItemNamespace.Core.Services;
 using Param_ItemNamespace.Views;
+
+using Prism.Commands;
+using Prism.Windows.Navigation;
 
 namespace Param_ItemNamespace.ViewModels
 {
     public class ImageGalleryViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        private readonly INavigationService _navigationService;
+        private readonly ISampleDataService _sampleDataService;
+
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
         public const string ImageGalleryViewAnimationOpen = "ImageGalleryView_AnimationOpen";
         public const string ImageGalleryViewAnimationClose = "ImageGalleryView_AnimationClose";
 
-        private readonly INavigationService _navigationService;
+        private ObservableCollection<SampleImage> _source;
+        private ICommand _itemSelectedCommand;
         private GridView _imagesGridView;
 
-        public BindableCollection<SampleImage> Source { get; } = new BindableCollection<SampleImage>();
-
-        public ImageGalleryViewViewModel(INavigationService navigationService)
+        public ObservableCollection<SampleImage> Source
         {
-            _navigationService = navigationService;
+            get => _source;
+            set => Param_Setter(ref _source, value);
         }
 
-        protected override void OnInitialize()
-        {
-            base.OnInitialize();
+        public ICommand ItemSelectedCommand => _itemSelectedCommand ?? (_itemSelectedCommand = new DelegateCommand<ItemClickEventArgs>(OnsItemSelected));
 
-            var view = GetView() as IImageGalleryViewPage;
-            _imagesGridView = view.GetGridView();
+        public ImageGalleryViewViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
+        {
+            _navigationService = navigationServiceInstance;
 
             // TODO WTS: Replace this with your actual data
-            Source.AddRange(SampleDataService.GetGallerySampleData());
+            _sampleDataService = sampleDataServiceInstance;
+            Source = _sampleDataService.GetGallerySampleData();
+        }
+
+        public void Initialize(GridView imagesGridView)
+        {
+            _imagesGridView = imagesGridView;
         }
 
         public async Task LoadAnimationAsync()
@@ -60,13 +71,11 @@ namespace Param_ItemNamespace.ViewModels
             }
         }
 
-        public void OnImageSelected(SampleImage image)
+        private void OnsItemSelected(ItemClickEventArgs args)
         {
-            _imagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, image, "galleryImage");
-
-            _navigationService.For<ImageGalleryViewDetailViewModel>()
-                .WithParam(v => v.ID, image.ID)
-                .Navigate();
+            var selected = args.ClickedItem as SampleImage;
+            _imagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage");
+            _navigationService.Navigate(PageTokens.ImageGalleryViewDetailPage, selected.ID);
         }
     }
 }

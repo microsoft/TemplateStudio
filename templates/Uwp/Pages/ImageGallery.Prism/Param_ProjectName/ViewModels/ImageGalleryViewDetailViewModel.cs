@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Caliburn.Micro;
 
 using Windows.Storage;
 using Windows.System;
@@ -14,49 +13,52 @@ using Windows.UI.Xaml.Navigation;
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Services;
+
+using Prism.Windows.Mvvm;
+using Prism.Windows.Navigation;
 
 namespace Param_ItemNamespace.ViewModels
 {
-    public class ImageGalleryViewDetailViewModel : Screen
+    public class ImageGalleryViewDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private static UIElement _image;
         private readonly INavigationService _navigationService;
-        private SampleImage _selectedImage;
+        private readonly ISampleDataService _sampleDataService;
+        private static UIElement _image;
+        private object _selectedImage;
+        private ObservableCollection<SampleImage> _source;
 
-        public SampleImage SelectedImage
+        public object SelectedImage
         {
             get => _selectedImage;
             set
             {
                 Param_Setter(ref _selectedImage, value);
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, SelectedImage.ID);
+                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, ((SampleImage)SelectedImage).ID);
             }
         }
 
-        public string ID { get; set; }
-
-        public BindableCollection<SampleImage> Source { get; } = new BindableCollection<SampleImage>();
-
-        public ImageGalleryViewDetailViewModel(INavigationService navigationService)
+        public ObservableCollection<SampleImage> Source
         {
-            _navigationService = navigationService;
+            get => _source;
+            set => Param_Setter(ref _source, value);
         }
 
-        protected override void OnInitialize()
+        public ImageGalleryViewDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
         {
-            base.OnInitialize();
+            _navigationService = navigationServiceInstance;
 
             // TODO WTS: Replace this with your actual data
-            Source.AddRange(SampleDataService.GetGallerySampleData());
+            _sampleDataService = sampleDataServiceInstance;
+            Source = _sampleDataService.GetGallerySampleData();
         }
 
-        public async Task InitializeAsync(UIElement image, NavigationMode navigationMode)
+        public void SetImage(UIElement image) => _image = image;
+
+        public async Task InitializeAsync(string sampleImageId, NavigationMode navigationMode)
         {
-            _image = image;
-            if (navigationMode == NavigationMode.New)
+            if (!string.IsNullOrEmpty(sampleImageId) && navigationMode == NavigationMode.New)
             {
-                SelectedImage = Source.FirstOrDefault(i => i.ID == ID);
+                SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImageId);
             }
             else
             {
@@ -76,9 +78,9 @@ namespace Param_ItemNamespace.ViewModels
             ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image);
         }
 
-        public void OnPageKeyDown(KeyRoutedEventArgs e)
+        public void HandleKeyDown(KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.Escape && _navigationService.CanGoBack)
+            if (e.Key == VirtualKey.Escape && _navigationService.CanGoBack())
             {
                 _navigationService.GoBack();
                 e.Handled = true;
