@@ -298,8 +298,8 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>Вы не можете удалить **{0}**, так как эти шаблоны зависят от него: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+    <value>Невозможно удалить **{0}**, так как от него зависят следующие шаблоны: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>Произошла ошибка при обновлении шаблонов. Дополнительные сведения см. в окне вывода.</value>
@@ -486,11 +486,11 @@
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Не удается добавить элементы проекта. </value>
+    <value>Не удалось добавить элементы проекта.</value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Не удается добавить проект в решение. Проверьте, что у вас установлен ожидаемый пакет SDK.</value>
+    <value>Не удалось добавить проект в решение. Убедитесь, что у вас установлен ожидаемый пакет SDK.</value>
     <comment>Error message for unable add project to solution</comment>
   </data>
   <data name="ErrorUnableToRefreshProject" xml:space="preserve">
@@ -692,7 +692,7 @@
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Unable to set default solution configuration</value>
+    <value>Не удалось задать конфигурацию решения по умолчанию</value>
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
 </root>

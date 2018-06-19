@@ -1,3 +1,3 @@
-﻿A page displaying a DataGrid from the Windows Community Toolkit.
+﻿Una pagina con DataGrid di Windows Community Toolkit.
 
-The DataGrid control you know and love from Silverlight and WPF is now available for Windows 10. This control presents data in a customizable table of rows and columns.
+Il controllo DataGrid che conosci e apprezzi in Silverlight e WPF è ora disponibile per Windows 10. Questo controllo presenta i dati in una tabella personalizzabile costituita da righe e colonne.

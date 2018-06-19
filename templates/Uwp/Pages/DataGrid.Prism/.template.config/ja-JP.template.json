@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "DataGrid",
-  "description": "A page displaying a simple data grid.",
+  "description": "シンプルなデータ グリッドを表示するページです。",
   "identity": "wts.Page.DataGrid.Prism"
 }
