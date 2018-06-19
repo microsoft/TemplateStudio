@@ -287,7 +287,7 @@ namespace TemplateValidator
         {
             if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences" }.Contains(tag.Value))
             {
-                results.Add($"Invalid value '{tag.Value}' specified in the wts.rightClickEnabled tag.");
+                results.Add($"Invalid value '{tag.Value}' specified in the wts.group tag.");
             }
         }
 
