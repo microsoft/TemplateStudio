@@ -298,8 +298,8 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>これらのテンプレートはそれに依存しているため、**{0}** を削除できません: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+    <value>これらのテンプレートが依存しているため、**{0}** を削除できません。{1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>テンプレートを最新の情報に更新する際のエラーです。詳細については、出力ウィンドウをご覧ください。</value>
@@ -692,7 +692,7 @@
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Unable to set default solution configuration</value>
+    <value>規定のソリューション構成を設定できません</value>
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
 </root>

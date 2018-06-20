@@ -298,8 +298,8 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>제거할 수 없습니다 **{0}** 이러한 템플릿이 종속 되기 때문에: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+    <value>이 템플릿의 의존성 때문에 **{0}**를 제거할 수 없습니다: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>템플릿을 새로 고치는 중 오류가 발생했습니다. 자세한 정보는 출력 창을 참조하십시오.</value>
@@ -486,7 +486,7 @@
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>프로젝트 항목을 추가할 수 없습니다. </value>
+    <value>프로젝트 항목을 추가할 수 없습니다.</value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
@@ -692,7 +692,7 @@
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Unable to set default solution configuration</value>
+    <value>기본 솔루션 구성을 설정할 수 없습니다.</value>
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
 </root>

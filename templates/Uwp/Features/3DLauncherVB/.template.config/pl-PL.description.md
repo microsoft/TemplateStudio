@@ -1,3 +1,3 @@
-﻿Dołącz Launcher aplikacji 3D, gdy aplikacja jest używana w środowisku mieszanym rzeczywistości.
+﻿Dołącz narzędzie do uruchamiania aplikacji 3D w przypadku, gdy aplikacja jest używana w środowisku rzeczywistości mieszanej.
 
-Wygenerowanych aktywów należy zastąpić jeden odpowiednie do aplikacji. Aby uzyskać więcej informacji, zobacz  [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
+Wygenerowany element zawartości należy zastąpić takim, który jest odpowiedni dla Twojej aplikacji. Więcej szczegółów można znaleźć na stronie [docs.microsoft.com](https://docs.microsoft.com/pl-pl/windows/mixed-reality/3d-app-launcher-design-guidance).

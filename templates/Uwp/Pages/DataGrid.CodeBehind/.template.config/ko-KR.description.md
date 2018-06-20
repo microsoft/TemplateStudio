@@ -1,3 +1,3 @@
-﻿A page displaying a DataGrid from the Windows Community Toolkit.
+﻿Windows Community Toolkit의 DataGrid가 표시되는 페이지입니다.
 
-The DataGrid control you know and love from Silverlight and WPF is now available for Windows 10. This control presents data in a customizable table of rows and columns.
+Silverlight 및 WPF에서 주로 사용하고 널리 알려진 DataGrid 컨트롤을 이제 Windows 10에서 사용할 수 있습니다. 이 컨트롤은 사용자 지정 가능한 행과 열 테이블에 데이터를 표시합니다.

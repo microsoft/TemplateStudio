@@ -1,3 +1,3 @@
-﻿앱이 혼합 현실 환경에서 사용 되는 경우 3d 앱 시작 관리자를 포함 합니다.
+﻿혼합 현실 환경에서 앱을 사용하는 경우 3D 앱 시작 관리자가 포함됩니다.
 
-생성 된 자산은 해당 앱에 적절 한 것으로 바꿔야 합니다. 자세한 내용은 [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
+생성된 자산은 앱에 적합한 것으로 교체해야 합니다. 자세한 내용은 [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance)에서 알아보십시오.

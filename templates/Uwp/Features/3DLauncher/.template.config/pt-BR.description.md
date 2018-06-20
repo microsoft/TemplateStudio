@@ -1,3 +1,3 @@
-﻿Inclua um lançador de aplicativos 3D para quando o aplicativo for usado em um ambiente de realidade mista.
+﻿Inclua um inicializador de aplicativos 3D para quando o aplicativo for usado em um ambiente de Realidade Misturada.
 
-O ativo gerado deve ser substituído por um apropriado para seu aplicativo. Para obter mais detalhes, consulte  [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
+O recurso gerado deve ser substituído por um adequado ao seu aplicativo. Para obter mais detalhes, confira [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
