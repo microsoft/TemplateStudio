@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.Foundation.Metadata;
 using Windows.UI.Xaml.Controls;
+using wts.ItemName.Services;
 using wts.ItemName.ViewModels;
 
 namespace wts.ItemName.Views
@@ -15,6 +16,8 @@ namespace wts.ItemName.Views
             HideNavViewBackButton();
             DataContext = ViewModel;
             ViewModel.Initialize(shellFrame, navigationView);
+            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator);
+            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
         }
 
         private void HideNavViewBackButton()

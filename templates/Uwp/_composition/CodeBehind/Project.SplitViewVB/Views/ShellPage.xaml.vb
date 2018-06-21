@@ -31,6 +31,8 @@ Namespace Views
         Private Sub Initialize()
             NavigationService.Frame = shellFrame
             AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
+            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator)
+            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator)
         End Sub
 
         Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)

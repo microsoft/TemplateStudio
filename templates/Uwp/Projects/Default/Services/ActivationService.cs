@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
 using wts.DefaultProject.Activation;
@@ -18,6 +20,10 @@ namespace wts.DefaultProject.Services
         private readonly App _app;
         private readonly Lazy<UIElement> _shell;
         private readonly Type _defaultNavItem;
+
+        public static readonly KeyboardAccelerator AltLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
+
+        public static readonly KeyboardAccelerator BackKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
         public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
@@ -101,13 +107,28 @@ namespace wts.DefaultProject.Services
                 AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
 
+        private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
+        {
+            var keyboardAccelerator = new KeyboardAccelerator() { Key = key };
+            if (modifiers.HasValue)
+            {
+                keyboardAccelerator.Modifiers = modifiers.Value;
+            }
+            ToolTipService.SetToolTip(keyboardAccelerator, string.Empty);
+            keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
+            return keyboardAccelerator;
+        }
+
+        private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            var result = NavigationService.GoBack();
+            args.Handled = result;
+        }
+
         private void ActivationService_BackRequested(object sender, BackRequestedEventArgs e)
         {
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-                e.Handled = true;
-            }
+            var result = NavigationService.GoBack();
+            e.Handled = result;
         }
     }
 }

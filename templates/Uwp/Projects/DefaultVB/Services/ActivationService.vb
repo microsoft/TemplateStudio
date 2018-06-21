@@ -1,4 +1,5 @@
-﻿Imports Windows.UI.Core
+﻿Imports Windows.System
+Imports Windows.UI.Core
 
 Imports wts.DefaultProject.Activation
 
@@ -8,6 +9,10 @@ Namespace Services
         Private ReadOnly _app As App
         Private ReadOnly _shell As Lazy(Of UIElement)
         Private ReadOnly _defaultNavItem As Type
+
+        Public Shared AltLeftKeyboardAccelerator As KeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu)
+
+        Public Shared ReadOnly BackKeyboardAccelerator As KeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack)
 
         Public Sub New(app As App, defaultNavItem As Type, Optional shell As Lazy(Of UIElement) = Nothing)
             _app = app
@@ -76,11 +81,28 @@ Namespace Services
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = If((NavigationService.CanGoBack), AppViewBackButtonVisibility.Visible, AppViewBackButtonVisibility.Collapsed)
         End Sub
 
-        Private Sub ActivationService_BackRequested(sender As Object, e As BackRequestedEventArgs)
-            If NavigationService.CanGoBack Then
-                NavigationService.GoBack()
-                e.Handled = True
+        Private Shared Function BuildKeyboardAccelerator(key As VirtualKey, Optional modifiers As VirtualKeyModifiers? = Nothing) As KeyboardAccelerator
+            Dim KeyboardAccelerator = New KeyboardAccelerator() With {
+                .Key = key
+            }
+            If modifiers.HasValue Then
+                KeyboardAccelerator.Modifiers = modifiers
             End If
+
+            ToolTipService.SetToolTip(KeyboardAccelerator, String.Empty)
+
+            AddHandler KeyboardAccelerator.Invoked, AddressOf OnKeyboardAcceleratorInvoked
+            Return KeyboardAccelerator
+        End Function
+
+        Private Shared Sub OnKeyboardAcceleratorInvoked(sender As KeyboardAccelerator, args As KeyboardAcceleratorInvokedEventArgs)
+            Dim result = NavigationService.GoBack()
+            args.Handled = result
+        End Sub
+
+        Private Sub ActivationService_BackRequested(sender As Object, e As BackRequestedEventArgs)
+            Dim result = NavigationService.GoBack()
+            e.Handled = result
         End Sub
     End Class
 End Namespace

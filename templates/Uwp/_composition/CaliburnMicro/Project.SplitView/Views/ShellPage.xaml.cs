@@ -16,6 +16,8 @@ namespace wts.ItemName.Views
         {
             InitializeComponent();
             HideNavViewBackButton();
+            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator);
+            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
         }
 
         public INavigationService CreateNavigationService(WinRTContainer container)
