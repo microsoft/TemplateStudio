@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="InkPoc.Views.ShellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:InkPoc.Helpers"
+    xmlns:views="using:InkPoc.Views"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    mc:Ignorable="d">
+
+    <NavigationView
+        x:Name="navigationView"
+        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
+        Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
+        IsSettingsVisible="False"
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+        <NavigationView.MenuItems>
+            <!--
+            TODO WTS: Change the symbols for each item as appropriate for your app
+            More on Segoe UI Symbol icons: https://docs.microsoft.com/windows/uwp/style/segoe-ui-symbol-font
+            Or to use an IconElement instead of a Symbol see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/projectTypes/navigationpane.md
+            Edit String/en-US/Resources.resw: Add a menu item title for each page
+            -->
+            <NavigationViewItem x:Uid="Shell_Draw" Icon="Document" helpers:NavHelper.NavigateTo="views:DrawPage" />
+            <NavigationViewItem x:Uid="Shell_DrawWithControl" Icon="Document" helpers:NavHelper.NavigateTo="views:DrawWithControlPage" />
+            <NavigationViewItemSeparator/>
+            <NavigationViewItem x:Uid="Shell_SmartCanvas" Icon="Document" helpers:NavHelper.NavigateTo="views:SmartCanvasPage" />
+            <NavigationViewItem x:Uid="Shell_SmartCanvasWithControl" Icon="Document" helpers:NavHelper.NavigateTo="views:SmartCanvasWithControlPage" />
+            <NavigationViewItemSeparator/>
+            <NavigationViewItem x:Uid="Shell_PaintImage" Icon="Document" helpers:NavHelper.NavigateTo="views:PaintImagePage" />
+            <NavigationViewItem x:Uid="Shell_PaintImageWithControl" Icon="Document" helpers:NavHelper.NavigateTo="views:PaintImageWithControlPage" />
+            <NavigationViewItemSeparator/>
+            <NavigationViewItem x:Uid="Shell_FullControl" Icon="Document" helpers:NavHelper.NavigateTo="views:FullControlPage" />
+        </NavigationView.MenuItems>
+        <NavigationView.HeaderTemplate>
+            <DataTemplate>
+                <TextBlock
+                    Style="{StaticResource TitleTextBlockStyle}"
+                    Margin="12,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="{Binding}" />
+            </DataTemplate>
+        </NavigationView.HeaderTemplate>
+        <i:Interaction.Behaviors>
+            <ic:EventTriggerBehavior EventName="ItemInvoked">
+                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
+            </ic:EventTriggerBehavior>
+        </i:Interaction.Behaviors>
+        <Grid>
+            <Frame x:Name="shellFrame" />
+        </Grid>
+    </NavigationView>
+</Page>

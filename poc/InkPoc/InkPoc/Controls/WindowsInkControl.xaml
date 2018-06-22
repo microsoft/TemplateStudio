@@ -1,0 +1,66 @@
+﻿<UserControl
+    x:Class="InkPoc.Controls.WindowsInkControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:InkPoc.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="OnLoaded"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <CommandBar
+            x:Name="commandBar"
+            DefaultLabelPosition="Collapsed"
+            HorizontalAlignment="Left"
+            HorizontalContentAlignment="Left">
+            <CommandBar.Content>
+                <InkToolbar
+                    x:Name="toolbar"
+                    TargetInkCanvas="{x:Bind inkCanvas}"
+                    ActiveToolChanged="OnInkToolbarActiveToolChanged" />
+            </CommandBar.Content>
+        </CommandBar>
+        <ScrollViewer
+                Name="canvasScroll"
+                Grid.Row="1"
+                Margin="8,0,8,0"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ZoomMode="Enabled">
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                   Width="{Binding ElementName=inkCanvas, Path=Width}"
+                   Height="{Binding ElementName=inkCanvas, Path=Height}">
+                <Image
+                    Source="{x:Bind Image, Mode=OneWay}"
+                    SizeChanged="OnImageSizeChanged"
+                    Stretch="None"/>
+                <InkCanvas
+                    x:Name="inkCanvas"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch" />
+                <Canvas
+                    x:Name="drawingCanvas"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Width="{Binding ElementName=inkCanvas, Path=Width}"
+                    Height="{Binding ElementName=inkCanvas, Path=Height}" />
+                <Canvas
+                    x:Name="selectionCanvas"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Width="{Binding ElementName=inkCanvas, Path=Width}"
+                    Height="{Binding ElementName=inkCanvas, Path=Height}"/>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>
