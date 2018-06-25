@@ -12,6 +12,8 @@ Namespace Views
             HideNavViewBackButton()
             DataContext = ViewModel
             ViewModel.Initialize(shellFrame, navigationView)
+            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator)
+            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator)
         End Sub
 
         Private Sub HideNavViewBackButton()

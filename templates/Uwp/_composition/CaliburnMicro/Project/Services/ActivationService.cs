@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Windows.ApplicationModel.Activation;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
 using Param_RootNamespace.Activation;
@@ -20,11 +22,17 @@ namespace Param_RootNamespace.Services
         private readonly Type _defaultNavItem;
         private readonly Lazy<UIElement> _shell;
 
+        public static KeyboardAccelerator AltLeftKeyboardAccelerator { get; private set; }
+
+        public static KeyboardAccelerator BackKeyboardAccelerator { get; private set; }
+
         public ActivationService(WinRTContainer container, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
             _container = container;
             _shell = shell;
             _defaultNavItem = defaultNavItem;
+            AltLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
+            BackKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
         }
 
         public async Task ActivateAsync(object activationArgs)
@@ -119,6 +127,28 @@ namespace Param_RootNamespace.Services
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ?
                 AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+        }
+
+        private KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
+        {
+            var keyboardAccelerator = new KeyboardAccelerator() { Key = key };
+            if (modifiers.HasValue)
+            {
+                keyboardAccelerator.Modifiers = modifiers.Value;
+            }
+
+            ToolTipService.SetToolTip(keyboardAccelerator, string.Empty);
+            keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
+            return keyboardAccelerator;
+        }
+
+        private void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+                args.Handled = true;
+            }
         }
     }
 }

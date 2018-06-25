@@ -34,6 +34,8 @@ namespace wts.ItemName.Views
         {
             NavigationService.Frame = shellFrame;
             NavigationService.Navigated += Frame_Navigated;
+            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator);
+            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)

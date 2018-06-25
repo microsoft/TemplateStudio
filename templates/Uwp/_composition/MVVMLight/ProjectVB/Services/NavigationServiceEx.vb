@@ -41,9 +41,14 @@ Namespace Services
             End Get
         End Property
 
-        Public Sub GoBack()
-            Frame.GoBack()
-        End Sub
+        Public Function GoBack() As Boolean
+            If CanGoBack Then
+                Frame.GoBack()
+                Return True
+            End If
+
+            Return False
+        End Function
 
         Public Sub GoForward()
             Frame.GoForward()

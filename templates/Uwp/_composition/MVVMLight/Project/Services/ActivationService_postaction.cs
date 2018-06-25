@@ -5,9 +5,9 @@
         private readonly Type _defaultNavItem;
 //{[{
 
-        private ViewModels.ViewModelLocator Locator => Application.Current.Resources["Locator"] as ViewModels.ViewModelLocator;
+        private static ViewModels.ViewModelLocator Locator => Application.Current.Resources["Locator"] as ViewModels.ViewModelLocator;
 
-        private NavigationServiceEx NavigationService => Locator.NavigationService;
+        private static NavigationServiceEx NavigationService => Locator.NavigationService;
 //}]}
     }
 }
