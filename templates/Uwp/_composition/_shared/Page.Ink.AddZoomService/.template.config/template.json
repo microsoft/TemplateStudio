@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Page.InkDrawPicture"
+    "wts.compositionFilter": "groupidentity == wts.Page.InkDrawPicture"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

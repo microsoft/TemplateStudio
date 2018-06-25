@@ -1,0 +1,1 @@
+﻿Ink draw picture detail description.
