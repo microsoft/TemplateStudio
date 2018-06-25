@@ -1,1 +1,1 @@
-﻿Ink draw picture detail description.
+﻿Ink draw picture detail description to MVVM framework.

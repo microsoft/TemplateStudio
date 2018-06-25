@@ -11,16 +11,19 @@ namespace Param_ItemNamespace.Views
         public InkDrawPictureViewPage()
         {
             InitializeComponent();
-            Loaded += (s, e) => SetCanvasSize();
-            image.SizeChanged += Image_SizeChanged;
+            Loaded += (s, e) => 
+            {
+                SetCanvasSize();
+                image.SizeChanged += Image_SizeChanged;
 
-            var strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
+                var strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
 
-            ViewModel.Initialize(
-                strokeService,
-                new InkPointerDeviceService(inkCanvas),
-                new InkFileService(inkCanvas, strokeService),
-                new InkZoomService(canvasScroll));
+                ViewModel.Initialize(
+                    strokeService,
+                    new InkPointerDeviceService(inkCanvas),
+                    new InkFileService(inkCanvas, strokeService),
+                    new InkZoomService(canvasScroll));
+            };
         }
         
         private void SetCanvasSize()

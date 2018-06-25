@@ -19,17 +19,20 @@ namespace Param_ItemNamespace.Views
         public InkDrawPictureViewPage()
         {
             InitializeComponent();
-            Loaded += (s, e) => SetCanvasSize();
-            image.SizeChanged += Image_SizeChanged;
+            Loaded += (s, e) => 
+            {
+                SetCanvasSize();
+                image.SizeChanged += Image_SizeChanged;
 
-            strokesService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
-            pointerDeviceService = new InkPointerDeviceService(inkCanvas);
-            fileService = new InkFileService(inkCanvas, strokesService);
-            zoomService = new InkZoomService(canvasScroll);
+                strokesService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
+                pointerDeviceService = new InkPointerDeviceService(inkCanvas);
+                fileService = new InkFileService(inkCanvas, strokesService);
+                zoomService = new InkZoomService(canvasScroll);
 
-            touchInkingButton.IsChecked = true;
-            mouseInkingButton.IsChecked = true;
-            pointerDeviceService.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
+                touchInkingButton.IsChecked = true;
+                mouseInkingButton.IsChecked = true;
+                pointerDeviceService.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
+            };
         }
         
         private void SetCanvasSize()
