@@ -16,7 +16,7 @@ namespace Param_ItemNamespace.Views
 
             var strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
 
-            ViewModel = new InkDrawPictureViewViewModel(
+            ViewModel.Initialize(
                 strokeService,
                 new InkPointerDeviceService(inkCanvas),
                 new InkFileService(inkCanvas, strokeService),

@@ -13,10 +13,10 @@ namespace Param_ItemNamespace.ViewModels
 
         private BitmapImage image;
 
-        private readonly InkStrokesService strokesService;
-        private readonly InkPointerDeviceService pointerDeviceService;
-        private readonly InkFileService fileService;
-        private readonly InkZoomService zoomService;
+        private InkStrokesService strokesService;
+        private InkPointerDeviceService pointerDeviceService;
+        private InkFileService fileService;
+        private InkZoomService zoomService;
 
         private ICommand loadImageCommand;
         private ICommand saveImageCommand;
@@ -30,7 +30,7 @@ namespace Param_ItemNamespace.ViewModels
         {
         }
         
-        public InkDrawPictureViewViewModel(
+        public void Initialize(
             InkStrokesService _strokesService,
             InkPointerDeviceService _pointerDeviceService,
             InkFileService _fileService,
