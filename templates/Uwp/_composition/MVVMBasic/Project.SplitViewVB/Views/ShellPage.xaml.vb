@@ -1,4 +1,5 @@
 ﻿Imports wts.ItemName.ViewModels
+Imports wts.ItemName.Services
 Imports Windows.Foundation.Metadata
 
 Namespace Views
