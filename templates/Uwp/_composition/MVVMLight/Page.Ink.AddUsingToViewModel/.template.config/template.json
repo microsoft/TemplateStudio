@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Page.Ink.AddUsing",
+  "name": "MVVMLight.Page.Ink.AddUsingToViewModel",
   "tags": {
     "language": "C#",
     "type": "item",
