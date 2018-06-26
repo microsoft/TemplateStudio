@@ -38,7 +38,8 @@ namespace Param_ItemNamespace.Services
         // You can use the resulting ViewLifeTileControl to interact with the new window.
         public async Task<ViewLifetimeControl> TryShowAsStandaloneAsync(string windowTitle, Type pageType)
         {
-            ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType);
+            var theme = (Window.Current.Content as FrameworkElement).RequestedTheme;
+            ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType, theme);
             SecondaryViews.Add(viewControl);
             viewControl.StartViewInUse();
             var viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewControl.Id, ViewSizePreference.Default, ApplicationView.GetForCurrentView().Id, ViewSizePreference.Default);
@@ -49,7 +50,8 @@ namespace Param_ItemNamespace.Services
         // Displays a view in the specified view mode
         public async Task<ViewLifetimeControl> TryShowAsViewModeAsync(string windowTitle, Type pageType, ApplicationViewMode viewMode = ApplicationViewMode.Default)
         {
-            ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType);
+            var theme = (Window.Current.Content as FrameworkElement).RequestedTheme;
+            ViewLifetimeControl viewControl = await CreateViewLifetimeControlAsync(windowTitle, pageType, theme);
             SecondaryViews.Add(viewControl);
             viewControl.StartViewInUse();
             var viewShown = await ApplicationViewSwitcher.TryShowAsViewModeAsync(viewControl.Id, viewMode);
@@ -57,7 +59,7 @@ namespace Param_ItemNamespace.Services
             return viewControl;
         }
 
-        private async Task<ViewLifetimeControl> CreateViewLifetimeControlAsync(string windowTitle, Type pageType)
+        private async Task<ViewLifetimeControl> CreateViewLifetimeControlAsync(string windowTitle, Type pageType, ElementTheme theme)
         {
             ViewLifetimeControl viewControl = null;
 
@@ -66,7 +68,7 @@ namespace Param_ItemNamespace.Services
                 viewControl = ViewLifetimeControl.CreateForCurrentView();
                 viewControl.Title = windowTitle;
                 viewControl.StartViewInUse();
-                var frame = new Frame();
+                var frame = new Frame() { RequestedTheme = theme };
                 frame.Navigate(pageType, viewControl);
                 Window.Current.Content = frame;
                 Window.Current.Activate();
