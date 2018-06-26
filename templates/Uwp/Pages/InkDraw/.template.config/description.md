@@ -1,0 +1,1 @@
+﻿Ink draw detail description to MVVM framework.

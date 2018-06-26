@@ -3,20 +3,20 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Ink.AddZoomService",
+  "name": "Page.Ink.AddLassoSelectionService",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Page.InkDraw|wts.Page.InkDrawPicture"
+    "wts.compositionFilter": "groupidentity == wts.Page.InkDraw"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkZoomService.cs"
+      "path": ".\\Services\\Ink\\InkLassoSelectionService.cs"
     }
   ],
   "symbols": {
