@@ -41,7 +41,7 @@ namespace Param_ItemNamespace.ViewModels
             fileService = _fileService;
             zoomService = _zoomService;
 
-            pointerDeviceService?.DetectPenEvent += (s, e) => EnableTouch = false;
+            pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
         public bool EnableTouch
@@ -50,7 +50,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Param_Setter(ref enableTouch, value);
-                pointerDeviceService?.EnableTouch = value;
+                pointerDeviceService.EnableTouch = value;
             }
         }
 
@@ -60,7 +60,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Param_Setter(ref enableMouse, value);
-                pointerDeviceService?.EnableMouse = value;
+                pointerDeviceService.EnableMouse = value;
             }
         }
 

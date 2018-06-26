@@ -11,15 +11,15 @@ namespace Param_ItemNamespace.Views
     {
         private StorageFile imageFile;
 
-        private readonly InkStrokesService strokesService;
-        private readonly InkPointerDeviceService pointerDeviceService;
-        private readonly InkFileService fileService;
-        private readonly InkZoomService zoomService;
+        private InkStrokesService strokesService;
+        private InkPointerDeviceService pointerDeviceService;
+        private InkFileService fileService;
+        private InkZoomService zoomService;
 
         public InkDrawPictureViewPage()
         {
             InitializeComponent();
-            Loaded += (s, e) => 
+            Loaded += (sender, eventArgs) => 
             {
                 SetCanvasSize();
                 image.SizeChanged += Image_SizeChanged;
@@ -31,7 +31,7 @@ namespace Param_ItemNamespace.Views
 
                 touchInkingButton.IsChecked = true;
                 mouseInkingButton.IsChecked = true;
-                pointerDeviceService?.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
+                pointerDeviceService.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
             };
         }
         
@@ -54,13 +54,13 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        private void TouchInking_Checked(object sender, RoutedEventArgs e) => pointerDeviceService?.EnableTouch = true;
+        private void TouchInking_Checked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableTouch = true;
 
-        private void TouchInking_Unchecked(object sender, RoutedEventArgs e) => pointerDeviceService?.EnableTouch = false;
+        private void TouchInking_Unchecked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableTouch = false;
 
-        private void MouseInking_Checked(object sender, RoutedEventArgs e) => pointerDeviceService?.EnableMouse = true;
+        private void MouseInking_Checked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableMouse = true;
 
-        private void MouseInking_Unchecked(object sender, RoutedEventArgs e) => pointerDeviceService?.EnableMouse = false;
+        private void MouseInking_Unchecked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableMouse = false;
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e) => zoomService?.ZoomIn();
 

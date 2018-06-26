@@ -22,14 +22,14 @@
                 <CommandBar.Content>
                     <InkToolbar x:Name="toolbar" TargetInkCanvas="{x:Bind inkCanvas}">
                         <InkToolbarCustomToggleButton
-                            x:Uid="InkDrawPicture_TouchInkingButton"
+                            x:Uid="InkDrawPictureView_TouchInkingButton"
                             IsChecked="{x:Bind ViewModel.EnableTouch, Mode=TwoWay}">
                             <FontIcon
                                 FontFamily="{ThemeResource SymbolThemeFontFamily}"
                                 Glyph="&#xED5F;" />
                         </InkToolbarCustomToggleButton>
                         <InkToolbarCustomToggleButton
-                            x:Uid="InkDrawPicture_MouseInkingButton"
+                            x:Uid="InkDrawPictureView_MouseInkingButton"
                             IsChecked="{x:Bind ViewModel.EnableMouse, Mode=TwoWay}">
                             <FontIcon
                             FontFamily="{ThemeResource SymbolThemeFontFamily}"
@@ -41,25 +41,25 @@
                 <AppBarButton
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
-                    x:Uid="InkDrawPicture_ZoomInButton"
+                    x:Uid="InkDrawPictureView_ZoomInButton"
                     Icon="ZoomIn"
                     cm:Message.Attach="ZoomIn" />
                 <AppBarButton
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
-                    x:Uid="InkDrawPicture_ZoomOutButton"
+                    x:Uid="InkDrawPictureView_ZoomOutButton"
                     Icon="ZoomOut"
                     cm:Message.Attach="ZoomOut" />
                 <AppBarButton
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
-                    x:Uid="InkDrawPicture_OriginalSizeButton"
+                    x:Uid="InkDrawPictureView_OriginalSizeButton"
                     Icon="FullScreen"
                     cm:Message.Attach="ResetZoom" />
                 <AppBarButton
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
-                    x:Uid="InkDrawPicture_FitToScreenButton"
+                    x:Uid="InkDrawPictureView_FitToScreenButton"
                     cm:Message.Attach="FitToScreen">
                     <FontIcon
                     FontFamily="{ThemeResource SymbolThemeFontFamily}"
@@ -69,7 +69,7 @@
                 <AppBarButton
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
-                    x:Uid="InkDrawPicture_OpenImageButton"
+                    x:Uid="InkDrawPictureView_OpenImageButton"
                     cm:Message.Attach="OpenImage">
                 <FontIcon
                     FontFamily="{ThemeResource SymbolThemeFontFamily}"
@@ -78,7 +78,7 @@
                 <AppBarButton
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
-                    x:Uid="InkDrawPicture_SaveImageButton"
+                    x:Uid="InkDrawPictureView_SaveImageButton"
                     cm:Message.Attach="SaveImage">
                 <FontIcon
                     FontFamily="{ThemeResource SymbolThemeFontFamily}"
@@ -88,7 +88,7 @@
                 <AppBarButton
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
-                    x:Uid="InkDrawPicture_ClearAllButton"
+                    x:Uid="InkDrawPictureView_ClearAllButton"
                     Icon="Delete"
                     cm:Message.Attach="ClearAll" />
             </CommandBar>
