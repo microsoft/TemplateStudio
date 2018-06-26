@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.InkDrawPicture.AddResources",
+  "name": "Page.InkDrawPicture.Strings",
   "tags": {
     "language": "C#",
     "type": "item",
