@@ -1,0 +1,1 @@
+﻿Ink draw detail description to Caliburn Micro framework.

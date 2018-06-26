@@ -42,7 +42,7 @@ namespace Param_ItemNamespace.ViewModels
             get => enableTouch;
             set
             {
-                Set(ref enableTouch, value);
+                Param_Setter(ref enableTouch, value);
                 pointerDeviceService.EnableTouch = value;
             }
         }
@@ -52,7 +52,7 @@ namespace Param_ItemNamespace.ViewModels
             get => enableMouse;
             set
             {
-                Set(ref enableMouse, value);
+                Param_Setter(ref enableMouse, value);
                 pointerDeviceService.EnableMouse = value;
             }
         }
@@ -62,7 +62,7 @@ namespace Param_ItemNamespace.ViewModels
         public BitmapImage Image
         {
             get => image;
-            set => Set(ref image, value);
+            set => Param_Setter(ref image, value);
         }
 
         public async void OpenImage() => await OnLoadImageAsync();

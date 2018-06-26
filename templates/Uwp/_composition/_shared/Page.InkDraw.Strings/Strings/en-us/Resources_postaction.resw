@@ -113,17 +113,17 @@
     <value>Redo</value>
     <comment>Redo button automation name property for wts.ItemName</comment>
   </data>
-  <data name="wts.ItemName_LoadFileButton.Label" xml:space="preserve">
+  <data name="wts.ItemName_LoadInkFileButton.Label" xml:space="preserve">
     <value>Load ink file</value>
-    <comment>LoadFile button label property for wts.ItemName</comment>
+    <comment>LoadInkFile button label property for wts.ItemName</comment>
   </data>
-    <data name="wts.ItemName_LoadFileButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <data name="wts.ItemName_LoadInkFileButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>Load ink file</value>
-    <comment>LoadFile button tooltip property for wts.ItemName</comment>
+    <comment>LoadInkFile button tooltip property for wts.ItemName</comment>
   </data>
-  <data name="wts.ItemName_LoadFileButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+  <data name="wts.ItemName_LoadInkFileButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Load ink file</value>
-    <comment>LoadFile button automation name property for wts.ItemName</comment>
+    <comment>LoadInkFile button automation name property for wts.ItemName</comment>
   </data>
   <data name="wts.ItemName_SaveInkFileButton.Label" xml:space="preserve">
     <value>Save ink file</value>
