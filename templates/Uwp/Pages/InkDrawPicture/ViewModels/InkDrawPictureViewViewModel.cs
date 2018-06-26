@@ -1,4 +1,5 @@
 ﻿using Param_ItemNamespace.Services.Ink;
+using Param_ItemNamespace.Helpers;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Storage;
