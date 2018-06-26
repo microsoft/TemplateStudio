@@ -25,10 +25,10 @@ namespace Param_ItemNamespace.ViewModels
         {
             LoadImageCommand = new DelegateCommand(async () => await OnLoadImageAsync());
             SaveImageCommand = new DelegateCommand(async () => await OnSaveImageAsync());
-            ZoomInCommand = new DelegateCommand(() => zoomService.ZoomIn());
-            ZoomOutCommand = new DelegateCommand(() => zoomService.ZoomOut());
-            ResetZoomCommand = new DelegateCommand(() => zoomService.ResetZoom());
-            FitToScreenCommand = new DelegateCommand(() => zoomService.FitToScreen());
+            ZoomInCommand = new DelegateCommand(() => zoomService?.ZoomIn());
+            ZoomOutCommand = new DelegateCommand(() => zoomService?.ZoomOut());
+            ResetZoomCommand = new DelegateCommand(() => zoomService?.ResetZoom());
+            FitToScreenCommand = new DelegateCommand(() => zoomService?.FitToScreen());
             ClearAllCommand = new DelegateCommand(ClearAll);
         }
         
@@ -43,7 +43,7 @@ namespace Param_ItemNamespace.ViewModels
             fileService = _fileService;
             zoomService = _zoomService;
 
-            pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
+            pointerDeviceService?.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
         public bool EnableTouch
@@ -52,7 +52,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 SetProperty(ref enableTouch, value);
-                pointerDeviceService.EnableTouch = value;
+                pointerDeviceService?.EnableTouch = value;
             }
         }
 
@@ -62,7 +62,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 SetProperty(ref enableMouse, value);
-                pointerDeviceService.EnableMouse = value;
+                pointerDeviceService?.EnableMouse = value;
             }
         }
 
@@ -98,18 +98,18 @@ namespace Param_ItemNamespace.ViewModels
                 ClearAll();
                 ImageFile = file;
                 Image = bitmapImage;
-                zoomService.FitToSize(Image.PixelWidth, Image.PixelHeight);
+                zoomService?.FitToSize(Image.PixelWidth, Image.PixelHeight);
             }
         }
 
         private async Task OnSaveImageAsync()
         {
-            await fileService.ExportToImageAsync(ImageFile);
+            await fileService?.ExportToImageAsync(ImageFile);
         }
 
         private void ClearAll()
         {
-            strokesService.ClearStrokes();
+            strokesService?.ClearStrokes();
             ImageFile = null;
             Image = null;
         }

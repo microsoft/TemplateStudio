@@ -41,7 +41,7 @@ namespace Param_ItemNamespace.ViewModels
             fileService = _fileService;
             zoomService = _zoomService;
 
-            pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
+            pointerDeviceService?.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
         public bool EnableTouch
@@ -50,7 +50,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Param_Setter(ref enableTouch, value);
-                pointerDeviceService.EnableTouch = value;
+                pointerDeviceService?.EnableTouch = value;
             }
         }
 
@@ -60,7 +60,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Param_Setter(ref enableMouse, value);
-                pointerDeviceService.EnableMouse = value;
+                pointerDeviceService?.EnableMouse = value;
             }
         }
 
@@ -79,16 +79,16 @@ namespace Param_ItemNamespace.ViewModels
             ?? (saveImageCommand = new RelayCommand(async () => await OnSaveImageAsync()));
 
         public ICommand ZoomInCommand => zoomInCommand
-            ?? (zoomInCommand = new RelayCommand(() => zoomService.ZoomIn()));
+            ?? (zoomInCommand = new RelayCommand(() => zoomService?.ZoomIn()));
 
         public ICommand ZoomOutCommand => zoomOutCommand
-            ?? (zoomOutCommand = new RelayCommand(() => zoomService.ZoomOut()));
+            ?? (zoomOutCommand = new RelayCommand(() => zoomService?.ZoomOut()));
 
         public ICommand ResetZoomCommand => resetZoomCommand
-            ?? (resetZoomCommand = new RelayCommand(() => zoomService.ResetZoom()));
+            ?? (resetZoomCommand = new RelayCommand(() => zoomService?.ResetZoom()));
 
         public ICommand FitToScreenCommand => fitToScreenCommand
-            ?? (fitToScreenCommand = new RelayCommand(() => zoomService.FitToScreen()));
+            ?? (fitToScreenCommand = new RelayCommand(() => zoomService?.FitToScreen()));
 
         public ICommand ClearAllCommand => clearAllCommand
            ?? (clearAllCommand = new RelayCommand(ClearAll));
@@ -104,18 +104,18 @@ namespace Param_ItemNamespace.ViewModels
                 ClearAll();
                 ImageFile = file;
                 Image = bitmapImage;
-                zoomService.FitToSize(Image.PixelWidth, Image.PixelHeight);
+                zoomService?.FitToSize(Image.PixelWidth, Image.PixelHeight);
             }
         }
 
         private async Task OnSaveImageAsync()
         {
-            await fileService.ExportToImageAsync(ImageFile);
+            await fileService?.ExportToImageAsync(ImageFile);
         }
 
         private void ClearAll()
         {
-            strokesService.ClearStrokes();
+            strokesService?.ClearStrokes();
             ImageFile = null;
             Image = null;
         }

@@ -34,7 +34,7 @@ namespace Param_ItemNamespace.ViewModels
             fileService = _fileService;
             zoomService = _zoomService;
 
-            pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
+            pointerDeviceService?.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
         public bool EnableTouch
@@ -43,7 +43,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Set(ref enableTouch, value);
-                pointerDeviceService.EnableTouch = value;
+                pointerDeviceService?.EnableTouch = value;
             }
         }
 
@@ -53,7 +53,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Set(ref enableMouse, value);
-                pointerDeviceService.EnableMouse = value;
+                pointerDeviceService?.EnableMouse = value;
             }
         }
 
@@ -67,19 +67,19 @@ namespace Param_ItemNamespace.ViewModels
 
         public async void OpenImage() => await OnLoadImageAsync();
 
-        public async void SaveImage () => await fileService.ExportToImageAsync(ImageFile);
+        public async void SaveImage () => await fileService?.ExportToImageAsync(ImageFile);
 
-        public void ZoomIn() => zoomService.ZoomIn();
+        public void ZoomIn() => zoomService?.ZoomIn();
 
-        public void ZoomOut () => zoomService.ZoomOut();
+        public void ZoomOut () => zoomService?.ZoomOut();
 
-        public void ResetZoom() => zoomService.ResetZoom();
+        public void ResetZoom() => zoomService?.ResetZoom();
 
-        public void FitToScreen() => zoomService.FitToScreen();
+        public void FitToScreen() => zoomService?.FitToScreen();
 
         public void ClearAll()
         {
-            strokesService.ClearStrokes();
+            strokesService?.ClearStrokes();
             ImageFile = null;
             Image = null;
         }
@@ -94,7 +94,7 @@ namespace Param_ItemNamespace.ViewModels
                 ClearAll();
                 ImageFile = file;
                 Image = bitmapImage;
-                zoomService.FitToSize(Image.PixelWidth, Image.PixelHeight);
+                zoomService?.FitToSize(Image.PixelWidth, Image.PixelHeight);
             }
         }
     }

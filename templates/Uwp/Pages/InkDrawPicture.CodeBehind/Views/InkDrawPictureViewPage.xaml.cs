@@ -31,7 +31,7 @@ namespace Param_ItemNamespace.Views
 
                 touchInkingButton.IsChecked = true;
                 mouseInkingButton.IsChecked = true;
-                pointerDeviceService.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
+                pointerDeviceService?.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
             };
         }
         
@@ -54,21 +54,21 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        private void TouchInking_Checked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableTouch = true;
+        private void TouchInking_Checked(object sender, RoutedEventArgs e) => pointerDeviceService?.EnableTouch = true;
 
-        private void TouchInking_Unchecked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableTouch = false;
+        private void TouchInking_Unchecked(object sender, RoutedEventArgs e) => pointerDeviceService?.EnableTouch = false;
 
-        private void MouseInking_Checked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableMouse = true;
+        private void MouseInking_Checked(object sender, RoutedEventArgs e) => pointerDeviceService?.EnableMouse = true;
 
-        private void MouseInking_Unchecked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableMouse = false;
+        private void MouseInking_Unchecked(object sender, RoutedEventArgs e) => pointerDeviceService?.EnableMouse = false;
 
-        private void ZoomIn_Click(object sender, RoutedEventArgs e) => zoomService.ZoomIn();
+        private void ZoomIn_Click(object sender, RoutedEventArgs e) => zoomService?.ZoomIn();
 
-        private void ZoomOut_Click(object sender, RoutedEventArgs e) => zoomService.ZoomOut();  
+        private void ZoomOut_Click(object sender, RoutedEventArgs e) => zoomService?.ZoomOut();  
 
-        private void ResetZoom_Click(object sender, RoutedEventArgs e) => zoomService.ResetZoom();
+        private void ResetZoom_Click(object sender, RoutedEventArgs e) => zoomService?.ResetZoom();
 
-        private void FitToScreen_Click(object sender, RoutedEventArgs e) => zoomService.FitToScreen();
+        private void FitToScreen_Click(object sender, RoutedEventArgs e) => zoomService?.FitToScreen();
 
         private async void LoadImage_Click(object sender, RoutedEventArgs e)
         {
@@ -80,17 +80,17 @@ namespace Param_ItemNamespace.Views
                 ClearAll();
                 imageFile = file;
                 image.Source = bitmapImage;
-                zoomService.FitToSize(bitmapImage.PixelWidth, bitmapImage.PixelHeight);
+                zoomService?.FitToSize(bitmapImage.PixelWidth, bitmapImage.PixelHeight);
             }
         }
 
-        private async void SaveImage_Click(object sender, RoutedEventArgs e) => await fileService.ExportToImageAsync(imageFile);
+        private async void SaveImage_Click(object sender, RoutedEventArgs e) => await fileService?.ExportToImageAsync(imageFile);
 
         private void ClearAll_Click(object sender, RoutedEventArgs e) => ClearAll();
 
         private void ClearAll()
         {
-            strokesService.ClearStrokes();
+            strokesService?.ClearStrokes();
             imageFile = null;
             image.Source = null;
         }

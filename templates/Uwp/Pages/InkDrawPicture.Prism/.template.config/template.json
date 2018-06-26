@@ -5,7 +5,7 @@
   ],
   "name": "Ink Draw Picture",
   "groupIdentity": "wts.Page.InkDrawPicture",
-  "identity": "wts.Page.InkDrawPicture",
+  "identity": "wts.Page.InkDrawPicture.Prism",
   "description": "Ink draw picture short description to Prism framework.",
   "tags": {
     "language": "C#",
