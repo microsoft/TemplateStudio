@@ -3,21 +3,18 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Ink.AddLassoSelectionService",
+  "name": "Page.InkSmartCanvas.Strings",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Page.InkDraw|wts.Page.InkSmartCanvas"
+    "wts.compositionFilter": "groupidentity == wts.Page.SmartCanvas"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Services\\Ink\\InkLassoSelectionService.cs"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

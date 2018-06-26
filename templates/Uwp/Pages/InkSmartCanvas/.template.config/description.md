@@ -1,0 +1,1 @@
+﻿Ink smart canvas detail description to MVVM framework.

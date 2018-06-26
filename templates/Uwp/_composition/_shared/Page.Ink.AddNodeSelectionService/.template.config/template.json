@@ -3,20 +3,20 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Ink.AddLassoSelectionService",
+  "name": "Page.Ink.AddNodeSelectionService",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Page.InkDraw|wts.Page.InkSmartCanvas"
+    "wts.compositionFilter": "groupidentity == wts.Page.InkSmartCanvas"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Services\\Ink\\InkLassoSelectionService.cs"
+      "path": ".\\Services\\Ink\\InkNodeSelectionService.cs"
     }
   ],
   "symbols": {
