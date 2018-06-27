@@ -1,0 +1,1 @@
+﻿Ink smart canvas detail description to Calibur Micro framework.

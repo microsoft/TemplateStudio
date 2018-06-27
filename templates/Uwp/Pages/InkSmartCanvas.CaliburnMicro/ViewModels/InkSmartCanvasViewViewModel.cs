@@ -14,13 +14,6 @@ namespace Param_ItemNamespace.ViewModels
         private InkTransformService transformService;
         private InkFileService fileService;
 
-        private RelayCommand undoCommand;
-        private RelayCommand redoCommand;
-        private RelayCommand loadInkFileCommand;
-        private RelayCommand saveInkFileCommand;
-        private RelayCommand transformTextAndShapesCommand;
-        private RelayCommand clearAllCommand;
-
         private bool enableTouch = true;
         private bool enableMouse = true;
         private bool enablePen = true;
@@ -50,54 +43,6 @@ namespace Param_ItemNamespace.ViewModels
 
             pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
-
-        public RelayCommand UndoCommand => undoCommand
-           ?? (undoCommand = new RelayCommand(() =>
-           {
-               ClearSelection();
-               undoRedoService.Undo();
-           }));
-
-        public RelayCommand RedoCommand => redoCommand
-           ?? (redoCommand = new RelayCommand(() =>
-           {
-               ClearSelection();
-               undoRedoService.Redo();
-           }));
-
-        public RelayCommand LoadInkFileCommand => loadInkFileCommand
-           ?? (loadInkFileCommand = new RelayCommand(async () =>
-           {
-               ClearSelection();
-               var fileLoaded = await fileService.LoadInkAsync();
-
-               if (fileLoaded)
-               {
-                   transformService.ClearTextAndShapes();
-                   undoRedoService.Reset();
-               }
-           }));
-
-        public RelayCommand SaveInkFileCommand => saveInkFileCommand
-           ?? (saveInkFileCommand = new RelayCommand(async () =>
-           {
-               ClearSelection();
-               await fileService.SaveInkAsync();
-           }));
-
-        public RelayCommand TransformTextAndShapesCommand => transformTextAndShapesCommand
-           ?? (transformTextAndShapesCommand = new RelayCommand(async () =>
-           {
-               var result = await transformService.TransformTextAndShapesAsync();
-               if (result.TextAndShapes.Any())
-               {
-                   ClearSelection();
-                   undoRedoService.AddOperation(new TransformUndoRedoOperation(result, strokeService));
-               }
-           }));
-
-        public RelayCommand ClearAllCommand => clearAllCommand
-           ?? (clearAllCommand = new RelayCommand(ClearAll));
 
         public bool EnableTouch
         {
@@ -139,6 +84,54 @@ namespace Param_ItemNamespace.ViewModels
             }
         }
 
+        public void Undo()
+        {
+            ClearSelection();
+            undoRedoService.Undo();
+        }
+
+        public void Redo()
+        {
+            ClearSelection();
+            undoRedoService.Redo();
+        }
+
+        public async void LoadInkFile()
+        {
+            ClearSelection();
+            var fileLoaded = await fileService.LoadInkAsync();
+
+            if (fileLoaded)
+            {
+                transformService.ClearTextAndShapes();
+                undoRedoService.Reset();
+            }
+        }
+
+        public async void SaveInkFile()
+        {
+            ClearSelection();
+            await fileService.SaveInkAsync();
+        }
+
+        public async void TransformTextAndShapes()
+        {
+            var result = await transformService.TransformTextAndShapesAsync();
+            if (result.TextAndShapes.Any())
+            {
+                ClearSelection();
+                undoRedoService.AddOperation(new TransformUndoRedoOperation(result, strokeService));
+            }
+        }
+
+        public void ClearAll()
+        {
+            ClearSelection();
+            strokeService.ClearStrokes();
+            transformService.ClearTextAndShapes();
+            undoRedoService.Reset();
+        }        
+
         private void ConfigLassoSelection(bool enableLasso)
         {
             if (enableLasso)
@@ -155,14 +148,6 @@ namespace Param_ItemNamespace.ViewModels
         {
             nodeSelectionService.ClearSelection();
             lassoSelectionService.ClearSelection();
-        }
-
-        private void ClearAll()
-        {
-            ClearSelection();
-            strokeService.ClearStrokes();
-            transformService.ClearTextAndShapes();
-            undoRedoService.Reset();
-        }
+        }        
     }
 }
