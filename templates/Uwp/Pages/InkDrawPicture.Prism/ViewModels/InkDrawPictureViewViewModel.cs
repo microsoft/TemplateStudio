@@ -5,7 +5,6 @@ using System.Windows.Input;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 using Prism.Commands;
-using Prism.Windows.Mvvm;
 
 namespace Param_ItemNamespace.ViewModels
 {
