@@ -3,18 +3,25 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.Page.MediaPlayer.AddNavigation_TabbedPivot",
+  "name": "Project.TabbedPivot",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-    "wts.platform": "Uwp",
+    "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CaliburnMicro & $projectType == TabbedPivot & identity == wts.Page.MediaPlayer"
+    "wts.compositionFilter": "$projectType == TabbedPivot & wts.type == project & $framework == CodeBehind|MVVMBasic|MVVMLight"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [],
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Behaviors\\PivotBehavior.cs"
+    },
+    {
+      "path": ".\\Helpers\\IPivotPage.cs"
+    }
+  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",

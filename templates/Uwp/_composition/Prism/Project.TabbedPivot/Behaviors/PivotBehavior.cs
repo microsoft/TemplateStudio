@@ -1,23 +1,27 @@
 ﻿using Microsoft.Xaml.Interactivity;
 using Prism.Windows.Navigation;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
+using wts.ItemName.Helpers;
 
 namespace wts.ItemName.Behaviors
 {
-    public class PivotNavigationBehavior : Behavior<Pivot>
+    public class PivotBehavior : Behavior<Pivot>
     {
         protected override void OnAttached()
         {
             base.OnAttached();
             AssociatedObject.PivotItemUnloading += AssociatedObject_PivotItemUnloading;
             AssociatedObject.PivotItemLoading += AssociatedObject_PivotItemLoading;
+        }
+
+        protected override void OnDetaching()
+        {
+            base.OnDetaching();
+            AssociatedObject.PivotItemUnloading -= AssociatedObject_PivotItemUnloading;
+            AssociatedObject.PivotItemLoading -= AssociatedObject_PivotItemLoading;
         }
 
         private void AssociatedObject_PivotItemLoading(Pivot sender, PivotItemEventArgs args)
@@ -30,13 +34,6 @@ namespace wts.ItemName.Behaviors
         {
             var navAwarePivot = ((args.Item.Content as Frame).Content as FrameworkElement).DataContext as INavigationAware;
             navAwarePivot?.OnNavigatingFrom(null, null, false);
-        }
-
-        protected override void OnDetaching()
-        {
-            base.OnDetaching();
-            AssociatedObject.PivotItemUnloading -= AssociatedObject_PivotItemUnloading;
-            AssociatedObject.PivotItemLoading -= AssociatedObject_PivotItemLoading;
         }
     }
 }
