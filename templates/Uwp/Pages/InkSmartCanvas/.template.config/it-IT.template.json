@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Smart Canvas",
+  "description": "A page that allows you to create notes using shape and text recognition with Windows Ink.",
+  "identity": "wts.Page.InkSmartCanvas"
+}
