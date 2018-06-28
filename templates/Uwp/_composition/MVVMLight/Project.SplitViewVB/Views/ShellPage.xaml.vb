@@ -3,6 +3,7 @@ Imports wts.ItemName.ViewModels
 Imports Windows.Foundation.Metadata
 
 Namespace Views
+    ' TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     Public NotInheritable Partial Class ShellPage
         Inherits Page
 
