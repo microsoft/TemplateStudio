@@ -6,9 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
     xmlns:behaviors="using:wts.ItemName.Behaviors"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:model="using:wts.ItemName.Models"
     xmlns:views="using:wts.ItemName.Views"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
 
     <Grid>

@@ -13,9 +13,9 @@
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
           <controls:CameraControl
-                x:Uid="CameraViewPage_CameraControl"
-                PhotoTaken="CameraControl_PhotoTaken" />
-
+            x:Name="cameraControl"
+            x:Uid="CameraViewPage_CameraControl"
+            PhotoTaken="CameraControl_PhotoTaken" />
           <Image
               x:Name="Photo"
               Height="70"

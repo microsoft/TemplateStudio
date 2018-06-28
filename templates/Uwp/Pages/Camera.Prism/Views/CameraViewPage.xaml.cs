@@ -7,6 +7,7 @@ namespace Param_ItemNamespace.Views
         public CameraViewPage()
         {
             InitializeComponent();
+            ViewModel.Initialize(cameraControl);
         }
     }
 }

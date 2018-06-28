@@ -3,30 +3,24 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Prism.Project.TabbedPivot",
+  "name": "CaliburnMicro.Page.TabbedPivot.AddBehavior",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-    "wts.platform": "Uwp",
+    "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == Prism & $projectType == TabbedPivot & wts.type == project"
+    "wts.compositionFilter": "$projectType == TabbedPivot & $framework == CaliburnMicro & wts.type == page & identity == wts.Page.Camera.CaliburnMicro|wts.Page.MediaPlayer"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-  {
-    "path": ".\\ViewModels\\PivotViewModel.cs"
-  },
-  {
-    "path": ".\\Views\\PivotPage.xaml"
-  },
-  {
-    "path": ".\\Views\\PivotPage.xaml.cs"
-  },
-  {
-    "path": ".\\Behaviors\\PivotNavigationBehavior.cs"
-  }  
+    {
+      "path": ".\\Behaviors\\PivotBehavior.cs"
+    },
+    {
+      "path": ".\\Helpers\\IPivotPage.cs"
+    }
   ],
   "symbols": {
     "wts.rootNamespace": {
