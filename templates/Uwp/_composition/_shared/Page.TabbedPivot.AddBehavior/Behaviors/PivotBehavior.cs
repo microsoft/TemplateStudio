@@ -32,6 +32,7 @@ namespace Param_ItemNamespace.Behaviors
             {
                 await removedItem.OnPivotUnselectedAsync();
             }
+
             if (addedItem != null)
             {
                 await addedItem?.OnPivotSelectedAsync();
@@ -47,6 +48,7 @@ namespace Param_ItemNamespace.Behaviors
                     return pivotPage;
                 }
             }
+
             return null;
         }
     }

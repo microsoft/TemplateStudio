@@ -2,5 +2,5 @@
   "author": "Microsoft Community",
   "name": "Media Player",
   "description": "Pagina in cui mostrare video con i controlli multimediali di sistema abilitati.",
-  "identity": "wts.Page.MediaPlayer"
+  "identity": "wts.Page.MediaPlayer.Prism"
 }

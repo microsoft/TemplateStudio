@@ -2,7 +2,7 @@
 
 namespace Param_ItemNamespace.Helpers
 {
-    interface IPivotPage
+    public interface IPivotPage
     {
         Task OnPivotSelectedAsync();
 

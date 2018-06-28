@@ -32,6 +32,7 @@ namespace wts.ItemName.Behaviors
             {
                 await removedItem.OnPivotUnselectedAsync();
             }
+
             if (addedItem != null)
             {
                 await addedItem?.OnPivotSelectedAsync();
@@ -47,6 +48,7 @@ namespace wts.ItemName.Behaviors
                     return pivotPage;
                 }
             }
+
             return null;
         }
     }

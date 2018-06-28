@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using  Param_ItemNamespace.Helpers;
+using Param_ItemNamespace.Helpers;
 //}]}
 
 namespace Param_ItemNamespace.Views

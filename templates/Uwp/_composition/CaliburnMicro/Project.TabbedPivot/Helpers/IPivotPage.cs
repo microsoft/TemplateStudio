@@ -2,7 +2,7 @@
 
 namespace wts.ItemName.Helpers
 {
-    interface IPivotPage
+    public interface IPivotPage
     {
         Task OnPivotSelectedAsync();
 
