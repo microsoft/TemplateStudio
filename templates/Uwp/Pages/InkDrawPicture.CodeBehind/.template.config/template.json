@@ -6,7 +6,7 @@
   "name": "Ink Draw Picture",
   "groupIdentity": "wts.Page.InkDrawPicture",
   "identity": "wts.Page.InkDrawPicture.CodeBehind",
-  "description": "Ink draw picture short description to Code-Behind.",
+  "description": "A page that allows you to load a picture and draw on top of it using Windows Ink.",
   "tags": {
     "language": "C#",
     "type": "item",
