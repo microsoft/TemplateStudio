@@ -11,127 +11,124 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkNodeSelectionService
     {
-        const double BUSY_WAITING_TIME = 200;
-        const double TRIPLE_TAP_TIME = 400;
+        private const double BUSYWAITINGTIME = 200;
+        private const double TRIPLETAPTIME = 400;
 
-        private readonly InkCanvas inkCanvas;
-        private readonly InkPresenter inkPresenter;
-        private readonly InkAsyncAnalyzer analyzer;
+        private readonly InkCanvas _inkCanvas;
+        private readonly InkPresenter _inkPresenter;
+        private readonly InkAsyncAnalyzer _analyzer;
 
-        private readonly InkStrokesService strokeService;
-        private readonly InkSelectionRectangleService selectionRectangleService;
+        private readonly InkStrokesService _strokeService;
+        private readonly InkSelectionRectangleService _selectionRectangleService;
+        private readonly Canvas _selectionCanvas;
 
-        IInkAnalysisNode selectedNode;
-        private readonly Canvas selectionCanvas;
-
-        DateTime lastDoubleTapTime;
+        private IInkAnalysisNode _selectedNode;
+        private DateTime _lastDoubleTapTime;
 
         public InkNodeSelectionService(
-            InkCanvas _inkCanvas,
-            Canvas _selectionCanvas,
-            InkAsyncAnalyzer _analyzer,
-            InkStrokesService _strokeService,
-            InkSelectionRectangleService _selectionRectangleService)
+            InkCanvas inkCanvas,
+            Canvas selectionCanvas,
+            InkAsyncAnalyzer analyzer,
+            InkStrokesService strokeService,
+            InkSelectionRectangleService selectionRectangleService)
         {
             // Initialize properties
-            inkCanvas = _inkCanvas;
-            selectionCanvas = _selectionCanvas;
-            inkPresenter = inkCanvas.InkPresenter;
-            analyzer = _analyzer;
-            strokeService = _strokeService;
-            selectionRectangleService = _selectionRectangleService;
+            _inkCanvas = inkCanvas;
+            _selectionCanvas = selectionCanvas;
+            _inkPresenter = _inkCanvas.InkPresenter;
+            _analyzer = analyzer;
+            _strokeService = strokeService;
+            _selectionRectangleService = selectionRectangleService;
 
             // selection on tap
-            inkCanvas.Tapped += InkCanvas_Tapped;
-            inkCanvas.DoubleTapped += InkCanvas_DoubleTapped;
+            _inkCanvas.Tapped += InkCanvas_Tapped;
+            _inkCanvas.DoubleTapped += InkCanvas_DoubleTapped;
 
-            //drag and drop
-            inkCanvas.PointerPressed += InkCanvas_PointerPressed;
-
-            inkPresenter.StrokesErased += InkPresenter_StrokesErased;
+            // drag and drop
+            _inkCanvas.PointerPressed += InkCanvas_PointerPressed;
+            _inkPresenter.StrokesErased += InkPresenter_StrokesErased;
         }
 
         private void InkCanvas_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var position = e.GetPosition(inkCanvas);
+            var position = e.GetPosition(_inkCanvas);
 
-            if (selectedNode != null && RectHelper.Contains(selectedNode.BoundingRect, position))
+            if (_selectedNode != null && RectHelper.Contains(_selectedNode.BoundingRect, position))
             {
-                if (DateTime.Now.Subtract(lastDoubleTapTime).TotalMilliseconds < TRIPLE_TAP_TIME)
+                if (DateTime.Now.Subtract(_lastDoubleTapTime).TotalMilliseconds < TRIPLETAPTIME)
                 {
                     ExpandSelection();
                 }
             }
             else
             {
-                selectedNode = analyzer.FindHitNode(position);
-                ShowOrHideSelection(selectedNode);
+                _selectedNode = _analyzer.FindHitNode(position);
+                ShowOrHideSelection(_selectedNode);
             }
         }
 
         private void InkCanvas_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            var position = e.GetPosition(inkCanvas);
+            var position = e.GetPosition(_inkCanvas);
 
-            if (selectedNode != null && RectHelper.Contains(selectedNode.BoundingRect, position))
+            if (_selectedNode != null && RectHelper.Contains(_selectedNode.BoundingRect, position))
             {
                 ExpandSelection();
-                lastDoubleTapTime = DateTime.Now;
+                _lastDoubleTapTime = DateTime.Now;
             }
         }
 
         private async void InkCanvas_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            var position = e.GetCurrentPoint(inkCanvas).Position;
+            var position = e.GetCurrentPoint(_inkCanvas).Position;
 
-            while (analyzer.IsAnalyzing)
+            while (_analyzer.IsAnalyzing)
             {
-                await Task.Delay(TimeSpan.FromMilliseconds(BUSY_WAITING_TIME));
+                await Task.Delay(TimeSpan.FromMilliseconds(BUSYWAITINGTIME));
             }
 
-                if (selectionRectangleService.ContainsPosition(position))
+                if (_selectionRectangleService.ContainsPosition(position))
                 {
                     // Pressed on the selected rect, do nothing
                     return;
                 }
 
-            selectedNode = analyzer.FindHitNode(position);
-            ShowOrHideSelection(selectedNode);
+            _selectedNode = _analyzer.FindHitNode(position);
+            ShowOrHideSelection(_selectedNode);
         }
 
         private void InkPresenter_StrokesErased(InkPresenter sender, InkStrokesErasedEventArgs e)
         {
-            if(e.Strokes.Any(s => s.Selected))
+            if (e.Strokes.Any(s => s.Selected))
             {
                 ClearSelection();
             }
         }
 
-
         public void ClearSelection()
         {
-            selectedNode = null;
-            strokeService.ClearStrokesSelection();
-            selectionRectangleService.Clear();
+            _selectedNode = null;
+            _strokeService.ClearStrokesSelection();
+            _selectionRectangleService.Clear();
         }
 
         private void ExpandSelection()
         {
-            if (selectedNode != null &&
-                selectedNode.Kind != InkAnalysisNodeKind.UnclassifiedInk &&
-                selectedNode.Kind != InkAnalysisNodeKind.InkDrawing &&
-                selectedNode.Kind != InkAnalysisNodeKind.WritingRegion)
+            if (_selectedNode != null &&
+                _selectedNode.Kind != InkAnalysisNodeKind.UnclassifiedInk &&
+                _selectedNode.Kind != InkAnalysisNodeKind.InkDrawing &&
+                _selectedNode.Kind != InkAnalysisNodeKind.WritingRegion)
             {
-                selectedNode = selectedNode.Parent;
-                if (selectedNode.Kind == InkAnalysisNodeKind.ListItem && selectedNode.Children.Count == 1)
+                _selectedNode = _selectedNode.Parent;
+                if (_selectedNode.Kind == InkAnalysisNodeKind.ListItem && _selectedNode.Children.Count == 1)
                 {
                     // Hierarchy: WritingRegion->Paragraph->ListItem->Line->{Bullet, Word1, Word2...}
                     // When a ListItem has only one Line, the bounding rect is same with its child Line,
                     // in this case, we skip one level to avoid confusion.
-                    selectedNode = selectedNode.Parent;
+                    _selectedNode = _selectedNode.Parent;
                 }
 
-                ShowOrHideSelection(selectedNode);
+                ShowOrHideSelection(_selectedNode);
             }
         }
 
@@ -139,14 +136,13 @@ namespace Param_ItemNamespace.Services.Ink
         {
             if (node != null)
             {
-                var rect = strokeService.SelectStrokesByNode(node);
-                selectionRectangleService.UpdateSelectionRect(rect);
+                var rect = _strokeService.SelectStrokesByNode(node);
+                _selectionRectangleService.UpdateSelectionRect(rect);
             }
             else
             {
                 ClearSelection();
             }
         }
-
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿    using System.Linq;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -11,23 +11,25 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkSelectionRectangleService
     {
-        private const string selectionRectName = "selectionRectangle";
-        Point dragStartPosition;
-        private readonly Canvas selectionCanvas;
-        InkCanvas inkCanvas;
-        Rect selectionStrokesRect = Rect.Empty;
-        private readonly InkStrokesService strokeService;
+        private const string SelectionRectName = "selectionRectangle";
 
-        public InkSelectionRectangleService(InkCanvas _inkCanvas, Canvas _selectionCanvas, InkStrokesService _strokeService)
+        private readonly Canvas _selectionCanvas;
+        private readonly InkCanvas _inkCanvas;
+        private readonly InkStrokesService _strokeService;
+
+        private Point dragStartPosition;
+        private Rect selectionStrokesRect = Rect.Empty;
+
+        public InkSelectionRectangleService(InkCanvas inkCanvas, Canvas selectionCanvas, InkStrokesService strokeService)
         {
-            selectionCanvas = _selectionCanvas;
-            inkCanvas = _inkCanvas;
-            strokeService = _strokeService;
+            _inkCanvas = inkCanvas;
+            _selectionCanvas = selectionCanvas;
+            _strokeService = strokeService;
 
-            inkCanvas.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
-            inkCanvas.ManipulationStarted += InkCanvas_ManipulationStarted;
-            inkCanvas.ManipulationDelta += InkCanvas_ManipulationDelta;
-            inkCanvas.ManipulationCompleted += InkCanvas_ManipulationCompleted;
+            _inkCanvas.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
+            _inkCanvas.ManipulationStarted += InkCanvas_ManipulationStarted;
+            _inkCanvas.ManipulationDelta += InkCanvas_ManipulationDelta;
+            _inkCanvas.ManipulationCompleted += InkCanvas_ManipulationCompleted;
         }
 
         public void UpdateSelectionRect(Rect rect)
@@ -45,7 +47,7 @@ namespace Param_ItemNamespace.Services.Ink
         public void Clear()
         {
             selectionStrokesRect = Rect.Empty;
-            selectionCanvas.Children.Clear();
+            _selectionCanvas.Children.Clear();
         }
 
         public bool ContainsPosition(Point position)
@@ -55,15 +57,15 @@ namespace Param_ItemNamespace.Services.Ink
 
         private Rectangle GetSelectionRectangle()
         {
-            var selectionRectange = selectionCanvas
+            var selectionRectange = _selectionCanvas
                 .Children
-                .FirstOrDefault(f => f is Rectangle r && r.Name == selectionRectName)
+                .FirstOrDefault(f => f is Rectangle r && r.Name == SelectionRectName)
                 as Rectangle;
 
             if (selectionRectange == null)
             {
                 selectionRectange = CreateNewSelectionRectangle();
-                selectionCanvas.Children.Add(selectionRectange);
+                _selectionCanvas.Children.Add(selectionRectange);
             }
 
             return selectionRectange;
@@ -73,7 +75,7 @@ namespace Param_ItemNamespace.Services.Ink
         {
             return new Rectangle()
             {
-                Name = selectionRectName,
+                Name = SelectionRectName,
                 Stroke = new SolidColorBrush(Colors.Gray),
                 StrokeThickness = 2,
                 StrokeDashArray = new DoubleCollection() { 2, 2 },
@@ -104,7 +106,7 @@ namespace Param_ItemNamespace.Services.Ink
         {
             if (!selectionStrokesRect.IsEmpty)
             {
-                strokeService.MoveSelectedStrokes(dragStartPosition, e.Position);
+                _strokeService.MoveSelectedStrokes(dragStartPosition, e.Position);
             }
         }
 

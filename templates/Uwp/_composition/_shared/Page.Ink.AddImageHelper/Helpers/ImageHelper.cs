@@ -27,7 +27,7 @@ namespace Param_ItemNamespace.Helpers
 
         public static async Task<BitmapImage> GetBitmapFromImageAsync(StorageFile file)
         {
-            if(file == null)
+            if (file == null)
             {
                 return null;
             }
@@ -41,10 +41,10 @@ namespace Param_ItemNamespace.Helpers
                     return bitmapImage;
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return null;
-            }            
+            }
         }
     }
 }

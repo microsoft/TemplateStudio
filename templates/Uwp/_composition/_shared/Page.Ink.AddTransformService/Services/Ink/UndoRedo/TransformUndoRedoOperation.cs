@@ -5,15 +5,15 @@ namespace Param_ItemNamespace.Services.Ink.UndoRedo
 {
     public class TransformUndoRedoOperation : IUndoRedoOperation
     {
-        private InkTransformResult transformResult;
-        private readonly InkStrokesService strokeService;
+        private readonly InkStrokesService _strokeService;
+        private InkTransformResult _transformResult;
 
-        public TransformUndoRedoOperation(InkTransformResult _transformResult, InkStrokesService _strokeService)
+        public TransformUndoRedoOperation(InkTransformResult transformResult, InkStrokesService strokeService)
         {
-            transformResult = _transformResult;
-            strokeService = _strokeService;
+            _transformResult = transformResult;
+            _strokeService = strokeService;
 
-            strokeService.AddStrokeEvent += StrokeService_AddStrokeEvent;
+            _strokeService.AddStrokeEvent += StrokeService_AddStrokeEvent;
         }
 
         public void ExecuteRedo()
@@ -35,45 +35,45 @@ namespace Param_ItemNamespace.Services.Ink.UndoRedo
                 return;
             }
 
-            var removedStrokes = transformResult.Strokes.RemoveAll(s => s.Id == e.OldStroke?.Id);
+            var removedStrokes = _transformResult.Strokes.RemoveAll(s => s.Id == e.OldStroke?.Id);
             if (removedStrokes > 0)
             {
-                transformResult.Strokes.Add(e.NewStroke);
+                _transformResult.Strokes.Add(e.NewStroke);
             }
         }
 
         private void AddTextAndShapes()
         {
-            foreach (var uielement in transformResult.TextAndShapes.ToList())
+            foreach (var uielement in _transformResult.TextAndShapes.ToList())
             {
-                transformResult.DrawingCanvas.Children.Add(uielement);
+                _transformResult.DrawingCanvas.Children.Add(uielement);
             }
         }
 
         private void RemoveTextAndShapes()
         {
-            foreach (var uielement in transformResult.TextAndShapes)
+            foreach (var uielement in _transformResult.TextAndShapes)
             {
-                if (transformResult.DrawingCanvas.Children.Contains(uielement))
+                if (_transformResult.DrawingCanvas.Children.Contains(uielement))
                 {
-                    transformResult.DrawingCanvas.Children.Remove(uielement);
+                    _transformResult.DrawingCanvas.Children.Remove(uielement);
                 }
             }
         }
 
         private void AddStrokes()
         {
-            foreach (var stroke in transformResult.Strokes.ToList())
+            foreach (var stroke in _transformResult.Strokes.ToList())
             {
-                strokeService.AddStroke(stroke);
+                _strokeService.AddStroke(stroke);
             }
         }
 
         private void RemoveStrokes()
         {
-            foreach (var stroke in transformResult.Strokes)
+            foreach (var stroke in _transformResult.Strokes)
             {
-                strokeService.RemoveStroke(stroke);
+                _strokeService.RemoveStroke(stroke);
             }
         }
     }

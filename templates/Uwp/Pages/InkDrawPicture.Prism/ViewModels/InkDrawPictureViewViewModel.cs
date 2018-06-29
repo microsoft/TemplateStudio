@@ -10,39 +10,39 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class InkDrawPictureViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        private InkStrokesService _strokeService;
+        private InkPointerDeviceService _pointerDeviceService;
+        private InkFileService _fileService;
+        private InkZoomService _zoomService;
+
         private bool enableTouch = true;
         private bool enableMouse = true;
 
         private BitmapImage image;
 
-        private InkStrokesService strokesService;
-        private InkPointerDeviceService pointerDeviceService;
-        private InkFileService fileService;
-        private InkZoomService zoomService;
-
         public InkDrawPictureViewViewModel()
         {
             LoadImageCommand = new DelegateCommand(async () => await OnLoadImageAsync());
             SaveImageCommand = new DelegateCommand(async () => await OnSaveImageAsync());
-            ZoomInCommand = new DelegateCommand(() => zoomService?.ZoomIn());
-            ZoomOutCommand = new DelegateCommand(() => zoomService?.ZoomOut());
-            ResetZoomCommand = new DelegateCommand(() => zoomService?.ResetZoom());
-            FitToScreenCommand = new DelegateCommand(() => zoomService?.FitToScreen());
+            ZoomInCommand = new DelegateCommand(() => _zoomService?.ZoomIn());
+            ZoomOutCommand = new DelegateCommand(() => _zoomService?.ZoomOut());
+            ResetZoomCommand = new DelegateCommand(() => _zoomService?.ResetZoom());
+            FitToScreenCommand = new DelegateCommand(() => _zoomService?.FitToScreen());
             ClearAllCommand = new DelegateCommand(ClearAll);
         }
-        
-        public void Initialize(
-            InkStrokesService _strokesService,
-            InkPointerDeviceService _pointerDeviceService,
-            InkFileService _fileService,
-            InkZoomService _zoomService)
-        {
-            strokesService = _strokesService;
-            pointerDeviceService = _pointerDeviceService;
-            fileService = _fileService;
-            zoomService = _zoomService;
 
-            pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
+        public void Initialize(
+            InkStrokesService strokeService,
+            InkPointerDeviceService pointerDeviceService,
+            InkFileService fileService,
+            InkZoomService zoomService)
+        {
+            _strokeService = strokeService;
+            _pointerDeviceService = pointerDeviceService;
+            _fileService = fileService;
+            _zoomService = zoomService;
+
+            _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
         public bool EnableTouch
@@ -51,7 +51,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 SetProperty(ref enableTouch, value);
-                pointerDeviceService.EnableTouch = value;
+                _pointerDeviceService.EnableTouch = value;
             }
         }
 
@@ -61,7 +61,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 SetProperty(ref enableMouse, value);
-                pointerDeviceService.EnableMouse = value;
+                _pointerDeviceService.EnableMouse = value;
             }
         }
 
@@ -97,18 +97,18 @@ namespace Param_ItemNamespace.ViewModels
                 ClearAll();
                 ImageFile = file;
                 Image = bitmapImage;
-                zoomService?.FitToSize(Image.PixelWidth, Image.PixelHeight);
+                _zoomService?.FitToSize(Image.PixelWidth, Image.PixelHeight);
             }
         }
 
         private async Task OnSaveImageAsync()
         {
-            await fileService?.ExportToImageAsync(ImageFile);
+            await _fileService?.ExportToImageAsync(ImageFile);
         }
 
         private void ClearAll()
         {
-            strokesService?.ClearStrokes();
+            _strokeService?.ClearStrokes();
             ImageFile = null;
             Image = null;
         }

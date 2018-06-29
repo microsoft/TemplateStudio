@@ -8,21 +8,21 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkUndoRedoService
     {
-        private readonly InkStrokesService strokeService;
+        private readonly InkStrokesService _strokeService;
 
         private Stack<IUndoRedoOperation> undoStack = new Stack<IUndoRedoOperation>();
         private Stack<IUndoRedoOperation> redoStack = new Stack<IUndoRedoOperation>();
 
-        public InkUndoRedoService(InkCanvas _inkCanvas, InkStrokesService _strokeService)
+        public InkUndoRedoService(InkCanvas inkCanvas, InkStrokesService strokeService)
         {
-            strokeService = _strokeService;
-            strokeService.MoveStrokesEvent += StrokeService_MoveStrokesEvent;
-            strokeService.CutStrokesEvent += StrokeService_CutStrokesEvent;
-            strokeService.PasteStrokesEvent += StrokeService_PasteStrokesEvent;
+            _strokeService = strokeService;
+            _strokeService.MoveStrokesEvent += StrokeService_MoveStrokesEvent;
+            _strokeService.CutStrokesEvent += StrokeService_CutStrokesEvent;
+            _strokeService.PasteStrokesEvent += StrokeService_PasteStrokesEvent;
 
-            _inkCanvas.InkPresenter.StrokesCollected += (s, e) => AddOperation(new AddStrokeUndoRedoOperation(e.Strokes, strokeService));
-            _inkCanvas.InkPresenter.StrokesErased += (s, e) => AddOperation(new RemoveStrokeUndoRedoOperation(e.Strokes, strokeService));
-        }       
+            inkCanvas.InkPresenter.StrokesCollected += (s, e) => AddOperation(new AddStrokeUndoRedoOperation(e.Strokes, _strokeService));
+            inkCanvas.InkPresenter.StrokesErased += (s, e) => AddOperation(new RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService));
+        }
 
         public void Reset()
         {
@@ -37,35 +37,41 @@ namespace Param_ItemNamespace.Services.Ink
         public void Undo()
         {
             if (!CanUndo)
+            {
                 return;
+            }
 
-            strokeService.MoveStrokesEvent -= StrokeService_MoveStrokesEvent;
+            _strokeService.MoveStrokesEvent -= StrokeService_MoveStrokesEvent;
 
             var element = undoStack.Pop();
             element.ExecuteUndo();
             redoStack.Push(element);
 
-            strokeService.MoveStrokesEvent += StrokeService_MoveStrokesEvent;
+            _strokeService.MoveStrokesEvent += StrokeService_MoveStrokesEvent;
         }
 
         public void Redo()
         {
             if (!CanRedo)
+            {
                 return;
+            }
 
-            strokeService.MoveStrokesEvent -= StrokeService_MoveStrokesEvent;
+            _strokeService.MoveStrokesEvent -= StrokeService_MoveStrokesEvent;
 
             var element = redoStack.Pop();
-            element.ExecuteRedo();           
+            element.ExecuteRedo();
             undoStack.Push(element);
 
-            strokeService.MoveStrokesEvent += StrokeService_MoveStrokesEvent;
+            _strokeService.MoveStrokesEvent += StrokeService_MoveStrokesEvent;
         }
 
         public void AddOperation(IUndoRedoOperation operation)
         {
             if (operation == null)
+            {
                 return;
+            }
 
             undoStack.Push(operation);
             redoStack.Clear();
@@ -73,20 +79,20 @@ namespace Param_ItemNamespace.Services.Ink
 
         private void StrokeService_MoveStrokesEvent(object sender, MoveStrokesEventArgs e)
         {
-            var operation = new MoveStrokesUndoRedoOperation(e.Strokes, e.StartPosition, e.EndPosition, strokeService);
+            var operation = new MoveStrokesUndoRedoOperation(e.Strokes, e.StartPosition, e.EndPosition, _strokeService);
             AddOperation(operation);
         }
 
         private void StrokeService_CutStrokesEvent(object sender, CopyPasteStrokesEventArgs e)
         {
-            var operation = new RemoveStrokeUndoRedoOperation(e.Strokes, strokeService);
+            var operation = new RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService);
             AddOperation(operation);
         }
 
         private void StrokeService_PasteStrokesEvent(object sender, CopyPasteStrokesEventArgs e)
         {
-            var operation = new AddStrokeUndoRedoOperation(e.Strokes, strokeService);
+            var operation = new AddStrokeUndoRedoOperation(e.Strokes, _strokeService);
             AddOperation(operation);
-        }        
+        }
     }
 }

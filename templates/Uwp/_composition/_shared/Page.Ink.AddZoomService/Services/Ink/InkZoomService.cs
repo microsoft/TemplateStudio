@@ -7,23 +7,23 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkZoomService
     {
-        private const float defaultZoomFactor = 0.1f;
-        private readonly ScrollViewer scrollViewer;
+        private const float DefaultZoomFactor = 0.1f;
+        private readonly ScrollViewer _scrollViewer;
 
-        public InkZoomService(ScrollViewer _scrollViewer)
+        public InkZoomService(ScrollViewer scrollViewer)
         {
-            scrollViewer = _scrollViewer;
+            _scrollViewer = scrollViewer;
         }
 
-        public float ZoomIn(float zoomFactor = defaultZoomFactor) => ExecuteZoom(scrollViewer.ZoomFactor + zoomFactor);
+        public float ZoomIn(float zoomFactor = DefaultZoomFactor) => ExecuteZoom(_scrollViewer.ZoomFactor + zoomFactor);
 
-        public float ZoomOut(float zoomFactor = defaultZoomFactor) => ExecuteZoom(scrollViewer.ZoomFactor - zoomFactor);
+        public float ZoomOut(float zoomFactor = DefaultZoomFactor) => ExecuteZoom(_scrollViewer.ZoomFactor - zoomFactor);
 
         public float ResetZoom() => ExecuteZoom(1f);
 
         public void FitToScreen()
         {
-            if (scrollViewer.Content is FrameworkElement element)
+            if (_scrollViewer.Content is FrameworkElement element)
             {
                 FitToSize(element.Width, element.Height);
             }
@@ -36,21 +36,21 @@ namespace Param_ItemNamespace.Services.Ink
                 return;
             }
 
-            var ratioWidth = scrollViewer.ViewportWidth / width;
-            var ratioHeight = scrollViewer.ViewportHeight / height;
-            var zoomFactor = (float)(Math.Min(ratioWidth, ratioHeight));
+            var ratioWidth = _scrollViewer.ViewportWidth / width;
+            var ratioHeight = _scrollViewer.ViewportHeight / height;
+            var zoomFactor = (float)Math.Min(ratioWidth, ratioHeight);
 
             ExecuteZoom(zoomFactor);
         }
 
         private float ExecuteZoom(float zoomFactor)
         {
-            if(scrollViewer.ChangeView(scrollViewer.HorizontalOffset, scrollViewer.VerticalOffset, zoomFactor))
+            if (_scrollViewer.ChangeView(_scrollViewer.HorizontalOffset, _scrollViewer.VerticalOffset, zoomFactor))
             {
                 return zoomFactor;
             }
 
-            return scrollViewer.ZoomFactor;
+            return _scrollViewer.ZoomFactor;
         }
     }
 }

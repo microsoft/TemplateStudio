@@ -42,12 +42,12 @@ namespace Param_ItemNamespace.Services.Ink
                     var words = AnalyzeWords();
                     var shapes = AnalyzeShapes();
 
-                    //Generate result
+                    // Generate result
                     result.Strokes.AddRange(inkStrokes);
                     result.TextAndShapes.AddRange(words);
                     result.TextAndShapes.AddRange(shapes);
                 }
-            }           
+            }
 
             return result;
         }
@@ -92,6 +92,7 @@ namespace Param_ItemNamespace.Services.Ink
 
                     _strokeService.RemoveStrokesByIds(strokesIds);
                 }
+
                 _inkAnalyzer.RemoveDataForStrokes(strokesIds);
             }
         }
@@ -113,10 +114,10 @@ namespace Param_ItemNamespace.Services.Ink
         {
             var points = shape.Points;
             Ellipse ellipse = new Ellipse();
-            ellipse.Width = Math.Sqrt((points[0].X - points[2].X) * (points[0].X - points[2].X) +
-                 (points[0].Y - points[2].Y) * (points[0].Y - points[2].Y));
-            ellipse.Height = Math.Sqrt((points[1].X - points[3].X) * (points[1].X - points[3].X) +
-                 (points[1].Y - points[3].Y) * (points[1].Y - points[3].Y));
+            ellipse.Width = Math.Sqrt(((points[0].X - points[2].X) * (points[0].X - points[2].X)) +
+                 ((points[0].Y - points[2].Y) * (points[0].Y - points[2].Y)));
+            ellipse.Height = Math.Sqrt(((points[1].X - points[3].X) * (points[1].X - points[3].X)) +
+                 ((points[1].Y - points[3].Y) * (points[1].Y - points[3].Y)));
 
             var rotAngle = Math.Atan2(points[2].Y - points[0].Y, points[2].X - points[0].X);
             RotateTransform rotateTransform = new RotateTransform();
@@ -125,8 +126,8 @@ namespace Param_ItemNamespace.Services.Ink
             rotateTransform.CenterY = ellipse.Height / 2.0;
 
             TranslateTransform translateTransform = new TranslateTransform();
-            translateTransform.X = shape.Center.X - ellipse.Width / 2.0;
-            translateTransform.Y = shape.Center.Y - ellipse.Height / 2.0;
+            translateTransform.X = shape.Center.X - (ellipse.Width / 2.0);
+            translateTransform.Y = shape.Center.Y - (ellipse.Height / 2.0);
 
             TransformGroup transformGroup = new TransformGroup();
             transformGroup.Children.Add(rotateTransform);
@@ -175,5 +176,5 @@ namespace Param_ItemNamespace.Services.Ink
         {
             _drawingCanvas.Children.Clear();
         }
-    }    
+    }
 }

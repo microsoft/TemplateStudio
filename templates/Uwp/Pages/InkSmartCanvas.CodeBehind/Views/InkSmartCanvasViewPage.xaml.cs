@@ -20,11 +20,11 @@ namespace Param_ItemNamespace.Views
         public InkSmartCanvasViewPage()
         {
             InitializeComponent();
-            Loaded += (sender, eventArgs) => 
+            Loaded += (sender, eventArgs) =>
             {
                 SetCanvasSize();
 
-                strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);                
+                strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
                 var analyzer = new InkAsyncAnalyzer(inkCanvas, strokeService);
                 var selectionRectangleService = new InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService);
 
@@ -32,7 +32,7 @@ namespace Param_ItemNamespace.Views
                 nodeSelectionService = new InkNodeSelectionService(inkCanvas, selectionCanvas, analyzer, strokeService, selectionRectangleService);
                 pointerDeviceService = new InkPointerDeviceService(inkCanvas);
                 undoRedoService = new InkUndoRedoService(inkCanvas, strokeService);
-                transformService = new InkTransformService(drawingCanvas,strokeService);
+                transformService = new InkTransformService(drawingCanvas, strokeService);
                 fileService = new InkFileService(inkCanvas, strokeService);
 
                 touchInkingButton.IsChecked = true;
@@ -42,7 +42,7 @@ namespace Param_ItemNamespace.Views
                 pointerDeviceService.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
             };
         }
-        
+
         private void SetCanvasSize()
         {
             inkCanvas.Width = Math.Max(canvasScroll.ViewportWidth, 1000);

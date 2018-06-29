@@ -7,35 +7,35 @@ namespace Param_ItemNamespace.Services.Ink.UndoRedo
 {
     public class MoveStrokesUndoRedoOperation : IUndoRedoOperation
     {
-        private readonly Point endPosition;
-        private readonly Point startPosition;
-        private readonly List<InkStroke> strokes;
-        private readonly InkStrokesService strokeService;
+        private readonly Point _endPosition;
+        private readonly Point _startPosition;
+        private readonly List<InkStroke> _strokes;
+        private readonly InkStrokesService _strokeService;
 
         public MoveStrokesUndoRedoOperation(
-            IEnumerable<InkStroke> _strokes,
-            Point _startPosition,
-            Point _endPosition,
-            InkStrokesService _strokeService)
+            IEnumerable<InkStroke> strokes,
+            Point startPosition,
+            Point endPosition,
+            InkStrokesService strokeService)
         {
-            strokes = new List<InkStroke>(_strokes);
-            startPosition = _startPosition;
-            endPosition = _endPosition;
-            strokeService = _strokeService;
+            _strokes = new List<InkStroke>(strokes);
+            _startPosition = startPosition;
+            _endPosition = endPosition;
+            _strokeService = strokeService;
 
-            strokeService.AddStrokeEvent += StrokeService_AddStrokeEvent;
+            _strokeService.AddStrokeEvent += StrokeService_AddStrokeEvent;
         }
 
         public void ExecuteRedo()
         {
-            strokeService.SelectStrokes(strokes);
-            strokeService.MoveSelectedStrokes(startPosition, endPosition);
+            _strokeService.SelectStrokes(_strokes);
+            _strokeService.MoveSelectedStrokes(_startPosition, _endPosition);
         }
 
         public void ExecuteUndo()
         {
-            strokeService.SelectStrokes(strokes);
-            strokeService.MoveSelectedStrokes(endPosition, startPosition);
+            _strokeService.SelectStrokes(_strokes);
+            _strokeService.MoveSelectedStrokes(_endPosition, _startPosition);
         }
 
         private void StrokeService_AddStrokeEvent(object sender, AddStrokeEventArgs e)
@@ -45,10 +45,10 @@ namespace Param_ItemNamespace.Services.Ink.UndoRedo
                 return;
             }
 
-            var removedStrokes = strokes.RemoveAll(s => s.Id == e.OldStroke?.Id);
+            var removedStrokes = _strokes.RemoveAll(s => s.Id == e.OldStroke?.Id);
             if (removedStrokes > 0)
             {
-                strokes.Add(e.NewStroke);
+                _strokes.Add(e.NewStroke);
             }
         }
     }

@@ -9,30 +9,30 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class InkDrawPictureViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
+        private InkStrokesService _strokesService;
+        private InkPointerDeviceService _pointerDeviceService;
+        private InkFileService _fileService;
+        private InkZoomService _zoomService;
+
         private bool enableTouch = true;
         private bool enableMouse = true;
 
         private BitmapImage image;
 
-        private InkStrokesService strokesService;
-        private InkPointerDeviceService pointerDeviceService;
-        private InkFileService fileService;
-        private InkZoomService zoomService;
-
         public InkDrawPictureViewViewModel()
         {
         }
-        
+
         public void Initialize(
-            InkStrokesService _strokesService,
-            InkPointerDeviceService _pointerDeviceService,
-            InkFileService _fileService,
-            InkZoomService _zoomService)
+            InkStrokesService strokesService,
+            InkPointerDeviceService pointerDeviceService,
+            InkFileService fileService,
+            InkZoomService zoomService)
         {
-            strokesService = _strokesService;
-            pointerDeviceService = _pointerDeviceService;
-            fileService = _fileService;
-            zoomService = _zoomService;
+            _strokesService = strokesService;
+            _pointerDeviceService = pointerDeviceService;
+            _fileService = fileService;
+            _zoomService = zoomService;
 
             pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
@@ -43,7 +43,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Param_Setter(ref enableTouch, value);
-                pointerDeviceService.EnableTouch = value;
+                _pointerDeviceService.EnableTouch = value;
             }
         }
 
@@ -53,7 +53,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Param_Setter(ref enableMouse, value);
-                pointerDeviceService.EnableMouse = value;
+                _pointerDeviceService.EnableMouse = value;
             }
         }
 
@@ -67,19 +67,19 @@ namespace Param_ItemNamespace.ViewModels
 
         public async void OpenImage() => await OnLoadImageAsync();
 
-        public async void SaveImage () => await fileService?.ExportToImageAsync(ImageFile);
+        public async void SaveImage() => await _fileService?.ExportToImageAsync(ImageFile);
 
-        public void ZoomIn() => zoomService?.ZoomIn();
+        public void ZoomIn() => _zoomService?.ZoomIn();
 
-        public void ZoomOut () => zoomService?.ZoomOut();
+        public void ZoomOut() => _zoomService?.ZoomOut();
 
-        public void ResetZoom() => zoomService?.ResetZoom();
+        public void ResetZoom() => _zoomService?.ResetZoom();
 
-        public void FitToScreen() => zoomService?.FitToScreen();
+        public void FitToScreen() => _zoomService?.FitToScreen();
 
         public void ClearAll()
         {
-            strokesService?.ClearStrokes();
+            _strokesService?.ClearStrokes();
             ImageFile = null;
             Image = null;
         }
@@ -94,7 +94,7 @@ namespace Param_ItemNamespace.ViewModels
                 ClearAll();
                 ImageFile = file;
                 Image = bitmapImage;
-                zoomService?.FitToSize(Image.PixelWidth, Image.PixelHeight);
+                _zoomService?.FitToSize(Image.PixelWidth, Image.PixelHeight);
             }
         }
     }

@@ -12,32 +12,32 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkAsyncAnalyzer
     {
-        private readonly InkCanvas inkCanvas;
-        private readonly InkStrokesService strokesService;
+        private const double IDLEWAITINGTIME = 400;
+        private readonly InkCanvas _inkCanvas;
+        private readonly InkStrokesService _strokesService;
         private readonly DispatcherTimer dispatcherTimer;
-        const double IDLE_WAITING_TIME = 400;
-        
-        public InkAsyncAnalyzer(InkCanvas _inkCanvas, InkStrokesService _strokesService)
-        {
-            inkCanvas = _inkCanvas;
-            inkCanvas.InkPresenter.StrokeInput.StrokeStarted += (s,e) => StopTimer();
-            inkCanvas.InkPresenter.StrokesErased += (s,e) => RemoveStrokes(e.Strokes);
-            inkCanvas.InkPresenter.StrokesCollected += (s, e) => AddStrokes(e.Strokes);
 
-            strokesService = _strokesService;
-            strokesService.AddStrokeEvent += StrokesService_AddStrokeEvent;
-            strokesService.RemoveStrokeEvent += StrokesService_RemoveStrokeEvent;
-            strokesService.MoveStrokesEvent += StrokesService_MoveStrokesEvent;
-            strokesService.CutStrokesEvent += StrokesService_CutStrokesEvent;
-            strokesService.PasteStrokesEvent += StrokesService_PasteStrokesEvent;
-            strokesService.ClearStrokesEvent += StrokesService_ClearStrokesEvent;
-            strokesService.LoadInkFileEvent += StrokesService_LoadInkFileEvent;
+        public InkAsyncAnalyzer(InkCanvas inkCanvas, InkStrokesService strokesService)
+        {
+            _inkCanvas = inkCanvas;
+            _inkCanvas.InkPresenter.StrokeInput.StrokeStarted += (s, e) => StopTimer();
+            _inkCanvas.InkPresenter.StrokesErased += (s, e) => RemoveStrokes(e.Strokes);
+            _inkCanvas.InkPresenter.StrokesCollected += (s, e) => AddStrokes(e.Strokes);
+
+            _strokesService = strokesService;
+            _strokesService.AddStrokeEvent += StrokesService_AddStrokeEvent;
+            _strokesService.RemoveStrokeEvent += StrokesService_RemoveStrokeEvent;
+            _strokesService.MoveStrokesEvent += StrokesService_MoveStrokesEvent;
+            _strokesService.CutStrokesEvent += StrokesService_CutStrokesEvent;
+            _strokesService.PasteStrokesEvent += StrokesService_PasteStrokesEvent;
+            _strokesService.ClearStrokesEvent += StrokesService_ClearStrokesEvent;
+            _strokesService.LoadInkFileEvent += StrokesService_LoadInkFileEvent;
 
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += DispatcherTimer_Tick;
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(IDLE_WAITING_TIME);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(IDLEWAITINGTIME);
         }
-        
+
         public InkAnalyzer InkAnalyzer { get; private set; } = new InkAnalyzer();
 
         public bool IsAnalyzing => InkAnalyzer.IsAnalyzing;
@@ -56,7 +56,7 @@ namespace Param_ItemNamespace.Services.Ink
             if (clean == true)
             {
                 InkAnalyzer.ClearDataForAllStrokes();
-                InkAnalyzer.AddDataForStrokes(strokesService.GetStrokes());
+                InkAnalyzer.AddDataForStrokes(_strokesService.GetStrokes());
             }
 
             var result = await InkAnalyzer.AnalyzeAsync();
@@ -75,6 +75,7 @@ namespace Param_ItemNamespace.Services.Ink
                     node = FindHitNodeByKind(position, InkAnalysisNodeKind.InkDrawing);
                 }
             }
+
             return node;
         }
 
@@ -139,6 +140,7 @@ namespace Param_ItemNamespace.Services.Ink
                     return node;
                 }
             }
+
             return null;
         }
 
@@ -173,7 +175,7 @@ namespace Param_ItemNamespace.Services.Ink
 
         private void StrokesService_CutStrokesEvent(object sender, CopyPasteStrokesEventArgs e)
         {
-            foreach(var stroke in e.Strokes)
+            foreach (var stroke in e.Strokes)
             {
                 RemoveStroke(stroke);
             }
@@ -183,7 +185,6 @@ namespace Param_ItemNamespace.Services.Ink
         {
             ClearAnalysis();
         }
-
 
         private async void StrokesService_LoadInkFileEvent(object sender, EventArgs e)
         {

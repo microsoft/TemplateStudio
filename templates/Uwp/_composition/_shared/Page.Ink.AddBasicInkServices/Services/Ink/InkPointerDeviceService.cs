@@ -8,23 +8,22 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkPointerDeviceService
     {
-        private readonly InkCanvas inkCanvas;
+        private readonly InkCanvas _inkCanvas;
 
         private bool enableMouse;
         private bool enablePen;
         private bool enableTouch;
 
-
         public event EventHandler<EventArgs> DetectPenEvent;
 
-        public InkPointerDeviceService(InkCanvas _inkCanvas)
+        public InkPointerDeviceService(InkCanvas inkCanvas)
         {
-            inkCanvas = _inkCanvas;
-            inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse |
+            _inkCanvas = inkCanvas;
+            _inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse |
                                                       CoreInputDeviceTypes.Pen |
                                                       CoreInputDeviceTypes.Touch;
 
-            inkCanvas.InkPresenter.UnprocessedInput.PointerEntered += UnprocessedInput_PointerEntered;
+            _inkCanvas.InkPresenter.UnprocessedInput.PointerEntered += UnprocessedInput_PointerEntered;
         }
 
         public bool EnableMouse
@@ -64,12 +63,12 @@ namespace Param_ItemNamespace.Services.Ink
                 DetectPenEvent?.Invoke(this, EventArgs.Empty);
             }
         }
-        
+
         private void UpdateInputDevice(CoreInputDeviceTypes inputDevice, bool isEnabled)
         {
-            inkCanvas.InkPresenter.InputDeviceTypes = isEnabled
-                ? inkCanvas.InkPresenter.InputDeviceTypes | inputDevice
-                : inkCanvas.InkPresenter.InputDeviceTypes & ~inputDevice;
+            _inkCanvas.InkPresenter.InputDeviceTypes = isEnabled
+                ? _inkCanvas.InkPresenter.InputDeviceTypes | inputDevice
+                : _inkCanvas.InkPresenter.InputDeviceTypes & ~inputDevice;
         }
     }
 }

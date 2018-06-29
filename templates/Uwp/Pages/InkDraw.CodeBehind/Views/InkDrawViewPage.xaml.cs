@@ -18,15 +18,15 @@ namespace Param_ItemNamespace.Views
         public InkDrawViewPage()
         {
             InitializeComponent();
-            Loaded += (sender, eventArgs) => 
+            Loaded += (sender, eventArgs) =>
             {
-                SetCanvasSize();                
+                SetCanvasSize();
 
                 strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
                 var selectionRectangleService = new InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService);
                 lassoSelectionService = new InkLassoSelectionService(inkCanvas, selectionCanvas, strokeService, selectionRectangleService);
                 pointerDeviceService = new InkPointerDeviceService(inkCanvas);
-                copyPasteService =  new InkCopyPasteService(strokeService);
+                copyPasteService = new InkCopyPasteService(strokeService);
                 undoRedoService = new InkUndoRedoService(inkCanvas, strokeService);
                 fileService = new InkFileService(inkCanvas, strokeService);
                 zoomService = new InkZoomService(canvasScroll);
@@ -43,7 +43,7 @@ namespace Param_ItemNamespace.Views
             inkCanvas.Width = Math.Max(canvasScroll.ViewportWidth, 1000);
             inkCanvas.Height = Math.Max(canvasScroll.ViewportHeight, 1000);
         }
-        
+
         private void LassoSelection_Checked(object sender, RoutedEventArgs e) => lassoSelectionService?.StartLassoSelectionConfig();
 
         private void LassoSelection_Unchecked(object sender, RoutedEventArgs e) => lassoSelectionService?.EndLassoSelectionConfig();
@@ -59,7 +59,7 @@ namespace Param_ItemNamespace.Views
         private void ZoomIn_Click(object sender, RoutedEventArgs e) => zoomService?.ZoomIn();
 
         private void ZoomOut_Click(object sender, RoutedEventArgs e) => zoomService?.ZoomOut();
-        
+
         private void Copy_Click(object sender, RoutedEventArgs e) => copyPasteService?.Copy();
 
         private void Cut_Click(object sender, RoutedEventArgs e)
@@ -91,7 +91,7 @@ namespace Param_ItemNamespace.Views
             ClearSelection();
             var fileLoaded = await fileService?.LoadInkAsync();
 
-            if(fileLoaded)
+            if (fileLoaded)
             {
                 undoRedoService?.Reset();
             }

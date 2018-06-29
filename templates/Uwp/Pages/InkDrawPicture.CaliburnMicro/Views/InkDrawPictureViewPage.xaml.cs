@@ -25,7 +25,7 @@ namespace Param_ItemNamespace.Views
                     new InkZoomService(canvasScroll));
             };
         }
-        
+
         private void SetCanvasSize()
         {
             inkCanvas.Width = Math.Max(canvasScroll.ViewportWidth, 1000);
@@ -34,7 +34,7 @@ namespace Param_ItemNamespace.Views
 
         private void Image_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if(e.NewSize.Height == 0 || e.NewSize.Width == 0)
+            if (e.NewSize.Height == 0 || e.NewSize.Width == 0)
             {
                 SetCanvasSize();
             }

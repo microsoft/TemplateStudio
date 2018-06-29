@@ -10,10 +10,10 @@ namespace Param_ItemNamespace.Views
         public InkDrawViewPage()
         {
             InitializeComponent();
-            Loaded += (s, e) => 
+            Loaded += (s, e) =>
             {
                 SetCanvasSize();
-                
+
                 var strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
                 var selectionRectangleService = new InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService);
 
@@ -27,7 +27,7 @@ namespace Param_ItemNamespace.Views
                     new InkZoomService(canvasScroll));
             };
         }
-        
+
         private void SetCanvasSize()
         {
             inkCanvas.Width = Math.Max(canvasScroll.ViewportWidth, 1000);

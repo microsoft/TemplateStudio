@@ -12,11 +12,11 @@ namespace Param_ItemNamespace.EventHandlers.Ink
 
         public IEnumerable<InkStroke> Strokes { get; set; }
 
-        public MoveStrokesEventArgs(IEnumerable<InkStroke> _strokes, Point _startPosition, Point _endPosition)
+        public MoveStrokesEventArgs(IEnumerable<InkStroke> strokes, Point startPosition, Point endPosition)
         {
-            Strokes = _strokes;
-            StartPosition = _startPosition;
-            EndPosition = _endPosition;
+            Strokes = strokes;
+            StartPosition = startPosition;
+            EndPosition = endPosition;
         }
     }
 }

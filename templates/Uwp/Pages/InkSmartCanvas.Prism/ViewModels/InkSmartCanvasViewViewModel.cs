@@ -8,13 +8,13 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class InkSmartCanvasViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private InkStrokesService strokeService;
-        private InkLassoSelectionService lassoSelectionService;
-        private InkNodeSelectionService nodeSelectionService;
-        private InkPointerDeviceService pointerDeviceService;
-        private InkUndoRedoService undoRedoService;
-        private InkTransformService transformService;
-        private InkFileService fileService;
+        private InkStrokesService _strokeService;
+        private InkLassoSelectionService _lassoSelectionService;
+        private InkNodeSelectionService _nodeSelectionService;
+        private InkPointerDeviceService _pointerDeviceService;
+        private InkUndoRedoService _undoRedoService;
+        private InkTransformService _transformService;
+        private InkFileService _fileService;
 
         private bool enableTouch = true;
         private bool enableMouse = true;
@@ -31,25 +31,25 @@ namespace Param_ItemNamespace.ViewModels
             TransformTextAndShapesCommand = new DelegateCommand(TransformTextAndShapes);
             ClearAllCommand = new DelegateCommand(ClearAll);
         }
-        
-        public void Initialize(
-            InkStrokesService _strokeService,
-            InkLassoSelectionService _lassoSelectionService,
-            InkNodeSelectionService _nodeSelectionService,
-            InkPointerDeviceService _pointerDeviceService,
-            InkUndoRedoService _undoRedoService,
-            InkTransformService _transformService,
-            InkFileService _fileService)
-        {
-            strokeService = _strokeService;
-            lassoSelectionService = _lassoSelectionService;
-            nodeSelectionService = _nodeSelectionService;
-            pointerDeviceService = _pointerDeviceService;
-            undoRedoService = _undoRedoService;
-            transformService = _transformService;
-            fileService = _fileService;
 
-            pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
+        public void Initialize(
+            InkStrokesService strokeService,
+            InkLassoSelectionService lassoSelectionService,
+            InkNodeSelectionService nodeSelectionService,
+            InkPointerDeviceService pointerDeviceService,
+            InkUndoRedoService undoRedoService,
+            InkTransformService transformService,
+            InkFileService fileService)
+        {
+            _strokeService = strokeService;
+            _lassoSelectionService = lassoSelectionService;
+            _nodeSelectionService = nodeSelectionService;
+            _pointerDeviceService = pointerDeviceService;
+            _undoRedoService = undoRedoService;
+            _transformService = transformService;
+            _fileService = fileService;
+
+            _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
         public bool EnableTouch
@@ -58,7 +58,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 SetProperty(ref enableTouch, value);
-                pointerDeviceService.EnableTouch = value;
+                _pointerDeviceService.EnableTouch = value;
             }
         }
 
@@ -68,7 +68,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 SetProperty(ref enableMouse, value);
-                pointerDeviceService.EnableMouse = value;
+                _pointerDeviceService.EnableMouse = value;
             }
         }
 
@@ -78,7 +78,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 SetProperty(ref enablePen, value);
-                pointerDeviceService.EnablePen = value;
+                _pointerDeviceService.EnablePen = value;
             }
         }
 
@@ -101,73 +101,73 @@ namespace Param_ItemNamespace.ViewModels
         public ICommand SaveInkFileCommand { get; }
 
         public ICommand TransformTextAndShapesCommand { get; }
-        
+
         public ICommand ClearAllCommand { get; }
-      
+
         private void Undo()
         {
             ClearSelection();
-            undoRedoService.Undo();
+            _undoRedoService.Undo();
         }
 
         private void Redo()
         {
             ClearSelection();
-            undoRedoService.Redo();
+            _undoRedoService.Redo();
         }
 
         private async void LoadInkFile()
         {
             ClearSelection();
-            var fileLoaded = await fileService.LoadInkAsync();
+            var fileLoaded = await _fileService.LoadInkAsync();
 
             if (fileLoaded)
             {
-                transformService.ClearTextAndShapes();
-                undoRedoService.Reset();
+                _transformService.ClearTextAndShapes();
+                _undoRedoService.Reset();
             }
         }
 
         private async void SaveInkFile()
         {
             ClearSelection();
-            await fileService.SaveInkAsync();
+            await _fileService.SaveInkAsync();
         }
 
         private async void TransformTextAndShapes()
         {
-            var result = await transformService.TransformTextAndShapesAsync();
+            var result = await _transformService.TransformTextAndShapesAsync();
             if (result.TextAndShapes.Any())
             {
                 ClearSelection();
-                undoRedoService.AddOperation(new TransformUndoRedoOperation(result, strokeService));
+                _undoRedoService.AddOperation(new TransformUndoRedoOperation(result, _strokeService));
             }
         }
 
         private void ClearAll()
         {
             ClearSelection();
-            strokeService.ClearStrokes();
-            transformService.ClearTextAndShapes();
-            undoRedoService.Reset();
+            _strokeService.ClearStrokes();
+            _transformService.ClearTextAndShapes();
+            _undoRedoService.Reset();
         }
 
         private void ConfigLassoSelection(bool enableLasso)
         {
             if (enableLasso)
             {
-                lassoSelectionService.StartLassoSelectionConfig();
+                _lassoSelectionService.StartLassoSelectionConfig();
             }
             else
             {
-                lassoSelectionService.EndLassoSelectionConfig();
+                _lassoSelectionService.EndLassoSelectionConfig();
             }
         }
 
         private void ClearSelection()
         {
-            nodeSelectionService.ClearSelection();
-            lassoSelectionService.ClearSelection();
+            _nodeSelectionService.ClearSelection();
+            _lassoSelectionService.ClearSelection();
         }
     }
 }

@@ -14,13 +14,13 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkFileService
     {
-        private readonly InkStrokesService strokesService;
-        private readonly InkCanvas inkCanvas;
+        private readonly InkStrokesService _strokesService;
+        private readonly InkCanvas _inkCanvas;
 
-        public InkFileService(InkCanvas _inkCanvas, InkStrokesService _strokesService)
+        public InkFileService(InkCanvas inkCanvas, InkStrokesService strokesService)
         {
-            inkCanvas = _inkCanvas;
-            strokesService = _strokesService;
+            _inkCanvas = inkCanvas;
+            _strokesService = strokesService;
         }
 
         public async Task<bool> LoadInkAsync()
@@ -33,12 +33,12 @@ namespace Param_ItemNamespace.Services.Ink
             openPicker.FileTypeFilter.Add(".gif");
 
             var file = await openPicker.PickSingleFileAsync();
-           return await strokesService.LoadInkFileAsync(file);
+           return await _strokesService.LoadInkFileAsync(file);
         }
 
         public async Task SaveInkAsync()
         {
-            if (!strokesService.GetStrokes().Any())
+            if (!_strokesService.GetStrokes().Any())
             {
                 return;
             }
@@ -51,12 +51,12 @@ namespace Param_ItemNamespace.Services.Ink
             savePicker.FileTypeChoices.Add("Gif with embedded ISF", new List<string> { ".gif" });
 
             var file = await savePicker.PickSaveFileAsync();
-            await strokesService.SaveInkFileAsync(file);
+            await _strokesService.SaveInkFileAsync(file);
         }
 
         public async Task<StorageFile> ExportToImageAsync(StorageFile imageFile = null)
         {
-            if (!strokesService.GetStrokes().Any())
+            if (!_strokesService.GetStrokes().Any())
             {
                 return null;
             }
@@ -71,7 +71,7 @@ namespace Param_ItemNamespace.Services.Ink
             }
         }
 
-        private  async Task<StorageFile> ExportCanvasAndImageAsync(StorageFile imageFile)
+        private async Task<StorageFile> ExportCanvasAndImageAsync(StorageFile imageFile)
         {
             var saveFile = await GetImageToSaveAsync();
 
@@ -93,12 +93,12 @@ namespace Param_ItemNamespace.Services.Ink
                     canvasbitmap = await CanvasBitmap.LoadAsync(device, stream);
                 }
 
-                using (var renderTarget = new CanvasRenderTarget(device, (int)inkCanvas.Width, (int)inkCanvas.Height, canvasbitmap.Dpi))
+                using (var renderTarget = new CanvasRenderTarget(device, (int)_inkCanvas.Width, (int)_inkCanvas.Height, canvasbitmap.Dpi))
                 {
                     using (CanvasDrawingSession ds = renderTarget.CreateDrawingSession())
                     {
-                        ds.DrawImage(canvasbitmap, new Rect(0, 0, (int)inkCanvas.Width, (int)inkCanvas.Height));
-                        ds.DrawInk(strokesService.GetStrokes());
+                        ds.DrawImage(canvasbitmap, new Rect(0, 0, (int)_inkCanvas.Width, (int)_inkCanvas.Height));
+                        ds.DrawInk(_strokesService.GetStrokes());
                     }
 
                     await renderTarget.SaveAsync(outStream, CanvasBitmapFileFormat.Png);
@@ -120,11 +120,11 @@ namespace Param_ItemNamespace.Services.Ink
             }
 
             CanvasDevice device = CanvasDevice.GetSharedDevice();
-            CanvasRenderTarget renderTarget = new CanvasRenderTarget(device, (int)inkCanvas.Width, (int)inkCanvas.Height, 96);
+            CanvasRenderTarget renderTarget = new CanvasRenderTarget(device, (int)_inkCanvas.Width, (int)_inkCanvas.Height, 96);
 
             using (var ds = renderTarget.CreateDrawingSession())
             {
-                ds.DrawInk(strokesService.GetStrokes());
+                ds.DrawInk(_strokesService.GetStrokes());
             }
 
             using (var fileStream = await file.OpenAsync(FileAccessMode.ReadWrite))

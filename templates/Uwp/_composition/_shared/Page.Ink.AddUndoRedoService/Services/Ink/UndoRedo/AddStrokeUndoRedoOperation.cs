@@ -7,20 +7,20 @@ namespace Param_ItemNamespace.Services.Ink.UndoRedo
 {
     public class AddStrokeUndoRedoOperation : IUndoRedoOperation
     {
-        private List<InkStroke> strokes;
-        private readonly InkStrokesService strokeService;
+        private readonly InkStrokesService _strokeService;
+        private readonly List<InkStroke> _strokes;
 
-        public AddStrokeUndoRedoOperation(IEnumerable<InkStroke> _strokes, InkStrokesService _strokeService)
+        public AddStrokeUndoRedoOperation(IEnumerable<InkStroke> strokes, InkStrokesService strokeService)
         {
-            strokes = new List<InkStroke>(_strokes);
-            strokeService = _strokeService;
+            _strokes = new List<InkStroke>(strokes);
+            _strokeService = strokeService;
 
-            strokeService.AddStrokeEvent += StrokeService_AddStrokeEvent;
+            _strokeService.AddStrokeEvent += StrokeService_AddStrokeEvent;
         }
 
-        public void ExecuteUndo() => strokes.ForEach(s => strokeService.RemoveStroke(s));
+        public void ExecuteUndo() => _strokes.ForEach(s => _strokeService.RemoveStroke(s));
 
-        public void ExecuteRedo() => strokes.ToList().ForEach(s => strokeService.AddStroke(s));
+        public void ExecuteRedo() => _strokes.ToList().ForEach(s => _strokeService.AddStroke(s));
 
         private void StrokeService_AddStrokeEvent(object sender, AddStrokeEventArgs e)
         {
@@ -29,10 +29,10 @@ namespace Param_ItemNamespace.Services.Ink.UndoRedo
                 return;
             }
 
-            var removedStrokes = strokes.RemoveAll(s => s.Id == e.OldStroke?.Id);
+            var removedStrokes = _strokes.RemoveAll(s => s.Id == e.OldStroke?.Id);
             if (removedStrokes > 0)
             {
-                strokes.Add(e.NewStroke);
+                _strokes.Add(e.NewStroke);
             }
         }
     }

@@ -11,24 +11,24 @@ namespace Param_ItemNamespace.Services.Ink
     public class InkLassoSelectionService
     {
         private readonly InkPresenter inkPresenter;
-        private readonly Canvas selectionCanvas;
-        private readonly InkStrokesService strokeService;
-        private readonly InkSelectionRectangleService selectionRectangleService;
+        private readonly Canvas _selectionCanvas;
+        private readonly InkStrokesService _strokeService;
+        private readonly InkSelectionRectangleService _selectionRectangleService;
 
         private bool enableLasso;
-        private Polyline lasso;        
+        private Polyline lasso;
 
         public InkLassoSelectionService(
-            InkCanvas _inkCanvas,
-            Canvas _selectionCanvas,
-            InkStrokesService _strokeService,
-            InkSelectionRectangleService _selectionRectangleService)
+            InkCanvas inkCanvas,
+            Canvas selectionCanvas,
+            InkStrokesService strokeService,
+            InkSelectionRectangleService selectionRectangleService)
         {
             // Initialize properties
-            inkPresenter = _inkCanvas.InkPresenter;
-            selectionCanvas = _selectionCanvas;
-            strokeService = _strokeService;
-            selectionRectangleService = _selectionRectangleService;
+            inkPresenter = inkCanvas.InkPresenter;
+            _selectionCanvas = selectionCanvas;
+            _strokeService = strokeService;
+            _selectionRectangleService = selectionRectangleService;
 
             // lasso selection
             inkPresenter.StrokeInput.StrokeStarted += StrokeInput_StrokeStarted;
@@ -53,7 +53,7 @@ namespace Param_ItemNamespace.Services.Ink
         private void UnprocessedInput_PointerPressed(InkUnprocessedInput sender, PointerEventArgs args)
         {
             var position = args.CurrentPoint.Position;
-            if (selectionRectangleService.ContainsPosition(position))
+            if (_selectionRectangleService.ContainsPosition(position))
             {
                 // Pressed on the selected rect, do nothing
                 return;
@@ -67,7 +67,7 @@ namespace Param_ItemNamespace.Services.Ink
             };
 
             lasso.Points.Add(args.CurrentPoint.RawPosition);
-            selectionCanvas.Children.Add(lasso);
+            _selectionCanvas.Children.Add(lasso);
             enableLasso = true;
         }
 
@@ -83,13 +83,13 @@ namespace Param_ItemNamespace.Services.Ink
         {
             lasso.Points.Add(args.CurrentPoint.RawPosition);
 
-            var rect = strokeService.SelectStrokesByPoints(lasso.Points);
+            var rect = _strokeService.SelectStrokesByPoints(lasso.Points);
             enableLasso = false;
 
-            selectionCanvas.Children.Remove(lasso);
-            selectionRectangleService.UpdateSelectionRect(rect);
+            _selectionCanvas.Children.Remove(lasso);
+            _selectionRectangleService.UpdateSelectionRect(rect);
         }
-        
+
         public void StartLassoSelectionConfig()
         {
             inkPresenter.InputProcessingConfiguration.RightDragAction = InkInputRightDragAction.LeaveUnprocessed;
@@ -108,8 +108,8 @@ namespace Param_ItemNamespace.Services.Ink
 
         public void ClearSelection()
         {
-            strokeService.ClearStrokesSelection();
-            selectionRectangleService.Clear();
+            _strokeService.ClearStrokesSelection();
+            _selectionRectangleService.Clear();
         }
     }
 }

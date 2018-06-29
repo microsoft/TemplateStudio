@@ -5,23 +5,23 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkCopyPasteService
     {
+        private const int PASTEDISTANCE = 20;
+        private readonly InkStrokesService _strokesService;
         private Point pastePosition;
-        private const int PASTE_DISTANCE = 20;
-        private readonly InkStrokesService strokesService;
 
-        public InkCopyPasteService(InkStrokesService _strokesService)
+        public InkCopyPasteService(InkStrokesService strokesService)
         {
-            strokesService = _strokesService;
+            _strokesService = strokesService;
         }
 
         public Point Copy()
         {
-            if(!CanCopy)
+            if (!CanCopy)
             {
-                return new Point();
+                return default(Point);
             }
 
-            var rect = strokesService.CopySelectedStrokes();
+            var rect = _strokesService.CopySelectedStrokes();
 
             pastePosition = new Point(rect.X, rect.Y);
             return pastePosition;
@@ -31,30 +31,29 @@ namespace Param_ItemNamespace.Services.Ink
         {
             if (!CanCut)
             {
-                return new Point();
+                return default(Point);
             }
 
-            var rect = strokesService.CutSelectedStrokes();
+            var rect = _strokesService.CutSelectedStrokes();
 
             pastePosition = new Point(rect.X, rect.Y);
             return pastePosition;
         }
-        
+
         public Rect Paste()
         {
-            pastePosition.X += PASTE_DISTANCE;
-            pastePosition.Y += PASTE_DISTANCE;
+            pastePosition.X += PASTEDISTANCE;
+            pastePosition.Y += PASTEDISTANCE;
 
             return Paste(pastePosition);
         }
 
-        public Rect Paste(Point position) => strokesService.PasteSelectedStrokes(position);
+        public Rect Paste(Point position) => _strokesService.PasteSelectedStrokes(position);
 
-        public bool CanCopy => strokesService.GetSelectedStrokes().Any();
+        public bool CanCopy => _strokesService.GetSelectedStrokes().Any();
 
-        public bool CanCut => strokesService.GetSelectedStrokes().Any();
+        public bool CanCut => _strokesService.GetSelectedStrokes().Any();
 
-        public bool CanPaste => strokesService.CanPaste;
-
+        public bool CanPaste => _strokesService.CanPaste;
     }
 }

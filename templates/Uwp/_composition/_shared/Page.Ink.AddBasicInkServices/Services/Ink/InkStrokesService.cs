@@ -15,25 +15,31 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkStrokesService
     {
-        public event EventHandler<AddStrokeEventArgs> AddStrokeEvent;
-        public event EventHandler<RemoveEventArgs> RemoveStrokeEvent;
-        public event EventHandler<MoveStrokesEventArgs> MoveStrokesEvent;
-        public event EventHandler<EventArgs> ClearStrokesEvent;
-        public event EventHandler<CopyPasteStrokesEventArgs> CutStrokesEvent;
-        public event EventHandler<CopyPasteStrokesEventArgs> PasteStrokesEvent;
-        public event EventHandler<EventArgs> LoadInkFileEvent;
+        private readonly InkStrokeContainer _strokeContainer;
 
-        private readonly InkStrokeContainer strokeContainer;
-
-        public InkStrokesService(InkStrokeContainer _strokeContainer)
+        public InkStrokesService(InkStrokeContainer strokeContainer)
         {
-            strokeContainer = _strokeContainer;
+            _strokeContainer = strokeContainer;
         }
+
+        public event EventHandler<AddStrokeEventArgs> AddStrokeEvent;
+
+        public event EventHandler<RemoveEventArgs> RemoveStrokeEvent;
+
+        public event EventHandler<MoveStrokesEventArgs> MoveStrokesEvent;
+
+        public event EventHandler<EventArgs> ClearStrokesEvent;
+
+        public event EventHandler<CopyPasteStrokesEventArgs> CutStrokesEvent;
+
+        public event EventHandler<CopyPasteStrokesEventArgs> PasteStrokesEvent;
+
+        public event EventHandler<EventArgs> LoadInkFileEvent;
 
         public InkStroke AddStroke(InkStroke stroke)
         {
             var newStroke = stroke.Clone();
-            strokeContainer.AddStroke(newStroke);
+            _strokeContainer.AddStroke(newStroke);
 
             AddStrokeEvent?.Invoke(this, new AddStrokeEventArgs(newStroke, stroke));
 
@@ -50,7 +56,7 @@ namespace Param_ItemNamespace.Services.Ink
 
             ClearStrokesSelection();
             deleteStroke.Selected = true;
-            strokeContainer.DeleteSelected();
+            _strokeContainer.DeleteSelected();
 
             RemoveStrokeEvent?.Invoke(this, new RemoveEventArgs(stroke));
             return true;
@@ -60,7 +66,7 @@ namespace Param_ItemNamespace.Services.Ink
         {
             var strokes = GetStrokesByIds(strokeIds);
 
-            foreach(var stroke in strokes)
+            foreach (var stroke in strokes)
             {
                 RemoveStroke(stroke);
             }
@@ -68,13 +74,13 @@ namespace Param_ItemNamespace.Services.Ink
             return strokes.Any();
         }
 
-        public IEnumerable<InkStroke> GetStrokes() => strokeContainer.GetStrokes();
+        public IEnumerable<InkStroke> GetStrokes() => _strokeContainer.GetStrokes();
 
         public IEnumerable<InkStroke> GetSelectedStrokes() => GetStrokes().Where(s => s.Selected);
 
         public void ClearStrokes()
         {
-            strokeContainer.Clear();
+            _strokeContainer.Clear();
             ClearStrokesEvent?.Invoke(this, EventArgs.Empty);
         }
 
@@ -110,9 +116,9 @@ namespace Param_ItemNamespace.Services.Ink
         public Rect SelectStrokesByPoints(PointCollection points)
         {
             ClearStrokesSelection();
-            return strokeContainer.SelectWithPolyLine(points);
+            return _strokeContainer.SelectWithPolyLine(points);
         }
-                
+
         public void MoveSelectedStrokes(Point startPosition, Point endPosition)
         {
             var x = (float)(endPosition.X - startPosition.X);
@@ -134,7 +140,7 @@ namespace Param_ItemNamespace.Services.Ink
 
         public Rect CopySelectedStrokes()
         {
-            strokeContainer.CopySelectedToClipboard();
+            _strokeContainer.CopySelectedToClipboard();
             return GetRectBySelectedStrokes();
         }
 
@@ -162,9 +168,9 @@ namespace Param_ItemNamespace.Services.Ink
             {
                 var ids = GetStrokes().Select(s => s.Id).ToList();
 
-                rect = strokeContainer.PasteFromClipboard(position);
+                rect = _strokeContainer.PasteFromClipboard(position);
 
-                var pastedStrokes = strokeContainer.GetStrokes().Where(s => !ids.Contains(s.Id));
+                var pastedStrokes = _strokeContainer.GetStrokes().Where(s => !ids.Contains(s.Id));
 
                 PasteStrokesEvent?.Invoke(this, new CopyPasteStrokesEventArgs(pastedStrokes));
             }
@@ -172,11 +178,11 @@ namespace Param_ItemNamespace.Services.Ink
             return rect;
         }
 
-        public bool CanPaste => strokeContainer.CanPasteFromClipboard();
-                
+        public bool CanPaste => _strokeContainer.CanPasteFromClipboard();
+
         public async Task<bool> LoadInkFileAsync(StorageFile file)
         {
-            if(file == null)
+            if (file == null)
             {
                 return false;
             }
@@ -186,7 +192,7 @@ namespace Param_ItemNamespace.Services.Ink
 
             using (var stream = await file.OpenSequentialReadAsync())
             {
-                await strokeContainer.LoadAsync(stream);
+                await _strokeContainer.LoadAsync(stream);
             }
 
             LoadInkFileEvent?.Invoke(this, EventArgs.Empty);
@@ -202,7 +208,7 @@ namespace Param_ItemNamespace.Services.Ink
 
                 using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
                 {
-                    await strokeContainer.SaveAsync(stream);
+                    await _strokeContainer.SaveAsync(stream);
                 }
 
                 // Finalize write so other apps can update file.
@@ -216,7 +222,7 @@ namespace Param_ItemNamespace.Services.Ink
         {
             foreach (var strokeId in strokeIds)
             {
-                yield return strokeContainer.GetStrokeById(strokeId);
+                yield return _strokeContainer.GetStrokeById(strokeId);
             }
         }
 
@@ -227,6 +233,7 @@ namespace Param_ItemNamespace.Services.Ink
             {
                 strokeIds = new HashSet<uint>(strokeIds).ToList();
             }
+
             return strokeIds;
         }
 
