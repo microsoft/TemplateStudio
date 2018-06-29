@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Test
             CheckStringNotIncluded("wts__"); // temporary placeholder used during conversion
             CheckStringNotIncluded("'''/");
 
-            IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: new[] { " MustOverride ", "Function RunAsync(", "Function RunAsyncInternal(", " FireAndForget(" });
+            IfLineIncludes(" As Task", itMustAlsoInclude: " Async ", unlessItContains: new[] { " MustOverride ", "Function RunAsync(", "Function RunAsyncInternal(", " FireAndForget(", "OnPivotSelectedAsync", "OnPivotUnselectedAsync" });
 
             IfLineIncludes("\"{", itMustAlsoInclude: "$");
 
