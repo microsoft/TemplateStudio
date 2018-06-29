@@ -16,7 +16,7 @@ Namespace Behaviors
             RemoveHandler AssociatedObject.SelectionChanged, AddressOf OnSelectionChanged
         End Sub
 
-        Private Async Sub OnSelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs)
+        Private Async Sub OnSelectionChanged(sender As Object, e As SelectionChangedEventArgs)
             Dim removedItem = e.RemovedItems.Cast(Of PivotItem).Select(Function(pi) GetPivotPage(pi)).FirstOrDefault()
             Dim addedItem = e.AddedItems.Cast(Of PivotItem).Select(Function(pi) GetPivotPage(pi)).FirstOrDefault()
             If removedItem IsNot Nothing Then
