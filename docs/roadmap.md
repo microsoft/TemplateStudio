@@ -11,7 +11,7 @@ In addition to the functionality listed below, each release will also include bu
 Major additions:
 
 * Ink pages
-* Project infrastrucutre improvements
+* Project infrastructure improvements
 * +more
 
 [Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.3)
