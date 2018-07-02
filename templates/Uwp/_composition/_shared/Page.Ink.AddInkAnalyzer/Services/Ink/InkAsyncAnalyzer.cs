@@ -10,6 +10,8 @@ using Param_ItemNamespace.EventHandlers.Ink;
 
 namespace Param_ItemNamespace.Services.Ink
 {
+    // TODO WTS: InkAnalyzer requires installation of HandwritingRecognition in the active input language to be able to recognize words.
+    // For more info see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md#install-handwriting-recognition
     public class InkAsyncAnalyzer
     {
         private const double IdleWaitingTime = 400;
@@ -175,7 +177,7 @@ namespace Param_ItemNamespace.Services.Ink
             }
         }
 
-        private async void StrokesService_LoadInkFileEvent(object sender, EventArgs e) =>  await AnalyzeAsync(true);
+        private async void StrokesService_LoadInkFileEvent(object sender, EventArgs e) => await AnalyzeAsync(true);
 
         private async void DispatcherTimer_Tick(object sender, object e) => await AnalyzeAsync();
     }

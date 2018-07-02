@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Param_ItemNamespace.Views
 {
+    // For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
     public sealed partial class InkDrawViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         private InkStrokesService strokeService;
