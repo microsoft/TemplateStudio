@@ -1,0 +1,115 @@
+﻿<Page
+    x:Class="EasyTablesPoc.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
+    x:Name="uc"
+    mc:Ignorable="d">
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleRow" Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="TitlePage"
+            x:Uid="Main_Title"
+            Style="{StaticResource PageTitleStyle}" />
+
+        <Grid
+            Grid.Row="1" Padding="20"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="400" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" MinWidth="400" />
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel>
+                <TextBlock Text="Foods List" FontSize="24" Margin="0,15" />
+                <ListView
+                    ItemsSource="{x:Bind ViewModel.Foods, Mode=OneWay}"
+                    SelectedItem="{x:Bind ViewModel.SelectedFood, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="0,10">
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Category}" />
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Content="Load Foods" Command="{x:Bind ViewModel.LoadFoodsCommand}" Width="200" Margin="0,20,0,0"/>                
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock Text="Details" FontSize="24" Margin="0,15" />
+
+                <TextBlock Text="Id: ">
+                    <Run Text="{x:Bind ViewModel.EditableFood.Id, Mode=OneWay}" />
+                </TextBlock>
+
+                <StackPanel Margin="0,10">
+                    <TextBlock Text="Name" />
+                    <TextBox Text="{x:Bind ViewModel.EditableFood.Name, Mode=TwoWay}"/>
+                </StackPanel>
+                
+                <StackPanel>
+                    <TextBlock Text="Category" />
+                    <TextBox Text="{x:Bind ViewModel.EditableFood.Category, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <Grid Margin="0,10,0,20">
+                    <Button Content="New" Command="{x:Bind ViewModel.NewFoodCommand}" HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Save" Command="{x:Bind ViewModel.SaveFoodCommand}" Margin="5,0"/>
+                        <Button Content="Delete" Command="{x:Bind ViewModel.DeleteFoodCommand}"/>
+                    </StackPanel>
+                </Grid>
+                
+
+                <TextBlock Text="Status: " FontWeight="Bold">
+                    <Run Text="{x:Bind ViewModel.StatusText, Mode=OneWay}" FontWeight="Normal" />
+                </TextBlock>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Internet: " FontWeight="Bold" Margin="0,0,10,0"/>
+                    <Ellipse Height="15" Width="15" Fill="Red" Visibility="{x:Bind ViewModel.NoInternet, Mode=OneWay}"/>
+                    <Ellipse Height="15" Width="15" Fill="Green" Visibility="{x:Bind ViewModel.IsInternet, Mode=OneWay}" />
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

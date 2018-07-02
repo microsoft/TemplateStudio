@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="InkPoc.Views.WindowsInkControlPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:InkPoc.Controls"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Grid>
+        <controls:WindowsInkControl x:Name="inkControl">
+            <controls:WindowsInkControl.Options>
+                <controls:CutCopyPasteInkOption />
+                <controls:UndoRedoInkOption />
+                <controls:ZoomInkOption />
+                <controls:SmartInkOptions />
+                <controls:OpenSaveStrokesInkOption />
+            </controls:WindowsInkControl.Options>
+        </controls:WindowsInkControl>
+        <!--<Button Content="Test" Click="Button_Click"/>-->
+    </Grid>
+</Page>

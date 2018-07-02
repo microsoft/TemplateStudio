@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTablesPoc", "EasyTablesPoc\EasyTablesPoc.csproj", "{E02866E7-DAC9-456A-B00E-D51BE4382BF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Debug|ARM.ActiveCfg = Debug|ARM
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Debug|ARM.Build.0 = Debug|ARM
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Debug|ARM.Deploy.0 = Debug|ARM
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Debug|x64.ActiveCfg = Debug|x64
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Debug|x64.Build.0 = Debug|x64
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Debug|x64.Deploy.0 = Debug|x64
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Debug|x86.ActiveCfg = Debug|x86
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Debug|x86.Build.0 = Debug|x86
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Debug|x86.Deploy.0 = Debug|x86
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Release|ARM.ActiveCfg = Release|ARM
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Release|ARM.Build.0 = Release|ARM
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Release|ARM.Deploy.0 = Release|ARM
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Release|x64.ActiveCfg = Release|x64
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Release|x64.Build.0 = Release|x64
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Release|x64.Deploy.0 = Release|x64
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Release|x86.ActiveCfg = Release|x86
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Release|x86.Build.0 = Release|x86
+		{E02866E7-DAC9-456A-B00E-D51BE4382BF8}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65920987-7DE0-4F84-809A-1AB1C8D00540}
+	EndGlobalSection
+EndGlobal
