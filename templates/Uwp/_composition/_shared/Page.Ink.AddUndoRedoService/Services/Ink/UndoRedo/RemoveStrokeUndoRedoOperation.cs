@@ -7,8 +7,8 @@ namespace Param_ItemNamespace.Services.Ink.UndoRedo
 {
     public class RemoveStrokeUndoRedoOperation : IUndoRedoOperation
     {
-        private List<InkStroke> _strokes;
         private readonly InkStrokesService _strokeService;
+        private List<InkStroke> _strokes;
 
         public RemoveStrokeUndoRedoOperation(IEnumerable<InkStroke> strokes, InkStrokesService strokeService)
         {
