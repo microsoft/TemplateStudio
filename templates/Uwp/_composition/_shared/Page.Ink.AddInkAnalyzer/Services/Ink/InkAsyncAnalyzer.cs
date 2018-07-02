@@ -12,7 +12,7 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkAsyncAnalyzer
     {
-        private const double IDLEWAITINGTIME = 400;
+        private const double IdleWaitingTime = 400;
         private readonly InkCanvas _inkCanvas;
         private readonly InkStrokesService _strokesService;
         private readonly DispatcherTimer dispatcherTimer;
@@ -35,7 +35,7 @@ namespace Param_ItemNamespace.Services.Ink
 
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += DispatcherTimer_Tick;
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(IDLEWAITINGTIME);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(IdleWaitingTime);
         }
 
         public InkAnalyzer InkAnalyzer { get; private set; } = new InkAnalyzer();
@@ -79,16 +79,6 @@ namespace Param_ItemNamespace.Services.Ink
             return node;
         }
 
-        public void StartTimer() => dispatcherTimer.Start();
-
-        public void StopTimer() => dispatcherTimer.Stop();
-
-        public void ClearAnalysis()
-        {
-            StopTimer();
-            InkAnalyzer.ClearDataForAllStrokes();
-        }
-
         public void AddStroke(InkStroke stroke)
         {
             StopTimer();
@@ -128,7 +118,15 @@ namespace Param_ItemNamespace.Services.Ink
             InkAnalyzer.ReplaceDataForStroke(stroke);
         }
 
-        private async void DispatcherTimer_Tick(object sender, object e) => await AnalyzeAsync();
+        public void ClearAnalysis()
+        {
+            StopTimer();
+            InkAnalyzer.ClearDataForAllStrokes();
+        }
+
+        public void StartTimer() => dispatcherTimer.Start();
+
+        public void StopTimer() => dispatcherTimer.Stop();
 
         private IInkAnalysisNode FindHitNodeByKind(Point position, InkAnalysisNodeKind kind)
         {
@@ -144,15 +142,11 @@ namespace Param_ItemNamespace.Services.Ink
             return null;
         }
 
-        private void StrokesService_AddStrokeEvent(object sender, AddStrokeEventArgs e)
-        {
-            AddStroke(e.NewStroke);
-        }
+        private void StrokesService_AddStrokeEvent(object sender, AddStrokeEventArgs e) => AddStroke(e.NewStroke);
 
-        private void StrokesService_RemoveStrokeEvent(object sender, RemoveEventArgs e)
-        {
-            RemoveStroke(e.RemovedStroke);
-        }
+        private void StrokesService_RemoveStrokeEvent(object sender, RemoveEventArgs e) => RemoveStroke(e.RemovedStroke);
+
+        private void StrokesService_ClearStrokesEvent(object sender, EventArgs e) => ClearAnalysis();
 
         private async void StrokesService_MoveStrokesEvent(object sender, MoveStrokesEventArgs e)
         {
@@ -181,14 +175,8 @@ namespace Param_ItemNamespace.Services.Ink
             }
         }
 
-        private void StrokesService_ClearStrokesEvent(object sender, EventArgs e)
-        {
-            ClearAnalysis();
-        }
+        private async void StrokesService_LoadInkFileEvent(object sender, EventArgs e) =>  await AnalyzeAsync(true);
 
-        private async void StrokesService_LoadInkFileEvent(object sender, EventArgs e)
-        {
-            await AnalyzeAsync(true);
-        }
+        private async void DispatcherTimer_Tick(object sender, object e) => await AnalyzeAsync();
     }
 }

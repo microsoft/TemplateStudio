@@ -5,7 +5,7 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkCopyPasteService
     {
-        private const int PASTEDISTANCE = 20;
+        private const int PasteDistance = 20;
         private readonly InkStrokesService _strokesService;
         private Point pastePosition;
 
@@ -42,8 +42,8 @@ namespace Param_ItemNamespace.Services.Ink
 
         public Rect Paste()
         {
-            pastePosition.X += PASTEDISTANCE;
-            pastePosition.Y += PASTEDISTANCE;
+            pastePosition.X += PasteDistance;
+            pastePosition.Y += PasteDistance;
 
             return Paste(pastePosition);
         }

@@ -10,7 +10,7 @@ namespace Param_ItemNamespace.Services.Ink
 {
     public class InkLassoSelectionService
     {
-        private readonly InkPresenter inkPresenter;
+        private readonly InkPresenter _inkPresenter;
         private readonly Canvas _selectionCanvas;
         private readonly InkStrokesService _strokeService;
         private readonly InkSelectionRectangleService _selectionRectangleService;
@@ -24,15 +24,35 @@ namespace Param_ItemNamespace.Services.Ink
             InkStrokesService strokeService,
             InkSelectionRectangleService selectionRectangleService)
         {
-            // Initialize properties
-            inkPresenter = inkCanvas.InkPresenter;
+            _inkPresenter = inkCanvas.InkPresenter;
             _selectionCanvas = selectionCanvas;
             _strokeService = strokeService;
             _selectionRectangleService = selectionRectangleService;
 
-            // lasso selection
-            inkPresenter.StrokeInput.StrokeStarted += StrokeInput_StrokeStarted;
-            inkPresenter.StrokesErased += InkPresenter_StrokesErased;
+            _inkPresenter.StrokeInput.StrokeStarted += StrokeInput_StrokeStarted;
+            _inkPresenter.StrokesErased += InkPresenter_StrokesErased;
+        }
+
+        public void StartLassoSelectionConfig()
+        {
+            _inkPresenter.InputProcessingConfiguration.RightDragAction = InkInputRightDragAction.LeaveUnprocessed;
+
+            _inkPresenter.UnprocessedInput.PointerPressed += UnprocessedInput_PointerPressed;
+            _inkPresenter.UnprocessedInput.PointerMoved += UnprocessedInput_PointerMoved;
+            _inkPresenter.UnprocessedInput.PointerReleased += UnprocessedInput_PointerReleased;
+        }
+
+        public void EndLassoSelectionConfig()
+        {
+            _inkPresenter.UnprocessedInput.PointerPressed -= UnprocessedInput_PointerPressed;
+            _inkPresenter.UnprocessedInput.PointerMoved -= UnprocessedInput_PointerMoved;
+            _inkPresenter.UnprocessedInput.PointerReleased -= UnprocessedInput_PointerReleased;
+        }
+
+        public void ClearSelection()
+        {
+            _strokeService.ClearStrokesSelection();
+            _selectionRectangleService.Clear();
         }
 
         private void StrokeInput_StrokeStarted(InkStrokeInput sender, PointerEventArgs args)
@@ -88,28 +108,6 @@ namespace Param_ItemNamespace.Services.Ink
 
             _selectionCanvas.Children.Remove(lasso);
             _selectionRectangleService.UpdateSelectionRect(rect);
-        }
-
-        public void StartLassoSelectionConfig()
-        {
-            inkPresenter.InputProcessingConfiguration.RightDragAction = InkInputRightDragAction.LeaveUnprocessed;
-
-            inkPresenter.UnprocessedInput.PointerPressed += UnprocessedInput_PointerPressed;
-            inkPresenter.UnprocessedInput.PointerMoved += UnprocessedInput_PointerMoved;
-            inkPresenter.UnprocessedInput.PointerReleased += UnprocessedInput_PointerReleased;
-        }
-
-        public void EndLassoSelectionConfig()
-        {
-            inkPresenter.UnprocessedInput.PointerPressed -= UnprocessedInput_PointerPressed;
-            inkPresenter.UnprocessedInput.PointerMoved -= UnprocessedInput_PointerMoved;
-            inkPresenter.UnprocessedInput.PointerReleased -= UnprocessedInput_PointerReleased;
-        }
-
-        public void ClearSelection()
-        {
-            _strokeService.ClearStrokesSelection();
-            _selectionRectangleService.Clear();
         }
     }
 }

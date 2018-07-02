@@ -52,6 +52,11 @@ namespace Param_ItemNamespace.Services.Ink
             return result;
         }
 
+        public void ClearTextAndShapes()
+        {
+            _drawingCanvas.Children.Clear();
+        }
+
         private IEnumerable<UIElement> AnalyzeWords()
         {
             var inkwordNodes = _inkAnalyzer.AnalysisRoot.FindNodes(InkAnalysisNodeKind.InkWord);
@@ -170,11 +175,6 @@ namespace Param_ItemNamespace.Services.Ink
             }
 
             return _strokeService.GetStrokes();
-        }
-
-        public void ClearTextAndShapes()
-        {
-            _drawingCanvas.Children.Clear();
         }
     }
 }

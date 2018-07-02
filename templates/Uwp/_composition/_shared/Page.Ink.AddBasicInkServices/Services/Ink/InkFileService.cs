@@ -7,15 +7,14 @@ using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Provider;
-using Windows.UI;
 using Windows.UI.Xaml.Controls;
 
 namespace Param_ItemNamespace.Services.Ink
 {
     public class InkFileService
     {
-        private readonly InkStrokesService _strokesService;
         private readonly InkCanvas _inkCanvas;
+        private readonly InkStrokesService _strokesService;
 
         public InkFileService(InkCanvas inkCanvas, InkStrokesService strokesService)
         {
@@ -33,7 +32,7 @@ namespace Param_ItemNamespace.Services.Ink
             openPicker.FileTypeFilter.Add(".gif");
 
             var file = await openPicker.PickSingleFileAsync();
-           return await _strokesService.LoadInkFileAsync(file);
+            return await _strokesService.LoadInkFileAsync(file);
         }
 
         public async Task SaveInkAsync()
@@ -114,6 +113,7 @@ namespace Param_ItemNamespace.Services.Ink
         private async Task<StorageFile> ExportCanvasAsync()
         {
             var file = await GetImageToSaveAsync();
+
             if (file == null)
             {
                 return null;

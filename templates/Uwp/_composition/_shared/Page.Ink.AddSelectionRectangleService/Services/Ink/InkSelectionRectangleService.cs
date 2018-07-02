@@ -1,4 +1,4 @@
-﻿    using System.Linq;
+﻿using System.Linq;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -37,9 +37,9 @@ namespace Param_ItemNamespace.Services.Ink
             selectionStrokesRect = rect;
 
             var selectionRect = GetSelectionRectangle();
-
             selectionRect.Width = rect.Width;
             selectionRect.Height = rect.Height;
+
             Canvas.SetLeft(selectionRect, rect.Left);
             Canvas.SetTop(selectionRect, rect.Top);
         }

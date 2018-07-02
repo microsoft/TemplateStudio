@@ -14,8 +14,6 @@ namespace Param_ItemNamespace.Services.Ink
         private bool enablePen;
         private bool enableTouch;
 
-        public event EventHandler<EventArgs> DetectPenEvent;
-
         public InkPointerDeviceService(InkCanvas inkCanvas)
         {
             _inkCanvas = inkCanvas;
@@ -25,6 +23,8 @@ namespace Param_ItemNamespace.Services.Ink
 
             _inkCanvas.InkPresenter.UnprocessedInput.PointerEntered += UnprocessedInput_PointerEntered;
         }
+
+        public event EventHandler<EventArgs> DetectPenEvent;
 
         public bool EnableMouse
         {
