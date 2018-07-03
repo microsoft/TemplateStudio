@@ -84,3 +84,8 @@ The extension does [log basic telemetry](docs/telemetry.md) for what is being se
 ## .NET Foundation
 
 This project is supported by the [.NET Foundation](https://dotnetfoundation.org).
+
+## Projects we like and collaborate with
+
+- [Rapid Xaml Toolkit](https://github.com/Microsoft/Rapid-XAML-Toolkit)
+- [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
