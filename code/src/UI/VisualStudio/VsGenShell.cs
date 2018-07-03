@@ -22,6 +22,7 @@ using Microsoft.VisualStudio.Shell.Flavor;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TemplateWizard;
 using NuGet.VisualStudio;
+using VSLangProj;
 
 namespace Microsoft.Templates.UI.VisualStudio
 {
@@ -154,11 +155,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override void AddProjectToSolution(string projectFullPath, bool usesAnyCpu)
+        public override void AddProjectToSolution(string projectPath, bool usesAnyCpu)
         {
             try
             {
-                Dte.Solution.AddFromFile(projectFullPath);
+                Dte.Solution.AddFromFile(projectPath);
             }
             catch (Exception)
             {
@@ -649,6 +650,15 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return _vsProductVersion;
+        }
+
+        public override void AddReferenceToProject(string projectDoingTheReferencing, string projectBeingReferenced)
+        {
+            var referenceProject = GetProjectByPath(projectBeingReferenced);
+
+            var proj = (VSProject)GetProjectByPath(projectDoingTheReferencing);
+
+            proj.References.AddProject(referenceProject);
         }
     }
 }

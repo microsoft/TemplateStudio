@@ -14,7 +14,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        private Dictionary<string, string> _genParameters;
+        private readonly Dictionary<string, string> _genParameters;
 
         public AddProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
             : base(relatedTemplate, config)

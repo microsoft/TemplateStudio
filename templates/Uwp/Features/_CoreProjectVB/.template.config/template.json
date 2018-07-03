@@ -4,7 +4,7 @@
   "name": "Shared Core Project",
   "groupIdentity": "wts.Feat.CoreProject.VB",
   "identity": "wts.Feat.CoreProject.VB",
-  "description": "Add a .Net Standard library project for non-platforms-specific functionality.",
+  "description": "Add a .Net Standard library project for non-platform-specific functionality.",
   "tags": {
     "language": "VisualBasic",
     "type": "project",
@@ -18,7 +18,7 @@
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
-    "wts.isHidden": "true",
+    "wts.isHidden": "false",
     "wts.usesAnyCPU": "true"
   },
   "sourceName": "wts.projectName",
@@ -48,5 +48,17 @@
           "format": "yyyy"
       }
     }
-  }
+  },
+  "postActions": [
+    {
+      "description": "Add reference to this project in main UWP app",
+      "manualInstructions": [ ],
+      "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+      "args": {
+        "fileIndex" : "0",
+        "otherProjectPath": "Param_ProjectName\\Param_ProjectName.vbproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
 }

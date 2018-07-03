@@ -89,9 +89,6 @@ namespace Microsoft.Templates.UI
 
             var genResults = await GenerateItemsAsync(genItems, false);
 
-            // Reset this so it doesn't get used in a subsequent generation
-            GenContext.Current.CoreProjectGuid = null;
-
             chrono.Stop();
 
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform, userSelection.Language);

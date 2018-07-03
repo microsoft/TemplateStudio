@@ -112,8 +112,11 @@ EndProject
                     slnContent = slnContent.Insert(endGobalSectionIndex - 1, projectConfigContent);
                 }
 
-                slnContent = AddAnyCpuSolutionConfigurations(slnContent, usesAnyCpu);
-                slnContent = AddAnyCpuProjectConfigutations(slnContent);
+                if (usesAnyCpu)
+                {
+                    slnContent = AddAnyCpuSolutionConfigurations(slnContent);
+                    slnContent = AddAnyCpuProjectConfigutations(slnContent);
+                }
             }
 
             File.WriteAllText(_path, slnContent, Encoding.UTF8);
@@ -160,19 +163,16 @@ EndProject
             return slnContent;
         }
 
-        private string AddAnyCpuSolutionConfigurations(string slnContent, bool usesAnyCpu)
+        private string AddAnyCpuSolutionConfigurations(string slnContent)
         {
-            if (usesAnyCpu)
+            if (!slnContent.Contains("Debug|Any CPU = Debug|Any CPU"))
             {
-                if (!slnContent.Contains("Debug|Any CPU = Debug|Any CPU"))
-                {
-                    slnContent = slnContent.Replace("Debug|ARM = Debug|ARM", "Debug|Any CPU = Debug|Any CPU\r\n\t\tDebug|ARM = Debug|ARM");
-                }
+                slnContent = slnContent.Replace("Debug|ARM = Debug|ARM", "Debug|Any CPU = Debug|Any CPU\r\n\t\tDebug|ARM = Debug|ARM");
+            }
 
-                if (!slnContent.Contains("Release|Any CPU = Release|Any CPU"))
-                {
-                    slnContent = slnContent.Replace("Release|ARM = Release|ARM", "Release|Any CPU = Release|Any CPU\r\n\t\tRelease|ARM = Release|ARM");
-                }
+            if (!slnContent.Contains("Release|Any CPU = Release|Any CPU"))
+            {
+                slnContent = slnContent.Replace("Release|ARM = Release|ARM", "Release|Any CPU = Release|Any CPU\r\n\t\tRelease|ARM = Release|ARM");
             }
 
             return slnContent;

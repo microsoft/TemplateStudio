@@ -77,21 +77,12 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public override void AddProjectToSolution(string projectFullPath, bool usesAnyCpu)
+        public override void AddProjectToSolution(string projectPath, bool usesAnyCpu)
         {
-            var msbuildProj = FakeMsBuildProject.Load(projectFullPath);
+            var msbuildProj = FakeMsBuildProject.Load(projectPath);
             var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
-            var projectRelativeToSolutionPath = projectFullPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
-
-            var guid = msbuildProj.Guid;
-
-            if (projectFullPath.Contains(".Core."))
-            {
-                GenContext.Current.CoreProjectGuid = guid;
-            }
-
-            solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, guid, projectRelativeToSolutionPath, usesAnyCpu);
+            solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectPath, usesAnyCpu);
         }
 
         public override string GetActiveProjectNamespace()
@@ -220,6 +211,12 @@ namespace Microsoft.Templates.Fakes
 
         public override void OpenProjectOverview()
         {
+        }
+
+        public override void AddReferenceToProject(string projectDoingTheReferencing, string projectBeingReferenced)
+        {
+            // TODO: Need to implement this for #2252 but currently having issues with VsGenShell version
+            throw new NotImplementedException();
         }
     }
 }

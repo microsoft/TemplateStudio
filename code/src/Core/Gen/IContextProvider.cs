@@ -29,7 +29,5 @@ namespace Microsoft.Templates.Core.Gen
         Dictionary<string, List<MergeInfo>> MergeFilesFromProject { get; }
 
         Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; }
-
-        string CoreProjectGuid { get; set; }
     }
 }

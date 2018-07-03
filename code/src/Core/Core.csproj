@@ -207,7 +207,7 @@
     <Compile Include="Naming\DefaultNamesValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
-    <Compile Include="PostActions\Catalog\AddAnyCpuProjectToSolutionPostAction.cs" />
+    <Compile Include="PostActions\Catalog\MakeOtherProjectReferenceThisOnePostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeMode.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostactionFormatter.cs" />

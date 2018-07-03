@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             if (!File.Exists(originalFilePath))
             {
                 File.Copy(Config.FilePath, originalFilePath);
-                GenContext.Current.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.OutputPath, GenContext.Current.DestinationPath));
+                GenContext.Current.ProjectItems.Add(originalFilePath);
                 AddToMergeDictionary(originalFilePath, Config.OutputtingToParent);
             }
             else
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private static void AddToMergeDictionary(string originalFilePath, bool outputtingToParent)
         {
-            var outputpath = outputtingToParent ? GenContext.Current.DestinationParentPath : GenContext.Current.DestinationPath;
+            var outputpath = GenContext.Current.DestinationPath;
 
             var relPath = originalFilePath.Replace(outputpath, string.Empty).Replace(@"\", @"/");
             var postactionContent = MergeDictionaryPattern.Replace("{filePath}", relPath);
