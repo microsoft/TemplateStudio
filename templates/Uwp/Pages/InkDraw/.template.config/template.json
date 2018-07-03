@@ -1,0 +1,52 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Ink Draw",
+  "groupIdentity": "wts.Page.InkDraw",
+  "identity": "wts.Page.InkDraw",
+  "description": "A page that allows you to create notes and drawings using Windows Ink.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.framework": "MVVMBasic|MVVMLight",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "11",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true" 
+  },
+  "sourceName": "InkDrawView",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\InkDrawViewPage.xaml"
+    },
+    {
+      "path": ".\\Views\\InkDrawViewPage.xaml.cs"
+    },
+    {
+      "path": ".\\ViewModels\\InkDrawViewViewModel.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    }
+  }
+}
