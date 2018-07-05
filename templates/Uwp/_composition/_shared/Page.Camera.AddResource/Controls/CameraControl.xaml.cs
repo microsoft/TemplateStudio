@@ -90,9 +90,6 @@ namespace Param_ItemNamespace.Controls
 
             CameraButtonStyle = Resources["CameraButtonStyle"] as Style;
             SwitchCameraButtonStyle = Resources["SwitchCameraButtonStyle"] as Style;
-
-            Loaded += OnLoaded;
-            Unloaded += OnUnloaded;
         }
 
         public async Task InitializeCameraAsync()
@@ -191,23 +188,6 @@ namespace Param_ItemNamespace.Controls
         public void SwitchPanel()
         {
             Panel = (Panel == Panel.Front) ? Panel.Back : Panel.Front;
-        }
-
-        private async void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await InitializeCameraAsync();
-            }
-            catch (Exception ex)
-            {
-                errorMessage.Text = ex.Message;
-            }
-        }
-
-        private async void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            await CleanupCameraAsync();
         }
 
         private async void CaptureButton_Click(object sender, RoutedEventArgs e)

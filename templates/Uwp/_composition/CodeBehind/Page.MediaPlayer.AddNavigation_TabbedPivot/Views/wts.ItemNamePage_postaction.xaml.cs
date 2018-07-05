@@ -1,7 +1,6 @@
 ﻿//{[{
-using System.Linq;
-using Windows.UI.Xaml;
-using Microsoft.Toolkit.Uwp.UI.Extensions;
+using System.Threading.Tasks;
+using Param_ItemNamespace.Helpers;
 //}]}
 
 namespace Param_ItemNamespace.Views
@@ -10,41 +9,21 @@ namespace Param_ItemNamespace.Views
     {
         public wts.ItemNamePage()
         {
-            //{[{
-            Loaded += wts.ItemNamePage_Loaded;
-            //}]}
         }
 
         //{[{
-        private void wts.ItemNamePage_Loaded(object sender, RoutedEventArgs e)
+        public async Task OnPivotSelectedAsync()
         {
-            var element = this as FrameworkElement;
-            var pivotPage = element.FindAscendant<Pivot>();
-
-            if (pivotPage != null)
-            {
-                pivotPage.SelectionChanged += PivotPage_SelectionChanged;
-            }
-
-            mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
             mpe.MediaPlayer.Play();
+            mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
+            await Task.CompletedTask;
         }
 
-        private void PivotPage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public async Task OnPivotUnselectedAsync()
         {
-            bool navigatedTo = e.AddedItems.Cast<PivotItem>().Any(p => p.FindDescendant<wts.ItemNamePage>() != null);
-            bool navigatedFrom = e.RemovedItems.Cast<PivotItem>().Any(p => p.FindDescendant<wts.ItemNamePage>() != null);
-
-            if (navigatedTo)
-            {
-                mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged += PlaybackSession_PlaybackStateChanged;
-            }
-
-            if (navigatedFrom)
-            {
-                mpe.MediaPlayer.Pause();
-                mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
-            }
+            mpe.MediaPlayer.Pause();
+            mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
+            await Task.CompletedTask;
         }
         //}]}
     }
