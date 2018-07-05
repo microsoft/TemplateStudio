@@ -9,8 +9,8 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Models;
-using Param_ItemNamespace.Services;
+using Param_ItemNamespace.Core.Models;
+using Param_ItemNamespace.Core.Services;
 
 namespace Param_ItemNamespace.ViewModels
 {

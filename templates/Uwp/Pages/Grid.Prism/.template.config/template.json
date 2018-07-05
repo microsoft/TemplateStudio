@@ -17,21 +17,22 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "6",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
-    "wts.dependencies": "wts.Feat.SampleDataService.Prism",
+    "wts.dependencies": "wts.Feat.SampleDataService.Prism|wts.Feat.CoreProject",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true" 
+    "wts.rightClickEnabled":"true",
+    "wts.outputToParent": "true"
   },
   "sourceName": "GridView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\GridViewPage.xaml"
+      "path": ".\\Param_ProjectName\\Views\\GridViewPage.xaml"
     },
     {
-      "path": ".\\Views\\GridViewPage.xaml.cs"
+      "path": ".\\Param_ProjectName\\Views\\GridViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\GridViewViewModel.cs"
+      "path": ".\\Param_ProjectName\\ViewModels\\GridViewViewModel.cs"
     }
   ],
   "symbols": {

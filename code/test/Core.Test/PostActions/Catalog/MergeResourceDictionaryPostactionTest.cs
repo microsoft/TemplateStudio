@@ -38,6 +38,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics => new Dictionary<ProjectMetricsEnum, double>();
 
+        public string CoreProjectGuid { get; set; }
+
         [Fact]
         public void MergeResourceDictionaryPostaction()
         {
@@ -45,7 +47,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var postaction = Path.GetFullPath(@".\TestData\Merge\Style_postaction.xaml");
             var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml").Replace("\r\n", string.Empty).Replace("\n", string.Empty);
 
-            var config = new MergeConfiguration(postaction, true);
+            var config = new MergeConfiguration(postaction, true, outputtingToParent: false);
 
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("Test", config);
             mergeResourceDictionaryPostAction.Execute();
@@ -63,7 +65,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml");
 
             GenContext.Current = this;
-            var config = new MergeConfiguration(postaction, true);
+            var config = new MergeConfiguration(postaction, true, outputtingToParent: false);
 
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("TestTemplate", config);
 

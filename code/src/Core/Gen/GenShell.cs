@@ -27,13 +27,15 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void ShowStatusBarMessage(string message);
 
-        public abstract void AddProjectToSolution(string projectFullPath);
+        public abstract void AddProjectToSolution(string projectFullPath, bool usesAnyCpu);
 
         public abstract void AddItems(params string[] itemsFullPath);
 
         public abstract void CleanSolution();
 
         public abstract void SaveSolution();
+
+        public abstract void AddReferenceToProject(string projectDoingTheReferencing, string projectBeingReferenced);
 
         public abstract string GetActiveProjectNamespace();
 

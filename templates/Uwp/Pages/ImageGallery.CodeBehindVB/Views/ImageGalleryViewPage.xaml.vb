@@ -2,7 +2,8 @@
 Imports Windows.UI.Xaml.Media.Animation
 
 Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Models
+Imports Param_ItemNamespace.Core.Models
+Imports Param_ItemNamespace.Core.Services
 Imports Param_ItemNamespace.Services
 
 Namespace Views

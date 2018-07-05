@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,24 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.ActiveCfg = Release|x86
 		{0}.Release|x86.Build.0 = Release|x86
 		{0}.Release|x86.Deploy.0 = Release|x86
+";
+
+        private const string UwpProjectConfigurationTemplateForAnyCpu = @"		{0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{0}.Debug|ARM.Build.0 = Debug|Any CPU
+		{0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0}.Debug|x64.Build.0 = Debug|Any CPU
+		{0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0}.Debug|x86.Build.0 = Debug|Any CPU
+		{0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0}.Release|ARM.ActiveCfg = Release|Any CPU
+		{0}.Release|ARM.Build.0 = Release|Any CPU
+		{0}.Release|x64.ActiveCfg = Release|Any CPU
+		{0}.Release|x64.Build.0 = Release|Any CPU
+		{0}.Release|x86.ActiveCfg = Release|Any CPU
+		{0}.Release|x86.Build.0 = Release|Any CPU
 ";
 
         private const string ProjectTemplateCS = @"Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""{name}"", ""{path}"", ""{id}""
@@ -66,7 +85,7 @@ EndProject
             return new FakeSolution(path);
         }
 
-        public void AddProjectToSolution(string platform, string projectName, string projectGuid, string projectRelativeToSolutionPath)
+        public void AddProjectToSolution(string platform, string projectName, string projectGuid, string projectRelativeToSolutionPath, bool usesAnyCpu)
         {
             var slnContent = File.ReadAllText(_path);
 
@@ -81,7 +100,7 @@ EndProject
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectName);
+                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectName, usesAnyCpu);
                 if (!string.IsNullOrEmpty(projectConfigurationTemplate))
                 {
                     var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
@@ -92,9 +111,71 @@ EndProject
 
                     slnContent = slnContent.Insert(endGobalSectionIndex - 1, projectConfigContent);
                 }
+
+                if (usesAnyCpu)
+                {
+                    slnContent = AddAnyCpuSolutionConfigurations(slnContent);
+                    slnContent = AddAnyCpuProjectConfigutations(slnContent);
+                }
             }
 
             File.WriteAllText(_path, slnContent, Encoding.UTF8);
+        }
+
+        private string AddAnyCpuProjectConfigutations(string slnContent)
+        {
+            if (slnContent.Contains("|Any CPU = "))
+            {
+                // Ensure that all projects have 'Any CPU' platform configurations
+                var slnLines = slnContent.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+                var projectGuids = new List<string>();
+
+                foreach (var line in slnLines)
+                {
+                    if (line.StartsWith("Project(\"{"))
+                    {
+                        projectGuids.Add(line.Substring(line.LastIndexOf("{")).Trim(new[] { '{', '}', '"' }));
+                    }
+
+                    if (line.StartsWith("Global"))
+                    {
+                        break;
+                    }
+                }
+
+                // see if already have an entry
+                // if not, add them above the ARM entries
+                foreach (var projGuid in projectGuids)
+                {
+                    if (!slnContent.Contains($"{{{projGuid}}}.Debug|Any CPU.ActiveCfg"))
+                    {
+                        slnContent = slnContent.Replace($"{{{projGuid}}}.Debug|ARM.ActiveCfg", $"{{{projGuid}}}.Debug|Any CPU.ActiveCfg = Debug|x86\r\n\t\t{{{projGuid}}}.Debug|ARM.ActiveCfg");
+                    }
+
+                    if (!slnContent.Contains($"{{{projGuid}}}.Release|Any CPU.ActiveCfg"))
+                    {
+                        slnContent = slnContent.Replace($"{{{projGuid}}}.Release|ARM.ActiveCfg", $"{{{projGuid}}}.Release|Any CPU.ActiveCfg = Release|x86\r\n\t\t{{{projGuid}}}.Release|ARM.ActiveCfg");
+                    }
+                }
+            }
+
+            return slnContent;
+        }
+
+        private string AddAnyCpuSolutionConfigurations(string slnContent)
+        {
+            if (!slnContent.Contains("Debug|Any CPU = Debug|Any CPU"))
+            {
+                slnContent = slnContent.Replace("Debug|ARM = Debug|ARM", "Debug|Any CPU = Debug|Any CPU\r\n\t\tDebug|ARM = Debug|ARM");
+            }
+
+            if (!slnContent.Contains("Release|Any CPU = Release|Any CPU"))
+            {
+                slnContent = slnContent.Replace("Release|ARM = Release|ARM", "Release|Any CPU = Release|Any CPU\r\n\t\tRelease|ARM = Release|ARM");
+            }
+
+            return slnContent;
         }
 
         private static string GetProjectTemplate(string projectExtension)
@@ -112,11 +193,18 @@ EndProject
             return string.Empty;
         }
 
-        private static string GetProjectConfigurationTemplate(string platform, string projectName)
+        private static string GetProjectConfigurationTemplate(string platform, string projectName, bool usesAnyCpu)
         {
             if (platform == Platforms.Uwp)
             {
-                return UwpProjectConfigurationTemplate;
+                if (usesAnyCpu)
+                {
+                    return UwpProjectConfigurationTemplateForAnyCpu;
+                }
+                else
+                {
+                    return UwpProjectConfigurationTemplate;
+                }
             }
 
             return string.Empty;

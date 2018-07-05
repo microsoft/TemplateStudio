@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddGenerateMergeInfoPostAction(GenInfo genInfo, List<PostAction> postActions)
         {
             Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
+                .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.OutputPath), "*.*", SearchOption.AllDirectories)
                 .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GenerateMergeInfoPostAction(genInfo.Template.Identity, f)));
@@ -56,9 +56,15 @@ namespace Microsoft.Templates.Core.PostActions
             {
                 postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
             }
+
+            var addProjectReferencePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == MakeOtherProjectReferenceThisOnePostAction.Id);
+            if (addProjectReferencePostAction != null)
+            {
+                postActions.Add(new MakeOtherProjectReferenceThisOnePostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+            }
         }
 
-        internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
+        internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions, bool addingToExistingProject = false)
         {
             switch (genInfo.Template.GetTemplateOutputType())
             {
@@ -84,9 +90,9 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.OutputPath), searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError))));
+                .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError, outputtingToParent: true))));
         }
 
         internal void AddSearchAndReplaceActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern, bool failOnError)
@@ -94,18 +100,18 @@ namespace Microsoft.Templates.Core.PostActions
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError))));
+                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, outputtingToParent: false))));
         }
 
         private static void AddMergePostAction(GenInfo genInfo, List<PostAction> postActions, bool failOnError, string f)
         {
             if (IsResourceDictionaryPostaction(f))
             {
-                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError)));
+                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, genInfo.Template.GetOutputToParent())));
             }
             else
             {
-                postActions.Add(new MergePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError)));
+                postActions.Add(new MergePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, genInfo.Template.GetOutputToParent())));
             }
         }
 

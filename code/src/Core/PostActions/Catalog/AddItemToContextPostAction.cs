@@ -13,7 +13,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddItemToContextPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        private Dictionary<string, string> _genParameters;
+        private readonly Dictionary<string, string> _genParameters;
 
         public AddItemToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
             : base(relatedTemplate, config)

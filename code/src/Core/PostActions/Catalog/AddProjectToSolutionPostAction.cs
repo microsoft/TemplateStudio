@@ -14,7 +14,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
-        private Dictionary<string, string> _genParameters;
+        private readonly Dictionary<string, string> _genParameters;
 
         public AddProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
             : base(relatedTemplate, config)
@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
                     var solutionPath = Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, output.GetOutputPath(_genParameters)));
-                    GenContext.ToolBox.Shell.AddProjectToSolution(solutionPath);
+                    GenContext.ToolBox.Shell.AddProjectToSolution(solutionPath, usesAnyCpu: false);
                 }
             }
 
