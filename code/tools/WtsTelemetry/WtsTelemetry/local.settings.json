@@ -1,0 +1,12 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
+    "AzureWebJobsSendGridApiKey": "",
+    "SendGrid:From": "",
+    "SendGrid:To": "",
+    "SendGrid:Subject": "",
+    "SendGrid:Content": ""
+  }
+}
