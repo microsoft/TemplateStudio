@@ -16,6 +16,12 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
+      "path": ".\\Behaviors\\PivotBehavior.cs"
+    },
+    {
+      "path": ".\\Helpers\\IPivotPage.cs"
+    },
+    {
       "path": ".\\ViewModels\\PivotViewModel.cs"
     },
     {

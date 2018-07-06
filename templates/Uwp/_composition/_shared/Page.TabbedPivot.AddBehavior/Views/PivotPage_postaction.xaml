@@ -1,0 +1,21 @@
+﻿<Page
+    Style="{StaticResource PageStyle}"
+    <!--{[{-->
+    xmlns:behaviors="using:Param_ItemNamespace.Behaviors"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    <!--}]}-->
+    xmlns:model="using:Param_ItemNamespace.Models"
+    xmlns:views="using:Param_ItemNamespace.Views"
+    mc:Ignorable="d">
+
+    <Grid>
+
+        <Pivot x:Uid="PivotPage">
+            <!--{[{-->
+            <i:Interaction.Behaviors>
+                <behaviors:PivotBehavior />
+            </i:Interaction.Behaviors>
+            <!--}]}-->
+        </Pivot>
+    </Grid>
+</Page>
