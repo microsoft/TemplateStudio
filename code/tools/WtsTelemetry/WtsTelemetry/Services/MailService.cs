@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WtsTelemetry
+namespace WtsTelemetry.Services
 {
     public static class MailService
     {

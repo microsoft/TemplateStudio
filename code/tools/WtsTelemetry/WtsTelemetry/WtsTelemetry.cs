@@ -1,6 +1,7 @@
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using SendGrid.Helpers.Mail;
+using WtsTelemetry.Services;
 
 namespace WtsTelemetry
 {
@@ -12,7 +13,7 @@ namespace WtsTelemetry
             TraceWriter log, 
             [SendGrid] out Mail message)
         {
-            var result = QueriesService.GetProjectData();
+            var projectData = DataService.GetProjectData();
             message = MailService.CreateMail();
             log.Info($"------ WTS: send mail -----------");
         }        

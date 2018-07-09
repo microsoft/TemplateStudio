@@ -2,9 +2,9 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace WtsTelemetry
+namespace WtsTelemetry.Services
 {
-    public static class QueriesService
+    public static class DataService
     {
         private const string URL = "https://api.applicationinsights.io/v1/apps/{0}/query?query={1}";
 
