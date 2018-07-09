@@ -102,7 +102,7 @@
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
                 ZoomMode="Enabled">
-                <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                <Grid Background="{StaticResource InkCanvasBackground}"
                       Width="{Binding ElementName=inkCanvas, Path=Width}"
                       Height="{Binding ElementName=inkCanvas, Path=Height}">
                     <Image x:Name="image" Stretch="None"/>

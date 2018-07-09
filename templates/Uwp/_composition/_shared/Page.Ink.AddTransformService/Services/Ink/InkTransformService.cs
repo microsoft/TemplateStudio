@@ -110,6 +110,7 @@ namespace Param_ItemNamespace.Services.Ink
 
             text.Text = recognizedText;
             text.FontSize = boundingRect.Height;
+            text.Foreground = new SolidColorBrush(Colors.Black);
 
             _drawingCanvas.Children.Add(text);
             return text;
