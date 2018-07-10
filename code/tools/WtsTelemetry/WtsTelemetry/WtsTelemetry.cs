@@ -15,7 +15,7 @@ namespace WtsTelemetry
 
         [FunctionName("WtsTelemetry")]
         public static void Run(
-            [TimerTrigger("0 0 0 1 * *")]TimerInfo myTimer, 
+            [TimerTrigger("0 0 0 1 * *")]TimerInfo myTimer,
             TraceWriter log, 
             [SendGrid] out Mail message)
         {
@@ -23,13 +23,18 @@ namespace WtsTelemetry
             var month = DateTime.Today.AddMonths(-1).Month;
 
             log.Info($"------ WTS: Get data from {month}.{year} -----------");
-            var projectData = DataService.GetProjectData(year, month);
 
+            var queries = new QueryService(year, month);
+
+            var projectsData = DataService.GetData(queries.Projects);
+            var frameworksData = DataService.GetData(queries.Frameworks);
+            var pagesData = DataService.GetData(queries.Pages);
+            var featuresData = DataService.GetData(queries.Features);
+            var entryPointData = DataService.GetData(queries.EntryPoints);
 
             log.Info($"------ WTS: send data mail -----------");
             message = MailService.CreateMail();
 
-            message.AddContent(new Content("text/html", projectData));
             log.Info($"------ WTS: Finish -----------");
         }
     }
