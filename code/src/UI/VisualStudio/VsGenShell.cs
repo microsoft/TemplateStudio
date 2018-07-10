@@ -91,11 +91,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override void RefreshProject()
+        public override void RefreshProject(string projectPath)
         {
             try
             {
-                var proj = GetActiveProject();
+                var proj = GetProjectByPath(projectPath);
 
                 if (proj != null)
                 {
@@ -652,13 +652,15 @@ namespace Microsoft.Templates.UI.VisualStudio
             return _vsProductVersion;
         }
 
-        public override void AddReferenceToProject(string projectDoingTheReferencing, string projectBeingReferenced)
+        public override void AddReferenceToProject(string projectPath, string referenceToAdd)
         {
-            var referenceProject = GetProjectByPath(projectBeingReferenced);
+            var referenceProject = GetProjectByPath(referenceToAdd);
 
-            var proj = (VSProject)GetProjectByPath(projectDoingTheReferencing);
+            var project = GetProjectByPath(projectPath);
 
+            var proj = (VSProject)project.Object;
             proj.References.AddProject(referenceProject);
+            project.Save();
         }
     }
 }

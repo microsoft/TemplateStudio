@@ -190,8 +190,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string SolutionFilePath { get; set; }
 
-        public string CoreProjectGuid { get; set; }
-
         public async Task InitializeAsync()
         {
             SystemService.Initialize();

@@ -56,7 +56,7 @@
       "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
       "args": {
         "fileIndex" : "0",
-        "otherProjectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
       },
       "continueOnError": "true"
     }

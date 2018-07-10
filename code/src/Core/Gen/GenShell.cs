@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void SaveSolution();
 
-        public abstract void AddReferenceToProject(string projectDoingTheReferencing, string projectBeingReferenced);
+        public abstract void AddReferenceToProject(string projectPath, string referenceToAdd);
 
         public abstract string GetActiveProjectNamespace();
 
@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Core.Gen
         {
         }
 
-        public virtual void RefreshProject()
+        public virtual void RefreshProject(string projectPath)
         {
         }
 

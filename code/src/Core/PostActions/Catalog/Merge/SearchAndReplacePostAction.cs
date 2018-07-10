@@ -76,9 +76,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             File.Delete(Config.FilePath);
 
             // REFRESH PROJECT TO UN-DIRTY IT
-            if (Path.GetExtension(Config.FilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase))
+            if (Path.GetExtension(originalFilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase))
             {
-                GenContext.ToolBox.Shell.RefreshProject();
+                GenContext.ToolBox.Shell.RefreshProject(originalFilePath);
             }
         }
 

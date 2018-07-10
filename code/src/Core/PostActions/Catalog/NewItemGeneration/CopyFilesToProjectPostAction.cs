@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                 if (Path.GetExtension(file).EndsWith("proj", StringComparison.OrdinalIgnoreCase))
                 {
-                    Gen.GenContext.ToolBox.Shell.RefreshProject();
+                    Gen.GenContext.ToolBox.Shell.RefreshProject(file);
                     GenContext.ToolBox.Shell.SaveSolution();
                     GenContext.ToolBox.Shell.CleanSolution();
                 }
