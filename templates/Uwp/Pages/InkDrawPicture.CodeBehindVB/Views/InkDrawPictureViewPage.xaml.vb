@@ -1,0 +1,115 @@
+﻿Imports Param_ItemNamespace.Services.Ink
+Imports Param_ItemNamespace.Helpers
+Imports System
+Imports Windows.UI.Xaml
+Imports Windows.UI.Xaml.Controls
+Imports Windows.Storage
+
+Namespace Views
+    ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
+    Public NotInheritable Partial Class InkDrawPictureViewPage
+        Inherits Page
+        Implements System.ComponentModel.INotifyPropertyChanged
+
+        Private imageFile As StorageFile
+        Private strokesService As InkStrokesService
+        Private pointerDeviceService As InkPointerDeviceService
+        Private fileService As InkFileService
+        Private zoomService As InkZoomService
+
+        Public Sub New()
+            InitializeComponent()
+            Loaded += Function(sender, eventArgs)
+                          SetCanvasSize()
+                          image.SizeChanged += AddressOf Image_SizeChanged
+                          strokesService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
+                          pointerDeviceService = New InkPointerDeviceService(inkCanvas)
+                          fileService = New InkFileService(inkCanvas, strokesService)
+                          zoomService = New InkZoomService(canvasScroll)
+                          touchInkingButton.IsChecked = True
+                          mouseInkingButton.IsChecked = True
+                          pointerDeviceService.DetectPenEvent += Function(s, e) CSharpImpl.__Assign(touchInkingButton.IsChecked, False)
+                      End Function
+        End Sub
+
+        Private Sub SetCanvasSize()
+            inkCanvas.Width = Math.Max(canvasScroll.ViewportWidth, 1000)
+            inkCanvas.Height = Math.Max(canvasScroll.ViewportHeight, 1000)
+        End Sub
+
+        Private Sub Image_SizeChanged(sender As Object, e As SizeChangedEventArgs)
+            If e.NewSize.Height = 0 OrElse e.NewSize.Width = 0 Then
+                SetCanvasSize()
+            Else
+                inkCanvas.Width = e.NewSize.Width
+                inkCanvas.Height = e.NewSize.Height
+            End If
+        End Sub
+
+        Private Sub TouchInking_Checked(sender As Object, e As RoutedEventArgs)
+            Return CSharpImpl.__Assign(pointerDeviceService.EnableTouch, True)
+        End Sub
+
+        Private Sub TouchInking_Unchecked(sender As Object, e As RoutedEventArgs)
+            Return CSharpImpl.__Assign(pointerDeviceService.EnableTouch, False)
+        End Sub
+
+        Private Sub MouseInking_Checked(sender As Object, e As RoutedEventArgs)
+            Return CSharpImpl.__Assign(pointerDeviceService.EnableMouse, True)
+        End Sub
+
+        Private Sub MouseInking_Unchecked(sender As Object, e As RoutedEventArgs)
+            Return CSharpImpl.__Assign(pointerDeviceService.EnableMouse, False)
+        End Sub
+
+        Private Sub ZoomIn_Click(sender As Object, e As RoutedEventArgs)
+            Return zoomService?.ZoomIn()
+        End Sub
+
+        Private Sub ZoomOut_Click(sender As Object, e As RoutedEventArgs)
+            Return zoomService?.ZoomOut()
+        End Sub
+
+        Private Sub ResetZoom_Click(sender As Object, e As RoutedEventArgs)
+            Return zoomService?.ResetZoom()
+        End Sub
+
+        Private Sub FitToScreen_Click(sender As Object, e As RoutedEventArgs)
+            Return zoomService?.FitToScreen()
+        End Sub
+
+        Private Async Sub LoadImage_Click(sender As Object, e As RoutedEventArgs)
+            Dim file = Await ImageHelper.LoadImageFileAsync()
+            Dim bitmapImage = Await ImageHelper.GetBitmapFromImageAsync(file)
+
+            If file IsNot Nothing AndAlso bitmapImage IsNot Nothing Then
+                ClearAll()
+                imageFile = file
+                image.Source = bitmapImage
+                zoomService?.FitToSize(bitmapImage.PixelWidth, bitmapImage.PixelHeight)
+            End If
+        End Sub
+
+        Private Async Sub SaveImage_Click(sender As Object, e As RoutedEventArgs)
+            Return Await fileService?.ExportToImageAsync(imageFile)
+        End Sub
+
+        Private Sub ClearAll_Click(sender As Object, e As RoutedEventArgs)
+            Return ClearAll()
+        End Sub
+
+        Private Sub ClearAll()
+            strokesService?.ClearStrokes()
+            imageFile = Nothing
+            image.Source = Nothing
+        End Sub
+
+        Private Class CSharpImpl
+            <Obsolete("Please refactor calling code to use normal Visual Basic assignment")>
+            Shared Function __Assign(Of T)(ByRef target As T, value As T) As T
+                target = value
+                Return value
+            End Function
+        End Class
+    End Class
+End Namespace

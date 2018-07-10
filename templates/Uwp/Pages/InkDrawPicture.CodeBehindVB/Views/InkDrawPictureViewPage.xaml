@@ -1,0 +1,116 @@
+﻿<Page
+    x:Class="Param_ItemNamespace.Views.InkDrawPictureViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <CommandBar
+                DefaultLabelPosition="Collapsed"
+                HorizontalAlignment="Left"
+                HorizontalContentAlignment="Left">
+                <CommandBar.Content>
+                    <InkToolbar x:Name="toolbar" TargetInkCanvas="{x:Bind inkCanvas}">
+                        <InkToolbarCustomToggleButton
+                            x:Uid="InkDrawPictureView_TouchInkingButton"
+                            Name="touchInkingButton"
+                            Checked="TouchInking_Checked"
+                            Unchecked="TouchInking_Unchecked">
+                            <FontIcon
+                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                Glyph="&#xED5F;" />
+                        </InkToolbarCustomToggleButton>
+                        <InkToolbarCustomToggleButton
+                            x:Uid="InkDrawPictureView_MouseInkingButton"                            
+                            Name="mouseInkingButton"
+                            Checked="MouseInking_Checked"
+                            Unchecked="MouseInking_Unchecked">
+                            <FontIcon
+                            FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                            Glyph="&#xE962;" />
+                        </InkToolbarCustomToggleButton>
+                    </InkToolbar>
+                </CommandBar.Content>
+                <AppBarSeparator />
+                <AppBarButton
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    x:Uid="InkDrawPictureView_ZoomInButton"
+                    Icon="ZoomIn"
+                    Click="ZoomIn_Click"/>
+                <AppBarButton
+                    BorderBrush="Transparent"
+                    BorderThickness="0,0,0,0"
+                    x:Uid="InkDrawPictureView_ZoomOutButton"
+                    Icon="ZoomOut"
+                    Click="ZoomOut_Click" />
+                <AppBarButton
+                BorderBrush="Transparent"
+                BorderThickness="0,0,0,0"
+                x:Uid="InkDrawPictureView_OriginalSizeButton"
+                Icon="FullScreen"
+                Click="ResetZoom_Click" />
+                <AppBarButton
+                BorderBrush="Transparent"
+                BorderThickness="0,0,0,0"
+                x:Uid="InkDrawPictureView_FitToScreenButton"                    
+                Click="FitToScreen_Click">
+                    <FontIcon
+                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                    Glyph="&#xE73F;" />
+                </AppBarButton>
+                <AppBarSeparator/>
+                <AppBarButton
+                BorderBrush="Transparent"
+                BorderThickness="0,0,0,0"
+                x:Uid="InkDrawPictureView_OpenImageButton"                
+                Click="LoadImage_Click">
+                <FontIcon
+                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                    Glyph="&#xEB9F;" />
+                </AppBarButton>
+                <AppBarButton
+                BorderBrush="Transparent"
+                BorderThickness="0,0,0,0"
+                x:Uid="InkDrawPictureView_SaveImageButton"
+                Click="SaveImage_Click" >
+                <FontIcon
+                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                    Glyph="&#xEE71;" />
+                </AppBarButton>
+                <AppBarSeparator/>
+                <AppBarButton
+                BorderBrush="Transparent"
+                BorderThickness="0,0,0,0"
+                x:Uid="InkDrawPictureView_ClearAllButton"
+                Icon="Delete"
+                Click="ClearAll_Click" />
+            </CommandBar>
+            <ScrollViewer
+                Name="canvasScroll"
+                Grid.Row="1"
+                Margin="8,0,8,0"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ZoomMode="Enabled">
+                <Grid Background="{StaticResource InkCanvasBackground}"
+                      Width="{Binding ElementName=inkCanvas, Path=Width}"
+                      Height="{Binding ElementName=inkCanvas, Path=Height}">
+                    <Image x:Name="image" Stretch="None"/>
+                    <InkCanvas x:Name="inkCanvas"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"/>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
