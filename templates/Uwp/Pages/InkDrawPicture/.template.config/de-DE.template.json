@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Ink Draw Picture",
-  "description": "A page that allows you to load a picture and draw on top of it using Windows Ink.",
+  "description": "Eine Seite, auf der Sie in Windows Ink ein Bild laden und mit Zeichnungen versehen können.",
   "identity": "wts.Page.InkDrawPicture"
 }

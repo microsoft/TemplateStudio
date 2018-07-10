@@ -1,4 +1,4 @@
-﻿This page contains an ink canvas and an ink toolbar that allows you to draw using Windows ink.
-This page uses InkAnalyzer and allows you to select the nodes and transform them into shapes and texts. You can also move the nodes or use lasso selection to select a part of a node and move only those strokes. This page also supports undo/redo of all actions.
+﻿このページには、Windows Ink を使って作成することができる空白のキャンバスとインク ツールバーが含まれます。
+このページでは、InkAnalyzer を使用してノードを選択し、シェイプとテキストに変換します。ノードを移動したり、投げ縄選択を使ってノードの一部を選択し、その部分のみ移動させることもできます。このページでは、すべてのアクションの取り消し / やり直しもサポートしています。
  
-To find out more about the Windows Ink platform, head to [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
+Windows Ink のプラットフォームの詳細については、[docs.microsoft.com] (https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions) を参照してください。

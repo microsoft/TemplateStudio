@@ -1,3 +1,3 @@
-﻿This page contains an image, an ink canvas and an ink toolbar that allows you to open an image, draw on top of it and then export the image and drawing together as a png.
+﻿Bu sayfa, bir görüntüyü açıp üzerine çizim yapabileceğiniz ve daha sonra görüntüyle birlikte çizimi de .png dosyası olarak dışarı aktarabileceğiniz bir görüntü, bir mürekkep tuvali ve bir mürekkep araç çubuğu içerir.
  
-To find out more about the Windows Ink platform, head to [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
+Windows Ink platformu hakkında daha fazla bilgi için [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions) adresine gidin

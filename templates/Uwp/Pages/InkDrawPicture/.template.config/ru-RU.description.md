@@ -1,3 +1,3 @@
-﻿This page contains an image, an ink canvas and an ink toolbar that allows you to open an image, draw on top of it and then export the image and drawing together as a png.
+﻿На этой странице содержится изображение, холст и панель инструментов для рукописного ввода. Вы можете открыть изображение, нарисовать что-то поверх него и экспортировать все вместе в формате PNG.
  
-To find out more about the Windows Ink platform, head to [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
+Дополнительные сведения о платформе Windows Ink см. на сайте [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)

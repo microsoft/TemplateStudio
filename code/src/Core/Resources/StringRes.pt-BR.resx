@@ -445,6 +445,6 @@ As seguintes alterações não puderam ser integradas: {2}
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
-    <value>Erro ao baixar o arquivo de configuração de origem.</value>
+    <value>Erro ao baixar arquivo de configuração de origem.</value>
   </data>
 </root>

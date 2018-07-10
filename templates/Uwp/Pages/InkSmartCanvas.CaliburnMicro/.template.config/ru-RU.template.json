@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Ink Smart Canvas",
-  "description": "A page that allows you to create notes using shape and text recognition with Windows Ink.",
+  "description": "Страница, на которой можно создавать заметки с использованием распознавания фигур и текста Windows Ink.",
   "identity": "wts.Page.InkSmartCanvas.CaliburnMicro"
 }

@@ -1,3 +1,3 @@
-﻿This page contains an ink canvas and an ink toolbar that allows you to draw using Windows Ink. You can select parts of your drawing, move the selection, copy, cut and paste it. You can open and save your drawings as gif and export it as png file. This page also supports undo/redo of all actions.
+﻿Diese Seite enthält einen Freihandzeichenbereich und eine Freihandsymbolleiste, mit denen Sie in Windows Ink zeichnen können. Hierbei können Sie Teile Ihrer Zeichnung auswählen, Ihre Auswahl verschieben, kopieren, ausschneiden und einfügen. Sie können Ihre Zeichnungen im GIF-Format öffnen und speichern und sie als PNG-Datei exportieren. Diese Seite unterstützt außerdem das Rückgängigmachen/Wiederholen aller Aktionen.
  
-To find out more about the Windows Ink platform, head to [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
+Weitere Informationen zur Windows Ink-Plattform finden Sie auf [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions).

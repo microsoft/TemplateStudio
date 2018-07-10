@@ -1,4 +1,4 @@
-﻿This page contains an ink canvas and an ink toolbar that allows you to draw using Windows ink.
-This page uses InkAnalyzer and allows you to select the nodes and transform them into shapes and texts. You can also move the nodes or use lasso selection to select a part of a node and move only those strokes. This page also supports undo/redo of all actions.
+﻿Cette page contient un canevas Ink et une barre d'outils Ink qui permettent de dessiner avec Windows Ink.
+Cette page utilise InkAnalyzer et permet de sélectionner les nœuds pour les transformer en formes et en textes. Vous pouvez également déplacer les nœuds ou utiliser la sélection par lasso pour sélectionner une partie d'un nœud et déplacer uniquement ces traits. Cette page prend également en charge les options Annuler/Rétablir pour toutes les actions.
  
-To find out more about the Windows Ink platform, head to [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
+Pour en savoir plus sur la plateforme Windows Ink, accédez au site [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
