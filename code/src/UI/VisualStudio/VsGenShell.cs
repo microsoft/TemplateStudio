@@ -91,11 +91,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override void RefreshProject()
+        public override void RefreshProject(string projectPath)
         {
             try
             {
-                var proj = GetActiveProject();
+                var proj = GetProjectByPath(projectPath);
 
                 if (proj != null)
                 {
@@ -656,9 +656,11 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             var referenceProject = GetProjectByPath(projectBeingReferenced);
 
-            var proj = (VSProject)GetProjectByPath(projectDoingTheReferencing);
+            var project = GetProjectByPath(projectDoingTheReferencing);
 
+            var proj = (VSProject)project.Object;
             proj.References.AddProject(referenceProject);
+            project.Save();
         }
     }
 }

@@ -60,10 +60,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
 
                 // REFRESH PROJECT TO UN-DIRTY IT
-                if (Path.GetExtension(Config.FilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
+                if (Path.GetExtension(originalFilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
                  && GenContext.Current.OutputPath == GenContext.Current.DestinationPath)
                 {
-                    Gen.GenContext.ToolBox.Shell.RefreshProject();
+                    Gen.GenContext.ToolBox.Shell.RefreshProject(originalFilePath);
                 }
             }
 

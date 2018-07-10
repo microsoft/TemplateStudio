@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Core.Gen
         {
         }
 
-        public virtual void RefreshProject()
+        public virtual void RefreshProject(string projectPath)
         {
         }
 
