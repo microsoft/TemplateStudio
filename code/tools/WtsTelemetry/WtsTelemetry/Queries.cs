@@ -3,8 +3,10 @@
     public static class Queries
     {
         public static string GetProjectData = @"
+let startDatetime = startofmonth(datetime({0}-{1}-01));
+let endDatetime = endofmonth(datetime({0}-{1}-01));
 let queryTable = customEvents
-| where timestamp >= ago(30d)
+| where timestamp between(startDatetime .. endDatetime)
 | extend eventName = iif(itemType == 'customEvent',name,'')
 | where eventName == 'WtsProjectGen';
 queryTable

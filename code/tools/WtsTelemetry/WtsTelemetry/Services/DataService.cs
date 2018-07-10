@@ -11,7 +11,11 @@ namespace WtsTelemetry.Services
         private static readonly string AppId = Environment.GetEnvironmentVariable("AppId");
         private static readonly string ApiKey = Environment.GetEnvironmentVariable("ApiKey");
 
-        public static string GetProjectData() => GetData(Queries.GetProjectData);
+        public static string GetProjectData(int year, int month)
+        {
+            var query = string.Format(Queries.GetProjectData, year, month);
+            return GetData(query);
+        }
 
         private static string GetData(string query)
         {
