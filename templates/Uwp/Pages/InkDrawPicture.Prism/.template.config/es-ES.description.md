@@ -1,3 +1,3 @@
-﻿This page contains an image, an ink canvas and an ink toolbar that allows you to open an image, draw on top of it and then export the image and drawing together as a png.
+﻿Esta página contiene una imagen, un lienzo de entrada de lápiz y una barra de herramientas de entrada de lápiz que te permiten abrir una imagen, dibujar sobre ella y exportar la imagen y el dibujo juntos como un PNG.
  
-To find out more about the Windows Ink platform, head to [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
+Para obtener más información acerca de la plataforma Windows Ink, dirígete a [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)

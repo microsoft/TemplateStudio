@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Ink Draw",
-  "description": "A page that allows you to create notes and drawings using Windows Ink.",
+  "description": "Strona pozwalająca tworzyć notatki i rysunki przy użyciu funkcji Windows Ink.",
   "identity": "wts.Page.InkDraw.CaliburnMicro"
 }

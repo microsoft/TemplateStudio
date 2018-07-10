@@ -445,6 +445,6 @@ Nemohly být integrovány následující změny: {2}
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
-    <value>Chyba při stahování zdrojového konfiguračního souboru.</value>
+    <value>Při stahování zdrojového konfiguračního souboru došlo k chybě.</value>
   </data>
 </root>

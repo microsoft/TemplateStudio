@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Ink Draw Picture",
-  "description": "A page that allows you to load a picture and draw on top of it using Windows Ink.",
+  "description": "画像を読み込んだり、Windows Ink で画像の上に線画を描いたりすることができるページです。",
   "identity": "wts.Page.InkDrawPicture.Prism"
 }

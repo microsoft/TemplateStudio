@@ -1,4 +1,4 @@
-﻿This page contains an ink canvas and an ink toolbar that allows you to draw using Windows ink.
-This page uses InkAnalyzer and allows you to select the nodes and transform them into shapes and texts. You can also move the nodes or use lasso selection to select a part of a node and move only those strokes. This page also supports undo/redo of all actions.
+﻿Tato stránka obsahuje plátno a panel nástrojů pro rukopis umožňující kreslit pomocí nástroje Windows Ink.
+Tato stránka využívá InkAnalyzer a umožňuje vybrat uzly a transformovat je na tvary a text. Uzly také můžete přesouvat nebo pomocí nástroje Lasso vybrat část uzlu a přesunout jen vybrané tahy. Tato stránka také podporuje vrácení zpět a zopakování všech akcí.
  
-To find out more about the Windows Ink platform, head to [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
+Další informace o platformě Windows Ink najdete na stránce [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions).

@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Ink Smart Canvas",
-  "description": "A page that allows you to create notes using shape and text recognition with Windows Ink.",
+  "description": "一個頁面，允許您搭配 Windows Ink 使用圖形與文字辨識功能來製作筆記。",
   "identity": "wts.Page.InkSmartCanvas.Prism"
 }

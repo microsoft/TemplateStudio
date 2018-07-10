@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft",
   "name": "Ink Draw Picture",
-  "description": "A page that allows you to load a picture and draw on top of it using Windows Ink.",
+  "description": "一個頁面，允許您載入圖形，並使用 Windows Ink 在圖形上面繪圖。",
   "identity": "wts.Page.InkDrawPicture"
 }

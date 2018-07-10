@@ -1,3 +1,3 @@
-﻿This page contains an ink canvas and an ink toolbar that allows you to draw using Windows Ink. You can select parts of your drawing, move the selection, copy, cut and paste it. You can open and save your drawings as gif and export it as png file. This page also supports undo/redo of all actions.
+﻿Questa pagina contiene una tela e una barra degli strumenti relative all'input penna che consentono di disegnare con Windows Ink. Puoi selezionare parti del disegno, spostare la selezione, copiarla, tagliarla e incollarla. Puoi aprire e salvare i tuoi disegni come file gif ed esportarli come file png. Questa pagina supporta anche la fase di rollback/rollforward di tutte le azioni.
  
-To find out more about the Windows Ink platform, head to [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
+Per maggiori informazioni sulla piattaforma Windows Ink, consulta [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)
