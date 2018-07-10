@@ -652,11 +652,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             return _vsProductVersion;
         }
 
-        public override void AddReferenceToProject(string projectDoingTheReferencing, string projectBeingReferenced)
+        public override void AddReferenceToProject(string projectPath, string referenceToAdd)
         {
-            var referenceProject = GetProjectByPath(projectBeingReferenced);
+            var referenceProject = GetProjectByPath(referenceToAdd);
 
-            var project = GetProjectByPath(projectDoingTheReferencing);
+            var project = GetProjectByPath(projectPath);
 
             var proj = (VSProject)project.Object;
             proj.References.AddProject(referenceProject);

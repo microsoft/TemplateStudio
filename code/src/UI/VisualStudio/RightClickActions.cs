@@ -43,8 +43,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; }
 
-        public string CoreProjectGuid { get; set; }
-
         public RightClickActions()
         {
             _shell = new VsGenShell();
