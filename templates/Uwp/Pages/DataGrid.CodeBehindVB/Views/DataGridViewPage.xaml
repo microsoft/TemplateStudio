@@ -5,13 +5,37 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:model="using:Param_ItemNamespace.Models"
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <controls:DataGrid ItemsSource="{x:Bind Source}" AutoGenerateColumns="True" />
+            <controls:DataGrid ItemsSource="{x:Bind Source}" AutoGenerateColumns="False" >
+                <controls:DataGrid.Columns>
+                    <!--TODO WTS:
+                    Remove this column definitions and define columns for your data.
+                    Consider adding header properties to Resources.resw-->
+                    <controls:DataGridTextColumn Header="OrderId" Binding="{Binding OrderId}" />
+                    <controls:DataGridTextColumn Header="OrderDate" Binding="{Binding OrderDate}"  />
+                    <controls:DataGridTextColumn Header="Company" Binding="{Binding Company}" />
+                    <controls:DataGridTextColumn Header="ShipTo" Binding="{Binding ShipTo}" />
+                    <controls:DataGridTextColumn Header="OrderTotal" Binding="{Binding OrderTotal}" />
+                    <controls:DataGridTextColumn Header="Status" Binding="{Binding Status}"  />
+                    <controls:DataGridTemplateColumn Header="Symbol">
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate x:DataType="model:SampleOrder">
+                                <FontIcon
+                                HorizontalAlignment="Left"
+                                Margin="{StaticResource MediumLeftRightMargin}"
+                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                Glyph="{x:Bind Symbol}" />
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>
+                    </controls:DataGridTemplateColumn>
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
         </Grid>
     </Grid>
 </Page>

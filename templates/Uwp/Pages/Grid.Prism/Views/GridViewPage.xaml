@@ -5,13 +5,37 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:tg="using:Telerik.UI.Xaml.Controls.Grid"
+    xmlns:model="using:Param_ItemNamespace.Models"
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind ViewModel.Source}" />
+            <tg:RadDataGrid ColumnDataOperationsMode="Flyout" x:Name="grid" ItemsSource="{x:Bind ViewModel.Source}" AutoGenerateColumns="False" >
+                <tg:RadDataGrid.Columns>
+                    <!--TODO WTS:
+                      Remove this column definitions and define columns for your data.
+                      Consider adding header properties to Resources.resw-->
+                    <tg:DataGridTextColumn PropertyName="OrderId" />
+                    <tg:DataGridDateColumn PropertyName="OrderDate" />
+                    <tg:DataGridTextColumn PropertyName="Company" />
+                    <tg:DataGridTextColumn PropertyName="ShipTo" />
+                    <tg:DataGridNumericalColumn PropertyName="OrderTotal" />
+                    <tg:DataGridTextColumn PropertyName="Status" />
+                    <tg:DataGridTemplateColumn Header="Symbol">
+                        <tg:DataGridTemplateColumn.CellContentTemplate>
+                            <DataTemplate x:DataType="model:SampleOrder">
+                                <FontIcon
+                                      HorizontalAlignment="Left"
+                                      Margin="{StaticResource MediumLeftRightMargin}"
+                                      FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                      Glyph="{x:Bind Symbol}" />        
+                            </DataTemplate>
+                        </tg:DataGridTemplateColumn.CellContentTemplate>
+                    </tg:DataGridTemplateColumn>
+                </tg:RadDataGrid.Columns>
+            </tg:RadDataGrid>
         </Grid>
     </Grid>
 </Page>
