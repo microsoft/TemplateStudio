@@ -1,5 +1,4 @@
 ﻿Imports Param_ItemNamespace.Services.Ink
-Imports System
 Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls
 
@@ -10,13 +9,13 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
-            Loaded += Function(s, e)
+            AddHandler Loaded, Sub(s, e)
                           SetCanvasSize()
                           Dim strokeService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
                           Dim analyzer = New InkAsyncAnalyzer(inkCanvas, strokeService)
                           Dim selectionRectangleService = New InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService)
                           ViewModel.Initialize(strokeService, New InkLassoSelectionService(inkCanvas, selectionCanvas, strokeService, selectionRectangleService), New InkNodeSelectionService(inkCanvas, selectionCanvas, analyzer, strokeService, selectionRectangleService), New InkPointerDeviceService(inkCanvas), New InkUndoRedoService(inkCanvas, strokeService), New InkTransformService(drawingCanvas, strokeService), New InkFileService(inkCanvas, strokeService))
-                      End Function
+                      End Sub
         End Sub
 
         Private Sub SetCanvasSize()

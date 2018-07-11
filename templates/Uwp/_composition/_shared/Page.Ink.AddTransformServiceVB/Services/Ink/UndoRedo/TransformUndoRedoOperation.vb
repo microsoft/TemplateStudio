@@ -3,7 +3,7 @@ Imports Param_ItemNamespace.EventHandlers.Ink
 
 Namespace Services.Ink.UndoRedo
     Public Class TransformUndoRedoOperation
-        Inherits IUndoRedoOperation
+        Implements IUndoRedoOperation
 
         Private ReadOnly _strokeService As InkStrokesService
         Private _transformResult As InkTransformResult
@@ -11,15 +11,15 @@ Namespace Services.Ink.UndoRedo
         Public Sub New(transformResult As InkTransformResult, strokeService As InkStrokesService)
             _transformResult = transformResult
             _strokeService = strokeService
-            _strokeService.AddStrokeEvent += AddressOf StrokeService_AddStrokeEvent
+            AddHandler _strokeService.AddStrokeEvent, AddressOf StrokeService_AddStrokeEvent
         End Sub
 
-        Public Sub ExecuteRedo()
+        Public Sub ExecuteRedo() Implements IUndoRedoOperation.ExecuteRedo
             RemoveStrokes()
             AddTextAndShapes()
         End Sub
 
-        Public Sub ExecuteUndo()
+        Public Sub ExecuteUndo() Implements IUndoRedoOperation.ExecuteUndo
             RemoveTextAndShapes()
             AddStrokes()
         End Sub

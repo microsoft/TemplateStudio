@@ -7,51 +7,51 @@ Imports Windows.UI.Xaml.Controls
 Namespace Services.Ink
     Public Class InkPointerDeviceService
         Private ReadOnly _inkCanvas As InkCanvas
-        Private enableMouse As Boolean
-        Private enablePen As Boolean
-        Private enableTouch As Boolean
+        Private _enableMouse As Boolean
+        Private _enablePen As Boolean
+        Private _enableTouch As Boolean
 
         Public Sub New(inkCanvas As InkCanvas)
             _inkCanvas = inkCanvas
             _inkCanvas.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse Or CoreInputDeviceTypes.Pen Or CoreInputDeviceTypes.Touch
-            _inkCanvas.InkPresenter.UnprocessedInput.PointerEntered += AddressOf UnprocessedInput_PointerEntered
+            AddHandler _inkCanvas.InkPresenter.UnprocessedInput.PointerEntered, AddressOf UnprocessedInput_PointerEntered
         End Sub
 
         Public Event DetectPenEvent As EventHandler(Of EventArgs)
 
         Public Property EnableMouse As Boolean
             Get
-                Return enableMouse
+                Return _enableMouse
             End Get
             Set(value As Boolean)
-                enableMouse = value
+                _enableMouse = value
                 UpdateInputDevice(CoreInputDeviceTypes.Mouse, value)
             End Set
         End Property
 
         Public Property EnablePen As Boolean
             Get
-                Return enablePen
+                Return _enablePen
             End Get
             Set(value As Boolean)
-                enablePen = value
+                _enablePen = value
                 UpdateInputDevice(CoreInputDeviceTypes.Pen, value)
             End Set
         End Property
 
         Public Property EnableTouch As Boolean
             Get
-                Return enableTouch
+                Return _enableTouch
             End Get
             Set(value As Boolean)
-                enableTouch = value
+                _enableTouch = value
                 UpdateInputDevice(CoreInputDeviceTypes.Touch, value)
             End Set
         End Property
 
         Private Sub UnprocessedInput_PointerEntered(sender As InkUnprocessedInput, e As PointerEventArgs)
             If e.CurrentPoint.PointerDevice.PointerDeviceType = PointerDeviceType.Pen Then
-                DetectPenEvent?.Invoke(Me, EventArgs.Empty)
+                RaiseEvent DetectPenEvent(Me, EventArgs.Empty)
             End If
         End Sub
 

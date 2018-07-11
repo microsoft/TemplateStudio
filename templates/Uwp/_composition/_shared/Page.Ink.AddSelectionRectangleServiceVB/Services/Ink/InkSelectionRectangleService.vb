@@ -21,9 +21,9 @@ Namespace Services.Ink
             _selectionCanvas = selectionCanvas
             _strokeService = strokeService
             _inkCanvas.ManipulationMode = ManipulationModes.TranslateX Or ManipulationModes.TranslateY
-            _inkCanvas.ManipulationStarted += AddressOf InkCanvas_ManipulationStarted
-            _inkCanvas.ManipulationDelta += AddressOf InkCanvas_ManipulationDelta
-            _inkCanvas.ManipulationCompleted += AddressOf InkCanvas_ManipulationCompleted
+            AddHandler _inkCanvas.ManipulationStarted, AddressOf InkCanvas_ManipulationStarted
+            AddHandler _inkCanvas.ManipulationDelta, AddressOf InkCanvas_ManipulationDelta
+            AddHandler _inkCanvas.ManipulationCompleted, AddressOf InkCanvas_ManipulationCompleted
         End Sub
 
         Public Sub UpdateSelectionRect(rect As Rect)
@@ -47,8 +47,8 @@ Namespace Services.Ink
         Private Function GetSelectionRectangle() As Rectangle
             Dim r As Rectangle = Nothing
             Dim selectionRectange = TryCast(_selectionCanvas.Children.FirstOrDefault(Function(f)
-                                                                                         Dim r As Rectangle = Nothing
-                                                                                         Return CSharpImpl.__Assign(r, TryCast(f, Rectangle)) IsNot Nothing AndAlso r.Name = SelectionRectName
+                                                                                         Dim rect As Rectangle = TryCast(f, Rectangle)
+                                                                                         return rect IsNot Nothing AndAlso r.Name = SelectionRectName
                                                                                      End Function), Rectangle)
 
             If selectionRectange Is Nothing Then
@@ -102,13 +102,5 @@ Namespace Services.Ink
             selectionStrokesRect.X = left + offset.X
             selectionStrokesRect.Y = top + offset.Y
         End Sub
-
-        Private Class CSharpImpl
-            <Obsolete("Please refactor calling code to use normal Visual Basic assignment")>
-            Shared Function __Assign(Of T)(ByRef target As T, value As T) As T
-                target = value
-                Return value
-            End Function
-        End Class
     End Class
 End Namespace

@@ -1,6 +1,8 @@
 ﻿Namespace Services.Ink.UndoRedo
-    Interface IUndoRedoOperation
+    Public Interface IUndoRedoOperation
+
         Sub ExecuteUndo()
+
         Sub ExecuteRedo()
     End Interface
 End Namespace

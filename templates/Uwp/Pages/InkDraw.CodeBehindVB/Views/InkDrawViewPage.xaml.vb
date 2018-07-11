@@ -1,6 +1,5 @@
 ﻿
 Imports Param_ItemNamespace.Services.Ink
-Imports System
 Imports Windows.UI.Xaml.Controls
 
 Namespace Views
@@ -19,7 +18,7 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
-            Loaded += Function(sender, eventArgs)
+            AddHandler Loaded, Sub(sender, eventArgs)
                           SetCanvasSize()
                           strokeService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
                           Dim selectionRectangleService = New InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService)
@@ -31,8 +30,8 @@ Namespace Views
                           zoomService = New InkZoomService(canvasScroll)
                           touchInkingButton.IsChecked = True
                           mouseInkingButton.IsChecked = True
-                          pointerDeviceService.DetectPenEvent += Function(s, e) CSharpImpl.__Assign(touchInkingButton.IsChecked, False)
-                      End Function
+                          AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
+                      End Sub
         End Sub
 
         Private Sub SetCanvasSize()
@@ -41,39 +40,39 @@ Namespace Views
         End Sub
 
         Private Sub LassoSelection_Checked(sender As Object, e As RoutedEventArgs)
-            Return lassoSelectionService?.StartLassoSelectionConfig()
+            lassoSelectionService?.StartLassoSelectionConfig()
         End Sub
 
         Private Sub LassoSelection_Unchecked(sender As Object, e As RoutedEventArgs)
-            Return lassoSelectionService?.EndLassoSelectionConfig()
+            lassoSelectionService?.EndLassoSelectionConfig()
         End Sub
 
         Private Sub TouchInking_Checked(sender As Object, e As RoutedEventArgs)
-            Return CSharpImpl.__Assign(pointerDeviceService.EnableTouch, True)
+            pointerDeviceService.EnableTouch = True
         End Sub
 
         Private Sub TouchInking_Unchecked(sender As Object, e As RoutedEventArgs)
-            Return CSharpImpl.__Assign(pointerDeviceService.EnableTouch, False)
+            pointerDeviceService.EnableTouch = False
         End Sub
 
         Private Sub MouseInking_Checked(sender As Object, e As RoutedEventArgs)
-            Return CSharpImpl.__Assign(pointerDeviceService.EnableMouse, True)
+            pointerDeviceService.EnableMouse = True
         End Sub
 
         Private Sub MouseInking_Unchecked(sender As Object, e As RoutedEventArgs)
-            Return CSharpImpl.__Assign(pointerDeviceService.EnableMouse, False)
+            pointerDeviceService.EnableMouse = False
         End Sub
 
         Private Sub ZoomIn_Click(sender As Object, e As RoutedEventArgs)
-            Return zoomService?.ZoomIn()
+            zoomService?.ZoomIn()
         End Sub
 
         Private Sub ZoomOut_Click(sender As Object, e As RoutedEventArgs)
-            Return zoomService?.ZoomOut()
+            zoomService?.ZoomOut()
         End Sub
 
         Private Sub Copy_Click(sender As Object, e As RoutedEventArgs)
-            Return copyPasteService?.Copy()
+            copyPasteService?.Copy()
         End Sub
 
         Private Sub Cut_Click(sender As Object, e As RoutedEventArgs)
@@ -122,15 +121,7 @@ Namespace Views
         End Sub
 
         Private Sub ClearSelection()
-            Return lassoSelectionService?.ClearSelection()
+            lassoSelectionService?.ClearSelection()
         End Sub
-
-        Private Class CSharpImpl
-            <Obsolete("Please refactor calling code to use normal Visual Basic assignment")>
-            Shared Function __Assign(Of T)(ByRef target As T, value As T) As T
-                target = value
-                Return value
-            End Function
-        End Class
     End Class
 End Namespace

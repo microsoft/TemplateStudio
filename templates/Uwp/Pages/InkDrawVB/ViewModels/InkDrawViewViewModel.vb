@@ -3,7 +3,7 @@ Imports Param_ItemNamespace.Helpers
 
 Namespace ViewModels
     Public Class InkDrawViewViewModel
-        Implements System.ComponentModel.INotifyPropertyChanged
+        Inherits System.ComponentModel.INotifyPropertyChanged
 
         Private _strokeService As InkStrokesService
         Private _lassoSelectionService As InkLassoSelectionService
@@ -12,20 +12,20 @@ Namespace ViewModels
         Private _undoRedoService As InkUndoRedoService
         Private _fileService As InkFileService
         Private _zoomService As InkZoomService
-        Private cutCommand As RelayCommand
-        Private copyCommand As RelayCommand
-        Private pasteCommand As RelayCommand
-        Private undoCommand As RelayCommand
-        Private redoCommand As RelayCommand
-        Private zoomInCommand As RelayCommand
-        Private zoomOutCommand As RelayCommand
-        Private loadInkFileCommand As RelayCommand
-        Private saveInkFileCommand As RelayCommand
-        Private exportAsImageCommand As RelayCommand
-        Private clearAllCommand As RelayCommand
-        Private enableTouch As Boolean = True
-        Private enableMouse As Boolean = True
-        Private enableLassoSelection As Boolean
+        Private _cutCommand As RelayCommand
+        Private _copyCommand As RelayCommand
+        Private _pasteCommand As RelayCommand
+        Private _undoCommand As RelayCommand
+        Private _redoCommand As RelayCommand
+        Private _zoomInCommand As RelayCommand
+        Private _zoomOutCommand As RelayCommand
+        Private _loadInkFileCommand As RelayCommand
+        Private _saveInkFileCommand As RelayCommand
+        Private _exportAsImageCommand As RelayCommand
+        Private _clearAllCommand As RelayCommand
+        Private _enableTouch As Boolean = True
+        Private _enableMouse As Boolean = True
+        Private _enableLassoSelection As Boolean
 
         Public Sub New()
         End Sub
@@ -38,126 +38,171 @@ Namespace ViewModels
             _undoRedoService = undoRedoService
             _fileService = fileService
             _zoomService = zoomService
-            _pointerDeviceService.DetectPenEvent += Function(s, e) CSharpImpl.__Assign(EnableTouch, False)
+            AddHandler _pointerDeviceService.DetectPenEvent, Sub(s, e) EnableTouch = False
         End Sub
 
         Public ReadOnly Property CutCommand As RelayCommand
             Get
-                Return If(cutCommand, (CSharpImpl.__Assign(cutCommand, New RelayCommand(Function()
-                                                                                            _copyPasteService?.Cut()
-                                                                                            ClearSelection()
-                                                                                        End Function))))
+                If _cutCommand Is Nothing Then
+                    _cutCommand = New RelayCommand(Sub()
+                                                       _copyPasteService?.Cut()
+                                                       ClearSelection()
+                                                   End Sub)
+                End If
+
+                Return _cutCommand
             End Get
         End Property
 
         Public ReadOnly Property CopyCommand As RelayCommand
             Get
-                Return If(copyCommand, (CSharpImpl.__Assign(copyCommand, New RelayCommand(Function() _copyPasteService?.Copy()))))
+                If _copyCommand Is Nothing
+                    _copyCommand = New RelayCommand(Sub() _copyPasteService?.Copy())
+
+                End If
+
+                Return _copyCommand
             End Get
         End Property
 
         Public ReadOnly Property PasteCommand As RelayCommand
             Get
-                Return If(pasteCommand, (CSharpImpl.__Assign(pasteCommand, New RelayCommand(Function()
-                                                                                                _copyPasteService?.Paste()
-                                                                                                ClearSelection()
-                                                                                            End Function))))
+                If _pasteCommand Is Nothing Then
+                    _pasteCommand = New RelayCommand(Sub()
+                                                         _copyPasteService?.Paste()
+                                                         ClearSelection()
+                                                     End Sub)
+                End If
+
+                Return _pasteCommand
             End Get
         End Property
 
         Public ReadOnly Property UndoCommand As RelayCommand
             Get
-                Return If(undoCommand, (CSharpImpl.__Assign(undoCommand, New RelayCommand(Function()
-                                                                                              ClearSelection()
-                                                                                              _undoRedoService?.Undo()
-                                                                                          End Function))))
+                If _undoCommand Is Nothing Then
+                    _undoCommand = New RelayCommand(Sub()
+                                                        ClearSelection()
+                                                        _undoRedoService?.Undo()
+                                                    End Sub)
+                End If
+
+                Return _undoCommand
             End Get
         End Property
 
         Public ReadOnly Property RedoCommand As RelayCommand
             Get
-                Return If(redoCommand, (CSharpImpl.__Assign(redoCommand, New RelayCommand(Function()
-                                                                                              ClearSelection()
-                                                                                              _undoRedoService?.Redo()
-                                                                                          End Function))))
+                If _redoCommand Is Nothing Then
+                    _redoCommand = New RelayCommand(Sub()
+                                                        ClearSelection()
+                                                        _undoRedoService?.Redo()
+                                                    End Sub)
+                End If
+
+                Return _redoCommand
             End Get
         End Property
 
         Public ReadOnly Property ZoomInCommand As RelayCommand
             Get
-                Return If(zoomInCommand, (CSharpImpl.__Assign(zoomInCommand, New RelayCommand(Function() _zoomService?.ZoomIn()))))
+                If _zoomInCommand Is Nothing Then
+                    _zoomInCommand = New RelayCommand(Sub() _zoomService?.ZoomIn())
+                End If
+
+                Return _zoomInCommand
             End Get
         End Property
 
         Public ReadOnly Property ZoomOutCommand As RelayCommand
             Get
-                Return If(zoomOutCommand, (CSharpImpl.__Assign(zoomOutCommand, New RelayCommand(Function() _zoomService?.ZoomOut()))))
+                If _zoomOutCommand Is Nothing Then
+                    _zoomOutCommand = New RelayCommand(Sub() _zoomService?.ZoomOut())
+                End If
+
+                Return _zoomOutCommand
             End Get
         End Property
 
         Public ReadOnly Property LoadInkFileCommand As RelayCommand
             Get
-                Return If(loadInkFileCommand, (CSharpImpl.__Assign(loadInkFileCommand, New RelayCommand(Async Function()
-                                                                                                            ClearSelection()
-                                                                                                            Dim fileLoaded = Await _fileService?.LoadInkAsync()
+                If _loadInkFileCommand Is Nothing Then
+                    _loadInkFileCommand = New RelayCommand(Async Sub()
+                                                               ClearSelection()
+                                                               Dim fileLoaded = Await _fileService?.LoadInkAsync()
 
-                                                                                                            If fileLoaded Then
-                                                                                                                _undoRedoService?.Reset()
-                                                                                                            End If
-                                                                                                        End Function))))
+                                                               If fileLoaded Then
+                                                                   _undoRedoService?.Reset()
+                                                               End If
+                                                           End Sub)
+                End If
+
+                Return _loadInkFileCommand
             End Get
         End Property
 
         Public ReadOnly Property SaveInkFileCommand As RelayCommand
             Get
-                Return If(saveInkFileCommand, (CSharpImpl.__Assign(saveInkFileCommand, New RelayCommand(Async Function()
-                                                                                                            ClearSelection()
-                                                                                                            Await _fileService?.SaveInkAsync()
-                                                                                                        End Function))))
+                If _saveInkFileCommand Is Nothing Then
+                    _saveInkFileCommand = New RelayCommand(Async Sub()
+                                                               ClearSelection()
+                                                               Await _fileService?.SaveInkAsync()
+                                                           End Sub)
+                End If
+
+                Return _saveInkFileCommand
             End Get
         End Property
 
         Public ReadOnly Property ExportAsImageCommand As RelayCommand
             Get
-                Return If(exportAsImageCommand, (CSharpImpl.__Assign(exportAsImageCommand, New RelayCommand(Async Function()
-                                                                                                                ClearSelection()
-                                                                                                                Await _fileService?.ExportToImageAsync()
-                                                                                                            End Function))))
+                If _exportAsImageCommand Is Nothing Then
+                    _exportAsImageCommand = New RelayCommand(Async Sub()
+                                                                 ClearSelection()
+                                                                 Await _fileService?.ExportToImageAsync()
+                                                             End Sub)
+                End If
+
+                Return _exportAsImageCommand
             End Get
         End Property
 
         Public ReadOnly Property ClearAllCommand As RelayCommand
             Get
-                Return If(clearAllCommand, (CSharpImpl.__Assign(clearAllCommand, New RelayCommand(AddressOf ClearAll))))
+                If _clearAllCommand Is Nothing Then
+                    _clearAllCommand = New RelayCommand(AddressOf ClearAll)
+                End If
+
+                Return _clearAllCommand
             End Get
         End Property
 
         Public Property EnableTouch As Boolean
             Get
-                Return enableTouch
+                Return _enableTouch
             End Get
             Set(value As Boolean)
-                Param_Setter(enableTouch, value)
+                [Param_Setter](_enableTouch, value)
                 _pointerDeviceService.EnableTouch = value
             End Set
         End Property
 
         Public Property EnableMouse As Boolean
             Get
-                Return enableMouse
+                Return _enableMouse
             End Get
             Set(value As Boolean)
-                Param_Setter(enableMouse, value)
+                [Param_Setter](_enableMouse, value)
                 _pointerDeviceService.EnableMouse = value
             End Set
         End Property
 
         Public Property EnableLassoSelection As Boolean
             Get
-                Return enableLassoSelection
+                Return _enableLassoSelection
             End Get
             Set(value As Boolean)
-                Param_Setter(enableLassoSelection, value)
+                [Param_Setter](_enableLassoSelection, value)
                 ConfigLassoSelection(value)
             End Set
         End Property
@@ -177,7 +222,7 @@ Namespace ViewModels
         End Sub
 
         Private Sub ClearSelection()
-            Return _lassoSelectionService?.ClearSelection()
+            _lassoSelectionService?.ClearSelection()
         End Sub
 
         Private Class CSharpImpl

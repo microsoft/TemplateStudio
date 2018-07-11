@@ -5,7 +5,7 @@ Imports Param_ItemNamespace.EventHandlers.Ink
 
 Namespace Services.Ink.UndoRedo
     Public Class AddStrokeUndoRedoOperation
-        Inherits IUndoRedoOperation
+        Implements IUndoRedoOperation
 
         Private ReadOnly _strokeService As InkStrokesService
         Private ReadOnly _strokes As List(Of InkStroke)
@@ -13,15 +13,15 @@ Namespace Services.Ink.UndoRedo
         Public Sub New(strokes As IEnumerable(Of InkStroke), strokeService As InkStrokesService)
             _strokes = New List(Of InkStroke)(strokes)
             _strokeService = strokeService
-            _strokeService.AddStrokeEvent += AddressOf StrokeService_AddStrokeEvent
+            AddHandler _strokeService.AddStrokeEvent, AddressOf StrokeService_AddStrokeEvent
         End Sub
 
-        Public Sub ExecuteUndo()
-            Return _strokes.ForEach(Sub(s) _strokeService.RemoveStroke(s))
+        Public Sub ExecuteUndo() Implements IUndoRedoOperation.ExecuteUndo
+            _strokes.ForEach(Sub(s) _strokeService.RemoveStroke(s))
         End Sub
 
-        Public Sub ExecuteRedo()
-            Return _strokes.ToList().ForEach(Sub(s) _strokeService.AddStroke(s))
+        Public Sub ExecuteRedo() Implements IUndoRedoOperation.ExecuteRedo
+            _strokes.ToList().ForEach(Sub(s) _strokeService.AddStroke(s))
         End Sub
 
         Private Sub StrokeService_AddStrokeEvent(sender As Object, e As AddStrokeEventArgs)

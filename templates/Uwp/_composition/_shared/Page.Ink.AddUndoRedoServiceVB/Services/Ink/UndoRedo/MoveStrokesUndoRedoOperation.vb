@@ -5,7 +5,7 @@ Imports Param_ItemNamespace.EventHandlers.Ink
 
 Namespace Services.Ink.UndoRedo
     Public Class MoveStrokesUndoRedoOperation
-        Inherits IUndoRedoOperation
+        Implements IUndoRedoOperation
 
         Private ReadOnly _endPosition As Point
         Private ReadOnly _startPosition As Point
@@ -17,15 +17,15 @@ Namespace Services.Ink.UndoRedo
             _startPosition = startPosition
             _endPosition = endPosition
             _strokeService = strokeService
-            _strokeService.AddStrokeEvent += AddressOf StrokeService_AddStrokeEvent
+            AddHandler _strokeService.AddStrokeEvent, AddressOf StrokeService_AddStrokeEvent
         End Sub
 
-        Public Sub ExecuteRedo()
+        Public Sub ExecuteRedo() Implements IUndoRedoOperation.ExecuteRedo
             _strokeService.SelectStrokes(_strokes)
             _strokeService.MoveSelectedStrokes(_startPosition, _endPosition)
         End Sub
 
-        Public Sub ExecuteUndo()
+        Public Sub ExecuteUndo() Implements IUndoRedoOperation.ExecuteUndo
             _strokeService.SelectStrokes(_strokes)
             _strokeService.MoveSelectedStrokes(_endPosition, _startPosition)
         End Sub

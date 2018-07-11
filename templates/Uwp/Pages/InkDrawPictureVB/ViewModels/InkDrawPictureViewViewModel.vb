@@ -1,28 +1,25 @@
 ﻿Imports Param_ItemNamespace.Services.Ink
 Imports Param_ItemNamespace.Helpers
-Imports System.Threading.Tasks
-Imports System.Windows.Input
 Imports Windows.Storage
-Imports Windows.UI.Xaml.Media.Imaging
 
 Namespace ViewModels
     Public Class InkDrawPictureViewViewModel
-        Implements System.ComponentModel.INotifyPropertyChanged
+        Inherits System.ComponentModel.INotifyPropertyChanged
 
         Private _strokeService As InkStrokesService
         Private _pointerDeviceService As InkPointerDeviceService
         Private _fileService As InkFileService
         Private _zoomService As InkZoomService
-        Private enableTouch As Boolean = True
-        Private enableMouse As Boolean = True
-        Private image As BitmapImage
-        Private loadImageCommand As ICommand
-        Private saveImageCommand As ICommand
-        Private clearAllCommand As ICommand
-        Private zoomInCommand As ICommand
-        Private zoomOutCommand As ICommand
-        Private resetZoomCommand As ICommand
-        Private fitToScreenCommand As ICommand
+        Private _enableTouch As Boolean = True
+        Private _enableMouse As Boolean = True
+        Private _image As BitmapImage
+        Private _loadImageCommand As ICommand
+        Private _saveImageCommand As ICommand
+        Private _clearAllCommand As ICommand
+        Private _zoomInCommand As ICommand
+        Private _zoomOutCommand As ICommand
+        Private _resetZoomCommand As ICommand
+        Private _fitToScreenCommand As ICommand
 
         Public Sub New()
         End Sub
@@ -32,25 +29,25 @@ Namespace ViewModels
             _pointerDeviceService = pointerDeviceService
             _fileService = fileService
             _zoomService = zoomService
-            _pointerDeviceService.DetectPenEvent += Function(s, e) CSharpImpl.__Assign(EnableTouch, False)
+            AddHandler _pointerDeviceService.DetectPenEvent, Sub(s, e) EnableTouch = False
         End Sub
 
         Public Property EnableTouch As Boolean
             Get
-                Return enableTouch
+                Return _enableTouch
             End Get
             Set(value As Boolean)
-                Param_Setter(enableTouch, value)
+                [Param_Setter](_enableTouch, value)
                 _pointerDeviceService.EnableTouch = value
             End Set
         End Property
 
         Public Property EnableMouse As Boolean
             Get
-                Return enableMouse
+                Return _enableMouse
             End Get
             Set(value As Boolean)
-                Param_Setter(enableMouse, value)
+                [Param_Setter](_enableMouse, value)
                 _pointerDeviceService.EnableMouse = value
             End Set
         End Property
@@ -59,52 +56,80 @@ Namespace ViewModels
 
         Public Property Image As BitmapImage
             Get
-                Return image
+                Return _image
             End Get
             Set(value As BitmapImage)
-                Return Param_Setter(image, value)
+                [Param_Setter](_image, value)
             End Set
         End Property
 
         Public ReadOnly Property LoadImageCommand As ICommand
             Get
-                Return If(loadImageCommand, (CSharpImpl.__Assign(loadImageCommand, New RelayCommand(Async Function() Await OnLoadImageAsync()))))
+                If _loadImageCommand Is Nothing Then
+                    _loadImageCommand = New RelayCommand(Async Sub() Await OnLoadImageAsync())
+                End If
+
+                Return _loadImageCommand
             End Get
         End Property
 
         Public ReadOnly Property SaveImageCommand As ICommand
             Get
-                Return If(saveImageCommand, (CSharpImpl.__Assign(saveImageCommand, New RelayCommand(Async Function() Await OnSaveImageAsync()))))
+                If _saveImageCommand Is Nothing then
+                    _saveImageCommand = New RelayCommand(Async Sub() Await OnSaveImageAsync())
+                End If
+
+                Return _saveImageCommand
             End Get
         End Property
 
-        Public ReadOnly Property ZoomInCommand As ICommand
+        Public ReadOnly Property ZoomInCommand As RelayCommand
             Get
-                Return If(zoomInCommand, (CSharpImpl.__Assign(zoomInCommand, New RelayCommand(Function() _zoomService?.ZoomIn()))))
+                If _zoomInCommand Is Nothing Then
+                    _zoomInCommand = New RelayCommand(Sub() _zoomService?.ZoomIn())
+                End If
+
+                Return _zoomInCommand
             End Get
         End Property
 
-        Public ReadOnly Property ZoomOutCommand As ICommand
+        Public ReadOnly Property ZoomOutCommand As RelayCommand
             Get
-                Return If(zoomOutCommand, (CSharpImpl.__Assign(zoomOutCommand, New RelayCommand(Function() _zoomService?.ZoomOut()))))
+                If _zoomOutCommand Is Nothing Then
+                    _zoomOutCommand = New RelayCommand(Sub() _zoomService?.ZoomOut())
+                End If
+
+                Return _zoomOutCommand
             End Get
         End Property
 
         Public ReadOnly Property ResetZoomCommand As ICommand
             Get
-                Return If(resetZoomCommand, (CSharpImpl.__Assign(resetZoomCommand, New RelayCommand(Function() _zoomService?.ResetZoom()))))
+                If _resetZoomCommand Is Nothing Then
+                    _resetZoomCommand = New RelayCommand(Sub() _zoomService?.ResetZoom())
+                End If
+
+                Return _resetZoomCommand
             End Get
         End Property
 
         Public ReadOnly Property FitToScreenCommand As ICommand
             Get
-                Return If(fitToScreenCommand, (CSharpImpl.__Assign(fitToScreenCommand, New RelayCommand(Function() _zoomService?.FitToScreen()))))
+                If _fitToScreenCommand Is Nothing Then
+                    _fitToScreenCommand = New RelayCommand(Sub() _zoomService?.FitToScreen())
+                End If
+
+                Return _fitToScreenCommand
             End Get
         End Property
 
-        Public ReadOnly Property ClearAllCommand As ICommand
+        Public ReadOnly Property ClearAllCommand As RelayCommand
             Get
-                Return If(clearAllCommand, (CSharpImpl.__Assign(clearAllCommand, New RelayCommand(AddressOf ClearAll))))
+                If _clearAllCommand Is Nothing Then
+                    _clearAllCommand = New RelayCommand(AddressOf ClearAll)
+                End If
+
+                Return _clearAllCommand
             End Get
         End Property
 
@@ -129,13 +154,5 @@ Namespace ViewModels
             ImageFile = Nothing
             Image = Nothing
         End Sub
-
-        Private Class CSharpImpl
-            <Obsolete("Please refactor calling code to use normal Visual Basic assignment")>
-            Shared Function __Assign(Of T)(ByRef target As T, value As T) As T
-                target = value
-                Return value
-            End Function
-        End Class
     End Class
 End Namespace

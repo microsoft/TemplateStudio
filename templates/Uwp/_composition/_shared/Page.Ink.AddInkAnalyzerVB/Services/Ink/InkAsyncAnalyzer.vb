@@ -19,19 +19,19 @@ Namespace Services.Ink
 
         Public Sub New(inkCanvas As InkCanvas, strokesService As InkStrokesService)
             _inkCanvas = inkCanvas
-            _inkCanvas.InkPresenter.StrokeInput.StrokeStarted += Function(s, e) StopTimer()
-            _inkCanvas.InkPresenter.StrokesErased += Function(s, e) RemoveStrokes(e.Strokes)
-            _inkCanvas.InkPresenter.StrokesCollected += Function(s, e) AddStrokes(e.Strokes)
+            AddHandler _inkCanvas.InkPresenter.StrokeInput.StrokeStarted, Sub(s, e) StopTimer()
+            AddHandler _inkCanvas.InkPresenter.StrokesErased, Sub(s, e) RemoveStrokes(e.Strokes)
+            AddHandler _inkCanvas.InkPresenter.StrokesCollected, Sub(s, e) AddStrokes(e.Strokes)
             _strokesService = strokesService
-            _strokesService.AddStrokeEvent += AddressOf StrokesService_AddStrokeEvent
-            _strokesService.RemoveStrokeEvent += AddressOf StrokesService_RemoveStrokeEvent
-            _strokesService.MoveStrokesEvent += AddressOf StrokesService_MoveStrokesEvent
-            _strokesService.CutStrokesEvent += AddressOf StrokesService_CutStrokesEvent
-            _strokesService.PasteStrokesEvent += AddressOf StrokesService_PasteStrokesEvent
-            _strokesService.ClearStrokesEvent += AddressOf StrokesService_ClearStrokesEvent
-            _strokesService.LoadInkFileEvent += AddressOf StrokesService_LoadInkFileEvent
+            AddHandler _strokesService.AddStrokeEvent, AddressOf StrokesService_AddStrokeEvent
+            AddHandler _strokesService.RemoveStrokeEvent, AddressOf StrokesService_RemoveStrokeEvent
+            AddHandler _strokesService.MoveStrokesEvent, AddressOf StrokesService_MoveStrokesEvent
+            AddHandler _strokesService.CutStrokesEvent, AddressOf StrokesService_CutStrokesEvent
+            AddHandler _strokesService.PasteStrokesEvent, AddressOf StrokesService_PasteStrokesEvent
+            AddHandler _strokesService.ClearStrokesEvent, AddressOf StrokesService_ClearStrokesEvent
+            AddHandler _strokesService.LoadInkFileEvent, AddressOf StrokesService_LoadInkFileEvent
             dispatcherTimer = New DispatcherTimer()
-            dispatcherTimer.Tick += AddressOf DispatcherTimer_Tick
+            AddHandler dispatcherTimer.Tick, AddressOf DispatcherTimer_Tick
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(IdleWaitingTime)
         End Sub
 
@@ -115,11 +115,11 @@ Namespace Services.Ink
         End Sub
 
         Public Sub StartTimer()
-            Return dispatcherTimer.Start()
+            dispatcherTimer.Start()
         End Sub
 
         Public Sub StopTimer()
-            Return dispatcherTimer.[Stop]()
+            dispatcherTimer.[Stop]()
         End Sub
 
         Private Function FindHitNodeByKind(position As Point, kind As InkAnalysisNodeKind) As IInkAnalysisNode
@@ -136,15 +136,15 @@ Namespace Services.Ink
         End Function
 
         Private Sub StrokesService_AddStrokeEvent(sender As Object, e As AddStrokeEventArgs)
-            Return AddStroke(e.NewStroke)
+            AddStroke(e.NewStroke)
         End Sub
 
         Private Sub StrokesService_RemoveStrokeEvent(sender As Object, e As RemoveEventArgs)
-            Return RemoveStroke(e.RemovedStroke)
+            RemoveStroke(e.RemovedStroke)
         End Sub
 
         Private Sub StrokesService_ClearStrokesEvent(sender As Object, e As EventArgs)
-            Return ClearAnalysis()
+            ClearAnalysis()
         End Sub
 
         Private Async Sub StrokesService_MoveStrokesEvent(sender As Object, e As MoveStrokesEventArgs)
@@ -169,11 +169,11 @@ Namespace Services.Ink
         End Sub
 
         Private Async Sub StrokesService_LoadInkFileEvent(sender As Object, e As EventArgs)
-            Return Await AnalyzeAsync(True)
+            Await AnalyzeAsync(True)
         End Sub
 
         Private Async Sub DispatcherTimer_Tick(sender As Object, e As Object)
-            Return Await AnalyzeAsync()
+            Await AnalyzeAsync()
         End Sub
     End Class
 End Namespace

@@ -12,11 +12,11 @@ Namespace Services.Ink
 
         Public Sub New(inkCanvas As InkCanvas, strokeService As InkStrokesService)
             _strokeService = strokeService
-            _strokeService.MoveStrokesEvent += AddressOf StrokeService_MoveStrokesEvent
-            _strokeService.CutStrokesEvent += AddressOf StrokeService_CutStrokesEvent
-            _strokeService.PasteStrokesEvent += AddressOf StrokeService_PasteStrokesEvent
-            inkCanvas.InkPresenter.StrokesCollected += Function(s, e) AddOperation(New AddStrokeUndoRedoOperation(e.Strokes, _strokeService))
-            inkCanvas.InkPresenter.StrokesErased += Function(s, e) AddOperation(New RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService))
+            AddHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
+            AddHandler _strokeService.CutStrokesEvent, AddressOf StrokeService_CutStrokesEvent
+            AddHandler _strokeService.PasteStrokesEvent, AddressOf StrokeService_PasteStrokesEvent
+            AddHandler inkCanvas.InkPresenter.StrokesCollected, Sub(s, e) AddOperation(New AddStrokeUndoRedoOperation(e.Strokes, _strokeService))
+            AddHandler inkCanvas.InkPresenter.StrokesErased, Sub(s, e) AddOperation(New RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService))
         End Sub
 
         Public Sub Reset()
@@ -41,11 +41,11 @@ Namespace Services.Ink
                 Return
             End If
 
-            _strokeService.MoveStrokesEvent -= AddressOf StrokeService_MoveStrokesEvent
+            RemoveHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
             Dim element = undoStack.Pop()
             element.ExecuteUndo()
             redoStack.Push(element)
-            _strokeService.MoveStrokesEvent += AddressOf StrokeService_MoveStrokesEvent
+            AddHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
         End Sub
 
         Public Sub Redo()
@@ -53,11 +53,11 @@ Namespace Services.Ink
                 Return
             End If
 
-            _strokeService.MoveStrokesEvent -= AddressOf StrokeService_MoveStrokesEvent
+            RemoveHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
             Dim element = redoStack.Pop()
             element.ExecuteRedo()
             undoStack.Push(element)
-            _strokeService.MoveStrokesEvent += AddressOf StrokeService_MoveStrokesEvent
+            AddHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
         End Sub
 
         Public Sub AddOperation(operation As IUndoRedoOperation)

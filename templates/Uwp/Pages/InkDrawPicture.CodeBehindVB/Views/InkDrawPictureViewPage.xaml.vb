@@ -1,8 +1,5 @@
 ﻿Imports Param_ItemNamespace.Services.Ink
 Imports Param_ItemNamespace.Helpers
-Imports System
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
 Imports Windows.Storage
 
 Namespace Views
@@ -19,17 +16,17 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
-            Loaded += Function(sender, eventArgs)
+            AddHandler Loaded, Sub(sender, eventArgs)
                           SetCanvasSize()
-                          image.SizeChanged += AddressOf Image_SizeChanged
+                          AddHandler image.SizeChanged, AddressOf Image_SizeChanged
                           strokesService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
                           pointerDeviceService = New InkPointerDeviceService(inkCanvas)
                           fileService = New InkFileService(inkCanvas, strokesService)
                           zoomService = New InkZoomService(canvasScroll)
                           touchInkingButton.IsChecked = True
                           mouseInkingButton.IsChecked = True
-                          pointerDeviceService.DetectPenEvent += Function(s, e) CSharpImpl.__Assign(touchInkingButton.IsChecked, False)
-                      End Function
+                          AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
+                      End Sub
         End Sub
 
         Private Sub SetCanvasSize()
@@ -47,35 +44,35 @@ Namespace Views
         End Sub
 
         Private Sub TouchInking_Checked(sender As Object, e As RoutedEventArgs)
-            Return CSharpImpl.__Assign(pointerDeviceService.EnableTouch, True)
+            pointerDeviceService.EnableTouch = True
         End Sub
 
         Private Sub TouchInking_Unchecked(sender As Object, e As RoutedEventArgs)
-            Return CSharpImpl.__Assign(pointerDeviceService.EnableTouch, False)
+            pointerDeviceService.EnableTouch = False
         End Sub
 
         Private Sub MouseInking_Checked(sender As Object, e As RoutedEventArgs)
-            Return CSharpImpl.__Assign(pointerDeviceService.EnableMouse, True)
+            pointerDeviceService.EnableMouse = True
         End Sub
 
         Private Sub MouseInking_Unchecked(sender As Object, e As RoutedEventArgs)
-            Return CSharpImpl.__Assign(pointerDeviceService.EnableMouse, False)
+            pointerDeviceService.EnableMouse = False
         End Sub
 
         Private Sub ZoomIn_Click(sender As Object, e As RoutedEventArgs)
-            Return zoomService?.ZoomIn()
+            zoomService?.ZoomIn()
         End Sub
 
         Private Sub ZoomOut_Click(sender As Object, e As RoutedEventArgs)
-            Return zoomService?.ZoomOut()
+            zoomService?.ZoomOut()
         End Sub
 
         Private Sub ResetZoom_Click(sender As Object, e As RoutedEventArgs)
-            Return zoomService?.ResetZoom()
+            zoomService?.ResetZoom()
         End Sub
 
         Private Sub FitToScreen_Click(sender As Object, e As RoutedEventArgs)
-            Return zoomService?.FitToScreen()
+            zoomService?.FitToScreen()
         End Sub
 
         Private Async Sub LoadImage_Click(sender As Object, e As RoutedEventArgs)
@@ -91,11 +88,11 @@ Namespace Views
         End Sub
 
         Private Async Sub SaveImage_Click(sender As Object, e As RoutedEventArgs)
-            Return Await fileService?.ExportToImageAsync(imageFile)
+            Await fileService?.ExportToImageAsync(imageFile)
         End Sub
 
         Private Sub ClearAll_Click(sender As Object, e As RoutedEventArgs)
-            Return ClearAll()
+            ClearAll()
         End Sub
 
         Private Sub ClearAll()
@@ -103,13 +100,5 @@ Namespace Views
             imageFile = Nothing
             image.Source = Nothing
         End Sub
-
-        Private Class CSharpImpl
-            <Obsolete("Please refactor calling code to use normal Visual Basic assignment")>
-            Shared Function __Assign(Of T)(ByRef target As T, value As T) As T
-                target = value
-                Return value
-            End Function
-        End Class
     End Class
 End Namespace

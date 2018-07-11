@@ -1,14 +1,8 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Numerics
-Imports System.Threading.Tasks
-Imports Windows.Foundation
+﻿Imports System.Numerics
 Imports Windows.Storage
 Imports Windows.Storage.Provider
 Imports Windows.UI.Input.Inking
 Imports Windows.UI.Input.Inking.Analysis
-Imports Windows.UI.Xaml.Media
 Imports Param_ItemNamespace.EventHandlers.Ink
 
 Namespace Services.Ink
@@ -20,17 +14,23 @@ Namespace Services.Ink
         End Sub
 
         Public Event AddStrokeEvent As EventHandler(Of AddStrokeEventArgs)
+
         Public Event RemoveStrokeEvent As EventHandler(Of RemoveEventArgs)
+
         Public Event MoveStrokesEvent As EventHandler(Of MoveStrokesEventArgs)
+
         Public Event ClearStrokesEvent As EventHandler(Of EventArgs)
+
         Public Event CutStrokesEvent As EventHandler(Of CopyPasteStrokesEventArgs)
+
         Public Event PasteStrokesEvent As EventHandler(Of CopyPasteStrokesEventArgs)
+
         Public Event LoadInkFileEvent As EventHandler(Of EventArgs)
 
         Public Function AddStroke(stroke As InkStroke) As InkStroke
             Dim newStroke = stroke.Clone()
             _strokeContainer.AddStroke(newStroke)
-            AddStrokeEvent?.Invoke(Me, New AddStrokeEventArgs(newStroke, stroke))
+            RaiseEvent AddStrokeEvent(Me, New AddStrokeEventArgs(newStroke, stroke))
             Return newStroke
         End Function
 
@@ -44,7 +44,7 @@ Namespace Services.Ink
             ClearStrokesSelection()
             deleteStroke.Selected = True
             _strokeContainer.DeleteSelected()
-            RemoveStrokeEvent?.Invoke(Me, New RemoveEventArgs(stroke))
+            RaiseEvent RemoveStrokeEvent(Me, New RemoveEventArgs(stroke))
             Return True
         End Function
 
@@ -63,12 +63,12 @@ Namespace Services.Ink
         End Function
 
         Public Function GetSelectedStrokes() As IEnumerable(Of InkStroke)
-            Return GetStrokes().Where(Function(s) s.Selected)
+            Return GetStrokes().Where(Function(stroke) stroke.Selected)
         End Function
 
         Public Sub ClearStrokes()
             _strokeContainer.Clear()
-            ClearStrokesEvent?.Invoke(Me, EventArgs.Empty)
+            RaiseEvent ClearStrokesEvent(Me, EventArgs.Empty)
         End Sub
 
         Public Sub ClearStrokesSelection()
@@ -111,7 +111,7 @@ Namespace Services.Ink
                     stroke.PointTransform *= matrix
                 Next
 
-                MoveStrokesEvent?.Invoke(Me, New MoveStrokesEventArgs(selectedStrokes, startPosition, endPosition))
+                RaiseEvent MoveStrokesEvent(Me, New MoveStrokesEventArgs(selectedStrokes, startPosition, endPosition))
             End If
         End Sub
 
@@ -128,18 +128,18 @@ Namespace Services.Ink
                 RemoveStroke(stroke)
             Next
 
-            CutStrokesEvent?.Invoke(Me, New CopyPasteStrokesEventArgs(selectedStrokes))
+            RaiseEvent CutStrokesEvent(Me, New CopyPasteStrokesEventArgs(selectedStrokes))
             Return rect
         End Function
 
         Public Function PasteSelectedStrokes(position As Point) As Rect
-            Dim rect = Rect.Empty
+            Dim rect = Windows.Foundation.Rect.Empty
 
             If CanPaste Then
                 Dim ids = GetStrokes().[Select](Function(s) s.Id).ToList()
                 rect = _strokeContainer.PasteFromClipboard(position)
-                Dim pastedStrokes = _strokeContainer.GetStrokes().Where(Function(s) Not ids.Contains(s.Id))
-                PasteStrokesEvent?.Invoke(Me, New CopyPasteStrokesEventArgs(pastedStrokes))
+                Dim pastedStrokes = _strokeContainer.GetStrokes().Where(Function(stroke) Not ids.Contains(stroke.Id))
+                RaiseEvent PasteStrokesEvent(Me, New CopyPasteStrokesEventArgs(pastedStrokes))
             End If
 
             Return rect
@@ -163,7 +163,7 @@ Namespace Services.Ink
                 Await _strokeContainer.LoadAsync(stream)
             End Using
 
-            LoadInkFileEvent?.Invoke(Me, EventArgs.Empty)
+            RaiseEvent LoadInkFileEvent(Me, EventArgs.Empty)
             Return True
         End Function
 
@@ -200,7 +200,7 @@ Namespace Services.Ink
         End Function
 
         Private Function GetRectBySelectedStrokes() As Rect
-            Dim rect = Rect.Empty
+            Dim rect = Windows.Foundation.Rect.Empty
 
             For Each stroke In GetSelectedStrokes()
                 rect.Union(stroke.BoundingRect)
@@ -210,4 +210,3 @@ Namespace Services.Ink
         End Function
     End Class
 End Namespace
-

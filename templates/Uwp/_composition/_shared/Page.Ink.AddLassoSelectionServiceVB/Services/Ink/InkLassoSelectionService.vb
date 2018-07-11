@@ -20,21 +20,21 @@ Namespace Services.Ink
             _selectionCanvas = selectionCanvas
             _strokeService = strokeService
             _selectionRectangleService = selectionRectangleService
-            _inkPresenter.StrokeInput.StrokeStarted += AddressOf StrokeInput_StrokeStarted
-            _inkPresenter.StrokesErased += AddressOf InkPresenter_StrokesErased
+            AddHandler _inkPresenter.StrokeInput.StrokeStarted, AddressOf StrokeInput_StrokeStarted
+            AddHandler _inkPresenter.StrokesErased, AddressOf InkPresenter_StrokesErased
         End Sub
 
         Public Sub StartLassoSelectionConfig()
             _inkPresenter.InputProcessingConfiguration.RightDragAction = InkInputRightDragAction.LeaveUnprocessed
-            _inkPresenter.UnprocessedInput.PointerPressed += AddressOf UnprocessedInput_PointerPressed
-            _inkPresenter.UnprocessedInput.PointerMoved += AddressOf UnprocessedInput_PointerMoved
-            _inkPresenter.UnprocessedInput.PointerReleased += AddressOf UnprocessedInput_PointerReleased
+            AddHandler _inkPresenter.UnprocessedInput.PointerPressed, AddressOf UnprocessedInput_PointerPressed
+            AddHandler _inkPresenter.UnprocessedInput.PointerMoved, AddressOf UnprocessedInput_PointerMoved
+            AddHandler _inkPresenter.UnprocessedInput.PointerReleased, AddressOf UnprocessedInput_PointerReleased
         End Sub
 
         Public Sub EndLassoSelectionConfig()
-            _inkPresenter.UnprocessedInput.PointerPressed -= AddressOf UnprocessedInput_PointerPressed
-            _inkPresenter.UnprocessedInput.PointerMoved -= AddressOf UnprocessedInput_PointerMoved
-            _inkPresenter.UnprocessedInput.PointerReleased -= AddressOf UnprocessedInput_PointerReleased
+            RemoveHandler _inkPresenter.UnprocessedInput.PointerPressed, AddressOf UnprocessedInput_PointerPressed
+            RemoveHandler _inkPresenter.UnprocessedInput.PointerMoved, AddressOf UnprocessedInput_PointerMoved
+            RemoveHandler _inkPresenter.UnprocessedInput.PointerReleased, AddressOf UnprocessedInput_PointerReleased
         End Sub
 
         Public Sub ClearSelection()

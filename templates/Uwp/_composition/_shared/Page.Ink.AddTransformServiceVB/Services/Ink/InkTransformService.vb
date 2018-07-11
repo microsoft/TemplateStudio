@@ -1,8 +1,4 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Threading.Tasks
-Imports Windows.Foundation
+﻿
 Imports Windows.UI
 Imports Windows.UI.Input.Inking
 Imports Windows.UI.Input.Inking.Analysis
@@ -128,7 +124,7 @@ Namespace Services.Ink
                 polygon.Points.Add(point)
             Next
 
-            Dim brush = New SolidColorBrush(Windows.UI.ColorHelper.FromArgb(255, 0, 0, 255))
+            Dim brush = New SolidColorBrush(ColorHelper.FromArgb(255, 0, 0, 255))
             polygon.Stroke = brush
             polygon.StrokeThickness = 2
             _drawingCanvas.Children.Add(polygon)

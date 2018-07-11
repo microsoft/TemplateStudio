@@ -27,10 +27,10 @@ Namespace Services.Ink
             _analyzer = analyzer
             _strokeService = strokeService
             _selectionRectangleService = selectionRectangleService
-            _inkCanvas.Tapped += AddressOf InkCanvas_Tapped
-            _inkCanvas.DoubleTapped += AddressOf InkCanvas_DoubleTapped
-            _inkCanvas.PointerPressed += AddressOf InkCanvas_PointerPressed
-            _inkPresenter.StrokesErased += AddressOf InkPresenter_StrokesErased
+            AddHandler _inkCanvas.Tapped, AddressOf InkCanvas_Tapped
+            AddHandler _inkCanvas.DoubleTapped, AddressOf InkCanvas_DoubleTapped
+            AddHandler _inkCanvas.PointerPressed, AddressOf InkCanvas_PointerPressed
+            AddHandler _inkPresenter.StrokesErased, AddressOf InkPresenter_StrokesErased
         End Sub
 
         Public Sub ClearSelection()
