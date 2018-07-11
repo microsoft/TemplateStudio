@@ -7,7 +7,7 @@ namespace WtsTelemetry.Services
 {
     public static class MailService
     {
-        public static Mail CreateMail()
+        public static Mail CreateMail(string content)
         {
             var personalization = new Personalization();
             personalization.Tos = GetEmailReceivers().ToList();
@@ -16,7 +16,7 @@ namespace WtsTelemetry.Services
             mail.AddPersonalization(personalization);
             mail.From = new Email(Environment.GetEnvironmentVariable("SendGrid:From"));
             mail.Subject = Environment.GetEnvironmentVariable("SendGrid:Subject");
-            mail.AddContent(new Content("text/html", Environment.GetEnvironmentVariable("SendGrid:Content")));
+            mail.AddContent(new Content("text/html", content));
 
             return mail;
         }

@@ -45,10 +45,10 @@ namespace WtsTelemetry
                         .GetText();
 
 
-            log.Info($"------ WTS: send data mail -----------");
-            message = MailService.CreateMail();
+            log.Info($"WTS: send data mail");
+            message = MailService.CreateMail(mdText);
 
-            log.Info($"------ WTS: Finish -----------");
+            log.Info($"WTS: Finish");
         }
     }
 }

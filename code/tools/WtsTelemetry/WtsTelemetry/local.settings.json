@@ -8,7 +8,6 @@
     "ApiKey": "",
     "SendGrid:From": "",
     "SendGrid:To": "",
-    "SendGrid:Subject": "",
-    "SendGrid:Content": ""
+    "SendGrid:Subject": ""
   }
 }
