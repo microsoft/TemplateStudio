@@ -28,6 +28,6 @@ namespace WtsTelemetry.Services
             {
                 return response.ReasonPhrase;
             }
-        }
+        }        
     }
 }
