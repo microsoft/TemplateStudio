@@ -1,10 +1,8 @@
-﻿
-Imports Param_ItemNamespace.Services.Ink
-Imports Windows.UI.Xaml.Controls
+﻿Imports Param_ItemNamespace.Services.Ink
 
 Namespace Views
     ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
-    Public NotInheritable Partial Class InkDrawViewPage
+    Partial Public NotInheritable Class InkDrawViewPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
@@ -19,19 +17,19 @@ Namespace Views
         Public Sub New()
             InitializeComponent()
             AddHandler Loaded, Sub(sender, eventArgs)
-                          SetCanvasSize()
-                          strokeService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
-                          Dim selectionRectangleService = New InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService)
-                          lassoSelectionService = New InkLassoSelectionService(inkCanvas, selectionCanvas, strokeService, selectionRectangleService)
-                          pointerDeviceService = New InkPointerDeviceService(inkCanvas)
-                          copyPasteService = New InkCopyPasteService(strokeService)
-                          undoRedoService = New InkUndoRedoService(inkCanvas, strokeService)
-                          fileService = New InkFileService(inkCanvas, strokeService)
-                          zoomService = New InkZoomService(canvasScroll)
-                          touchInkingButton.IsChecked = True
-                          mouseInkingButton.IsChecked = True
-                          AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
-                      End Sub
+                                    SetCanvasSize()
+                                    strokeService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
+                                    Dim selectionRectangleService = New InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService)
+                                    lassoSelectionService = New InkLassoSelectionService(inkCanvas, selectionCanvas, strokeService, selectionRectangleService)
+                                    pointerDeviceService = New InkPointerDeviceService(inkCanvas)
+                                    copyPasteService = New InkCopyPasteService(strokeService)
+                                    undoRedoService = New InkUndoRedoService(inkCanvas, strokeService)
+                                    fileService = New InkFileService(inkCanvas, strokeService)
+                                    zoomService = New InkZoomService(canvasScroll)
+                                    touchInkingButton.IsChecked = True
+                                    mouseInkingButton.IsChecked = True
+                                    AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
+                                End Sub
         End Sub
 
         Private Sub SetCanvasSize()

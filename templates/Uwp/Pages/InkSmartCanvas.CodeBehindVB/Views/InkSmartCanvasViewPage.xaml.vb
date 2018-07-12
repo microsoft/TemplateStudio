@@ -1,11 +1,9 @@
 ﻿Imports Param_ItemNamespace.Services.Ink
 Imports Param_ItemNamespace.Services.Ink.UndoRedo
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
 
 Namespace Views
     ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
-    Public NotInheritable Partial Class InkSmartCanvasViewPage
+    Partial Public NotInheritable Class InkSmartCanvasViewPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
@@ -20,21 +18,21 @@ Namespace Views
         Public Sub New()
             InitializeComponent()
             AddHandler Loaded, Sub(sender, eventArgs)
-                          SetCanvasSize()
-                          strokeService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
-                          Dim analyzer = New InkAsyncAnalyzer(inkCanvas, strokeService)
-                          Dim selectionRectangleService = New InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService)
-                          lassoSelectionService = New InkLassoSelectionService(inkCanvas, selectionCanvas, strokeService, selectionRectangleService)
-                          nodeSelectionService = New InkNodeSelectionService(inkCanvas, selectionCanvas, analyzer, strokeService, selectionRectangleService)
-                          pointerDeviceService = New InkPointerDeviceService(inkCanvas)
-                          undoRedoService = New InkUndoRedoService(inkCanvas, strokeService)
-                          transformService = New InkTransformService(drawingCanvas, strokeService)
-                          fileService = New InkFileService(inkCanvas, strokeService)
-                          touchInkingButton.IsChecked = True
-                          mouseInkingButton.IsChecked = True
-                          penInkingButton.IsChecked = True
-                          AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
-                      End Sub
+                                    SetCanvasSize()
+                                    strokeService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
+                                    Dim analyzer = New InkAsyncAnalyzer(inkCanvas, strokeService)
+                                    Dim selectionRectangleService = New InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService)
+                                    lassoSelectionService = New InkLassoSelectionService(inkCanvas, selectionCanvas, strokeService, selectionRectangleService)
+                                    nodeSelectionService = New InkNodeSelectionService(inkCanvas, selectionCanvas, analyzer, strokeService, selectionRectangleService)
+                                    pointerDeviceService = New InkPointerDeviceService(inkCanvas)
+                                    undoRedoService = New InkUndoRedoService(inkCanvas, strokeService)
+                                    transformService = New InkTransformService(drawingCanvas, strokeService)
+                                    fileService = New InkFileService(inkCanvas, strokeService)
+                                    touchInkingButton.IsChecked = True
+                                    mouseInkingButton.IsChecked = True
+                                    penInkingButton.IsChecked = True
+                                    AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
+                                End Sub
         End Sub
 
         Private Sub SetCanvasSize()

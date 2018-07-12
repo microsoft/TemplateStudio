@@ -4,7 +4,7 @@ Imports Windows.Storage
 
 Namespace Views
     ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
-    Public NotInheritable Partial Class InkDrawPictureViewPage
+    Partial Public NotInheritable Class InkDrawPictureViewPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
@@ -17,16 +17,16 @@ Namespace Views
         Public Sub New()
             InitializeComponent()
             AddHandler Loaded, Sub(sender, eventArgs)
-                          SetCanvasSize()
-                          AddHandler image.SizeChanged, AddressOf Image_SizeChanged
-                          strokesService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
-                          pointerDeviceService = New InkPointerDeviceService(inkCanvas)
-                          fileService = New InkFileService(inkCanvas, strokesService)
-                          zoomService = New InkZoomService(canvasScroll)
-                          touchInkingButton.IsChecked = True
-                          mouseInkingButton.IsChecked = True
-                          AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
-                      End Sub
+                                    SetCanvasSize()
+                                    AddHandler image.SizeChanged, AddressOf Image_SizeChanged
+                                    strokesService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
+                                    pointerDeviceService = New InkPointerDeviceService(inkCanvas)
+                                    fileService = New InkFileService(inkCanvas, strokesService)
+                                    zoomService = New InkZoomService(canvasScroll)
+                                    touchInkingButton.IsChecked = True
+                                    mouseInkingButton.IsChecked = True
+                                    AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
+                                End Sub
         End Sub
 
         Private Sub SetCanvasSize()

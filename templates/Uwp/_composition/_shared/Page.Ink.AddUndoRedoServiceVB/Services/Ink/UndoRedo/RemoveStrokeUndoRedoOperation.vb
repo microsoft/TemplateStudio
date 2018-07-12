@@ -1,6 +1,4 @@
-﻿Imports System.Collections.Generic
-Imports System.Linq
-Imports Windows.UI.Input.Inking
+﻿Imports Windows.UI.Input.Inking
 Imports Param_ItemNamespace.EventHandlers.Ink
 
 Namespace Services.Ink.UndoRedo
