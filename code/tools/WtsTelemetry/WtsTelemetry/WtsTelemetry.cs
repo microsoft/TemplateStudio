@@ -28,7 +28,7 @@ namespace WtsTelemetry
             var month = DateTime.Today.AddMonths(-1).Month;
             var queries = new QueryService(year, month);
 
-            var stringDate = $"{month.ToString("D2")}.{year}";
+            var stringDate = $"{year}.{month.ToString("D2")}";
 
             log.Info($"WTS: Get Application Insight data from {stringDate}");
             var projectData = DataService.GetData(queries.Projects);

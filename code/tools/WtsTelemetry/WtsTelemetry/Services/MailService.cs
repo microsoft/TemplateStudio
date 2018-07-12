@@ -21,7 +21,7 @@ namespace WtsTelemetry.Services
             mail.From = new Email(Environment.GetEnvironmentVariable("SendGrid:From"));
             mail.Subject = string.Format(Environment.GetEnvironmentVariable("SendGrid:Subject"), date);
             mail.AddContent(new Content("text", content));
-            //mail.AddAttachment("result.txt", content);
+            //mail.AddAttachment("telemetry.md", content);
 
             return mail;
         }
