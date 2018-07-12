@@ -27,7 +27,9 @@ namespace WtsTelemetry
             var month = DateTime.Today.AddMonths(-1).Month;
             var queries = new QueryService(year, month);
 
-            log.Info($"WTS: Get Application Insight data from {month}.{year}");
+            var stringDate = $"{month.ToString("D2")}.{year}";
+
+            log.Info($"WTS: Get Application Insight data from {stringDate}");
             var projectData = DataService.GetData(queries.Projects);
             var frameworksData = DataService.GetData(queries.Frameworks);
             var pagesData = DataService.GetData(queries.Pages);
@@ -46,7 +48,7 @@ namespace WtsTelemetry
 
 
             log.Info($"WTS: send data mail");
-            message = MailService.CreateMail(mdText);
+            message = MailService.CreateMail(mdText, stringDate);
 
             log.Info($"WTS: Finish");
         }

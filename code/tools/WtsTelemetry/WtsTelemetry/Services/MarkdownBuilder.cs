@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Text;
+using WtsTelemetry.Helpers;
 
 namespace WtsTelemetry.Services
 {
@@ -12,7 +10,7 @@ namespace WtsTelemetry.Services
 
         public MarkdownBuilder AddHeader(int year, int month)
         {
-            stringBuilder.AppendLine($"# Telemetry for Windows Template Studio - {year}.{month}");
+            stringBuilder.AppendLine($"# Telemetry for Windows Template Studio - {year}.{month.ToString("D2")}");
             stringBuilder.AppendLine();
             stringBuilder.AppendLine("As new features and pages roll out, percentages  will adjust.");
             stringBuilder.AppendLine();
@@ -24,16 +22,14 @@ namespace WtsTelemetry.Services
         {
             try
             {
-                var data = GetQueryData(json);
-
                 stringBuilder.AppendLine($"## {title}");
                 stringBuilder.AppendLine();
                 stringBuilder.AppendLine($"|{firstColumnName}|Percentage|");
                 stringBuilder.AppendLine("|:---|:---:|");
 
-                foreach (var value in data)
+                foreach (var value in json.ToQueryData())
                 {
-                    stringBuilder.AppendLine($"|{value.Name}|{Math.Round(value.Value, 1)}%|");
+                    stringBuilder.AppendLine($"|{value.DisplayName}|{Math.Round(value.Value, 1)}%|");
                 }
             }
             catch(Exception ex)
@@ -47,27 +43,6 @@ namespace WtsTelemetry.Services
             return this;
         }
 
-        public string GetText() => stringBuilder.ToString();
-
-        private IEnumerable<QueryData> GetQueryData(string jsonData)
-        {
-            var jobject = JObject.Parse(jsonData);
-
-            return jobject["tables"][0]["rows"]
-                .Children()
-                .Select(c =>
-                    new QueryData
-                    {
-                        Name = (string)c[0],
-                        Value = (double)c[3]
-                    });
-        }
-    }
-
-    public class QueryData
-    {
-        public string Name { get; set; }
-
-        public double Value { get; set; }
+        public string GetText() => stringBuilder.ToString();        
     }
 }
