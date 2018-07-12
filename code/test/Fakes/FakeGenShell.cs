@@ -213,7 +213,7 @@ namespace Microsoft.Templates.Fakes
         {
         }
 
-        public override void AddReferenceToProject(string projectDoingTheReferencing, string projectBeingReferenced)
+        public override void AddReferenceToProject(string projectPath, string referenceToAdd)
         {
             // TODO: Need to implement this for #2252 but currently having issues with VsGenShell version
             throw new NotImplementedException();
