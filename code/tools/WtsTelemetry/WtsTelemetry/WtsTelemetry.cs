@@ -14,8 +14,9 @@ namespace WtsTelemetry
     {
         // Every minute: 0 * * * * *
         // Every 5 minutes: 0 */5 * * * *
+        // Every day: 0 0 0 * * *
+        // every monday at 09:00:00: 0 0 9 * * MON
         // every 1st of month (monthly): 0 0 0 1 * *
-        // Every 15 seconds:  */15 * * * * *
 
         [FunctionName("WtsTelemetry")]
         public static void Run(
