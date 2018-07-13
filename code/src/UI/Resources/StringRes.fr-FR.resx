@@ -695,4 +695,12 @@
     <value>Impossible de définir la configuration de la solution par défaut</value>
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Le nom ne peut pas se terminer par « Page », car ce suffixe sera ajouté automatiquement. [En savoir plus sur l'affectation de noms.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Remarque : le suffixe « Page » sera ajouté à la fin du nom spécifié. [En savoir plus sur l'affectation de noms.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
 </root>

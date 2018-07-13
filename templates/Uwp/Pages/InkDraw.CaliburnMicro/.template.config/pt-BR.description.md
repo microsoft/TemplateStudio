@@ -1,0 +1,3 @@
+﻿Esta página contém uma tela de tinta e uma barra de ferramentas de tinta que permite desenhar usando o Windows Ink. Você pode selecionar partes de seu desenho, mover a seleção, copiá-la, recortá-la e colá-la. Você pode abrir e salvar seus desenhos como gif e exportá-los como um arquivo png. Esta página também dá suporte para desfazer/refazer todas as ações.
+ 
+Para saber mais sobre a plataforma Windows Ink, acesse [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions).

@@ -695,4 +695,12 @@
     <value>Nie można ustawić domyślnej konfiguracji rozwiązania</value>
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Nazwa nie może kończyć się słowem „Strona”, ponieważ zostanie ono dodane automatycznie. [Więcej informacji o nazewnictwie.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Zauważ, że słowo „Strona” zostanie dodane na końcu określonej nazwy. [Więcej informacji o nazewnictwie.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
 </root>

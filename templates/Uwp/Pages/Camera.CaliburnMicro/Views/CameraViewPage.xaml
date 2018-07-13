@@ -13,8 +13,10 @@
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <controls:CameraControl x:Uid="CameraPage_CameraControl" 
-                cm:Message.Attach="[Event PhotoTaken] = [OnPhotoTaken($eventArgs)]" />       
+            <controls:CameraControl
+                x:Name="cameraControl"
+                x:Uid="CameraPage_CameraControl"
+                cm:Message.Attach="[Event PhotoTaken] = [OnPhotoTaken($eventArgs)]" />
             <Image
                 Height="70"
                 Width="70"

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw Picture",
+  "description": "이 페이지에서는 Windows Ink를 사용하여 사진을 로드하고 그 위에 그림을 그릴 수 있습니다.",
+  "identity": "wts.Page.InkDrawPicture.CaliburnMicro"
+}

@@ -1,0 +1,44 @@
+﻿{
+  "author": "Microsoft Community",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Page.Ink.AddUndoRedoService",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "groupidentity == wts.Page.InkDraw|wts.Page.InkSmartCanvas"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\Ink\\InkUndoRedoService.cs"
+    },
+    {
+      "path": ".\\Services\\Ink\\UndoRedo\\AddStrokeUndoRedoOperation.cs"
+    },
+    {
+      "path": ".\\Services\\Ink\\UndoRedo\\IUndoRedoOperation.cs"
+    },
+    {
+      "path": ".\\Services\\Ink\\UndoRedo\\MoveStrokesUndoRedoOperation.cs"
+    },
+    {
+      "path": ".\\Services\\Ink\\UndoRedo\\RemoveStrokeUndoRedoOperation.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

@@ -526,7 +526,7 @@
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>未找到框架 {1} 和平台 {2} 的依赖项模板 {0}。</value>
+    <value>未找到 framework {1} 和平台 {2} 的依赖项模板 {0}。</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorDependencyType" xml:space="preserve">
@@ -538,7 +538,7 @@
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>未找到框架 {1} 和平台 {2} 的布局模板 {0}。</value>
+    <value>未找到 framework {1} 和平台 {2} 的布局模板 {0}。</value>
     <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
@@ -694,5 +694,13 @@
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
     <value>无法设置默认解决方案配置</value>
     <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>名称不能以“Page”结尾，因为其会自动添加到名称中。[有关命名的详细信息。]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>请注意，“Page”将添加到指定名称的结尾。[有关命名的详细信息。]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
   </data>
 </root>

@@ -53,6 +53,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract bool IsDebuggerEnabled();
 
+        public abstract bool IsBuildInProgress();
+
         public abstract Guid GetVsProjectId();
 
         public abstract string GetActiveProjectGuid();

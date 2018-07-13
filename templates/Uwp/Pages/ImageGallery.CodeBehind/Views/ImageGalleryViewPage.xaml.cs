@@ -43,26 +43,5 @@ namespace Param_ItemNamespace.Views
             ImagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage");
             NavigationService.Navigate<ImageGalleryViewDetailPage>(selected.ID);
         }
-
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            if (e.NavigationMode == NavigationMode.Back)
-            {
-                var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedIdKey);
-                if (!string.IsNullOrEmpty(selectedImageId))
-                {
-                    var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose);
-                    if (animation != null)
-                    {
-                        var item = ImagesGridView.Items.FirstOrDefault(i => ((SampleImage)i).ID == selectedImageId);
-                        ImagesGridView.ScrollIntoView(item);
-                        await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
-                    }
-
-                    ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedIdKey, string.Empty);
-                }
-            }
-        }
     }
 }

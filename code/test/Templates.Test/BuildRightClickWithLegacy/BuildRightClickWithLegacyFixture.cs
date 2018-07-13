@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Test
         {
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), new Version("2.0"), language);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), new Version("2.2"), language);
             if (!syncExecuted)
             {
                 GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();

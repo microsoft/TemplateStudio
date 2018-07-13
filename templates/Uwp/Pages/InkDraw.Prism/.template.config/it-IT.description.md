@@ -1,0 +1,3 @@
+﻿Questa pagina contiene una tela e una barra degli strumenti relative all'input penna che consentono di disegnare con Windows Ink. Puoi selezionare parti del disegno, spostare la selezione, copiarla, tagliarla e incollarla. Puoi aprire e salvare i tuoi disegni come file gif ed esportarli come file png. Questa pagina supporta anche la fase di rollback/rollforward di tutte le azioni.
+ 
+Per maggiori informazioni sulla piattaforma Windows Ink, consulta [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)

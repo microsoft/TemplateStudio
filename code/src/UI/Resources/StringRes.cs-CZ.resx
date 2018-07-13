@@ -695,4 +695,12 @@
     <value>Nelze nastavit výchozí konfiguraci řešení.</value>
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Název nemůže končit řetězcem Page. Ten bude přidán automaticky. [Další informace o názvech]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Na konec zadaného názvu bude přidán řetězec Page. [Další informace o názvech]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
 </root>

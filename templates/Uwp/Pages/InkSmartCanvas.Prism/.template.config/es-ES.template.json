@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Smart Canvas",
+  "description": "Una página que te permite crear notas usando el reconocimiento de texto y forma con Windows Ink.",
+  "identity": "wts.Page.InkSmartCanvas.Prism"
+}

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Smart Canvas",
+  "description": "이 페이지에서는 Windows Ink로 모양 및 텍스트 인식을 사용하여 메모를 작성할 수 있습니다.",
+  "identity": "wts.Page.InkSmartCanvas.CaliburnMicro"
+}

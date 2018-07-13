@@ -5,11 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    xmlns:b="using:wts.ItemName.Behaviors"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     xmlns:views="using:wts.ItemName.Views"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:b="using:wts.ItemName.Behaviors"
     mc:Ignorable="d">
 
     <Grid>

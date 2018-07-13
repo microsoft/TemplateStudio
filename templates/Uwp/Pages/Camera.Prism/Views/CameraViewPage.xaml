@@ -14,7 +14,9 @@
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <controls:CameraControl x:Uid="CameraViewPage_CameraControl">
+            <controls:CameraControl
+                x:Name="cameraControl"
+                x:Uid="CameraViewPage_CameraControl">
                 <i:Interaction.Behaviors>
                     <ic:EventTriggerBehavior EventName="PhotoTaken">
                         <ic:InvokeCommandAction Command="{x:Bind ViewModel.PhotoTakenCommand}"/>
