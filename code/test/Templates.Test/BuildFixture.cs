@@ -68,52 +68,6 @@ namespace Microsoft.Templates.Test
             return result;
         }
 
-        public static IEnumerable<object[]> GetPageAndFeatureTemplates()
-        {
-            InitializeTemplates(new LocalTemplatesSource("TstBld"));
-
-            List<object[]> result = new List<object[]>();
-            foreach (var language in ProgrammingLanguages.GetAllLanguages())
-            {
-                BaseGenAndBuildFixture.SetCurrentLanguage(language);
-                foreach (var platform in Platforms.GetAllPlatforms())
-                {
-                    SetCurrentPlatform(platform);
-                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
-
-                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
-                                .Select(m => m.Name);
-
-                    foreach (var projectType in projectTypes)
-                    {
-                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
-
-                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
-                                                    .Where(m => projectFrameworks.Contains(m.Name))
-                                                    .Select(m => m.Name).ToList();
-
-                        foreach (var framework in targetFrameworks)
-                        {
-                            var itemTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework)
-                                                                 && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
-                                                                 && t.GetPlatform() == platform
-                                                                 && t.GetLanguage() == language
-                                                                 && !t.GetIsHidden());
-
-                            foreach (var itemTemplate in itemTemplates)
-                            {
-                                result.Add(new object[]
-                                    { itemTemplate.Name, projectType, framework, itemTemplate.Identity, language });
-                            }
-                        }
-                    }
-                }
-            }
-
-            return result;
-        }
-
         [SuppressMessage(
          "Usage",
          "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",

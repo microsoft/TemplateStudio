@@ -297,7 +297,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGeneration(string framework)
         {
-            var result = GenerationFixture.GetPageAndFeatureTemplates(framework);
+            var result = GenerationFixture.GetPageAndFeatureTemplatesForGeneration(framework);
             return result;
         }
 
@@ -413,23 +413,23 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case "CodeBehind":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplates(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
                     break;
 
                 case "MVVMBasic":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplates(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
                     break;
 
                 case "MVVMLight":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplates(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
                     break;
 
                 case "CaliburnMicro":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplates(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
                     break;
 
                 case "Prism":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplates(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
                     break;
             }
 
