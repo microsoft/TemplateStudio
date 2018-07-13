@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{ShortProjectType(projectType)}{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, null, false);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -55,9 +55,15 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && !t.GetIsHidden();
+
             var projectName = $"{ShortProjectType(projectType)}All{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -92,9 +98,15 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && !t.GetIsHidden();
+
             var projectName = $"{ShortProjectType(projectType)}AllRandom{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetRandomName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName, false);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }

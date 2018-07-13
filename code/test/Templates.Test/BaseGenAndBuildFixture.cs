@@ -49,13 +49,13 @@ namespace Microsoft.Templates.Test
 
             foreach (var item in layouts)
             {
-                if (getName != null)
+                if (getName == BaseGenAndBuildFixture.GetDefaultName || getName == null)
                 {
-                    AddItem(userSelection, item.Template, getName);
+                    AddItem(userSelection, item.Layout.Name, item.Template);
                 }
                 else
                 {
-                    AddItem(userSelection, item.Layout.Name, item.Template);
+                    AddItem(userSelection, item.Template, getName);
                 }
             }
 
