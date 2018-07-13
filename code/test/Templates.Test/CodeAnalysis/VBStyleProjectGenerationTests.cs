@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}AllVBStyle";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, ProgrammingLanguages.CSharp, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
