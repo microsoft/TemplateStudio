@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Test
    Justification = "Required for unit testing.")]
         private static void InitializeTemplates(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.VisualBasic), ProgrammingLanguages.VisualBasic);
 
             if (!syncExecuted == true)
             {
@@ -53,17 +53,18 @@ namespace Microsoft.Templates.Test
             InitializeTemplates(Source);
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForVBStyleAsync()
+        public static IEnumerable<object[]> GetProjectTemplatesForVBStyle()
         {
             InitializeTemplates(new LocalTemplatesSource("VBStyle"));
 
             List<object[]> result = new List<object[]>();
 
             var platform = Platforms.Uwp;
+
             var projectTemplates =
-                GenContext.ToolBox.Repo.GetAll().Where(t => t.GetTemplateType() == TemplateType.Project
-                                                             && t.GetLanguage() == ProgrammingLanguages.VisualBasic
-                                                             && t.Name != "Feature.Testing.VBStyleAnalysis");
+               GenContext.ToolBox.Repo.GetAll().Where(
+                   t => t.GetTemplateType() == TemplateType.Project
+                    && t.GetLanguage() == ProgrammingLanguages.VisualBasic);
 
             foreach (var projectTemplate in projectTemplates)
             {

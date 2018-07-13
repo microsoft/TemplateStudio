@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForVBStyleAsync")]
+        [MemberData("GetProjectTemplatesForVBStyle")]
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithVBStyleAsync(string projectType, string framework, string platform)
         {
@@ -51,9 +51,9 @@ namespace Microsoft.Templates.Test
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForVBStyleAsync()
+        public static IEnumerable<object[]> GetProjectTemplatesForVBStyle()
         {
-            return VBStyleGenerationTestsFixture.GetProjectTemplatesForVBStyleAsync();
+            return VBStyleGenerationTestsFixture.GetProjectTemplatesForVBStyle();
         }
     }
 }

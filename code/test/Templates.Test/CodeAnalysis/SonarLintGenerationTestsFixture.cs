@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Test
          Justification = "Required for unit testing.")]
         private static void InitializeTemplates(TemplatesSource source)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.VisualBasic), ProgrammingLanguages.VisualBasic);
 
             if (!syncExecuted == true)
             {
@@ -54,23 +54,22 @@ namespace Microsoft.Templates.Test
 
             List<object[]> result = new List<object[]>();
 
-            foreach (var platform in Platforms.GetAllPlatforms())
+            var platform = Platforms.Uwp;
+
+            var projectTemplates =
+               GenContext.ToolBox.Repo.GetAll().Where(
+                   t => t.GetTemplateType() == TemplateType.Project
+                    && t.GetLanguage() == ProgrammingLanguages.VisualBasic);
+
+            foreach (var projectTemplate in projectTemplates)
             {
-                var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
+                var projectTypeList = projectTemplate.GetProjectTypeList();
 
-                var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
-                            .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
-                            .Select(m => m.Name);
-
-                foreach (var projectType in projectTypes)
+                foreach (var projectType in projectTypeList)
                 {
-                    var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
+                    var frameworks = GenComposer.GetSupportedFx(projectType, platform);
 
-                    var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
-                                                .Where(m => projectFrameworks.Contains(m.Name))
-                                                .Select(m => m.Name).ToList();
-
-                    foreach (var framework in targetFrameworks)
+                    foreach (var framework in frameworks)
                     {
                         result.Add(new object[] { projectType, framework, platform });
                     }
