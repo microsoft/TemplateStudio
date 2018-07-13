@@ -20,7 +20,7 @@ namespace WtsTelemetry
 
         [FunctionName("WtsTelemetry")]
         public static void Run(
-            [TimerTrigger("0 0 9 * * MON")]TimerInfo myTimer,
+            [TimerTrigger("0 0 0 1 * *")]TimerInfo myTimer,
             TraceWriter log, 
             [SendGrid] out Mail message)
         {
