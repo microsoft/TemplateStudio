@@ -114,7 +114,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public bool Enabled()
         {
-            return !_shell.IsDebuggerEnabled();
+            return !_shell.IsDebuggerEnabled() && !_shell.IsBuildInProgress();
         }
 
         public void OpenTempFolder()

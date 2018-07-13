@@ -1,13 +1,9 @@
 ﻿using Microsoft.Xaml.Interactivity;
 using Prism.Windows.Navigation;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace wts.ItemName.Behaviors
 {
@@ -16,27 +12,41 @@ namespace wts.ItemName.Behaviors
         protected override void OnAttached()
         {
             base.OnAttached();
-            AssociatedObject.PivotItemUnloading += AssociatedObject_PivotItemUnloading;
-            AssociatedObject.PivotItemLoading += AssociatedObject_PivotItemLoading;
-        }
-
-        private void AssociatedObject_PivotItemLoading(Pivot sender, PivotItemEventArgs args)
-        {
-            var navAwarePivot = ((args.Item.Content as Frame).Content as FrameworkElement).DataContext as INavigationAware;
-            navAwarePivot?.OnNavigatedTo(null, null);
-        }
-
-        private void AssociatedObject_PivotItemUnloading(Pivot sender, PivotItemEventArgs args)
-        {
-            var navAwarePivot = ((args.Item.Content as Frame).Content as FrameworkElement).DataContext as INavigationAware;
-            navAwarePivot?.OnNavigatingFrom(null, null, false);
+            AssociatedObject.SelectionChanged += OnSelectionChanged;
         }
 
         protected override void OnDetaching()
         {
             base.OnDetaching();
-            AssociatedObject.PivotItemUnloading -= AssociatedObject_PivotItemUnloading;
-            AssociatedObject.PivotItemLoading -= AssociatedObject_PivotItemLoading;
+            AssociatedObject.SelectionChanged -= OnSelectionChanged;
+        }
+
+        private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var removedItem = e.RemovedItems.Cast<PivotItem>()
+                .Select(i => GetPivotPage(i)).FirstOrDefault();
+
+            var addedItem = e.AddedItems.Cast<PivotItem>()
+                .Select(i => GetPivotPage(i)).FirstOrDefault();
+
+            removedItem?.OnNavigatingFrom(null, null, false);
+            addedItem?.OnNavigatedTo(null, null);
+        }
+
+        private static INavigationAware GetPivotPage(PivotItem pivotItem)
+        {
+            if (pivotItem.Content is Frame frame)
+            {
+                if (frame.Content is FrameworkElement frameworkElement)
+                {
+                    if (frameworkElement.DataContext is INavigationAware navigationAware)
+                    {
+                        return navigationAware;
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

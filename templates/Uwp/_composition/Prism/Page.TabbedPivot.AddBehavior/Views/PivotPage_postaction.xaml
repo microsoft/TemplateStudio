@@ -1,0 +1,13 @@
+﻿<Page
+    mc:Ignorable="d">
+
+    <Grid>
+        <Pivot x:Uid="PivotPage">
+            <!--{[{-->
+            <i:Interaction.Behaviors>
+                <b:PivotNavigationBehavior />
+            </i:Interaction.Behaviors>
+            <!--}]}-->
+        </Pivot>
+    </Grid>
+</Page>

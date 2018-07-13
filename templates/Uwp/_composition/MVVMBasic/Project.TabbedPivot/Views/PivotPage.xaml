@@ -5,12 +5,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    xmlns:behaviors="using:wts.ItemName.Behaviors"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:model="using:wts.ItemName.Models"
     xmlns:views="using:wts.ItemName.Views"
     mc:Ignorable="d">
 
     <Grid>
         <Pivot x:Uid="PivotPage">
+            <i:Interaction.Behaviors>
+                <behaviors:PivotBehavior />
+            </i:Interaction.Behaviors>
         </Pivot>
     </Grid>
 </Page>

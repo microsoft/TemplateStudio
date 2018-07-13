@@ -1,0 +1,35 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "CaliburnMicro.Page.TabbedPivot.AddBehavior",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "composition",
+    "wts.platform" : "Uwp",
+    "wts.version": "1.0.0",
+    "wts.compositionFilter": "$projectType == TabbedPivot & $framework == CaliburnMicro & wts.type == page & identity == wts.Page.Camera.CaliburnMicro|wts.Page.MediaPlayer"
+  },
+  "sourceName": "wts.ItemName",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Behaviors\\PivotBehavior.cs"
+    },
+    {
+      "path": ".\\Helpers\\IPivotPage.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}

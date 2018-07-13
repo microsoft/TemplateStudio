@@ -445,6 +445,6 @@
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
-    <value>ソース構成ファイルのダウンロードエラーです。</value>
+    <value>ソース構成ファイルをダウンロードする際のエラーです。</value>
   </data>
 </root>

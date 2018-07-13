@@ -209,6 +209,11 @@ namespace Microsoft.Templates.Fakes
             return false;
         }
 
+        public override bool IsBuildInProgress()
+        {
+            return false;
+        }
+
         public override void OpenProjectOverview()
         {
         }

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Media Player",
+  "description": "Страница для отображения видео с включенными системными элементами управления мультимедиа.",
+  "identity": "wts.Page.MediaPlayer.Prism"
+}

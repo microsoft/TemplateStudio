@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "Media Player",
+  "description": "Videoyu sistem medya denetimleri etkin bir şekilde göstermek için kullanılan sayfa.",
+  "identity": "wts.Page.MediaPlayer.Prism"
+}
