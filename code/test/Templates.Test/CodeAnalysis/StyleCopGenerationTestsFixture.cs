@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Test
 
         private static bool syncExecuted = false;
 
-        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\SC{_testExecutionTimeStamp}\\";
+        public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\SC\\{_testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new LocalTemplatesSource("StyleCop");
 
