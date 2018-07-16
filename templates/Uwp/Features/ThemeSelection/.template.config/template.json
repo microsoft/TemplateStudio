@@ -14,6 +14,7 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.group": "BackgroundWork",
+    "wts.defaultInstance": "ThemeSelection",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",    
     "wts.rightClickEnabled":"true"
