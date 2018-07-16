@@ -1,0 +1,38 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": ["Universal"],
+  "name": "Theme Selection",
+  "groupIdentity": "wts.Feature.ThemeSelection",
+  "identity": "wts.Feature.ThemeSelection",
+  "description": "Adds theming support to you application.",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "feature",
+    "wts.framework": "MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.group": "BackgroundWork",
+    "wts.multipleInstance": "false",
+    "wts.genGroup": "0",    
+    "wts.rightClickEnabled":"true"
+  },
+  "sourceName": "ThemeSelectionFeature",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Services\\ThemeSelectorService.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    }
+  }
+}
