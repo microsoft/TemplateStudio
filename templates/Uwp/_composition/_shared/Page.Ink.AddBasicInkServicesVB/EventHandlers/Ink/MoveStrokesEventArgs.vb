@@ -10,9 +10,9 @@ Namespace EventHandlers.Ink
         Public Property Strokes As IEnumerable(Of InkStroke)
 
         Public Sub New(strokes As IEnumerable(Of InkStroke), startPosition As Point, endPosition As Point)
-            Strokes = strokes
-            StartPosition = startPosition
-            EndPosition = endPosition
+            Me.Strokes = strokes
+            Me.StartPosition = startPosition
+            Me.EndPosition = endPosition
         End Sub
     End Class
 End Namespace

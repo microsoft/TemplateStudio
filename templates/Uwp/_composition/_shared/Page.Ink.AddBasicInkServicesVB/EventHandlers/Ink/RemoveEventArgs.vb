@@ -5,7 +5,7 @@ Namespace EventHandlers.Ink
         Public Property RemovedStroke As InkStroke
 
         Public Sub New(removedStroke As InkStroke)
-            RemovedStroke = removedStroke
+            Me.RemovedStroke = removedStroke
         End Sub
     End Class
 End Namespace

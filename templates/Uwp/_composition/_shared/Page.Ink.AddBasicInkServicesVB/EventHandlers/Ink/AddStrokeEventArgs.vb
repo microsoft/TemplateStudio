@@ -9,8 +9,8 @@ Namespace EventHandlers.Ink
         Public Property NewStroke As InkStroke
 
         Public Sub New(newStroke As InkStroke, Optional oldStroke As InkStroke = Nothing)
-            NewStroke = newStroke
-            OldStroke = oldStroke
+            Me.NewStroke = newStroke
+            Me.OldStroke = oldStroke
         End Sub
     End Class
 End Namespace

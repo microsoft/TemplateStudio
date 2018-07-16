@@ -10,7 +10,7 @@ Namespace Services.Ink
         Public Property DrawingCanvas As Canvas
 
         Public Sub New(drawingCanvas As Canvas)
-            DrawingCanvas = drawingCanvas
+            Me.DrawingCanvas = drawingCanvas
         End Sub
     End Class
 End Namespace

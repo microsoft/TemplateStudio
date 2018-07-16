@@ -1,10 +1,6 @@
-﻿
-Imports Windows.UI
+﻿Imports Windows.UI
 Imports Windows.UI.Input.Inking
 Imports Windows.UI.Input.Inking.Analysis
-Imports Windows.UI.Xaml
-Imports Windows.UI.Xaml.Controls
-Imports Windows.UI.Xaml.Media
 Imports Windows.UI.Xaml.Shapes
 
 Namespace Services.Ink
@@ -31,7 +27,7 @@ Namespace Services.Ink
                 If inkAnalysisResults.Status = InkAnalysisStatus.Updated Then
                     Dim words = AnalyzeWords()
                     Dim shapes = AnalyzeShapes()
-                    
+
                     ' Generate result
                     result.Strokes.AddRange(inkStrokes)
                     result.TextAndShapes.AddRange(words)

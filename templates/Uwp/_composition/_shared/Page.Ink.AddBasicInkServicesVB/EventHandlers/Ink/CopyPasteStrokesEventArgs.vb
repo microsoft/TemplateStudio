@@ -6,7 +6,7 @@ Namespace EventHandlers.Ink
         Public Property Strokes As IEnumerable(Of InkStroke)
 
         Public Sub New(strokes As IEnumerable(Of InkStroke))
-            Strokes = strokes
+            Me.Strokes = strokes
         End Sub
     End Class
 End Namespace

@@ -43,7 +43,6 @@ Namespace Services.Ink.UndoRedo
 
         Private Sub RemoveTextAndShapes()
             For Each uielement In _transformResult.TextAndShapes
-
                 If _transformResult.DrawingCanvas.Children.Contains(uielement) Then
                     _transformResult.DrawingCanvas.Children.Remove(uielement)
                 End If

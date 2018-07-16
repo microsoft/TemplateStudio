@@ -48,7 +48,7 @@ Namespace Services.Ink
             Dim r As Rectangle = Nothing
             Dim selectionRectange = TryCast(_selectionCanvas.Children.FirstOrDefault(Function(f)
                                                                                          Dim rect As Rectangle = TryCast(f, Rectangle)
-                                                                                         return rect IsNot Nothing AndAlso r.Name = SelectionRectName
+                                                                                         return rect IsNot Nothing AndAlso rect.Name = SelectionRectName
                                                                                      End Function), Rectangle)
 
             If selectionRectange Is Nothing Then
