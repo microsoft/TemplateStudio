@@ -2,7 +2,7 @@
 
 Namespace Views
     ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
-    Partial Public NotInheritable Class InkDrawViewPage
+    Public NotInheritable Partial Class InkDrawViewPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
