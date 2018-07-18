@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
@@ -68,7 +69,10 @@ namespace Microsoft.Templates.Test
         {
             Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), new Version("2.2"), language);
+            source.LoadConfigAsync(default(CancellationToken)).Wait();
+            var version = new Version(source.Config.Latest.Version.Major, source.Config.Latest.Version.Minor);
+
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), version, language);
             if (!syncExecuted)
             {
                 GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
