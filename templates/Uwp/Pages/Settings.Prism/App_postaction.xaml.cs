@@ -15,9 +15,9 @@ namespace Param_RootNamespace
 //}]}
         }
 
-        protected override Task OnActivateApplicationAsync(IActivatedEventArgs args)
+        protected override async Task OnActivateApplicationAsync(IActivatedEventArgs args)
         {
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
