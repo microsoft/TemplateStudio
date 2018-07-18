@@ -43,31 +43,12 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        protected static string ShortFramework(string framework)
-        {
-            switch (framework)
-            {
-                case "CodeBehind":
-                    return "CB";
-                case "MVVMBasic":
-                    return "MB";
-                case "MVVMLight":
-                    return "ML";
-                case "CaliburnMicro":
-                    return "CM";
-                case "Prism":
-                    return "P";
-                default:
-                    return framework;
-            }
-        }
-
         protected static string GetProjectExtension(string language)
         {
             return language == ProgrammingLanguages.CSharp ? "csproj" : "vbproj";
         }
 
-        protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
+        protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> itemTemplatesSelector = null, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
@@ -79,11 +60,12 @@ namespace Microsoft.Templates.Test
             DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
 
-            var userSelection = _fixture.SetupProject(projectType, framework, platform, language, getName);
+            var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
-            if (getName != null)
+            if (getName != null || itemTemplatesSelector == null)
             {
-                _fixture.AddItems(userSelection, _fixture.GetTemplates(framework, platform), getName);
+                var itemTemplates = _fixture.Templates().Where(itemTemplatesSelector);
+                _fixture.AddItems(userSelection, itemTemplates, getName);
             }
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
@@ -315,7 +297,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGeneration(string framework)
         {
-            var result = GenerationFixture.GetPageAndFeatureTemplates(framework);
+            var result = GenerationFixture.GetPageAndFeatureTemplatesForGeneration(framework);
             return result;
         }
 
@@ -431,23 +413,23 @@ namespace Microsoft.Templates.Test
             switch (framework)
             {
                 case "CodeBehind":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplates(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
                     break;
 
                 case "MVVMBasic":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplates(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
                     break;
 
                 case "MVVMLight":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplates(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
                     break;
 
                 case "CaliburnMicro":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplates(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
                     break;
 
                 case "Prism":
-                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplates(framework);
+                    result = BuildTemplatesTestFixture.GetPageAndFeatureTemplatesForBuild(framework);
                     break;
             }
 
