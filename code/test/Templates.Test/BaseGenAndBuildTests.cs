@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
-            if (getName != null || itemTemplatesSelector == null)
+            if (getName != null && itemTemplatesSelector != null)
             {
                 var itemTemplates = _fixture.Templates().Where(itemTemplatesSelector);
                 _fixture.AddItems(userSelection, itemTemplates, getName);
