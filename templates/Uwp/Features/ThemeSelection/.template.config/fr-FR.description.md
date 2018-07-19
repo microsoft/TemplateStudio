@@ -1,1 +1,1 @@
-﻿Ajoute la prise en charge des thèmes pour votre application.
+﻿Cette fonctionnalité vous permet de changer le thème Windows par défaut de votre application en sombre ou clair.

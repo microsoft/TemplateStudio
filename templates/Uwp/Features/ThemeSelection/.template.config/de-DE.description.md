@@ -1,1 +1,1 @@
-﻿Ergänzt Ihre Anwendung mit Designunterstützung.
+﻿Mit dieser Funktion können Sie das Design Ihrer App zwischen Hell/Dunkel und WindowsDefault wechseln.

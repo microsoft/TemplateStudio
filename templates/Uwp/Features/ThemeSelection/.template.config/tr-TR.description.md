@@ -1,1 +1,1 @@
-﻿Uygulamanıza tema oluşturma desteği ekleyin.
+﻿Bu özellik, uygulamanızda kullanılan temayı Açık/Koyu ve Windows Varsayılanı olarak değiştirebilmenizi sağlar.

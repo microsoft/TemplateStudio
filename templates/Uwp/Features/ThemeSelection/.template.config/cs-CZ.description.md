@@ -1,1 +1,1 @@
-﻿Přidává do vaší aplikace podporu motivů.
+﻿Tato funkce umožňuje změnit motiv vaší aplikace mezi světlým či tmavým a výchozím motivem Windows.

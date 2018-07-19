@@ -1,1 +1,1 @@
-﻿Aggiunge il supporto del tema alla tua applicazione.
+﻿Questa funzionalità ti permette di cambiare il tema della tua app tra Chiaro/Scuro e Predefinito di Windows.
