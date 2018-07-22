@@ -6,7 +6,7 @@ Imports wts.ItemName.Helpers
 
 Namespace Views
     ' TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
-    Partial Public NotInheritable Class ShellPage
+    Public NotInheritable Partial Class ShellPage
         Inherits Page
         Implements INotifyPropertyChanged
 
