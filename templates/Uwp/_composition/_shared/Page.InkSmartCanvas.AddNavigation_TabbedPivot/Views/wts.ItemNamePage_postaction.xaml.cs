@@ -18,7 +18,7 @@ namespace Param_ItemNamespace.Views
         //{[{
         public async Task OnPivotSelectedAsync()
         {
-            if(viewModelinitialized)
+            if (viewModelinitialized)
             {
                 return;
             }
