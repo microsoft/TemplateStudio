@@ -1,4 +1,5 @@
-﻿Imports Param_ItemNamespace.Services.Ink
+﻿Imports System.Windows.Input
+Imports Param_ItemNamespace.Services.Ink
 Imports Param_ItemNamespace.Services.Ink.UndoRedo
 
 Namespace ViewModels
@@ -12,12 +13,12 @@ Namespace ViewModels
         Private _undoRedoService As InkUndoRedoService
         Private _transformService As InkTransformService
         Private _fileService As InkFileService
-        Private _undoCommand As RelayCommand
-        Private _redoCommand As RelayCommand
-        Private _loadInkFileCommand As RelayCommand
-        Private _saveInkFileCommand As RelayCommand
-        Private _transformTextAndShapesCommand As RelayCommand
-        Private _clearAllCommand As RelayCommand
+        Private _undoCommand As ICommand
+        Private _redoCommand As ICommand
+        Private _loadInkFileCommand As ICommand
+        Private _saveInkFileCommand As ICommand
+        Private _transformTextAndShapesCommand As ICommand
+        Private _clearAllCommand As ICommand
         Private _enableTouch As Boolean = True
         Private _enableMouse As Boolean = True
         Private _enablePen As Boolean = True
@@ -37,7 +38,7 @@ Namespace ViewModels
             AddHandler _pointerDeviceService.DetectPenEvent, Sub(s, e) EnableTouch = False
         End Sub
 
-        Public ReadOnly Property UndoCommand As RelayCommand
+        Public ReadOnly Property UndoCommand As ICommand
             Get
                 If _undoCommand Is Nothing Then
                     _undoCommand = New RelayCommand(Sub()
@@ -50,7 +51,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property RedoCommand As RelayCommand
+        Public ReadOnly Property RedoCommand As ICommand
             Get
                 If _redoCommand Is Nothing Then
                     _redoCommand = New RelayCommand(Sub()
@@ -63,7 +64,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property LoadInkFileCommand As RelayCommand
+        Public ReadOnly Property LoadInkFileCommand As ICommand
             Get
                 If _loadInkFileCommand Is Nothing Then
                     _loadInkFileCommand = New RelayCommand(Async Sub()
@@ -81,7 +82,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property SaveInkFileCommand As RelayCommand
+        Public ReadOnly Property SaveInkFileCommand As ICommand
             Get
                 If _saveInkFileCommand Is Nothing Then
                     _saveInkFileCommand = New RelayCommand(Async Sub()
@@ -94,7 +95,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property TransformTextAndShapesCommand As RelayCommand
+        Public ReadOnly Property TransformTextAndShapesCommand As ICommand
             Get
                 If _transformTextAndShapesCommand Is Nothing Then
                     _transformTextAndShapesCommand = New RelayCommand(Async Sub()
@@ -111,7 +112,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property ClearAllCommand As RelayCommand
+        Public ReadOnly Property ClearAllCommand As ICommand
             Get
                 If _clearAllCommand Is Nothing Then
                     _clearAllCommand = New RelayCommand(AddressOf ClearAll)

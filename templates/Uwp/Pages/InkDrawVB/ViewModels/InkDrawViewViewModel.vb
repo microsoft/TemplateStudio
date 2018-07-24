@@ -1,4 +1,5 @@
-﻿Imports Param_ItemNamespace.Services.Ink
+﻿Imports System.Windows.Input
+Imports Param_ItemNamespace.Services.Ink
 Imports Param_ItemNamespace.Helpers
 
 Namespace ViewModels
@@ -12,17 +13,17 @@ Namespace ViewModels
         Private _undoRedoService As InkUndoRedoService
         Private _fileService As InkFileService
         Private _zoomService As InkZoomService
-        Private _cutCommand As RelayCommand
-        Private _copyCommand As RelayCommand
-        Private _pasteCommand As RelayCommand
-        Private _undoCommand As RelayCommand
-        Private _redoCommand As RelayCommand
-        Private _zoomInCommand As RelayCommand
-        Private _zoomOutCommand As RelayCommand
-        Private _loadInkFileCommand As RelayCommand
-        Private _saveInkFileCommand As RelayCommand
-        Private _exportAsImageCommand As RelayCommand
-        Private _clearAllCommand As RelayCommand
+        Private _cutCommand As ICommand
+        Private _copyCommand As ICommand
+        Private _pasteCommand As ICommand
+        Private _undoCommand As ICommand
+        Private _redoCommand As ICommand
+        Private _zoomInCommand As ICommand
+        Private _zoomOutCommand As ICommand
+        Private _loadInkFileCommand As ICommand
+        Private _saveInkFileCommand As ICommand
+        Private _exportAsImageCommand As ICommand
+        Private _clearAllCommand As ICommand
         Private _enableTouch As Boolean = True
         Private _enableMouse As Boolean = True
         Private _enableLassoSelection As Boolean
@@ -41,7 +42,7 @@ Namespace ViewModels
             AddHandler _pointerDeviceService.DetectPenEvent, Sub(s, e) EnableTouch = False
         End Sub
 
-        Public ReadOnly Property CutCommand As RelayCommand
+        Public ReadOnly Property CutCommand As ICommand
             Get
                 If _cutCommand Is Nothing Then
                     _cutCommand = New RelayCommand(Sub()
@@ -54,7 +55,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property CopyCommand As RelayCommand
+        Public ReadOnly Property CopyCommand As ICommand
             Get
                 If _copyCommand Is Nothing
                     _copyCommand = New RelayCommand(Sub() _copyPasteService?.Copy())
@@ -65,7 +66,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property PasteCommand As RelayCommand
+        Public ReadOnly Property PasteCommand As ICommand
             Get
                 If _pasteCommand Is Nothing Then
                     _pasteCommand = New RelayCommand(Sub()
@@ -78,7 +79,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property UndoCommand As RelayCommand
+        Public ReadOnly Property UndoCommand As ICommand
             Get
                 If _undoCommand Is Nothing Then
                     _undoCommand = New RelayCommand(Sub()
@@ -91,7 +92,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property RedoCommand As RelayCommand
+        Public ReadOnly Property RedoCommand As ICommand
             Get
                 If _redoCommand Is Nothing Then
                     _redoCommand = New RelayCommand(Sub()
@@ -104,7 +105,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property ZoomInCommand As RelayCommand
+        Public ReadOnly Property ZoomInCommand As ICommand
             Get
                 If _zoomInCommand Is Nothing Then
                     _zoomInCommand = New RelayCommand(Sub() _zoomService?.ZoomIn())
@@ -114,7 +115,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property ZoomOutCommand As RelayCommand
+        Public ReadOnly Property ZoomOutCommand As ICommand
             Get
                 If _zoomOutCommand Is Nothing Then
                     _zoomOutCommand = New RelayCommand(Sub() _zoomService?.ZoomOut())
@@ -124,7 +125,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property LoadInkFileCommand As RelayCommand
+        Public ReadOnly Property LoadInkFileCommand As ICommand
             Get
                 If _loadInkFileCommand Is Nothing Then
                     _loadInkFileCommand = New RelayCommand(Async Sub()
@@ -141,7 +142,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property SaveInkFileCommand As RelayCommand
+        Public ReadOnly Property SaveInkFileCommand As ICommand
             Get
                 If _saveInkFileCommand Is Nothing Then
                     _saveInkFileCommand = New RelayCommand(Async Sub()
@@ -154,7 +155,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property ExportAsImageCommand As RelayCommand
+        Public ReadOnly Property ExportAsImageCommand As ICommand
             Get
                 If _exportAsImageCommand Is Nothing Then
                     _exportAsImageCommand = New RelayCommand(Async Sub()
@@ -167,7 +168,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property ClearAllCommand As RelayCommand
+        Public ReadOnly Property ClearAllCommand As ICommand
             Get
                 If _clearAllCommand Is Nothing Then
                     _clearAllCommand = New RelayCommand(AddressOf ClearAll)

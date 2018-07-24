@@ -1,4 +1,5 @@
-﻿using Param_ItemNamespace.Services.Ink;
+﻿using System.Windows.Input;
+using Param_ItemNamespace.Services.Ink;
 using Param_ItemNamespace.Helpers;
 
 namespace Param_ItemNamespace.ViewModels
@@ -13,17 +14,17 @@ namespace Param_ItemNamespace.ViewModels
         private InkFileService _fileService;
         private InkZoomService _zoomService;
 
-        private RelayCommand cutCommand;
-        private RelayCommand copyCommand;
-        private RelayCommand pasteCommand;
-        private RelayCommand undoCommand;
-        private RelayCommand redoCommand;
-        private RelayCommand zoomInCommand;
-        private RelayCommand zoomOutCommand;
-        private RelayCommand loadInkFileCommand;
-        private RelayCommand saveInkFileCommand;
-        private RelayCommand exportAsImageCommand;
-        private RelayCommand clearAllCommand;
+        private ICommand cutCommand;
+        private ICommand copyCommand;
+        private ICommand pasteCommand;
+        private ICommand undoCommand;
+        private ICommand redoCommand;
+        private ICommand zoomInCommand;
+        private ICommand zoomOutCommand;
+        private ICommand loadInkFileCommand;
+        private ICommand saveInkFileCommand;
+        private ICommand exportAsImageCommand;
+        private ICommand clearAllCommand;
 
         private bool enableTouch = true;
         private bool enableMouse = true;
@@ -53,44 +54,44 @@ namespace Param_ItemNamespace.ViewModels
             _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
-        public RelayCommand CutCommand => cutCommand
+        public ICommand CutCommand => cutCommand
            ?? (cutCommand = new RelayCommand(() =>
            {
                _copyPasteService?.Cut();
                ClearSelection();
            }));
 
-        public RelayCommand CopyCommand => copyCommand
+        public ICommand CopyCommand => copyCommand
            ?? (copyCommand = new RelayCommand(() => _copyPasteService?.Copy()));
 
-        public RelayCommand PasteCommand => pasteCommand
+        public ICommand PasteCommand => pasteCommand
            ?? (pasteCommand = new RelayCommand(() =>
            {
                _copyPasteService?.Paste();
                ClearSelection();
            }));
 
-        public RelayCommand UndoCommand => undoCommand
+        public ICommand UndoCommand => undoCommand
            ?? (undoCommand = new RelayCommand(() =>
            {
                ClearSelection();
                _undoRedoService?.Undo();
            }));
 
-        public RelayCommand RedoCommand => redoCommand
+        public ICommand RedoCommand => redoCommand
            ?? (redoCommand = new RelayCommand(() =>
            {
                ClearSelection();
                _undoRedoService?.Redo();
            }));
 
-        public RelayCommand ZoomInCommand => zoomInCommand
+        public ICommand ZoomInCommand => zoomInCommand
             ?? (zoomInCommand = new RelayCommand(() => _zoomService?.ZoomIn()));
 
-        public RelayCommand ZoomOutCommand => zoomOutCommand
+        public ICommand ZoomOutCommand => zoomOutCommand
             ?? (zoomOutCommand = new RelayCommand(() => _zoomService?.ZoomOut()));
 
-        public RelayCommand LoadInkFileCommand => loadInkFileCommand
+        public ICommand LoadInkFileCommand => loadInkFileCommand
            ?? (loadInkFileCommand = new RelayCommand(async () =>
            {
                ClearSelection();
@@ -102,21 +103,21 @@ namespace Param_ItemNamespace.ViewModels
                }
            }));
 
-        public RelayCommand SaveInkFileCommand => saveInkFileCommand
+        public ICommand SaveInkFileCommand => saveInkFileCommand
            ?? (saveInkFileCommand = new RelayCommand(async () =>
            {
                ClearSelection();
                await _fileService?.SaveInkAsync();
            }));
 
-        public RelayCommand ExportAsImageCommand => exportAsImageCommand
+        public ICommand ExportAsImageCommand => exportAsImageCommand
            ?? (exportAsImageCommand = new RelayCommand(async () =>
            {
                ClearSelection();
                await _fileService?.ExportToImageAsync();
            }));
 
-        public RelayCommand ClearAllCommand => clearAllCommand
+        public ICommand ClearAllCommand => clearAllCommand
            ?? (clearAllCommand = new RelayCommand(ClearAll));
 
         public bool EnableTouch

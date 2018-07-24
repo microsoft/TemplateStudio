@@ -83,7 +83,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property ZoomInCommand As RelayCommand
+        Public ReadOnly Property ZoomInCommand As ICommand
             Get
                 If _zoomInCommand Is Nothing Then
                     _zoomInCommand = New RelayCommand(Sub() _zoomService?.ZoomIn())
@@ -93,7 +93,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property ZoomOutCommand As RelayCommand
+        Public ReadOnly Property ZoomOutCommand As ICommand
             Get
                 If _zoomOutCommand Is Nothing Then
                     _zoomOutCommand = New RelayCommand(Sub() _zoomService?.ZoomOut())
@@ -123,7 +123,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property ClearAllCommand As RelayCommand
+        Public ReadOnly Property ClearAllCommand As ICommand
             Get
                 If _clearAllCommand Is Nothing Then
                     _clearAllCommand = New RelayCommand(AddressOf ClearAll)

@@ -1,4 +1,5 @@
-﻿using Param_ItemNamespace.Services.Ink;
+﻿using System.Windows.Input;
+using Param_ItemNamespace.Services.Ink;
 using Param_ItemNamespace.Services.Ink.UndoRedo;
 using System.Linq;
 
@@ -14,12 +15,12 @@ namespace Param_ItemNamespace.ViewModels
         private InkTransformService _transformService;
         private InkFileService _fileService;
 
-        private RelayCommand undoCommand;
-        private RelayCommand redoCommand;
-        private RelayCommand loadInkFileCommand;
-        private RelayCommand saveInkFileCommand;
-        private RelayCommand transformTextAndShapesCommand;
-        private RelayCommand clearAllCommand;
+        private ICommand undoCommand;
+        private ICommand redoCommand;
+        private ICommand loadInkFileCommand;
+        private ICommand saveInkFileCommand;
+        private ICommand transformTextAndShapesCommand;
+        private ICommand clearAllCommand;
 
         private bool enableTouch = true;
         private bool enableMouse = true;
@@ -51,21 +52,21 @@ namespace Param_ItemNamespace.ViewModels
             _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
-        public RelayCommand UndoCommand => undoCommand
+        public ICommand UndoCommand => undoCommand
            ?? (undoCommand = new RelayCommand(() =>
            {
                ClearSelection();
                _undoRedoService.Undo();
            }));
 
-        public RelayCommand RedoCommand => redoCommand
+        public ICommand RedoCommand => redoCommand
            ?? (redoCommand = new RelayCommand(() =>
            {
                ClearSelection();
                _undoRedoService.Redo();
            }));
 
-        public RelayCommand LoadInkFileCommand => loadInkFileCommand
+        public ICommand LoadInkFileCommand => loadInkFileCommand
            ?? (loadInkFileCommand = new RelayCommand(async () =>
            {
                ClearSelection();
@@ -78,14 +79,14 @@ namespace Param_ItemNamespace.ViewModels
                }
            }));
 
-        public RelayCommand SaveInkFileCommand => saveInkFileCommand
+        public ICommand SaveInkFileCommand => saveInkFileCommand
            ?? (saveInkFileCommand = new RelayCommand(async () =>
            {
                ClearSelection();
                await _fileService.SaveInkAsync();
            }));
 
-        public RelayCommand TransformTextAndShapesCommand => transformTextAndShapesCommand
+        public ICommand TransformTextAndShapesCommand => transformTextAndShapesCommand
            ?? (transformTextAndShapesCommand = new RelayCommand(async () =>
            {
                var result = await _transformService.TransformTextAndShapesAsync();
@@ -96,7 +97,7 @@ namespace Param_ItemNamespace.ViewModels
                }
            }));
 
-        public RelayCommand ClearAllCommand => clearAllCommand
+        public ICommand ClearAllCommand => clearAllCommand
            ?? (clearAllCommand = new RelayCommand(ClearAll));
 
         public bool EnableTouch
