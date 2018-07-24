@@ -7,6 +7,10 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class wts.ItemNamePage : Page
     {
+        //{[{
+        private bool viewModelinitialized = false;
+        //}]}
+
         public wts.ItemNamePage()
         {
         }
@@ -14,6 +18,11 @@ namespace Param_ItemNamespace.Views
         //{[{
         public async Task OnPivotSelectedAsync()
         {
+            if (viewModelinitialized)
+            {
+                return;
+            }
+
             SetCanvasSize();
 
             var strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
@@ -28,6 +37,8 @@ namespace Param_ItemNamespace.Views
                 new InkUndoRedoService(inkCanvas, strokeService),
                 new InkTransformService(drawingCanvas, strokeService),
                 new InkFileService(inkCanvas, strokeService));
+
+            viewModelinitialized = true;
             await Task.CompletedTask;
         }
 
