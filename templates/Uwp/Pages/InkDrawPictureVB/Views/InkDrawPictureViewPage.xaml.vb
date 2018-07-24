@@ -13,7 +13,7 @@ Namespace Views
             AddHandler Loaded, Sub(s, e)
                           SetCanvasSize()
                           AddHandler image.SizeChanged,  AddressOf Image_SizeChanged
-                          Dim strokeService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
+                          Dim strokeService = New InkStrokesService(inkCanvas.InkPresenter)
                           ViewModel.Initialize(strokeService, New InkPointerDeviceService(inkCanvas), New InkFileService(inkCanvas, strokeService), New InkZoomService(canvasScroll))
                       End Sub
         End Sub

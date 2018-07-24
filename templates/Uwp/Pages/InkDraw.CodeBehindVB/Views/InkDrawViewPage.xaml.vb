@@ -18,7 +18,7 @@ Namespace Views
             InitializeComponent()
             AddHandler Loaded, Sub(sender, eventArgs)
                                     SetCanvasSize()
-                                    strokeService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
+                                    strokeService = New InkStrokesService(inkCanvas.InkPresenter)
                                     Dim selectionRectangleService = New InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService)
                                     lassoSelectionService = New InkLassoSelectionService(inkCanvas, selectionCanvas, strokeService, selectionRectangleService)
                                     pointerDeviceService = New InkPointerDeviceService(inkCanvas)

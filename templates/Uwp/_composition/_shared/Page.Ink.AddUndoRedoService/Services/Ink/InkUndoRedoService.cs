@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Input.Inking;
 using Param_ItemNamespace.EventHandlers.Ink;
 using Param_ItemNamespace.Services.Ink.UndoRedo;
 
@@ -16,12 +17,11 @@ namespace Param_ItemNamespace.Services.Ink
         public InkUndoRedoService(InkCanvas inkCanvas, InkStrokesService strokeService)
         {
             _strokeService = strokeService;
+            _strokeService.StrokesCollected += StrokeService_StrokesCollected;
+            _strokeService.StrokesErased += StrokeService_StrokesErased;
             _strokeService.MoveStrokesEvent += StrokeService_MoveStrokesEvent;
             _strokeService.CutStrokesEvent += StrokeService_CutStrokesEvent;
             _strokeService.PasteStrokesEvent += StrokeService_PasteStrokesEvent;
-
-            inkCanvas.InkPresenter.StrokesCollected += (s, e) => AddOperation(new AddStrokeUndoRedoOperation(e.Strokes, _strokeService));
-            inkCanvas.InkPresenter.StrokesErased += (s, e) => AddOperation(new RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService));
         }
 
         public void Reset()
@@ -75,6 +75,18 @@ namespace Param_ItemNamespace.Services.Ink
 
             undoStack.Push(operation);
             redoStack.Clear();
+        }
+
+        private void StrokeService_StrokesCollected(object sender, InkStrokesCollectedEventArgs e)
+        {
+            var operation = new AddStrokeUndoRedoOperation(e.Strokes, _strokeService);
+            AddOperation(operation);
+        }
+
+        private void StrokeService_StrokesErased(object sender, InkStrokesErasedEventArgs e)
+        {
+            var operation = new RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService);
+            AddOperation(operation);
         }
 
         private void StrokeService_MoveStrokesEvent(object sender, MoveStrokesEventArgs e)

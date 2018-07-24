@@ -15,7 +15,7 @@ namespace Param_ItemNamespace.Views
             {
                 SetCanvasSize();
 
-                var strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
+                var strokeService = new InkStrokesService(inkCanvas.InkPresenter);
                 var selectionRectangleService = new InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService);
 
                 ViewModel.Initialize(

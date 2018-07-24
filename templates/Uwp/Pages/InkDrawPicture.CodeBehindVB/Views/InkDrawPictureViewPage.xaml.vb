@@ -19,7 +19,7 @@ Namespace Views
             AddHandler Loaded, Sub(sender, eventArgs)
                                     SetCanvasSize()
                                     AddHandler image.SizeChanged, AddressOf Image_SizeChanged
-                                    strokesService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
+                                    strokesService = New InkStrokesService(inkCanvas.InkPresenter)
                                     pointerDeviceService = New InkPointerDeviceService(inkCanvas)
                                     fileService = New InkFileService(inkCanvas, strokesService)
                                     zoomService = New InkZoomService(canvasScroll)

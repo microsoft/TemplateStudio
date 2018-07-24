@@ -23,7 +23,7 @@ namespace Param_ItemNamespace.Views
             {
                 SetCanvasSize();
 
-                strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
+                strokeService = new InkStrokesService(inkCanvas.InkPresenter);
                 var selectionRectangleService = new InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService);
                 lassoSelectionService = new InkLassoSelectionService(inkCanvas, selectionCanvas, strokeService, selectionRectangleService);
                 pointerDeviceService = new InkPointerDeviceService(inkCanvas);

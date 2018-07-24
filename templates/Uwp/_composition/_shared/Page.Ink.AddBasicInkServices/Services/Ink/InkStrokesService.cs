@@ -17,10 +17,17 @@ namespace Param_ItemNamespace.Services.Ink
     {
         private readonly InkStrokeContainer _strokeContainer;
 
-        public InkStrokesService(InkStrokeContainer strokeContainer)
+        public InkStrokesService(InkPresenter inkPresenter)
         {
-            _strokeContainer = strokeContainer;
+            _strokeContainer = inkPresenter.StrokeContainer;
+
+            inkPresenter.StrokesCollected += (s, e) => StrokesCollected?.Invoke(this, e);
+            inkPresenter.StrokesErased += (s, e) => StrokesErased?.Invoke(this, e);
         }
+
+        public event EventHandler<InkStrokesCollectedEventArgs> StrokesCollected;
+
+        public event EventHandler<InkStrokesErasedEventArgs> StrokesErased;
 
         public event EventHandler<AddStrokeEventArgs> AddStrokeEvent;
 

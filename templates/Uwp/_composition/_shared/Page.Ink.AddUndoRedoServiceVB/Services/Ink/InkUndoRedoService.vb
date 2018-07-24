@@ -3,6 +3,7 @@ Imports System.Linq
 Imports Windows.UI.Xaml.Controls
 Imports Param_ItemNamespace.EventHandlers.Ink
 Imports Param_ItemNamespace.Services.Ink.UndoRedo
+Imports Windows.UI.Input.Inking
 
 Namespace Services.Ink
     Public Class InkUndoRedoService
@@ -12,11 +13,11 @@ Namespace Services.Ink
 
         Public Sub New(inkCanvas As InkCanvas, strokeService As InkStrokesService)
             _strokeService = strokeService
+            AddHandler _strokeService.StrokesCollected, AddressOf StrokeService_StrokesCollected
+            AddHandler _strokeService.StrokesErased, AddressOf StrokeService_StrokesErased
             AddHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
             AddHandler _strokeService.CutStrokesEvent, AddressOf StrokeService_CutStrokesEvent
             AddHandler _strokeService.PasteStrokesEvent, AddressOf StrokeService_PasteStrokesEvent
-            AddHandler inkCanvas.InkPresenter.StrokesCollected, Sub(s, e) AddOperation(New AddStrokeUndoRedoOperation(e.Strokes, _strokeService))
-            AddHandler inkCanvas.InkPresenter.StrokesErased, Sub(s, e) AddOperation(New RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService))
         End Sub
 
         Public Sub Reset()
@@ -67,6 +68,16 @@ Namespace Services.Ink
 
             undoStack.Push(operation)
             redoStack.Clear()
+        End Sub
+
+        Private Sub StrokeService_StrokesCollected(sender As Object, e As InkStrokesCollectedEventArgs)
+            Dim operation = New AddStrokeUndoRedoOperation(e.Strokes, _strokeService)
+            AddOperation(operation)
+        End Sub
+
+        Private Sub StrokeService_StrokesErased(sender As Object, e As InkStrokesErasedEventArgs)
+            Dim operation = New RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService)
+            AddOperation(operation)
         End Sub
 
         Private Sub StrokeService_MoveStrokesEvent(sender As Object, e As MoveStrokesEventArgs)

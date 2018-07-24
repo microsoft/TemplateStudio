@@ -25,7 +25,7 @@ namespace Param_ItemNamespace.Views
                 SetCanvasSize();
                 image.SizeChanged += Image_SizeChanged;
 
-                strokesService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
+                strokesService = new InkStrokesService(inkCanvas.InkPresenter);
                 pointerDeviceService = new InkPointerDeviceService(inkCanvas);
                 fileService = new InkFileService(inkCanvas, strokesService);
                 zoomService = new InkZoomService(canvasScroll);

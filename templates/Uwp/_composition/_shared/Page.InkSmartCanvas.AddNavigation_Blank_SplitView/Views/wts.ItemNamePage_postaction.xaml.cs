@@ -13,7 +13,7 @@ namespace Param_ItemNamespace.Views
             {
                 SetCanvasSize();
 
-                var strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
+                var strokeService = new InkStrokesService(inkCanvas.InkPresenter);
                 var analyzer = new InkAsyncAnalyzer(inkCanvas, strokeService);
                 var selectionRectangleService = new InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService);
 
