@@ -1,6 +1,7 @@
 ﻿using Param_ItemNamespace.Services.Ink;
 using Param_ItemNamespace.Helpers;
 using System.Threading.Tasks;
+using System.Linq;
 using System.Windows.Input;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
@@ -23,12 +24,12 @@ namespace Param_ItemNamespace.ViewModels
         public InkDrawPictureViewViewModel()
         {
             LoadImageCommand = new DelegateCommand(async () => await OnLoadImageAsync());
-            SaveImageCommand = new DelegateCommand(async () => await OnSaveImageAsync());
+            SaveImageCommand = new DelegateCommand(async () => await OnSaveImageAsync(), CanSaveImage);
             ZoomInCommand = new DelegateCommand(() => _zoomService?.ZoomIn());
             ZoomOutCommand = new DelegateCommand(() => _zoomService?.ZoomOut());
             ResetZoomCommand = new DelegateCommand(() => _zoomService?.ResetZoom());
             FitToScreenCommand = new DelegateCommand(() => _zoomService?.FitToScreen());
-            ClearAllCommand = new DelegateCommand(ClearAll);
+            ClearAllCommand = new DelegateCommand(ClearAll, CanClearAll);
         }
 
         public void Initialize(
@@ -42,6 +43,9 @@ namespace Param_ItemNamespace.ViewModels
             _fileService = fileService;
             _zoomService = zoomService;
 
+            _strokeService.StrokesCollected += (s, e) => RefreshCommands();
+            _strokeService.StrokesErased += (s, e) => RefreshCommands();
+            _strokeService.ClearStrokesEvent += (s, e) => RefreshCommands();
             _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
@@ -70,7 +74,11 @@ namespace Param_ItemNamespace.ViewModels
         public BitmapImage Image
         {
             get => image;
-            set => SetProperty(ref image, value);
+            set
+            {
+                SetProperty(ref image, value);
+                RefreshCommands();
+            }
         }
 
         public ICommand LoadImageCommand { get; }
@@ -106,11 +114,31 @@ namespace Param_ItemNamespace.ViewModels
             await _fileService?.ExportToImageAsync(ImageFile);
         }
 
+        private bool CanSaveImage()
+        {
+            return Image != null
+                && _strokeService != null
+                && _strokeService.GetStrokes().Any();
+        }
+
+        private bool CanClearAll()
+        {
+            return Image != null
+                || (_strokeService != null
+                    && _strokeService.GetStrokes().Any());
+        }
+
         private void ClearAll()
         {
             _strokeService?.ClearStrokes();
             ImageFile = null;
             Image = null;
+        }
+
+        private void RefreshCommands()
+        {
+            (SaveImageCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (ClearAllCommand as DelegateCommand)?.RaiseCanExecuteChanged();
         }
     }
 }

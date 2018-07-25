@@ -79,6 +79,7 @@
                     Glyph="&#xEB9F;" />
                 </AppBarButton>
                 <AppBarButton
+                Name="SaveImageButton"
                 BorderBrush="Transparent"
                 BorderThickness="0,0,0,0"
                 x:Uid="InkDrawPictureView_SaveImageButton"
@@ -86,6 +87,7 @@
                 Click="SaveImage_Click" />                
                 <AppBarSeparator/>
                 <AppBarButton
+                Name="ClearAllButton"
                 BorderBrush="Transparent"
                 BorderThickness="0,0,0,0"
                 x:Uid="InkDrawPictureView_ClearAllButton"

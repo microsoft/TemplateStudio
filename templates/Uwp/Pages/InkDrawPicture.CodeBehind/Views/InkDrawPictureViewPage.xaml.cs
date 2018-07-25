@@ -1,6 +1,7 @@
 ﻿using Param_ItemNamespace.Services.Ink;
 using Param_ItemNamespace.Helpers;
 using System;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Storage;
@@ -32,7 +33,12 @@ namespace Param_ItemNamespace.Views
 
                 touchInkingButton.IsChecked = true;
                 mouseInkingButton.IsChecked = true;
+                strokesService.StrokesCollected += (s, e) => RefreshEnabledButtons();
+                strokesService.StrokesErased += (s, e) => RefreshEnabledButtons();
+                strokesService.ClearStrokesEvent += (s, e) => RefreshEnabledButtons();
                 pointerDeviceService.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
+
+                RefreshEnabledButtons();
             };
         }
 
@@ -82,6 +88,8 @@ namespace Param_ItemNamespace.Views
                 imageFile = file;
                 image.Source = bitmapImage;
                 zoomService?.FitToSize(bitmapImage.PixelWidth, bitmapImage.PixelHeight);
+
+                RefreshEnabledButtons();
             }
         }
 
@@ -94,6 +102,14 @@ namespace Param_ItemNamespace.Views
             strokesService?.ClearStrokes();
             imageFile = null;
             image.Source = null;
+
+            RefreshEnabledButtons();
+        }
+
+        private void RefreshEnabledButtons()
+        {
+            SaveImageButton.IsEnabled = image.Source != null && strokesService.GetStrokes().Any();
+            ClearAllButton.IsEnabled = image.Source != null || strokesService.GetStrokes().Any();
         }
     }
 }

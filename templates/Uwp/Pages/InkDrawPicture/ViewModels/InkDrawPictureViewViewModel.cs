@@ -2,6 +2,7 @@
 using Param_ItemNamespace.Helpers;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Linq;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -42,6 +43,10 @@ namespace Param_ItemNamespace.ViewModels
             _fileService = fileService;
             _zoomService = zoomService;
 
+            _strokeService.StrokesCollected += (s, e) => RefreshCommands();
+            _strokeService.StrokesErased += (s, e) => RefreshCommands();
+            _strokeService.ClearStrokesEvent += (s, e) => RefreshCommands();
+
             _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
@@ -70,14 +75,18 @@ namespace Param_ItemNamespace.ViewModels
         public BitmapImage Image
         {
             get => image;
-            set => Param_Setter(ref image, value);
+            set
+            {
+                Param_Setter(ref image, value);
+                RefreshCommands();
+            }
         }
 
         public ICommand LoadImageCommand => loadImageCommand
             ?? (loadImageCommand = new RelayCommand(async () => await OnLoadImageAsync()));
 
         public ICommand SaveImageCommand => saveImageCommand
-            ?? (saveImageCommand = new RelayCommand(async () => await OnSaveImageAsync()));
+            ?? (saveImageCommand = new RelayCommand(async () => await OnSaveImageAsync(), CanSaveImage));
 
         public ICommand ZoomInCommand => zoomInCommand
             ?? (zoomInCommand = new RelayCommand(() => _zoomService?.ZoomIn()));
@@ -92,7 +101,7 @@ namespace Param_ItemNamespace.ViewModels
             ?? (fitToScreenCommand = new RelayCommand(() => _zoomService?.FitToScreen()));
 
         public ICommand ClearAllCommand => clearAllCommand
-           ?? (clearAllCommand = new RelayCommand(ClearAll));
+           ?? (clearAllCommand = new RelayCommand(ClearAll, CanClearAll));
 
         private async Task OnLoadImageAsync()
         {
@@ -113,11 +122,29 @@ namespace Param_ItemNamespace.ViewModels
             await _fileService?.ExportToImageAsync(ImageFile);
         }
 
+        private bool CanSaveImage()
+        {
+            return Image != null
+                && _strokeService != null
+                && _strokeService.GetStrokes().Any();
+        }
+
+        private bool CanClearAll()
+        {
+            return Image != null
+                || (_strokeService != null
+                    && _strokeService.GetStrokes().Any());
+        }
+
         private void ClearAll()
         {
             _strokeService?.ClearStrokes();
             ImageFile = null;
             Image = null;
+        }
+
+        private void RefreshCommands()
+        {
         }
     }
 }
