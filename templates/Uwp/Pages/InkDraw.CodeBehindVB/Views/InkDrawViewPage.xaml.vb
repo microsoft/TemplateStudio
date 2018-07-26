@@ -28,6 +28,12 @@ Namespace Views
                                     zoomService = New InkZoomService(canvasScroll)
                                     touchInkingButton.IsChecked = True
                                     mouseInkingButton.IsChecked = True
+                                    AddHandler strokeService.CopyStrokesEvent, Sub(s, e) RefreshEnabledButtons()
+                                    AddHandler strokeService.SelectStrokesEvent, Sub(s, e) RefreshEnabledButtons()
+                                    AddHandler strokeService.ClearStrokesEvent, Sub(s, e) RefreshEnabledButtons()
+                                    AddHandler undoRedoService.UndoEvent, Sub(s, e) RefreshEnabledButtons()
+                                    AddHandler undoRedoService.RedoEvent, Sub(s, e) RefreshEnabledButtons()
+                                    AddHandler undoRedoService.AddUndoOperationEvent, Sub(s, e) RefreshEnabledButtons()
                                     AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
                                 End Sub
         End Sub
@@ -116,6 +122,17 @@ Namespace Views
             ClearSelection()
             strokeService?.ClearStrokes()
             undoRedoService?.Reset()
+        End Sub        
+
+        Private Sub RefreshEnabledButtons()
+            CutButton.IsEnabled = copyPasteService.CanCut
+            CopyButton.IsEnabled = copyPasteService.CanCopy
+            PasteButton.IsEnabled = copyPasteService.CanPaste
+            UndoButton.IsEnabled = undoRedoService.CanUndo
+            RedoButton.IsEnabled = undoRedoService.CanRedo
+            SaveInkFileButton.IsEnabled = strokeService.GetStrokes().Any()
+            ExportAsImageButton.IsEnabled = strokeService.GetStrokes().Any()
+            ClearAllButton.IsEnabled = strokeService.GetStrokes().Any()
         End Sub
 
         Private Sub ClearSelection()

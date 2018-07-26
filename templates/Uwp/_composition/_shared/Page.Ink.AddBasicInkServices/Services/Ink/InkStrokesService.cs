@@ -37,11 +37,15 @@ namespace Param_ItemNamespace.Services.Ink
 
         public event EventHandler<EventArgs> ClearStrokesEvent;
 
+        public event EventHandler<CopyPasteStrokesEventArgs> CopyStrokesEvent;
+
         public event EventHandler<CopyPasteStrokesEventArgs> CutStrokesEvent;
 
         public event EventHandler<CopyPasteStrokesEventArgs> PasteStrokesEvent;
 
         public event EventHandler<EventArgs> LoadInkFileEvent;
+
+        public event EventHandler<EventArgs> SelectStrokesEvent;
 
         public InkStroke AddStroke(InkStroke stroke)
         {
@@ -97,6 +101,8 @@ namespace Param_ItemNamespace.Services.Ink
             {
                 stroke.Selected = false;
             }
+
+            SelectStrokesEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public Rect SelectStrokes(IEnumerable<InkStroke> strokes)
@@ -108,6 +114,7 @@ namespace Param_ItemNamespace.Services.Ink
                 stroke.Selected = true;
             }
 
+            SelectStrokesEvent?.Invoke(this, EventArgs.Empty);
             return GetRectBySelectedStrokes();
         }
 
@@ -123,7 +130,9 @@ namespace Param_ItemNamespace.Services.Ink
         public Rect SelectStrokesByPoints(PointCollection points)
         {
             ClearStrokesSelection();
-            return _strokeContainer.SelectWithPolyLine(points);
+            var rect = _strokeContainer.SelectWithPolyLine(points);
+            SelectStrokesEvent?.Invoke(this, EventArgs.Empty);
+            return rect;
         }
 
         public void MoveSelectedStrokes(Point startPosition, Point endPosition)
@@ -148,6 +157,7 @@ namespace Param_ItemNamespace.Services.Ink
         public Rect CopySelectedStrokes()
         {
             _strokeContainer.CopySelectedToClipboard();
+            CopyStrokesEvent?.Invoke(this, new CopyPasteStrokesEventArgs(GetSelectedStrokes()));
             return GetRectBySelectedStrokes();
         }
 

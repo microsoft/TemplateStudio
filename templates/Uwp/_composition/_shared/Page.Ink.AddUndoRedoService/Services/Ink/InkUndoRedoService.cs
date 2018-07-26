@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Input.Inking;
@@ -24,10 +25,17 @@ namespace Param_ItemNamespace.Services.Ink
             _strokeService.PasteStrokesEvent += StrokeService_PasteStrokesEvent;
         }
 
+        public event EventHandler<EventArgs> UndoEvent;
+
+        public event EventHandler<EventArgs> RedoEvent;
+
+        public event EventHandler<EventArgs> AddUndoOperationEvent;
+
         public void Reset()
         {
             undoStack.Clear();
             redoStack.Clear();
+            AddUndoOperationEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public bool CanUndo => undoStack.Any();
@@ -48,6 +56,7 @@ namespace Param_ItemNamespace.Services.Ink
             redoStack.Push(element);
 
             _strokeService.MoveStrokesEvent += StrokeService_MoveStrokesEvent;
+            UndoEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public void Redo()
@@ -64,6 +73,7 @@ namespace Param_ItemNamespace.Services.Ink
             undoStack.Push(element);
 
             _strokeService.MoveStrokesEvent += StrokeService_MoveStrokesEvent;
+            RedoEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public void AddOperation(IUndoRedoOperation operation)
@@ -75,6 +85,7 @@ namespace Param_ItemNamespace.Services.Ink
 
             undoStack.Push(operation);
             redoStack.Clear();
+            AddUndoOperationEvent?.Invoke(this, EventArgs.Empty);
         }
 
         private void StrokeService_StrokesCollected(object sender, InkStrokesCollectedEventArgs e)

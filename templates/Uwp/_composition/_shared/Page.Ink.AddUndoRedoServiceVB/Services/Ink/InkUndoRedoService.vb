@@ -1,4 +1,5 @@
-﻿Imports System.Collections.Generic
+﻿Imports System
+Imports System.Collections.Generic
 Imports System.Linq
 Imports Windows.UI.Xaml.Controls
 Imports Param_ItemNamespace.EventHandlers.Ink
@@ -20,9 +21,16 @@ Namespace Services.Ink
             AddHandler _strokeService.PasteStrokesEvent, AddressOf StrokeService_PasteStrokesEvent
         End Sub
 
+        Public Event UndoEvent As EventHandler(Of EventArgs)
+
+        Public Event RedoEvent As EventHandler(Of EventArgs)
+
+        Public Event AddUndoOperationEvent As EventHandler(Of EventArgs)
+
         Public Sub Reset()
             undoStack.Clear()
             redoStack.Clear()
+            RaiseEvent AddUndoOperationEvent(Me, EventArgs.Empty)
         End Sub
 
         Public ReadOnly Property CanUndo As Boolean
@@ -47,6 +55,7 @@ Namespace Services.Ink
             element.ExecuteUndo()
             redoStack.Push(element)
             AddHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
+            RaiseEvent UndoEvent(Me, EventArgs.Empty)
         End Sub
 
         Public Sub Redo()
@@ -59,6 +68,7 @@ Namespace Services.Ink
             element.ExecuteRedo()
             undoStack.Push(element)
             AddHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
+            RaiseEvent RedoEvent(Me, EventArgs.Empty)
         End Sub
 
         Public Sub AddOperation(operation As IUndoRedoOperation)
@@ -68,6 +78,7 @@ Namespace Services.Ink
 
             undoStack.Push(operation)
             redoStack.Clear()
+            RaiseEvent AddUndoOperationEvent(Me, EventArgs.Empty)
         End Sub
 
         Private Sub StrokeService_StrokesCollected(sender As Object, e As InkStrokesCollectedEventArgs)

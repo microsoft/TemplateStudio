@@ -64,18 +64,24 @@
                     Click="ZoomOut_Click" />
                 <AppBarSeparator/>
                 <AppBarButton
+                    Name="CutButton"
+                    IsEnabled="False"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkDrawView_CutButton"
                     Icon="Cut"
                     Click="Cut_Click" />
                 <AppBarButton
+                    Name="CopyButton"
+                    IsEnabled="False"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkDrawView_CopyButton"
                     Icon="Copy"
                     Click="Copy_Click" />
                 <AppBarButton
+                    Name="PasteButton"
+                    IsEnabled="False"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkDrawView_PasteButton"
@@ -83,12 +89,16 @@
                     Click="Paste_Click" />
                 <AppBarSeparator />
                 <AppBarButton
+                    Name="UndoButton"
+                    IsEnabled="False"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkDrawView_UndoButton"
                     Icon="Undo"
                     Click="Undo_Click" />
                 <AppBarButton
+                    Name="RedoButton"
+                    IsEnabled="False"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkDrawView_RedoButton"
@@ -102,12 +112,16 @@
                     Icon="OpenFile"
                     Click="LoadInkFile_Click" />                   
                 <AppBarButton
+                    Name="SaveInkFileButton"
+                    IsEnabled="False"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkDrawView_SaveInkFileButton"
                     Icon="Save"
                     Click="SaveInkFile_Click" />
                 <AppBarButton
+                    Name="ExportAsImageButton"
+                    IsEnabled="False"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkDrawView_ExportAsImageButton"
@@ -115,6 +129,8 @@
                     Click="ExportAsImage_Click" />
                 <AppBarSeparator/>
                 <AppBarButton
+                    Name="ClearAllButton"
+                    IsEnabled="False"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkDrawView_ClearAllButton"
