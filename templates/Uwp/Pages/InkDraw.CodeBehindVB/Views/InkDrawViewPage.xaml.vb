@@ -122,7 +122,7 @@ Namespace Views
             ClearSelection()
             strokeService?.ClearStrokes()
             undoRedoService?.Reset()
-        End Sub        
+        End Sub
 
         Private Sub RefreshEnabledButtons()
             CutButton.IsEnabled = copyPasteService.CanCut

@@ -41,6 +41,10 @@ namespace Param_ItemNamespace.ViewModels
             _transformService = transformService;
             _fileService = fileService;
 
+            _strokeService.ClearStrokesEvent += (s, e) => RefreshActions();
+            _undoRedoService.UndoEvent += (s, e) => RefreshActions();
+            _undoRedoService.RedoEvent += (s, e) => RefreshActions();
+            _undoRedoService.AddUndoOperationEvent += (s, e) => RefreshActions();
             _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
@@ -130,6 +134,26 @@ namespace Param_ItemNamespace.ViewModels
             _strokeService.ClearStrokes();
             _transformService.ClearTextAndShapes();
             _undoRedoService.Reset();
+        }
+
+        private bool CanUndo => _undoRedoService != null && _undoRedoService.CanUndo;
+
+        private bool CanRedo => _undoRedoService != null && _undoRedoService.CanRedo;
+
+        private bool CanSaveInkFile => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private bool CanTransformTextAndShapes => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private bool CanClearAll => (_strokeService != null && _strokeService.GetStrokes().Any()) ||
+                                    (_transformService != null && _transformService.HasTextAndShapes());
+
+        private void RefreshActions()
+        {
+            NotifyOfPropertyChange(nameof(CanUndo));
+            NotifyOfPropertyChange(nameof(CanRedo));
+            NotifyOfPropertyChange(nameof(CanSaveInkFile));
+            NotifyOfPropertyChange(nameof(CanTransformTextAndShapes));
+            NotifyOfPropertyChange(nameof(CanClearAll));
         }
 
         private void ConfigLassoSelection(bool enableLasso)

@@ -52,6 +52,8 @@ namespace Param_ItemNamespace.Services.Ink
             return result;
         }
 
+        public bool HasTextAndShapes() => _drawingCanvas.Children.Any();
+
         public void ClearTextAndShapes()
         {
             _drawingCanvas.Children.Clear();

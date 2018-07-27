@@ -60,12 +60,14 @@
                 </CommandBar.Content>
                 <AppBarSeparator />
                 <AppBarButton
+                    Name="UndoButton"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkSmartCanvasView_UndoButton"
                     Icon="Undo"
                    Click="Undo_Click" />
                 <AppBarButton
+                    Name="RedoButton"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkSmartCanvasView_RedoButton"
@@ -79,6 +81,7 @@
                     Icon="OpenFile"
                    Click="LoadInkFile_Click" />                   
                 <AppBarButton
+                    Name="SaveInkFileButton"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkSmartCanvasView_SaveInkFileButton"
@@ -86,6 +89,7 @@
                    Click="SaveInkFile_Click" />
                 <AppBarSeparator/>
                 <AppBarButton
+                    Name="TransformTextAndShapesButton"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkSmartCanvasView_TransformTextAndShapesButton"
@@ -96,6 +100,7 @@
                 </AppBarButton>
                 <AppBarSeparator/>
                 <AppBarButton
+                    Name="ClearAllButton"
                     BorderBrush="Transparent"
                     BorderThickness="0,0,0,0"
                     x:Uid="InkSmartCanvasView_ClearAllButton"

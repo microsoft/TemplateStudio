@@ -38,6 +38,10 @@ Namespace Services.Ink
             Return result
         End Function
 
+        Public Function HasTextAndShapes as Boolean
+            Return _drawingCanvas.Children.Any()
+        End Function
+
         Public Sub ClearTextAndShapes()
             _drawingCanvas.Children.Clear()
         End Sub

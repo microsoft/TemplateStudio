@@ -40,7 +40,13 @@ namespace Param_ItemNamespace.Views
                 mouseInkingButton.IsChecked = true;
                 penInkingButton.IsChecked = true;
 
+                strokeService.ClearStrokesEvent += (s, e) => RefreshEnabledButtons();
+                undoRedoService.UndoEvent += (s, e) => RefreshEnabledButtons();
+                undoRedoService.RedoEvent += (s, e) => RefreshEnabledButtons();
+                undoRedoService.AddUndoOperationEvent += (s, e) => RefreshEnabledButtons();
                 pointerDeviceService.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
+
+                RefreshEnabledButtons();
             };
         }
 
@@ -112,6 +118,15 @@ namespace Param_ItemNamespace.Views
             strokeService.ClearStrokes();
             transformService.ClearTextAndShapes();
             undoRedoService.Reset();
+        }
+
+        private void RefreshEnabledButtons()
+        {
+            UndoButton.IsEnabled = undoRedoService.CanUndo;
+            RedoButton.IsEnabled = undoRedoService.CanRedo;
+            SaveInkFileButton.IsEnabled = strokeService.GetStrokes().Any();
+            TransformTextAndShapesButton.IsEnabled = strokeService.GetStrokes().Any();
+            ClearAllButton.IsEnabled = strokeService.GetStrokes().Any() || transformService.HasTextAndShapes();
         }
 
         private void ClearSelection()

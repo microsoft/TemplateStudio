@@ -24,12 +24,12 @@ namespace Param_ItemNamespace.ViewModels
 
         public InkSmartCanvasViewViewModel()
         {
-            UndoCommand = new DelegateCommand(Undo);
-            RedoCommand = new DelegateCommand(Redo);
+            UndoCommand = new DelegateCommand(Undo, CanUndo);
+            RedoCommand = new DelegateCommand(Redo, CanRedo);
             LoadInkFileCommand = new DelegateCommand(LoadInkFile);
-            SaveInkFileCommand = new DelegateCommand(SaveInkFile);
-            TransformTextAndShapesCommand = new DelegateCommand(TransformTextAndShapes);
-            ClearAllCommand = new DelegateCommand(ClearAll);
+            SaveInkFileCommand = new DelegateCommand(SaveInkFile, CanSaveInkFile);
+            TransformTextAndShapesCommand = new DelegateCommand(TransformTextAndShapes, CanTransformTextAndShapes);
+            ClearAllCommand = new DelegateCommand(ClearAll, CanClearAll);
         }
 
         public void Initialize(
@@ -49,6 +49,10 @@ namespace Param_ItemNamespace.ViewModels
             _transformService = transformService;
             _fileService = fileService;
 
+            _strokeService.ClearStrokesEvent += (s, e) => RefreshCommands();
+            _undoRedoService.UndoEvent += (s, e) => RefreshCommands();
+            _undoRedoService.RedoEvent += (s, e) => RefreshCommands();
+            _undoRedoService.AddUndoOperationEvent += (s, e) => RefreshCommands();
             _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
@@ -150,6 +154,26 @@ namespace Param_ItemNamespace.ViewModels
             _strokeService.ClearStrokes();
             _transformService.ClearTextAndShapes();
             _undoRedoService.Reset();
+        }
+
+        private bool CanUndo() => _undoRedoService != null && _undoRedoService.CanUndo;
+
+        private bool CanRedo() => _undoRedoService != null && _undoRedoService.CanRedo;
+
+        private bool CanSaveInkFile() => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private bool CanTransformTextAndShapes() => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private bool CanClearAll() => (_strokeService != null && _strokeService.GetStrokes().Any()) ||
+                                      (_transformService != null && _transformService.HasTextAndShapes());
+
+        private void RefreshCommands()
+        {
+            (UndoCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (RedoCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (SaveInkFileCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (TransformTextAndShapesCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (ClearAllCommand as DelegateCommand)?.RaiseCanExecuteChanged();
         }
 
         private void ConfigLassoSelection(bool enableLasso)

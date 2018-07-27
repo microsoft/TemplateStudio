@@ -31,7 +31,12 @@ Namespace Views
                                     touchInkingButton.IsChecked = True
                                     mouseInkingButton.IsChecked = True
                                     penInkingButton.IsChecked = True
+                                    AddHandler strokeService.ClearStrokesEvent, Sub(s, e) RefreshEnabledButtons()
+                                    AddHandler undoRedoService.UndoEvent, Sub(s, e) RefreshEnabledButtons()
+                                    AddHandler undoRedoService.RedoEvent, Sub(s, e) RefreshEnabledButtons()
+                                    AddHandler undoRedoService.AddUndoOperationEvent, Sub(s, e) RefreshEnabledButtons()
                                     AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
+                                    RefreshEnabledButtons()
                                 End Sub
         End Sub
 
@@ -111,6 +116,14 @@ Namespace Views
             strokeService.ClearStrokes()
             transformService.ClearTextAndShapes()
             undoRedoService.Reset()
+        End Sub
+
+        Private Sub RefreshEnabledButtons()
+            UndoButton.IsEnabled = undoRedoService.CanUndo
+            RedoButton.IsEnabled = undoRedoService.CanRedo
+            SaveInkFileButton.IsEnabled = strokeService.GetStrokes().Any()
+            TransformTextAndShapesButton.IsEnabled = strokeService.GetStrokes().Any()
+            ClearAllButton.IsEnabled = strokeService.GetStrokes().Any() OrElse transformService.HasTextAndShapes()
         End Sub
 
         Private Sub ClearSelection()
