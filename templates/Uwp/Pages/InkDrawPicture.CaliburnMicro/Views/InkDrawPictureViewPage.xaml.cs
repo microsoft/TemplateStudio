@@ -17,7 +17,7 @@ namespace Param_ItemNamespace.Views
                 SetCanvasSize();
                 image.SizeChanged += Image_SizeChanged;
 
-                var strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
+                var strokeService = new InkStrokesService(inkCanvas.InkPresenter);
 
                 ViewModel.Initialize(
                     strokeService,

@@ -1,8 +1,10 @@
-﻿Imports System.Collections.Generic
+﻿Imports System
+Imports System.Collections.Generic
 Imports System.Linq
 Imports Windows.UI.Xaml.Controls
 Imports Param_ItemNamespace.EventHandlers.Ink
 Imports Param_ItemNamespace.Services.Ink.UndoRedo
+Imports Windows.UI.Input.Inking
 
 Namespace Services.Ink
     Public Class InkUndoRedoService
@@ -12,16 +14,23 @@ Namespace Services.Ink
 
         Public Sub New(inkCanvas As InkCanvas, strokeService As InkStrokesService)
             _strokeService = strokeService
+            AddHandler _strokeService.StrokesCollected, AddressOf StrokeService_StrokesCollected
+            AddHandler _strokeService.StrokesErased, AddressOf StrokeService_StrokesErased
             AddHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
             AddHandler _strokeService.CutStrokesEvent, AddressOf StrokeService_CutStrokesEvent
             AddHandler _strokeService.PasteStrokesEvent, AddressOf StrokeService_PasteStrokesEvent
-            AddHandler inkCanvas.InkPresenter.StrokesCollected, Sub(s, e) AddOperation(New AddStrokeUndoRedoOperation(e.Strokes, _strokeService))
-            AddHandler inkCanvas.InkPresenter.StrokesErased, Sub(s, e) AddOperation(New RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService))
         End Sub
+
+        Public Event UndoEvent As EventHandler(Of EventArgs)
+
+        Public Event RedoEvent As EventHandler(Of EventArgs)
+
+        Public Event AddUndoOperationEvent As EventHandler(Of EventArgs)
 
         Public Sub Reset()
             undoStack.Clear()
             redoStack.Clear()
+            RaiseEvent AddUndoOperationEvent(Me, EventArgs.Empty)
         End Sub
 
         Public ReadOnly Property CanUndo As Boolean
@@ -46,6 +55,7 @@ Namespace Services.Ink
             element.ExecuteUndo()
             redoStack.Push(element)
             AddHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
+            RaiseEvent UndoEvent(Me, EventArgs.Empty)
         End Sub
 
         Public Sub Redo()
@@ -58,6 +68,7 @@ Namespace Services.Ink
             element.ExecuteRedo()
             undoStack.Push(element)
             AddHandler _strokeService.MoveStrokesEvent, AddressOf StrokeService_MoveStrokesEvent
+            RaiseEvent RedoEvent(Me, EventArgs.Empty)
         End Sub
 
         Public Sub AddOperation(operation As IUndoRedoOperation)
@@ -67,6 +78,23 @@ Namespace Services.Ink
 
             undoStack.Push(operation)
             redoStack.Clear()
+            RaiseEvent AddUndoOperationEvent(Me, EventArgs.Empty)
+        End Sub
+
+        Private Sub StrokeService_StrokesCollected(sender As Object, e As InkStrokesCollectedEventArgs)
+            AddStrokesOperation(e.Strokes)
+        End Sub
+
+        Private Sub StrokeService_StrokesErased(sender As Object, e As InkStrokesErasedEventArgs)
+            RemoveStrokesOperation(e.Strokes)
+        End Sub
+
+        Private Sub StrokeService_CutStrokesEvent(sender As Object, e As CopyPasteStrokesEventArgs)
+           RemoveStrokesOperation(e.Strokes)
+        End Sub
+
+        Private Sub StrokeService_PasteStrokesEvent(sender As Object, e As CopyPasteStrokesEventArgs)
+            AddStrokesOperation(e.Strokes)
         End Sub
 
         Private Sub StrokeService_MoveStrokesEvent(sender As Object, e As MoveStrokesEventArgs)
@@ -74,13 +102,13 @@ Namespace Services.Ink
             AddOperation(operation)
         End Sub
 
-        Private Sub StrokeService_CutStrokesEvent(sender As Object, e As CopyPasteStrokesEventArgs)
-            Dim operation = New RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService)
+        Private Sub AddStrokesOperation(strokes As IEnumerable<InkStroke>)
+            Dim operation = New AddStrokeUndoRedoOperation(strokes, _strokeService)
             AddOperation(operation)
         End Sub
 
-        Private Sub StrokeService_PasteStrokesEvent(sender As Object, e As CopyPasteStrokesEventArgs)
-            Dim operation = New AddStrokeUndoRedoOperation(e.Strokes, _strokeService)
+        Private Sub RemoveStrokesOperation(strokes As IEnumerable<InkStroke>)
+            Dim operation = New RemoveStrokeUndoRedoOperation(strokes, _strokeService)
             AddOperation(operation)
         End Sub
     End Class

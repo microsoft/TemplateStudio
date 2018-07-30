@@ -1,5 +1,6 @@
 ﻿using Param_ItemNamespace.Services.Ink;
 using System;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -23,7 +24,7 @@ namespace Param_ItemNamespace.Views
             {
                 SetCanvasSize();
 
-                strokeService = new InkStrokesService(inkCanvas.InkPresenter.StrokeContainer);
+                strokeService = new InkStrokesService(inkCanvas.InkPresenter);
                 var selectionRectangleService = new InkSelectionRectangleService(inkCanvas, selectionCanvas, strokeService);
                 lassoSelectionService = new InkLassoSelectionService(inkCanvas, selectionCanvas, strokeService, selectionRectangleService);
                 pointerDeviceService = new InkPointerDeviceService(inkCanvas);
@@ -35,6 +36,12 @@ namespace Param_ItemNamespace.Views
                 touchInkingButton.IsChecked = true;
                 mouseInkingButton.IsChecked = true;
 
+                strokeService.CopyStrokesEvent += (s, e) => RefreshEnabledButtons();
+                strokeService.SelectStrokesEvent += (s, e) => RefreshEnabledButtons();
+                strokeService.ClearStrokesEvent += (s, e) => RefreshEnabledButtons();
+                undoRedoService.UndoEvent += (s, e) => RefreshEnabledButtons();
+                undoRedoService.RedoEvent += (s, e) => RefreshEnabledButtons();
+                undoRedoService.AddUndoOperationEvent += (s, e) => RefreshEnabledButtons();
                 pointerDeviceService.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
             };
         }
@@ -115,6 +122,18 @@ namespace Param_ItemNamespace.Views
             ClearSelection();
             strokeService?.ClearStrokes();
             undoRedoService?.Reset();
+        }
+
+        private void RefreshEnabledButtons()
+        {
+            CutButton.IsEnabled = copyPasteService.CanCut;
+            CopyButton.IsEnabled = copyPasteService.CanCopy;
+            PasteButton.IsEnabled = copyPasteService.CanPaste;
+            UndoButton.IsEnabled = undoRedoService.CanUndo;
+            RedoButton.IsEnabled = undoRedoService.CanRedo;
+            SaveInkFileButton.IsEnabled = strokeService.GetStrokes().Any();
+            ExportAsImageButton.IsEnabled = strokeService.GetStrokes().Any();
+            ClearAllButton.IsEnabled = strokeService.GetStrokes().Any();
         }
 
         private void ClearSelection() => lassoSelectionService?.ClearSelection();

@@ -1,6 +1,7 @@
 ﻿Imports Param_ItemNamespace.Services.Ink
 Imports Param_ItemNamespace.Helpers
 Imports Windows.Storage
+Imports System.Linq
 
 Namespace Views
     ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
@@ -19,13 +20,17 @@ Namespace Views
             AddHandler Loaded, Sub(sender, eventArgs)
                                     SetCanvasSize()
                                     AddHandler image.SizeChanged, AddressOf Image_SizeChanged
-                                    strokesService = New InkStrokesService(inkCanvas.InkPresenter.StrokeContainer)
+                                    strokesService = New InkStrokesService(inkCanvas.InkPresenter)
                                     pointerDeviceService = New InkPointerDeviceService(inkCanvas)
                                     fileService = New InkFileService(inkCanvas, strokesService)
                                     zoomService = New InkZoomService(canvasScroll)
                                     touchInkingButton.IsChecked = True
                                     mouseInkingButton.IsChecked = True
+                                    AddHandler strokesService.StrokesCollected, Sub(s, e) RefreshEnabledButtons()
+                                    AddHandler strokesService.StrokesErased, Sub(s, e) RefreshEnabledButtons()
+                                    AddHandler strokesService.ClearStrokesEvent, Sub(s, e) RefreshEnabledButtons()
                                     AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
+                                    RefreshEnabledButtons()
                                 End Sub
         End Sub
 
@@ -84,6 +89,7 @@ Namespace Views
                 imageFile = file
                 image.Source = bitmapImage
                 zoomService?.FitToSize(bitmapImage.PixelWidth, bitmapImage.PixelHeight)
+                RefreshEnabledButtons()
             End If
         End Sub
 
@@ -99,6 +105,12 @@ Namespace Views
             strokesService?.ClearStrokes()
             imageFile = Nothing
             image.Source = Nothing
+            RefreshEnabledButtons()
+        End Sub
+
+        Private Sub RefreshEnabledButtons()
+            SaveImageButton.IsEnabled = image.Source IsNot Nothing AndAlso strokesService.GetStrokes().Any()
+            ClearAllButton.IsEnabled = image.Source IsNot Nothing OrElse strokesService.GetStrokes().Any()
         End Sub
     End Class
 End Namespace

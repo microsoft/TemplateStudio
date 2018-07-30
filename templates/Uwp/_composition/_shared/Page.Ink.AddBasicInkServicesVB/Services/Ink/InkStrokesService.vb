@@ -9,9 +9,15 @@ Namespace Services.Ink
     Public Class InkStrokesService
         Private ReadOnly _strokeContainer As InkStrokeContainer
 
-        Public Sub New(strokeContainer As InkStrokeContainer)
-            _strokeContainer = strokeContainer
+        Public Sub New(inkPresenter As InkPresenter)
+            _strokeContainer = inkPresenter.StrokeContainer
+            AddHandler inkPresenter.StrokesCollected, Sub(s, e) RaiseEvent StrokesCollected(Me, e)
+            AddHandler inkPresenter.StrokesErased, Sub(s, e) RaiseEvent StrokesErased(Me, e) 
         End Sub
+
+        Public Event StrokesCollected As EventHandler(Of InkStrokesCollectedEventArgs)
+
+        Public Event StrokesErased As EventHandler(Of InkStrokesErasedEventArgs)
 
         Public Event AddStrokeEvent As EventHandler(Of AddStrokeEventArgs)
 
@@ -21,11 +27,15 @@ Namespace Services.Ink
 
         Public Event ClearStrokesEvent As EventHandler(Of EventArgs)
 
+        Public Event CopyStrokesEvent As EventHandler(Of CopyPasteStrokesEventArgs)
+
         Public Event CutStrokesEvent As EventHandler(Of CopyPasteStrokesEventArgs)
 
         Public Event PasteStrokesEvent As EventHandler(Of CopyPasteStrokesEventArgs)
 
         Public Event LoadInkFileEvent As EventHandler(Of EventArgs)
+
+        Public Event SelectStrokesEvent As EventHandler(Of EventArgs)
 
         Public Function AddStroke(stroke As InkStroke) As InkStroke
             Dim newStroke = stroke.Clone()
@@ -75,6 +85,7 @@ Namespace Services.Ink
             For Each stroke In GetStrokes()
                 stroke.Selected = False
             Next
+            RaiseEvent SelectStrokesEvent(Me, EventArgs.Empty)
         End Sub
 
         Public Function SelectStrokes(strokes As IEnumerable(Of InkStroke)) As Rect
@@ -84,6 +95,7 @@ Namespace Services.Ink
                 stroke.Selected = True
             Next
 
+            RaiseEvent SelectStrokesEvent(Me, EventArgs.Empty)
             Return GetRectBySelectedStrokes()
         End Function
 
@@ -96,7 +108,9 @@ Namespace Services.Ink
 
         Public Function SelectStrokesByPoints(points As PointCollection) As Rect
             ClearStrokesSelection()
-            Return _strokeContainer.SelectWithPolyLine(points)
+            Dim rect = _strokeContainer.SelectWithPolyLine(points)
+            RaiseEvent SelectStrokesEvent(Me, EventArgs.Empty)
+            Return rect
         End Function
 
         Public Sub MoveSelectedStrokes(startPosition As Point, endPosition As Point)
@@ -117,6 +131,7 @@ Namespace Services.Ink
 
         Public Function CopySelectedStrokes() As Rect
             _strokeContainer.CopySelectedToClipboard()
+            RaiseEvent CopyStrokesEvent(Me, New CopyPasteStrokesEventArgs(GetSelectedStrokes()))
             Return GetRectBySelectedStrokes()
         End Function
 

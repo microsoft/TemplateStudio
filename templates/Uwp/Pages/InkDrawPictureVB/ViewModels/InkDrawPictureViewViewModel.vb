@@ -1,4 +1,5 @@
-﻿Imports Param_ItemNamespace.Services.Ink
+﻿Imports System.Linq
+Imports Param_ItemNamespace.Services.Ink
 Imports Param_ItemNamespace.Helpers
 Imports Windows.Storage
 
@@ -29,6 +30,9 @@ Namespace ViewModels
             _pointerDeviceService = pointerDeviceService
             _fileService = fileService
             _zoomService = zoomService
+            AddHandler _strokeService.StrokesCollected, Sub(s, e) RefreshCommands()
+            AddHandler _strokeService.StrokesErased, Sub(s, e) RefreshCommands()
+            AddHandler _strokeService.ClearStrokesEvent, Sub(s, e) RefreshCommands()
             AddHandler _pointerDeviceService.DetectPenEvent, Sub(s, e) EnableTouch = False
         End Sub
 
@@ -60,6 +64,7 @@ Namespace ViewModels
             End Get
             Set(value As BitmapImage)
                 [Param_Setter](_image, value)
+                RefreshCommands()
             End Set
         End Property
 
@@ -76,14 +81,14 @@ Namespace ViewModels
         Public ReadOnly Property SaveImageCommand As ICommand
             Get
                 If _saveImageCommand Is Nothing then
-                    _saveImageCommand = New RelayCommand(Async Sub() Await OnSaveImageAsync())
+                    _saveImageCommand = New RelayCommand(Async Sub() Await OnSaveImageAsync(), AddressOf CanSaveImage)
                 End If
 
                 Return _saveImageCommand
             End Get
         End Property
 
-        Public ReadOnly Property ZoomInCommand As RelayCommand
+        Public ReadOnly Property ZoomInCommand As ICommand
             Get
                 If _zoomInCommand Is Nothing Then
                     _zoomInCommand = New RelayCommand(Sub() _zoomService?.ZoomIn())
@@ -93,7 +98,7 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property ZoomOutCommand As RelayCommand
+        Public ReadOnly Property ZoomOutCommand As ICommand
             Get
                 If _zoomOutCommand Is Nothing Then
                     _zoomOutCommand = New RelayCommand(Sub() _zoomService?.ZoomOut())
@@ -123,10 +128,10 @@ Namespace ViewModels
             End Get
         End Property
 
-        Public ReadOnly Property ClearAllCommand As RelayCommand
+        Public ReadOnly Property ClearAllCommand As ICommand
             Get
                 If _clearAllCommand Is Nothing Then
-                    _clearAllCommand = New RelayCommand(AddressOf ClearAll)
+                    _clearAllCommand = New RelayCommand(AddressOf ClearAll, AddressOf CanClearAll)
                 End If
 
                 Return _clearAllCommand
@@ -149,10 +154,22 @@ Namespace ViewModels
             Await _fileService?.ExportToImageAsync(ImageFile)
         End Function
 
+        Private Function CanSaveImage() As Boolean
+            Return Image IsNot Nothing AndAlso _strokeService IsNot Nothing AndAlso _strokeService.GetStrokes().Any()
+        End Function
+
+        Private Function CanClearAll() As Boolean
+            Return Image IsNot Nothing OrElse (_strokeService IsNot Nothing AndAlso _strokeService.GetStrokes().Any())
+        End Function
+
         Private Sub ClearAll()
             _strokeService?.ClearStrokes()
             ImageFile = Nothing
             Image = Nothing
         End Sub
+
+        Private Sub RefreshCommands()
+        End Sub
+
     End Class
 End Namespace
