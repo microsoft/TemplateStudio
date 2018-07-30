@@ -184,7 +184,7 @@ namespace Param_ItemNamespace.ViewModels
             }
             else
             {
-                _lassoSelectionService=.EndLassoSelectionConfig();
+                _lassoSelectionService?.EndLassoSelectionConfig();
             }
         }
 

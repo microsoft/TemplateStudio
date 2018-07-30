@@ -11,7 +11,7 @@ namespace Param_ItemNamespace.Views
         public InkSmartCanvasViewPage()
         {
             InitializeComponent();
-            Loaded += (s, e) =>
+            Loaded += (sender, eventArgs) =>
             {
                 SetCanvasSize();
 
