@@ -102,12 +102,12 @@ Namespace Services.Ink
             AddOperation(operation)
         End Sub
 
-        Private Sub AddStrokesOperation(strokes As IEnumerable<InkStroke>)
+        Private Sub AddStrokesOperation(strokes As IEnumerable(Of InkStroke))
             Dim operation = New AddStrokeUndoRedoOperation(strokes, _strokeService)
             AddOperation(operation)
         End Sub
 
-        Private Sub RemoveStrokesOperation(strokes As IEnumerable<InkStroke>)
+        Private Sub RemoveStrokesOperation(strokes As IEnumerable(Of InkStroke))
             Dim operation = New RemoveStrokeUndoRedoOperation(strokes, _strokeService)
             AddOperation(operation)
         End Sub
