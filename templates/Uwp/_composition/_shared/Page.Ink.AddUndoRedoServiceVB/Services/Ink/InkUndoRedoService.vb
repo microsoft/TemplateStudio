@@ -82,13 +82,19 @@ Namespace Services.Ink
         End Sub
 
         Private Sub StrokeService_StrokesCollected(sender As Object, e As InkStrokesCollectedEventArgs)
-            Dim operation = New AddStrokeUndoRedoOperation(e.Strokes, _strokeService)
-            AddOperation(operation)
+            AddStrokesOperation(e.Strokes)
         End Sub
 
         Private Sub StrokeService_StrokesErased(sender As Object, e As InkStrokesErasedEventArgs)
-            Dim operation = New RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService)
-            AddOperation(operation)
+            RemoveStrokesOperation(e.Strokes)
+        End Sub
+
+        Private Sub StrokeService_CutStrokesEvent(sender As Object, e As CopyPasteStrokesEventArgs)
+           RemoveStrokesOperation(e.Strokes)
+        End Sub
+
+        Private Sub StrokeService_PasteStrokesEvent(sender As Object, e As CopyPasteStrokesEventArgs)
+            AddStrokesOperation(e.Strokes)
         End Sub
 
         Private Sub StrokeService_MoveStrokesEvent(sender As Object, e As MoveStrokesEventArgs)
@@ -96,13 +102,13 @@ Namespace Services.Ink
             AddOperation(operation)
         End Sub
 
-        Private Sub StrokeService_CutStrokesEvent(sender As Object, e As CopyPasteStrokesEventArgs)
-            Dim operation = New RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService)
+        Private Sub AddStrokesOperation(strokes As IEnumerable<InkStroke>)
+            Dim operation = New AddStrokeUndoRedoOperation(strokes, _strokeService)
             AddOperation(operation)
         End Sub
 
-        Private Sub StrokeService_PasteStrokesEvent(sender As Object, e As CopyPasteStrokesEventArgs)
-            Dim operation = New AddStrokeUndoRedoOperation(e.Strokes, _strokeService)
+        Private Sub RemoveStrokesOperation(strokes As IEnumerable<InkStroke>)
+            Dim operation = New RemoveStrokeUndoRedoOperation(strokes, _strokeService)
             AddOperation(operation)
         End Sub
     End Class

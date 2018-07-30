@@ -88,17 +88,13 @@ namespace Param_ItemNamespace.Services.Ink
             AddUndoOperationEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        private void StrokeService_StrokesCollected(object sender, InkStrokesCollectedEventArgs e)
-        {
-            var operation = new AddStrokeUndoRedoOperation(e.Strokes, _strokeService);
-            AddOperation(operation);
-        }
+        private void StrokeService_StrokesCollected(object sender, InkStrokesCollectedEventArgs e) => AddStrokesOperation(e.Strokes);
 
-        private void StrokeService_StrokesErased(object sender, InkStrokesErasedEventArgs e)
-        {
-            var operation = new RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService);
-            AddOperation(operation);
-        }
+        private void StrokeService_StrokesErased(object sender, InkStrokesErasedEventArgs e) => RemoveStrokesOperation(e.Strokes);
+
+        private void StrokeService_CutStrokesEvent(object sender, CopyPasteStrokesEventArgs e) => RemoveStrokesOperation(e.Strokes);
+
+        private void StrokeService_PasteStrokesEvent(object sender, CopyPasteStrokesEventArgs e) => AddStrokesOperation(e.Strokes);
 
         private void StrokeService_MoveStrokesEvent(object sender, MoveStrokesEventArgs e)
         {
@@ -106,15 +102,15 @@ namespace Param_ItemNamespace.Services.Ink
             AddOperation(operation);
         }
 
-        private void StrokeService_CutStrokesEvent(object sender, CopyPasteStrokesEventArgs e)
+        private void AddStrokesOperation(IEnumerable<InkStroke> strokes)
         {
-            var operation = new RemoveStrokeUndoRedoOperation(e.Strokes, _strokeService);
+            var operation = new AddStrokeUndoRedoOperation(strokes, _strokeService);
             AddOperation(operation);
         }
 
-        private void StrokeService_PasteStrokesEvent(object sender, CopyPasteStrokesEventArgs e)
+        private void RemoveStrokesOperation(IEnumerable<InkStroke> strokes)
         {
-            var operation = new AddStrokeUndoRedoOperation(e.Strokes, _strokeService);
+            var operation = new RemoveStrokeUndoRedoOperation(strokes, _strokeService);
             AddOperation(operation);
         }
     }
