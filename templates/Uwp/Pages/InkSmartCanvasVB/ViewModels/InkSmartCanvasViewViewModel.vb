@@ -212,9 +212,9 @@ Namespace ViewModels
 
         Private Sub ConfigLassoSelection(enableLasso As Boolean)
             If enableLasso Then
-                _lassoSelectionService.StartLassoSelectionConfig()
+                _lassoSelectionService?.StartLassoSelectionConfig()
             Else
-                _lassoSelectionService.EndLassoSelectionConfig()
+                _lassoSelectionService?.EndLassoSelectionConfig()
             End If
         End Sub
 

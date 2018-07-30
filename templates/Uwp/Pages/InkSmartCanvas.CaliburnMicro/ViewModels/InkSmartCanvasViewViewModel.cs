@@ -160,11 +160,11 @@ namespace Param_ItemNamespace.ViewModels
         {
             if (enableLasso)
             {
-                _lassoSelectionService.StartLassoSelectionConfig();
+                _lassoSelectionService?.StartLassoSelectionConfig();
             }
             else
             {
-                _lassoSelectionService.EndLassoSelectionConfig();
+                _lassoSelectionService?.EndLassoSelectionConfig();
             }
         }
 
