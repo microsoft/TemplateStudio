@@ -18,7 +18,6 @@ Here is an overview of what is implemented where:
 |Export as image|x| |x|	
 |Zoom|x ||x|	
 |Transform text/shape||x|
-|||||
 
 
 ## More info:
