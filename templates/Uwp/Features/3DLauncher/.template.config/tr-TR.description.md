@@ -1,3 +1,3 @@
-﻿Uygulama karışık gerçeklik ortamında kullanıldığında 3D uygulama başlatıcısı içerir.
+﻿Uygulamanın bir Karma Gerçeklik ortamında kullanıldığı durum için bir 3B uygulama başlatıcısı ekleyin.
 
-Oluşturulan varlığın uygulamanız için uygun biri ile değiştirilmesi gerekir. Daha fazla ayrıntı için [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
+Oluşturulan varlık, uygulamanıza uygun bir varlıkla değiştirilmelidir. Daha ayrıntılı bilgi için bkz. [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).

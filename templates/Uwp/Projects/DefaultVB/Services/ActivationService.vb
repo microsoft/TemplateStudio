@@ -1,4 +1,5 @@
-﻿Imports Windows.UI.Core
+﻿Imports Windows.System
+Imports Windows.UI.Core
 
 Imports wts.DefaultProject.Activation
 
@@ -9,10 +10,16 @@ Namespace Services
         Private ReadOnly _shell As Lazy(Of UIElement)
         Private ReadOnly _defaultNavItem As Type
 
+        Public Shared AltLeftKeyboardAccelerator As KeyboardAccelerator
+
+        Public Shared BackKeyboardAccelerator As KeyboardAccelerator
+
         Public Sub New(app As App, defaultNavItem As Type, Optional shell As Lazy(Of UIElement) = Nothing)
             _app = app
             _shell = shell
             _defaultNavItem = defaultNavItem
+            AltLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu)
+            BackKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack)
         End Sub
 
         Public Async Function ActivateAsync(activationArgs As Object) As Task
@@ -76,11 +83,28 @@ Namespace Services
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = If((NavigationService.CanGoBack), AppViewBackButtonVisibility.Visible, AppViewBackButtonVisibility.Collapsed)
         End Sub
 
-        Private Sub ActivationService_BackRequested(sender As Object, e As BackRequestedEventArgs)
-            If NavigationService.CanGoBack Then
-                NavigationService.GoBack()
-                e.Handled = True
+        Private Function BuildKeyboardAccelerator(key As VirtualKey, Optional modifiers As VirtualKeyModifiers? = Nothing) As KeyboardAccelerator
+            Dim KeyboardAccelerator = New KeyboardAccelerator() With {
+                .Key = key
+            }
+            If modifiers.HasValue Then
+                KeyboardAccelerator.Modifiers = modifiers
             End If
+
+            ToolTipService.SetToolTip(KeyboardAccelerator, String.Empty)
+
+            AddHandler KeyboardAccelerator.Invoked, AddressOf OnKeyboardAcceleratorInvoked
+            Return KeyboardAccelerator
+        End Function
+
+        Private Sub OnKeyboardAcceleratorInvoked(sender As KeyboardAccelerator, args As KeyboardAcceleratorInvokedEventArgs)
+            Dim result = NavigationService.GoBack()
+            args.Handled = result
+        End Sub
+
+        Private Sub ActivationService_BackRequested(sender As Object, e As BackRequestedEventArgs)
+            Dim result = NavigationService.GoBack()
+            e.Handled = result
         End Sub
     End Class
 End Namespace

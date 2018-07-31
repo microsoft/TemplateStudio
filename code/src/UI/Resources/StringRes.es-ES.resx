@@ -298,8 +298,8 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>No se puede quitar **{0}** porque estas plantillas dependen de ella: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+    <value>No puede eliminar **{0}** porque estas plantillas dependen de él: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>Error al actualizar plantillas. Para obtener más información, consulte la ventana de resultados.</value>
@@ -486,7 +486,7 @@
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>No se pueden agregar elementos del proyecto. </value>
+    <value>No se pueden agregar elementos del proyecto.</value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
@@ -692,7 +692,15 @@
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Unable to set default solution configuration</value>
+    <value>No se puede establecer una configuración de soluciones predeterminada</value>
     <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>El nombre no puede terminar en "Página" puesto que esto se agregará automáticamente. [Más información sobre la nomenclatura.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Ten en cuenta que "Página" se agregará al final del nombre especificado. [Más información sobre la nomenclatura.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
   </data>
 </root>

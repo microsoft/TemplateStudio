@@ -7,7 +7,7 @@
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:Param_ItemNamespace.Models"
-    KeyDown="OnKeyDown"
+    KeyDown="OnPageKeyDown"
     mc:Ignorable="d">
 
     <Page.Resources>

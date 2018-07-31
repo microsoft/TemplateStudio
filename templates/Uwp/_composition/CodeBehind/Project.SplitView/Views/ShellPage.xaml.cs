@@ -12,6 +12,7 @@ using wts.ItemName.Helpers;
 
 namespace wts.ItemName.Views
 {
+    // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {
         private NavigationViewItem _selected;
@@ -34,6 +35,8 @@ namespace wts.ItemName.Views
         {
             NavigationService.Frame = shellFrame;
             NavigationService.Navigated += Frame_Navigated;
+            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator);
+            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)

@@ -56,7 +56,8 @@ namespace wts.ItemName.ViewModels
 
         private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
         {
-            var sourcePageKey = sourcePageType.ToString().Split('.').Last().Replace("Page", string.Empty);
+            var sourcePageKey = sourcePageType.Name;
+            sourcePageKey = sourcePageKey.Substring(0, sourcePageKey.Length - 4);
             var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
             return pageKey == sourcePageKey;
         }

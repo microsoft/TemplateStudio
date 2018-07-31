@@ -3,6 +3,7 @@ Imports wts.ItemName.ViewModels
 Imports Windows.Foundation.Metadata
 
 Namespace Views
+    ' TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     Public NotInheritable Partial Class ShellPage
         Inherits Page
 
@@ -17,6 +18,8 @@ Namespace Views
             HideNavViewBackButton()
             DataContext = ViewModel
             ViewModel.Initialize(shellFrame, navigationView)
+            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator)
+            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator)
         End Sub
 
         Private Sub HideNavViewBackButton()

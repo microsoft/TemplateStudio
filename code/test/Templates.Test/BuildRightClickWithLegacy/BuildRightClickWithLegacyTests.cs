@@ -41,9 +41,7 @@ namespace Microsoft.Templates.Test
                    && !t.GetIsHidden()
                    && t.GetLanguage() == language;
 
-            // var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, string.Empty, language, null, false);
-            // Temp workaround to be able to generate project from template without platform
-            var projectPath = await AssertGenerateProjectWithOutPlatformAsync(selector, projectName, projectType, framework, language, null, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, Platforms.Uwp, language, null, null, false);
 
             var fixture = _fixture as BuildRightClickWithLegacyFixture;
             fixture.ChangeTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
@@ -92,7 +90,7 @@ namespace Microsoft.Templates.Test
             DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
             DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
 
-            var userSelection = _fixture.SetupProject(projectType, framework, string.Empty, language, getName);
+            var userSelection = _fixture.SetupProject(projectType, framework, string.Empty, language);
 
             if (getName != null)
             {

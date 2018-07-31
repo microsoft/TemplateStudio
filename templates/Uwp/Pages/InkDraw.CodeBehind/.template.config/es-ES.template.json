@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw",
+  "description": "Una página que te permite crear notas y hacer dibujos usando Windows Ink.",
+  "identity": "wts.Page.InkDraw.CodeBehind"
+}

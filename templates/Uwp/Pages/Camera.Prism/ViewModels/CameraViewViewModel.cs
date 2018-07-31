@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
-using Prism.Commands;
-using Param_ItemNamespace.Helpers;
 using Windows.UI.Xaml.Media.Imaging;
+using Prism.Commands;
+using Prism.Windows.Navigation;
+using Param_ItemNamespace.Controls;
 using Param_ItemNamespace.EventHandlers;
 
 namespace Param_ItemNamespace.ViewModels
@@ -11,6 +13,7 @@ namespace Param_ItemNamespace.ViewModels
     {
         private ICommand _photoTakenCommand;
         private BitmapImage _photo;
+        private CameraControl _cameraControl;
 
         public BitmapImage Photo
         {
@@ -26,6 +29,23 @@ namespace Param_ItemNamespace.ViewModels
             {
                 Photo = new BitmapImage(new Uri(args.Photo));
             }
+        }
+
+        public void Initialize(CameraControl cameraControl)
+        {
+            _cameraControl = cameraControl;
+        }
+
+        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        {
+            base.OnNavigatedTo(e, viewModelState);
+            await _cameraControl.InitializeCameraAsync();
+        }
+
+        public override async void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        {
+            base.OnNavigatingFrom(e, viewModelState, suspending);
+            await _cameraControl.CleanupCameraAsync();
         }
     }
 }

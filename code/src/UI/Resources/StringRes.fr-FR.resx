@@ -294,12 +294,12 @@
     <comment>New project: Navigation step two</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
-    <value>Nouvelle application Universal Windows Platform</value>
+    <value>Nouvelle application Plateforme Windows universelle</value>
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>Vous ne pouvez pas supprimer **{0}** car ces modèles en dépendent: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+    <value>Vous ne pouvez pas supprimer **{0}** parce que ces modèles en dépendent : {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>Une erreur est survenue lors de la réactualisation des modèles. Voir la fenêtre pour en savoir plus.</value>
@@ -486,7 +486,7 @@
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Impossible d'ajouter des éléments. </value>
+    <value>Impossible d'ajouter des éléments.</value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
@@ -692,7 +692,15 @@
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Unable to set default solution configuration</value>
+    <value>Impossible de définir la configuration de la solution par défaut</value>
     <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Le nom ne peut pas se terminer par « Page », car ce suffixe sera ajouté automatiquement. [En savoir plus sur l'affectation de noms.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Remarque : le suffixe « Page » sera ajouté à la fin du nom spécifié. [En savoir plus sur l'affectation de noms.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
   </data>
 </root>

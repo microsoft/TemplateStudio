@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw Picture",
+  "description": "Страница, на которой можно загрузить рисунок и нарисовать что-то поверх него с помощью Windows Ink.",
+  "identity": "wts.Page.InkDrawPicture.Prism"
+}

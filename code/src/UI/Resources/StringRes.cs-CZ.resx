@@ -294,12 +294,12 @@
     <comment>New project: Navigation step two</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
-    <value>Nová aplikace UWP</value>
+    <value>Nová aplikace UPW</value>
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>Nelze odebrat **{0}**, protože na něm závisí tyto šablony: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+    <value>Šablonu **{0}** nelze odebrat, protože na ní závisejí tyto šablony: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>Při aktualizaci šablon došlo k chybě. Podrobnější informace najdete v okně výstupu.</value>
@@ -692,7 +692,15 @@
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Unable to set default solution configuration</value>
+    <value>Nelze nastavit výchozí konfiguraci řešení.</value>
     <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Název nemůže končit řetězcem Page. Ten bude přidán automaticky. [Další informace o názvech]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Na konec zadaného názvu bude přidán řetězec Page. [Další informace o názvech]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
   </data>
 </root>

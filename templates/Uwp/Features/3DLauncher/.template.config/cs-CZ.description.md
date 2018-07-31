@@ -1,3 +1,3 @@
-﻿Zahrňte spouštěč 3D aplikací, když se aplikace používá v prostředí smíšené reality.
+﻿Pro případy, kdy se aplikace používá v prostředí hybridní reality, zahrňte 3D spouštěč aplikace.
 
-Generovaný datový zdroj by měl být nahrazen jedním vhodným pro vaši aplikaci. Další podrobnosti viz [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).
+Vygenerovaný prostředek je potřeba nahradit prostředkem, který je vhodný pro vaši aplikaci. Další informace najdete na webu [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/mixed-reality/3d-app-launcher-design-guidance).

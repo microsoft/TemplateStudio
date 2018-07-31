@@ -75,7 +75,7 @@ namespace Param_ItemNamespace.ViewModels
             ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image);
         }
 
-        public void OnKeyDown(KeyRoutedEventArgs e)
+        public void OnPageKeyDown(KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Escape && _navigationService.CanGoBack)
             {

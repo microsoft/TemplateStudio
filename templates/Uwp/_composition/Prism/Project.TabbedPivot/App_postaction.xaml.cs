@@ -7,9 +7,9 @@ using System.Globalization;
     {
 //^^
 //{[{
-        protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
+        protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            return LaunchApplicationAsync(PageTokens.PivotPage, null);
+            await LaunchApplicationAsync(PageTokens.PivotPage, null);
         }
 
         private async Task LaunchApplicationAsync(string page, object launchParam)
@@ -19,9 +19,9 @@ using System.Globalization;
             await Task.CompletedTask;
         }
 
-        protected override Task OnActivateApplicationAsync(IActivatedEventArgs args)
+        protected override async Task OnActivateApplicationAsync(IActivatedEventArgs args)
         {
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 //}]}
 

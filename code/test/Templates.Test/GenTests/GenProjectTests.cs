@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}";
 
-            string projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, false);
+            string projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, null, false);
 
             // Remove configuration from the manifest
             RemoveProjectConfigInfoFromProject();
@@ -117,9 +117,15 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && !t.GetIsHidden();
+
             var projectName = $"{projectType}{framework}All";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName);
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
         }
 
         [Theory]
@@ -135,9 +141,15 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && !t.GetIsHidden();
+
             var projectName = $"{projectType}{framework}AllRandom";
 
-            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetRandomName);
+            await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName);
         }
 
         [Theory]
@@ -181,7 +193,7 @@ namespace Microsoft.Templates.Test
         [Theory]
         [MemberData("GetPageAndFeatureTemplatesForGeneration", "Prism")]
         [Trait("Type", "GenerationOneByOnePrism")]
-        public async Task GenPrismOneByOneItemsAsync(string itemName, string projectType, string framework, string itemId, string platform, string language)
+        public async Task GenPrismOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
             await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language);
         }

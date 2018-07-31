@@ -84,10 +84,6 @@ The following list shows which tests are executed in which build. Within the Tem
     * ExecutionSet=BuildMinimum
     * ExecutionSet=BuildStyleCop
     * ExecutionSet=TemplateValidation
-		
-* VSO 'Templates.Test.Gen' Build (Gen Tests):	
-  * Templates.Test 
-    * ExecutionSet=Generation
 
 * VSO 'Templates.Test.Full'	Build (Full Tests):
   * Core.Tests	
@@ -99,6 +95,7 @@ The following list shows which tests are executed in which build. Within the Tem
     * ExecutionSet=BuildCaliburnMicro
     * ExecutionSet=BuildPrism
     * ExecutionSet=BuildStyleCop
+    * ExecutionSet=BuildVBStyle
     * ExecutionSet=TemplateValidation
     * ExecutionSet=BuildRightClickWithLegacy
 

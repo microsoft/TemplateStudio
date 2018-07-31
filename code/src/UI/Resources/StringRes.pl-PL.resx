@@ -298,8 +298,8 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>Nie można usunąć **{0}**, ponieważ te szablony zależą od niego: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+    <value>Nie możesz usunąć **{0}**, ponieważ te szablony zależą od tego elementu. {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>Wystąpił błąd podczas odświeżania szablonów. Zobacz okno wyniku, aby wyświetlić szczegóły.</value>
@@ -482,15 +482,15 @@
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
   <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Wyjątkowa telemetria śledzenia w trakcie generacji.</value>
+    <value>Podczas generowania wystąpił wyjątek dotyczący śledzenia danych telemetrycznych.</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Nie można dodać elementów projektu. </value>
+    <value>Nie można dodać elementów projektu.</value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Nie można dodać projektu do rozwiązania. Upewnij się, że masz zainstalowany oczekiwany zestaw SDK.</value>
+    <value>Nie można dodać projektu do rozwiązania. Upewnij się, że jest zainstalowany oczekiwany zestaw SDK.</value>
     <comment>Error message for unable add project to solution</comment>
   </data>
   <data name="ErrorUnableToRefreshProject" xml:space="preserve">
@@ -692,7 +692,15 @@
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Unable to set default solution configuration</value>
+    <value>Nie można ustawić domyślnej konfiguracji rozwiązania</value>
     <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Nazwa nie może kończyć się słowem „Strona”, ponieważ zostanie ono dodane automatycznie. [Więcej informacji o nazewnictwie.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Zauważ, że słowo „Strona” zostanie dodane na końcu określonej nazwy. [Więcej informacji o nazewnictwie.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
   </data>
 </root>

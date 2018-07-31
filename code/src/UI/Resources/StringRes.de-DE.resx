@@ -294,12 +294,12 @@
     <comment>New project: Navigation step two</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
-    <value>Neue Universal Windows Platform-App</value>
+    <value>Neue UWP-App (Universelle Windows-Plattform)</value>
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>Sie können **{0}** nicht entfernen, da diese Vorlagen davon abhängen: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+    <value>Sie können **{0}** nicht entfernen, da diese Vorlagen davon abhängig sind: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>Fehler beim Aktualisieren von Vorlagen. Weitere Details finden Sie im Ausgabefenster.</value>
@@ -486,11 +486,11 @@
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Es können keine Projektobjekte hinzugefügt werden. </value>
+    <value>Es können keine Projektobjekte hinzugefügt werden.</value>
     <comment>Error message for unable add items to project</comment>
   </data>
   <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Das Projekt kann der Lösung nicht hinzugefügt werden. Stellen Sie sicher, dass Sie den erwarteten SDK installiert haben.</value>
+    <value>Das Projekt kann der Lösung nicht hinzugefügt werden. Stellen Sie sicher, dass Sie das erwartete SDK installiert haben.</value>
     <comment>Error message for unable add project to solution</comment>
   </data>
   <data name="ErrorUnableToRefreshProject" xml:space="preserve">
@@ -692,7 +692,15 @@
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Unable to set default solution configuration</value>
+    <value>Die Standardlösungskonfiguration kann nicht festgelegt werden.</value>
     <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Der Name darf nicht auf "Page" enden, da dieses Element automatisch hinzugefügt wird. [Weitere Informationen zur Benennung.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Beachten Sie, dass "Page" am Ende des angegebenen Namens hinzugefügt wird. [Weitere Informationen zur Benennung.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
   </data>
 </root>

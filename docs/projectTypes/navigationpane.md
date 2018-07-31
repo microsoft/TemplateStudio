@@ -10,6 +10,7 @@ This document covers:
 * [Modifying the menu items](#menu)
 * [Using the navigation pane with command bars](#commandbar)
 * [Invoke code on NavigationView](#invokecode)
+* [Change the text for Settings](#SettingsLabel)
 
 To update to navigation view read the following [document](./updatetonavigationview.md).
 
@@ -233,3 +234,32 @@ Add a command to run the code in `ShellViewModel.cs` (MVVMBasic or MVVMLight) or
         // TODO: Run command code
     }
 ```
+
+<a name="SettingsLabel"></a>
+
+## Change the text for Settings
+
+The text label for the Settings page is supplied by the OS. This includes any translations, but it is possible to call this page something else.
+
+Add a new resource with the name `Shell_SettingsItem`. (You can call it anything but it must match what's in the code below and it _must not_ contain a period (.).)
+
+In `Shell.xaml.cs`modify the constructor so it matches this (add the loaded event handler)
+
+```cs
+public ShellPage()
+{
+    InitializeComponent();
+    HideNavViewBackButton();
+    DataContext = this;
+    Initialize();
+
+    this.navigationView.Loaded += (sender, e) =>
+    {
+        (this.navigationView.SettingsItem as NavigationViewItem).Content = "Shell_SettingsItem".GetLocalized();
+    };
+}
+```
+
+The above will result in the text you specify being used in the app, like the one below.
+
+![Example of different Settings page label](https://user-images.githubusercontent.com/189547/41985539-7f955a4c-7a2b-11e8-92a5-5d8ab844df00.png)

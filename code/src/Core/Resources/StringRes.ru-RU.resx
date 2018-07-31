@@ -445,6 +445,6 @@
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
-    <value>Ошибка при загрузке исходного конфигурационного файла.</value>
+    <value>Произошла ошибка при скачивании исходного файла конфигурации.</value>
   </data>
 </root>

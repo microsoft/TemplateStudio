@@ -24,7 +24,7 @@ namespace Param_RootNamespace
             InitializeComponent();
         }
 
-        protected override Task OnActivateApplicationAsync(IActivatedEventArgs args)
+        protected override async Task OnActivateApplicationAsync(IActivatedEventArgs args)
         {
 //^^
 //{[{
@@ -47,7 +47,7 @@ namespace Param_RootNamespace
             }
 //}]}
 
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
     }
 }

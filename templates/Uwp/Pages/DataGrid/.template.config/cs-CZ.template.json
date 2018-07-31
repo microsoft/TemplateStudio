@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft Community",
   "name": "DataGrid",
-  "description": "A page displaying a simple data grid.",
+  "description": "Stránka zobrazující jednoduchou datovou mřížku",
   "identity": "wts.Page.DataGrid"
 }

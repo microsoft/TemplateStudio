@@ -8,6 +8,7 @@ using wts.ItemName.ViewModels;
 
 namespace wts.ItemName.Views
 {
+    // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     public sealed partial class ShellPage : IShellView
     {
         private ShellViewModel ViewModel => DataContext as ShellViewModel;
@@ -16,6 +17,8 @@ namespace wts.ItemName.Views
         {
             InitializeComponent();
             HideNavViewBackButton();
+            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator);
+            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
         }
 
         public INavigationService CreateNavigationService(WinRTContainer container)
