@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == TabbedPivot & $framework == CodeBehind|MVVMBasic|MVVMLight & wts.type == page & identity == wts.Page.Camera|wts.Page.Camera.CodeBehind|wts.Page.MediaPlayer|wts.Page.MediaPlayer.CodeBehind|wts.Page.InkSmartCanvas"
+    "wts.compositionFilter": "$projectType == TabbedPivot & $framework == CodeBehind|MVVMBasic|MVVMLight & wts.type == page & identity == wts.Page.Camera|wts.Page.Camera.CodeBehind|wts.Page.MediaPlayer|wts.Page.MediaPlayer.CodeBehind"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
