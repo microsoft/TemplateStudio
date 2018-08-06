@@ -13,6 +13,7 @@
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "10",
+    "wts.dependencies":"wts.Feat.SettingsStorage.VB",
     "wts.group": "UserInteraction",
     "wts.defaultInstance": "ThemeSelection",
     "wts.multipleInstance": "false",
