@@ -205,6 +205,7 @@
     <Compile Include="Locations\TemplatesSource.cs" />
     <Compile Include="MetadataType.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
+    <Compile Include="Naming\PageNameValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeMode.cs" />

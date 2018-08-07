@@ -20,7 +20,11 @@ namespace Microsoft.Templates.UI.Services
 
         public static ValidationResult ValidateTemplateName(string templateName, bool includesDefaultNamesValidation, bool includesExistingNamesValidation)
         {
-            var validators = new List<Validator>() { new ReservedNamesValidator() };
+            var validators = new List<Validator>()
+            {
+                new ReservedNamesValidator(),
+                new PageNameValidator()
+            };
 
             if (includesExistingNamesValidation)
             {

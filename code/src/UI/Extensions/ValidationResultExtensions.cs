@@ -23,6 +23,10 @@ namespace Microsoft.Templates.UI.Extensions
                     return Notification.Error(StringRes.NotificationValidationError_BadFormat, ErrorCategory.NamingValidation, CategoriesToOverride);
                 case ValidationErrorType.ReservedName:
                     return Notification.Error(StringRes.NotificationValidationError_ReservedName, ErrorCategory.NamingValidation, CategoriesToOverride);
+                case ValidationErrorType.EndsWithPageSufix:
+                    return Notification.Error(string.Format(StringRes.NotificationValidationError_PageSuffix, Configuration.Current.GitHubDocsUrl), ErrorCategory.NamingValidation, CategoriesToOverride);
+                case ValidationErrorType.EndsWithViewSufix:
+                    return Notification.Error(string.Format(StringRes.NotificationValidationWarning_ViewSuffix, Configuration.Current.GitHubDocsUrl), ErrorCategory.NamingValidation, CategoriesToOverride);
                 default:
                     return null;
             }
