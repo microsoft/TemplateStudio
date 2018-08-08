@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Core
         AlreadyExists,
         BadFormat,
         ReservedName,
-        EndsWithPageSufix,
-        EndsWithViewSufix
+        EndsWithPageSuffix,
+        EndsWithViewSuffix
     }
 }
