@@ -1,24 +1,41 @@
-# Page Naming
-When you add a new page in Windows Template Studio wizard Visual Studio generates some files in your project depending on the selected project type and framework.
-This is the files generation result for **Blank Page template** named as **Main**:
+# Windows Template Studio Naming
 
-**CodeBehind framework**
-| File name | Status |
-|:-------------|:------------|:------------|
-| MainPage.xaml | New |
-| MainPage.xaml.cs | New |
-| Resources.resw | Modified |
-| App.xaml | Modified |
-| Styles/Page.xaml | Modified |
+## Page suffixes
+For **Page** generation the suffixes 'Page' and 'ViewModel' will be added by WTS to Page and ViewModel files.
 
-**MVVMBasic, MVVMLight, CaliburnMicro and Prism frameworks**
-| File name | Status |
-|:-------------|:------------|
-| MainPage.xaml | New |
-| MainPage.xaml.cs | New |
-| MainPage.xaml.cs | New |
-| Resources.resw | Modified |
-| App.xaml | Modified |
-| Styles/Page.xaml | Modified |
+**Example**
 
-The sufix Page will be added to the page files by WTS wizard. Template name should not have sufix like page or view.
+A page named **Main** in the wizard will result in the generation of the following files:
+ - MainPage.xaml
+ - MainPage.xaml.cs
+ - MainViewModel.cs (Not generated in CodeBehind design pattern).
+
+**When choosing the name for a Page in the wizard you should not use suffixes like 'Page' or 'View'**
+
+## Reserved names
+WTS has some reserved names. You can't use those names for naming pages and features:
+ - Page
+ - BackgroundTask
+ - Pivot
+ - Shell
+ - SharedDataWebLink
+ - SharedDataStorageItems
+ - Settings
+ - 3DLauncher
+ - DragAndDropFeature
+ - FeedbackHubFeature
+ - FirstRunPrompt
+ - HubNotifications
+ - LiveTile
+ - MultiView
+ - SampleDataService
+ - SettingsStorage
+ - ShareSource
+ - ShareTarget
+ - StoreNotifications
+ - SuspendAndResume
+ - ThemeSelection
+ - UriScheme
+ - VSAppCenter
+ - WebToAppLink
+ - WhatsNewPrompt
