@@ -10,7 +10,7 @@ namespace Param_RootNamespace
         private async Task LaunchApplicationAsync(string page, object launchParam)
         {
 //{[{
-            Services.ThemeSelectorService.SetRequestedTheme();
+            await ThemeSelectorService.SetRequestedThemeAsync();
 //}]}
         }
 

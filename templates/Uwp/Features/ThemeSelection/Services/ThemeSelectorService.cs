@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using Windows.ApplicationModel.Core;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 
 using Param_RootNamespace.Helpers;
@@ -23,15 +25,21 @@ namespace Param_RootNamespace.Services
         {
             Theme = theme;
 
-            SetRequestedTheme();
+            await SetRequestedThemeAsync();
             await SaveThemeInSettingsAsync(Theme);
         }
 
-        public static void SetRequestedTheme()
+        public static async Task SetRequestedThemeAsync()
         {
-            if (Window.Current.Content is FrameworkElement frameworkElement)
+            foreach (var view in CoreApplication.Views)
             {
-                frameworkElement.RequestedTheme = Theme;
+                await view.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    if (Window.Current.Content is FrameworkElement frameworkElement)
+                    {
+                        frameworkElement.RequestedTheme = Theme;
+                    }
+                });
             }
         }
 
