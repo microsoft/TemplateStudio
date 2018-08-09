@@ -20,92 +20,43 @@ namespace Microsoft.Templates.Test
     [Collection("StyleCopCollection")]
     [Trait("ExecutionSet", "Minimum")]
     [Trait("ExecutionSet", "BuildStyleCop")]
-    public class StyleCopProjectGenerationTests : BaseTestContextProvider
+    public class StyleCopProjectGenerationTests : BaseGenAndBuildTests
     {
-        private readonly StyleCopGenerationTestsFixture _fixture;
-
         public StyleCopProjectGenerationTests(StyleCopGenerationTestsFixture fixture)
         {
             _fixture = fixture;
-        }
-
-        private async Task SetUpFixtureForTestingAsync()
-        {
-            await _fixture.InitializeFixtureAsync(this);
+            _fixture.InitializeFixture(this);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForStyleCopAsync")]
+        [MemberData("GetProjectTemplatesForStyleCop")]
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework, string platform)
         {
-            await SetUpFixtureForTestingAsync();
+            Func<ITemplateInfo, bool> selector =
+                    t => t.GetTemplateType() == TemplateType.Project
+                    && t.GetLanguage() == ProgrammingLanguages.CSharp
+                    && t.GetPlatform() == platform
+                    && t.GetProjectTypeList().Contains(projectType)
+                    && t.GetFrameworkList().Contains(framework);
 
-            var targetProjectTemplate = StyleCopGenerationTestsFixture.Templates
-                .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
-                                     && t.GetLanguage() == ProgrammingLanguages.CSharp
-                                     && t.GetPlatform() == platform
-                                     && t.GetProjectTypeList().Contains(projectType)
-                                     && t.GetFrameworkList().Contains(framework));
+            Func<ITemplateInfo, bool> templateSelector =
+                t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                        && t.GetFrameworkList().Contains(framework)
+                        && t.GetPlatform() == platform
+                        && !t.GetIsHidden())
+                     || (t.Name == "Feature.Testing.StyleCop");
 
             var projectName = $"{projectType}{framework}AllStyleCop";
 
-            ProjectName = projectName;
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-            OutputPath = DestinationPath;
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, ProgrammingLanguages.CSharp, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
-            var userSelection = new UserSelection(projectType, framework, platform, ProgrammingLanguages.CSharp)
-            {
-                HomeName = "Main"
-            };
-
-            AddLayoutItems(userSelection);
-            _fixture.AddItems(userSelection, GetTemplates(framework, platform, TemplateType.Page), _fixture.GetDefaultName);
-            _fixture.AddItems(userSelection, GetTemplates(framework, platform, TemplateType.Feature), _fixture.GetDefaultName);
-
-            var x = StyleCopGenerationTestsFixture.Templates.First(t => t.Name == "Feature.Testing.StyleCop");
-
-            _fixture.AddItem(userSelection, "StyleCopTesting", x);
-
-            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
-
-            // Build solution
-            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-            var result = _fixture.BuildSolution(projectName, outputPath);
-
-            // Assert
-            Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
-
-            // Clean
-            Fs.SafeDeleteDirectory(outputPath);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForStyleCopAsync()
+        public static IEnumerable<object[]> GetProjectTemplatesForStyleCop()
         {
-            JoinableTaskContext context = new JoinableTaskContext();
-            JoinableTaskCollection tasks = context.CreateCollection();
-            context.CreateFactory(tasks);
-            var result = context.Factory.Run(() => StyleCopGenerationTestsFixture.GetProjectTemplatesForStyleCopAsync());
-            return result;
-        }
-
-        private IEnumerable<ITemplateInfo> GetTemplates(string framework, string platform, TemplateType templateType)
-        {
-            return StyleCopGenerationTestsFixture.Templates
-                                         .Where(t => t.GetFrameworkList().Contains(framework)
-                                                  && t.GetPlatform() == platform
-                                                  && t.GetTemplateType() == templateType);
-        }
-
-        private void AddLayoutItems(UserSelection userSelection)
-        {
-            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
-
-            foreach (var item in layouts)
-            {
-                _fixture.AddItem(userSelection, item.Layout.Name, item.Template);
-            }
+            return StyleCopGenerationTestsFixture.GetProjectTemplatesForStyleCop();
         }
     }
 }

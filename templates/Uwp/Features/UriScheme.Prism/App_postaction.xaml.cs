@@ -15,7 +15,7 @@ namespace Param_RootNamespace
             InitializeComponent();
         }
 
-        protected override Task OnActivateApplicationAsync(IActivatedEventArgs args)
+        protected override async Task OnActivateApplicationAsync(IActivatedEventArgs args)
         {
 //{[{
             if (args.Kind == ActivationKind.Protocol && ((ProtocolActivatedEventArgs)args)?.Uri == null && args.PreviousExecutionState != ApplicationExecutionState.Running)
@@ -42,17 +42,17 @@ namespace Param_RootNamespace
                     }
 
                     // It's also possible to have logic here to navigate to different pages. e.g. if you have logic based on the URI used to launch
-                    return LaunchApplicationAsync(PageTokens.UriSchemeExamplePage, secret);
+                    await LaunchApplicationAsync(PageTokens.UriSchemeExamplePage, secret);
                 }
                 else
                 {
                     // If the app isn't running and not navigating to a specific page based on the URI, navigate to the home page
-                    OnLaunchApplicationAsync(args as LaunchActivatedEventArgs);
+                    await OnLaunchApplicationAsync(args as LaunchActivatedEventArgs);
                 }
             }
 //}]}
 
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
     }
 }

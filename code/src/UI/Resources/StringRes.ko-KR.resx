@@ -695,4 +695,12 @@
     <value>기본 솔루션 구성을 설정할 수 없습니다.</value>
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>이름이 자동으로 추가되므로 '페이지'로 끝날 수 없습니다. [이름 지정에 대한 자세한 정보.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>'페이지'가 지정된 이름의 끝에 추가됩니다. [이름 지정에 대한 자세한 정보.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
 </root>

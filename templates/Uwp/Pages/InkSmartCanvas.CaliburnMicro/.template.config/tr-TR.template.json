@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Smart Canvas",
+  "description": "Windows Ink ile şekil ve metin tanıma kullanarak notlar oluşturabileceğiniz bir sayfadır.",
+  "identity": "wts.Page.InkSmartCanvas.CaliburnMicro"
+}

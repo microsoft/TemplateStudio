@@ -41,9 +41,15 @@ namespace Microsoft.Templates.Test
                      && !t.GetIsHidden()
                      && t.GetLanguage() == language;
 
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && !t.GetIsHidden();
+
             var projectName = $"{projectType}{framework}Wack{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, GenerationFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, GenerationFixture.GetDefaultName, false);
 
             // Replace the default assets in the generated project or they will cause WACK to fail
             foreach (var assetFile in new DirectoryInfo("./TestData/NonDefaultAssets").GetFiles("*.png"))

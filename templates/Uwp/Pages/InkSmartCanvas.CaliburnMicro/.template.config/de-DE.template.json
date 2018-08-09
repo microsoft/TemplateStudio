@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Smart Canvas",
+  "description": "Eine Seite, auf der Sie in Windows Ink Notizen mithilfe der Formen- und Texterkennung erstellen können.",
+  "identity": "wts.Page.InkSmartCanvas.CaliburnMicro"
+}

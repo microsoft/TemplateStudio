@@ -695,4 +695,12 @@
     <value>無法設定預設解決方案組態</value>
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>名稱結尾不可以是「Page」，因為這會自動新增。[有關命名的更多資訊。]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>請注意，「Page」將會自動加入到指定名稱的結尾。[有關命名的更多資訊。]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
 </root>

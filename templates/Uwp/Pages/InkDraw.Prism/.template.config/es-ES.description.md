@@ -1,0 +1,3 @@
+﻿Esta página contiene un lienzo de entrada de lápiz y una barra de herramientas de entrada de lápiz que te permite dibujar usando Windows Ink. Puedes seleccionar partes del dibujo, mover la selección, copiarla, cortarla y pegarla. Puedes abrir y guardar los dibujos como GIF y exportarlos como archivos PNG. Esta página también admite deshacer y rehacer todas las acciones.
+ 
+Para obtener más información acerca de la plataforma Windows Ink, dirígete a [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)

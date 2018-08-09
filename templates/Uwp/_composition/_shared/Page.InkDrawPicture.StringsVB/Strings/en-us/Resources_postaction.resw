@@ -1,0 +1,109 @@
+﻿<!--{**-->
+<!--This xml blocks include string resources for the wts.ItemNamePage to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="wts.ItemName_TouchInkingButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Touch inking</value>
+    <comment>Touch inking button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_TouchInkingButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Touch inking</value>
+    <comment>Touch inking button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_MouseInkingButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Mouse inking</value>
+    <comment>Mouse inking button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_MouseInkingButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Mouse inking</value>
+    <comment>Mouse inking button automation name property for wts.ItemName</comment>
+  </data>
+<data name="wts.ItemName_ZoomInButton.Label" xml:space="preserve">
+    <value>Zoom in</value>
+    <comment>ZoomIn button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_ZoomInButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Zoom in</value>
+    <comment>ZoomIn button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ZoomInButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Zoom in</value>
+    <comment>ZoomIn button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ZoomOutButton.Label" xml:space="preserve">
+    <value>Zoom out</value>
+    <comment>ZoomOut button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_ZoomOutButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Zoom out</value>
+    <comment>ZoomOut button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ZoomOutButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Zoom out</value>
+    <comment>ZoomOut button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_OriginalSizeButton.Label" xml:space="preserve">
+    <value>Original size</value>
+    <comment>OriginalSize button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_OriginalSizeButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Original size</value>
+    <comment>OriginalSize button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_OriginalSizeButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Original size</value>
+    <comment>OriginalSize button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_FitToScreenButton.Label" xml:space="preserve">
+    <value>Fit to screen</value>
+    <comment>FitToScreen button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_FitToScreenButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Fit to screen</value>
+    <comment>FitToScreen button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_FitToScreenButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Fit to screen</value>
+    <comment>FitToScreen button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_OpenImageButton.Label" xml:space="preserve">
+    <value>Open image</value>
+    <comment>OpenImage button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_OpenImageButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Open image</value>
+    <comment>OpenImage button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_OpenImageButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Open image</value>
+    <comment>OpenImage button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_SaveImageButton.Label" xml:space="preserve">
+    <value>Save image</value>
+    <comment>SaveImage button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_SaveImageButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Save image</value>
+    <comment>SaveImage button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_SaveImageButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Save image</value>
+    <comment>SaveImage button automation name property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ClearAllButton.Label" xml:space="preserve">
+    <value>Clear all</value>
+    <comment>ClearAll button label property for wts.ItemName</comment>
+  </data>
+    <data name="wts.ItemName_ClearAllButton.[using:Windows.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Clear all</value>
+    <comment>ClearAll button tooltip property for wts.ItemName</comment>
+  </data>
+  <data name="wts.ItemName_ClearAllButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Clear all</value>
+    <comment>ClearAll button automation name property for wts.ItemName</comment>
+  </data>
+    <!--}]}-->
+</root>

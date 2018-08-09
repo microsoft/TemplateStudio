@@ -445,6 +445,6 @@
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
-    <value>원본 구성 파일 다운로드 중 오류가 발생 했습니다.</value>
+    <value>원본 구성 파일을 다운로드 하는 중에 오류가 발생했습니다.</value>
   </data>
 </root>

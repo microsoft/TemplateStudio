@@ -13,17 +13,17 @@
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
           <controls:CameraControl
-                x:Uid="CameraViewPage_CameraControl"
-                PhotoTaken="CameraControl_PhotoTaken" />
-
+            x:Name="cameraControl"
+            x:Uid="CameraViewPage_CameraControl"
+            PhotoTaken="CameraControl_PhotoTaken" />
           <Image
-              x:Name="Photo"
-              Height="70"
-              Width="70"
-              Margin="20"
-              Stretch="UniformToFill"
-              HorizontalAlignment="Right"
-              VerticalAlignment="Bottom"/>
+            x:Name="Photo"
+            Height="70"
+            Width="70"
+            Margin="20"
+            Stretch="UniformToFill"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom" />
         </Grid>
     </Grid>
 </Page>

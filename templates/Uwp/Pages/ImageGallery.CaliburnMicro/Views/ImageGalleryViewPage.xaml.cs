@@ -13,14 +13,5 @@ namespace Param_ItemNamespace.Views
         }
 
         public GridView GetGridView() => gridView;
-
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            if (e.NavigationMode == NavigationMode.Back)
-            {
-                await ViewModel.LoadAnimationAsync();
-            }
-        }
     }
 }
