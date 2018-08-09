@@ -18,7 +18,7 @@ Namespace Services
         Public Shared Async Function SetThemeAsync(theme As ElementTheme) As Task
             ThemeSelectorService.Theme = theme
 
-            SetRequestedTheme()
+            Await SetRequestedThemeAsync()
             Await SaveThemeInSettingsAsync(Theme)
         End Function
 
