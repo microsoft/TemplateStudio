@@ -16,7 +16,6 @@
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",
     "wts.group": "ApplicationLaunching",
-    "wts.licenses": "[AdaptiveCards](https://raw.githubusercontent.com/Microsoft/AdaptiveCards/master/LICENSE)",
     "wts.defaultInstance": "DeepLinking",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
