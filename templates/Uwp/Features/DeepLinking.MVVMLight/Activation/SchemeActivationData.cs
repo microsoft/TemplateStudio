@@ -41,8 +41,8 @@ namespace Param_ItemNamespace.Activation
 
         private Uri BuildUri()
         {
-            var pageKey = SchemeActivationConfig.GetViewModelKey(ViewModelName);
-            var uriBuilder = new UriBuilder($"{ProtocolName}:{pageKey}");
+            var viewModelKey = SchemeActivationConfig.GetViewModelKey(ViewModelName);
+            var uriBuilder = new UriBuilder($"{ProtocolName}:{viewModelKey}");
             var query = HttpUtility.ParseQueryString(string.Empty);
 
             foreach (var parameter in Parameters)
