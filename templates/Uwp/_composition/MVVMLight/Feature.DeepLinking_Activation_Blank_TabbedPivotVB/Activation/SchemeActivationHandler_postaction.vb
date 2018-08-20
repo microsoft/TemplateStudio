@@ -1,7 +1,8 @@
-﻿Namespace Activation
-    Friend Class SchemeActivationHandler
+﻿Namespace Activation    
+    Friend Class SchemeActivationHandler        
         Inherits ActivationHandler(Of ProtocolActivatedEventArgs)
         '{[{
+
         Private ReadOnly Property NavigationService As NavigationServiceEx
             Get
                 Return CommonServiceLocator.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()

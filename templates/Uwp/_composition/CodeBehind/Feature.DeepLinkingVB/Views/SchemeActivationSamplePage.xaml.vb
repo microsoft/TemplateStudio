@@ -15,7 +15,7 @@
             Initialize(parameters)
         End Sub
 
-        Private Sub Initialize(ByVal parameters As Dictionary(Of String, String))
+        Private Sub Initialize(parameters As Dictionary(Of String, String))
             Dim ticks As Long = Nothing
             For Each param In parameters
 

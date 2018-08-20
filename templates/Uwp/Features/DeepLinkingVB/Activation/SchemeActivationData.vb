@@ -2,10 +2,14 @@
 
 Namespace Activation
     Public Class SchemeActivationData
-        Private Const ProtocolName As String = "wtsvb1app"
+        Private Const ProtocolName As String = "wtsapp"
+
         Public Property PageType As Type
+
         Public Property Uri As Uri
+
         Public Property Parameters As Dictionary(Of String, String) = New Dictionary(Of String, String)()
+
         Public ReadOnly Property IsValid As Boolean
             Get
                 Return PageType IsNot Nothing
@@ -26,7 +30,7 @@ Namespace Activation
             Next
         End Sub
 
-        Public Sub New(ByVal pageType As Type, ByVal Optional parameters As Dictionary(Of String, String) = Nothing)
+        Public Sub New(pageType As Type, Optional parameters As Dictionary(Of String, String) = Nothing)
             Me.PageType = pageType
             Me.Parameters = parameters
             Me.Uri = BuildUri()
