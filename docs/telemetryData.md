@@ -54,7 +54,7 @@ As new features and pages roll out, percentages  will adjust.
 |Drag & Drop|3.3%|
 |Share Source|2.9%|
 |Web to app link|2.6%|
-|Uri Scheme|2.2%|
+|Deep Linking|2.2%|
 |Share Target|1.5%|
 |Azure Notifications|1.1%|
 |Dev Center Notifications|1.1%|

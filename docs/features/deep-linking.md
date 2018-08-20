@@ -1,6 +1,6 @@
-# URI Scheme Activation
+# Deep Linking Activation
 
-The custom URI scheme feature builds upon the [ActivationService](../activation.md).
+The custom Deep Linking feature builds upon the [ActivationService](../activation.md).
 
 ## Change the protocol from the default name
 
@@ -11,7 +11,7 @@ When the feature is added it sets the supported scheme (or protocol) to `wtsapp`
 - Choose the 'Protocol' declaration if not already selected.
 - Change the name as appropriate. (highlighted in image below)
 
-![](../resources/uri-scheme/change-protocol-name.png)
+![](../resources/deep-linking/change-protocol-name.png)
 
 The protocol name you specify MUST meet these rules:
 
@@ -24,7 +24,7 @@ The protocol name you specify MUST meet these rules:
 
 - In project properties, go to the **Debug** tab and check the option 'Do no launch, but debug my code when it starts'
 
-![](../resources/uri-scheme/debug-when-my-code-starts.png)
+![](../resources/deep-linking/debug-when-my-code-starts.png)
 
 - Press F5 to start debugging your app
 - Then, in Microsoft Edge, open a new tab and type in `wtsapp:sample?secret=mine` (or adjust depending on any changes you've made.) You could also launch it from another app using `LaunchUriAsync()` but for testing this is easier.

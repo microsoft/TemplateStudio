@@ -57,7 +57,7 @@ Windows Template Studio approaches UWP app creation using the following four att
 | VS App Center Analytics | Adding analytics from the [Visual Studio App Center](https://appcenter.ms/) will help you understand more about your app users and their behavior when using your app. |
 | | |
 | **Application Launching** | **Feature Description** |
-| Uri Scheme                | Add the ability to launch and deep link into the app with a custom URI Scheme. |
+| Deep Linking                | Add the ability to launch and deep link into the app with a custom URI Scheme. |
 | Web to App link           | Associate your app with a website so that when someone opens a link to your website it is displayed in the app. |
 | | |
 | **Application Lifecycle** | **Feature Description** |
