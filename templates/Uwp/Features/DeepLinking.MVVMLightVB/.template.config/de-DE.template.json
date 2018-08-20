@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Deep Linking",
+    "description": "Fügen Sie die Möglichkeit hinzu, die App zu starten und mit einem benutzerdefinierten URI-Schema einen Deep Link zur App zu erstellen.",
+    "identity": "wts.Feat.DeepLinking.VB"
+}
