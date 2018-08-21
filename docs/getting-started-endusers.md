@@ -59,6 +59,7 @@ Windows Template Studio approaches UWP app creation using the following four att
 | **Application Launching** | **Feature Description** |
 | Deep Linking                | Add the ability to launch and deep link into the app with a custom URI Scheme. |
 | Web to App link           | Associate your app with a website so that when someone opens a link to your website it is displayed in the app. |
+| UserActivity | Adds one UserActivity to Windows Timeline. |
 | | |
 | **Application Lifecycle** | **Feature Description** |
 | Settings Storage          | [Setting storage](https://docs.microsoft.com/en-us/uwp/api/windows.storage.applicationdata) is a class that simplifies storage of your application's data, handling loading, saving, serialization, and simplifying access. |
