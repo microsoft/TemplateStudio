@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.Templates.Core;
 
@@ -12,15 +13,21 @@ namespace Microsoft.Templates.UI.Services
     public static class ValidationService
     {
         private static Func<IEnumerable<string>> _getNames;
+        private static Func<IEnumerable<string>> _getPageNames;
 
-        public static void Initialize(Func<IEnumerable<string>> getNames)
+        public static void Initialize(Func<IEnumerable<string>> getNames, Func<IEnumerable<string>> getPageNames)
         {
             _getNames = getNames;
+            _getPageNames = getPageNames;
         }
 
         public static ValidationResult ValidateTemplateName(string templateName, bool includesDefaultNamesValidation, bool includesExistingNamesValidation)
         {
-            var validators = new List<Validator>() { new ReservedNamesValidator() };
+            var validators = new List<Validator>()
+            {
+                new ReservedNamesValidator(),
+                new PageSuffixValidator()
+            };
 
             if (includesExistingNamesValidation)
             {
@@ -49,6 +56,30 @@ namespace Microsoft.Templates.UI.Services
             }
 
             return Naming.Infer(templateName, validators);
+        }
+
+        public static bool HasAllPagesViewSuffix(bool fromNewTemplate, string newName)
+        {
+            var names = _getPageNames.Invoke();
+            if (!names.Any())
+            {
+                return false;
+            }
+
+            foreach (var name in names)
+            {
+                if (!name.ToLower().EndsWith("view"))
+                {
+                    return false;
+                }
+            }
+
+            if (fromNewTemplate && !newName.ToLower().EndsWith("view"))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

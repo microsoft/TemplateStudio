@@ -17,6 +17,7 @@
     "wts.displayOrder": "2",
     "wts.dependencies":"wts.Feature.ThemeSelection",
     "wts.multipleInstance": "false",
+    "wts.defaultInstance": "Settings",
     "wts.genGroup": "1",
     "wts.rightClickEnabled":"true" 
   },
