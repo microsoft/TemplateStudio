@@ -10,6 +10,6 @@ End Function
 
 Private Async Function StartupAsync() As Task
     '{[{
-    ThemeSelectorService.SetRequestedTheme()
+    Await ThemeSelectorService.SetRequestedThemeAsync()
     '}]}
 End Function

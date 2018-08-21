@@ -1,4 +1,6 @@
-﻿Imports Windows.Storage
+﻿Imports Windows.ApplicationModel.Core
+Imports Windows.Storage
+Imports Windows.UI.Core
 
 Imports Param_RootNamespace.Helpers
 
@@ -18,16 +20,21 @@ Namespace Services
         Public Shared Async Function SetThemeAsync(theme As ElementTheme) As Task
             ThemeSelectorService.Theme = theme
 
-            SetRequestedTheme()
+            Await SetRequestedThemeAsync()
             Await SaveThemeInSettingsAsync(Theme)
         End Function
 
-        Public Shared Sub SetRequestedTheme()
-            If TypeOf Window.Current.Content Is FrameworkElement Then
-                Dim frameworkElement = TryCast(Window.Current.Content, FrameworkElement)
-                frameworkElement.RequestedTheme = Theme
-            End If
-        End Sub
+        Public Shared Async Function SetRequestedThemeAsync() As Task
+            For Each view In CoreApplication.Views
+                Await view.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                    Sub()
+                        Dim frameworkElement = TryCast(Window.Current.Content, FrameworkElement)
+                        If frameworkElement IsNot Nothing Then
+                            frameworkElement.RequestedTheme = Theme
+                        End If
+                    End Sub)
+            Next
+        End Function
 
         Private Shared Async Function LoadThemeFromSettingsAsync() As Task(Of ElementTheme)
             Dim cacheTheme As ElementTheme = ElementTheme.[Default]

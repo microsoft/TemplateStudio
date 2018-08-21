@@ -10,5 +10,12 @@ namespace Param_ItemNamespace.Services
             await Task.CompletedTask;
             //}--}
         }
+
+        private async Task StartupAsync()
+        {
+            //{--{
+            await Task.CompletedTask;
+            //}--}
+        }
     }
 }

@@ -7,17 +7,11 @@ namespace Param_RootNamespace
 {
     public sealed partial class App : PrismUnityApplication
     {
-
         private async Task LaunchApplicationAsync(string page, object launchParam)
         {
 //{[{
-            Services.ThemeSelectorService.SetRequestedTheme();
+            await ThemeSelectorService.SetRequestedThemeAsync();
 //}]}
-        }
-
-        protected override async Task OnActivateApplicationAsync(IActivatedEventArgs args)
-        {
-            await Task.CompletedTask;
         }
 
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
@@ -25,8 +19,6 @@ namespace Param_RootNamespace
 //{[{
             await ThemeSelectorService.InitializeAsync().ConfigureAwait(false);
 //}]}
-            });
-            await base.OnInitializeAsync(args);
         }
     }
 }
