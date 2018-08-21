@@ -2,7 +2,7 @@
     "author": "Microsoft Community",
     "classifications": ["Universal"],
     "name": "Sample Data",
-    "groupIdentity": "wts.Feat.SampleDataService.Prism",
+    "groupIdentity": "wts.Feat.SampleDataService",
     "identity": "wts.Feat.SampleDataService.Prism",
     "description": "SampleDataService holds sample data used by the generated version of some pages.",
     "tags": {
