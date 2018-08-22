@@ -1,4 +1,8 @@
-﻿namespace Param_RootNamespace
+﻿//{[{
+using Param_ItemNamespace.Services;
+//}]}
+
+namespace Param_RootNamespace
 {
     public sealed partial class App : PrismUnityApplication
     {
