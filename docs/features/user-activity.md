@@ -1,5 +1,7 @@
 ﻿# User Activities
 
+The custom User Activity feature builds upon the [DeepLinking](deep-linking.md).
+
 Allows your app to include new entries to Windows Timeline, a rich task view that takes advantage of User Activities to show a chronological view of what you’ve been working on. View more information about UserActivities on [Microsoft Docs](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities).
 
 ## Files in project

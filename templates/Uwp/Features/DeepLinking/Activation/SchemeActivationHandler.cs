@@ -5,9 +5,6 @@ using Windows.ApplicationModel.Activation;
 
 namespace Param_ItemNamespace.Activation
 {
-    // TODO WTS: Open package.appxmanifest and change the declaration for the scheme (from the default of 'wtsapp') to what you want for your app.
-    // More details about this functionality can be found at https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/deep-linking.md
-    // TODO WTS: Change the image in Assets/Logo.png to one for display if the OS asks the user which app to launch.
     internal class SchemeActivationHandler : ActivationHandler<ProtocolActivatedEventArgs>
     {
         protected override bool CanHandleInternal(ProtocolActivatedEventArgs args)
