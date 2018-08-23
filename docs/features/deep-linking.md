@@ -20,6 +20,8 @@ The protocol name you specify MUST meet these rules:
 - The string can't start with a dot ('.').
 - It cannot be a reserved value. ([list of reserved scheme names](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/reserved-uri-scheme-names#reserved-uri-scheme-names))
 
+You also have to update the **const string property ProtocolName in Activation/SchemeActivationData.cs** file.
+
 ## Debugging the app being launched via the URI
 
 - In project properties, go to the **Debug** tab and check the option 'Do no launch, but debug my code when it starts'
