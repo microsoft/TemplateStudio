@@ -20,12 +20,13 @@ Files added by Multiple views feature:
 ## Using WindowManagerService
 In this example we are going to show how to open a photo detail in a new window.
 
-### 1. Create a new app with two pages
+## **1. Create a new app with two pages**
 Create a new application using Windows Template Studio and add another blank page named `Secondary`. The idea is to create a button in the `Main` page to open the `Secondary` page in a new window.
 
-### 2. Initialize WindowManagerService
-Call to `Initialize` method in `ActivationService InitializeAsync`.
+## **2. Initialize WindowManagerService**
+**`CodeBehind, MVVMBasic, MVVMLight, CaliburnMicro`**
 
+Call to `Initialize` method in `ActivationService InitializeAsync`.
 ```csharp
 private async Task InitializeAsync()
 {
@@ -33,9 +34,42 @@ private async Task InitializeAsync()
 }
 ```
 
-### 3. Open the secondary page on a new window.
-Add a command to open the secondary page in a new window. (Add this Command in `MainViewModel.cs` on **MVVMBasic, MVVMLight, Prism or Caliburn.Micro** framework or in `MainPage.xaml.cs` if your are using **CodeBehind** framework.
+**`Prism`**
 
+Call to `Initialize` method in `App OnInitializeAsync`.
+```csharp
+protected override async Task OnInitializeAsync(IActivatedEventArgs args)
+{
+    WindowManagerService.Current.Initialize();
+}
+```
+
+## **3. Open the secondary page on a new window.**
+Open the secondary page in a new window using a Button in MainPage.
+
+**`CodeBehind`**
+
+Create a button in MainPage.xaml
+```xml
+<Button Content="Open secondary page" Click="OpenSecondaryPageButton_Click" />
+```
+
+Create a event handler in MainPage.xaml.cs
+```csharp
+private async void OpenSecondaryPageButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+{
+    await WindowManagerService.Current.TryShowAsStandaloneAsync("Secondary_Title.Text".GetLocalized(), typeof(SecondaryPage));
+}
+```
+
+**`MVVMBasic, MVVMLight`**
+
+Create a button in MainPage.xaml
+```xml
+<Button Content="Open secondary page" Command="{x:Bind ViewModel.OpenSecondaryPageCommand}" />
+```
+
+Create a command in MainViewModel.cs
 ```csharp
 private ICommand _openSecondaryPageCommand;
 
@@ -47,10 +81,44 @@ private async void OnOpenSecondaryPage()
 }
 ```
 
- ### 4. Handle the SecondaryPage released event.
+**`Prism`**
+
+Create a button in MainPage.xaml
+```xml
+<Button Content="Open secondary page" Command="{x:Bind ViewModel.OpenSecondaryPageCommand}" />
+```
+
+Create a command in MainViewModel.cs
+```csharp
+private ICommand _openSecondaryPageCommand;
+
+public ICommand OpenSecondaryPageCommand => _openSecondaryPageCommand ?? (_openSecondaryPageCommand = new DelegateCommand(OnOpenSecondaryPage));
+
+private async void OnOpenSecondaryPage()
+{
+    await WindowManagerService.Current.TryShowAsStandaloneAsync("Secondary_Title.Text".GetLocalized(), typeof(SecondaryPage));
+}
+```
+
+**`CaliburnMicro`**
+
+Create a button in MainPage.xaml
+```xml
+<Button Content="Open secondary page" cm:Message.Attach="OpenSecondaryPage" />
+```
+
+Create a command in MainViewModel.cs
+```csharp
+public async void OpenSecondaryPage()
+{
+    await WindowManagerService.Current.TryShowAsStandaloneAsync("Secondary_Title.Text".GetLocalized(), typeof(SecondaryPage));
+}
+```
+
+ ## **4. Handle the SecondaryPage released event.**
  WindowManagerService holds a reference to each window opened. It's important to remove this reference once the window is closed to avoid memory leaks. Suscribe to the Release event on the window's ViewLifetimeControl instance to remove this page from `WindowManagerService.Current.SecondaryViews`:
 
-**MVVMBasic, MVVMLight, Prism and Caliburn.Micro**
+**`MVVMBasic, MVVMLight, Prism and Caliburn.Micro`**
 
 Override this method on `SecondaryPage.xaml.cs`.
 ```csharp
@@ -81,7 +149,7 @@ private async void OnViewLifetimeControlReleased(object sender, EventArgs e)
 }
 ```
 
-**CodeBehind**
+**`CodeBehind`**
 
 Add this code to `SecondaryViewModel.cs`.
 ```csharp
