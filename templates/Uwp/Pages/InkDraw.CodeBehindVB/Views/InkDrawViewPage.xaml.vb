@@ -123,7 +123,7 @@ Namespace Views
             Dim strokes = strokeService?.GetStrokes().ToList()
             ClearSelection()
             strokeService?.ClearStrokes()
-            undoRedoService?.AddOperation(new RemoveStrokeUndoRedoOperation(strokes, _strokeService))
+            undoRedoService?.AddOperation(new RemoveStrokeUndoRedoOperation(strokes, strokeService))
         End Sub
 
         Private Sub RefreshEnabledButtons()

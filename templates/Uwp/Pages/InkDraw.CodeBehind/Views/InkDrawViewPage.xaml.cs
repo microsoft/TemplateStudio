@@ -123,7 +123,7 @@ namespace Param_ItemNamespace.Views
             var strokes = strokeService?.GetStrokes().ToList();
             ClearSelection();
             strokeService?.ClearStrokes();
-            undoRedoService?.AddOperation(new RemoveStrokeUndoRedoOperation(strokes, _strokeService));
+            undoRedoService?.AddOperation(new RemoveStrokeUndoRedoOperation(strokes, strokeService));
         }
 
         private void RefreshEnabledButtons()

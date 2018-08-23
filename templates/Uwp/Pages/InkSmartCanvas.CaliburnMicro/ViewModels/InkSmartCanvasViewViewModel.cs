@@ -130,10 +130,12 @@ namespace Param_ItemNamespace.ViewModels
 
         public void ClearAll()
         {
+            var strokes = _strokeService?.GetStrokes().ToList();
+            var textAndShapes = _transformService?.GetTextAndShapes().ToList();
             ClearSelection();
             _strokeService.ClearStrokes();
             _transformService.ClearTextAndShapes();
-            _undoRedoService.Reset();
+            _undoRedoService.AddOperation(new ClearStrokesAndShapesUndoRedoOperation(strokes, textAndShapes, _strokeService, _transformService));
         }
 
         private bool CanUndo => _undoRedoService != null && _undoRedoService.CanUndo;
