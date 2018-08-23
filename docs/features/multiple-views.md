@@ -23,28 +23,7 @@ In this example we are going to show how to open a photo detail in a new window.
 ## **1. Create a new app with two pages**
 Create a new application using Windows Template Studio and add another blank page named `Secondary`. The idea is to create a button in the `Main` page to open the `Secondary` page in a new window.
 
-## **2. Initialize WindowManagerService**
-**`CodeBehind, MVVMBasic, MVVMLight, CaliburnMicro`**
-
-Call to `Initialize` method in `ActivationService InitializeAsync`.
-```csharp
-private async Task InitializeAsync()
-{
-    WindowManagerService.Current.Initialize();
-}
-```
-
-**`Prism`**
-
-Call to `Initialize` method in `App OnInitializeAsync`.
-```csharp
-protected override async Task OnInitializeAsync(IActivatedEventArgs args)
-{
-    WindowManagerService.Current.Initialize();
-}
-```
-
-## **3. Open the secondary page on a new window.**
+## **2. Open the secondary page on a new window.**
 Open the secondary page in a new window using a Button in MainPage.
 
 **`CodeBehind`**
@@ -115,7 +94,7 @@ public async void OpenSecondaryPage()
 }
 ```
 
- ## **4. Handle the SecondaryPage released event.**
+ ## **3. Handle the SecondaryPage released event.**
  WindowManagerService holds a reference to each window opened. It's important to remove this reference once the window is closed to avoid memory leaks. Suscribe to the Release event on the window's ViewLifetimeControl instance to remove this page from `WindowManagerService.Current.SecondaryViews`:
 
 **`MVVMBasic, MVVMLight, Prism and Caliburn.Micro`**
