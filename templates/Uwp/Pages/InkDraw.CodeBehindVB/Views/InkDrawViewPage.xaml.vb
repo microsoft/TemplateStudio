@@ -1,4 +1,5 @@
 ﻿Imports Param_ItemNamespace.Services.Ink
+Imports Param_ItemNamespace.Services.Ink.UndoRedo
 
 Namespace Views
     ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md
@@ -119,9 +120,10 @@ Namespace Views
         End Sub
 
         Private Sub ClearAll_Click(sender As Object, e As RoutedEventArgs)
+            Dim strokes = strokeService?.GetStrokes().ToList()
             ClearSelection()
             strokeService?.ClearStrokes()
-            undoRedoService?.Reset()
+            undoRedoService?.AddOperation(new RemoveStrokeUndoRedoOperation(strokes, _strokeService))
         End Sub
 
         Private Sub RefreshEnabledButtons()
