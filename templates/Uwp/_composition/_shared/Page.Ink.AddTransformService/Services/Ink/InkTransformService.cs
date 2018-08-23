@@ -32,7 +32,7 @@ namespace Param_ItemNamespace.Services.Ink
 
         public void RemoveUIElement(UIElement element)
         {
-            if(_drawingCanvas.Children.Contains(element))
+            if (_drawingCanvas.Children.Contains(element))
             {
                 _drawingCanvas.Children.Remove(element);
             }
