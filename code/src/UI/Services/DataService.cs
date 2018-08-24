@@ -58,7 +58,7 @@ namespace Microsoft.Templates.UI.Services
             return frameworks.Any();
         }
 
-        public static int LoadTemplatesGroups(ObservableCollection<TemplateGroupViewModel> templatesGroups, TemplateType templateType, string frameworkName, string platform)
+        public static int LoadTemplatesGroups(ObservableCollection<TemplateGroupViewModel> templatesGroups, TemplateType templateType, string frameworkName, string platform, bool loadFromRightClick = false)
         {
             if (!templatesGroups.Any())
             {
@@ -66,10 +66,15 @@ namespace Microsoft.Templates.UI.Services
                                     t.GetTemplateType() == templateType &&
                                     t.GetFrameworkList().Contains(frameworkName) &&
                                     t.GetPlatform() == platform &&
-                                    !t.GetIsHidden())
-                                    .Select(t => new TemplateInfoViewModel(t, frameworkName, platform));
+                                    !t.GetIsHidden());
 
-                var groups = templates
+                if (loadFromRightClick)
+                {
+                    templates = templates.Where(t => t.GetRightClickEnabled());
+                }
+
+                var templateViewModel = templates.Select(t => new TemplateInfoViewModel(t, frameworkName, platform));
+                var groups = templateViewModel
                     .OrderBy(t => t.Order)
                     .GroupBy(t => t.Group)
                     .Select(gr => new TemplateGroupViewModel(gr))
