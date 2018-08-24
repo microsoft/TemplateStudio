@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Param_ItemNamespace.Services.Ink;
+using Param_ItemNamespace.Services.Ink.UndoRedo;
 using Param_ItemNamespace.Helpers;
 
 namespace Param_ItemNamespace.ViewModels
@@ -179,9 +180,10 @@ namespace Param_ItemNamespace.ViewModels
 
         private void ClearAll()
         {
+            var strokes = _strokeService?.GetStrokes().ToList();
             ClearSelection();
             _strokeService?.ClearStrokes();
-            _undoRedoService?.Reset();
+            _undoRedoService?.AddOperation(new RemoveStrokeUndoRedoOperation(strokes, _strokeService));
         }
 
         private bool CanCut() => _copyPasteService != null && _copyPasteService.CanCut;

@@ -38,6 +38,20 @@ Namespace Services.Ink
             Return result
         End Function
 
+        Public Function GetTextAndShapes() As IEnumerable(Of UIElement)
+            Return _drawingCanvas.Children
+        End Function
+
+        Public Sub AddUIElement(element As UIElement)
+            _drawingCanvas.Children.Add(element)
+        End Sub
+
+        Public Sub RemoveUIElement(element As UIElement)
+            If _drawingCanvas.Children.Contains(element) Then
+                _drawingCanvas.Children.Remove(element)
+            End If
+        End Sub
+
         Public Function HasTextAndShapes as Boolean
             Return _drawingCanvas.Children.Any()
         End Function

@@ -180,10 +180,12 @@ Namespace ViewModels
         End Function
 
         Private Sub ClearAll()
+            Dim strokes = _strokeService?.GetStrokes().ToList()
+            Dim textAndShapes = _transformService?.GetTextAndShapes().ToList()
             ClearSelection()
             _strokeService.ClearStrokes()
             _transformService.ClearTextAndShapes()
-            _undoRedoService.Reset()
+            _undoRedoService?.AddOperation(new ClearStrokesAndShapesUndoRedoOperation(strokes, textAndShapes, _strokeService, _transformService))
         End Sub
 
         Private Function CanUndo() As Boolean
