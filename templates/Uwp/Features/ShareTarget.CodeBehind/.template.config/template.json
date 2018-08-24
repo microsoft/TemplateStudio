@@ -31,9 +31,6 @@
       "path": ".\\Models\\SharedDataWebLinkModel.cs"
     },
     {
-      "path": ".\\TemplateSelectors\\SharedContentTemplateSelector.cs"
-    },
-    {
       "path": ".\\Views\\ShareTargetFeaturePage.xaml"
     },
     {
