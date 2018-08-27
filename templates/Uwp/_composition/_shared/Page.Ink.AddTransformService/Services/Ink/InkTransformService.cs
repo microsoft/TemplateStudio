@@ -26,6 +26,18 @@ namespace Param_ItemNamespace.Services.Ink
             _inkAnalyzer = new InkAnalyzer();
         }
 
+        public IEnumerable<UIElement> GetTextAndShapes() => _drawingCanvas.Children;
+
+        public void AddUIElement(UIElement element) => _drawingCanvas.Children.Add(element);
+
+        public void RemoveUIElement(UIElement element)
+        {
+            if (_drawingCanvas.Children.Contains(element))
+            {
+                _drawingCanvas.Children.Remove(element);
+            }
+        }
+
         public async Task<InkTransformResult> TransformTextAndShapesAsync()
         {
             var result = new InkTransformResult(_drawingCanvas);

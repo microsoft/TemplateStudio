@@ -112,10 +112,12 @@ Namespace Views
         End Sub
 
         Private Sub ClearAll_Click(sender As Object, e As RoutedEventArgs)
+            Dim strokes = strokeService?.GetStrokes().ToList()
+            Dim textAndShapes = transformService?.GetTextAndShapes().ToList()
             ClearSelection()
             strokeService.ClearStrokes()
             transformService.ClearTextAndShapes()
-            undoRedoService.Reset()
+            undoRedoService?.AddOperation(new ClearStrokesAndShapesUndoRedoOperation(strokes, textAndShapes, strokeService, transformService))
         End Sub
 
         Private Sub RefreshEnabledButtons()

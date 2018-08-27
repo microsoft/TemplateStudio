@@ -114,10 +114,12 @@ namespace Param_ItemNamespace.Views
 
         private void ClearAll_Click(object sender, RoutedEventArgs e)
         {
+            var strokes = strokeService?.GetStrokes().ToList();
+            var textAndShapes = transformService?.GetTextAndShapes().ToList();
             ClearSelection();
             strokeService.ClearStrokes();
             transformService.ClearTextAndShapes();
-            undoRedoService.Reset();
+            undoRedoService.AddOperation(new ClearStrokesAndShapesUndoRedoOperation(strokes, textAndShapes, strokeService, transformService));
         }
 
         private void RefreshEnabledButtons()

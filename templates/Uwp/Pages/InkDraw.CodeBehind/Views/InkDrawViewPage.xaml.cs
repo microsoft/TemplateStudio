@@ -1,4 +1,5 @@
 ﻿using Param_ItemNamespace.Services.Ink;
+using Param_ItemNamespace.Services.Ink.UndoRedo;
 using System;
 using System.Linq;
 using Windows.UI.Xaml;
@@ -119,9 +120,10 @@ namespace Param_ItemNamespace.Views
 
         private void ClearAll_Click(object sender, RoutedEventArgs e)
         {
+            var strokes = strokeService?.GetStrokes().ToList();
             ClearSelection();
             strokeService?.ClearStrokes();
-            undoRedoService?.Reset();
+            undoRedoService?.AddOperation(new RemoveStrokeUndoRedoOperation(strokes, strokeService));
         }
 
         private void RefreshEnabledButtons()
