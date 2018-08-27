@@ -1,1 +1,3 @@
-﻿Adds one UserActivity to Windows Timeline. The Windows Timeline is a rich task view that takes advantage of User Activities to show a chronological view of what youâ€™ve been working on. The UserActivity is represented using an AdaptiveCard and the application can resume the working activity using deep link activation parameters.
+﻿Tato funkce umožňuje přidávat z vaší aplikace uživatelské aktivity na časovou osu ve Windows a prostřednictvím přímých odkazů obnovovat vaši aplikaci z uživatelských aktivit. Tyto aktivity mohou být vytvářeny pomocí adaptivních karet nebo textu a popisu.
+
+Další informace o uživatelských aktivitách najdete na stránce [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities).
