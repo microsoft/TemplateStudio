@@ -4,7 +4,7 @@
     "Universal"
   ],
   "name": "User Activity",
-  "groupIdentity": "wts.Feat.UserActivity.VB",
+  "groupIdentity": "wts.Feat.UserActivity",
   "identity": "wts.Feat.UserActivity.MVVMLight.VB",
   "description": "Add the ability to add user activities to the Windows Timeline.",
   "tags": {
