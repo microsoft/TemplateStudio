@@ -6,7 +6,7 @@
   "name": "User Activity",
   "groupIdentity": "wts.Feat.UserActivity",
   "identity": "wts.Feat.UserActivity.Prism",
-  "description": "Adds one UserActivity to Windows Timeline",
+  "description": "Add the ability to add user activities to the Windows Timeline.",
   "tags": {
     "language": "C#",
     "type": "item",
