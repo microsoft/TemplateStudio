@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & $projectType == Blank|SplitView & identity == wts.Page.Camera.CodeBehind"
+    "wts.compositionFilter": "$framework == CodeBehind & $projectType == Blank|SplitView & groupidentity == wts.Page.Camera"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
