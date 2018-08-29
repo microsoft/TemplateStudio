@@ -4,7 +4,7 @@
   "name": "Theme Selection",
   "groupIdentity": "wts.Feature.ThemeSelection",
   "identity": "wts.Feature.ThemeSelection",
-  "description": "Adds theming support to you application.",
+  "description": "Adds theming support to your application.",
   "tags": {
     "language": "C#",
     "type": "item",
