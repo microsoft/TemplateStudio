@@ -14,24 +14,24 @@ A page named **Main** in the wizard will result in the generation of the followi
 
 ## Reserved names
 WTS has some reserved names. You can't use those names for naming pages and features:
- - Page
- - BackgroundTask
- - Pivot
- - Shell
- - SharedDataWebLink
- - SharedDataStorageItems
- - Settings
  - 3DLauncher
+ - BackgroundTask
  - DragAndDropFeature
  - FeedbackHubFeature
  - FirstRunPrompt
  - HubNotifications
  - LiveTile
  - MultiView
+ - Page
+ - Pivot
  - SampleDataService
+ - Settings
  - SettingsStorage
+ - SharedDataStorageItems
+ - SharedDataWebLink
  - ShareSource
  - ShareTarget
+ - Shell
  - StoreNotifications
  - SuspendAndResume
  - ThemeSelection
