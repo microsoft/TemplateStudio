@@ -9,7 +9,7 @@
             End Get
         End Property
 
-        ' By default, this handler expects URIs of the format 'wtsapp:sample?secret={value}'
+        ' By default, this handler expects URIs of the format 'wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2'
         Protected Overrides Async Function HandleInternalAsync(args As ProtocolActivatedEventArgs) As Task
             ' Create data from activation Uri in ProtocolActivatedEventArgs
             Dim data = New SchemeActivationData(args.Uri)
