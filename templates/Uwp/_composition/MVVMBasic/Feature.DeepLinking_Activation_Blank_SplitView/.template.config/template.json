@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.DeepLinking.MvvmBasic.Activavtion.BlankOrSplitView",
+  "name": "MvvmBasic.Feature.DeepLinking.Activation.BlankOrSplitView",
   "tags": {
     "language": "C#",
     "type": "item",

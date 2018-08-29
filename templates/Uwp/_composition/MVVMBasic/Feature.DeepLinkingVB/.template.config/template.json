@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.DeepLinking.MvvmBasic.VB",
+  "name": "MvvmBasic.Feature.DeepLinking.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

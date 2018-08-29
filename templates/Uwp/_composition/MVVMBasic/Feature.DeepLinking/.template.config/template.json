@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.DeepLinking.MvvmBasic",
+  "name": "MvvmBasic.Feature.DeepLinking",
   "tags": {
     "language": "C#",
     "type": "item",
