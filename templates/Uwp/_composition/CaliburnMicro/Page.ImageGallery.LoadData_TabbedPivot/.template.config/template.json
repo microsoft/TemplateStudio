@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.Page.ImageGallery.LoadData_TabbedPivot",
+  "name": "CaliburnMicro.Page.ImageGallery.LoadData.TabbedPivot",
   "tags": {
     "language": "C#",
     "type": "item",

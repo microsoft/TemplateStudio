@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.ShareTarget.CaliburnMicro",
+  "name": "CaliburnMicro.Feature.ShareTarget",
   "tags": {
     "language": "C#",
     "type": "item",

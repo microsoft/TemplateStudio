@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.Page.Camera.InitializeCamera_Blank_SplitView",
+  "name": "CaliburnMicro.Page.Camera.InitializeCamera.BlankSplitView",
   "tags": {
     "language": "C#",
     "type": "item",

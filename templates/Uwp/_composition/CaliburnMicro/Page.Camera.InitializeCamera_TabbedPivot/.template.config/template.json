@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.Page.Camera.InitializeCamera_TabbedPivot",
+  "name": "CaliburnMicro.Page.Camera.InitializeCamera.TabbedPivot",
   "tags": {
     "language": "C#",
     "type": "item",
