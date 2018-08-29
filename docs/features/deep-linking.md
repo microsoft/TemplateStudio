@@ -1,6 +1,6 @@
 # Deep Linking Activation
 
-The custom Deep Linking feature builds upon the [ActivationService](../activation.md).
+The custom Deep Linking feature builds upon the [ActivationService](../activation.md). Prism apps handle activation in the App.xaml.cs. 
 
 ## Change the protocol from the default name
 
@@ -13,6 +13,8 @@ When the feature is added it sets the supported scheme (or protocol) to `wtsapp`
 
 ![](../resources/deep-linking/change-protocol-name.png)
 
+You also have to update the constant **ProtocolName** in **Activation/SchemeActivationData.cs** file.
+
 The protocol name you specify MUST meet these rules:
 
 - Be a string between 2 and 39 characters in length
@@ -20,7 +22,13 @@ The protocol name you specify MUST meet these rules:
 - The string can't start with a dot ('.').
 - It cannot be a reserved value. ([list of reserved scheme names](https://docs.microsoft.com/en-us/windows/uwp/launch-resume/reserved-uri-scheme-names#reserved-uri-scheme-names))
 
-You also have to update the **const string property ProtocolName in Activation/SchemeActivationData.cs** file.
+## Understanding the code
+Deep linking handles activation using the `SchemeActivationHandler.cs` class. Prism apps handle activation in the `OnActivateApplicationAsync` method in the `App.xaml.cs`. By default the handler expects URIs of the format _wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2_.
+
+To map from URI to Page/ViewModel and parameters, the class `SchemeActivationData.cs` is used. To do this mapping it relies on the property `_activationPages` in `SchemeActivationConfig.cs`. You should add here all pages that can be opened using deep linking with the corresponding uri path. 
+
+The deep linking feature also adds a sample page (SchemeActivationSamplePage.xaml) that will show if you activate your app using 
+_wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2_.
 
 ## Debugging the app being launched via the URI
 
@@ -29,7 +37,7 @@ You also have to update the **const string property ProtocolName in Activation/S
 ![](../resources/deep-linking/debug-when-my-code-starts.png)
 
 - Press F5 to start debugging your app
-- Then, in Microsoft Edge, open a new tab and type in `wtsapp:sample?secret=mine` (or adjust depending on any changes you've made.) You could also launch it from another app using `LaunchUriAsync()` but for testing this is easier.
+- Then, in Microsoft Edge, open a new tab and type in `wtsapp:sample?paramName1=paramValue1` (or adjust depending on any changes you've made.) You could also launch it from another app using `LaunchUriAsync()` but for testing this is easier.
 - Your app will launch in debug mode and you can debug it like normal.
 
 ## Supporting multiple protocols

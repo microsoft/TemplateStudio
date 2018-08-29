@@ -1,15 +1,19 @@
 ﻿# User Activities
 
-The custom User Activity feature builds upon the [DeepLinking](deep-linking.md).
+The User Activity feature builds upon [Deep Linking](deep-linking.md) for activation.
 
-Allows your app to include new entries to Windows Timeline, a rich task view that takes advantage of User Activities to show a chronological view of what you’ve been working on. View more information about UserActivities on [Microsoft Docs](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities).
+The feature allows your app to include new entries to the user's activity feed. For more information about User Activities see [Microsoft Docs](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities).
 
-## Files in project
- - **UserActivityData.cs** Contains all the information to show in the Windows Timeline card.
- - **UserActivityService.cs** Static service that allows to create and save User Activities.
- - **UserActivityService.Sample.cs** adds the sample implementation to add a UserActivity to the Windows timeline from ActivationService StartupAsync.
+## Understanding the code
 
+The User Activity feature will add a sample activity on application startup created in the `UserActivityService.Sample.cs` class. It will show on your timeline like this:
 
-## AdaptiveCards
+![](../resources/user-activity/sample-activity.png)
 
-The UserActivity content is fill using a AdaptiveCards, a new way for developers to exchange card content in a common and consistent way. AdaptiveCards SDK is added using a Nuget Reference. View more information about Adaptive Cards on [Microsoft Docs](https://docs.microsoft.com/adaptive-cards/get-started/windows) and [adaptivecards.io](http://adaptivecards.io/).
+The sample activity will update each time you open the application as it always uses the same ActivityId. If you need to create different activities you can do this by providing different ActivityIds. You can find more information about user activity best practices [here](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities-best-practices). 
+
+The `UserActivityService.cs` class allows you to create a user activity using the method `CreateUserActivityAsync`. We've created two overloads, one allows you to specify an Adaptive Card, the other one will show a basic user activity based on title, description and background color specified in `UserActivationData`.
+
+View more information about Adaptive Cards on [Microsoft Docs](https://docs.microsoft.com/adaptive-cards/get-started/windows) and [adaptivecards.io](http://adaptivecards.io/).
+When you click on an user activity your application will activate using [Deep Linking](deep-linking.md).
+
