@@ -10,7 +10,7 @@
     "wts.platform": "Uwp",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework != CodeBehind & $projectType == Blank|SplitView & identity == wts.Page.MediaPlayer.VB|wts.Page.MediaPlayer.CodeBehind.VB"
+    "wts.compositionFilter": "$framework != CodeBehind & $projectType == Blank|SplitView & groupidentity == wts.Page.MediaPlayer.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
