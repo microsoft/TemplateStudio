@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.DeepLinking.CodeBehind.VB",
+  "name": "CodeBehind.Feature.DeepLinking.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.DeepLinking.CodeBehind.Activavtion.TabbedPivot",
+  "name": "CodeBehind.Feature.DeepLinking.Activation.TabbedPivot",
   "tags": {
     "language": "C#",
     "type": "item",

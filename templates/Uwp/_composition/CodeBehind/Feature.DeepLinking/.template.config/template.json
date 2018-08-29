@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.DeepLinking.CodeBehind",
+  "name": "CodeBehind.Feature.DeepLinking",
   "tags": {
     "language": "C#",
     "type": "item",
