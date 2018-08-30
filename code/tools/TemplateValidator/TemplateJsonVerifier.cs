@@ -113,6 +113,8 @@ namespace TemplateValidator
                 EnsureAllDefinedGuidsAreUsed(template, templateRoot, results);
 
                 VerifySymbols(template, results);
+
+                VerifyLicensesAndProjPostactions(template, templateRoot, results);
             }
             catch (Exception ex)
             {
@@ -468,6 +470,24 @@ namespace TemplateValidator
                     {
                         results.Add($"Defined GUID '{templateGuid}' is not used.");
                     }
+                }
+            }
+        }
+
+        private static void VerifyLicensesAndProjPostactions(ValidationTemplateInfo template, string templateRoot, List<string> results)
+        {
+            if (template.TemplateTags.ContainsKey("wts.licenses") && !string.IsNullOrEmpty(template.TemplateTags["wts.licenses"]))
+            {
+                if (Directory.EnumerateFiles(templateRoot, "_postaction.*", SearchOption.AllDirectories).Count() == 0)
+                {
+                    results.Add($"No projectpostaction found for license defined on template {template.Identity}");
+                }
+            }
+            else
+            {
+                if (Directory.EnumerateFiles(templateRoot, "_postaction.*", SearchOption.AllDirectories).Count() > 0)
+                {
+                    results.Add($"Missing license on template {template.Identity}");
                 }
             }
         }
