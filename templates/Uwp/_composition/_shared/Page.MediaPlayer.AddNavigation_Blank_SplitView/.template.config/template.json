@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == Blank|SplitView & identity == wts.Page.MediaPlayer"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight & $projectType == Blank|SplitView & identity == wts.Page.MediaPlayer"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
