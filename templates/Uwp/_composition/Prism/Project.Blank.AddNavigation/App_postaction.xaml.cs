@@ -26,7 +26,7 @@ using System.Globalization;
 //}]}
 
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
-        {
+        {        
 //{[{
 
             // We are remapping the default ViewNamePage and ViewNamePageViewModel naming to ViewNamePage and ViewNameViewModel to

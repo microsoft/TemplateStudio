@@ -33,6 +33,7 @@ namespace Param_RootNamespace
 
         protected override async Task OnInitializeAsync(IActivatedEventArgs args)
         {
+//^^            
 //{[{
             await Container.Resolve<ILiveTileFeatureService>().EnableQueueAsync().ConfigureAwait(false);
 //}]}
