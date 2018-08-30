@@ -19,6 +19,7 @@ namespace Param_RootNamespace
         protected override async Task OnActivateApplicationAsync(IActivatedEventArgs args)
         {
 //{[{
+            // By default, this handler expects URIs of the format 'wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2'
             if (args.Kind == ActivationKind.Protocol && args is ProtocolActivatedEventArgs protocolArgs && protocolArgs.Uri != null)
             {
                 // Create data from activation Uri in ProtocolActivatedEventArgs
