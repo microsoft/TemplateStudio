@@ -123,9 +123,9 @@ Namespace Controls
                   Await StartPreviewAsync()
               End If
           Catch ex As UnauthorizedAccessException
-              Throw New UnauthorizedAccessException("Camera_Exception_UnauthorizedAccess".GetLocalized(), ex)
+              errorMessage.Text = "Camera_Exception_UnauthorizedAccess".GetLocalized()
           Catch ex As NotSupportedException
-                Throw New NotSupportedException("Camera_Exception_NotSupported".GetLocalized(), ex)
+                errorMessage.Text = "Camera_Exception_NotSupported".GetLocalized()
           End Try
       End Function
 

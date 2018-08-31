@@ -95,7 +95,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public void LoadData(TemplateType templateType, string framework, string platform)
         {
-            DataService.LoadTemplatesGroups(Groups, templateType, framework, platform);
+            DataService.LoadTemplatesGroups(Groups, templateType, framework, platform, true);
 
             var group = Groups.FirstOrDefault();
             if (group != null)

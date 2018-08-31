@@ -5,6 +5,6 @@
 <!-- Nuget package references -->
 <!--{[{-->
 <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
-  <Version>3.1.0-preview1</Version>
+  <Version>4.0.0</Version>
 </PackageReference>
 <!--}]}-->

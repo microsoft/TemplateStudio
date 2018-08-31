@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Deep Linking",
+    "description": "Добавьте возможность запустить приложение и получить прямую ссылку на его внутреннее содержимое с помощью пользовательской схемы URI.",
+    "identity": "wts.Feat.DeepLinking.VB"
+}

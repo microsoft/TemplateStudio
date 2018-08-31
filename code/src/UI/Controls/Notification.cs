@@ -36,7 +36,8 @@ namespace Microsoft.Templates.UI.Controls
         TemplatesSync,
         TemplatesSyncError,
         RemoveTemplateValidation,
-        RightClickItemHasNoChanges
+        RightClickItemHasNoChanges,
+        ViewSufixValidation
     }
 
     public class Notification : Observable

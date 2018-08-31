@@ -1,0 +1,6 @@
+﻿<!-- Nuget package references -->
+<!--{[{-->
+<PackageReference Include="Win2D.uwp">
+  <Version>1.23.0</Version>
+</PackageReference>
+<!--}]}-->

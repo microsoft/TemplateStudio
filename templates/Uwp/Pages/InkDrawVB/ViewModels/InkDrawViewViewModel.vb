@@ -1,6 +1,7 @@
 ﻿Imports System.Linq
 Imports System.Windows.Input
 Imports Param_ItemNamespace.Services.Ink
+Imports Param_ItemNamespace.Services.Ink.UndoRedo
 Imports Param_ItemNamespace.Helpers
 
 Namespace ViewModels
@@ -234,9 +235,10 @@ Namespace ViewModels
         End Function
 
         Private Sub ClearAll()
+            Dim strokes = _strokeService?.GetStrokes().ToList()
             ClearSelection()
             _strokeService?.ClearStrokes()
-            _undoRedoService?.Reset()
+            _undoRedoService?.AddOperation(new RemoveStrokeUndoRedoOperation(strokes, _strokeService))
         End Sub
 
         Private Function CanCut() As Boolean
