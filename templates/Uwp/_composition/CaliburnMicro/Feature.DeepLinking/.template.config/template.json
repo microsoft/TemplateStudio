@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.DeepLinking.CaliburnMicro",
+  "name": "CaliburnMicro.DeepLinking",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -17,9 +17,6 @@
   "PrimaryOutputs": [
     {
       "path": ".\\ViewModels\\SchemeActivationSampleViewModel.cs"
-    },
-    {
-      "path": ".\\Views\\SchemeActivationSamplePage.xaml"
     },
     {
       "path": ".\\Views\\SchemeActivationSamplePage.xaml.cs"

@@ -11,8 +11,10 @@
 
         Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
-            Dim parameters = TryCast(e.Parameter, Dictionary(Of String, String))
-            Initialize(parameters)
+            If e.Parameter IsNot Nothing Then
+                Dim parameters = TryCast(e.Parameter, Dictionary(Of String, String))
+                Initialize(parameters)
+            End If
         End Sub
 
         Private Sub Initialize(parameters As Dictionary(Of String, String))

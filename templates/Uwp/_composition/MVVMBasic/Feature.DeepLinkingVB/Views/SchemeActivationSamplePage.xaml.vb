@@ -12,8 +12,10 @@ Namespace Views
 
         Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
-            Dim parameters = TryCast(e.Parameter, Dictionary(Of String, String))
-            ViewModel.Initialize(parameters)
+            If e.Parameter IsNot Nothing Then
+                Dim parameters = TryCast(e.Parameter, Dictionary(Of String, String))
+                ViewModel.Initialize(parameters)
+            End If
         End Sub
     End Class
 End Namespace
