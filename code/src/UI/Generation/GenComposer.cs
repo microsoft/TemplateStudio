@@ -122,10 +122,10 @@ namespace Microsoft.Templates.UI
             }
 
             AddProject(userSelection, genQueue);
-            AddTemplates(userSelection.Pages, genQueue, userSelection);
-            AddTemplates(userSelection.Features, genQueue, userSelection);
+            AddTemplates(userSelection.Pages, genQueue, userSelection, false);
+            AddTemplates(userSelection.Features, genQueue, userSelection, false);
 
-            genQueue = AddInCompositionTemplates(genQueue, userSelection);
+            genQueue = AddInCompositionTemplates(genQueue, userSelection, false);
 
             return genQueue;
         }
@@ -157,10 +157,10 @@ namespace Microsoft.Templates.UI
                 return genQueue;
             }
 
-            AddTemplates(userSelection.Pages, genQueue, userSelection);
-            AddTemplates(userSelection.Features, genQueue, userSelection);
+            AddTemplates(userSelection.Pages, genQueue, userSelection, true);
+            AddTemplates(userSelection.Features, genQueue, userSelection, true);
 
-            genQueue = AddInCompositionTemplates(genQueue, userSelection);
+            genQueue = AddInCompositionTemplates(genQueue, userSelection, true);
 
             return genQueue;
         }
@@ -168,7 +168,7 @@ namespace Microsoft.Templates.UI
         private static void AddProject(UserSelection userSelection, List<GenInfo> genQueue)
         {
             var projectTemplate = GetProjectTemplate(userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
-            var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue);
+            var genProject = CreateGenInfo(GenContext.Current.ProjectName, projectTemplate, genQueue, false);
 
             genProject.Parameters.Add(GenParams.Username, Environment.UserName);
             genProject.Parameters.Add(GenParams.WizardVersion, string.Concat("v", GenContext.ToolBox.WizardVersion));
@@ -188,14 +188,14 @@ namespace Microsoft.Templates.UI
                                             && t.GetPlatform() == platform);
         }
 
-        private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> templates, List<GenInfo> genQueue, UserSelection userSelection)
+        private static void AddTemplates(IEnumerable<(string name, ITemplateInfo template)> templates, List<GenInfo> genQueue, UserSelection userSelection, bool addToActiveProject)
         {
             foreach (var selectionItem in templates)
             {
                 if (!genQueue.Any(t => t.Name == selectionItem.name && t.Template.Identity == selectionItem.template.Identity))
                 {
-                    AddDependencyTemplates(selectionItem, genQueue, userSelection);
-                    var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue);
+                    AddDependencyTemplates(selectionItem, genQueue, userSelection, addToActiveProject);
+                    var genInfo = CreateGenInfo(selectionItem.name, selectionItem.template, genQueue, addToActiveProject);
                     genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
                     genInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
 
@@ -211,7 +211,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void AddDependencyTemplates((string name, ITemplateInfo template) selectionItem, List<GenInfo> genQueue, UserSelection userSelection)
+        private static void AddDependencyTemplates((string name, ITemplateInfo template) selectionItem, List<GenInfo> genQueue, UserSelection userSelection, bool addToActiveProject)
         {
             var dependencies = GetAllDependencies(selectionItem.template, userSelection.Framework, userSelection.Platform);
 
@@ -223,7 +223,7 @@ namespace Microsoft.Templates.UI
                 {
                     if (!genQueue.Any(t => t.Name == dependencyTemplate.name && t.Template.Identity == dependencyTemplate.template.Identity))
                     {
-                        var depGenInfo = CreateGenInfo(dependencyTemplate.name, dependencyTemplate.template, genQueue);
+                        var depGenInfo = CreateGenInfo(dependencyTemplate.name, dependencyTemplate.template, genQueue, addToActiveProject);
                         depGenInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
                         depGenInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
                     }
@@ -235,7 +235,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static List<GenInfo> AddInCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection)
+        private static List<GenInfo> AddInCompositionTemplates(List<GenInfo> genQueue, UserSelection userSelection, bool addToActiveProject)
         {
             var compositionCatalog = GetCompositionCatalog(userSelection.Platform).ToList();
             var context = new QueryablePropertyDictionary
@@ -256,7 +256,7 @@ namespace Microsoft.Templates.UI
                     if (compositionItem.template.GetLanguage() == userSelection.Language
                      && compositionItem.query.Match(genItem.Template, context))
                     {
-                        AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection);
+                        AddTemplate(genItem, compositionQueue, compositionItem.template, userSelection, addToActiveProject);
                     }
                 }
 
@@ -276,7 +276,7 @@ namespace Microsoft.Templates.UI
                                         .ToList();
         }
 
-        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, ITemplateInfo targetTemplate, UserSelection userSelection)
+        private static void AddTemplate(GenInfo mainGenInfo, List<GenInfo> queue, ITemplateInfo targetTemplate, UserSelection userSelection, bool addToActiveProject)
         {
             if (targetTemplate != null)
             {
@@ -285,7 +285,7 @@ namespace Microsoft.Templates.UI
                     mainGenInfo.Parameters.Add(export.name, export.value);
                 }
 
-                var genInfo = CreateGenInfo(mainGenInfo.Name, targetTemplate, queue);
+                var genInfo = CreateGenInfo(mainGenInfo.Name, targetTemplate, queue, addToActiveProject);
                 genInfo?.Parameters.Add(GenParams.HomePageName, userSelection.HomeName);
                 genInfo?.Parameters.Add(GenParams.ProjectName, GenContext.Current.ProjectName);
             }
@@ -300,7 +300,7 @@ namespace Microsoft.Templates.UI
 #endif
         }
 
-        private static GenInfo CreateGenInfo(string name, ITemplateInfo template, List<GenInfo> queue)
+        private static GenInfo CreateGenInfo(string name, ITemplateInfo template, List<GenInfo> queue, bool addToActiveProject)
         {
             var genInfo = new GenInfo
             {
@@ -310,14 +310,19 @@ namespace Microsoft.Templates.UI
 
             queue.Add(genInfo);
 
-            AddDefaultParams(genInfo);
+            AddDefaultParams(genInfo, addToActiveProject);
 
             return genInfo;
         }
 
-        private static void AddDefaultParams(GenInfo genInfo)
+        private static void AddDefaultParams(GenInfo genInfo, bool addToActiveProject)
         {
-            var ns = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
+            var ns = string.Empty;
+
+            if (addToActiveProject)
+            {
+                ns = GenContext.ToolBox.Shell.GetActiveProjectNamespace();
+            }
 
             if (string.IsNullOrEmpty(ns))
             {
