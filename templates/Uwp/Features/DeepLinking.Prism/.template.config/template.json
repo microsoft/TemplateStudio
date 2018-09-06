@@ -35,9 +35,6 @@
     },
     {
       "path": ".\\ViewModels\\SchemeActivationSampleViewModel.cs"
-    },
-    {
-      "path": ".\\Views\\SchemeActivationSamplePage.xaml.cs"
     }
   ],
   "symbols": {

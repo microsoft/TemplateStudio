@@ -1,4 +1,6 @@
 ﻿//{[{
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Param_ItemNamespace.Views;
 //}]}
 namespace Param_ItemNamespace.Activation
@@ -21,7 +23,15 @@ namespace Param_ItemNamespace.Activation
             var data = new SchemeActivationData(args.Uri);
             if (data.IsValid)
             {
-                NavigationService.Navigate(data.ViewModelName, data.Parameters);
+                var frame = Window.Current.Content as Frame;
+                if (frame.Content is PivotPage pivotPage)
+                {
+                    await pivotPage.InitializeFromSchemeActivationAsync(data);
+                }
+                else
+                {
+                    NavigationService.Navigate(typeof(ViewModels.PivotViewModel).FullName, data);
+                }
             }
             else if (args.PreviousExecutionState != ApplicationExecutionState.Running)
             {

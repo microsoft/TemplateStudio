@@ -15,19 +15,8 @@
                 Margin="{StaticResource SmallAllMargin}" />
         </DataTemplate>
     </Page.Resources>
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock
-            Grid.Row="0"
-            x:Uid="SchemeActivationSamplePage_Title"
-            Style="{StaticResource PageTitleStyle}" />
-        <ScrollViewer Grid.Row="1">
+    <Grid x:Name="ContentArea">
+        <ScrollViewer>
             <ItemsControl
                 ItemsSource="{x:Bind ViewModel.Parameters}"
                 ItemTemplate="{StaticResource ActivationParameterDateTemplate}" />

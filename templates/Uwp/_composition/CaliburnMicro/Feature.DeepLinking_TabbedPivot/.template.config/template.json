@@ -16,7 +16,13 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
+      "path": ".\\Helpers\\IPivotActivationPage.cs"
+    },
+    {
       "path": ".\\Views\\SchemeActivationSamplePage.xaml"
+    },
+    {
+      "path": ".\\Views\\SchemeActivationSamplePage.xaml.cs"
     }
   ],
   "symbols": {

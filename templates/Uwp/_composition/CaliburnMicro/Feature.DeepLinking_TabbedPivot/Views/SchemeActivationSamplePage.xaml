@@ -14,9 +14,7 @@
                 Margin="{StaticResource SmallAllMargin}" />
         </DataTemplate>
     </Page.Resources>
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid x:Name="ContentArea">
         <ScrollViewer>
             <ItemsControl
                 ItemsSource="{x:Bind ViewModel.Parameters}"

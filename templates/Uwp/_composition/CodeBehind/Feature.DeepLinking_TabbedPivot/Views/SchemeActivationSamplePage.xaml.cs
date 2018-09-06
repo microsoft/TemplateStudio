@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Param_ItemNamespace.Helpers;
 
 namespace Param_ItemNamespace.Views
 {
@@ -10,7 +12,7 @@ namespace Param_ItemNamespace.Views
     // This page is an sample of how to launch a specific page in response to a protocol launch and pass it a value.
     // It is expected that you will delete this page once you have changed the handling of a protocol launch to meet
     // your needs and redirected to another of your pages.
-    public sealed partial class SchemeActivationSamplePage : Page
+    public sealed partial class SchemeActivationSamplePage : Page, IPivotActivationPage
     {
         public ObservableCollection<string> Parameters { get; } = new ObservableCollection<string>();
 
@@ -27,6 +29,12 @@ namespace Param_ItemNamespace.Views
             {
                 Initialize(parameters);
             }
+        }
+
+        public async Task OnPivotActivatedAsync(Dictionary<string, string> parameters)
+        {
+            Initialize(parameters);
+            await Task.CompletedTask;
         }
 
         public void Initialize(Dictionary<string, string> parameters)

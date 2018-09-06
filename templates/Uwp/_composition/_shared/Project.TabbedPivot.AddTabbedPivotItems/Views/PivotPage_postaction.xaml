@@ -1,4 +1,4 @@
-﻿        <Pivot x:Uid="PivotPage">
+﻿        <Pivot x:Uid="PivotPage" x:Name="Items">
             <!--^^-->
             <!--{[{-->
             <PivotItem x:Uid="PivotItem_wts.ItemName">

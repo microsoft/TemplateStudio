@@ -17,5 +17,11 @@ namespace wts.ItemName.Views
             NavigationCacheMode = NavigationCacheMode.Required;
             InitializeComponent();
         }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await Task.CompletedTask;
+        }
     }
 }

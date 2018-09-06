@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.Xaml.Interactivity;
-using Windows.UI.Xaml.Controls;
 using wts.ItemName.Helpers;
+
+using Windows.UI.Xaml.Controls;
 
 namespace wts.ItemName.Behaviors
 {
@@ -23,10 +23,10 @@ namespace wts.ItemName.Behaviors
         private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var removedItem = e.RemovedItems.Cast<PivotItem>()
-                .Select(i => GetPivotPage(i)).FirstOrDefault();
+                .Select(i => i.GetPage<IPivotPage>()).FirstOrDefault();
 
             var addedItem = e.AddedItems.Cast<PivotItem>()
-                .Select(i => GetPivotPage(i)).FirstOrDefault();
+                .Select(i => i.GetPage<IPivotPage>()).FirstOrDefault();
 
             if (removedItem != null)
             {
@@ -37,19 +37,6 @@ namespace wts.ItemName.Behaviors
             {
                 await addedItem?.OnPivotSelectedAsync();
             }
-        }
-
-        private static IPivotPage GetPivotPage(PivotItem pivotItem)
-        {
-            if (pivotItem.Content is Frame frame)
-            {
-                if (frame.Content is IPivotPage pivotPage)
-                {
-                    return pivotPage;
-                }
-            }
-
-            return null;
-        }
+        }        
     }
 }
