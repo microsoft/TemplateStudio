@@ -1,4 +1,6 @@
-﻿using Param_ItemNamespace.Services.Ink;
+﻿using System.Linq;
+using Param_ItemNamespace.Services.Ink;
+using Param_ItemNamespace.Services.Ink.UndoRedo;
 using Prism.Commands;
 using System.Windows.Input;
 
@@ -22,15 +24,15 @@ namespace Param_ItemNamespace.ViewModels
         {
             ZoomInCommand = new DelegateCommand(() => _zoomService?.ZoomIn());
             ZoomOutCommand = new DelegateCommand(() => _zoomService?.ZoomOut());
-            UndoCommand = new DelegateCommand(Undo);
-            RedoCommand = new DelegateCommand(Redo);
-            CutCommand = new DelegateCommand(Cut);
-            CopyCommand = new DelegateCommand(() => _copyPasteService?.Copy());
-            PasteCommand = new DelegateCommand(Paste);
+            UndoCommand = new DelegateCommand(Undo, CanUndo);
+            RedoCommand = new DelegateCommand(Redo, CanRedo);
+            CutCommand = new DelegateCommand(Cut, CanCut);
+            CopyCommand = new DelegateCommand(() => _copyPasteService?.Copy(), CanCopy);
+            PasteCommand = new DelegateCommand(Paste, CanPaste);
             LoadInkFileCommand = new DelegateCommand(LoadInkFile);
-            SaveInkFileCommand = new DelegateCommand(SaveInkFile);
-            ExportAsImageCommand = new DelegateCommand(ExportAsImage);
-            ClearAllCommand = new DelegateCommand(ClearAll);
+            SaveInkFileCommand = new DelegateCommand(SaveInkFile, CanSaveInkFile);
+            ExportAsImageCommand = new DelegateCommand(ExportAsImage, CanExportAsImage);
+            ClearAllCommand = new DelegateCommand(ClearAll, CanClearAll);
         }
 
         public void Initialize(
@@ -50,6 +52,12 @@ namespace Param_ItemNamespace.ViewModels
             _fileService = fileService;
             _zoomService = zoomService;
 
+            _strokeService.CopyStrokesEvent += (s, e) => RefreshCommands();
+            _strokeService.SelectStrokesEvent += (s, e) => RefreshCommands();
+            _strokeService.ClearStrokesEvent += (s, e) => RefreshCommands();
+            _undoRedoService.UndoEvent += (s, e) => RefreshCommands();
+            _undoRedoService.RedoEvent += (s, e) => RefreshCommands();
+            _undoRedoService.AddUndoOperationEvent += (s, e) => RefreshCommands();
             _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
@@ -154,9 +162,38 @@ namespace Param_ItemNamespace.ViewModels
 
         public void ClearAll()
         {
+            var strokes = _strokeService?.GetStrokes().ToList();
             ClearSelection();
             _strokeService?.ClearStrokes();
-            _undoRedoService?.Reset();
+            _undoRedoService?.AddOperation(new RemoveStrokeUndoRedoOperation(strokes, _strokeService));
+        }
+
+        private bool CanCut() => _copyPasteService != null && _copyPasteService.CanCut;
+
+        private bool CanCopy() => _copyPasteService != null && _copyPasteService.CanCopy;
+
+        private bool CanPaste() => _copyPasteService != null && _copyPasteService.CanPaste;
+
+        private bool CanUndo() => _undoRedoService != null && _undoRedoService.CanUndo;
+
+        private bool CanRedo() => _undoRedoService != null && _undoRedoService.CanRedo;
+
+        private bool CanSaveInkFile() => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private bool CanExportAsImage() => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private bool CanClearAll() => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private void RefreshCommands()
+        {
+            (CutCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (CopyCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (PasteCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (UndoCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (RedoCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (SaveInkFileCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (ExportAsImageCommand as DelegateCommand)?.RaiseCanExecuteChanged();
+            (ClearAllCommand as DelegateCommand)?.RaiseCanExecuteChanged();
         }
 
         private void ConfigLassoSelection(bool enableLasso)

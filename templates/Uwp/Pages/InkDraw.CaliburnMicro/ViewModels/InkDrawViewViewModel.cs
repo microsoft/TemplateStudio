@@ -1,4 +1,6 @@
-﻿using Param_ItemNamespace.Services.Ink;
+﻿using System.Linq;
+using Param_ItemNamespace.Services.Ink;
+using Param_ItemNamespace.Services.Ink.UndoRedo;
 using Param_ItemNamespace.Helpers;
 
 namespace Param_ItemNamespace.ViewModels
@@ -38,6 +40,12 @@ namespace Param_ItemNamespace.ViewModels
             _fileService = fileService;
             _zoomService = zoomService;
 
+            _strokeService.CopyStrokesEvent += (s, e) => RefreshActions();
+            _strokeService.SelectStrokesEvent += (s, e) => RefreshActions();
+            _strokeService.ClearStrokesEvent += (s, e) => RefreshActions();
+            _undoRedoService.UndoEvent += (s, e) => RefreshActions();
+            _undoRedoService.RedoEvent += (s, e) => RefreshActions();
+            _undoRedoService.AddUndoOperationEvent += (s, e) => RefreshActions();
             _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
@@ -75,12 +83,15 @@ namespace Param_ItemNamespace.ViewModels
 
         public void ZoomOut() => _zoomService?.ZoomOut();
 
-        public void Copy() => _copyPasteService?.Copy();
-
         public void Cut()
         {
             _copyPasteService?.Cut();
             ClearSelection();
+        }
+
+        public void Copy()
+        {
+            _copyPasteService?.Copy();
         }
 
         public void Paste()
@@ -126,9 +137,38 @@ namespace Param_ItemNamespace.ViewModels
 
         public void ClearAll()
         {
+            var strokes = _strokeService?.GetStrokes().ToList();
             ClearSelection();
             _strokeService?.ClearStrokes();
-            _undoRedoService?.Reset();
+            _undoRedoService?.AddOperation(new RemoveStrokeUndoRedoOperation(strokes, _strokeService));
+        }
+
+        private bool CanCut => _copyPasteService != null && _copyPasteService.CanCut;
+
+        private bool CanCopy => _copyPasteService != null && _copyPasteService.CanCopy;
+
+        private bool CanPaste => _copyPasteService != null && _copyPasteService.CanPaste;
+
+        private bool CanUndo => _undoRedoService != null && _undoRedoService.CanUndo;
+
+        private bool CanRedo => _undoRedoService != null && _undoRedoService.CanRedo;
+
+        private bool CanSaveInkFile => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private bool CanExportAsImage => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private bool CanClearAll => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private void RefreshActions()
+        {
+            NotifyOfPropertyChange(nameof(CanCut));
+            NotifyOfPropertyChange(nameof(CanCopy));
+            NotifyOfPropertyChange(nameof(CanPaste));
+            NotifyOfPropertyChange(nameof(CanUndo));
+            NotifyOfPropertyChange(nameof(CanRedo));
+            NotifyOfPropertyChange(nameof(CanSaveInkFile));
+            NotifyOfPropertyChange(nameof(CanExportAsImage));
+            NotifyOfPropertyChange(nameof(CanClearAll));
         }
 
         private void ConfigLassoSelection(bool enableLasso)

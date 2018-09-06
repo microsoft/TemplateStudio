@@ -23,6 +23,9 @@
     },
     {
       "path": ".\\Services\\Ink\\UndoRedo\\TransformUndoRedoOperation.cs"
+    },
+    {
+      "path": ".\\Services\\Ink\\UndoRedo\\ClearStrokesAndShapesUndoRedoOperation.cs"
     }
   ],
   "symbols": {

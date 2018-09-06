@@ -41,6 +41,10 @@ namespace Param_ItemNamespace.ViewModels
             _transformService = transformService;
             _fileService = fileService;
 
+            _strokeService.ClearStrokesEvent += (s, e) => RefreshActions();
+            _undoRedoService.UndoEvent += (s, e) => RefreshActions();
+            _undoRedoService.RedoEvent += (s, e) => RefreshActions();
+            _undoRedoService.AddUndoOperationEvent += (s, e) => RefreshActions();
             _pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
@@ -126,21 +130,43 @@ namespace Param_ItemNamespace.ViewModels
 
         public void ClearAll()
         {
+            var strokes = _strokeService?.GetStrokes().ToList();
+            var textAndShapes = _transformService?.GetTextAndShapes().ToList();
             ClearSelection();
             _strokeService.ClearStrokes();
             _transformService.ClearTextAndShapes();
-            _undoRedoService.Reset();
+            _undoRedoService.AddOperation(new ClearStrokesAndShapesUndoRedoOperation(strokes, textAndShapes, _strokeService, _transformService));
+        }
+
+        private bool CanUndo => _undoRedoService != null && _undoRedoService.CanUndo;
+
+        private bool CanRedo => _undoRedoService != null && _undoRedoService.CanRedo;
+
+        private bool CanSaveInkFile => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private bool CanTransformTextAndShapes => _strokeService != null && _strokeService.GetStrokes().Any();
+
+        private bool CanClearAll => (_strokeService != null && _strokeService.GetStrokes().Any()) ||
+                                    (_transformService != null && _transformService.HasTextAndShapes());
+
+        private void RefreshActions()
+        {
+            NotifyOfPropertyChange(nameof(CanUndo));
+            NotifyOfPropertyChange(nameof(CanRedo));
+            NotifyOfPropertyChange(nameof(CanSaveInkFile));
+            NotifyOfPropertyChange(nameof(CanTransformTextAndShapes));
+            NotifyOfPropertyChange(nameof(CanClearAll));
         }
 
         private void ConfigLassoSelection(bool enableLasso)
         {
             if (enableLasso)
             {
-                _lassoSelectionService.StartLassoSelectionConfig();
+                _lassoSelectionService?.StartLassoSelectionConfig();
             }
             else
             {
-                _lassoSelectionService.EndLassoSelectionConfig();
+                _lassoSelectionService?.EndLassoSelectionConfig();
             }
         }
 

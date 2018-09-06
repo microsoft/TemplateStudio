@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Deep Linking",
+    "description": "맞춤형 URI 스키마로 앱을 시작하고 앱에 딥 링크를 사용하는 기능을 추가합니다.",
+    "identity": "wts.Feat.DeepLinking.VB"
+}

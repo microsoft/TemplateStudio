@@ -65,7 +65,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             : base(mainView, provider)
         {
             Instance = this;
-            ValidationService.Initialize(UserSelection.GetNames);
+            ValidationService.Initialize(UserSelection.GetNames, UserSelection.GetPageNames);
         }
 
         public override async Task InitializeAsync(string platform, string language)

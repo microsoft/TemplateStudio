@@ -216,6 +216,7 @@
     <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
+    <None Include=".codeclonesettings" />
     <None Include="Packaging\MsSigned\Templates.mstx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

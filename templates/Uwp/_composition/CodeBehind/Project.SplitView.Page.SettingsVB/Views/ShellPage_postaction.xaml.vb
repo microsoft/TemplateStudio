@@ -3,7 +3,7 @@
 '**}
 
 Namespace Views
-    Partial Public NotInheritable Class ShellPage
+    Public NotInheritable Partial Class ShellPage
         Inherits Page
         Implements INotifyPropertyChanged
 

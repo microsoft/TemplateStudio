@@ -90,10 +90,12 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind));
+            var settingsTemplate = GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind);
+            var numOfDependencies = settingsTemplate.Dependencies?.Count();
+            AddTemplate(viewModel, settingsTemplate);
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
-            Assert.True(userSelection.Features.Count == 1);
+            Assert.True(userSelection.Features.Count == numOfDependencies);
             Assert.True(userSelection.Features.First().template.Identity == FeatureSettingsStorage);
         }
 
@@ -108,10 +110,12 @@ namespace Microsoft.UI.Test
             Assert.True(userSelection.Pages.Count == 1);
             Assert.True(userSelection.Features.Count == 0);
             Assert.True(viewModel.UserSelection.Licenses.Count == 0);
-            AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind));
+            var settingsTemplate = GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind);
+            var numOfDependencies = settingsTemplate.Dependencies?.Count();
+            AddTemplate(viewModel, settingsTemplate);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
-            Assert.True(userSelection.Features.Count == 1);
+            Assert.True(userSelection.Features.Count == numOfDependencies);
             Assert.True(viewModel.UserSelection.Licenses.Count == 1);
         }
 
@@ -149,12 +153,14 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind));
+            var settingsTemplate = GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind);
+            var numOfDependencies = settingsTemplate.Dependencies?.Count();
+            AddTemplate(viewModel, settingsTemplate);
             var userSelection = viewModel.UserSelection.GetUserSelection();
-            Assert.True(userSelection.Features.Count == 1);
+            Assert.True(userSelection.Features.Count == numOfDependencies);
             DeleteFeature(viewModel.UserSelection, 0);
             userSelection = viewModel.UserSelection.GetUserSelection();
-            Assert.True(userSelection.Features.Count == 1);
+            Assert.True(userSelection.Features.Count == numOfDependencies);
         }
 
         [Fact]

@@ -1,0 +1,6 @@
+﻿{
+    "author": "Microsoft Community",
+    "name": "Deep Linking",
+    "description": "カスタム URI スキームを持つアプリを起動し、ディープ リンクを張る能力を追加します。",
+    "identity": "wts.Feat.DeepLinking.VB"
+}

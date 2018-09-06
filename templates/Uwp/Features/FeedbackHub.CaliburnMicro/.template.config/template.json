@@ -17,7 +17,7 @@
     "wts.dependencies":"wts.Page.Settings.CaliburnMicro",
     "wts.multipleInstance": "false",
     "wts.rightClickEnabled":"false",
-    "wts.licenses": "[Microsoft Store Services SDK](https://marketplace.visualstudio.com/items?itemName=AdMediator.MicrosoftStoreServicesSDK)",
+    "wts.licenses": "[Microsoft.Services.Store.SDK](https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx)",
     "wts.defaultInstance": "FeedbackHubFeature"
   },
   "sourceName": "FeedbackHubFeature",

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Services.Ink;
 using Caliburn.Micro;
@@ -34,6 +35,10 @@ namespace Param_ItemNamespace.ViewModels
             _fileService = fileService;
             _zoomService = zoomService;
 
+            _strokesService.StrokesCollected += (s, e) => RefreshActions();
+            _strokesService.StrokesErased += (s, e) => RefreshActions();
+            _strokesService.ClearStrokesEvent += (s, e) => RefreshActions();
+
             pointerDeviceService.DetectPenEvent += (s, e) => EnableTouch = false;
         }
 
@@ -62,7 +67,11 @@ namespace Param_ItemNamespace.ViewModels
         public BitmapImage Image
         {
             get => image;
-            set => Param_Setter(ref image, value);
+            set
+            {
+                Param_Setter(ref image, value);
+                RefreshActions();
+            }
         }
 
         public async void OpenImage() => await OnLoadImageAsync();
@@ -96,6 +105,16 @@ namespace Param_ItemNamespace.ViewModels
                 Image = bitmapImage;
                 _zoomService?.FitToSize(Image.PixelWidth, Image.PixelHeight);
             }
+        }
+
+        private bool CanSaveImage => Image != null && _strokesService != null && _strokesService.GetStrokes().Any();
+
+        private bool CanClearAll => Image != null || (_strokesService != null && _strokesService.GetStrokes().Any());
+
+        private void RefreshActions()
+        {
+            NotifyOfPropertyChange(nameof(CanSaveImage));
+            NotifyOfPropertyChange(nameof(CanClearAll));
         }
     }
 }

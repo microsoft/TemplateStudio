@@ -105,8 +105,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             _isInitialized = true;
         }
 
-        public IEnumerable<string> GetNames() => Pages.Select(t => t.Name)
-                                                    .Concat(Features.Select(f => f.Name));
+        public IEnumerable<string> GetNames()
+            => Pages.Select(t => t.Name).Concat(Features.Select(f => f.Name));
+
+        public IEnumerable<string> GetPageNames()
+            => Pages.Where(p => p.ItemNameEditable).Select(t => t.Name);
 
         public void Add(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null)
         {
@@ -130,11 +133,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (!string.IsNullOrEmpty(layoutName))
                 {
-                    savedTemplate.Name = layoutName;
+                    savedTemplate.SetName(layoutName, true);
                 }
                 else
                 {
-                    savedTemplate.Name = ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, template.ItemNameEditable);
+                    savedTemplate.SetName(ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, template.ItemNameEditable), true);
                     if (savedTemplate.ItemNameEditable)
                     {
                         focus = true;
