@@ -2,9 +2,9 @@
   "author": "Microsoft",
   "classifications": [ "Test" ],
   "name": "CompositionTemplate",
-  "identity": "Microsoft.UWPTemplates.Test.CompositionTemplate.CSharp",
+  "identity": "Microsoft.UWPTemplates.Test.CompositionTemplate.VB",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",

@@ -251,6 +251,7 @@
     <Content Include="TestData\Templates\_catalog\projectTypes\en-US.TestProjectType.md" />
     <Content Include="TestData\Templates\_catalog\projectTypes\es-ES.TestProjectType.md" />
     <Content Include="TestData\Templates\_catalog\projectTypes\TestProjectType.md" />
+    <Content Include="TestData\Templates\Hidden.FeatureTemplate\.template.config\template.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">
@@ -275,6 +276,17 @@
     <Content Include="TestData\Templates\PageTemplateVB\.template.config\template.json" />
     <Content Include="TestData\Templates\Naming.DefaultNameTemplateVB\.template.config\template.json" />
     <Content Include="TestData\Templates\CompositionTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\FeatureTemplateVB\.template.config\description.md" />
+    <Content Include="TestData\Templates\FeatureTemplateVB\.template.config\en-US.description.md" />
+    <Content Include="TestData\Templates\CompositionTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\Dependencies.FeatureTemplateVB\.template.config\template.json" />
+    <None Include="TestData\Templates\FeatureTemplateVB\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\FeatureTemplateVB\.template.config\es-ES.description.md" />
+    <None Include="TestData\Templates\FeatureTemplateVB\.template.config\es-ES.template.json" />
+    <Content Include="TestData\Templates\FeatureTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\OutputToParent.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\TelemetryName.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\Dependencies.FeatureTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\ProjectTemplateVB\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\Layout.json" />
     <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\template.json" />

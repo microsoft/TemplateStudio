@@ -48,6 +48,27 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
         }
 
         [Fact]
+        public async Task LogExAsync()
+        {
+            string uniqueMsg = $"LogException_{Guid.NewGuid()}";
+
+            await FileHealthWriter.Current.WriteExceptionAsync(new Exception("SampleException"), uniqueMsg);
+
+            AssertMessageIsInLog(FileHealthWriter.Current.LogFileName, uniqueMsg);
+        }
+
+        [Fact]
+        public async Task LogEx_NoExAsync()
+        {
+            string uniqueMsg = $"LogException_{Guid.NewGuid()}";
+
+            await Assert.ThrowsAsync<ArgumentNullException>(async () =>
+            {
+                await FileHealthWriter.Current.WriteExceptionAsync(null);
+            });
+        }
+
+        [Fact]
         public async Task TwoManageThreadsAsync()
         {
             var t1 = Task.Run(async () =>

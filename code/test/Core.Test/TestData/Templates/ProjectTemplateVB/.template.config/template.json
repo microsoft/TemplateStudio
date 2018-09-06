@@ -10,6 +10,8 @@
     "type": "project",
     "wts.type": "project",
     "wts.framework": "fx1",
+    "wts.projecttype": "pt1|pt2",
+    "wts.platform": "UWP",
     "wts.version": "1.0.0",
     "wts.licenses": "[text1](url1)|[text2](url2)",
     "wts.group": "group1",

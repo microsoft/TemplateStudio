@@ -25,6 +25,7 @@ namespace TestData
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             //{[{
+
             //AFTER ONLAUNCHED!!
             //}]}
             Settings.SettingsViewModel.InitAppTheme();
@@ -33,6 +34,7 @@ namespace TestData
             //{[{
             //BEFORE END!!
             var s = "";
+
             //}]}
         }
 

@@ -9,7 +9,10 @@
     "language": "C#",
     "type": "item",
     "wts.type": "page",
-    "wts.displayOrder" : "1"
+    "wts.displayOrder": "1",
+    "wts.genGroup": "1",
+    "wts.export.baseclass": "ViewModelBase",
+    "wts.export.setter": "Set"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

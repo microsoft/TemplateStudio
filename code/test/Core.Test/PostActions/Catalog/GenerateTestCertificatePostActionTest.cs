@@ -9,9 +9,10 @@ using System.IO;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
@@ -57,6 +58,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             OutputPath = @".\TestData\tmp\TestProject";
             ProjectName = projectName;
 
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
             GenContext.Current = this;
 
             Directory.CreateDirectory(GenContext.Current.OutputPath);
