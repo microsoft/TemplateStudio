@@ -24,10 +24,10 @@ namespace wts.ItemName.Behaviors
         private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var removedItem = e.RemovedItems.Cast<Screen>()
-                .Select(i => GetPivotPage(i)).FirstOrDefault();
+                .Select(i => i.GetPage<IPivotPage>()).FirstOrDefault();
 
             var addedItem = e.AddedItems.Cast<Screen>()
-                .Select(i => GetPivotPage(i)).FirstOrDefault();
+                .Select(i => i.GetPage<IPivotPage>()).FirstOrDefault();
 
             if (removedItem != null)
             {
@@ -38,16 +38,6 @@ namespace wts.ItemName.Behaviors
             {
                 await addedItem?.OnPivotSelectedAsync();
             }
-        }
-
-        private static IPivotPage GetPivotPage(Screen screen)
-        {
-            if (screen.GetView() is IPivotPage pivotPage)
-            {
-                return pivotPage;
-            }
-
-            return null;
         }
     }
 }

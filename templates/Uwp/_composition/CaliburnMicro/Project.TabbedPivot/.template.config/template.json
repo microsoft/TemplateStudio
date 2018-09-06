@@ -22,6 +22,9 @@
       "path": ".\\Helpers\\IPivotPage.cs"
     },
     {
+      "path": ".\\Helpers\\ScreenExtensions.cs"
+    },
+    {
       "path": ".\\ViewModels\\PivotViewModel.cs"
     },
     {
