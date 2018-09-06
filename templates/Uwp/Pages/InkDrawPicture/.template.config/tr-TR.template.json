@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw Picture",
+  "description": "Windows Ink kullanarak bir resmi yükleyip bu resim üzerine çizim yapabileceğiniz bir sayfadır.",
+  "identity": "wts.Page.InkDrawPicture"
+}

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "User Activity",
+  "description": "Bietet zusätzlich die Möglichkeit, der Windows-Zeitachse Benutzeraktivitäten hinzuzufügen.",
+  "identity": "wts.Feat.UserActivity.VB"
+}

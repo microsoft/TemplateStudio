@@ -31,7 +31,7 @@ namespace Param_RootNamespace
             await Task.CompletedTask;
         }
 
-        protected override Task OnActivateApplicationAsync(IActivatedEventArgs args)
+        protected override async Task OnActivateApplicationAsync(IActivatedEventArgs args)
         {
 //{[{
             if (args.Kind == ActivationKind.ToastNotification && args.PreviousExecutionState != ApplicationExecutionState.Running)
@@ -40,11 +40,11 @@ namespace Param_RootNamespace
                 // Since dev center, toast, and Azure notification hub will all active with an ActivationKind.ToastNotification
                 // you may have to parse the toast data to determine where it came from and what action you want to take
                 // If the app isn't running then launch the app here
-                OnLaunchApplicationAsync(args as LaunchActivatedEventArgs);
+                await OnLaunchApplicationAsync(args as LaunchActivatedEventArgs);
             }
 //}]}
 
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
     }
 }

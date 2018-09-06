@@ -445,6 +445,6 @@ Les modifications suivantes n'ont pu être intégrées : {2}
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
-    <value>Erreur de téléchargement du fichier de configuration source.</value>
+    <value>Une erreur est survenue lors du téléchargement du fichier de configuration source.</value>
   </data>
 </root>

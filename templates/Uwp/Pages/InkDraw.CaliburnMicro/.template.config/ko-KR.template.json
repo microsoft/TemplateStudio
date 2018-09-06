@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw",
+  "description": "이 페이지에서는 Windows Ink를 사용하여 메모를 작성하고 그림을 그릴 수 있습니다.",
+  "identity": "wts.Page.InkDraw.CaliburnMicro"
+}

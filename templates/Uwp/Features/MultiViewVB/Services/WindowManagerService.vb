@@ -36,7 +36,8 @@ Namespace Services
         ' Displays a view as a standalone
         ' You can use the resulting ViewLifeTileControl to interact with the new window.
         Public Async Function TryShowAsStandaloneAsync(windowTitle As String, pageType As Type) As Task(Of ViewLifetimeControl)
-            Dim viewControl As ViewLifetimeControl = Await CreateViewLifetimeControlAsync(windowTitle, pageType)
+            Dim theme = (TryCast(Window.Current.Content, FrameworkElement)).RequestedTheme
+            Dim viewControl As ViewLifetimeControl = Await CreateViewLifetimeControlAsync(windowTitle, pageType, theme)
             SecondaryViews.Add(viewControl)
             viewControl.StartViewInUse()
             Dim viewShown = Await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewControl.Id, ViewSizePreference.[Default], ApplicationView.GetForCurrentView().Id, ViewSizePreference.[Default])
@@ -46,7 +47,8 @@ Namespace Services
 
         ' Displays a view in the specified view mode
         Public Async Function TryShowAsViewModeAsync(windowTitle As String, pageType As Type, Optional viewMode As ApplicationViewMode = ApplicationViewMode.[Default]) As Task(Of ViewLifetimeControl)
-            Dim viewControl As ViewLifetimeControl = Await CreateViewLifetimeControlAsync(windowTitle, pageType)
+            Dim theme = (TryCast(Window.Current.Content, FrameworkElement)).RequestedTheme
+            Dim viewControl As ViewLifetimeControl = Await CreateViewLifetimeControlAsync(windowTitle, pageType, theme)
             SecondaryViews.Add(viewControl)
             viewControl.StartViewInUse()
             Dim viewShown = Await ApplicationViewSwitcher.TryShowAsViewModeAsync(viewControl.Id, viewMode)
@@ -54,13 +56,15 @@ Namespace Services
             Return viewControl
         End Function
 
-        Private Async Function CreateViewLifetimeControlAsync(windowTitle As String, pageType As Type) As Task(Of ViewLifetimeControl)
+        Private Async Function CreateViewLifetimeControlAsync(windowTitle As String, pageType As Type, theme As ElementTheme) As Task(Of ViewLifetimeControl)
             Dim viewControl As ViewLifetimeControl = Nothing
             Await CoreApplication.CreateNewView().Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
                 viewControl = ViewLifetimeControl.CreateForCurrentView()
                 viewControl.Title = windowTitle
                 viewControl.StartViewInUse()
-                Dim frame = New Frame()
+                Dim frame = New Frame() With {
+                    .RequestedTheme = theme
+                }
                 frame.Navigate(pageType, viewControl)
                 Window.Current.Content = frame
                 Window.Current.Activate()

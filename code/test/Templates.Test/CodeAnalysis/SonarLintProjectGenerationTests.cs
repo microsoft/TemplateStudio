@@ -17,90 +17,43 @@ namespace Microsoft.Templates.Test
 {
     [Collection("SonarLintCollection")]
     [Trait("ExecutionSet", "BuildVBStyle")]
-    public class SonarLintProjectGenerationTests : BaseTestContextProvider
+    public class SonarLintProjectGenerationTests : BaseGenAndBuildTests
     {
-        private readonly SonarLintGenerationTestsFixture _fixture;
-
         public SonarLintProjectGenerationTests(SonarLintGenerationTestsFixture fixture)
         {
             _fixture = fixture;
-        }
-
-        private async Task SetUpFixtureForTestingAsync()
-        {
-            await _fixture.InitializeFixtureAsync(this);
+            _fixture.InitializeFixture(this);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForSonarLintAsync")]
+        [MemberData("GetProjectTemplatesForSonarLint")]
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithSonarLintAsync(string projectType, string framework, string platform)
         {
-             await SetUpFixtureForTestingAsync();
+            Func<ITemplateInfo, bool> selector =
+                    t => t.GetTemplateType() == TemplateType.Project
+                    && t.GetLanguage() == ProgrammingLanguages.VisualBasic
+                    && t.GetPlatform() == platform
+                    && t.GetProjectTypeList().Contains(projectType)
+                    && t.GetFrameworkList().Contains(framework);
 
-            var targetProjectTemplate = SonarLintGenerationTestsFixture.Templates
-                .FirstOrDefault(t => t.GetTemplateType() == TemplateType.Project
-                                  && t.GetLanguage() == ProgrammingLanguages.VisualBasic
-                                  && t.GetProjectTypeList().Contains(projectType)
-                                  && t.GetFrameworkList().Contains(framework));
+            Func<ITemplateInfo, bool> templateSelector =
+                t => ((t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                        && t.GetFrameworkList().Contains(framework)
+                        && t.GetPlatform() == platform
+                        && !t.GetIsHidden())
+                     || (t.Name == "Feature.Testing.SonarLint.VB");
 
             var projectName = $"{projectType}{framework}AllSonarLint";
 
-            ProjectName = projectName;
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-            OutputPath = DestinationPath;
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, ProgrammingLanguages.VisualBasic, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
-            var userSelection = new UserSelection(projectType, framework, platform, ProgrammingLanguages.VisualBasic)
-            {
-                HomeName = "Main"
-            };
-
-            AddLayoutItems(userSelection);
-            _fixture.AddItems(userSelection, GetTemplates(framework, TemplateType.Page), _fixture.GetDefaultName);
-            _fixture.AddItems(userSelection, GetTemplates(framework, TemplateType.Feature), _fixture.GetDefaultName);
-
-            var x = SonarLintGenerationTestsFixture.Templates.First(t => t.Name == "Feature.Testing.SonarLint.VB");
-
-            _fixture.AddItem(userSelection, "SonarLintTesting", x);
-
-            await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
-
-            // Build solution
-            var outputPath = Path.Combine(_fixture.TestProjectsPath, projectName);
-            var result = _fixture.BuildSolution(projectName, outputPath);
-
-            // Assert
-            Assert.True(result.exitCode.Equals(0), $"Solution {targetProjectTemplate.Name} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
-
-            // Clean
-            Fs.SafeDeleteDirectory(outputPath);
+            AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
-        public static IEnumerable<object[]> GetProjectTemplatesForSonarLintAsync()
+        public static IEnumerable<object[]> GetProjectTemplatesForSonarLint()
         {
-            JoinableTaskContext context = new JoinableTaskContext();
-            JoinableTaskCollection tasks = context.CreateCollection();
-            context.CreateFactory(tasks);
-            var result = context.Factory.Run(() => SonarLintGenerationTestsFixture.GetProjectTemplatesForSonarLintAsync());
-            return result;
-        }
-
-        private IEnumerable<ITemplateInfo> GetTemplates(string framework, TemplateType templateType)
-        {
-            return SonarLintGenerationTestsFixture.Templates
-                                         .Where(t => t.GetFrameworkList().Contains(framework)
-                                                  && t.GetTemplateType() == templateType);
-        }
-
-        private void AddLayoutItems(UserSelection userSelection)
-        {
-            var layouts = GenComposer.GetLayoutTemplates(userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
-
-            foreach (var item in layouts)
-            {
-                _fixture.AddItem(userSelection, item.Layout.Name, item.Template);
-            }
+            return SonarLintGenerationTestsFixture.GetProjectTemplatesForSonarLint();
         }
     }
 }

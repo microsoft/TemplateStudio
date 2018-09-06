@@ -88,9 +88,6 @@ Namespace Controls
 
           CameraButtonStyle = TryCast(Resources("CameraButtonStyle"), Style)
           SwitchCameraButtonStyle = TryCast(Resources("SwitchCameraButtonStyle"), Style)
-
-          AddHandler Loaded, AddressOf OnLoaded
-          AddHandler Unloaded, AddressOf OnUnloaded
       End Sub
 
       Public Async Function InitializeCameraAsync() As Task
@@ -126,9 +123,9 @@ Namespace Controls
                   Await StartPreviewAsync()
               End If
           Catch ex As UnauthorizedAccessException
-              Throw New UnauthorizedAccessException("Camera_Exception_UnauthorizedAccess".GetLocalized(), ex)
+              errorMessage.Text = "Camera_Exception_UnauthorizedAccess".GetLocalized()
           Catch ex As NotSupportedException
-                Throw New NotSupportedException("Camera_Exception_NotSupported".GetLocalized(), ex)
+                errorMessage.Text = "Camera_Exception_NotSupported".GetLocalized()
           End Try
       End Function
 
@@ -170,18 +167,6 @@ Namespace Controls
 
       Public Sub SwitchPanel()
           Panel = If((Panel = Panel.Front), Panel.Back, Panel.Front)
-      End Sub
-
-      Private Async Sub OnLoaded(sender As Object, e As RoutedEventArgs)
-          Try
-              Await InitializeCameraAsync()
-          Catch ex As Exception
-              errorMessage.Text = ex.Message
-          End Try
-      End Sub
-
-      Private Async Sub OnUnloaded(sender As Object, e As RoutedEventArgs)
-          Await CleanupCameraAsync()
       End Sub
 
       Private Async Sub CaptureButton_Click(sender As Object, e As RoutedEventArgs)

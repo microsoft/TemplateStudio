@@ -117,7 +117,7 @@ namespace Microsoft.Templates.Core.PostActions
 
         private static bool IsResourceDictionaryPostaction(string f)
         {
-            return Path.GetExtension(f).Equals(".xaml", StringComparison.OrdinalIgnoreCase) & File.ReadAllText(f).StartsWith(MergeConfiguration.ResourceDictionaryMatch, StringComparison.Ordinal);
+            return Path.GetExtension(f).Equals(".xaml", StringComparison.OrdinalIgnoreCase) && File.ReadAllText(f).StartsWith(MergeConfiguration.ResourceDictionaryMatch, StringComparison.Ordinal);
         }
     }
 }

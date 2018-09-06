@@ -84,3 +84,21 @@ The extension does [log basic telemetry](docs/telemetry.md) for what is being se
 ## .NET Foundation
 
 This project is supported by the [.NET Foundation](https://dotnetfoundation.org).
+
+## Projects we like and collaborate with
+
+- [Rapid Xaml Toolkit](https://github.com/Microsoft/Rapid-XAML-Toolkit)
+- [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
+
+## Libraries and frameworks we use in our generated projects
+
+- [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
+- [Microsoft AppCenter SDK](https://github.com/Microsoft/AppCenter-SDK-DotNet)
+- [Microsoft Store Services SDK](https://marketplace.visualstudio.com/items?itemName=AdMediator.MicrosoftStoreServicesSDK)
+- [Microsoft Win 2D](https://github.com/Microsoft/Win2D)
+- [MVVMLight](https://github.com/lbugnion/mvvmlight)
+- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
+- [Prism](https://github.com/PrismLibrary/Prism)
+- [Telerik UI For UWP](https://github.com/telerik/UI-For-UWP)
+- [Windows Azure Messaging Managed](https://www.nuget.org/packages/WindowsAzure.Messaging.Managed)
+- [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)

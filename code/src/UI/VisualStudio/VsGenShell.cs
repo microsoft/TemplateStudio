@@ -626,6 +626,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             return Dte.Debugger.CurrentMode != dbgDebugMode.dbgDesignMode;
         }
 
+        public override bool IsBuildInProgress()
+        {
+            return Dte.Solution.SolutionBuild.BuildState == vsBuildState.vsBuildStateInProgress;
+        }
+
         public override string GetVsVersionAndInstance()
         {
             if (string.IsNullOrEmpty(_vsVersionInstance))

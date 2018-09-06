@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw Picture",
+  "description": "Stránka umožňující načíst obrázek a kreslit do něj pomocí nástroje Windows Ink",
+  "identity": "wts.Page.InkDrawPicture"
+}

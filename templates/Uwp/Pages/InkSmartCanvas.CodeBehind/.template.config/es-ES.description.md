@@ -1,0 +1,4 @@
+﻿Esta página contiene un lienzo de entrada de lápiz y una barra de herramientas de entrada de lápiz que te permite dibujar usando Windows Ink.
+Esta página usa InkAnalyzer y te permite seleccionar los nodos y transformarlos en formas y textos. También puedes mover los nodos o usar la selección de lazo para seleccionar una parte de un nodo y mover solo esos trazos. Esta página también admite deshacer y rehacer todas las acciones.
+ 
+Para obtener más información acerca de la plataforma Windows Ink, dirígete a [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)

@@ -37,22 +37,5 @@ Namespace Views
             ImagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage")
             NavigationService.Navigate(Of ImageGalleryViewDetailPage)(selected.ID)
         End Sub
-
-        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
-            MyBase.OnNavigatedTo(e)
-            If e.NavigationMode = NavigationMode.Back Then
-                Dim selectedImageId = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewSelectedIdKey)
-                If Not String.IsNullOrEmpty(selectedImageId) Then
-                    Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose)
-                    If animation IsNot Nothing Then
-                        Dim item = ImagesGridView.Items.FirstOrDefault(Function(i) DirectCast(i, SampleImage).ID = selectedImageId)
-                        ImagesGridView.ScrollIntoView(item)
-                        Await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage")
-                    End If
-
-                    ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedIdKey, String.Empty)
-                End If
-            End If
-        End Sub
     End Class
 End Namespace

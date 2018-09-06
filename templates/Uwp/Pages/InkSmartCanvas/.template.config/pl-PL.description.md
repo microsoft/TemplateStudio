@@ -1,0 +1,4 @@
+﻿Ta strona zawiera kanwę pisma odręcznego i pasek narzędzi pisma odręcznego, które pozwalają na rysowanie przy użyciu funkcji Windows Ink.
+Ta strona używa obiektu InkAnalyzer i pozwala wybierać węzły oraz przekształcać je w kształty i tekst. Można także przenosić węzły i używać zaznaczania lassem, aby wybrać część węzła i przenieść tylko te pociągnięcia. Ta strona obsługuje także wycofywanie i ponawianie wszystkich czynności.
+ 
+Aby dowiedzieć się więcej o platformie Windows Ink, przejdź na stronę [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)

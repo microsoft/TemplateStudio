@@ -1,0 +1,8 @@
+﻿<CodeCloneSettings>  
+  <Exclusions>  
+    <!-- Collection assert in two tests, that are proofing the same condition set up in two ways. -->  
+    <Type>Microsoft.Templates.Core.Test.Composition.CompositionQueryTest</Type>  
+    <FunctionName>Microsoft.Templates.Core.Test.Composition.CompositionQueryTest.Parse</FunctionName>  
+    <FunctionName>Microsoft.Templates.Core.Test.Composition.CompositionQueryTest.Parse_MultipleItems</FunctionName>  
+  </Exclusions>  
+</CodeCloneSettings>  
