@@ -31,9 +31,6 @@
       "path": ".\\Activation\\SchemeActivationData.cs"
     },
     {
-      "path": ".\\Assets\\Logo.png"
-    },
-    {
       "path": ".\\ViewModels\\SchemeActivationSampleViewModel.cs"
     }
   ],
