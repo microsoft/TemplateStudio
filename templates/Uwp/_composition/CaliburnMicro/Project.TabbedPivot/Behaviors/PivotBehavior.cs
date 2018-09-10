@@ -3,9 +3,9 @@ using System.Linq;
 using Microsoft.Xaml.Interactivity;
 using Windows.UI.Xaml.Controls;
 using Caliburn.Micro;
-using wts.ItemName.Helpers;
+using Param_ItemNamespace.Helpers;
 
-namespace wts.ItemName.Behaviors
+namespace Param_ItemNamespace.Behaviors
 {
     public class PivotBehavior : Behavior<Pivot>
     {

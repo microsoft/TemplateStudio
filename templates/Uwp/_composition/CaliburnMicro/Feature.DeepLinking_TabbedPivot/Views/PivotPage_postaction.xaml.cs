@@ -16,11 +16,11 @@ namespace Param_ItemNamespace.Views
         {
             base.OnNavigatedTo(e);
 //{[{
-
             if (e.Parameter is SchemeActivationData activationData)
             {
                 ViewModel.ActivationData = activationData;
             }
+
 //}]}
         }
     }

@@ -4,9 +4,9 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using wts.ItemName.Helpers;
+using Param_ItemNamespace.Helpers;
 
-namespace wts.ItemName.Behaviors
+namespace Param_ItemNamespace.Behaviors
 {
     public class PivotNavigationBehavior : Behavior<Pivot>
     {

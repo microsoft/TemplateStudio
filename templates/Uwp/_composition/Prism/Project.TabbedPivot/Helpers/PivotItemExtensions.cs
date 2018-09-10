@@ -31,6 +31,7 @@ namespace wts.ItemName.Helpers
                     return true;
                 }
             }
+
             return false;
         }
     }

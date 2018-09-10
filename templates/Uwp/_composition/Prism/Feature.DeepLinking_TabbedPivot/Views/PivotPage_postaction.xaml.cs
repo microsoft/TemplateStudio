@@ -13,21 +13,21 @@ namespace Param_ItemNamespace.Views
         {
             base.OnNavigatedTo(e);
 //{[{
-
             if (e.Parameter is SchemeActivationData data)
             {
                 InitializeFromSchemeActivation(data);
             }
+
 //}]}
         }
 
 //{[{    
         public void InitializeFromSchemeActivation(SchemeActivationData schemeActivationData)
         {
-            var selected = Items.Items.Cast<PivotItem>()
+            var selected = pivot.Items.Cast<PivotItem>()
                     .FirstOrDefault(i => i.IsOfPageType(schemeActivationData.PageToken));
             var viewModel = selected?.GetPage<INavigationAware>();
-            Items.SelectedItem = selected;
+            pivot.SelectedItem = selected;
             var args = new NavigatedToEventArgs();
             args.Parameter = schemeActivationData.Parameters;
             viewModel.OnNavigatedTo(args, null);

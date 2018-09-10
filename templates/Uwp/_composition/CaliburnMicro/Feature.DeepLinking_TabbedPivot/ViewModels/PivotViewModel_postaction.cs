@@ -9,6 +9,7 @@ namespace Param_ItemNamespace.ViewModels
     {
 //{[{
         public SchemeActivationData ActivationData { get; set; }
+
 //}]}
         protected override void OnInitialize()
         {
@@ -30,10 +31,12 @@ namespace Param_ItemNamespace.ViewModels
 
         public async Task InitializeFromSchemeActivationAsync()
         {
-            var selectedScreen = Items.FirstOrDefault(s => s.IsOfPageType(ActivationData.PageType));
-            var page = selectedScreen.GetPage<IPivotActivationPage>();
+            var selectedScreen = Items.FirstOrDefault(s => s.GetView().GetType() == ActivationData.PageType);
             ActivateItem(selectedScreen);
-            await page?.OnPivotActivatedAsync(ActivationData.Parameters);
+            if (selectedScreen.GetView() is IPivotActivationPage page)
+            {
+                await page.OnPivotActivatedAsync(ActivationData.Parameters);
+            }
         }
 //}]}
     }

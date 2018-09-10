@@ -11,23 +11,23 @@ namespace Param_ItemNamespace.Views
         {
             base.OnNavigatedTo(e);
 //{[{
-
             if (e.Parameter is SchemeActivationData data)
             {
                 await InitializeFromSchemeActivationAsync(data);
             }
+
 //}]}
         }
 
 //{[{    
         public async Task InitializeFromSchemeActivationAsync(SchemeActivationData schemeActivationData)
         {
-            var selected = Items.Items.Cast<PivotItem>()
+            var selected = pivot.Items.Cast<PivotItem>()
                     .FirstOrDefault(i => i.IsOfPageType(schemeActivationData.PageType));
 
             var page = selected?.GetPage<IPivotActivationPage>();
 
-            Items.SelectedItem = selected;
+            pivot.SelectedItem = selected;
             await page?.OnPivotActivatedAsync(schemeActivationData.Parameters);
         }
 //}]}

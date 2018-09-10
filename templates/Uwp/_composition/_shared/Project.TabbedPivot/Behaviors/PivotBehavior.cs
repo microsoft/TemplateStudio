@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using Microsoft.Xaml.Interactivity;
-using wts.ItemName.Helpers;
+using Param_ItemNamespace.Helpers;
 
 using Windows.UI.Xaml.Controls;
 
-namespace wts.ItemName.Behaviors
+namespace Param_ItemNamespace.Behaviors
 {
     public class PivotBehavior : Behavior<Pivot>
     {
@@ -37,6 +37,6 @@ namespace wts.ItemName.Behaviors
             {
                 await addedItem?.OnPivotSelectedAsync();
             }
-        }        
+        }
     }
 }
