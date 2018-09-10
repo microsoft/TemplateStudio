@@ -30,6 +30,7 @@ namespace Param_ItemNamespace.ViewModels
 
         public void Initialize(Dictionary<string, string> parameters)
         {
+            Parameters.Clear();
             foreach (var param in parameters)
             {
                 if (param.Key == "ticks" && long.TryParse(param.Value, out long ticks))
