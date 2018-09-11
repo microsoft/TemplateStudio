@@ -19,7 +19,7 @@ Namespace Views
 
 '{[{
         Public Async Function InitializeFromSchemeActivationAsync(schemeActivationData As SchemeActivationData) As Task
-            Dim selected = pivot.Items.Cast(Of PivotItem)().FirstOrDefault(Function(i) i.IsOfViewModelName(schemeActivationData.ViewModelName))
+            Dim selected = pivot.Items.Cast(Of PivotItem)().FirstOrDefault(Function(i) i.IsOfPageType(schemeActivationData.PageType))
             Dim page = selected?.GetPage(Of IPivotActivationPage)()
             pivot.SelectedItem = selected
             Await page?.OnPivotActivatedAsync(schemeActivationData.Parameters)

@@ -1,7 +1,9 @@
 ﻿Namespace Views
     Public NotInheritable Partial Class SchemeActivationSamplePage
         Inherits Page
+'^^
 '{[{
+
         Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
             If e.Parameter IsNot Nothing Then
