@@ -1,5 +1,7 @@
 ﻿//{[{
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 //}]}
 namespace Param_ItemNamespace.Views
 {
@@ -13,8 +15,8 @@ namespace Param_ItemNamespace.Views
         {
             InitializeComponent();
         }
+//^^
 //{[{
-
         public void Initialize(Dictionary<string, string> parameters)
         {
             Parameters.Clear();
@@ -31,6 +33,21 @@ namespace Param_ItemNamespace.Views
                 }
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        {
+            if (Equals(storage, value))
+            {
+                return;
+            }
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+        }
+
+        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 //}]}
     }
 }
