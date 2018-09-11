@@ -15,9 +15,6 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Views\\SchemeActivationSamplePage.xaml"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

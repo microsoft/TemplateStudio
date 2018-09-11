@@ -37,6 +37,9 @@
       "path": ".\\ViewModels\\SchemeActivationSampleViewModel.vb"
     },
     {
+      "path": ".\\Views\\SchemeActivationSamplePage.xaml"
+    },
+    {
       "path": ".\\Views\\SchemeActivationSamplePage.xaml.vb"
     }
   ],

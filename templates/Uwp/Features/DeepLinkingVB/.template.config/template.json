@@ -32,6 +32,12 @@
     },
     {
       "path": ".\\Activation\\SchemeActivationHandler.vb"
+    },
+    {
+      "path": ".\\Views\\SchemeActivationSamplePage.xaml"
+    },
+    {
+      "path": ".\\Views\\SchemeActivationSamplePage.xaml.vb"
     }
   ],
   "symbols": {

@@ -12,7 +12,7 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Pivot x:Uid="PivotPage">
+        <Pivot x:Uid="PivotPage" x:Name="pivot">
             <i:Interaction.Behaviors>
                 <behaviors:PivotBehavior />
             </i:Interaction.Behaviors>
