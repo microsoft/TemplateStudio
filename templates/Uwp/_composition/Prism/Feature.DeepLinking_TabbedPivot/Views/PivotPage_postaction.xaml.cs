@@ -26,8 +26,9 @@ namespace Param_ItemNamespace.Views
         {
             var selected = pivot.Items.Cast<PivotItem>()
                     .FirstOrDefault(i => i.IsOfPageType(schemeActivationData.PageToken));
-            var viewModel = selected?.GetPage<INavigationAware>();
             pivot.SelectedItem = selected;
+
+            var viewModel = selected?.GetPage<INavigationAware>();
             var args = new NavigatedToEventArgs();
             args.Parameter = schemeActivationData.Parameters;
             viewModel.OnNavigatedTo(args, null);

@@ -24,10 +24,10 @@ namespace Param_ItemNamespace.Behaviors
         private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var removedItem = e.RemovedItems.Cast<Screen>()
-                .Select(i => GetPivotPage(i)).FirstOrDefault();
+                .Select(i => i.GetView() as IPivotPage).FirstOrDefault();
 
             var addedItem = e.AddedItems.Cast<Screen>()
-                .Select(i => GetPivotPage(i)).FirstOrDefault();
+                .Select(i => i.GetView() as IPivotPage).FirstOrDefault();
 
             if (removedItem != null)
             {
