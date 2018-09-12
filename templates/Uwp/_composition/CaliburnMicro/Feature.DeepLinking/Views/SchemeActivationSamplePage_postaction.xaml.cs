@@ -6,10 +6,7 @@ namespace Param_ItemNamespace.Views
     public sealed partial class SchemeActivationSamplePage : Page
     {
 //{[{
-        private SchemeActivationSampleViewModel ViewModel
-        {
-            get { return ViewModelLocator.Current.SchemeActivationSampleViewModel; }
-        }
+        private SchemeActivationSampleViewModel ViewModel => DataContext as SchemeActivationSampleViewModel;
 
 //}]}
         public SchemeActivationSamplePage()

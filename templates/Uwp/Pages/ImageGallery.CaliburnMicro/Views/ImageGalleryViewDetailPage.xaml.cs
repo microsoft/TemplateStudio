@@ -10,14 +10,11 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class ImageGalleryViewDetailPage : Page
     {
+        private ImageGalleryViewDetailViewModel ViewModel => DataContext as ImageGalleryViewDetailViewModel;
+
         public ImageGalleryViewDetailPage()
         {
             InitializeComponent();
-        }
-
-        private ImageGalleryViewDetailViewModel ViewModel
-        {
-            get { return ViewModelLocator.Current.ImageGalleryViewDetailViewModel; }
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
