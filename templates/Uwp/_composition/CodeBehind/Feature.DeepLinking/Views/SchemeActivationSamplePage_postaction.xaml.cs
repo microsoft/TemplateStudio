@@ -17,6 +17,7 @@ namespace Param_ItemNamespace.Views
         }
 //^^
 //{[{
+
         public void Initialize(Dictionary<string, string> parameters)
         {
             Parameters.Clear();
