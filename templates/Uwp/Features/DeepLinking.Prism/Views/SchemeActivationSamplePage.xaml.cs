@@ -12,10 +12,7 @@ namespace Param_ItemNamespace.Views
     // your needs and redirected to another of your pages.
     public sealed partial class SchemeActivationSamplePage : Page
     {
-        private SchemeActivationSampleViewModel ViewModel
-        {
-            get { return ViewModelLocator.Current.SchemeActivationSampleViewModel; }
-        }
+        private SchemeActivationSampleViewModel ViewModel => DataContext as SchemeActivationSampleViewModel;
 
         public SchemeActivationSamplePage()
         {
