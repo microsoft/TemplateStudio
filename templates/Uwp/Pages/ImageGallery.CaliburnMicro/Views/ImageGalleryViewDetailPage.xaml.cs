@@ -17,7 +17,7 @@ namespace Param_ItemNamespace.Views
 
         private ImageGalleryViewDetailViewModel ViewModel
         {
-            get { return DataContext as ImageGalleryViewDetailViewModel; }
+            get { return ViewModelLocator.Current.ImageGalleryViewDetailViewModel; }
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

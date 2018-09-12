@@ -8,7 +8,7 @@ namespace Param_ItemNamespace.Views
 //{[{
         private PivotViewModel ViewModel
         {
-            get { return DataContext as PivotViewModel; }
+            get { return ViewModelLocator.Current.PivotViewModel; }
         }
 //}]}
 

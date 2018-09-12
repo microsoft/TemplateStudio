@@ -13,7 +13,7 @@ namespace Param_ItemNamespace.Views
     {
         private wts.ItemNameViewModel ViewModel
         {
-            get { return DataContext as wts.ItemNameViewModel; }
+            get { return ViewModelLocator.Current.wts.ItemNameViewModel; }
         }
 
         public wts.ItemNamePage()

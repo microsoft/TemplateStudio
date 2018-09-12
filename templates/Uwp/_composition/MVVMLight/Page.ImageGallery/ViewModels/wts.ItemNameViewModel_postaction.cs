@@ -12,7 +12,7 @@ namespace Param_ItemNamespace.ViewModels
         public NavigationServiceEx NavigationService
         {
             get
-            {
+            {                
                 return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
             }
         }

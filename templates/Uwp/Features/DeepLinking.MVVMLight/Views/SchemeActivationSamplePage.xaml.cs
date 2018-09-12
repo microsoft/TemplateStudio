@@ -14,7 +14,7 @@ namespace Param_ItemNamespace.Views
     {
         private SchemeActivationSampleViewModel ViewModel
         {
-            get { return DataContext as SchemeActivationSampleViewModel; }
+            get { return ViewModelLocator.Current.SchemeActivationSampleViewModel; }
         }
 
         public SchemeActivationSamplePage()
