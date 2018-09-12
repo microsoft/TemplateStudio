@@ -5,6 +5,11 @@
 protected override async Task OnInitializeAsync(IActivatedEventArgs args)
 {
     //{[{
-    WindowManagerService.Current.Initialize();
+    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+        Windows.UI.Core.CoreDispatcherPriority.Normal,
+        () =>
+        {
+            WindowManagerService.Current.Initialize();
+        });
     //}]}
 }
