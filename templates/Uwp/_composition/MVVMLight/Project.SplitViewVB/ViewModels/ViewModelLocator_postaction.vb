@@ -1,6 +1,6 @@
 ﻿Namespace ViewModels
     Public Class ViewModelLocator
-        Public Sub New()
+        Private Sub New()
             '^^
             '{[{
             SimpleIoc.[Default].Register(Of ShellViewModel)()

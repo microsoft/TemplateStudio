@@ -6,7 +6,7 @@ Namespace Views
 
         Private ReadOnly Property ViewModel As PivotViewModel
             Get
-                Return TryCast(DataContext, PivotViewModel)
+                Return ViewModelLocator.Current.PivotViewModel
             End Get
         End Property
 
