@@ -170,19 +170,25 @@ namespace Microsoft.UI.Test
             var stylesProviders = new UITestStyleValuesProvider();
             var viewModel = new MainViewModel(null, stylesProviders);
             await viewModel.InitializeAsync(Platforms.Uwp, GenContext.CurrentLanguage);
-            AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageChartCodeBehind));
-            AddTemplate(viewModel, GetTemplate(viewModel.AddPages.Groups, PageGridCodeBehind));
+            var chartTemplate = GetTemplate(viewModel.AddPages.Groups, PageChartCodeBehind);
+            var gridTemplate = GetTemplate(viewModel.AddPages.Groups, PageGridCodeBehind);
+            var numOfDependencies = chartTemplate.Dependencies?.Count();
+            AddTemplate(viewModel, chartTemplate);
+            AddTemplate(viewModel, gridTemplate);
+
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 3);
-            Assert.True(userSelection.Features.Count == 1);
+            Assert.True(userSelection.Features.Count == numOfDependencies);
+
             DeletePage(viewModel.UserSelection, 2);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
-            Assert.True(userSelection.Features.Count == 1);
+            Assert.True(userSelection.Features.Count == numOfDependencies);
+
             DeletePage(viewModel.UserSelection, 1);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
-            Assert.True(userSelection.Features.Count == 0);
+            Assert.True(userSelection.Features.Count == numOfDependencies - 1);
         }
 
         [Fact]
