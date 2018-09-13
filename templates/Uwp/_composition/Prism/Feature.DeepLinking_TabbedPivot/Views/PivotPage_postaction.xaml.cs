@@ -1,6 +1,5 @@
 ﻿//{[{
 using System.Linq;
-using System.Threading.Tasks;
 using Prism.Windows.Navigation;
 using Param_ItemNamespace.Activation;
 using Param_ItemNamespace.Helpers;
