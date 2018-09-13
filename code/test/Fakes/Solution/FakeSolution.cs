@@ -5,10 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Fakes
 {
@@ -62,9 +61,11 @@ EndProject
 EndProject
 ";
 
-        private const string ProjectTemplateShared = @"Project(""{D954291E-2A0B-460D-934E-DC6B0785DB48}"") = ""{name}"", ""{path}"", ""{{id}}""
+        private const string ProjectTemplateShared = @"Project(""{9A19103F-16F7-4668-BE54-9A1E7A4F7556}"") = ""{name}"", ""{path}"", ""{{id}}""
 EndProject
 ";
+
+        private const string ProjectFilter = @"Project\(\""(?<typeGuid>.*?)\""\)\s+=\s+\""(?<name>.*?)\"",\s+\""(?<path>.*?)\"",\s+\""(?<guid>.*?)\""(?<content>.*?)\bEndProject\b";
 
         private readonly string _path;
 
@@ -120,6 +121,23 @@ EndProject
             }
 
             File.WriteAllText(_path, slnContent, Encoding.UTF8);
+        }
+
+        public Dictionary<string, string> GetProjectGuids()
+        {
+            var result = new Dictionary<string, string>();
+
+            var projectPattern = new Regex(ProjectFilter, RegexOptions.ExplicitCapture | RegexOptions.Singleline);
+            var solutionContent = GetContent();
+            var match = projectPattern.Match(solutionContent);
+
+            while (match.Success)
+            {
+                result.Add(match.Groups["name"].Value, match.Groups["guid"].Value);
+                match = match.NextMatch();
+            }
+
+            return result;
         }
 
         private string AddAnyCpuProjectConfigutations(string slnContent)
@@ -219,6 +237,22 @@ EndProject
             }
 
             throw new InvalidDataException(nameof(platform));
+        }
+
+        private string GetContent()
+        {
+            if (!File.Exists(_path))
+            {
+                throw new FileNotFoundException(string.Format("Solution file {0} does not exist", _path));
+            }
+
+            string solutionContent;
+            using (var reader = new StreamReader(_path))
+            {
+                solutionContent = reader.ReadToEnd();
+            }
+
+            return solutionContent;
         }
     }
 }
