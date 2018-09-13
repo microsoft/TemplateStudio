@@ -21,15 +21,5 @@ namespace Param_ItemNamespace.Views
         {
             InitializeComponent();
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            var parameters = e.Parameter as Dictionary<string, string>;
-            if (parameters != null)
-            {
-                ViewModel.Initialize(parameters);
-            }
-        }
     }
 }

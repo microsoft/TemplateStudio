@@ -15,18 +15,21 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-  {
-    "path": ".\\ViewModels\\PivotViewModel.cs"
-  },
-  {
-    "path": ".\\Views\\PivotPage.xaml"
-  },
-  {
-    "path": ".\\Views\\PivotPage.xaml.cs"
-  },
-  {
-    "path": ".\\Behaviors\\PivotNavigationBehavior.cs"
-  }  
+    {
+      "path": ".\\Helpers\\PivotItemExtensions.cs"
+    },
+    {
+      "path": ".\\ViewModels\\PivotViewModel.cs"
+    },
+    {
+      "path": ".\\Views\\PivotPage.xaml"
+    },
+    {
+      "path": ".\\Views\\PivotPage.xaml.cs"
+    },
+    {
+      "path": ".\\Behaviors\\PivotNavigationBehavior.cs"
+    }  
   ],
   "symbols": {
     "wts.rootNamespace": {

@@ -17,8 +17,8 @@ Namespace Behaviors
         End Sub
 
         Private Async Sub OnSelectionChanged(sender As Object, e As SelectionChangedEventArgs)
-            Dim removedItem = e.RemovedItems.Cast(Of PivotItem).Select(Function(pi) GetPivotPage(pi)).FirstOrDefault()
-            Dim addedItem = e.AddedItems.Cast(Of PivotItem).Select(Function(pi) GetPivotPage(pi)).FirstOrDefault()
+            Dim removedItem = e.RemovedItems.Cast(Of PivotItem).Select(Function(pi) pi.GetPage(Of IPivotPage)).FirstOrDefault()
+            Dim addedItem = e.AddedItems.Cast(Of PivotItem).Select(Function(pi) pi.GetPage(Of IPivotPage)).FirstOrDefault()
             If removedItem IsNot Nothing Then
                 Await removedItem.OnPivotUnselectedAsync()
             End If
@@ -27,14 +27,5 @@ Namespace Behaviors
                 Await addedItem.OnPivotSelectedAsync()
             End If
         End Sub
-
-        Private Function GetPivotPage(pivotItem As PivotItem) As IPivotPage
-            Dim frame = TryCast(pivotItem.Content, Frame)
-            If frame IsNot Nothing Then
-                Return TryCast(frame.Content, IPivotPage)
-            Else
-                Return Nothing
-            End If
-        End Function
     End Class
 End Namespace
