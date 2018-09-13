@@ -9,11 +9,5 @@ Namespace Views
         Inherits Page
 
         Public ReadOnly Property ViewModel As New SchemeActivationSampleViewModel
-
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
-            MyBase.OnNavigatedTo(e)
-            Dim parameters = TryCast(e.Parameter, Dictionary(Of String, String))
-            ViewModel.Initialize(parameters)
-        End Sub
     End Class
 End Namespace

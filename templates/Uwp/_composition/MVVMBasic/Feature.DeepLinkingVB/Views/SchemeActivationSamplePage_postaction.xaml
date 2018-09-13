@@ -1,0 +1,11 @@
+﻿<Page
+    mc:Ignorable="d">
+    <Grid
+        Margin="{StaticResource MediumLeftRightMargin}">
+            <ItemsControl
+<!--{[{-->
+                ItemsSource="{x:Bind ViewModel.Parameters}"
+<!--}]}-->
+                ItemTemplate="{StaticResource ActivationParameterDateTemplate}" />
+    </Grid>
+</Page>
