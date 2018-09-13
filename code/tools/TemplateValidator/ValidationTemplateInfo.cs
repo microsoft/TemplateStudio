@@ -91,6 +91,9 @@ namespace TemplateValidator
         [ApiAnalysisOptional]
         public IReadOnlyDictionary<string, SymbolInfo> Symbols { get; set; }
 
+        [ApiAnalysisOptional]
+        public List<PostActionInfo> PostActions { get; set; }
+
         public string SourceName { get; set; }
 
         [ApiAnalysisOptional]
