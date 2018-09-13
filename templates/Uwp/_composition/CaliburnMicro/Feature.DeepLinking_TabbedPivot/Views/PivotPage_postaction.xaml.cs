@@ -6,7 +6,10 @@ namespace Param_ItemNamespace.Views
     public sealed partial class PivotPage : Page
     {
 //{[{
-        private PivotViewModel ViewModel => DataContext as PivotViewModel;
+        private PivotViewModel ViewModel
+        {
+            get { return DataContext as PivotViewModel; }
+        }
 //}]}
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

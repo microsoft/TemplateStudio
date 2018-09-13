@@ -9,6 +9,9 @@ namespace Param_ItemNamespace.Views
         }
 
         //{[{
-        private wts.ItemNameViewModel ViewModel => DataContext as wts.ItemNameViewModel;
+        private wts.ItemNameViewModel ViewModel
+        {
+            get { return DataContext as wts.ItemNameViewModel; }
+        }
         //}]}
 }
