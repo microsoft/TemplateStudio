@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Param_ItemNamespace.Core.Models;
 
 namespace Param_ItemNamespace.Core.Services
 {
