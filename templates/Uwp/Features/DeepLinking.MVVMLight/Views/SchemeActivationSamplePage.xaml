@@ -19,14 +19,14 @@
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <TextBlock
             Grid.Row="0"
-            x:Uid="SchemeActivationSamplePage_Title"
-            Style="{StaticResource PageTitleStyle}" />
+            x:Uid="SchemeActivationSamplePage_Description"
+            Style="{StaticResource BodyTextStyle}"
+            Margin="{StaticResource SmallAllMargin}" />
         <ScrollViewer Grid.Row="1">
             <ItemsControl
                 ItemsSource="{x:Bind ViewModel.Parameters}"

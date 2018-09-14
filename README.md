@@ -79,7 +79,7 @@ This code is distributed under the terms and conditions of the [MIT license](LIC
 
 ## Privacy Statement
 
-The extension does [log basic telemetry](docs/telemetry.md) for what is being selected. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
+The extension does [log basic telemetry](docs/telemetry.md) for what is being selected. Our [Telemetry Data](telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
 
 ## .NET Foundation
 
@@ -90,15 +90,17 @@ This project is supported by the [.NET Foundation](https://dotnetfoundation.org)
 - [Rapid Xaml Toolkit](https://github.com/Microsoft/Rapid-XAML-Toolkit)
 - [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
 
-## Libraries and frameworks we use in our generated projects
-
+## Frameworks and libraries in generated code not created by our team
+**Frameworks**
 - [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
+- [MVVMLight](https://github.com/lbugnion/mvvmlight)
+- [Prism](https://github.com/PrismLibrary/Prism)
+
+**Libraries**
 - [Microsoft AppCenter SDK](https://github.com/Microsoft/AppCenter-SDK-DotNet)
 - [Microsoft Store Services SDK](https://marketplace.visualstudio.com/items?itemName=AdMediator.MicrosoftStoreServicesSDK)
-- [Microsoft Win 2D](https://github.com/Microsoft/Win2D)
-- [MVVMLight](https://github.com/lbugnion/mvvmlight)
+- [Microsoft Win2D](https://github.com/Microsoft/Win2D)
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
-- [Prism](https://github.com/PrismLibrary/Prism)
 - [Telerik UI For UWP](https://github.com/telerik/UI-For-UWP)
 - [Windows Azure Messaging Managed](https://www.nuget.org/packages/WindowsAzure.Messaging.Managed)
 - [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)

@@ -14,5 +14,10 @@ Namespace Views
             NavigationCacheMode = NavigationCacheMode.Required
             DataContext = ViewModel
         End Sub
+
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
+            MyBase.OnNavigatedTo(e)
+            Await Task.CompletedTask
+        End Sub
     End Class
 End Namespace
