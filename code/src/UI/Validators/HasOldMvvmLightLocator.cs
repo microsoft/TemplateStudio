@@ -12,29 +12,27 @@ using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Validators
 {
-    public class HasNavigationViewValidator : IBreakingChangeValidator
+    public class HasOldMvvmLightLocator : IBreakingChangeValidator
     {
         public Version BreakingVersion { get; }
 
-        public HasNavigationViewValidator()
+        public HasOldMvvmLightLocator()
         {
-            // This is last version with Hamburguer menu control in templates
-            var version = Core.Configuration.Current.BreakingChangesVersions.FirstOrDefault(c => c.Name == "AddNavigationView")?.BreakingVersion;
+            var version = Core.Configuration.Current.BreakingChangesVersions.FirstOrDefault(c => c.Name == "OldMvvmLightLocator")?.BreakingVersion;
             BreakingVersion = version ?? new Version();
         }
 
         public ValidationResult Validate()
         {
             var result = new ValidationResult();
-            var projectType = ProjectMetadataService.GetProjectMetadata().ProjectType;
-
-            if (projectType == "SplitView" && !HasNavigationView())
+            var framework = ProjectMetadataService.GetProjectMetadata().Framework;
+            if (framework == "MVVMLight" && HasLocatorAsApplicationResource())
             {
                 var message = new ValidationMessage
                 {
-                    Message = Resources.StringRes.ValidatorHasNavigationViewMessage,
-                    Url = string.Format(Resources.StringRes.ValidatorHasNavigationViewLink, Core.Configuration.Current.GitHubDocsUrl),
-                    HyperLinkMessage = Resources.StringRes.ValidatorHasNavigationViewLinkMessage,
+                    Message = Resources.StringRes.ValidatorHasOldMvvmLightLocatorMessage,
+                    Url = string.Format(Resources.StringRes.ValidatorHasOldMvvmLightLocatorLink, Core.Configuration.Current.GitHubDocsUrl),
+                    HyperLinkMessage = Resources.StringRes.ValidatorHasOldMvvmLightLocatorLinkMessage,
                 };
 
                 result.IsValid = false;
@@ -44,11 +42,11 @@ namespace Microsoft.Templates.UI.Validators
             return result;
         }
 
-        private bool HasNavigationView()
+        private bool HasLocatorAsApplicationResource()
         {
-            var filePath = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views", "ShellPage.xaml");
+            var filePath = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "App.xaml");
             var fileContent = FileHelper.GetFileContent(filePath);
-            return fileContent.Contains("<NavigationView");
+            return fileContent.Contains("<vms:ViewModelLocator x:Key=\"Locator\" />");
         }
     }
 }
