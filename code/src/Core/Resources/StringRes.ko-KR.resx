@@ -447,4 +447,8 @@
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
     <value>원본 구성 파일을 다운로드 하는 중에 오류가 발생했습니다.</value>
   </data>
+  <data name="FsSafeMoveFileMessage" xml:space="preserve">
+    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
+  </data>
 </root>
