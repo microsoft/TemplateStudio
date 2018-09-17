@@ -3,7 +3,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.Models;
 using Param_ItemNamespace.ViewModels;
 
 namespace Param_ItemNamespace.Views
