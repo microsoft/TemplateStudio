@@ -89,6 +89,31 @@ namespace Microsoft.Templates.Core
             }
         }
 
+        public static void SafeMoveFile(string filePath, string newPath, bool overwrite = true, bool warnOnFailure = true)
+        {
+            if (!File.Exists(filePath) || (File.Exists(newPath) && !overwrite))
+            {
+                return;
+            }
+
+            try
+            {
+                if (File.Exists(newPath) && overwrite)
+                {
+                    File.Delete(newPath);
+                }
+
+                File.Move(filePath, newPath);
+            }
+            catch (Exception ex)
+            {
+                if (warnOnFailure)
+                {
+                    AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeMoveFileMessage, filePath, newPath, ex.Message), ex).FireAndForget();
+                }
+            }
+        }
+
         public static void SafeDeleteFile(string filePath)
         {
             try

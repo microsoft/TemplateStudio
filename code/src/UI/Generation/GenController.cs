@@ -105,13 +105,12 @@ namespace Microsoft.Templates.UI
 
             if (filesToMove != null && filesToMove.Count() > 0)
             {
-                foreach (var f in filesToMove)
+                foreach (var file in filesToMove)
                 {
-                    var file = new FileInfo(f);
-                    var newPath = parameterReplacements.ReplaceInPath(f);
+                    var newPath = parameterReplacements.ReplaceInPath(file);
 
                     Fs.EnsureFolder(Directory.GetParent(newPath).FullName);
-                    file.MoveTo(newPath);
+                    Fs.SafeMoveFile(file, newPath);
                 }
             }
 
