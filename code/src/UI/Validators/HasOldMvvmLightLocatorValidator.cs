@@ -12,11 +12,11 @@ using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Validators
 {
-    public class HasOldMvvmLightLocator : IBreakingChangeValidator
+    public class HasOldMvvmLightLocatorValidator : IBreakingChangeValidator
     {
         public Version BreakingVersion { get; }
 
-        public HasOldMvvmLightLocator()
+        public HasOldMvvmLightLocatorValidator()
         {
             var version = Core.Configuration.Current.BreakingChangesVersions.FirstOrDefault(c => c.Name == "OldMvvmLightLocator")?.BreakingVersion;
             BreakingVersion = version ?? new Version();
