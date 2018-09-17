@@ -1,31 +1,31 @@
 # Update Locator in a MVVMLight project
-WTS includes a breaking change in MVVMLight projects to allows MultiView in Apps, Locator should be used as a singleton object instead of an application resource. With this change, we ensure that Locator object will not be instanced more than one time.
+WTS has changed the ViewModelLocator implementation for MVVMLight to support MultiView in apps. The ViewModelLocator should be used as a singleton instead of an application resource. With this change, we ensure that the ViewModelLocator is not instantiated more than one time.
 
-Add the following changes in your code.
+To adjust your code, please follow these steps:
 
-## 1. App.xaml
+## 1. Updates in **App.xaml**
 
-Remove ViewModels namespace.
+Remove the ViewModels namespace in file.
 
 ```xml
 xmlns:vms="using:App426.ViewModels"
 ```
 
-Remove the ViewModelLocator from Application.Resources ResourceDictionary.
+Remove the ViewModelLocator from the Application.Resources ResourceDictionary in.
 
 ```xml
 <vms:ViewModelLocator x:Key="Locator" />
 ```
 
-## 2. ViewModelLocator.cs
+## 2. Updates in **ViewModelLocator.cs**
 
-Make ViewModelLocator constructor as private.
+Change the ViewModelLocator constructor to be private.
 
 ```csharp
 private ViewModelLocator()
 ```
 
-Add a singleton static ViewModelLocator before class contructor.
+Add a static property that contains the current ViewModelLocator above the class contructor.
 
 ```csharp
 private static ViewModelLocator _current;
@@ -34,21 +34,23 @@ public static ViewModelLocator Current => _current ?? (_current = new ViewModelL
 ```
 
 ## 3. Changes in all pages
-### 3.1 Page XAML file
+As the ViewModelLocator is no longer part of the ApplicationResources, you will have to change the way in which the pages obtain the ViewModel.
 
-Remove the DataContext assignment.
+### 3.1 Page XAML files
+
+Remove the **DataContext** assignment.
 
 ```xml
-DataContext="{Binding MainViewModel, Source={StaticResource Locator}}"
+DataContext="{Binding YourPageViewModel, Source={StaticResource Locator}}"
 ```
 
-### 3.2 Page Code Behind file
+### 3.2 Page Code Behind files
 
-Get ViewModel from Locator singleton instance.
+Get the ViewModel from the ViewModelLocator **singleton** instance.
 
 ```csharp
-private MainViewModel ViewModel
+private YourPageViewModel ViewModel
 {
-    get { return DataContext as MainViewModel; }
+    get { return ViewModelLocator.Current.YourPageViewModel; }
 }
 ```
