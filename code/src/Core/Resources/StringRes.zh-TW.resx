@@ -447,4 +447,8 @@
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
     <value>下載來源組態檔時發生錯誤。</value>
   </data>
+  <data name="FsSafeMoveFileMessage" xml:space="preserve">
+    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
+  </data>
 </root>
