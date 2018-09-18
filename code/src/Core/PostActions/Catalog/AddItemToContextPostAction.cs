@@ -14,11 +14,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     public class AddItemToContextPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
         private readonly Dictionary<string, string> _genParameters;
+        private readonly bool _outputToParent;
 
-        public AddItemToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
+        public AddItemToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters, bool outputToParent)
             : base(relatedTemplate, config)
         {
             _genParameters = genParameters;
+            _outputToParent = outputToParent;
         }
 
         internal override void ExecuteInternal()
@@ -26,10 +28,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
             var itemsToAdd = Config
                                 .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                                .Select(o => Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, o.GetOutputPath(_genParameters))))
+                                .Select(o => Path.GetFullPath(Path.Combine(GetReferencePath(), o.GetOutputPath(_genParameters))))
                                 .ToList();
 
             GenContext.Current.ProjectItems.AddRange(itemsToAdd);
+        }
+
+        private string GetReferencePath()
+        {
+            return _outputToParent ? GenContext.Current.DestinationParentPath : GenContext.Current.DestinationPath;
         }
     }
 }

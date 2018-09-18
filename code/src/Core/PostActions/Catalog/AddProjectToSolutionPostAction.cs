@@ -15,11 +15,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
         private readonly Dictionary<string, string> _genParameters;
+        private readonly bool _outputToParent;
 
-        public AddProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters)
+        public AddProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters, bool outputToParent)
             : base(relatedTemplate, config)
         {
             _genParameters = genParameters;
+            _outputToParent = outputToParent;
         }
 
         internal override void ExecuteInternal()
@@ -29,13 +31,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 if (!string.IsNullOrWhiteSpace(output.Path))
                 {
-                    var solutionPath = Path.GetFullPath(Path.Combine(GenContext.Current.OutputPath, output.GetOutputPath(_genParameters)));
+                    var solutionPath = Path.GetFullPath(Path.Combine(GetReferencePath(), output.GetOutputPath(_genParameters)));
                     GenContext.ToolBox.Shell.AddProjectToSolution(solutionPath, usesAnyCpu: false);
                 }
             }
 
             chrono.Stop();
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
+        }
+
+        private string GetReferencePath()
+        {
+            return _outputToParent ? GenContext.Current.DestinationParentPath : GenContext.Current.DestinationPath;
         }
     }
 }

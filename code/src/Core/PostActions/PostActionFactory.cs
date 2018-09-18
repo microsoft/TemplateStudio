@@ -60,7 +60,7 @@ namespace Microsoft.Templates.Core.PostActions
             var addProjectReferencePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddReferenceToProjectPostAction.Id);
             if (addProjectReferencePostAction != null)
             {
-                postActions.Add(new AddReferenceToProjectPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                postActions.Add(new AddReferenceToProjectPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
             }
         }
 
@@ -69,10 +69,10 @@ namespace Microsoft.Templates.Core.PostActions
             switch (genInfo.Template.GetTemplateOutputType())
             {
                 case TemplateOutputType.Project:
-                    postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                    postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
                     break;
                 case TemplateOutputType.Item:
-                    postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                    postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
                     break;
                 default:
                     break;

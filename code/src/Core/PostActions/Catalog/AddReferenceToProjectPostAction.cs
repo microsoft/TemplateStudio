@@ -36,12 +36,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private readonly Dictionary<string, string> _parameters;
         private readonly IReadOnlyList<ICreationPath> _primaryOutputs;
+        private readonly bool _outputToParent;
 
-        public AddReferenceToProjectPostAction(string relatedTemplate, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters)
+        public AddReferenceToProjectPostAction(string relatedTemplate, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters, bool outputToParent)
             : base(relatedTemplate, templatePostAction)
         {
             _parameters = parameters;
             _primaryOutputs = primaryOutputs;
+            _outputToParent = outputToParent;
         }
 
         internal override void ExecuteInternal()
@@ -50,9 +52,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             var projectPath = Path.Combine(GenContext.Current.OutputPath, parameterReplacements.ReplaceInPath(Args["projectPath"]));
 
             int targetProjectIndex = int.Parse(Args["fileIndex"]);
-            var referenceToAdd = Path.Combine(GenContext.Current.OutputPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)).Replace("\\.\\", "\\");
+            var referenceToAdd = Path.GetFullPath(Path.Combine(GetReferencePath(), _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
 
             GenContext.ToolBox.Shell.AddReferenceToProject(projectPath, referenceToAdd);
+        }
+
+        private string GetReferencePath()
+        {
+            return _outputToParent ? GenContext.Current.DestinationParentPath : GenContext.Current.DestinationPath;
         }
     }
 }
