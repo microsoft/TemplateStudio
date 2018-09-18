@@ -49,12 +49,19 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         internal override void ExecuteInternal()
         {
             var parameterReplacements = new FileRenameParameterReplacements(_parameters);
-            var projectPath = Path.Combine(GenContext.Current.OutputPath, parameterReplacements.ReplaceInPath(Args["projectPath"]));
+            var projectPath = Path.Combine(GetReferencePath(), parameterReplacements.ReplaceInPath(Args["projectPath"]));
 
             int targetProjectIndex = int.Parse(Args["fileIndex"]);
             var referenceToAdd = Path.GetFullPath(Path.Combine(GetReferencePath(), _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
 
-            GenContext.ToolBox.Shell.AddReferenceToProject(projectPath, referenceToAdd);
+            if (GenContext.Current.ProjectReferences.ContainsKey(projectPath))
+            {
+                GenContext.Current.ProjectReferences[projectPath].Add(referenceToAdd);
+            }
+            else
+            {
+                GenContext.Current.ProjectReferences.Add(projectPath, new List<string>() { referenceToAdd });
+            }
         }
 
         private string GetReferencePath()

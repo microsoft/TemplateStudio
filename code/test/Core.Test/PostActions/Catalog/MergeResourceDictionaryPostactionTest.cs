@@ -28,6 +28,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string TempGenerationPath => string.Empty;
 
+        public List<string> Projects { get; } = new List<string>();
+
+        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
+
         public List<string> ProjectItems => new List<string>();
 
         public List<string> FilesToOpen => new List<string>();

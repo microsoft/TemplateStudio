@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Core.PostActions
             var postActions = new List<PostAction>();
 
             postActions.Add(new CopyFilesToProjectPostAction(result));
-            postActions.Add(new AddContextItemsToProjectPostAction());
+            postActions.Add(new AddContextItemsToSolutionAndProjectPostAction());
             postActions.Add(new CreateSummaryPostAction(result));
             postActions.Add(new OpenFilesPostAction());
 

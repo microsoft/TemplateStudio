@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Core.PostActions
             switch (genInfo.Template.GetTemplateOutputType())
             {
                 case TemplateOutputType.Project:
-                    postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
+                    postActions.Add(new AddProjectToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
                     break;
                 case TemplateOutputType.Item:
                     postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));

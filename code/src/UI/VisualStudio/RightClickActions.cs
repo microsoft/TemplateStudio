@@ -33,6 +33,10 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string TempGenerationPath { get; private set; }
 
+        public List<string> Projects { get; private set; }
+
+        public Dictionary<string, List<string>> ProjectReferences { get; private set; }
+
         public List<string> ProjectItems { get; private set; }
 
         public List<string> FilesToOpen { get; private set; }

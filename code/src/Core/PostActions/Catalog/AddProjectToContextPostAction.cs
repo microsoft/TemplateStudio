@@ -3,21 +3,20 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class AddProjectToSolutionPostAction : PostAction<IReadOnlyList<ICreationPath>>
+    public class AddProjectToContextPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
         private readonly Dictionary<string, string> _genParameters;
         private readonly bool _outputToParent;
 
-        public AddProjectToSolutionPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters, bool outputToParent)
+        public AddProjectToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters, bool outputToParent)
             : base(relatedTemplate, config)
         {
             _genParameters = genParameters;
@@ -26,18 +25,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         internal override void ExecuteInternal()
         {
-            var chrono = Stopwatch.StartNew();
-            foreach (var output in Config)
-            {
-                if (!string.IsNullOrWhiteSpace(output.Path))
-                {
-                    var solutionPath = Path.GetFullPath(Path.Combine(GetReferencePath(), output.GetOutputPath(_genParameters)));
-                    GenContext.ToolBox.Shell.AddProjectToSolution(solutionPath, usesAnyCpu: false);
-                }
-            }
+            var projectsToAdd = Config
+                            .Where(o => !string.IsNullOrWhiteSpace(o.Path))
+                            .Select(o => Path.GetFullPath(Path.Combine(GetReferencePath(), o.GetOutputPath(_genParameters))))
+                            .ToList();
 
-            chrono.Stop();
-            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
+            GenContext.Current.Projects.AddRange(projectsToAdd);
         }
 
         private string GetReferencePath()

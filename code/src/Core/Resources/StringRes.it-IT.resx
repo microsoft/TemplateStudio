@@ -451,4 +451,7 @@ Impossibile integrare le seguenti modifiche: {2}
     <value>The file {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
+  <data name="StatusAddingProjects" xml:space="preserve">
+    <value>Adding projects to solution...</value>
+  </data>
 </root>

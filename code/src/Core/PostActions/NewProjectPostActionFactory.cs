@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.PostActions
             AddGlobalMergeActions(postActions, $"*{MergeConfiguration.GlobalExtension}*", true);
             postActions.Add(new SortUsingsPostAction());
             postActions.Add(new SortImportsPostAction());
-            postActions.Add(new AddContextItemsToProjectPostAction());
+            postActions.Add(new AddContextItemsToSolutionAndProjectPostAction());
             postActions.Add(new SetDefaultSolutionConfigurationPostAction());
 
             return postActions;

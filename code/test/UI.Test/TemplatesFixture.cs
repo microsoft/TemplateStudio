@@ -28,6 +28,10 @@ namespace Microsoft.UI.Test
 
         public string TempGenerationPath => string.Empty;
 
+        public List<string> Projects { get; } = new List<string>();
+
+        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
+
         public List<string> ProjectItems => null;
 
         public List<string> FilesToOpen => null;
