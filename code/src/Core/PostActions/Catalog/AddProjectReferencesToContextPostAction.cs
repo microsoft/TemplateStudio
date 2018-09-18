@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     // Expected args:
     //    - fileIndex -> The file index from the primary outputs which is the project file that will be referenced by the other project.
     //    - otherProjectPath -> The path to the project where the refrence will be added.
-    public class AddReferenceToProjectPostAction : TemplateDefinedPostAction
+    public class AddProjectReferencesToContextPostAction : TemplateDefinedPostAction
     {
         public static readonly Guid Id = new Guid("849AAEB8-487D-45B3-94B9-77FA74E83A01");
 
@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         private readonly IReadOnlyList<ICreationPath> _primaryOutputs;
         private readonly bool _outputToParent;
 
-        public AddReferenceToProjectPostAction(string relatedTemplate, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters, bool outputToParent)
+        public AddProjectReferencesToContextPostAction(string relatedTemplate, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters, bool outputToParent)
             : base(relatedTemplate, templatePostAction)
         {
             _parameters = parameters;

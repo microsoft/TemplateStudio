@@ -57,10 +57,10 @@ namespace Microsoft.Templates.Core.PostActions
                 postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
             }
 
-            var addProjectReferencePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddReferenceToProjectPostAction.Id);
+            var addProjectReferencePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddProjectReferencesToContextPostAction.Id);
             if (addProjectReferencePostAction != null)
             {
-                postActions.Add(new AddReferenceToProjectPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
+                postActions.Add(new AddProjectReferencesToContextPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
             }
         }
 

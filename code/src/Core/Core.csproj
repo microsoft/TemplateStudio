@@ -209,7 +209,7 @@
     <Compile Include="Naming\PageSuffixValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
-    <Compile Include="PostActions\Catalog\AddReferenceToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectReferencesToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeMode.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostactionFormatter.cs" />
