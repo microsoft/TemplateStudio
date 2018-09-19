@@ -1,17 +1,14 @@
-﻿namespace Param_RootNamespace.Activation
+﻿//{[{
+using Param_RootNamespace.ViewModels;
+//}]}
+namespace Param_RootNamespace.Activation
 {
     internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {
 //{[{
         private readonly string _navElement;
 
-        private NavigationServiceEx NavigationService
-        {
-            get
-            {
-                return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-            }
-        }
+        public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
         public DefaultLaunchActivationHandler(Type navElement)
         {

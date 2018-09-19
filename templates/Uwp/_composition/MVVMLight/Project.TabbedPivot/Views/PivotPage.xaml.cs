@@ -10,7 +10,7 @@ namespace wts.ItemName.Views
     {
         private PivotViewModel ViewModel
         {
-            get { return DataContext as PivotViewModel; }
+            get { return ViewModelLocator.Current.PivotViewModel; }
         }
 
         public PivotPage()

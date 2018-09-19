@@ -19,6 +19,10 @@
     {
       "Name": "AddNavigationView",
       "BreakingVersion": "2.0.18100.1"
+    },
+    {
+      "Name": "OldMvvmLightLocator",
+      "BreakingVersion": "2.4.18260.1"
     }
   ]
 }

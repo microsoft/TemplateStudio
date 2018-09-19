@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
-    DataContext="{Binding wts.ItemNameViewModel, Source={StaticResource Locator}}"
     xmlns:templateSelectors="using:Param_ItemNamespace.TemplateSelectors"
     xmlns:viewModels="using:Param_ItemNamespace.ViewModels"
     mc:Ignorable="d">
