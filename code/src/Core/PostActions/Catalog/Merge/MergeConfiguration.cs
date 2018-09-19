@@ -29,11 +29,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public bool OutputtingToParent { get; private set; }
 
-        public MergeConfiguration(string fileName, bool failOnError, bool outputtingToParent)
+        public MergeConfiguration(string fileName, bool failOnError)
         {
             FilePath = fileName;
             FailOnError = failOnError;
-            OutputtingToParent = outputtingToParent;
         }
     }
 }

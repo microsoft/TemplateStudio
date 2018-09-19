@@ -92,7 +92,7 @@ namespace Microsoft.Templates.Core.PostActions
             Directory
                 .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.OutputPath), searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError, outputtingToParent: true))));
+                .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError))));
         }
 
         internal void AddSearchAndReplaceActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern, bool failOnError)
@@ -100,18 +100,18 @@ namespace Microsoft.Templates.Core.PostActions
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, outputtingToParent: false))));
+                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError))));
         }
 
         private static void AddMergePostAction(GenInfo genInfo, List<PostAction> postActions, bool failOnError, string f)
         {
             if (IsResourceDictionaryPostaction(f))
             {
-                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, genInfo.Template.GetOutputToParent())));
+                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError), genInfo.Template.GetOutputToParent()));
             }
             else
             {
-                postActions.Add(new MergePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, genInfo.Template.GetOutputToParent())));
+                postActions.Add(new MergePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError)));
             }
         }
 
