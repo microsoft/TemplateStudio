@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -77,12 +78,15 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public override void AddProjectToSolution(string projectPath, bool usesAnyCpu)
+        public override void AddProjectsToSolution(List<string> projectPaths, bool usesAnyCpu)
         {
-            var msbuildProj = FakeMsBuildProject.Load(projectPath);
-            var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
+            foreach (var projectPath in projectPaths)
+            {
+                var msbuildProj = FakeMsBuildProject.Load(projectPath);
+                var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
-            solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectPath, usesAnyCpu);
+                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectPath, usesAnyCpu);
+            }
         }
 
         public override string GetActiveProjectNamespace()
@@ -218,18 +222,26 @@ namespace Microsoft.Templates.Fakes
         {
         }
 
-        public override void AddReferenceToProject(string projectPath, string referenceToAdd)
+        public override void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences)
         {
             var solution = FakeSolution.LoadOrCreate(_platform, SolutionPath);
-            var parentProject = FakeMsBuildProject.Load(projectPath);
-            var referenceProject = FakeMsBuildProject.Load(referenceToAdd);
-
             var projectGuids = solution.GetProjectGuids();
-            var name = referenceProject.Name;
-            var guid = projectGuids[name];
 
-            parentProject.AddProjectReference(referenceToAdd, guid, name);
-            parentProject.Save();
+            foreach (var projectPath in projectReferences.Keys)
+            {
+                var parentProject = FakeMsBuildProject.Load(projectPath);
+
+                foreach (var referenceToAdd in projectReferences[projectPath])
+                {
+                    var referenceProject = FakeMsBuildProject.Load(referenceToAdd);
+
+                    var name = referenceProject.Name;
+                    var guid = projectGuids[name];
+                    parentProject.AddProjectReference(referenceToAdd, guid, name);
+                }
+
+                parentProject.Save();
+            }
         }
     }
 }

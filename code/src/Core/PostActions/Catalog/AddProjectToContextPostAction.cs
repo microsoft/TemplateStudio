@@ -11,12 +11,12 @@ using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
-    public class AddItemToContextPostAction : PostAction<IReadOnlyList<ICreationPath>>
+    public class AddProjectToContextPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
         private readonly Dictionary<string, string> _genParameters;
         private readonly bool _outputToParent;
 
-        public AddItemToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters, bool outputToParent)
+        public AddProjectToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters, bool outputToParent)
             : base(relatedTemplate, config)
         {
             _genParameters = genParameters;
@@ -25,13 +25,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         internal override void ExecuteInternal()
         {
-            // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
-            var itemsToAdd = Config
-                                .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                                .Select(o => Path.GetFullPath(Path.Combine(GetReferencePath(), o.GetOutputPath(_genParameters))))
-                                .ToList();
+            var projectsToAdd = Config
+                            .Where(o => !string.IsNullOrWhiteSpace(o.Path))
+                            .Select(o => Path.GetFullPath(Path.Combine(GetReferencePath(), o.GetOutputPath(_genParameters))))
+                            .ToList();
 
-            GenContext.Current.ProjectItems.AddRange(itemsToAdd);
+            GenContext.Current.Projects.AddRange(projectsToAdd);
         }
 
         private string GetReferencePath()

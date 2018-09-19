@@ -28,6 +28,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string TempGenerationPath => string.Empty;
 
+        public List<string> Projects { get; } = new List<string>();
+
+        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
+
         public List<string> ProjectItems => new List<string>();
 
         public List<string> FilesToOpen => new List<string>();
@@ -45,9 +49,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var postaction = Path.GetFullPath(@".\TestData\Merge\Style_postaction.xaml");
             var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml").Replace("\r\n", string.Empty).Replace("\n", string.Empty);
 
-            var config = new MergeConfiguration(postaction, true, outputtingToParent: false);
+            var config = new MergeConfiguration(postaction, true);
 
-            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("Test", config);
+            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("Test", config, false);
             mergeResourceDictionaryPostAction.Execute();
 
             var result = File.ReadAllText(source).Replace("\r\n", string.Empty).Replace("\n", string.Empty);
@@ -63,9 +67,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml");
 
             GenContext.Current = this;
-            var config = new MergeConfiguration(postaction, true, outputtingToParent: false);
+            var config = new MergeConfiguration(postaction, true);
 
-            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("TestTemplate", config);
+            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("TestTemplate", config, false);
 
             Exception ex = Assert.Throws<Exception>(() => mergeResourceDictionaryPostAction.Execute());
             Assert.NotNull(ex.InnerException);

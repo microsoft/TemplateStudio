@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void ShowStatusBarMessage(string message);
 
-        public abstract void AddProjectToSolution(string projectFullPath, bool usesAnyCpu);
+        public abstract void AddProjectsToSolution(List<string> projectFullPaths, bool usesAnyCpu);
 
         public abstract void AddItems(params string[] itemsFullPath);
 
@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void SaveSolution();
 
-        public abstract void AddReferenceToProject(string projectPath, string referenceToAdd);
+        public abstract void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences);
 
         public abstract string GetActiveProjectNamespace();
 

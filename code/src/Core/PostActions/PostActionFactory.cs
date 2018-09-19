@@ -57,10 +57,10 @@ namespace Microsoft.Templates.Core.PostActions
                 postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
             }
 
-            var addProjectReferencePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddReferenceToProjectPostAction.Id);
+            var addProjectReferencePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddProjectReferencesToContextPostAction.Id);
             if (addProjectReferencePostAction != null)
             {
-                postActions.Add(new AddReferenceToProjectPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                postActions.Add(new AddProjectReferencesToContextPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
             }
         }
 
@@ -69,10 +69,10 @@ namespace Microsoft.Templates.Core.PostActions
             switch (genInfo.Template.GetTemplateOutputType())
             {
                 case TemplateOutputType.Project:
-                    postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                    postActions.Add(new AddProjectToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
                     break;
                 case TemplateOutputType.Item:
-                    postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                    postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
                     break;
                 default:
                     break;
@@ -92,7 +92,7 @@ namespace Microsoft.Templates.Core.PostActions
             Directory
                 .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.OutputPath), searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError, outputtingToParent: true))));
+                .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError))));
         }
 
         internal void AddSearchAndReplaceActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern, bool failOnError)
@@ -100,18 +100,18 @@ namespace Microsoft.Templates.Core.PostActions
             Directory
                 .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
-                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, outputtingToParent: false))));
+                .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError))));
         }
 
         private static void AddMergePostAction(GenInfo genInfo, List<PostAction> postActions, bool failOnError, string f)
         {
             if (IsResourceDictionaryPostaction(f))
             {
-                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, genInfo.Template.GetOutputToParent())));
+                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError), genInfo.Template.GetOutputToParent()));
             }
             else
             {
-                postActions.Add(new MergePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError, genInfo.Template.GetOutputToParent())));
+                postActions.Add(new MergePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError)));
             }
         }
 

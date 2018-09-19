@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     // Expected args:
     //    - fileIndex -> The file index from the primary outputs which is the project file that will be referenced by the other project.
     //    - otherProjectPath -> The path to the project where the refrence will be added.
-    public class AddReferenceToProjectPostAction : TemplateDefinedPostAction
+    public class AddProjectReferencesToContextPostAction : TemplateDefinedPostAction
     {
         public static readonly Guid Id = new Guid("849AAEB8-487D-45B3-94B9-77FA74E83A01");
 
@@ -36,23 +36,37 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private readonly Dictionary<string, string> _parameters;
         private readonly IReadOnlyList<ICreationPath> _primaryOutputs;
+        private readonly bool _outputToParent;
 
-        public AddReferenceToProjectPostAction(string relatedTemplate, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters)
+        public AddProjectReferencesToContextPostAction(string relatedTemplate, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters, bool outputToParent)
             : base(relatedTemplate, templatePostAction)
         {
             _parameters = parameters;
             _primaryOutputs = primaryOutputs;
+            _outputToParent = outputToParent;
         }
 
         internal override void ExecuteInternal()
         {
             var parameterReplacements = new FileRenameParameterReplacements(_parameters);
-            var projectPath = Path.Combine(GenContext.Current.OutputPath, parameterReplacements.ReplaceInPath(Args["projectPath"]));
+            var projectPath = Path.Combine(GetReferencePath(), parameterReplacements.ReplaceInPath(Args["projectPath"]));
 
             int targetProjectIndex = int.Parse(Args["fileIndex"]);
-            var referenceToAdd = Path.Combine(GenContext.Current.OutputPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)).Replace("\\.\\", "\\");
+            var referenceToAdd = Path.GetFullPath(Path.Combine(GetReferencePath(), _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
 
-            GenContext.ToolBox.Shell.AddReferenceToProject(projectPath, referenceToAdd);
+            if (GenContext.Current.ProjectReferences.ContainsKey(projectPath))
+            {
+                GenContext.Current.ProjectReferences[projectPath].Add(referenceToAdd);
+            }
+            else
+            {
+                GenContext.Current.ProjectReferences.Add(projectPath, new List<string>() { referenceToAdd });
+            }
+        }
+
+        private string GetReferencePath()
+        {
+            return _outputToParent ? GenContext.Current.DestinationParentPath : GenContext.Current.DestinationPath;
         }
     }
 }

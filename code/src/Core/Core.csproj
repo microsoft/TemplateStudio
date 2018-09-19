@@ -209,7 +209,7 @@
     <Compile Include="Naming\PageSuffixValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
-    <Compile Include="PostActions\Catalog\AddReferenceToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectReferencesToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeMode.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostactionFormatter.cs" />
@@ -237,7 +237,7 @@
     <Compile Include="PostActions\Catalog\SortNamespaces\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\UsingComparer.cs" />
     <Compile Include="PostActions\Catalog\Merge\SearchAndReplacePostAction.cs" />
-    <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddContextItemsToSolutionAndProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSummaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GenerateMergeInfoPostAction.cs" />
@@ -326,7 +326,7 @@
     <Compile Include="Naming\Naming.cs" />
     <Compile Include="Templates\LayoutItem.cs" />
     <Compile Include="PostActions\Catalog\AddItemToContextPostAction.cs" />
-    <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergePostAction.cs" />

@@ -21,6 +21,10 @@ namespace Microsoft.Templates.Test
 
         public string TempGenerationPath { get; set; }
 
+        public List<string> Projects { get; } = new List<string>();
+
+        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
+
         public List<string> ProjectItems { get; } = new List<string>();
 
         public List<FailedMergePostActionInfo> FailedMergePostActions { get; } = new List<FailedMergePostActionInfo>();

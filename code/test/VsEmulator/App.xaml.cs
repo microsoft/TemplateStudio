@@ -93,6 +93,8 @@ namespace Microsoft.Templates.VsEmulator
                             FailedMergePostActions = new List<FailedMergePostAction>(),
                             MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>(),
                             FilesToOpen = new List<string>(),
+                            Projects = new List<string>(),
+                            ProjectReferences = new Dictionary<string, List<string>>(),
                             ProjectItems = new List<string>(),
                             ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>()
                         };

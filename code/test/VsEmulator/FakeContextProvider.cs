@@ -17,6 +17,10 @@ namespace Microsoft.Templates.VsEmulator
 
         public string ProjectPath { get; set; }
 
+        public List<string> Projects { get; set; }
+
+        public Dictionary<string, List<string>> ProjectReferences { get; set; }
+
         public List<string> ProjectItems { get; set; }
 
         public List<string> FilesToOpen { get; set; }

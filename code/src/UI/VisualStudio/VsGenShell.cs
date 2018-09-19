@@ -155,11 +155,14 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override void AddProjectToSolution(string projectPath, bool usesAnyCpu)
+        public override void AddProjectsToSolution(List<string> projectPaths, bool usesAnyCpu)
         {
             try
             {
-                Dte.Solution.AddFromFile(projectPath);
+                foreach (var projectPath in projectPaths)
+                {
+                    Dte.Solution.AddFromFile(projectPath);
+                }
             }
             catch (Exception)
             {
@@ -657,15 +660,21 @@ namespace Microsoft.Templates.UI.VisualStudio
             return _vsProductVersion;
         }
 
-        public override void AddReferenceToProject(string projectPath, string referenceToAdd)
+        public override void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences)
         {
-            var referenceProject = GetProjectByPath(referenceToAdd);
+            foreach (var projectPath in projectReferences.Keys)
+            {
+                var project = GetProjectByPath(projectPath);
+                var proj = (VSProject)project.Object;
 
-            var project = GetProjectByPath(projectPath);
+                foreach (var referenceToAdd in projectReferences[projectPath])
+                {
+                    var referenceProject = GetProjectByPath(referenceToAdd);
+                    proj.References.AddProject(referenceProject);
+                }
 
-            var proj = (VSProject)project.Object;
-            proj.References.AddProject(referenceProject);
-            project.Save();
+                project.Save();
+            }
         }
     }
 }
