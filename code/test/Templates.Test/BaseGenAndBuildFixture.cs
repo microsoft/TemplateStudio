@@ -270,6 +270,19 @@ namespace Microsoft.Templates.Test
                     Directory.Delete(GetTestRunPath(), true);
                 }
             }
+
+            CleanUpOldTests();
+        }
+
+        private void CleanUpOldTests()
+        {
+            var rootDir = new DirectoryInfo(GetTestRunPath()).Parent;
+
+            var oldDirectories = rootDir.EnumerateDirectories().Where(d => d.CreationTime < DateTime.Now.AddDays(-7));
+            foreach (var dir in oldDirectories)
+            {
+                dir.Delete(true);
+            }
         }
 
         public static void SetCurrentLanguage(string language)
