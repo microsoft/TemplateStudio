@@ -6,7 +6,6 @@ using Prism.Unity.Windows;
 using Prism.Windows.AppModel;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
-using wts.DefaultProject.Services;
 
 namespace wts.DefaultProject
 {
