@@ -10,7 +10,6 @@ using Windows.UI.Xaml.Media.Animation;
 
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Core.Models;
-using Param_ItemNamespace.Services;
 using Param_ItemNamespace.Core.Services;
 using Param_ItemNamespace.Views;
 
