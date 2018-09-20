@@ -6,8 +6,8 @@ using System;
 using System.IO;
 using System.Linq;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.Core.Validation;
-using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Validators
 {

@@ -612,9 +612,6 @@
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Narzędzie Composition</value>
   </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Nie można rozpoznać platformy.</value>
-  </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>Wybierz platformę</value>
     <comment>Project configuration window select platform title</comment>

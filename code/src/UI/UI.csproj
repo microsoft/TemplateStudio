@@ -220,7 +220,6 @@
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
-    <Compile Include="Generation\ProjectConfigInfo.cs" />
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
@@ -294,7 +293,6 @@
       <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\BreakingChangesValidatorService.cs" />
-    <Compile Include="Services\ProjectMetadataService.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="Threading\SafeThreading.cs" />

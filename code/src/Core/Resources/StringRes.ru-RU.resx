@@ -502,4 +502,7 @@
     <value>Возникло исключение при отслеживании телеметрии во время создания.</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Не удалось разрешить платформу.</value>
+  </data>
 </root>

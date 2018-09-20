@@ -502,4 +502,7 @@ Nie można zinterpretować następujących zmian: {2}
     <value>Podczas generowania wystąpił wyjątek dotyczący śledzenia danych telemetrycznych.</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Nie można rozpoznać platformy.</value>
+  </data>
 </root>

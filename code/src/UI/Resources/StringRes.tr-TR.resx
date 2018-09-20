@@ -612,9 +612,6 @@
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Oluşturma aracı</value>
   </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Platform çözümlenemedi.</value>
-  </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>Platform seç</value>
     <comment>Project configuration window select platform title</comment>

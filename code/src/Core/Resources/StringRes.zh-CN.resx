@@ -502,4 +502,7 @@
     <value>在生成过程中跟踪遥测时出现异常。</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>无法解析平台。</value>
+  </data>
 </root>

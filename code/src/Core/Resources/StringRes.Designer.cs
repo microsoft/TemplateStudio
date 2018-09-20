@@ -196,6 +196,15 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to resolve platform..
+        /// </summary>
+        public static string ErrorUnableResolvePlatform {
+            get {
+                return ResourceManager.GetString("ErrorUnableResolvePlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception Info.
         /// </summary>
         public static string ExceptionInfoString {

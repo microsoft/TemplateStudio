@@ -5,15 +5,10 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Xml.Linq;
+using Microsoft.Templates.Core.Resources;
+using Microsoft.Templates.Core.Services;
 
-using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Services;
-
-namespace Microsoft.Templates.UI.Generation
+namespace Microsoft.Templates.Core.Gen
 {
     public class ProjectConfigInfo
     {

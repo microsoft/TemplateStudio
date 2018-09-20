@@ -502,4 +502,7 @@
     <value>生成中の例外追跡テレメトリ。</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>プラットフォームを解決できませんでした。</value>
+  </data>
 </root>

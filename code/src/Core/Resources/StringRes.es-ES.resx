@@ -502,4 +502,7 @@ No se pueden integrar las modificaciones siguientes: {2}
     <value>Excepción al realizar un seguimiento de la telemetría durante la generación.</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>No se puede resolver la plataforma.</value>
+  </data>
 </root>

@@ -502,4 +502,7 @@ Nemohly být integrovány následující změny: {2}
     <value>Telemetrie sledování výjimky během generování</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Nelze rozpoznat platformu.</value>
+  </data>
 </root>

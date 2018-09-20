@@ -502,4 +502,7 @@
     <value>產生期間的例外狀況追蹤遙測。</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>無法解決平台。</value>
+  </data>
 </root>

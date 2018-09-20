@@ -502,4 +502,7 @@
     <value>생성하는 동안 텔레메트리 추적 예외가 발생했습니다.</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>플랫폼을 알 수 없습니다.</value>
+  </data>
 </root>

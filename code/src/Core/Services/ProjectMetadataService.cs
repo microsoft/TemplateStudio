@@ -7,11 +7,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 
-namespace Microsoft.Templates.UI.Services
+namespace Microsoft.Templates.Core.Services
 {
     public static class ProjectMetadataService
     {

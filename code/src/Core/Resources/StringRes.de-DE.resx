@@ -502,4 +502,7 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
     <value>Ausnahme für die Nachverfolgungstelemetrie während der Generierung.</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Plattform kann nicht aufgelöst werden.</value>
+  </data>
 </root>

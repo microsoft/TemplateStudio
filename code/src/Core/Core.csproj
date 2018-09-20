@@ -202,6 +202,7 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Gen\ProjectConfigInfo.cs" />
     <Compile Include="Gen\UserSelection.cs" />
     <Compile Include="Locations\JunctionNativeMethods.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
@@ -327,6 +328,7 @@
     <Compile Include="PostActions\NewItemPostActionFactory.cs" />
     <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
     <Compile Include="Gen\FileRenameParameterReplacements.cs" />
+    <Compile Include="Services\ProjectMetadataService.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
     <Compile Include="Packaging\SignCertNotFoundException.cs" />
