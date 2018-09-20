@@ -189,12 +189,20 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\VersionExtensions.cs" />
+    <Compile Include="Gen\GenComposer.cs" />
+    <Compile Include="Gen\GenController.cs" />
+    <Compile Include="Gen\GenException.cs" />
+    <Compile Include="Gen\NewItemGenController.cs" />
+    <Compile Include="Gen\NewItemGenerationFileInfo.cs" />
+    <Compile Include="Gen\NewItemGenerationResult.cs" />
+    <Compile Include="Gen\NewProjectGenController.cs" />
     <Compile Include="Gen\GenInfo.cs" />
     <Compile Include="Gen\GenParams.cs" />
     <Compile Include="Gen\GenShell.cs" />
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Gen\UserSelection.cs" />
     <Compile Include="Locations\JunctionNativeMethods.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Locations\ProgressEventArgs.cs" />
@@ -394,6 +402,7 @@
       <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.en-US.resx" />
     <EmbeddedResource Include="Resources\StringRes.es-ES.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>

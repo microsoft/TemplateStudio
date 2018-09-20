@@ -481,10 +481,6 @@
     <value>Pagina {0} aggiunta correttamente</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Telemetria per il rilevamento delle eccezioni durante la generazione.</value>
-    <comment>Exception tracking telemetry during generation.</comment>
-  </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
     <value>Impossibile aggiungere elementi di progetto.</value>
     <comment>Error message for unable add items to project</comment>
@@ -512,50 +508,6 @@
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>Errore di visualizzazione del messaggio di stato. Es:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>Dipendenza circolare rilevata sul modello {0} con {1}.</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>Modello di dipendenza {0} non trovato alla selezione utente.</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Elemento dipendenza non valido {0}. Le dipendenze devono essere configurate come multipleInstance = false.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Modello di dipendenza {0} non trovato per il framework {1} e la piattaforma {2}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>Elemento dipendenza non valido {0}. Gli elementi dipendenza devono essere di tipo Pagina o Funzionalità.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>Modello '{0}', nome: '{1}', motivo: '{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Modello layout {0} non trovato per il framework {1} e la piattaforma {2}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>Elemento layout non valido {0}. Gli elementi layout devono essere di tipo Pagina o Funzionalità.</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>Creazione funzionalità '{0}' in corso...</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>Creazione pagina '{0}' in corso...</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>Creazione progetto '{0}' in corso...</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>Avvio dell'applicazione</value>

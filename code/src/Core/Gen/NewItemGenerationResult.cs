@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.Templates.UI
+namespace Microsoft.Templates.Core.Gen
 {
     public class NewItemGenerationResult
     {

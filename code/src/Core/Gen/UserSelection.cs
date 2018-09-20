@@ -10,7 +10,7 @@ using System.Text;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 
-namespace Microsoft.Templates.UI
+namespace Microsoft.Templates.Core.Gen
 {
     public enum ItemGenerationType
     {

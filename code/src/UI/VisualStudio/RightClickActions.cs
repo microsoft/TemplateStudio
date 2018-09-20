@@ -60,7 +60,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 try
                 {
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
+                    var userSelection = NewItemController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
 
                     if (userSelection != null)
                     {
@@ -68,7 +68,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            NewItemGenController.Instance.FinishGeneration(userSelection);
+                            NewItemController.Instance.FinishGeneration(userSelection);
                         },
                         JoinableTaskCreationOptions.LongRunning);
 
@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 SetContext();
                 try
                 {
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
+                    var userSelection = NewItemController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
 
                     if (userSelection != null)
                     {
@@ -97,7 +97,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            NewItemGenController.Instance.FinishGeneration(userSelection);
+                            NewItemController.Instance.FinishGeneration(userSelection);
                         },
                         JoinableTaskCreationOptions.LongRunning);
 

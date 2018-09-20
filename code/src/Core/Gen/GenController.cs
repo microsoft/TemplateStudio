@@ -9,15 +9,12 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Edge.Template;
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
+using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Templates;
-using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.ViewModels.Common;
 
-namespace Microsoft.Templates.UI
+namespace Microsoft.Templates.Core.Gen
 {
     public abstract class GenController
     {
@@ -172,22 +169,6 @@ namespace Microsoft.Templates.UI
                 default:
                     return null;
             }
-        }
-
-        internal void ShowError(Exception ex, UserSelection userSelection = null)
-        {
-            AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
-            AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
-
-            var vm = new ErrorDialogViewModel(ex);
-            var error = new Views.Common.ErrorDialog(vm);
-
-            GenContext.ToolBox.Shell.ShowModal(error);
-        }
-
-        internal void CleanStatusBar()
-        {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Empty);
         }
     }
 }

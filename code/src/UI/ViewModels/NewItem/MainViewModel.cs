@@ -109,7 +109,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             NewItemGenController.Instance.CleanupTempGeneration();
             var userSelection = CreateUserSelection();
-            await NewItemGenController.Instance.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
+            await NewItemController.Instance.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
 

@@ -481,10 +481,6 @@
     <value>{0} 페이지가 추가됨</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>생성하는 동안 텔레메트리 추적 예외가 발생했습니다.</value>
-    <comment>Exception tracking telemetry during generation.</comment>
-  </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
     <value>프로젝트 항목을 추가할 수 없습니다.</value>
     <comment>Error message for unable add items to project</comment>
@@ -512,50 +508,6 @@
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>상태 메시지를 표시하는 중에 오류가 발생했습니다. 예:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>{1}의 {0} 템플릿에서 순환 종속성이 감지되었습니다.</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>사용자 선택에서 {0} 종속성 템플릿을 찾을 수 없습니다.</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>{0} 종속성 항목이 잘못되었습니다. 종속성은 multipleInstance = false로 구성되어야 합니다.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>{1} framework 및 {2} 플랫폼에 대한 {0} 종속성 템플릿을 찾을 수 없습니다.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>{0} 종속성 항목이 잘못되었습니다. 종속성 항목의 유형은 페이지 또는 기능이어야 합니다.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>템플릿 '{0}', 이름: {1}, 이유: '{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>{1} framework 및 {2} 플랫폼에 대한 {0} 레이아웃 템플릿을 찾을 수 없습니다.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>{0} 레이아웃 항목이 잘못되었습니다. 레이아웃 항목의 유형은 페이지 또는 기능이어야 합니다.</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>{0} 기능 생성 중...</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>{0} 페이지 생성 중...</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>프로젝트 '{0}' 생성 중...</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>애플리케이션 시작하기</value>
