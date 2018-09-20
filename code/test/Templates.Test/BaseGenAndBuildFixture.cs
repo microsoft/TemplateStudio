@@ -262,6 +262,8 @@ namespace Microsoft.Templates.Test
 
         public void Dispose()
         {
+            CleanUpOldTests();
+
             if (Directory.Exists(GetTestRunPath()))
             {
                 if ((!Directory.Exists(TestProjectsPath) || !Directory.EnumerateDirectories(TestProjectsPath).Any())
@@ -270,8 +272,6 @@ namespace Microsoft.Templates.Test
                     Directory.Delete(GetTestRunPath(), true);
                 }
             }
-
-            CleanUpOldTests();
         }
 
         private void CleanUpOldTests()
