@@ -262,10 +262,10 @@ namespace Microsoft.Templates.Test
 
         public void Dispose()
         {
-            CleanUpOldTests();
-
             if (Directory.Exists(GetTestRunPath()))
             {
+                CleanUpOldTests();
+
                 if ((!Directory.Exists(TestProjectsPath) || !Directory.EnumerateDirectories(TestProjectsPath).Any())
                  && (!Directory.Exists(TestNewItemPath) || !Directory.EnumerateDirectories(TestNewItemPath).Any()))
                 {
