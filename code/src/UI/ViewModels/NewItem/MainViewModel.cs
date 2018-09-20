@@ -29,6 +29,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private NewItemGenerationResult _output;
 
+        private GenerationService _generationService = GenerationService.Instance;
+
         public TemplateType TemplateType { get; set; }
 
         public string ConfigPlatform { get; private set; }
@@ -109,7 +111,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             NewItemGenController.Instance.CleanupTempGeneration();
             var userSelection = CreateUserSelection();
-            await NewItemController.Instance.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
+            await _generationService.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
 

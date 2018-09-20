@@ -24,6 +24,7 @@ namespace Microsoft.Templates.UI.VisualStudio
         private UserSelection _userSelection;
         private Dictionary<string, string> _replacementsDictionary;
         private string _language;
+        private GenerationService _generationService = GenerationService.Instance;
 
         public string ProjectName => _replacementsDictionary["$safeprojectname$"];
 
@@ -82,7 +83,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 async () =>
                 {
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    await NewProjectController.Instance.GenerateProjectAsync(_userSelection);
+                    await _generationService.GenerateProjectAsync(_userSelection);
                 },
                 JoinableTaskCreationOptions.LongRunning);
 

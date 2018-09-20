@@ -22,6 +22,8 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         private static VsGenShell _shell;
 
+        private GenerationService _generationService = GenerationService.Instance;
+
         public string ProjectName { get; private set; }
 
         public string OutputPath { get; set; }
@@ -67,7 +69,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            NewItemController.Instance.FinishGeneration(userSelection);
+                            _generationService.FinishGeneration(userSelection);
                         },
                         JoinableTaskCreationOptions.LongRunning);
 
@@ -96,7 +98,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            NewItemController.Instance.FinishGeneration(userSelection);
+                            _generationService.FinishGeneration(userSelection);
                         },
                         JoinableTaskCreationOptions.LongRunning);
 

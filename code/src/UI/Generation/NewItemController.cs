@@ -2,41 +2,23 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.PostActions;
-using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.VisualStudio.TemplateWizard;
-using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
 
 namespace Microsoft.Templates.UI
 {
     public class NewItemController
     {
-        private static Lazy<NewItemController> _instance = new Lazy<NewItemController>(Initialize);
+        private DialogService _dialogService = DialogService.Instance;
+        private static Lazy<NewItemController> _instance = new Lazy<NewItemController>(() => new NewItemController());
 
         public static NewItemController Instance => _instance.Value;
-
-        private static NewItemController Initialize()
-        {
-            return new NewItemController();
-        }
 
         private NewItemController()
         {
@@ -64,7 +46,7 @@ namespace Microsoft.Templates.UI
             catch (Exception ex) when (!(ex is WizardBackoutException))
             {
                 newItem.SafeClose();
-                ShowError(ex);
+                _dialogService.ShowError(ex);
             }
 
             GenContext.ToolBox.Shell.CancelWizard();
@@ -94,39 +76,12 @@ namespace Microsoft.Templates.UI
             catch (Exception ex) when (!(ex is WizardBackoutException))
             {
                 newItem.SafeClose();
-                ShowError(ex);
+                _dialogService.ShowError(ex);
             }
 
             GenContext.ToolBox.Shell.CancelWizard();
 
             return null;
-        }
-
-        public async Task GenerateNewItemAsync(TemplateType templateType, UserSelection userSelection)
-        {
-            try
-            {
-               await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(templateType, userSelection);
-            }
-            catch (Exception ex)
-            {
-                ShowError(ex, userSelection);
-
-                GenContext.ToolBox.Shell.CancelWizard(false);
-            }
-        }
-
-        public void FinishGeneration(UserSelection userSelection)
-        {
-            try
-            {
-                NewItemGenController.Instance.UnsafeFinishGeneration(userSelection);
-            }
-            catch (Exception ex)
-            {
-                ShowError(ex, userSelection);
-                GenContext.ToolBox.Shell.CancelWizard(false);
-            }
         }
 
         private static void TrackWizardCompletedTelemery(WizardTypeEnum wizardType, ItemGenerationType generationType)
@@ -145,20 +100,6 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        internal void ShowError(Exception ex, UserSelection userSelection = null)
-        {
-            AppHealth.Current.Error.TrackAsync(ex.ToString()).FireAndForget();
-            AppHealth.Current.Exception.TrackAsync(ex, userSelection?.ToString()).FireAndForget();
-
-            var vm = new ErrorDialogViewModel(ex);
-            var error = new Views.Common.ErrorDialog(vm);
-
-            GenContext.ToolBox.Shell.ShowModal(error);
-        }
-
-        internal void CleanStatusBar()
-        {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Empty);
-        }
+        internal void CleanStatusBar() => GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Empty);
     }
 }
