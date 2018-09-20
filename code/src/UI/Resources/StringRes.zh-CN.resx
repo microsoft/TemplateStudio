@@ -481,10 +481,6 @@
     <value>已成功添加页面 {0}</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>在生成过程中跟踪遥测时出现异常。</value>
-    <comment>Exception tracking telemetry during generation.</comment>
-  </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
     <value>无法添加项目项。</value>
     <comment>Error message for unable add items to project</comment>
@@ -512,50 +508,6 @@
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>显示状态消息时出错。例如:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>在包含 {1} 的模板 {0} 中检测到循环依赖项。</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>在用户所选内容中未找到依赖项模板 {0}。</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>依赖项 {0} 无效。必须将依赖项配置为 multipleInstance = false。</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>未找到 framework {1} 和平台 {2} 的依赖项模板 {0}。</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>依赖项 {0} 无效。依赖项必须属于“页面”或“功能”类型。</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>模板“{0}”，名称:“{1}”，原因:'{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>未找到 framework {1} 和平台 {2} 的布局模板 {0}。</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>布局项 {0} 无效。布局项必须属于“页面”或“功能”类型。</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>正在创建“{0}”功能...</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>正在创建“{0}”页面...</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>正在创建项目“{0}”...</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>应用程序启动</value>
@@ -659,9 +611,6 @@
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Composition 工具</value>
-  </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>无法解析平台。</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>选择平台</value>

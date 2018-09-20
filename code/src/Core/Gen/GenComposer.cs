@@ -9,10 +9,9 @@ using System.Linq;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Composition;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.Core.Resources;
 
-namespace Microsoft.Templates.UI
+namespace Microsoft.Templates.Core.Gen
 {
     public class GenComposer
     {

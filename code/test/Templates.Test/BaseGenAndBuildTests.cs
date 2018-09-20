@@ -10,12 +10,9 @@ using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI;
-using Microsoft.VisualStudio.Threading;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
-using Microsoft.Templates.UI.Generation;
 
 namespace Microsoft.Templates.Test
 {

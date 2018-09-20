@@ -454,4 +454,55 @@
   <data name="StatusAddingProjects" xml:space="preserve">
     <value>Adding projects to solution...</value>
   </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Шаблон макета {0} не найден для framework {1} и платформы {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>Недопустимый элемент макета {0}. Элементы макетов должны иметь тип Page или Feature.</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>Недопустимый элемент зависимости {0}. Элементы зависимостей должны иметь тип Page или Feature.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Шаблон зависимостей {0} не найден для framework {1} и платформы {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>Недопустимый элемент зависимости {0}. Зависимости должны быть настроены с параметром multipleInstance = False.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>Обнаружена циклическая зависимость в шаблоне {0} с {1}.</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>Шаблон зависимостей {0} не найден в выбранных пользователем элементах.</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>Создается компонент "{0}"…</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>Создается страница "{0}"…</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>Создается проект "{0}"…</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>Шаблон "{0}", имя: "{1}", причина: '{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
+    <value>Возникло исключение при отслеживании телеметрии во время создания.</value>
+    <comment>Exception tracking telemetry during generation.</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Не удалось разрешить платформу.</value>
+  </data>
 </root>

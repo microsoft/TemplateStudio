@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 async () =>
                 {
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
+                    await NewProjectController.Instance.GenerateProjectAsync(_userSelection);
                 },
                 JoinableTaskCreationOptions.LongRunning);
 
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, new VSStyleValuesProvider());
+                    _userSelection = NewProjectController.Instance.GetUserSelection(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)

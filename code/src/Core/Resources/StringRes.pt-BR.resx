@@ -454,4 +454,55 @@ As seguintes alterações não puderam ser integradas: {2}
   <data name="StatusAddingProjects" xml:space="preserve">
     <value>Adding projects to solution...</value>
   </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Modelo de layout {0} não encontrado para framework {1} e plataforma {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>Item de layout inválido {0}. Os itens de layout devem ser do tipo Página ou Recurso.</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>Item de dependência inválido {0}. Os itens de dependência devem ser do tipo Página ou Recurso.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Modelo de dependência {0} não encontrado para framework {1} e plataforma {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>Item de dependência inválido {0}. As dependências devem ser configuradas como multipleInstance = false.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>Dependência circular detectada no modelo {0} com {1}.</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>Modelo de dependência {0} não encontrado na seleção do usuário.</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>Criando recurso '{0}'...</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>Criando página '{0}'...</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>Criando projeto '{0}'...</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>Modelo '{0}', nome: '{1}', razão: '{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
+    <value>Exceção ao rastrear telemetria durante a geração.</value>
+    <comment>Exception tracking telemetry during generation.</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Não é possível resolver a plataforma.</value>
+  </data>
 </root>

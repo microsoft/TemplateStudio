@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;

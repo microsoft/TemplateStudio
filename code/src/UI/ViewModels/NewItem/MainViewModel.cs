@@ -11,8 +11,8 @@ using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.UI.Controls;
-using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
@@ -109,7 +109,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             NewItemGenController.Instance.CleanupTempGeneration();
             var userSelection = CreateUserSelection();
-            await NewItemGenController.Instance.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
+            await NewItemController.Instance.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
 

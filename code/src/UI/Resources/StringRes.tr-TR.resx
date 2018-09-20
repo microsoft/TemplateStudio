@@ -481,10 +481,6 @@
     <value>{0} sayfası başarıyla eklendi</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Oluşturma sırasında özel durum izleme telemetrisi.</value>
-    <comment>Exception tracking telemetry during generation.</comment>
-  </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
     <value>Proje öğeleri eklenemiyor.</value>
     <comment>Error message for unable add items to project</comment>
@@ -512,50 +508,6 @@
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>Durum iletisi gösterilirken bir hata oluştu. Ör:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>{0} şablonunda {1} ile döngüsel bağımlılık algılandı.</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>{0} bağımlılık şablonu kullanıcı seçiminde bulunamadı.</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Bağımlılık öğesi {0} geçersiz. Bağımlılıkların multipleInstance = yanlış olarak yapılandırılması gerekir.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>{0} bağımlılık şablonu {1} framework ve {2} platformu için bulunamadı.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>Bağımlılık öğesi {0} geçersiz. Bağımlılık öğeleri Sayfa veya Özellik türünde olmalıdır.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>Şablon "{0}", adı: "{1}", neden: '{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>{0} düzen şablonu {1} framework ve {2} platformu için bulunamadı.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>Düzen öğesi {0} geçersiz. Düzen öğeleri Sayfa veya Özellik türünde olmalıdır.</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>"{0}" özelliği oluşturuluyor...</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>"{0}" sayfası oluşturuluyor...</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>"{0}" projesi oluşturuluyor...</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>Uygulama Başlatma</value>
@@ -659,9 +611,6 @@
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Oluşturma aracı</value>
-  </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Platform çözümlenemedi.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>Platform seç</value>

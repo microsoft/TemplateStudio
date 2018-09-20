@@ -220,14 +220,11 @@
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
-    <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
-    <Compile Include="Generation\NewItemGenerationResult.cs" />
-    <Compile Include="Generation\ProjectConfigInfo.cs" />
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="Generation\NewProjectGenController.cs" />
-    <Compile Include="Generation\NewItemGenController.cs" />
+    <Compile Include="Generation\NewProjectController.cs" />
+    <Compile Include="Generation\NewItemController.cs" />
     <Compile Include="Mvvm\Observable.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
@@ -296,7 +293,6 @@
       <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\BreakingChangesValidatorService.cs" />
-    <Compile Include="Services\ProjectMetadataService.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
@@ -439,9 +435,6 @@
     <Compile Include="Views\Common\TemplateInfoPage.xaml.cs">
       <DependentUpon>TemplateInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Generation\GenComposer.cs" />
-    <Compile Include="Generation\GenController.cs" />
-    <Compile Include="Generation\GenException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\NewProject\WizardShell.xaml.cs">
       <DependentUpon>WizardShell.xaml</DependentUpon>
@@ -453,7 +446,6 @@
     <Compile Include="VisualStudio\VsGenShell.cs" />
     <Compile Include="VisualStudio\VsOutputPane.cs" />
     <Compile Include="VisualStudio\VsShellExtensions.cs" />
-    <Compile Include="Generation\UserSelection.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\StyleCop.json">

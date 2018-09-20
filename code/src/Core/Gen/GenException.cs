@@ -4,9 +4,9 @@
 
 using System;
 using System.Runtime.Serialization;
-using Microsoft.Templates.UI.Resources;
+using Microsoft.Templates.Core.Resources;
 
-namespace Microsoft.Templates.UI
+namespace Microsoft.Templates.Core.Gen
 {
     [Serializable]
     public class GenException : Exception

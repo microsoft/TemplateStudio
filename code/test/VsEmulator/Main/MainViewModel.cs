@@ -19,7 +19,6 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
-using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -262,13 +261,13 @@ namespace Microsoft.Templates.VsEmulator.Main
                     DestinationParentPath = destinationParentPath;
                     SolutionName = null;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
+                    var userSelection = NewProjectController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
 
                     if (userSelection != null)
                     {
                         ClearContext();
 
-                        await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
+                        await NewProjectController.Instance.GenerateProjectAsync(userSelection);
 
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
@@ -308,7 +307,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 DestinationParentPath = destinationParentPath;
                 OutputPath = destinationPath;
 
-                var userSelection = NewProjectGenController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
+                var userSelection = NewProjectController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
@@ -405,11 +404,11 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
+                var userSelection = NewItemController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
-                    NewItemGenController.Instance.FinishGeneration(userSelection);
+                    NewItemController.Instance.FinishGeneration(userSelection);
                     OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
@@ -439,11 +438,11 @@ namespace Microsoft.Templates.VsEmulator.Main
             ClearContext();
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
+                var userSelection = NewItemController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
-                    NewItemGenController.Instance.FinishGeneration(userSelection);
+                    NewItemController.Instance.FinishGeneration(userSelection);
                     OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }

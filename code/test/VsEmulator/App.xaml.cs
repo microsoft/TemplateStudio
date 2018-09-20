@@ -108,19 +108,19 @@ namespace Microsoft.Templates.VsEmulator
                         {
                             case "PAGE":
                                 EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userPageSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
+                                var userPageSelection = NewItemController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
 
                             case "FEATURE":
                                 EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userFeatureSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
+                                var userFeatureSelection = NewItemController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
 
                             case "PROJECT":
                             default:
-                                var userSelectionIsNotUsed = NewProjectGenController.Instance.GetUserSelection(Platforms.Uwp, progLanguage, FakeStyleValuesProvider.Instance);
+                                var userSelectionIsNotUsed = NewProjectController.Instance.GetUserSelection(Platforms.Uwp, progLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
                         }

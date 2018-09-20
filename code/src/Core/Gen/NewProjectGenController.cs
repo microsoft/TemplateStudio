@@ -7,17 +7,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-
 using Microsoft.TemplateEngine.Edge.Template;
-using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions;
-using Microsoft.Templates.UI.Resources;
-using Microsoft.Templates.UI.Services;
-using Microsoft.VisualStudio.TemplateWizard;
+using Microsoft.Templates.Core.Resources;
 
-namespace Microsoft.Templates.UI
+namespace Microsoft.Templates.Core.Gen
 {
     public class NewProjectGenController : GenController
     {
@@ -33,53 +28,6 @@ namespace Microsoft.Templates.UI
         private NewProjectGenController(PostActionFactory postactionFactory)
         {
             PostactionFactory = postactionFactory;
-        }
-
-        public UserSelection GetUserSelection(string platform, string language, BaseStyleValuesProvider provider)
-        {
-            var mainView = new Views.NewProject.WizardShell(platform, language, provider);
-
-            try
-            {
-                CleanStatusBar();
-
-                GenContext.ToolBox.Shell.ShowModal(mainView);
-                if (mainView.Result != null)
-                {
-                    AppHealth.Current.Telemetry.TrackWizardCompletedAsync(WizardTypeEnum.NewProject, WizardActionEnum.GenerateProject, GenContext.ToolBox.Shell.GetVsVersion()).FireAndForget();
-
-                    return mainView.Result;
-                }
-                else
-                {
-                    AppHealth.Current.Telemetry.TrackWizardCancelledAsync(WizardTypeEnum.NewProject, GenContext.ToolBox.Shell.GetVsVersion(), GenContext.ToolBox.Repo.SyncInProgress).FireAndForget();
-                }
-            }
-            catch (Exception ex) when (!(ex is WizardBackoutException))
-            {
-                mainView.SafeClose();
-                ShowError(ex);
-            }
-
-            GenContext.ToolBox.Shell.CancelWizard();
-
-            return null;
-        }
-
-        public async Task GenerateProjectAsync(UserSelection userSelection)
-        {
-            try
-            {
-                await UnsafeGenerateProjectAsync(userSelection);
-            }
-            catch (Exception ex)
-            {
-                GenContext.ToolBox.Shell.CloseSolution();
-
-                ShowError(ex, userSelection);
-
-                GenContext.ToolBox.Shell.CancelWizard(false);
-            }
         }
 
         public async Task UnsafeGenerateProjectAsync(UserSelection userSelection)

@@ -454,4 +454,55 @@
   <data name="StatusAddingProjects" xml:space="preserve">
     <value>Adding projects to solution...</value>
   </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>framework {1} とプラットフォーム {2} のレイアウト テンプレート {0} が見つかりません。</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>無効なレイアウト項目 {0}。レイアウト項目の種類は、「ページ」または「機能」である必要があります。</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>無効な依存関係項目 {0}。依存関係項目の種類は、「ページ」または「機能」である必要があります。</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>framework {1} とプラットフォーム {2} の依存関係テンプレート {0} が見つかりません。</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>無効な依存関係項目 {0}。依存関係は、「multipleInstance = false」として構成する必要があります。</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>{1} で テンプレート {0} に循環依存関係が検出されました。</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>依存関係テンプレート {0} がユーザーの選択の中に見つかりません。</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>'{0}' 機能を作成しています...</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>'{0}' ページを作成しています...</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>プロジェクト '{0}' を作成しています...</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>テンプレート '{0}'、名前: '{1}'、理由: '{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
+    <value>生成中の例外追跡テレメトリ。</value>
+    <comment>Exception tracking telemetry during generation.</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>プラットフォームを解決できませんでした。</value>
+  </data>
 </root>
