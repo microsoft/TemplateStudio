@@ -1258,6 +1258,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}frameworks/updatemvvmlightlocator.md.
+        /// </summary>
+        public static string ValidatorHasOldMvvmLightLocatorLink {
+            get {
+                return ResourceManager.GetString("ValidatorHasOldMvvmLightLocatorLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorHasOldMvvmLightLocatorLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasOldMvvmLightLocatorLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We&apos;ve changed our MVVMLight ViewModelLocator implementation to support MultiView in MVVMLight. .
+        /// </summary>
+        public static string ValidatorHasOldMvvmLightLocatorMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasOldMvvmLightLocatorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Windows Template Studio.
         /// </summary>
         public static string WindowsTemplateStudio {

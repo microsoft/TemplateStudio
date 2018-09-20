@@ -6,8 +6,10 @@ using System;
 using System.IO;
 using System.Linq;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.Core.Validation;
+using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Validators
 {
@@ -45,26 +47,9 @@ namespace Microsoft.Templates.UI.Validators
 
         private bool HasNavigationView()
         {
-            var file = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views", "ShellPage.xaml");
-            var fileContent = GetFileContent(file);
+            var filePath = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views", "ShellPage.xaml");
+            var fileContent = FileHelper.GetFileContent(filePath);
             return fileContent.Contains("<NavigationView");
-        }
-
-        private string GetFileContent(string file)
-        {
-            if (!File.Exists(file))
-            {
-                return string.Empty;
-            }
-
-            try
-            {
-                return File.ReadAllText(file);
-            }
-            catch (Exception)
-            {
-                return string.Empty;
-            }
         }
     }
 }

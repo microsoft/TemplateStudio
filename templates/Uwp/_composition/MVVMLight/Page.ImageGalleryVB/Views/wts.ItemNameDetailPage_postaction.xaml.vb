@@ -14,7 +14,7 @@ Namespace Views
 
         Private ReadOnly Property ViewModel As wts.ItemNameDetailViewModel
             Get
-                Return TryCast(DataContext, wts.ItemNameDetailViewModel)
+                Return ViewModelLocator.Current.wts.ItemNameDetailViewModel
             End Get
         End Property
         '}]}

@@ -6,7 +6,7 @@ Namespace Views
 
         Private ReadOnly Property ViewModel As PivotViewModel
             Get
-                Return TryCast(DataContext, PivotViewModel)
+                Return ViewModelLocator.Current.PivotViewModel
             End Get
         End Property
 
@@ -16,6 +16,11 @@ Namespace Views
             ' https://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.ui.xaml.controls.page.navigationcachemode.aspx
             ' https://msdn.microsoft.com/en-us/library/windows/apps/xaml/Hh771188.aspx
             NavigationCacheMode = NavigationCacheMode.Required
+        End Sub
+
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
+            MyBase.OnNavigatedTo(e)
+            Await Task.CompletedTask
         End Sub
     End Class
 End Namespace
