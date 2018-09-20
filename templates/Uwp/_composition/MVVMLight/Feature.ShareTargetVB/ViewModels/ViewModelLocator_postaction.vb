@@ -1,6 +1,6 @@
 ﻿Namespace ViewModels
     Public Class ViewModelLocator
-        Public Sub New()
+        Private Sub New()
             ServiceLocator.SetLocatorProvider(Function() SimpleIoc.[Default])
             '{[{
             If SimpleIoc.[Default].IsRegistered(Of NavigationServiceEx)() Then

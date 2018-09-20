@@ -652,4 +652,16 @@
     <value>特定の名前の最後には 「Page」 が追加されることにご注意ください。[ネーミングの詳細については、以下を参照してください。] ({0}WTSNaming.md)</value>
     <comment>Validation error message: View Suffix</comment>
   </data>
+  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
+    <value>We've changed our MVVMLight ViewModelLocator implementation to support MultiView in MVVMLight. </value>
+    <comment>Has old MvvmLight Locator error message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
 </root>

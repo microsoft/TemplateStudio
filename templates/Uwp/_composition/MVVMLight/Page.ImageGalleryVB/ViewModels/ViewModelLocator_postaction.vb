@@ -1,6 +1,6 @@
 ﻿Namespace ViewModels
     Public Class ViewModelLocator
-        Public Sub New()
+        Private Sub New()
             '^^
             '{[{
             Register(Of wts.ItemNameDetailViewModel, wts.ItemNameDetailPage)()

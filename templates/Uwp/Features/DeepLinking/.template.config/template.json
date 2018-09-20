@@ -34,7 +34,10 @@
       "path": ".\\Activation\\SchemeActivationHandler.cs"
     },
     {
-      "path": ".\\Assets\\Logo.png"
+      "path": ".\\Views\\SchemeActivationSamplePage.xaml"
+    },
+    {
+      "path": ".\\Views\\SchemeActivationSamplePage.xaml.cs"
     }
   ],
   "symbols": {

@@ -13,7 +13,7 @@ namespace wts.ItemName.Views
     {
         private ShellViewModel ViewModel
         {
-            get { return DataContext as ShellViewModel; }
+            get { return ViewModelLocator.Current.ShellViewModel; }
         }
 
         public ShellPage()
