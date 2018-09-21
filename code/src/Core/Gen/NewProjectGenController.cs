@@ -16,27 +16,21 @@ namespace Microsoft.Templates.Core.Gen
 {
     public class NewProjectGenController : GenController
     {
-        private static Lazy<NewProjectGenController> _instance = new Lazy<NewProjectGenController>(Initialize);
+        private static Lazy<NewProjectGenController> _instance = new Lazy<NewProjectGenController>(() => new NewProjectGenController());
 
         public static NewProjectGenController Instance => _instance.Value;
 
-        private static NewProjectGenController Initialize()
+        private NewProjectGenController()
         {
-            return new NewProjectGenController(new NewProjectPostActionFactory());
-        }
-
-        private NewProjectGenController(PostActionFactory postactionFactory)
-        {
-            PostactionFactory = postactionFactory;
+            PostactionFactory = new NewProjectPostActionFactory();
         }
 
         public async Task UnsafeGenerateProjectAsync(UserSelection userSelection)
         {
             var genItems = GenComposer.Compose(userSelection).ToList();
+
             var chrono = Stopwatch.StartNew();
-
             var genResults = await GenerateItemsAsync(genItems, false);
-
             chrono.Stop();
 
             TrackTelemery(genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform, userSelection.Language);

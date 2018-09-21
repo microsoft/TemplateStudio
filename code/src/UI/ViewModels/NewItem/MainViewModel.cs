@@ -195,7 +195,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
                     configInfo.Platform = vm.SelectedPlatform;
-                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework, configInfo.Platform);
+                    ProjectMetadataService.SaveProjectMetadata(configInfo);
                     ConfigFramework = configInfo.Framework;
                     ConfigProjectType = configInfo.ProjectType;
                     ConfigPlatform = configInfo.Platform;

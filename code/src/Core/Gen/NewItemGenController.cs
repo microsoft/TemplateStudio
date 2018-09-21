@@ -19,30 +19,43 @@ namespace Microsoft.Templates.Core.Gen
 {
     public class NewItemGenController : GenController
     {
-        private static Lazy<NewItemGenController> _instance = new Lazy<NewItemGenController>(Initialize);
+        private static Lazy<NewItemGenController> _instance = new Lazy<NewItemGenController>(() => new NewItemGenController());
 
         public static NewItemGenController Instance => _instance.Value;
 
-        private static NewItemGenController Initialize()
+        private NewItemGenController()
         {
-            return new NewItemGenController(new NewItemPostActionFactory());
-        }
-
-        private NewItemGenController(PostActionFactory postactionFactory)
-        {
-            PostactionFactory = postactionFactory;
+            PostactionFactory = new NewItemPostActionFactory();
         }
 
         public async Task UnsafeGenerateNewItemAsync(TemplateType templateType, UserSelection userSelection)
         {
             var genItems = GenComposer.ComposeNewItem(userSelection).ToList();
+
             var chrono = Stopwatch.StartNew();
-
             var genResults = await GenerateItemsAsync(genItems, true);
-
             chrono.Stop();
 
             TrackTelemery(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
+        }
+
+        public void UnsafeFinishGeneration(UserSelection userSelection)
+        {
+            // Put outputpath back to solution level
+            GenContext.Current.OutputPath = GenContext.Current.TempGenerationPath;
+
+            var compareResult = CompareTempGenerationWithProject();
+            if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
+            {
+                // BackupProjectFiles
+                compareResult.SyncGeneration = true;
+                ExecuteSyncGenerationPostActions(compareResult);
+            }
+            else
+            {
+                compareResult.SyncGeneration = false;
+                ExecuteOutputGenerationPostActions(compareResult);
+            }
         }
 
         public NewItemGenerationResult CompareOutputAndProject()
@@ -104,7 +117,7 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        public void ExecuteSyncGenerationPostActions(TempGenerationResult result)
+        private void ExecuteSyncGenerationPostActions(TempGenerationResult result)
         {
             var postActions = PostactionFactory.FindSyncGenerationPostActions(result);
 
@@ -121,32 +134,13 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        public void ExecuteOutputGenerationPostActions(TempGenerationResult result)
+        private void ExecuteOutputGenerationPostActions(TempGenerationResult result)
         {
             var postActions = PostactionFactory.FindOutputGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
                 postAction.Execute();
-            }
-        }
-
-        public void UnsafeFinishGeneration(UserSelection userSelection)
-        {
-            // Put outputpath back to solution level
-            GenContext.Current.OutputPath = GenContext.Current.TempGenerationPath;
-
-            var compareResult = CompareTempGenerationWithProject();
-            if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
-            {
-                // BackupProjectFiles
-                compareResult.SyncGeneration = true;
-                ExecuteSyncGenerationPostActions(compareResult);
-            }
-            else
-            {
-                compareResult.SyncGeneration = false;
-                ExecuteOutputGenerationPostActions(compareResult);
             }
         }
 

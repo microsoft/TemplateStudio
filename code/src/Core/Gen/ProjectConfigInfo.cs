@@ -24,49 +24,55 @@ namespace Microsoft.Templates.Core.Gen
         private const string ProjTypeSplitView = "SplitView";
         private const string ProjTypeTabbedPivot = "TabbedPivot";
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
-        public static (string ProjectType, string Framework, string Platform) ReadProjectConfiguration()
+        public static ProjectMetadata ReadProjectConfiguration()
         {
             var projectMetadata = ProjectMetadataService.GetProjectMetadata();
 
-            if (!string.IsNullOrEmpty(projectMetadata.ProjectType) && !string.IsNullOrEmpty(projectMetadata.Framework) && !string.IsNullOrEmpty(projectMetadata.Platform))
+            if (IsValid(projectMetadata))
             {
-                return (projectMetadata.ProjectType, projectMetadata.Framework, projectMetadata.Platform);
+                return projectMetadata;
             }
 
-            var inferredConfig = InferProjectConfiguration(projectMetadata.ProjectType, projectMetadata.Framework, projectMetadata.Platform);
-            if (!string.IsNullOrEmpty(inferredConfig.ProjectType) && !string.IsNullOrEmpty(inferredConfig.Framework) && !string.IsNullOrEmpty(inferredConfig.Platform))
+            var inferredConfig = InferProjectConfiguration(projectMetadata);
+
+            if (IsValid(inferredConfig))
             {
-                ProjectMetadataService.SaveProjectMetadata(inferredConfig.ProjectType, inferredConfig.Framework, inferredConfig.Platform);
+                ProjectMetadataService.SaveProjectMetadata(inferredConfig);
             }
 
             return inferredConfig;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
-        private static (string ProjectType, string Framework, string Platform) InferProjectConfiguration(string projectType, string framework, string platform)
+        private static bool IsValid(ProjectMetadata data)
         {
-            if (string.IsNullOrEmpty(platform))
+            return !string.IsNullOrEmpty(data.ProjectType) &&
+                   !string.IsNullOrEmpty(data.Framework) &&
+                   !string.IsNullOrEmpty(data.Platform);
+        }
+
+        private static ProjectMetadata InferProjectConfiguration(ProjectMetadata data)
+        {
+            if (string.IsNullOrEmpty(data.Platform))
             {
-                platform = InferPlatform();
+                data.Platform = InferPlatform();
             }
 
-            if (platform == PlUwp)
+            if (data.Platform == PlUwp)
             {
-                if (string.IsNullOrEmpty(projectType))
+                if (string.IsNullOrEmpty(data.ProjectType))
                 {
-                    projectType = InferProjectType();
+                    data.ProjectType = InferProjectType();
                 }
 
-                if (string.IsNullOrEmpty(framework))
+                if (string.IsNullOrEmpty(data.Framework))
                 {
-                    framework = InferFramework();
+                    data.Framework = InferFramework();
                 }
 
-                return (projectType, framework, platform);
+                return data;
             }
 
-            return (string.Empty, string.Empty, string.Empty);
+            return new ProjectMetadata();
         }
 
         public static string InferPlatform()

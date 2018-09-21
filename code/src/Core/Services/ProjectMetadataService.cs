@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Core.Services
             return projectMetadata;
         }
 
-        public static void SaveProjectMetadata(string projectType, string framework, string platform)
+        public static void SaveProjectMetadata(ProjectMetadata data)
         {
             try
             {
@@ -65,17 +65,17 @@ namespace Microsoft.Templates.Core.Services
                     var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
                     if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == ProjectTypeLiteral) == null)
                     {
-                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, ProjectTypeLiteral), new XAttribute(ValueAttribLiteral, projectType)));
+                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, ProjectTypeLiteral), new XAttribute(ValueAttribLiteral, data.ProjectType)));
                     }
 
                     if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == FrameworkLiteral) == null)
                     {
-                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, FrameworkLiteral), new XAttribute(ValueAttribLiteral, framework)));
+                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, FrameworkLiteral), new XAttribute(ValueAttribLiteral, data.Framework)));
                     }
 
                     if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == PlatformLiteral) == null)
                     {
-                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, PlatformLiteral), new XAttribute(ValueAttribLiteral, platform)));
+                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, PlatformLiteral), new XAttribute(ValueAttribLiteral, data.Platform)));
                     }
 
                     manifest.Save(path);
