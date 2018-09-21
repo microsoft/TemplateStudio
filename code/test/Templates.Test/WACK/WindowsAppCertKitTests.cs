@@ -46,6 +46,7 @@ namespace Microsoft.Templates.Test
                 t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
                     && t.GetFrameworkList().Contains(framework)
                     && t.GroupIdentity != "wts.Feat.BackgroundTask"
+                    && t.GroupIdentity != "wts.Feat.BackgroundTask.VB"
                     && t.GetPlatform() == platform
                     && !t.GetIsHidden();
 
