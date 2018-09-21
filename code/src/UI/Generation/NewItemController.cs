@@ -2,14 +2,12 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Services;
-using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.VisualStudio.TemplateWizard;
-using System;
-using System.Threading.Tasks;
 
 namespace Microsoft.Templates.UI
 {
