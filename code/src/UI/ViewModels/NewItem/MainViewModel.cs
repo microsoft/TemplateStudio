@@ -29,6 +29,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private NewItemGenerationResult _output;
 
+        private GenerationService _generationService = GenerationService.Instance;
+
         public TemplateType TemplateType { get; set; }
 
         public string ConfigPlatform { get; private set; }
@@ -109,7 +111,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             NewItemGenController.Instance.CleanupTempGeneration();
             var userSelection = CreateUserSelection();
-            await NewItemController.Instance.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
+            await _generationService.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
 
@@ -193,7 +195,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
                     configInfo.Platform = vm.SelectedPlatform;
-                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework, configInfo.Platform);
+                    ProjectMetadataService.SaveProjectMetadata(configInfo);
                     ConfigFramework = configInfo.Framework;
                     ConfigProjectType = configInfo.ProjectType;
                     ConfigPlatform = configInfo.Platform;

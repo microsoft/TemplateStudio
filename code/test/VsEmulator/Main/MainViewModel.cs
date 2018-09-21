@@ -37,6 +37,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         private bool _canRefreshTemplateCache;
         private string _selectedTheme;
 
+        private GenerationService _generationService = GenerationService.Instance;
+
         private RelayCommand _refreshTemplateCacheCommand;
 
         public MainViewModel(MainView host)
@@ -267,7 +269,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     {
                         ClearContext();
 
-                        await NewProjectController.Instance.GenerateProjectAsync(userSelection);
+                        await _generationService.GenerateProjectAsync(userSelection);
 
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
@@ -408,7 +410,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-                    NewItemController.Instance.FinishGeneration(userSelection);
+                    _generationService.FinishGeneration(userSelection);
                     OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
@@ -442,7 +444,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-                    NewItemController.Instance.FinishGeneration(userSelection);
+                    _generationService.FinishGeneration(userSelection);
                     OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
