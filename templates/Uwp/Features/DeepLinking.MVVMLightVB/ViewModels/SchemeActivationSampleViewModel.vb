@@ -11,6 +11,7 @@ Namespace ViewModels
         Public ReadOnly Property Parameters As ObservableCollection(Of String) = New ObservableCollection(Of String)()
 
         Public Sub Initialize(parameters As Dictionary(Of String, String))
+            Me.Parameters.Clear()
             Dim ticks As Long = Nothing
             For Each param In parameters
 

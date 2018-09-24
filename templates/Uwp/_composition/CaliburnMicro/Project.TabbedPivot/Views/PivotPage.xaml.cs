@@ -1,6 +1,7 @@
-﻿using wts.ItemName.ViewModels;
+﻿using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using wts.ItemName.ViewModels;
 
 namespace wts.ItemName.Views
 {
@@ -14,6 +15,12 @@ namespace wts.ItemName.Views
             NavigationCacheMode = NavigationCacheMode.Required;
 
             InitializeComponent();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await Task.CompletedTask;
         }
     }
 }

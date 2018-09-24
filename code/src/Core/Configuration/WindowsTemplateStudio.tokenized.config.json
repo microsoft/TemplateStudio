@@ -22,6 +22,10 @@
     {
       "Name": "AddNavigationView",
       "BreakingVersion": "###BreakingChangesAddNavigationViewVersion###"
+    },
+    {
+      "Name": "OldMvvmLightLocator",
+      "BreakingVersion": "###BreakingChangesOldMvvmLightLocator###"
     }
   ]
 }

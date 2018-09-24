@@ -5,8 +5,19 @@ Imports Param_RootNamespace.Views
 
 Namespace ViewModels
     <Windows.UI.Xaml.Data.Bindable>
-    Public Class ViewModelLocator
-        Public Sub New()
+    Public Class ViewModelLocator        
+        Private Shared _current As ViewModelLocator
+
+        Public Shared ReadOnly Property Current As ViewModelLocator
+            Get
+                If _current Is Nothing Then
+                    _current = New ViewModelLocator()
+                End If
+                Return _current
+            End Get
+        End Property
+
+        Private Sub New()
             ServiceLocator.SetLocatorProvider(Function() SimpleIoc.[Default])
 
             SimpleIoc.[Default].Register(Function() New NavigationServiceEx())
@@ -18,7 +29,7 @@ Namespace ViewModels
           End Get
         End Property
 
-        Public Sub Register(Of VM As Class, V)()
+        Private Sub Register(Of VM As Class, V)()
             SimpleIoc.[Default].Register(Of VM)()
             NavigationService.Configure(GetType(VM).FullName, GetType(V))
         End Sub

@@ -1,7 +1,8 @@
 ﻿using System;
-using wts.ItemName.ViewModels;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using wts.ItemName.ViewModels;
 
 namespace wts.ItemName.Views
 {
@@ -9,7 +10,7 @@ namespace wts.ItemName.Views
     {
         private PivotViewModel ViewModel
         {
-            get { return DataContext as PivotViewModel; }
+            get { return ViewModelLocator.Current.PivotViewModel; }
         }
 
         public PivotPage()
@@ -19,6 +20,12 @@ namespace wts.ItemName.Views
             // https://msdn.microsoft.com/en-us/library/windows/apps/xaml/Hh771188.aspx
             NavigationCacheMode = NavigationCacheMode.Required;
             InitializeComponent();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await Task.CompletedTask;
         }
     }
 }

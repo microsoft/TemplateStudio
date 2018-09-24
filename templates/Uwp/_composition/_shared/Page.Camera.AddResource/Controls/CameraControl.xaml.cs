@@ -130,13 +130,13 @@ namespace Param_ItemNamespace.Controls
                     await StartPreviewAsync();
                 }
             }
-            catch (UnauthorizedAccessException ex)
+            catch (UnauthorizedAccessException)
             {
-                throw new UnauthorizedAccessException("Camera_Exception_UnauthorizedAccess".GetLocalized(), ex);
+                errorMessage.Text = "Camera_Exception_UnauthorizedAccess".GetLocalized();
             }
-            catch (NotSupportedException ex)
+            catch (NotSupportedException)
             {
-                throw new NotSupportedException("Camera_Exception_NotSupported".GetLocalized(), ex);
+                errorMessage.Text = "Camera_Exception_NotSupported".GetLocalized();
             }
         }
 

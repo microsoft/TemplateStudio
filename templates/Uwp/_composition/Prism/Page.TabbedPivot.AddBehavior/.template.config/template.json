@@ -17,6 +17,9 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Behaviors\\PivotNavigationBehavior.cs"
+    },
+    {
+      "path": ".\\Helpers\\PivotItemExtensions.cs"
     }
   ],
   "symbols": {

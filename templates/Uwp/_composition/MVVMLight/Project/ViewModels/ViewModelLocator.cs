@@ -9,7 +9,11 @@ namespace Param_RootNamespace.ViewModels
     [Windows.UI.Xaml.Data.Bindable]
     public class ViewModelLocator
     {
-        public ViewModelLocator()
+        private static ViewModelLocator _current;
+
+        public static ViewModelLocator Current => _current ?? (_current = new ViewModelLocator());
+
+        private ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 

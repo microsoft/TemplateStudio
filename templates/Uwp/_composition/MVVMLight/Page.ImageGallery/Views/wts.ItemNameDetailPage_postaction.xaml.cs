@@ -10,13 +10,13 @@ namespace Param_ItemNamespace.Views
         {
             get
             {
-                return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+                return ViewModelLocator.Current.NavigationService;
             }
         }
 
         private wts.ItemNameDetailViewModel ViewModel
         {
-            get { return DataContext as wts.ItemNameDetailViewModel; }
+            get { return ViewModelLocator.Current.wts.ItemNameDetailViewModel; }
         }
 
         //}]}

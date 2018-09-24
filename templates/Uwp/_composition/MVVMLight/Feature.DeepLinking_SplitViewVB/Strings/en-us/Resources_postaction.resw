@@ -1,0 +1,13 @@
+﻿<!--{**-->
+<!--This xml block adds string resources from the wts.ItemNamePage in the NavigationPane to your project.-->
+<!--**}-->
+
+<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="Shell_SchemeActivationSample.Content" xml:space="preserve">
+    <value>SchemeActivationSample</value>
+    <comment>Navigation view item name for SchemeActivationSample</comment>
+  </data>
+  <!--}]}-->
+</root>
