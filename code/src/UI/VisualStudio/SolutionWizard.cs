@@ -153,5 +153,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                 Fs.SafeDeleteDirectory(parentDir);
             }
         }
+
+        public SolutionWizard()
+        {
+            OutputPath = DestinationPath;
+        }
     }
 }

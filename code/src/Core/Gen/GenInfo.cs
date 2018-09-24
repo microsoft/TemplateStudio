@@ -4,7 +4,7 @@
 
 using System;
 using System.Collections.Generic;
-
+using System.IO;
 using Microsoft.TemplateEngine.Abstractions;
 
 namespace Microsoft.Templates.Core.Gen
@@ -14,6 +14,8 @@ namespace Microsoft.Templates.Core.Gen
         public string Name { get; set; }
 
         public ITemplateInfo Template { get; set; }
+
+        public string GenerationPath { get; private set; }
 
         public Dictionary<string, string> Parameters { get; } = new Dictionary<string, string>();
 
@@ -30,6 +32,16 @@ namespace Microsoft.Templates.Core.Gen
         public override string ToString()
         {
             return $"{Name}, {Template?.Name}";
+        }
+
+        public GenInfo(string name, ITemplateInfo template)
+        {
+            Name = name;
+            Template = template;
+
+            GenerationPath = Template.GetOutputToParent()
+                ? new DirectoryInfo(GenContext.Current.OutputPath).Parent.FullName
+                : new DirectoryInfo(GenContext.Current.OutputPath).FullName;
         }
     }
 }

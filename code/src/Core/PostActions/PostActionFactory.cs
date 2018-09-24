@@ -34,7 +34,7 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddGetMergeFilesFromProjectPostAction(GenInfo genInfo, List<PostAction> postActions)
         {
             Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
+                .EnumerateFiles(genInfo.GenerationPath, "*.*", SearchOption.AllDirectories)
                 .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionAndSearchReplaceRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GetMergeFilesFromProjectPostAction(genInfo.Template.Identity, f)));
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddGenerateMergeInfoPostAction(GenInfo genInfo, List<PostAction> postActions)
         {
             Directory
-                .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.OutputPath), "*.*", SearchOption.AllDirectories)
+                .EnumerateFiles(Path.GetDirectoryName(genInfo.GenerationPath), "*.*", SearchOption.AllDirectories)
                 .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GenerateMergeInfoPostAction(genInfo.Template.Identity, f)));
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddMergeActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .EnumerateFiles(genInfo.GenerationPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
                 .ForEach(f => AddMergePostAction(genInfo, postActions, failOnError, f));
         }
@@ -98,7 +98,7 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddSearchAndReplaceActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .EnumerateFiles(genInfo.GenerationPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
                 .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError))));
         }
