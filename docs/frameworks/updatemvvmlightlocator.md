@@ -54,3 +54,19 @@ private YourPageViewModel ViewModel
     get { return ViewModelLocator.Current.YourPageViewModel; }
 }
 ```
+
+### 4 Updates in **ActivationService.cs**
+
+Change the way to get NavigationService from ViewModelLocator
+
+Remove
+```csharp
+private static ViewModels.ViewModelLocator Locator => Application.Current.Resources["Locator"] as ViewModels.ViewModelLocator;
+
+private static NavigationServiceEx NavigationService => Locator.NavigationService;
+```
+
+Add
+```csharp
+private static NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
+```
