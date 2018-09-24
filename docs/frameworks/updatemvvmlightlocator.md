@@ -33,9 +33,9 @@ private static ViewModelLocator _current;
 public static ViewModelLocator Current => _current ?? (_current = new ViewModelLocator());
 ```
 
-### 3. Updates in **ActivationService.cs**
+## 3. Updates in **ActivationService.cs**
 
-Change the way to get NavigationService from ViewModelLocator
+Change the way to get the NavigationService from the ViewModelLocator:
 
 Remove
 ```csharp
