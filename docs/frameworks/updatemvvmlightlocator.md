@@ -55,7 +55,7 @@ private YourPageViewModel ViewModel
 }
 ```
 
-### 4 Updates in **ActivationService.cs**
+### 4. Updates in **ActivationService.cs**
 
 Change the way to get NavigationService from ViewModelLocator
 
