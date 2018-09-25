@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.DeepLinking",
+  "name": "MvvmBasic.Feature.DeepLinking",
   "tags": {
     "language": "C#",
     "type": "item",

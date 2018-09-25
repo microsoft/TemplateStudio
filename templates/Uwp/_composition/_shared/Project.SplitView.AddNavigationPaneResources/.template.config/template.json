@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type==page & $projectType == SplitView & identity != wts.Page.Settings|wts.Page.Settings.CodeBehind|wts.Page.Settings.CaliburnMicro|wts.Page.Settings.Prism"
+    "wts.compositionFilter": "wts.type==page & $projectType == SplitView & groupidentity != wts.Page.Settings"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
