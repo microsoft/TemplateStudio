@@ -32,8 +32,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationParentPath { get; private set; }
 
-        public string TempGenerationPath { get; private set; }
-
         public List<string> Projects { get; private set; }
 
         public Dictionary<string, List<string>> ProjectReferences { get; private set; }
@@ -149,7 +147,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
                 }
 
-                TempGenerationPath = GenContext.GetTempGenerationPath(ProjectName);
+                OutputPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostActionInfo>();

@@ -47,8 +47,6 @@ namespace Microsoft.Templates.VsEmulator
             }
         }
 
-        public string TempGenerationPath => throw new System.NotImplementedException();
-
         List<FailedMergePostActionInfo> IContextProvider.FailedMergePostActions => throw new System.NotImplementedException();
     }
 }

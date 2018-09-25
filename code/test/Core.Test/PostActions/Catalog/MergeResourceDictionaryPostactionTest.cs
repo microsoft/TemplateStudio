@@ -26,8 +26,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string DestinationParentPath => string.Empty;
 
-        public string TempGenerationPath => string.Empty;
-
         public List<string> Projects { get; } = new List<string>();
 
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();

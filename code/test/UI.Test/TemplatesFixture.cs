@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
@@ -22,11 +23,9 @@ namespace Microsoft.UI.Test
 
         public string OutputPath { get; set; }
 
-        public string DestinationPath => string.Empty;
+        public string DestinationPath => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\UI\\";
 
         public string DestinationParentPath => string.Empty;
-
-        public string TempGenerationPath => string.Empty;
 
         public List<string> Projects { get; } = new List<string>();
 
@@ -50,6 +49,7 @@ namespace Microsoft.UI.Test
         Justification = "Required por unit testing.")]
         public void InitializeFixture(string platform, string language)
         {
+            OutputPath = DestinationPath;
             var source = new LocalTemplatesSource();
             GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
             GenContext.Current = this;

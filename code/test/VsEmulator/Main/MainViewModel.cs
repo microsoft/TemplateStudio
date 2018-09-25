@@ -74,8 +74,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string DestinationParentPath { get; private set; }
 
-        public string TempGenerationPath { get; private set; }
-
         public List<string> Projects { get; } = new List<string>();
 
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
@@ -401,7 +399,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewFeature()
         {
-            TempGenerationPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
 
             try
@@ -436,7 +434,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewPage()
         {
-            TempGenerationPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
             try
             {
