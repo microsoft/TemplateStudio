@@ -38,13 +38,15 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         private Dictionary<string, string> _parameters;
         private string _publisherName;
         private IReadOnlyList<ICreationPath> _primaryOutputs;
+        private string _destinationPath;
 
-        public GenerateTestCertificatePostAction(string relatedTemplate, string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters)
+        public GenerateTestCertificatePostAction(string relatedTemplate, string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters, string destinationPath)
             : base(relatedTemplate, templatePostAction)
         {
             _parameters = parameters;
             _publisherName = publisherName;
             _primaryOutputs = primaryOutputs;
+            _destinationPath = destinationPath;
         }
 
         internal override void ExecuteInternal()
@@ -61,7 +63,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddToProject(string base64Encoded, string projectFileWithoutExtension)
         {
-            var filePath = Path.Combine(GenContext.Current.OutputPath, projectFileWithoutExtension) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(_destinationPath, projectFileWithoutExtension) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
             GenContext.ToolBox.Shell.AddItems(filePath);
