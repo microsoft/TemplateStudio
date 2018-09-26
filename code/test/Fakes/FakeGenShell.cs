@@ -61,9 +61,10 @@ namespace Microsoft.Templates.Fakes
                 return;
             }
 
-            var filesByProject = ResolveProjectFiles(itemsFullPath, true);
+            var projects = ResolveProjectFiles(itemsFullPath, true);
+            var notCoreProjects = projects.Where(f => !IsCoreProject(f.Key));
 
-            foreach (var projectFile in filesByProject)
+            foreach (var projectFile in notCoreProjects)
             {
                 var msbuildProj = FakeMsBuildProject.Load(projectFile.Key);
                 if (msbuildProj != null)
@@ -237,6 +238,11 @@ namespace Microsoft.Templates.Fakes
 
                 parentProject.Save();
             }
+        }
+
+        private bool IsCoreProject(string projectPath)
+        {
+            return projectPath.EndsWith("Core.csproj") || projectPath.EndsWith("Core.vbproj");
         }
     }
 }
