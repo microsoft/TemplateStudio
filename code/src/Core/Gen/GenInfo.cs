@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core.Gen
 
             GenerationPath = Template.GetOutputToParent()
                 ? new DirectoryInfo(GenContext.Current.OutputPath).Parent.FullName
-                : new DirectoryInfo(GenContext.Current.OutputPath).FullName;
+                : GenContext.Current.OutputPath;
         }
     }
 }
