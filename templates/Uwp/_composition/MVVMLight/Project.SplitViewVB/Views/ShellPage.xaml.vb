@@ -9,7 +9,7 @@ Namespace Views
 
         Private ReadOnly Property ViewModel As ShellViewModel
             Get
-                Return TryCast(DataContext, ShellViewModel)
+                Return ViewModelLocator.Current.ShellViewModel
             End Get
         End Property
 

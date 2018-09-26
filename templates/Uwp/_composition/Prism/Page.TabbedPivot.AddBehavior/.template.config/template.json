@@ -10,13 +10,16 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == TabbedPivot & $framework == Prism & wts.type == page & identity == wts.Page.Camera.Prism|wts.Page.MediaPlayer.Prism"
+    "wts.compositionFilter": "$projectType == TabbedPivot & identity == wts.Page.Camera.Prism|wts.Page.MediaPlayer.Prism"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
       "path": ".\\Behaviors\\PivotNavigationBehavior.cs"
+    },
+    {
+      "path": ".\\Helpers\\PivotItemExtensions.cs"
     }
   ],
   "symbols": {

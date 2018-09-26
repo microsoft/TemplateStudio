@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
-    DataContext="{Binding SchemeActivationSampleViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="ActivationParameterDateTemplate">
@@ -19,14 +18,14 @@
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="48"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <TextBlock
             Grid.Row="0"
-            x:Uid="SchemeActivationSamplePage_Title"
-            Style="{StaticResource PageTitleStyle}" />
+            x:Uid="SchemeActivationSamplePage_Description"
+            Style="{StaticResource BodyTextStyle}"
+            Margin="{StaticResource SmallAllMargin}" />
         <ScrollViewer Grid.Row="1">
             <ItemsControl
                 ItemsSource="{x:Bind ViewModel.Parameters}"

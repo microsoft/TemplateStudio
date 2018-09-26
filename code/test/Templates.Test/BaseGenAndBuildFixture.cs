@@ -264,11 +264,24 @@ namespace Microsoft.Templates.Test
         {
             if (Directory.Exists(GetTestRunPath()))
             {
+                CleanUpOldTests();
+
                 if ((!Directory.Exists(TestProjectsPath) || !Directory.EnumerateDirectories(TestProjectsPath).Any())
                  && (!Directory.Exists(TestNewItemPath) || !Directory.EnumerateDirectories(TestNewItemPath).Any()))
                 {
                     Directory.Delete(GetTestRunPath(), true);
                 }
+            }
+        }
+
+        private void CleanUpOldTests()
+        {
+            var rootDir = new DirectoryInfo(GetTestRunPath()).Parent;
+
+            var oldDirectories = rootDir.EnumerateDirectories().Where(d => d.CreationTime < DateTime.Now.AddDays(-7));
+            foreach (var dir in oldDirectories)
+            {
+                dir.Delete(true);
             }
         }
 

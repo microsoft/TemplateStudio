@@ -1,7 +1,0 @@
-﻿<Page
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    <!--{[{-->
-    DataContext="{Binding wts.ItemNameViewModel, Source={StaticResource Locator}}"
-    <!--}]}-->
-    mc:Ignorable="d">
-</Page>

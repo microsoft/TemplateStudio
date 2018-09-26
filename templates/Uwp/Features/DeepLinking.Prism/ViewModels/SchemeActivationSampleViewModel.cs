@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Prism.Windows.Mvvm;
+using Prism.Windows.Navigation;
 
 namespace Param_ItemNamespace.ViewModels
 {
@@ -17,8 +18,19 @@ namespace Param_ItemNamespace.ViewModels
         {
         }
 
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        {
+            base.OnNavigatedTo(e, viewModelState);
+            var parameters = e?.Parameter as Dictionary<string, string>;
+            if (parameters != null)
+            {
+                Initialize(parameters);
+            }
+        }
+
         public void Initialize(Dictionary<string, string> parameters)
         {
+            Parameters.Clear();
             foreach (var param in parameters)
             {
                 if (param.Key == "ticks" && long.TryParse(param.Value, out long ticks))

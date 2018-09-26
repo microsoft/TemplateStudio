@@ -2,7 +2,7 @@
 {
     public class ViewModelLocator
     {
-        public ViewModelLocator()
+        private ViewModelLocator()
         {
             //^^
             //{[{

@@ -10,7 +10,7 @@
       "wts.type": "composition",
 	  "wts.platform" : "Uwp",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$projectType == Blank & identity == wts.Page.TabbedPivot|wts.Page.TabbedPivot.CodeBehind|wts.Page.TabbedPivot.CaliburnMicro"
+      "wts.compositionFilter": "$projectType == Blank & groupidentity == wts.Page.TabbedPivot"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

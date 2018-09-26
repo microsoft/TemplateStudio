@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.DeepLinking.CodeBehind.VB",
+  "name": "CodeBehind.Feature.DeepLinking.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -15,12 +15,6 @@
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Views\\SchemeActivationSamplePage.xaml"
-    },
-    {
-      "path": ".\\Views\\SchemeActivationSamplePage.xaml.vb"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

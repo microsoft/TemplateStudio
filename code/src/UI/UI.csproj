@@ -363,6 +363,7 @@
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\NotificationTemplateSelector.cs" />
     <Compile Include="Validators\HasNavigationViewValidator.cs" />
+    <Compile Include="Validators\HasOldMvvmLightLocatorValidator.cs" />
     <Compile Include="Validators\IBreakingChangeValidator.cs" />
     <Compile Include="ViewModels\Common\BaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />

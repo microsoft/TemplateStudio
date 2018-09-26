@@ -14,22 +14,12 @@ namespace Param_ItemNamespace.Views
     {
         private SchemeActivationSampleViewModel ViewModel
         {
-            get { return DataContext as SchemeActivationSampleViewModel; }
+            get { return ViewModelLocator.Current.SchemeActivationSampleViewModel; }
         }
 
         public SchemeActivationSamplePage()
         {
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            var parameters = e.Parameter as Dictionary<string, string>;
-            if (parameters != null)
-            {
-                ViewModel.Initialize(parameters);
-            }
         }
     }
 }

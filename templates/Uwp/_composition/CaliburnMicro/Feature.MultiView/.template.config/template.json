@@ -3,13 +3,13 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.MultiView.CaliburnMicro",
+  "name": "CaliburnMicro.Feature.MultiView",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.version": "1.0.0",
-    "wts.platform" : "Uwp",
+    "wts.platform": "Uwp",
     "wts.compositionFilter": "$framework == CaliburnMicro & identity == wts.Feat.MultiView"
   },
   "sourceName": "wts.ItemName",

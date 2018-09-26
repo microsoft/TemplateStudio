@@ -20,13 +20,7 @@ namespace wts.ItemName.ViewModels
         private NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
 
-        public NavigationServiceEx NavigationService
-        {
-            get
-            {
-                return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-            }
-        }
+        public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
         public NavigationViewItem Selected
         {
