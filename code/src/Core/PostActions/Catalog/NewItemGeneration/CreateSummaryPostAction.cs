@@ -174,7 +174,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             if (Config.SyncGeneration)
             {
-                var filePath = Path.Combine(GenContext.Current.DestinationParentPath, fileName);
+                var filePath = Path.Combine(GetDestinationParent(), fileName);
                 return $"[{fileName}]({FormatFilePath(filePath)})";
             }
             else
@@ -190,8 +190,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private string GetCompareLink(string fileName)
         {
-            var filePath = Path.Combine(GenContext.Current.DestinationParentPath, fileName);
+            var filePath = Path.Combine(GetDestinationParent(), fileName);
             return $"* {StringRes.SyncSummaryTempGenerationFile}: [{fileName}]({fileName}), {StringRes.SyncSummaryProjectFile}: [{fileName}]({FormatFilePath(filePath)})";
         }
+
+        private string GetDestinationParent() => Directory.GetParent(GenContext.Current.DestinationPath).FullName;
     }
 }

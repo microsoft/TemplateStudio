@@ -40,7 +40,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var destinationParentPath = Directory.GetParent(GenContext.Current.DestinationPath).FullName;
 
             var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config.Replace(parentOutputPath, destinationParentPath)));
-            var relFilePath = GetRelativePath(filePath, GenContext.Current.DestinationParentPath + Path.DirectorySeparatorChar);
+            var relFilePath = GetRelativePath(filePath, destinationParentPath + Path.DirectorySeparatorChar);
 
             if (!GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {

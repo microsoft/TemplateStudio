@@ -25,8 +25,6 @@ namespace Microsoft.UI.Test
 
         public string DestinationPath => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\UI\\";
 
-        public string DestinationParentPath => string.Empty;
-
         public List<string> Projects { get; } = new List<string>();
 
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();

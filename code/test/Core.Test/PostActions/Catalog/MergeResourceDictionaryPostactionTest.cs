@@ -24,7 +24,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string DestinationPath => Directory.GetCurrentDirectory();
 
-        public string DestinationParentPath => string.Empty;
 
         public List<string> Projects { get; } = new List<string>();
 

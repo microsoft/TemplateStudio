@@ -33,8 +33,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string DestinationPath { get; set; }
 
-        public string DestinationParentPath { get; set; }
-
         public List<string> Projects { get; } = new List<string>();
 
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();

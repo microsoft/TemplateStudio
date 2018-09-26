@@ -30,8 +30,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationPath { get; private set; }
 
-        public string DestinationParentPath { get; private set; }
-
         public List<string> Projects { get; private set; }
 
         public Dictionary<string, List<string>> ProjectReferences { get; private set; }
@@ -143,7 +141,6 @@ namespace Microsoft.Templates.UI.VisualStudio
                 if (projectConfig.Platform == Platforms.Uwp)
                 {
                     DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
-                    DestinationParentPath = new DirectoryInfo(DestinationPath).Parent.FullName;
                     ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
                 }
 

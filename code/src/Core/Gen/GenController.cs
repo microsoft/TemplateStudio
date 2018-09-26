@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.Gen
                 }
             }
 
-            var directoriesToDelete = Directory.EnumerateFiles(generationPath, "*", SearchOption.AllDirectories)
+            var directoriesToDelete = Directory.EnumerateDirectories(generationPath, "*", SearchOption.AllDirectories)
                 .ToList()
                 .Where(file => parameterReplacements.FileRenameParams.Any(param => file.Contains(param.Key)));
 

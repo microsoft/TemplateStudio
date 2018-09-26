@@ -16,8 +16,6 @@ namespace Microsoft.Templates.Core.Gen
 
         string DestinationPath { get; }
 
-        string DestinationParentPath { get; }
-
         List<string> Projects { get; }
 
         Dictionary<string, List<string>> ProjectReferences { get; }

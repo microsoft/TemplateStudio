@@ -352,19 +352,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override string GetSolutionPath()
-        {
-            var s = GetSolution();
-            if (s != null)
-            {
-                return Path.GetDirectoryName(s.FileName);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         public override string GetActiveProjectLanguage()
         {
             var p = GetActiveProject();

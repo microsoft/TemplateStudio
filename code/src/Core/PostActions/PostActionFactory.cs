@@ -60,19 +60,21 @@ namespace Microsoft.Templates.Core.PostActions
             var addProjectReferencePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddProjectReferencesToContextPostAction.Id);
             if (addProjectReferencePostAction != null)
             {
-                postActions.Add(new AddProjectReferencesToContextPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
+                var destinationPath = GetDestinationPath(genInfo.Template.GetOutputToParent());
+                postActions.Add(new AddProjectReferencesToContextPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, destinationPath));
             }
         }
 
         internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions, bool addingToExistingProject = false)
         {
+            var destinationPath = GetDestinationPath(genInfo.Template.GetOutputToParent());
             switch (genInfo.Template.GetTemplateOutputType())
             {
                 case TemplateOutputType.Project:
-                    postActions.Add(new AddProjectToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
+                    postActions.Add(new AddProjectToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, destinationPath));
                     break;
                 case TemplateOutputType.Item:
-                    postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.Template.GetOutputToParent()));
+                    postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, destinationPath));
                     break;
                 default:
                     break;
@@ -118,6 +120,11 @@ namespace Microsoft.Templates.Core.PostActions
         private static bool IsResourceDictionaryPostaction(string f)
         {
             return Path.GetExtension(f).Equals(".xaml", StringComparison.OrdinalIgnoreCase) && File.ReadAllText(f).StartsWith(MergeConfiguration.ResourceDictionaryMatch, StringComparison.Ordinal);
+        }
+
+        private string GetDestinationPath(bool outputToParent)
+        {
+            return outputToParent ? Directory.GetParent(GenContext.Current.DestinationPath).FullName : GenContext.Current.DestinationPath;
         }
     }
 }
