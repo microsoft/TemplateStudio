@@ -10,6 +10,10 @@ namespace TestData
 {
     sealed partial class App : Application
     {
+        //{--{
+        //THIS COMMENT SHOULD BE REMOVED
+        //}--}
+
         //{[{
         //PROPERTY DEFINITION
         //}]}
