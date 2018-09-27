@@ -238,7 +238,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async Task NewProjectAsync(string platform, string language)
         {
             _platform = platform;
-
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
 
