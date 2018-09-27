@@ -24,12 +24,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     <!--}]}-->
 </ResourceDictionary.MergedDictionaries>";
 
-        private readonly bool _outputToParent;
-
-        public MergeResourceDictionaryPostAction(string relatedTemplate, MergeConfiguration config, bool outputToParent)
+        public MergeResourceDictionaryPostAction(string relatedTemplate, MergeConfiguration config)
             : base(relatedTemplate, config)
         {
-            _outputToParent = outputToParent;
         }
 
         internal override void ExecuteInternal()

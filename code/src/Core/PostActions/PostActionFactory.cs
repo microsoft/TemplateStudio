@@ -109,7 +109,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             if (IsResourceDictionaryPostaction(f))
             {
-                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError), genInfo.Template.GetOutputToParent()));
+                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError)));
             }
             else
             {
