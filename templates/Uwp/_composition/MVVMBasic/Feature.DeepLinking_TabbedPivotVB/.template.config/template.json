@@ -3,12 +3,12 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MvvmBasic.DeepLinking.TabbedPivot.VB",
+  "name": "MvvmBasic.Feature.DeepLinking.TabbedPivot.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
-    "wts.platform" : "Uwp",
+    "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "$framework == MVVMBasic & identity == wts.Feat.DeepLinking.VB & $projectType == TabbedPivot"
   },
@@ -26,8 +26,8 @@
       "replaces": "Param_ItemNamespace"
     },
     "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
+      "type": "parameter",
+      "replaces": "Param_HomeName"
     }
   }
 }

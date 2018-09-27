@@ -3,12 +3,12 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.DeepLinking.Blank.VB",
+  "name": "MVVMLight.Feature.DeepLinking.Blank.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
-    "wts.platform" : "Uwp",
+    "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "identity == wts.Feat.DeepLinking.MVVMLight.VB & $projectType == Blank"
   },
@@ -26,8 +26,8 @@
       "replaces": "Param_ItemNamespace"
     },
     "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
+      "type": "parameter",
+      "replaces": "Param_HomeName"
     }
   }
 }

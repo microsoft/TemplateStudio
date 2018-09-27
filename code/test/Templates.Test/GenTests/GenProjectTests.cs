@@ -118,7 +118,7 @@ namespace Microsoft.Templates.Test
                     && t.GetPlatform() == platform
                     && !t.GetIsHidden();
 
-            var projectName = $"{projectType}{framework}All";
+            var projectName = $"{projectType}{framework}All{ShortLanguageName(language)}";
 
             await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName);
         }

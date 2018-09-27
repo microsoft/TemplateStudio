@@ -33,10 +33,26 @@ private static ViewModelLocator _current;
 public static ViewModelLocator Current => _current ?? (_current = new ViewModelLocator());
 ```
 
-## 3. Changes in all pages
+## 3. Updates in **ActivationService.cs**
+
+Change the way to get the NavigationService from the ViewModelLocator:
+
+Remove
+```csharp
+private static ViewModels.ViewModelLocator Locator => Application.Current.Resources["Locator"] as ViewModels.ViewModelLocator;
+
+private static NavigationServiceEx NavigationService => Locator.NavigationService;
+```
+
+Add
+```csharp
+private static NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
+```
+
+## 4. Changes in all pages
 As the ViewModelLocator is no longer part of the ApplicationResources, you will have to change the way in which the pages obtain the ViewModel.
 
-### 3.1 Page XAML files
+### 4.1 Page XAML files
 
 Remove the **DataContext** assignment.
 
@@ -44,7 +60,7 @@ Remove the **DataContext** assignment.
 DataContext="{Binding YourPageViewModel, Source={StaticResource Locator}}"
 ```
 
-### 3.2 Page Code Behind files
+### 4.2 Page Code Behind files
 
 Get the ViewModel from the ViewModelLocator **singleton** instance.
 
