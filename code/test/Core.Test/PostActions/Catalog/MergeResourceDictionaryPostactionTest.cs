@@ -24,10 +24,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
         public string DestinationPath => Directory.GetCurrentDirectory();
 
-        public string DestinationParentPath => string.Empty;
-
-        public string TempGenerationPath => string.Empty;
-
         public List<string> Projects { get; } = new List<string>();
 
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
@@ -51,7 +47,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var config = new MergeConfiguration(postaction, true);
 
-            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("Test", config, false);
+            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("Test", config);
             mergeResourceDictionaryPostAction.Execute();
 
             var result = File.ReadAllText(source).Replace("\r\n", string.Empty).Replace("\n", string.Empty);
@@ -69,7 +65,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = this;
             var config = new MergeConfiguration(postaction, true);
 
-            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("TestTemplate", config, false);
+            var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("TestTemplate", config);
 
             Exception ex = Assert.Throws<Exception>(() => mergeResourceDictionaryPostAction.Execute());
             Assert.NotNull(ex.InnerException);

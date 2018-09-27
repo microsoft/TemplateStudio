@@ -39,11 +39,9 @@ namespace Microsoft.Templates.Core.Gen
                     GenContext.ToolBox.Shell.ShowStatusBarMessage(statusText);
                 }
 
-                SetOutputPath(genInfo.Template.GetOutputToParent(), isTempGeneration);
+                AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {genInfo.GenerationPath}.").FireAndForget();
 
-                AppHealth.Current.Info.TrackAsync($"Generating the template {genInfo.Template.Name} to {GenContext.Current.OutputPath}.").FireAndForget();
-
-                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, GenContext.Current.OutputPath, genInfo.Parameters, false, false, null);
+                var result = await CodeGen.Instance.Creator.InstantiateAsync(genInfo.Template, genInfo.Name, null, genInfo.GenerationPath, genInfo.Parameters, false, false, null);
 
                 genResults.Add($"{genInfo.Template.Identity}_{genInfo.Name}", result);
 
@@ -52,7 +50,7 @@ namespace Microsoft.Templates.Core.Gen
                     throw new GenException(genInfo.Name, genInfo.Template.Name, result.Message);
                 }
 
-                ReplaceParamsInFilePath(genInfo.Parameters);
+                ReplaceParamsInFilePath(genInfo.GenerationPath, genInfo.Parameters);
 
                 ExecutePostActions(genInfo, result);
             }
@@ -65,38 +63,11 @@ namespace Microsoft.Templates.Core.Gen
             return genResults;
         }
 
-        private void SetOutputPath(bool outputToParent, bool tempGeneration)
-        {
-            if (!tempGeneration)
-            {
-                if (outputToParent)
-                {
-                    GenContext.Current.OutputPath = GenContext.Current.DestinationParentPath;
-                }
-                else
-                {
-                    GenContext.Current.OutputPath = GenContext.Current.DestinationPath;
-                }
-            }
-            else
-            {
-                if (outputToParent)
-                {
-                    GenContext.Current.OutputPath = GenContext.Current.TempGenerationPath;
-                }
-                else
-                {
-                    GenContext.Current.OutputPath = Path.Combine(GenContext.Current.TempGenerationPath, GenContext.Current.ProjectName);
-                }
-            }
-        }
-
-        private void ReplaceParamsInFilePath(Dictionary<string, string> genParameters)
+        private void ReplaceParamsInFilePath(string generationPath, Dictionary<string, string> genParameters)
         {
             var parameterReplacements = new FileRenameParameterReplacements(genParameters);
 
-            var path = GenContext.Current.OutputPath;
-            var filesToMove = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories)
+            var filesToMove = Directory.EnumerateFiles(generationPath, "*", SearchOption.AllDirectories)
                 .ToList()
                 .Where(file => parameterReplacements.FileRenameParams.Any(param => file.Contains(param.Key)));
 
@@ -111,15 +82,15 @@ namespace Microsoft.Templates.Core.Gen
                 }
             }
 
-            var directoriesToDelete = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories)
+            var directoriesToDelete = Directory.EnumerateDirectories(generationPath, "*", SearchOption.AllDirectories)
                 .ToList()
                 .Where(file => parameterReplacements.FileRenameParams.Any(param => file.Contains(param.Key)));
 
             if (directoriesToDelete != null && directoriesToDelete.Count() > 0)
             {
-                foreach (var directory in directoriesToDelete)
+                foreach (var d in directoriesToDelete)
                 {
-                    Fs.SafeDeleteDirectory(directory, false);
+                    Fs.SafeDeleteDirectory(d, false);
                 }
             }
         }

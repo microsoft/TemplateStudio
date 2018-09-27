@@ -39,16 +39,6 @@ namespace Microsoft.Templates.VsEmulator
             }
         }
 
-        public string DestinationParentPath
-        {
-            get
-            {
-                return System.IO.Path.GetDirectoryName(this.ProjectPath);
-            }
-        }
-
-        public string TempGenerationPath => throw new System.NotImplementedException();
-
         List<FailedMergePostActionInfo> IContextProvider.FailedMergePostActions => throw new System.NotImplementedException();
     }
 }

@@ -72,10 +72,6 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
 
-        public string DestinationParentPath { get; private set; }
-
-        public string TempGenerationPath { get; private set; }
-
         public List<string> Projects { get; } = new List<string>();
 
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
@@ -242,7 +238,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async Task NewProjectAsync(string platform, string language)
         {
             _platform = platform;
-
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
 
@@ -254,13 +249,10 @@ namespace Microsoft.Templates.VsEmulator.Main
                 {
                     var destinationPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
 
-                    var destinationParentPath = Path.Combine(newProjectInfo.location, newProjectInfo.name);
-
                     GenContext.Current = this;
                     ProjectName = newProjectInfo.name;
                     DestinationPath = destinationPath;
                     OutputPath = destinationPath;
-                    DestinationParentPath = destinationParentPath;
                     SolutionName = null;
 
                     var userSelection = NewProjectController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
@@ -301,12 +293,10 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var newProjectLocation = Path.GetTempPath();
 
                 var destinationPath = Path.Combine(newProjectLocation, newProjectName, newProjectName);
-                var destinationParentPath = Path.Combine(newProjectLocation, newProjectName);
 
                 GenContext.Current = this;
                 ProjectName = newProjectName;
                 DestinationPath = destinationPath;
-                DestinationParentPath = destinationParentPath;
                 OutputPath = destinationPath;
 
                 var userSelection = NewProjectController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
@@ -401,7 +391,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewFeature()
         {
-            TempGenerationPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
 
             try
@@ -428,6 +418,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ClearContext()
         {
+            Projects.Clear();
+            ProjectReferences.Clear();
             ProjectItems.Clear();
             MergeFilesFromProject.Clear();
             FailedMergePostActions.Clear();
@@ -436,7 +428,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewPage()
         {
-            TempGenerationPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
             try
             {
@@ -469,9 +461,10 @@ namespace Microsoft.Templates.VsEmulator.Main
                 SolutionFilePath = loadProjectInfo;
                 SolutionName = Path.GetFileNameWithoutExtension(SolutionFilePath);
 
-                DestinationParentPath = Path.GetDirectoryName(SolutionFilePath);
-                var projFile = Directory.EnumerateFiles(DestinationParentPath, "*.csproj", SearchOption.AllDirectories)
-                        .Union(Directory.EnumerateFiles(DestinationParentPath, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
+                var destinationParent = Path.GetDirectoryName(SolutionFilePath);
+
+                var projFile = Directory.EnumerateFiles(destinationParent, "*.csproj", SearchOption.AllDirectories)
+                        .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
                 var language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
 
@@ -535,9 +528,10 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void OpenInExplorer()
         {
-            if (!string.IsNullOrEmpty(DestinationParentPath))
+            if (!string.IsNullOrEmpty(DestinationPath))
             {
-                System.Diagnostics.Process.Start(DestinationParentPath);
+                var destinationParentPath = Directory.GetParent(DestinationPath).FullName;
+                System.Diagnostics.Process.Start(destinationParentPath);
             }
         }
 

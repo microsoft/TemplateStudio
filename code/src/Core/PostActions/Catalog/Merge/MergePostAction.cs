@@ -76,20 +76,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var postactionFileName = GetRelativePath(Config.FilePath);
 
             var failedFileName = GetFailedPostActionFileName();
-            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo(sourceFileName, Config.FilePath, GetRelativePath(failedFileName), description, mergeFailureType));
+            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo(sourceFileName, Config.FilePath, GetRelativePath(failedFileName), failedFileName, description, mergeFailureType));
             File.Copy(Config.FilePath, failedFileName, true);
         }
 
         protected string GetRelativePath(string path)
         {
-            if (GenContext.Current.OutputPath == GenContext.Current.TempGenerationPath)
-            {
-                return path.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
-            }
-            else
-            {
-                return path.Replace(Directory.GetParent(GenContext.Current.OutputPath).FullName + Path.DirectorySeparatorChar, string.Empty);
-            }
+            var parentOutputPath = Directory.GetParent(GenContext.Current.OutputPath).FullName;
+            return path.Replace(parentOutputPath + Path.DirectorySeparatorChar, string.Empty);
         }
 
         private void AddFailedMergePostActionsFileNotFound(string originalFilePath)

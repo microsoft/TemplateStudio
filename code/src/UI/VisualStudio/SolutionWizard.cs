@@ -30,11 +30,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
-        public string DestinationParentPath => new DirectoryInfo(DestinationPath).Parent.FullName;
-
         public string OutputPath { get; set; }
-
-        public string TempGenerationPath => string.Empty;
 
         public List<string> Projects { get; } = new List<string>();
 
@@ -152,6 +148,11 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 Fs.SafeDeleteDirectory(parentDir);
             }
+        }
+
+        public SolutionWizard()
+        {
+            OutputPath = DestinationPath;
         }
     }
 }

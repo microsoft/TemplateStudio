@@ -36,23 +36,23 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private readonly Dictionary<string, string> _parameters;
         private readonly IReadOnlyList<ICreationPath> _primaryOutputs;
-        private readonly bool _outputToParent;
+        private readonly string _destinationPath;
 
-        public AddProjectReferencesToContextPostAction(string relatedTemplate, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters, bool outputToParent)
+        public AddProjectReferencesToContextPostAction(string relatedTemplate, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters, string destinationPath)
             : base(relatedTemplate, templatePostAction)
         {
             _parameters = parameters;
             _primaryOutputs = primaryOutputs;
-            _outputToParent = outputToParent;
+            _destinationPath = destinationPath;
         }
 
         internal override void ExecuteInternal()
         {
             var parameterReplacements = new FileRenameParameterReplacements(_parameters);
-            var projectPath = Path.Combine(GetReferencePath(), parameterReplacements.ReplaceInPath(Args["projectPath"]));
+            var projectPath = Path.Combine(_destinationPath, parameterReplacements.ReplaceInPath(Args["projectPath"]));
 
             int targetProjectIndex = int.Parse(Args["fileIndex"]);
-            var referenceToAdd = Path.GetFullPath(Path.Combine(GetReferencePath(), _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
+            var referenceToAdd = Path.GetFullPath(Path.Combine(_destinationPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
 
             if (GenContext.Current.ProjectReferences.ContainsKey(projectPath))
             {
@@ -62,11 +62,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 GenContext.Current.ProjectReferences.Add(projectPath, new List<string>() { referenceToAdd });
             }
-        }
-
-        private string GetReferencePath()
-        {
-            return _outputToParent ? GenContext.Current.DestinationParentPath : GenContext.Current.DestinationPath;
         }
     }
 }

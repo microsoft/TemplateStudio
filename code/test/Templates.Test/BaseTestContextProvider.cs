@@ -17,10 +17,6 @@ namespace Microsoft.Templates.Test
 
         public string DestinationPath { get; set; }
 
-        public string DestinationParentPath { get; set; }
-
-        public string TempGenerationPath { get; set; }
-
         public List<string> Projects { get; } = new List<string>();
 
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();

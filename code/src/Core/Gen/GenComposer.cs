@@ -301,11 +301,7 @@ namespace Microsoft.Templates.Core.Gen
 
         private static GenInfo CreateGenInfo(string name, ITemplateInfo template, List<GenInfo> queue, bool newItemGeneration)
         {
-            var genInfo = new GenInfo
-            {
-                Name = name,
-                Template = template
-            };
+            var genInfo = new GenInfo(name, template);
 
             queue.Add(genInfo);
 

@@ -14,28 +14,23 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     public class AddProjectToContextPostAction : PostAction<IReadOnlyList<ICreationPath>>
     {
         private readonly Dictionary<string, string> _genParameters;
-        private readonly bool _outputToParent;
+        private readonly string _destinationPath;
 
-        public AddProjectToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters, bool outputToParent)
+        public AddProjectToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters, string destinationPath)
             : base(relatedTemplate, config)
         {
             _genParameters = genParameters;
-            _outputToParent = outputToParent;
+            _destinationPath = destinationPath;
         }
 
         internal override void ExecuteInternal()
         {
             var projectsToAdd = Config
                             .Where(o => !string.IsNullOrWhiteSpace(o.Path))
-                            .Select(o => Path.GetFullPath(Path.Combine(GetReferencePath(), o.GetOutputPath(_genParameters))))
+                            .Select(o => Path.GetFullPath(Path.Combine(_destinationPath, o.GetOutputPath(_genParameters))))
                             .ToList();
 
             GenContext.Current.Projects.AddRange(projectsToAdd);
-        }
-
-        private string GetReferencePath()
-        {
-            return _outputToParent ? GenContext.Current.DestinationParentPath : GenContext.Current.DestinationPath;
         }
     }
 }
