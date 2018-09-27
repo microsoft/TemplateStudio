@@ -51,16 +51,16 @@ namespace Microsoft.Templates.Core.PostActions
 
         internal void AddTemplateDefinedPostActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
+            var destinationPath = GetDestinationPath(genInfo.Template.GetOutputToParent());
             var genCertificatePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == GenerateTestCertificatePostAction.Id);
             if (genCertificatePostAction != null)
             {
-                postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, destinationPath));
             }
 
             var addProjectReferencePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddProjectReferencesToContextPostAction.Id);
             if (addProjectReferencePostAction != null)
             {
-                var destinationPath = GetDestinationPath(genInfo.Template.GetOutputToParent());
                 postActions.Add(new AddProjectReferencesToContextPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, destinationPath));
             }
         }
@@ -109,7 +109,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             if (IsResourceDictionaryPostaction(f))
             {
-                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError), genInfo.Template.GetOutputToParent()));
+                postActions.Add(new MergeResourceDictionaryPostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError)));
             }
             else
             {

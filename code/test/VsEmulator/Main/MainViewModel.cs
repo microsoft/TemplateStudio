@@ -419,6 +419,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ClearContext()
         {
+            Projects.Clear();
+            ProjectReferences.Clear();
             ProjectItems.Clear();
             MergeFilesFromProject.Clear();
             FailedMergePostActions.Clear();
