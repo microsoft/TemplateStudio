@@ -11,7 +11,7 @@ Remove the ViewModels namespace:
 xmlns:vms="using:YourAppName.ViewModels"
 ```
 
-Remove the ViewModelLocator from the Application.Resources ResourceDictionary:.
+Remove the ViewModelLocator from the Application.Resources ResourceDictionary:
 
 ```xml
 <vms:ViewModelLocator x:Key="Locator" />
