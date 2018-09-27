@@ -1,31 +1,31 @@
 # Update Locator in a MVVMLight project
-WTS has changed the ViewModelLocator implementation for MVVMLight to support MultiView in apps. The ViewModelLocator should be used as a singleton instead of an application resource. With this change, we ensure that the ViewModelLocator is not instantiated more than one time.
+We have changed the WTS ViewModelLocator implementation for MVVMLight to be able to support MultiView in apps. To avoid the ViewModelLocator from be instantiated more than once, we will used it as as a singleton instead of an application resource. 
 
 To adjust your code, please follow these steps:
 
 ## 1. Updates in **App.xaml**
 
-Remove the ViewModels namespace in file.
+Remove the ViewModels namespace:
 
 ```xml
-xmlns:vms="using:App426.ViewModels"
+xmlns:vms="using:YourAppName.ViewModels"
 ```
 
-Remove the ViewModelLocator from the Application.Resources ResourceDictionary in.
+Remove the ViewModelLocator from the Application.Resources ResourceDictionary:.
 
 ```xml
 <vms:ViewModelLocator x:Key="Locator" />
 ```
 
-## 2. Updates in **ViewModelLocator.cs**
+## 2. Updates in **ViewModels\ViewModelLocator.cs**
 
-Change the ViewModelLocator constructor to be private.
+Change the ViewModelLocator constructor to be private:
 
 ```csharp
 private ViewModelLocator()
 ```
 
-Add a static property that contains the current ViewModelLocator above the class contructor.
+Add a static property that contains the current ViewModelLocator above the class contructor:
 
 ```csharp
 private static ViewModelLocator _current;
@@ -33,18 +33,18 @@ private static ViewModelLocator _current;
 public static ViewModelLocator Current => _current ?? (_current = new ViewModelLocator());
 ```
 
-## 3. Updates in **ActivationService.cs**
+## 3. Updates in **Services\ActivationService.cs**
 
 Change the way to get the NavigationService from the ViewModelLocator:
 
-Remove
+Remove the following code:
 ```csharp
 private static ViewModels.ViewModelLocator Locator => Application.Current.Resources["Locator"] as ViewModels.ViewModelLocator;
 
 private static NavigationServiceEx NavigationService => Locator.NavigationService;
 ```
 
-Add
+Add the following code:
 ```csharp
 private static NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 ```
@@ -64,6 +64,15 @@ DataContext="{Binding YourPageViewModel, Source={StaticResource Locator}}"
 
 Get the ViewModel from the ViewModelLocator **singleton** instance.
 
+Remove the following code: 
+```csharp
+private YourPageViewModel ViewModel
+{
+    get { return DataContext as YourPageViewModel; }
+}
+```
+
+Add the following code:
 ```csharp
 private YourPageViewModel ViewModel
 {
