@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.ShareTarget.MVVMLight",
+  "name": "MVVMLight.Feature.ShareTarget",
   "tags": {
     "language": "C#",
     "type": "item",

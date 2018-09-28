@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|Prism & $projectType == Blank|SplitView & identity == wts.Page.ImageGallery|wts.Page.ImageGallery.Prism"
+    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|Prism & $projectType == Blank|SplitView & groupidentity == wts.Page.ImageGallery"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
