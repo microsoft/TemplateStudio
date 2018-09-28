@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.Page.MediaPlayer.AddNavigation_TabbedPivot",
+  "name": "CaliburnMicro.Page.MediaPlayer.AddNavigation.TabbedPivot",
   "tags": {
     "language": "C#",
     "type": "item",

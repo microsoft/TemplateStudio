@@ -6,33 +6,16 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Next release
 
-**2.3 - July 2018**
-
-Major additions:
-
-* Ink pages
-* Project infrastructure improvements
-* +more
-
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.3)
-
-## Upcoming releases
-
-### 2.4 - August 2018
-
-* Timeline/activity support
-* +more
-
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.4)
-
-### 2.5 - September 2018
+#### 2.5 - October 2018
 
 * Template loading improvements
 * +more
 
 [Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.5)
 
-### 3.0 - est. October 2018
+## Upcoming releases
+
+### 3.0 - est. November 2018
 
 * Multi-project support
 * Data sources (DB & Web based)
@@ -50,7 +33,8 @@ You can see a list of other items we'd like to get to, and which will form part 
 
 
 ## Past releases
-
+* [2.4 - July 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.4)
+* [2.3 - July 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.3)
 * [2.2 - June 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.2)
 * [2.1 - May 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.1)
 * [2.0 - April 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.0)

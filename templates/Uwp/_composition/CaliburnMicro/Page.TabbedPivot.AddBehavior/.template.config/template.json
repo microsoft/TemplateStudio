@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == TabbedPivot & $framework == CaliburnMicro & wts.type == page & identity == wts.Page.Camera.CaliburnMicro|wts.Page.MediaPlayer"
+    "wts.compositionFilter": "$projectType == TabbedPivot & $framework == CaliburnMicro & identity == wts.Page.Camera.CaliburnMicro|wts.Page.MediaPlayer"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -10,7 +10,7 @@
       "wts.type": "composition",
 	  "wts.platform" : "Uwp",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$projectType == Blank & identity == wts.Page.TabbedPivot.VB|wts.Page.TabbedPivot.CodeBehind.VB"
+      "wts.compositionFilter": "$projectType == Blank & groupidentity == wts.Page.TabbedPivot.VB"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

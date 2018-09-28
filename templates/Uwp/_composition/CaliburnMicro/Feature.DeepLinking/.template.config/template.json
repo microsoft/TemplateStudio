@@ -3,12 +3,12 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.DeepLinking",
+  "name": "CaliburnMicro.Feature.DeepLinking",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-    "wts.platform" : "Uwp",
+    "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "$framework == CaliburnMicro & identity == wts.Feat.DeepLinking"
   },
@@ -29,8 +29,8 @@
       "replaces": "Param_ItemNamespace"
     },
     "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
+      "type": "parameter",
+      "replaces": "Param_HomeName"
     }
   }
 }
