@@ -11,33 +11,14 @@ using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
     [Trait("ExecutionSet", "Minimum")]
-    public class MergeResourceDictionaryPostactionTest : IContextProvider
+    public class MergeResourceDictionaryPostactionTest
     {
-        public string ProjectName => "TestResourceDictionaryPostAction";
-
-        public string OutputPath { get; set; }
-
-        public string DestinationPath => Directory.GetCurrentDirectory();
-
-        public List<string> Projects { get; } = new List<string>();
-
-        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
-
-        public List<string> ProjectItems => new List<string>();
-
-        public List<string> FilesToOpen => new List<string>();
-
-        public List<FailedMergePostActionInfo> FailedMergePostActions => new List<FailedMergePostActionInfo>();
-
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => new Dictionary<string, List<MergeInfo>>();
-
-        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics => new Dictionary<ProjectMetricsEnum, double>();
-
         [Fact]
         public void MergeResourceDictionaryPostaction()
         {
@@ -62,7 +43,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var postaction = Path.GetFullPath(@".\TestData\Merge\Style_fail_postaction.xaml");
             var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml");
 
-            GenContext.Current = this;
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = "TestResourceDictionaryPostAction",
+                DestinationPath = Directory.GetCurrentDirectory()
+            };
+
             var config = new MergeConfiguration(postaction, true);
 
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("TestTemplate", config);
