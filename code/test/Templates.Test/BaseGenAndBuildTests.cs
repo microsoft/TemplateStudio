@@ -13,12 +13,19 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
+using Microsoft.Templates.Fakes;
 
 namespace Microsoft.Templates.Test
 {
-    public class BaseGenAndBuildTests : BaseTestContextProvider
+    public class BaseGenAndBuildTests
     {
         protected BaseGenAndBuildFixture _fixture;
+
+        public BaseGenAndBuildTests(BaseGenAndBuildFixture fixture, IContextProvider contextProvider = null, string framework = "")
+        {
+            _fixture = fixture;
+            _fixture.InitializeFixture(contextProvider ?? new FakeContextProvider(), framework);
+        }
 
         protected static string ShortLanguageName(string language)
         {
@@ -51,11 +58,14 @@ namespace Microsoft.Templates.Test
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
 
             var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
+            var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
-            ProjectName = projectName;
-
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            OutputPath = DestinationPath;
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = destinationPath,
+                OutputPath = destinationPath
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
@@ -112,10 +122,14 @@ namespace Microsoft.Templates.Test
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
+            var path = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
 
-            ProjectName = projectName;
-            DestinationPath = Path.Combine(_fixture.TestNewItemPath, projectName, projectName);
-            OutputPath = DestinationPath;
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = path,
+                OutputPath = path
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
@@ -166,11 +180,11 @@ namespace Microsoft.Templates.Test
 
         protected async Task AddRightClickTemplatesAsync(IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string platform, string language)
         {
+            GenContext.Current.OutputPath = GenContext.GetTempGenerationPath(projectName);
+
             // Add new items
             foreach (var item in rightClickTemplates)
             {
-                OutputPath = GenContext.GetTempGenerationPath(projectName);
-
                 var newUserSelection = new UserSelection(projectType, framework, platform, language)
                 {
                     HomeName = string.Empty,
@@ -205,10 +219,14 @@ namespace Microsoft.Templates.Test
             finalName = Naming.Infer(finalName, validators);
 
             var projectName = $"{ShortProjectType(projectType)}{finalName}{ShortLanguageName(language)}";
+            var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
 
-            ProjectName = projectName;
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            OutputPath = DestinationPath;
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = destinationPath,
+                OutputPath = destinationPath
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
@@ -233,9 +251,7 @@ namespace Microsoft.Templates.Test
 
         public static IEnumerable<object[]> GetProjectTemplatesForGenerationAsync()
         {
-            var result = GenerationFixture.GetProjectTemplates();
-
-            return result;
+            return GenerationFixture.GetProjectTemplates();
         }
 
         protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
@@ -254,9 +270,15 @@ namespace Microsoft.Templates.Test
                 singlePageName = genIdentitiesList.Last().Split('.').Last();
             }
 
-            ProjectName = $"{projectType}{framework}Compare{singlePageName}{ShortLanguageName(language)}";
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
-            OutputPath = DestinationPath;
+            var projectName = $"{projectType}{framework}Compare{singlePageName}{ShortLanguageName(language)}";
+            var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = destinationPath,
+                OutputPath = destinationPath,
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, Platforms.Uwp, language);
 
@@ -286,9 +308,9 @@ namespace Microsoft.Templates.Test
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            var resultPath = Path.Combine(_fixture.TestProjectsPath, ProjectName);
+            var resultPath = Path.Combine(_fixture.TestProjectsPath, GenContext.Current.ProjectName);
 
-            return (resultPath, ProjectName);
+            return (resultPath, GenContext.Current.ProjectName);
         }
 
         public static IEnumerable<object[]> GetPageAndFeatureTemplatesForGeneration(string framework)

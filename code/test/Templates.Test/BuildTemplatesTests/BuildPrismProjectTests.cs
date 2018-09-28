@@ -9,6 +9,7 @@ using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
+using Microsoft.Templates.Fakes;
 
 namespace Microsoft.Templates.Test
 {
@@ -18,9 +19,8 @@ namespace Microsoft.Templates.Test
     public class BuildPrismProjectTests : BaseGenAndBuildTests
     {
         public BuildPrismProjectTests(BuildTemplatesTestFixture fixture)
+            : base(fixture, null, "Prism")
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this, "Prism");
         }
 
         [Theory]

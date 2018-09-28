@@ -14,7 +14,7 @@ using Microsoft.CodeAnalysis.VisualBasic;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.TemplateEngine.Orchestrator.RunnableProjects;
 using Microsoft.Templates.Core;
-
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -23,9 +23,8 @@ namespace Microsoft.Templates.Test
     public class LanguageComparisonTests : BaseGenAndBuildTests
     {
         public LanguageComparisonTests(GenerationFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         // This test is manual only as it will fail when C# templates are updated but their VB equivalents haven't been.

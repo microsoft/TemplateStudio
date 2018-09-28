@@ -9,6 +9,7 @@ using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
+using Microsoft.Templates.Fakes;
 
 namespace Microsoft.Templates.Test
 {
@@ -17,9 +18,8 @@ namespace Microsoft.Templates.Test
     public class BuildMVVMLightProjectTests : BaseGenAndBuildTests
     {
         public BuildMVVMLightProjectTests(BuildTemplatesTestFixture fixture)
+            : base(fixture, null, "MVVMLight")
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this, "MVVMLight");
         }
 
         [Theory]

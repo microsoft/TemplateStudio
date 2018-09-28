@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -17,9 +18,8 @@ namespace Microsoft.Templates.Test
     public class StyleCopProjectGenerationTests : BaseGenAndBuildTests
     {
         public StyleCopProjectGenerationTests(StyleCopGenerationTestsFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         [Theory]

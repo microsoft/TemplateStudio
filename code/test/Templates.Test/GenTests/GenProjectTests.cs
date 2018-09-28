@@ -11,6 +11,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
+using Microsoft.Templates.Fakes;
 
 namespace Microsoft.Templates.Test
 {
@@ -19,9 +20,8 @@ namespace Microsoft.Templates.Test
     public class GenProjectTests : BaseGenAndBuildTests
     {
         public GenProjectTests(GenerationFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         [Theory]
