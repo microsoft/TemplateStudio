@@ -23,8 +23,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         internal override void ExecuteInternal()
         {
-            var parentOutputPath = Directory.GetParent(GenContext.Current.OutputPath).FullName;
-            var fileName = GetFileName(parentOutputPath);
+            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
+            var fileName = GetFileName(parentGenerationOutputPath);
             if (Config.SyncGeneration)
             {
                 var newFiles = BuildNewFilesSection(StringRes.SyncSummarySectionNewFiles);
@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 var failedMergeFiles = BuildMergeFileSection(StringRes.SyncSummarySectionFailedMergeFiles, StringRes.SyncSummaryTemplateFailedMerges, GenContext.Current.MergeFilesFromProject.Where(f => GenContext.Current.FailedMergePostActions.Any(m => m.FileName == f.Key)));
                 var conflictingFiles = BuildConflictingFilesSection(StringRes.SyncSummarySectionConflictingFiles);
 
-                File.WriteAllText(fileName, string.Format(StringRes.SyncSummaryTemplate, parentOutputPath, newFiles, modifiedFiles, failedMergeFiles, conflictingFiles));
+                File.WriteAllText(fileName, string.Format(StringRes.SyncSummaryTemplate, parentGenerationOutputPath, newFiles, modifiedFiles, failedMergeFiles, conflictingFiles));
             }
             else
             {
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 var conflictingFiles = BuildConflictingFilesSection(StringRes.SyncInstructionsSectionConflictingFiles);
                 var unchangedFiles = BuildUnchangedFilesSection(StringRes.SyncInstructionsSectionUnchangedFiles);
 
-                File.WriteAllText(fileName, string.Format(StringRes.SyncInstructionsTemplate, parentOutputPath, newFiles, modifiedFiles, conflictingFiles, unchangedFiles));
+                File.WriteAllText(fileName, string.Format(StringRes.SyncInstructionsTemplate, parentGenerationOutputPath, newFiles, modifiedFiles, conflictingFiles, unchangedFiles));
             }
 
             GenContext.Current.FilesToOpen.Add(fileName);

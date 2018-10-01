@@ -69,6 +69,7 @@
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
+    <Compile Include="FakeContextProvider.cs" />
     <Compile Include="FakeGenShell.cs" />
     <Compile Include="MSBuild\FakeMsBuildProject.cs" />
     <Compile Include="MSBuild\VsItemTypeExtensions.cs" />

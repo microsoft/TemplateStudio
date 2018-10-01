@@ -53,7 +53,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string ProjectName { get; private set; }
 
-        public string OutputPath { get;  set; }
+        public string GenerationOutputPath { get;  set; }
 
         public string DestinationPath { get; private set; }
 
@@ -252,7 +252,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     GenContext.Current = this;
                     ProjectName = newProjectInfo.name;
                     DestinationPath = destinationPath;
-                    OutputPath = destinationPath;
+                    GenerationOutputPath = destinationPath;
                     SolutionName = null;
 
                     var userSelection = NewProjectController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
@@ -297,7 +297,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 GenContext.Current = this;
                 ProjectName = newProjectName;
                 DestinationPath = destinationPath;
-                OutputPath = destinationPath;
+                GenerationOutputPath = destinationPath;
 
                 var userSelection = NewProjectController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
 
@@ -391,7 +391,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewFeature()
         {
-            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            GenerationOutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
 
             try
@@ -428,7 +428,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewPage()
         {
-            OutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            GenerationOutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
             try
             {
@@ -470,7 +470,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 ProjectName = Path.GetFileNameWithoutExtension(projFile);
                 DestinationPath = Path.GetDirectoryName(projFile);
-                OutputPath = DestinationPath;
+                GenerationOutputPath = DestinationPath;
                 GenContext.Current = this;
 
                 var platform = ProjectConfigInfo.ReadProjectConfiguration().Platform;

@@ -26,11 +26,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         internal override void ExecuteInternal()
         {
-            var parentOutputPath = Directory.GetParent(GenContext.Current.OutputPath).FullName;
+            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
             var sourceFile = GetFilePath();
             var mergeType = GetMergeType();
-            var relFilePath = sourceFile.Replace(parentOutputPath + Path.DirectorySeparatorChar, string.Empty);
+            var relFilePath = sourceFile.Replace(parentGenerationOutputPath + Path.DirectorySeparatorChar, string.Empty);
 
             if (GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {

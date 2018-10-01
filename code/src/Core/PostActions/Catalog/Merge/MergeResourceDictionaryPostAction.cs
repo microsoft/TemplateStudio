@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             if (!File.Exists(originalFilePath))
             {
                 File.Copy(Config.FilePath, originalFilePath);
-                GenContext.Current.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.OutputPath, GenContext.Current.DestinationPath));
+                GenContext.Current.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.GenerationOutputPath, GenContext.Current.DestinationPath));
                 AddToMergeDictionary(originalFilePath);
             }
             else
@@ -85,7 +85,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var relPath = originalFilePath.Replace(GenContext.Current.DestinationPath, string.Empty).Replace(@"\", @"/");
             var postactionContent = MergeDictionaryPattern.Replace("{filePath}", relPath);
             var mergeDictionaryName = Path.GetFileNameWithoutExtension(originalFilePath);
-            File.WriteAllText(GenContext.Current.OutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);
+            File.WriteAllText(GenContext.Current.GenerationOutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);
         }
 
         private static void AddNodeToSource(XElement sourceRoot, XElement node)

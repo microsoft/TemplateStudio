@@ -16,6 +16,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -24,9 +25,8 @@ namespace Microsoft.Templates.Test
     public class VisualComparisonTests : BaseGenAndBuildTests
     {
         public VisualComparisonTests(GenerationFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         public static IEnumerable<object[]> GetAllSinglePageApps()

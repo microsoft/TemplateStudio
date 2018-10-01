@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 // REFRESH PROJECT TO UN-DIRTY IT
                 if (Path.GetExtension(originalFilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
-                 && GenContext.Current.OutputPath == GenContext.Current.DestinationPath)
+                 && GenContext.Current.GenerationOutputPath == GenContext.Current.DestinationPath)
                 {
                     Gen.GenContext.ToolBox.Shell.RefreshProject(originalFilePath);
                 }
@@ -82,8 +82,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         protected string GetRelativePath(string path)
         {
-            var parentOutputPath = Directory.GetParent(GenContext.Current.OutputPath).FullName;
-            return path.Replace(parentOutputPath + Path.DirectorySeparatorChar, string.Empty);
+            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
+            return path.Replace(parentGenerationOutputPath + Path.DirectorySeparatorChar, string.Empty);
         }
 
         private void AddFailedMergePostActionsFileNotFound(string originalFilePath)
