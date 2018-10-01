@@ -155,7 +155,7 @@ namespace Microsoft.Templates.Test
                                              && !t.GetIsHidden()
                                              && t.GetRightClickEnabled());
 
-            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, platform, language);
+            await AddRightClickTemplatesAsync(path, rightClickTemplates, projectName, projectType, framework, platform, language);
 
             var finalProjectPath = Path.Combine(_fixture.TestNewItemPath, projectName);
             int finalProjectFileCount = Directory.GetFiles(finalProjectPath, "*.*", SearchOption.AllDirectories).Count();
@@ -178,9 +178,14 @@ namespace Microsoft.Templates.Test
             return finalProjectPath;
         }
 
-        protected async Task AddRightClickTemplatesAsync(IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string platform, string language)
+        protected async Task AddRightClickTemplatesAsync(string destinationPath, IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string platform, string language)
         {
-            GenContext.Current.GenerationOutputPath = GenContext.GetTempGenerationPath(projectName);
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = destinationPath,
+                GenerationOutputPath = GenContext.GetTempGenerationPath(projectName)
+            };
 
             // Add new items
             foreach (var item in rightClickTemplates)

@@ -30,17 +30,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
-        public string GenerationOutputPath
-        {
-            get
-            {
-                return DestinationPath;
-            }
-
-            set
-            {
-            }
-        }
+        public string GenerationOutputPath => DestinationPath;
 
         public List<string> Projects { get; } = new List<string>();
 

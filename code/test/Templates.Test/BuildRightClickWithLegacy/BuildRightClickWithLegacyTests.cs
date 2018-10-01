@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Test
                                             && !t.GetIsHidden()
                                             && t.GetRightClickEnabled());
 
-            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, platform, language);
+            await AddRightClickTemplatesAsync(GenContext.Current.DestinationPath, rightClickTemplates, projectName, projectType, framework, platform, language);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }

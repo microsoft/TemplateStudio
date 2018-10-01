@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Core.Gen
     {
         string ProjectName { get; }
 
-        string GenerationOutputPath { get; set; }
+        string GenerationOutputPath { get; }
 
         string DestinationPath { get; }
 
