@@ -62,8 +62,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var expected = File.ReadAllText(expectedFile)
                     .Replace("{{projectPath}}", Directory.GetParent(destPath).FullName.Replace(@"\", "/"))
-                    .Replace("{{tempPath}}", outputPath);
-            Assert.Equal(expected, File.ReadAllText(filePath));
+                    .Replace("{{tempPath}}", outputPath)
+                    .Replace("\r\n", string.Empty)
+                    .Replace("\n", string.Empty);
+            Assert.Equal(expected, File.ReadAllText(filePath).Replace("\r\n", string.Empty).Replace("\n", string.Empty));
 
             Directory.Delete(outputPath, true);
         }
@@ -113,8 +115,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var expected = File.ReadAllText(expectedFile)
                     .Replace("{{projectPath}}", Directory.GetParent(destPath).FullName.Replace(@"\", "/"))
-                    .Replace("{{tempPath}}", outputPath);
-            Assert.Equal(expected, File.ReadAllText(filePath));
+                    .Replace("{{tempPath}}", outputPath)
+                    .Replace("\r\n", string.Empty)
+                    .Replace("\n", string.Empty);
+            Assert.Equal(expected, File.ReadAllText(filePath).Replace("\r\n", string.Empty).Replace("\n", string.Empty));
 
             Directory.Delete(outputPath, true);
         }

@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source.cs");
             var mergeFile = Path.GetFullPath(@".\TestData\temp\Source_postaction.cs");
-            var expected = File.ReadAllText(@".\TestData\Merge\Source_expected.cs");
+            var expected = File.ReadAllText(@".\TestData\Merge\Source_expected.cs").Replace("\r\n", string.Empty).Replace("\n", string.Empty);
             var path = Path.GetFullPath(@".\TestData\temp");
 
             Directory.CreateDirectory(path);
@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, true));
             mergePostAction.Execute();
 
-            var result = File.ReadAllText(sourceFile);
+            var result = File.ReadAllText(sourceFile).Replace("\r\n", string.Empty).Replace("\n", string.Empty);
 
             Directory.Delete(path, true);
 

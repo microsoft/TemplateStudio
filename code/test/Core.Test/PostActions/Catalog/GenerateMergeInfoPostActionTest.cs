@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Directory.Delete(outputPath, true);
 
             Assert.Equal(expected.Format, GenContext.Current.MergeFilesFromProject[relSourceFilePath][0].Format);
-            Assert.Equal(expected.PostActionCode.Replace("\r\n", string.Empty), GenContext.Current.MergeFilesFromProject[relSourceFilePath][0].PostActionCode.Replace("\r\n", string.Empty));
+            Assert.Equal(expected.PostActionCode.Replace("\r\n", string.Empty).Replace("\n", string.Empty), GenContext.Current.MergeFilesFromProject[relSourceFilePath][0].PostActionCode.Replace("\r\n", string.Empty).Replace("\n", string.Empty));
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source.cs");
             var mergeFile = Path.GetFullPath(@".\TestData\temp\Source_searchreplace.cs");
-            var expected = File.ReadAllText(@".\TestData\SearchReplace\Source_expected.cs");
+            var expected = File.ReadAllText(@".\TestData\SearchReplace\Source_expected.cs").Replace("\r\n", string.Empty).Replace("\n", string.Empty);
             var path = Path.GetFullPath(@".\TestData\temp");
 
             Directory.CreateDirectory(path);
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Directory.Delete(path, true);
 
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, result.Replace("\r\n", string.Empty).Replace("\n", string.Empty));
         }
 
         [Fact]
