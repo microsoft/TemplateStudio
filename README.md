@@ -63,13 +63,13 @@ Do you want to contribute? We would love to have you help out. Here are our [con
 ## Principles
 
 1. Generated templates will be kept simple.
-1. Generated templates are a starting point, not a completed application.
-1. Generated templates once generated, must be able to be compiled and run.
-1. Generated templates should work on all device families.
-1. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
-1. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 Creators Update and Windows 10 Fall Creators Update.
-1. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
-1. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
+2. Generated templates are a starting point, not a completed application.
+3. Generated templates must be able to compile and run once generated.
+4. Generated templates should work on all device families.
+5. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
+6. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 Creators Update and Windows 10 Fall Creators Update.
+7. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
+8. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
 
 This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behavior in our community.
 For more information see the [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct).
