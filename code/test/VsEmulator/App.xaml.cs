@@ -88,15 +88,8 @@ namespace Microsoft.Templates.VsEmulator
                         var context = new FakeContextProvider
                         {
                             ProjectName = newProjectName,
-                            ProjectPath = projectPath,
-                            OutputPath = Path.Combine(Path.GetTempPath(), newProjectName, newProjectName),
-                            FailedMergePostActions = new List<FailedMergePostAction>(),
-                            MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>(),
-                            FilesToOpen = new List<string>(),
-                            Projects = new List<string>(),
-                            ProjectReferences = new Dictionary<string, List<string>>(),
-                            ProjectItems = new List<string>(),
-                            ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>()
+                            DestinationPath = projectPath,
+                            OutputPath = Path.Combine(Path.GetTempPath(), newProjectName, newProjectName)
                         };
 
                         GenContext.Current = context;
