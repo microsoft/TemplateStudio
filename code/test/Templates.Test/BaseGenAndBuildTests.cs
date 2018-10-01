@@ -180,16 +180,16 @@ namespace Microsoft.Templates.Test
 
         protected async Task AddRightClickTemplatesAsync(string destinationPath, IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string platform, string language)
         {
-            GenContext.Current = new FakeContextProvider
-            {
-                ProjectName = projectName,
-                DestinationPath = destinationPath,
-                GenerationOutputPath = GenContext.GetTempGenerationPath(projectName)
-            };
-
             // Add new items
             foreach (var item in rightClickTemplates)
             {
+                GenContext.Current = new FakeContextProvider
+                {
+                    ProjectName = projectName,
+                    DestinationPath = destinationPath,
+                    GenerationOutputPath = GenContext.GetTempGenerationPath(projectName)
+                };
+
                 var newUserSelection = new UserSelection(projectType, framework, platform, language)
                 {
                     HomeName = string.Empty,
