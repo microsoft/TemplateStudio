@@ -17,6 +17,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public string GenerationPath { get; private set; }
 
+        public string DestinationPath { get; private set; }
+
         public Dictionary<string, string> Parameters { get; } = new Dictionary<string, string>();
 
         public string GetUserName()
@@ -42,6 +44,10 @@ namespace Microsoft.Templates.Core.Gen
             GenerationPath = Template.GetOutputToParent()
                 ? new DirectoryInfo(GenContext.Current.GenerationOutputPath).Parent.FullName
                 : GenContext.Current.GenerationOutputPath;
+
+            DestinationPath = Template.GetOutputToParent()
+                ? new DirectoryInfo(GenContext.Current.DestinationPath).Parent.FullName
+                : GenContext.Current.DestinationPath;
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string ProjectName { get; private set; }
 
-        public string GenerationOutputPath { get; set; }
+        public string GenerationOutputPath { get; private set; }
 
         public string DestinationPath { get; private set; }
 

@@ -30,7 +30,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
-        public string GenerationOutputPath { get; set; }
+        public string GenerationOutputPath => DestinationPath;
 
         public List<string> Projects { get; } = new List<string>();
 
@@ -152,7 +152,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public SolutionWizard()
         {
-            GenerationOutputPath = DestinationPath;
         }
     }
 }
