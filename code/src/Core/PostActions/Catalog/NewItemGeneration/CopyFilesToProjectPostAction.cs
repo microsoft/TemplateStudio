@@ -23,12 +23,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         internal override void ExecuteInternal()
         {
-            var outputParentPath = Directory.GetParent(GenContext.Current.OutputPath).FullName;
+            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var destinationParentPath = Directory.GetParent(GenContext.Current.DestinationPath).FullName;
 
             foreach (var file in Config.ModifiedFiles)
             {
-                var sourceFile = Path.Combine(outputParentPath, file);
+                var sourceFile = Path.Combine(parentGenerationOutputPath, file);
                 var destFilePath = Path.Combine(destinationParentPath, file);
 
                 var destDirectory = Path.GetDirectoryName(destFilePath);
@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             foreach (var file in Config.NewFiles)
             {
-                var sourceFile = Path.Combine(outputParentPath, file);
+                var sourceFile = Path.Combine(parentGenerationOutputPath, file);
                 var destFilePath = Path.Combine(destinationParentPath, file);
 
                 var destDirectory = Path.GetDirectoryName(destFilePath);

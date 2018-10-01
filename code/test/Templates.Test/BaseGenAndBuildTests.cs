@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Test
             {
                 ProjectName = projectName,
                 DestinationPath = destinationPath,
-                OutputPath = destinationPath
+                GenerationOutputPath = destinationPath
             };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
@@ -128,7 +128,7 @@ namespace Microsoft.Templates.Test
             {
                 ProjectName = projectName,
                 DestinationPath = path,
-                OutputPath = path
+                GenerationOutputPath = path
             };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
@@ -180,7 +180,7 @@ namespace Microsoft.Templates.Test
 
         protected async Task AddRightClickTemplatesAsync(IEnumerable<ITemplateInfo> rightClickTemplates, string projectName, string projectType, string framework, string platform, string language)
         {
-            GenContext.Current.OutputPath = GenContext.GetTempGenerationPath(projectName);
+            GenContext.Current.GenerationOutputPath = GenContext.GetTempGenerationPath(projectName);
 
             // Add new items
             foreach (var item in rightClickTemplates)
@@ -225,7 +225,7 @@ namespace Microsoft.Templates.Test
             {
                 ProjectName = projectName,
                 DestinationPath = destinationPath,
-                OutputPath = destinationPath
+                GenerationOutputPath = destinationPath
             };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
@@ -277,7 +277,7 @@ namespace Microsoft.Templates.Test
             {
                 ProjectName = projectName,
                 DestinationPath = destinationPath,
-                OutputPath = destinationPath,
+                GenerationOutputPath = destinationPath,
             };
 
             var userSelection = _fixture.SetupProject(projectType, framework, Platforms.Uwp, language);

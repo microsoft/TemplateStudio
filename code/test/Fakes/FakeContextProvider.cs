@@ -13,7 +13,7 @@ namespace Microsoft.Templates.Fakes
     {
         public string ProjectName { get; set; }
 
-        public string OutputPath { get; set; }
+        public string GenerationOutputPath { get; set; }
 
         public string DestinationPath { get; set; }
 

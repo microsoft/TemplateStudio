@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string ProjectName { get; private set; }
 
-        public string OutputPath { get; set; }
+        public string GenerationOutputPath { get; set; }
 
         public string DestinationPath { get; private set; }
 
@@ -144,7 +144,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
                 }
 
-                OutputPath = GenContext.GetTempGenerationPath(ProjectName);
+                GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostActionInfo>();

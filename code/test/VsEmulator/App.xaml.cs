@@ -89,7 +89,7 @@ namespace Microsoft.Templates.VsEmulator
                         {
                             ProjectName = newProjectName,
                             DestinationPath = projectPath,
-                            OutputPath = Path.Combine(Path.GetTempPath(), newProjectName, newProjectName)
+                            GenerationOutputPath = Path.Combine(Path.GetTempPath(), newProjectName, newProjectName)
                         };
 
                         GenContext.Current = context;

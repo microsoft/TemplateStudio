@@ -23,17 +23,17 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var projectName = "Test";
             var projectFile = $"{projectName}.csproj";
             var destinationPath = @".\TestData\tmp\TestProject";
-            var outputPath = @".\TestData\tmp\TestProject";
+            var generationOutputPath = @".\TestData\tmp\TestProject";
 
             GenContext.Current = new FakeContextProvider
             {
                 DestinationPath = destinationPath,
-                OutputPath = outputPath
+                GenerationOutputPath = generationOutputPath
             };
 
-            Directory.CreateDirectory(outputPath);
+            Directory.CreateDirectory(generationOutputPath);
             var sourceFile = Path.Combine(Environment.CurrentDirectory, $"TestData\\TestProject\\{projectFile}");
-            var destFile = Path.Combine(outputPath, projectFile);
+            var destFile = Path.Combine(generationOutputPath, projectFile);
             File.Copy(sourceFile, destFile, true);
 
             var testArgs = new Dictionary<string, string>
@@ -53,10 +53,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs as IReadOnlyList<ICreationPath>, new Dictionary<string, string>(), destinationPath);
             postAction.Execute();
 
-            var expectedCertFilePath = Path.Combine(outputPath, $"{projectName}_TemporaryKey.pfx");
+            var expectedCertFilePath = Path.Combine(generationOutputPath, $"{projectName}_TemporaryKey.pfx");
             Assert.True(File.Exists(expectedCertFilePath));
 
-            Fs.SafeDeleteDirectory(outputPath);
+            Fs.SafeDeleteDirectory(generationOutputPath);
         }
 
         [Fact]
@@ -65,17 +65,17 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var projectName = "Test";
             var projectFile = $@"TestProject\{projectName}.csproj";
             var destinationPath = @".\TestData\tmp";
-            var outputPath = @".\TestData\tmp\";
+            var generationOutputPath = @".\TestData\tmp\";
 
             GenContext.Current = new FakeContextProvider
             {
                 DestinationPath = destinationPath,
-                OutputPath = outputPath
+                GenerationOutputPath = generationOutputPath
             };
 
             Directory.CreateDirectory(Path.Combine(destinationPath, "TestProject"));
             var sourceFile = Path.Combine(Environment.CurrentDirectory, $"TestData\\{projectFile}");
-            var destFile = Path.Combine(outputPath, projectFile);
+            var destFile = Path.Combine(generationOutputPath, projectFile);
             File.Copy(sourceFile, destFile, true);
 
             var testArgs = new Dictionary<string, string>()
