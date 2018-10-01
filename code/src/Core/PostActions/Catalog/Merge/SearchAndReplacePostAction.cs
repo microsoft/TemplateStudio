@@ -117,7 +117,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         protected string GetRelativePath(string path)
         {
-            return Directory.GetParent(GenContext.Current.OutputPath).FullName;
+            return Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
         }
 
         private string GetFailedPostActionFileName()

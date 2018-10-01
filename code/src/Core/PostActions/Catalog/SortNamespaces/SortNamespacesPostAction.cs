@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
         internal override void ExecuteInternal()
         {
             var classFiles = Directory
-                .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.OutputPath), FilesToSearch, SearchOption.AllDirectories)
+                .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.GenerationOutputPath), FilesToSearch, SearchOption.AllDirectories)
                 .ToList();
 
             foreach (var classFile in classFiles)

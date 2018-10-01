@@ -90,7 +90,7 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
-                .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.OutputPath), searchPattern, SearchOption.AllDirectories)
+                .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.GenerationOutputPath), searchPattern, SearchOption.AllDirectories)
                 .ToList()
                 .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError))));
         }

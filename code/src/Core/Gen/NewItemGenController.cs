@@ -57,7 +57,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public NewItemGenerationResult CompareOutputAndProject()
         {
-            var parentOutputPath = Directory.GetParent(GenContext.Current.OutputPath).FullName;
+            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var parentDestinationPath = Directory.GetParent(GenContext.Current.DestinationPath).FullName;
 
             var compareResult = CompareTempGenerationWithProject();
@@ -65,25 +65,25 @@ namespace Microsoft.Templates.Core.Gen
             result.NewFiles.AddRange(compareResult.NewFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                         n,
-                        Path.Combine(parentOutputPath, n),
+                        Path.Combine(parentGenerationOutputPath, n),
                         Path.Combine(parentDestinationPath, n))));
 
             result.ConflictingFiles.AddRange(compareResult.ConflictingFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                         n,
-                        Path.Combine(parentOutputPath, n),
+                        Path.Combine(parentGenerationOutputPath, n),
                         Path.Combine(parentDestinationPath, n))));
 
             result.ModifiedFiles.AddRange(compareResult.ModifiedFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                       n,
-                      Path.Combine(parentOutputPath, n),
+                      Path.Combine(parentGenerationOutputPath, n),
                       Path.Combine(parentDestinationPath, n))));
 
             result.UnchangedFiles.AddRange(compareResult.UnchangedFiles.Select(n =>
                 new NewItemGenerationFileInfo(
                      n,
-                     Path.Combine(parentOutputPath, n),
+                     Path.Combine(parentGenerationOutputPath, n),
                      Path.Combine(parentDestinationPath, n))));
 
             result.HasChangesToApply = result.NewFiles.Any() || result.ModifiedFiles.Any() ? true : false;
@@ -99,7 +99,7 @@ namespace Microsoft.Templates.Core.Gen
             GenContext.Current.ProjectItems.Clear();
             GenContext.Current.FilesToOpen.Clear();
 
-            var directory = Directory.GetParent(GenContext.Current.OutputPath).FullName;
+            var directory = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             try
             {
                 if (directory.Contains(Path.GetTempPath()))
@@ -143,18 +143,18 @@ namespace Microsoft.Templates.Core.Gen
 
         private TempGenerationResult CompareTempGenerationWithProject()
         {
-            var parentOutputPath = Directory.GetParent(GenContext.Current.OutputPath).FullName;
+            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var parentDestinationPath = Directory.GetParent(GenContext.Current.DestinationPath).FullName;
             var result = new TempGenerationResult();
             var files = Directory
-                .EnumerateFiles(parentOutputPath, "*", SearchOption.AllDirectories)
+                .EnumerateFiles(parentGenerationOutputPath, "*", SearchOption.AllDirectories)
                 .Where(f => !Regex.IsMatch(f, MergeConfiguration.PostactionRegex) && !Regex.IsMatch(f, MergeConfiguration.FailedPostactionRegex))
                 .ToList();
 
             foreach (var file in files)
             {
-                var destFilePath = file.Replace(parentOutputPath, parentDestinationPath);
-                var fileName = file.Replace(parentOutputPath + Path.DirectorySeparatorChar, string.Empty);
+                var destFilePath = file.Replace(parentGenerationOutputPath, parentDestinationPath);
+                var fileName = file.Replace(parentGenerationOutputPath + Path.DirectorySeparatorChar, string.Empty);
 
                 var projectFileName = Path.GetFullPath(Path.Combine(parentDestinationPath, fileName));
 

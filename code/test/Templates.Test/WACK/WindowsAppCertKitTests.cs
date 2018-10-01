@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -19,9 +21,8 @@ namespace Microsoft.Templates.Test
     public class WindowsAppCertKitTests : BaseGenAndBuildTests
     {
         public WindowsAppCertKitTests(BuildFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         //// *** WARNING ***
@@ -57,7 +58,7 @@ namespace Microsoft.Templates.Test
             // Replace the default assets in the generated project or they will cause WACK to fail
             foreach (var assetFile in new DirectoryInfo("./TestData/NonDefaultAssets").GetFiles("*.png"))
             {
-                File.Copy(assetFile.FullName, Path.Combine(DestinationPath, "Assets", assetFile.Name), overwrite: true);
+                File.Copy(assetFile.FullName, Path.Combine(GenContext.Current.DestinationPath, "Assets", assetFile.Name), overwrite: true);
             }
 
             // Create APPXBundle
