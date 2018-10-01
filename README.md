@@ -80,7 +80,7 @@ This code is distributed under the terms and conditions of the [MIT license](LIC
 
 ## Privacy Statement
 
-The extension does [log basic telemetry](docs/telemetry.md) for what is being selected. Our [Telemetry Data](telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
+The extension does [log basic telemetry](docs/telemetry.md) for what is being selected. Our [Telemetry Data](docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
 
 ## .NET Foundation
 
