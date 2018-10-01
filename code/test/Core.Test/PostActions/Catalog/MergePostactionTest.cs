@@ -78,34 +78,33 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source_fail.cs");
             var mergeFile = Path.GetFullPath(@".\TestData\temp\Source_fail_postaction.cs");
-            var path = Path.GetFullPath(@".\TestData\temp");
-            var failedFileName = @"temp\Source_fail_failedpostaction.cs";
-            var relativeSourceFilePath = @"temp\Source_fail.cs";
+            var outputPath = Path.GetFullPath(@".\TestData\temp");
+            var destinationPath = Path.GetFullPath(@".\Destination\Project");
 
-            Directory.CreateDirectory(path);
+            Directory.CreateDirectory(outputPath);
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\Merge\\Source_fail.cs"), sourceFile, true);
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\Merge\\Source_fail_postaction.cs"), mergeFile, true);
 
             GenContext.Current = new FakeContextProvider()
             {
-                OutputPath = path,
-                DestinationPath = Path.GetFullPath(@".\Destination\Project"),
-                DestinationParentPath = Path.GetFullPath(@".\Destination")
+                OutputPath = outputPath,
+                DestinationPath = destinationPath,
+                DestinationParentPath = Directory.GetParent(destinationPath).FullName
             };
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, false));
 
-            var result = File.ReadAllText(Path.Combine(path, sourceFile));
+            var result = File.ReadAllText(Path.Combine(outputPath, sourceFile));
 
             mergePostAction.Execute();
             var expected = new FailedMergePostActionInfo(
-                    relativeSourceFilePath,
+                    @"temp\Source_fail.cs",
                     mergeFile,
-                    failedFileName,
-                    $"Could not find the expected line `namespace TestData` in file '{relativeSourceFilePath}'. Please merge the content from the postaction file manually. Related Template: '{templateName}'.",
+                    @"temp\Source_fail_failedpostaction.cs",
+                    $"Could not find the expected line `namespace TestData` in file 'temp\\Source_fail.cs'. Please merge the content from the postaction file manually. Related Template: '{templateName}'.",
                     MergeFailureType.LineNotFound);
 
-            Directory.Delete(path, true);
+            Directory.Delete(outputPath, true);
 
             Assert.Collection<FailedMergePostActionInfo>(
                 GenContext.Current.FailedMergePostActions,
@@ -124,31 +123,30 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\temp\NoSource_postaction.cs");
-            var path = Path.GetFullPath(@".\TestData\temp");
-            var failedFileName = @"temp\NoSource_failedpostaction.cs";
-            var relativeSourceFilePath = "temp\\NoSource.cs";
+            var outputPath = Path.GetFullPath(@".\TestData\temp");
+            var destinationPath = Path.GetFullPath(@".\Destination\Project");
 
-            Directory.CreateDirectory(path);
+            Directory.CreateDirectory(outputPath);
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\Merge\\NoSource_postaction.cs"), mergeFile, true);
 
             GenContext.Current = new FakeContextProvider()
             {
-                OutputPath = path,
-                DestinationPath = Path.GetFullPath(@".\Destination\Project"),
-                DestinationParentPath = Path.GetFullPath(@".\Destination")
+                OutputPath = outputPath,
+                DestinationPath = destinationPath,
+                DestinationParentPath = Directory.GetParent(destinationPath).FullName
             };
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, false));
 
             mergePostAction.Execute();
             var expected = new FailedMergePostActionInfo(
-                    relativeSourceFilePath,
+                    "temp\\NoSource.cs",
                     mergeFile,
-                    failedFileName,
-                    $"Could not find file '{relativeSourceFilePath}' to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: '{templateName}'.",
+                    @"temp\NoSource_failedpostaction.cs",
+                    $"Could not find file 'temp\\NoSource.cs' to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: '{templateName}'.",
                     MergeFailureType.FileNotFound);
 
-            Directory.Delete(path, true);
+            Directory.Delete(outputPath, true);
 
             Assert.Collection<FailedMergePostActionInfo>(
                   GenContext.Current.FailedMergePostActions,

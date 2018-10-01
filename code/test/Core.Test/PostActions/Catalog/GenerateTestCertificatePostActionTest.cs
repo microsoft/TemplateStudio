@@ -54,8 +54,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var projectName = "Test";
             string projectFile = $"{projectName}.csproj";
 
-            DestinationPath = @".\TestData\tmp\TestProject";
-            OutputPath = @".\TestData\tmp\TestProject";
+            DestinationPath = @".\temp\TestProject";
+            OutputPath = @".\temp\TestProject";
             ProjectName = projectName;
 
             GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
@@ -88,8 +88,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var projectName = "Test";
             string projectFile = $@"TestProject\{projectName}.csproj";
 
-            DestinationPath = @".\TestData\tmp\TestProject";
-            OutputPath = @".\TestData\tmp\";
+            DestinationPath = @".\temp\TestProject";
+            OutputPath = @".\temp\";
             ProjectName = projectName;
 
             GenContext.Current = this;

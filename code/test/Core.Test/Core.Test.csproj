@@ -199,7 +199,11 @@
     <Compile Include="Localization\LocalizationTest.cs" />
     <Compile Include="Locations\UnitTestsTemplatesSource.cs" />
     <Compile Include="Packaging\TemplatePackageTests.cs" />
+    <Compile Include="PostActions\Catalog\CreateSummaryPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddItemToContextPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\FakeCreationPath.cs" />
+    <Compile Include="PostActions\Catalog\CopyFilesToProjectPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\GetMergeFilesFromProjectPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\HandleRemovalsTest.cs" />
     <Compile Include="PostActions\Catalog\GenerateMergeInfoPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\SearchAndReplacePostActionTest.cs" />
@@ -212,6 +216,12 @@
     <Compile Include="Naming\NamingTests.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidatorTests.cs" />
     <Compile Include="Composition\CompositionQueryTest.cs" />
+    <None Include="TestData\GenerationSummary_expected.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_gpostaction.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\Merge\Source_expectedmergeinfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -307,6 +317,9 @@
     <Content Include="TestData\Templates\FeatureTemplateVB\.template.config\en-US.description.md" />
     <Content Include="TestData\Templates\CompositionTemplateVB\.template.config\template.json" />
     <Content Include="TestData\Templates\Dependencies.FeatureTemplateVB\.template.config\template.json" />
+    <None Include="TestData\Steps to include new item generation_expected.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\Templates\FeatureTemplateVB\.template.config\en-US.template.json" />
     <Content Include="TestData\Templates\FeatureTemplateVB\.template.config\es-ES.description.md" />
     <None Include="TestData\Templates\FeatureTemplateVB\.template.config\es-ES.template.json" />

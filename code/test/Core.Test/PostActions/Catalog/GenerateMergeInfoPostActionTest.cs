@@ -21,19 +21,20 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
-            var mergeFile = Path.GetFullPath(@".\TestData\temp\Source_postaction.cs");
+            var mergeFile = Path.GetFullPath(@".\temp\Source_postaction.cs");
+            var outputPath = Path.GetFullPath(@".\temp");
+            var destinationPath = Path.GetFullPath(@".\DestinationPath\Project");
             var expectedPostactionCode = File.ReadAllText(@".\TestData\Merge\Source_expectedmergeinfo.cs");
-            var path = Path.GetFullPath(@".\TestData\temp");
 
-            Directory.CreateDirectory(path);
+            Directory.CreateDirectory(outputPath);
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\Merge\\Source_postaction.cs"), mergeFile, true);
 
             GenContext.Current = new FakeContextProvider()
             {
-                DestinationPath = Path.GetFullPath(@".\DestinationPath\Project"),
-                OutputPath = path,
-                TempGenerationPath = path,
-                DestinationParentPath = Path.GetFullPath(@".\DestinationPath"),
+                DestinationPath = destinationPath,
+                OutputPath = outputPath,
+                TempGenerationPath = outputPath,
+                DestinationParentPath = Directory.GetParent(destinationPath).FullName,
             };
 
             GenContext.Current.MergeFilesFromProject.Add(relSourceFilePath, new List<MergeInfo>());
@@ -47,11 +48,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 PostActionCode = expectedPostactionCode
             };
 
-            Directory.Delete(path, true);
+            Directory.Delete(outputPath, true);
 
             Assert.Equal(expected.Format, GenContext.Current.MergeFilesFromProject[relSourceFilePath][0].Format);
             Assert.Equal(expected.PostActionCode.Replace("\r\n", string.Empty), GenContext.Current.MergeFilesFromProject[relSourceFilePath][0].PostActionCode.Replace("\r\n", string.Empty));
-
         }
     }
 }
