@@ -5,8 +5,7 @@
   "groupIdentity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate",
   "identity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate.CSharp",
   "tags": {
-    "language": "C#",
-    "type": "project"
+    "language": "C#"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

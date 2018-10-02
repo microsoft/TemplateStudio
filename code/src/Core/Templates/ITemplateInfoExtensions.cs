@@ -62,36 +62,6 @@ namespace Microsoft.Templates.Core
             return Directory.EnumerateFiles(configDir, "icon.*").FirstOrDefault();
         }
 
-        /*public static string GetLocalizedName(this ITemplateInfo ti)
-        {
-            var configDir = GetConfigDir(ti);
-            var metadataFileLocalized = Path.Combine(configDir, $"template.{CultureInfo.CurrentUICulture.IetfLanguageTag}.json");
-            if (File.Exists(metadataFileLocalized))
-            {
-                var metadataLocalized = JsonConvert.DeserializeObject<MetadataLocalizedInfo>(File.ReadAllText(metadataFileLocalized));
-                if (metadataLocalized != null)
-                {
-                    return metadataLocalized.DisplayName;
-                }
-            }
-            return ti.Name;
-        }
-
-        public static string GetLocalizedSummary(this ITemplateInfo ti)
-        {
-            var configDir = GetConfigDir(ti);
-            var metadataFileLocalized = Path.Combine(configDir, $"template.{CultureInfo.CurrentUICulture.IetfLanguageTag}.json");
-            if (File.Exists(metadataFileLocalized))
-            {
-                var metadataLocalized = JsonConvert.DeserializeObject<MetadataLocalizedInfo>(File.ReadAllText(metadataFileLocalized));
-                if (metadataLocalized != null)
-                {
-                    return metadataLocalized.Summary;
-                }
-            }
-            return ti.Description;
-        }*/
-
         public static string GetRichDescription(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
@@ -113,17 +83,6 @@ namespace Microsoft.Templates.Core
             }
 
             return null;
-        }
-
-        public static string GetSafeIdentity(this ITemplateInfo ti)
-        {
-            if (!string.IsNullOrEmpty(ti.GroupIdentity))
-            {
-                var identityChunks = ti.GroupIdentity.Split(".".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                return identityChunks.Last();
-            }
-
-            return ti.Identity;
         }
 
         public static string GetCompositionFilter(this ITemplateInfo ti)

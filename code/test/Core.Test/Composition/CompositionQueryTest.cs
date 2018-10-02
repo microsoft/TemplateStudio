@@ -150,6 +150,21 @@ namespace Microsoft.Templates.Core.Test.Composition
         }
 
         [Fact]
+        public void NoMatch_WithContext()
+        {
+            var data = GetFactData();
+            var target = CompositionQuery.Parse("identity!=item-identity&tag2==tagVal2&$name==context-name");
+            var context = new QueryablePropertyDictionary
+            {
+                new QueryableProperty("name", "context-name")
+            };
+
+            var result = target.Match(data, context);
+
+            Assert.False(result);
+        }
+
+        [Fact]
         public void Match_NotEquals()
         {
             var data = GetFactData();
