@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 if (Config.FailOnError)
                 {
-                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, originalFilePath, RelatedTemplate));
+                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, Config.FilePath, RelatedTemplate));
                 }
                 else
                 {
@@ -117,7 +117,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         protected string GetRelativePath(string path)
         {
-            return Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
+            return path.Replace(Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName + Path.DirectorySeparatorChar, string.Empty);
         }
 
         private string GetFailedPostActionFileName()

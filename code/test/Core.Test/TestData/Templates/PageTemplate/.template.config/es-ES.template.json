@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft España",
-  "name": "Página en Blanco",
+  "name": "PageTemplate",
   "description": "Está en Español...",
   "identity": "Microsoft.UWPTemplates.Test.PageTemplate.CSharp"
 }

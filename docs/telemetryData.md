@@ -1,4 +1,4 @@
-# Telemetry for Windows Template Studio - 2018.08
+# Telemetry for Windows Template Studio - 2018.09
 
 As new features and pages roll out, percentages  will adjust.
 
@@ -6,69 +6,72 @@ As new features and pages roll out, percentages  will adjust.
 
 |Project|Percentage|
 |:---|:---:|
-|Navigation View|67.8%|
-|Blank|17.2%|
-|Tabbed / Pivot|15.1%|
+|Navigation View|71.8%|
+|Blank|16.7%|
+|Tabbed / Pivot|11.5%|
 
 ## Framework
 
 |Framework Type|Percentage|
 |:---|:---:|
-|CodeBehind|49.8%|
-|MVVM Light|18.4%|
-|MVVM Basic|18.3%|
-|Prism|10.2%|
-|Caliburn.Micro|3.3%|
+|CodeBehind|52.2%|
+|MVVM Basic|17.7%|
+|MVVM Light|17.6%|
+|Prism|10.6%|
+|Caliburn.Micro|1.8%|
 
 ## Pages
 
 |Pages|Percentage|
 |:---|:---:|
-|Blank|37.7%|
-|Settings|13.9%|
-|Master/Detail|10.7%|
-|Web View|6.9%|
-|Tabbed|5.8%|
-|Grid|5.1%|
-|ImageGallery|3.9%|
+|Blank|39.5%|
+|Settings|12%|
+|Master/Detail|9.7%|
+|Web View|6.7%|
+|Tabbed|5.4%|
+|Grid|4.4%|
+|ImageGallery|3.5%|
 |Chart|3.5%|
-|Map|2.6%|
-|Camera|2.4%|
-|Media Player|2.3%|
+|Map|3%|
+|Media Player|2.9%|
+|DataGrid|2.6%|
+|Camera|2.1%|
 |Ink Draw|1.8%|
-|Ink Draw Picture|1.8%|
-|Ink Smart Canvas|1.7%|
+|Ink Draw Picture|1.5%|
+|Ink Smart Canvas|1.5%|
 
 ## Features
 
 |Features|Percentage|
 |:---|:---:|
-|Settings Storage|21.6%|
-|Sample Data|16.4%|
-|Toast Notifications|6.5%|
-|Background Task|6.3%|
-|First Run Prompt|5.8%|
-|Multiple views|5.7%|
-|What's New Prompt|4.9%|
-|Suspend and Resume|4.9%|
-|Drag & Drop|4.7%|
-|Live Tile|4.6%|
-|VS App Center Analytics|2.9%|
-|Uri Scheme|2.7%|
-|Feedback Hub Link|2.5%|
-|Share Source|2.3%|
-|Web to App link|2.3%|
-|Share Target|1.9%|
-|Dev Center Notifications|1.6%|
-|Azure Notifications|1.1%|
-|3D App Launcher|1.1%|
-|Web to app link|0.1%|
-|Theme Selection|0%|
+|Settings Storage|19.1%|
+|Sample Data|15.2%|
+|Theme Selection|7.6%|
+|Background Task|6.4%|
+|Toast Notifications|5.9%|
+|First Run Prompt|5%|
+|Suspend and Resume|4.6%|
+|Multiple views|4.4%|
+|Drag & Drop|4.2%|
+|Live Tile|4%|
+|What's New Prompt|3.9%|
+|VS App Center Analytics|2.5%|
+|Share Source|2.5%|
+|Web to App link|2.2%|
+|Share Target|2.1%|
+|Feedback Hub Link|1.9%|
+|Deep Linking|1.8%|
+|Uri Scheme|1.6%|
+|Dev Center Notifications|1.5%|
+|3D App Launcher|1.3%|
+|User Activity|1.2%|
+|Azure Notifications|0.9%|
+|Web to app link|0.2%|
 
 ## Windows Template Studio entry point
 
 |Entry point|Percentage|
 |:---|:---:|
-|New Project|83.9%|
-|Add Page|11.7%|
-|Add Feature|4.3%|
+|New Project|85.2%|
+|Add Page|11.6%|
+|Add Feature|3.2%|
