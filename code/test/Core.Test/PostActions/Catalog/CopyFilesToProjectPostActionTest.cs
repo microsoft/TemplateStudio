@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.True(File.Exists(Path.Combine(Directory.GetParent(destPath).FullName, "Source.cs")));
 
             Directory.Delete(Directory.GetParent(path).FullName, true);
-            Directory.Delete(destPath, true);
+            Directory.Delete(Directory.GetParent(destPath).FullName, true);
 
             Assert.True(GenContext.Current.FilesToOpen.Contains(finalFile));
         }
@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         [Fact]
         public void Execute_ModifiedFile()
         {
-            var tempFile = Path.GetFullPath(@".\Source.cs");
+            var tempFile = Path.GetFullPath(@".\temp\Source.cs");
             var path = Path.GetFullPath(@".\temp\Project");
             var destPath = Path.GetFullPath(@".\DestinationPath\Project");
             var finalFile = Path.GetFullPath(@".\DestinationPath\Source.cs");
@@ -80,7 +80,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Directory.Delete(Directory.GetParent(path).FullName, true);
             Directory.Delete(Directory.GetParent(destPath).FullName, true);
 
-            Assert.False(GenContext.Current.ProjectItems.Contains(finalFile));
             Assert.False(GenContext.Current.FilesToOpen.Contains(finalFile));
         }
     }
