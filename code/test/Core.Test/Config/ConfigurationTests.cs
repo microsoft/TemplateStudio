@@ -111,5 +111,14 @@ namespace Microsoft.Templates.Core.Test.Config
 
             Assert.NotNull(config);
         }
+
+        [Fact]
+        public void WrongConfigFile()
+        {
+            ConfigurationManager.AppSettings["JsonConfigFile"] = "WrongFile.txt";
+            var config = Configuration.GetJsonConfigFilePath();
+
+            Assert.NotNull(config);
+        }
     }
 }

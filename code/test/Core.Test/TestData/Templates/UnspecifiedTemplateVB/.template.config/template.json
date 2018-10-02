@@ -6,8 +6,7 @@
   "identity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate.VisualBasic",
   "shortName": "unspecified-test",
   "tags": {
-    "language": "VisualBasic",
-    "type": "project"
+    "language": "VisualBasic"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

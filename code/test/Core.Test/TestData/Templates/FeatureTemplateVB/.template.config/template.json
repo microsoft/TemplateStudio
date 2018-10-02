@@ -1,0 +1,15 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "FeatureTemplate",
+  "description": "Generic Feature description...",
+  "groupIdentity": "Microsoft.UWPTemplates.Test.FeatureTemplate",
+  "identity": "Microsoft.UWPTemplates.Test.FeatureTemplate.VB",
+  "tags": {
+    "language": "VisualBasic",
+    "type": "item",
+    "wts.type": "feature"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}
