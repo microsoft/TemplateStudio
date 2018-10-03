@@ -32,7 +32,7 @@ namespace WtsTool
                     PackageWorker.GetInfo(options.Info, output, error);
                     break;
                 case PackageTask.Prepare:
-                    PackageWorker.Prepare(options.PrepareDir, options.Exclusions, options.Version, options.Verbose, output, error);
+                    PackageWorker.Prepare(options.PrepareDir, options.Exclusions, options.Version, options.Platform, options.Language, options.Verbose, output, error);
                     break;
                 default:
                     error.WriteLine($"Unexpected action '{action.ToString()}'");

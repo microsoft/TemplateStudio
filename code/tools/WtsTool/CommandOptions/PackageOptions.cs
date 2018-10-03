@@ -47,5 +47,11 @@ namespace WtsTool.CommandOptions
 
         [Option('v', "version", Required = true, HelpText = "Version number (mayor.minor.build.revision) to be prepared.", Separator = ';', SetName = "Prepare")]
         public string Version { get; set; }
+
+        [Option('t', "target-platform", Required = false, HelpText = "Filters templates with this platform for preparation.", Separator = ';', SetName = "Prepare")]
+        public string Platform { get; set; }
+
+        [Option('l', "language", Required = false, HelpText = "Filters templates with this language for preparation", Separator = ';', SetName = "Prepare")]
+        public string Language { get; set; }
     }
 }

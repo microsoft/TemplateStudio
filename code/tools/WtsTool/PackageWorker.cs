@@ -5,10 +5,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Packaging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace WtsTool
 {
@@ -46,7 +49,7 @@ namespace WtsTool
             }
         }
 
-        internal static void Prepare(string prepareDir, IEnumerable<string> exclusions, string version, bool verbose, TextWriter output, TextWriter error)
+        internal static void Prepare(string prepareDir, IEnumerable<string> exclusions, string version, string platform, string language, bool verbose, TextWriter output, TextWriter error)
         {
             output.WriteCommandHeader($"Preparing directory {prepareDir} for version {version}");
 
@@ -61,7 +64,19 @@ namespace WtsTool
 
                     List<string> excludedDirs = new List<string>();
                     List<DirectoryInfo> includedDirs = new List<DirectoryInfo>();
-                    List<DirectoryInfo> allDirs = new List<DirectoryInfo>(prepareDirInfo.EnumerateDirectories("*", SearchOption.AllDirectories));
+
+                    List<DirectoryInfo> allDirs = new List<DirectoryInfo>();
+
+                    if (!string.IsNullOrEmpty(platform) && !string.IsNullOrEmpty(language))
+                    {
+                        ApplyLanguageAndPlatformFilters(allDirs, prepareDirInfo, platform, language);
+                    }
+                    else
+                    {
+                        output.WriteCommandText("WARN: No platform and language filters applied");
+
+                        allDirs = prepareDirInfo.EnumerateDirectories(".template.config", SearchOption.AllDirectories).ToList();
+                    }
 
                     ApplyFilters(exclusionFilters, excludedDirs, includedDirs, allDirs);
 
@@ -82,6 +97,7 @@ namespace WtsTool
                     var resultDir = PrepareResultDir(prepareDir, version, output);
 
                     List<DirectoryInfo> toCopy = exclusionFilters.Count > 0 ? includedDirs : allDirs;
+                    toCopy.Add(new DirectoryInfo(Path.Combine(prepareDir, "_catalog")));
 
                     MakeCopy(toCopy, prepareDir, resultDir, version, output);
                 }
@@ -203,6 +219,23 @@ namespace WtsTool
             output.WriteCommandText($"Signature validation type: {validationType}");
         }
 
+        private static void ApplyLanguageAndPlatformFilters(List<DirectoryInfo> allDirs, DirectoryInfo prepareDirInfo, string platform, string language)
+        {
+            var dirs = prepareDirInfo.EnumerateDirectories(".template.config", SearchOption.AllDirectories);
+
+            foreach (var dir in dirs)
+            {
+                var templateFile = dir.GetFiles("template.json").FirstOrDefault();
+
+                var templateJson = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(templateFile.FullName));
+
+                if (templateJson.GetValue("tags")["language"].ToString().Equals(language, StringComparison.InvariantCultureIgnoreCase) && templateJson.GetValue("tags")["wts.platform"].ToString().Equals(platform, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    allDirs.Add(dir.Parent);
+                }
+            }
+        }
+
         private static void MakeCopy(List<DirectoryInfo> toCopy, string prepareDir, string resultDir, string version, TextWriter output)
         {
             output.WriteLine();
@@ -218,7 +251,7 @@ namespace WtsTool
 
             toCopy.ForEach(d =>
             {
-                foreach (var file in d.GetFiles("*", SearchOption.TopDirectoryOnly))
+                foreach (var file in d.GetFiles("*", SearchOption.AllDirectories))
                 {
                     var targetFolder = Path.GetDirectoryName(file.FullName.Replace(prepareDirPath, resultDir));
 
@@ -304,10 +337,6 @@ namespace WtsTool
                         if (!excludedDirs.Contains(subDir.FullName))
                         {
                             excludedDirs.Add(subDir.FullName);
-                            foreach (var child in subDir.GetDirectories("*", SearchOption.AllDirectories))
-                            {
-                                excludedDirs.Add(child.FullName);
-                            }
                         }
                     }
                     else
