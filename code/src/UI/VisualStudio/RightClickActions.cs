@@ -145,6 +145,8 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
+                Projects = new List<string>();
+                ProjectReferences = new Dictionary<string, List<string>>();
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostActionInfo>();
