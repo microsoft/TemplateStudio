@@ -10,7 +10,8 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & $projectType == SplitView & wts.type == project"
+    "wts.compositionFilter": "$framework == MVVMLight & $projectType == SplitView & wts.type == project",
+    "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
