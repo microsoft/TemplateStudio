@@ -26,6 +26,10 @@ namespace Microsoft.Templates.Core.Locations
 
         protected const string TemplatesFolderName = "Templates";
 
+        public virtual string Language { get; }
+
+        public virtual string Platform { get; }
+
         public TemplatesSourceConfig Config { get; protected set; }
 
         public virtual string Id { get => Configuration.Current.Environment; }

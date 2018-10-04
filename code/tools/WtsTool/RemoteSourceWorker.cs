@@ -94,7 +94,7 @@ namespace WtsTool
                 TemplatesPackageInfo package = null;
                 if (options.Version != null)
                 {
-                    package = ResolvePackageForVersion(config, options.Version, output);
+                    package = ResolvePackageForVersion(config, options.Version, options.Platform, options.Language, output);
                 }
                 else
                 {
@@ -113,7 +113,7 @@ namespace WtsTool
                 else
                 {
                     output.WriteLine();
-                    output.WriteCommandText($"Package not found for the version '{options.Version}'");
+                    output.WriteCommandText($"Package not found for the version '{options.Version}', platform '{options.Platform}' and laguage '{options.Language}'");
                     output.WriteLine();
                 }
             }
@@ -164,7 +164,7 @@ namespace WtsTool
             return config;
         }
 
-        private static TemplatesPackageInfo ResolvePackageForVersion(TemplatesSourceConfig config, string version, TextWriter output)
+        private static TemplatesPackageInfo ResolvePackageForVersion(TemplatesSourceConfig config, string version, string platform, string language, TextWriter output)
         {
             Version v = new Version(version);
             if (v.Build != 0 || v.Revision != 0)
@@ -172,7 +172,7 @@ namespace WtsTool
                 output.WriteCommandText($"WARN: Downloading main version for {v.Major}.{v.Minor}, ignoring the version parts build and revision ({v.Build}.{v.Revision}).");
             }
 
-            TemplatesPackageInfo match = config.ResolvePackage(v);
+            TemplatesPackageInfo match = config.ResolvePackage(v, platform, language);
 
             return match;
         }

@@ -331,7 +331,7 @@ namespace Microsoft.Templates.Core.Test.Locations
         [Fact]
         public async Task TestRemoteSource_AcquireAsync()
         {
-            RemoteTemplatesSource rts = new RemoteTemplatesSource();
+            RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp);
             CancellationTokenSource cts = new CancellationTokenSource();
 
             await rts.LoadConfigAsync(cts.Token);
@@ -371,7 +371,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             try
             {
-                RemoteTemplatesSource rts = new RemoteTemplatesSource();
+                RemoteTemplatesSource rts = new RemoteTemplatesSource(Platforms.Uwp, ProgrammingLanguages.CSharp);
                 CancellationTokenSource cts = new CancellationTokenSource();
                 await rts.LoadConfigAsync(cts.Token);
                 var package = rts.Config.Latest;

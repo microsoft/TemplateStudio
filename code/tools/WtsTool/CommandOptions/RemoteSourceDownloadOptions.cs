@@ -25,5 +25,11 @@ namespace WtsTool.CommandOptions
 
         [Option('d', "destination-dir", Default = ".", Required= false, HelpText = "Destination directory for download.")]
         public string Destination { get; set; }
+
+        [Option('p', "platform", Default = null, HelpText = "Download a concrete version of templates package for the specified environment, platform and language. Downloads the most recent matching version.", SetName = "Version")]
+        public string Platform { get; set; }
+
+        [Option('l', "language", Default = null, HelpText = "Download a concrete version of templates package for the specified environment, platform and language. Downloads the most recent matching version.", SetName = "Version")]
+        public string Language { get; set; }
     }
 }

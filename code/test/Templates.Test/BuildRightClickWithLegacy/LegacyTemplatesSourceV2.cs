@@ -21,6 +21,11 @@ namespace Microsoft.Templates.Test
     {
         public override string Id => "TestLegacy" + GetAgentName();
 
+        public LegacyTemplatesSourceV2(string language)
+           : base(Platforms.Uwp, language)
+        {
+        }
+
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
             await AcquireAsync(packageInfo, ct);

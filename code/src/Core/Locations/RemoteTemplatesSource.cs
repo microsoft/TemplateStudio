@@ -22,17 +22,29 @@ namespace Microsoft.Templates.Core.Locations
 
         private Version _version;
 
+        public override string Language { get; }
+
+        public override string Platform { get; }
+
+        public RemoteTemplatesSource(string shortLanguage, string platform)
+        {
+            Language = shortLanguage;
+            Platform = platform;
+        }
+
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
-            var extractionFolder = await ExtractAsync(packageInfo, true, ct);
-
-            RemoveTemplatesTempFolders(workingFolder);
             var finalDestination = Path.Combine(workingFolder, packageInfo.Version.ToString());
             var finalDestinationTemp = string.Concat(finalDestination, _tmpExtension);
 
-            await Fs.SafeMoveDirectoryAsync(Path.Combine(extractionFolder, "Templates"), finalDestinationTemp, true, ReportCopyProgress);
-            Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
-            Fs.SafeRenameDirectory(finalDestinationTemp, finalDestination);
+            RemoveTemplatesTempFolders(workingFolder);
+
+            //Only extract if final destination does not exist (TODO: Verify this) 
+            if (!Directory.Exists(finalDestination))
+            {
+                var extractionFolder = await ExtractAsync(packageInfo, finalDestinationTemp, false, ct);
+                Fs.SafeRenameDirectory(finalDestinationTemp, finalDestination);
+            }
 
             var templatesInfo = new TemplatesContentInfo()
             {
@@ -110,12 +122,12 @@ namespace Microsoft.Templates.Core.Locations
             OnNewVersionAcquisitionProgress(this, new ProgressEventArgs() { Version = _version, Progress = e.ProgressPercentage });
         }
 
-        private async Task<string> ExtractAsync(TemplatesPackageInfo packageInfo, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
+        private async Task<string> ExtractAsync(TemplatesPackageInfo packageInfo, string finalDest, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
         {
             _version = packageInfo.Version;
             if (!string.IsNullOrEmpty(packageInfo.LocalPath))
             {
-                await ExtractAsync(packageInfo.LocalPath, Path.GetDirectoryName(packageInfo.LocalPath), verifyPackageSignatures, ct);
+                await ExtractAsync(packageInfo.LocalPath, finalDest, verifyPackageSignatures, ct);
                 return Path.GetDirectoryName(packageInfo.LocalPath);
             }
             else

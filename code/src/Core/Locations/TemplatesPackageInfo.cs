@@ -26,6 +26,12 @@ namespace Microsoft.Templates.Core.Locations
         [JsonIgnore]
         public string LocalPath { get; set; }
 
+        public string Language { get; set; }
+
+        public string Platform { get; set; }
+
+        public List<Version> WizardVersions { get; set; }
+
         public DateTime Date { get; set; }
 
         public long Bytes { get; set; }

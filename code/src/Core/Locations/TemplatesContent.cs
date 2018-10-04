@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public bool IsNewVersionAvailable(out Version version)
         {
-            version = Source.Config?.ResolvePackage(WizardVersion)?.Version;
+            version = Source.Config?.ResolvePackage(WizardVersion, Source.Platform, Source.Language)?.Version;
             if (Current != null && !Current.Version.IsNull() && Directory.Exists(Current.Path))
             {
                 return Current.Version < version && (WizardVersion != version);
@@ -109,7 +109,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                var latestPackage = Source.Config.ResolvePackage(WizardVersion);
+                var latestPackage = Source.Config.ResolvePackage(WizardVersion, Source.Platform, Source.Language);
 
                 Source.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
                 Source.GetContentProgress += OnGetContentProgress;
