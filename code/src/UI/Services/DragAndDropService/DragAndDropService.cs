@@ -44,7 +44,7 @@ namespace Microsoft.Templates.UI.Services
             _listView.Drop += OnDrop;
         }
 
-        public void UnsuscribeEventHandlers()
+        public void UnsubscribeEventHandlers()
         {
             _listView.PreviewMouseLeftButtonDown -= OnPreviewMouseLeftButtonDown;
             _listView.PreviewMouseMove -= OnPreviewMouseMove;

@@ -19,7 +19,7 @@ namespace Microsoft.Templates.UI.Services
 
         public abstract event EventHandler ThemeChanged;
 
-        public virtual void UnsuscribeEventHandlers()
+        public virtual void UnsubscribeEventHandlers()
         {
         }
     }

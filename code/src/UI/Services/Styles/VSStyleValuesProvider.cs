@@ -23,9 +23,9 @@ namespace Microsoft.Templates.UI.Services
             ThemeChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public override void UnsuscribeEventHandlers()
+        public override void UnsubscribeEventHandlers()
         {
-            base.UnsuscribeEventHandlers();
+            base.UnsubscribeEventHandlers();
             VSColorTheme.ThemeChanged -= OnThemeChanged;
         }
 
