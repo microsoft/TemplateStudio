@@ -27,10 +27,7 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(language);
 
             var existing = new[] { "App" };
-            var validators = new List<Validator>
-            {
-                new ExistingNamesValidator(existing)
-            };
+            var validators = new List<Validator> { new ExistingNamesValidator(existing) };
             var result = Naming.Infer("App", validators);
 
             Assert.Equal("App1", result);
@@ -42,10 +39,7 @@ namespace Microsoft.Templates.Core.Test
         {
             SetUpFixtureForTesting(language);
 
-            var validators = new List<Validator>
-            {
-                new ReservedNamesValidator()
-            };
+            var validators = new List<Validator> { new ReservedNamesValidator() };
             var result = Naming.Infer("Page", validators);
 
             Assert.Equal("Page1", result);
@@ -57,10 +51,7 @@ namespace Microsoft.Templates.Core.Test
         {
             SetUpFixtureForTesting(language);
 
-            var validators = new List<Validator>
-            {
-                new DefaultNamesValidator()
-            };
+            var validators = new List<Validator> { new DefaultNamesValidator() };
             var result = Naming.Infer("LiveTile", validators);
 
             Assert.Equal("LiveTile1", result);
@@ -129,10 +120,7 @@ namespace Microsoft.Templates.Core.Test
             SetUpFixtureForTesting(language);
 
             var existing = new[] { "Blank" };
-            var validators = new List<Validator>
-            {
-                new ExistingNamesValidator(existing)
-            };
+            var validators = new List<Validator> { new ExistingNamesValidator(existing) };
             var result = Naming.Validate("Blank", validators);
 
             Assert.False(result.IsValid);
@@ -145,10 +133,7 @@ namespace Microsoft.Templates.Core.Test
         {
             SetUpFixtureForTesting(language);
 
-            var validators = new List<Validator>
-            {
-                new DefaultNamesValidator()
-            };
+            var validators = new List<Validator> { new DefaultNamesValidator() };
             var result = Naming.Validate("LiveTile", validators);
 
             Assert.False(result.IsValid);
@@ -161,10 +146,7 @@ namespace Microsoft.Templates.Core.Test
         {
             SetUpFixtureForTesting(language);
 
-            var validators = new List<Validator>
-            {
-                new ReservedNamesValidator()
-            };
+            var validators = new List<Validator> { new ReservedNamesValidator() };
             var result = Naming.Validate("Page", validators);
 
             Assert.False(result.IsValid);

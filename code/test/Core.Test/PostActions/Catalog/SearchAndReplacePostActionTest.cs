@@ -70,7 +70,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 OutputPath = path,
                 DestinationPath = Path.GetFullPath(@".\Destination\Project"),
-                DestinationParentPath = Path.GetFullPath(@".\Destination\")
+                DestinationParentPath = Path.GetFullPath(@".\Destination\"),
             };
 
             var mergePostAction = new SearchAndReplacePostAction(templateName, new MergeConfiguration(mergeFile, false));

@@ -88,23 +88,23 @@ namespace Microsoft.Templates.VsEmulator.Services
         {
             _commonControls = new ResourceDictionary()
             {
-                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_CommonControls.xaml", UriKind.RelativeOrAbsolute)
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_CommonControls.xaml", UriKind.RelativeOrAbsolute),
             };
             _commonDocument = new ResourceDictionary()
             {
-                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_CommonDocument.xaml", UriKind.RelativeOrAbsolute)
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_CommonDocument.xaml", UriKind.RelativeOrAbsolute),
             };
             _environment = new ResourceDictionary()
             {
-                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_Environment.xaml", UriKind.RelativeOrAbsolute)
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_Environment.xaml", UriKind.RelativeOrAbsolute),
             };
             _infoBar = new ResourceDictionary()
             {
-                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_InfoBar.xaml", UriKind.RelativeOrAbsolute)
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_InfoBar.xaml", UriKind.RelativeOrAbsolute),
             };
             _windowsTemplateStudio = new ResourceDictionary()
             {
-                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_WindowsTemplateStudio.xaml", UriKind.RelativeOrAbsolute)
+                Source = new Uri($"/VsEmulator;component/Styles/{themeName}_WindowsTemplateStudio.xaml", UriKind.RelativeOrAbsolute),
             };
         }
 

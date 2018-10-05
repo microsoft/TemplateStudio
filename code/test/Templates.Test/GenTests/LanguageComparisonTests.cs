@@ -235,7 +235,7 @@ namespace Microsoft.Templates.Test
                     {
                         "map.MapServiceToken = String.Empty",
                         "map.MapServiceToken = string.Empty;"
-                    }
+                    },
                 };
 
                 return codeCommentExceptions.ContainsKey(vbComment) && codeCommentExceptions[vbComment] == csComment;

@@ -134,7 +134,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -162,7 +162,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -222,7 +222,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
