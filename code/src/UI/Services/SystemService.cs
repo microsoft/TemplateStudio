@@ -62,7 +62,7 @@ namespace Microsoft.Templates.UI.Services
             return fontSize;
         }
 
-        public(double width, double height) GetMainWindowSize()
+        public (double width, double height) GetMainWindowSize()
         {
             double width = 1120; // 1277;
             double height = 733; // 727
