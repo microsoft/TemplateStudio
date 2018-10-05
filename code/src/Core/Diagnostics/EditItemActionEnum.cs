@@ -10,6 +10,6 @@ namespace Microsoft.Templates.Core.Diagnostics
         Rename,
         Remove,
         MoveUp,
-        MoveDown
+        MoveDown,
     }
 }

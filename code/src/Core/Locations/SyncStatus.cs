@@ -16,6 +16,6 @@ namespace Microsoft.Templates.Core.Locations
         NewWizardVersionAvailable = 7,
         Ready = 8,
         ErrorAcquiring = 9,
-        Copying = 10
+        Copying = 10,
     }
 }

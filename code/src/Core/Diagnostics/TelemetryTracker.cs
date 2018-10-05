@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Completed.ToString() },
                 { TelemetryProperties.WizardType, wizardType.ToString() },
                 { TelemetryProperties.WizardAction, wizardAction.ToString() },
-                { TelemetryProperties.EventName, TelemetryEvents.Wizard }
+                { TelemetryProperties.EventName, TelemetryEvents.Wizard },
             };
 
             TelemetryService.Current.SetContentVsProductVersionToContext(vsProductVersion);
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.WizardStatus, WizardStatusEnum.Cancelled.ToString() },
                 { TelemetryProperties.WizardType, wizardType.ToString() },
                 { TelemetryProperties.EventName, TelemetryEvents.Wizard },
-                { TelemetryProperties.SyncInProgress, syncInProgress.ToString() }
+                { TelemetryProperties.SyncInProgress, syncInProgress.ToString() },
             };
 
             TelemetryService.Current.SetContentVsProductVersionToContext(vsProductVersion);
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Core.Diagnostics
                 { TelemetryProperties.EventName, TelemetryEvents.NewItemGen },
                 { TelemetryProperties.VisualStudioActiveProjectGuid, vsProjectId.ToString() },
                 { TelemetryProperties.VsProjectCategory, appPlatform },
-                { TelemetryProperties.NewItemType, newItemType.ToString() }
+                { TelemetryProperties.NewItemType, newItemType.ToString() },
             };
 
             var metrics = new Dictionary<string, double>();
@@ -146,7 +146,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             var properties = new Dictionary<string, string>()
             {
                 { TelemetryProperties.SummaryItemEditAction, trackedAction.ToString() },
-                { TelemetryProperties.EventName, TelemetryEvents.EditSummaryItem }
+                { TelemetryProperties.EventName, TelemetryEvents.EditSummaryItem },
             };
 
             await TelemetryService.Current.TrackEventAsync(TelemetryEvents.EditSummaryItem, properties).ConfigureAwait(false);

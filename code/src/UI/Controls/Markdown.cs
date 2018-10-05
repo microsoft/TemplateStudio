@@ -442,7 +442,7 @@ namespace Microsoft.Templates.UI.Controls
                 var binding = new Binding(nameof(BitmapImage.Width))
                 {
                     Source = imgSource,
-                    Mode = BindingMode.OneWay
+                    Mode = BindingMode.OneWay,
                 };
 
                 BindingExpressionBase bindingExpression = BindingOperations.SetBinding(image, Image.WidthProperty, binding);

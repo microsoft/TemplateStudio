@@ -12,6 +12,6 @@ namespace Microsoft.Templates.Core
         BadFormat,
         ReservedName,
         EndsWithPageSuffix,
-        EndsWithViewSuffix
+        EndsWithViewSuffix,
     }
 }

@@ -39,7 +39,7 @@ namespace Microsoft.Templates.UI.Services
                 A = color.A,
                 R = color.R,
                 G = color.G,
-                B = color.B
+                B = color.B,
             });
         }
 
