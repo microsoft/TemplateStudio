@@ -332,7 +332,14 @@ namespace Microsoft.Templates.Test
                             foreach (var itemTemplate in itemTemplates)
                             {
                                 result.Add(new object[]
-                                    { itemTemplate.Name, projectType, framework, platform, itemTemplate.Identity, language });
+                                {
+                                    itemTemplate.Name,
+                                    projectType,
+                                    framework,
+                                    platform,
+                                    itemTemplate.Identity,
+                                    language,
+                                });
                             }
                         }
                     }
