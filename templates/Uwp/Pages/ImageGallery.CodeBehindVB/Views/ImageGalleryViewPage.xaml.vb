@@ -34,6 +34,7 @@ Namespace Views
         Private Sub ImagesGridView_ItemClick(sender As Object, e As ItemClickEventArgs)
             Dim selected = TryCast(e.ClickedItem, SampleImage)
             ImagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage")
+            ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID)
             NavigationService.Navigate(Of ImageGalleryViewDetailPage)(selected.ID)
         End Sub
     End Class
