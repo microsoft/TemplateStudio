@@ -18,7 +18,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             var selected = args.ClickedItem as SampleImage;
             _imagesGridView.PrepareConnectedAnimation(wts.ItemNameAnimationOpen, selected, "galleryImage");
-            ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
+            ImagesNavigationHelper.AddImageId(wts.ItemNameSelectedIdKey, selected.ID);
             NavigationService.Navigate(typeof(wts.ItemNameDetailViewModel).FullName, selected.ID);
         }
         //}]}
