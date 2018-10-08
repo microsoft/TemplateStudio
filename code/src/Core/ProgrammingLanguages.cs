@@ -17,5 +17,18 @@ namespace Microsoft.Templates.Core
             yield return ProgrammingLanguages.CSharp;
             yield return ProgrammingLanguages.VisualBasic;
         }
+
+        public static string GetShortProgrammingLanguage(string language)
+        {
+            switch (language)
+            {
+                case CSharp:
+                    return "CS";
+                case VisualBasic:
+                    return "VB";
+                default:
+                    return language;
+            }
+        }
     }
 }

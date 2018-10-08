@@ -20,6 +20,7 @@ namespace Microsoft.Templates.Core.Locations
             Name = "LocalTemplates_v0.0.0.0",
             LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
             Bytes = 1024,
+            WizardVersions = new List<Version>() { new Version(0, 0) },
             Date = DateTime.Now,
         };
 

@@ -628,6 +628,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 new LocalTemplatesSource(TemplatesVersion, string.Empty),
                 new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp, msg => SetState(msg), l => AddLog(l), _host),
                 new Version(WizardVersion),
+                Platforms.Uwp,
                 ProgrammingLanguages.CSharp);
 
             await GenContext.ToolBox.Repo.SynchronizeAsync();

@@ -30,6 +30,8 @@ namespace Microsoft.Templates.Core
 
         private static readonly string[] SupportedIconTypes = { ".jpg", ".jpeg", ".png", ".xaml" };
 
+        public string CurrentPlatform { get; set; }
+
         public string CurrentLanguage { get; set; }
 
         public TemplatesSynchronization Sync { get; private set; }
@@ -44,8 +46,9 @@ namespace Microsoft.Templates.Core
 
         private CancellationTokenSource _cts;
 
-        public TemplatesRepository(TemplatesSource source, Version wizardVersion, string language)
+        public TemplatesRepository(TemplatesSource source, Version wizardVersion, string platform, string language)
         {
+            CurrentPlatform = platform;
             CurrentLanguage = language;
             WizardVersion = wizardVersion.ToString();
             Sync = new TemplatesSynchronization(source, wizardVersion);
@@ -86,10 +89,11 @@ namespace Microsoft.Templates.Core
 
         public IEnumerable<ITemplateInfo> GetAll()
         {
-            var queryResult = CodeGen.Instance.Cache.List(false, WellKnownSearchFilters.LanguageFilter(CurrentLanguage));
+            var queryResult = CodeGen.Instance.Cache.List(true, WellKnownSearchFilters.LanguageFilter(CurrentLanguage));
 
             return queryResult
                         .Where(r => r.IsMatch)
+                        .Where(r => r.Info.GetPlatform() == CurrentPlatform)
                         .Select(r => r.Info)
                         .ToList();
         }

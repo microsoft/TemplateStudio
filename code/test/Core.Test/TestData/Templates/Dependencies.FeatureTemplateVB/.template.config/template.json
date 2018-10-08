@@ -7,6 +7,7 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
+    "wts.platform": "Uwp",
     "wts.type": "feature",
     "wts.dependencies": "dp1|dp2"
   },

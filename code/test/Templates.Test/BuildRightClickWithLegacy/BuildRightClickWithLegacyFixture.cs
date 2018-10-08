@@ -76,7 +76,7 @@ namespace Microsoft.Templates.Test
             source.LoadConfigAsync(default(CancellationToken)).Wait();
             var version = new Version(source.Config.Latest.Version.Major, source.Config.Latest.Version.Minor);
 
-            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), version, language);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), version, Platforms.Uwp, language);
             if (!syncExecuted)
             {
                 GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Test
          Justification = "Required for unit testing.")]
         public void ChangeTemplatesSource(TemplatesSource source, string language, string platform)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
             GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
         }
 

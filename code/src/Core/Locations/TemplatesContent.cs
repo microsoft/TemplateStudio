@@ -38,7 +38,14 @@ namespace Microsoft.Templates.Core.Locations
 
         public TemplatesContent(string workingFolder, string sourceId, Version wizardVersion, TemplatesSource source, string tengineCurrentContent)
         {
-            TemplatesFolder = Path.Combine(workingFolder, TemplatesFolderName, sourceId);
+            if (source is RemoteTemplatesSource)
+            {
+                TemplatesFolder = Path.Combine(workingFolder, TemplatesFolderName, sourceId, source.Platform, source.Language);
+            }
+            else
+            {
+                TemplatesFolder = Path.Combine(workingFolder, TemplatesFolderName, sourceId);
+            }
 
             LoadAvailableContents();
 
@@ -91,10 +98,12 @@ namespace Microsoft.Templates.Core.Locations
 
             if (Current != null)
             {
-                var result = WizardVersion.Major < Source.Config?.Latest.Version.Major || ((WizardVersion.Major == Source.Config?.Latest.Version.Major) && (WizardVersion.Minor < Source.Config?.Latest.Version.Minor));
+                var highestWizardVersion = Source.Config?.Latest.WizardVersions.OrderByDescending(t => t.Major).ThenByDescending(t => t.Minor).FirstOrDefault();
+                var result = WizardVersion.Major < highestWizardVersion.Major || ((WizardVersion.Major == highestWizardVersion.Major) && (WizardVersion.Minor < highestWizardVersion.Minor));
+
                 if (result == true)
                 {
-                    version = new Version(Source.Config.Latest.Version.Major, Source.Config.Latest.Version.Minor);
+                    version = new Version(highestWizardVersion.Major, highestWizardVersion.Minor);
                 }
 
                 return result;
@@ -156,18 +165,21 @@ namespace Microsoft.Templates.Core.Locations
 
         internal TemplatesPackageInfo ResolveInstalledContent()
         {
-            var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", "Templates.mstx");
-
             TemplatesPackageInfo installedPackage = null;
-            if (Source is RemoteTemplatesSource && File.Exists(mstxFilePath))
+            if (Source is RemoteTemplatesSource)
             {
-                var tempPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-                Fs.SafeCopyFile(mstxFilePath, tempPath, true);
-                installedPackage = new TemplatesPackageInfo()
+                var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", $"UWP.{Source.Language}.Templates.mstx");
+
+                if (File.Exists(mstxFilePath))
                 {
-                    Name = Path.GetFileName(mstxFilePath),
-                    LocalPath = Path.Combine(tempPath, Path.GetFileName(mstxFilePath))
-                };
+                    //var tempPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()); 
+                    //Fs.SafeCopyFile(mstxFilePath, tempPath, true); 
+                    installedPackage = new TemplatesPackageInfo()
+                    {
+                        Name = Path.GetFileName(mstxFilePath),
+                        LocalPath = mstxFilePath,
+                    };
+                }
             }
             else
             {

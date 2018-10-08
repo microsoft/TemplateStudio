@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.Test
         {
             var source = new UnitTestsTemplatesSource();
 
-            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), Platforms.Uwp, language);
             if (!_syncExecuted)
             {
                 GenContext.ToolBox.Repo.SynchronizeAsync(true).Wait();
