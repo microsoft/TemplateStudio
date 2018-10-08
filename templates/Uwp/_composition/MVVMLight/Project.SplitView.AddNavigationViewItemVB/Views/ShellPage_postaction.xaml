@@ -6,13 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <NavigationView
+    <winui:NavigationView
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-        <NavigationView.MenuItems>
+        <winui:NavigationView.MenuItems>
             <!--^^-->
             <!--{[{-->
-            <NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelper.NavigateTo="Param_ItemNamespace.ViewModels.wts.ItemNameViewModel" />
+            <winui:NavigationViewItem x:Uid="Shell_wts.ItemName" Icon="Document" helpers:NavHelper.NavigateTo="Param_ItemNamespace.ViewModels.wts.ItemNameViewModel" />
             <!--}]}-->
-        </NavigationView.MenuItems>        
-    </NavigationView>
+        </winui:NavigationView.MenuItems>        
+    </winui:NavigationView>
 </Page>
