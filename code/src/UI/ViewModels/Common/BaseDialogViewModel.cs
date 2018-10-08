@@ -45,6 +45,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         None,
         Accept,
-        Cancel
+        Cancel,
     }
 }

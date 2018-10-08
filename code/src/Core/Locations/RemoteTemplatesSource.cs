@@ -38,7 +38,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 Date = packageInfo.Date,
                 Path = finalDestination,
-                Version = packageInfo.Version
+                Version = packageInfo.Version,
             };
 
             return templatesInfo;

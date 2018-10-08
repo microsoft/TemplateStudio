@@ -7,6 +7,6 @@ namespace Microsoft.Templates.Core.Diagnostics
     public enum NewItemType
     {
         Page,
-        Feature
+        Feature,
     }
 }

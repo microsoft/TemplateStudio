@@ -89,7 +89,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 OutputPath = outputPath,
                 DestinationPath = destinationPath,
-                DestinationParentPath = Directory.GetParent(destinationPath).FullName
+                DestinationParentPath = Directory.GetParent(destinationPath).FullName,
             };
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, false));
@@ -133,7 +133,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 OutputPath = outputPath,
                 DestinationPath = destinationPath,
-                DestinationParentPath = Directory.GetParent(destinationPath).FullName
+                DestinationParentPath = Directory.GetParent(destinationPath).FullName,
             };
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, false));

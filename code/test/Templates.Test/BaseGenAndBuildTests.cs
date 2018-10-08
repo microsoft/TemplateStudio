@@ -177,7 +177,7 @@ namespace Microsoft.Templates.Test
                 var newUserSelection = new UserSelection(projectType, framework, platform, language)
                 {
                     HomeName = string.Empty,
-                    ItemGenerationType = ItemGenerationType.GenerateAndMerge
+                    ItemGenerationType = ItemGenerationType.GenerateAndMerge,
                 };
 
                 _fixture.AddItem(newUserSelection, item, BaseGenAndBuildFixture.GetDefaultName);
@@ -340,7 +340,7 @@ namespace Microsoft.Templates.Test
                     "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
                     "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub.CodeBehind", "wts.Feat.MultiView",
                     "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.UriScheme", "wts.Feat.WebToAppLink",
-                    "wts.Feat.DragAndDrop.CodeBehind"
+                    "wts.Feat.DragAndDrop.CodeBehind",
                 };
             }
             else
@@ -356,7 +356,7 @@ namespace Microsoft.Templates.Test
                     "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
                     "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
                     "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.UriScheme", "wts.Feat.WebToAppLink",
-                    "wts.Feat.DragAndDrop"
+                    "wts.Feat.DragAndDrop",
                 };
             }
         }

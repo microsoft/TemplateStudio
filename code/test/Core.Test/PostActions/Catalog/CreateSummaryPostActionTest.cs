@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 DestinationPath = destPath,
                 OutputPath = outputPath,
                 TempGenerationPath = outputPath,
-                DestinationParentPath = Directory.GetParent(destPath).FullName
+                DestinationParentPath = Directory.GetParent(destPath).FullName,
             };
 
             Directory.CreateDirectory(outputPath);
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 DestinationPath = destPath,
                 OutputPath = outputPath,
                 TempGenerationPath = outputPath,
-                DestinationParentPath = Directory.GetParent(destPath).FullName
+                DestinationParentPath = Directory.GetParent(destPath).FullName,
             };
 
             Directory.CreateDirectory(outputPath);

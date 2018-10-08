@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 _client = new TelemetryClient()
                 {
-                    InstrumentationKey = _currentConfig.RemoteTelemetryKey
+                    InstrumentationKey = _currentConfig.RemoteTelemetryKey,
                 };
 
                 if (VsTelemetryIsOptedIn() && RemoteKeyAvailable())
@@ -208,7 +208,7 @@ namespace Microsoft.Templates.Core.Diagnostics
         private string GetVsProjectId()
         {
              var session = VsTelem.TelemetryService.DefaultSession;
-            return string.Empty;
+             return string.Empty;
         }
 
         public void SetContentVersionToContext(Version contentVersion)

@@ -16,7 +16,7 @@ namespace Microsoft.Templates.UI
     {
         None,
         Generate,
-        GenerateAndMerge
+        GenerateAndMerge,
     }
 
     public class UserSelection

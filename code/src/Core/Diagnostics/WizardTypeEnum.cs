@@ -8,6 +8,6 @@ namespace Microsoft.Templates.Core.Diagnostics
     {
         NewProject = 0,
         AddPage = 1,
-        AddFeature = 2
+        AddFeature = 2,
     }
 }

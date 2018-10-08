@@ -8,6 +8,6 @@ namespace Microsoft.Templates.Core.Diagnostics
     {
         Completed = 0,
         Cancelled = 1,
-        Error = 2
+        Error = 2,
     }
 }
