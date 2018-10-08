@@ -93,11 +93,11 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
         }
 
-        public void UnsuscribeEventHandlers()
+        public void UnsubscribeEventHandlers()
         {
             GenContext.ToolBox.Repo.Sync.SyncStatusChanged -= OnSyncStatusChanged;
-            SystemService.UnsuscribeEventHandlers();
-            StylesService.UnsuscribeEventHandlers();
+            SystemService.UnsubscribeEventHandlers();
+            StylesService.UnsubscribeEventHandlers();
         }
 
         public async Task<bool> IsStepAvailableAsync() => await IsStepAvailableAsync(Step);

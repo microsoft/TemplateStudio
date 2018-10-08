@@ -84,7 +84,7 @@ namespace Microsoft.Templates.UI.Controls
             _closeTimer.Tick += OnTick;
         }
 
-        internal void UnsuscribeEventHandlers()
+        internal void UnsubscribeEventHandlers()
         {
             _closeTimer.Tick -= OnTick;
         }

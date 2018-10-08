@@ -41,7 +41,7 @@ namespace Microsoft.Templates.UI.Services
             private set => SetValue(IsHighContrastProperty, value);
         }
 
-        public void UnsuscribeEventHandlers()
+        public void UnsubscribeEventHandlers()
         {
             SystemParameters.StaticPropertyChanged -= OnStaticPropertyChanged;
         }
