@@ -337,5 +337,26 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void RemovedRemovals()
+        {
+            var merge = new[]
+            {
+                "Public Sub SomeMethod()",
+                "'{--{",
+                "    Exit Sub",
+                "'}--}",
+                "End Sub"
+            };
+            var expected = new[]
+            {
+                "Public Sub SomeMethod()",
+                "End Sub"
+            };
+            var result = merge.RemoveRemovals();
+
+            Assert.Equal(expected, result);
+        }
     }
 }

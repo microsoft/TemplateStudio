@@ -90,6 +90,7 @@ This project is supported by the [.NET Foundation](https://dotnetfoundation.org)
 
 - [Rapid Xaml Toolkit](https://github.com/Microsoft/Rapid-XAML-Toolkit)
 - [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
+- [Fluent XAML Theme Editor](https://github.com/Microsoft/fluent-xaml-theme-editor)
 
 ## Frameworks and libraries in generated code not created by our team
 **Frameworks**

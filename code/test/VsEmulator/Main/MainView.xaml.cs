@@ -29,7 +29,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
             Unloaded += (sender, e) =>
             {
-                ViewModel.SystemService.UnsuscribeEventHandlers();
+                ViewModel.SystemService.UnsubscribeEventHandlers();
             };
         }
 

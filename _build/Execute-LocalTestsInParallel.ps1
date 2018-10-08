@@ -6,7 +6,8 @@ $testrunnerPath = Join-Path $rootPath \Code\packages\xunit.runner.console.2.2.0\
 $templateTestLibraryPath = Join-Path $rootPath \Code\test\Templates.Test\bin\Analyze\Microsoft.Templates.Test.dll
 $coreTestLibraryPath = Join-Path $rootPath \Code\test\Core.Test\bin\Analyze\Microsoft.Templates.Core.Test.dll 
 $uiTestLibraryPath = Join-Path $rootPath \Code\test\UI.Test\bin\Analyze\Microsoft.UI.Test.dll 
-$traits = 'ExecutionSet=BuildCodeBehind', 'ExecutionSet=BuildMVVMBasic','ExecutionSet=BuildMVVMLight','ExecutionSet=BuildCaliburnMicro','ExecutionSet=BuildPrism', 'ExecutionSet=BuildStyleCop', 'ExecutionSet=TemplateValidation', 'ExecutionSet=BuildRightClickWithLegacy'
+$traits1 = 'ExecutionSet=BuildStyleCop', 'ExecutionSet=TemplateValidation', 'ExecutionSet=BuildRightClickWithLegacy'
+$traits2 = 'ExecutionSet=BuildCodeBehind', 'ExecutionSet=BuildMVVMBasic','ExecutionSet=BuildMVVMLight','ExecutionSet=BuildCaliburnMicro','ExecutionSet=BuildPrism'
 $outputDir = 'C:\temp\testresults'
 
 if (-not (Test-Path $outputDir))
@@ -16,9 +17,11 @@ if (-not (Test-Path $outputDir))
 
  . $testrunnerPath $coreTestLibraryPath 
 
- . $testrunnerPath $uiTestLibraryPath 
+ . $testrunnerPath $uiTestLibraryPath -notrait "ExecutionSet=ManualOnly" 
 
- . $scriptPath $testrunnerPath $templateTestLibraryPath $traits $outputDir
+ . $scriptPath $testrunnerPath $templateTestLibraryPath $traits1 $outputDir
+ . $scriptPath $testrunnerPath $templateTestLibraryPath $traits2 $outputDir
+
 
 Write-Host $rootPath
 Write-Host $scriptPath

@@ -26,8 +26,8 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Services.NavigationService.UnsuscribeEventHandlers();
-            Services.OrderingService.UnsuscribeEventHandlers();
+            Services.NavigationService.UnsubscribeEventHandlers();
+            Services.OrderingService.UnsubscribeEventHandlers();
         }
 
         private void ComboBox_PreviewKeyDown(object sender, KeyEventArgs e)

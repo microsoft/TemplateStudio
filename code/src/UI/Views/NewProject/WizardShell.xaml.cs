@@ -64,8 +64,8 @@ namespace Microsoft.Templates.UI.Views.NewProject
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.UnsuscribeEventHandlers();
-            NotificationsControl.UnsuscribeEventHandlers();
+            ViewModel.UnsubscribeEventHandlers();
+            NotificationsControl.UnsubscribeEventHandlers();
         }
     }
 }
