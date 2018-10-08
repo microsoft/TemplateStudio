@@ -45,7 +45,7 @@ namespace Param_ItemNamespace.ViewModels
 
         public async Task LoadAnimationAsync()
         {
-            var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGallerySelectedIdKey);
+            var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey);
             if (!string.IsNullOrEmpty(selectedImageId))
             {
                 var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose);
@@ -56,7 +56,7 @@ namespace Param_ItemNamespace.ViewModels
                     await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
                 }
 
-                ImagesNavigationHelper.RemoveImageId(ImageGallerySelectedIdKey);
+                ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey);
             }
         }
     }
