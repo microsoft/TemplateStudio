@@ -497,10 +497,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ConfigureVersions()
         {
-            var dialog = new TemplatesContentView(WizardVersion, TemplatesVersion)
-            {
-                Owner = _host
-            };
+            var dialog = new TemplatesContentView(WizardVersion, TemplatesVersion);
+            dialog.Owner = _host;
 
             var dialogRes = dialog.ShowDialog();
 
@@ -566,10 +564,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         private (string name, string solutionName, string location) ShowNewProjectDialog()
         {
-            var dialog = new NewProjectView()
-            {
-                Owner = _host
-            };
+            var dialog = new NewProjectView();
+            dialog.Owner = _host;
 
             var result = dialog.ShowDialog();
 
@@ -583,10 +579,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private string ShowLoadProjectDialog()
         {
-            var dialog = new LoadProjectView(SolutionFilePath)
-            {
-                Owner = _host
-            };
+            var dialog = new LoadProjectView(SolutionFilePath);
+            dialog.Owner = _host;
 
             var result = dialog.ShowDialog();
 

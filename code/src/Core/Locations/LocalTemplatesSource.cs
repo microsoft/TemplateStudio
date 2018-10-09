@@ -81,7 +81,7 @@ namespace Microsoft.Templates.Core.Locations
             Config = new TemplatesSourceConfig()
             {
                 Versions = availablePackages,
-                Latest = availablePackages.OrderByDescending(p => p.Version).FirstOrDefault()
+                Latest = availablePackages.OrderByDescending(p => p.Version).FirstOrDefault(),
             });
         }
 
@@ -103,7 +103,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 Version = packageInfo.Version,
                 Path = targetFolder,
-                Date = packageInfo.Date
+                Date = packageInfo.Date,
             };
         }
 

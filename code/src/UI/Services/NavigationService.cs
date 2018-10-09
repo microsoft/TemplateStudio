@@ -32,7 +32,7 @@ namespace Microsoft.Templates.UI.Services
             _secondaryFrame.Navigating += SecondaryFrameNavigating;
         }
 
-        public static void UnsuscribeEventHandlers()
+        public static void UnsubscribeEventHandlers()
         {
             _secondaryFrame.Navigated -= SecondaryFrameNavigated;
             _secondaryFrame.Navigating -= SecondaryFrameNavigating;

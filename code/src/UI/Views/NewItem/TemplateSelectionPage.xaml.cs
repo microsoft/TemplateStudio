@@ -22,7 +22,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
             if (textBox != null)
             {
                 var command = textBox.Tag as ICommand;
-                    command?.Execute(e);
+                command?.Execute(e);
             }
         }
     }

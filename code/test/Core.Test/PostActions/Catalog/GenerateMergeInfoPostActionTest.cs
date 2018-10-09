@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var expected = new MergeInfo()
             {
                 Format = "CSHARP",
-                PostActionCode = expectedPostactionCode
+                PostActionCode = expectedPostactionCode,
             };
 
             Directory.Delete(outputPath, true);

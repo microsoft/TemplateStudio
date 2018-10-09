@@ -87,10 +87,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 
         private static string GetSuggestedSolution(string path)
         {
-            var validator = new List<Validator>()
-            {
-                new SuggestedDirectoryNameValidator(path)
-            };
+            var validator = new List<Validator>() { new SuggestedDirectoryNameValidator(path) };
 
             return Naming.Infer(DefaultName, validator);
         }

@@ -15,7 +15,7 @@ namespace WtsTool.CommandOptions
         Extract,
         Create,
         None,
-        Prepare
+        Prepare,
     }
 
     [Verb("package-task", Hidden = false, HelpText = "Operations with template package file (.mstx)")]

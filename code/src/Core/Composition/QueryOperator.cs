@@ -7,6 +7,6 @@ namespace Microsoft.Templates.Core.Composition
     public enum QueryOperator
     {
         Equals,
-        NotEquals
+        NotEquals,
     }
 }

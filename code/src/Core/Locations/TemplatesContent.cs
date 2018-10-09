@@ -177,7 +177,7 @@ namespace Microsoft.Templates.Core.Locations
                     {
                         Name = Path.GetFileName(mstxFilePath),
                         LocalPath = mstxFilePath,
-                        WizardVersions = new List<Version>() { GenContext.GetWizardVersionFromAssembly() }
+                        WizardVersions = new List<Version>() { GenContext.GetWizardVersionFromAssembly() },
                     };
                 }
             }
@@ -291,7 +291,7 @@ namespace Microsoft.Templates.Core.Locations
                         {
                             Path = sdi.FullName,
                             Version = v,
-                            Date = sdi.CreationTime
+                            Date = sdi.CreationTime,
                         };
 
                         All.Add(t);

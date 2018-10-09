@@ -36,9 +36,9 @@ namespace Microsoft.Templates.UI.Controls
             => await SafeInvokeAsync(async ()
                 => await _instance.InternalAddOrUpdateNotificationAsync(notification));
 
-        public static void UnsuscribeEventHandlers()
+        public static void UnsubscribeEventHandlers()
             => SafeInvoke(()
-                => _instance.InternalUnsuscribeEventHandlers());
+                => _instance.InternalUnsubscribeEventHandlers());
 
         public static async Task AddNotificationAsync(Notification notification)
             => await SafeInvokeAsync(async ()
@@ -108,11 +108,11 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private void InternalUnsuscribeEventHandlers()
+        private void InternalUnsubscribeEventHandlers()
         {
             foreach (var notification in _notifications)
             {
-                notification.UnsuscribeEventHandlers();
+                notification.UnsubscribeEventHandlers();
             }
         }
 

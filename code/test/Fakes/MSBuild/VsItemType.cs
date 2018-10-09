@@ -11,6 +11,6 @@ namespace Microsoft.Templates.Fakes
         XamlPage,
         Resource,
         Content,
-        None
+        None,
     }
 }

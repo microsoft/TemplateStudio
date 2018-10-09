@@ -95,7 +95,7 @@ namespace Microsoft.Templates.VsEmulator
                             MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>(),
                             FilesToOpen = new List<string>(),
                             ProjectItems = new List<string>(),
-                            ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>()
+                            ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>(),
                         };
 
                         GenContext.Current = context;

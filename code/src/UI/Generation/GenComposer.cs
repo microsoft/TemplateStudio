@@ -241,7 +241,7 @@ namespace Microsoft.Templates.UI
             var context = new QueryablePropertyDictionary
             {
                 new QueryableProperty("projectType", userSelection.ProjectType),
-                new QueryableProperty("framework", userSelection.Framework)
+                new QueryableProperty("framework", userSelection.Framework),
             };
 
             var combinedQueue = new List<GenInfo>();
@@ -305,7 +305,7 @@ namespace Microsoft.Templates.UI
             var genInfo = new GenInfo
             {
                 Name = name,
-                Template = template
+                Template = template,
             };
 
             queue.Add(genInfo);
