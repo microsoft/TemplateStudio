@@ -15,6 +15,7 @@
         "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
         "author": "Microsoft",
         "order": "1",
+        "licenses": "[Windows UI Library](https://aka.ms/winui_license)",
         "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },

@@ -1,9 +1,7 @@
 ﻿using System;
 using wts.ItemName.Services;
-using Windows.Foundation.Metadata;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using wts.ItemName.Services;
 using wts.ItemName.ViewModels;
 
 namespace wts.ItemName.Views
@@ -19,19 +17,8 @@ namespace wts.ItemName.Views
         public ShellPage()
         {
             InitializeComponent();
-            HideNavViewBackButton();
             DataContext = ViewModel;
-            ViewModel.Initialize(shellFrame, navigationView);
-            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator);
-            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator);
-        }
-
-        private void HideNavViewBackButton()
-        {
-            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6))
-            {
-                navigationView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed;
-            }
+            ViewModel.Initialize(shellFrame, winUiNavigationView, KeyboardAccelerators);
         }
     }
 }
