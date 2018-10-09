@@ -22,7 +22,7 @@ Namespace ViewModels
             End Get
             Set
                 [Param_Setter](_selectedImage, value)
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, DirectCast(SelectedImage, SampleImage).ID)
+                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, DirectCast(SelectedImage, SampleImage).ID)
             End Set
         End Property
 
@@ -44,18 +44,18 @@ Namespace ViewModels
             _image = image
         End Sub
 
-        Public Async Function InitializeAsync(sampleImageId As String, navigationMode as NavigationMode) As Task
+        Public Sub Initialize(sampleImageId As String, navigationMode as NavigationMode)
             If Not String.IsNullOrEmpty(sampleImageId) AndAlso navigationMode = NavigationMode.New Then
                 SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImageId)
             Else
-                Dim selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey)
+                Dim selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey)
                 If Not String.IsNullOrEmpty(selectedImageId) Then
                     SelectedImage = Source.FirstOrDefault(Function(i) i.ID = selectedImageId)
                 End If
             End If
             Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewViewModel.ImageGalleryViewAnimationOpen)
             animation?.TryStart(_image)
-        End Function
+        End Sub
 
         Public Sub SetAnimation()
             ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image)

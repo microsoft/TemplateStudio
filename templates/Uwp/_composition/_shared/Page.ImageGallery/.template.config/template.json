@@ -50,6 +50,9 @@
     },
     {
       "path": ".\\Models\\SampleImage.cs"
+    },
+    {
+      "path": ".\\Helpers\\ImagesNavigationHelper.cs"
     }
   ],
   "symbols": {

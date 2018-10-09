@@ -40,6 +40,7 @@ namespace Param_ItemNamespace.Views
         {
             var selected = e.ClickedItem as SampleImage;
             ImagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage");
+            ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
             NavigationService.Navigate<ImageGalleryViewDetailPage>(selected.ID);
         }
     }

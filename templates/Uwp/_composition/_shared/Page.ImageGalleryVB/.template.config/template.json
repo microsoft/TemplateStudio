@@ -50,6 +50,9 @@
     },
     {
       "path": ".\\Models\\SampleImage.vb"
+    },
+    {
+      "path": ".\\Helpers\\ImagesNavigationHelper.vb"
     }
   ],
   "symbols": {
