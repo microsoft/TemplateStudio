@@ -55,7 +55,7 @@ Namespace Views
             NavigationService.GoBack()
         End Sub
 
-        Private Sub Frame_Navigated(sender As Object, e As WinUI.NavigationEventArgs)
+        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             IsBackEnabled = NavigationService.CanGoBack
             Selected = navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
         End Sub
@@ -85,7 +85,7 @@ Namespace Views
             Return keyboardAccelerator
         End Function
 
-        Private Sub OnKeyboardAcceleratorInvoked(sender As KeyboardAccelerator, args As KeyboardAcceleratorInvokedEventArgs)
+        Private Overloads Sub OnKeyboardAcceleratorInvoked(sender As KeyboardAccelerator, args As KeyboardAcceleratorInvokedEventArgs)
             Dim result = NavigationService.GoBack()
             args.Handled = result
         End Sub

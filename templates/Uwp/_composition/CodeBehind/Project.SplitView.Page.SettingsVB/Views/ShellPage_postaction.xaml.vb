@@ -8,6 +8,7 @@ Namespace Views
         Implements INotifyPropertyChanged
 
         Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
+            IsBackEnabled = NavigationService.CanGoBack
             '{[{
             If e.SourcePageType = GetType(wts.ItemNamePage) Then
                 Selected = TryCast(navigationView.SettingsItem, WinUI.NavigationViewItem)
@@ -18,7 +19,6 @@ Namespace Views
         End Sub
 
         Private Sub OnItemInvoked(sender As WinUI.NavigationView, args As WinUI.NavigationViewItemInvokedEventArgs)
-            IsBackEnabled = NavigationService.CanGoBack
             '{[{
             If args.IsSettingsInvoked Then
                 NavigationService.Navigate(GetType(wts.ItemNamePage))
