@@ -35,22 +35,19 @@ namespace Microsoft.Templates.Core.Locations
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
             var finalDestination = Path.Combine(workingFolder, packageInfo.Version.ToString());
-            var finalDestinationTemp = string.Concat(finalDestination, _tmpExtension);
 
             RemoveTemplatesTempFolders(workingFolder);
 
-            //Only extract if final destination does not exist (TODO: Verify this) 
             if (!Directory.Exists(finalDestination))
             {
-                var extractionFolder = await ExtractAsync(packageInfo, finalDestinationTemp, false, ct);
-                Fs.SafeRenameDirectory(finalDestinationTemp, finalDestination);
+                var extractionFolder = await ExtractAsync(packageInfo, finalDestination, false, ct);
             }
 
             var templatesInfo = new TemplatesContentInfo()
             {
                 Date = packageInfo.Date,
                 Path = finalDestination,
-                Version = packageInfo.Version
+                Version = packageInfo.Version,
             };
 
             return templatesInfo;
@@ -141,7 +138,11 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                await TemplatePackage.ExtractAsync(mstxFilePath, versionedFolder, verifyPackageSignatures, ReportExtractionProgress, ct);
+                var finalDestinationTemp = string.Concat(versionedFolder, _tmpExtension);
+
+                await TemplatePackage.ExtractAsync(mstxFilePath, finalDestinationTemp, verifyPackageSignatures, ReportExtractionProgress, ct);
+                Fs.SafeRenameDirectory(finalDestinationTemp, versionedFolder);
+
                 AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {versionedFolder}.").FireAndForget();
             }
             catch (Exception ex) when (ex.GetType() != typeof(OperationCanceledException))

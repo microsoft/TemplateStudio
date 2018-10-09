@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -96,10 +97,10 @@ namespace Microsoft.Templates.Core.Locations
         {
             version = null;
 
-            if (Current != null)
+            if (Current != null && Source.Config?.Latest?.WizardVersions != null)
             {
-                var highestWizardVersion = Source.Config?.Latest.WizardVersions.OrderByDescending(t => t.Major).ThenByDescending(t => t.Minor).FirstOrDefault();
-                var result = WizardVersion.Major < highestWizardVersion.Major || ((WizardVersion.Major == highestWizardVersion.Major) && (WizardVersion.Minor < highestWizardVersion.Minor));
+                var highestWizardVersion = Source.Config.Latest.WizardVersions.OrderByDescending(t => t.Major).ThenByDescending(t => t.Minor).FirstOrDefault();
+                var result = WizardVersion.Major < highestWizardVersion?.Major || ((WizardVersion.Major == highestWizardVersion?.Major) && (WizardVersion.Minor < highestWizardVersion?.Minor));
 
                 if (result == true)
                 {
@@ -168,16 +169,15 @@ namespace Microsoft.Templates.Core.Locations
             TemplatesPackageInfo installedPackage = null;
             if (Source is RemoteTemplatesSource)
             {
-                var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", $"UWP.{Source.Language}.Templates.mstx");
+                var mstxFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "InstalledTemplates", $"Uwp.{Source.Language}.Templates.mstx");
 
                 if (File.Exists(mstxFilePath))
                 {
-                    //var tempPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()); 
-                    //Fs.SafeCopyFile(mstxFilePath, tempPath, true); 
                     installedPackage = new TemplatesPackageInfo()
                     {
                         Name = Path.GetFileName(mstxFilePath),
                         LocalPath = mstxFilePath,
+                        WizardVersions = new List<Version>() { GenContext.GetWizardVersionFromAssembly() }
                     };
                 }
             }
