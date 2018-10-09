@@ -51,10 +51,5 @@ namespace Microsoft.Templates.Core.Locations
         {
             GetContentProgress?.Invoke(this, eventArgs);
         }
-
-        protected virtual void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
-        {
-            CopyProgress?.Invoke(this, eventArgs);
-        }
     }
 }

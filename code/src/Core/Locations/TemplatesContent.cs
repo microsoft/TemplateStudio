@@ -224,29 +224,6 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        private Version GetVersionFromFolder(string contentFolder)
-        {
-            string versionPart = Path.GetFileName(contentFolder);
-
-            Version.TryParse(versionPart, out Version v);
-
-            return v;
-        }
-
-        private bool ExistsContent(string folder)
-        {
-            bool result = false;
-
-            if (Directory.Exists(folder))
-            {
-                var di = new DirectoryInfo(folder);
-
-                result = di.EnumerateFiles("*", SearchOption.AllDirectories).Any();
-            }
-
-            return result;
-        }
-
         private string GetContentFolder()
         {
             var latestVersion = new Version(0, 0, 0, 0);

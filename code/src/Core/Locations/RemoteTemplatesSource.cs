@@ -157,11 +157,6 @@ namespace Microsoft.Templates.Core.Locations
             OnGetContentProgress(this, new ProgressEventArgs() { Version = _version, Progress = progress });
         }
 
-        private void ReportCopyProgress(int progress)
-        {
-            OnCopyProgress(this, new ProgressEventArgs() { Version = _version, Progress = progress });
-        }
-
         private void RemoveTemplatesTempFolders(string workingFolder)
         {
             if (!Directory.Exists(workingFolder))
