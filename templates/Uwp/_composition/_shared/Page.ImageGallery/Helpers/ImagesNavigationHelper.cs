@@ -16,10 +16,11 @@ namespace Param_ItemNamespace.Helpers
         public static void UpdateImageId(string imageGalleryId, string imageId)
         {
             var stack = GetStack(imageGalleryId);
-            if(stack.Any())
+            if (stack.Any())
             {
                 stack.Pop();
             }
+
             stack.Push(imageId);
         }
 

@@ -5,12 +5,12 @@ Namespace Helpers
     Module ImagesNavigationHelper
         Private _imageGalleriesHistories As Dictionary(Of String, Stack(Of String)) = New Dictionary(Of String, Stack(Of String))()
 
-        Sub AddImageId(ByVal imageGalleryId As String, ByVal imageId As String)
+        Sub AddImageId(imageGalleryId As String, imageId As String)
             Dim stack = GetStack(imageGalleryId)
             stack.Push(imageId)
         End Sub
 
-        Sub UpdateImageId(ByVal imageGalleryId As String, ByVal imageId As String)
+        Sub UpdateImageId(imageGalleryId As String, imageId As String)
             Dim stack = GetStack(imageGalleryId)
 
             If stack.Any() Then
@@ -20,12 +20,12 @@ Namespace Helpers
             stack.Push(imageId)
         End Sub
 
-        Function GetImageId(ByVal imageGalleryId As String) As String
+        Function GetImageId(imageGalleryId As String) As String
             Dim stack = GetStack(imageGalleryId)
             Return If(stack.Any(), stack.Peek(), String.Empty)
         End Function
 
-        Sub RemoveImageId(ByVal imageGalleryId As String)
+        Sub RemoveImageId(imageGalleryId As String)
             Dim stack = GetStack(imageGalleryId)
 
             If stack.Any() Then
@@ -33,7 +33,7 @@ Namespace Helpers
             End If
         End Sub
 
-        Private Function GetStack(ByVal imageGalleryId As String) As Stack(Of String)
+        Private Function GetStack(imageGalleryId As String) As Stack(Of String)
             If Not _imageGalleriesHistories.Keys.Contains(imageGalleryId) Then
                 _imageGalleriesHistories.Add(imageGalleryId, New Stack(Of String)())
             End If

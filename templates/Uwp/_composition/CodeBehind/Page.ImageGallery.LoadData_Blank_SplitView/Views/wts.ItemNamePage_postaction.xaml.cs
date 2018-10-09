@@ -12,7 +12,7 @@
             base.OnNavigatedTo(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                var selectedImageId =  ImagesNavigationHelper.GetImageId(wts.ItemNameSelectedIdKey);
+                var selectedImageId = ImagesNavigationHelper.GetImageId(wts.ItemNameSelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageId))
                 {
                     var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(wts.ItemNameAnimationClose);

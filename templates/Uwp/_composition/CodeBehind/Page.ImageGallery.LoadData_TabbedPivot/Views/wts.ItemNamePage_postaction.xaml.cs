@@ -12,7 +12,7 @@
         //{[{
         private async void wts.ItemNamePage_Loaded(object sender, RoutedEventArgs e)
         {
-            var selectedImageId =  ImagesNavigationHelper.GetImageId(wts.ItemNameSelectedIdKey);
+            var selectedImageId = ImagesNavigationHelper.GetImageId(wts.ItemNameSelectedIdKey);
             if (!string.IsNullOrEmpty(selectedImageId))
             {
                 var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(wts.ItemNameAnimationClose);
