@@ -1,6 +1,7 @@
 ﻿Namespace Views
     Public NotInheritable Partial Class SchemeActivationSamplePage
         Inherits Page
+        Implements INotifyPropertyChanged
 '{[{
 
         Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
