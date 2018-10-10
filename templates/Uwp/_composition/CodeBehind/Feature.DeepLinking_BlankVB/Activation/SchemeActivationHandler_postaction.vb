@@ -10,6 +10,7 @@
             If data.IsValid Then
                 NavigationService.Navigate(data.PageType, data.Parameters)
             ElseIf args.PreviousExecutionState <> ApplicationExecutionState.Running Then
+                ' If the app isn't running and not navigating to a specific page based on the URI, navigate to the home page
                 NavigationService.Navigate(GetType(Views.Param_HomeNamePage))
             End If
             Await Task.CompletedTask

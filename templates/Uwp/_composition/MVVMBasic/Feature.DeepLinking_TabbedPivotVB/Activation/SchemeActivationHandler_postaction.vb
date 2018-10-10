@@ -19,6 +19,7 @@ Namespace Activation
                     NavigationService.Navigate(GetType(Views.PivotPage), data)
                 End If
             ElseIf args.PreviousExecutionState <> ApplicationExecutionState.Running Then
+                ' If the app isn't running and not navigating to a specific page based on the URI, navigate to the home page
                 NavigationService.Navigate(GetType(Views.PivotPage))
             End If
             Await Task.CompletedTask
