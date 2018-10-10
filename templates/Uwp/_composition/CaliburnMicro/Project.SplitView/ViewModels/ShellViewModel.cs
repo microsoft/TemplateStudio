@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Navigation;
 using WinUI = Microsoft.UI.Xaml.Controls;
 using Caliburn.Micro;
 using wts.ItemName.Helpers;
+using wts.ItemName.Views;
 
 namespace wts.ItemName.ViewModels
 {
