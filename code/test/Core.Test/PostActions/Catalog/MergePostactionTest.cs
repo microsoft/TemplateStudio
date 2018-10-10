@@ -88,7 +88,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 GenerationOutputPath = outputPath,
-                DestinationPath = destinationPath
+                DestinationPath = destinationPath,
             };
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, false));
@@ -133,7 +133,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 GenerationOutputPath = outputPath,
-                DestinationPath = destinationPath
+                DestinationPath = destinationPath,
             };
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, false));
@@ -143,7 +143,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                     "temp\\NoSource.cs",
                     Path.Combine(outputPath, "NoSource_postaction.cs"),
                     "temp\\NoSource_failedpostaction.cs",
-                     Path.Combine(outputPath, "NoSource_failedpostaction.cs"),
+                    Path.Combine(outputPath, "NoSource_failedpostaction.cs"),
                     $"Could not find file 'temp\\NoSource.cs' to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: '{templateName}'.",
                     MergeFailureType.FileNotFound);
 

@@ -34,7 +34,7 @@ namespace Microsoft.UI.Test.VisualTests
             "ru-RU",
             "tr-TR",
             "zh-CN",
-            "zh-TW"
+            "zh-TW",
         };
 
         protected string DefaultCulture => "en-US";

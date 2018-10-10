@@ -131,7 +131,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -159,7 +159,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -219,7 +219,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -329,7 +329,14 @@ namespace Microsoft.Templates.Test
                             foreach (var itemTemplate in itemTemplates)
                             {
                                 result.Add(new object[]
-                                    { itemTemplate.Name, projectType, framework, platform, itemTemplate.Identity, language });
+                                {
+                                    itemTemplate.Name,
+                                    projectType,
+                                    framework,
+                                    platform,
+                                    itemTemplate.Identity,
+                                    language,
+                                });
                             }
                         }
                     }

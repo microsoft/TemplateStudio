@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider
             {
                 ProjectName = "TestResourceDictionaryPostAction",
-                DestinationPath = Directory.GetCurrentDirectory()
+                DestinationPath = Directory.GetCurrentDirectory(),
             };
 
             var config = new MergeConfiguration(postaction, true);

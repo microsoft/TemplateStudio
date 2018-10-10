@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destinationPath,
-                GenerationOutputPath = outputPath
+                GenerationOutputPath = outputPath,
             };
 
             GenContext.Current.MergeFilesFromProject.Add(relSourceFilePath, new List<MergeInfo>());
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var expected = new MergeInfo()
             {
                 Format = "CSHARP",
-                PostActionCode = expectedPostactionCode
+                PostActionCode = expectedPostactionCode,
             };
 
             Directory.Delete(Directory.GetParent(outputPath).FullName, true);

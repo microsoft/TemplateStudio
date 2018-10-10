@@ -109,14 +109,14 @@ namespace Microsoft.UI.Test
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 1);
             Assert.True(userSelection.Features.Count == 0);
-            Assert.True(viewModel.UserSelection.Licenses.Count == 0);
+            Assert.True(viewModel.UserSelection.Licenses.Count == 1);
             var settingsTemplate = GetTemplate(viewModel.AddPages.Groups, PageSettingsCodeBehind);
             var numOfDependencies = settingsTemplate.Dependencies?.Count();
             AddTemplate(viewModel, settingsTemplate);
             userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.True(userSelection.Pages.Count == 2);
             Assert.True(userSelection.Features.Count == numOfDependencies);
-            Assert.True(viewModel.UserSelection.Licenses.Count == 1);
+            Assert.True(viewModel.UserSelection.Licenses.Count == 2);
         }
 
         [Fact]

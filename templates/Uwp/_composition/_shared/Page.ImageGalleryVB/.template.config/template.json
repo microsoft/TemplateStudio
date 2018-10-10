@@ -50,7 +50,10 @@
       "path": ".\\Param_ProjectName\\Assets\\SampleData\\SamplePhoto10.png"
     },
     {
-      "path": ".\\Param_ProjectName.Core\\Models\\SampleImage.vb"
+      "path": ".\\Param_ProjectName\\Models\\SampleImage.vb"
+    },
+    {
+      "path": ".\\Param_ProjectName\\Helpers\\ImagesNavigationHelper.vb"
     }
   ],
   "symbols": {

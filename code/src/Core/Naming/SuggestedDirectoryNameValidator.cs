@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Core
                 return new ValidationResult
                 {
                     IsValid = false,
-                    ErrorType = ValidationErrorType.AlreadyExists
+                    ErrorType = ValidationErrorType.AlreadyExists,
                 };
             }
             else
@@ -44,7 +44,7 @@ namespace Microsoft.Templates.Core
                 return new ValidationResult
                 {
                     IsValid = true,
-                    ErrorType = ValidationErrorType.None
+                    ErrorType = ValidationErrorType.None,
                 };
             }
         }

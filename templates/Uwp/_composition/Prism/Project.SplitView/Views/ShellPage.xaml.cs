@@ -1,5 +1,4 @@
 ﻿using System;
-using Windows.Foundation.Metadata;
 using Windows.UI.Xaml.Controls;
 using wts.ItemName.ViewModels;
 
@@ -15,21 +14,12 @@ namespace wts.ItemName.Views
         public ShellPage()
         {
             InitializeComponent();
-            HideNavViewBackButton();
         }
 
         public void SetRootFrame(Frame frame)
         {
             shellFrame.Content = frame;
-            ViewModel.Initialize(frame, navigationView);
-        }
-
-        private void HideNavViewBackButton()
-        {
-            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6))
-            {
-                navigationView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed;
-            }
+            ViewModel.Initialize(frame, winUiNavigationView);
         }
     }
 }

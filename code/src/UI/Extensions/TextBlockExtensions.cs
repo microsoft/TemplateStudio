@@ -58,7 +58,7 @@ namespace Microsoft.Templates.UI.Extensions
                 {
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
                     Text = char.ConvertFromUtf32(0xE001).ToString(),
-                    BaselineAlignment = BaselineAlignment.Center
+                    BaselineAlignment = BaselineAlignment.Center,
                 });
                 textBlock.Inlines.Add($" {step.Title}");
             }

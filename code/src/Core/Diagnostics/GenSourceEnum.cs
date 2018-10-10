@@ -7,6 +7,6 @@ namespace Microsoft.Templates.Core.Diagnostics
     public enum GenSourceEnum
     {
         NewProject = 0,
-        NewItem = 1
+        NewItem = 1,
     }
 }

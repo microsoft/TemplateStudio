@@ -234,7 +234,7 @@ namespace Microsoft.Templates.Test
                     {
                         "map.MapServiceToken = String.Empty",
                         "map.MapServiceToken = string.Empty;"
-                    }
+                    },
                 };
 
                 return codeCommentExceptions.ContainsKey(vbComment) && codeCommentExceptions[vbComment] == csComment;
@@ -375,7 +375,7 @@ namespace Microsoft.Templates.Test
 
         private List<string> GetVBPropertiesForComparison(CompilationUnitSyntax vbRoot)
         {
-           List<SyntaxNode> syntaxNodes = vbRoot.DescendantNodes().OfType<PropertyStatementSyntax>().Select(p => p as SyntaxNode).ToList();
+            List<SyntaxNode> syntaxNodes = vbRoot.DescendantNodes().OfType<PropertyStatementSyntax>().Select(p => p as SyntaxNode).ToList();
 
             syntaxNodes.AddRange(vbRoot.DescendantNodes().OfType<PropertyBlockSyntax>().ToList());
 

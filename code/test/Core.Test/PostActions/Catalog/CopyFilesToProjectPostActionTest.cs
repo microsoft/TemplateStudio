@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                GenerationOutputPath = path
+                GenerationOutputPath = path,
             };
 
             var config = new TempGenerationResult();
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                GenerationOutputPath = path
+                GenerationOutputPath = path,
             };
 
             var config = new TempGenerationResult();

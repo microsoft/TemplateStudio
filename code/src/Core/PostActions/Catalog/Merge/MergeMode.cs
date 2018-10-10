@@ -10,6 +10,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         Insert,
         Remove,
         Documentation,
-        Context
+        Context,
     }
 }

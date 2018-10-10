@@ -31,7 +31,7 @@ namespace Microsoft.UI.Test
             {
                 ProjectName = "Test",
                 DestinationPath = path,
-                GenerationOutputPath = path
+                GenerationOutputPath = path,
             };
 
             if (!syncExecuted)

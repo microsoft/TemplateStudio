@@ -30,7 +30,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Param_Setter(ref _selectedImage, value);
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, SelectedImage.ID);
+                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, SelectedImage.ID);
             }
         }
 
@@ -51,7 +51,7 @@ namespace Param_ItemNamespace.ViewModels
             Source.AddRange(SampleDataService.GetGallerySampleData());
         }
 
-        public async Task InitializeAsync(UIElement image, NavigationMode navigationMode)
+        public void Initialize(UIElement image, NavigationMode navigationMode)
         {
             _image = image;
             if (navigationMode == NavigationMode.New)
@@ -60,7 +60,7 @@ namespace Param_ItemNamespace.ViewModels
             }
             else
             {
-                var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
+                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageId))
                 {
                     SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);

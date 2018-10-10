@@ -240,7 +240,7 @@ namespace Microsoft.Templates.Core.Gen
             var context = new QueryablePropertyDictionary
             {
                 new QueryableProperty("projectType", userSelection.ProjectType),
-                new QueryableProperty("framework", userSelection.Framework)
+                new QueryableProperty("framework", userSelection.Framework),
             };
 
             var combinedQueue = new List<GenInfo>();

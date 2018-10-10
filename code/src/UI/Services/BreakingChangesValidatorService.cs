@@ -18,7 +18,7 @@ namespace Microsoft.Templates.UI.Services
         private static List<IBreakingChangeValidator> _validators = new List<IBreakingChangeValidator>
         {
             new HasNavigationViewValidator(),
-            new HasOldMvvmLightLocatorValidator()
+            new HasOldMvvmLightLocatorValidator(),
         };
 
         public static ValidationResult Validate()
@@ -35,7 +35,7 @@ namespace Microsoft.Templates.UI.Services
             return new ValidationResult
             {
                 IsValid = validations.All(v => v.IsValid),
-                ErrorMessages = validations.SelectMany(v => v.ErrorMessages).ToList()
+                ErrorMessages = validations.SelectMany(v => v.ErrorMessages).ToList(),
             };
         }
 

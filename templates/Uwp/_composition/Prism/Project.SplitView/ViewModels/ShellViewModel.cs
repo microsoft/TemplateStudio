@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Input;
+using WinUI = Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -14,13 +15,20 @@ namespace wts.ItemName.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
-        private NavigationView _navigationView;
-        private NavigationViewItem _selected;
+        private static INavigationService _navigationService;
+        private WinUI.NavigationView _navigationView;
+        private bool _isBackEnabled;
+        private WinUI.NavigationViewItem _selected;
 
         public ICommand ItemInvokedCommand { get; }
 
-        public NavigationViewItem Selected
+        public bool IsBackEnabled
+        {
+            get { return _isBackEnabled; }
+            set { SetProperty(ref _isBackEnabled, value); }
+        }
+
+        public WinUI.NavigationViewItem Selected
         {
             get { return _selected; }
             set { SetProperty(ref _selected, value); }
@@ -29,19 +37,20 @@ namespace wts.ItemName.ViewModels
         public ShellViewModel(INavigationService navigationServiceInstance)
         {
             _navigationService = navigationServiceInstance;
-            ItemInvokedCommand = new DelegateCommand<NavigationViewItemInvokedEventArgs>(OnItemInvoked);
+            ItemInvokedCommand = new DelegateCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
         }
 
-        public void Initialize(Frame frame, NavigationView navigationView)
+        public void Initialize(Frame frame, WinUI.NavigationView navigationView)
         {
             _navigationView = navigationView;
             frame.Navigated += Frame_Navigated;
+            _navigationView.BackRequested += OnBackRequested;
         }
 
-        private void OnItemInvoked(NavigationViewItemInvokedEventArgs args)
+        private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
         {
             var item = _navigationView.MenuItems
-                            .OfType<NavigationViewItem>()
+                            .OfType<WinUI.NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
             _navigationService.Navigate(pageKey, null);
@@ -49,12 +58,18 @@ namespace wts.ItemName.ViewModels
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
+            IsBackEnabled = _navigationService.CanGoBack();
             Selected = _navigationView.MenuItems
-                            .OfType<NavigationViewItem>()
+                            .OfType<WinUI.NavigationViewItem>()
                             .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
         }
 
-        private bool IsMenuItemForPageType(NavigationViewItem menuItem, Type sourcePageType)
+        private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
+        {
+            _navigationService.GoBack();
+        }
+
+        private bool IsMenuItemForPageType(WinUI.NavigationViewItem menuItem, Type sourcePageType)
         {
             var sourcePageKey = sourcePageType.Name;
             sourcePageKey = sourcePageKey.Substring(0, sourcePageKey.Length - 4);

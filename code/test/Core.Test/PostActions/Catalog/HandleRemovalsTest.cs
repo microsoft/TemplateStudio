@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "public void SomeMethod()",
                 "{",
                 "    yield break;",
-                "}"
+                "}",
             };
             var merge = new[]
             {
@@ -28,13 +28,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "//{--{",
                 "    yield break;",
                 "//}--}",
-                "}"
+                "}",
             };
             var expected = new[]
             {
                 "public void SomeMethod()",
                 "{",
-                "}"
+                "}",
             };
             var result = source.Merge(merge, out var errorLine);
 
@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "public void SomeMethod()",
                 "{",
                 "    yield break;",
-                "}"
+                "}",
             };
             var merge1 = new[]
             {
@@ -61,14 +61,14 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "//{--{",
                 "    yield break;",
                 "//}--}",
-                "}"
+                "}",
             };
             var expected = new[]
             {
                 "public void SomeMethod()",
                 "{",
                 "    // Merge1",
-                "}"
+                "}",
             };
             var result = source.Merge(merge1, out string errorLine);
 
@@ -83,7 +83,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "public void SomeMethod()",
                 "{",
                 "    yield break;",
-                "}"
+                "}",
             };
             var merge1 = new[]
             {
@@ -95,7 +95,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "//{--{",
                 "    yield break;",
                 "//}--}",
-                "}"
+                "}",
             };
             var merge2 = new[]
             {
@@ -107,7 +107,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "//{--{",
                 "    yield break;",
                 "//}--}",
-                "}"
+                "}",
             };
             var expected = new[]
             {
@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    // Merge2",
                 string.Empty,
                 "    // Merge1",
-                "}"
+                "}",
             };
             var result = source.Merge(merge1, out string errorLine).ToList();
             result = result.Merge(merge2, out errorLine).ToList();
@@ -132,21 +132,21 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "public void SomeMethod()",
                 "{",
                 "    yield break;",
-                "}"
+                "}",
             };
             var merge = new[]
             {
                 "public void SomeOtherMethod()",
                 "{",
                 "    // Something unrelated to deletion",
-                "}"
+                "}",
             };
             var expected = new[]
             {
                 "public void SomeMethod()",
                 "{",
                 "    yield break;",
-                "}"
+                "}",
             };
             var result = source.Merge(merge, out string errorLine);
 
@@ -160,7 +160,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 "public void SomeMethod()",
                 "{",
-                "}"
+                "}",
             };
             var merge = new[]
             {
@@ -169,13 +169,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "//{--{",
                 "    yield break;",
                 "//}--}",
-                "}"
+                "}",
             };
             var expected = new[]
             {
                 "public void SomeMethod()",
                 "{",
-                "}"
+                "}",
             };
             var result = source.Merge(merge, out string errorLine);
 
@@ -189,7 +189,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 "Public Sub SomeMethod()",
                 "    Exit Sub",
-                "End Sub"
+                "End Sub",
             };
             var merge = new[]
             {
@@ -197,12 +197,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "'{--{",
                 "    Exit Sub",
                 "'}--}",
-                "End Sub"
+                "End Sub",
             };
             var expected = new[]
             {
                 "Public Sub SomeMethod()",
-                "End Sub"
+                "End Sub",
             };
             var result = source.Merge(merge, out string errorLine);
 
@@ -216,7 +216,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 "Public Sub SomeMethod()",
                 "    Exit Sub",
-                "End Sub"
+                "End Sub",
             };
             var merge1 = new[]
             {
@@ -227,13 +227,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "'{--{",
                 "    Exit Sub",
                 "'}--}",
-                "End Sub"
+                "End Sub",
             };
             var expected = new[]
             {
                 "Public Sub SomeMethod()",
                 "    ' Merge1",
-                "End Sub"
+                "End Sub",
             };
 
             var result = source.Merge(merge1, out string errorLine).ToList();
@@ -248,7 +248,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 "Public Sub SomeMethod()",
                 "    Exit Sub",
-                "End Sub"
+                "End Sub",
             };
             var merge1 = new[]
             {
@@ -259,7 +259,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "'{--{",
                 "    Exit Sub",
                 "'}--}",
-                "End Sub"
+                "End Sub",
             };
             var merge2 = new[]
             {
@@ -270,7 +270,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "'{--{",
                 "    Exit Sub,",
                 "'}--}",
-                "End Sub"
+                "End Sub",
             };
             var expected = new[]
             {
@@ -278,7 +278,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "    ' Merge2",
                 string.Empty,
                 "    ' Merge1",
-                "End Sub"
+                "End Sub",
             };
             var result = source.Merge(merge1, out string errorLine).ToList();
             result = result.Merge(merge2, out errorLine).ToList();
@@ -293,19 +293,19 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 "Public Sub SomeMethod()",
                 "    Exit Sub",
-                "End Sub"
+                "End Sub",
             };
             var merge = new[]
             {
                 "Public Sub SomeOtherMethod()",
                 "    ' Something unrelated to deletion",
-                "End Sub"
+                "End Sub",
             };
             var expected = new[]
             {
                 "Public Sub SomeMethod()",
                 "    Exit Sub",
-                "End Sub"
+                "End Sub",
             };
             var result = source.Merge(merge, out string errorLine);
 
@@ -318,7 +318,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var source = new[]
             {
                 "Public Sub SomeMethod()",
-                "End Sub"
+                "End Sub",
             };
             var merge = new[]
             {
@@ -326,12 +326,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "'{--{",
                 "    Exit Sub",
                 "'}--}",
-                "End Sub"
+                "End Sub",
             };
             var expected = new[]
             {
                 "Public Sub SomeMethod()",
-                "End Sub"
+                "End Sub",
             };
             var result = source.Merge(merge, out string errorLine);
 
@@ -347,12 +347,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "'{--{",
                 "    Exit Sub",
                 "'}--}",
-                "End Sub"
+                "End Sub",
             };
             var expected = new[]
             {
                 "Public Sub SomeMethod()",
-                "End Sub"
+                "End Sub",
             };
             var result = merge.RemoveRemovals();
 

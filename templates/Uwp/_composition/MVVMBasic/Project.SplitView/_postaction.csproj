@@ -1,0 +1,6 @@
+﻿<!-- Nuget package references -->
+<!--{[{-->
+<PackageReference Include="Microsoft.UI.Xaml">
+  <Version>2.0.180916002-prerelease</Version>
+</PackageReference>
+<!--}]}-->

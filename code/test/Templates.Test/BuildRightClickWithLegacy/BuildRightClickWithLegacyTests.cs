@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Test
             GenContext.Current = new FakeContextProvider
             {
                 ProjectName = projectName,
-                DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName)
+                DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName),
             };
 
             var userSelection = _fixture.SetupProject(projectType, framework, string.Empty, language);

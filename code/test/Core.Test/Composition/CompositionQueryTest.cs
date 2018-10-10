@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Core.Test.Composition
             {
                 "wts.framework == framework",
                 "wts.type != Page",
-                "$name == Map"
+                "$name == Map",
             };
 
             var result = CompositionQuery.Parse(query);
@@ -139,10 +139,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         {
             var data = GetFactData();
             var target = CompositionQuery.Parse("identity==item-identity&tag2==tagVal2&$name==context-name");
-            var context = new QueryablePropertyDictionary
-            {
-                new QueryableProperty("name", "context-name")
-            };
+            var context = new QueryablePropertyDictionary { new QueryableProperty("name", "context-name") };
 
             var result = target.Match(data, context);
 
@@ -154,10 +151,7 @@ namespace Microsoft.Templates.Core.Test.Composition
         {
             var data = GetFactData();
             var target = CompositionQuery.Parse("identity!=item-identity&tag2==tagVal2&$name==context-name");
-            var context = new QueryablePropertyDictionary
-            {
-                new QueryableProperty("name", "context-name")
-            };
+            var context = new QueryablePropertyDictionary { new QueryableProperty("name", "context-name") };
 
             var result = target.Match(data, context);
 
@@ -199,7 +193,7 @@ namespace Microsoft.Templates.Core.Test.Composition
             var templateInfo = new FakeTemplateInfo
             {
                 Identity = $"item-identity",
-                Name = $"item-name"
+                Name = $"item-name",
             };
 
             templateInfo.AddTag($"tag1", $"tagVal1");

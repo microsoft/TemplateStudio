@@ -39,7 +39,7 @@ Namespace ViewModels
         End Sub
 
         Public Async Function LoadAnimationAsync() As Task
-            Dim selectedImageId = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewSelectedIdKey)
+            Dim selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey)
             If Not String.IsNullOrEmpty(selectedImageId) Then
                 Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose)
                 If animation IsNot Nothing Then
@@ -48,7 +48,7 @@ Namespace ViewModels
                     Await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage")
                 End If
 
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedIdKey, String.Empty)
+                ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey)
             End If
         End Function
     End Class

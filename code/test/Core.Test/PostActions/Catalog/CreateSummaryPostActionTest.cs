@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                GenerationOutputPath = outputPath
+                GenerationOutputPath = outputPath,
             };
 
             Directory.CreateDirectory(outputPath);
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                GenerationOutputPath = outputPath
+                GenerationOutputPath = outputPath,
             };
 
             Directory.CreateDirectory(outputPath);

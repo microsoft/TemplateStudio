@@ -116,7 +116,7 @@ namespace Microsoft.Templates.Core
                     result.Add(new TemplateLicense
                     {
                         Text = m.Groups["text"].Value,
-                        Url = m.Groups["url"].Value
+                        Url = m.Groups["url"].Value,
                     });
                 }
             }

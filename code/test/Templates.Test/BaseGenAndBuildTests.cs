@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Test
             {
                 ProjectName = projectName,
                 DestinationPath = destinationPath,
-                GenerationOutputPath = destinationPath
+                GenerationOutputPath = destinationPath,
             };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
@@ -128,7 +128,7 @@ namespace Microsoft.Templates.Test
             {
                 ProjectName = projectName,
                 DestinationPath = path,
-                GenerationOutputPath = path
+                GenerationOutputPath = path,
             };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
@@ -187,13 +187,13 @@ namespace Microsoft.Templates.Test
                 {
                     ProjectName = projectName,
                     DestinationPath = destinationPath,
-                    GenerationOutputPath = GenContext.GetTempGenerationPath(projectName)
+                    GenerationOutputPath = GenContext.GetTempGenerationPath(projectName),
                 };
 
                 var newUserSelection = new UserSelection(projectType, framework, platform, language)
                 {
                     HomeName = string.Empty,
-                    ItemGenerationType = ItemGenerationType.GenerateAndMerge
+                    ItemGenerationType = ItemGenerationType.GenerateAndMerge,
                 };
 
                 _fixture.AddItem(newUserSelection, item, BaseGenAndBuildFixture.GetDefaultName);
@@ -230,7 +230,7 @@ namespace Microsoft.Templates.Test
             {
                 ProjectName = projectName,
                 DestinationPath = destinationPath,
-                GenerationOutputPath = destinationPath
+                GenerationOutputPath = destinationPath,
             };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
@@ -363,7 +363,7 @@ namespace Microsoft.Templates.Test
                     "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
                     "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub.CodeBehind", "wts.Feat.MultiView",
                     "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.UriScheme", "wts.Feat.WebToAppLink",
-                    "wts.Feat.DragAndDrop.CodeBehind"
+                    "wts.Feat.DragAndDrop.CodeBehind",
                 };
             }
             else
@@ -379,7 +379,7 @@ namespace Microsoft.Templates.Test
                     "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
                     "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
                     "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.UriScheme", "wts.Feat.WebToAppLink",
-                    "wts.Feat.DragAndDrop"
+                    "wts.Feat.DragAndDrop",
                 };
             }
         }

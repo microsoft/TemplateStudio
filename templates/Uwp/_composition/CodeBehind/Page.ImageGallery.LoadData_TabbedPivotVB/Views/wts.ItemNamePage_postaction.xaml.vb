@@ -10,7 +10,7 @@
 
         '{[{
         Private Async Sub wts.ItemNamePage_Loaded(sender As Object, e As RoutedEventArgs)            
-            Dim selectedImageId = Await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(wts.ItemNameSelectedIdKey)
+            Dim selectedImageId = ImagesNavigationHelper.GetImageId(wts.ItemNameSelectedIdKey)
             If Not String.IsNullOrEmpty(selectedImageId) Then
                 Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(wts.ItemNameAnimationClose)
                 If animation IsNot Nothing Then
@@ -19,7 +19,7 @@
                     Await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage")
                 End If
 
-                ApplicationData.Current.LocalSettings.SaveString(wts.ItemNameSelectedIdKey, String.Empty)
+                ImagesNavigationHelper.RemoveImageId(wts.ItemNameSelectedIdKey)
             End If
         End Sub
         '}]}
