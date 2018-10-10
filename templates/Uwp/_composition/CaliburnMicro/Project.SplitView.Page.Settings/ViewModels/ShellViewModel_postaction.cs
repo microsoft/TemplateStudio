@@ -1,9 +1,6 @@
 ﻿//{**
 //This code block adds the logic to handle SettingsItem in NavigationView control from ViewModel.
 //**}
-//{[{
-using Param_ItemNamespace.Views;
-//}]}
 namespace Param_ItemNamespace.ViewModels
 {
     public class ShellViewModel : Screen
