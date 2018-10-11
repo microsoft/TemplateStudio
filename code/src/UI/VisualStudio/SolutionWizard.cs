@@ -56,7 +56,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 #if DEBUG
                 GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), platform, language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(ProgrammingLanguages.GetShortProgrammingLanguage(language), platform), new VsGenShell(), platform, language);
+                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language), new VsGenShell(), platform, language);
 #endif
             }
         }

@@ -159,12 +159,10 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             if (GenContext.CurrentLanguage != _shell.GetActiveProjectLanguage())
             {
-                var shortlanguage = ProgrammingLanguages.GetShortProgrammingLanguage(_shell.GetActiveProjectLanguage());
-
 #if DEBUG
                 GenContext.Bootstrap(new LocalTemplatesSource(), _shell, Platforms.Uwp, _shell.GetActiveProjectLanguage());
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(shortlanguage, Platforms.Uwp), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
+                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, _shell.GetActiveProjectLanguage()), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
 #endif
             }
 

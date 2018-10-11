@@ -17,11 +17,11 @@ namespace Microsoft.Templates.Core.Locations
     {
         private const string TemplatesFolderName = "Templates";
 
-        public event Action<object, ProgressEventArgs> NewVersionAcquisitionProgress;
+        public event EventHandler<ProgressEventArgs> NewVersionAcquisitionProgress;
 
-        public event Action<object, ProgressEventArgs> GetContentProgress;
+        public event EventHandler<ProgressEventArgs> GetContentProgress;
 
-        public event Action<object, ProgressEventArgs> CopyProgress;
+        public event EventHandler<ProgressEventArgs> CopyProgress;
 
         public string TemplatesFolder { get; private set; }
 
@@ -123,7 +123,6 @@ namespace Microsoft.Templates.Core.Locations
 
                 Source.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
                 Source.GetContentProgress += OnGetContentProgress;
-                Source.CopyProgress += OnCopyProgress;
 
                 await Source.AcquireAsync(latestPackage, ct);
 
@@ -137,15 +136,17 @@ namespace Microsoft.Templates.Core.Locations
                         All.Remove(alreadyExists);
                     }
 
-                    Current = content;
-                    All.Add(content);
+                    if (content != null)
+                    {
+                        Current = content;
+                        All.Add(content);
+                    }
                 }
             }
             finally
             {
                 Source.NewVersionAcquisitionProgress -= OnNewVersionAcquisitionProgress;
                 Source.GetContentProgress -= OnGetContentProgress;
-                Source.CopyProgress -= OnCopyProgress;
             }
         }
 
@@ -194,16 +195,17 @@ namespace Microsoft.Templates.Core.Locations
             try
             {
                 Source.GetContentProgress += OnGetContentProgress;
-                Source.CopyProgress += OnCopyProgress;
 
                 var package = await Source.GetContentAsync(packageInfo, TemplatesFolder, ct);
-                Current = package;
-                All.Add(package);
+                if (package != null)
+                {
+                    Current = package;
+                    All.Add(package);
+                }
             }
             finally
             {
                 Source.GetContentProgress -= OnGetContentProgress;
-                Source.CopyProgress -= OnCopyProgress;
             }
         }
 

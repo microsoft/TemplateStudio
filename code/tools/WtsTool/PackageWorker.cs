@@ -229,7 +229,7 @@ namespace WtsTool
 
                 var templateJson = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(templateFile.FullName));
 
-                if (templateJson.GetValue("tags")["language"].ToString().Equals(language, StringComparison.InvariantCultureIgnoreCase) && templateJson.GetValue("tags")["wts.platform"].ToString().Equals(platform, StringComparison.InvariantCultureIgnoreCase))
+                if (templateJson.GetValue("tags", StringComparison.OrdinalIgnoreCase)["language"].ToString().Equals(language, StringComparison.OrdinalIgnoreCase) && templateJson.GetValue("tags", StringComparison.OrdinalIgnoreCase)["wts.platform"].ToString().Equals(platform, StringComparison.OrdinalIgnoreCase))
                 {
                     allDirs.Add(dir.Parent);
                 }

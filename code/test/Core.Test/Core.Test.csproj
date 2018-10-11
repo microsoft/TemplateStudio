@@ -197,6 +197,8 @@
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
     <Compile Include="Diagnostics\TestHealthWriter.cs" />
     <Compile Include="Localization\LocalizationTest.cs" />
+    <Compile Include="Locations\TemplateSourceConfigTests.cs" />
+    <Compile Include="Locations\RemoteTemplateSourceTests.cs" />
     <Compile Include="Locations\UnitTestsTemplatesSource.cs" />
     <Compile Include="Packaging\TemplatePackageTests.cs" />
     <Compile Include="PostActions\Catalog\CreateSummaryPostActionTest.cs" />
@@ -275,6 +277,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Templates\TemplatesFixture.cs" />
+    <None Include="Packaging\SampleConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="TestData\Templates\UnspecifiedTemplateVB\.template.config\template.json" />
     <Content Include="TestData\Templates\_catalog\en-US.frameworks.json" />
     <Content Include="TestData\Templates\_catalog\es-ES.frameworks.json" />

@@ -26,10 +26,10 @@ namespace Microsoft.Templates.Core.Locations
 
         public override string Platform { get; }
 
-        public RemoteTemplatesSource(string shortLanguage, string platform)
+        public RemoteTemplatesSource(string platform, string language)
         {
-            Language = shortLanguage;
             Platform = platform;
+            Language = ProgrammingLanguages.GetShortProgrammingLanguage(language);
         }
 
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
@@ -40,17 +40,19 @@ namespace Microsoft.Templates.Core.Locations
 
             if (!Directory.Exists(finalDestination))
             {
-                var extractionFolder = await ExtractAsync(packageInfo, finalDestination, false, ct);
+                var extracted = await ExtractAsync(packageInfo, finalDestination, false, ct);
+                if (extracted)
+                {
+                    return new TemplatesContentInfo()
+                    {
+                        Date = packageInfo.Date,
+                        Path = finalDestination,
+                        Version = packageInfo.Version,
+                    };
+                }
             }
 
-            var templatesInfo = new TemplatesContentInfo()
-            {
-                Date = packageInfo.Date,
-                Path = finalDestination,
-                Version = packageInfo.Version,
-            };
-
-            return templatesInfo;
+            return null;
         }
 
         public override async Task AcquireAsync(TemplatesPackageInfo packageInfo, CancellationToken ct)
@@ -119,31 +121,26 @@ namespace Microsoft.Templates.Core.Locations
             OnNewVersionAcquisitionProgress(this, new ProgressEventArgs() { Version = _version, Progress = e.ProgressPercentage });
         }
 
-        private async Task<string> ExtractAsync(TemplatesPackageInfo packageInfo, string finalDest, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
-        {
-            _version = packageInfo.Version;
-            if (!string.IsNullOrEmpty(packageInfo.LocalPath))
-            {
-                await ExtractAsync(packageInfo.LocalPath, finalDest, verifyPackageSignatures, ct);
-                return Path.GetDirectoryName(packageInfo.LocalPath);
-            }
-            else
-            {
-                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSourceLocalPathEmptyMessage).FireAndForget();
-                return null;
-            }
-        }
-
-        private async Task ExtractAsync(string mstxFilePath, string versionedFolder, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
+        private async Task<bool> ExtractAsync(TemplatesPackageInfo packageInfo, string finalDest, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
         {
             try
             {
-                var finalDestinationTemp = string.Concat(versionedFolder, _tmpExtension);
+                _version = packageInfo.Version;
+                if (!string.IsNullOrEmpty(packageInfo.LocalPath))
+                {
+                    var finalDestinationTemp = string.Concat(finalDest, _tmpExtension);
 
-                await TemplatePackage.ExtractAsync(mstxFilePath, finalDestinationTemp, verifyPackageSignatures, ReportExtractionProgress, ct);
-                Fs.SafeRenameDirectory(finalDestinationTemp, versionedFolder);
+                    await TemplatePackage.ExtractAsync(packageInfo.LocalPath, finalDestinationTemp, verifyPackageSignatures, ReportExtractionProgress, ct);
+                    Fs.SafeRenameDirectory(finalDestinationTemp, finalDest);
 
-                AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {versionedFolder}.").FireAndForget();
+                    AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {finalDest}.").FireAndForget();
+                    return true;
+                }
+                else
+                {
+                    AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSourceLocalPathEmptyMessage).FireAndForget();
+                    return false;
+                }
             }
             catch (Exception ex) when (ex.GetType() != typeof(OperationCanceledException))
             {

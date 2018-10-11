@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Core.Locations
             }
         }
 
-        public static Version GetVersionFromMstx(string mstxFilePath)
+        private static Version GetVersionFromMstx(string mstxFilePath)
         {
             string content = GetFileContent(mstxFilePath, "Version.txt");
 
@@ -90,7 +90,7 @@ namespace Microsoft.Templates.Core.Locations
             {
                 using (ZipArchive zip = ZipFile.Open(mstxFilePath, ZipArchiveMode.Read))
                 {
-                    var entry = zip.Entries.Where(e => e.Name.Equals(fileName, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                    var entry = zip.Entries.Where(e => e.Name.Equals(fileName, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
                     if (entry != null)
                     {
                         using (StreamReader sr = new StreamReader(entry.Open()))
