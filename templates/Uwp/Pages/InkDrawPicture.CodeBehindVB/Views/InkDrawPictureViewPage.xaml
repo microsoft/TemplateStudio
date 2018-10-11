@@ -84,7 +84,7 @@
                 BorderThickness="0,0,0,0"
                 x:Uid="InkDrawPictureView_SaveImageButton"
                 Icon="Save"
-                Click="SaveImage_Click" />                
+                Click="SaveImage_Click" />
                 <AppBarSeparator/>
                 <AppBarButton
                 Name="ClearAllButton"
