@@ -167,11 +167,6 @@ namespace Microsoft.Templates.Core.Locations
             }
 }
 
-        private void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
-        {
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Copying, Version = eventArgs.Version, Progress = eventArgs.Progress });
-        }
-
         private void OnGetContentProgress(object sender, ProgressEventArgs eventArgs)
         {
             SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Preparing, Version = eventArgs.Version, Progress = eventArgs.Progress });
