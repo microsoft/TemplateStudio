@@ -15,7 +15,7 @@ namespace Microsoft.Templates.Core
                 return new ValidationResult()
                 {
                     IsValid = false,
-                    ErrorType = ValidationErrorType.EndsWithPageSuffix
+                    ErrorType = ValidationErrorType.EndsWithPageSuffix,
                 };
             }
             else
@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core
                 return new ValidationResult()
                 {
                     IsValid = true,
-                    ErrorType = ValidationErrorType.None
+                    ErrorType = ValidationErrorType.None,
                 };
             }
         }

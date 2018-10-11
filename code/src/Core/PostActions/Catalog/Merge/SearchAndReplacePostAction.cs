@@ -128,7 +128,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             var validator = new List<Validator>
             {
-                new FileExistsValidator(Path.GetDirectoryName(Config.FilePath))
+                new FileExistsValidator(Path.GetDirectoryName(Config.FilePath)),
             };
 
             newFileName = Naming.Infer(newFileName, validator);

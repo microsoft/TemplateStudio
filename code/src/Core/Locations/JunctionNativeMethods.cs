@@ -124,7 +124,7 @@ namespace Microsoft.Templates.Core.Locations
             PosixSemantics = 0x01000000,
             OpenReparsePoint = 0x00200000,
             OpenNoRecall = 0x00100000,
-            FirstPipeInstance = 0x00080000
+            FirstPipeInstance = 0x00080000,
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -229,7 +229,7 @@ namespace Microsoft.Templates.Core.Locations
                     SubstituteNameLength = (ushort)sourceDirBytes.Length,
                     PrintNameOffset = (ushort)(sourceDirBytes.Length + 2),
                     PrintNameLength = 0,
-                    PathBuffer = new byte[0x3ff0]
+                    PathBuffer = new byte[0x3ff0],
                 };
                 Array.Copy(sourceDirBytes, reparseDataBuffer.PathBuffer, sourceDirBytes.Length);
 

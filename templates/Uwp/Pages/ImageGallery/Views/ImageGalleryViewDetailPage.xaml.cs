@@ -16,10 +16,10 @@ namespace Param_ItemNamespace.Views
             ViewModel.SetImage(previewImage);
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            await ViewModel.InitializeAsync(e.Parameter as string, e.NavigationMode);
+            ViewModel.Initialize(e.Parameter as string, e.NavigationMode);
             showFlipView.Begin();
         }
 

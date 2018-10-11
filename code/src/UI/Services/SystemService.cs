@@ -41,7 +41,7 @@ namespace Microsoft.Templates.UI.Services
             private set => SetValue(IsHighContrastProperty, value);
         }
 
-        public void UnsuscribeEventHandlers()
+        public void UnsubscribeEventHandlers()
         {
             SystemParameters.StaticPropertyChanged -= OnStaticPropertyChanged;
         }
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.UI.Services
             return fontSize;
         }
 
-        public(double width, double height) GetMainWindowSize()
+        public (double width, double height) GetMainWindowSize()
         {
             double width = 1120; // 1277;
             double height = 733; // 727

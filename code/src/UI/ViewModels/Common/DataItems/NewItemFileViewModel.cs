@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 FileStatus = FileStatus.NewFile,
                 TempFile = filePath,
-                FileExtension = GetFileExtension(filePath)
+                FileExtension = GetFileExtension(filePath),
             };
         }
 
@@ -97,7 +97,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             return new NewItemFileViewModel(FileStatus.ConflictingStylesFile, file.FailedFileName, file.FilePath, string.Empty, AsUserFriendlyPostAction)
             {
-                FailedPostaction = file.FailedFilePath
+                FailedPostaction = file.FailedFilePath,
             };
         }
 
@@ -105,7 +105,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             return new NewItemFileViewModel(FileStatus.WarningFile, file.FailedFileName, file.FailedFilePath, string.Empty, AsUserFriendlyPostAction)
             {
-                Description = file.Description
+                Description = file.Description,
             };
         }
 

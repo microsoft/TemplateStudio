@@ -51,7 +51,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                GenerationOutputPath = destPath
+                GenerationOutputPath = destPath,
             };
 
             List<FakeCreationPath> testPrimaryOutputs = new List<FakeCreationPath>();

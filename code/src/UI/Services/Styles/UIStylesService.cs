@@ -20,10 +20,10 @@ namespace Microsoft.Templates.UI.Services
             SetStyles();
         }
 
-        public void UnsuscribeEventHandlers()
+        public void UnsubscribeEventHandlers()
         {
             _stylesProvider.ThemeChanged -= StylesProvider_ThemeChanged;
-            _stylesProvider.UnsuscribeEventHandlers();
+            _stylesProvider.UnsubscribeEventHandlers();
         }
 
         private void StylesProvider_ThemeChanged(object sender, System.EventArgs e)

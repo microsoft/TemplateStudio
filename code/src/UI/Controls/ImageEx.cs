@@ -210,7 +210,7 @@ namespace Microsoft.Templates.UI.Controls
             return new Binding
             {
                 Path = new PropertyPath(path),
-                Source = source
+                Source = source,
             };
         }
 

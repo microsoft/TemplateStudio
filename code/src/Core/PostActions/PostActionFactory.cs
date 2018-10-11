@@ -84,7 +84,7 @@ namespace Microsoft.Templates.Core.PostActions
             var files = Directory
                 .EnumerateFiles(genInfo.GenerationPath, searchPattern, SearchOption.AllDirectories)
                 .ToList();
-                files.ForEach(f => AddMergePostAction(genInfo, postActions, failOnError, f));
+            files.ForEach(f => AddMergePostAction(genInfo, postActions, failOnError, f));
         }
 
         internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)

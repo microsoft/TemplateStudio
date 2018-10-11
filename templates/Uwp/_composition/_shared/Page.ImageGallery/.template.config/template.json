@@ -51,6 +51,9 @@
     },
     {
       "path": ".\\Param_ProjectName.Core\\Models\\SampleImage.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName\\Helpers\\ImagesNavigationHelper.cs"
     }
   ],
   "symbols": {

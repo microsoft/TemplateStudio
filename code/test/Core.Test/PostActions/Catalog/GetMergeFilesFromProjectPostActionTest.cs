@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = Path.GetFullPath(@".\DestinationPath\Project"),
-                GenerationOutputPath = path
+                GenerationOutputPath = path,
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
@@ -59,7 +59,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                GenerationOutputPath = outputPath
+                GenerationOutputPath = outputPath,
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
@@ -88,7 +88,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                GenerationOutputPath = outputPath
+                GenerationOutputPath = outputPath,
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
@@ -114,7 +114,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                GenerationOutputPath = outputPath
+                GenerationOutputPath = outputPath,
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);

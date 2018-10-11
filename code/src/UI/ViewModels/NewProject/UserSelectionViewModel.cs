@@ -23,7 +23,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     {
         Layout,
         UserSelection,
-        Dependency
+        Dependency,
     }
 
     public class UserSelectionViewModel : Observable

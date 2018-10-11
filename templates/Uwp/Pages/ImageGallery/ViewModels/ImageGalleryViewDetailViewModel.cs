@@ -26,7 +26,7 @@ namespace Param_ItemNamespace.ViewModels
             set
             {
                 Param_Setter(ref _selectedImage, value);
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, ((SampleImage)SelectedImage).ID);
+                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey, ((SampleImage)SelectedImage).ID);
             }
         }
 
@@ -44,7 +44,7 @@ namespace Param_ItemNamespace.ViewModels
 
         public void SetImage(UIElement image) => _image = image;
 
-        public async Task InitializeAsync(string sampleImageId, NavigationMode navigationMode)
+        public void Initialize(string sampleImageId, NavigationMode navigationMode)
         {
             if (!string.IsNullOrEmpty(sampleImageId) && navigationMode == NavigationMode.New)
             {
@@ -52,7 +52,7 @@ namespace Param_ItemNamespace.ViewModels
             }
             else
             {
-                var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
+                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageId))
                 {
                     SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);

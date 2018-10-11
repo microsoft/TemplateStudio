@@ -14,20 +14,20 @@ namespace Microsoft.Templates.UI.Controls
     {
         Information = 0,
         Warning = 1,
-        Error = 2
+        Error = 2,
     }
 
     public enum TimerType
     {
         None,
         Short,
-        Large
+        Large,
     }
 
     public enum ErrorCategory
     {
         None,
-        NamingValidation
+        NamingValidation,
     }
 
     public enum Category
@@ -37,7 +37,7 @@ namespace Microsoft.Templates.UI.Controls
         TemplatesSyncError,
         RemoveTemplateValidation,
         RightClickItemHasNoChanges,
-        ViewSufixValidation
+        ViewSufixValidation,
     }
 
     public class Notification : Observable
@@ -84,7 +84,7 @@ namespace Microsoft.Templates.UI.Controls
             _closeTimer.Tick += OnTick;
         }
 
-        internal void UnsuscribeEventHandlers()
+        internal void UnsubscribeEventHandlers()
         {
             _closeTimer.Tick -= OnTick;
         }
@@ -134,7 +134,7 @@ namespace Microsoft.Templates.UI.Controls
                 Type = NotificationType.Information,
                 CanClose = canClose,
                 Message = message,
-                Category = category
+                Category = category,
             };
         }
 
@@ -158,7 +158,7 @@ namespace Microsoft.Templates.UI.Controls
                 Message = message,
                 ErrorCategory = errorCategory,
                 CategoriesToOverride = categoriesToOverride,
-                Category = Category.None
+                Category = Category.None,
             };
         }
 

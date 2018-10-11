@@ -26,7 +26,7 @@ namespace Microsoft.Templates.UI.Services
             var validators = new List<Validator>()
             {
                 new ReservedNamesValidator(),
-                new PageSuffixValidator()
+                new PageSuffixValidator(),
             };
 
             if (includesExistingNamesValidation)

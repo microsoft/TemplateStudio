@@ -16,7 +16,7 @@ namespace Microsoft.Templates.Core.Gen
     {
         None,
         Generate,
-        GenerateAndMerge
+        GenerateAndMerge,
     }
 
     public class UserSelection

@@ -1,8 +1,9 @@
-﻿Imports Windows.Foundation.Metadata
+﻿Imports WinUI = Microsoft.UI.Xaml.Controls
+Imports Windows.System
 Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Navigation
-Imports wts.ItemName.Services
 Imports wts.ItemName.Helpers
+Imports wts.ItemName.Services
 
 Namespace Views
     ' TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
@@ -10,21 +11,34 @@ Namespace Views
         Inherits Page
         Implements INotifyPropertyChanged
 
-        Private _selected As NavigationViewItem
+        Private ReadOnly _altLeftKeyboardAccelerator As KeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu)
+        Private ReadOnly _backKeyboardAccelerator As KeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack)
 
-        Public Property Selected As NavigationViewItem
+        Private _isBackEnabled As Boolean
+        Private _selected As WinUI.NavigationViewItem
+
+        Public Property IsBackEnabled As Boolean
+            Get
+                Return _isBackEnabled
+            End Get
+
+            Set(value As Boolean)
+                [Set](_isBackEnabled, value)
+            End Set
+        End Property
+
+        Public Property Selected As WinUI.NavigationViewItem
             Get
                 Return _selected
             End Get
 
-            Set(value As NavigationViewItem)
+            Set(value As WinUI.NavigationViewItem)
                 [Set](_selected, value)
             End Set
         End Property
 
         Public Sub New()
             InitializeComponent()
-            HideNavViewBackButton()
             DataContext = Me
             Initialize()
         End Sub
@@ -32,29 +46,48 @@ Namespace Views
         Private Sub Initialize()
             NavigationService.Frame = shellFrame
             AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
-            KeyboardAccelerators.Add(ActivationService.AltLeftKeyboardAccelerator)
-            KeyboardAccelerators.Add(ActivationService.BackKeyboardAccelerator)
+            AddHandler navigationView.BackRequested, AddressOf OnBackRequested
+            keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
+            keyboardAccelerators.Add(_backKeyboardAccelerator)
+        End Sub
+
+        Private Sub OnBackRequested(sender As WinUI.NavigationView, args As WinUI.NavigationViewBackRequestedEventArgs)
+            NavigationService.GoBack()
         End Sub
 
         Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-            Selected = navigationView.MenuItems.OfType(Of NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
+            IsBackEnabled = NavigationService.CanGoBack
+            Selected = navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
         End Sub
 
-        Private Function IsMenuItemForPageType(menuItem As NavigationViewItem, sourcePageType As Type) As Boolean
+        Private Function IsMenuItemForPageType(menuItem As WinUI.NavigationViewItem, sourcePageType As Type) As Boolean
             Dim pageType = TryCast(menuItem.GetValue(NavHelper.NavigateToProperty), Type)
             Return pageType = sourcePageType
         End Function
 
-        Private Sub OnItemInvoked(sender As NavigationView, args As NavigationViewItemInvokedEventArgs)
-            Dim item = navigationView.MenuItems.OfType(Of NavigationViewItem)().First(Function(menuItem) CStr(menuItem.Content) = CStr(args.InvokedItem))
+        Private Sub OnItemInvoked(sender As WinUI.NavigationView, args As WinUI.NavigationViewItemInvokedEventArgs)
+            Dim item = navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().First(Function(menuItem) CStr(menuItem.Content) = CStr(args.InvokedItem))
             Dim pageType = TryCast(item.GetValue(NavHelper.NavigateToProperty), Type)
             NavigationService.Navigate(pageType)
         End Sub
 
-        Private Sub HideNavViewBackButton()
-            If ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 6) Then
-                navigationView.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed
-            End if
+        Private Function BuildKeyboardAccelerator(key As VirtualKey, Optional modifiers As VirtualKeyModifiers? = Nothing) As KeyboardAccelerator
+            Dim keyboardAccelerator = New KeyboardAccelerator() With {
+                .Key = key
+            }
+
+            If modifiers.HasValue Then
+                keyboardAccelerator.Modifiers = modifiers.Value
+            End If
+
+            ToolTipService.SetToolTip(keyboardAccelerator, String.Empty)
+            AddHandler keyboardAccelerator.Invoked, AddressOf OnKeyboardAcceleratorInvoked
+            Return keyboardAccelerator
+        End Function
+
+        Private Overloads Sub OnKeyboardAcceleratorInvoked(sender As KeyboardAccelerator, args As KeyboardAcceleratorInvokedEventArgs)
+            Dim result = NavigationService.GoBack()
+            args.Handled = result
         End Sub
 
         Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged

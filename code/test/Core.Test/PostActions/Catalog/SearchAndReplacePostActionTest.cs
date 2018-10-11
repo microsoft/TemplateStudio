@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 GenerationOutputPath = path,
-                DestinationPath = Path.GetFullPath(@".\Destination\Project")
+                DestinationPath = Path.GetFullPath(@".\Destination\Project"),
             };
 
             var mergePostAction = new SearchAndReplacePostAction(templateName, new MergeConfiguration(mergeFile, false));

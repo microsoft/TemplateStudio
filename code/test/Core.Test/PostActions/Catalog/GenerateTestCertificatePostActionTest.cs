@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider
             {
                 DestinationPath = destinationPath,
-                GenerationOutputPath = generationOutputPath
+                GenerationOutputPath = generationOutputPath,
             };
 
             Directory.CreateDirectory(generationOutputPath);
@@ -41,15 +41,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var testArgs = new Dictionary<string, string>
             {
-                { "files", "0" }
+                { "files", "0" },
             };
 
             var testPrimaryOutputs = new List<FakeCreationPath>()
             {
-                new FakeCreationPath()
-                {
-                    Path = projectFile
-                }
+                new FakeCreationPath() { Path = projectFile },
             };
 
             var templateDefinedPostAction = new FakeTemplateDefinedPostAction(GenerateTestCertificatePostAction.Id, testArgs, true);
@@ -75,7 +72,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider
             {
                 DestinationPath = destinationPath,
-                GenerationOutputPath = generationOutputPath
+                GenerationOutputPath = generationOutputPath,
             };
 
             Directory.CreateDirectory(Path.Combine(destinationPath, "TestProject"));
@@ -85,12 +82,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var testArgs = new Dictionary<string, string>()
             {
-                { "files", "0" }
+                { "files", "0" },
             };
 
             var testPrimaryOutputs = new List<FakeCreationPath>()
             {
-                new FakeCreationPath() { Path = projectFile }
+                new FakeCreationPath() { Path = projectFile },
             };
 
             var templateDefinedPostAction = new FakeTemplateDefinedPostAction(GenerateTestCertificatePostAction.Id, testArgs, true);

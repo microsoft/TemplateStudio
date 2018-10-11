@@ -12,7 +12,7 @@
         //{[{
         private async void wts.ItemNamePage_Loaded(object sender, RoutedEventArgs e)
         {
-            var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(wts.ItemNameSelectedIdKey);
+            var selectedImageId = ImagesNavigationHelper.GetImageId(wts.ItemNameSelectedIdKey);
             if (!string.IsNullOrEmpty(selectedImageId))
             {
                 var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(wts.ItemNameAnimationClose);
@@ -23,7 +23,7 @@
                     await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
                 }
 
-                ApplicationData.Current.LocalSettings.SaveString(wts.ItemNameSelectedIdKey, string.Empty);
+                ImagesNavigationHelper.RemoveImageId(wts.ItemNameSelectedIdKey);
             }
         }
         //}]}

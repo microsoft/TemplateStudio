@@ -166,7 +166,7 @@ namespace Microsoft.Templates.Core.Locations
                 installedPackage = new TemplatesPackageInfo()
                 {
                     Name = Path.GetFileName(mstxFilePath),
-                    LocalPath = Path.Combine(tempPath, Path.GetFileName(mstxFilePath))
+                    LocalPath = Path.Combine(tempPath, Path.GetFileName(mstxFilePath)),
                 };
             }
             else
@@ -279,7 +279,7 @@ namespace Microsoft.Templates.Core.Locations
                         {
                             Path = sdi.FullName,
                             Version = v,
-                            Date = sdi.CreationTime
+                            Date = sdi.CreationTime,
                         };
 
                         All.Add(t);

@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         private void OnUnloaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            Services.NavigationService.UnsuscribeEventHandlers();
+            Services.NavigationService.UnsubscribeEventHandlers();
         }
     }
 }
