@@ -11,7 +11,7 @@ Namespace Views
             IsBackEnabled = NavigationService.CanGoBack
             '{[{
             If e.SourcePageType = GetType(wts.ItemNamePage) Then
-                Selected = TryCast(navigationView.SettingsItem, WinUI.NavigationViewItem)
+                Selected = TryCast(winUiNavigationView.SettingsItem, WinUI.NavigationViewItem)
                 Return
             End If
 

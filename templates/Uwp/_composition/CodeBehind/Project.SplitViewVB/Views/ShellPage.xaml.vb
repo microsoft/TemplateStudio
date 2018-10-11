@@ -46,7 +46,7 @@ Namespace Views
         Private Sub Initialize()
             NavigationService.Frame = shellFrame
             AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
-            AddHandler navigationView.BackRequested, AddressOf OnBackRequested
+            AddHandler winUiNavigationView.BackRequested, AddressOf OnBackRequested
             keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
             keyboardAccelerators.Add(_backKeyboardAccelerator)
         End Sub
@@ -57,7 +57,7 @@ Namespace Views
 
         Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             IsBackEnabled = NavigationService.CanGoBack
-            Selected = navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
+            Selected = winUiNavigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
         End Sub
 
         Private Function IsMenuItemForPageType(menuItem As WinUI.NavigationViewItem, sourcePageType As Type) As Boolean
@@ -66,7 +66,7 @@ Namespace Views
         End Function
 
         Private Sub OnItemInvoked(sender As WinUI.NavigationView, args As WinUI.NavigationViewItemInvokedEventArgs)
-            Dim item = navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().First(Function(menuItem) CStr(menuItem.Content) = CStr(args.InvokedItem))
+            Dim item = winUiNavigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().First(Function(menuItem) CStr(menuItem.Content) = CStr(args.InvokedItem))
             Dim pageType = TryCast(item.GetValue(NavHelper.NavigateToProperty), Type)
             NavigationService.Navigate(pageType)
         End Sub

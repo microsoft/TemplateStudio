@@ -385,6 +385,10 @@ The postaction works in three steps:
 2. If the file is not found the whole resource dictionary contained in the postaction file is copied to the source file. 
 3. If the file is found, each element from _postaction file is copied if not already there. In case the key is already defined in the source resource dictionary and the elements are different, a warning is shown.
 
+## Supporting VB.Net and C# versions of Templates
+
+
+
 ## Testing and verifying template contents
 
 The tool **TemplateValidator.exe** exists to help template authors verify their templates are correctly structured and to identify common errors. It can verify the contents of an individual `template.json` file or the contents of multiple directories containing templates.

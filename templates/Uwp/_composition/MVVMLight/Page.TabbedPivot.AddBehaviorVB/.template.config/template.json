@@ -1,20 +1,23 @@
 ﻿{
-  "author": "Microsoft",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "Page.TabbedPivot.AddBehavior.VB",
+  "name": "MVVMLight.Page.TabbedPivot.AddBehavior.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == TabbedPivot & $framework == CodeBehind|MVVMBasic & wts.type == page & groupidentity == wts.Page.MediaPlayer.VB|wts.Page.Camera.VB"
+    "wts.compositionFilter": "$projectType == TabbedPivot & $framework == MVVMLight & wts.type == page & identity == wts.Page.Camera.VB|wts.Page.MediaPlayer.VB"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": ".\\Helpers\\PivotItemExtensions.vb"
+    },
     {
       "path": ".\\Behaviors\\PivotBehavior.vb"
     },
