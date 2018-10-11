@@ -56,7 +56,6 @@ namespace Microsoft.Templates.Core.Locations
                         if (!_content.Exists() || force || CurrentContent.Version < CurrentWizardVersion)
                         {
                             _content.GetContentProgress += OnGetContentProgress;
-                            _content.CopyProgress += OnCopyProgress;
 
                             await ExtractInstalledContentAsync(ct);
                         }
@@ -66,7 +65,6 @@ namespace Microsoft.Templates.Core.Locations
                     finally
                     {
                         _content.GetContentProgress -= OnGetContentProgress;
-                        _content.CopyProgress -= OnCopyProgress;
 
                         UnlockSync();
                     }
@@ -110,7 +108,6 @@ namespace Microsoft.Templates.Core.Locations
 
                     _content.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
                     _content.GetContentProgress += OnGetContentProgress;
-                    _content.CopyProgress += OnCopyProgress;
 
                     if (_content.IsNewVersionAvailable(out var version))
                     {
@@ -129,7 +126,6 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     _content.NewVersionAcquisitionProgress -= OnNewVersionAcquisitionProgress;
                     _content.GetContentProgress -= OnGetContentProgress;
-                    _content.CopyProgress -= OnCopyProgress;
                     UnlockSync();
                 }
             }

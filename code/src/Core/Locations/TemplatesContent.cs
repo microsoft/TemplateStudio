@@ -21,8 +21,6 @@ namespace Microsoft.Templates.Core.Locations
 
         public event EventHandler<ProgressEventArgs> GetContentProgress;
 
-        public event EventHandler<ProgressEventArgs> CopyProgress;
-
         public string TemplatesFolder { get; private set; }
 
         public Version WizardVersion { get; private set; }
@@ -158,11 +156,6 @@ namespace Microsoft.Templates.Core.Locations
         private void OnGetContentProgress(object sender, ProgressEventArgs eventArgs)
         {
             GetContentProgress?.Invoke(this, eventArgs);
-        }
-
-        private void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
-        {
-            CopyProgress?.Invoke(this, eventArgs);
         }
 
         internal TemplatesPackageInfo ResolveInstalledContent()
