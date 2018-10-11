@@ -20,7 +20,7 @@ namespace Param_ItemNamespace.BackgroundTasks
             var taskName = GetType().Name;
             var taskRegistration = BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == taskName).Value;
 
-            if (taskRegistration == null) 
+            if (taskRegistration == null)
             {
                 var builder = new BackgroundTaskBuilder()
                 {
