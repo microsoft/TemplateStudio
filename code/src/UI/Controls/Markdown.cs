@@ -134,7 +134,7 @@ namespace Microsoft.Templates.UI.Controls
             set => SetValue(AssetPathRootProperty, value);
         }
 
-        public static readonly DependencyProperty AssetPathRootProperty = DependencyProperty.Register("AssetPathRootRoot", typeof(string), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty AssetPathRootProperty = DependencyProperty.Register("AssetPathRoot", typeof(string), typeof(Markdown), new PropertyMetadata(null));
 
         public Markdown()
         {
