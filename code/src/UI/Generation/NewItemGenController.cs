@@ -52,7 +52,7 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.ShowModal(newItem);
                 if (newItem.Result != null)
                 {
-                    TrackWizardCompletedTelemery(WizardTypeEnum.AddFeature, newItem.Result.ItemGenerationType);
+                    TrackWizardCompletedTelemetry(WizardTypeEnum.AddFeature, newItem.Result.ItemGenerationType);
 
                     return newItem.Result;
                 }
@@ -82,7 +82,7 @@ namespace Microsoft.Templates.UI
                 GenContext.ToolBox.Shell.ShowModal(newItem);
                 if (newItem.Result != null)
                 {
-                    TrackWizardCompletedTelemery(WizardTypeEnum.AddPage, newItem.Result.ItemGenerationType);
+                    TrackWizardCompletedTelemetry(WizardTypeEnum.AddPage, newItem.Result.ItemGenerationType);
 
                     return newItem.Result;
                 }
@@ -125,7 +125,7 @@ namespace Microsoft.Templates.UI
 
             chrono.Stop();
 
-            TrackTelemery(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
+            TrackTelemetry(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
         }
 
         private TempGenerationResult CompareTempGenerationWithProject()
@@ -339,7 +339,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void TrackTelemery(TemplateType templateType, IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string appPlatform)
+        private static void TrackTelemetry(TemplateType templateType, IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string appPlatform)
         {
             try
             {
@@ -368,7 +368,7 @@ namespace Microsoft.Templates.UI
             }
         }
 
-        private static void TrackWizardCompletedTelemery(WizardTypeEnum wizardType, ItemGenerationType generationType)
+        private static void TrackWizardCompletedTelemetry(WizardTypeEnum wizardType, ItemGenerationType generationType)
         {
             switch (generationType)
             {
