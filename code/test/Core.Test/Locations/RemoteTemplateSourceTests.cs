@@ -65,7 +65,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             await rts.LoadConfigAsync(cts.Token);
             var package = rts.Config.Latest;
 
-            cts.CancelAfter(TimeSpan.FromSeconds(5));
+            cts.CancelAfter(TimeSpan.FromSeconds(1));
             await Assert.ThrowsAsync<OperationCanceledException>(async () =>
             {
                 await rts.AcquireAsync(package, cts.Token);
@@ -127,7 +127,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
                 await rts.AcquireAsync(package, cts.Token);
 
-                cts.CancelAfter(TimeSpan.FromSeconds(5));
+                cts.CancelAfter(TimeSpan.FromSeconds(1));
                 await Assert.ThrowsAsync<OperationCanceledException>(async () =>
                 {
                     await rts.GetContentAsync(package, testDir, cts.Token);
