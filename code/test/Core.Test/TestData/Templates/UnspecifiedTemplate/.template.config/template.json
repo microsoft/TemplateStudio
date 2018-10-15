@@ -5,7 +5,9 @@
   "groupIdentity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate",
   "identity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate.CSharp",
   "tags": {
-    "language": "C#"
+    "language": "C#",
+    "wts.platform": "Uwp"
+
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

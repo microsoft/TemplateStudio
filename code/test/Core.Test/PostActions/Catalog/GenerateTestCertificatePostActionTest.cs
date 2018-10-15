@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             OutputPath = @".\temp\TestProject";
             ProjectName = projectName;
 
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), Platforms.Uwp, ProgrammingLanguages.CSharp);
             GenContext.Current = this;
 
             Directory.CreateDirectory(GenContext.Current.OutputPath);

@@ -309,10 +309,6 @@
     <value>Kullanılabilir yeni şablonlar var (v{0}). İndiriliyor… %{1}</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>Şablonlar kopyalanıyor (v{0})... {1}%</value>
-    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
-  </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>Şablonlar indirilirken hata oluştu (v{0}). Daha sonra tekrar deneyeceğiz.</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>

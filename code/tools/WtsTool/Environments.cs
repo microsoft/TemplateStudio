@@ -16,7 +16,7 @@ namespace WtsTool
         Pre,
         Dev,
         Test,
-        Unknown
+        Unknown,
     }
 
     public static class Environments
@@ -26,7 +26,7 @@ namespace WtsTool
             { EnvEnum.Test, "https://wtsrepository.blob.core.windows.net/test" },
             { EnvEnum.Dev, "https://wtsrepository.blob.core.windows.net/dev" },
             { EnvEnum.Pre, "https://wtsrepository.blob.core.windows.net/pre" },
-            { EnvEnum.Pro, "https://wts2.azureedge.net" }
+            { EnvEnum.Pro, "https://wts2.azureedge.net" },
         };
     }
 }

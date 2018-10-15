@@ -309,10 +309,6 @@
     <value>有新的範本可用 (v{0})。下載中...{1}%</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>正在複製範本 (v{0})...{1}%</value>
-    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
-  </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>下載範本 (v{0}) 時發生錯誤。請稍後再試一次。</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>
@@ -702,18 +698,6 @@
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
     <value>請注意，「Page」將會自動加入到指定名稱的結尾。[有關命名的更多資訊。]({0}WTSNaming.md)</value>
     <comment>Validation error message: View Suffix</comment>
-  </data>
-  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>We've changed our MVVMLight ViewModelLocator implementation to support MultiView in MVVMLight. </value>
-    <comment>Has old MvvmLight Locator error message</comment>
-  </data>
-  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
-    <value>{0}frameworks/updatemvvmlightlocator.md</value>
-    <comment>Has old MvvmLight Locator link documentation</comment>
-  </data>
-  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
-    <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
     <value>We've changed our MVVMLight ViewModelLocator implementation to support MultiView in MVVMLight. </value>

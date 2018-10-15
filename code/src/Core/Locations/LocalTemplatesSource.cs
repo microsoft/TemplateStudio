@@ -20,12 +20,17 @@ namespace Microsoft.Templates.Core.Locations
             Name = "LocalTemplates_v0.0.0.0",
             LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
             Bytes = 1024,
+            WizardVersions = new List<Version>() { new Version(0, 0) },
             Date = DateTime.Now,
         };
 
         protected virtual string Origin => $@"..\..\..\..\..\{TemplatesFolderName}";
 
         private string _id;
+
+        public override string Language { get => string.Empty; }
+
+        public override string Platform { get => string.Empty; }
 
         private List<TemplatesPackageInfo> availablePackages = new List<TemplatesPackageInfo>();
 
@@ -61,6 +66,7 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     Name = $"LocalTemplates_v{v.ToString()}",
                     LocalPath = $@"..\..\..\..\..\{TemplatesFolderName}",
+                    WizardVersions = new List<Version>() { v },
                     Bytes = 1024,
                     Date = DateTime.Now,
                 };

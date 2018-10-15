@@ -309,10 +309,6 @@
     <value>Há novos modelos disponíveis (v{0}). Baixando… {1}%</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>Copiando modelos (v{0})... {1}%</value>
-    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
-  </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>Erro ao baixar modelos (v{0}). Tentaremos novamente mais tarde.</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>

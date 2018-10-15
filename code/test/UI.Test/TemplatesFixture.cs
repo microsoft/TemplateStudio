@@ -47,7 +47,7 @@ namespace Microsoft.UI.Test
         public void InitializeFixture(string platform, string language)
         {
             var source = new LocalTemplatesSource();
-            GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), Platforms.Uwp, language);
             GenContext.Current = this;
             if (!syncExecuted)
             {

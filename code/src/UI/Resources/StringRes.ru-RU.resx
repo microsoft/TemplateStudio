@@ -309,10 +309,6 @@
     <value>Доступны новые шаблоны (версия {0}). Идет скачивание… {1} %</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>Копируются шаблоны (версия {0})… {1}%</value>
-    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
-  </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>Ошибка при скачивании шаблонов (версия {0}). Мы повторим попытку позже.</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>

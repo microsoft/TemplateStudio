@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Test
         private string testExecutionTimeStamp = DateTime.Now.FormatAsDateHoursMinutes();
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\LEG\\{testExecutionTimeStamp}\\";
 
-        public TemplatesSource Source => new LegacyTemplatesSourceV2();
+        public TemplatesSource Source => new LegacyTemplatesSourceV2(ProgrammingLanguages.CSharp);
         public TemplatesSource LocalSource => new LocalTemplatesSource("BldRClickLegacy");
 
         private static bool syncExecuted;
@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Test
             {
                 Configuration.Current.CdnUrl = "https://wtsrepository.blob.core.windows.net/pro/";
 
-                InitializeTemplates(new LegacyTemplatesSourceV2(), language);
+                InitializeTemplates(new LegacyTemplatesSourceV2(ProgrammingLanguages.CSharp), language);
 
                 // TODO: Re-enable for all platforms
                 ////foreach (var language in Platforms.GetAllPlarforms())
@@ -76,7 +76,7 @@ namespace Microsoft.Templates.Test
             source.LoadConfigAsync(default(CancellationToken)).Wait();
             var version = new Version(source.Config.Latest.Version.Major, source.Config.Latest.Version.Minor);
 
-            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), version, language);
+            GenContext.Bootstrap(source, new FakeGenShell(Platforms.Uwp, language), version, Platforms.Uwp, language);
             if (!syncExecuted)
             {
                 GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Test
          Justification = "Required for unit testing.")]
         public void ChangeTemplatesSource(TemplatesSource source, string language, string platform)
         {
-            GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
             GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
         }
 

@@ -32,7 +32,7 @@ namespace WtsTool
                     {
                         Name = e.Name,
                         Bytes = e.Properties.Length,
-                        Date = e.Properties.LastModified.Value.DateTime
+                        Date = e.Properties.LastModified.Value.DateTime,
                     })
                 .OrderByDescending(e => e.Date)
                 .OrderByDescending(e => e.Version)
@@ -43,7 +43,7 @@ namespace WtsTool
             {
                 Latest = remotePackages.FirstOrDefault(),
                 Versions = remotePackages.ToList(),
-                RootUri = container.Uri
+                RootUri = container.Uri,
             };
             return config;
         }

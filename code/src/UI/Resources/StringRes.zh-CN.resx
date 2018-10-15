@@ -309,10 +309,6 @@
     <value>有可用的新模板 (v{0})。正在下载... {1}%</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>正在复制模板 (v{0})...{1}%</value>
-    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
-  </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>下载模板 (v{0}) 时出错。我们将稍后重试。</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>

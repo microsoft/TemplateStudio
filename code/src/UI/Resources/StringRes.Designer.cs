@@ -835,15 +835,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copying templates (v{0})... {1}%.
-        /// </summary>
-        public static string NotificationSyncStatus_Copying {
-            get {
-                return ResourceManager.GetString("NotificationSyncStatus_Copying", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error downloading templates (v{0}). We&apos;ll try later again..
         /// </summary>
         public static string NotificationSyncStatus_ErrorAcquiring {
