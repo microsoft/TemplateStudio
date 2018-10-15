@@ -26,5 +26,14 @@ namespace WtsTool.CommandOptions
 
         [Option('c', "config", Required = true, HelpText = "Publish an updated configuration file to the CDN.", Default = false, SetName = "Config")]
         public bool Config { get; set; }
+
+        [Option('p', "platform", Default = null, HelpText = "Platform for the templates package to be published.", SetName = "Package")]
+        public string Platform { get; set; }
+
+        [Option('l', "language", Default = null, HelpText = "Platform for the templates package to be published.", SetName = "Package")]
+        public string Language { get; set; }
+
+        [Option('w', "wizardversion", Default = null, HelpText = "WizardVersion for the templates package to be published.", SetName = "Package")]
+        public string WizardVersion { get; set; }
     }
 }
