@@ -1,5 +1,6 @@
 ﻿Imports WinUI = Microsoft.UI.Xaml.Controls
 Imports Windows.System
+Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Navigation
 Imports wts.ItemName.Helpers
@@ -47,6 +48,9 @@ Namespace Views
             NavigationService.Frame = shellFrame
             AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
             AddHandler winUiNavigationView.BackRequested, AddressOf OnBackRequested
+        End Sub
+
+        Private Sub OnLoaded(sender As Object, e As RoutedEventArgs)
             keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
             keyboardAccelerators.Add(_backKeyboardAccelerator)
         End Sub
