@@ -18,8 +18,10 @@ namespace wts.ItemName.ViewModels
         private readonly KeyboardAccelerator _backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
         private bool _isBackEnabled;
+        private IList<KeyboardAccelerator> _keyboardAccelerators;
         private WinUI.NavigationView _navigationView;
         private WinUI.NavigationViewItem _selected;
+        private ICommand _loadedCommand;
         private ICommand _itemInvokedCommand;
 
         public bool IsBackEnabled
@@ -34,6 +36,8 @@ namespace wts.ItemName.ViewModels
             set { Set(ref _selected, value); }
         }
 
+        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
+
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
         public ShellViewModel()
@@ -43,11 +47,16 @@ namespace wts.ItemName.ViewModels
         public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
         {
             _navigationView = navigationView;
+            _keyboardAccelerators = keyboardAccelerators;
             NavigationService.Frame = frame;
             NavigationService.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
-            keyboardAccelerators.Add(_altLeftKeyboardAccelerator);
-            keyboardAccelerators.Add(_backKeyboardAccelerator);
+        }
+
+        private void OnLoaded()
+        {
+            _keyboardAccelerators.Add(_altLeftKeyboardAccelerator);
+            _keyboardAccelerators.Add(_backKeyboardAccelerator);
         }
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)

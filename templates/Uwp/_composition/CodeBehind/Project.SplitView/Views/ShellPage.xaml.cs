@@ -3,6 +3,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -45,6 +46,10 @@ namespace wts.ItemName.Views
             NavigationService.Frame = shellFrame;
             NavigationService.Navigated += Frame_Navigated;
             winUiNavigationView.BackRequested += OnBackRequested;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
             KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
             KeyboardAccelerators.Add(_backKeyboardAccelerator);
         }
