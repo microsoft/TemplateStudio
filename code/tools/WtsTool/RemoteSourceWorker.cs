@@ -223,6 +223,7 @@ namespace WtsTool
                 JsonSerializerSettings settings = new JsonSerializerSettings();
                 settings.NullValueHandling = NullValueHandling.Ignore;
                 settings.Converters.Add(new StringEnumConverter());
+                settings.Converters.Add(new VersionConverter());
                 string content = JsonConvert.SerializeObject(config, settings);
 
                 sw.WriteLine(content);
