@@ -561,7 +561,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             return !string.IsNullOrEmpty(tempPath) && Directory.Exists(tempPath) && Directory.EnumerateDirectories(tempPath).Any();
         }
 
-        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         private (string name, string solutionName, string location) ShowNewProjectDialog()
         {
             var dialog = new NewProjectView();
