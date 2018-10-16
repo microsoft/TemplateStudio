@@ -90,7 +90,6 @@ namespace wts.ItemName.Views
                 keyboardAccelerator.Modifiers = modifiers.Value;
             }
 
-            ToolTipService.SetToolTip(keyboardAccelerator, string.Empty);
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
             return keyboardAccelerator;
         }
