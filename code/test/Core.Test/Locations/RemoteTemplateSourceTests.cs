@@ -65,7 +65,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             await rts.LoadConfigAsync(cts.Token);
             var package = rts.Config.Latest;
 
-            cts.CancelAfter(TimeSpan.FromMilliseconds(500));
+            cts.CancelAfter(TimeSpan.FromMilliseconds(200));
             await Assert.ThrowsAsync<OperationCanceledException>(async () =>
             {
                 await rts.AcquireAsync(package, cts.Token);
