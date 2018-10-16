@@ -31,6 +31,7 @@ namespace Microsoft.Templates.Test
             await AcquireAsync(packageInfo, ct);
 
             var templatecontent = await base.GetContentAsync(packageInfo, workingFolder, ct);
+
             // Workaround for version 2.4, as templates contain "Templates" folder
             await Fs.SafeMoveDirectoryAsync(Path.Combine(templatecontent.Path, "Templates"), templatecontent.Path);
 
