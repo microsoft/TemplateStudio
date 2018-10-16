@@ -60,7 +60,7 @@ namespace WtsTool
             {
                 output.WriteCommandHeader($"Publishing {options.File} for environment {options.Env.ToString()} ({options.StorageAccount})");
                 output.WriteCommandText("Uploading template package...");
-                output.WriteCommandText(RemoteSource.UploadTemplatesContent(options.StorageAccount, options.AccountKey, options.Env.ToString().ToLowerInvariant(), options.File, options.Version));
+                output.WriteCommandText(RemoteSource.UploadTemplatesContent(options.StorageAccount, options.AccountKey, options.Env.ToString().ToLowerInvariant(), options.File, options.Version, options.Platform, options.Language, options.WizardVersion));
 
                 PublishUpdatedRemoteSourceConfig(options, output);
             }
