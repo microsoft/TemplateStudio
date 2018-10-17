@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:behaviors="using:wts.ItemName.Behaviors"
     xmlns:helpers="using:wts.ItemName.Helpers"
     xmlns:views="using:wts.ItemName.Views"
     mc:Ignorable="d">
@@ -14,7 +16,6 @@
         IsBackButtonVisible="Visible"
         IsBackEnabled="{x:Bind IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind Selected, Mode=OneWay}"
-        Header="{x:Bind Selected.Content, Mode=OneWay}"
         ItemInvoked="OnItemInvoked"
         IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
@@ -26,15 +27,21 @@
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
         </winui:NavigationView.MenuItems>
-        <winui:NavigationView.HeaderTemplate>
-            <DataTemplate>
-                <TextBlock
-                    Style="{StaticResource TitleTextBlockStyle}"
-                    Margin="12,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="{Binding}" />
-            </DataTemplate>
-        </winui:NavigationView.HeaderTemplate>
+        <i:Interaction.Behaviors>
+            <behaviors:NavigationViewHeaderBehavior
+                DefaultHeader="{x:Bind Selected.Content, Mode=OneWay}">
+                <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock
+                                Text="{Binding}"
+                                Style="{ThemeResource TitleTextBlockStyle}"
+                                Margin="{StaticResource SmallLeftRightMargin}" />
+                        </Grid>
+                    </DataTemplate>
+                </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+            </behaviors:NavigationViewHeaderBehavior>
+        </i:Interaction.Behaviors>
         <Grid>
             <Frame x:Name="shellFrame" />
         </Grid>
