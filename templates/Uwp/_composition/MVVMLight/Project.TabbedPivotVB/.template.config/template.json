@@ -17,7 +17,7 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\PivotItemExtensions.cs"
+      "path": ".\\Helpers\\PivotItemExtensions.vb"
     },
     {
       "path": ".\\ViewModels\\PivotViewModel.vb"
