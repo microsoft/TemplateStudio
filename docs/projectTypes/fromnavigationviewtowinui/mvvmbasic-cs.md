@@ -7,6 +7,8 @@
 </PackageReference>
 ```
 
+![](../resources/project-types/winui-nugetpackage.png)
+
 ## App.xaml
 
 ### Add WinUI Xaml Resources
@@ -424,7 +426,7 @@ namespace YourAppName.Views
 ```
 
 ## ShellViewModel.cs
-### C# code you will have to add (_Implementation below_).
+### C# code you will have to add (_Implementation below_):
  - Add the following new **usings statements**:
 Services; 
 ```csharp
@@ -444,7 +446,7 @@ using AppName.Services;
  - Set **IsBackEnabled** to _NavigationService.CanGoBack_ at the begining of **Frame_Navigated** method.
  - Add **BuildKeyboardAccelerator** and **OnKeyboardAcceleratorInvoked** methods.
 
- ### C# code you will have to remove:
+### C# code you will have to remove:
  - Remove unused **using statements**.
 
 ```csharp
