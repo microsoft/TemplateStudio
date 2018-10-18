@@ -7,7 +7,7 @@
 </PackageReference>
 ```
 
-![](../resources/project-types/winui-nugetpackage.png)
+![](../../resources/project-types/winui-nugetpackage.png)
 
 ## App.xaml
 
