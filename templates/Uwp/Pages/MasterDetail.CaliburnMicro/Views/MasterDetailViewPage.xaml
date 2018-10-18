@@ -5,6 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:behaviors="using:Param_ItemNamespace.Behaviors"
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     xmlns:cm="using:Caliburn.Micro"
     mc:Ignorable="d">
     <Page.Resources>
@@ -17,11 +19,52 @@
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
-            <TextBlock x:Uid="MasterDetailView_NoSelection" Style="{StaticResource ListNoSelectionTextStyle}" />
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <TextBlock
+                    x:Uid="MasterDetailView_NoSelection"
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MasterHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    x:Name="headerText"
+                    Text="{Binding}"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MinimalMasterHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    x:Name="headerText"
+                    Margin="96,0,0,0"
+                    Text="{Binding}"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}" />
+            </Grid>
         </DataTemplate>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
+        <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup>
+                    <VisualState>
+                        <VisualState.StateTriggers>
+                            <!--641 is the default CompactModeThresholdWidth in NavigationView -->
+                            <AdaptiveTrigger MinWindowWidth="641" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Target="MasterDetailsViewControl.MasterHeaderTemplate" Value="{StaticResource MasterHeaderTemplate}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
             ItemsSource="{x:Bind ViewModel.Items}"
@@ -30,6 +73,9 @@
             DetailsTemplate="{StaticResource DetailsTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             Loaded="MasterDetailsViewControl_Loaded"
-            BorderBrush="Transparent" />
+            BorderBrush="Transparent"
+            MasterHeader="MasterDetail"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+            MasterHeaderTemplate="{StaticResource MinimalMasterHeaderTemplate}"/>
     </Grid>
 </Page>
