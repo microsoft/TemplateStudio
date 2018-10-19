@@ -347,7 +347,7 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
 
 ### Xaml code you will have to add (_Implementation below_):
 
- - `winui` and behaviors namespaces in page declaration.
+ - `winui` and `behaviors` namespaces in page declaration.
 
  - Add `IsBackButtonVisible` and `IsBackEnabled` properties to NavigationView.
 
@@ -475,15 +475,13 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 
  - Add `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator` and `IsBackEnabled` members.
 
- - Add _keyboardAccelerators_ parameter to `Initialize` method.
+ - Add `keyboardAccelerators` parameter to `Initialize` method.
 
  - Add `AltLeftKeyboardAccelerator` and `BackKeyboardAccelerator` to `KeyboardAccelerators` in Initialize method.
  
- - Add `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
+ - Add `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnBackRequested` methods.
 
  - Subscribe to `BackRequested` event handler in Initialize.
-
- - Add `OnBackRequested` method.
 
  - Set `IsBackEnabled` to `NavigationService.CanGoBack` at the begining of `Frame_Navigated` method.
 
