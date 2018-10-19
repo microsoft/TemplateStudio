@@ -1,13 +1,18 @@
 # Update NavigationView to WinUI in MVVMBasic apps
 If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to from NavigationView to Windows UI NavigationView:
 
-## 1. Add the Nuget package reference
+## 1. Update target version in project properties
+Windows UI library requires 17173 as target version in the project, to start using Windows UI in your project is necessary that you set 17173 as target version.
+
+![](../../resources/project-types/fu-min-oct19-target.png)
+
+## 2. Add the Nuget package reference
 
 Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
 ![](../../resources/project-types/winui-nugetpackage.png)
 
-## 2. Changes in App.xaml
+## 3. Changes in App.xaml
 
 Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
 ```xml
@@ -21,7 +26,7 @@ Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
 </ResourceDictionary.MergedDictionaries>
 ```
 
-## 3. Changes in ActivationService.cs
+## 4. Changes in ActivationService.cs
 
 Remove the code to manage app navigation from ActivationService, this code will later be added to the ShellPage.
 
@@ -38,8 +43,9 @@ Remove the code to manage app navigation from ActivationService, this code will 
  - Remove unused `using statements`.
 
 
+Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.
+
 The resulting code should look like this: 
-(Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
 ```csharp
 using System;
@@ -143,7 +149,7 @@ namespace YourAppName.Services
 }
 ```
 
-## 4. Changes in _Thickness.xaml
+## 5. Changes in _Thickness.xaml
  
 Update and add new Margins that will be used in pages.
 
@@ -169,7 +175,7 @@ Update and add new Margins that will be used in pages.
 <Thickness x:Key="ExtraSmallTopMargin">0, 8, 0, 0</Thickness>
 ```
 
-## 5. Add NavigationViewHeaderBehavior.cs
+## 6. Add NavigationViewHeaderBehavior.cs
 
 This behavior allows NavigationView hide or customaize the NavigationViewHeader depending on the page that is showing, you can read more about this behavior [here](../navigationview-headerbehavior.md). Add the following NavigationViewHeaderBehavior class in Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
 
@@ -305,7 +311,7 @@ namespace YourAppName.Behaviors
 }
 ```
 
-## 6. Add NavigationViewHeaderMode.cs
+## 7. Add NavigationViewHeaderMode.cs
 
 Add the NavigationViewHeaderBehavior enum in Behaviors folder. 
 
@@ -321,7 +327,7 @@ namespace YourAppName.Behaviors
 }
 ```
 
-## 7. Changes in NavHelper.cs
+## 8. Changes in NavHelper.cs
 
 Adjust using statement to move this NavigationViewItem properties to Windows UI NavigationView.
 
@@ -335,7 +341,7 @@ To
 
 `Microsoft.UI.Xaml.Controls`.
 
-## 8. Changes in ShellPage.xaml
+## 9. Changes in ShellPage.xaml
 
 The updated ShellPage will contain a WinUI NavigationView that handles back navigations in the app using the NavigationViews BackButton and uses the above mentioned bahavior to hide/personalize the NavViewHeader depending on the page shown.
 
@@ -410,7 +416,7 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
 </Page>
 ```
 
-## 9. Changes in ShellPage.xaml.cs
+## 10. Changes in ShellPage.xaml.cs
 
 ### C# code you will have to remove:
 
@@ -452,7 +458,7 @@ namespace YourAppName.Views
 }
 ```
 
-## 10. Changes in ShellViewModel.cs
+## 11. Changes in ShellViewModel.cs
 
 ### C# code you will have to add (_Implementation below_):
 
@@ -484,7 +490,7 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 
 ### C# code you will have to remove:
 
- - Remove unused **using statements**.
+ - Remove unused using statements.
 
 The resulting code should look like this:
 
