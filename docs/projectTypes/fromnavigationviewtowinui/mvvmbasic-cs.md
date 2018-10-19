@@ -1,15 +1,15 @@
 # Update NavigationView to WinUI in MVVMBasic apps
 If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to from NavigationView to Windows UI NavigationView:
 
-## 1. Add Nuget reference
+## 1. Add the Nuget package reference
 
-Add Windows UI Library Nuget Package
+Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 
 ![](../../resources/project-types/winui-nugetpackage.png)
 
 ## 2. Changes in App.xaml
 
-Merge WinUI Xaml Resources dictionary
+Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
 ```xml
 <ResourceDictionary.MergedDictionaries>
 
@@ -23,7 +23,7 @@ Merge WinUI Xaml Resources dictionary
 
 ## 3. Changes in ActivationService.cs
 
-Remove the code to manage app navigation from ActivationService, this code will be moved to ShellPage code.
+Remove the code to manage app navigation from ActivationService, this code will later be added to the ShellPage.
 
 ### C# code you will have to remove:
 
@@ -37,11 +37,9 @@ Remove the code to manage app navigation from ActivationService, this code will 
 
  - Remove unused `using statements`.
 
-Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used.
 
-The resulting code should look like this:
-
-`ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.
+The resulting code should look like this: 
+(Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
 ```csharp
 using System;
@@ -146,8 +144,8 @@ namespace YourAppName.Services
 ```
 
 ## 4. Changes in _Thickness.xaml
-
-Update and add new Thickness values that will be needed in pages.
+ 
+Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
 ```xml
@@ -173,7 +171,7 @@ Update and add new Thickness values that will be needed in pages.
 
 ## 5. Add NavigationViewHeaderBehavior.cs
 
-We need to add a new Behavior to allow NavigationView to have different Header templates depending on the page that is showing, you can read more about this behavior [here](../navigationview-headerbehavior.md). Add the following NavigationViewHeaderBehavior class in Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
+This behavior allows NavigationView hide or customaize the NavigationViewHeader depending on the page that is showing, you can read more about this behavior [here](../navigationview-headerbehavior.md). Add the following NavigationViewHeaderBehavior class in Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
 
 ```csharp
 using YourAppName.Services;
@@ -309,7 +307,7 @@ namespace YourAppName.Behaviors
 
 ## 6. Add NavigationViewHeaderMode.cs
 
-Add NavigationViewHeaderBehavior enum in Behaviors folder. This will help pages to when show the header.
+Add the NavigationViewHeaderBehavior enum in Behaviors folder. 
 
 ```csharp
 namespace YourAppName.Behaviors
@@ -327,7 +325,7 @@ namespace YourAppName.Behaviors
 
 Adjust using statement to move this NavigationViewItem properties to Windows UI NavigationView.
 
-### Replace the using statement
+### Change the using statement
 
 From
 
@@ -339,7 +337,7 @@ To
 
 ## 8. Changes in ShellPage.xaml
 
-The updated ShellPage will contain a WinUI NavigationView that handle back navigations in the app using a new back button and contains a custom behavior to personalize the HeaderTemplate depending on the showing page.
+The updated ShellPage will contain a WinUI NavigationView that handles back navigations in the app using the NavigationViews BackButton and uses the above mentioned bahavior to hide/personalize the NavViewHeader depending on the page shown.
 
 ### Xaml code you will have to add (_Implementation below_):
 
@@ -351,7 +349,7 @@ The updated ShellPage will contain a WinUI NavigationView that handle back navig
 
 ### Xaml code you will have to update (_Implementation below_):
 
- - Add `winui:` to `NavigationView` and `NavigationViewItems` data types.
+ - Add the `winui:` namespace to `NavigationView` and `NavigationViewItems` data types.
 
 ### Xaml code you will have to remove:
 
@@ -474,6 +472,8 @@ using WinUI = Microsoft.UI.Xaml.Controls;
  - Add _keyboardAccelerators_ parameter to `Initialize` method.
 
  - Add `AltLeftKeyboardAccelerator` and `BackKeyboardAccelerator` to `KeyboardAccelerators` in Initialize method.
+ 
+ - Add `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
 
  - Subscribe to `BackRequested` event handler in Initialize.
 
@@ -481,7 +481,6 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 
  - Set `IsBackEnabled` to `NavigationService.CanGoBack` at the begining of `Frame_Navigated` method.
 
- - Add `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
 
 ### C# code you will have to remove:
 
