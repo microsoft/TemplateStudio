@@ -10,7 +10,7 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         public SolutionWizardVB()
         {
-            Initialize(ProgrammingLanguages.VisualBasic);
+            Initialize(Platforms.Uwp, ProgrammingLanguages.VisualBasic);
         }
     }
 }

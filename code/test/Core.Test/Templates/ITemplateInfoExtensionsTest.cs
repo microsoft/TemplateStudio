@@ -154,19 +154,7 @@ namespace Microsoft.Templates.Core.Test
             var target = GetTargetByName("ProjectTemplate");
 
             var result = target.GetPlatform();
-            Assert.Equal("UWP", result);
-        }
-
-        [Theory]
-        [MemberData("GetAllLanguages")]
-        public void GetPlatform_unspecified(string language)
-        {
-            SetUpFixtureForTesting(language);
-
-            var target = GetTargetByName("UnspecifiedTemplate");
-
-            var result = target.GetPlatform();
-            Assert.Equal(string.Empty, result);
+            Assert.Equal("Uwp", result);
         }
 
         [Theory]

@@ -22,26 +22,37 @@ namespace Microsoft.Templates.Core.Locations
 
         private Version _version;
 
+        public override string Language { get; }
+
+        public override string Platform { get; }
+
+        public RemoteTemplatesSource(string platform, string language)
+        {
+            Platform = platform;
+            Language = ProgrammingLanguages.GetShortProgrammingLanguage(language);
+        }
+
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
-            var extractionFolder = await ExtractAsync(packageInfo, true, ct);
+            var finalDestination = Path.Combine(workingFolder, packageInfo.Version.ToString());
 
             RemoveTemplatesTempFolders(workingFolder);
-            var finalDestination = Path.Combine(workingFolder, packageInfo.Version.ToString());
-            var finalDestinationTemp = string.Concat(finalDestination, _tmpExtension);
 
-            await Fs.SafeMoveDirectoryAsync(Path.Combine(extractionFolder, "Templates"), finalDestinationTemp, true, ReportCopyProgress);
-            Fs.SafeDeleteDirectory(Path.GetDirectoryName(packageInfo.LocalPath));
-            Fs.SafeRenameDirectory(finalDestinationTemp, finalDestination);
-
-            var templatesInfo = new TemplatesContentInfo()
+            if (!Directory.Exists(finalDestination))
             {
-                Date = packageInfo.Date,
-                Path = finalDestination,
-                Version = packageInfo.Version,
-            };
+                var extracted = await ExtractAsync(packageInfo, finalDestination, false, ct);
+                if (extracted)
+                {
+                    return new TemplatesContentInfo()
+                    {
+                        Date = packageInfo.Date,
+                        Path = finalDestination,
+                        Version = packageInfo.Version,
+                    };
+                }
+            }
 
-            return templatesInfo;
+            return null;
         }
 
         public override async Task AcquireAsync(TemplatesPackageInfo packageInfo, CancellationToken ct)
@@ -110,27 +121,26 @@ namespace Microsoft.Templates.Core.Locations
             OnNewVersionAcquisitionProgress(this, new ProgressEventArgs() { Version = _version, Progress = e.ProgressPercentage });
         }
 
-        private async Task<string> ExtractAsync(TemplatesPackageInfo packageInfo, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
-        {
-            _version = packageInfo.Version;
-            if (!string.IsNullOrEmpty(packageInfo.LocalPath))
-            {
-                await ExtractAsync(packageInfo.LocalPath, Path.GetDirectoryName(packageInfo.LocalPath), verifyPackageSignatures, ct);
-                return Path.GetDirectoryName(packageInfo.LocalPath);
-            }
-            else
-            {
-                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSourceLocalPathEmptyMessage).FireAndForget();
-                return null;
-            }
-        }
-
-        private async Task ExtractAsync(string mstxFilePath, string versionedFolder, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
+        private async Task<bool> ExtractAsync(TemplatesPackageInfo packageInfo, string finalDest, bool verifyPackageSignatures = true, CancellationToken ct = default(CancellationToken))
         {
             try
             {
-                await TemplatePackage.ExtractAsync(mstxFilePath, versionedFolder, verifyPackageSignatures, ReportExtractionProgress, ct);
-                AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {versionedFolder}.").FireAndForget();
+                _version = packageInfo.Version;
+                if (!string.IsNullOrEmpty(packageInfo.LocalPath))
+                {
+                    var finalDestinationTemp = string.Concat(finalDest, _tmpExtension);
+
+                    await TemplatePackage.ExtractAsync(packageInfo.LocalPath, finalDestinationTemp, verifyPackageSignatures, ReportExtractionProgress, ct);
+                    Fs.SafeRenameDirectory(finalDestinationTemp, finalDest);
+
+                    AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {finalDest}.").FireAndForget();
+                    return true;
+                }
+                else
+                {
+                    AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSourceLocalPathEmptyMessage).FireAndForget();
+                    return false;
+                }
             }
             catch (Exception ex) when (ex.GetType() != typeof(OperationCanceledException))
             {
@@ -142,11 +152,6 @@ namespace Microsoft.Templates.Core.Locations
         private void ReportExtractionProgress(int progress)
         {
             OnGetContentProgress(this, new ProgressEventArgs() { Version = _version, Progress = progress });
-        }
-
-        private void ReportCopyProgress(int progress)
-        {
-            OnCopyProgress(this, new ProgressEventArgs() { Version = _version, Progress = progress });
         }
 
         private void RemoveTemplatesTempFolders(string workingFolder)

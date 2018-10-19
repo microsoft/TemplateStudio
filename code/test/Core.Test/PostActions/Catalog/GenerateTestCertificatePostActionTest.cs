@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var destinationPath = @".\TestData\temp\TestProject";
             var generationOutputPath = @".\TestData\temp\TestProject";
 
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), Platforms.Uwp, ProgrammingLanguages.CSharp);
 
             GenContext.Current = new FakeContextProvider
             {
@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var destinationPath = @".\TestData\temp";
             var generationOutputPath = @".\TestData\temp\";
 
-            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), ProgrammingLanguages.CSharp);
+            GenContext.Bootstrap(new LocalTemplatesSource(), new FakeGenShell(Platforms.Uwp, ProgrammingLanguages.CSharp), Platforms.Uwp, ProgrammingLanguages.CSharp);
 
             GenContext.Current = new FakeContextProvider
             {

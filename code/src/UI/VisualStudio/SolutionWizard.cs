@@ -23,6 +23,7 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         private UserSelection _userSelection;
         private Dictionary<string, string> _replacementsDictionary;
+        private string _platform;
         private string _language;
         private GenerationService _generationService = GenerationService.Instance;
 
@@ -46,16 +47,17 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; } = new Dictionary<ProjectMetricsEnum, double>();
 
-        protected void Initialize(string language)
+        protected void Initialize(string platform, string language)
         {
+            _platform = platform;
             _language = language;
 
-            if (GenContext.CurrentLanguage != language)
+            if (GenContext.CurrentLanguage != language || GenContext.CurrentPlatform != platform)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), language);
+                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), platform, language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), language);
+                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language), new VsGenShell(), platform, language);
 #endif
             }
         }

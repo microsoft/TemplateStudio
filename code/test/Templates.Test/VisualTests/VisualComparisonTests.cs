@@ -96,9 +96,7 @@ namespace Microsoft.Templates.Test
 
             var testProjectDetails = SetUpTestProject(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page));
 
-#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
-#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
             // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
             if (testSuccess)
@@ -142,9 +140,7 @@ namespace Microsoft.Templates.Test
                 "WinAppDriver is not installed. Download from https://github.com/Microsoft/WinAppDriver/releases");
         }
 
-#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         private (bool Success, List<string> TextOutput) RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
-#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
         {
             var result = false;
 
@@ -175,9 +171,7 @@ namespace Microsoft.Templates.Test
             return (result, outputText);
         }
 
-#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null)
-#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
         {
             var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
             var projectFolder = Path.Combine(rootFolder, "TestProject");

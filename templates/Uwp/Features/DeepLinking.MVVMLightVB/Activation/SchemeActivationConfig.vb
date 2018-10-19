@@ -1,5 +1,6 @@
 ﻿Namespace Activation
     Friend Module SchemeActivationConfig
+        ' TODO WTS: Add the pages that can be opened from scheme activation in your app here.
         Private ReadOnly _activationViewModels As Dictionary(Of String, String) = New Dictionary(Of String, String)() From
         {
             {"sample", GetType(ViewModels.SchemeActivationSampleViewModel).FullName}

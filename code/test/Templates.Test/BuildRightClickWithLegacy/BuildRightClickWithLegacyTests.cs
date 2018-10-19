@@ -34,11 +34,11 @@ namespace Microsoft.Templates.Test
             var projectName = $"{projectType}{framework}Legacy";
 
             Func<ITemplateInfo, bool> selector =
-               t => t.GetTemplateType() == TemplateType.Project
-                   && t.GetProjectTypeList().Contains(projectType)
-                   && t.GetFrameworkList().Contains(framework)
-                   && !t.GetIsHidden()
-                   && t.GetLanguage() == language;
+            t => t.GetTemplateType() == TemplateType.Project
+               && t.GetProjectTypeList().Contains(projectType)
+               && t.GetFrameworkList().Contains(framework)
+               && !t.GetIsHidden()
+               && t.GetLanguage() == language;
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, Platforms.Uwp, language, null, null, false);
 

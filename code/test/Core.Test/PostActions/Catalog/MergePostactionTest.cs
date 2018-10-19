@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Fakes;
 using Xunit;
 
@@ -52,9 +53,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Exception ex = Assert.Throws<Exception>(() => mergePostAction.Execute());
 
-            Assert.Equal($"Error executing '{typeof(MergePostAction)}'. Related template: {templateName}.", ex.Message);
+            Assert.Equal(string.Format(StringRes.PostActionException, typeof(MergePostAction), templateName), ex.Message);
             Assert.Equal(typeof(InvalidDataException), ex.InnerException.GetType());
-            Assert.Equal($"Line namespace TestData not found in file '{sourceFile}'. Related Template: '{templateName}'.", ex.InnerException.Message);
+            Assert.Equal(string.Format(StringRes.MergeLineNotFoundExceptionMessage, "namespace TestData", sourceFile, templateName), ex.InnerException.Message);
         }
 
         [Fact]
@@ -67,9 +68,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Exception ex = Assert.Throws<Exception>(() => mergePostAction.Execute());
 
-            Assert.Equal($"Error executing '{typeof(MergePostAction)}'. Related template: {templateName}.", ex.Message);
+            Assert.Equal(string.Format(StringRes.PostActionException, typeof(MergePostAction), templateName), ex.Message);
             Assert.Equal(typeof(FileNotFoundException), ex.InnerException.GetType());
-            Assert.Equal($"There is no merge target for file '{mergeFile}'. Related Template: '{templateName}'.", ex.InnerException.Message);
+            Assert.Equal(string.Format(StringRes.MergeFileNotFoundExceptionMessage, mergeFile, templateName), ex.InnerException.Message);
         }
 
         [Fact]
@@ -101,7 +102,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                     Path.Combine(outputPath, "Source_fail_postaction.cs"),
                     "temp\\Source_fail_failedpostaction.cs",
                     Path.Combine(outputPath, "Source_fail_failedpostaction.cs"),
-                    $"Could not find the expected line `namespace TestData` in file 'temp\\Source_fail.cs'. Please merge the content from the postaction file manually. Related Template: '{templateName}'.",
+                    string.Format(StringRes.FailedMergePostActionLineNotFound, "namespace TestData", "temp\\Source_fail.cs", templateName),
                     MergeFailureType.LineNotFound);
 
             Directory.Delete(outputPath, true);
@@ -144,7 +145,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                     Path.Combine(outputPath, "NoSource_postaction.cs"),
                     "temp\\NoSource_failedpostaction.cs",
                     Path.Combine(outputPath, "NoSource_failedpostaction.cs"),
-                    $"Could not find file 'temp\\NoSource.cs' to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: '{templateName}'.",
+                    string.Format(StringRes.FailedMergePostActionFileNotFound, "temp\\NoSource.cs", templateName),
                     MergeFailureType.FileNotFound);
 
             Directory.Delete(outputPath, true);

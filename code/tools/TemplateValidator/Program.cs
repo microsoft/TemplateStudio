@@ -24,7 +24,7 @@ namespace TemplateValidator
                         Heading = HeadingInfo.Default,
                         Copyright = CopyrightInfo.Default,
                         AdditionalNewLineAfterOption = true,
-                        AddDashesToOption = true
+                        AddDashesToOption = true,
                     };
 
                     Console.WriteLine(appTitle);

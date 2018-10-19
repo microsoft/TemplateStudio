@@ -309,10 +309,6 @@
     <value>Доступны новые шаблоны (версия {0}). Идет скачивание… {1} %</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>Копируются шаблоны (версия {0})… {1}%</value>
-    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
-  </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>Ошибка при скачивании шаблонов (версия {0}). Мы повторим попытку позже.</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>
@@ -605,9 +601,13 @@
     <value>Нажмите клавишу ВВОД, чтобы добавить {0}.</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
-  <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
     <value>Элемент управления HamburgerMenu устарел. Теперь Windows Template Studio поддерживает NavigationView. </value>
-    <comment>Has navigation view validation error message</comment>
+    <comment>Has hamburger menu validation error message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>Windows Template Studio is now using the NavigationView from Windows UI Library.</value>
+    <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Средство композиции</value>
@@ -624,13 +624,21 @@
     <value>Содержимое недоступно.</value>
     <comment>Message in no content panel</comment>
   </data>
-  <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
     <value>{0}projectTypes/updatetonavigationview.md</value>
-    <comment>Has navigation view validation link documentation</comment>
+    <comment>Has hamburger menu validation link documentation</comment>
   </data>
-  <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
     <value>Сведения об обновлении см. в документации.</value>
-    <comment>Has navigation view validation link documentation message</comment>
+    <comment>Has old navigation view validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
+    <value>Сведения об обновлении см. в документации.</value>
+    <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
     <value>Критические изменения</value>

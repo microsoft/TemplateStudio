@@ -745,15 +745,6 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copying templates (v{0})... {1}%.
-        /// </summary>
-        public static string NotificationSyncStatus_Copying {
-            get {
-                return ResourceManager.GetString("NotificationSyncStatus_Copying", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error downloading templates (v{0}). We&apos;ll try later again..
         /// </summary>
         public static string NotificationSyncStatus_ErrorAcquiring {
@@ -1233,27 +1224,27 @@ namespace Microsoft.Templates.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0}projectTypes/updatetonavigationview.md.
         /// </summary>
-        public static string ValidatorHasNavigationViewLink {
+        public static string ValidatorHasHamburgerMenuLink {
             get {
-                return ResourceManager.GetString("ValidatorHasNavigationViewLink", resourceCulture);
+                return ResourceManager.GetString("ValidatorHasHamburgerMenuLink", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to See documentation to update..
         /// </summary>
-        public static string ValidatorHasNavigationViewLinkMessage {
+        public static string ValidatorHasHamburgerMenuLinkMessage {
             get {
-                return ResourceManager.GetString("ValidatorHasNavigationViewLinkMessage", resourceCulture);
+                return ResourceManager.GetString("ValidatorHasHamburgerMenuLinkMessage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. .
         /// </summary>
-        public static string ValidatorHasNavigationViewMessage {
+        public static string ValidatorHasHamburgerMenuMessage {
             get {
-                return ResourceManager.GetString("ValidatorHasNavigationViewMessage", resourceCulture);
+                return ResourceManager.GetString("ValidatorHasHamburgerMenuMessage", resourceCulture);
             }
         }
         
@@ -1281,6 +1272,33 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ValidatorHasOldMvvmLightLocatorMessage {
             get {
                 return ResourceManager.GetString("ValidatorHasOldMvvmLightLocatorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}projectTypes/updatetowinuinavigationview.md.
+        /// </summary>
+        public static string ValidatorHasOldNavigationViewLink {
+            get {
+                return ResourceManager.GetString("ValidatorHasOldNavigationViewLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorHasOldNavigationViewLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasOldNavigationViewLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio is now using the NavigationView from Windows UI Library..
+        /// </summary>
+        public static string ValidatorHasOldNavigationViewMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasOldNavigationViewMessage", resourceCulture);
             }
         }
         

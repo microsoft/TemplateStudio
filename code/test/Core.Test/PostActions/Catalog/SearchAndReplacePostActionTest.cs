@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Fakes;
 using Xunit;
 
@@ -49,9 +50,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Exception ex = Assert.Throws<Exception>(() => mergePostAction.Execute());
 
-            Assert.Equal($"Error executing '{typeof(SearchAndReplacePostAction)}'. Related template: {templateName}.", ex.Message);
+            Assert.Equal(string.Format(StringRes.PostActionException, typeof(SearchAndReplacePostAction), templateName), ex.Message);
             Assert.Equal(typeof(FileNotFoundException), ex.InnerException.GetType());
-            Assert.Equal($"There is no merge target for file '{mergeFile}'. Related Template: '{templateName}'.", ex.InnerException.Message);
+            Assert.Equal(string.Format(StringRes.MergeFileNotFoundExceptionMessage, mergeFile, templateName), ex.InnerException.Message);
         }
 
         [Fact]
@@ -78,7 +79,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                     Path.Combine(path, "NoSource_searchreplace.cs"),
                     "temp\\NoSource_failedpostaction.cs",
                     Path.Combine(path, "NoSource_failedpostaction.cs"),
-                    $"Could not find file 'temp\\NoSource.cs' to include the following changes. Please review the code blocks to include the changes manually where required in your project. Related Template: '{templateName}'.",
+                    string.Format(StringRes.FailedMergePostActionFileNotFound, "temp\\NoSource.cs", templateName),
                     MergeFailureType.FileNotFound);
 
             Directory.Delete(path, true);
