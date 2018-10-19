@@ -13,7 +13,7 @@ using Microsoft.Templates.Core.Packaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace WtsTool
+namespace WtsPackagingTool
 {
     internal class PackageWorker
     {

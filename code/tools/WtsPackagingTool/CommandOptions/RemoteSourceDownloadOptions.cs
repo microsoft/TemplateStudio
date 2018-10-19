@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
 
-namespace WtsTool.CommandOptions
+namespace WtsPackagingTool.CommandOptions
 {
     [Verb("download", Hidden = false, HelpText = "Download a templates package from the specified environment.")]
     public class RemoteSourceDownloadOptions : RemoteSourceCommonOptions

@@ -14,9 +14,9 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using WtsTool.CommandOptions;
+using WtsPackagingTool.CommandOptions;
 
-namespace WtsTool
+namespace WtsPackagingTool
 {
     public static class RemoteSourceWorker
     {
