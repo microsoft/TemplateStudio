@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5454010A-AEC5-4C65-BA1A-E7A068E573BC}</ProjectGuid>
+    <ProjectGuid>{18FE7361-241E-4B1B-98F5-C4A4D17496A0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>WtsPackagingTool</RootNamespace>
     <AssemblyName>WtsPackagingTool</AssemblyName>
