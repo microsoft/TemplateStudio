@@ -2,7 +2,7 @@
 If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
-Windows UI library requires 17173 as target version in the project, to start using Windows UI in your project is necessary that you set 17173 as target version.
+Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
 ![](../../resources/project-types/cu-min-oct19-target.png)
 
@@ -417,12 +417,6 @@ xmlns:views="using:YourAppName.Views"
 ## 10. Changes in ShellPage.xaml.cs
 ShellViewModel will need the WinUI `NavigationView` instance and `KeyboardAccelerators` (explained below), you will have to add it on initialization.
 
-### C# code you will have to remove:
-
- - Remove `HideNavViewBackButton` method.
-
- - Remove from the page constructor `HideNavViewBackButton` call.
-
 ### C# code you will have to update (_Implementation below_):
 
  - Add the `navigationView` control and `KeyboardAccelerators` to ViewModel `Initialize` call.
@@ -458,7 +452,7 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 
  - private the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
 
- - private field `_lastSelectedItem`
+ - private fields `_lastSelectedItem` and `_itemInvokedCommand`
 
  - `IsPaneOpen` observable property.
 
@@ -597,11 +591,32 @@ public class ShellViewModel : Observable
 }
 ```
 
-## 12. Remove ShellNavigationItem.cs
+## 12. Changes in NavigationService
+
+### C# code you will have to update:
+
+ - GoBack method implementation.
+
+The resulting method code should look like this:
+
+```csharp
+public static bool GoBack()
+{
+    if (CanGoBack)
+    {
+        Frame.GoBack();
+        return true;
+    }
+
+    return false;
+}
+```
+
+## 13. Remove ShellNavigationItem.cs
 
 ShellNavigationItem from ViewModels folder, it is no longer used and you should remove it from the project.
 
-## 13. Update XAML code for all pages
+## 14. Update XAML code for all pages
 The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, because the page title will be displayed on the NavigationView HeaderTemplate and the responsive behaviors will be added by NavigationView control.
 
 ### XAML code you will have to remove:
@@ -632,11 +647,11 @@ The resulting code should look like this:
     </Grid>
 </Page>
 ```
-## 14. Update Navigation View item name for all pages in Resources.resw
+## 15. Update Navigation View item name for all pages in Resources.resw
 As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
 (_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
 
-## 15. Settings Page
+## 16. Settings Page
 If your project contains a SettingsPage you must perform the following steps:
 - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
 - On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
