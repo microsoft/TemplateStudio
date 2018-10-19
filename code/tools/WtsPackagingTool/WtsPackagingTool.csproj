@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{18FE7361-241E-4B1B-98F5-C4A4D17496A0}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>WtsTool</RootNamespace>
-    <AssemblyName>WtsTool</AssemblyName>
+    <RootNamespace>WtsPackagingTool</RootNamespace>
+    <AssemblyName>WtsPackagingTool</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -131,7 +131,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="wtstool.config.json">
+    <None Include="wtspackagingtool.config.json">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
 
-namespace WtsTool.CommandOptions
+namespace WtsPackagingTool.CommandOptions
 {
     [Verb("download", Hidden = false, HelpText = "Download a templates package from the specified environment.")]
     public class RemoteSourceDownloadOptions : RemoteSourceCommonOptions
@@ -29,7 +29,7 @@ namespace WtsTool.CommandOptions
         [Option('p', "platform", Default = null, HelpText = "Download a concrete version of templates package for the specified environment, platform and language. Downloads the most recent matching version.", SetName = "Version")]
         public string Platform { get; set; }
 
-        [Option('l', "language", Default = null, HelpText = "Download a concrete version of templates package for the specified environment, platform and language. Downloads the most recent matching version.", SetName = "Version")]
+        [Option('s', "source-language", Default = null, HelpText = "Download a concrete version of templates package for the specified environment, platform and language. Downloads the most recent matching version.", SetName = "Version")]
         public string Language { get; set; }
     }
 }
