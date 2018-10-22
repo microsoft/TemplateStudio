@@ -38,11 +38,9 @@ Remove the code to manage app navigation from ActivationService, this code will 
 
  - `KeyboardAccelerator` static members.
 
- - `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
+ - `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked`, `ActivationService_BackRequested` and `Frame_Navigated` methods.
 
  - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
-
- - `ActivationService_BackRequested` and `Frame_Navigated` methods.
 
  - Remove unused `using statements`.
 
@@ -351,7 +349,7 @@ From
 
 To
 
-`Microsoft.UI.Xaml.Controls`.
+`Microsoft.UI.Xaml.Controls`
 
 ## 10. Changes in ShellPage.xaml
 

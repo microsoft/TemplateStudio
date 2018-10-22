@@ -1,5 +1,5 @@
 # Update NavigationView to WinUI in MVVMBasic apps
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to from NavigationView to Windows UI NavigationView:
+If you have an UWP project created with WTS with project type **NavigationPane** and framework **Code Behind**  please follow these steps to update to from NavigationView to Windows UI NavigationView:
 
 ## 1. Update target version in project properties
 Windows UI library requires 17173 as target version in the project, to start using Windows UI in your project is necessary that you set 17173 as target version.
@@ -34,7 +34,7 @@ Remove the code to manage app navigation from ActivationService, this code will 
 
  - `KeyboardAccelerator` static members.
 
- - `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked`, `BackRequested` and `Navigated` methods.
+ - `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `ActivationService_BackRequested` methods.
 
  - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
 
@@ -345,7 +345,7 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
 
 ### Xaml code you will have to add (_Implementation below_):
 
- - `winui` and `behaviors` namespaces in page declaration.
+ - `i`, `ic`, `winui` and `behaviors` namespaces in page declaration.
 
  - Add `IsBackButtonVisible` and `IsBackEnabled` properties to NavigationView.
 
@@ -379,8 +379,9 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
     <winui:NavigationView
         x:Name="navigationView"
         IsBackButtonVisible="Visible"
-        IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-        SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
+        IsBackEnabled="{x:Bind IsBackEnabled, Mode=OneWay}"
+        SelectedItem="{x:Bind Selected, Mode=OneWay}"
+        ItemInvoked="OnItemInvoked"
         IsSettingsVisible="True"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
@@ -391,7 +392,7 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
         </winui:NavigationView.MenuItems>
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior
-                DefaultHeader="{x:Bind ViewModel.Selected.Content, Mode=OneWay}">
+                DefaultHeader="{x:Bind Selected.Content, Mode=OneWay}">
                 <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
                     <DataTemplate>
                         <Grid>
@@ -403,67 +404,22 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
                     </DataTemplate>
                 </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
             </behaviors:NavigationViewHeaderBehavior>
-            <ic:EventTriggerBehavior EventName="ItemInvoked">
-                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
-            </ic:EventTriggerBehavior>
         </i:Interaction.Behaviors>
         <Grid>
             <Frame x:Name="shellFrame" />
         </Grid>
     </winui:NavigationView>
+
 </Page>
 ```
 
 ## 10. Changes in ShellPage.xaml.cs
-
-### C# code you will have to remove:
-
- - Remove `HideNavViewBackButton` method.
-
- - Remove from the page constructor `HideNavViewBackButton` call.
-
- - Remove from the page constructor `KeyboardAccelerators` additions.
-
- - Remove unused using statements.
-
-### C# code you will have to update (_Implementation below_):
-
- - Add `KeyboardAccelerators` collection to ViewModel Initialize call.
-
-The resulting code should look like this:
-
-```csharp
-using System;
-
-using YourAppName.ViewModels;
-
-using Windows.UI.Xaml.Controls;
-
-namespace YourAppName.Views
-{
-    // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
-    public sealed partial class ShellPage : Page
-    {
-        public ShellViewModel ViewModel { get; } = new ShellViewModel();
-
-        public ShellPage()
-        {
-            InitializeComponent();
-            DataContext = ViewModel;
-            ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);
-        }
-    }
-}
-```
-
-## 11. Changes in ShellViewModel.cs
 
 ### C# code you will have to add (_Implementation below_):
 
  - Add the following new usings statements:
 
 ```csharp
-using System.Collections.Generic;
 using Windows.System;
 using Windows.UI.Xaml.Input;
 using WinUI = Microsoft.UI.Xaml.Controls;
@@ -471,50 +427,52 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 
  - Add `WinUI.` namespace alias to `NavigationView`, `NavigationViewItem` and `NavigationViewItemInvokedEventArgs` Data Types.
 
- - Add `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator` and `IsBackEnabled` members.
+  - Add `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator` and `IsBackEnabled` members.
 
- - Add `keyboardAccelerators` parameter to `Initialize` method.
-
- - Add `AltLeftKeyboardAccelerator` and `BackKeyboardAccelerator` to `KeyboardAccelerators` in Initialize method.
- 
  - Add `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnBackRequested` methods.
 
  - Subscribe to `BackRequested` event handler in Initialize.
 
  - Set `IsBackEnabled` to `NavigationService.CanGoBack` at the begining of `Frame_Navigated` method.
 
-
 ### C# code you will have to remove:
 
+ - Remove `HideNavViewBackButton` method.
+
+ - Remove from the page constructor `HideNavViewBackButton` call.
+
  - Remove unused using statements.
+
+### C# code you will have to update (_Implementation below_):
+
+ - Add `_altLeftKeyboardAccelerator` to `KeyboardAccelerators` instead of `ActivationService.AltLeftKeyboardAccelerator`.
+
+ - Add `_backKeyboardAccelerator` to `KeyboardAccelerators` instead of `ActivationService.BackKeyboardAccelerator`.
 
 The resulting code should look like this:
 
 ```csharp
 using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Windows.Input;
+using System.Runtime.CompilerServices;
 
 using YourAppName.Helpers;
 using YourAppName.Services;
-using YourAppName.Views;
 
-using Windows.System;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-
+using Windows.System;
+using Windows.UI.Xaml.Input;
 using WinUI = Microsoft.UI.Xaml.Controls;
 
-namespace YourAppName.ViewModels
+namespace YourAppName.Views
 {
-    public class ShellViewModel : Observable
+    // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
+    public sealed partial class ShellPage : Page, INotifyPropertyChanged
     {
         private bool _isBackEnabled;
-        private WinUI.NavigationView _navigationView;
         private WinUI.NavigationViewItem _selected;
-        private ICommand _itemInvokedCommand;
 
         public bool IsBackEnabled
         {
@@ -528,39 +486,24 @@ namespace YourAppName.ViewModels
             set { Set(ref _selected, value); }
         }
 
-        public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+        private readonly KeyboardAccelerator _altLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
 
-        public readonly KeyboardAccelerator AltLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
+        private readonly KeyboardAccelerator _backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
-        public readonly KeyboardAccelerator BackKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
-
-        public ShellViewModel()
+        public ShellPage()
         {
+            InitializeComponent();
+            DataContext = this;
+            Initialize();
         }
 
-        public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
+        private void Initialize()
         {
-            _navigationView = navigationView;
-            NavigationService.Frame = frame;
+            NavigationService.Frame = shellFrame;
             NavigationService.Navigated += Frame_Navigated;
-            _navigationView.BackRequested += OnBackRequested;
-            keyboardAccelerators.Add(AltLeftKeyboardAccelerator);
-            keyboardAccelerators.Add(BackKeyboardAccelerator);
-        }
-
-        private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
-        {
-            if (args.IsSettingsInvoked)
-            {
-                NavigationService.Navigate(typeof(SettingsPage));
-                return;
-            }
-
-            var item = _navigationView.MenuItems
-                            .OfType<WinUI.NavigationViewItem>()
-                            .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
-            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
-            NavigationService.Navigate(pageType);
+            navigationView.BackRequested += OnBackRequested;
+            KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
+            KeyboardAccelerators.Add(_backKeyboardAccelerator);
         }
 
         private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
@@ -571,13 +514,14 @@ namespace YourAppName.ViewModels
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             IsBackEnabled = NavigationService.CanGoBack;
+
             if (e.SourcePageType == typeof(SettingsPage))
             {
-                Selected = _navigationView.SettingsItem as WinUI.NavigationViewItem;
+                Selected = navigationView.SettingsItem as WinUI.NavigationViewItem;
                 return;
             }
 
-            Selected = _navigationView.MenuItems
+            Selected = navigationView.MenuItems
                             .OfType<WinUI.NavigationViewItem>()
                             .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
         }
@@ -586,6 +530,21 @@ namespace YourAppName.ViewModels
         {
             var pageType = menuItem.GetValue(NavHelper.NavigateToProperty) as Type;
             return pageType == sourcePageType;
+        }
+
+        private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
+        {
+            if (args.IsSettingsInvoked)
+            {
+                NavigationService.Navigate(typeof(SettingsPage));
+                return;
+            }
+
+            var item = navigationView.MenuItems
+                            .OfType<WinUI.NavigationViewItem>()
+                            .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
+            var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;
+            NavigationService.Navigate(pageType);
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
@@ -606,6 +565,21 @@ namespace YourAppName.ViewModels
             var result = NavigationService.GoBack();
             args.Handled = result;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        {
+            if (Equals(storage, value))
+            {
+                return;
+            }
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+        }
+
+        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
 
