@@ -7,9 +7,10 @@
   "tags": {
     "language": "C#",
     "type": "item",
+    "wts.platform": "Uwp",
     "wts.type": "feature",
     "wts.multipleInstance": "false",
-    "wts.defaultInstance":  "LiveTile"
+    "wts.defaultInstance": "LiveTile"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

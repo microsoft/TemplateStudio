@@ -8,6 +8,7 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
+    "wts.platform": "Uwp",
     "wts.type": "page",
     "wts.genGroup": "1",
     "wts.export.baseclass": "ViewModelBase",

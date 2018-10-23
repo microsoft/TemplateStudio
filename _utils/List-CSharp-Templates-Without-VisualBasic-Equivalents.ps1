@@ -1,4 +1,7 @@
-﻿# Get list of all templates
+﻿# This script will list all the C# template folders that do not have VB equivalents.
+# Any output indicates missing VB templates.
+
+# Get list of all templates
 $allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | where { $_.FullName -notmatch "\\templates\\Uwp\\test\\" } | % { Write-Output $_.FullName }
 Foreach ($t in $allTemplates)
 {

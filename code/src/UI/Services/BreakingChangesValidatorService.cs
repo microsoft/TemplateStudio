@@ -17,8 +17,9 @@ namespace Microsoft.Templates.UI.Services
         // add breaking changes validators
         private static List<IBreakingChangeValidator> _validators = new List<IBreakingChangeValidator>
         {
-            new HasNavigationViewValidator(),
+            new HasHamburgerMenuValidator(),
             new HasOldMvvmLightLocatorValidator(),
+            new HasOldNavigationViewValidator(),
         };
 
         public static ValidationResult Validate()

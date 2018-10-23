@@ -159,12 +159,12 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void EnsureGenContextInitialized()
         {
-            if (!GenContext.ContextInitialized)
+            if (GenContext.CurrentLanguage != _shell.GetActiveProjectLanguage())
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, _shell.GetActiveProjectLanguage());
+                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, Platforms.Uwp, _shell.GetActiveProjectLanguage());
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), _shell, _shell.GetActiveProjectLanguage());
+                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, _shell.GetActiveProjectLanguage()), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
 #endif
             }
 

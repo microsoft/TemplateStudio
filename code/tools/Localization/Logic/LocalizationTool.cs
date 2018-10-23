@@ -40,11 +40,11 @@ namespace Localization
                 var rightClickCommandGenerator = new RightClickCommandGenerator(options.SourceDirectory, options.DestinationDirectory);
                 rightClickCommandGenerator.GenerateRightClickCommands(cultures);
 
-            Console.WriteLine("End");
-            stopwatch.Stop();
-            TimeSpan ts = stopwatch.Elapsed;
-            Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
-        }
+                Console.WriteLine("End");
+                stopwatch.Stop();
+                TimeSpan ts = stopwatch.Elapsed;
+                Console.WriteLine(string.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10));
+            }
         }
 
         public void ExtractLocalizableItems(ExtractOptions options)

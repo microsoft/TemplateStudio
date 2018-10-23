@@ -327,69 +327,6 @@ namespace Microsoft.Templates.Core.Test.Locations
             Assert.True(TemplatePackage.ValidateSignatures(msSignedFile));
         }
 
-        // TODO: Refactor this methods to other class
-        [Fact]
-        public async Task TestRemoteSource_AcquireAsync()
-        {
-            RemoteTemplatesSource rts = new RemoteTemplatesSource();
-            CancellationTokenSource cts = new CancellationTokenSource();
-
-            await rts.LoadConfigAsync(cts.Token);
-            var package = rts.Config.Latest;
-
-            await rts.AcquireAsync(package, cts.Token);
-
-            string acquiredContentFolder = package.LocalPath;
-
-            Assert.NotNull(acquiredContentFolder);
-
-            // Ensure package is not downloaded again if already downloaded
-            await rts.AcquireAsync(package, cts.Token);
-            Assert.True(acquiredContentFolder == package.LocalPath);
-
-            // Reset localPath and ensure it is acquired again
-            if (Directory.Exists(Path.GetDirectoryName(package.LocalPath)))
-            {
-                Directory.Delete(Path.GetDirectoryName(package.LocalPath), true);
-            }
-
-            await rts.AcquireAsync(package, cts.Token);
-
-            Assert.True(package.LocalPath != acquiredContentFolder);
-
-            if (Directory.Exists(Path.GetDirectoryName(package.LocalPath)))
-            {
-                Directory.Delete(Path.GetDirectoryName(package.LocalPath), true);
-            }
-        }
-
-        [Fact]
-        public async Task TestRemoteSource_GetContentAsync()
-        {
-            string drive = Path.GetPathRoot(new Uri(typeof(TemplatePackageTests).Assembly.CodeBase).LocalPath);
-            string testDir = Path.Combine(drive, $@"Temp\TestRts{Process.GetCurrentProcess().Id}_{Thread.CurrentThread.ManagedThreadId}");
-
-            try
-            {
-                RemoteTemplatesSource rts = new RemoteTemplatesSource();
-                CancellationTokenSource cts = new CancellationTokenSource();
-                await rts.LoadConfigAsync(cts.Token);
-                var package = rts.Config.Latest;
-
-                await rts.AcquireAsync(package, cts.Token);
-                var contentInfo = await rts.GetContentAsync(package, testDir, cts.Token);
-
-                Assert.True(Directory.Exists(contentInfo.Path));
-            }
-            finally
-            {
-                if (Directory.Exists(testDir))
-                {
-                    Directory.Delete(testDir, true);
-                }
-            }
-        }
-
         private void ModifyContent(string signedPack, string contentFile)
         {
             using (ZipArchive zip = ZipFile.Open(signedPack, ZipArchiveMode.Update))

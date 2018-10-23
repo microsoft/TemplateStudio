@@ -26,7 +26,7 @@ namespace Microsoft.UI.Test
         {
             var path = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\UI\\";
             var source = new LocalTemplatesSource();
-            GenContext.Bootstrap(source, new FakeGenShell(platform, language), language);
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), Platforms.Uwp, language);
             GenContext.Current = new FakeContextProvider
             {
                 ProjectName = "Test",

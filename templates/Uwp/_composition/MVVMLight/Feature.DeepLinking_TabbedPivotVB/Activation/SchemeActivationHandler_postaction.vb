@@ -25,6 +25,7 @@ Namespace Activation
                     NavigationService.Navigate(GetType(ViewModels.PivotViewModel).FullName, data)
                 End If
             ElseIf args.PreviousExecutionState <> ApplicationExecutionState.Running Then
+                ' If the app isn't running and not navigating to a specific page based on the URI, navigate to the home page
                 NavigationService.Navigate(GetType(ViewModels.PivotViewModel).FullName)
             End If
             Await Task.CompletedTask

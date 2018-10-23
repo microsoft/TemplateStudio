@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Core.Gen
             var genResults = await GenerateItemsAsync(genItems, true);
             chrono.Stop();
 
-            TrackTelemery(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
+            TrackTelemetry(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
         }
 
         public void UnsafeFinishGeneration(UserSelection userSelection)
@@ -201,7 +201,7 @@ namespace Microsoft.Templates.Core.Gen
             return File.ReadAllLines(file).SequenceEqual(File.ReadAllLines(destFilePath));
         }
 
-        private static void TrackTelemery(TemplateType templateType, IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string appPlatform)
+        private static void TrackTelemetry(TemplateType templateType, IEnumerable<GenInfo> genItems, Dictionary<string, TemplateCreationResult> genResults, double timeSpent, string appProjectType, string appFx, string appPlatform)
         {
             try
             {

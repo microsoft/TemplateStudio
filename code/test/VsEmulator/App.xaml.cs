@@ -73,6 +73,7 @@ namespace Microsoft.Templates.VsEmulator
                             new LocalTemplatesSource("0.0.0.0", string.Empty),
                             new FakeGenShell(Platforms.Uwp, progLanguage),
                             new Version("0.0.0.0"),
+                            Platforms.Uwp,
                             progLanguage);
 
                         await GenContext.ToolBox.Repo.RefreshAsync();

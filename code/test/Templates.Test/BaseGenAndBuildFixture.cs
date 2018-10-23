@@ -113,7 +113,6 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (int exitCode, string outputFile) BuildAppxBundle(string projectName, string outputPath, string projectExtension)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{projectName}.txt");
@@ -143,7 +142,6 @@ namespace Microsoft.Templates.Test
             return (process.ExitCode, outputFile);
         }
 
-        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (int exitCode, string outputFile, string resultFile) RunWackTestOnAppxBundle(string bundleFilePath, string outputPath)
         {
             var outputFile = Path.Combine(outputPath, $"_wackOutput_{Path.GetFileName(bundleFilePath)}.txt");
@@ -197,7 +195,6 @@ namespace Microsoft.Templates.Test
             throw new ApplicationException("No valid randomName could be generated");
         }
 
-        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
