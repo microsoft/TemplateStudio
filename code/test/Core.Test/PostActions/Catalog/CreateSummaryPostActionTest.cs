@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Microsoft.Templates.Core.Gen;
@@ -17,9 +18,22 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     [Trait("ExecutionSet", "Minimum")]
     public class CreateSummaryPostActionTest
     {
+        private CultureInfo cultureInfo;
+
+        public CreateSummaryPostActionTest()
+        {
+            cultureInfo = CultureInfo.CurrentUICulture;
+        }
+
+        public void Dispose()
+        {
+            CultureInfo.CurrentUICulture = cultureInfo;
+        }
+
         [Fact]
         public void Execute_SyncGeneration()
         {
+            CultureInfo.CurrentUICulture = new CultureInfo("en-US");
             var outputPath = Path.GetFullPath(@".\temp");
             var destPath = Path.GetFullPath(@".\DestinationPath");
             var expectedFile = Path.GetFullPath(@".\TestData\GenerationSummary_expected.md");
@@ -73,6 +87,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         [Fact]
         public void Execute_NotSyncGeneration()
         {
+            CultureInfo.CurrentUICulture = new CultureInfo("en-US");
             var outputPath = Path.GetFullPath(@".\temp");
             var destPath = Path.GetFullPath(@".\DestinationPath");
             var expectedFile = Path.GetFullPath(@".\TestData\Steps to include new item generation_expected.md");
