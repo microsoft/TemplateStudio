@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
-using WtsTool.CommandOptions;
+using WtsPackagingTool.CommandOptions;
 
-namespace WtsTool
+namespace WtsPackagingTool
 {
     public class Program
     {
@@ -19,7 +19,7 @@ namespace WtsTool
         {
             var chrono = Stopwatch.StartNew();
 
-            Console.Out.WriteHeader("Wts Tool v1.0.0.0");
+            Console.Out.WriteHeader("Wts Packaging Tool v1.0.0.0");
 
             Parser.Default.ParseArguments<PackageOptions, RemoteSourceListOptions, RemoteSourceDownloadOptions, RemoteSourcePublishOptions>(args)
             .WithParsed<CommonOptions>(opts => TextWriterExtensions.Verbose = opts.Verbose)

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
 
-namespace WtsTool.CommandOptions
+namespace WtsPackagingTool.CommandOptions
 {
     [Verb("list-versions", Hidden = false, HelpText = "List the available versions / templates packages for the specified environment.")]
     public class RemoteSourceListOptions : RemoteSourceCommonOptions

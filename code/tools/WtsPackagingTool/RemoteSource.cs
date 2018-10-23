@@ -14,9 +14,9 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
-using WtsTool.CommandOptions;
+using WtsPackagingTool.CommandOptions;
 
-namespace WtsTool
+namespace WtsPackagingTool
 {
     public static class RemoteSource
     {
@@ -33,10 +33,13 @@ namespace WtsTool
                         Name = e.Name,
                         Bytes = e.Properties.Length,
                         Date = e.Properties.LastModified.Value.DateTime,
+                        Platform = e.Metadata.ContainsKey("platform") ? e.Metadata["platform"] : string.Empty,
+                        Language = e.Metadata.ContainsKey("language") ? e.Metadata["language"] : string.Empty,
+                        WizardVersions = e.Metadata.ContainsKey("wizardversion") ? e.Metadata["wizardversion"].Split(';').Select(v => new Version(v)).ToList() : new List<Version>(),
                     })
                 .OrderByDescending(e => e.Date)
                 .OrderByDescending(e => e.Version)
-                .GroupBy(e => e.MainVersion)
+                .GroupBy(e => new { e.MainVersion, e.Language, e.Platform })
                 .Select(e => e.FirstOrDefault());
 
             TemplatesSourceConfig config = new TemplatesSourceConfig()
@@ -48,7 +51,7 @@ namespace WtsTool
             return config;
         }
 
-        public static string UploadTemplatesContent(string storageAccount, string key, string env, string sourceFile, string version)
+        public static string UploadTemplatesContent(string storageAccount, string key, string env, string sourceFile, string version, string platform, string language, string wizardVersion)
         {
             if (!File.Exists(sourceFile))
             {
@@ -63,7 +66,13 @@ namespace WtsTool
             string blobName = GetBlobName(env, sourceFile, version);
 
             var container = GetContainer(storageAccount, key, env);
-            return UploadElement(container, sourceFile, blobName);
+            var metaData = new Dictionary<string, string>()
+            {
+                { "platform", platform },
+                { "language", language },
+                { "wizardversion", wizardVersion },
+            };
+            return UploadElement(container, sourceFile, blobName, metaData);
         }
 
         public static string UploadElement(string storageAccount, string key, string env, string sourceFile)
@@ -80,7 +89,7 @@ namespace WtsTool
 
             string blobName = Path.GetFileName(sourceFile);
             var container = GetContainer(storageAccount, key, env);
-            return UploadElement(container, sourceFile, blobName);
+            return UploadElement(container, sourceFile, blobName, null);
         }
 
         public static string DownloadCdnElement(string cndUrl, string elementName, string destination)
@@ -152,7 +161,7 @@ namespace WtsTool
                 throw new ArgumentException($"The container {container.Uri} does not exists or is not public.");
             }
 
-            BlobResultSegment result = container.ListBlobsSegmented(token);
+            BlobResultSegment result = container.ListBlobsSegmented(string.Empty, true, BlobListingDetails.Metadata, null, token, null, null);
 
             token = result.ContinuationToken;
             return result.Results.Select((i) => i as CloudBlockBlob);
@@ -183,9 +192,17 @@ namespace WtsTool
             return blobName;
         }
 
-        private static string UploadElement(CloudBlobContainer container, string sourceFile, string blobName)
+        private static string UploadElement(CloudBlobContainer container, string sourceFile, string blobName, Dictionary<string, string> metaData)
         {
             CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
+            if (metaData != null)
+            {
+                foreach (var item in metaData)
+                {
+                    blob.Metadata.Add(item.Key, item.Value);
+                }
+            }
+
             using (var fileStreame = File.Open(sourceFile, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 BlobRequestOptions options = new BlobRequestOptions();

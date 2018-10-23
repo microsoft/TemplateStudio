@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Test", "test\UI.Test\UI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateValidator", "tools\TemplateValidator\TemplateValidator.csproj", "{365ACD5E-0FFE-45A5-80B3-C0873B6BDB08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsTool", "tools\WtsTool\WtsTool.csproj", "{18FE7361-241E-4B1B-98F5-C4A4D17496A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsPackagingTool", "tools\WtsPackagingTool\WtsPackagingTool.csproj", "{18FE7361-241E-4B1B-98F5-C4A4D17496A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
