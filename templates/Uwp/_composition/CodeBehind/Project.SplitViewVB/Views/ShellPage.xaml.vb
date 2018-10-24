@@ -1,5 +1,6 @@
 ﻿Imports WinUI = Microsoft.UI.Xaml.Controls
 Imports Windows.System
+Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Navigation
 Imports wts.ItemName.Helpers
@@ -47,6 +48,11 @@ Namespace Views
             NavigationService.Frame = shellFrame
             AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
             AddHandler winUiNavigationView.BackRequested, AddressOf OnBackRequested
+        End Sub
+
+        Private Sub OnLoaded(sender As Object, e As RoutedEventArgs)
+            ' Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
+            ' More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
             keyboardAccelerators.Add(_backKeyboardAccelerator)
         End Sub
@@ -80,7 +86,6 @@ Namespace Views
                 keyboardAccelerator.Modifiers = modifiers.Value
             End If
 
-            ToolTipService.SetToolTip(keyboardAccelerator, String.Empty)
             AddHandler keyboardAccelerator.Invoked, AddressOf OnKeyboardAcceleratorInvoked
             Return keyboardAccelerator
         End Function
