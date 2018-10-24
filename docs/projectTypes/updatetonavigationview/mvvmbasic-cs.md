@@ -302,7 +302,7 @@ namespace YourAppName.Behaviors
 
 ## 7. Add NavigationViewHeaderMode.cs
 
-Add the NavigationViewHeaderBehavior enum in Behaviors folder. 
+Add the NavigationViewHeaderBehavior enum in Behaviors folder.
 
 ```csharp
 namespace YourAppName.Behaviors
