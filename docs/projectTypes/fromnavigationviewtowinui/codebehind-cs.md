@@ -351,6 +351,8 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
 
  - Add `NavigationViewHeaderBehavior` with `DefaultHeader` and `DefaultHeaderTemplate` properties to NavigationView behaviors.
 
+ - `Loaded` event.
+
 ### Xaml code you will have to update (_Implementation below_):
 
  - Add the `winui:` namespace to `NavigationView` and `NavigationViewItems` data types.
@@ -374,6 +376,7 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
     xmlns:views="using:YourAppName.Views"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
+    Loaded="OnLoaded"
     mc:Ignorable="d">
 
     <winui:NavigationView
@@ -429,7 +432,7 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 
   - Add `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator` and `IsBackEnabled` members.
 
- - Add `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnBackRequested` methods.
+ - Add `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked`, `OnLoaded` and `OnBackRequested` methods.
 
  - Subscribe to `BackRequested` event handler in Initialize.
 
@@ -502,6 +505,10 @@ namespace YourAppName.Views
             NavigationService.Frame = shellFrame;
             NavigationService.Navigated += Frame_Navigated;
             navigationView.BackRequested += OnBackRequested;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
             KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
             KeyboardAccelerators.Add(_backKeyboardAccelerator);
         }
@@ -555,7 +562,6 @@ namespace YourAppName.Views
                 keyboardAccelerator.Modifiers = modifiers.Value;
             }
 
-            ToolTipService.SetToolTip(keyboardAccelerator, string.Empty);
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
             return keyboardAccelerator;
         }

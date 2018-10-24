@@ -381,7 +381,7 @@ xmlns:helpers="using:YourAppName.Helpers"
 
  - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
 
- - `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
+ - `NavigationViewHeaderBehavior` and `Loaded` behaviors inside of the `winui:NavigationView`.
 
  The resulting code should look like this:
 
@@ -428,6 +428,10 @@ xmlns:helpers="using:YourAppName.Helpers"
             </behaviors:NavigationViewHeaderBehavior>
             <ic:EventTriggerBehavior EventName="ItemInvoked">
                 <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
+            </ic:EventTriggerBehavior>
+            <i:Interaction.Behaviors>
+            <ic:EventTriggerBehavior EventName="Loaded">
+                <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
             </ic:EventTriggerBehavior>
         </i:Interaction.Behaviors>
         <Grid>
@@ -518,13 +522,13 @@ using Windows.UI.Xaml.Input;
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
- - `_navigationView`, `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator`
+ - `_navigationView`, `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator`, `_keyboardAccelerators`, `_loadedCommand` and `LoadedCommand`.
 
  - `_isBackEnabled` and `IsBackEnabled` properties.
 
  - `_itemInvokedCommand` and `ItemInvokedCommand` properties.
 
- - `OnItemInvoked`, `OnBackRequested`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
+ - `OnLoaded`, `OnItemInvoked`, `OnBackRequested`, `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
 
 
 ### C# code you will have to update _(implementation below)_:
@@ -565,9 +569,11 @@ namespace YourAppName.ViewModels
         private readonly KeyboardAccelerator _backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
         private bool _isBackEnabled;
+        private IList<KeyboardAccelerator> _keyboardAccelerators;
         private WinUI.NavigationView _navigationView;
         private WinUI.NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
+        private ICommand _loadedCommand;
 
         public bool IsBackEnabled
         {
@@ -585,6 +591,8 @@ namespace YourAppName.ViewModels
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
+        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
+
         public ShellViewModel()
         {
         }
@@ -595,8 +603,13 @@ namespace YourAppName.ViewModels
             NavigationService.Frame = frame;
             NavigationService.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
-            keyboardAccelerators.Add(_altLeftKeyboardAccelerator);
-            keyboardAccelerators.Add(_backKeyboardAccelerator);
+            _keyboardAccelerators = keyboardAccelerators;
+        }
+
+        private void OnLoaded()
+        {
+            _keyboardAccelerators.Add(_altLeftKeyboardAccelerator);
+            _keyboardAccelerators.Add(_backKeyboardAccelerator);
         }
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
@@ -648,7 +661,6 @@ namespace YourAppName.ViewModels
                 keyboardAccelerator.Modifiers = modifiers.Value;
             }
 
-            ToolTipService.SetToolTip(keyboardAccelerator, string.Empty);
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
             return keyboardAccelerator;
         }

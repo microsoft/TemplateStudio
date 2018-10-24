@@ -368,6 +368,8 @@ xmlns:views="using:YourAppName.Views"
 xmlns:i="using:Microsoft.Xaml.Interactivity"
 ```
 
+ - `Loaded` event.
+
  - `winui:NavigationView` control.
 
  - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
@@ -388,6 +390,7 @@ xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:YourAppName.Behaviors"
     xmlns:helpers="using:YourAppName.Helpers"
     xmlns:views="using:YourAppName.Views"
+    Loaded="OnLoaded"
     mc:Ignorable="d">
 
     <winui:NavigationView
@@ -459,6 +462,8 @@ using Windows.UI.Xaml.Input;
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
+ - `OnLoaded` event.
+
  - `_altLeftKeyboardAccelerator`, `_backKeyboardAccelerator`
 
  - `_isBackEnabled` and `IsBackEnabled` properties.
@@ -525,6 +530,10 @@ namespace YourAppName.Views
             NavigationService.Frame = shellFrame;
             NavigationService.Navigated += Frame_Navigated;
             winUiNavigationView.BackRequested += OnBackRequested;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
             KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
             KeyboardAccelerators.Add(_backKeyboardAccelerator);
         }
@@ -577,7 +586,6 @@ namespace YourAppName.Views
                 keyboardAccelerator.Modifiers = modifiers.Value;
             }
 
-            ToolTipService.SetToolTip(keyboardAccelerator, string.Empty);
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
             return keyboardAccelerator;
         }

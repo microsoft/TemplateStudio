@@ -418,6 +418,9 @@ The updated ShellPage will contain a WinUI NavigationView that handles back navi
             <ic:EventTriggerBehavior EventName="ItemInvoked">
                 <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
             </ic:EventTriggerBehavior>
+            <ic:EventTriggerBehavior EventName="Loaded">
+                <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
+            </ic:EventTriggerBehavior>
         </i:Interaction.Behaviors>
         <Grid>
             <Frame x:Name="shellFrame" />
@@ -483,13 +486,13 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 
  - Add `WinUI.` namespace alias to `NavigationView`, `NavigationViewItem` and `NavigationViewItemInvokedEventArgs` Data Types.
 
- - Add `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator` and `IsBackEnabled` members.
+ - Add `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator` `IsBackEnabled`, `_keyboardAccelerators`, `_loadedCommand` and `LoadedCommand` members.
 
  - Add `keyboardAccelerators` parameter to `Initialize` method.
 
  - Add `AltLeftKeyboardAccelerator` and `BackKeyboardAccelerator` to `KeyboardAccelerators` in Initialize method.
  
- - Add `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnBackRequested` methods.
+ - Add `OnLoaded`, `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnBackRequested` methods.
 
  - Subscribe to `BackRequested` event handler in Initialize.
 
@@ -525,9 +528,11 @@ namespace YourAppName.ViewModels
     public class ShellViewModel : Observable
     {
         private bool _isBackEnabled;
+        private IList<KeyboardAccelerator> _keyboardAccelerators;
         private WinUI.NavigationView _navigationView;
         private WinUI.NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
+        private ICommand _loadedCommand;
 
         public bool IsBackEnabled
         {
@@ -542,6 +547,8 @@ namespace YourAppName.ViewModels
         }
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+
+        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
 
         public readonly KeyboardAccelerator AltLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
 
@@ -559,8 +566,13 @@ namespace YourAppName.ViewModels
             NavigationService.Frame = frame;
             NavigationService.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
-            keyboardAccelerators.Add(AltLeftKeyboardAccelerator);
-            keyboardAccelerators.Add(BackKeyboardAccelerator);
+            _keyboardAccelerators = keyboardAccelerators;
+        }
+
+        private void OnLoaded()
+        {
+            _keyboardAccelerators.Add(_altLeftKeyboardAccelerator);
+            _keyboardAccelerators.Add(_backKeyboardAccelerator);
         }
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
@@ -611,7 +623,6 @@ namespace YourAppName.ViewModels
                 keyboardAccelerator.Modifiers = modifiers.Value;
             }
 
-            ToolTipService.SetToolTip(keyboardAccelerator, string.Empty);
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
             return keyboardAccelerator;
         }
