@@ -1,7 +1,9 @@
 # Update from HamburgerMenu to WinUI NavigationView in MVVM Basic
+
 If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update to WinUI NavigationView:
 
 ## 1. Update target version in project properties
+
 Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
 
 ![](../../resources/project-types/cu-min-oct19-target.png)
@@ -15,6 +17,7 @@ Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 ## 3. Changes in App.xaml
 
 Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
+
 ```xml
 <ResourceDictionary.MergedDictionaries>
 
@@ -138,12 +141,14 @@ namespace YourAppName.Services
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
+
 ```xml
 <Thickness x:Key="MediumLeftRightMargin">24,0,24,0</Thickness>
 <Thickness x:Key="MediumLeftTopRightBottomMargin">24,24,24,24</Thickness>
 ```
 
 ### Thickness values you will have to add.
+
 ```xml
 <!--Medium size margins-->
 <Thickness x:Key="MediumTopMargin">0,24,0,0</Thickness>
@@ -310,6 +315,7 @@ namespace YourAppName.Behaviors
     }
 }
 ```
+
 ## 8. Add NavHelper.cs
 
 Add this extension class in the **Helpers** folder to the project. This allows the Windows UI NavigationViewItems to contain a Type property that is used for navigation.
@@ -344,23 +350,31 @@ namespace YourAppName.Helpers
 The updated ShellPage will include the WinUI NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
 
 ### XAML code you will have to remove:
+
  - xml namespaces for `fcu`, `cu`, `controls` and `vm` (viewmodels).
+
  - `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
+
  - `HamburgerMenu` control.
 
 ### XAML code you will have to add:
+
 - The following xml namespaces:
+
 ```xml
 xmlns:winui="using:Microsoft.UI.Xaml.Controls"
 xmlns:behaviors="using:YourAppName.Behaviors"
 xmlns:helpers="using:YourAppName.Helpers"
 xmlns:views="using:YourAppName.Views"
 ```
+
  - `winui:NavigationView` control.
+
  - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
+
  - `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
 
- The resulting code should look like this:
+The resulting code should look like this:
 
 ```xml
 <Page
@@ -415,6 +429,7 @@ xmlns:views="using:YourAppName.Views"
 ```
 
 ## 10. Changes in ShellPage.xaml.cs
+
 ShellViewModel will need the WinUI `NavigationView` instance and `KeyboardAccelerators` (explained below), you will have to add it on initialization.
 
 ### C# code you will have to update (_Implementation below_):
@@ -466,14 +481,9 @@ ShellViewModel's complexity will be reduced significantly, these are the changes
 
  - `StateChangedCommand` and handler method `GoToState`.
 
- - `PopulateNavItems` method and method call from Initialize.
-
- - `InitializeState` method and method call from Initialize.
-
  - `Navigate` and `ChangeSelected` methods.
 
  - Remove unused using statements.
-
 
 ### C# code you will have to add _(implementation below)_:
 
@@ -492,7 +502,6 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 
  - `IsMenuItemForPageType`, `BuildKeyboardAccelerator` and `OnKeyboardAcceleratorInvoked` methods.
 
-
 ### C# code you will have to update _(implementation below)_:
 
  - `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
@@ -501,7 +510,8 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 
  - `Frame_Navigated` method with the implementation below.
 
- The resulting code should look like this:
+The resulting code should look like this:
+
 ```csharp
 public class ShellViewModel : Observable
 {
@@ -617,16 +627,23 @@ public static bool GoBack()
 ShellNavigationItem from ViewModels folder, it is no longer used and you should remove it from the project.
 
 ## 14. Update XAML code for all pages
+
 The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, because the page title will be displayed on the NavigationView HeaderTemplate and the responsive behaviors will be added by NavigationView control.
 
 ### XAML code you will have to remove:
+
  - **xmln namespaces** for fcu and cu.
+
  - Textblock **TitlePage**
+
  - ContentArea Grid **RowDefinitions**
+
  - VisualStateManager **VisualStateGroups**.
+
  - **Grid.Row="1"** property  in the content Grid.
 
 The resulting code should look like this:
+
 ```xml
 <Page
     x:Class="SampleApp.Views.MainPage"
@@ -647,14 +664,20 @@ The resulting code should look like this:
     </Grid>
 </Page>
 ```
+
 ## 15. Update Navigation View item name for all pages in Resources.resw
+
 As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
 (_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
 
 ## 16. Settings Page
+
 If your project contains a SettingsPage you must perform the following steps:
-- On **ShellPage.xaml** change **IsSettingsVisible** property to true.
-- On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
+
+ - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
+
+ - On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
+
 ```csharp
 if (args.IsSettingsInvoked)
 {
@@ -663,7 +686,8 @@ if (args.IsSettingsInvoked)
 }
 ```
 
-- On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
+ - On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
+
 ```csharp
 if (e.SourcePageType == typeof(SettingsPage))
 {

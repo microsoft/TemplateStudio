@@ -360,20 +360,27 @@ namespace YourAppName.Helpers
 The updated ShellPage will include the WinUI NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
 
 ### XAML code you will have to remove:
+
  - xml namespaces for `fcu`, `cu`, `controls` and `vm` (viewmodels).
+
  - `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
+
  - `HamburgerMenu` control.
 
 ### XAML code you will have to add:
+
 - The following xml namespaces:
+
 ```xml
 xmlns:winui="using:Microsoft.UI.Xaml.Controls"
 xmlns:behaviors="using:YourAppName.Behaviors"
 xmlns:helpers="using:YourAppName.Helpers"
-xmlns:views="using:YourAppName.Views"
 ```
+
  - `winui:NavigationView` control.
+
  - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
+
  - `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
 
  The resulting code should look like this:
@@ -432,6 +439,7 @@ xmlns:views="using:YourAppName.Views"
 ```
 
 ## 11. Changes in ShellPage.xaml.cs
+
 ShellViewModel will need the WinUI `NavigationView` instance and `KeyboardAccelerators` (explained below), you will have to add it on initialization.
 
 ### C# code you will have to update (_Implementation below_):
