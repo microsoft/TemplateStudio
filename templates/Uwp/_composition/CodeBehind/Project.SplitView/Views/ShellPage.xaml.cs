@@ -50,6 +50,8 @@ namespace wts.ItemName.Views
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
+            // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
             KeyboardAccelerators.Add(_backKeyboardAccelerator);
         }
