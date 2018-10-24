@@ -35,9 +35,6 @@
     },
     {
       "path": ".\\Services\\Ink\\InkPointerDeviceService.vb"
-    },
-    {
-      "path": ".\\Styles\\CommandBar.xaml"
     }
   ],
   "symbols": {
