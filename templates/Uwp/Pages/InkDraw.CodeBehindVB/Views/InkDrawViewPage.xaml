@@ -30,7 +30,7 @@
                                 Glyph="&#xEF20;" />
                         </InkToolbarCustomToolButton>
                         <InkToolbarCustomToggleButton
-                            x:Uid="InkDrawPictureView_TouchInkingButton"
+                            x:Uid="InkDrawView_TouchInkingButton"
                             Name="touchInkingButton"
                             Checked="TouchInking_Checked"
                             Unchecked="TouchInking_Unchecked">
@@ -39,7 +39,7 @@
                                 Glyph="&#xED5F;" />
                         </InkToolbarCustomToggleButton>
                         <InkToolbarCustomToggleButton
-                            x:Uid="InkDrawPictureView_MouseInkingButton"                            
+                            x:Uid="InkDrawView_MouseInkingButton"                            
                             Name="mouseInkingButton"
                             Checked="MouseInking_Checked"
                             Unchecked="MouseInking_Unchecked">
