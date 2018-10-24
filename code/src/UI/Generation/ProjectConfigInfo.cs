@@ -29,7 +29,6 @@ namespace Microsoft.Templates.UI.Generation
         private const string ProjTypeSplitView = "SplitView";
         private const string ProjTypeTabbedPivot = "TabbedPivot";
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
         public static (string ProjectType, string Framework, string Platform) ReadProjectConfiguration()
         {
             var projectMetadata = ProjectMetadataService.GetProjectMetadata();
@@ -48,7 +47,6 @@ namespace Microsoft.Templates.UI.Generation
             return inferredConfig;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.SpacingRules", "SA1008:Opening parenthesis must be spaced correctly", Justification = "Using tuples must allow to have preceding whitespace", Scope = "member")]
         private static (string ProjectType, string Framework, string Platform) InferProjectConfiguration(string projectType, string framework, string platform)
         {
             if (string.IsNullOrEmpty(platform))

@@ -188,8 +188,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public override int GetHashCode() => base.GetHashCode();
 
-#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         public (string name, ITemplateInfo template) GetUserSelection() => (Name, Template);
-#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
     }
 }

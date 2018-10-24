@@ -49,8 +49,10 @@ namespace Microsoft.Templates.Core.Locations
         public TemplatesPackageInfo ResolvePackage(Version v, string platform, string language)
         {
             TemplatesPackageInfo match = Versions
-                        .Where(p => p.Platform == platform && p.Language == language)
-                        .Where(p => p.WizardVersions.Any(wv => wv.Major == v.Major && wv.Minor == v.Minor))
+                        .Where(p => p.Platform == platform || p.Platform == null)
+                        .Where(p => p.Language == language || p.Language == null)
+                        .Where(p => (p.WizardVersions != null && p.WizardVersions.Any(wv => wv.Major == v.Major && wv.Minor == v.Minor))
+                                 || (p.WizardVersions == null && p.Version.Major == v.Major && p.Version.Minor == v.Minor))
                         .OrderByDescending(p => p.Date).FirstOrDefault();
 
             return match;
