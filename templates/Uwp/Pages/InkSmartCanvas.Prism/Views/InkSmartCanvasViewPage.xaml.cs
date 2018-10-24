@@ -13,7 +13,10 @@ namespace Param_ItemNamespace.Views
         public InkSmartCanvasViewPage()
         {
             InitializeComponent();
+
+            NavigationViewHeaderBehavior.SetHeaderContext(this, this);
             SetNavigationViewHeader();
+
             Loaded += (sender, eventArgs) =>
             {
                 SetCanvasSize();

@@ -11,6 +11,7 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
+            NavigationViewHeaderBehavior.SetHeaderContext(Me, Me)
             SetNavigationViewHeader()
             AddHandler Loaded, Sub(sender, eventArgs)
                                     SetCanvasSize()

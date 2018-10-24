@@ -13,7 +13,10 @@ namespace Param_ItemNamespace.Views
         public InkDrawPictureViewPage()
         {
             InitializeComponent();
+
+            NavigationViewHeaderBehavior.SetHeaderContext(this, this);
             SetNavigationViewHeader();
+
             Loaded += (sender, eventArgs) =>
             {
                 SetCanvasSize();
