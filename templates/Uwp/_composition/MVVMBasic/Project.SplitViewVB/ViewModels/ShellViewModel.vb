@@ -14,10 +14,12 @@ Namespace ViewModels
         Private ReadOnly _backKeyboardAccelerator As KeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack)
 
         Private _isBackEnabled As Boolean
+        Private _keyboardAccelerators As IList(Of KeyboardAccelerator)
         Private _navigationView As WinUI.NavigationView
 
         Private _selected As WinUI.NavigationViewItem
 
+        Private _loadedCommand As ICommand
         Private _itemInvokedCommand As ICommand
 
         Public Property IsBackEnabled As Boolean
@@ -40,6 +42,16 @@ Namespace ViewModels
             End Set
         End Property
 
+        Public ReadOnly Property LoadedCommand As ICommand
+            Get
+                If _loadedCommand Is Nothing Then
+                    _loadedCommand = New RelayCommand(AddressOf OnLoaded)
+                End If
+
+                Return _loadedCommand
+            End Get
+        End Property
+
         Public ReadOnly Property ItemInvokedCommand As ICommand
             Get
                 If _itemInvokedCommand Is Nothing Then
@@ -52,11 +64,17 @@ Namespace ViewModels
 
         Public Sub Initialize(frame As Frame, navigationView As WinUI.NavigationView, keyboardAccelerators As IList(Of KeyboardAccelerator))
             _navigationView = navigationView
+            _keyboardAccelerators = keyboardAccelerators
             NavigationService.Frame = frame
             AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
             AddHandler _navigationView.BackRequested, AddressOf OnBackRequested
-            keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
-            keyboardAccelerators.Add(_backKeyboardAccelerator)
+        End Sub
+
+        Private Sub OnLoaded()
+            ' Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
+            ' More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
+            _keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
+            _keyboardAccelerators.Add(_backKeyboardAccelerator)
         End Sub
 
         Private Sub OnBackRequested(sender As WinUI.NavigationView, args As WinUI.NavigationViewBackRequestedEventArgs)
@@ -88,7 +106,6 @@ Namespace ViewModels
                 keyboardAccelerator.Modifiers = modifiers.Value
             End If
 
-            ToolTipService.SetToolTip(keyboardAccelerator, String.Empty)
             AddHandler keyboardAccelerator.Invoked, AddressOf OnKeyboardAcceleratorInvoked
             Return keyboardAccelerator
         End Function
