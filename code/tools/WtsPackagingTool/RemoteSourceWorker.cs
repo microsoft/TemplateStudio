@@ -14,9 +14,9 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using WtsTool.CommandOptions;
+using WtsPackagingTool.CommandOptions;
 
-namespace WtsTool
+namespace WtsPackagingTool
 {
     public static class RemoteSourceWorker
     {
@@ -58,9 +58,10 @@ namespace WtsTool
         {
             try
             {
-                output.WriteCommandHeader($"Publishing {options.File} for environment {options.Env.ToString()} ({options.StorageAccount})");
+                var shortLanguage = ProgrammingLanguages.GetShortProgrammingLanguage(options.Language);
+                output.WriteCommandHeader($"Publishing {options.File} for environment {options.Env.ToString()} ({options.StorageAccount}), Platform: {options.Platform}, Language: {shortLanguage} and WizardVersion {options.WizardVersion}");
                 output.WriteCommandText("Uploading template package...");
-                output.WriteCommandText(RemoteSource.UploadTemplatesContent(options.StorageAccount, options.AccountKey, options.Env.ToString().ToLowerInvariant(), options.File, options.Version));
+                output.WriteCommandText(RemoteSource.UploadTemplatesContent(options.StorageAccount, options.AccountKey, options.Env.ToString().ToLowerInvariant(), options.File, options.Version, options.Platform, shortLanguage, options.WizardVersion));
 
                 PublishUpdatedRemoteSourceConfig(options, output);
             }
@@ -87,6 +88,8 @@ namespace WtsTool
         {
             try
             {
+                var shortLanguage = ProgrammingLanguages.GetShortProgrammingLanguage(options.Language);
+
                 output.WriteCommandHeader($"Downloading templates content from environment {options.Env.ToString()} ({options.StorageAccount})");
 
                 TemplatesSourceConfig config = GetConfigFromCdn(options.Env);
@@ -94,7 +97,7 @@ namespace WtsTool
                 TemplatesPackageInfo package = null;
                 if (options.Version != null)
                 {
-                    package = ResolvePackageForVersion(config, options.Version, options.Platform, options.Language, output);
+                    package = ResolvePackageForVersion(config, options.Version, options.Platform, shortLanguage, output);
                 }
                 else
                 {
@@ -223,6 +226,7 @@ namespace WtsTool
                 JsonSerializerSettings settings = new JsonSerializerSettings();
                 settings.NullValueHandling = NullValueHandling.Ignore;
                 settings.Converters.Add(new StringEnumConverter());
+                settings.Converters.Add(new VersionConverter());
                 string content = JsonConvert.SerializeObject(config, settings);
 
                 sw.WriteLine(content);

@@ -3,8 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Validation;
@@ -12,14 +15,14 @@ using Microsoft.Templates.UI.Services;
 
 namespace Microsoft.Templates.UI.Validators
 {
-    public class HasNavigationViewValidator : IBreakingChangeValidator
+    public class HasOldNavigationViewValidator : IBreakingChangeValidator
     {
         public Version BreakingVersion { get; }
 
-        public HasNavigationViewValidator()
+        public HasOldNavigationViewValidator()
         {
-            // This is last version with Hamburguer menu control in templates
-            var version = Core.Configuration.Current.BreakingChangesVersions.FirstOrDefault(c => c.Name == "AddNavigationView")?.BreakingVersion;
+            // This is last version with old NavigationView control in templates
+            var version = Core.Configuration.Current.BreakingChangesVersions.FirstOrDefault(c => c.Name == "HasOldNavigationView")?.BreakingVersion;
             BreakingVersion = version ?? new Version();
         }
 
@@ -28,13 +31,13 @@ namespace Microsoft.Templates.UI.Validators
             var result = new ValidationResult();
             var projectType = ProjectMetadataService.GetProjectMetadata().ProjectType;
 
-            if (projectType == "SplitView" && !HasNavigationView())
+            if (projectType == "SplitView" && HasOldNavigationView())
             {
                 var message = new ValidationMessage
                 {
-                    Message = Resources.StringRes.ValidatorHasNavigationViewMessage,
-                    Url = string.Format(Resources.StringRes.ValidatorHasNavigationViewLink, Core.Configuration.Current.GitHubDocsUrl),
-                    HyperLinkMessage = Resources.StringRes.ValidatorHasNavigationViewLinkMessage,
+                    Message = Resources.StringRes.ValidatorHasOldNavigationViewMessage,
+                    Url = string.Format(Resources.StringRes.ValidatorHasOldNavigationViewLink, Core.Configuration.Current.GitHubDocsUrl),
+                    HyperLinkMessage = Resources.StringRes.ValidatorHasOldNavigationViewLinkMessage,
                 };
 
                 result.IsValid = false;
@@ -44,7 +47,7 @@ namespace Microsoft.Templates.UI.Validators
             return result;
         }
 
-        private bool HasNavigationView()
+        private bool HasOldNavigationView()
         {
             var filePath = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), "Views", "ShellPage.xaml");
             var fileContent = FileHelper.GetFileContent(filePath);

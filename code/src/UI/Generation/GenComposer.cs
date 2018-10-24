@@ -240,7 +240,7 @@ namespace Microsoft.Templates.UI
             var compositionCatalog = GetCompositionCatalog(userSelection.Platform).ToList();
             var context = new QueryablePropertyDictionary
             {
-                new QueryableProperty("projectType", userSelection.ProjectType),
+                new QueryableProperty("projecttype", userSelection.ProjectType),
                 new QueryableProperty("framework", userSelection.Framework),
             };
 
@@ -270,9 +270,7 @@ namespace Microsoft.Templates.UI
         {
             return GenContext.ToolBox.Repo
                                         .Get(t => t.GetTemplateType() == TemplateType.Composition && t.GetPlatform() == platform)
-#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
                                         .Select(t => (CompositionQuery.Parse(t.GetCompositionFilter()), t))
-#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
                                         .ToList();
         }
 
