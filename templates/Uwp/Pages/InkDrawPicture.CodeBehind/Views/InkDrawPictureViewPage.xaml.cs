@@ -1,5 +1,6 @@
 ﻿using Param_ItemNamespace.Services.Ink;
 using Param_ItemNamespace.Helpers;
+using Param_ItemNamespace.Behaviors;
 using System;
 using System.Linq;
 using Windows.UI.Xaml;
@@ -13,6 +14,10 @@ namespace Param_ItemNamespace.Views
     {
         private StorageFile imageFile;
 
+        private bool touchInkingButtonIsChecked = true;
+        private bool mouseInkingButtonIsChecked = true;
+        private bool saveImageButtonIsEnabled;
+        private bool clearAllButtonIsEnabled;
         private InkStrokesService strokesService;
         private InkPointerDeviceService pointerDeviceService;
         private InkFileService fileService;
@@ -21,6 +26,10 @@ namespace Param_ItemNamespace.Views
         public InkDrawPictureViewPage()
         {
             InitializeComponent();
+
+            NavigationViewHeaderBehavior.SetHeaderContext(this, this);
+            SetNavigationViewHeader();
+
             Loaded += (sender, eventArgs) =>
             {
                 SetCanvasSize();
@@ -29,23 +38,78 @@ namespace Param_ItemNamespace.Views
                 strokesService = new InkStrokesService(inkCanvas.InkPresenter);
                 pointerDeviceService = new InkPointerDeviceService(inkCanvas);
                 fileService = new InkFileService(inkCanvas, strokesService);
-                zoomService = new InkZoomService(canvasScroll);
-
-                touchInkingButton.IsChecked = true;
-                mouseInkingButton.IsChecked = true;
+                zoomService = new InkZoomService(canvasScroll);                
                 strokesService.StrokesCollected += (s, e) => RefreshEnabledButtons();
                 strokesService.StrokesErased += (s, e) => RefreshEnabledButtons();
                 strokesService.ClearStrokesEvent += (s, e) => RefreshEnabledButtons();
-                pointerDeviceService.DetectPenEvent += (s, e) => touchInkingButton.IsChecked = false;
-
-                RefreshEnabledButtons();
+                pointerDeviceService.DetectPenEvent += (s, e) => TouchInkingButtonIsChecked = false;
             };
+        }
+
+        public bool TouchInkingButtonIsChecked
+        {
+            get => touchInkingButtonIsChecked;
+            set
+            {
+                Param_Setter(ref touchInkingButtonIsChecked, value);
+                pointerDeviceService.EnableTouch = value;
+            }
+        }
+
+        public bool MouseInkingButtonIsChecked
+        {
+            get => mouseInkingButtonIsChecked;
+            set
+            {
+                Param_Setter(ref mouseInkingButtonIsChecked, value);
+                pointerDeviceService.EnableMouse = value;
+            }
+        }
+
+        public bool SaveImageButtonIsEnabled
+        {
+            get => saveImageButtonIsEnabled;
+            set => Set(ref saveImageButtonIsEnabled, value);
+        }
+
+        public bool ClearAllButtonIsEnabled
+        {
+            get => clearAllButtonIsEnabled;
+            set => Set(ref clearAllButtonIsEnabled, value);
         }
 
         private void SetCanvasSize()
         {
             inkCanvas.Width = Math.Max(canvasScroll.ViewportWidth, 1000);
             inkCanvas.Height = Math.Max(canvasScroll.ViewportHeight, 1000);
+        }
+
+        private void OnInkToolbarLoaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is InkToolbar inkToolbar)
+            {
+                inkToolbar.TargetInkCanvas = inkCanvas;
+            }
+        }
+
+        private void VisualStateGroup_CurrentStateChanged(object sender, VisualStateChangedEventArgs e) => SetNavigationViewHeader();
+
+        private void SetNavigationViewHeader()
+        {
+            if (visualStateGroup.CurrentState != null)
+            {
+                switch (visualStateGroup.CurrentState.Name)
+                {
+                    case "BigVisualState":
+                        NavigationViewHeaderBehavior.SetHeaderTemplate(this, Resources["BigHeaderTemplate"] as DataTemplate);
+                        bottomCommandBar.Visibility = Visibility.Collapsed;
+                        break;
+                    case "SmallVisualState":
+                        NavigationViewHeaderBehavior.SetHeaderTemplate(this, Resources["SmallHeaderTemplate"] as DataTemplate);
+                        bottomCommandBar.Visibility = Visibility.Visible;
+                        break;                    
+                }
+            }
         }
 
         private void Image_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -60,14 +124,6 @@ namespace Param_ItemNamespace.Views
                 inkCanvas.Height = e.NewSize.Height;
             }
         }
-
-        private void TouchInking_Checked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableTouch = true;
-
-        private void TouchInking_Unchecked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableTouch = false;
-
-        private void MouseInking_Checked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableMouse = true;
-
-        private void MouseInking_Unchecked(object sender, RoutedEventArgs e) => pointerDeviceService.EnableMouse = false;
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e) => zoomService?.ZoomIn();
 
@@ -108,8 +164,8 @@ namespace Param_ItemNamespace.Views
 
         private void RefreshEnabledButtons()
         {
-            SaveImageButton.IsEnabled = image.Source != null && strokesService.GetStrokes().Any();
-            ClearAllButton.IsEnabled = image.Source != null || strokesService.GetStrokes().Any();
+            SaveImageButtonIsEnabled = image.Source != null && strokesService.GetStrokes().Any();
+            ClearAllButtonIsEnabled = image.Source != null || strokesService.GetStrokes().Any();
         }
     }
 }

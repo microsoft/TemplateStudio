@@ -1,5 +1,6 @@
 ﻿Imports Param_ItemNamespace.Services.Ink
 Imports Param_ItemNamespace.Helpers
+Imports Param_ItemNamespace.Behaviors
 Imports Windows.Storage
 Imports System.Linq
 
@@ -9,6 +10,10 @@ Namespace Views
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
+        Private _touchInkingButtonIsChecked As Boolean = True
+        Private _mouseInkingButtonIsChecked As Boolean = True
+        Private _saveImageButtonIsEnabled As Boolean
+        Private _clearAllButtonIsEnabled As Boolean
         Private imageFile As StorageFile
         Private strokesService As InkStrokesService
         Private pointerDeviceService As InkPointerDeviceService
@@ -17,6 +22,8 @@ Namespace Views
 
         Public Sub New()
             InitializeComponent()
+            NavigationViewHeaderBehavior.SetHeaderContext(Me, Me)
+            SetNavigationViewHeader()
             AddHandler Loaded, Sub(sender, eventArgs)
                                     SetCanvasSize()
                                     AddHandler image.SizeChanged, AddressOf Image_SizeChanged
@@ -24,19 +31,79 @@ Namespace Views
                                     pointerDeviceService = New InkPointerDeviceService(inkCanvas)
                                     fileService = New InkFileService(inkCanvas, strokesService)
                                     zoomService = New InkZoomService(canvasScroll)
-                                    touchInkingButton.IsChecked = True
-                                    mouseInkingButton.IsChecked = True
                                     AddHandler strokesService.StrokesCollected, Sub(s, e) RefreshEnabledButtons()
                                     AddHandler strokesService.StrokesErased, Sub(s, e) RefreshEnabledButtons()
                                     AddHandler strokesService.ClearStrokesEvent, Sub(s, e) RefreshEnabledButtons()
-                                    AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
-                                    RefreshEnabledButtons()
+                                    AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) TouchInkingButtonIsChecked = False
                                 End Sub
         End Sub
+
+        Public Property TouchInkingButtonIsChecked As Boolean
+            Get
+                Return _touchInkingButtonIsChecked
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_touchInkingButtonIsChecked, value)
+                pointerDeviceService.EnableTouch = value
+            End Set
+        End Property
+
+        Public Property MouseInkingButtonIsChecked As Boolean
+            Get
+                Return _mouseInkingButtonIsChecked
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_mouseInkingButtonIsChecked, value)
+                pointerDeviceService.EnableMouse = value
+            End Set
+        End Property
+
+        Public Property SaveImageButtonIsEnabled As Boolean
+            Get
+                Return _saveImageButtonIsEnabled
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_saveImageButtonIsEnabled, value)
+            End Set
+        End Property
+
+        Public Property ClearAllButtonIsEnabled As Boolean
+            Get
+                Return _clearAllButtonIsEnabled
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_clearAllButtonIsEnabled, value)
+            End Set
+        End Property
 
         Private Sub SetCanvasSize()
             inkCanvas.Width = Math.Max(canvasScroll.ViewportWidth, 1000)
             inkCanvas.Height = Math.Max(canvasScroll.ViewportHeight, 1000)
+        End Sub
+
+        Private Sub OnInkToolbarLoaded(sender As Object, e As RoutedEventArgs)
+            Dim inkToolbar As InkToolbar = TryCast(sender, InkToolbar)
+            If inkToolbar IsNot Nothing Then
+                inkToolbar.TargetInkCanvas = inkCanvas
+            End If
+        End Sub
+
+        Private Sub VisualStateGroup_CurrentStateChanged(sender As Object, e As VisualStateChangedEventArgs)
+            SetNavigationViewHeader()
+        End Sub
+
+        Private Sub SetNavigationViewHeader()
+            If visualStateGroup.CurrentState IsNot Nothing Then
+
+                Select Case visualStateGroup.CurrentState.Name
+                    Case "BigVisualState"
+                        NavigationViewHeaderBehavior.SetHeaderTemplate(Me, TryCast(Resources("BigHeaderTemplate"), DataTemplate))
+                        bottomCommandBar.Visibility = Visibility.Collapsed
+                    Case "SmallVisualState"
+                        NavigationViewHeaderBehavior.SetHeaderTemplate(Me, TryCast(Resources("SmallHeaderTemplate"), DataTemplate))
+                        bottomCommandBar.Visibility = Visibility.Visible
+                End Select
+            End If
         End Sub
 
         Private Sub Image_SizeChanged(sender As Object, e As SizeChangedEventArgs)
@@ -46,22 +113,6 @@ Namespace Views
                 inkCanvas.Width = e.NewSize.Width
                 inkCanvas.Height = e.NewSize.Height
             End If
-        End Sub
-
-        Private Sub TouchInking_Checked(sender As Object, e As RoutedEventArgs)
-            pointerDeviceService.EnableTouch = True
-        End Sub
-
-        Private Sub TouchInking_Unchecked(sender As Object, e As RoutedEventArgs)
-            pointerDeviceService.EnableTouch = False
-        End Sub
-
-        Private Sub MouseInking_Checked(sender As Object, e As RoutedEventArgs)
-            pointerDeviceService.EnableMouse = True
-        End Sub
-
-        Private Sub MouseInking_Unchecked(sender As Object, e As RoutedEventArgs)
-            pointerDeviceService.EnableMouse = False
         End Sub
 
         Private Sub ZoomIn_Click(sender As Object, e As RoutedEventArgs)
@@ -109,8 +160,8 @@ Namespace Views
         End Sub
 
         Private Sub RefreshEnabledButtons()
-            SaveImageButton.IsEnabled = image.Source IsNot Nothing AndAlso strokesService.GetStrokes().Any()
-            ClearAllButton.IsEnabled = image.Source IsNot Nothing OrElse strokesService.GetStrokes().Any()
+            SaveImageButtonIsEnabled = image.Source IsNot Nothing AndAlso strokesService.GetStrokes().Any()
+            ClearAllButtonIsEnabled = image.Source IsNot Nothing OrElse strokesService.GetStrokes().Any()
         End Sub
     End Class
 End Namespace
