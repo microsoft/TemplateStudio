@@ -30,6 +30,7 @@ namespace Param_RootNamespace
             await Helpers.Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
             deferral.Complete();
         }
+
         private void App_Resuming(object sender, object e)
         {
             Helpers.Singleton<SuspendAndResumeService>.Instance.Resume();
