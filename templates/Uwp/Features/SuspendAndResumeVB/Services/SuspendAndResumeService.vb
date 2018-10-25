@@ -43,7 +43,6 @@ Namespace Services
             RaiseEvent OnResuming(Me, EventArgs.Empty)         
         End Sub
 
-
         ' This method restores application state when the App is launched after termination, it navigates to the stored Page passing the recovered state data.
         Protected Overrides Async Function HandleInternalAsync(args As LaunchActivatedEventArgs) As Task
             Dim saveState = Await ApplicationData.Current.LocalFolder.ReadAsync(Of OnBackgroundEnteringEventArgs)(StateFilename)
