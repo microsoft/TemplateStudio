@@ -1,8 +1,13 @@
 ﻿<Page
     mc:Ignorable="d">
-
-    <Grid x:Name="ContentArea">
-        <!--{[{-->
+    <Grid
+        x:Name="ContentArea"
+        Margin="{StaticResource SmallLeftRightMargin}">
+<!--{--{-->
+        <Grid>
+<!--}--}-->
+<!--^^-->
+<!--{[{-->
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition Height="*"/>
@@ -11,15 +16,11 @@
         <TextBlock
             Grid.Row="0"
             x:Uid="wts.ItemName_Title"
-            Margin="{StaticResource MediumLeftRightMargin}"
             Style="{StaticResource PageTitleStyle}" />
-
-        <!--}]}-->
-        <controls:MasterDetailsView
-            <!--{[{-->
-            Grid.Row="1"
-            <!--}]}-->
-            BorderBrush="Transparent" />
-    </Grid>    
+        <Grid Grid.Row="1">
+<!--}]}-->
+            <controls:DataGrid  
+            </controls:DataGrid>
+        </Grid>
+    </Grid>
 </Page>
-

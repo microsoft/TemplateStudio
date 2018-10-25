@@ -48,7 +48,7 @@ namespace Param_ItemNamespace.Views
                 copyPasteService = new InkCopyPasteService(strokeService);
                 undoRedoService = new InkUndoRedoService(inkCanvas, strokeService);
                 fileService = new InkFileService(inkCanvas, strokeService);
-                zoomService = new InkZoomService(canvasScroll);                
+                zoomService = new InkZoomService(canvasScroll);
 
                 strokeService.CopyStrokesEvent += (s, e) => RefreshEnabledButtons();
                 strokeService.SelectStrokesEvent += (s, e) => RefreshEnabledButtons();
@@ -167,7 +167,7 @@ namespace Param_ItemNamespace.Views
                     case "SmallVisualState":
                         NavigationViewHeaderBehavior.SetHeaderTemplate(this, Resources["SmallHeaderTemplate"] as DataTemplate);
                         bottomCommandBar.Visibility = Visibility.Visible;
-                        break;                    
+                        break;
                 }
             }
         }

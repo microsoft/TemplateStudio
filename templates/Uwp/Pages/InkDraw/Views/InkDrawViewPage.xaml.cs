@@ -63,7 +63,7 @@ namespace Param_ItemNamespace.Views
                     case "SmallVisualState":
                         NavigationViewHeaderBehavior.SetHeaderTemplate(this, Resources["SmallHeaderTemplate"] as DataTemplate);
                         bottomCommandBar.Visibility = Visibility.Visible;
-                        break;                    
+                        break;
                 }
             }
         }
