@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 using CommandLine;
 
-namespace WtsTool.CommandOptions
+namespace WtsPackagingTool.CommandOptions
 {
     [Verb("publish", Hidden = false, HelpText = "Publish a templates package to the specified environment.")]
     public class RemoteSourcePublishOptions : RemoteSourceCommonOptions

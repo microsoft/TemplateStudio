@@ -8,9 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WtsTool.CommandOptions;
+using WtsPackagingTool.CommandOptions;
 
-namespace WtsTool
+namespace WtsPackagingTool
 {
     public static class RunCommand
     {

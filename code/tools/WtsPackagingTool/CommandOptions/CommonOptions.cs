@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
 
-namespace WtsTool.CommandOptions
+namespace WtsPackagingTool.CommandOptions
 {
     public class CommonOptions
     {

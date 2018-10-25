@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using CommandLine;
 
-namespace WtsTool.CommandOptions
+namespace WtsPackagingTool.CommandOptions
 {
     public enum PackageTask
     {

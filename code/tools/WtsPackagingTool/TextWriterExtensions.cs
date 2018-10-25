@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WtsTool
+namespace WtsPackagingTool
 {
     public static class TextWriterExtensions
     {

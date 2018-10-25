@@ -7,6 +7,7 @@
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     xmlns:helpers="using:wts.ItemName.Helpers"
     xmlns:views="using:wts.ItemName.Views"
+    Loaded="OnLoaded"
     mc:Ignorable="d">
 
     <winui:NavigationView
