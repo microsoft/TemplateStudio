@@ -8,8 +8,8 @@ namespace Param_ItemNamespace.Services
         private const string StateFilename = "SuspendAndResumeState";
 
         //{[{
-        // TODO WTS: Subscribe to the OnBackgroundEntering event from your current Page's ViewModel to save the current app data.
-        // Only one Page should subscribe to OnBackgroundEntering at a time, as App will navigate to that Page on resume.
+        // TODO WTS: Subscribe to the OnBackgroundEntering event from your current Page's ViewModel to save the current App data.
+        // Only one Page should subscribe to OnBackgroundEntering at a time, as the App will navigate to that Page on resume.
         public event EventHandler<OnBackgroundEnteringEventArgs> OnBackgroundEntering;
 
         // TODO WTS: Subscribe to the OnResuming event from the current Page's ViewModel
