@@ -17,7 +17,7 @@
 
             <TextBlock x:Uid="wts.ItemNameHeader" Margin="{StaticResource SmallLeftMargin}" MaxLines="1" MaxWidth="110" TextTrimming="CharacterEllipsis" />
 
-            <InkToolbar Grid.Column="1" HorizontalAlignment="Center" Background="Transparent" TargetInkCanvas="{x:Bind inkCanvas}">
+            <InkToolbar x:Name="toolbar" Grid.Column="1" HorizontalAlignment="Center" Background="Transparent" TargetInkCanvas="{x:Bind inkCanvas}">
                 <InkToolbarCustomToolButton x:Uid="wts.ItemName_LassoSelectionButton" Background="Transparent" IsChecked="{x:Bind EnableLassoSelection, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
                 </InkToolbarCustomToolButton>
