@@ -3,27 +3,27 @@
 :heavy_exclamation_mark: There is also a version of [this document with code samples in VB.Net](./suspend-and-resume.vb.md) :heavy_exclamation_mark: |
 ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-The Suspend And Resume Feature allows you to save App data on suspension, and bring your App to the state it was before in case it is terminated during suspension. 
+The Suspend And Resume Feature allows you to save App data on suspension and bring your App to the state it was before in case it is terminated during suspension. 
 
 ## Understanding the code
 
 ### SuspendAndResumeService.cs
 Before the App enters background state, SuspendAndResumeService fires an OnBackgroundEntering event. You can suscribe to this event from your current Page (Codehind and MVVMBasic) or ViewModel (MVVMLight and Caliburn.Micro) to save App data. 
 
-In case the App is terminated during supension, on resume the SuspendAndResumeService retrieves the stored data and navigates to the stored page passing the data. To restore data on App launch SuspendAndResumeService is implemented as ActivationHandler, that handles activation if the PreviousExecutionState is `ApplicationExecutionState.Terminated`. For more info about ActivationHandlers see [ActivationService & ActivationHandlers](..\activation.md).
+In case the App is terminated during supension the previous application state has to be restored during re-launch. Th SuspendAndResumeService retrieves the stored data in this case and navigates to the stored page passing the data. To do this SuspendAndResumeService is implemented as ActivationHandler, that handles activation on app launch if the PreviousExecutionState is `ApplicationExecutionState.Terminated`. For more info about ActivationHandlers see [ActivationService & ActivationHandlers](..\activation.md).
 
 In case the App is not terminated no data is lost, but you should refresh any online data in the App (e.g. data from online feeds), as this data might be outdated. The SuspendAndResumeService provides a OnResuming event you can subscribe to, to handle this scenario. 
 
 ### SuspensionState.cs
-SuspensionState holds the app data and the SuspensionDate that indicates when this data was stored. 
+SuspensionState holds the App data and the SuspensionDate that indicates when this data was stored. 
 
 ## Using SuspendAndResumeService
 In this example we are going to show how to save data on App suspension and restore it in case the App was terminated during suspension.
 
 ### **1. Create a new app with two pages**
-Create a new application using WTS with ProjectType Navigation Pane, apart from the Main Page, add a blank page named `Data` and the Suspend And Resume feature.
+Create a new application using WTS with ProjectType Navigation Pane. Apart from the Main Page, add a blank page named **Data** and the **Suspend And Resume** feature.
 
-The idea is to store data entered on the Data Page on App suspension, and restore the page state when the App resumes from suspension.
+The idea is to store data entered on the Data Page on App suspension, and restore the page state when the App resumes.
 
 ### **2. Add a posibility to enter data on the DataPage**
 To enter data on the DataPage add the following TextBox and backing field.
@@ -39,7 +39,7 @@ Create a button in DataPage.xaml:
     HorizontalAlignment="Left"
     VerticalAlignment="Top"  />
 ```
-Add a Data property to the DataPage.xaml.cs:
+Add a Data property to DataPage.xaml.cs:
 ```cs
 private string _data;
 
@@ -63,7 +63,7 @@ Create a button in DataPage.xaml:
 ```
 
 
-Add a Data property to the DataViewModel.cs:
+Add a Data property to DataViewModel.cs:
 ```cs
 private string _data;
 
@@ -79,7 +79,7 @@ Subscribe to the `OnBackgroundEntering` event and save the data to `SuspensionSt
 
 **`CodeBehind`**
 
-Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page in the Data.xaml.cs file:
+Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.cs:
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
@@ -100,7 +100,7 @@ public void OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
 
 **`MVVMBasic`**
 
-Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page in the Data.xaml.cs file:
+Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.cs:
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
@@ -124,7 +124,7 @@ public void OnBackgroundEntering(object sender, OnBackgroundEnteringEventArgs e)
 
 Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page. 
 The subscription to the event has to be on the ViewModel, as the navigation is using ViewModel as parameter. 
-Data.xaml.cs file:
+Data.xaml.cs:
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
@@ -139,7 +139,7 @@ protected override void OnNavigatedFrom(NavigationEventArgs e)
     ViewModel.UnsubscribeFromEvents();
 }
 ```
-DataViewModel.cs file:
+DataViewModel.cs:
 ```cs
 public void Initialize()
 {
@@ -163,7 +163,7 @@ When resuming after app termination, the SuspendAndResumeService will recover th
 
 Retrieve the stored data from the SuspensionState. 
 
-DataPage.xaml.cs file:
+DataPage.xaml.cs:
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
@@ -183,7 +183,7 @@ protected override void OnNavigatedTo(NavigationEventArgs e)
 
 Retrieve the stored data from the SuspensionState. 
 
-DataPage.xaml.cs file:
+DataPage.xaml.cs:
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
@@ -203,7 +203,7 @@ protected override void OnNavigatedTo(NavigationEventArgs e)
 
 Pass the suspensionState parameter to the ViewModel initialization.
 
-DataPage.xaml.cs file:
+DataPage.xaml.cs:
 ```cs
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
@@ -211,7 +211,7 @@ protected override void OnNavigatedTo(NavigationEventArgs e)
     ViewModel.Initialize(e.Parameter as SuspensionState);     
 }
 ```
-DataViewModel.cs file:
+DataViewModel.cs:
 ```cs
 public void Initialize(SuspensionState suspensionState)
 {
