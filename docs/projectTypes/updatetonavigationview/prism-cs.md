@@ -59,7 +59,7 @@ Update and add new Margins that will be used in pages.
 
 ## 5. Add NavigationViewHeaderBehavior.cs
 
-This behavior allows NavigationView hide or customaize the NavigationViewHeader depending on the page that is showing, you can read more about this behavior [here](../navigationview-headerbehavior.md). Add the following NavigationViewHeaderBehavior class in Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
+This behavior allows NavigationView hide or customaize the NavigationViewHeader depending on the page that is showing, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class in Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
 
 ```csharp
 using Microsoft.Xaml.Interactivity;
