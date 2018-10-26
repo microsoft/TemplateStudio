@@ -18,13 +18,13 @@
             <TextBlock x:Uid="wts.ItemNameHeader" Margin="{StaticResource SmallLeftMargin}" MaxLines="1" MaxWidth="110" TextTrimming="CharacterEllipsis" />
 
             <InkToolbar x:Name="toolbar" Grid.Column="1" HorizontalAlignment="Center" Background="Transparent" TargetInkCanvas="{x:Bind inkCanvas}">
-                <InkToolbarCustomToolButton x:Uid="wts.ItemName_LassoSelectionButton" Background="Transparent" IsChecked="{x:Bind EnableLassoSelection, Mode=TwoWay}">
+                <InkToolbarCustomToolButton x:Uid="wts.ItemName_LassoSelectionButton" Background="Transparent" IsChecked="{x:Bind LassoSelectionButtonIsChecked, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
                 </InkToolbarCustomToolButton>
-                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_TouchInkingButton" Background="Transparent" IsChecked="{x:Bind EnableTouch, Mode=TwoWay}">
+                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_TouchInkingButton" Background="Transparent" IsChecked="{x:Bind TouchInkingButtonIsChecked, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
                 </InkToolbarCustomToggleButton>
-                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_MouseInkingButton" Background="Transparent" IsChecked="{x:Bind EnableMouse, Mode=TwoWay}">
+                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_MouseInkingButton" Background="Transparent" IsChecked="{x:Bind MouseInkingButtonIsChecked, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
                 </InkToolbarCustomToggleButton>
             </InkToolbar>
