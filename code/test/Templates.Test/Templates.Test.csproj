@@ -229,6 +229,7 @@
     <Compile Include="CodeAnalysis\StyleCopGenerationTestsFixture.cs" />
     <Compile Include="CodeAnalysis\StyleCopProjectGenerationTests.cs" />
     <Compile Include="ExternalLinksTests.cs" />
+    <Compile Include="GenTests\ResourceUsageTests.cs" />
     <Compile Include="LanguageSyncTests.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
     <Compile Include="FileEncodingTests.cs" />

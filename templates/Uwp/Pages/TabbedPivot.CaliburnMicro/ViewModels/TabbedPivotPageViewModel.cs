@@ -16,7 +16,7 @@ namespace Param_ItemNamespace.ViewModels
 
             // WTS Add view models to the Items collection to display them in the Tabs
             Items.Add(new ExampleTabViewModel { DisplayName = "TabbedPivotPageExampleTabPage1_DisplayName".GetLocalized() });
-            Items.Add(new ExampleTabViewModel { DisplayName = "TabbedPivotPageExampleTabPage1_DisplayName".GetLocalized() });
+            Items.Add(new ExampleTabViewModel { DisplayName = "TabbedPivotPageExampleTabPage2_DisplayName".GetLocalized() });
         }
     }
 }
