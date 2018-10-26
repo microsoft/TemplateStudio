@@ -11,12 +11,8 @@ namespace Param_ItemNamespace.Views
         {
             InitializeComponent();
             //{[{
-            SetBinding(NavigationViewHeaderBehavior.HeaderContextProperty, new Binding
-            {
-                Source = ViewModel,
-                Mode = BindingMode.OneWay
-            });
-            SetNavigationViewHeader();
+            SetNavigationViewHeaderContext();
+            SetNavigationViewHeaderTemplate();
             //}]}
         }
 
@@ -29,9 +25,9 @@ namespace Param_ItemNamespace.Views
             }
         }
 
-        private void VisualStateGroup_CurrentStateChanged(object sender, VisualStateChangedEventArgs e) => SetNavigationViewHeader();
+        private void VisualStateGroup_CurrentStateChanged(object sender, VisualStateChangedEventArgs e) => SetNavigationViewHeaderTemplate();
 
-        private void SetNavigationViewHeader()
+        private void SetNavigationViewHeaderTemplate()
         {
             if (visualStateGroup.CurrentState != null)
             {
@@ -49,6 +45,16 @@ namespace Param_ItemNamespace.Views
             }
         }
 
+        private void SetNavigationViewHeaderContext()
+        {
+            var headerContextBinding = new Binding
+            {
+                Source = ViewModel,
+                Mode = BindingMode.OneWay,
+            };
+
+            SetBinding(NavigationViewHeaderBehavior.HeaderContextProperty, headerContextBinding);
+        }
         //}]}
     }
 }
