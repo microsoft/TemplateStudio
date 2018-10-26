@@ -582,7 +582,11 @@ namespace YourAppName.ViewModels
                 _navigationService.Navigated += NavigationService_Navigated;
                 _navigationView.BackRequested += OnBackRequested;
             }
+        }
 
+        protected override void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
             if (GetView() is UIElement page)
             {
                 page.KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
