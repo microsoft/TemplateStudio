@@ -4,7 +4,7 @@ If you have an UWP project created with WTS with project type **NavigationPane**
 
 ## 1. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
+Windows UI library requires 17763 as target version in the project.
 
 ![](../../resources/project-types/cu-min-oct19-target.png)
 
@@ -31,7 +31,7 @@ Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
 
 ## 4. Changes in ActivationService.cs
 
-Remove the code to manage app navigation from ActivationService, this code will later be added to the ShellPage.
+Remove the code to manage back navigation from ActivationService, this code will later be added to the ShellPage.
 
 ### C# code you will have to remove:
 
@@ -41,9 +41,9 @@ Remove the code to manage app navigation from ActivationService, this code will 
 
  - Remove unused `using statements`.
 
-Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.
-
 The resulting code should look like this: 
+
+(Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
 ```csharp
 using System;
@@ -166,7 +166,7 @@ Update and add new Margins that will be used in pages.
 
 ## 6. Add NavigationViewHeaderBehavior.cs
 
-This behavior allows NavigationView hide or customaize the NavigationViewHeader depending on the page that is showing, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class in Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
+This behavior allows the NavigationView to hide or customize the NavigationViewHeader depending on the page that is shown, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class to the Behaviors folder, if your solution doesn't have a Behaviors folder you will have to add it.
 
 ```csharp
 using YourAppName.Services;
@@ -302,7 +302,7 @@ namespace YourAppName.Behaviors
 
 ## 7. Add NavigationViewHeaderMode.cs
 
-Add the NavigationViewHeaderBehavior enum in Behaviors folder.
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder.
 
 ```csharp
 namespace YourAppName.Behaviors
@@ -318,7 +318,7 @@ namespace YourAppName.Behaviors
 
 ## 8. Add NavHelper.cs
 
-Add this extension class in the **Helpers** folder to the project. This allows the Windows UI NavigationViewItems to contain a Type property that is used for navigation.
+Add this extension class to the **Helpers** folder to the project. This allows the Windows UI NavigationViewItems to contain a Type property that is used for navigation.
 
 ```csharp
 using System;
@@ -635,7 +635,7 @@ public static bool GoBack()
 
 ## 13. Remove ShellNavigationItem.cs
 
-ShellNavigationItem from ViewModels folder, it is no longer used and you should remove it from the project.
+ShellNavigationItem from ViewModels folder is no longer used and you should remove it from the project.
 
 ## 14. Update XAML code for all pages
 

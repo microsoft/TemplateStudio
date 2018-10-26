@@ -4,7 +4,7 @@ If you have an UWP project created with WTS with project type **NavigationPane**
 
 ## 1. Update target version in project properties
 
-Windows UI library requires 17763 as target version in the project, to start using Windows UI in your project is necessary that you set 17763 as target version.
+Windows UI library requires 17763 as target version in the project.
 
 ![](../../resources/project-types/cu-min-oct19-target.png)
 
@@ -59,7 +59,7 @@ Update and add new Margins that will be used in pages.
 
 ## 5. Add NavigationViewHeaderBehavior.cs
 
-This behavior allows NavigationView hide or customaize the NavigationViewHeader depending on the page that is showing, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class in Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
+This behavior allows the NavigationView to hide or customize the NavigationViewHeader depending on the page that is shown, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class to the Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
 
 ```csharp
 using Microsoft.Xaml.Interactivity;
@@ -197,7 +197,7 @@ namespace YourAppName.Behaviors
 
 ## 6. Add NavigationViewHeaderMode.cs
 
-Add the NavigationViewHeaderBehavior enum in Behaviors folder.
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder.
 
 ```csharp
 namespace YourAppName.Behaviors
@@ -213,7 +213,7 @@ namespace YourAppName.Behaviors
 
 ## 7. Add NavHelper.cs
 
-Add this extension class in the **Helpers** folder to the project. This allows the Windows UI NavigationViewItems to contain a Type property that is used for navigation.
+Add this extension class to the **Helpers** folder to the project. This allows the Windows UI NavigationViewItems to contain a Type property that is used for navigation.
 
 ```csharp
 using System;
@@ -509,7 +509,7 @@ namespace YourAppName.ViewModels
 
 ## 11. Remove ShellNavigationItem.cs
 
-ShellNavigationItem from ViewModels folder, it is no longer used and you should remove it from the project.
+ShellNavigationItem from ViewModels folder is no longer used and you should remove it from the project.
 
 ## 12. Update XAML code for all pages
 

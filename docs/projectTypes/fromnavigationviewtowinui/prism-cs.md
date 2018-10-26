@@ -1,8 +1,8 @@
 # Update NavigationView to WinUI in MVVMBasic apps
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **Prism**  please follow these steps to update to from NavigationView to Windows UI NavigationView:
+If you have an UWP project created with WTS with project type **NavigationPane** and framework **Prism**  please follow these steps to update from NavigationView to Windows UI NavigationView:
 
 ## 1. Update target version in project properties
-Windows UI library requires 17173 as target version in the project, to start using Windows UI in your project is necessary that you set 17173 as target version.
+Windows UI library requires 17763 as target version in the project.
 
 ![](../../resources/project-types/fu-min-oct19-target.png)
 
@@ -54,7 +54,7 @@ Update and add new Margins that will be used in pages.
 
 ## 5. Add NavigationViewHeaderBehavior.cs
 
-This behavior allows NavigationView hide or customaize the NavigationViewHeader depending on the page that is showing, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class in Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
+This behavior allows the NavigationView to hide or customize the NavigationViewHeader depending on the page that is shown, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class to the Behaviors folder, if your solution doesn't have a Behaviors folder you will have to add it.
 
 ```csharp
 using Microsoft.Xaml.Interactivity;
@@ -191,7 +191,7 @@ namespace YourAppName.Behaviors
 
 ## 6. Add NavigationViewHeaderMode.cs
 
-Add the NavigationViewHeaderBehavior enum in Behaviors folder. 
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder. 
 
 ```csharp
 namespace YourAppName.Behaviors
@@ -207,7 +207,7 @@ namespace YourAppName.Behaviors
 
 ## 7. Changes in NavHelper.cs
 
-Adjust using statement to move this NavigationViewItem properties to Windows UI NavigationView.
+Adjust the using statement to move the NavigationViewItem properties to Windows UI NavigationView.
 
 ### Change the using statement
 
@@ -221,7 +221,7 @@ To
 
 ## 8. Changes in ShellPage.xaml
 
-The updated ShellPage will contain a WinUI NavigationView that handles back navigations in the app using the NavigationViews BackButton and uses the above mentioned bahavior to hide/personalize the NavViewHeader depending on the page shown.
+The updated ShellPage will contain a WinUI NavigationView that handles back navigation in the app using the NavigationView's BackButton and the above mentioned behavior to hide/personalize the NavViewHeader depending on the page shown.
 
 ### Xaml code you will have to add (_Implementation below_):
 
