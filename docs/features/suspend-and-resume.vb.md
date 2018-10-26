@@ -1,116 +1,220 @@
-## Sample: Suspend and Resume Feature
+# Suspend and Resume Feature
 
 :heavy_exclamation_mark: There is also a version of [this document with code samples in C#](./suspend-and-resume.md) :heavy_exclamation_mark: |
---------------------------------------------------------------------------------------------------------------------------------------------- |
+---------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-We created a sample application that implements the suspend and resume feature. The application plays a sample video file and saves the current position of the video when the app is suspended. After the application resumes, the video playback continues from the same position it was before suspension.
-You can find the samples here: [Suspend and resume samples](/samples/suspendandresume).
+The Suspend And Resume Feature allows you to save App data on suspension and bring your App to the state it was before in case it is terminated during suspension. 
 
-Since the implementation of this feature is different depending on the framework, we created two different samples. One of them uses MVVM Basic (which uses the same implementation as Code Behind) and the other one uses MVVM Light. The applications were created using Windows Template Studio with the following configurations:
+## Understanding the code
 
-* Project Type: Blank
-* Framework: MVVM Basic (1) and MVVM Light (2)
-* Pages: Media Player Page (Main Page was removed)
+### SuspendAndResumeService.vb
+Before the App enters background state, SuspendAndResumeService fires an OnBackgroundEntering event. You can suscribe to this event from your current Page (Codehind and MVVMBasic) or ViewModel (MVVMLight and Caliburn.Micro) to save App data. 
 
-### Subscribe/Unsubscribe to OnBackgroundEntering Events
+In case the App is terminated during supension the previous application state has to be restored during re-launch. Th SuspendAndResumeService retrieves the stored data in this case and navigates to the stored page passing the data. To do this SuspendAndResumeService is implemented as ActivationHandler, that handles activation on app launch if the PreviousExecutionState is `ApplicationExecutionState.Terminated`. For more info about ActivationHandlers see [ActivationService & ActivationHandlers](..\activation.md).
 
-To detect when the application goes to suspend status, we need to subscribe to OnBackgroundEntering events. In MVVM Basic we will use the page for this, subscribing to these events in OnNavigatedTo, and unsubscribing from them in OnNavigatedFrom, as follows:
+In case the App is not terminated no data is lost, but you should refresh any online data in the App (e.g. data from online feeds), as this data might be outdated. The SuspendAndResumeService provides a OnResuming event you can subscribe to, to handle this scenario. 
 
-```vbnet
-Protected Overrides Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
+### SuspensionState.vb
+SuspensionState holds the App data and the SuspensionDate that indicates when this data was stored. 
+
+## Using SuspendAndResumeService
+In this example we are going to show how to save data on App suspension and restore it in case the App was terminated during suspension.
+
+### **1. Create a new app with two pages**
+Create a new application using WTS with ProjectType Navigation Pane. Apart from the Main Page, add a blank page named **Data** and the **Suspend And Resume** feature.
+
+The idea is to store data entered on the Data Page on App suspension, and restore the page state when the App resumes.
+
+### **2. Add a posibility to enter data on the DataPage**
+To enter data on the DataPage add the following TextBox and backing field.
+
+**`CodeBehind`**
+
+Create a button in DataPage.xaml:
+```xml
+<TextBox
+    Header="Enter text to save:"
+    Text="{x:Bind Data, Mode=TwoWay}"
+    Width="400"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"  />
+```
+Add a Data property to DataPage.xaml.vb:
+```vb
+Private _data As String
+
+Public Property Data As String
+    Get
+        Return _data
+    End Get
+
+    Set
+        [Set](_data, Value)
+    End Set
+End Property
+```
+
+**`MVVMBasic and MVVMLight`**
+
+Create a button in DataPage.xaml:
+```xml
+<TextBox
+    Header="Enter text to save:"
+    Text="{x:Bind ViewModel.Data, Mode=TwoWay}"
+    Width="400"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"  />
+```
+
+
+Add a Data property to DataViewModel.vb:
+```vb
+Private _data As String
+
+Public Property Data As String
+    Get
+        Return _data
+    End Get
+
+    Set(ByVal value As String)
+        _data = value
+    End Set
+End Property
+```
+
+### **2. Subscribe to OnBackgroundEntering and save data**
+Subscribe to the `OnBackgroundEntering` event and save the data to `SuspensionState.Data` when the application enters background state. 
+
+**`CodeBehind`**
+
+Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.vb:
+```vb
+Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
     MyBase.OnNavigatedTo(e)
-    AddHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, AddressOf PlaybackSession_PlaybackStateChanged
-    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
+    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, AddressOf OnBackgroundEntering
 End Sub
 
 Protected Overrides Sub OnNavigatedFrom(ByVal e As NavigationEventArgs)
     MyBase.OnNavigatedFrom(e)
-    mpe.MediaPlayer.Pause()
-    RemoveHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, Addressof PlaybackSession_PlaybackStateChanged
     RemoveHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
+End Sub
+
+Private Sub OnBackgroundEntering(sender As Object, e As OnBackgroundEnteringEventArgs)
+    e.SuspensionState.Data = Data
 End Sub
 ```
 
-However, in MVVM Light we need to handle the subscriptions in the ViewModel. Hence, we will create a method for each of the actions in the ViewModel (SubscribeToOnBackgroundEntering and UnsubscribeFromOnBackgroundEntering) and call them from the page, in the same place we subscribed and unsubscribed in MVVM Basic. Note that we are also passing the variable we want to save in the SuspensionState to the ViewModel in this step:
+**`MVVMBasic`**
 
-```vbnet
-Protected Overrides Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
+Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page in Data.xaml.vb:
+```vb
+Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
     MyBase.OnNavigatedTo(e)
-   AddHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, Addressof PlaybackSession_PlaybackStateChanged
-
-    ViewModel.SubscribeToOnBackgroundEntering(mpe.MediaPlayer.PlaybackSession)
+    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, AddressOf OnBackgroundEntering
 End Sub
 
 Protected Overrides Sub OnNavigatedFrom(ByVal e As NavigationEventArgs)
     MyBase.OnNavigatedFrom(e)
-    mpe.MediaPlayer.Pause()
-    RemoveHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, Addressof PlaybackSession_PlaybackStateChanged
-
-    ViewModel.UnsubscribeFromOnBackgroundEntering()
-End Sub
-```
-
-Let's take a look at the definition of the methods we just called, in the ViewModel:
-
-```vbnet
-Private _playbackSession As MediaPlaybackSession
-
-Friend Sub SubscribeToOnBackgroundEntering(ByVal playbackSession As MediaPlaybackSession)
-    _playbackSession = playbackSession
-    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
-End Sub
-
-Friend Sub UnsubscribeFromOnBackgroundEntering()
     RemoveHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
 End Sub
-```
 
-### Implement OnBackgroundEntering
-
-We will also need to implement OnBackgroundEntering to save the current playback position of the video. This Position is a TimeSpan variable that we will save in OnBackgroundEnteringEventArgs.SuspensionState.Data. In MVVM Basic we will implement this method directly in the page:
-
-```vbnet
-Private Sub OnBackgroundEntering(ByVal sender As Object, ByVal e As OnBackgroundEnteringEventArgs)
-    e.SuspensionState.Data = mpe.MediaPlayer.PlaybackSession.Position
+Private Sub OnBackgroundEntering(sender As Object, e As OnBackgroundEnteringEventArgs)
+    e.SuspensionState.Data = ViewModel.Data
 End Sub
 ```
 
-In MVVM Light we will implement it in the ViewModel, using the property _playbackSession that we defined in the previous step:
+**`MVVMLight`**
 
-```vbnet
-Private Sub OnBackgroundEntering(ByVal sender As Object, ByVal e As OnBackgroundEnteringEventArgs)
-    e.SuspensionState.Data = _playbackSession.Position
+Subscribe to the OnBackgroundEntering event when navigating to the Page and unsubscribe when navigating from the Page. 
+The subscription to the event has to be on the ViewModel, as the navigation is using ViewModel as parameter. 
+Data.xaml.vb:
+```vb
+Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+    MyBase.OnNavigatedTo(e)
+    ViewModel.Initialize()
+End Sub
+
+Protected Overrides Sub OnNavigatedFrom(ByVal e As NavigationEventArgs)
+    MyBase.OnNavigatedFrom(e)
+    ViewModel.UnsubscribeFromEvents()
 End Sub
 ```
+DataViewModel.vb:
+```vb
+Public Sub Initialize()
+    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, AddressOf OnBackgroundEntering
+End Sub
 
-### Implement Suspend and Resume feature actions
+Public Sub UnsubscribeFromEvents()
+    RemoveHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
+End Sub
 
-Finally, we will modify OnNavigatedTo to evaluate the suspensionState.Data, recover the playback Position if there is one and set it as the current playback position when the application resumes. Since Data is an object, we will need to Parse it to a TimeSpan. This step is exactly the same in MVVM Basic and MVVM Light:
+Private Sub OnBackgroundEntering(sender As Object, e As OnBackgroundEnteringEventArgs)
+    e.SuspensionState.Data = Data
+End Sub
+```
+### **3. Restore data on Application resume**
+When resuming after app termination, the SuspendAndResumeService will recover the saved data and navigate to the stored page passing the data as parameter.
 
-```vbnet
+**`CodeBehind`**
+
+Retrieve the stored data from the SuspensionState. 
+
+DataPage.xaml.vb:
+```vb
 Protected Overrides Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
-    Dim suspensionState As SuspensionState = TryCast(e.Parameter, SuspensionState)
+    MyBase.OnNavigatedTo(e)
+    Dim suspensionState = TryCast(e.Parameter, SuspensionState)
+
     If suspensionState IsNot Nothing Then
-        Dim success As Boolean = TimeSpan.TryParse(suspensionState.Data?.ToString(), TimeSpan, position)
-        If success Then
-            mpe.MediaPlayer.PlaybackSession.Position = position
-        End If
+        Data = suspensionState.Data.ToString()
     End If
 
-    MyBase.OnNavigatedTo(e)
-    AddHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, Addressof PlaybackSession_PlaybackStateChanged
-    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, Addressof OnBackgroundEntering
+    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, AddressOf OnBackgroundEntering
 End Sub
 ```
 
-### Modify Project Debug Properties
+**`MVVMBasic`**
 
-To debug this project in order to test the suspend and resume feature we just implemented, we need to modify the project's properties. In the Start Action section of the Debug properties we will check "Do not launch, but debug my code when it starts".
+Retrieve the stored data from the SuspensionState. 
 
-![](../resources/suspend-and-resume/ProjectDebugProperties.png)
+DataPage.xaml.vb:
+```vb
+Protected Overrides Sub OnNavigatedTo(ByVal e As NavigationEventArgs)
+    MyBase.OnNavigatedTo(e)
+    Dim suspensionState = TryCast(e.Parameter, SuspensionState)
 
-### Debug Project
+    If suspensionState IsNot Nothing Then
+        ViewModel.Data = suspensionState.Data.ToString()
+    End If
 
-To debug the project and verify whether the suspend and resume feature works, we will need to manually force the suspension state in the application while debugging. To do so, we will have to debug the project first, and manually open the application from the Windows Menu (remember that we changed the debug properties of the project). Afterwards, we will have to Suspend and Shutdown the application using the Debug Location toolbox. The next step will be to manually reopen the application from the Windows Menu, and we will check that the video playback resumes at the same point that it was before we forced the suspension.
+    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, AddressOf OnBackgroundEntering
+End Sub
+```
+
+**`MVVMLight`**
+
+Pass the suspensionState parameter to the ViewModel initialization.
+
+DataPage.xaml.vb:
+```vb
+Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+            MyBase.OnNavigatedTo(e)
+            ViewModel.Initialize(TryCast(e.Parameter, SuspensionState))
+        End Sub
+```
+DataViewModel.vb:
+```vb
+Public Sub Initialize(ByVal suspensionState As SuspensionState)
+    If suspensionState IsNot Nothing Then
+        Data = suspensionState.Data.ToString()
+    End If
+
+    AddHandler Singleton(Of SuspendAndResumeService).Instance.OnBackgroundEntering, AddressOf OnBackgroundEntering
+End Sub
+```
+
+### **4. Test from Visual Studio**
+App suspension with termination can be simulated in Visual Studio using the LifeCycle Event **Suspend and shutdown**. To simulate resume, you just restart the application again. 
 
 ![](../resources/suspend-and-resume/SuspendAndShutdown.png)
