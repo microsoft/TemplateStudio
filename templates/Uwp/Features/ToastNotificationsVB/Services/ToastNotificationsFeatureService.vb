@@ -7,7 +7,11 @@ Namespace Services
         Inherits ActivationHandler(Of ToastNotificationActivatedEventArgs)
 
         Public Sub ShowToastNotification(toastNotification As ToastNotification)
-            ToastNotificationManager.CreateToastNotifier().Show(toastNotification)
+            Try
+                ToastNotificationManager.CreateToastNotifier().Show(toastNotification)
+            Catch ex As Exception
+                ' TODO WTS: Adding ToastNotification can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+            End Try
         End Sub
 
         Protected Overrides Async Function HandleInternalAsync(args As ToastNotificationActivatedEventArgs) As Task

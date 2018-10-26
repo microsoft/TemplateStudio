@@ -12,7 +12,14 @@ namespace Param_RootNamespace.Services
     {
         public void ShowToastNotification(ToastNotification toastNotification)
         {
-            ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
+            try
+            {
+                ToastNotificationManager.CreateToastNotifier().Show(toastNotification);
+            }
+            catch (Exception)
+            {
+                // TODO WTS: Adding ToastNotification can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+            }
         }
 
         protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
