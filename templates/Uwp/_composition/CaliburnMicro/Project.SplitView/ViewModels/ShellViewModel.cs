@@ -44,6 +44,7 @@ namespace wts.ItemName.ViewModels
 
         protected override void OnInitialize()
         {
+            base.OnInitialize();
             var view = GetView() as IShellView;
 
             _navigationService = view?.CreateNavigationService(_container);
@@ -54,7 +55,11 @@ namespace wts.ItemName.ViewModels
                 _navigationService.Navigated += NavigationService_Navigated;
                 _navigationView.BackRequested += OnBackRequested;
             }
+        }
 
+        protected override void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
             if (GetView() is UIElement page)
             {
                 page.KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
