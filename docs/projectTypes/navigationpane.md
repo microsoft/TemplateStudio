@@ -8,11 +8,12 @@ The navigation pane project type includes a navigation menu displayed in a panel
 This document covers:
 
 * [Modifying the menu items](#menu)
-* [Using the navigation pane with command bars](#commandbar)
+* [Using the NavigationViewHeaderBehavior](#behavior)
 * [Invoke code on NavigationView](#invokecode)
 * [Change the text for Settings](#SettingsLabel)
 
-To update to navigation view read the following [document](./updatetonavigationview.md).
+To update to Win UI Navigation View from Hamburger Menu read the following [document](./updatetonavigationview.md).
+To update to Win UI Navigation View from Navigation View read the following [document](./updatetowinuinavigationview.md).
 
 <a name="menu"></a>
 
@@ -72,7 +73,7 @@ The text for a shell navigation item comes from the localized string resources. 
 
 ## NavigationViewHeaderBehavior
 
-The navigation pane projects add a Behavior in the NavigationView that allows different pages to customize or hide the Header when that page is being viewed.
+The navigation pane projects add a Behavior to the NavigationView that allows different pages to customize or hide the Header when that page is shown.
 
 ### Configuración inicial
 
@@ -94,19 +95,20 @@ The `NavigationViewHeaderBehavior` includes two properties,` DefaultHeader` and 
 </behaviors:NavigationViewHeaderBehavior>
 ```
 
-Each page can overwrite three properties to the `NavigationViewHeaderBehavior`:
+Each page can overwrite three properties of the `NavigationViewHeaderBehavior`:
 
- - `HeaderMode`: allows us to choose when to display the Header on that page (`Always`, `Minimal`,`Never`), Always is the default value.
+ - `HeaderMode`: allows you to choose when to display the Header on that page (`Always`, `Minimal`,`Never`), Always is the default value.
 
- - `HeaderContext`: contains the data that will be available for use from the`HeaderTemplate`.
+ - `HeaderContext`: contains the data that will be available for use from the `HeaderTemplate`.
 
- - `HeaderTemplate`: `DataTemplate` que personalizará el aspecto del Header.
+ - `HeaderTemplate`: `DataTemplate` that personalizes the layout of the header.
 
-`HeaderMode="Never"` allows the page not to add `Header` being able to occupy the whole window, you can see an example of how to use `HeaderMode="Never"` in MapPage, if you use this mode you have to think that the buttons of NavigationView will look over your content.
+`HeaderMode="Never"` allows the page to hide the `Header` and occupy the whole window. You can see an example of how to use `HeaderMode="Never"` in the MapPage. If you use this mode you have to think that the buttons of the NavigationView will overlap with your content.
 
-`HeaderMode="Minimal"` allows the page not to add `Header` being able to occupy the entire window, except when the `NavigationView` hides the panel, with a window width less than `641px`, you can see an example of how to use `HeaderMode="Minimal"` in WebViewPage.
+`HeaderMode="Minimal"` allows the page to hide the `Header` and occupy the entire window, except when the `NavigationView` hides the navigation pane, with a window width less than `641px`. This mode avoids overlapping of Navigation View buttons with the content.
+You can see an example of how to use `HeaderMode="Minimal"` in WebViewPage.
 
-In the following example, we see how to modify the `Header` in a `MainPage` in order to add a CommandBar.
+In the following example, we'll see how to modify the `Header` in a `MainPage` in order to add a CommandBar.
 
 ```xml
 <Page
@@ -150,7 +152,7 @@ In the following example, we see how to modify the `Header` in a `MainPage` in o
 </Page>
 ```
 
-We are going to associate the `HeaderContext` to the ViewModel of the page in order to use the Command. We will do this from the code of the page. If you are using CodeBehind, you can associate the `HeaderContext` with `this`.
+We are going to associate the `HeaderContext` to the ViewModel of the page in order to use the Command. We will do this from the code of the page. 
 
 ```csharp
 public MainPage()
@@ -166,7 +168,7 @@ public MainPage()
 
 You can see an example of an advanced use of `CommandBar` and `NavigationViewHeaderBehavior` in an InkPage in WTS.
 
-If you want to be able to add a command bar at ShellPage level, you must add it in the `DefaultHeaderTemplate` of the `NavigationViewHeaderBehavior` (ShellPage.xaml).
+If you want to be able to add a command bar at ShellPage level, you can add it in the `DefaultHeaderTemplate` of the `NavigationViewHeaderBehavior` (ShellPage.xaml).
 
 **A Note about the above code examples.**
 
