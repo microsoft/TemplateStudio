@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.Ink.SplitView.SetHeaderContext",
+  "name": "Page.Ink.SetHeaderVisualState",
   "tags": {
     "language": "C#",
     "type": "item",
