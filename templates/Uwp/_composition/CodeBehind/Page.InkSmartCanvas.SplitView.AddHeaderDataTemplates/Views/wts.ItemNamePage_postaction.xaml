@@ -32,7 +32,7 @@
                     </InkToolbarCustomToggleButton>
                 </InkToolbar>
 
-                <CommandBar x:Name="topBar" Grid.Column="2" Style="{StaticResource InkCommandBarStyle}">
+                <CommandBar x:Name="topCommandBar" Grid.Column="2" Style="{StaticResource InkCommandBarStyle}">
                     <CommandBar.PrimaryCommands>
                         <AppBarButton x:Uid="wts.ItemName_TransformTextAndShapesButton" Click="TransformTextAndShapes_Click" IsEnabled="{Binding Content.TransformTextAndShapesButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0">
                             <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEA80;" />
@@ -68,4 +68,19 @@
         </DataTemplate>
     </Page.Resources>
     <!--}]}-->
+
+    <Grid x:Name="ContentArea">
+        <!--{[{-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--}]}-->
+        <CommandBar
+            x:Name="bottomCommandBar"
+        <!--{[{-->
+            Grid.Row="1"
+        <!--}]}-->
+        </CommandBar>
+    </Grid>
 </Page>

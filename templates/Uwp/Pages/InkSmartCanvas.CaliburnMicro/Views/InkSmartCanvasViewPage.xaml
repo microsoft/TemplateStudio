@@ -8,10 +8,6 @@
     xmlns:cm="using:Caliburn.Micro"
     mc:Ignorable="d">
     <Grid x:Name="ContentArea">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
         <ScrollViewer
             x:Name="canvasScroll"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -32,7 +28,9 @@
                             Height="{Binding ElementName=inkCanvas, Path=Height}"/>
             </Grid>
         </ScrollViewer>        
-        <CommandBar x:Name="bottomCommandBar" Grid.Row="1" Style="{StaticResource InkCommandBarStyle}">
+        <CommandBar
+            x:Name="bottomCommandBar"
+            Style="{StaticResource InkCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="InkSmartCanvasView_TransformTextAndShapesButton" cm:Message.Attach="TransformTextAndShapes" BorderBrush="Transparent" BorderThickness="0,0,0,0">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEA80;" />

@@ -29,7 +29,7 @@
                     </InkToolbarCustomToggleButton>
                 </InkToolbar>
 
-                <CommandBar x:Name="topBar" Grid.Column="2" Style="{StaticResource InkCommandBarStyle}">
+                <CommandBar x:Name="topCommandBar" Grid.Column="2" Style="{StaticResource InkCommandBarStyle}">
                     <CommandBar.PrimaryCommands>
                         <AppBarButton x:Uid="wts.ItemName_ZoomInButton" Icon="ZoomIn" Click="ZoomIn_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
                         <AppBarButton x:Uid="wts.ItemName_ZoomOutButton" Icon="ZoomOut" Click="ZoomOut_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
@@ -66,4 +66,19 @@
         </DataTemplate>
     </Page.Resources>
     <!--}]}-->
+
+    <Grid x:Name="ContentArea">
+        <!--{[{-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--}]}-->
+        <CommandBar
+            x:Name="bottomCommandBar"
+        <!--{[{-->
+            Grid.Row="1"
+        <!--}]}-->
+        </CommandBar>
+    </Grid>
 </Page>
