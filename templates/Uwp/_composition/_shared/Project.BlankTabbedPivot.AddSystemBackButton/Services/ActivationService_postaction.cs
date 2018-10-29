@@ -53,7 +53,6 @@ namespace Param_RootNamespace.Services
                 keyboardAccelerator.Modifiers = modifiers.Value;
             }
 
-            ToolTipService.SetToolTip(keyboardAccelerator, string.Empty);
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
             return keyboardAccelerator;
         }

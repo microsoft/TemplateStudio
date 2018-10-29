@@ -34,9 +34,13 @@ namespace Param_RootNamespace.Services
                 // You can also send push notifications from Windows Developer Center targeting your app consumers
                 // More details at https://docs.microsoft.com/windows/uwp/publish/send-push-notifications-to-your-apps-customers
             }
+            catch (ArgumentNullException)
+            {
+                // Until a valid accessSignature and hubName are provided this code will throw an ArgumentNullException.
+            }
             catch (Exception)
             {
-                // Until a valid accessSignature and hubName are provided this code will throw an ArgumentNull Exception.
+                // TODO WTS: Channel registration call can fail, please handle exceptions as appropriate to your scenario.
             }
         }
     }

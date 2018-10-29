@@ -5,9 +5,6 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="SettingsPage_Title.Text" xml:space="preserve">
-    <value>SettingsPage</value>
-  </data>
   <data name="SettingsPage_Theme.Text" xml:space="preserve">
     <value>Choose Theme</value>
   </data>

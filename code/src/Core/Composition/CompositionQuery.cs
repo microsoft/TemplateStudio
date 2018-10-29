@@ -94,7 +94,7 @@ namespace Microsoft.Templates.Core.Composition
         private static bool Match(IEnumerable<QueryNode> query, QueryablePropertyDictionary queryableProperties)
         {
             return query
-                    .All(q => queryableProperties.SafeGet(q.Field).Compare(q));
+                    .All(q => queryableProperties.SafeGet(q.Field.ToLowerInvariant()).Compare(q));
         }
     }
 }
