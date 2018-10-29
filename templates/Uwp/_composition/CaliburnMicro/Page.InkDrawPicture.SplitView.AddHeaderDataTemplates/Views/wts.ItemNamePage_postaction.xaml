@@ -16,7 +16,6 @@
                     <ColumnDefinition MinWidth="384" Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Uid="wts.ItemNameHeader" Margin="{StaticResource SmallLeftMargin}" MaxLines="1" MaxWidth="110" TextTrimming="CharacterEllipsis" />
                 <InkToolbar Grid.Column="1" HorizontalAlignment="Center" Background="Transparent" Loaded="OnInkToolbarLoaded">
                    <InkToolbarCustomToggleButton x:Uid="wts.ItemName_TouchInkingButton" Background="Transparent" IsChecked="{x:Bind EnableTouch, Mode=TwoWay}">
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />

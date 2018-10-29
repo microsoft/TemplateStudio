@@ -14,9 +14,6 @@
                     <ColumnDefinition MinWidth="384" Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-
-                <TextBlock x:Uid="wts.ItemNameHeader" Margin="{StaticResource SmallLeftMargin}" MaxLines="1" MaxWidth="110" TextTrimming="CharacterEllipsis" />
-
                 <InkToolbar Grid.Column="1" HorizontalAlignment="Center" Background="Transparent" Loaded="OnInkToolbarLoaded">
                     <InkToolbarCustomToggleButton x:Uid="wts.ItemName_TouchInkingButton" Background="Transparent" IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
@@ -25,7 +22,6 @@
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
                     </InkToolbarCustomToggleButton>
                 </InkToolbar>
-
                 <CommandBar x:Name="topCommandBar" Grid.Column="2" Style="{StaticResource InkCommandBarStyle}">
                     <CommandBar.PrimaryCommands>
                         <AppBarButton x:Uid="wts.ItemName_ZoomInButton" Icon="ZoomIn" Click="ZoomIn_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />

@@ -1,0 +1,10 @@
+﻿        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition MinWidth="384" Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <!--{[{-->
+            <TextBlock x:Uid="wts.ItemNameHeader" Margin="{StaticResource SmallLeftMargin}" MaxLines="1" MaxWidth="110" TextTrimming="CharacterEllipsis" />
+            <!--}]}-->
+        </Grid>
