@@ -8,15 +8,12 @@
         <!--}]}-->
         <!--^^-->
         <!--{[{-->
-        <Grid x:Name="headerContent">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition MinWidth="384" Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
-            <TextBlock x:Uid="wts.ItemNameHeader" Margin="{StaticResource SmallLeftMargin}" MaxLines="1" MaxWidth="110" TextTrimming="CharacterEllipsis" />
-
             <InkToolbar x:Name="toolbar" Grid.Column="1" HorizontalAlignment="Center" Background="Transparent" TargetInkCanvas="{x:Bind inkCanvas}">
                 <InkToolbarCustomToolButton x:Uid="wts.ItemName_LassoSelectionButton" Background="Transparent" IsChecked="{x:Bind ViewModel.EnableLassoSelection, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
@@ -28,7 +25,6 @@
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
                 </InkToolbarCustomToggleButton>
             </InkToolbar>
-
                 <CommandBar x:Name="topCommandBar" Grid.Column="2" Style="{StaticResource InkCommandBarStyle}">
                     <CommandBar.PrimaryCommands>
                         <AppBarButton x:Uid="wts.ItemName_ZoomInButton" Icon="ZoomIn" cm:Message.Attach="ZoomIn" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
