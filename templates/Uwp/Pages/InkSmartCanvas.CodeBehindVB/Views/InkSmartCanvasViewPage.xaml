@@ -5,86 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Page.Resources>
-        <DataTemplate x:Key="BigHeaderTemplate">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition MinWidth="384" Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock x:Uid="InkSmartCanvasViewHeader" Margin="{StaticResource SmallLeftMargin}" MaxLines="1" MaxWidth="110" TextTrimming="CharacterEllipsis" />
-
-                <InkToolbar Grid.Column="1" HorizontalAlignment="Center" Background="Transparent" Loaded="OnInkToolbarLoaded">
-                    <InkToolbarCustomToolButton x:Uid="InkSmartCanvasView_LassoSelectionButton" Background="Transparent" IsChecked="{Binding Content.LassoSelectionButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
-                    </InkToolbarCustomToolButton>
-                    <InkToolbarCustomToggleButton x:Uid="InkSmartCanvasView_TouchInkingButton" Background="Transparent" IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
-                    </InkToolbarCustomToggleButton>
-                    <InkToolbarCustomToggleButton x:Uid="InkSmartCanvasView_MouseInkingButton" Background="Transparent" IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
-                    </InkToolbarCustomToggleButton>
-                    <InkToolbarCustomToggleButton x:Uid="InkSmartCanvasView_PenInkingButton" Background="Transparent" IsChecked="{Binding Content.PenInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEDC6;" />
-                    </InkToolbarCustomToggleButton>
-                </InkToolbar>
-
-                <CommandBar x:Name="topBar" Grid.Column="2" Style="{StaticResource InkCommandBarStyle}">
-                    <CommandBar.PrimaryCommands>
-                        <AppBarButton x:Uid="InkSmartCanvasView_TransformTextAndShapesButton" Click="TransformTextAndShapes_Click" IsEnabled="{Binding Content.TransformTextAndShapesButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0">
-                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEA80;" />
-                        </AppBarButton>
-                    </CommandBar.PrimaryCommands>
-                    <CommandBar.SecondaryCommands>
-                        <AppBarButton x:Uid="InkSmartCanvasView_UndoButton" Icon="Undo" Click="Undo_Click" IsEnabled="{Binding Content.UndoButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="InkSmartCanvasView_RedoButton" Icon="Redo" Click="Redo_Click" IsEnabled="{Binding Content.RedoButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarSeparator/>
-                        <AppBarButton x:Uid="InkSmartCanvasView_LoadInkFileButton" Icon="OpenFile" Click="LoadInkFile_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="InkSmartCanvasView_SaveInkFileButton" Icon="Save" Click="SaveInkFile_Click" IsEnabled="{Binding Content.SaveInkFileButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarSeparator/>
-                        <AppBarButton x:Uid="InkSmartCanvasView_ClearAllButton" Icon="Delete" Click="ClearAll_Click" IsEnabled="{Binding Content.ClearAllButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                    </CommandBar.SecondaryCommands>
-                </CommandBar>
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="SmallHeaderTemplate">
-            <InkToolbar  HorizontalAlignment="Center" Loaded="OnInkToolbarLoaded">
-                <InkToolbarCustomToolButton x:Uid="InkSmartCanvasView_LassoSelectionButton" Background="Transparent" IsChecked="{Binding Content.LassoSelectionButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
-                </InkToolbarCustomToolButton>
-                <InkToolbarCustomToggleButton x:Uid="InkSmartCanvasView_TouchInkingButton" Background="Transparent" IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
-                </InkToolbarCustomToggleButton>
-                <InkToolbarCustomToggleButton x:Uid="InkSmartCanvasView_MouseInkingButton" Background="Transparent" IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
-                </InkToolbarCustomToggleButton>
-                <InkToolbarCustomToggleButton x:Uid="InkSmartCanvasView_PenInkingButton" Background="Transparent" IsChecked="{Binding Content.PenInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEDC6;" />
-                </InkToolbarCustomToggleButton>
-            </InkToolbar>
-        </DataTemplate>
-    </Page.Resources>
     <Grid x:Name="ContentArea">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="visualStateGroup" CurrentStateChanged="VisualStateGroup_CurrentStateChanged">
-                <VisualState x:Name="SmallVisualState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="BigVisualState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
         <ScrollViewer
             x:Name="canvasScroll"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -105,7 +26,9 @@
                             Height="{Binding ElementName=inkCanvas, Path=Height}"/>
             </Grid>
         </ScrollViewer>        
-        <CommandBar x:Name="bottomCommandBar" Grid.Row="1" Style="{StaticResource InkCommandBarStyle}">
+        <CommandBar
+            x:Name="bottomCommandBar"
+            Style="{StaticResource InkCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="InkSmartCanvasView_TransformTextAndShapesButton" Click="TransformTextAndShapes_Click" IsEnabled="{x:Bind TransformTextAndShapesButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEA80;" />

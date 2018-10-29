@@ -5,77 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Page.Resources>
-        <DataTemplate x:Key="BigHeaderTemplate">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition MinWidth="384" Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock x:Uid="InkDrawPictureViewHeader" Margin="{StaticResource SmallLeftMargin}" MaxLines="1" MaxWidth="110" TextTrimming="CharacterEllipsis" />
-
-                <InkToolbar Grid.Column="1" HorizontalAlignment="Center" Background="Transparent" Loaded="OnInkToolbarLoaded">
-                    <InkToolbarCustomToggleButton x:Uid="InkDrawPictureView_TouchInkingButton" Background="Transparent" IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
-                    </InkToolbarCustomToggleButton>
-                    <InkToolbarCustomToggleButton x:Uid="InkDrawPictureView_MouseInkingButton" Background="Transparent" IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
-                    </InkToolbarCustomToggleButton>
-                </InkToolbar>
-
-                <CommandBar x:Name="topBar" Grid.Column="2" Style="{StaticResource InkCommandBarStyle}">
-                    <CommandBar.PrimaryCommands>
-                        <AppBarButton x:Uid="InkDrawPictureView_ZoomInButton" Icon="ZoomIn" Click="ZoomIn_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="InkDrawPictureView_ZoomOutButton" Icon="ZoomOut" Click="ZoomOut_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                    </CommandBar.PrimaryCommands>
-                    <CommandBar.SecondaryCommands>
-                        <AppBarButton x:Uid="InkDrawPictureView_OriginalSizeButton" Icon="FullScreen" Click="ResetZoom_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarButton x:Uid="InkDrawPictureView_FitToScreenButton" Click="FitToScreen_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0">
-                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE73F;" />
-                        </AppBarButton>
-                        <AppBarSeparator/>
-                        <AppBarButton x:Uid="InkDrawPictureView_OpenImageButton" Click="LoadImage_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0">
-                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEB9F;" />
-                        </AppBarButton>
-                        <AppBarButton x:Uid="InkDrawPictureView_SaveImageButton" Icon="Save" Click="SaveImage_Click" IsEnabled="{Binding Content.SaveImageButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                        <AppBarSeparator/>
-                        <AppBarButton x:Uid="InkDrawPictureView_ClearAllButton" Icon="Delete" Click="ClearAll_Click" IsEnabled="{Binding Content.ClearAllButtonIsEnabled, ElementName=shellFrame, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
-                    </CommandBar.SecondaryCommands>
-                </CommandBar>
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="SmallHeaderTemplate">
-            <InkToolbar  HorizontalAlignment="Center" Loaded="OnInkToolbarLoaded">
-                <InkToolbarCustomToggleButton x:Uid="InkDrawPictureView_TouchInkingButton" Background="Transparent" IsChecked="{Binding Content.TouchInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
-                </InkToolbarCustomToggleButton>
-                <InkToolbarCustomToggleButton x:Uid="InkDrawPictureView_MouseInkingButton" Background="Transparent" IsChecked="{Binding Content.MouseInkingButtonIsChecked, ElementName=shellFrame, Mode=TwoWay}">
-                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
-                </InkToolbarCustomToggleButton>
-            </InkToolbar>
-        </DataTemplate>
-    </Page.Resources>
     <Grid x:Name="ContentArea">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="visualStateGroup" CurrentStateChanged="VisualStateGroup_CurrentStateChanged">
-                <VisualState x:Name="SmallVisualState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="BigVisualState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
         <ScrollViewer
             x:Name="canvasScroll"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -91,7 +21,9 @@
                             VerticalAlignment="Stretch"/>
             </Grid>
         </ScrollViewer>        
-        <CommandBar x:Name="bottomCommandBar" Grid.Row="1" Style="{StaticResource InkCommandBarStyle}">
+        <CommandBar
+            x:Name="bottomCommandBar"
+            Style="{StaticResource InkCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="InkDrawPictureView_ZoomInButton" Icon="ZoomIn" Click="ZoomIn_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
                 <AppBarButton x:Uid="InkDrawPictureView_ZoomOutButton" Icon="ZoomOut" Click="ZoomOut_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
