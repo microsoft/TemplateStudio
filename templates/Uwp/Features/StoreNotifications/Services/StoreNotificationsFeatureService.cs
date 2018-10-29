@@ -27,7 +27,7 @@ namespace Param_RootNamespace.Services
         protected override async Task HandleInternalAsync(ToastNotificationActivatedEventArgs args)
         {
             var toastActivationArgs = args as ToastNotificationActivatedEventArgs;
-           
+
             var engagementManager = StoreServicesEngagementManager.GetDefault();
             string originalArgs = engagementManager.ParseArgumentsAndTrackAppLaunch(toastActivationArgs.Argument);
 
