@@ -40,7 +40,7 @@
                     <AppBarButton x:Uid="wts.ItemName_ClearAllButton" Icon="Delete" Click="ClearAll_Click" IsEnabled="{x:Bind ClearAllButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
                 </CommandBar.SecondaryCommands>
             </CommandBar>
-        </Grid>
+        </RelativePanel>
         <!--}]}-->
         <ScrollViewer
             x:Name="canvasScroll"
