@@ -3,6 +3,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -45,6 +46,12 @@ namespace wts.ItemName.Views
             NavigationService.Frame = shellFrame;
             NavigationService.Navigated += Frame_Navigated;
             winUiNavigationView.BackRequested += OnBackRequested;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
+            // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             KeyboardAccelerators.Add(_altLeftKeyboardAccelerator);
             KeyboardAccelerators.Add(_backKeyboardAccelerator);
         }
@@ -85,7 +92,6 @@ namespace wts.ItemName.Views
                 keyboardAccelerator.Modifiers = modifiers.Value;
             }
 
-            ToolTipService.SetToolTip(keyboardAccelerator, string.Empty);
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
             return keyboardAccelerator;
         }
