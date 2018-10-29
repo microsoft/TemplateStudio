@@ -382,7 +382,7 @@ namespace Microsoft.Templates.Test
 
                 var csCode = new StreamReader(csFile).ReadToEnd();
                 var csTree = Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree.ParseText(csCode);
-                var csRoot = (Microsoft.CodeAnalysis.CSharp.Syntax.CompilationUnitSyntax) csTree.GetRoot();
+                var csRoot = (Microsoft.CodeAnalysis.CSharp.Syntax.CompilationUnitSyntax)csTree.GetRoot();
                 var csExceptions = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.CatchClauseSyntax>().Select(p => p.Declaration.Type.ToString()).ToList();
 
                 var vbCode = new StreamReader(vbFile).ReadToEnd();
