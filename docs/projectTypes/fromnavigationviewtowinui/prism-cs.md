@@ -1,12 +1,10 @@
-# Update from HamburgerMenu to WinUI NavigationView in Prism
-
-If you have an UWP project created with WTS with project type **NavigationPane** and framework **Prism**  please follow these steps to update to WinUI NavigationView:
+# Update NavigationView to WinUI in MVVMBasic apps
+If you have an UWP project created with WTS with project type **NavigationPane** and framework **Prism**  please follow these steps to update from NavigationView to Windows UI NavigationView:
 
 ## 1. Update target version in project properties
-
 Windows UI library requires 17763 as target version in the project.
 
-![](../../resources/project-types/cu-min-oct19-target.png)
+![](../../resources/project-types/fu-min-oct19-target.png)
 
 ## 2. Add the Nuget package reference
 
@@ -17,7 +15,6 @@ Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
 ## 3. Changes in App.xaml
 
 Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
-
 ```xml
 <ResourceDictionary.MergedDictionaries>
 
@@ -34,14 +31,12 @@ Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
 Update and add new Margins that will be used in pages.
 
 ### Thickness values you will have to update.
-
 ```xml
 <Thickness x:Key="MediumLeftRightMargin">24,0,24,0</Thickness>
 <Thickness x:Key="MediumLeftTopRightBottomMargin">24,24,24,24</Thickness>
 ```
 
 ### Thickness values you will have to add.
-
 ```xml
 <!--Medium size margins-->
 <Thickness x:Key="MediumTopMargin">0,24,0,0</Thickness>
@@ -59,11 +54,10 @@ Update and add new Margins that will be used in pages.
 
 ## 5. Add NavigationViewHeaderBehavior.cs
 
-This behavior allows the NavigationView to hide or customize the NavigationViewHeader depending on the page that is shown, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class to the Behaviors folder, if your solution doesn't have Behaviors folder you will have to add it.
+This behavior allows the NavigationView to hide or customize the NavigationViewHeader depending on the page that is shown, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class to the Behaviors folder, if your solution doesn't have a Behaviors folder you will have to add it.
 
 ```csharp
 using Microsoft.Xaml.Interactivity;
-
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -197,7 +191,7 @@ namespace YourAppName.Behaviors
 
 ## 6. Add NavigationViewHeaderMode.cs
 
-Add the NavigationViewHeaderBehavior enum to the Behaviors folder.
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder. 
 
 ```csharp
 namespace YourAppName.Behaviors
@@ -211,67 +205,41 @@ namespace YourAppName.Behaviors
 }
 ```
 
-## 7. Add NavHelper.cs
+## 7. Changes in NavHelper.cs
 
-Add this extension class to the **Helpers** folder to the project. This allows the Windows UI NavigationViewItems to contain a Type property that is used for navigation.
+Adjust the using statement to move the NavigationViewItem properties to Windows UI NavigationView.
 
-```csharp
-using System;
+### Change the using statement
 
-using Microsoft.UI.Xaml.Controls;
+From
 
-using Windows.UI.Xaml;
+`Windows.UI.Xaml.Controls`
 
+To
 
-namespace YourAppName.Helpers
-{
-    public class NavHelper
-    {
-        public static string GetNavigateTo(NavigationViewItem item)
-        {
-            return (string)item.GetValue(NavigateToProperty);
-        }
-
-        public static void SetNavigateTo(NavigationViewItem item, string value)
-        {
-            item.SetValue(NavigateToProperty, value);
-        }
-
-        public static readonly DependencyProperty NavigateToProperty =
-            DependencyProperty.RegisterAttached("NavigateTo", typeof(string), typeof(NavHelper), new PropertyMetadata(null));
-    }
-}
-```
+`Microsoft.UI.Xaml.Controls`
 
 ## 8. Changes in ShellPage.xaml
 
-The updated ShellPage will include the WinUI NavigationView and add the MenuItems directly in Xaml. The NavigationViewItems include an extension property that contains the target page type to navigate in the frame.
+The updated ShellPage will contain a WinUI NavigationView that handles back navigation in the app using the NavigationView's BackButton and the above mentioned behavior to hide/personalize the NavViewHeader depending on the page shown.
 
-### XAML code you will have to remove:
+### Xaml code you will have to add (_Implementation below_):
 
- - xml namespaces for `fcu`, `cu`, `controls`, and `vm` (viewmodels).
+ - `winui` and `behaviors` namespaces in page declaration.
 
- - `NavigationMenuItemDataTemplate` DataTemplate in Page resources.
+ - Add `IsBackButtonVisible` and `IsBackEnabled` properties to NavigationView.
 
- - `HamburgerMenu` control.
+ - Add `NavigationViewHeaderBehavior` with `DefaultHeader` and `DefaultHeaderTemplate` properties to NavigationView behaviors.
 
-### XAML code you will have to add:
+### Xaml code you will have to update (_Implementation below_):
 
-- The following xml namespaces:
+ - Add the `winui:` namespace to `NavigationView` and `NavigationViewItems` data types.
 
-```xml
-xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-xmlns:behaviors="using:YourAppName.Behaviors"
-xmlns:helpers="using:YourAppName.Helpers"
-```
+### Xaml code you will have to remove:
 
- - `winui:NavigationView` control.
+ - `Header` and `HeaderTemplate` properties from NavigationView.
 
- - `winui:NavigationViewItem` MenuItems inside of the `winui:NavigationView`.
-
- - `NavigationViewHeaderBehavior` behavior inside of the `winui:NavigationView`.
-
-The resulting code should look like this:
+ The resulting code should look like this:
 
 ```xml
 <Page
@@ -282,16 +250,15 @@ The resulting code should look like this:
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     xmlns:behaviors="using:YourAppName.Behaviors"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:helpers="using:YourAppName.Helpers"
-    Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
     mc:Ignorable="d">
 
     <winui:NavigationView
-        x:Name="winUiNavigationView"
+        x:Name="navigationView"
         IsBackButtonVisible="Visible"
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
@@ -331,18 +298,28 @@ The resulting code should look like this:
 
 ## 9. Changes in ShellPage.xaml.cs
 
-### C# code you will have to update (_Implementation below_):
+### C# code you will have to remove:
 
- - `SetRootFrame` method implementation.
+ - Remove `HideNavViewBackButton` method.
+
+ - Remove from the page constructor `HideNavViewBackButton` call.
+
+ - Remove unused using statements.
+
+### C# code you will have to add (_Implementation below_):
+
+ - Call `navigationViewHeaderBehavior` `Initialize` with `frame` as parameter from `SetRootFrame` method.
 
 The resulting code should look like this:
 
- ```csharp
- using YourAppName.ViewModels;
+```csharp
+using System;
+using YourAppName.ViewModels;
 using Windows.UI.Xaml.Controls;
 
 namespace YourAppName.Views
 {
+    // TODO WTS: Change the icons and titles for all NavigationViewItems in ShellPage.xaml.
     public sealed partial class ShellPage : Page
     {
         private ShellViewModel ViewModel => DataContext as ShellViewModel;
@@ -357,55 +334,31 @@ namespace YourAppName.Views
         public void SetRootFrame(Frame frame)
         {
             shellFrame.Content = frame;
-            ViewModel.Initialize(frame);
+            navigationViewHeaderBehavior.Initialize(frame);
+            ViewModel.Initialize(frame, navigationView);
         }
     }
 }
- ```
 
- ## 10. Changes in ShellViewModel.cs
+```
 
-ShellViewModel's complexity will be reduced significantly, these are the changes that you will have to implement on the class.
+## 10. Changes in ShellViewModel.cs
 
-### C# code you will have to remove:
+### C# code you will have to add (_Implementation below_):
 
- - private the following const properties: `Panoramic`, `Wide`, `Narrow`, `WideStateMinWindowWidth`, `PanoramicStateMinWindowWidth`.
-
- - `_isPaneOpen` and `IsPaneOpen` properties.
-
- - `_displayMode` and `DisplayMode` properties.
-
- - `_primaryItems` and `PrimaryItems` properties.
-
- - `_secondaryItems` and `SecondaryItems` properties.
-
- - `OpenPaneCommand`, `ItemSelectedCommand` and `StateChangedCommand`.
-
- - `GoToState`, `InitializeState`, `PopulateNavItems`, `ChangeSelected`, `ItemSelected` and `Navigate` methods.
-
- - private fields `_lastSelectedItem``
-
- - Remove unused using statements.
-
-### C# code you will have to add _(implementation below)_:
-
- - Add the following new usings statement:
+ - Add the following new usings statements:
 
 ```csharp
 using WinUI = Microsoft.UI.Xaml.Controls;
 ```
 
- - Add `_navigationView`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_isBackEnabled`, `IsBackEnabled`, `ItemInvokedCommand` members. 
+ - Add `WinUI.` namespace alias to `NavigationView`, `NavigationViewItem` and `NavigationViewItemInvokedEventArgs` Data Types.
+ 
+ - Add `OnBackRequested` method.
 
- - `OnItemInvoked`, `OnBackRequested` and `IsMenuItemForPageType` methods.
+ - Subscribe to `BackRequested` event handler in Initialize.
 
-### C# code you will have to update _(implementation below)_:
-
- - `Selected` property DataType from `object` to `WinUI.NavigationViewItem`.
-
- - Class constructor with the implementation below.
-
- - `Initialize` and `Frame_Navigated` methods with the implementation below. 
+ - Set `IsBackEnabled` to `NavigationService.CanGoBack` at the begining of `Frame_Navigated` method.
 
 The resulting code should look like this:
 
@@ -423,16 +376,15 @@ using YourAppName.Views;
 
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
 using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace YourAppName.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
-        private static INavigationService _navigationService;
-        private WinUI.NavigationView _navigationView;
+        private readonly INavigationService _navigationService;
         private bool _isBackEnabled;
+        private WinUI.NavigationView _navigationView;
         private WinUI.NavigationViewItem _selected;
 
         public ICommand ItemInvokedCommand { get; }
@@ -477,6 +429,11 @@ namespace YourAppName.ViewModels
             _navigationService.Navigate(pageKey, null);
         }
 
+        private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
+        {
+            _navigationService.GoBack();
+        }
+
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             IsBackEnabled = _navigationService.CanGoBack();
@@ -491,11 +448,6 @@ namespace YourAppName.ViewModels
                             .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
         }
 
-        private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
-        {
-            _navigationService.GoBack();
-        }
-
         private bool IsMenuItemForPageType(WinUI.NavigationViewItem menuItem, Type sourcePageType)
         {
             var sourcePageKey = sourcePageType.Name;
@@ -504,94 +456,5 @@ namespace YourAppName.ViewModels
             return pageKey == sourcePageKey;
         }
     }
-}
-```
-
-## 11. Remove ShellNavigationItem.cs
-
-ShellNavigationItem from ViewModels folder is no longer used and you should remove it from the project.
-
-## 12. Update XAML code for all pages
-
-The pages do no longer need the TitlePage TextBlock and the Adaptive triggers, because the page title will be displayed on the NavigationView HeaderTemplate and the responsive behaviors will be added by NavigationView control.
-
-### XAML code you will have to remove:
-
- - **xmln namespaces** for fcu and cu.
-
- - Textblock **TitlePage**
-
- - ContentArea Grid **RowDefinitions**
-
- - VisualStateManager **VisualStateGroups**.
-
- - **Grid.Row="1"** property  in the content Grid.
-
-The resulting code should look like this:
-
-```xml
-<Page
-    x:Class="SampleApp.Views.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource PageStyle}"
-    mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <!--The SystemControlPageBackgroundChromeLowBrush background represents where you should place your content. 
-                Place your content here.-->
-        </Grid>
-    </Grid>
-</Page>
-```
-
-## 13. Update Navigation View item name for all pages in Resources.resw
-
-As NavigationItems and their names are defined in xaml now, you need to add `.Content` to each of the navigation view item names.
-(_for example `Shell_Main` should be changed to `Shell_Main.Content`_)
-
-## 14. Settings Page
-
-If your project contains a SettingsPage you must perform the following steps:
-
- - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
-
- - On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
-
-```csharp
-if (args.IsSettingsInvoked)
-{
-    NavigationService.Navigate(typeof(SettingsPage));
-    return;
-}
-```
-
- - On **ShellViewModel.cs** go to **Frame_Navigated** method and add to the beginning:
-
-```csharp
-if (e.SourcePageType == typeof(SettingsPage))
-{
-	Selected = _navigationView.SettingsItem as NavigationViewItem;
-	return;
-}
-```
-
-## 14. Changes en App.xaml.cs
-
-### C# code you will have to add _(implementation below)_:
-
- - `OnCreateDeviceGestureService` method.
-
-```csharp
-protected override IDeviceGestureService OnCreateDeviceGestureService()
-{
-    var service = base.OnCreateDeviceGestureService();
-    service.UseTitleBarBackButton = false;
-    return service;
 }
 ```

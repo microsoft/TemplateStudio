@@ -46,7 +46,7 @@ private static NavigationServiceEx NavigationService => Locator.NavigationServic
 
 Add the following code:
 ```csharp
-private static NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
+private static NavigationServiceEx NavigationService => ViewModels.ViewModelLocator.Current.NavigationService;
 ```
 
 ## 4. Changes in all pages
