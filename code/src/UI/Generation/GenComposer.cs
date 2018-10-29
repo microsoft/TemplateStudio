@@ -240,7 +240,7 @@ namespace Microsoft.Templates.UI
             var compositionCatalog = GetCompositionCatalog(userSelection.Platform).ToList();
             var context = new QueryablePropertyDictionary
             {
-                new QueryableProperty("projectType", userSelection.ProjectType),
+                new QueryableProperty("projecttype", userSelection.ProjectType),
                 new QueryableProperty("framework", userSelection.Framework),
             };
 
