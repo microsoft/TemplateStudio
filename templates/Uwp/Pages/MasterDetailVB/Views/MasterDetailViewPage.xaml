@@ -7,8 +7,6 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:model="using:Param_ItemNamespace.Models"
     xmlns:views="using:Param_ItemNamespace.Views"
-    xmlns:behaviors="using:Param_ItemNamespace.Behaviors"
-    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrder">
@@ -52,32 +50,9 @@
             </Grid>
         </DataTemplate>
 
-        <DataTemplate x:Key="MinimalMasterHeaderTemplate">
-            <Grid Height="40">
-                <TextBlock
-                    x:Name="headerText"
-                    Margin="96,0,0,0"
-                    Text="{Binding}"
-                    VerticalAlignment="Center"
-                    Style="{StaticResource ListTitleStyle}" />
-            </Grid>
-        </DataTemplate>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
-        <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup>
-                    <VisualState>
-                        <VisualState.StateTriggers>
-                            <!--641 is the default CompactModeThresholdWidth in NavigationView -->
-                            <AdaptiveTrigger MinWindowWidth="641" />
-                        </VisualState.StateTriggers>
-                        <VisualState.Setters>
-                            <Setter Target="MasterDetailsViewControl.MasterHeaderTemplate" Value="{StaticResource MasterHeaderTemplate}" />
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
             ItemsSource="{x:Bind ViewModel.SampleItems}"
@@ -88,6 +63,6 @@
             BorderBrush="Transparent"
             MasterHeader="MasterDetail"
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
-            MasterHeaderTemplate="{StaticResource MinimalMasterHeaderTemplate}"/>
+            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
     </Grid>
 </Page>

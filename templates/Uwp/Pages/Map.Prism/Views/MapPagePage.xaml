@@ -9,7 +9,6 @@
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Param_ItemNamespace.Behaviors"
-    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
 
     <Grid>

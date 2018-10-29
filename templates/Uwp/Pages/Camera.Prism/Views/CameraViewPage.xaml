@@ -8,7 +8,6 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:controls="using:Param_ItemNamespace.Controls"
     xmlns:behaviors="using:Param_ItemNamespace.Behaviors"
-    behaviors:NavigationViewHeaderBehavior.HeaderMode="Minimal"
     mc:Ignorable="d">    
     <Grid x:Name="ContentArea">
         <Grid
