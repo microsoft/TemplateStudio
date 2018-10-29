@@ -10,13 +10,8 @@
     <!--{[{-->
     <Page.Resources>
         <DataTemplate x:Key="BigHeaderTemplate" x:DataType="viewModels:wts.ItemNameViewModel">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition MinWidth="384" Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <InkToolbar Grid.Column="1" HorizontalAlignment="Center" Background="Transparent" Loaded="OnInkToolbarLoaded">
+            <RelativePanel>
+                <InkToolbar x:Name="toolbar" Background="Transparent" Loaded="OnInkToolbarLoaded" RelativePanel.AlignHorizontalCenterWithPanel="True">
                     <InkToolbarCustomToolButton x:Uid="wts.ItemName_LassoSelectionButton" Background="Transparent" IsChecked="{x:Bind EnableLassoSelection, Mode=TwoWay}">
                         <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
                     </InkToolbarCustomToolButton>
@@ -30,7 +25,7 @@
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEDC6;" />
                 </InkToolbarCustomToggleButton>
                 </InkToolbar>
-                <CommandBar x:Name="topCommandBar" Grid.Column="2" Style="{StaticResource InkCommandBarStyle}">
+                <CommandBar x:Name="topCommandBar" Style="{StaticResource InkCommandBarStyle}" RelativePanel.RightOf="toolbar" RelativePanel.AlignRightWithPanel="True">
                     <CommandBar.PrimaryCommands>
                         <AppBarButton x:Uid="wts.ItemName_TransformTextAndShapesButton" cm:Message.Attach="TransformTextAndShapes" BorderBrush="Transparent" BorderThickness="0,0,0,0">
                             <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEA80;" />
@@ -46,10 +41,10 @@
                         <AppBarButton x:Uid="wts.ItemName_ClearAllButton" Icon="Delete" cm:Message.Attach="ClearAll" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
                     </CommandBar.SecondaryCommands>
                 </CommandBar>
-            </Grid>
+            </RelativePanel>
         </DataTemplate>
         <DataTemplate x:Key="SmallHeaderTemplate" x:DataType="viewModels:wts.ItemNameViewModel">
-            <InkToolbar  HorizontalAlignment="Center" Loaded="OnInkToolbarLoaded">
+            <InkToolbar HorizontalAlignment="Center" Loaded="OnInkToolbarLoaded">
                 <InkToolbarCustomToolButton x:Uid="wts.ItemName_LassoSelectionButton" Background="Transparent" IsChecked="{x:Bind EnableLassoSelection, Mode=TwoWay}">
                     <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
                 </InkToolbarCustomToolButton>

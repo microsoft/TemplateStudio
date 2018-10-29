@@ -22,13 +22,8 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>        
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition MinWidth="384" Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+        <RelativePanel>
             <!--{[{-->
-            <TextBlock x:Name="headerTitle" x:Uid="wts.ItemNameHeader" Margin="{StaticResource SmallLeftMargin}" Style="{StaticResource PageTitleStyle}" MaxLines="1" MaxWidth="180" TextTrimming="CharacterEllipsis" />
+            <TextBlock x:Name="headerTitle" x:Uid="wts.ItemNameHeader" Margin="{StaticResource SmallLeftMargin}" Style="{StaticResource PageTitleStyle}" MaxLines="1" TextTrimming="CharacterEllipsis" RelativePanel.LeftOf="toolbar" RelativePanel.AlignLeftWithPanel="True" />
             <!--}]}-->
-        </Grid>
+        </RelativePanel>
