@@ -3,14 +3,14 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.SplitView.AddHeaderModeMinimal.VB",
+  "name": "Prism.Page.SplitView.MasterDetail",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == SplitView & groupidentity == wts.Page.Camera.VB|wts.Page.WebView.VB|wts.Page.MediaPlayer.VB"
+    "wts.compositionFilter": "$projectType == SplitView & $framework == Prism & groupidentity == wts.Page.MasterDetail"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

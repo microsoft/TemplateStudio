@@ -23,6 +23,7 @@
                         HorizontalAlignment="Center"/>
                     <TextBlock
                         Margin="{StaticResource SmallLeftMargin}"
+                        VerticalAlignment="Center"
                         Text="{x:Bind ViewModel.Item.Company, Mode=OneWay}"
                         Style="{ThemeResource TitleTextBlockStyle}" />
                 </StackPanel>

@@ -22,6 +22,7 @@
                     HorizontalAlignment="Center"/>
                 <TextBlock
                     Margin="{StaticResource SmallLeftMargin}"
+                    VerticalAlignment="Center"
                     Text="{x:Bind MasterMenuItem.Company, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}" />
             </StackPanel>
