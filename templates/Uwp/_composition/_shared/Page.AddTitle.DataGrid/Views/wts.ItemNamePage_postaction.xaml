@@ -16,6 +16,7 @@
         <TextBlock
             Grid.Row="0"
             x:Uid="wts.ItemName_Title"
+            Margin="{StaticResource SmallLeftMargin}"
             Style="{StaticResource PageTitleStyle}" />
         <Grid Grid.Row="1">
 <!--}]}-->
