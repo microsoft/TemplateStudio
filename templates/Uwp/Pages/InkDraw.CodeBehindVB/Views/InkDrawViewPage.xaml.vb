@@ -6,7 +6,7 @@ Namespace Views
     Public NotInheritable Partial Class InkDrawViewPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
-        
+
         Private _lassoSelectionButtonIsChecked As Boolean
         Private _touchInkingButtonIsChecked As Boolean = True
         Private _mouseInkingButtonIsChecked As Boolean = True
