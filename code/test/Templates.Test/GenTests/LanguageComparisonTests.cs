@@ -6,15 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection.PortableExecutable;
 using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
-using Microsoft.TemplateEngine.Orchestrator.RunnableProjects;
 using Microsoft.Templates.Core;
-
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -47,6 +44,7 @@ namespace Microsoft.Templates.Test
             EnsureContentsOfStylesFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
             EnsureFileCommentsAreIdentical(vbResultPath);
             EnsureCodeFileContainIdenticalElements(vbResultPath);
+            EnsureEquivalentErrorhandling(vbResultPath);
 
             Fs.SafeDeleteDirectory(csResultPath);
             Fs.SafeDeleteDirectory(vbResultPath);
@@ -367,6 +365,44 @@ namespace Microsoft.Templates.Test
                 }
 
                 failures.AddRange(vbConstants.Select(vbConst => $"'{vbFile}' includes constant '{vbConst}' which isn't in the C# equivalent."));
+            }
+
+            Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));
+        }
+
+        private void EnsureEquivalentErrorhandling(string vbResultPath)
+        {
+            var failures = new List<string>();
+
+            var allVbFiles = new DirectoryInfo(vbResultPath).GetFiles("*.vb", SearchOption.AllDirectories).Select(f => f.FullName).ToList();
+
+            foreach (var vbFile in allVbFiles)
+            {
+                var csFile = VbFileToCsEquivalent(vbFile);
+
+                var csCode = new StreamReader(csFile).ReadToEnd();
+                var csTree = Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree.ParseText(csCode);
+                var csRoot = (Microsoft.CodeAnalysis.CSharp.Syntax.CompilationUnitSyntax) csTree.GetRoot();
+                var csExceptions = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.CatchClauseSyntax>().Select(p => p.Declaration.Type.ToString()).ToList();
+
+                var vbCode = new StreamReader(vbFile).ReadToEnd();
+                var vbTree = VisualBasicSyntaxTree.ParseText(vbCode);
+                var vbRoot = (CompilationUnitSyntax)vbTree.GetRoot();
+                var vbExceptions = vbRoot.DescendantNodes().OfType<CatchStatementSyntax>().Select(m => m.AsClause.Type.ToString()).ToList();
+
+                foreach (var csException in csExceptions)
+                {
+                    if (vbExceptions.Contains(csException))
+                    {
+                        vbExceptions.Remove(csException);
+                    }
+                    else
+                    {
+                        failures.Add($"'{csFile}' includes catch for '{csException}' which isn't in the VB equivalent.");
+                    }
+                }
+
+                failures.AddRange(vbExceptions.Where(m => m != "InlineAssignHelper").Select(vbExc => $"'{vbFile}' includes catch for  '{vbExc}' which isn't in the C# equivalent."));
             }
 
             Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));
