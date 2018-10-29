@@ -10,13 +10,13 @@
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="ItemTemplate" x:DataType="model:SampleOrder">
-            <Grid Height="64" Padding="0,8">
+            <Grid Height="60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <FontIcon Grid.Column="0" FontSize="40" Glyph="{x:Bind Symbol}" VerticalAlignment="Center" />
-                <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
+                <FontIcon Grid.Column="0" FontSize="32" Glyph="{x:Bind Symbol}" VerticalAlignment="Center" />
+                <StackPanel Grid.Column="1" Margin="{StaticResource SmallLeftMargin}" VerticalAlignment="Center">
                     <TextBlock Text="{x:Bind Company}" Style="{ThemeResource ListTitleStyle}"/>
                     <TextBlock Text="{x:Bind Status}" Style="{StaticResource ListSubTitleStyle}"/>
                 </StackPanel>
@@ -24,12 +24,32 @@
         </DataTemplate>
 
         <DataTemplate x:Key="DetailsTemplate">
-            <views:MasterDetailViewDetailControl MasterMenuItem="{Binding}"/>
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <views:MasterDetailViewDetailControl MasterMenuItem="{Binding}"/>
+            </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
-            <TextBlock x:Uid="MasterDetailView_NoSelection" Style="{StaticResource ListNoSelectionTextStyle}" />
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <TextBlock
+                    x:Uid="MasterDetailView_NoSelection"
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"/>
+            </Grid>
         </DataTemplate>
+
+        <DataTemplate x:Key="MasterHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    x:Name="headerText"
+                    Text="{Binding}"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}" />
+            </Grid>
+        </DataTemplate>
+
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
@@ -40,6 +60,9 @@
             ItemTemplate="{StaticResource ItemTemplate}"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
-            BorderBrush="Transparent" />
+            BorderBrush="Transparent"
+            MasterHeader="MasterDetail"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
     </Grid>
 </Page>

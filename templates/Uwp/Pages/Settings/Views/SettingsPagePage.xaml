@@ -16,18 +16,18 @@
             x:Name="ContentArea">
             <TextBlock
                 x:Uid="SettingsPage_Personalization"
-                Style="{StaticResource SubtitleTextBlockStyle}" />
-            <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
+                Style="{ThemeResource SubtitleTextBlockStyle}" />
+            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
                 <TextBlock
-                    x:Uid="SettingsPage_Theme"
-                    Style="{StaticResource BodyTextStyle}" />
+                    x:Uid="SettingsPage_Theme" />
 
-                <StackPanel Margin="{StaticResource EightTopMargin}">
+                <StackPanel Margin="{StaticResource ExtraSmallTopMargin}">
                     <RadioButton
                         x:Uid="SettingsPage_Theme_Light"
                         GroupName="AppTheme"
                         IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
-                        Command="{x:Bind ViewModel.SwitchThemeCommand}">
+                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                        FontSize="15">
                         <RadioButton.CommandParameter>
                             <xaml:ElementTheme>Light</xaml:ElementTheme>
                         </RadioButton.CommandParameter>
@@ -36,7 +36,8 @@
                         x:Uid="SettingsPage_Theme_Dark"
                         GroupName="AppTheme"
                         IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
-                        Command="{x:Bind ViewModel.SwitchThemeCommand}">
+                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                        FontSize="15">
                         <RadioButton.CommandParameter>
                             <xaml:ElementTheme>Dark</xaml:ElementTheme>
                         </RadioButton.CommandParameter>
@@ -45,7 +46,8 @@
                         x:Uid="SettingsPage_Theme_Default"
                         GroupName="AppTheme"
                         IsChecked="{x:Bind ViewModel.ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
-                        Command="{x:Bind ViewModel.SwitchThemeCommand}">
+                        Command="{x:Bind ViewModel.SwitchThemeCommand}"
+                        FontSize="15">
                         <RadioButton.CommandParameter>
                             <xaml:ElementTheme>Default</xaml:ElementTheme>
                         </RadioButton.CommandParameter>
@@ -55,18 +57,20 @@
 
             <TextBlock
                 x:Uid="SettingsPage_About"
-                Style="{StaticResource SubtitleTextBlockStyle}" />
+                Style="{ThemeResource SubtitleTextBlockStyle}" />
 
-            <StackPanel Margin="{StaticResource EightTopMargin}">
+            <StackPanel Margin="{StaticResource ExtraSmallTopMargin}">
                 <TextBlock
-                    Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" />
+                    Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}"
+                    Style="{ThemeResource BodyTextBlockStyle}" />
                 <TextBlock
                     x:Uid="SettingsPage_AboutDescription"
-                    Margin="{StaticResource EightTopMargin}" />
+                    Margin="{StaticResource ExtraSmallTopMargin}"
+                    Style="{ThemeResource BodyTextBlockStyle}" />
 
                 <HyperlinkButton
                     x:Uid="SettingsPage_PrivacyTermsLink"
-                    Margin="{StaticResource EightTopMargin}" />
+                    Margin="{StaticResource ExtraSmallTopMargin}" />
             </StackPanel>
         </StackPanel>
     </Grid>    

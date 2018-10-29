@@ -53,8 +53,8 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in targetFrameworks)
                     {
-                        // TODO: Re-enable for MVVMLight once 2.5 is released
-                        if (framework != "MVVMLight")
+                        // TODO: Re-enable for MVVMLight and SplitView once 2.5 is released
+                        if (framework != "MVVMLight" && projectType != "SplitView")
                         {
                             result.Add(new object[] { projectType, framework, Platforms.Uwp, language });
                         }

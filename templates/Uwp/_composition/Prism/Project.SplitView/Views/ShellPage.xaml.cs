@@ -19,6 +19,7 @@ namespace wts.ItemName.Views
         public void SetRootFrame(Frame frame)
         {
             shellFrame.Content = frame;
+            navigationViewHeaderBehavior.Initialize(frame);
             ViewModel.Initialize(frame, winUiNavigationView);
         }
     }

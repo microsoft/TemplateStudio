@@ -11,6 +11,7 @@ namespace Param_ItemNamespace.Views
         public InkDrawViewPage()
         {
             InitializeComponent();
+
             Loaded += (sender, eventArgs) =>
             {
                 SetCanvasSize();
