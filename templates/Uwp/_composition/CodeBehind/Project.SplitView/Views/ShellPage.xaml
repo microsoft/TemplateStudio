@@ -13,7 +13,7 @@
     mc:Ignorable="d">    
 
     <winui:NavigationView
-        x:Name="winUiNavigationView"
+        x:Name="navigationView"
         IsBackButtonVisible="Visible"
         IsBackEnabled="{x:Bind IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind Selected, Mode=OneWay}"
