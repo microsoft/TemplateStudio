@@ -3,14 +3,14 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Page.MasterDetail.SampleData.Styles.Strings",
+  "name": "Page.ListDetail.Styles.VB",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMBasic|MVVMLight|CodeBehind|CaliburnMicro  & groupidentity == wts.Page.MasterDetail"
+    "wts.compositionFilter": "groupidentity == wts.Page.MasterDetail.VB|wts.Page.ContentGrid.VB"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -3,7 +3,7 @@
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <StackPanel
             x:Name="ContentArea">
-            <StackPanel Margin="{StaticResource ExtraSmallTopMargin}">
+            <StackPanel Margin="{StaticResource XSmallTopMargin}">
                 <!--^^-->
                 <!--{[{-->
 
@@ -12,7 +12,7 @@
                     x:Name="FeedbackLink"
                     Visibility="Collapsed"
                     Click="FeedbackLink_Click"
-                    Margin="{StaticResource ExtraSmallTopMargin}" />
+                    Margin="{StaticResource XSmallTopMargin}" />
                 <!--}]}-->
             </StackPanel>
         </StackPanel>
