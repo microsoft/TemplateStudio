@@ -25,7 +25,4 @@
     <!--Custom size margins-->
     <Thickness x:Key="PageTitleMargin">0,0,12,7</Thickness>
     <Thickness x:Key="SettingsSubheaderMargin">0, 20, 0, 48</Thickness>
-    
-    <!--Small size margins-->
-    <Thickness x:Key="SmallAllMargin">5, 5, 5, 5</Thickness>
 </ResourceDictionary>

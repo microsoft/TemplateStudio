@@ -21,6 +21,6 @@
 <!--{[{-->
             Grid.Row="1"
 <!--}]}-->
-            Margin="{StaticResource SmallAllMargin}" />
+            Margin="{StaticResource XSmallLeftTopRightBottomMargin}" />
     </Grid>
 </Page>

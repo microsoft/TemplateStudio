@@ -11,7 +11,7 @@
             <TextBlock
                 Text="{Binding}"
                 Style="{StaticResource BodyTextStyle}"
-                Margin="{StaticResource SmallAllMargin}" />
+                Margin="{StaticResource XSmallLeftTopRightBottomMargin}" />
         </DataTemplate>
     </Page.Resources>
     <Grid
@@ -25,7 +25,7 @@
             Grid.Row="0"
             x:Uid="SchemeActivationSamplePage_Description"
             Style="{StaticResource BodyTextStyle}"
-            Margin="{StaticResource SmallAllMargin}" />
+            Margin="{StaticResource XSmallLeftTopRightBottomMargin}" />
         <ScrollViewer Grid.Row="1">
             <ItemsControl
                 ItemsSource="{x:Bind ViewModel.Parameters}"
