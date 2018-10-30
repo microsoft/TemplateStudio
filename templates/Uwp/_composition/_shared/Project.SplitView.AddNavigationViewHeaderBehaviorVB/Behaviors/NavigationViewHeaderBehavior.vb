@@ -10,6 +10,7 @@ Namespace Behaviors
 
         Private Shared _current As NavigationViewHeaderBehavior
         Private _currentPage As Page
+
         Public Property DefaultHeaderTemplate As DataTemplate
 
         Public Property DefaultHeader As Object
