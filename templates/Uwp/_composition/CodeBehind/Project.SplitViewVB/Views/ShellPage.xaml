@@ -10,7 +10,7 @@
     xmlns:helpers="using:wts.ItemName.Helpers"
     xmlns:views="using:wts.ItemName.Views"
     Loaded="OnLoaded"
-    mc:Ignorable="d">
+    mc:Ignorable="d">    
 
     <winui:NavigationView
         x:Name="navigationView"
