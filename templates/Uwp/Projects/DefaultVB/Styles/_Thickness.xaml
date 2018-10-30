@@ -15,7 +15,11 @@
     <Thickness x:Key="SmallLeftRightMargin">12, 0, 12, 0</Thickness>
 
     <!--Extra Small size margins-->
-    <Thickness x:Key="ExtraSmallTopMargin">0, 8, 0, 0</Thickness>
+    <Thickness x:Key="XSmallTopMargin">0, 8, 0, 0</Thickness>
+    <Thickness x:Key="XSmallLeftTopRightBottomMargin">8, 8, 8, 8</Thickness>
+
+    <!--Extra Extra Small size margins-->
+    <Thickness x:Key="XXSmallTopMargin">0, 4, 0, 0</Thickness>
 
     <!--Custom size margins-->
     <Thickness x:Key="PageTitleMargin">0,0,12,7</Thickness>
