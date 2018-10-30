@@ -13,7 +13,7 @@ namespace wts.ItemName.Views
         {
             InitializeComponent();
             DataContext = ViewModel;
-            ViewModel.Initialize(shellFrame, winUiNavigationView, KeyboardAccelerators);
+            ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);
         }
     }
 }

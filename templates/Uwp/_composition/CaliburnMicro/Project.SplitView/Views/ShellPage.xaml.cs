@@ -23,7 +23,7 @@ namespace wts.ItemName.Views
 
         public NavigationView GetNavigationView()
         {
-            return winUiNavigationView;
+            return navigationView;
         }
     }
 }

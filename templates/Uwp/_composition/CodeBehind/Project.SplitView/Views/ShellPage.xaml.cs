@@ -45,7 +45,7 @@ namespace wts.ItemName.Views
         {
             NavigationService.Frame = shellFrame;
             NavigationService.Navigated += Frame_Navigated;
-            winUiNavigationView.BackRequested += OnBackRequested;
+            navigationView.BackRequested += OnBackRequested;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -59,7 +59,7 @@ namespace wts.ItemName.Views
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             IsBackEnabled = NavigationService.CanGoBack;
-            Selected = winUiNavigationView.MenuItems
+            Selected = navigationView.MenuItems
                             .OfType<WinUI.NavigationViewItem>()
                             .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
         }
@@ -72,7 +72,7 @@ namespace wts.ItemName.Views
 
         private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            var item = winUiNavigationView.MenuItems
+            var item = navigationView.MenuItems
                             .OfType<WinUI.NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageType = item.GetValue(NavHelper.NavigateToProperty) as Type;

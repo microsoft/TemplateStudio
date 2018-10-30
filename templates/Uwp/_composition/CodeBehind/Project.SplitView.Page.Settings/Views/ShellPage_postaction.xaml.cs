@@ -11,7 +11,7 @@ namespace Param_ItemNamespace.Views
             //{[{
             if (e.SourcePageType == typeof(wts.ItemNamePage))
             {
-                Selected = winUiNavigationView.SettingsItem as WinUI.NavigationViewItem;
+                Selected = navigationView.SettingsItem as WinUI.NavigationViewItem;
                 return;
             }
 
