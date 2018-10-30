@@ -20,7 +20,7 @@ namespace wts.ItemName.Views
         {
             shellFrame.Content = frame;
             navigationViewHeaderBehavior.Initialize(frame);
-            ViewModel.Initialize(frame, winUiNavigationView);
+            ViewModel.Initialize(frame, navigationView);
         }
     }
 }
