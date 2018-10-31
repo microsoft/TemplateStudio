@@ -40,6 +40,9 @@
         <!--}]}-->
         <controls:MasterDetailsView
             x:Name="MasterDetailsViewControl"
+            <!--{[{-->
+            BackButtonBehavior="Automatic"
+            <!--}]}-->
             <!--{--{-->
             MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
             <!--}--}-->
