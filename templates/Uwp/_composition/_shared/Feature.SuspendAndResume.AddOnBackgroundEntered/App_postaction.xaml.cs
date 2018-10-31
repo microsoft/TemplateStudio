@@ -33,7 +33,7 @@ namespace Param_RootNamespace
 
         private void App_Resuming(object sender, object e)
         {
-            Helpers.Singleton<SuspendAndResumeService>.Instance.Resume();
+            Helpers.Singleton<SuspendAndResumeService>.Instance.ResumeApp();
         }
 //}]}
     }
