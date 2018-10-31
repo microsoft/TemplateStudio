@@ -40,7 +40,7 @@ namespace Param_ItemNamespace.Services
 
         // This method allows subscribers to refesh data that might be outdated when the App is resuming from suspension.
         // If the App was terminated during suspension this event will not fire, data restore is handled by the method HandleInternalAsync.
-        public void Resume()
+        public void ResumeApp()
         {
             OnResuming?.Invoke(this, EventArgs.Empty);
         }
