@@ -9,7 +9,6 @@
         <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
         <Setter Property="TextWrapping" Value="NoWrap" />
-        <Setter Property="Margin" Value="{StaticResource PageTitleMargin}" />
     </Style>
 
     <Style x:Key="BodyTextStyle" TargetType="TextBlock">

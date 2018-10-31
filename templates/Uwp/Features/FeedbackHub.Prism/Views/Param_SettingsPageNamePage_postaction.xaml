@@ -3,12 +3,12 @@
     <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <StackPanel
             x:Name="ContentArea">
-            <StackPanel Margin="{StaticResource ExtraSmallTopMargin}">
+            <StackPanel Margin="{StaticResource XSmallTopMargin}">
                 <!--^^-->
                 <!--{[{-->
 
                 <HyperlinkButton
-                    Margin="{StaticResource ExtraSmallTopMargin}"
+                    Margin="{StaticResource XSmallTopMargin}"
                     x:Uid="FeedbackHub_Link"
                     Command="{x:Bind ViewModel.LaunchFeedbackHubCommand}"
                     Visibility="{x:Bind ViewModel.FeedbackLinkVisibility}" />
