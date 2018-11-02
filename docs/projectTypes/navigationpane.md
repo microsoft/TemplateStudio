@@ -13,6 +13,7 @@ This document covers:
 * [Change the text for Settings](#SettingsLabel)
 
 To update to Win UI Navigation View from Hamburger Menu read the following [document](./updatetonavigationview.md).
+
 To update to Win UI Navigation View from Navigation View read the following [document](./updatetowinuinavigationview.md).
 
 <a name="menu"></a>
@@ -77,7 +78,7 @@ The navigation pane projects add a Behavior to the NavigationView that allows di
 
 ### Initial Configuration
 
-The `NavigationViewHeaderBehavior` includes two properties,` DefaultHeader` and `DefaultHeaderTemplate` that will define the content and layout of` NavigationView` `Header` by default.
+The `NavigationViewHeaderBehavior` includes two properties, `DefaultHeader` and `DefaultHeaderTemplate` that will define the content and layout of` NavigationView` `Header` by default.
 
 ```xml
 <behaviors:NavigationViewHeaderBehavior
@@ -103,7 +104,7 @@ Each page can overwrite three properties of the `NavigationViewHeaderBehavior`:
 
  - `HeaderTemplate`: `DataTemplate` that personalizes the layout of the header.
 
-`HeaderMode="Never"` allows the page to hide the `Header` and occupy the whole window. You can see an example of how to use `HeaderMode="Never"` in the MapPage. If you use this mode you have to think that the buttons of the NavigationView will overlap with your content.
+`HeaderMode="Never"` allows the page to hide the `Header` and occupy the whole window. You can see an example of how to use `HeaderMode="Never"` in the MapPage. If you use this mode the NavigationView Buttons will overlap with your content in small window sizes.
 
 `HeaderMode="Minimal"` allows the page to hide the `Header` and occupy the entire window, except when the `NavigationView` hides the navigation pane, with a window width less than `641px`. This mode avoids overlapping of Navigation View buttons with the content.
 You can see an example of how to use `HeaderMode="Minimal"` in WebViewPage.
@@ -166,7 +167,17 @@ public MainPage()
 }
 ```
 
-You can see an example of an advanced use of `CommandBar` and `NavigationViewHeaderBehavior` in an InkPage in WTS.
+You can see an example of an advanced use of `CommandBar` and `NavigationViewHeaderBehavior` in the InkPages in WTS.
+
+When using MVVMBasic, MVVMLight, Caliburn or Prism, you can use x:Bind to bind properties to your ViewModel, associated to the HeaderContext.
+
+When using CodeBehind, the HeaderContext is associated to the page's code behind file and x:Bind is not working correctly. More info on issue [2711](https://github.com/Microsoft/WindowsTemplateStudio/issues/2711)
+
+We're working on a solution with the NavView team, meanwhile you can use Binding and access the CodeBehind properties through the shellFrame's Content as the Datatemplate is executed in the Context of the NavigationView.
+
+```xml
+Text="{Binding Content.PropertyOnCodeBehind, ElementName=shellFrame, Mode=TwoWay}">
+```
 
 If you want to be able to add a command bar at ShellPage level, you can add it in the `DefaultHeaderTemplate` of the `NavigationViewHeaderBehavior` (ShellPage.xaml).
 

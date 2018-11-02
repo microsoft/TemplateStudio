@@ -429,7 +429,6 @@ xmlns:helpers="using:YourAppName.Helpers"
             <ic:EventTriggerBehavior EventName="ItemInvoked">
                 <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
             </ic:EventTriggerBehavior>
-            <i:Interaction.Behaviors>
             <ic:EventTriggerBehavior EventName="Loaded">
                 <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
             </ic:EventTriggerBehavior>
