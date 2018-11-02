@@ -75,7 +75,7 @@ The text for a shell navigation item comes from the localized string resources. 
 
 The navigation pane projects add a Behavior to the NavigationView that allows different pages to customize or hide the Header when that page is shown.
 
-### Configuración inicial
+### Initial Configuration
 
 The `NavigationViewHeaderBehavior` includes two properties,` DefaultHeader` and `DefaultHeaderTemplate` that will define the content and layout of` NavigationView` `Header` by default.
 
@@ -225,7 +225,6 @@ In `Shell.xaml.cs`modify the constructor so it matches this (add the loaded even
 public ShellPage()
 {
     InitializeComponent();
-    HideNavViewBackButton();
     DataContext = this;
     Initialize();
 
