@@ -36,7 +36,7 @@
                         <Image
                             x:Name="detailImage"
                             Stretch="None"
-                            Source="{x:Bind Source, Mode=OneWay}" />
+                            Source="{x:Bind Source}" />
                     </Viewbox>
                 </DataTemplate>
             </FlipView.ItemTemplate>
