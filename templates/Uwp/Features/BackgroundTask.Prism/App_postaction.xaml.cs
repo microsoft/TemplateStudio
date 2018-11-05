@@ -37,6 +37,7 @@ namespace Param_RootNamespace
                 // This will be fixed in the next Prism release, more info see https://github.com/Microsoft/WindowsTemplateStudio/issues/2632
                 CreateAndConfigureContainer();
             }
+
             Container.Resolve<IBackgroundTaskService>().Start(args.TaskInstance);
         }
 //}]}
