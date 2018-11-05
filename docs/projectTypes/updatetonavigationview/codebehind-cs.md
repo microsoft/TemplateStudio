@@ -394,7 +394,7 @@ xmlns:i="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
 
     <winui:NavigationView
-        x:Name="winUiNavigationView"
+        x:Name="navigationView"
         IsBackButtonVisible="Visible"
         IsBackEnabled="{x:Bind IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind Selected, Mode=OneWay}"
@@ -529,7 +529,7 @@ namespace YourAppName.Views
         {
             NavigationService.Frame = shellFrame;
             NavigationService.Navigated += Frame_Navigated;
-            winUiNavigationView.BackRequested += OnBackRequested;
+            navigationView.BackRequested += OnBackRequested;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -543,11 +543,11 @@ namespace YourAppName.Views
             IsBackEnabled = NavigationService.CanGoBack;
             if (e.SourcePageType == typeof(SettingsPage))
             {
-                Selected = winUiNavigationView.SettingsItem as WinUI.NavigationViewItem;
+                Selected = navigationView.SettingsItem as WinUI.NavigationViewItem;
                 return;
             }
 
-            Selected = winUiNavigationView.MenuItems
+            Selected = navigationView.MenuItems
                             .OfType<WinUI.NavigationViewItem>()
                             .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
         }
@@ -688,7 +688,7 @@ If your project contains a SettingsPage you must perform the following steps:
 
 - On **ShellPage.xaml** change **IsSettingsVisible** property to true.
 
-- On **ShellViewModel.cs** go to **OnItemInvoked** method and add to the beginning:
+- On **ShellPage.xaml.cs** go to **OnItemInvoked** method and add to the beginning:
 
 ```csharp
 if (args.IsSettingsInvoked)
