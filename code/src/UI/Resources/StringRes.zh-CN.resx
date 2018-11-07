@@ -522,7 +522,7 @@
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>未找到 framework {1} 和平台 {2} 的依赖项模板 {0}。</value>
+    <value>未找到框架 {1} 和平台 {2} 的依赖项模板 {0}。</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorDependencyType" xml:space="preserve">
@@ -534,7 +534,7 @@
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>未找到 framework {1} 和平台 {2} 的布局模板 {0}。</value>
+    <value>未找到框架 {1} 和平台 {2} 的布局模板 {0}。</value>
     <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
@@ -654,7 +654,7 @@
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using the NavigationView from Windows UI Library.</value>
+    <value>Windows Template Studio 现在使用 Windows UI Library 提供的 NavigationView。</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
@@ -712,7 +712,7 @@
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>We've changed our MVVMLight ViewModelLocator implementation to support MultiView in MVVMLight. </value>
+    <value>我们已更改 MVVMLight ViewModelLocator 实施，以在 MVVMLight 中支持 MultiView。</value>
     <comment>Has old MvvmLight Locator error message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
@@ -720,7 +720,7 @@
     <comment>Has old MvvmLight Locator link documentation</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>请参阅文档进行更新。</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
 </root>
