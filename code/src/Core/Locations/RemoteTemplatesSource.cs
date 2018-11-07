@@ -41,18 +41,18 @@ namespace Microsoft.Templates.Core.Locations
             if (!Directory.Exists(finalDestination))
             {
                 var extracted = await ExtractAsync(packageInfo, finalDestination, false, ct);
-                if (extracted)
+                if (!extracted)
                 {
-                    return new TemplatesContentInfo()
-                    {
-                        Date = packageInfo.Date,
-                        Path = finalDestination,
-                        Version = packageInfo.Version,
-                    };
+                    return null;
                 }
             }
 
-            return null;
+            return new TemplatesContentInfo()
+            {
+                Date = packageInfo.Date,
+                Path = finalDestination,
+                Version = packageInfo.Version,
+            };
         }
 
         public override async Task AcquireAsync(TemplatesPackageInfo packageInfo, CancellationToken ct)
