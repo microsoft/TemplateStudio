@@ -653,12 +653,12 @@
     <value>HamburgerMenu コントロールは廃止されました。Windows Template Studio が現在サポートするのは NavigationView です。</value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>現在、Windows Template Studio は Windows UI ライブラリの NavigationView を使用しています。</value>
+    <comment>Has old navigation view validation error message</comment>
+  </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>コンポジション ツール</value>
-  </data>
-  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using the NavigationView from Windows UI Library.</value>
-    <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
     <value>プラットフォームを解決できませんでした。</value>
@@ -708,11 +708,11 @@
     <comment>Validation error message: Wrong Page Suffix</comment>
   </data>
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
-    <value>特定の名前の最後には 「Page」 が追加されることにご注意ください。[ネーミングの詳細については、以下を参照してください。] ({0}WTSNaming.md)</value>
+    <value>指定した名前の最後に「Page」が追加されることにご注意ください。[ネーミングの詳細については、以下を参照してください。] ({0}WTSNaming.md)</value>
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>We've changed our MVVMLight ViewModelLocator implementation to support MultiView in MVVMLight. </value>
+    <value>MVVMLight ViewModelLocator の実装が変更され、MVVMLight 内の MultiView がサポートされました。</value>
     <comment>Has old MvvmLight Locator error message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
@@ -720,7 +720,7 @@
     <comment>Has old MvvmLight Locator link documentation</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>更新するには、ドキュメントをご覧ください。</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
 </root>

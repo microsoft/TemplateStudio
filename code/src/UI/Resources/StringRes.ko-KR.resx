@@ -654,7 +654,7 @@
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using the NavigationView from Windows UI Library.</value>
+    <value>이제 Windows Template Studio는 Windows UI Library의 NavigationView를 사용하고 있습니다.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
@@ -712,7 +712,7 @@
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>We've changed our MVVMLight ViewModelLocator implementation to support MultiView in MVVMLight. </value>
+    <value>MVVMLight의 MultiView를 지원하기 위해 MVVMLight ViewModelLocator 구현을 변경했습니다. </value>
     <comment>Has old MvvmLight Locator error message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
@@ -720,7 +720,7 @@
     <comment>Has old MvvmLight Locator link documentation</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>업데이트하려면 설명서를 참조하십시오.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
 </root>
