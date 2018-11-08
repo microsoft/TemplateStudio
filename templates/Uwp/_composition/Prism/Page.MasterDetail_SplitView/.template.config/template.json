@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Prism.Page.SplitView.MasterDetail",
+  "name": "Prism.Page.MasterDetail.SplitView",
   "tags": {
     "language": "C#",
     "type": "item",

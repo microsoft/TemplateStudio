@@ -2,6 +2,7 @@
     <!--^^-->
     <!--{[{-->
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
+    Loaded="Page_Loaded"
     <!--}]}-->
     mc:Ignorable="d">
 
