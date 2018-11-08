@@ -44,7 +44,7 @@ namespace Param_ItemNamespace.Views
 
             if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
             {
-                Selected = SampleItems.First();
+                Selected = SampleItems.FirstOrDefault();
             }
         }
     }
