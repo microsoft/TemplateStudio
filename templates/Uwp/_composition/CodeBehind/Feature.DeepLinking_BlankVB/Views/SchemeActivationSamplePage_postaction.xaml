@@ -21,6 +21,6 @@
 <!--{[{-->
             Grid.Row="1"
 <!--}]}-->
-            Margin="{StaticResource XSmallLeftTopRightBottomMargin}" />
+            Style="{StaticResource BodyTextStyle}" />
     </Grid>
 </Page>
