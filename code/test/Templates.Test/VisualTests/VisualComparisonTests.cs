@@ -61,17 +61,16 @@ namespace Microsoft.Templates.Test
             switch (pageName)
             {
                 case "wts.Page.Settings":
+                    // Exclude the area at the end of the app name and also covering the version number
                     switch (projectType)
                     {
                         case "SplitView":
-                            // App name in heading, name & version number
-                            return "new[] { new Rectangle(890, 44, 450, 60), new Rectangle(600, 410, 270, 40) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(600, 300, 270, 40), 1.25f) }";
                         case "TabbedPivot":
-                            return "new[] { new Rectangle(280, 410, 270, 40) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(280, 350, 270, 40), 1.25f) }";
                         case "Blank":
                         default:
-                            // This is the area at the end of the app name and also covering the version number
-                            return "new[] { new Rectangle(180, 410, 270, 40) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(180, 350, 270, 40), 1.25f) }";
                     }
 
                 default:
@@ -209,7 +208,7 @@ namespace Microsoft.Templates.Test
 
             if (!string.IsNullOrWhiteSpace(areasOfImageToExclude))
             {
-                newAppInfoFileContents = newAppInfoFileContents.Replace("new Rectangle[0]", areasOfImageToExclude);
+                newAppInfoFileContents = newAppInfoFileContents.Replace("new ImageComparer.ExclusionArea[0]", areasOfImageToExclude);
             }
 
             File.WriteAllText(appInfoFileName, newAppInfoFileContents, Encoding.UTF8);
