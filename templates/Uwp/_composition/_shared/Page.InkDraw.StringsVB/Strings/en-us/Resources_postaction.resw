@@ -161,9 +161,5 @@
     <value>Clear all</value>
     <comment>ClearAll button automation name property for wts.ItemName</comment>
   </data>
-  <data name="wts.ItemNameHeader.Text" xml:space="preserve">
-    <value>wts.ItemName</value>
-    <comment>wts.ItemName header title</comment>
-  </data>
   <!--}]}-->
 </root>
