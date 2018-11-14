@@ -12,6 +12,15 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                await ViewModel.LoadAnimationAsync();
+            }
+        }
+
         public GridView GetGridView() => gridView;
     }
 }
