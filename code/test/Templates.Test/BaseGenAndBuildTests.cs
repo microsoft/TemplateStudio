@@ -177,7 +177,7 @@ namespace Microsoft.Templates.Test
                 var newUserSelection = new UserSelection(projectType, framework, platform, language)
                 {
                     HomeName = string.Empty,
-                    ItemGenerationType = ItemGenerationType.GenerateAndMerge
+                    ItemGenerationType = ItemGenerationType.GenerateAndMerge,
                 };
 
                 _fixture.AddItem(newUserSelection, item, BaseGenAndBuildFixture.GetDefaultName);
@@ -240,6 +240,19 @@ namespace Microsoft.Templates.Test
             var result = GenerationFixture.GetProjectTemplates();
 
             return result;
+        }
+
+        public static IEnumerable<object[]> GetCSharpUwpProjectTemplatesForGenerationAsync()
+        {
+            var result = GenerationFixture.GetProjectTemplates();
+
+            foreach (var item in result)
+            {
+                if (item[2].ToString() == Platforms.Uwp && item[3].ToString() == ProgrammingLanguages.CSharp)
+                {
+                    yield return item;
+                }
+            }
         }
 
         protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
@@ -336,11 +349,10 @@ namespace Microsoft.Templates.Test
                     "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind", "wts.Page.Camera.CodeBehind",
                     "wts.Page.ImageGallery.CodeBehind", "wts.Page.MasterDetail.CodeBehind",
                     "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
-                    "wts.Feat.UriScheme", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
+                    "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
                     "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
                     "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub.CodeBehind", "wts.Feat.MultiView",
-                    "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.UriScheme", "wts.Feat.WebToAppLink",
-                    "wts.Feat.DragAndDrop.CodeBehind"
+                    "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop.CodeBehind",
                 };
             }
             else
@@ -352,11 +364,10 @@ namespace Microsoft.Templates.Test
                     "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
                     "wts.Page.ImageGallery", "wts.Page.MasterDetail",
                     "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
-                    "wts.Feat.UriScheme", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
+                    "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
                     "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
                     "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
-                    "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.UriScheme", "wts.Feat.WebToAppLink",
-                    "wts.Feat.DragAndDrop"
+                    "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop",
                 };
             }
         }

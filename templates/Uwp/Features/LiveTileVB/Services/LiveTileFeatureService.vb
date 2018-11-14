@@ -19,15 +19,24 @@ Namespace Services
         End Function
 
         Public Sub UpdateTile(notification As TileNotification)
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(notification)
+            Try
+                TileUpdateManager.CreateTileUpdaterForApplication().Update(notification)
+            Catch ex As Exception
+                ' TODO WTS: Updating LiveTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+            End Try
         End Sub
 
         Public Async Function PinSecondaryTileAsync(tile As SecondaryTile, Optional allowDuplicity As Boolean = False) As Task(Of Boolean)
-            If Not Await IsAlreadyPinnedAsync(tile) OrElse allowDuplicity Then
-                Return Await tile.RequestCreateAsync()
-            End If
+            Try
+                If Not Await IsAlreadyPinnedAsync(tile) OrElse allowDuplicity Then
+                    Return Await tile.RequestCreateAsync()
+                End If
 
-            Return False
+                Return False
+            Catch ex As Exception
+                ' TODO WTS: Adding SecondaryTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                Return False
+            End Try
         End Function
 
         Private Async Function IsAlreadyPinnedAsync(tile As SecondaryTile) As Task(Of Boolean)

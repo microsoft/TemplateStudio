@@ -18,8 +18,9 @@ namespace Param_ItemNamespace.BackgroundTasks
         public override void Register()
         {
             var taskName = GetType().Name;
+            var taskRegistration = BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == taskName).Value;
 
-            if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == taskName))
+            if (taskRegistration == null)
             {
                 var builder = new BackgroundTaskBuilder()
                 {

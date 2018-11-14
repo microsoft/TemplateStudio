@@ -7,7 +7,6 @@
     <Description>Windows Template Studio permet de concevoir rapidement une application UWP à l'aide d'une interface utilisateur basée sur un assistant, afin que vos besoins deviennent la base de modèles et de bonnes pratiques sur Windows 10.</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.ico</Icon>
     <ProjectType>CSharp</ProjectType>
-    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
     <TemplateID>5471541a-7eac-4feb-a834-0d6ca271a946</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>

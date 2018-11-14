@@ -5,7 +5,6 @@
     <Description>Windows Template Studio 使用基于向导的 UI，将你的需求变成 Windows 10 模式和最佳实践的基础，以此构建 UWP 应用。</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.ico</Icon>
     <ProjectType>VisualBasic</ProjectType>
-    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
     <TemplateID>8c9d48fe-478b-483e-bbe6-954d9f1dabe2</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>

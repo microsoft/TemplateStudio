@@ -309,10 +309,6 @@
     <value>Es sind neue Vorlagen verfügbar (v{0}). Download wird ausgeführt... {1} %</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>Vorlagen werden kopiert (v{0})... {1}%</value>
-    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
-  </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>Fehler beim Herunterladen der Vorlagen (v{0}). Der Vorgang wird zu einem späteren Zeitpunkt wiederholt.</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>
@@ -653,9 +649,13 @@
     <value>EINGABETASTE drücken, um {0} hinzuzufügen</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
-  <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
-    <value>Die HamburgerMenu-Steuerung ist veraltet und Windows Template Studio unterstützt jetzt NavigationView. </value>
-    <comment>Has navigation view validation error message</comment>
+  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
+    <value>Die HamburgerMenu-Steuerung ist veraltet, und Windows Template Studio unterstützt jetzt NavigationView. </value>
+    <comment>Has hamburger menu validation error message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>Windows Template Studio nutzt nun NavigationView aus der Windows-UI-Bibliothek.</value>
+    <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Zusammensetzungstool</value>
@@ -675,13 +675,21 @@
     <value>Kein Inhalt verfügbar.</value>
     <comment>Message in no content panel</comment>
   </data>
-  <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
     <value>{0}projectTypes/updatetonavigationview.md</value>
-    <comment>Has navigation view validation link documentation</comment>
+    <comment>Has hamburger menu validation link documentation</comment>
   </data>
-  <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>Siehe die zu aktualisierende Dokumentation.</value>
-    <comment>Has navigation view validation link documentation message</comment>
+    <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
+    <value>Siehe die zu aktualisierende Dokumentation.</value>
+    <comment>Has old navigation view validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
     <value>Neueste Änderungen</value>
@@ -702,5 +710,17 @@
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
     <value>Beachten Sie, dass "Page" am Ende des angegebenen Namens hinzugefügt wird. [Weitere Informationen zur Benennung.]({0}WTSNaming.md)</value>
     <comment>Validation error message: View Suffix</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
+    <value>Die MVVMLight ViewModelLocator-Implementierung wurde angepasst und unterstützt nun MultiView in MVVMLight. </value>
+    <comment>Has old MvvmLight Locator error message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+    <value>Siehe die zu aktualisierende Dokumentation.</value>
+    <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
 </root>

@@ -74,7 +74,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-       public static string SafeGetFileName(this EnvDTE.Project p)
+        public static string SafeGetFileName(this EnvDTE.Project p)
         {
             try
             {

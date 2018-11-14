@@ -5,118 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <CommandBar
-                DefaultLabelPosition="Collapsed"
-                HorizontalAlignment="Left"
-                HorizontalContentAlignment="Left">
-                <CommandBar.Content>                    
-                    <InkToolbar x:Name="toolbar" TargetInkCanvas="{x:Bind inkCanvas}">
-                        <InkToolbarCustomToolButton
-                            x:Uid="InkSmartCanvasView_LassoSelectionButton"
-                            Name="lassoSelectionButton"
-                            Checked="LassoSelection_Checked"
-                            Unchecked="LassoSelection_Unchecked">
-                            <FontIcon
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                Glyph="&#xEF20;" />
-                        </InkToolbarCustomToolButton>
-                        <InkToolbarCustomToggleButton
-                            x:Uid="InkSmartCanvasView_TouchInkingButton"
-                            Name="touchInkingButton"
-                            Checked="TouchInking_Checked"
-                            Unchecked="TouchInking_Unchecked">
-                            <FontIcon
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                Glyph="&#xED5F;" />
-                        </InkToolbarCustomToggleButton>
-                        <InkToolbarCustomToggleButton
-                            x:Uid="InkSmartCanvasView_MouseInkingButton"
-                            Name="mouseInkingButton"
-                            Checked="MouseInking_Checked"
-                            Unchecked="MouseInking_Unchecked">
-                            <FontIcon
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                Glyph="&#xE962;" />
-                        </InkToolbarCustomToggleButton>
-                        <InkToolbarCustomToggleButton
-                            x:Uid="InkSmartCanvasView_PenInkingButton"                            
-                            Name="penInkingButton"
-                            Checked="PenInking_Checked"
-                            Unchecked="PenInking_Unchecked">
-                            <FontIcon
-                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                Glyph="&#xEDC6;" />
-                        </InkToolbarCustomToggleButton>
-                    </InkToolbar>
-                </CommandBar.Content>
-                <AppBarSeparator />
-                <AppBarButton
-                    Name="UndoButton"
-                    BorderBrush="Transparent"
-                    BorderThickness="0,0,0,0"
-                    x:Uid="InkSmartCanvasView_UndoButton"
-                    Icon="Undo"
-                   Click="Undo_Click" />
-                <AppBarButton
-                    Name="RedoButton"
-                    BorderBrush="Transparent"
-                    BorderThickness="0,0,0,0"
-                    x:Uid="InkSmartCanvasView_RedoButton"
-                    Icon="Redo"
-                   Click="Redo_Click" />
-                <AppBarSeparator/>
-                <AppBarButton
-                    BorderBrush="Transparent"
-                    BorderThickness="0,0,0,0"
-                    x:Uid="InkSmartCanvasView_LoadInkFileButton"
-                    Icon="OpenFile"
-                   Click="LoadInkFile_Click" />                   
-                <AppBarButton
-                    Name="SaveInkFileButton"
-                    BorderBrush="Transparent"
-                    BorderThickness="0,0,0,0"
-                    x:Uid="InkSmartCanvasView_SaveInkFileButton"
-                    Icon="Save"
-                   Click="SaveInkFile_Click" />
-                <AppBarSeparator/>
-                <AppBarButton
-                    Name="TransformTextAndShapesButton"
-                    BorderBrush="Transparent"
-                    BorderThickness="0,0,0,0"
-                    x:Uid="InkSmartCanvasView_TransformTextAndShapesButton"
-                   Click="TransformTextAndShapes_Click">
-                    <FontIcon
-                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                        Glyph="&#xEA80;" />
-                </AppBarButton>
-                <AppBarSeparator/>
-                <AppBarButton
-                    Name="ClearAllButton"
-                    BorderBrush="Transparent"
-                    BorderThickness="0,0,0,0"
-                    x:Uid="InkSmartCanvasView_ClearAllButton"
-                    Icon="Delete"
-                   Click="ClearAll_Click" />
-            </CommandBar>
-            <ScrollViewer
-                Name="canvasScroll"
-                Grid.Row="1"
-                Margin="8,0,8,0"
-                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                ZoomMode="Enabled">
+    <Grid x:Name="ContentArea">
+        <ScrollViewer
+            x:Name="canvasScroll"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+            ZoomMode="Enabled">
                 <Grid Background="{StaticResource InkCanvasBackground}"
-                      Width="{Binding ElementName=inkCanvas, Path=Width}"
-                      Height="{Binding ElementName=inkCanvas, Path=Height}">
+                        Width="{Binding ElementName=inkCanvas, Path=Width}"
+                        Height="{Binding ElementName=inkCanvas, Path=Height}">                        
                     <InkCanvas x:Name="inkCanvas"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch"/>
@@ -126,8 +24,25 @@
                     <Canvas x:Name="selectionCanvas"
                             Width="{Binding ElementName=inkCanvas, Path=Width}"
                             Height="{Binding ElementName=inkCanvas, Path=Height}"/>
-                </Grid>
-            </ScrollViewer>
-        </Grid>
+            </Grid>
+        </ScrollViewer>        
+        <CommandBar
+            x:Name="bottomCommandBar"
+            Style="{StaticResource InkCommandBarStyle}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Uid="InkSmartCanvasView_TransformTextAndShapesButton" Click="TransformTextAndShapes_Click" IsEnabled="{x:Bind TransformTextAndShapesButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEA80;" />
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="InkSmartCanvasView_UndoButton" Icon="Undo" Click="Undo_Click" IsEnabled="{x:Bind UndoButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                <AppBarButton x:Uid="InkSmartCanvasView_RedoButton" Icon="Redo" Click="Redo_Click" IsEnabled="{x:Bind RedoButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                <AppBarSeparator/>
+                <AppBarButton x:Uid="InkSmartCanvasView_LoadInkFileButton" Icon="OpenFile" Click="LoadInkFile_Click" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                <AppBarButton x:Uid="InkSmartCanvasView_SaveInkFileButton" Icon="Save" Click="SaveInkFile_Click" IsEnabled="{x:Bind SaveInkFileButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                <AppBarSeparator/>
+                <AppBarButton x:Uid="InkSmartCanvasView_ClearAllButton" Icon="Delete" Click="ClearAll_Click" IsEnabled="{x:Bind ClearAllButtonIsEnabled, Mode=OneWay}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
     </Grid>
 </Page>

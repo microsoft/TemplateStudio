@@ -26,7 +26,7 @@ Namespace Views
             End Get
             Set
                 [Param_Setter](_selectedImage, value)
-                ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey, DirectCast(SelectedImage, SampleImage).ID)
+                ImagesNavigationHelper.UpdateImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey, DirectCast(SelectedImage, SampleImage).ID)
             End Set
         End Property
 
@@ -45,13 +45,13 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
+        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
             Dim sampleImageId = TryCast(e.Parameter, String)
             If Not String.IsNullOrEmpty(sampleImageId) AndAlso e.NavigationMode = NavigationMode.New Then
                 SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImageId)
             Else
-                Dim selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync(Of String)(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey)
+                Dim selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey)
                 If Not String.IsNullOrEmpty(selectedImageId) Then
                     SelectedImage = Source.FirstOrDefault(Function(i) i.ID = selectedImageId)
                 End If
@@ -78,6 +78,21 @@ Namespace Views
                 NavigationService.GoBack()
                 e.Handled = True
             End If
+        End Sub
+
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
+
+        Private Sub [Set](Of T)(ByRef storage As T, value As T, <CallerMemberName> Optional propertyName As String = Nothing)
+            If Equals(storage, value) Then
+                Return
+            End If
+
+            storage = value
+            OnPropertyChanged(propertyName)
+        End Sub
+
+        Private Sub OnPropertyChanged(propertyName As String)
+            RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
         End Sub
     End Class
 End Namespace

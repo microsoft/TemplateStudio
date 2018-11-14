@@ -134,7 +134,7 @@ namespace Microsoft.Templates.UI.Controls
             set => SetValue(AssetPathRootProperty, value);
         }
 
-        public static readonly DependencyProperty AssetPathRootProperty = DependencyProperty.Register("AssetPathRootRoot", typeof(string), typeof(Markdown), new PropertyMetadata(null));
+        public static readonly DependencyProperty AssetPathRootProperty = DependencyProperty.Register("AssetPathRoot", typeof(string), typeof(Markdown), new PropertyMetadata(null));
 
         public Markdown()
         {
@@ -359,9 +359,9 @@ namespace Microsoft.Templates.UI.Controls
                         )?                  # title is optional
                     \)
                 )",
-                    GetNestedBracketsPattern(),
-                    GetNestedParensPatternWithWhiteSpace()),
-                    RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+            GetNestedBracketsPattern(),
+            GetNestedParensPatternWithWhiteSpace()),
+            RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
         private static Regex _anchorInline = new Regex(
             string.Format(
@@ -384,7 +384,7 @@ namespace Microsoft.Templates.UI.Controls
                 )",
                 GetNestedBracketsPattern(),
                 GetNestedParensPattern()),
-                RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+            RegexOptions.Singleline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
         /// <summary>
         /// Turn Markdown images into images
@@ -442,7 +442,7 @@ namespace Microsoft.Templates.UI.Controls
                 var binding = new Binding(nameof(BitmapImage.Width))
                 {
                     Source = imgSource,
-                    Mode = BindingMode.OneWay
+                    Mode = BindingMode.OneWay,
                 };
 
                 BindingExpressionBase bindingExpression = BindingOperations.SetBinding(image, Image.WidthProperty, binding);
@@ -512,7 +512,7 @@ namespace Microsoft.Templates.UI.Controls
                 (=+|-+)     # $1 = string of ='s or -'s
                 [ ]*
                 \n+",
-    RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+            RegexOptions.Multiline | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
 
         private static Regex _headerAtx = new Regex(
             @"
@@ -929,7 +929,7 @@ namespace Microsoft.Templates.UI.Controls
                     text,
                     _bold,
                     m => BoldEvaluator(m, 2),
-                   s1 => Evaluate<Inline>(s1, _italic, m => ItalicEvaluator(m, 2), s2 => defaultHandler(s2)));
+                    s1 => Evaluate<Inline>(s1, _italic, m => ItalicEvaluator(m, 2), s2 => defaultHandler(s2)));
             }
         }
 

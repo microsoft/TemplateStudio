@@ -23,7 +23,7 @@ namespace Microsoft.Templates.UI.Services
                 Fill = brush,
                 Width = size.Width,
                 Height = size.Height,
-                IsHitTestVisible = false
+                IsHitTestVisible = false,
             };
 
             _child = rect;

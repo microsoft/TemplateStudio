@@ -18,7 +18,7 @@
   "PrimaryOutputs": [
     {
       "path": ".\\Helpers\\PivotItemExtensions.vb"
-    },  
+    },
     {
       "path": ".\\ViewModels\\PivotViewModel.vb"
     },

@@ -22,7 +22,7 @@ namespace Localization
                 SourceFileNamePattern = "VBNet.UWP.VS2017.Solution.vstemplate",
                 DestinationDirNamePattern = "VBNet.UWP.VS2017.Solution",
                 DestinationFileNamePattern = "VBNet.UWP.VS2017.Solution.{0}.vstemplate",
-                DestinationDirPath = destinationDirPath
+                DestinationDirPath = destinationDirPath,
             };
         }
     }

@@ -7,17 +7,18 @@ namespace Param_ItemNamespace.Views
     {
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
+            IsBackEnabled = NavigationService.CanGoBack;
             //{[{
             if (e.SourcePageType == typeof(wts.ItemNamePage))
             {
-                Selected = navigationView.SettingsItem as NavigationViewItem;
+                Selected = navigationView.SettingsItem as WinUI.NavigationViewItem;
                 return;
             }
 
             //}]}
         }
 
-        private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
         {
             //{[{
             if (args.IsSettingsInvoked)

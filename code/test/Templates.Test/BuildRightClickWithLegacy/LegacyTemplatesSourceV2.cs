@@ -21,11 +21,21 @@ namespace Microsoft.Templates.Test
     {
         public override string Id => "TestLegacy" + GetAgentName();
 
+        public LegacyTemplatesSourceV2(string language)
+           : base(Platforms.Uwp, language)
+        {
+        }
+
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
             await AcquireAsync(packageInfo, ct);
 
-            return await base.GetContentAsync(packageInfo, workingFolder, ct);
+            var templatecontent = await base.GetContentAsync(packageInfo, workingFolder, ct);
+
+            // Workaround for version 2.4, as templates contain "Templates" folder
+            await Fs.SafeMoveDirectoryAsync(Path.Combine(templatecontent.Path, "Templates"), templatecontent.Path);
+
+            return templatecontent;
         }
 
         private static string GetAgentName()

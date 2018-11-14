@@ -8,7 +8,11 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
-    "wts.type": "page"
+    "wts.platform": "Uwp",
+    "wts.type": "page",
+    "wts.genGroup": "1",
+    "wts.export.baseclass": "ViewModelBase",
+    "wts.export.setter": "Set"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

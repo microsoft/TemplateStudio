@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "namespace Microsoft.Templates",
                 "{",
-                "}"
+                "}",
             };
 
             var expected = new List<string>
@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "namespace Microsoft.Templates",
                 "{",
-                "}"
+                "}",
             };
 
             var result = factData.SortUsings();
@@ -66,14 +66,14 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 "namespace Microsoft.Templates",
                 "{",
-                "}"
+                "}",
             };
 
             var expected = new List<string>
             {
                 "namespace Microsoft.Templates",
                 "{",
-                "}"
+                "}",
             };
 
             var result = factData.SortUsings();
@@ -95,7 +95,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "using System;",
                 "using Microsoft.Templates.Core;",
                 "using System.Threading.Tasks;",
-                "using System.Linq;"
+                "using System.Linq;",
             };
 
             var expected = new List<string>
@@ -108,7 +108,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "using System;",
                 "using Microsoft.Templates.Core;",
                 "using System.Threading.Tasks;",
-                "using System.Linq;"
+                "using System.Linq;",
             };
 
             var result = factData.SortUsings();
@@ -137,7 +137,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "namespace Microsoft.Templates",
                 "{",
-                "}"
+                "}",
             };
 
             var expected = new List<string>
@@ -155,7 +155,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "namespace Microsoft.Templates",
                 "{",
-                "}"
+                "}",
             };
 
             var result = factData.SortUsings();
@@ -186,7 +186,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "namespace Microsoft.Templates",
                 "{",
-                "}"
+                "}",
             };
 
             var expected = new List<string>
@@ -207,7 +207,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "namespace Microsoft.Templates",
                 "{",
-                "}"
+                "}",
             };
 
             var result = factData.SortUsings();

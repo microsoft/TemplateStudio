@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 if (Config.FailOnError)
                 {
-                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, originalFilePath, RelatedTemplate));
+                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, Config.FilePath, RelatedTemplate));
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             var validator = new List<Validator>
             {
-                new FileExistsValidator(Path.GetDirectoryName(Config.FilePath))
+                new FileExistsValidator(Path.GetDirectoryName(Config.FilePath)),
             };
 
             newFileName = Naming.Infer(newFileName, validator);

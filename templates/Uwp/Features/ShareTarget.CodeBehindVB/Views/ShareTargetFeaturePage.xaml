@@ -9,31 +9,28 @@
     xmlns:models="using:Param_ItemNamespace.Models"
     mc:Ignorable="d">
     <Grid
-        x:Name="ContentArea">
+        x:Name="ContentArea"
+        Margin="{StaticResource MediumLeftRightMargin}">
 
         <Grid.RowDefinitions>
             <RowDefinition x:Name="TitleRow" Height="48"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="48"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="{StaticResource MediumLeftRightMargin}">
-            <TextBlock
-                x:Name="TitlePage"
-                Text="{x:Bind SharedData.PageTitle}"
-                Style="{StaticResource PageTitleStyle}" />
-        </Grid>
+        <TextBlock
+            x:Name="TitlePage"
+            Text="{x:Bind SharedData.PageTitle, Mode=OneWay}"
+            Style="{StaticResource PageTitleStyle}" />
 
         <ContentControl Grid.Row="1" Content="{x:Bind SharedData, Mode=OneWay}">
             <ContentControl.ContentTemplateSelector>
                 <templateSelectors:SharedContentTemplateSelector>
                     <templateSelectors:SharedContentTemplateSelector.WebLinkTemplate>
                         <DataTemplate x:DataType="models:SharedDataWebLinkModel">
-                            <Grid Margin="{StaticResource MediumLeftRightMargin}">
-                                <HyperlinkButton
-                                    Content="{x:Bind Title}"
-                                    NavigateUri="{x:Bind Uri}" />
-                            </Grid>                            
+                            <HyperlinkButton
+                                Content="{x:Bind Title}"
+                                NavigateUri="{x:Bind Uri}" />                           
                         </DataTemplate>
                     </templateSelectors:SharedContentTemplateSelector.WebLinkTemplate>
                     <templateSelectors:SharedContentTemplateSelector.StorageItemsTemplate>
@@ -53,9 +50,8 @@
         <Button
             Grid.Row="2"
             x:Uid="ShareTargetFeature_CompleteButton"
-            VerticalAlignment="Center"
             HorizontalAlignment="Right"
-            Margin="{StaticResource MediumLeftRightMargin}"
+            Margin="{StaticResource MediumTopBottomMargin}"
             Click="CompleteButton_Click" />
     </Grid>
 </Page>

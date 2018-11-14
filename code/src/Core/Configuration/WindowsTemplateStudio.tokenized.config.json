@@ -20,8 +20,16 @@
   ],
   "BreakingChangesVersions": [
     {
-      "Name": "AddNavigationView",
-      "BreakingVersion": "###BreakingChangesAddNavigationViewVersion###"
+      "Name": "HasHamburgerMenu",
+      "BreakingVersion": "###BreakingChangesHasHamburgerMenuVersion###"
+    },
+    {
+      "Name": "OldMvvmLightLocator",
+      "BreakingVersion": "###BreakingChangesOldMvvmLightLocator###"
+    },
+    {
+      "Name": "HasOldNavigationView",
+      "BreakingVersion": "###BreakingChangesHasOldNavigationView###"
     }
   ]
 }

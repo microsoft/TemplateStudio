@@ -1,7 +1,9 @@
 ﻿<Page
     mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea">
+    <Grid 
+        x:Name="ContentArea"
+        Margin="{StaticResource SmallLeftRightMargin}">
         <!--{[{-->
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -11,6 +13,7 @@
         <TextBlock
             Grid.Row="0"
             x:Uid="wts.ItemName_Title"
+            Margin="{StaticResource SmallLeftMargin}"
             Style="{StaticResource PageTitleStyle}" />
 
         <!--}]}-->

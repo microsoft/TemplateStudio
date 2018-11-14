@@ -15,8 +15,9 @@ Namespace BackgroundTasks
 
         Public Overrides Sub Register()
             Dim taskName As String = [GetType]().Name
-
-            If Not BackgroundTaskRegistration.AllTasks.Any(Function(t) t.Value.Name = taskName) Then
+            Dim taskRegistration = BackgroundTaskRegistration.AllTasks.FirstOrDefault(Function(t) t.Value.Name = taskName).Value
+            
+            If taskRegistration Is Nothing Then
                 Dim builder As BackgroundTaskBuilder = New BackgroundTaskBuilder() With {
                     .Name = taskName
                 }

@@ -8,6 +8,7 @@
   "tags": {
     "language": "VisualBasic",
     "type": "item",
+    "wts.platform": "Uwp",
     "wts.type": "feature",
     "wts.multipleInstance": "false",
     "wts.defaultInstance": "LiveTile"

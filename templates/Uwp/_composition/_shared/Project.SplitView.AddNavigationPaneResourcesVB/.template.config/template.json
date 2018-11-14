@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type==page & $projectType == SplitView & identity != wts.Page.Settings.VB|wts.Page.Settings.CodeBehind.VB"
+    "wts.compositionFilter": "wts.type==page & $projectType == SplitView & groupidentity != wts.Page.Settings.VB"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

@@ -8,9 +8,9 @@
       "language": "VisualBasic",
       "type": "item",
       "wts.type": "composition",
-	  "wts.platform" : "Uwp",
+	    "wts.platform" : "Uwp",
       "wts.version": "1.0.0",
-      "wts.compositionFilter": "$projectType == Blank & identity == wts.Page.Settings.VB|wts.Page.Settings.CodeBehind.VB"
+      "wts.compositionFilter": "$projectType == Blank & groupidentity == wts.Page.Settings.VB"
     },
     "sourceName": "wts.ItemName",
     "preferNameDirectory": true,

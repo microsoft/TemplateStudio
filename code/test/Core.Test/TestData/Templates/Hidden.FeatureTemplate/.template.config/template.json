@@ -1,0 +1,16 @@
+{
+  "author": "Microsoft",
+  "classifications": [ "Test" ],
+  "name": "HiddenTemplate",
+  "groupIdentity": "Microsoft.UWPTemplates.Test.HiddenTemplate",
+  "identity": "Microsoft.UWPTemplates.Test.HiddenTemplate.CSharp",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.platform": "Uwp",
+    "wts.type": "feature",
+    "wts.isHidden": "true"
+  },
+  "sourceName": "App_Name",
+  "preferNameDirectory": true
+}

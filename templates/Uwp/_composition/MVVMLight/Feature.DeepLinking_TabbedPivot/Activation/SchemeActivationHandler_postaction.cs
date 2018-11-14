@@ -2,19 +2,14 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Param_ItemNamespace.Views;
+using Param_ItemNamespace.ViewModels;
 //}]}
 namespace Param_ItemNamespace.Activation
 {
     internal class SchemeActivationHandler : ActivationHandler<ProtocolActivatedEventArgs>
     {
 //{[{
-        private NavigationServiceEx NavigationService
-        {
-            get
-            {
-                return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-            }
-        }
+        public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
         // By default, this handler expects URIs of the format 'wtsapp:sample?paramName1=paramValue1&paramName2=paramValue2'
         protected override async Task HandleInternalAsync(ProtocolActivatedEventArgs args)

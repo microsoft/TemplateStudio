@@ -7,12 +7,16 @@
     xmlns:cm="using:Caliburn.Micro"
     mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea">
+    <Grid 
+        x:Name="ContentArea"
+        Margin="{StaticResource SmallLeftRightMargin}">
         <Pivot
             x:Name="Items">
             <Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}" />
+                    <TextBlock 
+                        Text="{Binding DisplayName}" 
+                        Style="{ThemeResource SubtitleTextBlockStyle}"/>
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <Pivot.ItemTemplate>

@@ -8,7 +8,9 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.type": "feature"
+    "wts.platform": "Uwp",
+    "wts.type": "feature",
+    "wts.multipleInstance": "false"
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

@@ -6,9 +6,9 @@
         
         Public Property Target As Type
 
-        Public Sub New(suspensionState As SuspensionState, target As Type)
-            SuspensionState = suspensionState
-            Target = target
+        Public Sub New(_suspensionState As SuspensionState, _target As Type)
+            SuspensionState = _suspensionState
+            Target = _target
         End Sub
       End Class
 End Namespace

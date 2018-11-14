@@ -10,6 +10,7 @@ NotInheritable Partial Class App
 
         '{[{
         AddHandler EnteredBackground, AddressOf App_EnteredBackground
+        AddHandler Resuming, AddressOf App_Resuming
         '}]}
     End Sub
     '^^
@@ -20,5 +21,9 @@ NotInheritable Partial Class App
         Await Helpers.Singleton(Of SuspendAndResumeService).Instance.SaveStateAsync()
         deferral.Complete()
     End Sub
+
+    Private Sub App_Resuming(sender As Object, e As Object)
+        Helpers.Singleton(Of SuspendAndResumeService).Instance.ResumeApp()
+     End Sub
     '}]}
 End Class

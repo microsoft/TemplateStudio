@@ -36,7 +36,7 @@ Namespace Views
             Next
 
             If MasterDetailsViewControl.ViewState = MasterDetailsViewState.Both Then
-                Selected = SampleItems.First()
+                Selected = SampleItems.FirstOrDefault()
             End If
         End Sub
     End Class

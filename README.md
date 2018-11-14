@@ -44,7 +44,9 @@ Once you select the attributes you want your new UWP app to have, you can quickl
 * [Authoring Templates](docs/templates.md)
 
 ## Known issues
+* Issue ([#2487](https://github.com/Microsoft/WindowsTemplateStudio/issues/2487)): When using MultiView with MVVMLight the ViewModelLocator gets instantiated again when opening a page in a new window, which results in an exception. We're changing ViewModelLocators implementation to make this work correctly for version 2.5. You can find a reference implementation in the tracking issue. 
 * Issue ([#1532](https://github.com/Microsoft/WindowsTemplateStudio/issues/1532)): when uninstalling / upgrading where you may get an error of "A value for 'Component' needs to be specified in the catalog."  If you get this error, we need logs to help track this with the help of the Visual Studio team.  We don't know how to reproduce it but we know a few people have hit this scenario.  We have how to capture these logs in the [tracking issue on GitHub.](https://github.com/Microsoft/WindowsTemplateStudio/issues/1532)
+* Issue ([#2632](https://github.com/Microsoft/WindowsTemplateStudio/issues/2632)): When using Background Task with Prism the Unity container always gets recreated resulting in incorrect dependency resolving. We're putting a check around this line of code to make this work correctly for version 2.5. Meanwhile you can find the manual fix in the tracking issue. There's still a known issue where the in-process background task triggers an activation and this isn't handled anymore while the app is running. This will shortly activate the app to do its work and suspend again, resulting a NullReferenceException on suspending. This will be fixed in the next release of Prism. 
 * You can't have side-by-side versions (nightly/pre-release/release) of WindowsTemplateStudio VSPackage into a single instance of Visual Studio.
 
 ## Feedback, Requests and Roadmap
@@ -62,13 +64,13 @@ Do you want to contribute? We would love to have you help out. Here are our [con
 ## Principles
 
 1. Generated templates will be kept simple.
-1. Generated templates are a starting point, not a completed application.
-1. Generated templates once generated, must be able to be compiled and run.
-1. Generated templates should work on all device families.
-1. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
-1. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 Creators Update and Windows 10 Fall Creators Update.
-1. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
-1. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
+2. Generated templates are a starting point, not a completed application.
+3. Generated templates must be able to compile and run once generated.
+4. Generated templates should work on all device families.
+5. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
+6. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 Creators Update and Windows 10 Fall Creators Update.
+7. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
+8. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
 
 This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behavior in our community.
 For more information see the [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct).
@@ -79,7 +81,7 @@ This code is distributed under the terms and conditions of the [MIT license](LIC
 
 ## Privacy Statement
 
-The extension does [log basic telemetry](docs/telemetry.md) for what is being selected. Our [Telemetry Data](telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
+The extension does [log basic telemetry](docs/telemetry.md) for what is being selected. Our [Telemetry Data](docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
 
 ## .NET Foundation
 
@@ -89,6 +91,7 @@ This project is supported by the [.NET Foundation](https://dotnetfoundation.org)
 
 - [Rapid Xaml Toolkit](https://github.com/Microsoft/Rapid-XAML-Toolkit)
 - [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
+- [Fluent XAML Theme Editor](https://github.com/Microsoft/fluent-xaml-theme-editor)
 
 ## Frameworks and libraries in generated code not created by our team
 **Frameworks**

@@ -8,6 +8,6 @@ namespace Microsoft.Templates.Core.Diagnostics
     {
         GenerateItem = 0,
         GenerateAndMergeItem = 1,
-        GenerateProject = 2
+        GenerateProject = 2,
     }
 }

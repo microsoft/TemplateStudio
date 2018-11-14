@@ -23,6 +23,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public static GenToolBox ToolBox { get; private set; }
 
+        public static string CurrentPlatform { get; private set; }
+
         public static string CurrentLanguage { get; private set; }
 
         public static bool ContextInitialized => _currentContext != null;
@@ -45,9 +47,9 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        public static void Bootstrap(TemplatesSource source, GenShell shell, string language)
+        public static void Bootstrap(TemplatesSource source, GenShell shell, string platform, string language)
         {
-            Bootstrap(source, shell, GetWizardVersionFromAssembly(), language);
+            Bootstrap(source, shell, GetWizardVersionFromAssembly(), platform, language);
         }
 
         public static void SetCurrentLanguage(string language)
@@ -56,7 +58,7 @@ namespace Microsoft.Templates.Core.Gen
             ToolBox.Repo.CurrentLanguage = language;
         }
 
-        public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion, string language)
+        public static void Bootstrap(TemplatesSource source, GenShell shell, Version wizardVersion, string platform, string language)
         {
             try
             {
@@ -65,16 +67,23 @@ namespace Microsoft.Templates.Core.Gen
 
                 string hostVersion = $"{shell.GetVsVersionAndInstance()}-{wizardVersion.Major}.{wizardVersion.Minor}";
 
-                CodeGen.Initialize(source.Id, hostVersion);
-                var repository = new TemplatesRepository(source, wizardVersion, language);
+                if (source is RemoteTemplatesSource)
+                {
+                    CodeGen.Initialize($"{source.Id}.{source.Platform}.{source.Language}", hostVersion);
+                }
+                else
+                {
+                    CodeGen.Initialize($"{source.Id}", hostVersion);
+                }
+
+                var repository = new TemplatesRepository(source, wizardVersion, platform, language);
 
                 ToolBox = new GenToolBox(repository, shell);
 
                 PurgeTempGenerations(Configuration.Current.DaysToKeepTempGenerations);
 
-                CodeGen.Initialize(source.Id, hostVersion);
-
                 CurrentLanguage = language;
+                CurrentPlatform = platform;
             }
             catch (Exception ex)
             {

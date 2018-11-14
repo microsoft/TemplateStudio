@@ -1,18 +1,18 @@
 ﻿<!--{**-->
-<!--This code adds SchemeActivationSample to the NavigationView control in ShellPage -->
+<!--This code adds SchemeActivationSamplePage to the NavigationView control in ShellPage -->
 <!--**}-->
 
 <Page
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <NavigationView
+    <winui:NavigationView
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-        <NavigationView.MenuItems>
+        <winui:NavigationView.MenuItems>
             <!--^^-->
             <!--{[{-->
-            <NavigationViewItem x:Uid="Shell_SchemeActivationSample" Icon="Document" helpers:NavHelper.NavigateTo="views:SchemeActivationSamplePage" />
+            <winui:NavigationViewItem x:Uid="Shell_SchemeActivationSample" Icon="Document" helpers:NavHelper.NavigateTo="views:SchemeActivationSamplePage" />
             <!--}]}-->
-        </NavigationView.MenuItems>        
-    </NavigationView>
+        </winui:NavigationView.MenuItems>        
+    </winui:NavigationView>
 </Page>

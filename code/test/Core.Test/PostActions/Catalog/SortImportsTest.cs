@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "Namespace Microsoft.Templates",
                 "",
-                "End Namespace"
+                "End Namespace",
             };
 
             var expected = new List<string>
@@ -48,7 +48,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "Namespace Microsoft.Templates",
                 "",
-                "End Namespace"
+                "End Namespace",
             };
 
             var result = factData.SortImports();
@@ -64,14 +64,14 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             {
                 "Namespace Microsoft.Templates",
                 "    ' some content",
-                "End Namespace"
+                "End Namespace",
             };
 
             var expected = new List<string>
             {
                 "Namespace Microsoft.Templates",
                 "    ' some content",
-                "End Namespace"
+                "End Namespace",
             };
 
             var result = factData.SortImports();
@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "Imports System",
                 "Imports Microsoft.Templates.Core",
                 "Imports System.Threading.Tasks",
-                "Imports System.Linq"
+                "Imports System.Linq",
             };
 
             var expected = new List<string>
@@ -106,7 +106,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "Imports System",
                 "Imports Microsoft.Templates.Core",
                 "Imports System.Threading.Tasks",
-                "Imports System.Linq"
+                "Imports System.Linq",
             };
 
             var result = factData.SortImports();
@@ -136,7 +136,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "Namespace Microsoft.Templates",
                 "",
-                "End Namespace"
+                "End Namespace",
             };
 
             var expected = new List<string>
@@ -154,7 +154,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "Namespace Microsoft.Templates",
                 "",
-                "End Namespace"
+                "End Namespace",
             };
 
             var result = factData.SortImports();
@@ -185,7 +185,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "Namespace Microsoft.Templates",
                 "",
-                "End Namespace"
+                "End Namespace",
             };
 
             var expected = new List<string>
@@ -206,7 +206,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 "",
                 "Namespace Microsoft.Templates",
                 "",
-                "End Namespace"
+                "End Namespace",
             };
 
             var result = factData.SortImports();

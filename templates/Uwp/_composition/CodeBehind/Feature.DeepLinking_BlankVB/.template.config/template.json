@@ -3,12 +3,12 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.DeepLinking.Blank.VB",
+  "name": "CodeBehind.Feature.DeepLinking.Blank.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
-    "wts.platform" : "Uwp",
+    "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionFilter": "$framework == CodeBehind & identity == wts.Feat.DeepLinking.VB & $projectType == Blank"
   },

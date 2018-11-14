@@ -113,7 +113,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             var validator = new List<Validator>
             {
-                new FileExistsValidator(Path.GetDirectoryName(Config.FilePath))
+                new FileExistsValidator(Path.GetDirectoryName(Config.FilePath)),
             };
 
             splittedFileName[0] = Naming.Infer(splittedFileName[0], validator);

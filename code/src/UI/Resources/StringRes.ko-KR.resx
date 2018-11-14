@@ -309,10 +309,6 @@
     <value>사용 가능한 새 템플릿이 있습니다 (v{0}). {1}% 다운로드 중…</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>템플릿(v{0}) 준비 중... {1}%</value>
-    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
-  </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>템플릿(v{0}) 다운로드 중 오류가 발생했습니다. 나중에 다시 시도합니다.</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>
@@ -653,9 +649,13 @@
     <value>&lt;Enter&gt; 키를 눌러 {0}을(를) 추가합니다</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
-  <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
     <value>HamburgerMenu 제어를 사용하지 않고 이제 Windows Template Studio는 NavigationView를 지원합니다. </value>
-    <comment>Has navigation view validation error message</comment>
+    <comment>Has hamburger menu validation error message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>이제 Windows Template Studio는 Windows UI Library의 NavigationView를 사용하고 있습니다.</value>
+    <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>작성 도구</value>
@@ -675,13 +675,21 @@
     <value>사용 가능한 콘텐츠 없음.</value>
     <comment>Message in no content panel</comment>
   </data>
-  <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
     <value>{0}projectTypes/updatetonavigationview.md</value>
-    <comment>Has navigation view validation link documentation</comment>
+    <comment>Has hamburger menu validation link documentation</comment>
   </data>
-  <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>업데이트하려면 설명서를 참조하십시오.</value>
-    <comment>Has navigation view validation link documentation message</comment>
+    <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
+    <value>업데이트하려면 설명서를 참조하십시오.</value>
+    <comment>Has old navigation view validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
     <value>변경 사항 적용 중지</value>
@@ -702,5 +710,17 @@
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
     <value>'Page'가 지정된 이름의 끝에 추가됩니다. [이름 지정에 대한 자세한 정보.]({0}WTSNaming.md)</value>
     <comment>Validation error message: View Suffix</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
+    <value>MVVMLight의 MultiView를 지원하기 위해 MVVMLight ViewModelLocator 구현을 변경했습니다. </value>
+    <comment>Has old MvvmLight Locator error message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+    <value>업데이트하려면 설명서를 참조하십시오.</value>
+    <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
 </root>

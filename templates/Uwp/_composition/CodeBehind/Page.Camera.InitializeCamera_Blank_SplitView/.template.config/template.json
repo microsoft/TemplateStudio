@@ -3,14 +3,14 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Page.Camera.InitializeCamera_Blank_SplitView",
+  "name": "CodeBehind.Page.Camera.InitializeCamera.BlankSplitView",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == CodeBehind & $projectType == Blank|SplitView & identity == wts.Page.Camera.CodeBehind"
+    "wts.compositionFilter": "$projectType == Blank|SplitView & identity == wts.Page.Camera.CodeBehind"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

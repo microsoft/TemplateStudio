@@ -27,7 +27,7 @@ namespace Microsoft.Templates.Core
                 return new ValidationResult()
                 {
                     IsValid = false,
-                    ErrorType = ValidationErrorType.ReservedName
+                    ErrorType = ValidationErrorType.ReservedName,
                 };
             }
             else
@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core
                 return new ValidationResult()
                 {
                     IsValid = true,
-                    ErrorType = ValidationErrorType.None
+                    ErrorType = ValidationErrorType.None,
                 };
             }
         }

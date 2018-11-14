@@ -15,7 +15,7 @@
 	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "10",
-    "wts.dependencies": "wts.Feat.SampleDataService.Prism|wts.Feat.SettingsStorage",
+    "wts.dependencies": "wts.Feat.SampleDataService.Prism",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true"
   },
@@ -42,6 +42,9 @@
     },
     {
       "path": ".\\Models\\SampleImage.cs"
+    },
+    {
+      "path": ".\\Helpers\\ImagesNavigationHelper.cs"
     },
     {
       "path": ".\\Assets\\PlaceholderImage.png"

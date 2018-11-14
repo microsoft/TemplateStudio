@@ -116,7 +116,6 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (int exitCode, string outputFile) BuildAppxBundle(string projectName, string outputPath, string projectExtension)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{projectName}.txt");
@@ -134,7 +133,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -146,7 +145,6 @@ namespace Microsoft.Templates.Test
             return (process.ExitCode, outputFile);
         }
 
-        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (int exitCode, string outputFile, string resultFile) RunWackTestOnAppxBundle(string bundleFilePath, string outputPath)
         {
             var outputFile = Path.Combine(outputPath, $"_wackOutput_{Path.GetFileName(bundleFilePath)}.txt");
@@ -162,7 +160,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -200,7 +198,6 @@ namespace Microsoft.Templates.Test
             throw new ApplicationException("No valid randomName could be generated");
         }
 
-        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
@@ -222,7 +219,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -264,11 +261,24 @@ namespace Microsoft.Templates.Test
         {
             if (Directory.Exists(GetTestRunPath()))
             {
+                CleanUpOldTests();
+
                 if ((!Directory.Exists(TestProjectsPath) || !Directory.EnumerateDirectories(TestProjectsPath).Any())
                  && (!Directory.Exists(TestNewItemPath) || !Directory.EnumerateDirectories(TestNewItemPath).Any()))
                 {
                     Directory.Delete(GetTestRunPath(), true);
                 }
+            }
+        }
+
+        private void CleanUpOldTests()
+        {
+            var rootDir = new DirectoryInfo(GetTestRunPath()).Parent;
+
+            var oldDirectories = rootDir.EnumerateDirectories().Where(d => d.CreationTime < DateTime.Now.AddDays(-7));
+            foreach (var dir in oldDirectories)
+            {
+                dir.Delete(true);
             }
         }
 
@@ -319,7 +329,14 @@ namespace Microsoft.Templates.Test
                             foreach (var itemTemplate in itemTemplates)
                             {
                                 result.Add(new object[]
-                                    { itemTemplate.Name, projectType, framework, platform, itemTemplate.Identity, language });
+                                {
+                                    itemTemplate.Name,
+                                    projectType,
+                                    framework,
+                                    platform,
+                                    itemTemplate.Identity,
+                                    language,
+                                });
                             }
                         }
                     }

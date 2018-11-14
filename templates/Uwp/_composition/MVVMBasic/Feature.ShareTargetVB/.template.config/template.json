@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "wts.Feat.ShareTarget.MvvmBasic.VB",
+  "name": "MvvmBasic.Feature.ShareTarget.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",

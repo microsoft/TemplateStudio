@@ -397,7 +397,7 @@ namespace Microsoft.Templates.Core.Packaging
             var dsm = new PackageDigitalSignatureManager(package)
             {
                 CertificateOption = CertificateEmbeddingOption.InSignaturePart,
-                HashAlgorithm = SignedXml.XmlDsigSHA512Url
+                HashAlgorithm = SignedXml.XmlDsigSHA512Url,
             };
 
             var toSign = new List<Uri>();

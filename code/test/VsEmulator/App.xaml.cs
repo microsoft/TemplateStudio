@@ -73,6 +73,7 @@ namespace Microsoft.Templates.VsEmulator
                             new LocalTemplatesSource("0.0.0.0", string.Empty),
                             new FakeGenShell(Platforms.Uwp, progLanguage),
                             new Version("0.0.0.0"),
+                            Platforms.Uwp,
                             progLanguage);
 
                         await GenContext.ToolBox.Repo.RefreshAsync();
@@ -94,7 +95,7 @@ namespace Microsoft.Templates.VsEmulator
                             MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>(),
                             FilesToOpen = new List<string>(),
                             ProjectItems = new List<string>(),
-                            ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>()
+                            ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>(),
                         };
 
                         GenContext.Current = context;

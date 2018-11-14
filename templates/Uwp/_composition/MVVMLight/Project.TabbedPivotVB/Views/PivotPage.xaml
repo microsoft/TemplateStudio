@@ -9,7 +9,6 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:model="using:wts.ItemName.Models"
     xmlns:views="using:wts.ItemName.Views"
-    DataContext="{Binding PivotViewModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid>

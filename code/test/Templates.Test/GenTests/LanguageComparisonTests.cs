@@ -6,15 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection.PortableExecutable;
 using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
-using Microsoft.TemplateEngine.Orchestrator.RunnableProjects;
 using Microsoft.Templates.Core;
-
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -38,10 +35,8 @@ namespace Microsoft.Templates.Test
         {
             var genIdentities = GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(projectType, framework).ToList();
 
-#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - C#7.0 feature StyleCop can't handle
             var (csResultPath, csProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
             var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
-#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
 
             EnsureAllEquivalentFileNamesAreUsed(csResultPath, vbResultPath);
             EnsureResourceStringsAreIdenticalAndAllUsed(csResultPath, csProjectName, vbResultPath, vbProjectName);
@@ -49,6 +44,7 @@ namespace Microsoft.Templates.Test
             EnsureContentsOfStylesFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
             EnsureFileCommentsAreIdentical(vbResultPath);
             EnsureCodeFileContainIdenticalElements(vbResultPath);
+            EnsureEquivalentErrorhandling(vbResultPath);
 
             Fs.SafeDeleteDirectory(csResultPath);
             Fs.SafeDeleteDirectory(vbResultPath);
@@ -235,7 +231,7 @@ namespace Microsoft.Templates.Test
                     {
                         "map.MapServiceToken = String.Empty",
                         "map.MapServiceToken = string.Empty;"
-                    }
+                    },
                 };
 
                 return codeCommentExceptions.ContainsKey(vbComment) && codeCommentExceptions[vbComment] == csComment;
@@ -374,9 +370,47 @@ namespace Microsoft.Templates.Test
             Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));
         }
 
+        private void EnsureEquivalentErrorhandling(string vbResultPath)
+        {
+            var failures = new List<string>();
+
+            var allVbFiles = new DirectoryInfo(vbResultPath).GetFiles("*.vb", SearchOption.AllDirectories).Select(f => f.FullName).ToList();
+
+            foreach (var vbFile in allVbFiles)
+            {
+                var csFile = VbFileToCsEquivalent(vbFile);
+
+                var csCode = new StreamReader(csFile).ReadToEnd();
+                var csTree = Microsoft.CodeAnalysis.CSharp.CSharpSyntaxTree.ParseText(csCode);
+                var csRoot = (Microsoft.CodeAnalysis.CSharp.Syntax.CompilationUnitSyntax)csTree.GetRoot();
+                var csExceptions = csRoot.DescendantNodes().OfType<Microsoft.CodeAnalysis.CSharp.Syntax.CatchClauseSyntax>().Select(p => p.Declaration.Type.ToString()).ToList();
+
+                var vbCode = new StreamReader(vbFile).ReadToEnd();
+                var vbTree = VisualBasicSyntaxTree.ParseText(vbCode);
+                var vbRoot = (CompilationUnitSyntax)vbTree.GetRoot();
+                var vbExceptions = vbRoot.DescendantNodes().OfType<CatchStatementSyntax>().Select(m => m.AsClause.Type.ToString()).ToList();
+
+                foreach (var csException in csExceptions)
+                {
+                    if (vbExceptions.Contains(csException))
+                    {
+                        vbExceptions.Remove(csException);
+                    }
+                    else
+                    {
+                        failures.Add($"'{csFile}' includes catch for '{csException}' which isn't in the VB equivalent.");
+                    }
+                }
+
+                failures.AddRange(vbExceptions.Where(m => m != "InlineAssignHelper").Select(vbExc => $"'{vbFile}' includes catch for  '{vbExc}' which isn't in the C# equivalent."));
+            }
+
+            Assert.True(!failures.Any(), string.Join(Environment.NewLine, failures));
+        }
+
         private List<string> GetVBPropertiesForComparison(CompilationUnitSyntax vbRoot)
         {
-           List<SyntaxNode> syntaxNodes = vbRoot.DescendantNodes().OfType<PropertyStatementSyntax>().Select(p => p as SyntaxNode).ToList();
+            List<SyntaxNode> syntaxNodes = vbRoot.DescendantNodes().OfType<PropertyStatementSyntax>().Select(p => p as SyntaxNode).ToList();
 
             syntaxNodes.AddRange(vbRoot.DescendantNodes().OfType<PropertyBlockSyntax>().ToList());
 
