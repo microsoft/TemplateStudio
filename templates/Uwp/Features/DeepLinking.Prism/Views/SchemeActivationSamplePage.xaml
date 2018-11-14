@@ -12,8 +12,7 @@
         <DataTemplate x:Key="ActivationParameterDateTemplate">
             <TextBlock
                 Text="{Binding}"
-                Style="{StaticResource BodyTextStyle}"
-                Margin="{StaticResource XSmallLeftTopRightBottomMargin}" />
+                Style="{StaticResource BodyTextStyle}" />
         </DataTemplate>
     </Page.Resources>
     <Grid
@@ -26,9 +25,8 @@
         <TextBlock
             Grid.Row="0"
             x:Uid="SchemeActivationSamplePage_Description"
-            Style="{StaticResource BodyTextStyle}"
-            Margin="{StaticResource XSmallLeftTopRightBottomMargin}" />
-        <ScrollViewer Grid.Row="1">
+            Style="{StaticResource BodyTextStyle}" />
+        <ScrollViewer Grid.Row="1" Margin="{StaticResource SmallTopBottomMargin}">
             <ItemsControl
                 ItemsSource="{x:Bind ViewModel.Parameters}"
                 ItemTemplate="{StaticResource ActivationParameterDateTemplate}" />
