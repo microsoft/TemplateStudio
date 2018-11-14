@@ -279,7 +279,14 @@ namespace Microsoft.Templates.Test
 
             foreach (var identity in genIdentitiesList)
             {
-                var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity.Contains(identity)
+                var langIdentity = identity;
+
+                if (language == ProgrammingLanguages.VisualBasic)
+                {
+                    langIdentity = identity + ".VB";
+                }
+
+                var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity.Equals(langIdentity)
                                                                          && t.GetFrameworkList().Contains(framework));
                 _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
 
