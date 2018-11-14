@@ -13,8 +13,6 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using System.Xml.Linq;
-using System.Xml.XPath;
 using Microsoft.Templates.Core;
 using Xunit;
 
@@ -40,15 +38,15 @@ namespace Microsoft.Templates.Test
                     var pagesThatSupportUiTesting = new[]
                     {
                         "wts.Page.Blank",
-                        //"wts.Page.Chart",
-                        //"wts.Page.ImageGallery",
-                        //"wts.Page.MasterDetail",
-                        //"wts.Page.TabbedPivot",
-                        //"wts.Page.Grid",
-                        //"wts.Page.Settings",
+                        "wts.Page.Chart",
+                        "wts.Page.ImageGallery",
+                        "wts.Page.MasterDetail",
+                        "wts.Page.TabbedPivot",
+                        "wts.Page.Grid",
+                        "wts.Page.Settings",
                         "wts.Page.InkDraw",
-                        //"wts.Page.InkDrawPicture",
-                        //"wts.Page.InkSmartCanvas",
+                        "wts.Page.InkDrawPicture",
+                        "wts.Page.InkSmartCanvas",
                     };
 
                     foreach (var page in pagesThatSupportUiTesting)
