@@ -12,6 +12,18 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await cameraControl.InitializeCameraAsync();
+        }
+
+        protected override async void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            await cameraControl.CleanupCameraAsync();
+        }
+
         private void CameraControl_PhotoTaken(object sender, CameraControlEventArgs e)
         {
             if (!string.IsNullOrEmpty(e.Photo))
