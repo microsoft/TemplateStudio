@@ -1,15 +1,20 @@
 # Update NavigationView to WinUI in MVVMBasic apps
+If you have an UWP project created with WTS with project type **NavigationPane** and framework **MVVM Basic**  please follow these steps to update from NavigationView to Windows UI NavigationView:
 
-## Add NugetReference
-```xml
-<PackageReference Include="Microsoft.UI.Xaml">
-  <Version>2.0.180916002-prerelease</Version>
-</PackageReference>
-```
+## 1. Update target version in project properties
+Windows UI library requires 17763 as target version in the project.
 
-## App.xaml
+![](../../resources/project-types/fu-min-oct19-target.png)
 
-### Add WinUI Xaml Resources
+## 2. Add the Nuget package reference
+
+Add the Windows UI Library Nuget Package Reference (Microsoft.UI.Xaml):
+
+![](../../resources/project-types/winui-nugetpackage.png)
+
+## 3. Changes in App.xaml
+
+Add the WinUI Xaml Resources dictionary to the MergedDictionaries:
 ```xml
 <ResourceDictionary.MergedDictionaries>
 
@@ -21,14 +26,24 @@
 </ResourceDictionary.MergedDictionaries>
 ```
 
-## ActivationService.cs
+## 4. Changes in ActivationService.cs
+
+Remove the code to manage back navigation from ActivationService, this code will later be added to the ShellPage.
 
 ### C# code you will have to remove:
 
- - **KeyboardAccelerator** static members.
- - NavigationService **NavigationFailed** and **Navigated** events handlers code. 
- - SystemNavigationManager **BackRequested** event handlers code.
- - Remove unused **using statements**.
+ - `KeyboardAccelerator` static members.
+
+ - `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked`, `BackRequested` and `Navigated` methods.
+
+ - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
+
+ - Remove unused `using statements`.
+
+
+The resulting code should look like this: 
+
+(Code in methods: `ActivateFromShareTargetAsync`, `InitializeAsync`, `StartupAsync` and `GetActivationHandlers` might change depending on the pages/features you used. `ActivateFromShareTargetAsync` will appears in ActivationService only if you have added ShareTarger feature.)
 
 ```csharp
 using System;
@@ -130,18 +145,221 @@ namespace YourAppName.Services
         }
     }
 }
-
 ```
 
-## ShellPage.xaml
+## 5. Changes in _Thickness.xaml
+ 
+Update and add new Margins that will be used in pages.
+
+### Thickness values you will have to update.
+```xml
+<Thickness x:Key="MediumLeftRightMargin">24,0,24,0</Thickness>
+<Thickness x:Key="MediumLeftTopRightBottomMargin">24,24,24,24</Thickness>
+```
+
+### Thickness values you will have to add.
+```xml
+<!--Medium size margins-->
+<Thickness x:Key="MediumTopMargin">0,24,0,0</Thickness>
+<Thickness x:Key="MediumBottomMargin">0,0,24,0</Thickness>
+
+<!--Small size margins-->
+<Thickness x:Key="SmallLeftMargin">12, 0, 0, 0</Thickness>
+<Thickness x:Key="SmallTopMargin">0, 12, 0, 0</Thickness>
+<Thickness x:Key="SmallTopBottomMargin">0, 12, 0, 12</Thickness>
+<Thickness x:Key="SmallLeftRightMargin">12, 0, 12, 0</Thickness>
+
+<!--Extra Small size margins-->
+<Thickness x:Key="ExtraSmallTopMargin">0, 8, 0, 0</Thickness>
+```
+
+## 6. Add NavigationViewHeaderBehavior.cs
+
+This behavior allows the NavigationView to hide or customize the NavigationViewHeader depending on the page that is shown, you can read more about this behavior [here](../navigationpane.md). Add the following NavigationViewHeaderBehavior class to the Behaviors folder, if your solution doesn't have a Behaviors folder you will have to add it.
+
+```csharp
+using YourAppName.Services;
+
+using Microsoft.Xaml.Interactivity;
+
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+
+using WinUI = Microsoft.UI.Xaml.Controls;
+
+namespace YourAppName.Behaviors
+{
+    public class NavigationViewHeaderBehavior : Behavior<WinUI.NavigationView>
+    {
+        private static NavigationViewHeaderBehavior _current;
+        private Page _currentPage;
+
+        public DataTemplate DefaultHeaderTemplate { get; set; }
+
+        public object DefaultHeader
+        {
+            get { return GetValue(DefaultHeaderProperty); }
+            set { SetValue(DefaultHeaderProperty, value); }
+        }
+
+        public static readonly DependencyProperty DefaultHeaderProperty = DependencyProperty.Register("DefaultHeader", typeof(object), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeader()));
+
+        public static NavigationViewHeaderMode GetHeaderMode(Page item)
+        {
+            return (NavigationViewHeaderMode)item.GetValue(HeaderModeProperty);
+        }
+
+        public static void SetHeaderMode(Page item, NavigationViewHeaderMode value)
+        {
+            item.SetValue(HeaderModeProperty, value);
+        }
+
+        public static readonly DependencyProperty HeaderModeProperty =
+            DependencyProperty.RegisterAttached("HeaderMode", typeof(bool), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(NavigationViewHeaderMode.Always, (d, e) => _current.UpdateHeader()));
+
+        public static object GetHeaderContext(Page item)
+        {
+            return item.GetValue(HeaderContextProperty);
+        }
+
+        public static void SetHeaderContext(Page item, object value)
+        {
+            item.SetValue(HeaderContextProperty, value);
+        }
+
+        public static readonly DependencyProperty HeaderContextProperty =
+            DependencyProperty.RegisterAttached("HeaderContext", typeof(object), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeader()));
+
+        public static DataTemplate GetHeaderTemplate(Page item)
+        {
+            return (DataTemplate)item.GetValue(HeaderTemplateProperty);
+        }
+
+        public static void SetHeaderTemplate(Page item, DataTemplate value)
+        {
+            item.SetValue(HeaderTemplateProperty, value);
+        }
+
+        public static readonly DependencyProperty HeaderTemplateProperty =
+            DependencyProperty.RegisterAttached("HeaderTemplate", typeof(DataTemplate), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeaderTemplate()));
+
+        protected override void OnAttached()
+        {
+            base.OnAttached();
+            _current = this;
+            NavigationService.Navigated += OnNavigated;
+        }
+
+        private void OnNavigated(object sender, NavigationEventArgs e)
+        {
+            var frame = sender as Frame;
+            if (frame.Content is Page page)
+            {
+                _currentPage = page;
+
+                UpdateHeader();
+                UpdateHeaderTemplate();
+            }
+        }
+
+        private void UpdateHeader()
+        {
+            if (_currentPage != null)
+            {
+                var headerMode = GetHeaderMode(_currentPage);
+                if (headerMode == NavigationViewHeaderMode.Never)
+                {
+                    AssociatedObject.Header = null;
+                    AssociatedObject.AlwaysShowHeader = false;
+                }
+                else
+                {
+                    var headerFromPage = GetHeaderContext(_currentPage);
+                    if (headerFromPage != null)
+                    {
+                        AssociatedObject.Header = headerFromPage;
+                    }
+                    else
+                    {
+                        AssociatedObject.Header = DefaultHeader;
+                    }
+
+                    if (headerMode == NavigationViewHeaderMode.Always)
+                    {
+                        AssociatedObject.AlwaysShowHeader = true;
+                    }
+                    else
+                    {
+                        AssociatedObject.AlwaysShowHeader = false;
+                    }
+                }
+            }
+        }
+
+        private void UpdateHeaderTemplate()
+        {
+            if (_currentPage != null)
+            {
+                var headerTemplate = GetHeaderTemplate(_currentPage);
+                AssociatedObject.HeaderTemplate = headerTemplate ?? DefaultHeaderTemplate;
+            }
+        }
+    }
+}
+```
+
+## 7. Add NavigationViewHeaderMode.cs
+
+Add the NavigationViewHeaderBehavior enum to the Behaviors folder. 
+
+```csharp
+namespace YourAppName.Behaviors
+{
+    public enum NavigationViewHeaderMode
+    {
+        Always,
+        Never,
+        Minimal
+    }
+}
+```
+
+## 8. Changes in NavHelper.cs
+
+Adjust the using statement to move the NavigationViewItem properties to Windows UI NavigationView.
+
+### Change the using statement
+
+From
+
+`Windows.UI.Xaml.Controls`
+
+To
+
+`Microsoft.UI.Xaml.Controls`
+
+## 9. Changes in ShellPage.xaml
+
+The updated ShellPage will contain a WinUI NavigationView that handles back navigation in the app using the NavigationView's BackButton and the above mentioned behavior to hide/personalize the NavViewHeader depending on the page shown.
 
 ### Xaml code you will have to add (_Implementation below_):
 
- - **WinUI Namespace** in page declaration. 
- - Add **IsBackButtonVisible** and **IsBackEnabled** properties to NavigationView.
+ - `winui` and `behaviors` namespaces in page declaration.
+
+ - Add `IsBackButtonVisible` and `IsBackEnabled` properties to NavigationView.
+
+ - Add `NavigationViewHeaderBehavior` with `DefaultHeader` and `DefaultHeaderTemplate` properties to NavigationView behaviors.
 
 ### Xaml code you will have to update (_Implementation below_):
- - Add _winui:_ before **NavigationView** and **NavigationViewItems** data types.
+
+ - Add the `winui:` namespace to `NavigationView` and `NavigationViewItems` data types.
+
+### Xaml code you will have to remove:
+
+ - `Header` and `HeaderTemplate` properties from NavigationView.
+
+ The resulting code should look like this:
 
 ```xml
 <Page
@@ -151,6 +369,7 @@ namespace YourAppName.Services
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:behaviors="using:YourAppName.Behaviors"
     xmlns:helpers="using:YourAppName.Helpers"
     xmlns:views="using:YourAppName.Views"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
@@ -158,11 +377,10 @@ namespace YourAppName.Services
     mc:Ignorable="d">
 
     <winui:NavigationView
-        x:Name="winUiNavigationView"
+        x:Name="navigationView"
         IsBackButtonVisible="Visible"
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-        Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
         IsSettingsVisible="True"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
@@ -171,18 +389,26 @@ namespace YourAppName.Services
             <winui:NavigationViewItem x:Uid="Shell_Sample" Icon="Document" helpers:NavHelper.NavigateTo="views:SamplePage" />
 
         </winui:NavigationView.MenuItems>
-        <winui:NavigationView.HeaderTemplate>
-            <DataTemplate>
-                <TextBlock
-                    Style="{StaticResource TitleTextBlockStyle}"
-                    Margin="12,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="{Binding}" />
-            </DataTemplate>
-        </winui:NavigationView.HeaderTemplate>
         <i:Interaction.Behaviors>
+            <behaviors:NavigationViewHeaderBehavior
+                DefaultHeader="{x:Bind ViewModel.Selected.Content, Mode=OneWay}">
+                <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock
+                                Text="{Binding}"
+                                Style="{ThemeResource TitleTextBlockStyle}"
+                                Margin="{StaticResource SmallLeftRightMargin}" />
+                        </Grid>
+                    </DataTemplate>
+                </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+            </behaviors:NavigationViewHeaderBehavior>
             <ic:EventTriggerBehavior EventName="ItemInvoked">
                 <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
+            </ic:EventTriggerBehavior>
+            <i:Interaction.Behaviors>
+            <ic:EventTriggerBehavior EventName="Loaded">
+                <ic:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
             </ic:EventTriggerBehavior>
         </i:Interaction.Behaviors>
         <Grid>
@@ -192,16 +418,23 @@ namespace YourAppName.Services
 </Page>
 ```
 
-## ShellPage.xaml.cs
+## 10. Changes in ShellPage.xaml.cs
+
 ### C# code you will have to remove:
- - Remove **HideNavViewBackButton** method.
-- Remove from the page constructor **HideNavViewBackButton** call.
-- Remove from the page constructor **KeyboardAccelerators** additions.
-- Remove unused **using statements**. 
+
+ - Remove `HideNavViewBackButton` method.
+
+ - Remove from the page constructor `HideNavViewBackButton` call.
+
+ - Remove from the page constructor `KeyboardAccelerators` additions.
+
+ - Remove unused using statements.
 
 ### C# code you will have to update (_Implementation below_):
 
- - Add **KeyboardAccelerators** collection to ViewModel Initialize call.
+ - Add `KeyboardAccelerators` collection to ViewModel Initialize call.
+
+The resulting code should look like this:
 
 ```csharp
 using System;
@@ -221,36 +454,45 @@ namespace YourAppName.Views
         {
             InitializeComponent();
             DataContext = ViewModel;
-            ViewModel.Initialize(shellFrame, winUiNavigationView, KeyboardAccelerators);
+            ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators);
         }
     }
 }
 ```
 
-## ShellViewModel.cs
-### C# code you will have to add (_Implementation below_).
- - Add the following new **usings statements**:
-Services; 
+## 11. Changes in ShellViewModel.cs
+
+### C# code you will have to add (_Implementation below_):
+
+ - Add the following new usings statements:
+
 ```csharp
 using System.Collections.Generic;
 using Windows.System;
 using Windows.UI.Xaml.Input;
 using WinUI = Microsoft.UI.Xaml.Controls;
-using AppName.Services;
 ```
 
- - Add **KeyboardAccelerators** and **IsBackEnabled** members.
- - **Subscribe to BackRequested** event handler in Initialize.
- - Add **OnBackRequested** method.
- - Add **KeyboardAccelerators** in Initialize method.
- - Set **IsBackEnabled** to NavigationService.CanGoBack at the begining of **Frame_Navigated** method.
- - Add **BuildKeyboardAccelerator** and **OnKeyboardAcceleratorInvoked** methods.
- - Add _WinUI._ namespace alias to **NavigationView**, **NavigationViewItem** and **NavigationViewItemInvokedEventArgs** Data Types.
- - Add missing **using statements**.
+ - Add `WinUI.` namespace alias to `NavigationView`, `NavigationViewItem` and `NavigationViewItemInvokedEventArgs` Data Types.
 
- ### C# code you will have to remove:
- - Remove unused **using statements**. 
+ - Add `_keyboardAccelerators`, `AltLeftKeyboardAccelerator`, `BackKeyboardAccelerator`, `_loadedCommand`, `LoadedCommand` and `IsBackEnabled` members.
 
+ - Add `keyboardAccelerators` parameter to `Initialize` method.
+
+ - Add `AltLeftKeyboardAccelerator` and `BackKeyboardAccelerator` to `KeyboardAccelerators` in Initialize method.
+ 
+ - Add `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked` and `OnBackRequested` methods.
+
+ - Subscribe to `BackRequested` event handler in Initialize.
+
+ - Set `IsBackEnabled` to `NavigationService.CanGoBack` at the begining of `Frame_Navigated` method.
+
+
+### C# code you will have to remove:
+
+ - Remove unused using statements.
+
+The resulting code should look like this:
 
 ```csharp
 using System;
@@ -277,6 +519,8 @@ namespace YourAppName.ViewModels
         private WinUI.NavigationView _navigationView;
         private WinUI.NavigationViewItem _selected;
         private ICommand _itemInvokedCommand;
+        private ICommand _loadedCommand;
+        private IList<KeyboardAccelerator> _keyboardAccelerators;
 
         public bool IsBackEnabled
         {
@@ -292,6 +536,8 @@ namespace YourAppName.ViewModels
 
         public ICommand ItemInvokedCommand => _itemInvokedCommand ?? (_itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
+        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new RelayCommand(OnLoaded));
+
         public readonly KeyboardAccelerator AltLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
 
         public readonly KeyboardAccelerator BackKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
@@ -306,8 +552,13 @@ namespace YourAppName.ViewModels
             NavigationService.Frame = frame;
             NavigationService.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
-            keyboardAccelerators.Add(AltLeftKeyboardAccelerator);
-            keyboardAccelerators.Add(BackKeyboardAccelerator);
+            _keyboardAccelerators = keyboardAccelerators;
+        }
+
+        private void OnLoaded()
+        {
+            _keyboardAccelerators.Add(_altLeftKeyboardAccelerator);
+            _keyboardAccelerators.Add(_backKeyboardAccelerator);
         }
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
@@ -358,7 +609,6 @@ namespace YourAppName.ViewModels
                 keyboardAccelerator.Modifiers = modifiers.Value;
             }
 
-            ToolTipService.SetToolTip(keyboardAccelerator, string.Empty);
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
             return keyboardAccelerator;
         }

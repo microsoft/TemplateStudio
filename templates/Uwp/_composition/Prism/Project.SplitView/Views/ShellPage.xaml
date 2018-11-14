@@ -9,15 +9,15 @@
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:behaviors="using:wts.ItemName.Behaviors"
     xmlns:helpers="using:wts.ItemName.Helpers"
     mc:Ignorable="d">
 
     <winui:NavigationView
-        x:Name="winUiNavigationView"
+        x:Name="navigationView"
         IsBackButtonVisible="Visible"
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
-        Header="{x:Bind ViewModel.Selected.Content, Mode=OneWay}"
         IsSettingsVisible="False"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
@@ -28,16 +28,21 @@
             Edit String/en-US/Resources.resw: Add a menu item title for each page
             -->
         </winui:NavigationView.MenuItems>
-        <winui:NavigationView.HeaderTemplate>
-            <DataTemplate>
-                <TextBlock
-                    Style="{StaticResource TitleTextBlockStyle}"
-                    Margin="12,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="{Binding}" />
-            </DataTemplate>
-        </winui:NavigationView.HeaderTemplate>
         <i:Interaction.Behaviors>
+            <behaviors:NavigationViewHeaderBehavior
+                x:Name="navigationViewHeaderBehavior"
+                DefaultHeader="{x:Bind ViewModel.Selected.Content, Mode=OneWay}">
+                <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock
+                                Text="{Binding}"
+                                Style="{ThemeResource TitleTextBlockStyle}"
+                                Margin="{StaticResource SmallLeftRightMargin}" />
+                        </Grid>
+                    </DataTemplate>
+                </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
+            </behaviors:NavigationViewHeaderBehavior>
             <ic:EventTriggerBehavior EventName="ItemInvoked">
                 <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
             </ic:EventTriggerBehavior>

@@ -7,7 +7,6 @@
     <Description>Windows Template Studio rychle sestaví aplikaci UWP pomocí uživatelského rozhraní ve formě průvodce tak, aby proměnila vaše potřeby v základ vzorů a osvědčených postupů pro Windows 10.</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.ico</Icon>
     <ProjectType>CSharp</ProjectType>
-    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
     <TemplateID>5471541a-7eac-4feb-a834-0d6ca271a946</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>

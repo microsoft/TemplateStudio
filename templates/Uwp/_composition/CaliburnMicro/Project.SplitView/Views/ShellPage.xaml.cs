@@ -16,12 +16,14 @@ namespace wts.ItemName.Views
 
         public INavigationService CreateNavigationService(WinRTContainer container)
         {
-            return container.RegisterNavigationService(shellFrame);
+            var navigationService = container.RegisterNavigationService(shellFrame);
+            navigationViewHeaderBehavior.Initialize(navigationService);
+            return navigationService;
         }
 
         public NavigationView GetNavigationView()
         {
-            return winUiNavigationView;
+            return navigationView;
         }
     }
 }

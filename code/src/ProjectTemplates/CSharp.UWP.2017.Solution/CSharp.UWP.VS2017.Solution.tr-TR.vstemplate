@@ -7,7 +7,6 @@
     <Description>Windows Şablon Stüdyosu, ihtiyaçlarınızı Windows 10 desenlerinden ve en iyi uygulamalarından kurulu bir temele dönüştürebileceğiniz, sihirbaz tabanlı bir kullanıcı arabirimi ile bir UWP uygulamasını hızlı bir şekilde geliştirmeyi sağlar.</Description>
     <Icon>windowsTemplateStudio_Logo_256x256.ico</Icon>
     <ProjectType>CSharp</ProjectType>
-    <RequiredFrameworkVersion>4.5</RequiredFrameworkVersion>
     <SortOrder>1000</SortOrder>
     <TemplateID>5471541a-7eac-4feb-a834-0d6ca271a946</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>

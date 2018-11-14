@@ -10,7 +10,7 @@ Namespace Views
         Public Sub New()
             Me.InitializeComponent()
             DataContext = ViewModel
-            ViewModel.Initialize(shellFrame, winUiNavigationView, KeyboardAccelerators)
+            ViewModel.Initialize(shellFrame, navigationView, KeyboardAccelerators)
         End Sub
     End Class
 End Namespace

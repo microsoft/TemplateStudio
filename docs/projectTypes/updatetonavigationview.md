@@ -1,5 +1,5 @@
 # Update from HamburgerMenu to NavigationView
-WTS is now using NavigationView for NavigationPane projects. NavigationView was introduced as part of the Windows 10 Fall Creators Update SDK. With NavigationView being in place, Hamburger menu was marked obsolete and will be removed in a future Windows Community Toolkit Update.
+WTS is now using Windows UI NavigationView for NavigationPane projects. With NavigationView being in place, Hamburger menu was marked obsolete and will be removed in a future Windows Community Toolkit Update.
 
 The HamburgerMenu and NavigationView share the same concepts and provide the same functionality with one major exception being the NavigationView take advantage of the new fluent design system. In fact, the NavigationView does everything the HamburgerMenu does and even more. Also generated code is getting easier and more straight-forward. 
 

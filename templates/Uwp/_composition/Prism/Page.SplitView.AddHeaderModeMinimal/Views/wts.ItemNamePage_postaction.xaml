@@ -1,0 +1,7 @@
+﻿<Page
+    <!--^^-->
+    <!--{[{-->
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Minimal"
+    <!--}]}-->
+    mc:Ignorable="d">
+</Page>

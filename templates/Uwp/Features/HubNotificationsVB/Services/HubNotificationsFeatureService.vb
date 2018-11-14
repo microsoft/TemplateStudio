@@ -8,23 +8,29 @@ Namespace Services
         Inherits ActivationHandler(Of ToastNotificationActivatedEventArgs)
 
         Public Async Function InitializeAsync() As Task
-            ' TODO WTS: Set your Hub Name
-            Dim hubName = String.Empty
+            Try
+                ' TODO WTS: Set your Hub Name
+                Dim hubName = String.Empty
 
-            ' TODO WTS: Set your DefaultListenSharedAccessSignature
-            Dim accessSignature = String.Empty
+                ' TODO WTS: Set your DefaultListenSharedAccessSignature
+                Dim accessSignature = String.Empty
 
-            Dim channel = Await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync()
+                Dim channel = Await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync()
 
-            Dim hub = New NotificationHub(hubName, accessSignature)
-            Dim result = Await hub.RegisterNativeAsync(channel.Uri)
+                Dim hub = New NotificationHub(hubName, accessSignature)
+                Dim result = Await hub.RegisterNativeAsync(channel.Uri)
 
-            If result.RegistrationId IsNot Nothing Then
+                If result.RegistrationId IsNot Nothing Then
                     ' Registration was successful
-            End If
+                End If
 
-            ' You can also send push notifications from Windows Developer Center targeting your app consumers
-            ' More details at https://docs.microsoft.com/windows/uwp/publish/send-push-notifications-to-your-apps-customers
+                ' You can also send push notifications from Windows Developer Center targeting your app consumers
+                ' More details at https://docs.microsoft.com/windows/uwp/publish/send-push-notifications-to-your-apps-customers
+            Catch ex As ArgumentNullException
+                ' Until a valid accessSignature and hubName are provided this code will throw an ArgumentNullException.
+            Catch ex As Exception
+                ' TODO WTS: Channel registration call can fail, please handle exceptions as appropriate to your scenario.
+            End Try
         End Function
 
         Protected Overrides Async Function HandleInternalAsync(args As ToastNotificationActivatedEventArgs) As Task

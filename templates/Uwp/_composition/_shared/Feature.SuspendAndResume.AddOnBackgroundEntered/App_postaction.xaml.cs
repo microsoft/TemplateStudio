@@ -18,6 +18,7 @@ namespace Param_RootNamespace
 
 //{[{
             EnteredBackground += App_EnteredBackground;
+            Resuming += App_Resuming;
 //}]}
         }
 //^^
@@ -28,6 +29,11 @@ namespace Param_RootNamespace
             var deferral = e.GetDeferral();
             await Helpers.Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
             deferral.Complete();
+        }
+
+        private void App_Resuming(object sender, object e)
+        {
+            Helpers.Singleton<SuspendAndResumeService>.Instance.ResumeApp();
         }
 //}]}
     }

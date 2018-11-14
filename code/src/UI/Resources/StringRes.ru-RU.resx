@@ -606,7 +606,7 @@
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using the NavigationView from Windows UI Library.</value>
+    <value>Теперь Windows Template Studio использует NavigationView из библиотеки Windows UI.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
@@ -628,17 +628,17 @@
     <value>{0}projectTypes/updatetonavigationview.md</value>
     <comment>Has hamburger menu validation link documentation</comment>
   </data>
-  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>Сведения об обновлении см. в документации.</value>
-    <comment>Has old navigation view validation link documentation message</comment>
+    <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
     <comment>Has old navigation view validation link documentation</comment>
   </data>
-  <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
     <value>Сведения об обновлении см. в документации.</value>
-    <comment>Has hamburger menu validation link documentation message</comment>
+    <comment>Has old navigation view validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
     <value>Критические изменения</value>
@@ -661,7 +661,7 @@
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>We've changed our MVVMLight ViewModelLocator implementation to support MultiView in MVVMLight. </value>
+    <value>Мы изменили реализацию MVVMLight ViewModelLocator, чтобы она поддерживала MultiView в MVVMLight. </value>
     <comment>Has old MvvmLight Locator error message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
@@ -669,7 +669,7 @@
     <comment>Has old MvvmLight Locator link documentation</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>Сведения об обновлении см. в документации.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿Imports WinUI = Microsoft.UI.Xaml.Controls
 Imports Windows.System
+Imports Windows.UI.Xaml
 Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Navigation
 Imports wts.ItemName.Helpers
@@ -46,7 +47,12 @@ Namespace Views
         Private Sub Initialize()
             NavigationService.Frame = shellFrame
             AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
-            AddHandler winUiNavigationView.BackRequested, AddressOf OnBackRequested
+            AddHandler navigationView.BackRequested, AddressOf OnBackRequested
+        End Sub
+
+        Private Sub OnLoaded(sender As Object, e As RoutedEventArgs)
+            ' Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
+            ' More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             keyboardAccelerators.Add(_altLeftKeyboardAccelerator)
             keyboardAccelerators.Add(_backKeyboardAccelerator)
         End Sub
@@ -57,7 +63,7 @@ Namespace Views
 
         Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
             IsBackEnabled = NavigationService.CanGoBack
-            Selected = winUiNavigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
+            Selected = navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().FirstOrDefault(Function(menuItem) IsMenuItemForPageType(menuItem, e.SourcePageType))
         End Sub
 
         Private Function IsMenuItemForPageType(menuItem As WinUI.NavigationViewItem, sourcePageType As Type) As Boolean
@@ -66,7 +72,7 @@ Namespace Views
         End Function
 
         Private Sub OnItemInvoked(sender As WinUI.NavigationView, args As WinUI.NavigationViewItemInvokedEventArgs)
-            Dim item = winUiNavigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().First(Function(menuItem) CStr(menuItem.Content) = CStr(args.InvokedItem))
+            Dim item = navigationView.MenuItems.OfType(Of WinUI.NavigationViewItem)().First(Function(menuItem) CStr(menuItem.Content) = CStr(args.InvokedItem))
             Dim pageType = TryCast(item.GetValue(NavHelper.NavigateToProperty), Type)
             NavigationService.Navigate(pageType)
         End Sub
@@ -80,7 +86,6 @@ Namespace Views
                 keyboardAccelerator.Modifiers = modifiers.Value
             End If
 
-            ToolTipService.SetToolTip(keyboardAccelerator, String.Empty)
             AddHandler keyboardAccelerator.Invoked, AddressOf OnKeyboardAcceleratorInvoked
             Return keyboardAccelerator
         End Function

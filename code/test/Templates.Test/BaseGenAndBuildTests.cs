@@ -259,6 +259,19 @@ namespace Microsoft.Templates.Test
             return GenerationFixture.GetProjectTemplates();
         }
 
+        public static IEnumerable<object[]> GetCSharpUwpProjectTemplatesForGenerationAsync()
+        {
+            var result = GenerationFixture.GetProjectTemplates();
+
+            foreach (var item in result)
+            {
+                if (item[2].ToString() == Platforms.Uwp && item[3].ToString() == ProgrammingLanguages.CSharp)
+                {
+                    yield return item;
+                }
+            }
+        }
+
         protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
