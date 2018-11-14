@@ -30,7 +30,7 @@
                         <DataTemplate x:DataType="models:SharedDataWebLinkModel">
                             <HyperlinkButton
                                 Content="{x:Bind Title}"
-                                NavigateUri="{x:Bind Uri}" />
+                                NavigateUri="{x:Bind Uri}" />                           
                         </DataTemplate>
                     </templateSelectors:SharedContentTemplateSelector.WebLinkTemplate>
                     <templateSelectors:SharedContentTemplateSelector.StorageItemsTemplate>
