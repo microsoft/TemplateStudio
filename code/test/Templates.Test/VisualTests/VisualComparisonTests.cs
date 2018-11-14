@@ -29,7 +29,8 @@ namespace Microsoft.Templates.Test
             _fixture.InitializeFixture(this);
         }
 
-        public static IEnumerable<object[]> GetAllSinglePageApps()
+        // Gets all the pages that are available (and testable) in both VB & C#
+        public static IEnumerable<object[]> GetAllSinglePageAppsVBAndCS()
         {
             foreach (var projectType in new[] { "Blank", "SplitView", "TabbedPivot" })
             {
@@ -39,12 +40,44 @@ namespace Microsoft.Templates.Test
                     var pagesThatSupportUiTesting = new[]
                     {
                         "wts.Page.Blank",
+                        //"wts.Page.Chart",
+                        //"wts.Page.ImageGallery",
+                        //"wts.Page.MasterDetail",
+                        //"wts.Page.TabbedPivot",
+                        //"wts.Page.Grid",
+                        //"wts.Page.Settings",
+                        "wts.Page.InkDraw",
+                        //"wts.Page.InkDrawPicture",
+                        //"wts.Page.InkSmartCanvas",
+                    };
+
+                    foreach (var page in pagesThatSupportUiTesting)
+                    {
+                        yield return new object[] { projectType, framework, page };
+                    }
+                }
+            }
+        }
+
+        // Get all the pages in C# templates that are to be compared with the MVVMBasic version
+        public static IEnumerable<object[]> GetAllSinglePageAppsCSharp()
+        {
+            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedPivot" })
+            {
+                foreach (var framework in new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" })
+                {
+                    var pagesThatSupportUiTesting = new[]
+                    {
+                        "wts.Page.Blank",
                         "wts.Page.Chart",
                         "wts.Page.ImageGallery",
                         "wts.Page.MasterDetail",
                         "wts.Page.TabbedPivot",
                         "wts.Page.Grid",
                         "wts.Page.Settings",
+                        "wts.Page.InkDraw",
+                        "wts.Page.InkDrawPicture",
+                        "wts.Page.InkSmartCanvas",
                     };
 
                     foreach (var page in pagesThatSupportUiTesting)
@@ -80,10 +113,10 @@ namespace Microsoft.Templates.Test
 
         // Note. Visual Studio MUST be running as Admin to run this test.
         [Theory]
-        [MemberData("GetAllSinglePageApps")]
+        [MemberData("GetAllSinglePageAppsVBAndCS")]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
+        public async Task EnsureLanguageLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
         {
             var genIdentities = new[] { page };
 
@@ -112,6 +145,56 @@ namespace Microsoft.Templates.Test
 
             var outputMessages = string.Join(Environment.NewLine, testOutput);
 
+            // A diff image is automatically created if the outputs differ
+            if (Directory.Exists(testProjectDetails.imagesFolder)
+             && Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
+            {
+                Assert.True(
+                    testSuccess,
+                    $"Failing test images in {testProjectDetails.imagesFolder}{Environment.NewLine}{Environment.NewLine}{outputMessages}");
+            }
+            else
+            {
+                Assert.True(testSuccess, outputMessages);
+            }
+        }
+
+        // Note. Visual Studio MUST be running as Admin to run this test.
+        [Theory]
+        [MemberData("GetAllSinglePageAppsCSharp")]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureFrameworkLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
+        {
+            var genIdentities = new[] { page };
+
+            CheckRunningAsAdmin();
+            CheckWinAppDriverInstalled();
+
+            // MVVMBasic is considerewd the reference version. Compare generated apps with equivalent in other frameworks
+            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, "MVVMBasic", genIdentities, lastPageIsHome: true);
+            var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
+
+            var testProjectDetails = SetUpTestProject(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page));
+
+            var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+
+            // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+            if (testSuccess)
+            {
+                UninstallAppx(app1Details.PackageFullName);
+                UninstallAppx(app2Details.PackageFullName);
+
+                RemoveCertificate(app1Details.CertificatePath);
+                RemoveCertificate(app2Details.CertificatePath);
+
+                // Parent of images folder also contains the test project
+                Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
+            }
+
+            var outputMessages = string.Join(Environment.NewLine, testOutput);
+
+            // A diff image is automatically created if the outputs differ
             if (Directory.Exists(testProjectDetails.imagesFolder)
              && Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
             {
