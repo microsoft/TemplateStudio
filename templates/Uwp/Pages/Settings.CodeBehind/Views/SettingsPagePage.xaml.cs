@@ -34,6 +34,11 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Initialize();
+        }
+
         private void Initialize()
         {
             VersionDescription = GetVersionDescription();

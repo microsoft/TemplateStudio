@@ -10,5 +10,10 @@ namespace Param_ItemNamespace.Views
         {
             InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ViewModel.Initialize();
+        }
     }
 }
