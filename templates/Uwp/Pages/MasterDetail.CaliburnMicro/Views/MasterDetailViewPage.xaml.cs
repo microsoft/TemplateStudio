@@ -17,7 +17,7 @@ namespace Param_ItemNamespace.Views
         {
             if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
             {
-                ViewModel.ActiveItem = ViewModel.Items.First();
+                ViewModel.ActiveItem = ViewModel.Items.FirstOrDefault();
             }
         }
     }

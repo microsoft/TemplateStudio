@@ -8,10 +8,7 @@
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:controls="using:Param_ItemNamespace.Controls"
     mc:Ignorable="d">    
-    <Grid
-        x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-
+    <Grid x:Name="ContentArea">
         <Grid
             Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
             <controls:CameraControl
@@ -26,12 +23,11 @@
             <Image
                 Height="70"
                 Width="70"
-                Margin="20"
+                Margin="{StaticResource MediumLeftTopRightBottomMargin}"
                 Stretch="UniformToFill"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Source="{x:Bind ViewModel.Photo, Mode=OneWay}"/>
-        </Grid>
-        
+        </Grid>        
     </Grid>
 </Page>

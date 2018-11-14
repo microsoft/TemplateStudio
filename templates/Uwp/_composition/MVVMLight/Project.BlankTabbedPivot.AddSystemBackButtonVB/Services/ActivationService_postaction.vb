@@ -56,8 +56,6 @@ Namespace Services
                 KeyboardAccelerator.Modifiers = modifiers
             End If
 
-            ToolTipService.SetToolTip(KeyboardAccelerator, String.Empty)
-
             AddHandler KeyboardAccelerator.Invoked, AddressOf OnKeyboardAcceleratorInvoked
             Return KeyboardAccelerator
         End Function

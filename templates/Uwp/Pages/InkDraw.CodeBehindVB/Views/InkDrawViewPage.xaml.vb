@@ -7,6 +7,17 @@ Namespace Views
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
 
+        Private _lassoSelectionButtonIsChecked As Boolean
+        Private _touchInkingButtonIsChecked As Boolean = True
+        Private _mouseInkingButtonIsChecked As Boolean = True
+        Private _cutButtonIsEnabled As Boolean
+        Private _copyButtonIsEnabled As Boolean
+        Private _pasteButtonIsEnabled As Boolean
+        Private _undoButtonIsEnabled As Boolean
+        Private _redoButtonIsEnabled As Boolean
+        Private _saveInkFileButtonIsEnabled As Boolean
+        Private _exportAsImageButtonIsEnabled As Boolean
+        Private _clearAllButtonIsEnabled As Boolean
         Private strokeService As InkStrokesService
         Private lassoSelectionService As InkLassoSelectionService
         Private pointerDeviceService As InkPointerDeviceService
@@ -27,45 +38,121 @@ Namespace Views
                                     undoRedoService = New InkUndoRedoService(inkCanvas, strokeService)
                                     fileService = New InkFileService(inkCanvas, strokeService)
                                     zoomService = New InkZoomService(canvasScroll)
-                                    touchInkingButton.IsChecked = True
-                                    mouseInkingButton.IsChecked = True
                                     AddHandler strokeService.CopyStrokesEvent, Sub(s, e) RefreshEnabledButtons()
                                     AddHandler strokeService.SelectStrokesEvent, Sub(s, e) RefreshEnabledButtons()
                                     AddHandler strokeService.ClearStrokesEvent, Sub(s, e) RefreshEnabledButtons()
                                     AddHandler undoRedoService.UndoEvent, Sub(s, e) RefreshEnabledButtons()
                                     AddHandler undoRedoService.RedoEvent, Sub(s, e) RefreshEnabledButtons()
                                     AddHandler undoRedoService.AddUndoOperationEvent, Sub(s, e) RefreshEnabledButtons()
-                                    AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) touchInkingButton.IsChecked = False
+                                    AddHandler pointerDeviceService.DetectPenEvent, Sub(s, e) TouchInkingButtonIsChecked = False
                                 End Sub
         End Sub
+
+        Public Property LassoSelectionButtonIsChecked As Boolean
+            Get
+                Return _lassoSelectionButtonIsChecked
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_lassoSelectionButtonIsChecked, value)
+                ConfigLassoSelection(value)
+            End Set
+        End Property
+
+        Public Property TouchInkingButtonIsChecked As Boolean
+            Get
+                Return _touchInkingButtonIsChecked
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_touchInkingButtonIsChecked, value)
+                pointerDeviceService.EnableTouch = value
+            End Set
+        End Property
+
+        Public Property MouseInkingButtonIsChecked As Boolean
+            Get
+                Return _mouseInkingButtonIsChecked
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_mouseInkingButtonIsChecked, value)
+                pointerDeviceService.EnableMouse = value
+            End Set
+        End Property
+
+        Public Property CutButtonIsEnabled As Boolean
+            Get
+                Return _cutButtonIsEnabled
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_cutButtonIsEnabled, value)
+            End Set
+        End Property
+
+        Public Property CopyButtonIsEnabled As Boolean
+            Get
+                Return _copyButtonIsEnabled
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_copyButtonIsEnabled, value)
+            End Set
+        End Property
+
+        Public Property PasteButtonIsEnabled As Boolean
+            Get
+                Return _pasteButtonIsEnabled
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_pasteButtonIsEnabled, value)
+            End Set
+        End Property
+
+        Public Property UndoButtonIsEnabled As Boolean
+            Get
+                Return _undoButtonIsEnabled
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_undoButtonIsEnabled, value)
+            End Set
+        End Property
+
+        Public Property RedoButtonIsEnabled As Boolean
+            Get
+                Return _redoButtonIsEnabled
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_redoButtonIsEnabled, value)
+            End Set
+        End Property
+
+        Public Property SaveInkFileButtonIsEnabled As Boolean
+            Get
+                Return _saveInkFileButtonIsEnabled
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_saveInkFileButtonIsEnabled, value)
+            End Set
+        End Property
+
+        Public Property ExportAsImageButtonIsEnabled As Boolean
+            Get
+                Return _exportAsImageButtonIsEnabled
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_exportAsImageButtonIsEnabled, value)
+            End Set
+        End Property
+
+        Public Property ClearAllButtonIsEnabled As Boolean
+            Get
+                Return _clearAllButtonIsEnabled
+            End Get
+            Set(value As Boolean)
+                [Param_Setter](_clearAllButtonIsEnabled, value)
+            End Set
+        End Property
 
         Private Sub SetCanvasSize()
             inkCanvas.Width = Math.Max(canvasScroll.ViewportWidth, 1000)
             inkCanvas.Height = Math.Max(canvasScroll.ViewportHeight, 1000)
-        End Sub
-
-        Private Sub LassoSelection_Checked(sender As Object, e As RoutedEventArgs)
-            lassoSelectionService?.StartLassoSelectionConfig()
-        End Sub
-
-        Private Sub LassoSelection_Unchecked(sender As Object, e As RoutedEventArgs)
-            lassoSelectionService?.EndLassoSelectionConfig()
-        End Sub
-
-        Private Sub TouchInking_Checked(sender As Object, e As RoutedEventArgs)
-            pointerDeviceService.EnableTouch = True
-        End Sub
-
-        Private Sub TouchInking_Unchecked(sender As Object, e As RoutedEventArgs)
-            pointerDeviceService.EnableTouch = False
-        End Sub
-
-        Private Sub MouseInking_Checked(sender As Object, e As RoutedEventArgs)
-            pointerDeviceService.EnableMouse = True
-        End Sub
-
-        Private Sub MouseInking_Unchecked(sender As Object, e As RoutedEventArgs)
-            pointerDeviceService.EnableMouse = False
         End Sub
 
         Private Sub ZoomIn_Click(sender As Object, e As RoutedEventArgs)
@@ -127,14 +214,22 @@ Namespace Views
         End Sub
 
         Private Sub RefreshEnabledButtons()
-            CutButton.IsEnabled = copyPasteService.CanCut
-            CopyButton.IsEnabled = copyPasteService.CanCopy
-            PasteButton.IsEnabled = copyPasteService.CanPaste
-            UndoButton.IsEnabled = undoRedoService.CanUndo
-            RedoButton.IsEnabled = undoRedoService.CanRedo
-            SaveInkFileButton.IsEnabled = strokeService.GetStrokes().Any()
-            ExportAsImageButton.IsEnabled = strokeService.GetStrokes().Any()
-            ClearAllButton.IsEnabled = strokeService.GetStrokes().Any()
+            CutButtonIsEnabled = copyPasteService.CanCut
+            CopyButtonIsEnabled = copyPasteService.CanCopy
+            PasteButtonIsEnabled = copyPasteService.CanPaste
+            UndoButtonIsEnabled = undoRedoService.CanUndo
+            RedoButtonIsEnabled = undoRedoService.CanRedo
+            SaveInkFileButtonIsEnabled = strokeService.GetStrokes().Any()
+            ExportAsImageButtonIsEnabled = strokeService.GetStrokes().Any()
+            ClearAllButtonIsEnabled = strokeService.GetStrokes().Any()
+        End Sub
+
+        Private Sub ConfigLassoSelection(enableLasso As Boolean)
+            If enableLasso Then
+                lassoSelectionService?.StartLassoSelectionConfig()
+            Else
+                lassoSelectionService?.EndLassoSelectionConfig()
+            End If
         End Sub
 
         Private Sub ClearSelection()

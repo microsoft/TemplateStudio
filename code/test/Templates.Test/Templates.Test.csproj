@@ -229,6 +229,7 @@
     <Compile Include="CodeAnalysis\StyleCopGenerationTestsFixture.cs" />
     <Compile Include="CodeAnalysis\StyleCopProjectGenerationTests.cs" />
     <Compile Include="ExternalLinksTests.cs" />
+    <Compile Include="GenTests\ResourceUsageTests.cs" />
     <Compile Include="LanguageSyncTests.cs" />
     <Compile Include="GenTests\GenerationCollection.cs" />
     <Compile Include="FileEncodingTests.cs" />
@@ -301,6 +302,10 @@
     <ProjectReference Include="..\..\src\Core\Core.csproj">
       <Project>{51DDB424-2DA2-4871-A042-4F4F9B622515}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\UI\UI.csproj">
+      <Project>{dcfd282d-d91c-49b5-8dbf-d943bafef5aa}</Project>
+      <Name>UI</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\tools\TemplateValidator\TemplateValidator.csproj">
       <Project>{365acd5e-0ffe-45a5-80b3-c0873b6bdb08}</Project>

@@ -6,9 +6,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea">
+    <Grid 
+        x:Name="ContentArea"
+        Margin="{StaticResource SmallLeftRightMargin}">
         <Pivot
             x:Name="Items">
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock
+                        Text="{Binding}"
+                        Style="{ThemeResource SubtitleTextBlockStyle}" />
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
             <PivotItem x:Uid="TabbedPivotPage_PivotItem1">
                 <Grid Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
                     <!--

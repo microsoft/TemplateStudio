@@ -9,10 +9,12 @@
     mc:Ignorable="d">
     <Grid
         x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid
-            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-            <controls:DataGrid ItemsSource="{x:Bind Source}" AutoGenerateColumns="False" >
+        Margin="{StaticResource SmallLeftRightMargin}">
+        <Grid>
+            <controls:DataGrid
+                ItemsSource="{x:Bind Source}"
+                AutoGenerateColumns="False"
+                GridLinesVisibility="Horizontal">
                 <controls:DataGrid.Columns>
                     <!--TODO WTS:
                     Remove this column definitions and define columns for your data.
@@ -28,7 +30,7 @@
                             <DataTemplate x:DataType="model:SampleOrder">
                                 <FontIcon
                                 HorizontalAlignment="Left"
-                                Margin="{StaticResource MediumLeftRightMargin}"
+                                Margin="{StaticResource SmallLeftRightMargin}"
                                 FontFamily="{ThemeResource SymbolThemeFontFamily}"
                                 Glyph="{x:Bind Symbol}" />
                             </DataTemplate>

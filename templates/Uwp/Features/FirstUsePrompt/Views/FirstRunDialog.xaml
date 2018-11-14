@@ -11,8 +11,8 @@
     <ContentDialog.TitleTemplate>
         <DataTemplate>
             <StackPanel Orientation="Horizontal">
-                <Image Source="ms-appx:///Assets/StoreLogo.png" Width="40" Height="40" Margin="0"/>
-                <TextBlock x:Uid="FirstRun_Title" Text="Welcome" Margin="10,5,0,0"/>
+                <Image Source="ms-appx:///Assets/StoreLogo.png" Width="40" Height="40"/>
+                <TextBlock x:Uid="FirstRun_Title" Text="Welcome" Margin="{StaticResource SmallLeftMargin}" VerticalAlignment="Center"/>
             </StackPanel>
         </DataTemplate>
     </ContentDialog.TitleTemplate>

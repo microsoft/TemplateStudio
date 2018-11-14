@@ -4,8 +4,8 @@
 
     <!--Image Gallery Styles-->
     <Style TargetType="Image" x:Key="ThumbnailImageStyle">
-        <Setter Property="Width" Value="228" />
-        <Setter Property="Height" Value="228" />
+        <Setter Property="Width" Value="160" />
+        <Setter Property="Height" Value="160" />
     </Style>
 
     <Style TargetType="Image" x:Key="DetailImageStyle">

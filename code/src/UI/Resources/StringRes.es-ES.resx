@@ -606,7 +606,7 @@
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using the NavigationView from Windows UI Library.</value>
+    <value>Windows Template Studio ahora usa la NavigationView de la Biblioteca de interfaces de usuario de Windows.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
@@ -661,7 +661,7 @@
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>We've changed our MVVMLight ViewModelLocator implementation to support MultiView in MVVMLight. </value>
+    <value>Hemos cambiado nuestra implementación de MVVMLight ViewModelLocator para que admita MultiView en MVVMLight. </value>
     <comment>Has old MvvmLight Locator error message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
@@ -669,7 +669,7 @@
     <comment>Has old MvvmLight Locator link documentation</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>Consulta la documentación que se va actualizar.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
 </root>

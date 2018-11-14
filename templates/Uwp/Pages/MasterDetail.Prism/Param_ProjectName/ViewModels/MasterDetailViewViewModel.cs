@@ -51,8 +51,11 @@ namespace Param_ItemNamespace.ViewModels
             {
                 SampleItems.Add(item);
             }
+        }
 
-            Selected = SampleItems.First();
+        public void SetDefaultSelection()
+        {
+            Selected = SampleItems.FirstOrDefault();
         }
     }
 }

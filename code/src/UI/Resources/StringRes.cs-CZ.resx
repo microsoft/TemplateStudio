@@ -602,11 +602,11 @@
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>Ovládací prvek HamburgerMenu je zastaralý a Windows Template Studio nyní podporuje ovládací prvek NavigationView. </value>
+    <value>Ovládací prvek HamburgerMenu je zastaralý a Windows Template Studio teď podporuje ovládací prvek NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using the NavigationView from Windows UI Library.</value>
+    <value>Windows Template Studio teď používá ovládací prvek NavigationView z knihovny uživatelského rozhraní Windows.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
@@ -629,7 +629,7 @@
     <comment>Has hamburger menu validation link documentation</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
-    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
@@ -637,7 +637,7 @@
     <comment>Has old navigation view validation link documentation</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
-    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
     <comment>Has old navigation view validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
@@ -661,7 +661,7 @@
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>We've changed our MVVMLight ViewModelLocator implementation to support MultiView in MVVMLight. </value>
+    <value>Změnili jsme naši implementaci třídy ViewModelLocator, která je součástí rámce MVVM Light, tak aby podporovala vícenásobné zobrazení v rámci MVVM Light. </value>
     <comment>Has old MvvmLight Locator error message</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
@@ -669,7 +669,7 @@
     <comment>Has old MvvmLight Locator link documentation</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>Pokyny k aktualizaci najdete v dokumentaci.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
 </root>

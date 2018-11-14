@@ -32,7 +32,7 @@ Namespace ViewModels
             Next
 
             If viewState = MasterDetailsViewState.Both Then
-                Selected = SampleItems.First()
+                Selected = SampleItems.FirstOrDefault()
             End If
         End Function
     End Class

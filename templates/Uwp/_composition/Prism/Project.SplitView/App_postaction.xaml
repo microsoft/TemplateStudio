@@ -1,7 +1,6 @@
 ﻿    <prismUnity:PrismUnityApplication.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-<!--^^-->
 <!--{[{-->
                 <XamlControlsResources  xmlns="using:Microsoft.UI.Xaml.Controls"/>
 <!--}]}-->

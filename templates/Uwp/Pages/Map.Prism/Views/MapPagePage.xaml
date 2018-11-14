@@ -8,7 +8,7 @@
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"    
     xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:b="using:Param_ItemNamespace.Behaviors"
+    xmlns:behaviors="using:Param_ItemNamespace.Behaviors"
     mc:Ignorable="d">
 
     <Grid>
@@ -17,7 +17,7 @@
             ZoomLevel="{x:Bind ViewModel.ZoomLevel, Mode=OneWay}" 
             Center="{x:Bind ViewModel.Center, Mode=OneWay}" >
             <i:Interaction.Behaviors>
-                <b:BindableMapIconBehavior MapIcons="{Binding MapIcons}" />
+                <behaviors:BindableMapIconBehavior MapIcons="{Binding MapIcons}" />
             </i:Interaction.Behaviors>
         </maps:MapControl>
         <TickBar/>
