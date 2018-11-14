@@ -9,5 +9,15 @@ namespace Param_ItemNamespace.Views
         {
             InitializeComponent();
         }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await ViewModel.InitializeAsync(mapControl);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            ViewModel.Cleanup();
+        }
     }
 }

@@ -48,6 +48,16 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await InitializeAsync();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            Cleanup();
+        }
+
         public async Task InitializeAsync()
         {
             if (_locationService != null)
