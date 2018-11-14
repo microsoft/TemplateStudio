@@ -11,7 +11,7 @@
   },
   {
     "name": "TabbedPivot",
-    "displayName": "Pivot and Tabs",
-    "summary": "Registerkarten oben auf der Seite ermöglichen die schnelle Navigation zwischen Seiten."
+    "displayName": "Horizontal Navigation Pane",
+    "summary": ""
   }
 ]

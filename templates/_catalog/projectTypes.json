@@ -21,8 +21,8 @@
     },
     {
         "name": "TabbedPivot",
-        "displayName": "Pivot and Tabs",
-        "summary": "Tabs across the top allow for quickly navigating between pages.",
+        "displayName": "Horizontal Navigation Pane",
+        "summary": "",
         "author": "Microsoft",
         "order": "3",
         "licenses": "",
