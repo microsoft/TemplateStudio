@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 
-using Windows.Storage;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
@@ -42,10 +39,10 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatedTo(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                var selectedImageId = ImagesNavigationHelper.GetImageId(wts.ItemNameSelectedIdKey);
+                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageId))
                 {
-                    var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(wts.ItemNameAnimationClose);
+                    var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose);
                     if (animation != null)
                     {
                         var item = ImagesGridView.Items.FirstOrDefault(i => ((SampleImage)i).ID == selectedImageId);
@@ -53,7 +50,7 @@ namespace Param_ItemNamespace.Views
                         await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
                     }
 
-                    ImagesNavigationHelper.RemoveImageId(wts.ItemNameSelectedIdKey);
+                    ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey);
                 }
             }
         }

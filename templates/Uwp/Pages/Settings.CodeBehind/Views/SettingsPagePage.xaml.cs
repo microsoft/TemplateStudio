@@ -4,6 +4,7 @@ using Param_ItemNamespace.Services;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Param_ItemNamespace.Views
 {

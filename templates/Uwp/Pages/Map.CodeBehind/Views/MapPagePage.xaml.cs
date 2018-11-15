@@ -4,6 +4,7 @@ using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
+using Windows.UI.Xaml.Navigation;
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Services;
 using System.Threading.Tasks;
