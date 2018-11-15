@@ -1,5 +1,4 @@
-﻿Imports Windows.UI.Xaml.Media.Animation
-Imports Microsoft.Toolkit.Uwp.UI.Controls
+﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Param_ItemNamespace.Core.Models
 Imports Param_ItemNamespace.Core.Services
 
