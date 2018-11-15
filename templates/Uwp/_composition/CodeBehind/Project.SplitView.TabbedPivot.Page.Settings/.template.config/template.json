@@ -3,15 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Project.SplitView.AddNavigationViewItem",
+  "name": "CodeBehind.Project.SplitView.TabbedPivot.Page.Settings",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-	  "wts.platform" : "Uwp",
+	"wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.CodeBehind & $projectType == SplitView & $framework == CodeBehind"
- },
+    "wts.compositionFilter": "$projectType == SplitView|TabbedPivot & identity == wts.Page.Settings.CodeBehind"
+  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [

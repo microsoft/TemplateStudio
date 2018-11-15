@@ -3,15 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Project.SplitView.VB",
+  "name": "CodeBehind.Project.SplitView.TabbedPivot.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
 	"wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionOrder": "1",
-    "wts.compositionFilter": "$framework == CodeBehind & $projectType == SplitView & wts.type == project",
+    "wts.compositionOrder": "0",
+    "wts.compositionFilter": "$framework == CodeBehind & $projectType == SplitView|TabbedPivot & wts.type == project",
     "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
   },
   "sourceName": "wts.ItemName",
