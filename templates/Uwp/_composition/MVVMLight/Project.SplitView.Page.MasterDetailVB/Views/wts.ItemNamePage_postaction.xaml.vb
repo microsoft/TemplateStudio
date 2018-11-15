@@ -8,8 +8,8 @@ Namespace Views
 
 '{[{
 
-        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
-            MyBase.OnNavigatedTo(e)
+        Protected Overrides Sub OnNavigatedFrom(e As NavigationEventArgs)
+            MyBase.OnNavigatedFrom(e)
 
             ' Workaround for issue on MasterDetail Control. Find More info at https://github.com/Microsoft/WindowsTemplateStudio/issues/2738
             ViewModel.Selected = Nothing
