@@ -279,15 +279,10 @@ namespace Microsoft.Templates.Test
 
             foreach (var identity in genIdentitiesList)
             {
-                var langIdentity = identity;
+                ITemplateInfo itemTemplate = _fixture.Templates()
+                                                     .FirstOrDefault(t => (t.Identity.StartsWith($"{identity}.") || t.Identity.Equals(identity))
+                                                                        && t.GetFrameworkList().Contains(framework));
 
-                if (language == ProgrammingLanguages.VisualBasic)
-                {
-                    langIdentity = identity + ".VB";
-                }
-
-                var itemTemplate = _fixture.Templates().FirstOrDefault(t => t.Identity.Equals(langIdentity)
-                                                                         && t.GetFrameworkList().Contains(framework));
                 _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
 
                 // Add multiple pages if supported to check these are handled the same
@@ -355,6 +350,7 @@ namespace Microsoft.Templates.Test
                     "wts.Page.Grid.CodeBehind", "wts.Page.WebView.CodeBehind", "wts.Page.MediaPlayer.CodeBehind",
                     "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind", "wts.Page.Camera.CodeBehind",
                     "wts.Page.ImageGallery.CodeBehind", "wts.Page.MasterDetail.CodeBehind",
+                    "wts.Page.InkDraw.CodeBehind", "wts.Page.InkDrawPicture.CodeBehind", "wts.Page.InkSmartCanvas.CodeBehind",
                     "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                     "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
                     "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
@@ -370,6 +366,7 @@ namespace Microsoft.Templates.Test
                     "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
                     "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
                     "wts.Page.ImageGallery", "wts.Page.MasterDetail",
+                    "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
                     "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                     "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
                     "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
