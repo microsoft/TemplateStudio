@@ -3,21 +3,18 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.DeepLinking.TabbedPivot.VB",
+  "name": "CodeBehind.DeepLinking.SplitView.TabbedPivot",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "groupidentity == wts.Feat.DeepLinking.VB & $projectType == TabbedPivot"
+    "wts.compositionFilter": "$framework == CodeBehind & identity == wts.Feat.DeepLinking & $projectType == SplitView|TabbedPivot"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-    "path": ".\\Helpers\\IPivotActivationPage.vb"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

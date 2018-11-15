@@ -1,9 +1,0 @@
-﻿<root>
-  <!--^^-->
-  <!--{[{-->
-  <data name="PivotItem_SchemeActivationSample.Header" xml:space="preserve">
-    <value>SchemeActivationSample</value>
-    <comment>Pivot item header for SchemeActivationSample</comment>
-  </data>
-  <!--}]}-->
-</root>
