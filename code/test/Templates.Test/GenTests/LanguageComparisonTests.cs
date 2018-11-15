@@ -291,6 +291,13 @@ namespace Microsoft.Templates.Test
                         {
                             var constName = field.Declarators[0].Names[0].ToString();
                             var constValue = field.Declarators[0].Initializer.Value.ToString();
+
+                            // A Single in VB would be like '0.1F' and be compared with a float in C# which would be like '0.1f'
+                            if (field.Declarators.First().AsClause.Type().ToString() == "Single")
+                            {
+                                constValue = constValue.ToLowerInvariant();
+                            }
+                            
                             vbConstants.Add($"{constName}={constValue}");
                         }
                     }
