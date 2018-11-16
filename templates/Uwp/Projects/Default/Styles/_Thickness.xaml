@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">    
 
     <!--Medium size margins-->
-    <Thickness x:Key="MediumLeftMargin">0,24,0,0</Thickness>
+    <Thickness x:Key="MediumLeftMargin">24,0,0,0</Thickness>
     <Thickness x:Key="MediumTopMargin">0,24,0,0</Thickness>
     <Thickness x:Key="MediumLeftRightMargin">24,0,24,0</Thickness>
     <Thickness x:Key="MediumTopBottomMargin">0,24,0,24</Thickness>
