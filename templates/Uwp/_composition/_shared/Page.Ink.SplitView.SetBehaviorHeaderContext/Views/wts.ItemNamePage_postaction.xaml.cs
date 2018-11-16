@@ -1,5 +1,6 @@
 ﻿//{[{
 using Param_ItemNamespace.Behaviors;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 //}]}
 
