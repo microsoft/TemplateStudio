@@ -338,42 +338,21 @@ namespace Microsoft.Templates.Test
         }
 
         // Gets a list of partial identities for page and feature templates supported by C# and VB
-#pragma warning disable RECS0154 // Parameter is never used - projectType can be used when all options aren't supported on all platforms
-        protected static IEnumerable<string> GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(string projectType, string framework)
-#pragma warning restore RECS0154 // Parameter is never used
+        protected static IEnumerable<string> GetPagesAndFeaturesForMultiLanguageProjects()
         {
-            if (framework == CodeBehind)
+            return new[]
             {
-                return new[]
-                {
-                    "wts.Page.Blank.CodeBehind", "wts.Page.Settings.CodeBehind", "wts.Page.Chart.CodeBehind",
-                    "wts.Page.Grid.CodeBehind", "wts.Page.WebView.CodeBehind", "wts.Page.MediaPlayer.CodeBehind",
-                    "wts.Page.TabbedPivot.CodeBehind", "wts.Page.Map.CodeBehind", "wts.Page.Camera.CodeBehind",
-                    "wts.Page.ImageGallery.CodeBehind", "wts.Page.MasterDetail.CodeBehind",
-                    "wts.Page.InkDraw.CodeBehind", "wts.Page.InkDrawPicture.CodeBehind", "wts.Page.InkSmartCanvas.CodeBehind",
-                    "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
-                    "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
-                    "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
-                    "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub.CodeBehind", "wts.Feat.MultiView",
-                    "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop.CodeBehind",
-                };
-            }
-            else
-            {
-                return new[]
-                {
-                    "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
-                    "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
-                    "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
-                    "wts.Page.ImageGallery", "wts.Page.MasterDetail",
-                    "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
-                    "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
-                    "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
-                    "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
-                    "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
-                    "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop",
-                };
-            }
+                "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
+                "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
+                "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
+                "wts.Page.ImageGallery", "wts.Page.MasterDetail",
+                "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
+                "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
+                "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
+                "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
+                "wts.Feat.StoreNotifications", "wts.Feat.FeedbackHub", "wts.Feat.MultiView",
+                "wts.Feat.ShareSource", "wts.Feat.ShareTarget", "wts.Feat.WebToAppLink", "wts.Feat.DragAndDrop",
+            };
         }
 
         // Need overload with different number of params to work with XUnit.MemeberData

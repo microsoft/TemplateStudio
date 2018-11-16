@@ -33,7 +33,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "GenerationLanguageComparison")]
         public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework)
         {
-            var genIdentities = GetPagesAndFeaturesForMultiLanguageProjectsAndFrameworks(projectType, framework).ToList();
+            var genIdentities = GetPagesAndFeaturesForMultiLanguageProjects().ToList();
 
             var (csResultPath, csProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities);
             var (vbResultPath, vbProjectName) = await SetUpComparisonProjectAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities);
