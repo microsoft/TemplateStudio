@@ -22,6 +22,9 @@ namespace Microsoft.Templates.Test
         public override string GetTestRunPath() => $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\UIT\\LEG\\{testExecutionTimeStamp}\\";
 
         public TemplatesSource Source => new LegacyTemplatesSourceV2(ProgrammingLanguages.CSharp);
+
+        public TemplatesSource VBSource => new LegacyTemplatesSourceV2(ProgrammingLanguages.VisualBasic);
+
         public TemplatesSource LocalSource => new LocalTemplatesSource("BldRClickLegacy");
 
         private static bool syncExecuted;
@@ -51,11 +54,7 @@ namespace Microsoft.Templates.Test
 
                     foreach (var framework in targetFrameworks)
                     {
-                        // TODO: Re-enable for MVVMLight and SplitView once 2.5 is released
-                        if (framework != "MVVMLight" && projectType != "SplitView")
-                        {
-                            result.Add(new object[] { projectType, framework, Platforms.Uwp, language });
-                        }
+                        result.Add(new object[] { projectType, framework, Platforms.Uwp, language });
                     }
                 }
             }
@@ -88,6 +87,16 @@ namespace Microsoft.Templates.Test
          "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
          Justification = "Required for unit testing.")]
         public void ChangeTemplatesSource(TemplatesSource source, string language, string platform)
+        {
+            GenContext.Bootstrap(source, new FakeGenShell(platform, language), new Version(GenContext.ToolBox.WizardVersion), platform, language);
+            GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
+        }
+
+        [SuppressMessage(
+         "Usage",
+         "VSTHRD002:Synchronously waiting on tasks or awaiters may cause deadlocks",
+         Justification = "Required for unit testing.")]
+        public void ChangeToLocalTemplatesSource(TemplatesSource source, string language, string platform)
         {
             GenContext.Bootstrap(source, new FakeGenShell(platform, language), platform, language);
             GenContext.ToolBox.Repo.SynchronizeAsync(true, true).Wait();
