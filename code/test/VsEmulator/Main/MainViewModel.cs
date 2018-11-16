@@ -74,6 +74,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<string> Projects { get; } = new List<string>();
 
+        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
+
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
 
         public List<string> ProjectItems { get; } = new List<string>();
@@ -205,6 +207,15 @@ namespace Microsoft.Templates.VsEmulator.Main
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                 await NewProjectAsync(Platforms.Uwp, ProgrammingLanguages.CSharp);
+            });
+        }
+
+        private void FinishGeneration(UserSelection userSelection)
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await _generationService.FinishGenerationAsync(userSelection);
             });
         }
 
@@ -400,7 +411,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-                    _generationService.FinishGeneration(userSelection);
+                    FinishGeneration(userSelection);
                     OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
@@ -436,7 +447,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                 if (userSelection != null)
                 {
-                    _generationService.FinishGeneration(userSelection);
+                    FinishGeneration(userSelection);
                     OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }

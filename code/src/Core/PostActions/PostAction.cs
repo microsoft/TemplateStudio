@@ -4,7 +4,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
 
@@ -27,13 +27,13 @@ namespace Microsoft.Templates.Core.PostActions
             RelatedTemplate = relatedTemplate;
         }
 
-        internal abstract void ExecuteInternal();
+        internal abstract Task ExecuteInternalAsync();
 
-        public void Execute()
+        public async Task ExecuteAsync()
         {
             try
             {
-                ExecuteInternal();
+                await ExecuteInternalAsync();
             }
             catch (Exception ex)
             {

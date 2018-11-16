@@ -202,6 +202,7 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Gen\NugetReference.cs" />
     <Compile Include="Gen\ProjectConfigInfo.cs" />
     <Compile Include="Gen\UserSelection.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Naming\PageSuffixValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
+    <Compile Include="PostActions\Catalog\AddNugetReferenceToContextPostaction.cs" />
     <Compile Include="PostActions\Catalog\AddProjectReferencesToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeMode.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />

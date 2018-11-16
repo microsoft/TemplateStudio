@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Templates;
@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             _destinationPath = destinationPath;
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             var parameterReplacements = new FileRenameParameterReplacements(_parameters);
             var projectPath = Path.Combine(_destinationPath, parameterReplacements.ReplaceInPath(Args["projectPath"]));
@@ -62,6 +62,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 GenContext.Current.ProjectReferences.Add(projectPath, new List<string>() { referenceToAdd });
             }
+
+            await Task.CompletedTask;
         }
     }
 }

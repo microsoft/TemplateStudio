@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
-
+using System.Threading.Tasks;
 using CERTENROLLLib;
 
 using Microsoft.TemplateEngine.Abstractions;
@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             _destinationPath = destinationPath;
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             int targetProjectIndex = int.Parse(Args["files"]);
             var projectFile = _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters);
@@ -59,6 +59,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             AddToProject(pfx, projectFileWithoutExtension);
             RemoveFromStore(pfx);
+
+            await Task.CompletedTask;
         }
 
         private void AddToProject(string base64Encoded, string projectFileWithoutExtension)

@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Resources;
@@ -11,13 +12,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddContextItemsToSolutionAndProjectPostAction : PostAction
     {
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingProjects);
 
             var chrono = Stopwatch.StartNew();
 
-            GenContext.ToolBox.Shell.AddProjectsToSolution(GenContext.Current.Projects, usesAnyCpu: false);
+            await GenContext.ToolBox.Shell.AddProjectsAndNugetsToSolutionAsync(GenContext.Current.Projects, GenContext.Current.NugetReferences);
             GenContext.ToolBox.Shell.AddReferencesToProjects(GenContext.Current.ProjectReferences);
             GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
             chrono.Reset();

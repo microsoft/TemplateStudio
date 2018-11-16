@@ -16,6 +16,8 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.ProjectSystem;
+using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Flavor;
@@ -155,21 +157,22 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override void AddProjectsToSolution(List<string> projectPaths, bool usesAnyCpu)
-        {
-            try
-            {
-                foreach (var projectPath in projectPaths)
-                {
-                    Dte.Solution.AddFromFile(projectPath);
-                }
-            }
-            catch (Exception)
-            {
-                // WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
-                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableAddProjectToSolution).FireAndForget();
-            }
-        }
+        // TODO: Review all this is done and delete
+        ////public override void AddProjectsToSolution(List<string> projectPaths, bool usesAnyCpu)
+        ////{
+        ////    try
+        ////    {
+        ////        foreach (var projectPath in projectPaths)
+        ////        {
+        ////            Dte.Solution.AddFromFile(projectPath);
+        ////        }
+        ////    }
+        ////    catch (Exception)
+        ////    {
+        ////        // WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
+        ////        AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableAddProjectToSolution).FireAndForget();
+        ////    }
+        ////}
 
         public override string GetActiveProjectNamespace()
         {
@@ -662,6 +665,84 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 project.Save();
             }
+        }
+
+        public override async System.Threading.Tasks.Task AddProjectsAndNugetsToSolutionAsync(List<string> projectPaths, List<NugetReference> nugetReferences)
+        {
+            try
+            {
+                foreach (var projectPath in projectPaths)
+                {
+                    Dte.Solution.AddFromFile(projectPath);
+
+                    var project = GetProjectByPath(projectPath);
+
+                    var projectNugets = nugetReferences.Where(n => n.Project == projectPath);
+
+                    foreach (var reference in projectNugets)
+                    {
+                        if (projectPath.Contains("Core"))
+                        {
+                            var unconfiguredProject = GetUnconfiguredProject(reference.Project);
+
+                            var configuredProject = await unconfiguredProject.GetSuggestedConfiguredProjectAsync();
+
+                            await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
+
+                            await unconfiguredProject.SaveAsync();
+                        }
+                        else
+                        {
+                            var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+
+                            var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+
+                            var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
+
+                            var sources = packageSourceProvider.GetSources(true, true);
+
+                            if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
+                            {
+                                var installer = componentModel.GetService<IVsPackageInstaller>();
+
+                                installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
+                            }
+
+                            project.Save();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // TODO: Handle this
+            }
+        }
+
+        private UnconfiguredProject GetUnconfiguredProject(string projFile)
+        {
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            // VC implements this on their DTE.Project.Object
+            VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
+
+            if (hierarchy != null)
+            {
+                object extObject;
+
+                if (ErrorHandler.Succeeded(hierarchy.GetProperty((uint)VSConstants.VSITEMID.Root, (int)__VSHPROPID.VSHPROPID_ExtObject, out extObject)))
+                {
+                    IVsBrowseObjectContext dteProject = extObject as IVsBrowseObjectContext;
+
+                    if (dteProject != null)
+                    {
+                        var context = dteProject.UnconfiguredProject as UnconfiguredProject;
+                        return context;
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

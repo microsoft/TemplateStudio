@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core.Gen;
 
@@ -79,15 +80,17 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public override void AddProjectsToSolution(List<string> projectPaths, bool usesAnyCpu)
+        public override async Task AddProjectsAndNugetsToSolutionAsync(List<string> projectPaths, List<NugetReference> nugetReferences)
         {
             foreach (var projectPath in projectPaths)
             {
                 var msbuildProj = FakeMsBuildProject.Load(projectPath);
                 var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
-                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectPath, usesAnyCpu);
+                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectPath, false);
             }
+
+            await Task.CompletedTask;
         }
 
         public override string GetActiveProjectNamespace()

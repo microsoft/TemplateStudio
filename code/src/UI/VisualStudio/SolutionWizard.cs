@@ -35,6 +35,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public List<string> Projects { get; } = new List<string>();
 
+        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
+
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
 
         public List<string> ProjectItems { get; } = new List<string>();

@@ -39,19 +39,19 @@ namespace Microsoft.Templates.Core.Gen
             TrackTelemetry(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
         }
 
-        public void UnsafeFinishGeneration(UserSelection userSelection)
+        public async Task UnsafeFinishGenerationAsync(UserSelection userSelection)
         {
             var compareResult = CompareTempGenerationWithProject();
             if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
             {
                 // BackupProjectFiles
                 compareResult.SyncGeneration = true;
-                ExecuteSyncGenerationPostActions(compareResult);
+                await ExecuteSyncGenerationPostActionsAsync(compareResult);
             }
             else
             {
                 compareResult.SyncGeneration = false;
-                ExecuteOutputGenerationPostActions(compareResult);
+                await ExecuteOutputGenerationPostActionsAsync(compareResult);
             }
         }
 
@@ -114,13 +114,13 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        private void ExecuteSyncGenerationPostActions(TempGenerationResult result)
+        private async Task ExecuteSyncGenerationPostActionsAsync(TempGenerationResult result)
         {
             var postActions = PostactionFactory.FindSyncGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
-                postAction.Execute();
+                await postAction.ExecuteAsync();
             }
 
             // New files aren't listed as project file modifications so any modifications should be new package references, etc.
@@ -131,13 +131,13 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        private void ExecuteOutputGenerationPostActions(TempGenerationResult result)
+        private async Task ExecuteOutputGenerationPostActionsAsync(TempGenerationResult result)
         {
             var postActions = PostactionFactory.FindOutputGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
-                postAction.Execute();
+                await postAction.ExecuteAsync();
             }
         }
 

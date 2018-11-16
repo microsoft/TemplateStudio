@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             if (Regex.IsMatch(Config, MergeConfiguration.GlobalExtension))
             {
@@ -32,6 +32,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     GetFileFromProject();
                 }
             }
+
+            await Task.CompletedTask;
         }
 
         private void GetFileFromProject()

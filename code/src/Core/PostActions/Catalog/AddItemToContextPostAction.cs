@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
 
@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             _destinationPath = destinationPath;
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
             var itemsToAdd = Config
@@ -32,6 +32,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                                 .ToList();
 
             GenContext.Current.ProjectItems.AddRange(itemsToAdd);
+
+            await Task.CompletedTask;
         }
     }
 }

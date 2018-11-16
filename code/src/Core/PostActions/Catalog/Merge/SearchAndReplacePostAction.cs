@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Resources;
 
@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             string originalFilePath = GetFilePath();
 
@@ -80,6 +80,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 GenContext.ToolBox.Shell.RefreshProject(originalFilePath);
             }
+
+            await Task.CompletedTask;
         }
 
         private string GetFilePath()

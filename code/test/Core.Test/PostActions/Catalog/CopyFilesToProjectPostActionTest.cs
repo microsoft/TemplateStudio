@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class CopyFilesToProjectPostActionTest
     {
         [Fact]
-        public void Execute_NewFile()
+        public async Task CopyFilesToProject_Execute_NewFileAsync()
         {
             var tempFile = Path.GetFullPath(@".\temp\Source.cs");
             var path = Path.GetFullPath(@".\temp\Project");
@@ -40,7 +41,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             config.NewFiles.Add("Source.cs");
 
             var mergePostAction = new CopyFilesToProjectPostAction(config);
-            mergePostAction.Execute();
+            await mergePostAction.ExecuteAsync();
 
             Assert.True(File.Exists(Path.Combine(Directory.GetParent(destPath).FullName, "Source.cs")));
 
@@ -51,7 +52,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_ModifiedFile()
+        public async Task CopyFilesToProject_Execute_ModifiedFileAsync()
         {
             var tempFile = Path.GetFullPath(@".\temp\Source.cs");
             var path = Path.GetFullPath(@".\temp\Project");
@@ -73,7 +74,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             config.ModifiedFiles.Add("Source.cs");
 
             var mergePostAction = new CopyFilesToProjectPostAction(config);
-            mergePostAction.Execute();
+            await mergePostAction.ExecuteAsync();
 
             Assert.True(File.Exists(Path.Combine(Directory.GetParent(destPath).FullName, "Source.cs")));
 

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core.Resources;
 
@@ -25,7 +26,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void ShowStatusBarMessage(string message);
 
-        public abstract void AddProjectsToSolution(List<string> projectFullPaths, bool usesAnyCpu);
+        public abstract Task AddProjectsAndNugetsToSolutionAsync(List<string> projectFullPaths, List<NugetReference> nugetReferences);
 
         public abstract void AddItems(params string[] itemsFullPath);
 

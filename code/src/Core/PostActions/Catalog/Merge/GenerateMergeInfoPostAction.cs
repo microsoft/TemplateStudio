@@ -6,7 +6,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
@@ -38,6 +38,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 mergeFile.Add(new MergeInfo { Format = mergeType, PostActionCode = postAction });
             }
+
+            await Task.CompletedTask;
         }
 
         private string GetMergeType()

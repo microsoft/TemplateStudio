@@ -32,6 +32,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public List<string> Projects { get; private set; }
 
+        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
+
         public Dictionary<string, List<string>> ProjectReferences { get; private set; }
 
         public List<string> ProjectItems { get; private set; }
@@ -65,7 +67,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            _generationService.FinishGeneration(userSelection);
+                            await _generationService.FinishGenerationAsync(userSelection);
                         },
                         JoinableTaskCreationOptions.LongRunning);
 
@@ -94,7 +96,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            _generationService.FinishGeneration(userSelection);
+                            await _generationService.FinishGenerationAsync(userSelection);
                         },
                         JoinableTaskCreationOptions.LongRunning);
 
