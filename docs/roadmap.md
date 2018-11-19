@@ -6,26 +6,25 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Next release
 
-#### 2.5 - October 2018
+#### 3.0 - January 2019
 
-* Template loading improvements
+* Multi-project
+* Migrate Tab/Pivot to NavView with TopPane
 * +more
 
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.5)
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.0)
 
 ## Upcoming releases
 
-### 3.0 - est. November 2018
+### 3.1 - est. March 2019
 
-* Multi-project support
-* Data sources (DB & Web based)
-* Test projects
-* Items related to next SDK, such as WinUI (subject to release schedule)
+* Identity Login
+* Menubar project type
+* Azure Easy Table
+* Tooling improvements and cleanup
 * +more
 
-Work for version 3.0 will happen in parallel with development for versions 2.2 thru 2.5
-
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.0)
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.1)
 
 ## Future Releases
 
@@ -33,7 +32,8 @@ You can see a list of other items we'd like to get to, and which will form part 
 
 
 ## Past releases
-* [2.4 - July 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.4)
+* [2.5 - November 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.5)
+* [2.4 - September 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.4)
 * [2.3 - July 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.3)
 * [2.2 - June 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.2)
 * [2.1 - May 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.1)
