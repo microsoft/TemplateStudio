@@ -21,7 +21,7 @@
                     </DataTemplate>
                 </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
             </behaviors:NavigationViewHeaderBehavior>
-<!--{[{-->            
+<!--}]}-->            
         </i:Interaction.Behaviors>        
     </winui:NavigationView>
 </Page>
