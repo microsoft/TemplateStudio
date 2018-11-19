@@ -1,22 +1,19 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Project.SplitView.VB",
+  "name": "MVVMLight.Project.Blank.AddSystemBackButton.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionOrder": "2",
-    "wts.compositionFilter": "$framework == MVVMLight & $projectType == SplitView & wts.type == project"
-  },
+    "wts.compositionFilter": "$framework == MVVMLight & $projectType == Blank & wts.type == project"
+ },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
-  "PrimaryOutputs": [
-  ],
   "symbols": {
     "wts.rootNamespace": {
       "type": "parameter",
