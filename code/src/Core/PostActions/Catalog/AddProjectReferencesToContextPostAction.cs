@@ -30,9 +30,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     //    - otherProjectPath -> The path to the project where the refrence will be added.
     public class AddProjectReferencesToContextPostAction : TemplateDefinedPostAction
     {
-        public static readonly Guid Id = new Guid("849AAEB8-487D-45B3-94B9-77FA74E83A01");
+        public const string Id = "849AAEB8-487D-45B3-94B9-77FA74E83A01";
 
-        public override Guid ActionId { get => Id; }
+        public override Guid ActionId { get => new Guid(Id); }
 
         private readonly Dictionary<string, string> _parameters;
         private readonly IReadOnlyList<ICreationPath> _primaryOutputs;

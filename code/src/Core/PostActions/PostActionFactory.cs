@@ -51,16 +51,20 @@ namespace Microsoft.Templates.Core.PostActions
 
         internal void AddTemplateDefinedPostActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
-            var genCertificatePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == GenerateTestCertificatePostAction.Id);
-            if (genCertificatePostAction != null)
+            foreach (var postaction in genResult.ResultInfo.PostActions)
             {
-                postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.DestinationPath));
-            }
-
-            var addProjectReferencePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == AddProjectReferencesToContextPostAction.Id);
-            if (addProjectReferencePostAction != null)
-            {
-                postActions.Add(new AddProjectReferencesToContextPostAction(genInfo.Template.Identity, addProjectReferencePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.DestinationPath));
+                switch (postaction.ActionId.ToString().ToUpper())
+                {
+                    case GenerateTestCertificatePostAction.Id:
+                        postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), postaction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.DestinationPath));
+                        break;
+                    case AddProjectReferencesToContextPostAction.Id:
+                        postActions.Add(new AddProjectReferencesToContextPostAction(genInfo.Template.Identity, postaction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.DestinationPath));
+                        break;
+                    case AddNugetReferenceToContextPostAction.Id:
+                        postActions.Add(new AddNugetReferenceToContextPostAction(genInfo.Template.Identity, postaction, genInfo.Parameters, genInfo.DestinationPath));
+                        break;
+                }
             }
         }
 

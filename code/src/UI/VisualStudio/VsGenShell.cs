@@ -95,23 +95,23 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void RefreshProject(string projectPath)
         {
-            try
-            {
-                var proj = GetProjectByPath(projectPath);
+            //try
+            //{
+            //    var proj = GetProjectByPath(projectPath);
 
-                if (proj != null)
-                {
-                    var path = proj.FullName;
+            //    if (proj != null)
+            //    {
+            //        var path = proj.FullName;
 
-                    Dte.Solution.Remove(proj);
-                    Dte.Solution.AddFromFile(path);
-                }
-            }
-            catch (Exception)
-            {
-                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
-                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableToRefreshProject).FireAndForget();
-            }
+            //        Dte.Solution.Remove(proj);
+            //        Dte.Solution.AddFromFile(path);
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+            //    AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableToRefreshProject).FireAndForget();
+            //}
         }
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
@@ -156,23 +156,6 @@ namespace Microsoft.Templates.UI.VisualStudio
                 solution.Properties.Item("StartupProject").Value = project.Name;
             }
         }
-
-        // TODO: Review all this is done and delete
-        ////public override void AddProjectsToSolution(List<string> projectPaths, bool usesAnyCpu)
-        ////{
-        ////    try
-        ////    {
-        ////        foreach (var projectPath in projectPaths)
-        ////        {
-        ////            Dte.Solution.AddFromFile(projectPath);
-        ////        }
-        ////    }
-        ////    catch (Exception)
-        ////    {
-        ////        // WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
-        ////        AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableAddProjectToSolution).FireAndForget();
-        ////    }
-        ////}
 
         public override string GetActiveProjectNamespace()
         {
@@ -468,36 +451,36 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public override void RestorePackages()
         {
-            try
-            {
-                if (IsInternetAvailable())
-                {
-                    var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+            //try
+            //{
+            //    if (IsInternetAvailable())
+            //    {
+            //        var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
 
-                    var installer = componentModel.GetService<IVsPackageInstaller>();
-                    var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
-                    var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+            //        var installer = componentModel.GetService<IVsPackageInstaller>();
+            //        var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
+            //        var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
 
-                    var installedPackages = installerServices.GetInstalledPackages().ToList();
-                    var activeProject = GetActiveProject();
+            //        var installedPackages = installerServices.GetInstalledPackages().ToList();
+            //        var activeProject = GetActiveProject();
 
-                    var p = installedPackages.FirstOrDefault();
+            //        var p = installedPackages.FirstOrDefault();
 
-                    if (p != null)
-                    {
-                        uninstaller.UninstallPackage(activeProject, p.Id, false);
-                        installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
-                    }
-                }
-                else
-                {
-                    AppHealth.Current.Warning.TrackAsync(StringRes.ErrorVsGenShellRestorePackagesWarningMessage).FireAndForget();
-                }
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
-            }
+            //        if (p != null)
+            //        {
+            //            uninstaller.UninstallPackage(activeProject, p.Id, false);
+            //            installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        AppHealth.Current.Warning.TrackAsync(StringRes.ErrorVsGenShellRestorePackagesWarningMessage).FireAndForget();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
+            //}
         }
 
         public override void CollapseSolutionItems()
@@ -675,48 +658,64 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     Dte.Solution.AddFromFile(projectPath);
 
-                    var project = GetProjectByPath(projectPath);
-
                     var projectNugets = nugetReferences.Where(n => n.Project == projectPath);
 
-                    foreach (var reference in projectNugets)
+                    if (IsCpsProject(projectPath))
                     {
-                        if (projectPath.Contains("Core"))
-                        {
-                            var unconfiguredProject = GetUnconfiguredProject(reference.Project);
-
-                            var configuredProject = await unconfiguredProject.GetSuggestedConfiguredProjectAsync();
-
-                            await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
-
-                            await unconfiguredProject.SaveAsync();
-                        }
-                        else
-                        {
-                            var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-
-                            var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
-
-                            var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
-
-                            var sources = packageSourceProvider.GetSources(true, true);
-
-                            if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
-                            {
-                                var installer = componentModel.GetService<IVsPackageInstaller>();
-
-                                installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
-                            }
-
-                            project.Save();
-                        }
+                        await AddNugetPackagesToCPSProjectAsync(projectPath, projectNugets);
+                    }
+                    else
+                    {
+                        AddNugetPackageToProject(projectPath, projectNugets);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // TODO: Handle this
+                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableAddProjectToSolution).FireAndForget();
             }
+        }
+
+        private void AddNugetPackageToProject(string projectPath, IEnumerable<NugetReference> projectNugets)
+        {
+            var project = GetProjectByPath(projectPath);
+
+            foreach (var reference in projectNugets)
+            {
+                var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+                var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+                var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
+
+                if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
+                {
+                    var installer = componentModel.GetService<IVsPackageInstaller>();
+
+                    installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
+                }
+            }
+
+            project.Save();
+        }
+
+        private async System.Threading.Tasks.Task AddNugetPackagesToCPSProjectAsync(string projFile, IEnumerable<NugetReference> projectNugets)
+        {
+            var unconfiguredProject = GetUnconfiguredProject(projFile);
+            var configuredProject = await unconfiguredProject.GetSuggestedConfiguredProjectAsync();
+
+            foreach (var reference in projectNugets)
+            {
+                await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
+            }
+
+            await unconfiguredProject.SaveAsync();
+        }
+
+        private bool IsCpsProject(string projFile)
+        {
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
+            return hierarchy.IsCapabilityMatch("CPS");
         }
 
         private UnconfiguredProject GetUnconfiguredProject(string projFile)

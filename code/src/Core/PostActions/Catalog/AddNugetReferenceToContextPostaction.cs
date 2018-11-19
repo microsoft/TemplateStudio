@@ -17,13 +17,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddNugetReferenceToContextPostAction : TemplateDefinedPostAction
     {
-        public static readonly Guid Id = new Guid("0B814718-16A3-4F7F-89F1-69C0F9170EAD");
+        public const string Id = "0B814718-16A3-4F7F-89F1-69C0F9170EAD";
 
         private readonly Dictionary<string, string> _parameters;
 
         private readonly string _destinationPath;
 
-        public override Guid ActionId { get => Id; }
+        public override Guid ActionId { get => new Guid(Id); }
 
         public AddNugetReferenceToContextPostAction(string relatedTemplate, IPostAction templatePostAction, Dictionary<string, string> parameters, string destinationPath)
             : base(relatedTemplate, templatePostAction)

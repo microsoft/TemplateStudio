@@ -3,11 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Fakes
 {
@@ -89,6 +89,17 @@ namespace Microsoft.Templates.Fakes
             lastItems?.AddAfterSelf(itemsContainer);
         }
 
+        public void AddNugetReference(NugetReference nugetReference, bool isCoreProject)
+        {
+            var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
+
+            XElement element = GetNugetReferenceXElement(nugetReference.PackageId, nugetReference.Version.ToString(), isCoreProject);
+            ApplyNs(element);
+            itemsContainer.Add(element);
+
+            _root.Add(itemsContainer);
+        }
+
         public void AddProjectReference(string projectPath, string projguid, string projectName)
         {
             var container = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
@@ -112,6 +123,26 @@ namespace Microsoft.Templates.Fakes
 
             var sr = new StringReader(sb.ToString());
             var itemElement = XElement.Load(sr);
+            return itemElement;
+        }
+
+        private static XElement GetNugetReferenceXElement(string package, string version, bool isCoreProject)
+        {
+            var sb = new StringBuilder();
+            if (isCoreProject)
+            {
+                sb.Append($"<PackageReference Include=\"{package}\" Version=\"{version}\" />");
+            }
+            else
+            {
+                sb.Append($"<PackageReference Include=\"{package}\"");
+                sb.AppendLine(">");
+                sb.AppendLine($"<Version>{version}</Version>");
+                sb.AppendLine("</PackageReference>");
+            }
+
+            var itemElement = XElement.Parse(sb.ToString());
+
             return itemElement;
         }
 

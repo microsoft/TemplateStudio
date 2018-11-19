@@ -87,7 +87,19 @@ namespace Microsoft.Templates.Fakes
                 var msbuildProj = FakeMsBuildProject.Load(projectPath);
                 var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
-                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectPath, false);
+                var projectRelativeToSolutionPath = projectPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
+
+                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, false);
+
+                var isCoreProject = IsCoreProject(projectPath);
+                var projectNugets = nugetReferences.Where(n => n.Project == projectPath);
+
+                foreach (var nuget in projectNugets)
+                {
+                    msbuildProj.AddNugetReference(nuget, isCoreProject);
+                }
+
+                msbuildProj.Save();
             }
 
             await Task.CompletedTask;
