@@ -31,6 +31,13 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
+            var fixture = _fixture as BuildRightClickWithLegacyFixture;
+
+            if (language == ProgrammingLanguages.VisualBasic)
+            {
+                fixture.ChangeTemplatesSource(fixture.VBSource, language, Platforms.Uwp);
+            }
+
             var projectName = $"{projectType}{framework}Legacy";
 
             Func<ITemplateInfo, bool> selector =
@@ -42,8 +49,7 @@ namespace Microsoft.Templates.Test
 
             var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, Platforms.Uwp, language, null, null, false);
 
-            var fixture = _fixture as BuildRightClickWithLegacyFixture;
-            fixture.ChangeTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
+            fixture.ChangeToLocalTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
 
             var rightClickTemplates = _fixture.Templates().Where(
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
