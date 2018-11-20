@@ -16,7 +16,7 @@ namespace Param_RootNamespace
         }
 //^^
 //{[{
-    
+
         public void SetNavigationFrame(Frame frame)
         {
             var sessionStateService = Container.Resolve<ISessionStateService>();
