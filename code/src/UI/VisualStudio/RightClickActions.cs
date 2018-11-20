@@ -30,7 +30,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationPath { get; private set; }
 
-        public List<string> Projects { get; private set; }
+        public List<ProjectInfo> Projects { get; private set; }
 
         public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
 
@@ -147,7 +147,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
-                Projects = new List<string>();
+                Projects = new List<ProjectInfo>();
                 ProjectReferences = new Dictionary<string, List<string>>();
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();

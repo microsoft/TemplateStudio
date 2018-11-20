@@ -53,15 +53,7 @@ namespace Microsoft.Templates.Fakes
 		{0}.Release|x86.Build.0 = Release|Any CPU
 ";
 
-        private const string ProjectTemplateCS = @"Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""{name}"", ""{path}"", ""{id}""
-EndProject
-";
-
-        private const string ProjectTemplateVB = @"Project(""{F184B08F-C81C-45F6-A57F-5ABD9991F28F}"") = ""{name}"", ""{path}"", ""{id}""
-EndProject
-";
-
-        private const string ProjectTemplateShared = @"Project(""{D954291E-2A0B-460D-934E-DC6B0785DB48}"") = ""{name}"", ""{path}"", ""{{id}}""
+        private const string ProjectTemplate = @"Project(""{{guid}}"") = ""{name}"", ""{path}"", ""{id}""
 EndProject
 ";
 
@@ -86,22 +78,23 @@ EndProject
             return new FakeSolution(path);
         }
 
-        public void AddProjectToSolution(string platform, string projectName, string projectGuid, string projectRelativeToSolutionPath, bool usesAnyCpu)
+        public void AddProjectToSolution(string platform, string projectName, string projectGuid, string projectRelativeToSolutionPath, bool isCPSProject)
         {
             var slnContent = File.ReadAllText(_path);
 
             if (slnContent.IndexOf(projectName, StringComparison.Ordinal) == -1)
             {
                 var globalIndex = slnContent.IndexOf("Global", StringComparison.Ordinal);
-                var projectTemplate = GetProjectTemplate(Path.GetExtension(projectRelativeToSolutionPath));
-                var projectContent = projectTemplate
+                var projectTypeGuid = GetProjectGuid(Path.GetExtension(projectRelativeToSolutionPath), isCPSProject);
+                var projectContent = ProjectTemplate
+                                            .Replace("{guid}", projectTypeGuid)
                                             .Replace("{name}", projectName)
                                             .Replace("{path}", projectRelativeToSolutionPath)
                                             .Replace("{id}", projectGuid);
 
                 slnContent = slnContent.Insert(globalIndex, projectContent);
 
-                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectName, usesAnyCpu);
+                var projectConfigurationTemplate = GetProjectConfigurationTemplate(platform, projectName, isCPSProject);
                 if (!string.IsNullOrEmpty(projectConfigurationTemplate))
                 {
                     var globalSectionIndex = slnContent.IndexOf(ProjectConfigurationPlatformsText, StringComparison.Ordinal);
@@ -113,7 +106,7 @@ EndProject
                     slnContent = slnContent.Insert(endGobalSectionIndex - 1, projectConfigContent);
                 }
 
-                if (usesAnyCpu)
+                if (isCPSProject)
                 {
                     slnContent = AddAnyCpuSolutionConfigurations(slnContent);
                     slnContent = AddAnyCpuProjectConfigutations(slnContent);
@@ -196,26 +189,26 @@ EndProject
             return slnContent;
         }
 
-        private static string GetProjectTemplate(string projectExtension)
+        private static string GetProjectGuid(string projectExtension, bool isCPSProject)
         {
+            // See https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
             switch (projectExtension)
             {
                 case ".csproj":
-                    return ProjectTemplateCS;
+                    return isCPSProject ? "9A19103F-16F7-4668-BE54-9A1E7A4F7556" : "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC";
                 case ".vbproj":
-                    return ProjectTemplateVB;
-                case ".shproj":
-                    return ProjectTemplateShared;
+                    return isCPSProject ? "778DAE3C-4631-46EA-AA77-85C1314464D9" : "F184B08F-C81C-45F6-A57F-5ABD9991F28F";
+
             }
 
             return string.Empty;
         }
 
-        private static string GetProjectConfigurationTemplate(string platform, string projectName, bool usesAnyCpu)
+        private static string GetProjectConfigurationTemplate(string platform, string projectName, bool isCPSProject)
         {
             if (platform == Platforms.Uwp)
             {
-                if (usesAnyCpu)
+                if (isCPSProject)
                 {
                     return UwpProjectConfigurationTemplateForAnyCpu;
                 }

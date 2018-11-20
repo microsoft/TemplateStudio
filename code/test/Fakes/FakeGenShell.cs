@@ -80,23 +80,22 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public override async Task AddProjectsAndNugetsToSolutionAsync(List<string> projectPaths, List<NugetReference> nugetReferences)
+        public override async Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences)
         {
-            foreach (var projectPath in projectPaths)
+            foreach (var project in projects)
             {
-                var msbuildProj = FakeMsBuildProject.Load(projectPath);
+                var msbuildProj = FakeMsBuildProject.Load(project.ProjectPath);
                 var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
-                var projectRelativeToSolutionPath = projectPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
+                var projectRelativeToSolutionPath = project.ProjectPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
-                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, false);
+                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, project.IsCPSProject);
 
-                var isCoreProject = IsCoreProject(projectPath);
-                var projectNugets = nugetReferences.Where(n => n.Project == projectPath);
+                var projectNugets = nugetReferences.Where(n => n.Project == project.ProjectPath);
 
                 foreach (var nuget in projectNugets)
                 {
-                    msbuildProj.AddNugetReference(nuget, isCoreProject);
+                    msbuildProj.AddNugetReference(nuget, project.IsCPSProject);
                 }
 
                 msbuildProj.Save();

@@ -225,21 +225,10 @@ namespace TemplateValidator
                     case "wts.outputToParent":
                         VerifyWtsOutputToParentTagValue(tag, results);
                         break;
-                    case "wts.usesAnyCPU":
-                        VerifyWtsUsesAnyCpuTagValue(tag, results);
-                        break;
                     default:
                         results.Add($"Unknown tag '{tag.Value}' specified in the file.");
                         break;
                 }
-            }
-        }
-
-        private static void VerifyWtsUsesAnyCpuTagValue(KeyValuePair<string, string> tag, List<string> results)
-        {
-            if (!BoolStrings.Contains(tag.Value))
-            {
-                results.Add($"Invalid value '{tag.Value}' specified in the wts.usesAnyCPU tag.");
             }
         }
 

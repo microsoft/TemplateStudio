@@ -650,23 +650,26 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override async System.Threading.Tasks.Task AddProjectsAndNugetsToSolutionAsync(List<string> projectPaths, List<NugetReference> nugetReferences)
+        public override async System.Threading.Tasks.Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences)
         {
             try
             {
-                foreach (var projectPath in projectPaths)
+                // Ensure projects from old project system are added before project from CPS project system, as otherwise nuget restore does not work
+                var orderedProject = projects.OrderBy(p => p.IsCPSProject);
+
+                foreach (var project in orderedProject)
                 {
-                    Dte.Solution.AddFromFile(projectPath);
+                    Dte.Solution.AddFromFile(project.ProjectPath);
 
-                    var projectNugets = nugetReferences.Where(n => n.Project == projectPath);
+                    var projectNugets = nugetReferences.Where(n => n.Project == project.ProjectPath);
 
-                    if (IsCpsProject(projectPath))
+                    if (IsCpsProject(project.ProjectPath))
                     {
-                        await AddNugetPackagesToCPSProjectAsync(projectPath, projectNugets);
+                        await AddNugetPackagesToCPSProjectAsync(project.ProjectPath, projectNugets);
                     }
                     else
                     {
-                        AddNugetPackageToProject(projectPath, projectNugets);
+                        AddNugetPackageToProject(project.ProjectPath, projectNugets);
                     }
                 }
             }

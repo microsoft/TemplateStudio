@@ -72,7 +72,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
 
-        public List<string> Projects { get; } = new List<string>();
+        public List<ProjectInfo> Projects { get; } = new List<ProjectInfo>();
 
         public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
 

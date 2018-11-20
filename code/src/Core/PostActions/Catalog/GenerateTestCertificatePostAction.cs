@@ -68,7 +68,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             var filePath = Path.Combine(_destinationPath, projectFileWithoutExtension) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
-            GenContext.ToolBox.Shell.AddItems(filePath);
+            GenContext.Current.ProjectItems.Add(filePath);
         }
 
         private static void RemoveFromStore(string base64Encoded)

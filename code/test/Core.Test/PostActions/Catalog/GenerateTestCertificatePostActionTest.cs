@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 new FakeCreationPath() { Path = projectFile },
             };
 
-            var templateDefinedPostAction = new FakeTemplateDefinedPostAction(GenerateTestCertificatePostAction.Id, testArgs, true);
+            var templateDefinedPostAction = new FakeTemplateDefinedPostAction(new Guid(GenerateTestCertificatePostAction.Id), testArgs, true);
             var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs as IReadOnlyList<ICreationPath>, new Dictionary<string, string>(), destinationPath);
             await postAction.ExecuteAsync();
 
@@ -91,7 +91,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 new FakeCreationPath() { Path = projectFile },
             };
 
-            var templateDefinedPostAction = new FakeTemplateDefinedPostAction(GenerateTestCertificatePostAction.Id, testArgs, true);
+            var templateDefinedPostAction = new FakeTemplateDefinedPostAction(new Guid(GenerateTestCertificatePostAction.Id), testArgs, true);
             var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs, new Dictionary<string, string>(), destinationPath);
             await postAction.ExecuteAsync();
 
@@ -108,7 +108,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", inventedIdPostAction, null, new Dictionary<string, string>(), string.Empty);
 
             Assert.True(postAction.ContinueOnError);
-            Assert.NotEqual(inventedIdPostAction.ActionId, GenerateTestCertificatePostAction.Id);
+            Assert.NotEqual(inventedIdPostAction.ActionId.ToString(), GenerateTestCertificatePostAction.Id);
             Assert.Null(postAction.Args);
         }
 

@@ -33,7 +33,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string GenerationOutputPath => DestinationPath;
 
-        public List<string> Projects { get; } = new List<string>();
+        public List<ProjectInfo> Projects { get; } = new List<ProjectInfo>();
 
         public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
 
