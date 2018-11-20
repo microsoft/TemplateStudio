@@ -18,8 +18,7 @@
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
     "wts.rightClickEnabled":"true",
-    "wts.isHidden": "false",
-    "wts.usesAnyCPU": "true"
+    "wts.isHidden": "false"
   },
   "sourceName": "wts.projectName",
   "preferNameDirectory": true,
