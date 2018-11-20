@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Feat.DeepLinking.Prism & $projectType == SplitView.TabbedPivot"
+    "wts.compositionFilter": "identity == wts.Feat.DeepLinking.Prism & $projectType == SplitView|TabbedPivot"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

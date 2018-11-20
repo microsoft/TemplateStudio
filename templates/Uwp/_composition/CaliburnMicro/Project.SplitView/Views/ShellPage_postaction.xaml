@@ -1,4 +1,5 @@
 ﻿<Page
+<!--^^-->
 <!--{[{-->
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:wts.ItemName.Behaviors"
@@ -7,6 +8,7 @@
 
     <winui:NavigationView
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+<!--^^-->
 <!--{[{-->
         <i:Interaction.Behaviors>
             <behaviors:NavigationViewHeaderBehavior
@@ -25,5 +27,7 @@
             </behaviors:NavigationViewHeaderBehavior>
         </i:Interaction.Behaviors>
 <!--}]}-->
+        <Grid>
+        </Grid>
     </winui:NavigationView>
 </Page>
