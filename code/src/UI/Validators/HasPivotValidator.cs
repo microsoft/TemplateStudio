@@ -32,7 +32,7 @@ namespace Microsoft.Templates.UI.Validators
             {
                 var message = new ValidationMessage
                 {
-                    Message = Resources.StringRes.ValidatorPivotMessage,
+                    Message = Resources.StringRes.ValidatorHasPivotMessage,
                     Url = string.Format(Resources.StringRes.ValidatorHasPivotLink, Core.Configuration.Current.GitHubDocsUrl),
                     HyperLinkMessage = Resources.StringRes.ValidatorHasPivotLinkMessage,
                 };
