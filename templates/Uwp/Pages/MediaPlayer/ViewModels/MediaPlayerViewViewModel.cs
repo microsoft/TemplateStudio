@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using Windows.Media.Playback;
 using Windows.Media.Core;
 

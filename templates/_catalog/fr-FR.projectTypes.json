@@ -11,7 +11,7 @@
   },
   {
     "name": "TabbedPivot",
-    "displayName": "Pivot and Tabs",
-    "summary": "Les onglets figurant sur la partie supérieure permettent de naviguer rapidement entre les pages."
+    "displayName": "Horizontal Navigation Pane",
+    "summary": ""
   }
 ]

@@ -1,7 +1,6 @@
 ﻿Imports Param_ItemNamespace.Services.Ink
 Imports Param_ItemNamespace.Helpers
 Imports Windows.Storage
-Imports System.Linq
 
 Namespace Views
     ' For more information regarding Windows Ink documentation and samples see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/pages/ink.md

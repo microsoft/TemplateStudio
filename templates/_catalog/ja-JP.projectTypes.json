@@ -11,7 +11,7 @@
   },
   {
     "name": "TabbedPivot",
-    "displayName": "Pivot and Tabs",
-    "summary": "上部に表示されるタブを使用して、ページ間を迅速に移動できます。"
+    "displayName": "Horizontal Navigation Pane",
+    "summary": ""
   }
 ]

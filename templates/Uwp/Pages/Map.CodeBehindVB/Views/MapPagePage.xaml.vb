@@ -49,6 +49,14 @@ Namespace Views
             InitializeComponent()
         End Sub
 
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
+            Await InitializeAsync()
+        End Sub
+
+        Protected Overrides Sub OnNavigatedFrom(e As NavigationEventArgs)
+            Cleanup()
+        End Sub
+
         Public Async Function InitializeAsync() As Task
             If locationService IsNot Nothing Then
                 AddHandler locationService.PositionChanged, AddressOf LocationService_PositionChanged
