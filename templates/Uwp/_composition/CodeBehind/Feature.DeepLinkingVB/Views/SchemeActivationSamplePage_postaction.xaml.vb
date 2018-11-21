@@ -8,6 +8,14 @@ Namespace Views
 
         Public ReadOnly Property Parameters As ObservableCollection(Of String) = New ObservableCollection(Of String)()
 
+        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+            MyBase.OnNavigatedTo(e)
+            If e.Parameter IsNot Nothing Then
+                Dim parameters = TryCast(e.Parameter, Dictionary(Of String, String))
+                Initialize(parameters)
+            End If
+        End Sub
+
         Private Sub Initialize(parameters As Dictionary(Of String, String))
             Me.Parameters.Clear()
             Dim ticks As Long = Nothing

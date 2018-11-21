@@ -18,6 +18,16 @@ namespace Param_ItemNamespace.Views
 //^^
 //{[{
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            var parameters = e.Parameter as Dictionary<string, string>;
+            if (parameters != null)
+            {
+                Initialize(parameters);
+            }
+        }
+
         public void Initialize(Dictionary<string, string> parameters)
         {
             Parameters.Clear();

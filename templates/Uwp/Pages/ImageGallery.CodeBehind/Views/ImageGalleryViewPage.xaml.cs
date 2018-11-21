@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 
-using Windows.Storage;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
@@ -35,6 +32,27 @@ namespace Param_ItemNamespace.Views
             // TODO WTS: Replace this with your actual data
             Source = SampleDataService.GetGallerySampleData();
             InitializeComponent();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey);
+                if (!string.IsNullOrEmpty(selectedImageId))
+                {
+                    var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose);
+                    if (animation != null)
+                    {
+                        var item = ImagesGridView.Items.FirstOrDefault(i => ((SampleImage)i).ID == selectedImageId);
+                        ImagesGridView.ScrollIntoView(item);
+                        await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
+                    }
+
+                    ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey);
+                }
+            }
         }
 
         private void ImagesGridView_ItemClick(object sender, ItemClickEventArgs e)

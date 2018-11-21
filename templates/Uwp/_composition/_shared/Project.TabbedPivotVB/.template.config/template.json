@@ -10,17 +10,12 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == TabbedPivot & wts.type == project & $framework == CodeBehind|MVVMBasic|MVVMLight"
+    "wts.compositionOrder": "2",
+    "wts.compositionFilter": "$projectType == TabbedPivot & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Behaviors\\PivotBehavior.vb"
-    },
-    {
-      "path": ".\\Helpers\\IPivotPage.vb"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

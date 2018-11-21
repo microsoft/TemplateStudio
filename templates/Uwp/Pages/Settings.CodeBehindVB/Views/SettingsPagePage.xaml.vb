@@ -36,6 +36,10 @@ Namespace Views
             InitializeComponent()
         End Sub
 
+        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+            Initialize()
+        End Sub
+
         Private Sub Initialize()
             VersionDescription = GetVersionDescription()
         End Sub

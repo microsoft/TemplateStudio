@@ -1,5 +1,4 @@
-﻿Imports Windows.Storage
-Imports Windows.UI.Xaml.Media.Animation
+﻿Imports Windows.UI.Xaml.Media.Animation
 
 Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.Core.Models
@@ -30,6 +29,23 @@ Namespace Views
             ' TODO WTS: Replace this with your actual data
             Source = SampleDataService.GetGallerySampleData()
             InitializeComponent()
+        End Sub
+
+        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
+            MyBase.OnNavigatedTo(e)
+            If e.NavigationMode = NavigationMode.Back Then
+                Dim selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey)
+                If Not String.IsNullOrEmpty(selectedImageId) Then
+                    Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose)
+                    If animation IsNot Nothing Then
+                        Dim item = ImagesGridView.Items.FirstOrDefault(Function(i) DirectCast(i, SampleImage).ID = selectedImageId)
+                        ImagesGridView.ScrollIntoView(item)
+                        Await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage")
+                    End If
+
+                    ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey)
+                End If
+            End If
         End Sub
 
         Private Sub ImagesGridView_ItemClick(sender As Object, e As ItemClickEventArgs)
