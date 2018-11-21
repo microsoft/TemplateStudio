@@ -20,6 +20,7 @@ namespace Microsoft.Templates.UI.Services
             new HasHamburgerMenuValidator(),
             new HasOldMvvmLightLocatorValidator(),
             new HasOldNavigationViewValidator(),
+            new HasPivotValidator(),
         };
 
         public static ValidationResult Validate()
@@ -28,9 +29,9 @@ namespace Microsoft.Templates.UI.Services
             var templatesVersion = GenContext.ToolBox.TemplatesVersion.ToVersion();
             var projectVersion = projectMetadata.TemplatesVersion.ToVersion();
 
+            //.Where(v => projectVersion <= v.BreakingVersion)
+            //.Where(v => templatesVersion > v.BreakingVersion)
             var validations = _validators
-                                .Where(v => projectVersion <= v.BreakingVersion)
-                                .Where(v => templatesVersion > v.BreakingVersion)
                                 .Select(v => v.Validate()).ToList();
 
             return new ValidationResult
