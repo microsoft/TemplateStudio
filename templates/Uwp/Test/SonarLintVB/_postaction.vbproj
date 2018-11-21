@@ -1,6 +1,0 @@
-﻿<!-- Nuget package references -->
-<!--{[{-->
-<PackageReference Include="SonarAnalyzer.VisualBasic">
-  <Version>7.2.0.5463</Version>
-</PackageReference>
-<!--}]}-->

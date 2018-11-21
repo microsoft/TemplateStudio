@@ -32,6 +32,11 @@
     }
   ],
   "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
@@ -51,9 +56,9 @@
       "manualInstructions": [ ],
       "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
       "args": {
-        "packageId" : "Telerik.UI.for.UniversalWindowsPlatform",
-        "version" : "1.0.1.2",
-        "projectPath": "Param_ProjectName.csproj"
+        "packageId": "Telerik.UI.for.UniversalWindowsPlatform",
+        "version": "1.0.1.2",
+        "projectPath": "Param_ProjectName.vbproj"
       },
       "continueOnError": "true"
     }

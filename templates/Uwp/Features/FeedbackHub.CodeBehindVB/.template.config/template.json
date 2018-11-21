@@ -25,21 +25,38 @@
     "sourceName": "FeedbackHubFeature",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
-        
     ],
-    "symbols": {
-        "wts.rootNamespace": {
-            "type": "parameter",
-            "replaces": "Param_RootNamespace"
-        },
-        "wts.itemNamespace": {
-            "type": "parameter",
-            "replaces": "Param_ItemNamespace"
-        },
-        "wts.Page.Settings.CodeBehind.VB": {
-            "type": "parameter",
-            "replaces": "Param_SettingsPageName",
-            "fileRename": "Param_SettingsPageName"
-        }
+  "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    },
+    "wts.Page.Settings.CodeBehind.VB": {
+      "type": "parameter",
+      "replaces": "Param_SettingsPageName",
+      "fileRename": "Param_SettingsPageName"
     }
+  },
+    "postActions": [
+      {
+        "description": "Add nuget package",
+        "manualInstructions": [ ],
+        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+        "args": {
+          "packageId" : "Microsoft.Services.Store.Engagement",
+          "version" : "10.1711.28001",
+          "projectPath": "Param_ProjectName.vbproj"
+        },
+        "continueOnError": "true"
+      }
+    ]
 }
