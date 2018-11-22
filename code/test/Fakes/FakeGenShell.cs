@@ -82,7 +82,7 @@ namespace Microsoft.Templates.Fakes
 
         public override async Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences)
         {
-            //First add references to existing projects
+            // First add references to existing projects
             var groupedNugets = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
 
             foreach (var nuget in groupedNugets)
@@ -290,12 +290,10 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-
         private bool IsCPSProject(string projectPath)
         {
             string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
             return targetFrameworkTags.Any(t => File.ReadAllText(projectPath).Contains(t));
-
         }
     }
 }

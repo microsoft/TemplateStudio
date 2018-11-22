@@ -59,13 +59,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 Fs.EnsureFileEditable(originalFilePath);
                 File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
-
-                //// REFRESH PROJECT TO UN-DIRTY IT
-                //if (Path.GetExtension(originalFilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
-                // && GenContext.Current.GenerationOutputPath == GenContext.Current.DestinationPath)
-                //{
-                //    Gen.GenContext.ToolBox.Shell.RefreshProject(originalFilePath);
-                //}
             }
 
             File.Delete(Config.FilePath);
