@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         internal override async Task ExecuteInternalAsync()
         {
-            string originalFilePath = GetFilePath();
+            string originalFilePath = Regex.Replace(Config.FilePath, MergeConfiguration.PostactionRegex, ".");
             if (!File.Exists(originalFilePath))
             {
                 if (Config.FailOnError )
@@ -60,12 +60,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 Fs.EnsureFileEditable(originalFilePath);
                 File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
 
-                // REFRESH PROJECT TO UN-DIRTY IT
-                if (Path.GetExtension(originalFilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
-                 && GenContext.Current.GenerationOutputPath == GenContext.Current.DestinationPath)
-                {
-                    Gen.GenContext.ToolBox.Shell.RefreshProject(originalFilePath);
-                }
+                //// REFRESH PROJECT TO UN-DIRTY IT
+                //if (Path.GetExtension(originalFilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
+                // && GenContext.Current.GenerationOutputPath == GenContext.Current.DestinationPath)
+                //{
+                //    Gen.GenContext.ToolBox.Shell.RefreshProject(originalFilePath);
+                //}
             }
 
             File.Delete(Config.FilePath);
@@ -116,23 +116,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             splittedFileName[0] = Naming.Infer(splittedFileName[0], validator);
             var newFileName = string.Join(".", splittedFileName);
             return Path.Combine(folder, newFileName);
-        }
-
-        private string GetFilePath()
-        {
-            if (Path.GetFileName(Config.FilePath).StartsWith(MergeConfiguration.Extension, StringComparison.OrdinalIgnoreCase))
-            {
-                var extension = Path.GetExtension(Config.FilePath);
-                var directory = Path.GetDirectoryName(Config.FilePath);
-
-                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(MergeConfiguration.Suffix));
-            }
-            else
-            {
-                var path = Regex.Replace(Config.FilePath, MergeConfiguration.PostactionRegex, ".");
-
-                return path;
-            }
         }
     }
 }

@@ -151,6 +151,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
                 Projects = new List<ProjectInfo>();
                 NugetReferences = new List<NugetReference>();
+                SdkReferences = new List<SdkReference>();
                 ProjectReferences = new Dictionary<string, List<string>>();
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();

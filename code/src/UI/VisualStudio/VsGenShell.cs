@@ -673,28 +673,37 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             try
             {
+                var groupedNugets = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
+
+                foreach (var nuget in groupedNugets)
+                {
+                    await AddNugetsForProjectAsync(nuget.Key, nugetReferences.Where(n => n.Project == nuget.Key));
+                }
+
                 // Ensure projects from old project system are added before project from CPS project system, as otherwise nuget restore does not work
                 var orderedProject = projects.OrderBy(p => p.IsCPSProject);
 
                 foreach (var project in orderedProject)
                 {
                     Dte.Solution.AddFromFile(project.ProjectPath);
-
-                    var projectNugets = nugetReferences.Where(n => n.Project == project.ProjectPath);
-
-                    if (IsCpsProject(project.ProjectPath))
-                    {
-                        await AddNugetPackagesToCPSProjectAsync(project.ProjectPath, projectNugets);
-                    }
-                    else
-                    {
-                        AddNugetPackageToProject(project.ProjectPath, projectNugets);
-                    }
+                    await AddNugetsForProjectAsync(project.ProjectPath, nugetReferences.Where(n => n.Project == project.ProjectPath));
                 }
             }
             catch (Exception ex)
             {
                 AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableAddProjectToSolution).FireAndForget();
+            }
+        }
+
+        private async System.Threading.Tasks.Task AddNugetsForProjectAsync(string projectPath, IEnumerable<NugetReference> projectNugets)
+        {
+            if (IsCpsProject(projectPath))
+            {
+                await AddNugetPackagesToCPSProjectAsync(projectPath, projectNugets);
+            }
+            else
+            {
+                AddNugetPackageToProject(projectPath, projectNugets);
             }
         }
 

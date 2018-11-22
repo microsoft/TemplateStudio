@@ -63,7 +63,7 @@ namespace Microsoft.Templates.Fakes
             }
 
             var projects = ResolveProjectFiles(itemsFullPath, true);
-            var notCoreProjects = projects.Where(f => !IsCoreProject(f.Key));
+            var notCoreProjects = projects.Where(f => !IsCPSProject(f.Key));
 
             foreach (var projectFile in notCoreProjects)
             {
@@ -82,6 +82,23 @@ namespace Microsoft.Templates.Fakes
 
         public override async Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences)
         {
+            //First add references to existing projects
+            var groupedNugets = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
+
+            foreach (var nuget in groupedNugets)
+            {
+                var msbuildProj = FakeMsBuildProject.Load(nuget.Key);
+
+                var projectNugets = nugetReferences.Where(n => n.Project == nuget.Key);
+
+                foreach (var nugetPackages in projectNugets)
+                {
+                    msbuildProj.AddNugetReference(nugetPackages, IsCPSProject(nuget.Key));
+                }
+
+                msbuildProj.Save();
+            }
+
             foreach (var project in projects)
             {
                 var msbuildProj = FakeMsBuildProject.Load(project.ProjectPath);
@@ -273,9 +290,12 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        private bool IsCoreProject(string projectPath)
+
+        private bool IsCPSProject(string projectPath)
         {
-            return projectPath.EndsWith("Core.csproj") || projectPath.EndsWith("Core.vbproj");
+            string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
+            return targetFrameworkTags.Any(t => File.ReadAllText(projectPath).Contains(t));
+
         }
     }
 }
