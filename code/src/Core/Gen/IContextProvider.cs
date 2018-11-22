@@ -20,6 +20,8 @@ namespace Microsoft.Templates.Core.Gen
 
         Dictionary<string, List<string>> ProjectReferences { get; }
 
+        List<SdkReference> SdkReferences { get; }
+
         List<NugetReference> NugetReferences { get; }
 
         List<string> ProjectItems { get; }

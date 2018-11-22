@@ -96,6 +96,7 @@ namespace Microsoft.Templates.Core.Gen
             GenContext.Current.MergeFilesFromProject.Clear();
             GenContext.Current.Projects.Clear();
             GenContext.Current.NugetReferences.Clear();
+            GenContext.Current.SdkReferences.Clear();
             GenContext.Current.ProjectReferences.Clear();
             GenContext.Current.ProjectItems.Clear();
             GenContext.Current.FilesToOpen.Clear();

@@ -202,6 +202,7 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Gen\SdkReference.cs" />
     <Compile Include="Gen\ProjectInfo.cs" />
     <Compile Include="Gen\NugetReference.cs" />
     <Compile Include="Gen\ProjectConfigInfo.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Naming\ReservedNamesValidator.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
     <Compile Include="PostActions\Catalog\AddNugetReferenceToContextPostaction.cs" />
+    <Compile Include="PostActions\Catalog\AddSdkReferencesToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\AddProjectReferencesToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeMode.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />

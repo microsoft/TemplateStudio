@@ -650,6 +650,25 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        public override void AddSdkReferencesToProjects(List<SdkReference> sdkReferences)
+        {
+            var groupedSdkReferences = sdkReferences.GroupBy(s => s.Project);
+
+            foreach (var sdkReference in groupedSdkReferences)
+            {
+                var project = GetProjectByPath(sdkReference.Key);
+                var proj = (VSProject)project.Object;
+
+                foreach (var referenceValue in sdkReferences.Where(s => s.Project == sdkReference.Key))
+                {
+                    var refs = proj.References as VSLangProj110.References2;
+                    refs.AddSDK(referenceValue.Name, referenceValue.Sdk);
+                }
+
+                project.Save();
+            }
+        }
+
         public override async System.Threading.Tasks.Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences)
         {
             try

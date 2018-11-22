@@ -74,6 +74,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public List<ProjectInfo> Projects { get; } = new List<ProjectInfo>();
 
+        public List<SdkReference> SdkReferences { get; } = new List<SdkReference>();
+
         public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
 
         public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();

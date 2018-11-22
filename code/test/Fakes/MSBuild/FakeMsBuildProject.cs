@@ -100,6 +100,17 @@ namespace Microsoft.Templates.Fakes
             _root.Add(itemsContainer);
         }
 
+        public void AddSDKReference(SdkReference sdkReference)
+        {
+            var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
+
+            XElement element = GetSdkReferenceXElement(sdkReference.Name, sdkReference.Sdk.ToString());
+            ApplyNs(element);
+            itemsContainer.Add(element);
+
+            _root.Add(itemsContainer);
+        }
+
         public void AddProjectReference(string projectPath, string projguid, string projectName)
         {
             var container = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
@@ -140,6 +151,20 @@ namespace Microsoft.Templates.Fakes
                 sb.AppendLine($"<Version>{version}</Version>");
                 sb.AppendLine("</PackageReference>");
             }
+
+            var itemElement = XElement.Parse(sb.ToString());
+
+            return itemElement;
+        }
+
+        private static XElement GetSdkReferenceXElement(string name, string sdkReference)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append($"<SDKReference Include=\"{sdkReference}\"");
+            sb.AppendLine(">");
+            sb.AppendLine($"<Name>{name}</Name>");
+            sb.AppendLine("</SDKReference>");
 
             var itemElement = XElement.Parse(sb.ToString());
 

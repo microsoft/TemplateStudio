@@ -34,6 +34,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public List<NugetReference> NugetReferences { get; private set; }
 
+        public List<SdkReference> SdkReferences { get; private set; }
+
         public Dictionary<string, List<string>> ProjectReferences { get; private set; }
 
         public List<string> ProjectItems { get; private set; }

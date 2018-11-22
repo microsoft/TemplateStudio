@@ -55,6 +55,28 @@
         "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"
+    },
+    {
+      "description": "Add sdk Reference",
+      "manualInstructions": [ ],
+      "actionId": "9E683FB4-CE5B-4AAE-8A36-63CD8A5B4977",
+      "args": {
+        "name": "Microsoft Engagement Framework",
+        "sdk": "Microsoft.Services.Store.Engagement; Version=10.0",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add sdk Reference",
+      "manualInstructions": [ ],
+      "actionId": "9E683FB4-CE5B-4AAE-8A36-63CD8A5B4977",
+      "args": {
+        "name": "Visual C++ 2015 Runtime for Universal Windows Platform Apps",
+        "sdk": "Microsoft.VCLibs; Version=14.0",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
     }
   ]
 }

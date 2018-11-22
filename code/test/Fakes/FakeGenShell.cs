@@ -254,6 +254,25 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
+        public override void AddSdkReferencesToProjects(List<SdkReference> sdkReferences)
+        {
+            var solution = FakeSolution.LoadOrCreate(_platform, SolutionPath);
+
+            var groupedSdkReferences = sdkReferences.GroupBy(s => s.Project);
+
+            foreach (var sdkReference in groupedSdkReferences)
+            {
+                var project = FakeMsBuildProject.Load(sdkReference.Key);
+
+                foreach (var referenceValue in sdkReferences.Where(s => s.Project == sdkReference.Key))
+                {
+                    project.AddSDKReference(referenceValue);
+                }
+
+                project.Save();
+            }
+        }
+
         private bool IsCoreProject(string projectPath)
         {
             return projectPath.EndsWith("Core.csproj") || projectPath.EndsWith("Core.vbproj");

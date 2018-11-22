@@ -34,6 +34,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void SaveSolution();
 
+        public abstract void AddSdkReferencesToProjects(List<SdkReference> sdkReferences);
+
         public abstract void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences);
 
         public abstract string GetActiveProjectNamespace();
