@@ -70,10 +70,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                             await _generationService.FinishGenerationAsync(userSelection);
+
+                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                         },
                         JoinableTaskCreationOptions.LongRunning);
-
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                     }
                 }
                 catch (WizardBackoutException)
@@ -99,10 +99,9 @@ namespace Microsoft.Templates.UI.VisualStudio
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                             await _generationService.FinishGenerationAsync(userSelection);
+                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                         },
                         JoinableTaskCreationOptions.LongRunning);
-
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                     }
                 }
                 catch (WizardBackoutException)
