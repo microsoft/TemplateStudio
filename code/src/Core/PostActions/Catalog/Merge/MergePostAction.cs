@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         internal override async Task ExecuteInternalAsync()
         {
-            string originalFilePath = Regex.Replace(Config.FilePath, MergeConfiguration.PostactionRegex, ".");
+            string originalFilePath = GetFilePath();
             if (!File.Exists(originalFilePath))
             {
                 if (Config.FailOnError )
@@ -109,6 +109,25 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             splittedFileName[0] = Naming.Infer(splittedFileName[0], validator);
             var newFileName = string.Join(".", splittedFileName);
             return Path.Combine(folder, newFileName);
+        }
+
+        private string GetFilePath()
+        {
+
+            // TODO: Remove this when 3.0 is released, only necesary for legacy tests
+            if (Path.GetFileName(Config.FilePath).StartsWith(MergeConfiguration.Extension, StringComparison.OrdinalIgnoreCase))
+            {
+                var extension = Path.GetExtension(Config.FilePath);
+                var directory = Path.GetDirectoryName(Config.FilePath);
+
+                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(MergeConfiguration.Suffix));
+            }
+            else
+            {
+                var path = Regex.Replace(Config.FilePath, MergeConfiguration.PostactionRegex, ".");
+
+                return path;
+            }
         }
     }
 }

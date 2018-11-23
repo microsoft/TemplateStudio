@@ -144,12 +144,12 @@ EndProject
 
                 foreach (var line in slnLines)
                 {
-                    if (line.StartsWith("Project(\"{"))
+                    if (line.StartsWith("Project(\"{", StringComparison.OrdinalIgnoreCase))
                     {
-                        projectGuids.Add(line.Substring(line.LastIndexOf("{")).Trim(new[] { '{', '}', '"' }));
+                        projectGuids.Add(line.Substring(line.LastIndexOf("{", StringComparison.OrdinalIgnoreCase)).Trim(new[] { '{', '}', '"' }));
                     }
 
-                    if (line.StartsWith("Global"))
+                    if (line.StartsWith("Global", StringComparison.OrdinalIgnoreCase))
                     {
                         break;
                     }

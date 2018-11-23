@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -53,7 +54,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             foreach (var postaction in genResult.ResultInfo.PostActions)
             {
-                switch (postaction.ActionId.ToString().ToUpper())
+                switch (postaction.ActionId.ToString().ToUpper(CultureInfo.InvariantCulture))
                 {
                     case GenerateTestCertificatePostAction.Id:
                         postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), postaction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.DestinationPath));

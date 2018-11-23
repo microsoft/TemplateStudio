@@ -13,38 +13,14 @@ namespace Microsoft.Templates.Core.PostActions
 {
     public abstract class TemplateDefinedPostAction : PostAction
     {
-        public abstract Guid ActionId { get; }
+        public virtual Guid ActionId { get; }
 
         public IReadOnlyDictionary<string, string> Args { get; private set; }
 
         public TemplateDefinedPostAction(string relatedTemplate, IPostAction templateDefinedPostAction)
-            : base(relatedTemplate)
+            : base(relatedTemplate,  templateDefinedPostAction.ContinueOnError)
         {
-            ContinueOnError = templateDefinedPostAction.ContinueOnError;
-
-            if (IsIdsMatch(templateDefinedPostAction))
-            {
-                Args = templateDefinedPostAction.Args;
-            }
-        }
-
-        private bool IsIdsMatch(IPostAction templateDefinedPostAction)
-        {
-            if (templateDefinedPostAction.ActionId != ActionId)
-            {
-                string errorMsg = string.Format(StringRes.PostActionIdsNotMatchError, templateDefinedPostAction.ActionId.ToString(), ActionId.ToString(), RelatedTemplate);
-                if (!ContinueOnError)
-                {
-                    throw new Exception(errorMsg);
-                }
-                else
-                {
-                    AppHealth.Current.Error.TrackAsync(errorMsg).FireAndForget();
-                    return false;
-                }
-            }
-
-            return true;
+            Args = templateDefinedPostAction.Args;
         }
     }
 }

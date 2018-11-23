@@ -123,7 +123,7 @@ namespace Localization
         {
             var srcDirectory = _routesManager.GetDirectoryFromSource(Routes.TemplatesRootDirPath);
             var directories = srcDirectory.GetDirectories(patternPath, SearchOption.AllDirectories);
-            var templatesDirectories = directories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB")));
+            var templatesDirectories = directories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase)));
 
             foreach (var directory in templatesDirectories)
             {

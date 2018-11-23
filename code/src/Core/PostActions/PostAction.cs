@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Core.PostActions
 {
     public abstract class PostAction
     {
-        public virtual bool ContinueOnError { get; set; }
+        public bool ContinueOnError { get; set; }
 
         public string RelatedTemplate { get; set; }
 
@@ -21,9 +21,9 @@ namespace Microsoft.Templates.Core.PostActions
             RelatedTemplate = "None";
         }
 
-        public PostAction(string relatedTemplate)
+        public PostAction(string relatedTemplate, bool continueOnError)
         {
-            ContinueOnError = false;
+            ContinueOnError = continueOnError;
             RelatedTemplate = relatedTemplate;
         }
 
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Core.PostActions
         }
 
         public PostAction(string relatedTemplate, TConfig config)
-            : base(relatedTemplate)
+            : base(relatedTemplate, false)
         {
             Config = config;
         }

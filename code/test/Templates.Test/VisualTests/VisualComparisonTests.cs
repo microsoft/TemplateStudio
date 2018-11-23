@@ -160,7 +160,7 @@ namespace Microsoft.Templates.Test
 
                 outputText.Add(outputLineString);
 
-                if (outputLineString.StartsWith("Total tests: ", StringComparison.InvariantCulture) && outputLineString.Contains("Failed: 0."))
+                if (outputLineString.StartsWith("Total tests: ", StringComparison.OrdinalIgnoreCase) && outputLineString.Contains("Failed: 0."))
                 {
                     result = true;
                 }
