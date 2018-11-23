@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     {
         private const string Divider = "^^^-searchabove-replacebelow-vvv";
 
-        public const string PostactionRegex = @"(\$\S*)?(_" + MergeConfiguration.SearchReplaceSuffix + @")\.";
+        public const string PostactionRegex = @"(\$\S*)?(_" + MergeConfiguration.SearchReplaceSuffix + @")\.\d?\.?";
 
         public SearchAndReplacePostAction(string relatedTemplate, MergeConfiguration config)
             : base(relatedTemplate, config)

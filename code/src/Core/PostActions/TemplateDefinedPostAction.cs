@@ -18,9 +18,33 @@ namespace Microsoft.Templates.Core.PostActions
         public IReadOnlyDictionary<string, string> Args { get; private set; }
 
         public TemplateDefinedPostAction(string relatedTemplate, IPostAction templateDefinedPostAction)
-            : base(relatedTemplate,  templateDefinedPostAction.ContinueOnError)
         {
-            Args = templateDefinedPostAction.Args;
+            RelatedTemplate = relatedTemplate;
+            ContinueOnError = templateDefinedPostAction.ContinueOnError;
+
+            if (IsIdsMatch(templateDefinedPostAction))
+            {
+                Args = templateDefinedPostAction.Args;
+            }
+        }
+
+        private bool IsIdsMatch(IPostAction templateDefinedPostAction)
+        {
+            if (templateDefinedPostAction.ActionId != ActionId)
+            {
+                string errorMsg = string.Format(StringRes.PostActionIdsNotMatchError, templateDefinedPostAction.ActionId.ToString(), ActionId.ToString(), RelatedTemplate);
+                if (!ContinueOnError)
+                {
+                    throw new Exception(errorMsg);
+                }
+                else
+                {
+                    AppHealth.Current.Error.TrackAsync(errorMsg).FireAndForget();
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
