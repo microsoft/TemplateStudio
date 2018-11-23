@@ -489,14 +489,14 @@ namespace TemplateValidator
         {
             if (template.TemplateTags.ContainsKey("wts.licenses") && !string.IsNullOrEmpty(template.TemplateTags["wts.licenses"]))
             {
-                if (Directory.EnumerateFiles(templateRoot, "_postaction.*", SearchOption.AllDirectories).Count() == 0)
+                if (template.PostActions?.Count == 0)
                 {
-                    results.Add($"No projectpostaction found for license defined on template {template.Identity}");
+                    results.Add($"No postaction found for license defined on template {template.Identity}");
                 }
             }
             else
             {
-                if (Directory.EnumerateFiles(templateRoot, "_postaction.*", SearchOption.AllDirectories).Count() > 0)
+                if (template.PostActions != null && template.PostActions.Any(p => p.ActionId == "0B814718-16A3-4F7F-89F1-69C0F9170EAD"))
                 {
                     results.Add($"Missing license on template {template.Identity}");
                 }
