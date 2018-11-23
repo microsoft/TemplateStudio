@@ -1,0 +1,63 @@
+﻿{
+  "author": "Microsoft",
+  "classifications": [
+    "Universal"
+  ],
+  "name": "Content Grid",
+  "groupIdentity": "wts.Page.ContentGrid",
+  "identity": "wts.Page.ContentGrid.CaliburnMicro",
+  "description": "Content Grid Page",
+  "tags": {
+    "language": "C#",
+    "type": "item",
+    "wts.type": "page",
+    "wts.framework": "CaliburnMicro",
+    "wts.platform": "Uwp",
+    "wts.version": "1.0.0",
+    "wts.displayOrder": "1",
+    "wts.dependencies": "wts.Feat.SampleDataService",
+    "wts.genGroup": "0",
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
+  },
+  "sourceName": "ContentGridView",
+  "preferNameDirectory": true,
+  "PrimaryOutputs": [
+    {
+      "path": ".\\Views\\ContentGridViewDetailPage.xaml"
+    },
+    {
+      "path": ".\\Views\\ContentGridViewDetailPage.xaml.cs"
+    },
+    {
+      "path": ".\\Views\\ContentGridViewPage.xaml"
+    },
+    {
+      "path": ".\\Views\\ContentGridViewPage.xaml.cs"
+    },
+    {
+      "path": ".\\ViewModels\\ContentGridViewDetailViewModel.cs"
+    },
+    {
+      "path": ".\\ViewModels\\ContentGridViewViewModel.cs"
+    }
+  ],
+  "symbols": {
+    "wts.rootNamespace": {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
+    "wts.itemNamespace": {
+      "type": "parameter",
+      "replaces": "Param_ItemNamespace"
+    },
+    "baseclass": {
+      "type": "parameter",
+      "replaces": "System.ComponentModel.INotifyPropertyChanged"
+    },
+    "setter": {
+      "type": "parameter",
+      "replaces": "Param_Setter"
+    }
+  }
+}
