@@ -47,10 +47,15 @@ namespace AutomatedUITests.Tests
                 //// ClickYesIfPermissionDialogShown(appSession1);
 
                 appSession1.Manage().Window.Maximize();
+
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
                 var screenshot = appSession1.GetScreenshot();
                 screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App1Filename), ImageFormat.Png);
+
+                // Don't leave the app maximized in case we want to open the app again.
+                // Some controls handle layout differently when the app is first opened maximized
+                VirtualKeyboard.RestoreMaximizedWindow();
             }
 
             using (var appSession2 = base.GetAppSession(TestAppInfo.AppPfn2))
@@ -59,15 +64,20 @@ namespace AutomatedUITests.Tests
                 //// ClickYesIfPermissionDialogShown(appSession2);
 
                 appSession2.Manage().Window.Maximize();
+
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
                 var screenshot = appSession2.GetScreenshot();
                 screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App2Filename), ImageFormat.Png);
+
+                // Don't leave the app maximized in case we want to open the app again.
+                // Some controls handle layout differently when the app is first opened maximized
+                VirtualKeyboard.RestoreMaximizedWindow();
             }
 
             var imageCompareResult = CheckImagesAreTheSame(TestAppInfo.ScreenshotsFolder, App1Filename, App2Filename);
 
-            Assert.IsTrue(imageCompareResult, $"Images do not match. See results in '{TestAppInfo.ScreenshotsFolder}'");
+            Assert.IsTrue(imageCompareResult, $"Images do not match.{Environment.NewLine}App1: {App1Filename}{Environment.NewLine}App2: {App2Filename}{Environment.NewLine}See results in '{TestAppInfo.ScreenshotsFolder}'");
         }
 
         private void ClickYesIfPermissionDialogShown(WindowsDriver<WindowsElement> session)

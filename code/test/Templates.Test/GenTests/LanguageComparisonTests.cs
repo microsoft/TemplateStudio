@@ -297,7 +297,7 @@ namespace Microsoft.Templates.Test
                             {
                                 constValue = constValue.ToLowerInvariant();
                             }
-                            
+
                             vbConstants.Add($"{constName}={constValue}");
                         }
                     }

@@ -271,7 +271,7 @@ namespace Microsoft.Templates.Test
                 singlePageName = genIdentitiesList.Last().Split('.').Last();
             }
 
-            ProjectName = $"{projectType}{framework}Compare{singlePageName}{ShortLanguageName(language)}";
+            ProjectName = $"{projectType}{framework}{singlePageName}{ShortLanguageName(language)}";
             DestinationPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
             OutputPath = DestinationPath;
 

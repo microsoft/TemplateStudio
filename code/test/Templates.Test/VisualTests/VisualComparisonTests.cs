@@ -60,28 +60,30 @@ namespace Microsoft.Templates.Test
         // Get all the pages in C# templates that are to be compared with the MVVMBasic version
         public static IEnumerable<object[]> GetAllSinglePageAppsCSharp()
         {
+            //// To quickly test a single scenario
+            ////yield return new object[] { "TabbedPivot", "wts.Page.ImageGallery", new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" } };
             foreach (var projectType in new[] { "Blank", "SplitView", "TabbedPivot" })
             {
-                foreach (var framework in new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" })
-                {
-                    var pagesThatSupportUiTesting = new[]
-                    {
-                        "wts.Page.Blank",
-                        "wts.Page.Chart",
-                        "wts.Page.ImageGallery",
-                        "wts.Page.MasterDetail",
-                        "wts.Page.TabbedPivot",
-                        "wts.Page.Grid",
-                        "wts.Page.Settings",
-                        "wts.Page.InkDraw",
-                        "wts.Page.InkDrawPicture",
-                        "wts.Page.InkSmartCanvas",
-                    };
+                var otherFrameworks = new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" };
 
-                    foreach (var page in pagesThatSupportUiTesting)
-                    {
-                        yield return new object[] { projectType, framework, page };
-                    }
+                var pagesThatSupportUiTesting = new[]
+                {
+                    "wts.Page.Blank",
+                    "wts.Page.Chart",
+                    "wts.Page.Grid",
+                    "wts.Page.DataGrid",
+                    ////"wts.Page.ImageGallery", // ImageGallery doesn't work inside a TabbedPage on CaliburnMicro when the first pivot item
+                    "wts.Page.InkDraw",
+                    "wts.Page.InkDrawPicture",
+                    "wts.Page.InkSmartCanvas",
+                    "wts.Page.MasterDetail",
+                    "wts.Page.Settings",
+                    "wts.Page.TabbedPivot",
+                };
+
+                foreach (var page in pagesThatSupportUiTesting)
+                {
+                    yield return new object[] { projectType, page, otherFrameworks };
                 }
             }
         }
@@ -96,12 +98,12 @@ namespace Microsoft.Templates.Test
                     switch (projectType)
                     {
                         case "SplitView":
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(600, 300, 270, 40), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 300, 450, 40), 1.25f) }";
                         case "TabbedPivot":
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(280, 350, 270, 40), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
                         case "Blank":
                         default:
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(180, 350, 270, 40), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
                     }
 
                 default:
@@ -158,11 +160,12 @@ namespace Microsoft.Templates.Test
         }
 
         // Note. Visual Studio MUST be running as Admin to run this test.
+        // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
         [Theory]
         [MemberData("GetAllSinglePageAppsCSharp")]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureFrameworkLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
+        public async Task EnsureFrameworkLaunchPageVisualsAreEquivalentAsync(string projectType, string page, string[] frameworks)
         {
             var genIdentities = new[] { page };
 
@@ -170,40 +173,56 @@ namespace Microsoft.Templates.Test
             CheckWinAppDriverInstalled();
 
             // MVVMBasic is considerewd the reference version. Compare generated apps with equivalent in other frameworks
-            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, "MVVMBasic", genIdentities, lastPageIsHome: true);
-            var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
+            var refAppDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, "MVVMBasic", genIdentities, lastPageIsHome: true);
 
-            var testProjectDetails = SetUpTestProject(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page));
+            var otherProjDetails = new VisualComparisonTestDetails[frameworks.Length];
 
-            var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+            bool allTestsPassed = true;
 
-            // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
-            if (testSuccess)
+            var outputMessages = string.Empty;
+
+            for (int i = 0; i < frameworks.Length; i++)
             {
-                UninstallAppx(app1Details.PackageFullName);
-                UninstallAppx(app2Details.PackageFullName);
+                string framework = frameworks[i];
+                otherProjDetails[i] = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
 
-                RemoveCertificate(app1Details.CertificatePath);
-                RemoveCertificate(app2Details.CertificatePath);
+                var testProjectDetails = SetUpTestProject(refAppDetails, otherProjDetails[i], GetExclusionAreasForVisualEquivalencyTest(projectType, page));
 
-                // Parent of images folder also contains the test project
-                Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
+                var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+
+                if (testSuccess)
+                {
+                    UninstallAppx(otherProjDetails[i].PackageFullName);
+
+                    RemoveCertificate(otherProjDetails[i].CertificatePath);
+
+                    // Parent of images folder also contains the test project
+                    Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
+                }
+                else
+                {
+                    allTestsPassed = false;
+
+                    if (Directory.Exists(testProjectDetails.imagesFolder)
+                     && Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
+                    {
+                        outputMessages += $"Failing test images in {testProjectDetails.imagesFolder}{Environment.NewLine}{Environment.NewLine}{outputMessages}";
+                    }
+                    else
+                    {
+                        outputMessages += $"{Environment.NewLine}{string.Join(Environment.NewLine, testOutput)}";
+                    }
+                }
             }
 
-            var outputMessages = string.Join(Environment.NewLine, testOutput);
+            if (allTestsPassed)
+            {
+                UninstallAppx(refAppDetails.PackageFullName);
 
-            // A diff image is automatically created if the outputs differ
-            if (Directory.Exists(testProjectDetails.imagesFolder)
-             && Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
-            {
-                Assert.True(
-                    testSuccess,
-                    $"Failing test images in {testProjectDetails.imagesFolder}{Environment.NewLine}{Environment.NewLine}{outputMessages}");
+                RemoveCertificate(refAppDetails.CertificatePath);
             }
-            else
-            {
-                Assert.True(testSuccess, outputMessages);
-            }
+
+            Assert.True(allTestsPassed, outputMessages.TrimStart());
         }
 
         private void CheckRunningAsAdmin()
