@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 using Param_ItemNamespace.Helpers;
@@ -16,8 +14,6 @@ namespace Param_ItemNamespace.Views
     public sealed partial class ImageGalleryViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
-        public const string ImageGalleryViewAnimationOpen = "ImageGalleryView_AnimationOpen";
-        public const string ImageGalleryViewAnimationClose = "ImageGalleryView_AnimationClose";
 
         private ObservableCollection<SampleImage> _source;
 
@@ -34,7 +30,7 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (e.NavigationMode == NavigationMode.Back)
@@ -42,14 +38,6 @@ namespace Param_ItemNamespace.Views
                 var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageId))
                 {
-                    var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose);
-                    if (animation != null)
-                    {
-                        var item = ImagesGridView.Items.FirstOrDefault(i => ((SampleImage)i).ID == selectedImageId);
-                        ImagesGridView.ScrollIntoView(item);
-                        await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
-                    }
-
                     ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey);
                 }
             }
@@ -58,9 +46,8 @@ namespace Param_ItemNamespace.Views
         private void ImagesGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var selected = e.ClickedItem as SampleImage;
-            ImagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage");
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
-            NavigationService.Navigate<ImageGalleryViewDetailPage>(selected.ID);
+            NavigationService.Navigate<ImageGalleryViewDetailPage>(selected);
         }
     }
 }
