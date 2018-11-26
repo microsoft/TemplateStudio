@@ -1,6 +1,7 @@
 ﻿using System;
 using Caliburn.Micro;
-using Microsoft.UI.Xaml.Controls;
+using WinUI = Microsoft.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls;
 
 namespace wts.ItemName.Views
 {
@@ -8,6 +9,8 @@ namespace wts.ItemName.Views
     {
         INavigationService CreateNavigationService(WinRTContainer container);
 
-        NavigationView GetNavigationView();
+        WinUI.NavigationView GetNavigationView();
+
+        Frame GetFrame(); 
     }
 }

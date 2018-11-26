@@ -9,9 +9,18 @@ namespace Param_ItemNamespace
         protected override void Configure()
         {
             //^^
-            //{[{       
+            //{[{
             _container.PerRequest<ImageGalleryViewDetailViewModel>();
             //}]}
+        }
+
+        private UIElement CreateShell()
+        {
+            var shellPage = new Views.ShellPage();
+            //{[{
+            _container.RegisterInstance(typeof(IConnectedAnimationService), nameof(IConnectedAnimationService), new ConnectedAnimationService(shellPage.GetFrame()));
+            //}]}
+            return shellPage;
         }
     }
 }
