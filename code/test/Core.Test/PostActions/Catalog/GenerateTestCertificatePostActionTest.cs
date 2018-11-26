@@ -99,28 +99,5 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Assert.True(File.Exists(expectedCertFilePath));
             Fs.SafeDeleteDirectory(destinationPath);
         }
-
-        [Fact]
-        public void BadInstantiation_ContinueOnError()
-        {
-            var testArgs = new Dictionary<string, string>() { { "myArg", "myValue" } };
-            var inventedIdPostAction = new FakeTemplateDefinedPostAction(Guid.NewGuid(), testArgs, true);
-            var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", inventedIdPostAction, null, new Dictionary<string, string>(), string.Empty);
-
-            Assert.True(postAction.ContinueOnError);
-            Assert.NotEqual(inventedIdPostAction.ActionId.ToString(), GenerateTestCertificatePostAction.Id);
-            Assert.Null(postAction.Args);
-        }
-
-        [Fact]
-        public void BadInstantiation_NoContinueOnError()
-        {
-            Assert.Throws<Exception>(() =>
-               {
-                   var testArgs = new Dictionary<string, string>() { { "myArg", "myValue" } };
-                   var inventedIdPostAction = new FakeTemplateDefinedPostAction(Guid.NewGuid(), testArgs, false);
-                   var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", inventedIdPostAction, null, new Dictionary<string, string>(), string.Empty);
-               });
-        }
     }
 }

@@ -21,30 +21,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             RelatedTemplate = relatedTemplate;
             ContinueOnError = templateDefinedPostAction.ContinueOnError;
-
-            if (IsIdsMatch(templateDefinedPostAction))
-            {
-                Args = templateDefinedPostAction.Args;
-            }
-        }
-
-        private bool IsIdsMatch(IPostAction templateDefinedPostAction)
-        {
-            if (templateDefinedPostAction.ActionId != ActionId)
-            {
-                string errorMsg = string.Format(StringRes.PostActionIdsNotMatchError, templateDefinedPostAction.ActionId.ToString(), ActionId.ToString(), RelatedTemplate);
-                if (!ContinueOnError)
-                {
-                    throw new Exception(errorMsg);
-                }
-                else
-                {
-                    AppHealth.Current.Error.TrackAsync(errorMsg).FireAndForget();
-                    return false;
-                }
-            }
-
-            return true;
+            Args = templateDefinedPostAction.Args;
         }
     }
 }
