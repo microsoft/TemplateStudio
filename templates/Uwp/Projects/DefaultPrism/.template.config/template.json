@@ -25,6 +25,12 @@
   ],
   "symbols":
   {
+    "wts.projectName":
+    {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
     "wts.userName":
     {
       "type": "parameter",
@@ -69,11 +75,44 @@
   },
   "postActions": [
     {
-      "description": "Generate Test Certificate", 
+      "description": "Generate Test Certificate",
       "manualInstructions": [ ],
       "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
-      "args": { 
+      "args": {
         "files" : "0"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.NETCore.UniversalWindowsPlatform",
+        "version" : "6.1.9",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Xaml.Behaviors.Uwp.Managed",
+        "version" : "2.0.0",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Prism.Unity",
+        "version" : "6.3.0",
+        "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"
     }
