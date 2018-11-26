@@ -18,11 +18,18 @@
     "wts.dependencies": "wts.Feat.SampleDataService.Prism|wts.Feat.CoreProject",
     "wts.outputToParent": "true",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true"
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "ImageGalleryView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
+    {
+      "path": ".\\Param_ProjectName\\Services\\ConnectedAnimationService.cs"
+    },
+    {
+      "path": ".\\Param_ProjectName\\Services\\IConnectedAnimationService.cs"
+    },
     {
       "path": ".\\Param_ProjectName\\Views\\ImageGalleryViewPage.xaml"
     },

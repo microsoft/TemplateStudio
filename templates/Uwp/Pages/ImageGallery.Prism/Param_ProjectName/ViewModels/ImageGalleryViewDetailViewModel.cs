@@ -1,16 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 
-using Windows.Storage;
 using Windows.System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 using Param_ItemNamespace.Helpers;
+using Param_ItemNamespace.Services;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
 
@@ -23,7 +21,7 @@ namespace Param_ItemNamespace.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly ISampleDataService _sampleDataService;
-        private static UIElement _image;
+        private readonly IConnectedAnimationService _connectedAnimationService;
         private object _selectedImage;
         private ObservableCollection<SampleImage> _source;
 
@@ -43,22 +41,21 @@ namespace Param_ItemNamespace.ViewModels
             set => Param_Setter(ref _source, value);
         }
 
-        public ImageGalleryViewDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
+        public ImageGalleryViewDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance, IConnectedAnimationService connectedAnimationService)
         {
             _navigationService = navigationServiceInstance;
 
             // TODO WTS: Replace this with your actual data
             _sampleDataService = sampleDataServiceInstance;
+            _connectedAnimationService = connectedAnimationService;
             Source = _sampleDataService.GetGallerySampleData();
         }
 
-        public void SetImage(UIElement image) => _image = image;
-
-        public void Initialize(string sampleImageId, NavigationMode navigationMode)
+        public void Initialize(SampleImage selectedImage, NavigationMode navigationMode)
         {
-            if (!string.IsNullOrEmpty(sampleImageId) && navigationMode == NavigationMode.New)
+            if (selectedImage != null && navigationMode == NavigationMode.New)
             {
-                SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImageId);
+                SelectedImage = selectedImage;
             }
             else
             {
@@ -68,14 +65,6 @@ namespace Param_ItemNamespace.ViewModels
                     SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
                 }
             }
-
-            var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewViewModel.ImageGalleryViewAnimationOpen);
-            animation?.TryStart(_image);
-        }
-
-        public void SetAnimation()
-        {
-            ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image);
         }
 
         public void HandleKeyDown(KeyRoutedEventArgs e)
@@ -84,6 +73,15 @@ namespace Param_ItemNamespace.ViewModels
             {
                 _navigationService.GoBack();
                 e.Handled = true;
+            }
+        }
+
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        {
+            base.OnNavigatingFrom(e, viewModelState, suspending);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(SelectedImage);
             }
         }
     }

@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
-
-using Windows.Storage;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
 
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Views;
+using Windows.UI.Xaml.Controls;
 
 using Prism.Commands;
 using Prism.Windows.Navigation;
@@ -24,12 +18,9 @@ namespace Param_ItemNamespace.ViewModels
         private readonly ISampleDataService _sampleDataService;
 
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
-        public const string ImageGalleryViewAnimationOpen = "ImageGalleryView_AnimationOpen";
-        public const string ImageGalleryViewAnimationClose = "ImageGalleryView_AnimationClose";
 
         private ObservableCollection<SampleImage> _source;
         private ICommand _itemSelectedCommand;
-        private GridView _imagesGridView;
 
         public ObservableCollection<SampleImage> Source
         {
@@ -48,34 +39,11 @@ namespace Param_ItemNamespace.ViewModels
             Source = _sampleDataService.GetGallerySampleData();
         }
 
-        public void Initialize(GridView imagesGridView)
-        {
-            _imagesGridView = imagesGridView;
-        }
-
-        public async Task LoadAnimationAsync()
-        {
-            var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey);
-            if (!string.IsNullOrEmpty(selectedImageId))
-            {
-                var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose);
-                if (animation != null)
-                {
-                    var item = _imagesGridView.Items.FirstOrDefault(i => ((SampleImage)i).ID == selectedImageId);
-                    _imagesGridView.ScrollIntoView(item);
-                    await _imagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
-                }
-
-                ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey);
-            }
-        }
-
         private void OnsItemSelected(ItemClickEventArgs args)
         {
             var selected = args.ClickedItem as SampleImage;
-            _imagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage");
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
-            _navigationService.Navigate(PageTokens.ImageGalleryViewDetailPage, selected.ID);
+            _navigationService.Navigate(PageTokens.ImageGalleryViewDetailPage, selected);
         }
     }
 }
