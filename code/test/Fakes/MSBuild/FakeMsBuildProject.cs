@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using System.Xml.Linq;
 using Microsoft.Templates.Core.Gen;
 
@@ -89,11 +90,17 @@ namespace Microsoft.Templates.Fakes
             lastItems?.AddAfterSelf(itemsContainer);
         }
 
-        public void AddNugetReference(NugetReference nugetReference, bool isCoreProject)
+        public void AddNugetReference(NugetReference nugetReference)
         {
+            var isCpsProject = IsCpsProject();
+            if (NugetReferenceExists(nugetReference, isCpsProject))
+            {
+                return;
+            }
+
             var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
 
-            XElement element = GetNugetReferenceXElement(nugetReference.PackageId, nugetReference.Version.ToString(), isCoreProject);
+            XElement element = GetNugetReferenceXElement(nugetReference.PackageId, nugetReference.Version.ToString(), isCpsProject);
             ApplyNs(element);
             itemsContainer.Add(element);
 
@@ -102,6 +109,11 @@ namespace Microsoft.Templates.Fakes
 
         public void AddSDKReference(SdkReference sdkReference)
         {
+            if (ItemExists(sdkReference.Sdk))
+            {
+                return;
+            }
+
             var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
 
             XElement element = GetSdkReferenceXElement(sdkReference.Name, sdkReference.Sdk.ToString());
@@ -113,8 +125,15 @@ namespace Microsoft.Templates.Fakes
 
         public void AddProjectReference(string projectPath, string projguid, string projectName)
         {
-            var container = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
             string itemRelativePath = "..\\" + projectPath.Replace($@"{Path.GetDirectoryName(Path.GetDirectoryName(_path))}\", string.Empty);
+
+            if (ItemExists(itemRelativePath))
+            {
+                return;
+            }
+
+            var container = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
+
             XElement element = GetProjectReferenceXElement(itemRelativePath, projguid, projectName);
             ApplyNs(element);
             container.Add(element);
@@ -173,7 +192,17 @@ namespace Microsoft.Templates.Fakes
 
         public void Save()
         {
-            _root.Save(_path);
+            if (IsCpsProject())
+            {
+                using (var writer = XmlWriter.Create(_path, new XmlWriterSettings { OmitXmlDeclaration = true, Indent = true }))
+                {
+                    _root.Save(writer);
+                }
+            }
+            else
+            {
+                _root.Save(_path);
+            }
         }
 
         private void ApplyNs(XElement e)
@@ -184,10 +213,34 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
+        private bool IsCpsProject()
+        {
+            return _root.Descendants().Any(d => d.Name == "TargetFramework" || d.Name == "TargetFrameworks");
+        }
+
         private bool ItemExists(string itemPath)
         {
             return _root.Descendants().Any(d => d.Attribute("Include") != null
                 && d.Attribute("Include").Value.Equals(itemPath, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private bool NugetReferenceExists(NugetReference nuget, bool isCpsProject)
+        {
+            if (isCpsProject)
+            {
+                return _root.Descendants().Any(
+                    d => d.Attribute("Include") != null &&
+                    d.Attribute("Include").Value.Equals(nuget.PackageId, StringComparison.OrdinalIgnoreCase) &&
+                    d.Attribute("Version") != null &&
+                    d.Attribute("Version").Value.Equals(nuget.PackageId, StringComparison.OrdinalIgnoreCase));
+            }
+            else
+            {
+                return _root.Descendants().Any(
+                    d => d.Attribute("Include") != null &&
+                    d.Attribute("Include").Value.Equals(nuget.PackageId, StringComparison.OrdinalIgnoreCase) &&
+                    d.Value == nuget.Version );
+            }
         }
 
         private VsItemType GetItemType(string fileName)

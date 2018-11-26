@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Fakes
 
                 foreach (var nugetPackages in projectNugets)
                 {
-                    msbuildProj.AddNugetReference(nugetPackages, IsCPSProject(nuget.Key));
+                    msbuildProj.AddNugetReference(nugetPackages);
                 }
 
                 msbuildProj.Save();
@@ -112,7 +112,7 @@ namespace Microsoft.Templates.Fakes
 
                 foreach (var nuget in projectNugets)
                 {
-                    msbuildProj.AddNugetReference(nuget, project.IsCPSProject);
+                    msbuildProj.AddNugetReference(nuget);
                 }
 
                 msbuildProj.Save();
