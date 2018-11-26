@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Navigation;
-
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
+using Windows.UI.Xaml.Navigation;
 
 namespace Param_ItemNamespace.ViewModels
 {
     public class ImageGalleryViewDetailViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private static UIElement _image;
         private object _selectedImage;
         private ObservableCollection<SampleImage> _source;
 
@@ -40,30 +35,20 @@ namespace Param_ItemNamespace.ViewModels
             Source = SampleDataService.GetGallerySampleData();
         }
 
-        public void SetImage(UIElement image) => _image = image;
-
-        public void Initialize(string sampleImageId, NavigationMode navigationMode)
+        public void Initialize(SampleImage selectedImage, NavigationMode navigationMode)
         {
-            if (!string.IsNullOrEmpty(sampleImageId) && navigationMode == NavigationMode.New)
+            if (selectedImage != null && navigationMode == NavigationMode.New)
             {
-                SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImageId);
+                SelectedImage = selectedImage;
             }
             else
             {
-                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
+                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGallerySelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageId))
                 {
                     SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
                 }
             }
-
-            var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewViewModel.ImageGalleryViewAnimationOpen);
-            animation?.TryStart(_image);
-        }
-
-        public void SetAnimation()
-        {
-            ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image);
         }
     }
 }
