@@ -62,6 +62,7 @@ Namespace Services.Ink
                 Return Nothing
             End If
 
+            ' Prevent updates to the file until updates are finalized with call to CompleteUpdatesAsync.
             CachedFileManager.DeferUpdates(saveFile)
 
             Using outStream = Await saveFile.OpenAsync(FileAccessMode.ReadWrite)
@@ -83,6 +84,7 @@ Namespace Services.Ink
                 End Using
             End Using
 
+            '  Finalize write so other apps can update file.
             Dim status As FileUpdateStatus = Await CachedFileManager.CompleteUpdatesAsync(saveFile)
             Return saveFile
         End Function
