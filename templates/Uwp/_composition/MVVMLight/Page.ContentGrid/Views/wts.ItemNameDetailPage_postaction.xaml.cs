@@ -1,7 +1,5 @@
 ﻿//{[{
-using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.ViewModels;
-using Windows.UI.Xaml.Navigation;
 //}]}
 namespace Param_ItemNamespace.Views
 {
@@ -13,17 +11,7 @@ namespace Param_ItemNamespace.Views
             get { return ViewModelLocator.Current.wts.ItemNameDetailViewModel; }
         }
 
-//}]}
-        public wts.ItemNameDetailPage()
-        {            
-        }
-
-//{[{
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            ViewModel.Initialize(e.Parameter as SampleOrder);
-        }
+        public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
 //}]}
     }

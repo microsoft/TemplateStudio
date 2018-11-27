@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Param_ItemNamespace.Core.Models;
+using Param_ItemNamespace.Core.Services;
+using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.Views
 {
@@ -25,9 +29,19 @@ namespace Param_ItemNamespace.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is SampleOrder item)
+            if (e.Parameter is long orderId)
             {
-                Item = item;
+                var data = SampleDataService.GetContentGridData();
+                Item = data.First(i => i.OrderId == orderId);
+            }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(Item);
             }
         }
 

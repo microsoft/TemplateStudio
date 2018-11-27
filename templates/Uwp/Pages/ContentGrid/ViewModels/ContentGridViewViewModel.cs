@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
 using Param_ItemNamespace.Services;
@@ -30,6 +31,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             if (clickedItem != null)
             {
+                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(clickedItem);
             }
         }
     }

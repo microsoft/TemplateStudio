@@ -14,8 +14,9 @@ namespace Param_ItemNamespace.ViewModels
         {
             if (clickedItem != null)
             {
+//^^
 //{[{
-                NavigationService.Navigate(typeof(wts.ItemNameDetailViewModel).FullName, clickedItem);
+                NavigationService.Navigate(typeof(wts.ItemNameDetailViewModel).FullName, clickedItem.OrderId);
 //}]}
             }
         }

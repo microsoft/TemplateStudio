@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Param_ItemNamespace.Core.Models;
+using Param_ItemNamespace.Core.Services;
 
 namespace Param_ItemNamespace.ViewModels
 {
@@ -17,9 +19,10 @@ namespace Param_ItemNamespace.ViewModels
         {
         }
 
-        public void Initialize(SampleOrder item)
+        public void Initialize(long orderId)
         {
-            Item = item;
+            var data = SampleDataService.GetContentGridData();
+            Item = data.First(i => i.OrderId == orderId);
         }
     }
 }

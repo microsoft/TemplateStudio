@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
@@ -27,7 +28,8 @@ namespace Param_ItemNamespace.Views
         {
             if (e.ClickedItem is SampleOrder item)
             {
-                NavigationService.Navigate<ContentGridViewDetailPage>(item);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(item);
+                NavigationService.Navigate<ContentGridViewDetailPage>(item.OrderId);
             }
         }
     }

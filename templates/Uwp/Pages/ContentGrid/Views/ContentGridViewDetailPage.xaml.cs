@@ -1,5 +1,8 @@
 ﻿using System;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.Views
 {
@@ -8,6 +11,24 @@ namespace Param_ItemNamespace.Views
         public ContentGridViewDetailPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.Parameter is long orderId)
+            {
+                ViewModel.Initialize(orderId);
+            }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.Item);
+            }
         }
     }
 }
