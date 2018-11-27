@@ -3,14 +3,14 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Prism.Page.ImageGallery.Blank",
+  "name": "Prism.Page.AddConnectedAnimationService.SplitView.TabbedPivot",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$projectType == Blank & $framework == Prism & groupidentity == wts.Page.ImageGallery"
+    "wts.compositionFilter": "$projectType == SplitView|TabbedPivot & $framework == Prism & groupidentity == wts.Page.ImageGallery||wts.Page.ContentGrid"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

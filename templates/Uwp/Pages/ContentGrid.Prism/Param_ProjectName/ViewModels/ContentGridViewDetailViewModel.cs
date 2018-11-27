@@ -1,11 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Param_ItemNamespace.Core.Models;
+using Param_ItemNamespace.Core.Services;
+using Param_ItemNamespace.Services;
+
 using Prism.Windows.Mvvm;
+using Prism.Windows.Navigation;
+using Windows.UI.Xaml.Navigation;
 
 namespace Param_ItemNamespace.ViewModels
 {
     public class ContentGridViewDetailViewModel : ViewModelBase
     {
+        private readonly ISampleDataService _sampleDataService;
+        private readonly IConnectedAnimationService _connectedAnimationService;
+
         private SampleOrder _item;
 
         public SampleOrder Item
@@ -14,13 +24,29 @@ namespace Param_ItemNamespace.ViewModels
             set { SetProperty(ref _item, value); }
         }
 
-        public ContentGridViewDetailViewModel()
+        public ContentGridViewDetailViewModel(ISampleDataService sampleDataServiceInstance, IConnectedAnimationService connectedAnimationService)
         {
+            // TODO WTS: Replace this with your actual data
+            _sampleDataService = sampleDataServiceInstance;
+            _connectedAnimationService = connectedAnimationService;
         }
 
-        public void Initialize(SampleOrder item)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            Item = item;
+            base.OnNavigatedTo(e, viewModelState);
+            if (e.Parameter is long orderId)
+            {
+                Item = _sampleDataService.GetContentGridData().First(i => i.OrderId == orderId);
+            }
+        }
+
+        public override void OnNavigatingFrom(NavigatingFromEventArgs e, Dictionary<string, object> viewModelState, bool suspending)
+        {
+            base.OnNavigatingFrom(e, viewModelState, suspending);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(Item);
+            }
         }
     }
 }

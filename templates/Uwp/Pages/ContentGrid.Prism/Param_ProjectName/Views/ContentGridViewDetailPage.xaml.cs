@@ -14,11 +14,5 @@ namespace Param_ItemNamespace.Views
         }
 
         private ContentGridViewDetailViewModel ViewModel => DataContext as ContentGridViewDetailViewModel;
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            ViewModel.Initialize(e.Parameter as SampleOrder);
-        }
     }
 }
