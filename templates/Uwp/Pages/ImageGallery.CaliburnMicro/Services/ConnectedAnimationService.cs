@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls;
 

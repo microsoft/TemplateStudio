@@ -1,5 +1,6 @@
 ﻿//{[{
 using Param_RootNamespace.Services;
+using Windows.UI.Xaml.Controls;
 //}]}
 
 namespace Param_RootNamespace
@@ -9,15 +10,16 @@ namespace Param_RootNamespace
         public App()
         {
             InitializeComponent();
-        }        
+        }
 
         private async Task LaunchApplicationAsync(string page, object launchParam)
         {
             Window.Current.Activate();
-//{[{
+            //{[{
+            var rootFrame = Window.Current.Content as Frame;
             Container.RegisterInstance<IConnectedAnimationService>(new ConnectedAnimationService(rootFrame));
-//}]}
-        }       
+            //}]}
+        }
 
     }
 }
