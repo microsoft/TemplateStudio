@@ -11,7 +11,7 @@ namespace Param_ItemNamespace.Views
             get { return ViewModelLocator.Current.wts.ItemNameDetailViewModel; }
         }
 
-        public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;        
+        public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
         //}]}
     }

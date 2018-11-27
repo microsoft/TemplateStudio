@@ -38,4 +38,3 @@ namespace Param_ItemNamespace.ViewModels
         }
     }
 }
-

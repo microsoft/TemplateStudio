@@ -10,13 +10,12 @@ namespace Param_ItemNamespace.ViewModels
         public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
 //}]}
-
         private void OnItemClick(SampleOrder clickedItem)
         {
             if (clickedItem != null)
             {
 //{[{
-                NavigationService.Navigate(typeof(ContentGridDetailViewModel).FullName, clickedItem);
+                NavigationService.Navigate(typeof(wts.ItemNameDetailViewModel).FullName, clickedItem);
 //}]}
             }
         }

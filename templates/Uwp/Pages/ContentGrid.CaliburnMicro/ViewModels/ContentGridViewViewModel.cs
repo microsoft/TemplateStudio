@@ -28,7 +28,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             if (clickedItem != null)
             {
-                _navigationService.Navigate(typeof(ContentGridDetailPage), clickedItem);
+                _navigationService.Navigate(typeof(ContentGridViewDetailPage), clickedItem);
             }
         }
     }

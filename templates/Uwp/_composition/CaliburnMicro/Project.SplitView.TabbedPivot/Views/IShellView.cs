@@ -11,6 +11,6 @@ namespace wts.ItemName.Views
 
         WinUI.NavigationView GetNavigationView();
 
-        Frame GetFrame(); 
+        Frame GetFrame();
     }
 }

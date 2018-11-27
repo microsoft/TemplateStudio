@@ -9,7 +9,7 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class ContentGridViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
-        private ICommand _itemClickCommand;        
+        private ICommand _itemClickCommand;
 
         public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<SampleOrder>(OnItemClick));
 

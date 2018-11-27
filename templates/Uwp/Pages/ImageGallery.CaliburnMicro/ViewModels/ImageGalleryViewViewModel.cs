@@ -28,6 +28,7 @@ namespace Param_ItemNamespace.ViewModels
         protected override void OnInitialize()
         {
             base.OnInitialize();
+
             // TODO WTS: Replace this with your actual data
             Source.AddRange(SampleDataService.GetGallerySampleData());
         }
