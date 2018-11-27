@@ -25,17 +25,11 @@
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Param_ProjectName\\Services\\ConnectedAnimationService.cs"
-    },
-    {
-      "path": ".\\Param_ProjectName\\Services\\IConnectedAnimationService.cs"
-    },
-    {
       "path": ".\\Param_ProjectName\\Views\\ImageGalleryViewPage.xaml"
     },
     {
       "path": ".\\Param_ProjectName\\Views\\ImageGalleryViewPage.xaml.cs"
-    },    
+    },
     {
       "path": ".\\Param_ProjectName\\Views\\ImageGalleryViewDetailPage.xaml"
     },
