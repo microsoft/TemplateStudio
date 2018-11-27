@@ -1,11 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.ViewModels;
 using Param_ItemNamespace.Core.Services;
-using Microsoft.Toolkit.Uwp.UI.Animations;
 
 namespace Param_ItemNamespace.Views
 {
@@ -24,7 +22,7 @@ namespace Param_ItemNamespace.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel.Initialize(e.Parameter as SampleImage, e.NavigationMode);
+            ViewModel.Initialize(e.NavigationMode);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)

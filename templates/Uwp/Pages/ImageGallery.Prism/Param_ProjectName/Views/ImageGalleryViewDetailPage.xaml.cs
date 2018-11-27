@@ -1,10 +1,7 @@
 ﻿using System;
 using Param_ItemNamespace.ViewModels;
-using Param_ItemNamespace.Core.Models;
-using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
 
 namespace Param_ItemNamespace.Views
 {
@@ -15,12 +12,6 @@ namespace Param_ItemNamespace.Views
         public ImageGalleryViewDetailPage()
         {
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            ViewModel.Initialize(e.Parameter as SampleImage, e.NavigationMode);
         }
 
         private void OnPageKeyDown(object sender, KeyRoutedEventArgs e)

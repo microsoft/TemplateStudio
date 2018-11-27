@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
+using Microsoft.Toolkit.Uwp.UI.Animations;
+
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -47,7 +49,8 @@ namespace Param_ItemNamespace.Views
         {
             var selected = e.ClickedItem as SampleImage;
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
-            NavigationService.Navigate<ImageGalleryViewDetailPage>(selected);
+            NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(selected);
+            NavigationService.Navigate<ImageGalleryViewDetailPage>(selected.ID);
         }
     }
 }

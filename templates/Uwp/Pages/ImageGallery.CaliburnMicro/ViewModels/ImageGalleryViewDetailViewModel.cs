@@ -29,6 +29,8 @@ namespace Param_ItemNamespace.ViewModels
             }
         }
 
+        public string ID { get; set; }
+
         public BindableCollection<SampleImage> Source { get; } = new BindableCollection<SampleImage>();
 
         public ImageGalleryViewDetailViewModel(INavigationService navigationService, IConnectedAnimationService connectedAnimationService)
@@ -45,15 +47,15 @@ namespace Param_ItemNamespace.ViewModels
             Source.AddRange(SampleDataService.GetGallerySampleData());
         }
 
-        public void Initialize(SampleImage selectedImage, NavigationMode navigationMode)
+        public void Initialize(NavigationMode navigationMode)
         {
-            if (selectedImage != null && navigationMode == NavigationMode.New)
+            if (!string.IsNullOrEmpty(ID) && navigationMode == NavigationMode.New)
             {
-                SelectedImage = selectedImage;
+                SelectedImage = Source.First(i => i.ID == ID);
             }
             else
             {
-                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
+                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGallerySelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageId))
                 {
                     SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);

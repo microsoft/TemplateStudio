@@ -14,7 +14,7 @@ namespace Param_ItemNamespace.ViewModels
         {
 //^^
 //{[{
-            NavigationService.Navigate(typeof(wts.ItemNameDetailViewModel).FullName, selected);
+            NavigationService.Navigate(typeof(wts.ItemNameDetailViewModel).FullName, selected.ID);
 //}]}
         }
     }

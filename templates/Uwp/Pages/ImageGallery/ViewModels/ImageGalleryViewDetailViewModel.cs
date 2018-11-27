@@ -35,18 +35,18 @@ namespace Param_ItemNamespace.ViewModels
             Source = SampleDataService.GetGallerySampleData();
         }
 
-        public void Initialize(SampleImage selectedImage, NavigationMode navigationMode)
+        public void Initialize(string selectedImageID, NavigationMode navigationMode)
         {
-            if (selectedImage != null && navigationMode == NavigationMode.New)
+            if (!string.IsNullOrEmpty(selectedImageID) && navigationMode == NavigationMode.New)
             {
-                SelectedImage = selectedImage;
+                SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID); ;
             }
             else
             {
-                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
-                if (!string.IsNullOrEmpty(selectedImageId))
+                selectedImageID = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
+                if (!string.IsNullOrEmpty(selectedImageID))
                 {
-                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
+                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID);
                 }
             }
         }

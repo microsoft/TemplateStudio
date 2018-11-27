@@ -49,17 +49,17 @@ namespace Param_ItemNamespace.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            var selectedImage = e.Parameter as SampleImage;
-            if (selectedImage != null && e.NavigationMode == NavigationMode.New)
+            var selectedImageID = e.Parameter as string;
+            if (!string.IsNullOrEmpty(selectedImageID) && e.NavigationMode == NavigationMode.New)
             {
-                SelectedImage = selectedImage;
+                SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID); ;
             }
             else
             {
-                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey);
-                if (!string.IsNullOrEmpty(selectedImageId))
+                selectedImageID = ImagesNavigationHelper.GetImageId(ImageGalleryPage.ImageGallerySelectedIdKey);
+                if (!string.IsNullOrEmpty(selectedImageID))
                 {
-                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
+                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID);
                 }
             }
         }

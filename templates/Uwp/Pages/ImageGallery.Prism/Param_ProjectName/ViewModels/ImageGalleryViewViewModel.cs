@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 using Param_ItemNamespace.Helpers;
+using Param_ItemNamespace.Services;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
 using Windows.UI.Xaml.Controls;
@@ -16,6 +17,7 @@ namespace Param_ItemNamespace.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly ISampleDataService _sampleDataService;
+        private readonly IConnectedAnimationService _connectedAnimationService;
 
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
 
@@ -30,12 +32,13 @@ namespace Param_ItemNamespace.ViewModels
 
         public ICommand ItemSelectedCommand => _itemSelectedCommand ?? (_itemSelectedCommand = new DelegateCommand<ItemClickEventArgs>(OnsItemSelected));
 
-        public ImageGalleryViewViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance)
+        public ImageGalleryViewViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance, IConnectedAnimationService connectedAnimationService)
         {
             _navigationService = navigationServiceInstance;
 
             // TODO WTS: Replace this with your actual data
             _sampleDataService = sampleDataServiceInstance;
+            _connectedAnimationService = connectedAnimationService;
             Source = _sampleDataService.GetGallerySampleData();
         }
 
@@ -43,7 +46,8 @@ namespace Param_ItemNamespace.ViewModels
         {
             var selected = args.ClickedItem as SampleImage;
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
-            _navigationService.Navigate(PageTokens.ImageGalleryViewDetailPage, selected);
+            _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(selected);
+            _navigationService.Navigate(PageTokens.ImageGalleryViewDetailPage, selected.ID);
         }
     }
 }

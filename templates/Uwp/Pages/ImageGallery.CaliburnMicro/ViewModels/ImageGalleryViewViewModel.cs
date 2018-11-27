@@ -3,12 +3,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
-using Windows.UI.Xaml.Controls;
-
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Views;
+using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.ViewModels
 {
@@ -17,12 +15,14 @@ namespace Param_ItemNamespace.ViewModels
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
 
         private readonly INavigationService _navigationService;
+        private readonly IConnectedAnimationService _connectedAnimationService;
 
         public BindableCollection<SampleImage> Source { get; } = new BindableCollection<SampleImage>();
 
-        public ImageGalleryViewViewModel(INavigationService navigationService)
+        public ImageGalleryViewViewModel(INavigationService navigationService, IConnectedAnimationService connectedAnimationService)
         {
             _navigationService = navigationService;
+            _connectedAnimationService = connectedAnimationService;
         }
 
         protected override void OnInitialize()
@@ -36,7 +36,10 @@ namespace Param_ItemNamespace.ViewModels
         public void OnImageSelected(SampleImage image)
         {
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, image.ID);
-            _navigationService.Navigate(typeof(ImageGalleryViewDetailPage), image);
+            _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(image);
+            _navigationService.For<ImageGalleryViewDetailViewModel>()
+                .WithParam(v => v.ID, image.ID)
+                .Navigate();
         }
     }
 }

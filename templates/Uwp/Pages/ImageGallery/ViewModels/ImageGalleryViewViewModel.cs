@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
+using Microsoft.Toolkit.Uwp.UI.Animations;
+
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
@@ -35,6 +37,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             var selected = args.ClickedItem as SampleImage;
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
+            NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(selected);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Param_ItemNamespace.ViewModels
         {
 //^^
 //{[{
-            NavigationService.Navigate<wts.ItemNameDetailPage>(selected);
+            NavigationService.Navigate<wts.ItemNameDetailPage>(selected.ID);
 //}]}
         }
     }

@@ -19,7 +19,7 @@ namespace Param_ItemNamespace.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel.Initialize(e.Parameter as SampleImage, e.NavigationMode);
+            ViewModel.Initialize(e.Parameter as string, e.NavigationMode);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)

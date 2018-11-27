@@ -51,18 +51,22 @@ namespace Param_ItemNamespace.ViewModels
             Source = _sampleDataService.GetGallerySampleData();
         }
 
-        public void Initialize(SampleImage selectedImage, NavigationMode navigationMode)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            if (selectedImage != null && navigationMode == NavigationMode.New)
+            base.OnNavigatedTo(e, viewModelState);
+            var selectedImageID = e.Parameter as string;
+
+
+            if (!string.IsNullOrEmpty(selectedImageID) && e.NavigationMode == NavigationMode.New)
             {
-                SelectedImage = selectedImage;
+                SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID); ;
             }
             else
             {
-                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
-                if (!string.IsNullOrEmpty(selectedImageId))
+                selectedImageID = ImagesNavigationHelper.GetImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
+                if (!string.IsNullOrEmpty(selectedImageID))
                 {
-                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
+                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID);
                 }
             }
         }
