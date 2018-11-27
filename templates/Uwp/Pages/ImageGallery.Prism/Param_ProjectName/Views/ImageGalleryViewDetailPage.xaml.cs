@@ -23,14 +23,6 @@ namespace Param_ItemNamespace.Views
             ViewModel.Initialize(e.Parameter as SampleImage, e.NavigationMode);
         }
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            base.OnNavigatingFrom(e);
-            if (e.NavigationMode == NavigationMode.Back)
-            {
-            }
-        }
-
         private void OnPageKeyDown(object sender, KeyRoutedEventArgs e)
         {
             ViewModel.HandleKeyDown(e);
