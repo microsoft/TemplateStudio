@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
+using Param_ItemNamespace.Services;
 using Param_ItemNamespace.Views;
 
 namespace Param_ItemNamespace.ViewModels
@@ -9,6 +10,7 @@ namespace Param_ItemNamespace.ViewModels
     public class ContentGridViewViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private readonly INavigationService _navigationService;
+        private readonly IConnectedAnimationService _connectedAnimationService;
 
         public ObservableCollection<SampleOrder> Source
         {
@@ -19,16 +21,18 @@ namespace Param_ItemNamespace.ViewModels
             }
         }
 
-        public ContentGridViewViewModel(INavigationService navigationService)
+        public ContentGridViewViewModel(INavigationService navigationService, IConnectedAnimationService connectedAnimationService)
         {
             _navigationService = navigationService;
+            _connectedAnimationService = connectedAnimationService;
         }
 
         public void OnItemSelected(SampleOrder clickedItem)
         {
             if (clickedItem != null)
             {
-                _navigationService.Navigate(typeof(ContentGridViewDetailPage), clickedItem);
+                _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(clickedItem);
+                _navigationService.Navigate(typeof(ContentGridViewDetailPage), clickedItem.OrderId);
             }
         }
     }

@@ -21,7 +21,19 @@ namespace Param_ItemNamespace.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel.Initialize(e.Parameter as SampleOrder);
+            if (e.Parameter is long orderId)
+            {
+                ViewModel.Initialize(orderId);
+            }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                ViewModel.SetListDataItemForNextConnectedAnnimation();
+            }
         }
     }
 }

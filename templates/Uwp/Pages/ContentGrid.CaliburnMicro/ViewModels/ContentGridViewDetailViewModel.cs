@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Linq;
 using Caliburn.Micro;
 using Param_ItemNamespace.Core.Models;
+using Param_ItemNamespace.Core.Services;
+using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.ViewModels
 {
     public class ContentGridViewDetailViewModel : Screen
     {
+        private readonly IConnectedAnimationService _connectedAnimationService;
+
         private SampleOrder _item;
 
         public SampleOrder Item
@@ -14,13 +19,21 @@ namespace Param_ItemNamespace.ViewModels
             set { Set(ref _item, value); }
         }
 
-        public ContentGridViewDetailViewModel()
+        public ContentGridViewDetailViewModel(IConnectedAnimationService connectedAnimationService)
         {
+            _connectedAnimationService = connectedAnimationService;
         }
 
-        public void Initialize(SampleOrder item)
+        public void Initialize(long orderId)
         {
-            Item = item;
+            // TODO WTS: Replace this with your actual data
+            var data = SampleDataService.GetContentGridData();
+            Item = data.First(i => i.OrderId == orderId);
+        }
+
+        public void SetListDataItemForNextConnectedAnnimation()
+        {
+            _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(Item);
         }
     }
 }
