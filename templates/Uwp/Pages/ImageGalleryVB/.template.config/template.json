@@ -18,7 +18,8 @@
     "wts.dependencies": "wts.Feat.SampleDataService.VB",
     "wts.genGroup": "0",
     "wts.isHidden": "false",
-    "wts.rightClickEnabled":"true"
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "ImageGalleryView",
   "preferNameDirectory": true,
@@ -28,7 +29,7 @@
     },
     {
       "path": ".\\Views\\ImageGalleryViewPage.xaml.vb"
-    },    
+    },
     {
       "path": ".\\Views\\ImageGalleryViewDetailPage.xaml"
     },
