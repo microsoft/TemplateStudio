@@ -6,7 +6,7 @@
     "name": "Content Grid",
     "groupIdentity": "wts.Page.ContentGrid",
     "identity": "wts.Page.ContentGrid",
-    "description": "Content Grid Page",
+    "description": "This page allows you to add custom items in the form of an Adaptive Grid.",
     "tags": {
       "language": "C#",
       "type": "item",
