@@ -1,3 +1,2 @@
-﻿Registerkarten oben auf der Seite ermöglichen die schnelle Navigation zwischen Seiten.
-
-Das Pivotsteuerelement ist für die Navigation zwischen verwandten oder häufig aufgerufenen Seiten nützlich. Der Benutzer kann zwischen Pivotbereichen (Seiten) navigieren, indem er eine der Textkopfzeilen auswählt, die bereits angezeigt werden.
+﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
+This is recommended if you have 5 or fewer top level navigation items that are equally important.

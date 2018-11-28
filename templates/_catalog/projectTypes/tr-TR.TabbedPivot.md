@@ -1,3 +1,2 @@
-﻿Üstteki sekmeler, sayfalar arasında hızlı gezinti olanağı sağlar.
-
-Özet denetimi ilgili veya sıklıkla erişilen sayfalar arasında gezinti için kullanışlıdır. Kullanıcı her zaman görüntülenen metin başlıklarını seçerek özet bölmeler (sayfalar) arasında gezinebilir.
+﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
+This is recommended if you have 5 or fewer top level navigation items that are equally important.

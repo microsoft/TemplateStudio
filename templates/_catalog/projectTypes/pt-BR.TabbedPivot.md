@@ -1,3 +1,2 @@
-﻿Guias na parte superior permitem a navegação rápida entre as páginas.
-
-O controle de Tabela Dinâmica é útil para navegar entre páginas relacionadas ou acessadas com frequência. O usuário pode navegar entre painéis de tabelas dinâmicas (páginas) selecionando os cabeçalhos de texto que sempre são exibidos.
+﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
+This is recommended if you have 5 or fewer top level navigation items that are equally important.
