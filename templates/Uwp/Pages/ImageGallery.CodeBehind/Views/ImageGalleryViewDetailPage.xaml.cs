@@ -52,7 +52,7 @@ namespace Param_ItemNamespace.Views
             var selectedImageID = e.Parameter as string;
             if (!string.IsNullOrEmpty(selectedImageID) && e.NavigationMode == NavigationMode.New)
             {
-                SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID); ;
+                SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID);
             }
             else
             {
