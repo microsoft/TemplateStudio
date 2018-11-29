@@ -1,4 +1,4 @@
-Imports Param_ItemNamespace.Core.Models
+﻿Imports Param_ItemNamespace.Core.Models
 Imports Param_ItemNamespace.Core.Services
 
 Namespace ViewModels
