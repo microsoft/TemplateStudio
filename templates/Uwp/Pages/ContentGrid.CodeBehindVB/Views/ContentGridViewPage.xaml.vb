@@ -18,7 +18,7 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Private Sub OnItemClick(ByVal sender As Object, ByVal e As ItemClickEventArgs)
+        Private Sub OnItemClick(sender As Object, e As ItemClickEventArgs)
             Dim item = TryCast(e.ClickedItem, SampleOrder)
             If item IsNot Nothing Then
                 NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(item)
