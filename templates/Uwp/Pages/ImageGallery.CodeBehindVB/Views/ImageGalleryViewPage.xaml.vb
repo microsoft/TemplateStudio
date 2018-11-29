@@ -29,7 +29,7 @@ Namespace Views
             InitializeComponent()
         End Sub
 
-        Protected Overrides Async Sub OnNavigatedTo(e As NavigationEventArgs)
+        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
             If e.NavigationMode = NavigationMode.Back Then
                 Dim selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey)
