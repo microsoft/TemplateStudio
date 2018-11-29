@@ -109,34 +109,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
-        {
-            foreach (SolutionConfiguration solConfiguration in Dte.Solution?.SolutionBuild?.SolutionConfigurations)
-            {
-                if (solConfiguration.Name == configurationName)
-                {
-                    foreach (SolutionContext context in solConfiguration.SolutionContexts)
-                    {
-                        if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
-                        {
-                            solConfiguration.Activate();
-                        }
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        private void SetStartupProject(Project project)
-        {
-            if (project != null)
-            {
-                var solution = GetSolution();
-                solution.Properties.Item("StartupProject").Value = project.Name;
-            }
-        }
-
         public override string GetActiveProjectNamespace()
         {
             var p = GetActiveProject();
@@ -147,16 +119,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return null;
-        }
-
-        public override void CleanSolution()
-        {
-            Dte.Solution.SolutionBuild.Clean();
-        }
-
-        public override void SaveSolution()
-        {
-            Dte.Solution.SaveAs(Dte.Solution.FullName);
         }
 
         public override void ShowStatusBarMessage(string message)
@@ -241,62 +203,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             return GetProjectTypeGuid(project);
         }
 
-        private string GetProjectTypeGuid(Project project)
-        {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            if (project != null)
-            {
-                VSSolution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
-
-                if (hierarchy is IVsAggregatableProjectCorrected aggregatableProject)
-                {
-                    aggregatableProject.GetAggregateProjectTypeGuids(out string projTypeGuids);
-
-                    return projTypeGuids;
-                }
-            }
-
-            return string.Empty;
-        }
-
-        private Project GetProjectByGuid(string projectTypeGuid)
-        {
-            foreach (var p in Dte?.Solution?.Projects?.Cast<Project>())
-            {
-                var projectGuid = GetProjectTypeGuid(p);
-
-                if (projectGuid.ToUpperInvariant().Split(';').Contains($"{{{projectTypeGuid}}}"))
-                {
-                    return p;
-                }
-            }
-
-            return null;
-        }
-
-        protected override string GetSelectedItemPath()
-        {
-            if (Dte.SelectedItems.Count > 0)
-            {
-                var item = Dte.SelectedItems.Item(1);
-
-                if (item.Project != null)
-                {
-                    return Path.GetDirectoryName(item.Project.FullName);
-                }
-
-                if (item.ProjectItem != null)
-                {
-                    string fullPath = $"{item.ProjectItem.Properties.GetSafeValue("FullPath")}";
-
-                    return Path.GetDirectoryName(fullPath);
-                }
-            }
-
-            return GetActiveProjectPath();
-        }
-
         public override string GetActiveProjectName()
         {
             var p = GetActiveProject();
@@ -340,83 +246,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 return null;
             }
-        }
-
-        private Project GetActiveProject()
-        {
-            Project p = null;
-
-            try
-            {
-                if (_dte != null)
-                {
-                    Array projects = (Array)Dte.ActiveSolutionProjects;
-
-                    if (projects?.Length >= 1)
-                    {
-                        p = (Project)projects.GetValue(0);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
-                p = null;
-            }
-
-            return p;
-        }
-
-        private Project GetProjectByPath(string projFile)
-        {
-            Project p = null;
-            try
-            {
-                if (_dte != null)
-                {
-                    SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-                    VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
-                    ErrorHandler.ThrowOnFailure(hierarchy.GetProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ExtObject, out object obj));
-                    p = (Project)obj;
-                }
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddItemsToProject, ex).FireAndForget();
-            }
-
-            return p;
-        }
-
-        private Solution GetSolution()
-        {
-            Solution s = null;
-
-            try
-            {
-                if (_dte != null)
-                {
-                    s = Dte.Solution;
-                }
-            }
-            catch (Exception)
-            {
-                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
-                s = null;
-            }
-
-            return s;
-        }
-
-        private async System.Threading.Tasks.Task ShowTaskListAsync()
-        {
-            // JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
-            await System.Threading.Tasks.Task.Delay(1000);
-
-            var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
-
-            window.Activate();
         }
 
         public override void WriteOutput(string data)
@@ -476,45 +305,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return projectGuid;
-        }
-
-        private void SolutionEvents_Opened()
-        {
-            Dte.ExecuteCommand("Project.Overview");
-            Dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
-        }
-
-        private void Collapse(UIHierarchyItem item)
-        {
-            foreach (UIHierarchyItem subitem in item.UIHierarchyItems)
-            {
-                Collapse(subitem);
-            }
-
-            item.UIHierarchyItems.Expanded = false;
-        }
-
-        private static bool IsInternetAvailable()
-        {
-            bool internet = NetworkInterface.GetIsNetworkAvailable();
-            if (internet)
-            {
-                try
-                {
-                    // Based on https://technet.microsoft.com/en-us/library/cc766017(v=ws.10).aspx
-                    using (var client = new System.Net.WebClient())
-                    {
-                        var ncsi = client.DownloadString("http://www.msftncsi.com/ncsi.txt");
-                        internet = ncsi == "Microsoft NCSI";
-                    }
-                }
-                catch
-                {
-                    internet = false;
-                }
-            }
-
-            return internet;
         }
 
         public override void OpenItems(params string[] itemsFullPath)
@@ -648,6 +438,161 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
+        private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
+        {
+            foreach (SolutionConfiguration solConfiguration in Dte.Solution?.SolutionBuild?.SolutionConfigurations)
+            {
+                if (solConfiguration.Name == configurationName)
+                {
+                    foreach (SolutionContext context in solConfiguration.SolutionContexts)
+                    {
+                        if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
+                        {
+                            solConfiguration.Activate();
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private void SetStartupProject(Project project)
+        {
+            if (project != null)
+            {
+                var solution = GetSolution();
+                solution.Properties.Item("StartupProject").Value = project.Name;
+            }
+        }
+
+        private string GetProjectTypeGuid(Project project)
+        {
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            if (project != null)
+            {
+                VSSolution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
+
+                if (hierarchy is IVsAggregatableProjectCorrected aggregatableProject)
+                {
+                    aggregatableProject.GetAggregateProjectTypeGuids(out string projTypeGuids);
+
+                    return projTypeGuids;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        private Project GetProjectByGuid(string projectTypeGuid)
+        {
+            foreach (var p in Dte?.Solution?.Projects?.Cast<Project>())
+            {
+                var projectGuid = GetProjectTypeGuid(p);
+
+                if (projectGuid.ToUpperInvariant().Split(';').Contains($"{{{projectTypeGuid}}}"))
+                {
+                    return p;
+                }
+            }
+
+            return null;
+        }
+
+        private Project GetActiveProject()
+        {
+            Project p = null;
+
+            try
+            {
+                if (_dte != null)
+                {
+                    Array projects = (Array)Dte.ActiveSolutionProjects;
+
+                    if (projects?.Length >= 1)
+                    {
+                        p = (Project)projects.GetValue(0);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                p = null;
+            }
+
+            return p;
+        }
+
+        private Project GetProjectByPath(string projFile)
+        {
+            Project p = null;
+            try
+            {
+                if (_dte != null)
+                {
+                    SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                    VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
+                    ErrorHandler.ThrowOnFailure(hierarchy.GetProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ExtObject, out object obj));
+                    p = (Project)obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddItemsToProject, ex).FireAndForget();
+            }
+
+            return p;
+        }
+
+        private Solution GetSolution()
+        {
+            Solution s = null;
+
+            try
+            {
+                if (_dte != null)
+                {
+                    s = Dte.Solution;
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                s = null;
+            }
+
+            return s;
+        }
+
+        private async System.Threading.Tasks.Task ShowTaskListAsync()
+        {
+            // JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
+            await System.Threading.Tasks.Task.Delay(1000);
+
+            var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
+
+            window.Activate();
+        }
+
+        private void SolutionEvents_Opened()
+        {
+            Dte.ExecuteCommand("Project.Overview");
+            Dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
+        }
+
+        private void Collapse(UIHierarchyItem item)
+        {
+            foreach (UIHierarchyItem subitem in item.UIHierarchyItems)
+            {
+                Collapse(subitem);
+            }
+
+            item.UIHierarchyItems.Expanded = false;
+        }
+
         private async System.Threading.Tasks.Task AddNugetsForProjectAsync(string projectPath, IEnumerable<NugetReference> projectNugets)
         {
             if (IsCpsProject(projectPath))
@@ -667,7 +612,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             foreach (var nuget in projectNugets)
             {
-                sb.AppendLine(string.Format(StringRes.ErrorNugetPackageTemplate, nuget.PackageId, nuget.Version));
+                sb.AppendLine(string.Format(StringRes.ErrorMissingNugetPackagesInstallTemplate, nuget.PackageId, nuget.Version));
             }
 
             var missingNugetPackagesInfo = string.Format(StringRes.ErrorMissingNugetPackagesTemplate, relPath, sb.ToString());

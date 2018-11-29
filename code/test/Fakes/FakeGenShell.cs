@@ -126,14 +126,6 @@ namespace Microsoft.Templates.Fakes
             return GenContext.Current.ProjectName;
         }
 
-        public override void CleanSolution()
-        {
-        }
-
-        public override void SaveSolution()
-        {
-        }
-
         public override void ShowStatusBarMessage(string message)
         {
             _changeStatus?.Invoke(message);
@@ -178,11 +170,6 @@ namespace Microsoft.Templates.Fakes
         public override string GetActiveProjectLanguage()
         {
             return _language;
-        }
-
-        protected override string GetSelectedItemPath()
-        {
-            return string.Empty;
         }
 
         private static string FindProject(string path)

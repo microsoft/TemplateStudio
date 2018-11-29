@@ -124,13 +124,6 @@ namespace Microsoft.Templates.Core.Gen
             {
                 await postAction.ExecuteAsync();
             }
-
-            // New files aren't listed as project file modifications so any modifications should be new package references, etc.
-            if (result.ModifiedFiles.Any(f => Path.GetExtension(f).EndsWith("proj", StringComparison.OrdinalIgnoreCase)))
-            {
-                // Forcing a package restore so don't get warnings in the designer once addition is complete
-                GenContext.ToolBox.Shell.RestorePackages();
-            }
         }
 
         private async Task ExecuteOutputGenerationPostActionsAsync(TempGenerationResult result)

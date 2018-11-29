@@ -105,7 +105,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             GenContext.ToolBox.Shell.CollapseSolutionItems();
             GenContext.ToolBox.Shell.OpenProjectOverview();
             GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
-
+            GenContext.ToolBox.Shell.ShowTaskList();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)

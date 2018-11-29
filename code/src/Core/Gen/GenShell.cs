@@ -20,8 +20,6 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract string GetActiveProjectLanguage();
 
-        protected abstract string GetSelectedItemPath();
-
         public abstract void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid);
 
         public abstract void ShowStatusBarMessage(string message);
@@ -29,10 +27,6 @@ namespace Microsoft.Templates.Core.Gen
         public abstract Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences);
 
         public abstract void AddItems(params string[] itemsFullPath);
-
-        public abstract void CleanSolution();
-
-        public abstract void SaveSolution();
 
         public abstract void AddSdkReferencesToProjects(List<SdkReference> sdkReferences);
 
@@ -64,15 +58,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void OpenItems(params string[] itemsFullPath);
 
-        public virtual void RestorePackages()
-        {
-        }
-
         public virtual void CollapseSolutionItems()
-        {
-        }
-
-        public virtual void RefreshProject(string projectPath)
         {
         }
 

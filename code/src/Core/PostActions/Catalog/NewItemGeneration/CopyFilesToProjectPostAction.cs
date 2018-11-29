@@ -33,13 +33,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                 var destDirectory = Path.GetDirectoryName(destFilePath);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
-
-                if (Path.GetExtension(file).EndsWith("proj", StringComparison.OrdinalIgnoreCase))
-                {
-                    Gen.GenContext.ToolBox.Shell.RefreshProject(file);
-                    GenContext.ToolBox.Shell.SaveSolution();
-                    GenContext.ToolBox.Shell.CleanSolution();
-                }
             }
 
             foreach (var file in Config.NewFiles)
