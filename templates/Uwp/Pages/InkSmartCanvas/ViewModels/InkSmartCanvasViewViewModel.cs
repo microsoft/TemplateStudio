@@ -171,8 +171,6 @@ namespace Param_ItemNamespace.ViewModels
 
         private bool CanSaveInkFile() => _strokeService != null && _strokeService.GetStrokes().Any();
 
-        private bool CanExportAsImage() => _strokeService != null && _strokeService.GetStrokes().Any();
-
         private bool CanTransformTextAndShapes() => _strokeService != null && _strokeService.GetStrokes().Any();
 
         private bool CanClearAll() => (_strokeService != null && _strokeService.GetStrokes().Any()) ||

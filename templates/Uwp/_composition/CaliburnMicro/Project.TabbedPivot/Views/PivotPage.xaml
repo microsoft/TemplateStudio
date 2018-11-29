@@ -18,7 +18,7 @@
             </i:Interaction.Behaviors>
              <Pivot.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}" />
+                    <TextBlock Text="{Binding DisplayName}" OpticalMarginAlignment="TrimSideBearings" />
                 </DataTemplate>
             </Pivot.HeaderTemplate>
             <Pivot.ItemTemplate>
