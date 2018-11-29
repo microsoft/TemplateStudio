@@ -6,6 +6,7 @@ Imports Microsoft.Toolkit.Uwp.UI.Animations
 Namespace ViewModels
     Public Class ContentGridViewViewModel
         Inherits System.ComponentModel.INotifyPropertyChanged
+
         Public ReadOnly Property Source As ObservableCollection(Of SampleOrder)
             Get
                 ' TODO WTS: Replace this with your actual data

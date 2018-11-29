@@ -3,7 +3,8 @@ Imports Param_ItemNamespace.Core.Services
 
 Namespace ViewModels
     Public Class ContentGridViewDetailViewModel
-    Inherits System.ComponentModel.INotifyPropertyChanged
+        Inherits System.ComponentModel.INotifyPropertyChanged
+
         Private _item As SampleOrder
 
         Public Property Item As SampleOrder
