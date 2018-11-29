@@ -10,7 +10,7 @@ Namespace ViewModels
             If item IsNot Nothing Then
 '^^
 '{[{
-                NavigationService.Navigate(Of ContentGridDetailPage)(item.OrderId)
+                NavigationService.Navigate(Of wts.ItemNameDetailPage)(item.OrderId)
 '}]}
             End If
         End Sub

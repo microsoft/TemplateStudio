@@ -39,7 +39,7 @@ namespace Param_ItemNamespace.ViewModels
         {
             if (!string.IsNullOrEmpty(selectedImageID) && navigationMode == NavigationMode.New)
             {
-                SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID); ;
+                SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID);
             }
             else
             {

@@ -56,7 +56,7 @@ namespace Param_ItemNamespace.Views
             }
             else
             {
-                selectedImageID = ImagesNavigationHelper.GetImageId(ImageGalleryPage.ImageGallerySelectedIdKey);
+                selectedImageID = ImagesNavigationHelper.GetImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageID))
                 {
                     SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID);
