@@ -1,3 +1,3 @@
-﻿//{[{
+﻿'{[{
 Imports GalaSoft.MvvmLight
-//}]}
+'}]}
