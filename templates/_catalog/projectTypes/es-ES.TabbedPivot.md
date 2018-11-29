@@ -1,3 +1,2 @@
-﻿Las pestañas que aparecen en la parte superior permiten navegar rápidamente entre las páginas.
-
-El control Pivot es útil para navegar entre páginas relacionadas o a las que se accede con frecuencia. El usuario puede navegar entre los paneles de pivot (páginas) seleccionando en los encabezados del texto que se muestran siempre.
+﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
+This is recommended if you have 5 or fewer top level navigation items that are equally important.

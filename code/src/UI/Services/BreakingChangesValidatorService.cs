@@ -20,6 +20,7 @@ namespace Microsoft.Templates.UI.Services
             new HasHamburgerMenuValidator(),
             new HasOldMvvmLightLocatorValidator(),
             new HasOldNavigationViewValidator(),
+            new HasPivotValidator(),
         };
 
         public static ValidationResult Validate()
