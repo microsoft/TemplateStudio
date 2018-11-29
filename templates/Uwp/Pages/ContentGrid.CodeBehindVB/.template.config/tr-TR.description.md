@@ -1,0 +1,1 @@
+﻿ Bu sayfa, özel içeriği ekran boyutu değişikliğine yanıt veren bir GridView içinde eklemenizi sağlar. [Uyarlamalı Kılavuz Görünümü hakkında daha fazla bilgi edinin.](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)
