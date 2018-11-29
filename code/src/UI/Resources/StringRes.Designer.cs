@@ -1303,6 +1303,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}projectTypes/updatetohorizontalnavview.md.
+        /// </summary>
+        public static string ValidatorHasPivotLink {
+            get {
+                return ResourceManager.GetString("ValidatorHasPivotLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorHasPivotLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasPivotLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Template Studio is now using horizontal NavigationView in Pivot projects. .
+        /// </summary>
+        public static string ValidatorHasPivotMessage {
+            get {
+                return ResourceManager.GetString("ValidatorHasPivotMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Windows Template Studio.
         /// </summary>
         public static string WindowsTemplateStudio {

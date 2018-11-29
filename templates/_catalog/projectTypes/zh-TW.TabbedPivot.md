@@ -1,3 +1,2 @@
-﻿上方的索引標籤可讓您在不同頁面之間快速導覽。
-
-樞紐控制項對於導覽相關頁面或經常存取的頁面非常實用。使用者可選取永遠顯示的文字標頭，在不同的樞紐窗格 (頁面) 之間導覽。
+﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
+This is recommended if you have 5 or fewer top level navigation items that are equally important.

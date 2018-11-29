@@ -1,3 +1,2 @@
-﻿Вкладки наверху позволяют быстро перемещаться по страницам.
-
-Элемент управления "Сводка" полезен для навигации между связанными или часто посещаемыми страницами. Пользователь может перемещаться по панелям сводки (страницам), выбирая текстовые заголовки, которые отображаются всегда.
+﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
+This is recommended if you have 5 or fewer top level navigation items that are equally important.

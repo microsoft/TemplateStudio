@@ -1,3 +1,2 @@
-﻿Le schede nella parte superiore permettono la navigazione veloce tra pagine.
-
-Il controllo Pivot è utile per navigare tra pagine correlate o a cui si accede di frequente. L'utente può navigare tra riquadri pivot (pagine) selezionandole nelle intestazioni di testo che sono sempre visualizzate.
+﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
+This is recommended if you have 5 or fewer top level navigation items that are equally important.
