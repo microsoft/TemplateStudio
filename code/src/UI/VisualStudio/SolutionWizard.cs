@@ -102,11 +102,10 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private static void PostGenerationActions()
         {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusBarRestoring);
-            GenContext.ToolBox.Shell.RestorePackages();
-
             GenContext.ToolBox.Shell.CollapseSolutionItems();
             GenContext.ToolBox.Shell.OpenProjectOverview();
+            GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
+
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)

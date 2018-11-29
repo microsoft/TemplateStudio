@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Text;
 using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
@@ -583,15 +584,21 @@ namespace Microsoft.Templates.UI.VisualStudio
             foreach (var projectPath in projectReferences.Keys)
             {
                 var project = GetProjectByPath(projectPath);
-                var proj = (VSProject)project.Object;
-
-                foreach (var referenceToAdd in projectReferences[projectPath])
+                if (project != null)
                 {
-                    var referenceProject = GetProjectByPath(referenceToAdd);
-                    proj.References.AddProject(referenceProject);
-                }
+                    var proj = (VSProject)project.Object;
 
-                project.Save();
+                    foreach (var referenceToAdd in projectReferences[projectPath])
+                    {
+                        var referenceProject = GetProjectByPath(referenceToAdd);
+                        if (referenceProject != null)
+                        {
+                            proj.References.AddProject(referenceProject);
+                        }
+                    }
+
+                    project.Save();
+                }
             }
         }
 
@@ -634,7 +641,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     await AddNugetsForProjectAsync(project.ProjectPath, nugetReferences.Where(n => n.Project == project.ProjectPath));
                 }
             }
-            catch (Exception )
+            catch (Exception)
             {
                 // TODO: Handle this
                 AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableAddProjectToSolution).FireAndForget();
@@ -653,25 +660,49 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        private void AddNugetPackageToProject(string projectPath, IEnumerable<NugetReference> projectNugets)
+        private void WriteMissingNugetPackagesInfo(string projectPath, IEnumerable<NugetReference> projectNugets)
         {
-            var project = GetProjectByPath(projectPath);
+            var relPath = projectPath.Replace(Directory.GetParent(GenContext.Current.DestinationPath).FullName, string.Empty);
+            var sb = new StringBuilder();
 
-            foreach (var reference in projectNugets)
+            foreach (var nuget in projectNugets)
             {
-                var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-                var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
-                var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
-
-                if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
-                {
-                    var installer = componentModel.GetService<IVsPackageInstaller>();
-
-                    installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
-                }
+                sb.AppendLine(string.Format(StringRes.ErrorNugetPackageTemplate, nuget.PackageId, nuget.Version));
             }
 
-            project.Save();
+            var missingNugetPackagesInfo = string.Format(StringRes.ErrorMissingNugetPackagesTemplate, relPath, sb.ToString());
+            var fileName = Path.Combine(GenContext.Current.DestinationPath, "ERROR_NugetPackages_Missing.txt");
+
+            File.AppendAllText(fileName, missingNugetPackagesInfo);
+            GenContext.Current.FilesToOpen.Add(fileName);
+        }
+
+        private void AddNugetPackageToProject(string projectPath, IEnumerable<NugetReference> projectNugets)
+        {
+            try
+            {
+                var project = GetProjectByPath(projectPath);
+
+                foreach (var reference in projectNugets)
+                {
+                    var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+                    var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+                    var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
+
+                    if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
+                    {
+                        var installer = componentModel.GetService<IVsPackageInstaller>();
+
+                        installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
+                    }
+                }
+
+                project.Save();
+            }
+            catch (Exception)
+            {
+                WriteMissingNugetPackagesInfo(projectPath, projectNugets);
+            }
         }
 
         private async System.Threading.Tasks.Task AddNugetPackagesToCPSProjectAsync(string projFile, IEnumerable<NugetReference> projectNugets)
