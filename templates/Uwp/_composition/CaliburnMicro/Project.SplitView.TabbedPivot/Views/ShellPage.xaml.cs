@@ -1,6 +1,7 @@
 ﻿using wts.ItemName.ViewModels;
 using Caliburn.Micro;
-using Microsoft.UI.Xaml.Controls;
+using WinUI = Microsoft.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls;
 
 namespace wts.ItemName.Views
 {
@@ -20,9 +21,14 @@ namespace wts.ItemName.Views
             return navigationService;
         }
 
-        public NavigationView GetNavigationView()
+        public WinUI.NavigationView GetNavigationView()
         {
             return navigationView;
+        }
+
+        public Frame GetFrame()
+        {
+            return shellFrame;
         }
     }
 }

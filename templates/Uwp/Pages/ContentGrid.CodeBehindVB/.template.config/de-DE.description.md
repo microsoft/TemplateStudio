@@ -1,0 +1,1 @@
+﻿ Auf dieser Seite können Sie benutzerdefinierte Inhalte in einer Rasteransicht hinzufügen, die sich an die Bildschirmgröße anpasst. [Weitere Informationen zur adaptiven Rasteransicht](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)

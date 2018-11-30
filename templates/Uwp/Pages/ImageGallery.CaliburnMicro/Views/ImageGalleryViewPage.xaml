@@ -4,25 +4,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:models="using:Param_ItemNamespace.Core.Models"
+    xmlns:models="using:Param_ItemNamespace.Core.Models"    
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:cm="using:Caliburn.Micro"
     NavigationCacheMode="Required"
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
         <GridView
-            x:Name="gridView"
             ItemsSource="{x:Bind ViewModel.Source}"
             IsItemClickEnabled="True"
             Padding="{StaticResource MediumLeftRightMargin}"
+            animations:Connected.ListItemElementName="thumbnailImage"
+            animations:Connected.ListItemKey="galleryAnimationKey"
             cm:Message.Attach="[Event ItemClick] = [OnImageSelected($clickedItem)]"
             SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">
                     <Image
-                        x:Name="galleryImage"
+                        x:Name="thumbnailImage"
                         Style="{StaticResource ThumbnailImageStyle}"
                         Source="{x:Bind Source}"
                         AutomationProperties.Name="{x:Bind Name}"

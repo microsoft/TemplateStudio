@@ -5,24 +5,30 @@ namespace Param_ItemNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService
     {
+//{[{
+        private static ObservableCollection<SampleImage> _gallerySampleData;
+//}]}
 //^^
 //{[{
 
         // TODO WTS: Remove this once your image gallery page is displaying real data
         public ObservableCollection<SampleImage> GetGallerySampleData()
         {
-            var data = new ObservableCollection<SampleImage>();
-            for (int i = 1; i <= 10; i++)
+            if (_gallerySampleData == null)
             {
-                data.Add(new SampleImage()
+                _gallerySampleData = new ObservableCollection<SampleImage>();
+                for (int i = 1; i <= 10; i++)
                 {
-                    ID = $"{i}",
-                    Source = $"ms-appx:///Assets/SampleData/SamplePhoto{i}.png",
-                    Name = $"Image sample {i}"
-                });
+                    _gallerySampleData.Add(new SampleImage()
+                    {
+                        ID = $"{i}",
+                        Source = $"ms-appx:///Assets/SampleData/SamplePhoto{i}.png",
+                        Name = $"Image sample {i}"
+                    });
+                }
             }
 
-            return data;
+            return _gallerySampleData;
         }
 //}]}
     }
