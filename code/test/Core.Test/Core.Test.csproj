@@ -200,6 +200,9 @@
     <Compile Include="Locations\RemoteTemplateSourceTests.cs" />
     <Compile Include="Locations\UnitTestsTemplatesSource.cs" />
     <Compile Include="Packaging\TemplatePackageTests.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectReferenceToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddSdkReferenceToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddNugetReferenceToContextPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\CreateSummaryPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\AddItemToContextPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\FakeCreationPath.cs" />
