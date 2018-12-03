@@ -1,10 +1,9 @@
 ﻿<Page
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 <!--{[{-->
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:wts.ItemName.Behaviors"
 <!--}]}-->
-    mc:Ignorable="d">    
+    mc:Ignorable="d">
 
     <winui:NavigationView
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
