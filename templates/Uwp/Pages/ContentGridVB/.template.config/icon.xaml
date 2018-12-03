@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
-  <Canvas Width="48" Height="48">
-    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Fill="#000000">
+  <Canvas Name="SVGRoot" Width="48" Height="48">
+    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Fill="#FF000000">
       <Path.Data>
-        <PathGeometry Figures="M28.414 4H7V44H39V14.586ZM29 7.414 35.586 14H29ZM9 42V6H27V16H37V42Z" FillRule="NonZero"/>
+        <PathGeometry Figures="m 6.375 23.4375 v -17.5 h 17.5 v 17.5 z m 2.5 -15 v 12.5 h 12.5 v -12.5 z m -2.5 35 v -17.5 h 17.5 v 17.5 z m 2.5 -15 v 12.5 h 12.5 v -12.5 z m 17.5 15 v -17.5 h 17.5 v 17.5 z m 2.5 -15 v 12.5 h 12.5 v -12.5 z m -2.5 -22.5 h 17.5 v 17.5 h -17.5 z m 15 15 v -12.5 h -12.5 v 12.5 z" FillRule="NonZero"/>
       </Path.Data>
     </Path>
   </Canvas>
