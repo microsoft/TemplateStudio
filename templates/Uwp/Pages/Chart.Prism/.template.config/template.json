@@ -14,7 +14,7 @@
     "wts.framework": "Prism",
 	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "7",
+    "wts.displayOrder": "9",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
     "wts.dependencies": "wts.Feat.SampleDataService.Prism|wts.Feat.CoreProject",
     "wts.genGroup": "0",
