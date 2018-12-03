@@ -8,35 +8,37 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:models="using:Param_ItemNamespace.Core.Models"
     mc:Ignorable="d">
-    
-    <controls:AdaptiveGridView
-        ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
-        ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
-        StretchContentForSingleRow="False"
-        SelectionMode="None"
-        IsItemClickEnabled="True"
-        Padding="{StaticResource MediumLeftRightMargin}"
-        animations:Connected.ListItemElementName="itemThumbnail"
-        animations:Connected.ListItemKey="animationKeyContentGridView"
-        DesiredWidth="180"
-        ItemHeight="160">
-        <controls:AdaptiveGridView.ItemTemplate>
-            <DataTemplate x:DataType="models:SampleOrder">
-                <Grid
-                    x:Name="itemThumbnail"
-                    Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
-                    Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <FontIcon                            
-                            Glyph="{x:Bind Symbol}" />
-                        <TextBlock
-                            Margin="{StaticResource XXSmallTopMargin}"
-                            HorizontalAlignment="Center"
-                            Text="{x:Bind Company}"
-                            Style="{ThemeResource BodyTextStyle}" />
-                    </StackPanel>
-                </Grid>
-            </DataTemplate>
-        </controls:AdaptiveGridView.ItemTemplate>
-    </controls:AdaptiveGridView>
+
+    <Grid x:Name="ContentArea">
+        <controls:AdaptiveGridView
+            ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
+            ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
+            StretchContentForSingleRow="False"
+            SelectionMode="None"
+            IsItemClickEnabled="True"
+            Padding="{StaticResource MediumLeftRightMargin}"
+            animations:Connected.ListItemElementName="itemThumbnail"
+            animations:Connected.ListItemKey="animationKeyContentGridView"
+            DesiredWidth="180"
+            ItemHeight="160">
+            <controls:AdaptiveGridView.ItemTemplate>
+                <DataTemplate x:DataType="models:SampleOrder">
+                    <Grid
+                        x:Name="itemThumbnail"
+                        Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
+                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <FontIcon
+                                Glyph="{x:Bind Symbol}" />
+                            <TextBlock
+                                Margin="{StaticResource XXSmallTopMargin}"
+                                HorizontalAlignment="Center"
+                                Text="{x:Bind Company}"
+                                Style="{ThemeResource BodyTextStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </controls:AdaptiveGridView.ItemTemplate>
+        </controls:AdaptiveGridView>
+    </Grid>
 </Page>

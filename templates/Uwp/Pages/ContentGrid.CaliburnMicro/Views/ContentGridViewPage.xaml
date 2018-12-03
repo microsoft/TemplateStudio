@@ -6,38 +6,40 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
-    xmlns:models="using:Param_ItemNamespace.Core.Models"    
+    xmlns:models="using:Param_ItemNamespace.Core.Models"
     xmlns:cm="using:Caliburn.Micro"
     mc:Ignorable="d">
-    
-    <controls:AdaptiveGridView
-        ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
-        cm:Message.Attach="[Event ItemClick] = [OnItemSelected($clickedItem)]"
-        StretchContentForSingleRow="False"
-        SelectionMode="None"
-        IsItemClickEnabled="True"
-        Padding="{StaticResource MediumLeftRightMargin}"
-        animations:Connected.ListItemElementName="itemThumbnail"
-        animations:Connected.ListItemKey="animationKeyContentGridView"
-        DesiredWidth="180"
-        ItemHeight="160">
-        <controls:AdaptiveGridView.ItemTemplate>
-            <DataTemplate x:DataType="models:SampleOrder">
-                <Grid
-                    x:Name="itemThumbnail"
-                    Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
-                    Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <FontIcon                            
-                            Glyph="{x:Bind Symbol}" />
-                        <TextBlock
-                            Margin="{StaticResource XXSmallTopMargin}"
-                            HorizontalAlignment="Center"
-                            Text="{x:Bind Company}"
-                            Style="{ThemeResource BodyTextStyle}" />
-                    </StackPanel>
-                </Grid>
-            </DataTemplate>
-        </controls:AdaptiveGridView.ItemTemplate>
-    </controls:AdaptiveGridView>
+
+    <Grid x:Name="ContentArea">
+        <controls:AdaptiveGridView
+            ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
+            cm:Message.Attach="[Event ItemClick] = [OnItemSelected($clickedItem)]"
+            StretchContentForSingleRow="False"
+            SelectionMode="None"
+            IsItemClickEnabled="True"
+            Padding="{StaticResource MediumLeftRightMargin}"
+            animations:Connected.ListItemElementName="itemThumbnail"
+            animations:Connected.ListItemKey="animationKeyContentGridView"
+            DesiredWidth="180"
+            ItemHeight="160">
+            <controls:AdaptiveGridView.ItemTemplate>
+                <DataTemplate x:DataType="models:SampleOrder">
+                    <Grid
+                        x:Name="itemThumbnail"
+                        Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
+                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <FontIcon
+                                Glyph="{x:Bind Symbol}" />
+                            <TextBlock
+                                Margin="{StaticResource XXSmallTopMargin}"
+                                HorizontalAlignment="Center"
+                                Text="{x:Bind Company}"
+                                Style="{ThemeResource BodyTextStyle}" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </controls:AdaptiveGridView.ItemTemplate>
+        </controls:AdaptiveGridView>
+    </Grid>
 </Page>
