@@ -67,7 +67,7 @@ namespace wts.ItemName.ViewModels
             }
         }
 
-        private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
+        public void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
         {
             var item = _navigationView.MenuItems
                             .OfType<WinUI.NavigationViewItem>()

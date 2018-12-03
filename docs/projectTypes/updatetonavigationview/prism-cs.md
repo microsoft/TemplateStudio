@@ -296,6 +296,7 @@ The resulting code should look like this:
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         IsSettingsVisible="True"
+	ItemInvoked="OnItemInvoked"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
 
@@ -318,9 +319,6 @@ The resulting code should look like this:
                     </DataTemplate>
                 </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
             </behaviors:NavigationViewHeaderBehavior>
-            <ic:EventTriggerBehavior EventName="ItemInvoked">
-                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
-            </ic:EventTriggerBehavior>
         </i:Interaction.Behaviors>
         <Grid>
             <Frame x:Name="shellFrame" />
@@ -358,6 +356,13 @@ namespace YourAppName.Views
         {
             shellFrame.Content = frame;
             ViewModel.Initialize(frame);
+        }
+	
+	private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
+        {
+            // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
+            // Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
+            ViewModel.ItemInvokedCommand.Execute(args);
         }
     }
 }
