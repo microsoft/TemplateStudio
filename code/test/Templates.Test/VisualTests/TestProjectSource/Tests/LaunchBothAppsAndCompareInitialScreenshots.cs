@@ -3,9 +3,11 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using AutomatedUITests;
 using AutomatedUITests.Utils;
@@ -45,10 +47,15 @@ namespace AutomatedUITests.Tests
                 //// ClickYesIfPermissionDialogShown(appSession1);
 
                 appSession1.Manage().Window.Maximize();
+
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
                 var screenshot = appSession1.GetScreenshot();
                 screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App1Filename), ImageFormat.Png);
+
+                // Don't leave the app maximized in case we want to open the app again.
+                // Some controls handle layout differently when the app is first opened maximized
+                VirtualKeyboard.RestoreMaximizedWindow();
             }
 
             using (var appSession2 = base.GetAppSession(TestAppInfo.AppPfn2))
@@ -57,15 +64,20 @@ namespace AutomatedUITests.Tests
                 //// ClickYesIfPermissionDialogShown(appSession2);
 
                 appSession2.Manage().Window.Maximize();
+
                 Task.Delay(TimeSpan.FromSeconds(2)).Wait();
 
                 var screenshot = appSession2.GetScreenshot();
                 screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App2Filename), ImageFormat.Png);
+
+                // Don't leave the app maximized in case we want to open the app again.
+                // Some controls handle layout differently when the app is first opened maximized
+                VirtualKeyboard.RestoreMaximizedWindow();
             }
 
             var imageCompareResult = CheckImagesAreTheSame(TestAppInfo.ScreenshotsFolder, App1Filename, App2Filename);
-            
-            Assert.IsTrue(imageCompareResult, $"Images do not match. See results in '{TestAppInfo.ScreenshotsFolder}'");
+
+            Assert.IsTrue(imageCompareResult, $"Images do not match.{Environment.NewLine}App1: {App1Filename}{Environment.NewLine}App2: {App2Filename}{Environment.NewLine}See results in '{TestAppInfo.ScreenshotsFolder}'");
         }
 
         private void ClickYesIfPermissionDialogShown(WindowsDriver<WindowsElement> session)
@@ -101,12 +113,12 @@ namespace AutomatedUITests.Tests
             }
         }
 
-        private Rectangle[] GetAllExclusionAreas()
+        private ImageComparer.ExclusionArea[] GetAllExclusionAreas()
         {
-            var result = new Rectangle[TestAppInfo.ExclusionAreas.Length + 1];
+            var result = new ImageComparer.ExclusionArea[TestAppInfo.ExclusionAreas.Length + 1];
 
-            // We always include the area the app name occupies in the title bar as these will always be different
-            result[0] = new Rectangle(0, 0, 600, 40);
+            // We always exclude the area the app name occupies in the title bar as these will always be different
+            result[0] = new ImageComparer.ExclusionArea(new Rectangle(0, 0, 600, 40), scaleFactor: 1.25f);
 
             Array.Copy(TestAppInfo.ExclusionAreas, 0, result, 1, TestAppInfo.ExclusionAreas.Length);
 

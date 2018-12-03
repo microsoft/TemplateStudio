@@ -137,6 +137,12 @@ namespace Microsoft.Templates.Test
 
                     var localFilePath = file.Substring(DocsRoot.Length).Replace('\\', '/');
 
+                    if (url.StartsWith("_"))
+                    {
+                        // Some VB code samples can match the RegEx pattern but aren't URLs.
+                        continue;
+                    }
+
                     // Note. New files only added locally may cause false negatives
                     if (url.StartsWith("/samples/"))
                     {
@@ -295,6 +301,11 @@ namespace Microsoft.Templates.Test
         {
             try
             {
+                if (url.EndsWith("."))
+                {
+                    url = url.TrimEnd('.');
+                }
+
                 if (knownGoodUrls.Contains(url))
                 {
                     return HttpStatusCode.OK;

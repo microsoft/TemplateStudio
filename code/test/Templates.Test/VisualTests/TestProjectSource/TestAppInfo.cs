@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Drawing;
+using AutomatedUITests.Utils;
 
 namespace AutomatedUITests
 {
@@ -14,6 +15,6 @@ namespace AutomatedUITests
         public const string AppName2 = "***APP-NAME-2-GOES-HERE***";
         public const string ScreenshotsFolder = @"***FOLDER-GOES-HERE***";
 
-        public static Rectangle[] ExclusionAreas => new Rectangle[0];
+        public static ImageComparer.ExclusionArea[] ExclusionAreas => new ImageComparer.ExclusionArea[0];
     }
 }

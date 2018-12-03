@@ -14,7 +14,7 @@ namespace Param_ItemNamespace.Views
         {
             base.OnNavigatedFrom(e);
 
-            // Workaround for issue on MasterDetail Control. Find More info at https://github.com/Microsoft/WindowsTemplateStudio/issues/2738.
+            // Workaround for issue on MasterDetail Control. Find More info at https://github.com/Microsoft/WindowsTemplateStudio/issues/2738
             ViewModel.Selected = null;
         }
         //}]}

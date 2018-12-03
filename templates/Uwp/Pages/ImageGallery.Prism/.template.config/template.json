@@ -14,7 +14,7 @@
     "wts.framework": "Prism",
 	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "10",
+    "wts.displayOrder": "13",
     "wts.dependencies": "wts.Feat.SampleDataService.Prism|wts.Feat.CoreProject",
     "wts.outputToParent": "true",
     "wts.genGroup": "0",
