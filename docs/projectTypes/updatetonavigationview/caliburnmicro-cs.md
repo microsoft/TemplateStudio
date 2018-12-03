@@ -424,7 +424,7 @@ The resulting code should look like this:
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         IsSettingsVisible="True"
-        cm:Message.Attach="[Event ItemInvoked] = [Action OnItemInvoked($eventArgs)]"
+        ItemInvoked="OnItemInvoked"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
 
@@ -500,6 +500,13 @@ namespace YourAppName.Views
         public NavigationView GetNavigationView()
         {
             return navigationView;
+        }
+	
+	private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
+        {
+            // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
+            // Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
+            ViewModel.OnItemInvoked(args);
         }
     }
 }

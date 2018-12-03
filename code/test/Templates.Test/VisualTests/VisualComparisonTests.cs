@@ -13,8 +13,6 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using System.Xml.Linq;
-using System.Xml.XPath;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Fakes;
 using Xunit;
@@ -29,7 +27,8 @@ namespace Microsoft.Templates.Test
         {
         }
 
-        public static IEnumerable<object[]> GetAllSinglePageApps()
+        // Gets all the pages that are available (and testable) in both VB & C#
+        public static IEnumerable<object[]> GetAllSinglePageAppsVBAndCS()
         {
             foreach (var projectType in new[] { "Blank", "SplitView", "TabbedPivot" })
             {
@@ -45,6 +44,9 @@ namespace Microsoft.Templates.Test
                         "wts.Page.TabbedPivot",
                         "wts.Page.Grid",
                         "wts.Page.Settings",
+                        "wts.Page.InkDraw",
+                        "wts.Page.InkDrawPicture",
+                        "wts.Page.InkSmartCanvas",
                     };
 
                     foreach (var page in pagesThatSupportUiTesting)
@@ -55,23 +57,53 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        // Get all the pages in C# templates that are to be compared with the MVVMBasic version
+        public static IEnumerable<object[]> GetAllSinglePageAppsCSharp()
+        {
+            //// To quickly test a single scenario
+            ////yield return new object[] { "TabbedPivot", "wts.Page.ImageGallery", new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" } };
+            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedPivot" })
+            {
+                var otherFrameworks = new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" };
+
+                var pagesThatSupportUiTesting = new[]
+                {
+                    "wts.Page.Blank",
+                    "wts.Page.Chart",
+                    "wts.Page.Grid",
+                    "wts.Page.DataGrid",
+                    ////"wts.Page.ImageGallery", // ImageGallery doesn't work inside a TabbedPage on CaliburnMicro when the first pivot item
+                    "wts.Page.InkDraw",
+                    "wts.Page.InkDrawPicture",
+                    "wts.Page.InkSmartCanvas",
+                    "wts.Page.MasterDetail",
+                    "wts.Page.Settings",
+                    "wts.Page.TabbedPivot",
+                };
+
+                foreach (var page in pagesThatSupportUiTesting)
+                {
+                    yield return new object[] { projectType, page, otherFrameworks };
+                }
+            }
+        }
+
         // Returned rectangles are measured in pixels from the top left of the image/window
         private string GetExclusionAreasForVisualEquivalencyTest(string projectType, string pageName)
         {
             switch (pageName)
             {
                 case "wts.Page.Settings":
+                    // Exclude the area at the end of the app name and also covering the version number
                     switch (projectType)
                     {
                         case "SplitView":
-                            // App name in heading, name & version number
-                            return "new[] { new Rectangle(890, 44, 450, 60), new Rectangle(600, 410, 270, 40) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 300, 450, 40), 1.25f) }";
                         case "TabbedPivot":
-                            return "new[] { new Rectangle(280, 410, 270, 40) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
                         case "Blank":
                         default:
-                            // This is the area at the end of the app name and also covering the version number
-                            return "new[] { new Rectangle(180, 410, 270, 40) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
                     }
 
                 default:
@@ -81,10 +113,10 @@ namespace Microsoft.Templates.Test
 
         // Note. Visual Studio MUST be running as Admin to run this test.
         [Theory]
-        [MemberData("GetAllSinglePageApps")]
+        [MemberData("GetAllSinglePageAppsVBAndCS")]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
+        public async Task EnsureLanguageLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
         {
             var genIdentities = new[] { page };
 
@@ -113,6 +145,7 @@ namespace Microsoft.Templates.Test
 
             var outputMessages = string.Join(Environment.NewLine, testOutput);
 
+            // A diff image is automatically created if the outputs differ
             if (Directory.Exists(testProjectDetails.imagesFolder)
              && Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
             {
@@ -124,6 +157,72 @@ namespace Microsoft.Templates.Test
             {
                 Assert.True(testSuccess, outputMessages);
             }
+        }
+
+        // Note. Visual Studio MUST be running as Admin to run this test.
+        // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+        [Theory]
+        [MemberData("GetAllSinglePageAppsCSharp")]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureFrameworkLaunchPageVisualsAreEquivalentAsync(string projectType, string page, string[] frameworks)
+        {
+            var genIdentities = new[] { page };
+
+            CheckRunningAsAdmin();
+            CheckWinAppDriverInstalled();
+
+            // MVVMBasic is considerewd the reference version. Compare generated apps with equivalent in other frameworks
+            var refAppDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, "MVVMBasic", genIdentities, lastPageIsHome: true);
+
+            var otherProjDetails = new VisualComparisonTestDetails[frameworks.Length];
+
+            bool allTestsPassed = true;
+
+            var outputMessages = string.Empty;
+
+            for (int i = 0; i < frameworks.Length; i++)
+            {
+                string framework = frameworks[i];
+                otherProjDetails[i] = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
+
+                var testProjectDetails = SetUpTestProject(refAppDetails, otherProjDetails[i], GetExclusionAreasForVisualEquivalencyTest(projectType, page));
+
+                var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+
+                if (testSuccess)
+                {
+                    UninstallAppx(otherProjDetails[i].PackageFullName);
+
+                    RemoveCertificate(otherProjDetails[i].CertificatePath);
+
+                    // Parent of images folder also contains the test project
+                    Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
+                }
+                else
+                {
+                    allTestsPassed = false;
+
+                    if (Directory.Exists(testProjectDetails.imagesFolder)
+                     && Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
+                    {
+                        outputMessages += $"Failing test images in {testProjectDetails.imagesFolder}{Environment.NewLine}{Environment.NewLine}{outputMessages}";
+                    }
+                    else
+                    {
+                        outputMessages += $"{Environment.NewLine}{string.Join(Environment.NewLine, testOutput)}";
+                    }
+                }
+            }
+
+            if (allTestsPassed)
+            {
+                UninstallAppx(refAppDetails.PackageFullName);
+
+                RemoveCertificate(refAppDetails.CertificatePath);
+            }
+
+            Assert.True(allTestsPassed, outputMessages.TrimStart());
         }
 
         private void CheckRunningAsAdmin()
@@ -209,7 +308,7 @@ namespace Microsoft.Templates.Test
 
             if (!string.IsNullOrWhiteSpace(areasOfImageToExclude))
             {
-                newAppInfoFileContents = newAppInfoFileContents.Replace("new Rectangle[0]", areasOfImageToExclude);
+                newAppInfoFileContents = newAppInfoFileContents.Replace("new ImageComparer.ExclusionArea[0]", areasOfImageToExclude);
             }
 
             File.WriteAllText(appInfoFileName, newAppInfoFileContents, Encoding.UTF8);
