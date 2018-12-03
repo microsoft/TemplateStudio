@@ -1,6 +1,7 @@
 ﻿using wts.ItemName.ViewModels;
 using Caliburn.Micro;
-using Microsoft.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls;
+using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace wts.ItemName.Views
 {
@@ -20,9 +21,21 @@ namespace wts.ItemName.Views
             return navigationService;
         }
 
-        public NavigationView GetNavigationView()
+        public WinUI.NavigationView GetNavigationView()
         {
             return navigationView;
+        }
+
+        private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
+        {
+            // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
+            // Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
+            ViewModel.OnItemInvoked(args);
+        }
+
+        public Frame GetFrame()
+        {
+            return shellFrame;
         }
     }
 }

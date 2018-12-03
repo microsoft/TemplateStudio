@@ -17,12 +17,21 @@ namespace AutomatedUITests.Utils
         // Values from System.Windows.Forms.Keys
         private const byte WindowsKey = 91;
         private const byte LetterM = 77;
+        private const byte Down = 40;
 
         public static void MinimizeAllWindows()
         {
             KeyDown(WindowsKey);
             KeyDown(LetterM);
             KeyUp(LetterM);
+            KeyUp(WindowsKey);
+        }
+
+        public static void RestoreMaximizedWindow()
+        {
+            KeyDown(WindowsKey);
+            KeyDown(Down);
+            KeyUp(Down);
             KeyUp(WindowsKey);
         }
 

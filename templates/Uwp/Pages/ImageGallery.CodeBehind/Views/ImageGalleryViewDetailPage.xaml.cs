@@ -3,14 +3,13 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 using Windows.System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+
+using Microsoft.Toolkit.Uwp.UI.Animations;
 
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Core.Models;
@@ -21,7 +20,6 @@ namespace Param_ItemNamespace.Views
 {
     public sealed partial class ImageGalleryViewDetailPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
-        private DispatcherTimer _timer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(500) };
         private object _selectedImage;
         private ObservableCollection<SampleImage> _source;
 
@@ -51,23 +49,19 @@ namespace Param_ItemNamespace.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            var sampleImageId = e.Parameter as string;
-            if (!string.IsNullOrEmpty(sampleImageId) && e.NavigationMode == NavigationMode.New)
+            var selectedImageID = e.Parameter as string;
+            if (!string.IsNullOrEmpty(selectedImageID) && e.NavigationMode == NavigationMode.New)
             {
-                SelectedImage = Source.FirstOrDefault(i => i.ID == sampleImageId);
+                SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID);
             }
             else
             {
-                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey);
-                if (!string.IsNullOrEmpty(selectedImageId))
+                selectedImageID = ImagesNavigationHelper.GetImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey);
+                if (!string.IsNullOrEmpty(selectedImageID))
                 {
-                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
+                    SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageID);
                 }
             }
-
-            var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewPage.ImageGalleryViewAnimationOpen);
-            animation?.TryStart(previewImage);
-            showFlipView.Begin();
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -75,12 +69,9 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatingFrom(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                previewImage.Visibility = Visibility.Visible;
-                ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewPage.ImageGalleryViewAnimationClose, previewImage);
+                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(SelectedImage);
             }
         }
-
-        private void OnShowFlipViewCompleted(object sender, object e) => flipView.Focus(FocusState.Programmatic);
 
         private void OnPageKeyDown(object sender, KeyRoutedEventArgs e)
         {

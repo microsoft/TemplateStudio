@@ -30,6 +30,10 @@
     {
       "Name": "HasOldNavigationView",
       "BreakingVersion": "###BreakingChangesHasOldNavigationView###"
+    },
+    {
+      "Name": "HasPivot",
+      "BreakingVersion": "###BreakingChangesHasPivotVersion###"
     }
   ]
 }

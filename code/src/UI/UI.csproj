@@ -395,6 +395,7 @@
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\NotificationTemplateSelector.cs" />
+    <Compile Include="Validators\HasPivotValidator.cs" />
     <Compile Include="Validators\HasHamburgerMenuValidator.cs" />
     <Compile Include="Validators\HasOldMvvmLightLocatorValidator.cs" />
     <Compile Include="Validators\HasOldNavigationViewValidator.cs" />

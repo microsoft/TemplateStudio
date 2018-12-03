@@ -23,7 +23,8 @@ namespace Param_RootNamespace
 
         private UIElement CreateShell()
         {
-            return new Views.ShellPage();
+            var shellPage = new Views.ShellPage();
+            return shellPage;
         }
 //}]}
     }

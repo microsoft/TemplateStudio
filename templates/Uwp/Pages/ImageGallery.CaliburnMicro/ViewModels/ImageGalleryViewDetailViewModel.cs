@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using Caliburn.Micro;
 
-using Windows.Storage;
 using Windows.System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 using Param_ItemNamespace.Helpers;
+using Param_ItemNamespace.Services;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Core.Services;
-using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.ViewModels
 {
     public class ImageGalleryViewDetailViewModel : Screen
     {
-        private static UIElement _image;
         private readonly INavigationService _navigationService;
+        private readonly IConnectedAnimationService _connectedAnimationService;
         private SampleImage _selectedImage;
 
         public SampleImage SelectedImage
@@ -38,9 +33,10 @@ namespace Param_ItemNamespace.ViewModels
 
         public BindableCollection<SampleImage> Source { get; } = new BindableCollection<SampleImage>();
 
-        public ImageGalleryViewDetailViewModel(INavigationService navigationService)
+        public ImageGalleryViewDetailViewModel(INavigationService navigationService, IConnectedAnimationService connectedAnimationService)
         {
             _navigationService = navigationService;
+            _connectedAnimationService = connectedAnimationService;
         }
 
         protected override void OnInitialize()
@@ -51,12 +47,11 @@ namespace Param_ItemNamespace.ViewModels
             Source.AddRange(SampleDataService.GetGallerySampleData());
         }
 
-        public void Initialize(UIElement image, NavigationMode navigationMode)
+        public void Initialize(NavigationMode navigationMode)
         {
-            _image = image;
-            if (navigationMode == NavigationMode.New)
+            if (!string.IsNullOrEmpty(ID) && navigationMode == NavigationMode.New)
             {
-                SelectedImage = Source.FirstOrDefault(i => i.ID == ID);
+                SelectedImage = Source.First(i => i.ID == ID);
             }
             else
             {
@@ -66,14 +61,6 @@ namespace Param_ItemNamespace.ViewModels
                     SelectedImage = Source.FirstOrDefault(i => i.ID == selectedImageId);
                 }
             }
-
-            var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewViewModel.ImageGalleryViewAnimationOpen);
-            animation?.TryStart(_image);
-        }
-
-        public void SetAnimation()
-        {
-            ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewViewModel.ImageGalleryViewAnimationClose, _image);
         }
 
         public void OnPageKeyDown(KeyRoutedEventArgs e)
@@ -83,6 +70,11 @@ namespace Param_ItemNamespace.ViewModels
                 _navigationService.GoBack();
                 e.Handled = true;
             }
+        }
+
+        public void UpdateConnectedAnimation()
+        {
+            _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(SelectedImage);
         }
     }
 }
