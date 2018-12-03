@@ -1,7 +1,6 @@
 ﻿<Page
 <!--^^-->
 <!--{[{-->
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:wts.ItemName.Behaviors"
 <!--}]}-->
     mc:Ignorable="d">
