@@ -84,7 +84,6 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Assert.True(GenContext.Current.ProjectReferences.ContainsKey(Path.Combine(destPath, projectName)));
             Assert.True(GenContext.Current.ProjectReferences[Path.Combine(destPath, projectName)].Contains(Path.GetFullPath(Path.Combine(destPath, projectToAdd))));
-
         }
     }
 }
