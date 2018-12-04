@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core.Gen;
 
@@ -62,7 +63,7 @@ namespace Microsoft.Templates.Fakes
             }
 
             var projects = ResolveProjectFiles(itemsFullPath, true);
-            var notCoreProjects = projects.Where(f => !IsCoreProject(f.Key));
+            var notCoreProjects = projects.Where(f => !IsCPSProject(f.Key));
 
             foreach (var projectFile in notCoreProjects)
             {
@@ -79,28 +80,50 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public override void AddProjectsToSolution(List<string> projectPaths, bool usesAnyCpu)
+        public override async Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences)
         {
-            foreach (var projectPath in projectPaths)
+            // First add references to existing projects
+            var groupedNugets = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
+
+            foreach (var nuget in groupedNugets)
             {
-                var msbuildProj = FakeMsBuildProject.Load(projectPath);
+                var msbuildProj = FakeMsBuildProject.Load(nuget.Key);
+
+                var projectNugets = nugetReferences.Where(n => n.Project == nuget.Key);
+
+                foreach (var nugetPackages in projectNugets)
+                {
+                    msbuildProj.AddNugetReference(nugetPackages);
+                }
+
+                msbuildProj.Save();
+            }
+
+            foreach (var project in projects)
+            {
+                var msbuildProj = FakeMsBuildProject.Load(project.ProjectPath);
                 var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
-                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectPath, usesAnyCpu);
+                var projectRelativeToSolutionPath = project.ProjectPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
+
+                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, project.IsCPSProject);
+
+                var projectNugets = nugetReferences.Where(n => n.Project == project.ProjectPath);
+
+                foreach (var nuget in projectNugets)
+                {
+                    msbuildProj.AddNugetReference(nuget);
+                }
+
+                msbuildProj.Save();
             }
+
+            await Task.CompletedTask;
         }
 
         public override string GetActiveProjectNamespace()
         {
             return GenContext.Current.ProjectName;
-        }
-
-        public override void CleanSolution()
-        {
-        }
-
-        public override void SaveSolution()
-        {
         }
 
         public override void ShowStatusBarMessage(string message)
@@ -147,11 +170,6 @@ namespace Microsoft.Templates.Fakes
         public override string GetActiveProjectLanguage()
         {
             return _language;
-        }
-
-        protected override string GetSelectedItemPath()
-        {
-            return string.Empty;
         }
 
         private static string FindProject(string path)
@@ -240,9 +258,29 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        private bool IsCoreProject(string projectPath)
+        public override void AddSdkReferencesToProjects(List<SdkReference> sdkReferences)
         {
-            return projectPath.EndsWith("Core.csproj") || projectPath.EndsWith("Core.vbproj");
+            var solution = FakeSolution.LoadOrCreate(_platform, SolutionPath);
+
+            var groupedSdkReferences = sdkReferences.GroupBy(s => s.Project);
+
+            foreach (var sdkReference in groupedSdkReferences)
+            {
+                var project = FakeMsBuildProject.Load(sdkReference.Key);
+
+                foreach (var referenceValue in sdkReferences.Where(s => s.Project == sdkReference.Key))
+                {
+                    project.AddSDKReference(referenceValue);
+                }
+
+                project.Save();
+            }
+        }
+
+        private bool IsCPSProject(string projectPath)
+        {
+            string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
+            return targetFrameworkTags.Any(t => File.ReadAllText(projectPath).Contains(t));
         }
     }
 }

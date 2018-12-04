@@ -4,7 +4,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
 
@@ -12,7 +12,7 @@ namespace Microsoft.Templates.Core.PostActions
 {
     public abstract class PostAction
     {
-        public virtual bool ContinueOnError { get; set; }
+        public bool ContinueOnError { get; set; }
 
         public string RelatedTemplate { get; set; }
 
@@ -21,19 +21,19 @@ namespace Microsoft.Templates.Core.PostActions
             RelatedTemplate = "None";
         }
 
-        public PostAction(string relatedTemplate)
+        public PostAction(string relatedTemplate, bool continueOnError)
         {
-            ContinueOnError = false;
+            ContinueOnError = continueOnError;
             RelatedTemplate = relatedTemplate;
         }
 
-        internal abstract void ExecuteInternal();
+        internal abstract Task ExecuteInternalAsync();
 
-        public void Execute()
+        public async Task ExecuteAsync()
         {
             try
             {
-                ExecuteInternal();
+                await ExecuteInternalAsync();
             }
             catch (Exception ex)
             {
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Core.PostActions
         }
 
         public PostAction(string relatedTemplate, TConfig config)
-            : base(relatedTemplate)
+            : base(relatedTemplate, false)
         {
             Config = config;
         }

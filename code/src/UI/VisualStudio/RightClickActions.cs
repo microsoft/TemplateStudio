@@ -30,7 +30,11 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationPath { get; private set; }
 
-        public List<string> Projects { get; private set; }
+        public List<ProjectInfo> Projects { get; private set; }
+
+        public List<NugetReference> NugetReferences { get; private set; }
+
+        public List<SdkReference> SdkReferences { get; private set; }
 
         public Dictionary<string, List<string>> ProjectReferences { get; private set; }
 
@@ -65,11 +69,11 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            _generationService.FinishGeneration(userSelection);
+                            await _generationService.FinishGenerationAsync(userSelection);
+
+                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                         },
                         JoinableTaskCreationOptions.LongRunning);
-
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                     }
                 }
                 catch (WizardBackoutException)
@@ -94,11 +98,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            _generationService.FinishGeneration(userSelection);
+                            await _generationService.FinishGenerationAsync(userSelection);
+                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                         },
                         JoinableTaskCreationOptions.LongRunning);
-
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                     }
                 }
                 catch (WizardBackoutException)
@@ -145,7 +148,9 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
-                Projects = new List<string>();
+                Projects = new List<ProjectInfo>();
+                NugetReferences = new List<NugetReference>();
+                SdkReferences = new List<SdkReference>();
                 ProjectReferences = new Dictionary<string, List<string>>();
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
@@ -159,18 +164,19 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void EnsureGenContextInitialized()
         {
-            if (GenContext.CurrentLanguage != _shell.GetActiveProjectLanguage())
+            var projectLanguage = _shell.GetActiveProjectLanguage();
+            if (GenContext.CurrentLanguage != projectLanguage)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, Platforms.Uwp, _shell.GetActiveProjectLanguage());
+                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, Platforms.Uwp, projectLanguage);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, _shell.GetActiveProjectLanguage()), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
+                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, projectLanguage), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
 #endif
             }
 
-            if (GenContext.CurrentLanguage != _shell.GetActiveProjectLanguage())
+            if (GenContext.CurrentLanguage != projectLanguage)
             {
-                GenContext.SetCurrentLanguage(_shell.GetActiveProjectLanguage());
+                GenContext.SetCurrentLanguage(projectLanguage);
             }
         }
 

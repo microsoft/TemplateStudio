@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class MergeResourceDictionaryPostactionTest
     {
         [Fact]
-        public void MergeResourceDictionaryPostaction()
+        public async Task MergeResourceDictionary_ExecuteAsync()
         {
             var source = Path.GetFullPath(@".\TestData\Merge\Style.xaml");
             var postaction = Path.GetFullPath(@".\TestData\Merge\Style_postaction.xaml");
@@ -29,7 +29,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var config = new MergeConfiguration(postaction, true);
 
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("Test", config);
-            mergeResourceDictionaryPostAction.Execute();
+            await mergeResourceDictionaryPostAction.ExecuteAsync();
 
             var result = File.ReadAllText(source).Replace("\r\n", string.Empty).Replace("\n", string.Empty);
 
@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void MergeResourceDictionaryPostaction_Failing()
+        public async Task MergeResourceDictionaryPostaction_FailingAsync()
         {
             var source = Path.GetFullPath(@".\TestData\Merge\Style_fail.xaml");
             var postaction = Path.GetFullPath(@".\TestData\Merge\Style_fail_postaction.xaml");
@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("TestTemplate", config);
 
-            Exception ex = Assert.Throws<Exception>(() => mergeResourceDictionaryPostAction.Execute());
+            Exception ex = await Assert.ThrowsAsync<Exception>(async () => await mergeResourceDictionaryPostAction.ExecuteAsync());
             Assert.NotNull(ex.InnerException);
             Assert.Equal(typeof(System.IO.InvalidDataException), ex.InnerException.GetType());
             Assert.Equal(string.Format(Resources.StringRes.PostActionException, "Microsoft.Templates.Core.PostActions.Catalog.Merge.MergeResourceDictionaryPostAction", "TestTemplate"), ex.Message);

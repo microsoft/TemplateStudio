@@ -1,0 +1,131 @@
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.PostActions.Catalog;
+using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Fakes;
+using Xunit;
+
+namespace Microsoft.Templates.Core.Test.PostActions.Catalog
+{
+    [Trait("ExecutionSet", "Minimum")]
+    public class AddSdkReferenceToContextPostActionTest
+    {
+        [Fact]
+        public async Task AddSdkReferenceToContext_ExecuteAsync()
+        {
+            var templateName = "Test";
+            var projectName = "TestProject";
+            var destPath = Path.GetFullPath(@".\DestinationPath\Project");
+
+            var sdkReference = new SdkReference()
+            {
+                Project = Path.Combine(destPath, projectName),
+                Name = "TestName",
+                Sdk = "Test, version=1.0.0",
+            };
+
+            GenContext.Current = new FakeContextProvider()
+            {
+                DestinationPath = destPath,
+                GenerationOutputPath = destPath,
+            };
+
+            var postAction = new FakeTemplateDefinedPostAction(
+                new Guid(AddSdkReferencesToContextPostAction.Id),
+                new Dictionary<string, string>()
+                {
+                    { "name", sdkReference.Name },
+                    { "sdk", sdkReference.Sdk },
+                    { "projectPath", projectName },
+                });
+
+            var mergePostAction = new AddSdkReferencesToContextPostAction(templateName, postAction, new Dictionary<string, string>(), destPath);
+            await mergePostAction.ExecuteAsync();
+
+            Assert.Equal(sdkReference, GenContext.Current.SdkReferences[0]);
+        }
+
+        [Fact]
+        public async Task AddSdkReferenceToContext_Execute_AlreadyThereAsync()
+        {
+            var templateName = "Test";
+            var projectName = "TestProject";
+            var destPath = Path.GetFullPath(@".\DestinationPath\Project");
+
+            var sdkReference = new SdkReference()
+            {
+                Project = Path.Combine(destPath, projectName),
+                Name = "TestName",
+                Sdk = "Test, version=1.0.0",
+            };
+
+            GenContext.Current = new FakeContextProvider()
+            {
+                DestinationPath = destPath,
+                GenerationOutputPath = destPath,
+            };
+
+            GenContext.Current.SdkReferences.Add(sdkReference);
+
+            var postAction = new FakeTemplateDefinedPostAction(
+                new Guid(AddSdkReferencesToContextPostAction.Id),
+                new Dictionary<string, string>()
+                {
+                    { "name", sdkReference.Name },
+                    { "sdk", sdkReference.Sdk },
+                    { "projectPath", projectName },
+                });
+
+            var mergePostAction = new AddSdkReferencesToContextPostAction(templateName, postAction, new Dictionary<string, string>(), destPath);
+            await mergePostAction.ExecuteAsync();
+
+            Assert.Equal(sdkReference, GenContext.Current.SdkReferences[0]);
+        }
+
+        [Fact]
+        public async Task AddSdkReferenceToContext_Execute_ReplacementAsync()
+        {
+            var templateName = "Test";
+            var projectName = "TestProject";
+            var destPath = Path.GetFullPath(@".\DestinationPath\Project");
+
+            var sdkReference = new SdkReference()
+            {
+                Project = Path.Combine(destPath, projectName),
+                Name = "TestName",
+                Sdk = "Test, version=1.0.0",
+            };
+
+            GenContext.Current = new FakeContextProvider()
+            {
+                DestinationPath = destPath,
+                GenerationOutputPath = destPath,
+            };
+
+            var postAction = new FakeTemplateDefinedPostAction(
+                new Guid(AddSdkReferencesToContextPostAction.Id),
+                new Dictionary<string, string>()
+                {
+                    { "name", sdkReference.Name },
+                    { "sdk", sdkReference.Sdk },
+                    { "projectPath", projectName },
+                });
+
+            var genParams = new Dictionary<string, string>();
+            genParams.Add("wts.projectName", "TestProject");
+
+            var mergePostAction = new AddSdkReferencesToContextPostAction(templateName, postAction, genParams, destPath);
+            await mergePostAction.ExecuteAsync();
+
+            Assert.Equal(sdkReference, GenContext.Current.SdkReferences[0]);
+        }
+    }
+}

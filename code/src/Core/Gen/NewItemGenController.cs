@@ -39,19 +39,19 @@ namespace Microsoft.Templates.Core.Gen
             TrackTelemetry(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
         }
 
-        public void UnsafeFinishGeneration(UserSelection userSelection)
+        public async Task UnsafeFinishGenerationAsync(UserSelection userSelection)
         {
             var compareResult = CompareTempGenerationWithProject();
             if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
             {
                 // BackupProjectFiles
                 compareResult.SyncGeneration = true;
-                ExecuteSyncGenerationPostActions(compareResult);
+                await ExecuteSyncGenerationPostActionsAsync(compareResult);
             }
             else
             {
                 compareResult.SyncGeneration = false;
-                ExecuteOutputGenerationPostActions(compareResult);
+                await ExecuteOutputGenerationPostActionsAsync(compareResult);
             }
         }
 
@@ -95,6 +95,8 @@ namespace Microsoft.Templates.Core.Gen
             GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
             GenContext.Current.Projects.Clear();
+            GenContext.Current.NugetReferences.Clear();
+            GenContext.Current.SdkReferences.Clear();
             GenContext.Current.ProjectReferences.Clear();
             GenContext.Current.ProjectItems.Clear();
             GenContext.Current.FilesToOpen.Clear();
@@ -114,30 +116,23 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        private void ExecuteSyncGenerationPostActions(TempGenerationResult result)
+        private async Task ExecuteSyncGenerationPostActionsAsync(TempGenerationResult result)
         {
             var postActions = PostactionFactory.FindSyncGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
-                postAction.Execute();
-            }
-
-            // New files aren't listed as project file modifications so any modifications should be new package references, etc.
-            if (result.ModifiedFiles.Any(f => Path.GetExtension(f).EndsWith("proj", StringComparison.OrdinalIgnoreCase)))
-            {
-                // Forcing a package restore so don't get warnings in the designer once addition is complete
-                GenContext.ToolBox.Shell.RestorePackages();
+                await postAction.ExecuteAsync();
             }
         }
 
-        private void ExecuteOutputGenerationPostActions(TempGenerationResult result)
+        private async Task ExecuteOutputGenerationPostActionsAsync(TempGenerationResult result)
         {
             var postActions = PostactionFactory.FindOutputGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
-                postAction.Execute();
+                await postAction.ExecuteAsync();
             }
         }
 

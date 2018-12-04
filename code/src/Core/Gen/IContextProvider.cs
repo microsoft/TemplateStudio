@@ -16,9 +16,13 @@ namespace Microsoft.Templates.Core.Gen
 
         string DestinationPath { get; }
 
-        List<string> Projects { get; }
+        List<ProjectInfo> Projects { get; }
 
         Dictionary<string, List<string>> ProjectReferences { get; }
+
+        List<SdkReference> SdkReferences { get; }
+
+        List<NugetReference> NugetReferences { get; }
 
         List<string> ProjectItems { get; }
 

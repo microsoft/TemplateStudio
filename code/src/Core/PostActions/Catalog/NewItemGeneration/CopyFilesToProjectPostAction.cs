@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var destinationParentPath = Directory.GetParent(GenContext.Current.DestinationPath).FullName;
@@ -33,13 +33,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                 var destDirectory = Path.GetDirectoryName(destFilePath);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
-
-                if (Path.GetExtension(file).EndsWith("proj", StringComparison.OrdinalIgnoreCase))
-                {
-                    Gen.GenContext.ToolBox.Shell.RefreshProject(file);
-                    GenContext.ToolBox.Shell.SaveSolution();
-                    GenContext.ToolBox.Shell.CleanSolution();
-                }
             }
 
             foreach (var file in Config.NewFiles)
@@ -55,6 +48,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     GenContext.Current.FilesToOpen.Add(destFilePath);
                 }
             }
+
+            await Task.CompletedTask;
         }
     }
 }

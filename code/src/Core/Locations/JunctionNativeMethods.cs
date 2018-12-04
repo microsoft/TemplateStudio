@@ -180,7 +180,7 @@ namespace Microsoft.Templates.Core.Locations
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool DeviceIoControl(IntPtr hDevice, uint dwIoControlCode, IntPtr inBuffer, int nInBufferSize, IntPtr outBuffer, int nOutBufferSize, out int pBytesReturned, IntPtr lpOverlapped);
 
-        [DllImport("kernel32.dll", SetLastError = true)]
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         private static extern IntPtr CreateFile(
             string lpFileName,
             EFileAccess dwDesiredAccess,
@@ -388,7 +388,7 @@ namespace Microsoft.Templates.Core.Locations
 
                 string targetDir = Encoding.Unicode.GetString(reparseDataBuffer.PathBuffer, reparseDataBuffer.SubstituteNameOffset, reparseDataBuffer.SubstituteNameLength);
 
-                if (targetDir.StartsWith(NonInterpretedPathPrefix))
+                if (targetDir.StartsWith(NonInterpretedPathPrefix, StringComparison.OrdinalIgnoreCase))
                 {
                     targetDir = targetDir.Substring(NonInterpretedPathPrefix.Length);
                 }
@@ -403,14 +403,36 @@ namespace Microsoft.Templates.Core.Locations
 
         private static SafeFileHandle OpenReparsePoint(string reparsePoint, EFileAccess accessMode)
         {
-            SafeFileHandle reparsePointHandle = new SafeFileHandle(CreateFile(reparsePoint, accessMode, EFileShare.Read | EFileShare.Write | EFileShare.Delete, IntPtr.Zero, ECreationDisposition.OpenExisting, EFileAttributes.BackupSemantics | EFileAttributes.OpenReparsePoint, IntPtr.Zero), true);
-
-            if (Marshal.GetLastWin32Error() != 0)
+            SafeFileHandle reparsePointHandle = null;
+            try
             {
-                ThrowLastWin32Error("Unable to open reparse point.");
-            }
+                IntPtr createFileResult = CreateFile(
+                    reparsePoint,
+                    accessMode,
+                    EFileShare.Read | EFileShare.Write | EFileShare.Delete,
+                    IntPtr.Zero,
+                    ECreationDisposition.OpenExisting,
+                    EFileAttributes.BackupSemantics | EFileAttributes.OpenReparsePoint,
+                    IntPtr.Zero);
 
-            return reparsePointHandle;
+                if (Marshal.GetLastWin32Error() != 0)
+                {
+                    ThrowLastWin32Error("Unable to open reparse point.");
+                }
+
+                reparsePointHandle = new SafeFileHandle(createFileResult, true);
+
+                return reparsePointHandle;
+            }
+            catch
+            {
+                if (reparsePointHandle != null)
+                {
+                    reparsePointHandle.Dispose();
+                }
+
+                throw;
+            }
         }
 
         private static void ThrowLastWin32Error(string message)

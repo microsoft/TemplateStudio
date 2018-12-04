@@ -466,6 +466,27 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Install-Package -Id {0} -Version {1}.
+        /// </summary>
+        public static string ErrorMissingNugetPackagesInstallTemplate {
+            get {
+                return ResourceManager.GetString("ErrorMissingNugetPackagesInstallTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
+        ///Please verify the following list of packages needed by your project&apos;s code and manually add the missing packages: 
+        ///
+        ///{1}.
+        /// </summary>
+        public static string ErrorMissingNugetPackagesTemplate {
+            get {
+                return ResourceManager.GetString("ErrorMissingNugetPackagesTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable add project items..
         /// </summary>
         public static string ErrorUnableAddItemsToProject {
