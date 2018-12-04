@@ -19,6 +19,7 @@
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         IsSettingsVisible="False"
+        ItemInvoked="OnItemInvoked"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
             <!--
@@ -43,9 +44,6 @@
                     </DataTemplate>
                 </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
             </behaviors:NavigationViewHeaderBehavior>
-            <ic:EventTriggerBehavior EventName="ItemInvoked">
-                <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemInvokedCommand}" />
-            </ic:EventTriggerBehavior>
         </i:Interaction.Behaviors>
         <Grid>
             <Frame x:Name="shellFrame" />
