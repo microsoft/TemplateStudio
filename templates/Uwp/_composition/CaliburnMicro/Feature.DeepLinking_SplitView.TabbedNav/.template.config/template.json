@@ -1,16 +1,16 @@
 ﻿{
-  "author": "Nigel Sampson",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "CaliburnMicro.Project.TabbedPivot.AddNavigationViewItem",
+  "name": "CaliburnMicro.DeepLinking.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
-	"wts.platform" : "Uwp",
+    "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.CaliburnMicro & $framework == CaliburnMicro & $projectType == TabbedPivot"
+    "wts.compositionFilter": "$framework == CaliburnMicro & identity == wts.Feat.DeepLinking & $projectType == SplitView|TabbedNav"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -24,6 +24,10 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
     }
   }
 }
