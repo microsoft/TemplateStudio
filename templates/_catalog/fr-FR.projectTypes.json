@@ -10,7 +10,7 @@
     "summary": "Un volet de navigation (ou « menu hamburger ») est inclus, pour permettre de naviguer entre les pages."
   },
   {
-    "name": "TabbedPivot",
+    "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Navigation Items across the top allow for quickly navigating between pages."
   }

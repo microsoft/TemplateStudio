@@ -10,7 +10,7 @@
     "summary": "탐색 창(또는 햄버거 메뉴)은 페이지 간 탐색을 위해 제공됩니다."
   },
   {
-    "name": "TabbedPivot",
+    "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Navigation Items across the top allow for quickly navigating between pages."
   }

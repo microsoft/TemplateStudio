@@ -10,7 +10,7 @@
         "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages."
     },
     {
-        "name": "TabbedPivot",
+        "name": "TabbedNav",
         "displayName": "Horizontal Navigation Pane",
         "summary": "Navigation Items across the top allow for quickly navigating between pages."
     }

@@ -10,7 +10,7 @@
     "summary": "Per la navigazione tra pagine è incluso un riquadro di navigazione (o 'menu Hamburger')."
   },
   {
-    "name": "TabbedPivot",
+    "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Navigation Items across the top allow for quickly navigating between pages."
   }

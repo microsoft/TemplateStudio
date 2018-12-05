@@ -10,7 +10,7 @@
     "summary": "Zahrnuje také navigační podokno (nebo nabídku typu „hamburger“) pro navigaci mezi stránkami."
   },
   {
-    "name": "TabbedPivot",
+    "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Navigation Items across the top allow for quickly navigating between pages."
   }
