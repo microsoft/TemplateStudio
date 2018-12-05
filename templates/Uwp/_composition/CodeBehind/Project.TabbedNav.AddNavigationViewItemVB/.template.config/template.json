@@ -1,18 +1,17 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Feature.DeepLinking.TabbedPivot",
+  "name": "CodeBehind.Project.TabbedNav.AddNavigationViewItem.VB",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
-    "wts.platform": "Uwp",
+	"wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionOrder": "2",
-    "wts.compositionFilter": "$framework == CodeBehind & identity == wts.Feat.DeepLinking & $projectType == TabbedPivot"
-  },
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.CodeBehind.VB & $projectType == TabbedNav & $framework == CodeBehind"
+ },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
@@ -25,10 +24,6 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
-    },
-    "wts.homePageName": {
-      "type": "parameter",
-      "replaces": "Param_HomeName"
     }
   }
 }

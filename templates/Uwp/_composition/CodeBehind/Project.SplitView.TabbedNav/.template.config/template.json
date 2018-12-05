@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "CodeBehind.Project.SplitView.TabbedPivot",
+  "name": "CodeBehind.Project.SplitView.TabbedNav",
   "tags": {
     "language": "C#",
     "type": "item",
@@ -11,7 +11,7 @@
 	"wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "1",
-    "wts.compositionFilter": "$framework == CodeBehind & $projectType == SplitView|TabbedPivot & wts.type == project",
+    "wts.compositionFilter": "$framework == CodeBehind & $projectType == SplitView|TabbedNav & wts.type == project",
     "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
   },
   "sourceName": "wts.ItemName",
