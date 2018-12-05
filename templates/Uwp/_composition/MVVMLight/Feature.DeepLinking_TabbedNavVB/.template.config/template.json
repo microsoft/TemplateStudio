@@ -1,16 +1,16 @@
 ﻿{
-  "author": "Microsoft",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Project.TabbedPivot.AddNavigationViewItem",
+  "name": "MVVMLight.DeepLinking.TabbedNav.VB",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings & $framework == MVVMLight & $projectType == TabbedPivot"
+    "wts.compositionFilter": "identity == wts.Feat.DeepLinking.MVVMLight.VB & $projectType == TabbedNav"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -24,6 +24,10 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
+    },
+    "wts.homePageName": {
+      "type":"parameter",
+      "replaces":"Param_HomeName"
     }
   }
 }

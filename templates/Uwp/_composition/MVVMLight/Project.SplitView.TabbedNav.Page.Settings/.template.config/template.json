@@ -1,16 +1,16 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.DeepLinking.TabbedPivot",
+  "name": "MVVMLight.Project.SplitView.TabbedNav.Page.Settings",
   "tags": {
     "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "identity == wts.Feat.DeepLinking.MVVMLight & $projectType == TabbedPivot"
+    "wts.compositionFilter": "$framework == MVVMLight & $projectType == SplitView|TabbedNav & identity == wts.Page.Settings"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
@@ -24,10 +24,6 @@
     "wts.itemNamespace": {
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
-    },
-    "wts.homePageName": {
-      "type":"parameter",
-      "replaces":"Param_HomeName"
     }
   }
 }

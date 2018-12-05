@@ -3,7 +3,7 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Project.SplitView.TabbedPivot.VB",
+  "name": "MVVMLight.Project.SplitView.TabbedNav.VB",
   "tags": {
     "language": "VisualBasic",
     "type": "item",
@@ -11,7 +11,7 @@
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "1",
-    "wts.compositionFilter": "$framework == MVVMLight & $projectType == SplitView|TabbedPivot & wts.type == project",
+    "wts.compositionFilter": "$framework == MVVMLight & $projectType == SplitView|TabbedNav & wts.type == project",
     "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
   },
   "sourceName": "wts.ItemName",

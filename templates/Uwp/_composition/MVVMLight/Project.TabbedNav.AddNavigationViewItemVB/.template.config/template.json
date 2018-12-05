@@ -1,16 +1,16 @@
 ﻿{
-  "author": "Microsoft",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Project.SplitView.TabbedPivot.Page.Settings",
+  "name": "MVVMLight.Project.TabbedNav.AddNavigationViewItem.VB",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & $projectType == SplitView|TabbedPivot & identity == wts.Page.Settings"
+    "wts.compositionFilter": "wts.type == page & identity != wts.Page.Settings.VB & $framework == MVVMLight & $projectType == TabbedNav"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
