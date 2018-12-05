@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Input;
-
-using Param_ItemNamespace.Helpers;
 using Windows.UI.Xaml.Media.Imaging;
 using Param_ItemNamespace.EventHandlers;
 

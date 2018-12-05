@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using Microsoft.Templates.Core.Gen;
@@ -29,13 +30,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             string originalFilePath = GetFilePath();
             if (!File.Exists(originalFilePath))
             {
                 File.Copy(Config.FilePath, originalFilePath);
-                GenContext.Current.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.OutputPath, GenContext.Current.DestinationPath));
+                GenContext.Current.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.GenerationOutputPath, GenContext.Current.DestinationPath));
                 AddToMergeDictionary(originalFilePath);
             }
             else
@@ -78,14 +79,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             }
 
             File.Delete(Config.FilePath);
+
+            await Task.CompletedTask;
         }
 
-        private static void AddToMergeDictionary(string originalFilePath)
+        private void AddToMergeDictionary(string originalFilePath)
         {
-            var relPath = originalFilePath.Replace(GenContext.Current.OutputPath, string.Empty).Replace(@"\", @"/");
+            var relPath = originalFilePath.Replace(GenContext.Current.GenerationOutputPath, string.Empty).Replace(@"\", @"/");
             var postactionContent = MergeDictionaryPattern.Replace("{filePath}", relPath);
             var mergeDictionaryName = Path.GetFileNameWithoutExtension(originalFilePath);
-            File.WriteAllText(GenContext.Current.OutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);
+            File.WriteAllText(GenContext.Current.GenerationOutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);
         }
 
         private static void AddNodeToSource(XElement sourceRoot, XElement node)

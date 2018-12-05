@@ -3,11 +3,12 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using System.Xml.Linq;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Fakes
 {
@@ -89,10 +90,50 @@ namespace Microsoft.Templates.Fakes
             lastItems?.AddAfterSelf(itemsContainer);
         }
 
+        public void AddNugetReference(NugetReference nugetReference)
+        {
+            var isCpsProject = IsCpsProject();
+            if (NugetReferenceExists(nugetReference, isCpsProject))
+            {
+                return;
+            }
+
+            var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
+
+            XElement element = GetNugetReferenceXElement(nugetReference.PackageId, nugetReference.Version.ToString(), isCpsProject);
+            ApplyNs(element);
+            itemsContainer.Add(element);
+
+            _root.Add(itemsContainer);
+        }
+
+        public void AddSDKReference(SdkReference sdkReference)
+        {
+            if (ItemExists(sdkReference.Sdk))
+            {
+                return;
+            }
+
+            var itemsContainer = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
+
+            XElement element = GetSdkReferenceXElement(sdkReference.Name, sdkReference.Sdk.ToString());
+            ApplyNs(element);
+            itemsContainer.Add(element);
+
+            _root.Add(itemsContainer);
+        }
+
         public void AddProjectReference(string projectPath, string projguid, string projectName)
         {
-            var container = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
             string itemRelativePath = "..\\" + projectPath.Replace($@"{Path.GetDirectoryName(Path.GetDirectoryName(_path))}\", string.Empty);
+
+            if (ItemExists(itemRelativePath))
+            {
+                return;
+            }
+
+            var container = new XElement(_root.GetDefaultNamespace() + "ItemGroup");
+
             XElement element = GetProjectReferenceXElement(itemRelativePath, projguid, projectName);
             ApplyNs(element);
             container.Add(element);
@@ -115,9 +156,53 @@ namespace Microsoft.Templates.Fakes
             return itemElement;
         }
 
+        private static XElement GetNugetReferenceXElement(string package, string version, bool isCoreProject)
+        {
+            var sb = new StringBuilder();
+            if (isCoreProject)
+            {
+                sb.Append($"<PackageReference Include=\"{package}\" Version=\"{version}\" />");
+            }
+            else
+            {
+                sb.Append($"<PackageReference Include=\"{package}\"");
+                sb.AppendLine(">");
+                sb.AppendLine($"<Version>{version}</Version>");
+                sb.AppendLine("</PackageReference>");
+            }
+
+            var itemElement = XElement.Parse(sb.ToString());
+
+            return itemElement;
+        }
+
+        private static XElement GetSdkReferenceXElement(string name, string sdkReference)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append($"<SDKReference Include=\"{sdkReference}\"");
+            sb.AppendLine(">");
+            sb.AppendLine($"<Name>{name}</Name>");
+            sb.AppendLine("</SDKReference>");
+
+            var itemElement = XElement.Parse(sb.ToString());
+
+            return itemElement;
+        }
+
         public void Save()
         {
-            _root.Save(_path);
+            if (IsCpsProject())
+            {
+                using (var writer = XmlWriter.Create(_path, new XmlWriterSettings { OmitXmlDeclaration = true, Indent = true }))
+                {
+                    _root.Save(writer);
+                }
+            }
+            else
+            {
+                _root.Save(_path);
+            }
         }
 
         private void ApplyNs(XElement e)
@@ -128,10 +213,34 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
+        private bool IsCpsProject()
+        {
+            return _root.Descendants().Any(d => d.Name == "TargetFramework" || d.Name == "TargetFrameworks");
+        }
+
         private bool ItemExists(string itemPath)
         {
             return _root.Descendants().Any(d => d.Attribute("Include") != null
                 && d.Attribute("Include").Value.Equals(itemPath, StringComparison.OrdinalIgnoreCase));
+        }
+
+        private bool NugetReferenceExists(NugetReference nuget, bool isCpsProject)
+        {
+            if (isCpsProject)
+            {
+                return _root.Descendants().Any(
+                    d => d.Attribute("Include") != null &&
+                    d.Attribute("Include").Value.Equals(nuget.PackageId, StringComparison.OrdinalIgnoreCase) &&
+                    d.Attribute("Version") != null &&
+                    d.Attribute("Version").Value.Equals(nuget.PackageId, StringComparison.OrdinalIgnoreCase));
+            }
+            else
+            {
+                return _root.Descendants().Any(
+                    d => d.Attribute("Include") != null &&
+                    d.Attribute("Include").Value.Equals(nuget.PackageId, StringComparison.OrdinalIgnoreCase) &&
+                    d.Value == nuget.Version );
+            }
         }
 
         private VsItemType GetItemType(string fileName)

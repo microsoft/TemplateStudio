@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Param_ItemNamespace.Services;
+using Param_ItemNamespace.Core.Services;
 
 namespace Param_ItemNamespace.ViewModels
 {

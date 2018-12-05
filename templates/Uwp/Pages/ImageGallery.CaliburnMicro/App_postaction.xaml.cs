@@ -9,7 +9,7 @@ namespace Param_ItemNamespace
         protected override void Configure()
         {
             //^^
-            //{[{       
+            //{[{
             _container.PerRequest<ImageGalleryViewDetailViewModel>();
             //}]}
         }

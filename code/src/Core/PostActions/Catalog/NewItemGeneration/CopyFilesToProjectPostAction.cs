@@ -21,40 +21,35 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
+            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
+            var destinationParentPath = Directory.GetParent(GenContext.Current.DestinationPath).FullName;
+
             foreach (var file in Config.ModifiedFiles)
             {
-                var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
-                var destFilePath = Path.Combine(GenContext.Current.DestinationParentPath, file);
+                var sourceFile = Path.Combine(parentGenerationOutputPath, file);
+                var destFilePath = Path.Combine(destinationParentPath, file);
 
                 var destDirectory = Path.GetDirectoryName(destFilePath);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
-
-                if (Path.GetExtension(file).EndsWith("proj", StringComparison.OrdinalIgnoreCase))
-                {
-                    Gen.GenContext.ToolBox.Shell.RefreshProject();
-                    GenContext.ToolBox.Shell.SaveSolution();
-                    GenContext.ToolBox.Shell.CleanSolution();
-                }
             }
 
             foreach (var file in Config.NewFiles)
             {
-                var sourceFile = Path.Combine(GenContext.Current.OutputPath, file);
-                var destFilePath = Path.Combine(GenContext.Current.DestinationParentPath, file);
+                var sourceFile = Path.Combine(parentGenerationOutputPath, file);
+                var destFilePath = Path.Combine(destinationParentPath, file);
 
                 var destDirectory = Path.GetDirectoryName(destFilePath);
                 Fs.SafeCopyFile(sourceFile, destDirectory, true);
-
-                // Add to projectItems to add to project later
-                GenContext.Current.ProjectItems.Add(destFilePath);
 
                 if (!excludeFromOpeningExtensions.Contains(Path.GetExtension(destFilePath)))
                 {
                     GenContext.Current.FilesToOpen.Add(destFilePath);
                 }
             }
+
+            await Task.CompletedTask;
         }
     }
 }

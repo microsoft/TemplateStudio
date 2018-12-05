@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
@@ -17,12 +18,12 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class GetMergeFilesFromProjectPostActionTest
     {
         [Fact]
-        public void Execute_Postaction()
+        public async Task GetMergeFilesFromProject_Execute_PostactionAsync()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
             var mergeFile = Path.GetFullPath(@".\temp\Source_postaction.cs");
-            var path = Path.GetFullPath(@".\temp");
+            var path = Path.GetFullPath(@".\temp\Project");
 
             Directory.CreateDirectory(path);
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\Merge\\Source_postaction.cs"), mergeFile, true);
@@ -30,27 +31,25 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = Path.GetFullPath(@".\DestinationPath\Project"),
-                OutputPath = path,
-                TempGenerationPath = path,
-                DestinationParentPath = Path.GetFullPath(@".\DestinationPath"),
+                GenerationOutputPath = path,
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
-            mergePostAction.Execute();
+            await mergePostAction.ExecuteAsync();
 
-            Directory.Delete(path, true);
+            Directory.Delete(Directory.GetParent(path).FullName, true);
 
             Assert.True(GenContext.Current.MergeFilesFromProject.ContainsKey(relSourceFilePath));
         }
 
         [Fact]
-        public void Execute_Postaction_FileFound()
+        public async Task GetMergeFilesFromProject_Execute_Postaction_FileFoundAsync()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
             var sourceFile = Path.GetFullPath(@".\DestinationPath\Source.cs");
             var mergeFile = Path.GetFullPath(@".\temp\Source_postaction.cs");
-            var outputPath = Path.GetFullPath(@".\temp");
+            var outputPath = Path.GetFullPath(@".\temp\Project");
             var destPath = Path.GetFullPath(@".\DestinationPath\Project");
 
             Directory.CreateDirectory(outputPath);
@@ -61,28 +60,26 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                OutputPath = outputPath,
-                TempGenerationPath = outputPath,
-                DestinationParentPath = Directory.GetParent(destPath).FullName,
+                GenerationOutputPath = outputPath,
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
-            mergePostAction.Execute();
+            await mergePostAction.ExecuteAsync();
 
-            Directory.Delete(outputPath, true);
+            Directory.Delete(Directory.GetParent(outputPath).FullName, true);
             Directory.Delete(destPath, true);
 
             Assert.True(GenContext.Current.MergeFilesFromProject.ContainsKey(relSourceFilePath));
         }
 
         [Fact]
-        public void Execute_Postaction_LocallyAvailable()
+        public async Task GetMergeFilesFromProject_Execute_Postaction_LocallyAvailableAsync()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
             var sourceFile = Path.GetFullPath(@".\temp\Source.cs");
             var mergeFile = Path.GetFullPath(@".\temp\Source_postaction.cs");
-            var outputPath = Path.GetFullPath(@".\temp");
+            var outputPath = Path.GetFullPath(@".\temp\Project");
             var destPath = Path.GetFullPath(@".\DestinationPath\Project");
 
             Directory.CreateDirectory(outputPath);
@@ -92,26 +89,24 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                OutputPath = outputPath,
-                TempGenerationPath = outputPath,
-                DestinationParentPath = Directory.GetParent(destPath).FullName,
+                GenerationOutputPath = outputPath,
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
-            mergePostAction.Execute();
+            await mergePostAction.ExecuteAsync();
 
-            Directory.Delete(outputPath, true);
+            Directory.Delete(Directory.GetParent(outputPath).FullName, true);
 
             Assert.False(GenContext.Current.MergeFilesFromProject.ContainsKey(relSourceFilePath));
         }
 
         [Fact]
-        public void Execute_GlobalPostaction()
+        public async Task GetMergeFilesFromProject_Execute_GlobalPostactionAsync()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
             var mergeFile = Path.GetFullPath(@".\temp\Source_gpostaction.cs");
-            var outputPath = Path.GetFullPath(@".\temp");
+            var outputPath = Path.GetFullPath(@".\temp\Project");
             var destPath = Path.GetFullPath(@".\DestinationPath\Project");
 
             Directory.CreateDirectory(outputPath);
@@ -120,15 +115,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                OutputPath = outputPath,
-                TempGenerationPath = outputPath,
-                DestinationParentPath = Directory.GetParent(destPath).FullName,
+                GenerationOutputPath = outputPath,
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
-            mergePostAction.Execute();
+            await mergePostAction.ExecuteAsync();
 
-            Directory.Delete(outputPath, true);
+            Directory.Delete(Directory.GetParent(outputPath).FullName, true);
 
             Assert.True(GenContext.Current.MergeFilesFromProject.ContainsKey(relSourceFilePath));
         }

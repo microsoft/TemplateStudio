@@ -477,10 +477,6 @@
     <value>Page {0} successfully added</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Exception tracking telemetry during generation.</value>
-    <comment>Exception tracking telemetry during generation.</comment>
-  </data>
   <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
     <value>Unable add project items.</value>
     <comment>Error message for unable add items to project</comment>
@@ -508,50 +504,6 @@
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>There was an error showing status message. Ex:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>Circular dependency detected on template {0} with {1}.</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>Dependency template {0} not found on user selection.</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Dependency template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>Invalid dependency item {0}. Dependency items must be of type Page or Feature.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>Template '{0}', name: '{1}', reason: '{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Layout template {0} not found for framework {1} and platform {2}.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>Invalid layout item {0}. Layout items must be of type Page or Feature.</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>Creating '{0}' feature ...</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>Creating '{0}' page ...</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>Creating project '{0}'...</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>Application Launching</value>
@@ -653,15 +605,16 @@
     <value>HamburgerMenu control is obsolete and Windows Template Studio now supports NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
     <value>Windows Template Studio is now using the NavigationView from Windows UI Library.</value>
     <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Composition tool</value>
-  </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Unable to resolve platform.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>Select platform</value>
@@ -682,6 +635,14 @@
   <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>See documentation to update.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has pivot validation link documentation message</comment>
   </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
@@ -722,5 +683,16 @@
   <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
     <value>See documentation to update.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
+Please verify the following list of packages needed by your project's code and manually add the missing packages: 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -Id {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
   </data>
 </root>

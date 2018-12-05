@@ -1,20 +1,15 @@
-﻿Imports Windows.Storage
-Imports Windows.System
-Imports Windows.UI.Xaml.Media.Animation
-Imports Windows.UI.Xaml.Navigation
+﻿Imports Windows.System
+Imports Microsoft.Toolkit.Uwp.UI.Animations
 
 Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Models
+Imports Param_ItemNamespace.Core.Models
+Imports Param_ItemNamespace.Core.Services
 Imports Param_ItemNamespace.Services
 
 Namespace Views
     Public NotInheritable Partial Class ImageGalleryViewDetailPage
         Inherits Page
         Implements System.ComponentModel.INotifyPropertyChanged
-
-        Private _timer As New DispatcherTimer() With {
-             .Interval = TimeSpan.FromMilliseconds(500)
-        }
 
         Private _selectedImage As Object
 
@@ -47,30 +42,22 @@ Namespace Views
 
         Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
             MyBase.OnNavigatedTo(e)
-            Dim sampleImageId = TryCast(e.Parameter, String)
-            If Not String.IsNullOrEmpty(sampleImageId) AndAlso e.NavigationMode = NavigationMode.New Then
-                SelectedImage = Source.FirstOrDefault(Function(i) i.ID = sampleImageId)
+            Dim selectedImageId = TryCast(e.Parameter, String)
+            If Not String.IsNullOrEmpty(selectedImageId) AndAlso e.NavigationMode = NavigationMode.New Then
+                SelectedImage = Source.FirstOrDefault(Function(i) i.ID = selectedImageId)
             Else
-                Dim selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey)
+                selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey)
                 If Not String.IsNullOrEmpty(selectedImageId) Then
                     SelectedImage = Source.FirstOrDefault(Function(i) i.ID = selectedImageId)
                 End If
             End If
-            Dim animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewPage.ImageGalleryViewAnimationOpen)
-            animation?.TryStart(previewImage)
-            showFlipView.Begin()
         End Sub
 
         Protected Overrides Sub OnNavigatingFrom(e As NavigatingCancelEventArgs)
             MyBase.OnNavigatingFrom(e)
             If e.NavigationMode = NavigationMode.Back Then
-                previewImage.Visibility = Visibility.Visible
-                ConnectedAnimationService.GetForCurrentView()?.PrepareToAnimate(ImageGalleryViewPage.ImageGalleryViewAnimationClose, previewImage)
+                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(SelectedImage)
             End If
-        End Sub
-
-        Private Sub OnShowFlipViewCompleted(sender As Object, e As Object)
-            flipView.Focus(FocusState.Programmatic)
         End Sub
 
         Private Sub OnPageKeyDown(sender As Object, e As KeyRoutedEventArgs)

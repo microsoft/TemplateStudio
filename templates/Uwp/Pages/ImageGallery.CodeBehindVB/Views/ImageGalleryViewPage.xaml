@@ -4,28 +4,32 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="using:Param_ItemNamespace.Models"
+    Style="{StaticResource PageStyle}"
+    xmlns:models="using:Param_ItemNamespace.Core.Models"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     NavigationCacheMode="Required"
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
         <GridView
-            x:Name="ImagesGridView"
             ItemsSource="{x:Bind Source}"
             IsItemClickEnabled="True"
             Padding="{StaticResource MediumLeftRightMargin}"
+            animations:Connected.ListItemElementName="thumbnailImage"
+            animations:Connected.ListItemKey="galleryAnimationKey"
             ItemClick="ImagesGridView_ItemClick"
             SelectionMode="None">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleImage">
                     <Image
-                        x:Name="galleryImage"
+                        x:Name="thumbnailImage"
                         Style="{StaticResource ThumbnailImageStyle}"
                         Source="{x:Bind Source}"
                         AutomationProperties.Name="{x:Bind Name}"
-                        ToolTipService.ToolTip="{x:Bind Name}" />
+                        ToolTipService.ToolTip="{x:Bind Name}"/>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
     </Grid>
 </Page>
+

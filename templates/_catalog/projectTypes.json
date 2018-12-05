@@ -19,14 +19,14 @@
         "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },
-    {
-        "name": "TabbedPivot",
-        "displayName": "Pivot and Tabs",
-        "summary": "Tabs across the top allow for quickly navigating between pages.",
-        "author": "Microsoft",
-        "order": "3",
-        "licenses": "",
-        "platforms": ["Uwp"],
-        "languages": [ "C#", "VisualBasic" ]
-    }
+  {
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Navigation Items across the top allow for quickly navigating between pages.",
+    "author": "Microsoft",
+    "order": "3",
+    "licenses": "",
+    "platforms": [ "Uwp" ],
+    "languages": [ "C#", "VisualBasic" ]
+  }
 ]

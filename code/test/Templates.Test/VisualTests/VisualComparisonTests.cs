@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -22,15 +23,14 @@ namespace Microsoft.Templates.Test
     public class VisualComparisonTests : BaseGenAndBuildTests
     {
         public VisualComparisonTests(GenerationFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         // Gets all the pages that are available (and testable) in both VB & C#
         public static IEnumerable<object[]> GetAllSinglePageAppsVBAndCS()
         {
-            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedPivot" })
+            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav" })
             {
                 foreach (var framework in new[] { "CodeBehind", "MVVMBasic", "MVVMLight" })
                 {
@@ -61,8 +61,8 @@ namespace Microsoft.Templates.Test
         public static IEnumerable<object[]> GetAllSinglePageAppsCSharp()
         {
             //// To quickly test a single scenario
-            ////yield return new object[] { "TabbedPivot", "wts.Page.ImageGallery", new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" } };
-            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedPivot" })
+            ////yield return new object[] { "TabbedNav", "wts.Page.ImageGallery", new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" } };
+            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav" })
             {
                 var otherFrameworks = new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" };
 
@@ -99,7 +99,7 @@ namespace Microsoft.Templates.Test
                     {
                         case "SplitView":
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 300, 450, 40), 1.25f) }";
-                        case "TabbedPivot":
+                        case "TabbedNav":
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
                         case "Blank":
                         default:
@@ -259,7 +259,7 @@ namespace Microsoft.Templates.Test
 
                 outputText.Add(outputLineString);
 
-                if (outputLineString.StartsWith("Total tests: ", StringComparison.InvariantCulture) && outputLineString.Contains("Failed: 0."))
+                if (outputLineString.StartsWith("Total tests: ", StringComparison.OrdinalIgnoreCase) && outputLineString.Contains("Failed: 0."))
                 {
                     result = true;
                 }

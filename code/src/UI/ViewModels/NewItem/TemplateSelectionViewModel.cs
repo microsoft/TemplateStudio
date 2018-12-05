@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;

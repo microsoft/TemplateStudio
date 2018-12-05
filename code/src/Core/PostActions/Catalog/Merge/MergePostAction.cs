@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 
 using Microsoft.Templates.Core.Resources;
@@ -21,7 +22,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             string originalFilePath = GetFilePath();
             if (!File.Exists(originalFilePath))
@@ -58,16 +59,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             {
                 Fs.EnsureFileEditable(originalFilePath);
                 File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
-
-                // REFRESH PROJECT TO UN-DIRTY IT
-                if (Path.GetExtension(Config.FilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase)
-                 && GenContext.Current.OutputPath == GenContext.Current.DestinationPath)
-                {
-                    Gen.GenContext.ToolBox.Shell.RefreshProject();
-                }
             }
 
             File.Delete(Config.FilePath);
+
+            await Task.CompletedTask;
         }
 
         protected void AddFailedMergePostActions(string originalFilePath, MergeFailureType mergeFailureType, string description)
@@ -76,20 +72,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var postactionFileName = GetRelativePath(Config.FilePath);
 
             var failedFileName = GetFailedPostActionFileName();
-            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo(sourceFileName, Config.FilePath, GetRelativePath(failedFileName), description, mergeFailureType));
+            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo(sourceFileName, Config.FilePath, GetRelativePath(failedFileName), failedFileName, description, mergeFailureType));
             File.Copy(Config.FilePath, failedFileName, true);
         }
 
         protected string GetRelativePath(string path)
         {
-            if (GenContext.Current.OutputPath == GenContext.Current.TempGenerationPath)
-            {
-                return path.Replace(GenContext.Current.OutputPath + Path.DirectorySeparatorChar, string.Empty);
-            }
-            else
-            {
-                return path.Replace(Directory.GetParent(GenContext.Current.OutputPath).FullName + Path.DirectorySeparatorChar, string.Empty);
-            }
+            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
+            return path.Replace(parentGenerationOutputPath + Path.DirectorySeparatorChar, string.Empty);
         }
 
         private void AddFailedMergePostActionsFileNotFound(string originalFilePath)
@@ -123,6 +113,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetFilePath()
         {
+            // TODO: Remove this when 3.0 is released, only necesary for legacy tests
             if (Path.GetFileName(Config.FilePath).StartsWith(MergeConfiguration.Extension, StringComparison.OrdinalIgnoreCase))
             {
                 var extension = Path.GetExtension(Config.FilePath);

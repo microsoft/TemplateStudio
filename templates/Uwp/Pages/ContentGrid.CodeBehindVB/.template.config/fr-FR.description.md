@@ -1,0 +1,1 @@
+﻿ Cette page vous permet d'ajouter du contenu personnalisé en GridView réactif aux changements de taille de l'écran. [En savoir plus sur AdaptiveGridView.](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)

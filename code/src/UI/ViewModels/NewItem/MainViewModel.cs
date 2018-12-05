@@ -11,8 +11,8 @@ using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.UI.Controls;
-using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
@@ -28,6 +28,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private RelayCommand _refreshTemplatesCacheCommand;
 
         private NewItemGenerationResult _output;
+
+        private GenerationService _generationService = GenerationService.Instance;
 
         public TemplateType TemplateType { get; set; }
 
@@ -109,7 +111,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             NewItemGenController.Instance.CleanupTempGeneration();
             var userSelection = CreateUserSelection();
-            await NewItemGenController.Instance.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
+            await _generationService.GenerateNewItemAsync(TemplateSelection.Template.GetTemplateType(), userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
 
@@ -193,7 +195,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     configInfo.ProjectType = vm.SelectedProjectType.Name;
                     configInfo.Framework = vm.SelectedFramework.Name;
                     configInfo.Platform = vm.SelectedPlatform;
-                    ProjectMetadataService.SaveProjectMetadata(configInfo.ProjectType, configInfo.Framework, configInfo.Platform);
+                    ProjectMetadataService.SaveProjectMetadata(configInfo);
                     ConfigFramework = configInfo.Framework;
                     ConfigProjectType = configInfo.ProjectType;
                     ConfigPlatform = configInfo.Platform;

@@ -4,6 +4,7 @@ using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
+using Windows.UI.Xaml.Navigation;
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Services;
 using System.Threading.Tasks;
@@ -46,6 +47,16 @@ namespace Param_ItemNamespace.Views
             Center = new Geopoint(_defaultPosition);
             ZoomLevel = DefaultZoomLevel;
             InitializeComponent();
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await InitializeAsync();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            Cleanup();
         }
 
         public async Task InitializeAsync()

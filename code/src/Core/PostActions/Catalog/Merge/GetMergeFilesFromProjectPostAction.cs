@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             if (Regex.IsMatch(Config, MergeConfiguration.GlobalExtension))
             {
@@ -32,19 +32,24 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     GetFileFromProject();
                 }
             }
+
+            await Task.CompletedTask;
         }
 
         private void GetFileFromProject()
         {
-            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config.Replace(GenContext.Current.OutputPath, GetReplacementPath())));
-            var relFilePath = GetRelativePath(filePath, GenContext.Current.DestinationParentPath + Path.DirectorySeparatorChar);
+            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
+            var destinationParentPath = Directory.GetParent(GenContext.Current.DestinationPath).FullName;
+
+            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config.Replace(parentGenerationOutputPath, destinationParentPath)));
+            var relFilePath = GetRelativePath(filePath, destinationParentPath + Path.DirectorySeparatorChar);
 
             if (!GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {
                 GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
                 if (File.Exists(filePath))
                 {
-                    var destFile = filePath.Replace(GetReplacementPath(), GenContext.Current.OutputPath);
+                    var destFile = filePath.Replace(destinationParentPath, parentGenerationOutputPath);
                     File.Copy(filePath, destFile, true);
                 }
             }
@@ -63,18 +68,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             }
         }
 
-        private string GetReplacementPath()
-        {
-            if (GenContext.Current.OutputPath == GenContext.Current.TempGenerationPath)
-            {
-                return GenContext.Current.DestinationParentPath;
-            }
-            else
-            {
-                return GenContext.Current.DestinationPath;
-            }
-        }
-
         private bool CheckLocalMergeFileAvailable()
         {
             var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config));
@@ -83,19 +76,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private string GetMergeFileFromDirectory(string directory)
         {
-            if (Path.GetFileName(Config).StartsWith(MergeConfiguration.Extension, StringComparison.OrdinalIgnoreCase) || Path.GetFileName(Config).StartsWith(MergeConfiguration.SearchReplaceExtension, StringComparison.OrdinalIgnoreCase))
-            {
-                var extension = Path.GetExtension(Config);
+            var filePath = Path.Combine(directory, Path.GetFileName(Config));
+            var path = Regex.Replace(filePath, MergeConfiguration.PostactionAndSearchReplaceRegex, ".");
 
-                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !Regex.IsMatch(f, MergeConfiguration.PostactionAndSearchReplaceRegex));
-            }
-            else
-            {
-                var filePath = Path.Combine(directory, Path.GetFileName(Config));
-                var path = Regex.Replace(filePath, MergeConfiguration.PostactionAndSearchReplaceRegex, ".");
-
-                return path;
-            }
+            return path;
         }
     }
 }

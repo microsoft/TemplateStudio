@@ -157,8 +157,8 @@ namespace Microsoft.Templates.Test
             {
                 var text = File.ReadAllText(file, Encoding.UTF8);
 
-                if (!text.EndsWith(Environment.NewLine, StringComparison.InvariantCulture)
-                 || text.EndsWith(Environment.NewLine + Environment.NewLine, StringComparison.InvariantCulture))
+                if (!text.EndsWith(Environment.NewLine, StringComparison.OrdinalIgnoreCase)
+                 || text.EndsWith(Environment.NewLine + Environment.NewLine, StringComparison.OrdinalIgnoreCase))
                 {
                     errorFiles.Add(file);
                 }
