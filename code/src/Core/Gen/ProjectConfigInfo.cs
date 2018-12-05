@@ -5,6 +5,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Resources;
 using Microsoft.Templates.Core.Services;
 
@@ -22,7 +23,7 @@ namespace Microsoft.Templates.Core.Gen
 
         private const string ProjTypeBlank = "Blank";
         private const string ProjTypeSplitView = "SplitView";
-        private const string ProjTypeTabbedPivot = "TabbedPivot";
+        private const string ProjTypeTabbedNav = "TabbedNav";
 
         public static ProjectMetadata ReadProjectConfiguration()
         {
@@ -129,18 +130,28 @@ namespace Microsoft.Templates.Core.Gen
 
         private static string InferProjectType()
         {
-            if (IsSplitView())
+            if (IsTabbedNav())
+            {
+                return ProjTypeTabbedNav;
+            }
+            else if (IsSplitView())
             {
                 return ProjTypeSplitView;
             }
-            else if (IsTabbedPivot())
-            {
-                return ProjTypeTabbedPivot;
-            }
-            else
+            else if (IsBlank())
             {
                 return ProjTypeBlank;
             }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        private static bool IsBlank()
+        {
+            return !(ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                || ExistsFileInProjectPath("Views", "PivotPage.xaml"));
         }
 
         private static bool IsMVVMLight()
@@ -174,11 +185,16 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        private static bool IsTabbedPivot()
+        private static bool IsTabbedNav()
         {
-            return ((ExistsFileInProjectPath("Services", "ActivationService.cs") || ExistsFileInProjectPath("Services", "ActivationService.vb"))
-                && ExistsFileInProjectPath("Views", "PivotPage.xaml")) || (ExistsFileInProjectPath("Constants", "PageTokens.cs")
-                && ExistsFileInProjectPath("Views", "PivotPage.xaml"));
+            // TabbedNav implementation is equal to SplitView but winui:NavigationView contains
+            // a property PaneDisplayMode="Top"
+            if (IsSplitView())
+            {
+                return FileContainsLine("Views", "ShellPage.xaml", "PaneDisplayMode=\"Top\"");
+            }
+
+            return false;
         }
 
         private static bool IsCodeBehind()
@@ -272,6 +288,24 @@ namespace Microsoft.Templates.Core.Gen
             try
             {
                 return Directory.GetFiles(Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), subPath), fileName, SearchOption.TopDirectoryOnly).Count() > 0;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return false;
+            }
+            catch (FileNotFoundException)
+            {
+                return false;
+            }
+        }
+
+        private static bool FileContainsLine(string subPath, string fileName, string lineToFind)
+        {
+            try
+            {
+                var filePath = Path.Combine(GenContext.ToolBox.Shell.GetActiveProjectPath(), subPath, fileName);
+                var fileContent = FileHelper.GetFileContent(filePath);
+                return fileContent != null && fileContent.Contains(lineToFind);
             }
             catch (DirectoryNotFoundException)
             {
