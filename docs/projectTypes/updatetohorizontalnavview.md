@@ -73,7 +73,7 @@ Sample code for MVVMBasic:
 <Page
     x:Class="YourAppName.Views.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
@@ -276,6 +276,18 @@ namespace YourAppName.ViewModels
 }
 ```
 
+## 9. Update AppxManifest
 
-## 9. Move page logic
+Open Package.appxmanifest file in your project with: Open With... -> XML (Text) Editor. Locate the `genTemplate:Metadata` section and ppdate projectType value from TabbedPivot to TabbedNav.
+
+```xml
+<genTemplate:Metadata>
+
+  <!--Update projectType value from TabbedPivot to TabbedNav-->
+  <genTemplate:Item Name="projectType" Value="TabbedNav" />
+
+</genTemplate:Metadata>
+```
+
+## 10. Move page logic
 All pages that have logic in the Loaded Event or OnPivotSelectedAsync method have to be modified. You will have to move that logic to the OnNavigatedTo method. You will also have to move the logic from the OnPivotUnselectedAsync method to the OnNavigatedFrom method.

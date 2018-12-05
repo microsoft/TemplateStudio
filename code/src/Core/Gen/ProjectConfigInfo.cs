@@ -138,10 +138,20 @@ namespace Microsoft.Templates.Core.Gen
             {
                 return ProjTypeSplitView;
             }
-            else
+            else if (IsBlank())
             {
                 return ProjTypeBlank;
             }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        private static bool IsBlank()
+        {
+            return !(ExistsFileInProjectPath("Views", "ShellPage.xaml")
+                || ExistsFileInProjectPath("Views", "PivotPage.xaml"));
         }
 
         private static bool IsMVVMLight()
