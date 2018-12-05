@@ -1,33 +1,33 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMBasic.Project.SplitView.TabbedPivot.VB",
+  "name": "MVVMBasic.Project.SplitView.TabbedNav",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "1",
-    "wts.compositionFilter": "$framework == MVVMBasic & $projectType == SplitView|TabbedPivot & wts.type == project",
+    "wts.compositionFilter": "$framework == MVVMBasic & $projectType == SplitView|TabbedNav & wts.type == project",
     "wts.licenses": "[Windows UI Library](https://aka.ms/winui_license)"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\NavHelper.vb"
+      "path": ".\\Helpers\\NavHelper.cs"
     },
     {
-      "path": ".\\ViewModels\\ShellViewModel.vb"
+      "path": ".\\ViewModels\\ShellViewModel.cs"
     },
     {
       "path": ".\\Views\\ShellPage.xaml"
     },
     {
-      "path": ".\\Views\\ShellPage.xaml.vb"
+      "path": ".\\Views\\ShellPage.xaml.cs"
     }
   ],
   "symbols": {
@@ -57,7 +57,7 @@
       "args": {
         "packageId" : "Microsoft.UI.Xaml",
         "version" : "2.0.181018003",
-        "projectPath": "Param_ProjectName.vbproj"
+        "projectPath": "Param_ProjectName.csproj"
       },
       "continueOnError": "true"
     }
