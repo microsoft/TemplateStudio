@@ -14,6 +14,8 @@ namespace Microsoft.Templates.Core.Services
 {
     public static class ProjectMetadataService
     {
+        private const string WindowsTemplateStudioLiteral = "Windows Template Studio";
+        private const string GeneratorLiteral = "generator";
         private const string ProjectTypeLiteral = "projectType";
         private const string FrameworkLiteral = "framework";
         private const string TemplatesVersionLiteral = "templatesVersion";
@@ -23,6 +25,8 @@ namespace Microsoft.Templates.Core.Services
         private const string ValueAttribLiteral = "Value";
         private const string VersionAttribLiteral = "Version";
         private const string ItemLiteral = "Item";
+
+        private static readonly XNamespace NS = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
 
         public static ProjectMetadata GetProjectMetadata()
         {
@@ -60,23 +64,18 @@ namespace Microsoft.Templates.Core.Services
                 if (File.Exists(path))
                 {
                     var manifest = XElement.Load(path);
-                    XNamespace ns = "http://schemas.microsoft.com/appx/developer/windowsTemplateStudio";
-
-                    var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == ns);
-                    if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == ProjectTypeLiteral) == null)
+                    var metadata = manifest.Descendants().FirstOrDefault(e => e.Name.LocalName == MetadataLiteral && e.Name.Namespace == NS);
+                    if (metadata == null)
                     {
-                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, ProjectTypeLiteral), new XAttribute(ValueAttribLiteral, data.ProjectType)));
+                        metadata = new XElement(NS + MetadataLiteral);
+                        manifest.Add(metadata);
                     }
 
-                    if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == FrameworkLiteral) == null)
-                    {
-                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, FrameworkLiteral), new XAttribute(ValueAttribLiteral, data.Framework)));
-                    }
-
-                    if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == PlatformLiteral) == null)
-                    {
-                        metadata.Add(new XElement(ns + ItemLiteral, new XAttribute(NameAttribLiteral, PlatformLiteral), new XAttribute(ValueAttribLiteral, data.Platform)));
-                    }
+                    metadata
+                        .TryAddMetadaElement(GeneratorLiteral, WindowsTemplateStudioLiteral)
+                        .TryAddMetadaElement(ProjectTypeLiteral, data.ProjectType)
+                        .TryAddMetadaElement(FrameworkLiteral, data.Framework)
+                        .TryAddMetadaElement(PlatformLiteral, data.Platform);
 
                     manifest.Save(path);
                 }
@@ -86,6 +85,16 @@ namespace Microsoft.Templates.Core.Services
                 AppHealth.Current.Warning.TrackAsync("Exception saving inferred projectType and framework to Package.appxmanifest", ex).FireAndForget();
                 throw;
             }
+        }
+
+        private static XElement TryAddMetadaElement(this XElement metadata, string name, string value)
+        {
+            if (metadata?.Descendants().FirstOrDefault(m => m.Attribute(NameAttribLiteral)?.Value == name) == null)
+            {
+                metadata.Add(new XElement(NS + ItemLiteral, new XAttribute(NameAttribLiteral, name), new XAttribute(ValueAttribLiteral, value)));
+            }
+
+            return metadata;
         }
     }
 

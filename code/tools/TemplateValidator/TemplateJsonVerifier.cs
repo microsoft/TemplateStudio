@@ -369,7 +369,7 @@ namespace TemplateValidator
             // This tag may contain a single value or multiple ones separated by the pipe character
             foreach (var projectType in tag.Value.Split('|'))
             {
-                if (!new[] { "Blank", "SplitView", "TabbedPivot" }.Contains(projectType))
+                if (!new[] { "Blank", "SplitView", "TabbedNav" }.Contains(projectType))
                 {
                     results.Add($"Invalid value '{tag.Value}' specified in the wts.projecttype tag.");
                 }
