@@ -1,18 +1,17 @@
 ﻿{
-  "author": "Microsoft",
+  "author": "Microsoft Community",
   "classifications": [
     "Universal"
   ],
-  "name": "Project.TabbedPivot",
+  "name": "Project.SplitView.TabbedNav.AddNavigationPaneRessources.VB",
   "tags": {
-    "language": "C#",
+    "language": "VisualBasic",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionOrder": "2",
-    "wts.compositionFilter": "$projectType == TabbedPivot & wts.type == project"
-  },
+    "wts.compositionFilter": "wts.type==page & $projectType == SplitView|TabbedNav & groupidentity != wts.Page.Settings.VB"
+ },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [

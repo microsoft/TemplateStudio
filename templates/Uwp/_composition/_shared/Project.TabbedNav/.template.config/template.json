@@ -3,15 +3,15 @@
   "classifications": [
     "Universal"
   ],
-  "name": "Project.TabbedPivot.VB",
+  "name": "Project.TabbedNav",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
     "wts.compositionOrder": "2",
-    "wts.compositionFilter": "$projectType == TabbedPivot & wts.type == project"
+    "wts.compositionFilter": "$projectType == TabbedNav & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
