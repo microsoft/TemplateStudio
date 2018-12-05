@@ -10,7 +10,7 @@
     "type": "project",
     "wts.type": "project",
     "wts.framework": "CodeBehind|MVVMBasic|MVVMLight|CaliburnMicro",
-    "wts.projecttype":"Blank|SplitView|TabbedPivot",
+    "wts.projecttype":"Blank|SplitView|TabbedNav",
 	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "1"
