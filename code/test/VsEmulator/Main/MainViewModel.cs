@@ -19,7 +19,6 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
-using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -38,6 +37,8 @@ namespace Microsoft.Templates.VsEmulator.Main
         private bool _canRefreshTemplateCache;
         private string _selectedTheme;
 
+        private GenerationService _generationService = GenerationService.Instance;
+
         private RelayCommand _refreshTemplateCacheCommand;
 
         public MainViewModel(MainView host)
@@ -52,7 +53,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public string ProjectName { get; private set; }
 
-        public string OutputPath { get;  set; }
+        public string GenerationOutputPath { get;  set; }
 
         public string DestinationPath { get; private set; }
 
@@ -71,9 +72,13 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
 
-        public string DestinationParentPath { get; private set; }
+        public List<ProjectInfo> Projects { get; } = new List<ProjectInfo>();
 
-        public string TempGenerationPath { get; private set; }
+        public List<SdkReference> SdkReferences { get; } = new List<SdkReference>();
+
+        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
+
+        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
 
         public List<string> ProjectItems { get; } = new List<string>();
 
@@ -207,6 +212,15 @@ namespace Microsoft.Templates.VsEmulator.Main
             });
         }
 
+        private void FinishGeneration(UserSelection userSelection)
+        {
+            SafeThreading.JoinableTaskFactory.Run(async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                await _generationService.FinishGenerationAsync(userSelection);
+            });
+        }
+
         private void AnalyzeCSharpSelection()
         {
             SafeThreading.JoinableTaskFactory.Run(async () =>
@@ -237,7 +251,6 @@ namespace Microsoft.Templates.VsEmulator.Main
         private async Task NewProjectAsync(string platform, string language)
         {
             _platform = platform;
-
             SetCurrentLanguage(language);
             SetCurrentPlatform(platform);
 
@@ -249,22 +262,19 @@ namespace Microsoft.Templates.VsEmulator.Main
                 {
                     var destinationPath = Path.Combine(newProjectInfo.location, newProjectInfo.name, newProjectInfo.name);
 
-                    var destinationParentPath = Path.Combine(newProjectInfo.location, newProjectInfo.name);
-
                     GenContext.Current = this;
                     ProjectName = newProjectInfo.name;
                     DestinationPath = destinationPath;
-                    OutputPath = destinationPath;
-                    DestinationParentPath = destinationParentPath;
+                    GenerationOutputPath = destinationPath;
                     SolutionName = null;
 
-                    var userSelection = NewProjectGenController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
+                    var userSelection = NewProjectController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
 
                     if (userSelection != null)
                     {
                         ClearContext();
 
-                        await NewProjectGenController.Instance.GenerateProjectAsync(userSelection);
+                        await _generationService.GenerateProjectAsync(userSelection);
 
                         GenContext.ToolBox.Shell.ShowStatusBarMessage("Project created!!!");
 
@@ -296,15 +306,13 @@ namespace Microsoft.Templates.VsEmulator.Main
                 var newProjectLocation = Path.GetTempPath();
 
                 var destinationPath = Path.Combine(newProjectLocation, newProjectName, newProjectName);
-                var destinationParentPath = Path.Combine(newProjectLocation, newProjectName);
 
                 GenContext.Current = this;
                 ProjectName = newProjectName;
                 DestinationPath = destinationPath;
-                DestinationParentPath = destinationParentPath;
-                OutputPath = destinationPath;
+                GenerationOutputPath = destinationPath;
 
-                var userSelection = NewProjectGenController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
+                var userSelection = NewProjectController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
@@ -396,16 +404,16 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewFeature()
         {
-            TempGenerationPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            GenerationOutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
 
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
+                var userSelection = NewItemController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
-                    NewItemGenController.Instance.FinishGeneration(userSelection);
+                    FinishGeneration(userSelection);
                     OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
@@ -423,6 +431,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ClearContext()
         {
+            Projects.Clear();
+            ProjectReferences.Clear();
             ProjectItems.Clear();
             MergeFilesFromProject.Clear();
             FailedMergePostActions.Clear();
@@ -431,15 +441,15 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void AddNewPage()
         {
-            TempGenerationPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
+            GenerationOutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
             try
             {
-                var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
+                var userSelection = NewItemController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
-                    NewItemGenController.Instance.FinishGeneration(userSelection);
+                    FinishGeneration(userSelection);
                     OnPropertyChanged(nameof(TempFolderAvailable));
                     GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
                 }
@@ -464,15 +474,16 @@ namespace Microsoft.Templates.VsEmulator.Main
                 SolutionFilePath = loadProjectInfo;
                 SolutionName = Path.GetFileNameWithoutExtension(SolutionFilePath);
 
-                DestinationParentPath = Path.GetDirectoryName(SolutionFilePath);
-                var projFile = Directory.EnumerateFiles(DestinationParentPath, "*.csproj", SearchOption.AllDirectories)
-                        .Union(Directory.EnumerateFiles(DestinationParentPath, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
+                var destinationParent = Path.GetDirectoryName(SolutionFilePath);
+
+                var projFile = Directory.EnumerateFiles(destinationParent, "*.csproj", SearchOption.AllDirectories)
+                        .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories)).FirstOrDefault();
 
                 var language = Path.GetExtension(projFile) == ".vbproj" ? ProgrammingLanguages.VisualBasic : ProgrammingLanguages.CSharp;
 
                 ProjectName = Path.GetFileNameWithoutExtension(projFile);
                 DestinationPath = Path.GetDirectoryName(projFile);
-                OutputPath = DestinationPath;
+                GenerationOutputPath = DestinationPath;
                 GenContext.Current = this;
 
                 var platform = ProjectConfigInfo.ReadProjectConfiguration().Platform;
@@ -528,9 +539,10 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void OpenInExplorer()
         {
-            if (!string.IsNullOrEmpty(DestinationParentPath))
+            if (!string.IsNullOrEmpty(DestinationPath))
             {
-                System.Diagnostics.Process.Start(DestinationParentPath);
+                var destinationParentPath = Directory.GetParent(DestinationPath).FullName;
+                System.Diagnostics.Process.Start(destinationParentPath);
             }
         }
 

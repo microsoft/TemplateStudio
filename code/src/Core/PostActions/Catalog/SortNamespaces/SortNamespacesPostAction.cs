@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 {
@@ -15,10 +17,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 
         public abstract bool SortMethod(List<string> classContent);
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
             var classFiles = Directory
-                .EnumerateFiles(Gen.GenContext.Current.OutputPath, FilesToSearch, SearchOption.AllDirectories)
+                .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.GenerationOutputPath), FilesToSearch, SearchOption.AllDirectories)
                 .ToList();
 
             foreach (var classFile in classFiles)
@@ -31,6 +33,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
                     File.WriteAllLines(classFile, fileContent, Encoding.UTF8);
                 }
             }
+
+            await Task.CompletedTask;
         }
     }
 }

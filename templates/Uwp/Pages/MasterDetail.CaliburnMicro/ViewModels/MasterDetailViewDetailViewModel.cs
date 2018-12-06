@@ -1,6 +1,6 @@
 ﻿using System;
 using Caliburn.Micro;
-using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Core.Models;
 
 namespace Param_ItemNamespace.ViewModels
 {

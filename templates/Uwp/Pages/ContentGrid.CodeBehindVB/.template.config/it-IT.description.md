@@ -1,0 +1,1 @@
+﻿ Questa pagina ti permette di aggiungere elementi personalizzati sotto forma di GridView, che si adatta al cambio delle dimensioni schermo. [Scopri di più sulla Visualizzazione griglia adattiva.](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview)

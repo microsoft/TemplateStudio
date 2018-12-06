@@ -1,5 +1,6 @@
 ﻿'{[{
 Imports GalaSoft.MvvmLight.Command
+Imports Microsoft.Toolkit.Uwp.UI.Animations
 '}]}
 Imports Param_ItemNamespace.Helpers
 Imports Param_ItemNamespace.Services
@@ -20,8 +21,8 @@ Namespace ViewModels
         '{[{
         Private Sub OnsItemSelected(args As ItemClickEventArgs)
             Dim selected = TryCast(args.ClickedItem, SampleImage)
-            _imagesGridView.PrepareConnectedAnimation(wts.ItemNameAnimationOpen, selected, "galleryImage")
             ImagesNavigationHelper.AddImageId(wts.ItemNameSelectedIdKey, selected.ID)
+            NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(selected)
             NavigationService.Navigate(GetType(wts.ItemNameDetailViewModel).FullName, selected.ID)
         End Sub
         '}]}

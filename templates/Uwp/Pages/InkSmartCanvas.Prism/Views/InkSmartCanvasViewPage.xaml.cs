@@ -1,5 +1,4 @@
 ﻿using Param_ItemNamespace.Services.Ink;
-using Param_ItemNamespace.Helpers;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

@@ -3,20 +3,13 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
-using Microsoft.VisualStudio.Threading;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
+using Microsoft.Templates.Fakes;
 
 namespace Microsoft.Templates.Test
 {
@@ -26,9 +19,8 @@ namespace Microsoft.Templates.Test
     public class BuildPrismProjectTests : BaseGenAndBuildTests
     {
         public BuildPrismProjectTests(BuildTemplatesTestFixture fixture)
+            : base(fixture, null, "Prism")
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this, "Prism");
         }
 
         [Theory]

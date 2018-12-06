@@ -447,4 +447,62 @@ Nemohly být integrovány následující změny: {2}
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
     <value>Při stahování zdrojového konfiguračního souboru došlo k chybě.</value>
   </data>
+  <data name="FsSafeMoveFileMessage" xml:space="preserve">
+    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
+  </data>
+  <data name="StatusAddingProjects" xml:space="preserve">
+    <value>Adding projects to solution...</value>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Nebyla nalezena šablona rozložení {0} pro rámec (framework) {1} a platformu {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>Položka rozložení {0} je neplatná. Položky rozvržení musí být typu Stránka nebo Funkce.</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>Závislá položka {0} je neplatná. Závislé položky musí být typu Stránka nebo Funkce.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Nebyla nalezena šablona závislosti {0} pro rámec (framework) {1} a platformu {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>Závislá položka {0} je neplatná. Závislosti je nutné nakonfigurovat jako multipleInstance = false.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>V šabloně {0} byla zjištěna cyklická závislost se šablonou {1}.</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>Ve výběru uživatele nebyla nalezena závislá šablona {0}.</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>Vytváření funkce {0}...</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>Vytváření stránky {0}...</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>Vytváření projektu {0}...</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>Šablona {0}, název: {1}, důvod: '{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
+    <value>Telemetrie sledování výjimky během generování</value>
+    <comment>Exception tracking telemetry during generation.</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Nelze rozpoznat platformu.</value>
+  </data>
 </root>

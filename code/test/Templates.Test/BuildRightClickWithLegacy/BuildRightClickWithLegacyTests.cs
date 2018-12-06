@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.UI;
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -21,9 +21,8 @@ namespace Microsoft.Templates.Test
         private string[] excludedTemplates = { };
 
         public BuildRightClickWithLegacyTests(BuildRightClickWithLegacyFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         [Theory]
@@ -60,7 +59,7 @@ namespace Microsoft.Templates.Test
                                             && !t.GetIsHidden()
                                             && t.GetRightClickEnabled());
 
-            await AddRightClickTemplatesAsync(rightClickTemplates, projectName, projectType, framework, platform, language);
+            await AddRightClickTemplatesAsync(GenContext.Current.DestinationPath, rightClickTemplates, projectName, projectType, framework, platform, language);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -91,10 +90,11 @@ namespace Microsoft.Templates.Test
 
             var targetProjectTemplate = _fixture.Templates().FirstOrDefault(projectTemplateSelector);
 
-            ProjectName = projectName;
-
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
-            DestinationParentPath = Path.Combine(_fixture.TestProjectsPath, projectName);
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName),
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, string.Empty, language);
 

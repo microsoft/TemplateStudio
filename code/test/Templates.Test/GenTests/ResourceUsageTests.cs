@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
 using Xunit;
 
@@ -18,9 +20,8 @@ namespace Microsoft.Templates.Test
     public class ResourceUsageTests : BaseGenAndBuildTests
     {
         public ResourceUsageTests(GenerationFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         [Theory]
@@ -29,11 +30,11 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "GenerationResourceUsage")]
         public async Task EnsureReswResourceInGeneratedProjectsAreUsedAsync(string projectType, string framework, string platform, string language)
         {
-            ProjectName = $"{projectType}{framework}Resw";
+            var projectName = $"{projectType}{framework}Resw";
 
-            var resultPath = await GenerateProjectForTestingAsync(projectType, framework, platform, language);
+            var resultPath = await GenerateProjectForTestingAsync(projectName, projectType, framework, platform, language);
 
-            var reswFilePath = Path.Combine(resultPath, ProjectName, "strings", "en-us", "Resources.resw");
+            var reswFilePath = Path.Combine(resultPath, projectName, "strings", "en-us", "Resources.resw");
 
             var xdoc = new XmlDocument();
             xdoc.Load(reswFilePath);
@@ -106,11 +107,11 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "GenerationResourceUsage")]
         public async Task EnsureDefinedUidsHaveResourceEntriesAsync(string projectType, string framework, string platform, string language)
         {
-            ProjectName = $"{projectType}{framework}Uids";
+            var projectName = $"{projectType}{framework}Uids";
 
-            var resultPath = await GenerateProjectForTestingAsync(projectType, framework, platform, language);
+            var resultPath = await GenerateProjectForTestingAsync(projectName, projectType, framework, platform, language);
 
-            var reswFilePath = Path.Combine(resultPath, ProjectName, "strings", "en-us", "Resources.resw");
+            var reswFilePath = Path.Combine(resultPath, projectName, "strings", "en-us", "Resources.resw");
 
             var uidsWithoutResources = new List<string>();
 
@@ -177,7 +178,7 @@ namespace Microsoft.Templates.Test
             Fs.SafeDeleteDirectory(resultPath);
         }
 
-        private async Task<string> GenerateProjectForTestingAsync(string projectType, string framework, string platform, string language)
+        private async Task<string> GenerateProjectForTestingAsync(string projectName, string projectType, string framework, string platform, string language)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(platform);
@@ -188,8 +189,14 @@ namespace Microsoft.Templates.Test
                                                                         t.GetProjectTypeList().Contains(projectType) &&
                                                                         t.GetFrameworkList().Contains(framework));
 
-            DestinationPath = Path.Combine(_fixture.TestProjectsPath, ProjectName, ProjectName);
-            OutputPath = DestinationPath;
+            var destinationPath = Path.Combine(_fixture.TestProjectsPath, projectName, projectName);
+
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = projectName,
+                DestinationPath = destinationPath,
+                GenerationOutputPath = destinationPath,
+            };
 
             var userSelection = _fixture.SetupProject(projectType, framework, platform, language);
 
@@ -202,7 +209,7 @@ namespace Microsoft.Templates.Test
 
             await NewProjectGenController.Instance.UnsafeGenerateProjectAsync(userSelection);
 
-            var resultPath = Path.Combine(_fixture.TestProjectsPath, ProjectName);
+            var resultPath = Path.Combine(_fixture.TestProjectsPath, projectName);
 
             return resultPath;
         }

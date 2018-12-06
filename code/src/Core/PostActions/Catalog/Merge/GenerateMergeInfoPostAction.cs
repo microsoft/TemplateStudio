@@ -6,7 +6,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
@@ -24,12 +24,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override void ExecuteInternal()
+        internal override async Task ExecuteInternalAsync()
         {
+            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
-            var sourceFile = GetFilePath();
+            var sourceFile = Regex.Replace(Config, PostactionRegex, ".");
             var mergeType = GetMergeType();
-            var relFilePath = sourceFile.Replace(GenContext.Current.TempGenerationPath + Path.DirectorySeparatorChar, string.Empty);
+            var relFilePath = sourceFile.Replace(parentGenerationOutputPath + Path.DirectorySeparatorChar, string.Empty);
 
             if (GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {
@@ -37,6 +38,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 mergeFile.Add(new MergeInfo { Format = mergeType, PostActionCode = postAction });
             }
+
+            await Task.CompletedTask;
         }
 
         private string GetMergeType()
@@ -53,23 +56,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     return "XML";
                 default:
                     return string.Empty;
-            }
-        }
-
-        private string GetFilePath()
-        {
-            if (Path.GetFileName(Config).StartsWith(Extension, StringComparison.OrdinalIgnoreCase))
-            {
-                var extension = Path.GetExtension(Config);
-                var directory = Path.GetDirectoryName(Config);
-
-                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(Suffix));
-            }
-            else
-            {
-                var path = Regex.Replace(Config, PostactionRegex, ".");
-
-                return path;
             }
         }
     }

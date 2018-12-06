@@ -5,6 +5,7 @@
 using System.Linq;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {

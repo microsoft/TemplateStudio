@@ -10,7 +10,6 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using Microsoft.Templates.UI.Generation;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -23,15 +22,21 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         private static VsGenShell _shell;
 
+        private GenerationService _generationService = GenerationService.Instance;
+
         public string ProjectName { get; private set; }
 
-        public string OutputPath { get; set; }
+        public string GenerationOutputPath { get; private set; }
 
         public string DestinationPath { get; private set; }
 
-        public string DestinationParentPath { get; private set; }
+        public List<ProjectInfo> Projects { get; private set; }
 
-        public string TempGenerationPath { get; private set; }
+        public List<NugetReference> NugetReferences { get; private set; }
+
+        public List<SdkReference> SdkReferences { get; private set; }
+
+        public Dictionary<string, List<string>> ProjectReferences { get; private set; }
 
         public List<string> ProjectItems { get; private set; }
 
@@ -56,7 +61,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 try
                 {
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
+                    var userSelection = NewItemController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
 
                     if (userSelection != null)
                     {
@@ -64,11 +69,11 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            NewItemGenController.Instance.FinishGeneration(userSelection);
+                            await _generationService.FinishGenerationAsync(userSelection);
+
+                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                         },
                         JoinableTaskCreationOptions.LongRunning);
-
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                     }
                 }
                 catch (WizardBackoutException)
@@ -85,7 +90,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 SetContext();
                 try
                 {
-                    var userSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
+                    var userSelection = NewItemController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
 
                     if (userSelection != null)
                     {
@@ -93,11 +98,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            NewItemGenController.Instance.FinishGeneration(userSelection);
+                            await _generationService.FinishGenerationAsync(userSelection);
+                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                         },
                         JoinableTaskCreationOptions.LongRunning);
-
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                     }
                 }
                 catch (WizardBackoutException)
@@ -140,11 +144,14 @@ namespace Microsoft.Templates.UI.VisualStudio
                 if (projectConfig.Platform == Platforms.Uwp)
                 {
                     DestinationPath = GenContext.ToolBox.Shell.GetActiveProjectPath();
-                    DestinationParentPath = new DirectoryInfo(DestinationPath).Parent.FullName;
                     ProjectName = GenContext.ToolBox.Shell.GetActiveProjectName();
                 }
 
-                TempGenerationPath = GenContext.GetTempGenerationPath(ProjectName);
+                GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
+                Projects = new List<ProjectInfo>();
+                NugetReferences = new List<NugetReference>();
+                SdkReferences = new List<SdkReference>();
+                ProjectReferences = new Dictionary<string, List<string>>();
                 ProjectItems = new List<string>();
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostActionInfo>();
@@ -157,18 +164,19 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void EnsureGenContextInitialized()
         {
-            if (GenContext.CurrentLanguage != _shell.GetActiveProjectLanguage())
+            var projectLanguage = _shell.GetActiveProjectLanguage();
+            if (GenContext.CurrentLanguage != projectLanguage)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, Platforms.Uwp, _shell.GetActiveProjectLanguage());
+                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, Platforms.Uwp, projectLanguage);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, _shell.GetActiveProjectLanguage()), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
+                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, projectLanguage), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
 #endif
             }
 
-            if (GenContext.CurrentLanguage != _shell.GetActiveProjectLanguage())
+            if (GenContext.CurrentLanguage != projectLanguage)
             {
-                GenContext.SetCurrentLanguage(_shell.GetActiveProjectLanguage());
+                GenContext.SetCurrentLanguage(projectLanguage);
             }
         }
 

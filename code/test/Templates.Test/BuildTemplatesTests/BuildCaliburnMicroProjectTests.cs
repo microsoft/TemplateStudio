@@ -9,6 +9,7 @@ using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
+using Microsoft.Templates.Fakes;
 
 namespace Microsoft.Templates.Test
 {
@@ -17,9 +18,8 @@ namespace Microsoft.Templates.Test
     public class BuildCaliburnMicroProjectTests : BaseGenAndBuildTests
     {
         public BuildCaliburnMicroProjectTests(BuildTemplatesTestFixture fixture)
+            : base(fixture, null, "CaliburnMicro")
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this, "CaliburnMicro");
         }
 
         [Theory]

@@ -1,0 +1,12 @@
+﻿<Page
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">    
+
+    <winui:NavigationView
+<!--^^-->
+<!--{[{-->
+        PaneDisplayMode="Top"
+<!--}]}-->
+        Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
+    </winui:NavigationView>
+</Page>

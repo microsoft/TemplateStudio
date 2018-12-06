@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Core.Gen
             var tempGenerationName = $"{projectName}_{DateTime.Now.FormatAsShortDateTime()}";
             var inferredName = Naming.Infer(tempGenerationName, new List<Validator> { new SuggestedDirectoryNameValidator(projectTempFolder) }, "_");
 
-            return Path.Combine(projectTempFolder, inferredName);
+            return Path.Combine(projectTempFolder, inferredName, projectName);
         }
 
         private static void PurgeTempGenerations(int daysToKeep)

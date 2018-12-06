@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
-Imports Param_ItemNamespace.Models
-Imports Param_ItemNamespace.Services
+Imports Param_ItemNamespace.Core.Models
+Imports Param_ItemNamespace.Core.Services
 
 Namespace ViewModels
     Public Class MasterDetailViewViewModel

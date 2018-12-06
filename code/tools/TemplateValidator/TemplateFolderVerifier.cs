@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Xml;
+using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Composition;
 using Newtonsoft.Json;
 
@@ -111,10 +112,14 @@ namespace TemplateValidator
                          && !file.FullName.Contains("\\Projects\\Default")
                          && !file.FullName.Contains(".template.config"))
                         {
-                            // Use of FileInfo and Path to handle comparison of relative and exact paths
-                            if (template.PrimaryOutputs.All(p => file.FullName != new FileInfo(Path.Combine(templateRoot, p.Path)).FullName))
+                            // Projects will include files that aren't directly referenced
+                            if (template.GetTemplateOutputType() == TemplateOutputType.Item)
                             {
-                                results.Add($"'{file.FullName}' is not used in the template.");
+                                // Use of FileInfo and Path to handle comparison of relative and exact paths
+                                if (template.PrimaryOutputs.All(p => file.FullName != new FileInfo(Path.Combine(templateRoot, p.Path)).FullName))
+                                {
+                                    results.Add($"'{file.FullName}' is not used in the template.");
+                                }
                             }
 
                             // Duplicate file checking can be avoided as some duplicate files exist in the official templates at the time of writing.

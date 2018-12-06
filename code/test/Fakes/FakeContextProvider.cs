@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
-
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -14,13 +13,17 @@ namespace Microsoft.Templates.Fakes
     {
         public string ProjectName { get; set; }
 
-        public string OutputPath { get; set; }
-
-        public string DestinationParentPath { get; set; }
-
-        public string TempGenerationPath { get; set; }
+        public string GenerationOutputPath { get; set; }
 
         public string DestinationPath { get; set; }
+
+        public List<ProjectInfo> Projects { get; } = new List<ProjectInfo>();
+
+        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
+
+        public List<SdkReference> SdkReferences { get; } = new List<SdkReference>();
+
+        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
 
         public List<string> ProjectItems { get; } = new List<string>();
 

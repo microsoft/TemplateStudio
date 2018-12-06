@@ -11,35 +11,16 @@ using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.Fakes;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 {
     [Trait("ExecutionSet", "Minimum")]
-    public class MergeResourceDictionaryPostactionTest : IContextProvider
+    public class MergeResourceDictionaryPostactionTest
     {
-        public string ProjectName => "TestResourceDictionaryPostAction";
-
-        public string OutputPath { get; set; }
-
-        public string DestinationPath => Directory.GetCurrentDirectory();
-
-        public string DestinationParentPath => string.Empty;
-
-        public string TempGenerationPath => string.Empty;
-
-        public List<string> ProjectItems => new List<string>();
-
-        public List<string> FilesToOpen => new List<string>();
-
-        public List<FailedMergePostActionInfo> FailedMergePostActions => new List<FailedMergePostActionInfo>();
-
-        public Dictionary<string, List<MergeInfo>> MergeFilesFromProject => new Dictionary<string, List<MergeInfo>>();
-
-        public Dictionary<ProjectMetricsEnum, double> ProjectMetrics => new Dictionary<ProjectMetricsEnum, double>();
-
         [Fact]
-        public void MergeResourceDictionaryPostaction()
+        public async Task MergeResourceDictionary_ExecuteAsync()
         {
             var source = Path.GetFullPath(@".\TestData\Merge\Style.xaml");
             var postaction = Path.GetFullPath(@".\TestData\Merge\Style_postaction.xaml");
@@ -48,7 +29,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var config = new MergeConfiguration(postaction, true);
 
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("Test", config);
-            mergeResourceDictionaryPostAction.Execute();
+            await mergeResourceDictionaryPostAction.ExecuteAsync();
 
             var result = File.ReadAllText(source).Replace("\r\n", string.Empty).Replace("\n", string.Empty);
 
@@ -56,18 +37,23 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void MergeResourceDictionaryPostaction_Failing()
+        public async Task MergeResourceDictionaryPostaction_FailingAsync()
         {
             var source = Path.GetFullPath(@".\TestData\Merge\Style_fail.xaml");
             var postaction = Path.GetFullPath(@".\TestData\Merge\Style_fail_postaction.xaml");
             var expected = File.ReadAllText(@".\TestData\Merge\Style_expected.xaml");
 
-            GenContext.Current = this;
+            GenContext.Current = new FakeContextProvider
+            {
+                ProjectName = "TestResourceDictionaryPostAction",
+                DestinationPath = Directory.GetCurrentDirectory(),
+            };
+
             var config = new MergeConfiguration(postaction, true);
 
             var mergeResourceDictionaryPostAction = new MergeResourceDictionaryPostAction("TestTemplate", config);
 
-            Exception ex = Assert.Throws<Exception>(() => mergeResourceDictionaryPostAction.Execute());
+            Exception ex = await Assert.ThrowsAsync<Exception>(async () => await mergeResourceDictionaryPostAction.ExecuteAsync());
             Assert.NotNull(ex.InnerException);
             Assert.Equal(typeof(System.IO.InvalidDataException), ex.InnerException.GetType());
             Assert.Equal(string.Format(Resources.StringRes.PostActionException, "Microsoft.Templates.Core.PostActions.Catalog.Merge.MergeResourceDictionaryPostAction", "TestTemplate"), ex.Message);

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -31,19 +32,17 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_SyncGeneration()
+        public async Task CreateSummary_Execute_SyncGenerationAsync()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
-            var outputPath = Path.GetFullPath(@".\temp");
+            var outputPath = Path.GetFullPath(@".\temp\Project");
             var destPath = Path.GetFullPath(@".\DestinationPath");
             var expectedFile = Path.GetFullPath(@".\TestData\GenerationSummary_expected.md");
 
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                OutputPath = outputPath,
-                TempGenerationPath = outputPath,
-                DestinationParentPath = Directory.GetParent(destPath).FullName,
+                GenerationOutputPath = outputPath,
             };
 
             Directory.CreateDirectory(outputPath);
@@ -59,7 +58,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current.MergeFilesFromProject.Add("ModifiedFile_Success.cs", new List<MergeInfo>() { new MergeInfo() { Format = "CSHARP", PostActionCode = "**MERGECODEPLACEHOLDER**" } });
             config.ModifiedFiles.Add("ModifiedFile_Error.cs");
             GenContext.Current.MergeFilesFromProject.Add("ModifiedFile_Error.cs", new List<MergeInfo>() { new MergeInfo() { Format = "CSHARP", PostActionCode = "**MERGECODEPLACEHOLDER**" } });
-            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo("ModifiedFile_Error.cs", Path.Combine(outputPath, "ModifiedFile_Error.cs"), "ModifiedFile_failedpostaction.cs", "TestDescription", MergeFailureType.FileNotFound));
+            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo("ModifiedFile_Error.cs", Path.Combine(outputPath, "ModifiedFile_Error.cs"), "ModifiedFile_failedpostaction.cs", Path.Combine(outputPath, "ModifiedFile_failedpostaction.cs"), "TestDescription", MergeFailureType.FileNotFound));
 
             // UnModified
             config.UnchangedFiles.Add("UnchangedFile.cs");
@@ -68,36 +67,34 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             config.ConflictingFiles.Add("ConflictFile.cs");
 
             var mergePostAction = new CreateSummaryPostAction(config);
-            mergePostAction.Execute();
+            await mergePostAction.ExecuteAsync();
 
-            var filePath = Path.Combine(outputPath, "GenerationSummary.md");
+            var filePath = Path.Combine(Directory.GetParent(outputPath).FullName, "GenerationSummary.md");
 
             Assert.True(File.Exists(filePath));
 
             var expected = File.ReadAllText(expectedFile)
                     .Replace("{{projectPath}}", Directory.GetParent(destPath).FullName.Replace(@"\", "/"))
-                    .Replace("{{tempPath}}", outputPath)
+                    .Replace("{{tempPath}}", Directory.GetParent(outputPath).FullName)
                     .Replace("\r\n", string.Empty)
                     .Replace("\n", string.Empty);
             Assert.Equal(expected, File.ReadAllText(filePath).Replace("\r\n", string.Empty).Replace("\n", string.Empty));
 
-            Directory.Delete(outputPath, true);
+            Directory.Delete(Directory.GetParent(outputPath).FullName, true);
         }
 
         [Fact]
-        public void Execute_NotSyncGeneration()
+        public async Task CreateSummary_Execute_NotSyncGenerationAsync()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
-            var outputPath = Path.GetFullPath(@".\temp");
+            var outputPath = Path.GetFullPath(@".\temp\Project");
             var destPath = Path.GetFullPath(@".\DestinationPath");
             var expectedFile = Path.GetFullPath(@".\TestData\Steps to include new item generation_expected.md");
 
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                OutputPath = outputPath,
-                TempGenerationPath = outputPath,
-                DestinationParentPath = Directory.GetParent(destPath).FullName,
+                GenerationOutputPath = outputPath,
             };
 
             Directory.CreateDirectory(outputPath);
@@ -113,7 +110,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current.MergeFilesFromProject.Add("ModifiedFile_Success.cs", new List<MergeInfo>() { new MergeInfo() { Format = "CSHARP", PostActionCode = "**MERGECODEPLACEHOLDER**" } });
             config.ModifiedFiles.Add("ModifiedFile_Error.cs");
             GenContext.Current.MergeFilesFromProject.Add("ModifiedFile_Error.cs", new List<MergeInfo>() { new MergeInfo() { Format = "CSHARP", PostActionCode = "**MERGECODEPLACEHOLDER**" } });
-            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo("ModifiedFile_Error.cs", Path.Combine(outputPath, "ModifiedFile_Error.cs"), "ModifiedFile_failedpostaction.cs", "TestDescription", MergeFailureType.FileNotFound));
+            GenContext.Current.FailedMergePostActions.Add(new FailedMergePostActionInfo("ModifiedFile_Error.cs", Path.Combine(outputPath, "ModifiedFile_Error.cs"), "ModifiedFile_failedpostaction.cs", Path.Combine(outputPath, "ModifiedFile_failedpostaction.cs"), "TestDescription", MergeFailureType.FileNotFound));
 
             // UnModified
             config.UnchangedFiles.Add("UnchangedFile.cs");
@@ -122,20 +119,20 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             config.ConflictingFiles.Add("ConflictFile.cs");
 
             var mergePostAction = new CreateSummaryPostAction(config);
-            mergePostAction.Execute();
+            await mergePostAction.ExecuteAsync();
 
-            var filePath = Path.Combine(outputPath, "Steps to include new item generation.md");
+            var filePath = Path.Combine(Directory.GetParent(outputPath).FullName, "Steps to include new item generation.md");
 
             Assert.True(File.Exists(filePath));
 
             var expected = File.ReadAllText(expectedFile)
                     .Replace("{{projectPath}}", Directory.GetParent(destPath).FullName.Replace(@"\", "/"))
-                    .Replace("{{tempPath}}", outputPath)
+                    .Replace("{{tempPath}}", Directory.GetParent(outputPath).FullName)
                     .Replace("\r\n", string.Empty)
                     .Replace("\n", string.Empty);
             Assert.Equal(expected, File.ReadAllText(filePath).Replace("\r\n", string.Empty).Replace("\n", string.Empty));
 
-            Directory.Delete(outputPath, true);
+            Directory.Delete(Directory.GetParent(outputPath).FullName, true);
         }
     }
 }

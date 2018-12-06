@@ -1,8 +1,8 @@
-﻿Imports Windows.Storage
-Imports Windows.UI.Xaml.Media.Animation
+﻿Imports Microsoft.Toolkit.Uwp.UI.Animations
 
 Imports Param_ItemNamespace.Helpers
-Imports Param_ItemNamespace.Models
+Imports Param_ItemNamespace.Core.Models
+Imports Param_ItemNamespace.Core.Services
 Imports Param_ItemNamespace.Services
 
 Namespace Views
@@ -11,8 +11,6 @@ Namespace Views
         Implements System.ComponentModel.INotifyPropertyChanged
 
         Public Const ImageGalleryViewSelectedIdKey As String = "ImageGalleryViewSelectedIdKey"
-        Public Const ImageGalleryViewAnimationOpen As String = "ImageGalleryView_AnimationOpen"
-        Public Const ImageGalleryViewAnimationClose As String = "ImageGalleryView_AnimationClose"
 
         Private _source As ObservableCollection(Of SampleImage)
 
@@ -31,10 +29,20 @@ Namespace Views
             InitializeComponent()
         End Sub
 
+        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+            MyBase.OnNavigatedTo(e)
+            If e.NavigationMode = NavigationMode.Back Then
+                Dim selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey)
+                If Not String.IsNullOrEmpty(selectedImageId) Then
+                    ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey)
+                End If
+            End If
+        End Sub
+
         Private Sub ImagesGridView_ItemClick(sender As Object, e As ItemClickEventArgs)
             Dim selected = TryCast(e.ClickedItem, SampleImage)
-            ImagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage")
             ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID)
+            NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(selected)
             NavigationService.Navigate(Of ImageGalleryViewDetailPage)(selected.ID)
         End Sub
     End Class

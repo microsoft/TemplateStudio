@@ -6,5 +6,9 @@
         Public Sub New()
             InitializeComponent()
         End Sub
+
+        Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
+            ViewModel.Initialize()
+        End Sub
     End Class
 End Namespace

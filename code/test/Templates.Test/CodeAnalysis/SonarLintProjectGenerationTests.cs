@@ -4,14 +4,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.UI;
+using Microsoft.Templates.Fakes;
 using Xunit;
-using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.Test
 {
@@ -20,9 +17,8 @@ namespace Microsoft.Templates.Test
     public class SonarLintProjectGenerationTests : BaseGenAndBuildTests
     {
         public SonarLintProjectGenerationTests(SonarLintGenerationTestsFixture fixture)
+            : base(fixture)
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this);
         }
 
         [Theory]

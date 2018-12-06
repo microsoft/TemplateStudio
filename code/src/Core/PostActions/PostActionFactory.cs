@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -34,7 +35,7 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddGetMergeFilesFromProjectPostAction(GenInfo genInfo, List<PostAction> postActions)
         {
             Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
+                .EnumerateFiles(genInfo.GenerationPath, "*.*", SearchOption.AllDirectories)
                 .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionAndSearchReplaceRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GetMergeFilesFromProjectPostAction(genInfo.Template.Identity, f)));
@@ -43,7 +44,7 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddGenerateMergeInfoPostAction(GenInfo genInfo, List<PostAction> postActions)
         {
             Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, "*.*", SearchOption.AllDirectories)
+                .EnumerateFiles(Path.GetDirectoryName(genInfo.GenerationPath), "*.*", SearchOption.AllDirectories)
                 .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GenerateMergeInfoPostAction(genInfo.Template.Identity, f)));
@@ -51,22 +52,35 @@ namespace Microsoft.Templates.Core.PostActions
 
         internal void AddTemplateDefinedPostActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
         {
-            var genCertificatePostAction = genResult.ResultInfo.PostActions.FirstOrDefault(x => x.ActionId == GenerateTestCertificatePostAction.Id);
-            if (genCertificatePostAction != null)
+            foreach (var postaction in genResult.ResultInfo.PostActions)
             {
-                postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), genCertificatePostAction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                switch (postaction.ActionId.ToString().ToUpper(CultureInfo.InvariantCulture))
+                {
+                    case GenerateTestCertificatePostAction.Id:
+                        postActions.Add(new GenerateTestCertificatePostAction(genInfo.Template.Identity, genInfo.GetUserName(), postaction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.DestinationPath));
+                        break;
+                    case AddProjectReferencesToContextPostAction.Id:
+                        postActions.Add(new AddProjectReferencesToContextPostAction(genInfo.Template.Identity, postaction, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.DestinationPath));
+                        break;
+                    case AddNugetReferenceToContextPostAction.Id:
+                        postActions.Add(new AddNugetReferenceToContextPostAction(genInfo.Template.Identity, postaction, genInfo.Parameters, genInfo.DestinationPath));
+                        break;
+                    case AddSdkReferencesToContextPostAction.Id:
+                        postActions.Add(new AddSdkReferencesToContextPostAction(genInfo.Template.Identity, postaction, genInfo.Parameters, genInfo.DestinationPath));
+                        break;
+                }
             }
         }
 
-        internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions)
+        internal void AddPredefinedActions(GenInfo genInfo, TemplateCreationResult genResult, List<PostAction> postActions, bool addingToExistingProject = false)
         {
             switch (genInfo.Template.GetTemplateOutputType())
             {
                 case TemplateOutputType.Project:
-                    postActions.Add(new AddProjectToSolutionPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                    postActions.Add(new AddProjectToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.DestinationPath, genInfo.GenerationPath));
                     break;
                 case TemplateOutputType.Item:
-                    postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters));
+                    postActions.Add(new AddItemToContextPostAction(genInfo.Template.Identity, genResult.ResultInfo.PrimaryOutputs, genInfo.Parameters, genInfo.DestinationPath));
                     break;
                 default:
                     break;
@@ -75,16 +89,16 @@ namespace Microsoft.Templates.Core.PostActions
 
         internal void AddMergeActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern, bool failOnError)
         {
-            Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
-                .ToList()
-                .ForEach(f => AddMergePostAction(genInfo, postActions, failOnError, f));
+            var files = Directory
+                .EnumerateFiles(genInfo.GenerationPath, searchPattern, SearchOption.AllDirectories)
+                .ToList();
+            files.ForEach(f => AddMergePostAction(genInfo, postActions, failOnError, f));
         }
 
         internal void AddGlobalMergeActions(List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.GenerationOutputPath), searchPattern, SearchOption.AllDirectories)
                 .ToList()
                 .ForEach(f => postActions.Add(new MergePostAction("Global Merge", new MergeConfiguration(f, failOnError))));
         }
@@ -92,7 +106,7 @@ namespace Microsoft.Templates.Core.PostActions
         internal void AddSearchAndReplaceActions(GenInfo genInfo, List<PostAction> postActions, string searchPattern, bool failOnError)
         {
             Directory
-                .EnumerateFiles(GenContext.Current.OutputPath, searchPattern, SearchOption.AllDirectories)
+                .EnumerateFiles(genInfo.GenerationPath, searchPattern, SearchOption.AllDirectories)
                 .ToList()
                 .ForEach(f => postActions.Add(new SearchAndReplacePostAction(genInfo.Template.Identity, new MergeConfiguration(f, failOnError))));
         }

@@ -1,10 +1,9 @@
 ﻿using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.ViewModels;
+using Param_ItemNamespace.Core.Services;
 
 namespace Param_ItemNamespace.Views
 {
@@ -23,8 +22,7 @@ namespace Param_ItemNamespace.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            ViewModel.Initialize(previewImage, e.NavigationMode);
-            showFlipView.Begin();
+            ViewModel.Initialize(e.NavigationMode);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -32,11 +30,8 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatingFrom(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                previewImage.Visibility = Visibility.Visible;
-                ViewModel.SetAnimation();
+                ViewModel.UpdateConnectedAnimation();
             }
         }
-
-        private void OnShowFlipViewCompleted(object sender, object e) => flipView.Focus(FocusState.Programmatic);
     }
 }

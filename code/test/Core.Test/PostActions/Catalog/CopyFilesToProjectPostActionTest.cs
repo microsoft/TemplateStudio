@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -18,10 +19,10 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class CopyFilesToProjectPostActionTest
     {
         [Fact]
-        public void Execute_NewFile()
+        public async Task CopyFilesToProject_Execute_NewFileAsync()
         {
             var tempFile = Path.GetFullPath(@".\temp\Source.cs");
-            var path = Path.GetFullPath(@".\temp");
+            var path = Path.GetFullPath(@".\temp\Project");
             var destPath = Path.GetFullPath(@".\DestinationPath\Project");
             var finalFile = Path.GetFullPath(@".\DestinationPath\Source.cs");
 
@@ -33,31 +34,28 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                OutputPath = path,
-                TempGenerationPath = path,
-                DestinationParentPath = Directory.GetParent(destPath).FullName,
+                GenerationOutputPath = path,
             };
 
             var config = new TempGenerationResult();
             config.NewFiles.Add("Source.cs");
 
             var mergePostAction = new CopyFilesToProjectPostAction(config);
-            mergePostAction.Execute();
+            await mergePostAction.ExecuteAsync();
 
             Assert.True(File.Exists(Path.Combine(Directory.GetParent(destPath).FullName, "Source.cs")));
 
-            Directory.Delete(path, true);
-            Directory.Delete(destPath, true);
+            Directory.Delete(Directory.GetParent(path).FullName, true);
+            Directory.Delete(Directory.GetParent(destPath).FullName, true);
 
-            Assert.True(GenContext.Current.ProjectItems.Contains(finalFile));
             Assert.True(GenContext.Current.FilesToOpen.Contains(finalFile));
         }
 
         [Fact]
-        public void Execute_ModifiedFile()
+        public async Task CopyFilesToProject_Execute_ModifiedFileAsync()
         {
             var tempFile = Path.GetFullPath(@".\temp\Source.cs");
-            var path = Path.GetFullPath(@".\temp");
+            var path = Path.GetFullPath(@".\temp\Project");
             var destPath = Path.GetFullPath(@".\DestinationPath\Project");
             var finalFile = Path.GetFullPath(@".\DestinationPath\Source.cs");
 
@@ -69,23 +67,20 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                OutputPath = path,
-                TempGenerationPath = path,
-                DestinationParentPath = Directory.GetParent(destPath).FullName,
+                GenerationOutputPath = path,
             };
 
             var config = new TempGenerationResult();
             config.ModifiedFiles.Add("Source.cs");
 
             var mergePostAction = new CopyFilesToProjectPostAction(config);
-            mergePostAction.Execute();
+            await mergePostAction.ExecuteAsync();
 
             Assert.True(File.Exists(Path.Combine(Directory.GetParent(destPath).FullName, "Source.cs")));
 
-            Directory.Delete(path, true);
-            Directory.Delete(destPath, true);
+            Directory.Delete(Directory.GetParent(path).FullName, true);
+            Directory.Delete(Directory.GetParent(destPath).FullName, true);
 
-            Assert.False(GenContext.Current.ProjectItems.Contains(finalFile));
             Assert.False(GenContext.Current.FilesToOpen.Contains(finalFile));
         }
     }

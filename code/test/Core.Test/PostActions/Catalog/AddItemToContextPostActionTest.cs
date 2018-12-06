@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class AddItemToContextPostActionTest
     {
         [Fact]
-        public void Execute()
+        public async Task AddItemToContext_ExecuteAsync()
         {
             var templateName = "Test";
             var relativeFile = @".\Source.cs";
@@ -28,20 +29,20 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                OutputPath = destPath,
+                GenerationOutputPath = destPath,
             };
 
             List<FakeCreationPath> testPrimaryOutputs = new List<FakeCreationPath>();
             testPrimaryOutputs.Add(new FakeCreationPath() { Path = relativeFile });
 
-            var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, new Dictionary<string, string>());
-            mergePostAction.Execute();
+            var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
+            await mergePostAction.ExecuteAsync();
 
             Assert.True(GenContext.Current.ProjectItems.Contains(finalFile));
         }
 
         [Fact]
-        public void Execute_Replacement()
+        public async Task AddItemToContext_Execute_ReplacementAsync()
         {
             var templateName = "Test";
             var relativeFile = @".\Param_ProjectName\Source.cs";
@@ -51,7 +52,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current = new FakeContextProvider()
             {
                 DestinationPath = destPath,
-                OutputPath = destPath,
+                GenerationOutputPath = destPath,
             };
 
             List<FakeCreationPath> testPrimaryOutputs = new List<FakeCreationPath>();
@@ -60,8 +61,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var genParams = new Dictionary<string, string>();
             genParams.Add("wts.projectName", "Project");
 
-            var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, genParams);
-            mergePostAction.Execute();
+            var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, genParams, destPath);
+            await mergePostAction.ExecuteAsync();
 
             Assert.True(GenContext.Current.ProjectItems.Contains(finalFile));
         }

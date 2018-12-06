@@ -10,8 +10,8 @@
     "summary": "ウィンドウ間を移動するために、ナビゲーション ウィンドウ (通称「ハンバーガー メニュー」) が含まれます。"
   },
   {
-    "name": "TabbedPivot",
-    "displayName": "Pivot and Tabs",
-    "summary": "上部に表示されるタブを使用して、ページ間を迅速に移動できます。"
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Navigation Items across the top allow for quickly navigating between pages."
   }
 ]
