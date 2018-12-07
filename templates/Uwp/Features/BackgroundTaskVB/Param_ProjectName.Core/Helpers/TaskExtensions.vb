@@ -1,6 +1,8 @@
-﻿Namespace Helpers
+﻿Imports System.Runtime.CompilerServices
+
+Namespace Helpers
     Public Module TaskExtensions
- 
+
         <Extension>
         Public Sub FireAndForget(task As Task)
             ' This method allows you to call an async method without awaiting it.

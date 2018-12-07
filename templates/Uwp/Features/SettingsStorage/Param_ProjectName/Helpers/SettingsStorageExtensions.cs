@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Param_ProjectName.Core.Helpers;
 
 namespace Param_ItemNamespace.Helpers
 {

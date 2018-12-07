@@ -1,7 +1,7 @@
 ﻿Imports System.Collections.Concurrent
 
 Namespace Helpers
-    Friend NotInheritable Class Singleton(Of T As New)
+    Public NotInheritable Class Singleton(Of T As New)
         Private Sub New()
         End Sub
 

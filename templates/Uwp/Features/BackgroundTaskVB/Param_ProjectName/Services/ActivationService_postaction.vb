@@ -4,7 +4,7 @@
 '**}
 
 '{[{
-Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Core.Helpers
 '}]}
 
 Namespace Services

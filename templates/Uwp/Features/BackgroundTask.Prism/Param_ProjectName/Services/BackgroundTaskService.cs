@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 
-using Param_RootNamespace.Activation;
 using Param_RootNamespace.BackgroundTasks;
-using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Core.Helpers;
 
 namespace Param_ItemNamespace.Services
 {
-    internal class BackgroundTaskService : ActivationHandler<BackgroundActivatedEventArgs>
+    internal class BackgroundTaskService : IBackgroundTaskService
     {
         public static IEnumerable<BackgroundTask> BackgroundTasks => BackgroundTaskInstances.Value;
 
@@ -36,19 +35,6 @@ namespace Param_ItemNamespace.Services
             }
         }
 
-        public static BackgroundTaskRegistration GetBackgroundTasksRegistration<T>()
-            where T : BackgroundTask
-        {
-            if (!BackgroundTaskRegistration.AllTasks.Any(t => t.Value.Name == typeof(T).Name))
-            {
-                // This condition should not be met. If it is it means the background task was not registered correctly.
-                // Please check CreateInstances to see if the background task was properly added to the BackgroundTasks property.
-                return null;
-            }
-
-            return (BackgroundTaskRegistration)BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == typeof(T).Name).Value;
-        }
-
         public void Start(IBackgroundTaskInstance taskInstance)
         {
             var task = BackgroundTasks.FirstOrDefault(b => b.Match(taskInstance?.Task?.Name));
@@ -61,13 +47,6 @@ namespace Param_ItemNamespace.Services
             }
 
             task.RunAsync(taskInstance).FireAndForget();
-        }
-
-        protected override async Task HandleInternalAsync(BackgroundActivatedEventArgs args)
-        {
-            Start(args.TaskInstance);
-
-            await Task.CompletedTask;
         }
 
         private static IEnumerable<BackgroundTask> CreateInstances()

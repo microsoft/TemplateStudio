@@ -1,6 +1,9 @@
 ﻿'{**
 'This code block adds the subscription to `App_EnteredBackground` to the App class of your project.
 '**}
+'{[{
+Imports Param_RootNamespace.Core.Helpers
+'}]}
 
 NotInheritable Partial Class App
     Inherits Application
@@ -18,12 +21,12 @@ NotInheritable Partial Class App
 
     Private Async Sub App_EnteredBackground(sender As Object, e As EnteredBackgroundEventArgs)
         Dim deferral = e.GetDeferral()
-        Await Helpers.Singleton(Of SuspendAndResumeService).Instance.SaveStateAsync()
+        Await Singleton(Of SuspendAndResumeService).Instance.SaveStateAsync()
         deferral.Complete()
     End Sub
 
     Private Sub App_Resuming(sender As Object, e As Object)
-        Helpers.Singleton(Of SuspendAndResumeService).Instance.ResumeApp()
+        Singleton(Of SuspendAndResumeService).Instance.ResumeApp()
      End Sub
     '}]}
 End Class

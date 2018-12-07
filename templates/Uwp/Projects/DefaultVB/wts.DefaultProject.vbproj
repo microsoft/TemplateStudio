@@ -144,7 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\ResourceExtensions.vb" />
-    <Compile Include="Helpers\Singleton.vb" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

@@ -2,7 +2,7 @@
 
 Imports Param_RootNamespace.Activation
 Imports Param_RootNamespace.BackgroundTasks
-Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Core.Helpers
 
 Namespace Services
     Friend Class BackgroundTaskService

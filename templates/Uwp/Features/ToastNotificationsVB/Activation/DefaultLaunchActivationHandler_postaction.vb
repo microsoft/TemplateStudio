@@ -2,7 +2,7 @@
 'This code block adds code to show a sample toast notification on application start to your project.
 '**}
 '{[{
-Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Core.Helpers
 Imports Param_RootNamespace.Services
 '}]}
 

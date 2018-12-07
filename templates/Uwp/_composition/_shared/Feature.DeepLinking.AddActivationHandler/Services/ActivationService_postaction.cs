@@ -1,6 +1,6 @@
 ﻿using System;
 //{[{
-using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Core.Helpers;
 //}]}
 
 namespace Param_ItemNamespace.Services
