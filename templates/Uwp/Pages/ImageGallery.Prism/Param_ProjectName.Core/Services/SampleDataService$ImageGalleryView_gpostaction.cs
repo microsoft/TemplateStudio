@@ -6,10 +6,15 @@ namespace Param_ItemNamespace.Core.Services
     public class SampleDataService : ISampleDataService
     {
 //{[{
+        private static string _localResourcesPath;
         private static ObservableCollection<SampleImage> _gallerySampleData;
 //}]}
 //^^
 //{[{
+        public void Initialize(string localResourcesPath)
+        {
+            _localResourcesPath = localResourcesPath;
+        }
 
         // TODO WTS: Remove this once your image gallery page is displaying real data
         public ObservableCollection<SampleImage> GetGallerySampleData()
@@ -22,7 +27,7 @@ namespace Param_ItemNamespace.Core.Services
                     _gallerySampleData.Add(new SampleImage()
                     {
                         ID = $"{i}",
-                        Source = $"ms-appx:///Assets/SampleData/SamplePhoto{i}.png",
+                        Source = $"{_localResourcesPath}/SampleData/SamplePhoto{i}.png",
                         Name = $"Image sample {i}"
                     });
                 }
