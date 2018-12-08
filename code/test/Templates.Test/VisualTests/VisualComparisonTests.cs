@@ -13,6 +13,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using WindowsTestHelpers;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Fakes;
 using Xunit;
@@ -120,8 +121,8 @@ namespace Microsoft.Templates.Test
         {
             var genIdentities = new[] { page };
 
-            CheckRunningAsAdmin();
-            CheckWinAppDriverInstalled();
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
 
             var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
             var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities, lastPageIsHome: true);
@@ -169,8 +170,8 @@ namespace Microsoft.Templates.Test
         {
             var genIdentities = new[] { page };
 
-            CheckRunningAsAdmin();
-            CheckWinAppDriverInstalled();
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
 
             // MVVMBasic is considerewd the reference version. Compare generated apps with equivalent in other frameworks
             var refAppDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, "MVVMBasic", genIdentities, lastPageIsHome: true);
@@ -225,25 +226,11 @@ namespace Microsoft.Templates.Test
             Assert.True(allTestsPassed, outputMessages.TrimStart());
         }
 
-        private void CheckRunningAsAdmin()
-        {
-            Assert.True(
-                new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator),
-                "Must be running as Administrator to execute these tests.");
-        }
-
-        private void CheckWinAppDriverInstalled()
-        {
-            Assert.True(
-                File.Exists(@"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe"),
-                "WinAppDriver is not installed. Download from https://github.com/Microsoft/WinAppDriver/releases");
-        }
-
         private (bool Success, List<string> TextOutput) RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
         {
             var result = false;
 
-            StartWinAppDriverIfNotRunning();
+            WinAppDriverHelper.StartIfNotRunning();
 
             var buildOutput = Path.Combine(testProjectDetails.projectFolder, "bin", "Debug", "AutomatedUITests.dll");
             var runTestsScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe\" \"{buildOutput}\" ";
@@ -265,7 +252,7 @@ namespace Microsoft.Templates.Test
                 }
             }
 
-            StopWinAppDriverIfRunning();
+            WinAppDriverHelper.StopIfRunning();
 
             return (result, outputText);
         }
@@ -336,32 +323,6 @@ ForEach ($i in $dump)
         }";
 
             ExecutePowerShellScript(uninstallCertificateScript);
-        }
-
-        private void StartWinAppDriverIfNotRunning()
-        {
-            var script = @"
-$wad = Get-Process WinAppDriver -ErrorAction SilentlyContinue
-
-if ($wad -eq $Null)
-{
-    Start-Process ""C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe""
-}";
-
-            ExecutePowerShellScript(script);
-        }
-
-        private void StopWinAppDriverIfRunning()
-        {
-            var script = @"
-$wad = Get-Process WinAppDriver -ErrorAction SilentlyContinue
-
-if ($wad -ne $null)
-{
-    $wad.CloseMainWindow()
-}";
-
-            ExecutePowerShellScript(script);
         }
 
         private void UninstallAppx(string packageFullName)
