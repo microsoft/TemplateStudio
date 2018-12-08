@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetAllTemplateJsonFiles")]
+        [MemberData(nameof(GetAllTemplateJsonFiles))]
         public async Task VerifyAllTemplateFilesAsync(string filePath)
         {
             var result = await TemplateJsonVerifier.VerifyTemplatePathAsync(filePath);

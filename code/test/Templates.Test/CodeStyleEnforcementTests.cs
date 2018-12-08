@@ -149,7 +149,9 @@ namespace Microsoft.Templates.Test
 
         // Disabled as failing on AppVeyor for some files with no obvious reason
         ////[Fact]
+#pragma warning disable xUnit1013 // Public method should be marked as test
         public void EnsureVisualBasicFilesEndWithSingleBlankLine()
+#pragma warning restore xUnit1013 // Public method should be marked as test
         {
             var errorFiles = new List<string>();
 

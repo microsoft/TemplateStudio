@@ -114,7 +114,7 @@ namespace Microsoft.Templates.Test
 
         // Note. Visual Studio MUST be running as Admin to run this test.
         [Theory]
-        [MemberData("GetAllSinglePageAppsVBAndCS")]
+        [MemberData(nameof(GetAllSinglePageAppsVBAndCS))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLanguageLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
@@ -163,7 +163,7 @@ namespace Microsoft.Templates.Test
         // Note. Visual Studio MUST be running as Admin to run this test.
         // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
         [Theory]
-        [MemberData("GetAllSinglePageAppsCSharp")]
+        [MemberData(nameof(GetAllSinglePageAppsCSharp))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureFrameworkLaunchPageVisualsAreEquivalentAsync(string projectType, string page, string[] frameworks)
