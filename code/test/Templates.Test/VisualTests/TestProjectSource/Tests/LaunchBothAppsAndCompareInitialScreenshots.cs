@@ -10,9 +10,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using AutomatedUITests;
-using AutomatedUITests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Appium.Windows;
+using WindowsTestHelpers;
 
 namespace AutomatedUITests.Tests
 {
@@ -38,7 +38,7 @@ namespace AutomatedUITests.Tests
                 Directory.CreateDirectory(TestAppInfo.ScreenshotsFolder);
             }
 
-            // Hide other apps to all a consistent backdrop for acrylic textures
+            // Hide other apps to give a consistent backdrop for acrylic textures
             VirtualKeyboard.MinimizeAllWindows();
 
             using (var appSession1 = base.GetAppSession(TestAppInfo.AppPfn1))
