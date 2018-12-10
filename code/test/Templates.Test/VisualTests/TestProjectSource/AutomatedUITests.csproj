@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tests\TestBase.cs" />
+    <!--<Compile Include="Tests\LaunchBothAppsAndCompareAllNavViewPages.cs" />-->
     <!--<Compile Include="Tests\LaunchBothAppsAndCompareInitialScreenshots.cs" />-->
   </ItemGroup>
   <ItemGroup>

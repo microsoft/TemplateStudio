@@ -265,6 +265,9 @@
     <None Include="VisualTests\TestProjectSource\Tests\TestBase.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="VisualTests\TestProjectSource\Tests\LaunchBothAppsAndCompareAllNavViewPages.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="VisualTests\VisualComparisonTests.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="BaseGenAndBuildTests.cs" />
