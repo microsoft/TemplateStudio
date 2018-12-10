@@ -20,7 +20,7 @@ ELSE (
 	ECHO ON
 	
 	REM Do a restore and release build on the solution
-	msbuild "%~1" /t:Restore;Rebuild /p:RestorePackagesPath="C:\Packs" /p:Configuration=Release;AppxPackageSigningEnabled=false
+	msbuild "%~1" /t:Restore;Rebuild /p:RestorePackagesPath="C:\Packs" /p:Configuration=Release;Platform=x86;AppxPackageSigningEnabled=false
 	REM Then build the AppxBundle for the project
 	msbuild "%~2" /p:Configuration=Release /p:AppxBundle=Always /p:AppxBundlePlatforms="x64|x86|arm"
 	IF %ERRORLEVEL% NEQ 0 (
