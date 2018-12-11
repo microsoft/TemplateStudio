@@ -18,16 +18,17 @@
     "wts.defaultInstance": "SettingsStorage",
     "wts.multipleInstance": "false",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true"
+    "wts.rightClickEnabled":"true",
+    "wts.outputToParent":"true"
   },
   "sourceName": "SettingsStorageFeature",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Helpers\\SettingsStorageExtensions.cs"
+      "path": ".\\Param_ProjectName\\Helpers\\SettingsStorageExtensions.cs"
     },
     {
-      "path": ".\\Helpers\\Json.cs"
+      "path": ".\\Param_ProjectName.Core\\Helpers\\Json.cs"
     }
   ],
   "symbols": {
@@ -53,7 +54,7 @@
       "args": {
         "packageId" : "Newtonsoft.Json",
         "version" : "11.0.2",
-        "projectPath": "Param_ProjectName.csproj"
+        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
       },
       "continueOnError": "true"
     }
