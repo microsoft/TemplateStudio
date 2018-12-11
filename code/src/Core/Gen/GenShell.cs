@@ -24,9 +24,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void ShowStatusBarMessage(string message);
 
-        public abstract Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences);
-
-        public abstract void AddItems(params string[] itemsFullPath);
+        public abstract Task AddContextItemsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences, string[] itemsToAdd);
 
         public abstract void AddSdkReferencesToProjects(List<SdkReference> sdkReferences);
 

@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -63,35 +64,24 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private VsOutputPane OutputPane => _outputPane.Value;
 
-        public override void AddItems(params string[] itemsFullPath)
+        private void AddItems(string projPath, IEnumerable<string> projFiles)
         {
-            if (itemsFullPath == null || itemsFullPath.Length == 0)
+            var sw = new Stopwatch();
+            sw.Start();
+            var proj = GetProjectByPath(projPath);
+            if (proj != null && proj.ProjectItems != null)
             {
-                return;
-            }
-
-            var filesByProject = ResolveProjectFiles(itemsFullPath);
-
-            foreach (var projectFile in filesByProject)
-            {
-                var proj = GetProjectByPath(projectFile.Key);
-                if (proj != null && proj.ProjectItems != null)
+                foreach (var file in projFiles)
                 {
-                    var isSharedProject = Path.GetExtension(proj.FileName).Equals(".shproj", StringComparison.OrdinalIgnoreCase);
-                    foreach (var file in projectFile.Value)
-                    {
-                        var newItem = proj.ProjectItems.AddFromFile(file);
-
-                        if (isSharedProject && Path.GetExtension(file).Equals(".xaml", StringComparison.OrdinalIgnoreCase))
-                        {
-                            newItem.Properties.Item("ItemType").Value = "EmbeddedResource";
-                            newItem.Properties.Item("Generator").Value = "MSBuild:UpdateDesignTimeXaml";
-                        }
-                    }
-
-                    proj.Save();
+                    var newItem = proj.ProjectItems.AddFromFile(file);
                 }
+
+                proj.Save();
             }
+
+            AppHealth.Current.Info.TrackAsync($"Adding items to project {projPath}: {sw.Elapsed.TotalSeconds}").FireAndForget();
+            sw.Stop();
+
         }
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
@@ -411,13 +401,27 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override async System.Threading.Tasks.Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences)
+        public override async System.Threading.Tasks.Task AddContextItemsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences, string[] filesToAdd)
         {
             try
             {
-                var groupedNugets = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
+                var sw = new Stopwatch();
+                sw.Start();
+                var filesByProject = ResolveProjectFiles(filesToAdd);
+                AppHealth.Current.Info.TrackAsync($"ResolveProjectFiles: {sw.Elapsed.Seconds}").FireAndForget();
+                sw.Reset();
+                var filesForExistionProjects = filesByProject.Keys.Where(k => !projects.Any(p => p.ProjectPath == k)).GroupBy(k => k);
+                foreach (var project in filesForExistionProjects)
+                {
+                    if (!IsCpsProject(project.Key))
+                    {
+                        AddItems(project.Key, project);
+                    }
+                }
 
-                foreach (var nuget in groupedNugets)
+                var nugetsForExistionProjects = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
+
+                foreach (var nuget in nugetsForExistionProjects)
                 {
                     await AddNugetsForProjectAsync(nuget.Key, nugetReferences.Where(n => n.Project == nuget.Key));
                 }
@@ -428,7 +432,20 @@ namespace Microsoft.Templates.UI.VisualStudio
                 foreach (var project in orderedProject)
                 {
                     Dte.Solution.AddFromFile(project.ProjectPath);
+
+                    AppHealth.Current.Info.TrackAsync($"AddProject File:{project.ProjectPath} {sw.Elapsed.TotalSeconds}").FireAndForget();
+                    sw.Reset();
+                    if (!IsCpsProject(project.ProjectPath))
+                    {
+                        AddItems(project.ProjectPath, filesByProject[project.ProjectPath]);
+                    }
+
+                    AppHealth.Current.Info.TrackAsync($"Added Items to project {sw.Elapsed.TotalSeconds}").FireAndForget();
+                    sw.Reset();
+
                     await AddNugetsForProjectAsync(project.ProjectPath, nugetReferences.Where(n => n.Project == project.ProjectPath));
+                    AppHealth.Current.Info.TrackAsync($"Added nugets to project {sw.Elapsed.TotalSeconds}").FireAndForget();
+                    sw.Reset();
                 }
             }
             catch (Exception)
@@ -595,6 +612,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private async System.Threading.Tasks.Task AddNugetsForProjectAsync(string projectPath, IEnumerable<NugetReference> projectNugets)
         {
+            var sw = new Stopwatch();
+            sw.Start();
             if (IsCpsProject(projectPath))
             {
                 await AddNugetPackagesToCPSProjectAsync(projectPath, projectNugets);
@@ -603,6 +622,10 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 AddNugetPackageToProject(projectPath, projectNugets);
             }
+
+            AppHealth.Current.Info.TrackAsync($"Adding nugets to project {projectPath}: {sw.Elapsed.TotalSeconds}").FireAndForget();
+            sw.Stop();
+
         }
 
         private void WriteMissingNugetPackagesInfo(string projectPath, IEnumerable<NugetReference> projectNugets)
