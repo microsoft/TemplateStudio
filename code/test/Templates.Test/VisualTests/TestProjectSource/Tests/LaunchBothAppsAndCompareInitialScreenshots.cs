@@ -48,7 +48,7 @@ namespace AutomatedUITests.Tests
 
                 appSession1.Manage().Window.Maximize();
 
-                Task.Delay(TimeSpan.FromSeconds(2)).Wait();
+                Task.Delay(TimeSpan.FromMilliseconds(2500)).Wait();
 
                 var screenshot = appSession1.GetScreenshot();
                 screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App1Filename), ImageFormat.Png);
@@ -65,7 +65,7 @@ namespace AutomatedUITests.Tests
 
                 appSession2.Manage().Window.Maximize();
 
-                Task.Delay(TimeSpan.FromSeconds(2)).Wait();
+                Task.Delay(TimeSpan.FromMilliseconds(2500)).Wait();
 
                 var screenshot = appSession2.GetScreenshot();
                 screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App2Filename), ImageFormat.Png);

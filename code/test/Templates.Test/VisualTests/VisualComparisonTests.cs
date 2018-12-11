@@ -29,9 +29,9 @@ namespace Microsoft.Templates.Test
         // Gets all the pages that are available (and testable) in both VB & C#
         public static IEnumerable<object[]> GetAllSinglePageAppsVBAndCS()
         {
-            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav" })
+            foreach (var projectType in GetAllProjectTypes())
             {
-                foreach (var framework in new[] { "CodeBehind", "MVVMBasic", "MVVMLight" })
+                foreach (var framework in GetAllFrameworksForBothVBAndCS())
                 {
                     // For other pages see https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
                     var pagesThatSupportUiTesting = new[]
@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Test
 
                     foreach (var page in pagesThatSupportUiTesting)
                     {
-                        yield return new object[] { projectType, framework, page };
+                        yield return new object[] { projectType, framework[0].ToString(), page };
                     }
                 }
             }
@@ -61,9 +61,9 @@ namespace Microsoft.Templates.Test
         {
             //// To quickly test a single scenario
             ////yield return new object[] { "TabbedNav", "wts.Page.ImageGallery", new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" } };
-            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav" })
+            foreach (var projectType in GetAllProjectTypes())
             {
-                var otherFrameworks = new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" };
+                var otherFrameworks = GetAdditionalCsFrameworks().Select(f => f[0].ToString()).ToArray();
 
                 var pagesThatSupportUiTesting = new[]
                 {
@@ -87,11 +87,27 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        public static IEnumerable<object[]> GetAdditionalCsFrameworks()
+        {
+            foreach (var framework in new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" })
+            {
+                yield return new object[] { framework };
+            }
+        }
+
         public static IEnumerable<object[]> GetAllFrameworksForBothVBAndCS()
         {
             foreach (var framework in new[] { "CodeBehind", "MVVMBasic", "MVVMLight" })
             {
                 yield return new object[] { framework };
+            }
+        }
+
+        public static IEnumerable<string> GetAllProjectTypes()
+        {
+            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav" })
+            {
+                yield return projectType;
             }
         }
 
@@ -105,7 +121,7 @@ namespace Microsoft.Templates.Test
                     switch (projectType)
                     {
                         case "SplitView":
-                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }";
+                            return "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 300, 450, 40), 1.25f) }";
                         case "TabbedNav":
                             return "new[] { new ImageComparer.ExclusionArea(new Rectangle(60, 350, 450, 40), 1.25f) }";
                         case "Blank":
@@ -179,7 +195,7 @@ namespace Microsoft.Templates.Test
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
 
-            // MVVMBasic is considerewd the reference version. Compare generated apps with equivalent in other frameworks
+            // MVVMBasic is considered the reference version. Compare generated apps with equivalent in other frameworks
             var refAppDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, "MVVMBasic", genIdentities, lastPageIsHome: true);
 
             var otherProjDetails = new VisualComparisonTestDetails[frameworks.Length];
@@ -260,7 +276,8 @@ namespace Microsoft.Templates.Test
             var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework, genIdentities);
             var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, "SplitView", framework, genIdentities);
 
-            var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest("SplitView", "wts.Page.Settings"));
+            // TODO: Make this exclusion just from settings page
+            var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }");
 
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -281,7 +298,7 @@ namespace Microsoft.Templates.Test
 
             // A diff image is automatically created if the outputs differ
             if (Directory.Exists(testProjectDetails.imagesFolder)
-                && Directory.GetFiles(testProjectDetails.imagesFolder, "*.*-Diff.png").Any())
+                && Directory.GetFiles(testProjectDetails.imagesFolder, "DIFF-*.png").Any())
             {
                 Assert.True(
                     testSuccess,
@@ -290,6 +307,78 @@ namespace Microsoft.Templates.Test
             else
             {
                 Assert.True(testSuccess, outputMessages);
+            }
+        }
+
+        // Note. Visual Studio MUST be running as Admin to run this test.
+        // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+        [Fact]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureFrameworksProduceIdenticalOutputForEachPageInNavViewAsync()
+        {
+            var genIdentities = new[]
+            {
+                "wts.Page.Blank",
+                "wts.Page.Chart",
+                "wts.Page.ImageGallery",
+                "wts.Page.MasterDetail",
+                "wts.Page.TabbedPivot",
+                "wts.Page.Grid",
+                "wts.Page.Settings",
+                "wts.Page.InkDraw",
+                "wts.Page.InkDrawPicture",
+                "wts.Page.InkSmartCanvas",
+            };
+
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
+
+            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", "MVVMBasic", genIdentities);
+
+            var errors = new List<string>();
+
+            foreach (var framework in GetAdditionalCsFrameworks())
+            {
+                var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework[0].ToString(), genIdentities);
+
+                // TODO: Make this exclusion just from settings page
+                var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }");
+
+                var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+
+                // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+                if (testSuccess)
+                {
+                    UninstallAppx(app2Details.PackageFullName);
+
+                    RemoveCertificate(app2Details.CertificatePath);
+
+                    // Parent of images folder also contains the test project
+                    Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
+                }
+                else
+                {
+                    errors.AddRange(testOutput);
+
+                    // A diff image is automatically created if the outputs differ
+                    if (Directory.GetFiles(testProjectDetails.imagesFolder, "DIFF-*.png").Any())
+                    {
+                        errors.Add($"Failing test images in {testProjectDetails.imagesFolder}");
+                    }
+                }
+            }
+
+            var outputMessages = string.Join(Environment.NewLine, errors);
+
+            if (outputMessages.Any())
+            {
+                Assert.True(false, $"{Environment.NewLine}{Environment.NewLine}{outputMessages}");
+            }
+            else
+            {
+                UninstallAppx(app1Details.PackageFullName);
+                RemoveCertificate(app1Details.CertificatePath);
             }
         }
 
@@ -453,7 +542,7 @@ ForEach ($i in $dump)
         {
             var result = new VisualComparisonTestDetails();
 
-            var baseSetup = await SetUpComparisonProjectAsync(language, projectType, framework, genIdentities, lastPageIsHome);
+            var baseSetup = await SetUpComparisonProjectAsync(language, projectType, framework, genIdentities, lastPageIsHome: lastPageIsHome, includeMultipleInstances: false);
 
             result.ProjectName = baseSetup.ProjectName;
 
