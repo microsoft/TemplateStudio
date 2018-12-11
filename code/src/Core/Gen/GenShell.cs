@@ -24,11 +24,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void ShowStatusBarMessage(string message);
 
-        public abstract Task AddContextItemsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences, string[] itemsToAdd);
-
-        public abstract void AddSdkReferencesToProjects(List<SdkReference> sdkReferences);
-
-        public abstract void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences);
+        public abstract Task AddContextItemsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences, List<SdkReference> sdkReferences, Dictionary<string, List<string>> projectReferences, string[] itemsToAdd);
 
         public abstract string GetActiveProjectNamespace();
 

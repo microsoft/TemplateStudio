@@ -66,8 +66,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void AddItems(string projPath, IEnumerable<string> projFiles)
         {
-            var sw = new Stopwatch();
-            sw.Start();
             var proj = GetProjectByPath(projPath);
             if (proj != null && proj.ProjectItems != null)
             {
@@ -78,10 +76,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 proj.Save();
             }
-
-            AppHealth.Current.Info.TrackAsync($"Adding items to project {projPath}: {sw.Elapsed.TotalSeconds}").FireAndForget();
-            sw.Stop();
-
         }
 
         public override void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid)
@@ -359,7 +353,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             return _vsProductVersion;
         }
 
-        public override void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences)
+        private void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences)
         {
             foreach (var projectPath in projectReferences.Keys)
             {
@@ -382,71 +376,81 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        public override void AddSdkReferencesToProjects(List<SdkReference> sdkReferences)
+        private void AddSdksForProjectAsync(string projectPath, IEnumerable<SdkReference> sdkReferences)
         {
-            var groupedSdkReferences = sdkReferences.GroupBy(s => s.Project);
+            var project = GetProjectByPath(projectPath);
+            var proj = (VSProject)project.Object;
 
-            foreach (var sdkReference in groupedSdkReferences)
+            foreach (var referenceValue in sdkReferences)
             {
-                var project = GetProjectByPath(sdkReference.Key);
-                var proj = (VSProject)project.Object;
-
-                foreach (var referenceValue in sdkReferences.Where(s => s.Project == sdkReference.Key))
-                {
-                    var refs = proj.References as VSLangProj110.References2;
-                    refs.AddSDK(referenceValue.Name, referenceValue.Sdk);
-                }
-
-                project.Save();
+                var refs = proj.References as VSLangProj110.References2;
+                refs.AddSDK(referenceValue.Name, referenceValue.Sdk);
             }
+
+            project.Save();
         }
 
-        public override async System.Threading.Tasks.Task AddContextItemsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences, string[] filesToAdd)
+        public override async System.Threading.Tasks.Task AddContextItemsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences, List<SdkReference> sdkReferences, Dictionary<string, List<string>> projectReferences, string[] filesToAdd)
         {
             try
             {
-                var sw = new Stopwatch();
-                sw.Start();
                 var filesByProject = ResolveProjectFiles(filesToAdd);
-                AppHealth.Current.Info.TrackAsync($"ResolveProjectFiles: {sw.Elapsed.Seconds}").FireAndForget();
-                sw.Reset();
-                var filesForExistionProjects = filesByProject.Keys.Where(k => !projects.Any(p => p.ProjectPath == k)).GroupBy(k => k);
-                foreach (var project in filesForExistionProjects)
+
+                var filesForExistingProjects = filesByProject.Keys.Where(k => !projects.Any(p => p.ProjectPath == k)).GroupBy(k => k);
+                var nugetsForExistingProjects = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
+                var sdksForExistingProjects = sdkReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
+
+                if (filesForExistingProjects.Any() || nugetsForExistingProjects.Any() || sdkReferences.Any())
                 {
-                    if (!IsCpsProject(project.Key))
+                    foreach (var project in filesForExistingProjects)
                     {
-                        AddItems(project.Key, project);
+                        if (!IsCpsProject(project.Key))
+                        {
+                            AddItems(project.Key, project);
+                        }
+                    }
+
+                    foreach (var nuget in nugetsForExistingProjects)
+                    {
+                        await AddNugetsForProjectAsync(nuget.Key, nugetReferences.Where(n => n.Project == nuget.Key));
+                    }
+
+                    foreach (var sdk in sdksForExistingProjects)
+                    {
+                        AddSdksForProjectAsync(sdk.Key, sdkReferences.Where(n => n.Project == sdk.Key));
                     }
                 }
 
-                var nugetsForExistionProjects = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
-
-                foreach (var nuget in nugetsForExistionProjects)
-                {
-                    await AddNugetsForProjectAsync(nuget.Key, nugetReferences.Where(n => n.Project == nuget.Key));
-                }
-
-                // Ensure projects from old project system are added before project from CPS project system, as otherwise nuget restore does not work
+                // Ensure projectsToAdd are ordered correctly.
+                // projects from old project system should be added before project from CPS project system, as otherwise nuget restore will fail
                 var orderedProject = projects.OrderBy(p => p.IsCPSProject);
 
+                double secAddProjects = 0;
+                double secAddFiles = 0;
                 foreach (var project in orderedProject)
                 {
-                    Dte.Solution.AddFromFile(project.ProjectPath);
+                    var chrono = Stopwatch.StartNew();
 
-                    AppHealth.Current.Info.TrackAsync($"AddProject File:{project.ProjectPath} {sw.Elapsed.TotalSeconds}").FireAndForget();
-                    sw.Reset();
+                    Dte.Solution.AddFromFile(project.ProjectPath);
+                    secAddProjects += chrono.Elapsed.TotalSeconds;
+                    chrono.Restart();
+
                     if (!IsCpsProject(project.ProjectPath))
                     {
                         AddItems(project.ProjectPath, filesByProject[project.ProjectPath]);
                     }
 
-                    AppHealth.Current.Info.TrackAsync($"Added Items to project {sw.Elapsed.TotalSeconds}").FireAndForget();
-                    sw.Reset();
+                    secAddFiles += chrono.Elapsed.TotalSeconds;
+                    chrono.Stop();
 
                     await AddNugetsForProjectAsync(project.ProjectPath, nugetReferences.Where(n => n.Project == project.ProjectPath));
-                    AppHealth.Current.Info.TrackAsync($"Added nugets to project {sw.Elapsed.TotalSeconds}").FireAndForget();
-                    sw.Reset();
+                    AddSdksForProjectAsync(project.ProjectPath, sdkReferences.Where(n => n.Project == project.ProjectPath));
                 }
+
+                AddReferencesToProjects(projectReferences);
+
+                GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = secAddProjects;
+                GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = secAddFiles;
             }
             catch (Exception)
             {
@@ -612,20 +616,45 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private async System.Threading.Tasks.Task AddNugetsForProjectAsync(string projectPath, IEnumerable<NugetReference> projectNugets)
         {
-            var sw = new Stopwatch();
-            sw.Start();
-            if (IsCpsProject(projectPath))
+            try
             {
-                await AddNugetPackagesToCPSProjectAsync(projectPath, projectNugets);
-            }
-            else
+                if (IsCpsProject(projectPath))
+                {
+                    var unconfiguredProject = GetUnconfiguredProject(projectPath);
+                    var configuredProject = await unconfiguredProject.GetSuggestedConfiguredProjectAsync();
+
+                    foreach (var reference in projectNugets)
+                    {
+                        await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
+                    }
+
+                    await unconfiguredProject.SaveAsync();
+                }
+                else
+                {
+                    var project = GetProjectByPath(projectPath);
+
+                    foreach (var reference in projectNugets)
+                    {
+                        var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+                        var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+                        var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
+
+                        if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
+                        {
+                            var installer = componentModel.GetService<IVsPackageInstaller>();
+
+                            installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
+                        }
+                    }
+
+                    project.Save();
+                }
+                }
+            catch (Exception)
             {
-                AddNugetPackageToProject(projectPath, projectNugets);
+                WriteMissingNugetPackagesInfo(projectPath, projectNugets);
             }
-
-            AppHealth.Current.Info.TrackAsync($"Adding nugets to project {projectPath}: {sw.Elapsed.TotalSeconds}").FireAndForget();
-            sw.Stop();
-
         }
 
         private void WriteMissingNugetPackagesInfo(string projectPath, IEnumerable<NugetReference> projectNugets)
@@ -643,47 +672,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             File.AppendAllText(fileName, missingNugetPackagesInfo);
             GenContext.Current.FilesToOpen.Add(fileName);
-        }
-
-        private void AddNugetPackageToProject(string projectPath, IEnumerable<NugetReference> projectNugets)
-        {
-            try
-            {
-                var project = GetProjectByPath(projectPath);
-
-                foreach (var reference in projectNugets)
-                {
-                    var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-                    var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
-                    var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
-
-                    if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
-                    {
-                        var installer = componentModel.GetService<IVsPackageInstaller>();
-
-                        installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
-                    }
-                }
-
-                project.Save();
-            }
-            catch (Exception)
-            {
-                WriteMissingNugetPackagesInfo(projectPath, projectNugets);
-            }
-        }
-
-        private async System.Threading.Tasks.Task AddNugetPackagesToCPSProjectAsync(string projFile, IEnumerable<NugetReference> projectNugets)
-        {
-            var unconfiguredProject = GetUnconfiguredProject(projFile);
-            var configuredProject = await unconfiguredProject.GetSuggestedConfiguredProjectAsync();
-
-            foreach (var reference in projectNugets)
-            {
-                await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
-            }
-
-            await unconfiguredProject.SaveAsync();
         }
 
         private bool IsCpsProject(string projFile)

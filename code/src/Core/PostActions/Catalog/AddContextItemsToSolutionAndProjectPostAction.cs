@@ -16,20 +16,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingProjects);
 
-            var chrono = Stopwatch.StartNew();
+            await GenContext.ToolBox.Shell.AddContextItemsToSolutionAsync(GenContext.Current.Projects, GenContext.Current.NugetReferences, GenContext.Current.SdkReferences, GenContext.Current.ProjectReferences, GenContext.Current.ProjectItems.ToArray());
 
-            await GenContext.ToolBox.Shell.AddContextItemsToSolutionAsync(GenContext.Current.Projects, GenContext.Current.NugetReferences, GenContext.Current.ProjectItems.ToArray());
-
-            GenContext.ToolBox.Shell.AddSdkReferencesToProjects(GenContext.Current.SdkReferences);
-            GenContext.ToolBox.Shell.AddReferencesToProjects(GenContext.Current.ProjectReferences);
-            chrono.Reset();
-
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingItems);
-            //GenContext.ToolBox.Shell.AddItems(GenContext.Current.ProjectItems.ToArray());
-
-            chrono.Stop();
-
-            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = chrono.Elapsed.TotalSeconds;
+            GenContext.Current.Projects.Clear();
+            GenContext.Current.NugetReferences.Clear();
+            GenContext.Current.ProjectReferences.Clear();
             GenContext.Current.ProjectItems.Clear();
         }
     }
