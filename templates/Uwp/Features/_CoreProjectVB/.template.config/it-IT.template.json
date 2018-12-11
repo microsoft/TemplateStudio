@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Shared Core Project",
-  "description": "Add a .Net Standard library project for non-platform-specific functionality.",
-  "identity": "wts.Feat.CoreProject.VB"
-}
