@@ -424,7 +424,127 @@ namespace Microsoft.Templates.Test
             {
                 appDetails = await SetUpProjectForUiTestComparisonAsync(language, "SplitView", framework, pageIdentities);
 
-               // using (var appSession = WinAppDriverHelper.LaunchAppx($"{appDetails.PackageFamilyName}!App"))
+                // using (var appSession = WinAppDriverHelper.LaunchAppx($"{appDetails.PackageFamilyName}!App"))
+                using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
+                {
+                    appSession.Manage().Window.Maximize();
+
+                    await Task.Delay(TimeSpan.FromSeconds(2));
+
+                    var menuItems = appSession.FindElementsByClassName("ListViewItem");
+
+                    foreach (var menuItem in menuItems)
+                    {
+                        menuItem.Click();
+                        Debug.WriteLine("Opened: " + menuItem.Text);
+
+                        await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+
+                        async Task<bool> ClickYesOnPopUp(WindowsDriver<WindowsElement> session)
+                        {
+                            await Task.Delay(TimeSpan.FromSeconds(1)); // Allow extra time for popup to be displayed
+
+                            var popups = session.FindElementsByAccessibilityId("Popup Window");
+
+                            if (popups.Count() == 1)
+                            {
+                                var yes = popups[0].FindElementsByName("Yes");
+
+                                if (yes.Count() == 1)
+                                {
+                                    yes[0].Click();
+                                    return true;
+                                }
+                            }
+
+                            return false;
+                        }
+
+                        if (menuItem.Text == "Map")
+                        {
+                            // For location permission
+                            if (await ClickYesOnPopUp(appSession))
+                            {
+                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
+                                pagesOpenedSuccessfully++;
+                            }
+                            else
+                            {
+                                Assert.True(false, "Failed to click \"Yes\" on popup for Map permission.");
+                            }
+                        }
+                        else if (menuItem.Text == "Camera")
+                        {
+                            var cameraPermission = await ClickYesOnPopUp(appSession); // For camera permission
+                            var microphonePermission = await ClickYesOnPopUp(appSession); // For microphone permission
+
+                            if (cameraPermission && microphonePermission)
+                            {
+                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompts
+                                pagesOpenedSuccessfully++;
+                            }
+                            else
+                            {
+                                Assert.True(false, "Failed to click \"Yes\" on popups for Camera page permissions.");
+                            }
+                        }
+                        else
+                        {
+                            pagesOpenedSuccessfully++;
+                        }
+                    }
+
+                    // Don't leave the app maximized in case we want to open the app again.
+                    // Some controls handle layout differently when the app is first opened maximized
+                    VirtualKeyboard.RestoreMaximizedWindow();
+                }
+            }
+            finally
+            {
+                if (appDetails != null)
+                {
+                    UninstallAppx(appDetails.PackageFullName);
+                    RemoveCertificate(appDetails.CertificatePath);
+                }
+
+                WinAppDriverHelper.StopIfRunning();
+            }
+
+            var expectedPageCount = pageIdentities.Length + 1; // Add 1 for"Main page" added as well by default
+
+            Assert.True(expectedPageCount == pagesOpenedSuccessfully, "Not all pages were opened successfully.");
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureCanNavigateToEveryPageInTabbedNavWithoutErrorAsync(string framework, string language)
+        {
+            var pageIdentities = new[]
+            {
+                "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
+                "wts.Page.ContentGrid", "wts.Page.DataGrid",
+                "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
+                "wts.Page.TabbedPivot", "wts.Page.Map",
+                "wts.Page.Camera",
+                "wts.Page.ImageGallery", "wts.Page.MasterDetail",
+                "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
+            };
+
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
+            WinAppDriverHelper.StartIfNotRunning();
+
+            VisualComparisonTestDetails appDetails = null;
+
+            int pagesOpenedSuccessfully = 0;
+
+            try
+            {
+                appDetails = await SetUpProjectForUiTestComparisonAsync(language, "TabbedNav", framework, pageIdentities);
+
+                // using (var appSession = WinAppDriverHelper.LaunchAppx($"{appDetails.PackageFamilyName}!App"))
                 using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
                 {
                     appSession.Manage().Window.Maximize();
