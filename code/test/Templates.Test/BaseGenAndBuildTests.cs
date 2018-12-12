@@ -370,6 +370,7 @@ namespace Microsoft.Templates.Test
                 "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
                 "wts.Page.ImageGallery", "wts.Page.MasterDetail",
                 "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
+                "wts.Page.ContentGrid", "wts.Page.DataGrid",
                 "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                 "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
                 "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",

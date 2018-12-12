@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using WindowsTestHelpers;
 using Microsoft.Templates.Core;
+using OpenQA.Selenium.Appium.Windows;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -101,6 +102,18 @@ namespace Microsoft.Templates.Test
             {
                 yield return new object[] { framework };
             }
+        }
+
+        public static IEnumerable<object[]> GetAllFrameworksAndLanguageCombinations()
+        {
+            yield return new object[] { "CodeBehind", ProgrammingLanguages.CSharp };
+            yield return new object[] { "MVVMBasic", ProgrammingLanguages.CSharp };
+            yield return new object[] { "MVVMLight", ProgrammingLanguages.CSharp };
+            yield return new object[] { "CaliburnMicro", ProgrammingLanguages.CSharp };
+            yield return new object[] { "Prism", ProgrammingLanguages.CSharp };
+            yield return new object[] { "CodeBehind", ProgrammingLanguages.VisualBasic };
+            yield return new object[] { "MVVMBasic", ProgrammingLanguages.VisualBasic };
+            yield return new object[] { "MVVMLight", ProgrammingLanguages.VisualBasic };
         }
 
         public static IEnumerable<string> GetAllProjectTypes()
@@ -276,7 +289,7 @@ namespace Microsoft.Templates.Test
             var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework, genIdentities);
             var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, "SplitView", framework, genIdentities);
 
-            // TODO: Make this exclusion just from settings page
+            // TODO [ML] : Make this exclusion just from settings page
             var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }");
 
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
@@ -342,7 +355,7 @@ namespace Microsoft.Templates.Test
             {
                 var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework[0].ToString(), genIdentities);
 
-                // TODO: Make this exclusion just from settings page
+                // TODO [ML] : Make this exclusion just from settings page
                 var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }");
 
                 var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
@@ -380,6 +393,126 @@ namespace Microsoft.Templates.Test
                 UninstallAppx(app1Details.PackageFullName);
                 RemoveCertificate(app1Details.CertificatePath);
             }
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureCanNavigateToEveryPageInNavViewWithoutErrorAsync(string framework, string language)
+        {
+            var pageIdentities = new[]
+            {
+                "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
+                "wts.Page.ContentGrid", "wts.Page.DataGrid",
+                "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
+                "wts.Page.TabbedPivot", "wts.Page.Map",
+                "wts.Page.Camera",
+                "wts.Page.ImageGallery", "wts.Page.MasterDetail",
+                "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
+            };
+
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
+            WinAppDriverHelper.StartIfNotRunning();
+
+            VisualComparisonTestDetails appDetails = null;
+
+            int pagesOpenedSuccessfully = 0;
+
+            try
+            {
+                appDetails = await SetUpProjectForUiTestComparisonAsync(language, "SplitView", framework, pageIdentities);
+
+               // using (var appSession = WinAppDriverHelper.LaunchAppx($"{appDetails.PackageFamilyName}!App"))
+                using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
+                {
+                    appSession.Manage().Window.Maximize();
+
+                    await Task.Delay(TimeSpan.FromSeconds(2));
+
+                    var menuItems = appSession.FindElementsByClassName("ListViewItem");
+
+                    foreach (var menuItem in menuItems)
+                    {
+                        menuItem.Click();
+                        Debug.WriteLine("Opened: " + menuItem.Text);
+
+                        await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+
+                        async Task<bool> ClickYesOnPopUp(WindowsDriver<WindowsElement> session)
+                        {
+                            await Task.Delay(TimeSpan.FromSeconds(1)); // Allow extra time for popup to be displayed
+
+                            var popups = session.FindElementsByAccessibilityId("Popup Window");
+
+                            if (popups.Count() == 1)
+                            {
+                                var yes = popups[0].FindElementsByName("Yes");
+
+                                if (yes.Count() == 1)
+                                {
+                                    yes[0].Click();
+                                    return true;
+                                }
+                            }
+
+                            return false;
+                        }
+
+                        if (menuItem.Text == "Map")
+                        {
+                            // For location permission
+                            if (await ClickYesOnPopUp(appSession))
+                            {
+                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
+                                pagesOpenedSuccessfully++;
+                            }
+                            else
+                            {
+                                Assert.True(false, "Failed to click \"Yes\" on popup for Map permission.");
+                            }
+                        }
+                        else if (menuItem.Text == "Camera")
+                        {
+                            var cameraPermission = await ClickYesOnPopUp(appSession); // For camera permission
+                            var microphonePermission = await ClickYesOnPopUp(appSession); // For microphone permission
+
+                            if (cameraPermission && microphonePermission)
+                            {
+                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompts
+                                pagesOpenedSuccessfully++;
+                            }
+                            else
+                            {
+                                Assert.True(false, "Failed to click \"Yes\" on popups for Camera page permissions.");
+                            }
+                        }
+                        else
+                        {
+                            pagesOpenedSuccessfully++;
+                        }
+                    }
+
+                    // Don't leave the app maximized in case we want to open the app again.
+                    // Some controls handle layout differently when the app is first opened maximized
+                    VirtualKeyboard.RestoreMaximizedWindow();
+                }
+            }
+            finally
+            {
+                if (appDetails != null)
+                {
+                    UninstallAppx(appDetails.PackageFullName);
+                    RemoveCertificate(appDetails.CertificatePath);
+                }
+
+                WinAppDriverHelper.StopIfRunning();
+            }
+
+            var expectedPageCount = pageIdentities.Length + 1; // Add 1 for"Main page" added as well by default
+
+            Assert.True(expectedPageCount == pagesOpenedSuccessfully, "Not all pages were opened successfully.");
         }
 
         private (bool Success, List<string> TextOutput) RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
@@ -555,7 +688,7 @@ ForEach ($i in $dump)
 
             result.CertificatePath = InstallCertificate(baseSetup);
 
-            ////install appx
+            // install appx
             var appxFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}\\AppPackages\\{baseSetup.ProjectName}_1.0.0.0_x86_Test\\{baseSetup.ProjectName}_1.0.0.0_x86.appx";
             ExecutePowerShellScript($"Add-AppxPackage -Path {appxFile}");
 
