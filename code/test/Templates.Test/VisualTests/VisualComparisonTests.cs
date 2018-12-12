@@ -27,6 +27,54 @@ namespace Microsoft.Templates.Test
         {
         }
 
+        public static string[] AllTestablePages()
+        {
+            var result = new List<string>();
+
+            result.AddRange(AllPagesThatSupportSimpleTesting());
+            result.AddRange(AllPagesThatRequireExtraLogicForTesting());
+            result.AddRange(AllPagesNotVisuallyTestable());
+
+            return result.ToArray();
+        }
+
+        public static string[] AllPagesThatSupportSimpleTesting()
+        {
+            return new[]
+            {
+                "wts.Page.Blank",
+                "wts.Page.Chart",
+                "wts.Page.ContentGrid",
+                "wts.Page.DataGrid",
+                "wts.Page.Grid",
+                "wts.Page.ImageGallery",
+                "wts.Page.InkDraw",
+                "wts.Page.InkDrawPicture",
+                "wts.Page.InkSmartCanvas",
+                "wts.Page.MasterDetail",
+                "wts.Page.TabbedPivot",
+                "wts.Page.Settings",
+            };
+        }
+
+        public static string[] AllPagesThatRequireExtraLogicForTesting()
+        {
+            return new[]
+            {
+                "wts.Page.Camera",
+                "wts.Page.Map",
+            };
+        }
+
+        public static string[] AllPagesNotVisuallyTestable()
+        {
+            return new[]
+            {
+                "wts.Page.WebView",
+                "wts.Page.MediaPlayer",
+            };
+        }
+
         // Gets all the pages that are available (and testable) in both VB & C#
         public static IEnumerable<object[]> GetAllSinglePageAppsVBAndCS()
         {
@@ -35,19 +83,7 @@ namespace Microsoft.Templates.Test
                 foreach (var framework in GetAllFrameworksForBothVBAndCS())
                 {
                     // For other pages see https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
-                    var pagesThatSupportUiTesting = new[]
-                    {
-                        "wts.Page.Blank",
-                        "wts.Page.Chart",
-                        "wts.Page.ImageGallery",
-                        "wts.Page.MasterDetail",
-                        "wts.Page.TabbedPivot",
-                        "wts.Page.Grid",
-                        "wts.Page.Settings",
-                        "wts.Page.InkDraw",
-                        "wts.Page.InkDrawPicture",
-                        "wts.Page.InkSmartCanvas",
-                    };
+                    var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTesting();
 
                     foreach (var page in pagesThatSupportUiTesting)
                     {
@@ -66,20 +102,7 @@ namespace Microsoft.Templates.Test
             {
                 var otherFrameworks = GetAdditionalCsFrameworks().Select(f => f[0].ToString()).ToArray();
 
-                var pagesThatSupportUiTesting = new[]
-                {
-                    "wts.Page.Blank",
-                    "wts.Page.Chart",
-                    "wts.Page.Grid",
-                    "wts.Page.DataGrid",
-                    ////"wts.Page.ImageGallery", // ImageGallery doesn't work inside a TabbedPage on CaliburnMicro when the first pivot item
-                    "wts.Page.InkDraw",
-                    "wts.Page.InkDrawPicture",
-                    "wts.Page.InkSmartCanvas",
-                    "wts.Page.MasterDetail",
-                    "wts.Page.Settings",
-                    "wts.Page.TabbedPivot",
-                };
+                var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTesting();
 
                 foreach (var page in pagesThatSupportUiTesting)
                 {
@@ -269,19 +292,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInNavViewAsync(string framework)
         {
-            var genIdentities = new[]
-            {
-                "wts.Page.Blank",
-                "wts.Page.Chart",
-                "wts.Page.ImageGallery",
-                "wts.Page.MasterDetail",
-                "wts.Page.TabbedPivot",
-                "wts.Page.Grid",
-                "wts.Page.Settings",
-                "wts.Page.InkDraw",
-                "wts.Page.InkDrawPicture",
-                "wts.Page.InkSmartCanvas",
-            };
+            var genIdentities = AllPagesThatSupportSimpleTesting();
 
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
@@ -330,19 +341,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureFrameworksProduceIdenticalOutputForEachPageInNavViewAsync()
         {
-            var genIdentities = new[]
-            {
-                "wts.Page.Blank",
-                "wts.Page.Chart",
-                "wts.Page.ImageGallery",
-                "wts.Page.MasterDetail",
-                "wts.Page.TabbedPivot",
-                "wts.Page.Grid",
-                "wts.Page.Settings",
-                "wts.Page.InkDraw",
-                "wts.Page.InkDrawPicture",
-                "wts.Page.InkSmartCanvas",
-            };
+            var genIdentities = AllPagesThatSupportSimpleTesting();
 
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
@@ -401,16 +400,21 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureCanNavigateToEveryPageInNavViewWithoutErrorAsync(string framework, string language)
         {
-            var pageIdentities = new[]
-            {
-                "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
-                "wts.Page.ContentGrid", "wts.Page.DataGrid",
-                "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
-                "wts.Page.TabbedPivot", "wts.Page.Map",
-                "wts.Page.Camera",
-                "wts.Page.ImageGallery", "wts.Page.MasterDetail",
-                "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
-            };
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "SplitView");
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureCanNavigateToEveryPageInTabbedNavWithoutErrorAsync(string framework, string language)
+        {
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "TabbedNav");
+        }
+
+        private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
+        {
+            var pageIdentities = AllTestablePages();
 
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
@@ -422,9 +426,8 @@ namespace Microsoft.Templates.Test
 
             try
             {
-                appDetails = await SetUpProjectForUiTestComparisonAsync(language, "SplitView", framework, pageIdentities);
+                appDetails = await SetUpProjectForUiTestComparisonAsync(language, projectType, framework, pageIdentities);
 
-                // using (var appSession = WinAppDriverHelper.LaunchAppx($"{appDetails.PackageFamilyName}!App"))
                 using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
                 {
                     appSession.Manage().Window.Maximize();
@@ -440,30 +443,10 @@ namespace Microsoft.Templates.Test
 
                         await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
 
-                        async Task<bool> ClickYesOnPopUp(WindowsDriver<WindowsElement> session)
-                        {
-                            await Task.Delay(TimeSpan.FromSeconds(1)); // Allow extra time for popup to be displayed
-
-                            var popups = session.FindElementsByAccessibilityId("Popup Window");
-
-                            if (popups.Count() == 1)
-                            {
-                                var yes = popups[0].FindElementsByName("Yes");
-
-                                if (yes.Count() == 1)
-                                {
-                                    yes[0].Click();
-                                    return true;
-                                }
-                            }
-
-                            return false;
-                        }
-
                         if (menuItem.Text == "Map")
                         {
                             // For location permission
-                            if (await ClickYesOnPopUp(appSession))
+                            if (await ClickYesOnPopUpAsync(appSession))
                             {
                                 await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
                                 pagesOpenedSuccessfully++;
@@ -475,8 +458,8 @@ namespace Microsoft.Templates.Test
                         }
                         else if (menuItem.Text == "Camera")
                         {
-                            var cameraPermission = await ClickYesOnPopUp(appSession); // For camera permission
-                            var microphonePermission = await ClickYesOnPopUp(appSession); // For microphone permission
+                            var cameraPermission = await ClickYesOnPopUpAsync(appSession); // For camera permission
+                            var microphonePermission = await ClickYesOnPopUpAsync(appSession); // For microphone permission
 
                             if (cameraPermission && microphonePermission)
                             {
@@ -515,124 +498,24 @@ namespace Microsoft.Templates.Test
             Assert.True(expectedPageCount == pagesOpenedSuccessfully, "Not all pages were opened successfully.");
         }
 
-        [Theory]
-        [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
-        [Trait("ExecutionSet", "ManualOnly")]
-        [Trait("Type", "WinAppDriver")]
-        public async Task EnsureCanNavigateToEveryPageInTabbedNavWithoutErrorAsync(string framework, string language)
+        private async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
         {
-            var pageIdentities = new[]
+            await Task.Delay(TimeSpan.FromSeconds(1)); // Allow extra time for popup to be displayed
+
+            var popups = session.FindElementsByAccessibilityId("Popup Window");
+
+            if (popups.Count() == 1)
             {
-                "wts.Page.Blank", "wts.Page.Settings", "wts.Page.Chart",
-                "wts.Page.ContentGrid", "wts.Page.DataGrid",
-                "wts.Page.Grid", "wts.Page.WebView", "wts.Page.MediaPlayer",
-                "wts.Page.TabbedPivot", "wts.Page.Map",
-                "wts.Page.Camera",
-                "wts.Page.ImageGallery", "wts.Page.MasterDetail",
-                "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
-            };
+                var yes = popups[0].FindElementsByName("Yes");
 
-            ExecutionEnvironment.CheckRunningAsAdmin();
-            WinAppDriverHelper.CheckIsInstalled();
-            WinAppDriverHelper.StartIfNotRunning();
-
-            VisualComparisonTestDetails appDetails = null;
-
-            int pagesOpenedSuccessfully = 0;
-
-            try
-            {
-                appDetails = await SetUpProjectForUiTestComparisonAsync(language, "TabbedNav", framework, pageIdentities);
-
-                // using (var appSession = WinAppDriverHelper.LaunchAppx($"{appDetails.PackageFamilyName}!App"))
-                using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
+                if (yes.Count() == 1)
                 {
-                    appSession.Manage().Window.Maximize();
-
-                    await Task.Delay(TimeSpan.FromSeconds(2));
-
-                    var menuItems = appSession.FindElementsByClassName("ListViewItem");
-
-                    foreach (var menuItem in menuItems)
-                    {
-                        menuItem.Click();
-                        Debug.WriteLine("Opened: " + menuItem.Text);
-
-                        await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
-
-                        async Task<bool> ClickYesOnPopUp(WindowsDriver<WindowsElement> session)
-                        {
-                            await Task.Delay(TimeSpan.FromSeconds(1)); // Allow extra time for popup to be displayed
-
-                            var popups = session.FindElementsByAccessibilityId("Popup Window");
-
-                            if (popups.Count() == 1)
-                            {
-                                var yes = popups[0].FindElementsByName("Yes");
-
-                                if (yes.Count() == 1)
-                                {
-                                    yes[0].Click();
-                                    return true;
-                                }
-                            }
-
-                            return false;
-                        }
-
-                        if (menuItem.Text == "Map")
-                        {
-                            // For location permission
-                            if (await ClickYesOnPopUp(appSession))
-                            {
-                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
-                                pagesOpenedSuccessfully++;
-                            }
-                            else
-                            {
-                                Assert.True(false, "Failed to click \"Yes\" on popup for Map permission.");
-                            }
-                        }
-                        else if (menuItem.Text == "Camera")
-                        {
-                            var cameraPermission = await ClickYesOnPopUp(appSession); // For camera permission
-                            var microphonePermission = await ClickYesOnPopUp(appSession); // For microphone permission
-
-                            if (cameraPermission && microphonePermission)
-                            {
-                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompts
-                                pagesOpenedSuccessfully++;
-                            }
-                            else
-                            {
-                                Assert.True(false, "Failed to click \"Yes\" on popups for Camera page permissions.");
-                            }
-                        }
-                        else
-                        {
-                            pagesOpenedSuccessfully++;
-                        }
-                    }
-
-                    // Don't leave the app maximized in case we want to open the app again.
-                    // Some controls handle layout differently when the app is first opened maximized
-                    VirtualKeyboard.RestoreMaximizedWindow();
+                    yes[0].Click();
+                    return true;
                 }
             }
-            finally
-            {
-                if (appDetails != null)
-                {
-                    UninstallAppx(appDetails.PackageFullName);
-                    RemoveCertificate(appDetails.CertificatePath);
-                }
 
-                WinAppDriverHelper.StopIfRunning();
-            }
-
-            var expectedPageCount = pageIdentities.Length + 1; // Add 1 for"Main page" added as well by default
-
-            Assert.True(expectedPageCount == pagesOpenedSuccessfully, "Not all pages were opened successfully.");
+            return false;
         }
 
         private (bool Success, List<string> TextOutput) RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
