@@ -11,7 +11,7 @@
         }
 
         //{[{
-        public wts.ItemNameViewModel wts.ItemNameViewModel => ServiceLocator.Current.GetInstance<wts.ItemNameViewModel>();
+        public wts.ItemNameViewModel wts.ItemNameViewModel => SimpleIoc.Default.GetInstance<wts.ItemNameViewModel>();
         //}]}
     }
 }

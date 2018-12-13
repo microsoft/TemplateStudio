@@ -11,7 +11,7 @@
         }
 
 //{[{
-        public ShellViewModel ShellViewModel => ServiceLocator.Current.GetInstance<ShellViewModel>();
+        public ShellViewModel ShellViewModel => SimpleIoc.Default.GetInstance<ShellViewModel>();
 //}]}
     }
 }

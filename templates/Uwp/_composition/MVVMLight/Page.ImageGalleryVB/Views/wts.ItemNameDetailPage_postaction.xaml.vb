@@ -8,7 +8,7 @@ Namespace Views
 
         Public ReadOnly Property NavigationService As NavigationServiceEx
             Get
-                Return CommonServiceLocator.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()
+                Return ViewModelLocator.Current.NavigationService
             End Get
         End Property
 
