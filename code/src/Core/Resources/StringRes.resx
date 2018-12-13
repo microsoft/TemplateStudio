@@ -212,9 +212,6 @@
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Error syncing templates. Status:</value>
   </data>
-  <data name="StatusAddingItems" xml:space="preserve">
-    <value>Adding items to project ...</value>
-  </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Opening generated files ...</value>
   </data>
@@ -450,9 +447,6 @@ The following changes could not be integrated: {2}
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
     <value>The file {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
-  </data>
-  <data name="StatusAddingProjects" xml:space="preserve">
-    <value>Adding projects to solution...</value>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
     <value>Layout template {0} not found for framework {1} and platform {2}.</value>

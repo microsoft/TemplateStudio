@@ -212,9 +212,6 @@
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>同步範本時發生錯誤。狀態：</value>
   </data>
-  <data name="StatusAddingItems" xml:space="preserve">
-    <value>正在新增項目至專案...</value>
-  </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>正在開啟產生的檔案...</value>
   </data>
@@ -450,9 +447,6 @@
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
     <value>The file {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
-  </data>
-  <data name="StatusAddingProjects" xml:space="preserve">
-    <value>Adding projects to solution...</value>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
     <value>找不到 framework {1} 和平台 {2} 的版面配置範本 {0}。</value>

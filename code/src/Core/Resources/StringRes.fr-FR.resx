@@ -212,9 +212,6 @@
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Une erreur est survenue lors de la synchronisation des modèles. État :</value>
   </data>
-  <data name="StatusAddingItems" xml:space="preserve">
-    <value>Ajout des éléments au projet…</value>
-  </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Ouverture des fichiers générés…</value>
   </data>
@@ -450,9 +447,6 @@ Les modifications suivantes n'ont pu être intégrées : {2}
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
     <value>The file {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
-  </data>
-  <data name="StatusAddingProjects" xml:space="preserve">
-    <value>Adding projects to solution...</value>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
     <value>Le modèle de mise en page {0} n'a pas été trouvé pour la structure framework {1} et la plateforme {2}.</value>

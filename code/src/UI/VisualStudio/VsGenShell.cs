@@ -71,6 +71,8 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 foreach (var file in projFiles)
                 {
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingItem, Path.GetFileName(file)));
+
                     var newItem = proj.ProjectItems.AddFromFile(file);
                 }
 
@@ -428,6 +430,8 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     var chrono = Stopwatch.StartNew();
 
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project.ProjectPath)));
+
                     Dte.Solution.AddFromFile(project.ProjectPath);
                     secAddProjects += chrono.Elapsed.TotalSeconds;
                     chrono.Restart();
@@ -622,6 +626,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     foreach (var reference in projectNugets)
                     {
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
+
                         await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
                     }
 
@@ -639,6 +645,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                         if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
                         {
+                            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
+
                             var installer = componentModel.GetService<IVsPackageInstaller>();
 
                             installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);

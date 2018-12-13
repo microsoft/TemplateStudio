@@ -212,9 +212,6 @@
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Error al sincronizar plantillas. Estado:</value>
   </data>
-  <data name="StatusAddingItems" xml:space="preserve">
-    <value>Agregando elementos al proyecto...</value>
-  </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Abriendo archivos generados...</value>
   </data>
@@ -450,9 +447,6 @@ No se pueden integrar las modificaciones siguientes: {2}
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
     <value>The file {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
-  </data>
-  <data name="StatusAddingProjects" xml:space="preserve">
-    <value>Adding projects to solution...</value>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
     <value>No se encontró la plantilla de diseño {0} para el framework {1} y la plataforma {2}.</value>

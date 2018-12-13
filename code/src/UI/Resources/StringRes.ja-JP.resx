@@ -698,4 +698,16 @@ Please verify the following list of packages needed by your project's code and m
 {1}</value>
     <comment>{0}: projectPath, {1}: package Info</comment>
   </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>Adding {0} to project ...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>Adding NuGet package {0} to project ...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>Adding project {0} to solution...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
 </root>
