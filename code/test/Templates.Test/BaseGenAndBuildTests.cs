@@ -272,7 +272,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
+        protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false, bool includeMultipleInstances = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(Platforms.Uwp);
@@ -309,7 +309,7 @@ namespace Microsoft.Templates.Test
                 _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
 
                 // Add multiple pages if supported to check these are handled the same
-                if (itemTemplate.GetMultipleInstance())
+                if (includeMultipleInstances && itemTemplate.GetMultipleInstance())
                 {
                     _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
                 }
@@ -370,6 +370,7 @@ namespace Microsoft.Templates.Test
                 "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
                 "wts.Page.ImageGallery", "wts.Page.MasterDetail",
                 "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
+                "wts.Page.ContentGrid", "wts.Page.DataGrid",
                 "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                 "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
                 "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",
