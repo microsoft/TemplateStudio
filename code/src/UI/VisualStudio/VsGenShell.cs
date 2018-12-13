@@ -396,29 +396,26 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 var filesByProject = ResolveProjectFiles(filesToAdd);
 
-                var filesForExistingProjects = filesByProject.Keys.Where(k => !projects.Any(p => p.ProjectPath == k)).GroupBy(k => k);
-                var nugetsForExistingProjects = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
-                var sdksForExistingProjects = sdkReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
+                var filesForExistingProjects = filesByProject.Where(k => !projects.Any(p => p.ProjectPath == k.Key));
+                var nugetsForExistingProjects = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project, n => n);
+                var sdksForExistingProjects = sdkReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project, n => n);
 
-                if (filesForExistingProjects.Any() || nugetsForExistingProjects.Any() || sdkReferences.Any())
+                foreach (var files in filesForExistingProjects)
                 {
-                    foreach (var project in filesForExistingProjects)
+                    if (!IsCpsProject(files.Key))
                     {
-                        if (!IsCpsProject(project.Key))
-                        {
-                            AddItems(project.Key, project);
-                        }
+                        AddItems(files.Key, files.Value);
                     }
+                }
 
-                    foreach (var nuget in nugetsForExistingProjects)
-                    {
-                        await AddNugetsForProjectAsync(nuget.Key, nugetReferences.Where(n => n.Project == nuget.Key));
-                    }
+                foreach (var nuget in nugetsForExistingProjects)
+                {
+                    await AddNugetsForProjectAsync(nuget.Key, nuget);
+                }
 
-                    foreach (var sdk in sdksForExistingProjects)
-                    {
-                        AddSdksForProjectAsync(sdk.Key, sdkReferences.Where(n => n.Project == sdk.Key));
-                    }
+                foreach (var sdk in sdksForExistingProjects)
+                {
+                    AddSdksForProjectAsync(sdk.Key, sdk);
                 }
 
                 // Ensure projectsToAdd are ordered correctly.
@@ -650,7 +647,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     project.Save();
                 }
-                }
+            }
             catch (Exception)
             {
                 WriteMissingNugetPackagesInfo(projectPath, projectNugets);
