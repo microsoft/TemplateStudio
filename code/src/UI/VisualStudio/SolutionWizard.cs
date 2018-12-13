@@ -80,10 +80,11 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void RunFinished()
         {
-            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
             SafeThreading.JoinableTaskFactory.Run(
                 async () =>
                 {
+                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
+
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                     await _generationService.GenerateProjectAsync(_userSelection);
 
