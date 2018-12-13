@@ -426,6 +426,8 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 double secAddProjects = 0;
                 double secAddFiles = 0;
+                double secAddNuget = 0;
+
                 foreach (var project in orderedProject)
                 {
                     var chrono = Stopwatch.StartNew();
@@ -442,16 +444,24 @@ namespace Microsoft.Templates.UI.VisualStudio
                     }
 
                     secAddFiles += chrono.Elapsed.TotalSeconds;
-                    chrono.Stop();
+                    chrono.Restart();
 
                     await AddNugetsForProjectAsync(project.ProjectPath, nugetReferences.Where(n => n.Project == project.ProjectPath));
+
+                    secAddNuget += chrono.Elapsed.TotalSeconds;
+
                     AddSdksForProjectAsync(project.ProjectPath, sdkReferences.Where(n => n.Project == project.ProjectPath));
+
+                    chrono.Stop();
                 }
+
+                GenContext.ToolBox.Shell.ShowStatusBarMessage("Add references between projects");
 
                 AddReferencesToProjects(projectReferences);
 
                 GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = secAddProjects;
                 GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = secAddFiles;
+                GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddNugetToProject] = secAddNuget;
             }
             catch (Exception)
             {
@@ -619,24 +629,22 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             try
             {
+                var project = GetProjectByPath(projectPath);
                 if (IsCpsProject(projectPath))
                 {
-                    var unconfiguredProject = GetUnconfiguredProject(projectPath);
-                    var configuredProject = await unconfiguredProject.GetSuggestedConfiguredProjectAsync();
-
-                    foreach (var reference in projectNugets)
+                    if (project is IVsBrowseObjectContext browseObjectContext)
                     {
-                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
+                        var configuredProject = await browseObjectContext.UnconfiguredProject.GetSuggestedConfiguredProjectAsync();
 
-                        await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
+                        foreach (var reference in projectNugets)
+                        {
+                            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
+                            await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
+                        }
                     }
-
-                    await unconfiguredProject.SaveAsync();
                 }
                 else
                 {
-                    var project = GetProjectByPath(projectPath);
-
                     foreach (var reference in projectNugets)
                     {
                         var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
@@ -685,32 +693,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
             return hierarchy.IsCapabilityMatch("CPS");
-        }
-
-        private UnconfiguredProject GetUnconfiguredProject(string projFile)
-        {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            // VC implements this on their DTE.Project.Object
-            VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
-
-            if (hierarchy != null)
-            {
-                object extObject;
-
-                if (ErrorHandler.Succeeded(hierarchy.GetProperty((uint)VSConstants.VSITEMID.Root, (int)__VSHPROPID.VSHPROPID_ExtObject, out extObject)))
-                {
-                    IVsBrowseObjectContext dteProject = extObject as IVsBrowseObjectContext;
-
-                    if (dteProject != null)
-                    {
-                        var context = dteProject.UnconfiguredProject as UnconfiguredProject;
-                        return context;
-                    }
-                }
-            }
-
-            return null;
         }
     }
 }
