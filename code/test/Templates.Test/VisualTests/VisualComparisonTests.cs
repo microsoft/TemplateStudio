@@ -9,12 +9,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
-using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using WindowsTestHelpers;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Fakes;
+using OpenQA.Selenium.Appium.Windows;
 using Xunit;
 
 namespace Microsoft.Templates.Test
@@ -27,33 +27,67 @@ namespace Microsoft.Templates.Test
         {
         }
 
+        public static string[] AllTestablePages()
+        {
+            var result = new List<string>();
+
+            result.AddRange(AllPagesThatSupportSimpleTesting());
+            result.AddRange(AllPagesThatRequireExtraLogicForTesting());
+            result.AddRange(AllPagesNotVisuallyTestable());
+
+            return result.ToArray();
+        }
+
+        public static string[] AllPagesThatSupportSimpleTesting()
+        {
+            return new[]
+            {
+                "wts.Page.Blank",
+                "wts.Page.Chart",
+                "wts.Page.ContentGrid",
+                "wts.Page.DataGrid",
+                "wts.Page.Grid",
+                "wts.Page.ImageGallery",
+                "wts.Page.InkDraw",
+                "wts.Page.InkDrawPicture",
+                "wts.Page.InkSmartCanvas",
+                "wts.Page.MasterDetail",
+                "wts.Page.TabbedPivot",
+                "wts.Page.Settings",
+            };
+        }
+
+        public static string[] AllPagesThatRequireExtraLogicForTesting()
+        {
+            return new[]
+            {
+                "wts.Page.Camera",
+                "wts.Page.Map",
+            };
+        }
+
+        public static string[] AllPagesNotVisuallyTestable()
+        {
+            return new[]
+            {
+                "wts.Page.WebView",
+                "wts.Page.MediaPlayer",
+            };
+        }
+
         // Gets all the pages that are available (and testable) in both VB & C#
         public static IEnumerable<object[]> GetAllSinglePageAppsVBAndCS()
         {
-            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav" })
+            foreach (var projectType in GetAllProjectTypes())
             {
-                foreach (var framework in new[] { "CodeBehind", "MVVMBasic", "MVVMLight" })
+                foreach (var framework in GetAllFrameworksForBothVBAndCS())
                 {
                     // For other pages see https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
-                    var pagesThatSupportUiTesting = new[]
-                    {
-                        "wts.Page.Map",
-                       // "wts.Page.Camera",
-                        //"wts.Page.Blank",
-                        //"wts.Page.Chart",
-                        //"wts.Page.ImageGallery",
-                        //"wts.Page.MasterDetail",
-                        //"wts.Page.TabbedPivot",
-                        //"wts.Page.Grid",
-                        //"wts.Page.Settings",
-                        //"wts.Page.InkDraw",
-                        //"wts.Page.InkDrawPicture",
-                        //"wts.Page.InkSmartCanvas",
-                    };
+                    var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTesting();
 
                     foreach (var page in pagesThatSupportUiTesting)
                     {
-                        yield return new object[] { projectType, framework, page };
+                        yield return new object[] { projectType, framework[0].ToString(), page };
                     }
                 }
             }
@@ -64,29 +98,52 @@ namespace Microsoft.Templates.Test
         {
             //// To quickly test a single scenario
             ////yield return new object[] { "TabbedNav", "wts.Page.ImageGallery", new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" } };
-            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav" })
+            foreach (var projectType in GetAllProjectTypes())
             {
-                var otherFrameworks = new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" };
+                var otherFrameworks = GetAdditionalCsFrameworks().Select(f => f[0].ToString()).ToArray();
 
-                var pagesThatSupportUiTesting = new[]
-                {
-                    "wts.Page.Blank",
-                    "wts.Page.Chart",
-                    "wts.Page.Grid",
-                    "wts.Page.DataGrid",
-                    ////"wts.Page.ImageGallery", // ImageGallery doesn't work inside a TabbedPage on CaliburnMicro when the first pivot item
-                    "wts.Page.InkDraw",
-                    "wts.Page.InkDrawPicture",
-                    "wts.Page.InkSmartCanvas",
-                    "wts.Page.MasterDetail",
-                    "wts.Page.Settings",
-                    "wts.Page.TabbedPivot",
-                };
+                var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTesting();
 
                 foreach (var page in pagesThatSupportUiTesting)
                 {
                     yield return new object[] { projectType, page, otherFrameworks };
                 }
+            }
+        }
+
+        public static IEnumerable<object[]> GetAdditionalCsFrameworks()
+        {
+            foreach (var framework in new[] { "CodeBehind", "MVVMLight", "CaliburnMicro", "Prism" })
+            {
+                yield return new object[] { framework };
+            }
+        }
+
+        public static IEnumerable<object[]> GetAllFrameworksForBothVBAndCS()
+        {
+            foreach (var framework in new[] { "CodeBehind", "MVVMBasic", "MVVMLight" })
+            {
+                yield return new object[] { framework };
+            }
+        }
+
+        public static IEnumerable<object[]> GetAllFrameworksAndLanguageCombinations()
+        {
+            yield return new object[] { "CodeBehind", ProgrammingLanguages.CSharp };
+            yield return new object[] { "MVVMBasic", ProgrammingLanguages.CSharp };
+            yield return new object[] { "MVVMLight", ProgrammingLanguages.CSharp };
+            yield return new object[] { "CaliburnMicro", ProgrammingLanguages.CSharp };
+            yield return new object[] { "Prism", ProgrammingLanguages.CSharp };
+            yield return new object[] { "CodeBehind", ProgrammingLanguages.VisualBasic };
+            yield return new object[] { "MVVMBasic", ProgrammingLanguages.VisualBasic };
+            yield return new object[] { "MVVMLight", ProgrammingLanguages.VisualBasic };
+        }
+
+        public static IEnumerable<string> GetAllProjectTypes()
+        {
+            foreach (var projectType in new[] { "Blank", "SplitView", "TabbedNav" })
+            {
+                yield return projectType;
             }
         }
 
@@ -115,15 +172,15 @@ namespace Microsoft.Templates.Test
 
         // Note. Visual Studio MUST be running as Admin to run this test.
         [Theory]
-        [MemberData("GetAllSinglePageAppsVBAndCS")]
+        [MemberData(nameof(GetAllSinglePageAppsVBAndCS))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLanguageLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
         {
             var genIdentities = new[] { page };
 
-            CheckRunningAsAdmin();
-            CheckWinAppDriverInstalled();
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
 
             var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
             var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities, lastPageIsHome: true);
@@ -139,7 +196,7 @@ namespace Microsoft.Templates.Test
                 noClickCount = 2;
             }
 
-            var testProjectDetails = SetUpTestProject(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount);
+            var testProjectDetails = SetUpTestProjectForInitialScreenshotComparison(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount);
 
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -175,7 +232,7 @@ namespace Microsoft.Templates.Test
         // Note. Visual Studio MUST be running as Admin to run this test.
         // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
         [Theory]
-        [MemberData("GetAllSinglePageAppsCSharp")]
+        [MemberData(nameof(GetAllSinglePageAppsCSharp))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureFrameworkLaunchPageVisualsAreEquivalentAsync(string projectType, string page, string[] frameworks)
@@ -193,10 +250,10 @@ namespace Microsoft.Templates.Test
                 noClickCount = 2;
             }
 
-            CheckRunningAsAdmin();
-            CheckWinAppDriverInstalled();
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
 
-            // MVVMBasic is considerewd the reference version. Compare generated apps with equivalent in other frameworks
+            // MVVMBasic is considered the reference version. Compare generated apps with equivalent in other frameworks
             var refAppDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, "MVVMBasic", genIdentities, lastPageIsHome: true);
 
             var otherProjDetails = new VisualComparisonTestDetails[frameworks.Length];
@@ -210,7 +267,7 @@ namespace Microsoft.Templates.Test
                 string framework = frameworks[i];
                 otherProjDetails[i] = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
 
-                var testProjectDetails = SetUpTestProject(refAppDetails, otherProjDetails[i], GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount);
+                var testProjectDetails = SetUpTestProjectForInitialScreenshotComparison(refAppDetails, otherProjDetails[i], GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount);
 
                 var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -249,25 +306,245 @@ namespace Microsoft.Templates.Test
             Assert.True(allTestsPassed, outputMessages.TrimStart());
         }
 
-        private void CheckRunningAsAdmin()
+        // Note. Visual Studio MUST be running as Admin to run this test.
+        // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+        [Theory]
+        [MemberData(nameof(GetAllFrameworksForBothVBAndCS))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInNavViewAsync(string framework)
         {
-            Assert.True(
-                new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator),
-                "Must be running as Administrator to execute these tests.");
+            var genIdentities = AllPagesThatSupportSimpleTesting();
+
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
+
+            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework, genIdentities);
+            var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, "SplitView", framework, genIdentities);
+
+            // TODO [ML] : Make this exclusion just from settings page
+            var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }");
+
+            var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+
+            // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+            if (testSuccess)
+            {
+                UninstallAppx(app1Details.PackageFullName);
+                UninstallAppx(app2Details.PackageFullName);
+
+                RemoveCertificate(app1Details.CertificatePath);
+                RemoveCertificate(app2Details.CertificatePath);
+
+                // Parent of images folder also contains the test project
+                Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
+            }
+
+            var outputMessages = string.Join(Environment.NewLine, testOutput);
+
+            // A diff image is automatically created if the outputs differ
+            if (Directory.Exists(testProjectDetails.imagesFolder)
+                && Directory.GetFiles(testProjectDetails.imagesFolder, "DIFF-*.png").Any())
+            {
+                Assert.True(
+                    testSuccess,
+                    $"Failing test images in {testProjectDetails.imagesFolder}{Environment.NewLine}{Environment.NewLine}{outputMessages}");
+            }
+            else
+            {
+                Assert.True(testSuccess, outputMessages);
+            }
         }
 
-        private void CheckWinAppDriverInstalled()
+        // Note. Visual Studio MUST be running as Admin to run this test.
+        // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+        [Fact]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureFrameworksProduceIdenticalOutputForEachPageInNavViewAsync()
         {
-            Assert.True(
-                File.Exists(@"C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe"),
-                "WinAppDriver is not installed. Download from https://github.com/Microsoft/WinAppDriver/releases");
+            var genIdentities = AllPagesThatSupportSimpleTesting();
+
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
+
+            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", "MVVMBasic", genIdentities);
+
+            var errors = new List<string>();
+
+            foreach (var framework in GetAdditionalCsFrameworks())
+            {
+                var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework[0].ToString(), genIdentities);
+
+                // TODO [ML] : Make this exclusion just from settings page
+                var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }");
+
+                var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
+
+                // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
+                if (testSuccess)
+                {
+                    UninstallAppx(app2Details.PackageFullName);
+
+                    RemoveCertificate(app2Details.CertificatePath);
+
+                    // Parent of images folder also contains the test project
+                    Fs.SafeDeleteDirectory(Path.Combine(testProjectDetails.imagesFolder, ".."));
+                }
+                else
+                {
+                    errors.AddRange(testOutput);
+
+                    // A diff image is automatically created if the outputs differ
+                    if (Directory.GetFiles(testProjectDetails.imagesFolder, "DIFF-*.png").Any())
+                    {
+                        errors.Add($"Failing test images in {testProjectDetails.imagesFolder}");
+                    }
+                }
+            }
+
+            var outputMessages = string.Join(Environment.NewLine, errors);
+
+            if (outputMessages.Any())
+            {
+                Assert.True(false, $"{Environment.NewLine}{Environment.NewLine}{outputMessages}");
+            }
+            else
+            {
+                UninstallAppx(app1Details.PackageFullName);
+                RemoveCertificate(app1Details.CertificatePath);
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureCanNavigateToEveryPageInNavViewWithoutErrorAsync(string framework, string language)
+        {
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "SplitView");
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllFrameworksAndLanguageCombinations))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureCanNavigateToEveryPageInTabbedNavWithoutErrorAsync(string framework, string language)
+        {
+            await EnsureCanNavigateToEveryPageWithoutErrorAsync(framework, language, "TabbedNav");
+        }
+
+        private async Task EnsureCanNavigateToEveryPageWithoutErrorAsync(string framework, string language, string projectType)
+        {
+            var pageIdentities = AllTestablePages();
+
+            ExecutionEnvironment.CheckRunningAsAdmin();
+            WinAppDriverHelper.CheckIsInstalled();
+            WinAppDriverHelper.StartIfNotRunning();
+
+            VisualComparisonTestDetails appDetails = null;
+
+            int pagesOpenedSuccessfully = 0;
+
+            try
+            {
+                appDetails = await SetUpProjectForUiTestComparisonAsync(language, projectType, framework, pageIdentities);
+
+                using (var appSession = WinAppDriverHelper.LaunchAppx(appDetails.PackageFamilyName))
+                {
+                    appSession.Manage().Window.Maximize();
+
+                    await Task.Delay(TimeSpan.FromSeconds(2));
+
+                    var menuItems = appSession.FindElementsByClassName("ListViewItem");
+
+                    foreach (var menuItem in menuItems)
+                    {
+                        menuItem.Click();
+                        Debug.WriteLine("Opened: " + menuItem.Text);
+
+                        await Task.Delay(TimeSpan.FromMilliseconds(1500)); // Allow page to load and animations to complete
+
+                        if (menuItem.Text == "Map")
+                        {
+                            // For location permission
+                            if (await ClickYesOnPopUpAsync(appSession))
+                            {
+                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompt
+                                pagesOpenedSuccessfully++;
+                            }
+                            else
+                            {
+                                Assert.True(false, "Failed to click \"Yes\" on popup for Map permission.");
+                            }
+                        }
+                        else if (menuItem.Text == "Camera")
+                        {
+                            var cameraPermission = await ClickYesOnPopUpAsync(appSession); // For camera permission
+                            var microphonePermission = await ClickYesOnPopUpAsync(appSession); // For microphone permission
+
+                            if (cameraPermission && microphonePermission)
+                            {
+                                await Task.Delay(TimeSpan.FromSeconds(2)); // Allow page to load after accepting prompts
+                                pagesOpenedSuccessfully++;
+                            }
+                            else
+                            {
+                                Assert.True(false, "Failed to click \"Yes\" on popups for Camera page permissions.");
+                            }
+                        }
+                        else
+                        {
+                            pagesOpenedSuccessfully++;
+                        }
+                    }
+
+                    // Don't leave the app maximized in case we want to open the app again.
+                    // Some controls handle layout differently when the app is first opened maximized
+                    VirtualKeyboard.RestoreMaximizedWindow();
+                }
+            }
+            finally
+            {
+                if (appDetails != null)
+                {
+                    UninstallAppx(appDetails.PackageFullName);
+                    RemoveCertificate(appDetails.CertificatePath);
+                }
+
+                WinAppDriverHelper.StopIfRunning();
+            }
+
+            var expectedPageCount = pageIdentities.Length + 1; // Add 1 for"Main page" added as well by default
+
+            Assert.True(expectedPageCount == pagesOpenedSuccessfully, "Not all pages were opened successfully.");
+        }
+
+        private async Task<bool> ClickYesOnPopUpAsync(WindowsDriver<WindowsElement> session)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(1)); // Allow extra time for popup to be displayed
+
+            var popups = session.FindElementsByAccessibilityId("Popup Window");
+
+            if (popups.Count() == 1)
+            {
+                var yes = popups[0].FindElementsByName("Yes");
+
+                if (yes.Count() == 1)
+                {
+                    yes[0].Click();
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private (bool Success, List<string> TextOutput) RunWinAppDriverTests((string projectFolder, string imagesFolder) testProjectDetails)
         {
             var result = false;
 
-            StartWinAppDriverIfNotRunning();
+            WinAppDriverHelper.StartIfNotRunning();
 
             var buildOutput = Path.Combine(testProjectDetails.projectFolder, "bin", "Debug", "AutomatedUITests.dll");
             var runTestsScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\Extensions\\TestPlatform\\vstest.console.exe\" \"{buildOutput}\" ";
@@ -289,12 +566,12 @@ namespace Microsoft.Templates.Test
                 }
             }
 
-            StopWinAppDriverIfRunning();
+            WinAppDriverHelper.StopIfRunning();
 
             return (result, outputText);
         }
 
-        private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null, int noClickCount = 0)
+        private (string projectFolder, string imagesFolder) SetUpTestProjectForInitialScreenshotComparison(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null, int noClickCount = 0)
         {
             var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
             var projectFolder = Path.Combine(rootFolder, "TestProject");
@@ -347,6 +624,58 @@ namespace Microsoft.Templates.Test
             return (projectFolder, imagesFolder);
         }
 
+        private (string projectFolder, string imagesFolder) SetUpTestProjectForAllNavViewPagesComparison(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null)
+        {
+            var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
+            var projectFolder = Path.Combine(rootFolder, "TestProject");
+            var imagesFolder = Path.Combine(rootFolder, "Images");
+
+            Fs.EnsureFolder(rootFolder);
+            Fs.EnsureFolder(projectFolder);
+            Fs.EnsureFolder(imagesFolder);
+
+            // Copy base project
+            Fs.CopyRecursive(@"..\..\VisualTests\TestProjectSource", projectFolder, overwrite: true);
+
+            // enable appropriate test
+            var projFileName = Path.Combine(projectFolder, "AutomatedUITests.csproj");
+
+            var projFileContents = File.ReadAllText(projFileName);
+
+            var newProjFileContents = projFileContents.Replace(
+                @"<!--<Compile Include=""Tests\LaunchBothAppsAndCompareAllNavViewPages.cs"" />-->",
+                @"<Compile Include=""Tests\LaunchBothAppsAndCompareAllNavViewPages.cs"" />");
+
+            File.WriteAllText(projFileName, newProjFileContents, Encoding.UTF8);
+
+            // set AppInfo values
+            var appInfoFileName = Path.Combine(projectFolder, "TestAppInfo.cs");
+
+            var appInfoFileContents = File.ReadAllText(appInfoFileName);
+
+            var newAppInfoFileContents = appInfoFileContents
+                .Replace("***APP-PFN-1-GOES-HERE***", $"{app1Details.PackageFamilyName}!App")
+                .Replace("***APP-PFN-2-GOES-HERE***", $"{app2Details.PackageFamilyName}!App")
+                .Replace("***APP-NAME-1-GOES-HERE***", app1Details.ProjectName)
+                .Replace("***APP-NAME-2-GOES-HERE***", app2Details.ProjectName)
+                .Replace("***FOLDER-GOES-HERE***", imagesFolder);
+
+            if (!string.IsNullOrWhiteSpace(areasOfImageToExclude))
+            {
+                newAppInfoFileContents = newAppInfoFileContents.Replace("new ImageComparer.ExclusionArea[0]", areasOfImageToExclude);
+            }
+
+            File.WriteAllText(appInfoFileName, newAppInfoFileContents, Encoding.UTF8);
+
+            // build test project
+            var restoreNugetScript = $"& \"{projectFolder}\\nuget.exe\" restore \"{projectFolder}\\AutomatedUITests.csproj\" -PackagesDirectory \"{projectFolder}\\Packages\"";
+            ExecutePowerShellScript(restoreNugetScript);
+            var buildSolutionScript = $"& \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\Bin\\MSBuild.exe\" \"{projectFolder}\\AutomatedUITests.sln\" /t:Rebuild /p:RestorePackagesPath=\"{projectFolder}\\Packages\" /p:Configuration=Debug /p:Platform=\"Any CPU\"";
+            ExecutePowerShellScript(buildSolutionScript);
+
+            return (projectFolder, imagesFolder);
+        }
+
         private void RemoveCertificate(string certificatePath)
         {
             var uninstallCertificateScript = $"$dump = certutil.exe -dump {certificatePath}" + @"
@@ -363,32 +692,6 @@ ForEach ($i in $dump)
             ExecutePowerShellScript(uninstallCertificateScript);
         }
 
-        private void StartWinAppDriverIfNotRunning()
-        {
-            var script = @"
-$wad = Get-Process WinAppDriver -ErrorAction SilentlyContinue
-
-if ($wad -eq $Null)
-{
-    Start-Process ""C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe""
-}";
-
-            ExecutePowerShellScript(script);
-        }
-
-        private void StopWinAppDriverIfRunning()
-        {
-            var script = @"
-$wad = Get-Process WinAppDriver -ErrorAction SilentlyContinue
-
-if ($wad -ne $null)
-{
-    $wad.CloseMainWindow()
-}";
-
-            ExecutePowerShellScript(script);
-        }
-
         private void UninstallAppx(string packageFullName)
         {
             ExecutePowerShellScript($"Remove-AppxPackage -Package {packageFullName}");
@@ -398,7 +701,7 @@ if ($wad -ne $null)
         {
             var result = new VisualComparisonTestDetails();
 
-            var baseSetup = await SetUpComparisonProjectAsync(language, projectType, framework, genIdentities, lastPageIsHome);
+            var baseSetup = await SetUpComparisonProjectAsync(language, projectType, framework, genIdentities, lastPageIsHome: lastPageIsHome, includeMultipleInstances: false);
 
             result.ProjectName = baseSetup.ProjectName;
 
@@ -411,7 +714,7 @@ if ($wad -ne $null)
 
             result.CertificatePath = InstallCertificate(baseSetup);
 
-            ////install appx
+            // install appx
             var appxFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}\\AppPackages\\{baseSetup.ProjectName}_1.0.0.0_x86_Test\\{baseSetup.ProjectName}_1.0.0.0_x86.appx";
             ExecutePowerShellScript($"Add-AppxPackage -Path {appxFile}");
 
