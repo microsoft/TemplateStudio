@@ -37,16 +37,18 @@ namespace Microsoft.Templates.Test
                     // For other pages see https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
                     var pagesThatSupportUiTesting = new[]
                     {
-                        "wts.Page.Blank",
-                        "wts.Page.Chart",
-                        "wts.Page.ImageGallery",
-                        "wts.Page.MasterDetail",
-                        "wts.Page.TabbedPivot",
-                        "wts.Page.Grid",
-                        "wts.Page.Settings",
-                        "wts.Page.InkDraw",
-                        "wts.Page.InkDrawPicture",
-                        "wts.Page.InkSmartCanvas",
+                        "wts.Page.Map",
+                       // "wts.Page.Camera",
+                        //"wts.Page.Blank",
+                        //"wts.Page.Chart",
+                        //"wts.Page.ImageGallery",
+                        //"wts.Page.MasterDetail",
+                        //"wts.Page.TabbedPivot",
+                        //"wts.Page.Grid",
+                        //"wts.Page.Settings",
+                        //"wts.Page.InkDraw",
+                        //"wts.Page.InkDrawPicture",
+                        //"wts.Page.InkSmartCanvas",
                     };
 
                     foreach (var page in pagesThatSupportUiTesting)
@@ -126,7 +128,18 @@ namespace Microsoft.Templates.Test
             var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
             var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities, lastPageIsHome: true);
 
-            var testProjectDetails = SetUpTestProject(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page));
+            var noClickCount = 0;
+
+            if (page == "wts.Page.Map")
+            {
+                noClickCount = 1;
+            }
+            else if (page == "wts.Page.Camera")
+            {
+                noClickCount = 2;
+            }
+
+            var testProjectDetails = SetUpTestProject(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount);
 
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -169,6 +182,17 @@ namespace Microsoft.Templates.Test
         {
             var genIdentities = new[] { page };
 
+            var noClickCount = 0;
+
+            if (page == "wts.Page.Map")
+            {
+                noClickCount = 1;
+            }
+            else if (page == "wts.Page.Camera")
+            {
+                noClickCount = 2;
+            }
+
             CheckRunningAsAdmin();
             CheckWinAppDriverInstalled();
 
@@ -186,7 +210,7 @@ namespace Microsoft.Templates.Test
                 string framework = frameworks[i];
                 otherProjDetails[i] = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
 
-                var testProjectDetails = SetUpTestProject(refAppDetails, otherProjDetails[i], GetExclusionAreasForVisualEquivalencyTest(projectType, page));
+                var testProjectDetails = SetUpTestProject(refAppDetails, otherProjDetails[i], GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount);
 
                 var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -270,7 +294,7 @@ namespace Microsoft.Templates.Test
             return (result, outputText);
         }
 
-        private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null)
+        private (string projectFolder, string imagesFolder) SetUpTestProject(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null, int noClickCount = 0)
         {
             var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
             var projectFolder = Path.Combine(rootFolder, "TestProject");
@@ -304,7 +328,8 @@ namespace Microsoft.Templates.Test
                 .Replace("***APP-PFN-2-GOES-HERE***", $"{app2Details.PackageFamilyName}!App")
                 .Replace("***APP-NAME-1-GOES-HERE***", app1Details.ProjectName)
                 .Replace("***APP-NAME-2-GOES-HERE***", app2Details.ProjectName)
-                .Replace("***FOLDER-GOES-HERE***", imagesFolder);
+                .Replace("***FOLDER-GOES-HERE***", imagesFolder)
+                .Replace("public const int NoClickCount = 0;", $"public const int NoClickCount = {noClickCount};");
 
             if (!string.IsNullOrWhiteSpace(areasOfImageToExclude))
             {

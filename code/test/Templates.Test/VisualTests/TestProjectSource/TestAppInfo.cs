@@ -14,6 +14,7 @@ namespace AutomatedUITests
         public const string AppName1 = "***APP-NAME-1-GOES-HERE***";
         public const string AppName2 = "***APP-NAME-2-GOES-HERE***";
         public const string ScreenshotsFolder = @"***FOLDER-GOES-HERE***";
+        public const int NoClickCount = 0;
 
         public static ImageComparer.ExclusionArea[] ExclusionAreas => new ImageComparer.ExclusionArea[0];
     }
