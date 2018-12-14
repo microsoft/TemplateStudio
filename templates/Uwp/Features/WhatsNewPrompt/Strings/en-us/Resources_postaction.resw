@@ -5,7 +5,7 @@
 <root>
   <!--^^-->
   <!--{[{-->
-  <data name="AfterUpdate_Body.Text" xml:space="preserve">
+  <data name="WhatsNew_Body.Text" xml:space="preserve">
     <value>Replace the content of this dialog with whatever content is appropriate to your app.
 You might want to consider lists of bug fixes and new features.
 Don't feel restricted to just text. You can also include images and animations if you wish too.
@@ -16,9 +16,13 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
 Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.</value>
     <comment>What's new prompt message body</comment>
   </data>
-  <data name="AfterUpdate_Title.Text" xml:space="preserve">
+  <data name="WhatsNewDialog.Title" xml:space="preserve">
     <value>What's new in this version</value>
     <comment>What's new prompt message title</comment>
+  </data>
+  <data name="WhatsNewDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Ok</value>
+    <comment>What's new prompt message primary button text</comment>
   </data>
   <!--}]}-->
 </root>
