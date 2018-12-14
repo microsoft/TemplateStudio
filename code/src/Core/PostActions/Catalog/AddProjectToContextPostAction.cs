@@ -17,8 +17,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         private readonly string _destinationPath;
         private readonly string _generationPath;
 
-        private readonly string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
-
         public AddProjectToContextPostAction(string relatedTemplate, IReadOnlyList<ICreationPath> config, Dictionary<string, string> genParameters, string destinationPath, string generationPath)
             : base(relatedTemplate, config)
         {
@@ -38,10 +36,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             foreach (var project in projectsToAdd)
             {
-                // Detect if project is CPS project system based
-                // https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
-                var isCPSProject = targetFrameworkTags.Any(t => File.ReadAllText(project.generationPath).Contains(t));
-                GenContext.Current.Projects.Add(new ProjectInfo { ProjectPath = project.destinationPath, IsCPSProject = isCPSProject });
+                GenContext.Current.ProjectInfo.Projects.Add(project.destinationPath);
             }
 
             await Task.CompletedTask;

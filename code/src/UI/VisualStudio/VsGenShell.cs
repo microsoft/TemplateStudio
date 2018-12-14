@@ -392,15 +392,15 @@ namespace Microsoft.Templates.UI.VisualStudio
             project.Save();
         }
 
-        public override async System.Threading.Tasks.Task AddContextItemsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences, List<SdkReference> sdkReferences, Dictionary<string, List<string>> projectReferences, string[] filesToAdd)
+        public override async System.Threading.Tasks.Task AddContextItemsToSolutionAsync(ProjectInfo projectInfo)
         {
             try
             {
-                var filesByProject = ResolveProjectFiles(filesToAdd);
+                var filesByProject = ResolveProjectFiles(projectInfo.ProjectItems);
 
-                var filesForExistingProjects = filesByProject.Where(k => !projects.Any(p => p.ProjectPath == k.Key));
-                var nugetsForExistingProjects = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project, n => n);
-                var sdksForExistingProjects = sdkReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project, n => n);
+                var filesForExistingProjects = filesByProject.Where(k => !projectInfo.Projects.Any(p => p == k.Key));
+                var nugetsForExistingProjects = projectInfo.NugetReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
+                var sdksForExistingProjects = projectInfo.SdkReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
 
                 foreach (var files in filesForExistingProjects)
                 {
@@ -422,7 +422,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 // Ensure projectsToAdd are ordered correctly.
                 // projects from old project system should be added before project from CPS project system, as otherwise nuget restore will fail
-                var orderedProject = projects.OrderBy(p => p.IsCPSProject);
+                var orderedProject = projectInfo.Projects.OrderBy(p => IsCpsProject(p));
 
                 double secAddProjects = 0;
                 double secAddFiles = 0;
@@ -432,32 +432,32 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     var chrono = Stopwatch.StartNew();
 
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project.ProjectPath)));
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project)));
 
-                    Dte.Solution.AddFromFile(project.ProjectPath);
+                    Dte.Solution.AddFromFile(project);
                     secAddProjects += chrono.Elapsed.TotalSeconds;
                     chrono.Restart();
 
-                    if (!IsCpsProject(project.ProjectPath))
+                    if (!IsCpsProject(project))
                     {
-                        AddItems(project.ProjectPath, filesByProject[project.ProjectPath]);
+                        AddItems(project, filesByProject[project]);
                     }
 
                     secAddFiles += chrono.Elapsed.TotalSeconds;
                     chrono.Restart();
 
-                    await AddNugetsForProjectAsync(project.ProjectPath, nugetReferences.Where(n => n.Project == project.ProjectPath));
+                    await AddNugetsForProjectAsync(project, projectInfo.NugetReferences.Where(n => n.Project == project));
 
                     secAddNuget += chrono.Elapsed.TotalSeconds;
 
-                    AddSdksForProjectAsync(project.ProjectPath, sdkReferences.Where(n => n.Project == project.ProjectPath));
+                    AddSdksForProjectAsync(project, projectInfo.SdkReferences.Where(n => n.Project == project));
 
                     chrono.Stop();
                 }
 
                 GenContext.ToolBox.Shell.ShowStatusBarMessage("Add references between projects");
 
-                AddReferencesToProjects(projectReferences);
+                AddReferencesToProjects(projectInfo.ProjectReferences);
 
                 GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = secAddProjects;
                 GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = secAddFiles;
@@ -689,10 +689,21 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private bool IsCpsProject(string projFile)
         {
+            string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
+
             SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
-            return hierarchy.IsCapabilityMatch("CPS");
+            if (hierarchy != null)
+            {
+                return hierarchy.IsCapabilityMatch("CPS");
+            }
+            else
+            {
+                // Detect if project is CPS project system based
+                // https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
+                return targetFrameworkTags.Any(t => File.ReadAllText(projFile).Contains(t));
+            }
         }
     }
 }

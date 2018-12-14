@@ -54,13 +54,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             int targetProjectIndex = int.Parse(Args["fileIndex"]);
             var referenceToAdd = Path.GetFullPath(Path.Combine(_destinationPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
 
-            if (GenContext.Current.ProjectReferences.ContainsKey(projectPath))
+            if (GenContext.Current.ProjectInfo.ProjectReferences.ContainsKey(projectPath))
             {
-                GenContext.Current.ProjectReferences[projectPath].Add(referenceToAdd);
+                GenContext.Current.ProjectInfo.ProjectReferences[projectPath].Add(referenceToAdd);
             }
             else
             {
-                GenContext.Current.ProjectReferences.Add(projectPath, new List<string>() { referenceToAdd });
+                GenContext.Current.ProjectInfo.ProjectReferences.Add(projectPath, new List<string>() { referenceToAdd });
             }
 
             await Task.CompletedTask;

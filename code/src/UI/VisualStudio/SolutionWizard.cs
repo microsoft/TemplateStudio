@@ -33,15 +33,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string GenerationOutputPath => DestinationPath;
 
-        public List<ProjectInfo> Projects { get; } = new List<ProjectInfo>();
-
-        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
-
-        public List<SdkReference> SdkReferences { get; } = new List<SdkReference>();
-
-        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
-
-        public List<string> ProjectItems { get; } = new List<string>();
+        public ProjectInfo ProjectInfo { get; } = new ProjectInfo();
 
         public List<FailedMergePostActionInfo> FailedMergePostActions { get; } = new List<FailedMergePostActionInfo>();
 

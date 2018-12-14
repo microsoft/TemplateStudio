@@ -69,13 +69,13 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public override async Task AddContextItemsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences, List<SdkReference> sdkReferences, Dictionary<string, List<string>> projectReferences, string[] filesToAdd)
+        public override async Task AddContextItemsToSolutionAsync(ProjectInfo projectInfo)
         {
-            var filesByProject = ResolveProjectFiles(filesToAdd);
+            var filesByProject = ResolveProjectFiles(projectInfo.ProjectItems);
 
-            var filesForExistingProjects = filesByProject.Where(k => !projects.Any(p => p.ProjectPath == k.Key));
-            var nugetsForExistingProjects = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project, n => n);
-            var sdksForExistingProjects = sdkReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project, n => n);
+            var filesForExistingProjects = filesByProject.Where(k => !projectInfo.Projects.Any(p => p == k.Key));
+            var nugetsForExistingProjects = projectInfo.NugetReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
+            var sdksForExistingProjects = projectInfo.SdkReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
 
             foreach (var files in filesForExistingProjects)
             {
@@ -95,25 +95,25 @@ namespace Microsoft.Templates.Fakes
                 AddSdksForProject(sdk.Key, sdk);
             }
 
-            foreach (var project in projects)
+            foreach (var project in projectInfo.Projects)
             {
-                var msbuildProj = FakeMsBuildProject.Load(project.ProjectPath);
+                var msbuildProj = FakeMsBuildProject.Load(project);
                 var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
-                var projectRelativeToSolutionPath = project.ProjectPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
+                var projectRelativeToSolutionPath = project.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
-                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, project.IsCPSProject);
+                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, IsCpsProject(project));
 
-                if (!IsCpsProject(project.ProjectPath))
+                if (!IsCpsProject(project))
                 {
-                    AddItems(project.ProjectPath, filesByProject[project.ProjectPath]);
+                    AddItems(project, filesByProject[project]);
                 }
 
-                AddNugetsForProject(project.ProjectPath, nugetReferences.Where(n => n.Project == project.ProjectPath));
-                AddSdksForProject(project.ProjectPath, sdkReferences.Where(n => n.Project == project.ProjectPath));
+                AddNugetsForProject(project, projectInfo.NugetReferences.Where(n => n.Project == project));
+                AddSdksForProject(project, projectInfo.SdkReferences.Where(n => n.Project == project));
             }
 
-            AddReferencesToProjects(projectReferences);
+            AddReferencesToProjects(projectInfo.ProjectReferences);
 
             await Task.CompletedTask;
         }

@@ -46,8 +46,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddProjectReferencesToContextPostAction(templateName, postAction, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
             await mergePostAction.ExecuteAsync();
 
-            Assert.True(GenContext.Current.ProjectReferences.ContainsKey(Path.Combine(destPath, projectName)));
-            Assert.True(GenContext.Current.ProjectReferences[Path.Combine(destPath, projectName)].Contains(Path.GetFullPath(Path.Combine(destPath, projectToAdd))));
+            Assert.True(GenContext.Current.ProjectInfo.ProjectReferences.ContainsKey(Path.Combine(destPath, projectName)));
+            Assert.True(GenContext.Current.ProjectInfo.ProjectReferences[Path.Combine(destPath, projectName)].Contains(Path.GetFullPath(Path.Combine(destPath, projectToAdd))));
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 GenerationOutputPath = destPath,
             };
 
-            GenContext.Current.ProjectReferences.Add(
+            GenContext.Current.ProjectInfo.ProjectReferences.Add(
                 Path.Combine(destPath, projectName),
                 new List<string>() { "FirstReference" });
 
@@ -82,8 +82,8 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddProjectReferencesToContextPostAction(templateName, postAction, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
             await mergePostAction.ExecuteAsync();
 
-            Assert.True(GenContext.Current.ProjectReferences.ContainsKey(Path.Combine(destPath, projectName)));
-            Assert.True(GenContext.Current.ProjectReferences[Path.Combine(destPath, projectName)].Contains(Path.GetFullPath(Path.Combine(destPath, projectToAdd))));
+            Assert.True(GenContext.Current.ProjectInfo.ProjectReferences.ContainsKey(Path.Combine(destPath, projectName)));
+            Assert.True(GenContext.Current.ProjectInfo.ProjectReferences[Path.Combine(destPath, projectName)].Contains(Path.GetFullPath(Path.Combine(destPath, projectToAdd))));
         }
     }
 }
