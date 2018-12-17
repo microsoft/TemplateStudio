@@ -1,6 +1,5 @@
 ﻿Imports WinUI = Microsoft.UI.Xaml.Controls
 Imports Windows.System
-Imports CommonServiceLocator
 Imports Windows.UI.Xaml.Controls
 Imports Windows.UI.Xaml.Navigation
 Imports GalaSoft.MvvmLight
@@ -34,7 +33,7 @@ Namespace ViewModels
 
         Public ReadOnly Property NavigationService As NavigationServiceEx
             Get
-                Return CommonServiceLocator.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()
+                Return ViewModelLocator.Current.NavigationService
             End Get
         End Property
 

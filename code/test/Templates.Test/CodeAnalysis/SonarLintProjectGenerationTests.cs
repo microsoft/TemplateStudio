@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForSonarLint")]
+        [MemberData(nameof(GetProjectTemplatesForSonarLint))]
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithSonarLintAsync(string projectType, string framework, string platform)
         {

@@ -11,7 +11,7 @@
 
         Public ReadOnly Property wts.ItemNameDetailViewModel As wts.ItemNameDetailViewModel
             Get
-                Return ServiceLocator.Current.GetInstance(Of wts.ItemNameDetailViewModel)()
+                Return SimpleIoc.[Default].GetInstance(Of wts.ItemNameDetailViewModel)()
             End Get
         End Property
         '}]}

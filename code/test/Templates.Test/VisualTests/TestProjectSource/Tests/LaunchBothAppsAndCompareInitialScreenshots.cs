@@ -10,9 +10,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using AutomatedUITests;
-using AutomatedUITests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Appium.Windows;
+using WindowsTestHelpers;
 
 namespace AutomatedUITests.Tests
 {
@@ -38,7 +38,7 @@ namespace AutomatedUITests.Tests
                 Directory.CreateDirectory(TestAppInfo.ScreenshotsFolder);
             }
 
-            // Hide other apps to all a consistent backdrop for acrylic textures
+            // Hide other apps to give a consistent backdrop for acrylic textures
             VirtualKeyboard.MinimizeAllWindows();
 
             using (var appSession1 = base.GetAppSession(TestAppInfo.AppPfn1))
@@ -48,7 +48,7 @@ namespace AutomatedUITests.Tests
 
                 appSession1.Manage().Window.Maximize();
 
-                Task.Delay(TimeSpan.FromSeconds(2)).Wait();
+                Task.Delay(TimeSpan.FromMilliseconds(2500)).Wait();
 
                 var screenshot = appSession1.GetScreenshot();
                 screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App1Filename), ImageFormat.Png);
@@ -65,7 +65,7 @@ namespace AutomatedUITests.Tests
 
                 appSession2.Manage().Window.Maximize();
 
-                Task.Delay(TimeSpan.FromSeconds(2)).Wait();
+                Task.Delay(TimeSpan.FromMilliseconds(2500)).Wait();
 
                 var screenshot = appSession2.GetScreenshot();
                 screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App2Filename), ImageFormat.Png);

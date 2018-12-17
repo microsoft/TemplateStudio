@@ -4,12 +4,12 @@
     {
         private ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             //{[{
             if (SimpleIoc.Default.IsRegistered<NavigationServiceEx>())
             {
                 return;
             }
+
             //}]}
             SimpleIoc.Default.Register(() => new NavigationServiceEx());
             //^^
@@ -19,7 +19,7 @@
         }
 
         //{[{
-        public wts.ItemNameViewModel wts.ItemNameViewModel => ServiceLocator.Current.GetInstance<wts.ItemNameViewModel>();
+        public wts.ItemNameViewModel wts.ItemNameViewModel => SimpleIoc.Default.GetInstance<wts.ItemNameViewModel>();
         //}]}
     }
 }

@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForStyleCop")]
+        [MemberData(nameof(GetProjectTemplatesForStyleCop))]
         [Trait("Type", "CodeStyle")]
         public async Task GenerateAllPagesAndFeaturesAndCheckWithStyleCopAsync(string projectType, string framework, string platform)
         {
