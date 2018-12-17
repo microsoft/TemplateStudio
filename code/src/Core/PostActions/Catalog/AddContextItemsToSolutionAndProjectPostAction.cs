@@ -14,24 +14,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     {
         internal override async Task ExecuteInternalAsync()
         {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingProjects);
-
-            var chrono = Stopwatch.StartNew();
-
-            await GenContext.ToolBox.Shell.AddProjectsAndNugetsToSolutionAsync(GenContext.Current.Projects, GenContext.Current.NugetReferences);
-
-            GenContext.ToolBox.Shell.AddSdkReferencesToProjects(GenContext.Current.SdkReferences);
-            GenContext.ToolBox.Shell.AddReferencesToProjects(GenContext.Current.ProjectReferences);
-            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = chrono.Elapsed.TotalSeconds;
-            chrono.Reset();
-
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingItems);
-            GenContext.ToolBox.Shell.AddItems(GenContext.Current.ProjectItems.ToArray());
-
-            chrono.Stop();
-
-            GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = chrono.Elapsed.TotalSeconds;
-            GenContext.Current.ProjectItems.Clear();
+            await GenContext.ToolBox.Shell.AddContextItemsToSolutionAsync(GenContext.Current.ProjectInfo);
         }
     }
 }

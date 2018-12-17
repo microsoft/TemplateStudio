@@ -126,7 +126,7 @@ namespace WtsPackagingTool
                     Fs.EnsureFolder(destinationDir);
 
                     output.WriteCommandHeader($"Extracting {inputFile} to {destinationDir}...");
-                    await TemplatePackage.ExtractAsync(inputFile, destinationDir, true).ConfigureAwait(false);
+                    await TemplatePackage.ExtractAsync(inputFile, destinationDir).ConfigureAwait(false);
                 }
                 else
                 {

@@ -94,11 +94,11 @@ namespace Microsoft.Templates.Core.Gen
         {
             GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
-            GenContext.Current.Projects.Clear();
-            GenContext.Current.NugetReferences.Clear();
-            GenContext.Current.SdkReferences.Clear();
-            GenContext.Current.ProjectReferences.Clear();
-            GenContext.Current.ProjectItems.Clear();
+            GenContext.Current.ProjectInfo.Projects.Clear();
+            GenContext.Current.ProjectInfo.NugetReferences.Clear();
+            GenContext.Current.ProjectInfo.SdkReferences.Clear();
+            GenContext.Current.ProjectInfo.ProjectReferences.Clear();
+            GenContext.Current.ProjectInfo.ProjectItems.Clear();
             GenContext.Current.FilesToOpen.Clear();
 
             var directory = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;

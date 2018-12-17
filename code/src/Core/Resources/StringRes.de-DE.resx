@@ -212,9 +212,6 @@
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Fehler beim Synchronisieren von Vorlagen. Status:</value>
   </data>
-  <data name="StatusAddingItems" xml:space="preserve">
-    <value>Projekt werden Objekte hinzugefügt...</value>
-  </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Generierte Dateien werden geöffnet...</value>
   </data>
@@ -450,9 +447,6 @@ Die folgenden Änderungen konnten nicht integriert werden: {2}
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
     <value>The file {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
-  </data>
-  <data name="StatusAddingProjects" xml:space="preserve">
-    <value>Adding projects to solution...</value>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
     <value>Die Layoutvorlage {0} für Framework framework {1} und Plattform {2} wurde nicht gefunden.</value>

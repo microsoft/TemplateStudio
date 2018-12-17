@@ -109,7 +109,7 @@ namespace Microsoft.Templates.Core.Packaging
             }
         }
 
-        public static async Task ExtractAsync(string signedFilePack, string targetDirectory, bool verifySignatures = true, Action<int> reportProgress = null, CancellationToken ct = default(CancellationToken))
+        public static async Task ExtractAsync(string signedFilePack, string targetDirectory, Action<int> reportProgress = null, CancellationToken ct = default(CancellationToken), bool verifySignatures = true)
         {
             string currentDir = Environment.CurrentDirectory;
             string inFilePack = Path.IsPathRooted(signedFilePack) ? signedFilePack : Path.Combine(currentDir, signedFilePack);

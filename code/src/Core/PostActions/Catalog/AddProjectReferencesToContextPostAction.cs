@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
@@ -52,15 +53,17 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             var projectPath = Path.Combine(_destinationPath, parameterReplacements.ReplaceInPath(Args["projectPath"]));
 
             int targetProjectIndex = int.Parse(Args["fileIndex"]);
-            var referenceToAdd = Path.GetFullPath(Path.Combine(_destinationPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
+            var referencedProject = Path.GetFullPath(Path.Combine(_destinationPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
 
-            if (GenContext.Current.ProjectReferences.ContainsKey(projectPath))
+            var projectReference = new ProjectReference
             {
-                GenContext.Current.ProjectReferences[projectPath].Add(referenceToAdd);
-            }
-            else
+                Project = projectPath,
+                ReferencedProject = referencedProject,
+            };
+
+            if (!GenContext.Current.ProjectInfo.ProjectReferences.Any(n => n.Equals(projectReference)))
             {
-                GenContext.Current.ProjectReferences.Add(projectPath, new List<string>() { referenceToAdd });
+                GenContext.Current.ProjectInfo.ProjectReferences.Add(projectReference);
             }
 
             await Task.CompletedTask;

@@ -484,24 +484,6 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding items to project ....
-        /// </summary>
-        public static string StatusAddingItems {
-            get {
-                return ResourceManager.GetString("StatusAddingItems", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Adding projects to solution....
-        /// </summary>
-        public static string StatusAddingProjects {
-            get {
-                return ResourceManager.GetString("StatusAddingProjects", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
         /// </summary>
         public static string StatusBarGeneratingFeatureMessage {
