@@ -17,7 +17,7 @@ using WindowsTestHelpers;
 namespace AutomatedUITests.Tests
 {
     [TestClass]
-    public class LaunchBothAppsAndCompareInitialScreenshots : TestBase
+    public class LaunchBothAppsAndCompareInitialScreenshots
     {
         private string App1Filename { get; }
         private string App2Filename { get; }
@@ -33,6 +33,8 @@ namespace AutomatedUITests.Tests
         [TestMethod]
         public async Task CompareInitialScreenshots()
         {
+            WinAppDriverHelper.StartIfNotRunning();
+
             if (!Directory.Exists(TestAppInfo.ScreenshotsFolder))
             {
                 Directory.CreateDirectory(TestAppInfo.ScreenshotsFolder);
@@ -43,9 +45,8 @@ namespace AutomatedUITests.Tests
 
             async Task GetScreenshot(string pfn, string fileName)
             {
-                using (var session = base.GetAppSession(pfn))
+                using (var session = WinAppDriverHelper.LaunchAppx(pfn))
                 {
-                    //// See https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
                     if (TestAppInfo.NoClickCount > 0)
                     {
                         await Task.Delay(TimeSpan.FromSeconds(2));
@@ -58,7 +59,14 @@ namespace AutomatedUITests.Tests
 
                     session.Manage().Window.Maximize();
 
-                    await Task.Delay(TimeSpan.FromSeconds(2));
+                    if (TestAppInfo.LongPauseAfterLaunch)
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(10));
+                    }
+                    else
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(2));
+                    }
 
                     var screenshot = session.GetScreenshot();
                     screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, fileName), ImageFormat.Png);
@@ -93,15 +101,6 @@ namespace AutomatedUITests.Tests
             return false;
         }
 
-        private void ClickYesIfPermissionDialogShown(WindowsDriver<WindowsElement> session)
-        {
-            if (session.TryFindElementByName("Yes", out var yesButton))
-            {
-                yesButton.Click();
-                Task.Delay(TimeSpan.FromSeconds(2)).Wait(); // Allow time for dialog to be dismissed
-            }
-        }
-
         private bool CheckImagesAreTheSame(string folder, string fileName1, string fileName2)
         {
             var imagePath1 = Path.Combine(folder, fileName1);
@@ -117,7 +116,6 @@ namespace AutomatedUITests.Tests
                 var diffImage = image1.GetDifferenceImage(image2, GetAllExclusionAreas());
 
                 diffImage.Save(Path.Combine(folder, DiffFilename), ImageFormat.Png);
-
                 return false;
             }
             else

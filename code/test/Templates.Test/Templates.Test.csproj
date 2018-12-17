@@ -206,8 +206,8 @@
     <Reference Include="WebDriver">
       <HintPath>..\..\packages\Selenium.WebDriver.3.0.1\lib\net40\WebDriver.dll</HintPath>
     </Reference>
-    <Reference Include="WindowsTestHelpers, Version=0.1.18.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WindowsTestHelpers.0.1.18\lib\net47\WindowsTestHelpers.dll</HintPath>
+    <Reference Include="WindowsTestHelpers, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WindowsTestHelpers.0.2.0\lib\net47\WindowsTestHelpers.dll</HintPath>
     </Reference>
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\xunit.abstractions.2.0.3\lib\net35\xunit.abstractions.dll</HintPath>
@@ -266,9 +266,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="VisualTests\TestProjectSource\Tests\LaunchBothAppsAndCompareInitialScreenshots.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="VisualTests\TestProjectSource\Tests\TestBase.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="VisualTests\TestProjectSource\Tests\LaunchBothAppsAndCompareAllNavViewPages.cs">

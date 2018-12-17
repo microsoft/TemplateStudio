@@ -15,6 +15,7 @@ namespace AutomatedUITests
         public const string AppName2 = "***APP-NAME-2-GOES-HERE***";
         public const string ScreenshotsFolder = @"***FOLDER-GOES-HERE***";
         public const int NoClickCount = 0;
+        public const bool LongPauseAfterLaunch = false;
 
         public static ImageComparer.ExclusionArea[] ExclusionAreas => new ImageComparer.ExclusionArea[0];
     }

@@ -19,13 +19,15 @@ using WindowsTestHelpers;
 namespace AutomatedUITests.Tests
 {
     [TestClass]
-    public class LaunchBothAppsAndCompareAllNavViewPages : TestBase
+    public class LaunchBothAppsAndCompareAllNavViewPages
     {
         private string AppFileNameFormat { get; } = "CompareNavViewPages-{0}-{1}.png";
 
         [TestMethod]
         public void CompareScreenshotsOfAllPages()
         {
+            WinAppDriverHelper.StartIfNotRunning();
+
             if (!Directory.Exists(TestAppInfo.ScreenshotsFolder))
             {
                 Directory.CreateDirectory(TestAppInfo.ScreenshotsFolder);
@@ -34,7 +36,7 @@ namespace AutomatedUITests.Tests
             // Hide other apps to all a consistent backdrop for acrylic textures
             VirtualKeyboard.MinimizeAllWindows();
 
-            using (var appSession1 = base.GetAppSession(TestAppInfo.AppPfn1))
+            using (var appSession1 = WinAppDriverHelper.LaunchAppx(TestAppInfo.AppPfn1))
             {
                 appSession1.Manage().Window.Maximize();
 
@@ -57,7 +59,7 @@ namespace AutomatedUITests.Tests
                 VirtualKeyboard.RestoreMaximizedWindow();
             }
 
-            using (var appSession2 = base.GetAppSession(TestAppInfo.AppPfn2))
+            using (var appSession2 = WinAppDriverHelper.LaunchAppx(TestAppInfo.AppPfn2))
             {
                 appSession2.Manage().Window.Maximize();
 
