@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:cm="using:Caliburn.Micro"
     xmlns:helpers="using:wts.ItemName.Helpers"
     xmlns:views="using:wts.ItemName.Views"
     mc:Ignorable="d">
@@ -15,7 +16,7 @@
         IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
         SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
         IsSettingsVisible="False"
-        ItemInvoked="OnItemInvoked"
+        cm:Message.Attach="[Event ItemInvoked] = [Action OnItemInvoked($eventArgs)]"
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
         <winui:NavigationView.MenuItems>
             <!--
