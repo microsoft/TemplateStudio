@@ -11,7 +11,7 @@
 
         Public ReadOnly Property SchemeActivationSampleViewModel As SchemeActivationSampleViewModel
             Get
-                Return ServiceLocator.Current.GetInstance(Of SchemeActivationSampleViewModel)()
+                Return SimpleIoc.[Default].GetInstance(Of SchemeActivationSampleViewModel)()
             End Get
         End Property
 '}]}

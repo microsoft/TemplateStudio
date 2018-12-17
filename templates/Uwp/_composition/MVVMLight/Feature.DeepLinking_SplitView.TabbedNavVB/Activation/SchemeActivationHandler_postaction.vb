@@ -1,11 +1,14 @@
-﻿Namespace Activation
+﻿'{[{
+Imports Param_RootNamespace.ViewModels
+'}]}
+Namespace Activation
     Friend Class SchemeActivationHandler
         Inherits ActivationHandler(Of ProtocolActivatedEventArgs)
         '{[{
 
         Private ReadOnly Property NavigationService As NavigationServiceEx
             Get
-                Return CommonServiceLocator.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()
+                Return ViewModelLocator.Current.NavigationService
             End Get
         End Property
 

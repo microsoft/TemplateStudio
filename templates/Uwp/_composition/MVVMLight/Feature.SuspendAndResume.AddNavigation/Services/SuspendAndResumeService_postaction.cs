@@ -1,5 +1,5 @@
 ﻿//{[{
-using CommonServiceLocator;
+using Param_ItemNamespace.ViewModels;
 //}]}
 namespace Param_ItemNamespace.Services
 {
@@ -22,8 +22,7 @@ namespace Param_ItemNamespace.Services
             //{[{
             if (saveState?.Target != null)
             {
-                var navigationService = ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-                navigationService.Navigate(saveState.Target.FullName, saveState.SuspensionState);
+                ViewModelLocator.Current.NavigationService.Navigate(saveState.Target.FullName, saveState.SuspensionState);
             }
             //}]}
         }
