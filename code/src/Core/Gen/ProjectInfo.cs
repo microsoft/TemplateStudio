@@ -20,6 +20,6 @@ namespace Microsoft.Templates.Core.Gen
 
         public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
 
-        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
+        public List<ProjectReference> ProjectReferences { get; } = new List<ProjectReference>();
     }
 }

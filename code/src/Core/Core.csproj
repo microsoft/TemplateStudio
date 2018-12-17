@@ -188,6 +188,7 @@
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Gen\ProjectReference.cs" />
     <Compile Include="Gen\SdkReference.cs" />
     <Compile Include="Gen\ProjectInfo.cs" />
     <Compile Include="Gen\NugetReference.cs" />

@@ -355,25 +355,27 @@ namespace Microsoft.Templates.UI.VisualStudio
             return _vsProductVersion;
         }
 
-        private void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences)
+        private void AddReferencesToProjects(IEnumerable<ProjectReference> projectReferences)
         {
-            foreach (var projectPath in projectReferences.Keys)
+            var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);
+
+            foreach (var project in groupedReferences)
             {
-                var project = GetProjectByPath(projectPath);
+                var parentProject = GetProjectByPath(project.Key);
                 if (project != null)
                 {
-                    var proj = (VSProject)project.Object;
+                    var proj = (VSProject)parentProject.Object;
 
-                    foreach (var referenceToAdd in projectReferences[projectPath])
+                    foreach (var referenceToAdd in project)
                     {
-                        var referenceProject = GetProjectByPath(referenceToAdd);
+                        var referenceProject = GetProjectByPath(referenceToAdd.ReferencedProject);
                         if (referenceProject != null)
                         {
                             proj.References.AddProject(referenceProject);
                         }
                     }
 
-                    project.Save();
+                    parentProject.Save();
                 }
             }
         }

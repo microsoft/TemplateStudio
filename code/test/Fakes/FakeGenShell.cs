@@ -245,22 +245,24 @@ namespace Microsoft.Templates.Fakes
         {
         }
 
-        private void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences)
+        private void AddReferencesToProjects(IEnumerable<ProjectReference> projectReferences)
         {
             var solution = FakeSolution.LoadOrCreate(_platform, SolutionPath);
             var projectGuids = solution.GetProjectGuids();
 
-            foreach (var projectPath in projectReferences.Keys)
-            {
-                var parentProject = FakeMsBuildProject.Load(projectPath);
+            var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);
 
-                foreach (var referenceToAdd in projectReferences[projectPath])
+            foreach (var project in groupedReferences)
+            {
+                var parentProject = FakeMsBuildProject.Load(project.Key);
+
+                foreach (var referenceToAdd in project)
                 {
-                    var referenceProject = FakeMsBuildProject.Load(referenceToAdd);
+                    var referenceProject = FakeMsBuildProject.Load(referenceToAdd.ReferencedProject);
 
                     var name = referenceProject.Name;
                     var guid = projectGuids[name];
-                    parentProject.AddProjectReference(referenceToAdd, guid, name);
+                    parentProject.AddProjectReference(referenceToAdd.ReferencedProject, guid, name);
                 }
 
                 parentProject.Save();

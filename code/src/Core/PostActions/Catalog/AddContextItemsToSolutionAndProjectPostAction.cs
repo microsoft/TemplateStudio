@@ -15,12 +15,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         internal override async Task ExecuteInternalAsync()
         {
             await GenContext.ToolBox.Shell.AddContextItemsToSolutionAsync(GenContext.Current.ProjectInfo);
-
-            ////GenContext.Current.ProjectInfo.Projects.Clear();
-            ////GenContext.Current.ProjectInfo.NugetReferences.Clear();
-            ////GenContext.Current.ProjectInfo.SdkReferences.Clear();
-            ////GenContext.Current.ProjectInfo.ProjectReferences.Clear();
-            ////GenContext.Current.ProjectInfo.ProjectItems.Clear();
         }
     }
 }
