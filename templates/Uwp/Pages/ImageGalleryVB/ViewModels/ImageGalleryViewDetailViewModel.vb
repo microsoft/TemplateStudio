@@ -36,10 +36,6 @@ Namespace ViewModels
             Source = SampleDataService.GetGallerySampleData()
         End Sub
 
-        Public Sub SetImage(image As UIElement)
-            _image = image
-        End Sub
-
         Public Sub Initialize(selectedImageId As String, navigationMode as NavigationMode)
             If Not String.IsNullOrEmpty(selectedImageId) AndAlso navigationMode = NavigationMode.New Then
                 SelectedImage = Source.FirstOrDefault(Function(i) i.ID = selectedImageId)

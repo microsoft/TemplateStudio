@@ -9,7 +9,7 @@ Namespace Services
 '^^
 '{[{
 
-        ' TODO WTS: Remove this once your image gallery page is displaying real data
+        ' TODO WTS: Remove this once your ContentGrid page is displaying real data
         Public Function GetContentGridData() As ObservableCollection(Of SampleOrder)
             If _allOrders Is Nothing Then
                 _allOrders = AllOrders()

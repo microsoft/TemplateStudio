@@ -6,11 +6,11 @@ Imports Param_ItemNamespace.Views
 Namespace ViewModels
     Public Class wts.ItemNameViewModel
 
-        Private Sub OnsItemSelected(args As ItemClickEventArgs)
-            If item IsNot Nothing Then
+        Private Sub OnItemClick(clickedItem As SampleOrder)
+            If clickedItem IsNot Nothing Then
 '^^
 '{[{
-                NavigationService.Navigate(Of wts.ItemNameDetailPage)(item.OrderId)
+                NavigationService.Navigate(Of wts.ItemNameDetailPage)(clickedItem.OrderId)
 '}]}
             End If
         End Sub
