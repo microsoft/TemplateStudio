@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class AddNugetReferenceToContextPostActionTest
     {
         [Fact]
-        public async Task AddNugetReferenceToContext_ExecuteAsync()
+        public void AddNugetReferenceToContext_Execute()
         {
             var templateName = "Test";
             var projectName = "TestProject";
@@ -48,13 +48,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 });
 
             var mergePostAction = new AddNugetReferenceToContextPostAction(templateName, postAction, new Dictionary<string, string>(), destPath);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Assert.Equal(nugetReference, GenContext.Current.ProjectInfo.NugetReferences[0]);
         }
 
         [Fact]
-        public async Task AddNugetReferenceToContext_Execute_AlreadyThereAsync()
+        public void AddNugetReferenceToContext_Execute_AlreadyThere()
         {
             var templateName = "Test";
             var projectName = "TestProject";
@@ -85,13 +85,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 });
 
             var mergePostAction = new AddNugetReferenceToContextPostAction(templateName, postAction, new Dictionary<string, string>(), destPath);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Assert.Equal(nugetReference, GenContext.Current.ProjectInfo.NugetReferences[0]);
         }
 
         [Fact]
-        public async Task AddNugetReferenceToContext_Execute_ReplacementAsync()
+        public void AddNugetReferenceToContext_Execute_Replacement()
         {
             var templateName = "Test";
             var projectName = "TestProject";
@@ -123,7 +123,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             genParams.Add("wts.projectName", "TestProject");
 
             var mergePostAction = new AddNugetReferenceToContextPostAction(templateName, postAction, genParams, destPath);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Assert.Equal(nugetReference, GenContext.Current.ProjectInfo.NugetReferences[0]);
         }

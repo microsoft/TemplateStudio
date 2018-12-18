@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             _destinationPath = destinationPath;
         }
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             var parameterReplacements = new FileRenameParameterReplacements(_parameters);
 
@@ -49,8 +49,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 GenContext.Current.ProjectInfo.NugetReferences.Add(nugetReference);
             }
-
-            await Task.CompletedTask;
         }
     }
 }

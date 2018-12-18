@@ -61,7 +61,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            await _generationService.FinishGenerationAsync(userSelection);
+                            _generationService.FinishGeneration(userSelection);
 
                             _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                         },
@@ -90,7 +90,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                         async () =>
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            await _generationService.FinishGenerationAsync(userSelection);
+                            _generationService.FinishGeneration(userSelection);
                             _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                         },
                         JoinableTaskCreationOptions.LongRunning);

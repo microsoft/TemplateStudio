@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class GenerateTestCertificatePostActionTest
     {
         [Fact]
-        public async Task GenerateTestCertificate_Execute_Ok_SingleProjectGenConfigsAsync()
+        public void GenerateTestCertificate_Execute_Ok_SingleProjectGenConfigs()
         {
             var projectName = "Test";
             var projectFile = $"{projectName}.csproj";
@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var templateDefinedPostAction = new FakeTemplateDefinedPostAction(new Guid(GenerateTestCertificatePostAction.Id), testArgs, true);
             var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs as IReadOnlyList<ICreationPath>, new Dictionary<string, string>(), destinationPath);
-            await postAction.ExecuteAsync();
+            postAction.Execute();
 
             var expectedCertFilePath = Path.Combine(generationOutputPath, $"{projectName}_TemporaryKey.pfx");
             Assert.True(File.Exists(expectedCertFilePath));
@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task GenerateTestCertificate_Execute_Ok_MultipleProjectGenConfigAsync()
+        public void GenerateTestCertificate_Execute_Ok_MultipleProjectGenConfig()
         {
             var projectName = "Test";
             var projectFile = $@"TestProject\{projectName}.csproj";
@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var templateDefinedPostAction = new FakeTemplateDefinedPostAction(new Guid(GenerateTestCertificatePostAction.Id), testArgs, true);
             var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs, new Dictionary<string, string>(), destinationPath);
-            await postAction.ExecuteAsync();
+            postAction.Execute();
 
             var expectedCertFilePath = Path.Combine(destinationPath, "TestProject", $"{projectName}_TemporaryKey.pfx");
             Assert.True(File.Exists(expectedCertFilePath));

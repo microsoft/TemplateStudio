@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
@@ -38,8 +38,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 mergeFile.Add(new MergeInfo { Format = mergeType, PostActionCode = postAction });
             }
-
-            await Task.CompletedTask;
         }
 
         private string GetMergeType()

@@ -380,7 +380,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        private void AddSdksForProjectAsync(string projectPath, IEnumerable<SdkReference> sdkReferences)
+        private void AddSdksForProject(string projectPath, IEnumerable<SdkReference> sdkReferences)
         {
             var project = GetProjectByPath(projectPath);
             var proj = (VSProject)project.Object;
@@ -394,7 +394,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             project.Save();
         }
 
-        public override async System.Threading.Tasks.Task AddContextItemsToSolutionAsync(ProjectInfo projectInfo)
+        public override void AddContextItemsToSolution(ProjectInfo projectInfo)
         {
             try
             {
@@ -414,12 +414,12 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 foreach (var nuget in nugetsForExistingProjects)
                 {
-                    await AddNugetsForProjectAsync(nuget.Key, nuget);
+                    AddNugetsForProject(nuget.Key, nuget);
                 }
 
                 foreach (var sdk in sdksForExistingProjects)
                 {
-                    AddSdksForProjectAsync(sdk.Key, sdk);
+                    AddSdksForProject(sdk.Key, sdk);
                 }
 
                 // Ensure projectsToAdd are ordered correctly.
@@ -437,6 +437,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project)));
 
                     Dte.Solution.AddFromFile(project);
+
                     secAddProjects += chrono.Elapsed.TotalSeconds;
                     chrono.Restart();
 
@@ -448,11 +449,11 @@ namespace Microsoft.Templates.UI.VisualStudio
                     secAddFiles += chrono.Elapsed.TotalSeconds;
                     chrono.Restart();
 
-                    await AddNugetsForProjectAsync(project, projectInfo.NugetReferences.Where(n => n.Project == project));
+                    AddNugetsForProject(project, projectInfo.NugetReferences.Where(n => n.Project == project));
 
                     secAddNuget += chrono.Elapsed.TotalSeconds;
 
-                    AddSdksForProjectAsync(project, projectInfo.SdkReferences.Where(n => n.Project == project));
+                    AddSdksForProject(project, projectInfo.SdkReferences.Where(n => n.Project == project));
 
                     chrono.Stop();
                 }
@@ -627,7 +628,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             item.UIHierarchyItems.Expanded = false;
         }
 
-        private async System.Threading.Tasks.Task AddNugetsForProjectAsync(string projectPath, IEnumerable<NugetReference> projectNugets)
+        private void AddNugetsForProject(string projectPath, IEnumerable<NugetReference> projectNugets)
         {
             try
             {
@@ -636,13 +637,20 @@ namespace Microsoft.Templates.UI.VisualStudio
                 {
                     if (project is IVsBrowseObjectContext browseObjectContext)
                     {
-                        var configuredProject = await browseObjectContext.UnconfiguredProject.GetSuggestedConfiguredProjectAsync();
+                        var threadingService = browseObjectContext.UnconfiguredProject.ProjectService.Services.ThreadingPolicy;
 
-                        foreach (var reference in projectNugets)
+                        threadingService.ExecuteSynchronously(
+                        async () =>
                         {
-                            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
-                            await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
-                        }
+                            var configuredProject = await browseObjectContext.UnconfiguredProject.GetSuggestedConfiguredProjectAsync().ConfigureAwait(false);
+
+                            foreach (var reference in projectNugets)
+                            {
+                                GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
+
+                                await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version).ConfigureAwait(false);
+                            }
+                        });
                     }
                 }
                 else

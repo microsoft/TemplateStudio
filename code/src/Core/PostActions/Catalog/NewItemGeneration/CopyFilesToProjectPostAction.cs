@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
         }
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var destinationParentPath = Directory.GetParent(GenContext.Current.DestinationPath).FullName;
@@ -48,8 +48,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                     GenContext.Current.FilesToOpen.Add(destFilePath);
                 }
             }
-
-            await Task.CompletedTask;
         }
     }
 }

@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Fakes
             }
         }
 
-        public override async Task AddContextItemsToSolutionAsync(ProjectInfo projectInfo)
+        public override void AddContextItemsToSolution(ProjectInfo projectInfo)
         {
             var filesByProject = ResolveProjectFiles(projectInfo.ProjectItems);
 
@@ -114,8 +114,6 @@ namespace Microsoft.Templates.Fakes
             }
 
             AddReferencesToProjects(projectInfo.ProjectReferences);
-
-            await Task.CompletedTask;
         }
 
         private void AddNugetsForProject(string projectPath, IEnumerable<NugetReference> nugetReferences)

@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void ShowStatusBarMessage(string message);
 
-        public abstract Task AddContextItemsToSolutionAsync(ProjectInfo projectInfo);
+        public abstract void AddContextItemsToSolution(ProjectInfo projectInfo);
 
         public abstract string GetActiveProjectNamespace();
 

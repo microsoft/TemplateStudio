@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             _generationPath = generationPath;
         }
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             var projectsToAdd = Config
                             .Where(o => !string.IsNullOrWhiteSpace(o.Path))
@@ -38,8 +38,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 GenContext.Current.ProjectInfo.Projects.Add(project.destinationPath);
             }
-
-            await Task.CompletedTask;
         }
     }
 }

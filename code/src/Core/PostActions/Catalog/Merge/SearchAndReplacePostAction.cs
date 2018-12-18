@@ -24,7 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             string originalFilePath = Regex.Replace(Config.FilePath, PostactionRegex, ".");
 
@@ -74,8 +74,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             File.WriteAllLines(originalFilePath, result.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
             File.Delete(Config.FilePath);
-
-            await Task.CompletedTask;
         }
 
         private void AddFailedMergePostActionsFileNotFound(string originalFilePath)

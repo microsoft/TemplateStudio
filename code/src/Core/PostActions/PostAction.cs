@@ -27,13 +27,13 @@ namespace Microsoft.Templates.Core.PostActions
             RelatedTemplate = relatedTemplate;
         }
 
-        internal abstract Task ExecuteInternalAsync();
+        internal abstract void ExecuteInternal();
 
-        public async Task ExecuteAsync()
+        public void Execute()
         {
             try
             {
-                await ExecuteInternalAsync();
+                ExecuteInternal();
             }
             catch (Exception ex)
             {

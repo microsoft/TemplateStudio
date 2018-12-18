@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class AddProjectReferenceToContextPostActionTest
     {
         [Fact]
-        public async Task AddProjectReferenceToContext_ExecuteAsync()
+        public void AddProjectReferenceToContext_Execute()
         {
             var templateName = "Test";
             var projectName = "MyProject";
@@ -44,14 +44,14 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 });
 
             var mergePostAction = new AddProjectReferencesToContextPostAction(templateName, postAction, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Assert.True(GenContext.Current.ProjectInfo.ProjectReferences.Any(p => p.Project == Path.Combine(destPath, projectName)));
             Assert.True(GenContext.Current.ProjectInfo.ProjectReferences.Any(p => p.Project == Path.Combine(destPath, projectName) && p.ReferencedProject == Path.GetFullPath(Path.Combine(destPath, projectToAdd))));
         }
 
         [Fact]
-        public async Task AddSdkReferenceToContext_Execute_AlreadyThereAsync()
+        public void AddSdkReferenceToContext_Execute_AlreadyThere()
         {
             var templateName = "Test";
             var projectName = "MyProject";
@@ -84,7 +84,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 });
 
             var mergePostAction = new AddProjectReferencesToContextPostAction(templateName, postAction, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Assert.True(GenContext.Current.ProjectInfo.ProjectReferences.Any(p => p.Project == Path.Combine(destPath, projectName)));
             Assert.True(GenContext.Current.ProjectInfo.ProjectReferences.Any(p => p.Project == Path.Combine(destPath, projectName) && p.ReferencedProject == Path.GetFullPath(Path.Combine(destPath, projectToAdd))));

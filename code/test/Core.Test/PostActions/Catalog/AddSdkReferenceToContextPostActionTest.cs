@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class AddSdkReferenceToContextPostActionTest
     {
         [Fact]
-        public async Task AddSdkReferenceToContext_ExecuteAsync()
+        public void AddSdkReferenceToContext_Execute()
         {
             var templateName = "Test";
             var projectName = "TestProject";
@@ -48,13 +48,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 });
 
             var mergePostAction = new AddSdkReferencesToContextPostAction(templateName, postAction, new Dictionary<string, string>(), destPath);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Assert.Equal(sdkReference, GenContext.Current.ProjectInfo.SdkReferences[0]);
         }
 
         [Fact]
-        public async Task AddSdkReferenceToContext_Execute_AlreadyThereAsync()
+        public void AddSdkReferenceToContext_Execute_AlreadyThere()
         {
             var templateName = "Test";
             var projectName = "TestProject";
@@ -85,13 +85,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 });
 
             var mergePostAction = new AddSdkReferencesToContextPostAction(templateName, postAction, new Dictionary<string, string>(), destPath);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Assert.Equal(sdkReference, GenContext.Current.ProjectInfo.SdkReferences[0]);
         }
 
         [Fact]
-        public async Task AddSdkReferenceToContext_Execute_ReplacementAsync()
+        public void AddSdkReferenceToContext_Execute_Replacement()
         {
             var templateName = "Test";
             var projectName = "TestProject";
@@ -123,7 +123,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             genParams.Add("wts.projectName", "TestProject");
 
             var mergePostAction = new AddSdkReferencesToContextPostAction(templateName, postAction, genParams, destPath);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Assert.Equal(sdkReference, GenContext.Current.ProjectInfo.SdkReferences[0]);
         }

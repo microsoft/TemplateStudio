@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class MergePostActionTest
     {
         [Fact]
-        public async Task MergePostAction_Execute_SuccessAsync()
+        public void MergePostAction_Execute_Success()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source.cs");
@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\Merge\\Source_postaction.cs"), mergeFile, true);
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, true));
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             var result = File.ReadAllText(sourceFile).Replace("\r\n", string.Empty).Replace("\n", string.Empty);
 
@@ -42,7 +42,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task MergePostAction_Execute_LineNotFound_ErrorAsync()
+        public void MergePostAction_Execute_LineNotFound_Error()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\Merge\Source_fail.cs");
@@ -52,7 +52,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var result = File.ReadAllText(sourceFile);
 
-            Exception ex = await Assert.ThrowsAsync<Exception>(async () => await mergePostAction.ExecuteAsync());
+            Exception ex = Assert.Throws<Exception>(() => mergePostAction.Execute());
 
             Assert.Equal(string.Format(StringRes.PostActionException, typeof(MergePostAction), templateName), ex.Message);
             Assert.Equal(typeof(InvalidDataException), ex.InnerException.GetType());
@@ -60,14 +60,14 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task Execute_FileNotFound_ErrorAsync()
+        public void Execute_FileNotFound_ErrorAsync()
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\Merge\NoSource_postaction.cs");
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, true));
 
-            Exception ex = await Assert.ThrowsAsync<Exception>(async () => await mergePostAction.ExecuteAsync());
+            Exception ex = Assert.Throws<Exception>(() => mergePostAction.Execute());
 
             Assert.Equal(string.Format(StringRes.PostActionException, typeof(MergePostAction), templateName), ex.Message);
             Assert.Equal(typeof(FileNotFoundException), ex.InnerException.GetType());
@@ -75,7 +75,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task MergePostAction_Execute_LineNotFound_NoErrorAsync()
+        public void MergePostAction_Execute_LineNotFound_NoError()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source_fail.cs");
@@ -97,7 +97,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var result = File.ReadAllText(Path.Combine(outputPath, sourceFile));
 
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
             var expected = new FailedMergePostActionInfo(
                     "temp\\Source_fail.cs",
                     Path.Combine(outputPath, "Source_fail_postaction.cs"),
@@ -122,7 +122,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task MergePostAction_Execute_FileNotFound_NoErrorAsync()
+        public void MergePostAction_Execute_FileNotFound_NoError()
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\temp\NoSource_postaction.cs");
@@ -140,7 +140,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var mergePostAction = new MergePostAction(templateName, new MergeConfiguration(mergeFile, false));
 
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
             var expected = new FailedMergePostActionInfo(
                     "temp\\NoSource.cs",
                     Path.Combine(outputPath, "NoSource_postaction.cs"),
