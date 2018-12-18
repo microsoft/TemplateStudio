@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddNugetReferenceToContextPostAction(templateName, postAction, new Dictionary<string, string>(), destPath);
             await mergePostAction.ExecuteAsync();
 
-            Assert.Equal(nugetReference, GenContext.Current.NugetReferences[0]);
+            Assert.Equal(nugetReference, GenContext.Current.ProjectInfo.NugetReferences[0]);
         }
 
         [Fact]
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 GenerationOutputPath = destPath,
             };
 
-            GenContext.Current.NugetReferences.Add(nugetReference);
+            GenContext.Current.ProjectInfo.NugetReferences.Add(nugetReference);
 
             var postAction = new FakeTemplateDefinedPostAction(
                 new Guid(AddNugetReferenceToContextPostAction.Id),
@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddNugetReferenceToContextPostAction(templateName, postAction, new Dictionary<string, string>(), destPath);
             await mergePostAction.ExecuteAsync();
 
-            Assert.Equal(nugetReference, GenContext.Current.NugetReferences[0]);
+            Assert.Equal(nugetReference, GenContext.Current.ProjectInfo.NugetReferences[0]);
         }
 
         [Fact]
@@ -125,7 +125,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddNugetReferenceToContextPostAction(templateName, postAction, genParams, destPath);
             await mergePostAction.ExecuteAsync();
 
-            Assert.Equal(nugetReference, GenContext.Current.NugetReferences[0]);
+            Assert.Equal(nugetReference, GenContext.Current.ProjectInfo.NugetReferences[0]);
         }
     }
 }

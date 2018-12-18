@@ -5,7 +5,7 @@ namespace Param_ItemNamespace.ViewModels
 {
     public class ShellViewModel : Screen
     {
-        public void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
+        private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
         {
             //{[{
             if (args.IsSettingsInvoked)

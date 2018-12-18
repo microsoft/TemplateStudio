@@ -12,8 +12,14 @@ namespace Microsoft.Templates.Core.Gen
 {
     public class ProjectInfo
     {
-        public string ProjectPath { get; set; }
+        public List<string> Projects { get; } = new List<string>();
 
-        public bool IsCPSProject { get; set; }
+        public List<string> ProjectItems { get;  } = new List<string>();
+
+        public List<SdkReference> SdkReferences { get;  } = new List<SdkReference>();
+
+        public List<NugetReference> NugetReferences { get; } = new List<NugetReference>();
+
+        public List<ProjectReference> ProjectReferences { get; } = new List<ProjectReference>();
     }
 }

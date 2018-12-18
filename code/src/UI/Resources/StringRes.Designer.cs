@@ -1063,6 +1063,33 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding {0} to project ....
+        /// </summary>
+        public static string StatusAddingItem {
+            get {
+                return ResourceManager.GetString("StatusAddingItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding NuGet package {0} to project ....
+        /// </summary>
+        public static string StatusAddingNuget {
+            get {
+                return ResourceManager.GetString("StatusAddingNuget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding project {0} to solution....
+        /// </summary>
+        public static string StatusAddingProject {
+            get {
+                return ResourceManager.GetString("StatusAddingProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creating Windows Template Studio project....
         /// </summary>
         public static string StatusBarCreatingProject {

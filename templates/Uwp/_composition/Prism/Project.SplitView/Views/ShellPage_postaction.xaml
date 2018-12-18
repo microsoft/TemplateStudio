@@ -1,15 +1,14 @@
 ﻿<Page
 <!--^^-->
 <!--{[{-->
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:wts.ItemName.Behaviors"
 <!--}]}-->
     mc:Ignorable="d">
 
     <winui:NavigationView
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-<!--{[{-->
         <i:Interaction.Behaviors>
+<!--{[{-->
             <behaviors:NavigationViewHeaderBehavior
                 x:Name="navigationViewHeaderBehavior"
                 DefaultHeader="{x:Bind ViewModel.Selected.Content, Mode=OneWay}">
@@ -24,7 +23,7 @@
                     </DataTemplate>
                 </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
             </behaviors:NavigationViewHeaderBehavior>
-        </i:Interaction.Behaviors>
 <!--}]}-->
+        </i:Interaction.Behaviors>
     </winui:NavigationView>
 </Page>

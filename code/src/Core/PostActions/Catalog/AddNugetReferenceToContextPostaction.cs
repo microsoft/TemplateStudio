@@ -45,9 +45,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 PackageId = Args["packageId"],
             };
 
-            if (!GenContext.Current.NugetReferences.Any(n => n.Equals(nugetReference)))
+            if (!GenContext.Current.ProjectInfo.NugetReferences.Any(n => n.Equals(nugetReference)))
             {
-                GenContext.Current.NugetReferences.Add(nugetReference);
+                GenContext.Current.ProjectInfo.NugetReferences.Add(nugetReference);
             }
 
             await Task.CompletedTask;
