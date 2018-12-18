@@ -440,7 +440,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     secAddProjects += chrono.Elapsed.TotalSeconds;
                     chrono.Restart();
 
-                    if (!IsCpsProject(project))
+                    if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
                     {
                         AddItems(project, filesByProject[project]);
                     }
@@ -465,10 +465,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                 GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = secAddFiles;
                 GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddNugetToProject] = secAddNuget;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // TODO: Handle this
-                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableAddProjectToSolution).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddFilesAndProjects, ex).FireAndForget();
             }
         }
 
@@ -575,7 +575,7 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddItemsToProject, ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.ErrorUnableGetProjectByPath, projFile), ex).FireAndForget();
             }
 
             return p;

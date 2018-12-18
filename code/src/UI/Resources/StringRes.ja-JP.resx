@@ -477,18 +477,6 @@
     <value>ページ {0} が追加されました</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>プロジェクト項目を追加できません。</value>
-    <comment>Error message for unable add items to project</comment>
-  </data>
-  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>プロジェクトをソリューションに追加できません。予期される SDK がインストールされていることを確認してください。</value>
-    <comment>Error message for unable add project to solution</comment>
-  </data>
-  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>プロジェクトを最新の情報に更新できません。手動で更新してください。</value>
-    <comment>Error message for unable to refresh project</comment>
-  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>ソリューション ツリーを折りたたむ際のエラーです。例: </value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
@@ -612,9 +600,6 @@
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>コンポジション ツール</value>
   </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>プラットフォームを解決できませんでした。</value>
-  </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>プラットフォームの選択</value>
     <comment>Project configuration window select platform title</comment>
@@ -709,5 +694,11 @@ Please verify the following list of packages needed by your project's code and m
   <data name="StatusAddingProject" xml:space="preserve">
     <value>Adding project {0} to solution...</value>
     <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Unable to add files and projects.</value>
+  </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Unable to find project {0}</value>
   </data>
 </root>
