@@ -6,8 +6,8 @@
     mc:Ignorable="d">
     <winui:NavigationView
         Background="{ThemeResource SystemControlBackgroundAltHighBrush}">
-<!--{[{-->
         <i:Interaction.Behaviors>
+<!--{[{-->
             <behaviors:NavigationViewHeaderBehavior
                 DefaultHeader="{x:Bind ViewModel.Selected.Content, Mode=OneWay}">
                 <behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
@@ -21,7 +21,7 @@
                     </DataTemplate>
                 </behaviors:NavigationViewHeaderBehavior.DefaultHeaderTemplate>
             </behaviors:NavigationViewHeaderBehavior>
-        </i:Interaction.Behaviors>
 <!--}]}-->
+        </i:Interaction.Behaviors>
     </winui:NavigationView>
 </Page>

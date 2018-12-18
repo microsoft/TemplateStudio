@@ -26,13 +26,6 @@ namespace wts.ItemName.Views
             return navigationView;
         }
 
-        private void OnItemInvoked(WinUI.NavigationView sender, WinUI.NavigationViewItemInvokedEventArgs args)
-        {
-            // Workaround for Issue https://github.com/Microsoft/WindowsTemplateStudio/issues/2774
-            // Using EventTriggerBehavior does not work on WinUI NavigationView ItemInvoked event in Release mode.
-            ViewModel.OnItemInvoked(args);
-        }
-
         public Frame GetFrame()
         {
             return shellFrame;
