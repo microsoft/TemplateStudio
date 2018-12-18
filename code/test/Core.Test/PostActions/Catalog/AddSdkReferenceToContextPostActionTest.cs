@@ -50,7 +50,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddSdkReferencesToContextPostAction(templateName, postAction, new Dictionary<string, string>(), destPath);
             await mergePostAction.ExecuteAsync();
 
-            Assert.Equal(sdkReference, GenContext.Current.SdkReferences[0]);
+            Assert.Equal(sdkReference, GenContext.Current.ProjectInfo.SdkReferences[0]);
         }
 
         [Fact]
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 GenerationOutputPath = destPath,
             };
 
-            GenContext.Current.SdkReferences.Add(sdkReference);
+            GenContext.Current.ProjectInfo.SdkReferences.Add(sdkReference);
 
             var postAction = new FakeTemplateDefinedPostAction(
                 new Guid(AddSdkReferencesToContextPostAction.Id),
@@ -87,7 +87,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddSdkReferencesToContextPostAction(templateName, postAction, new Dictionary<string, string>(), destPath);
             await mergePostAction.ExecuteAsync();
 
-            Assert.Equal(sdkReference, GenContext.Current.SdkReferences[0]);
+            Assert.Equal(sdkReference, GenContext.Current.ProjectInfo.SdkReferences[0]);
         }
 
         [Fact]
@@ -125,7 +125,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddSdkReferencesToContextPostAction(templateName, postAction, genParams, destPath);
             await mergePostAction.ExecuteAsync();
 
-            Assert.Equal(sdkReference, GenContext.Current.SdkReferences[0]);
+            Assert.Equal(sdkReference, GenContext.Current.ProjectInfo.SdkReferences[0]);
         }
     }
 }

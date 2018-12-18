@@ -9,5 +9,6 @@ namespace Microsoft.Templates.Core.Diagnostics
         Generation,
         AddFilesToProject,
         AddProjectToSolution,
+        AddNugetToProject,
     }
 }

@@ -30,15 +30,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationPath { get; private set; }
 
-        public List<ProjectInfo> Projects { get; private set; }
-
-        public List<NugetReference> NugetReferences { get; private set; }
-
-        public List<SdkReference> SdkReferences { get; private set; }
-
-        public Dictionary<string, List<string>> ProjectReferences { get; private set; }
-
-        public List<string> ProjectItems { get; private set; }
+        public ProjectInfo ProjectInfo { get; private set; }
 
         public List<string> FilesToOpen { get; private set; }
 
@@ -148,11 +140,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
-                Projects = new List<ProjectInfo>();
-                NugetReferences = new List<NugetReference>();
-                SdkReferences = new List<SdkReference>();
-                ProjectReferences = new Dictionary<string, List<string>>();
-                ProjectItems = new List<string>();
+                ProjectInfo = new ProjectInfo();
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostActionInfo>();
                 MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();

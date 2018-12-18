@@ -55,70 +55,79 @@ namespace Microsoft.Templates.Fakes
             _platform = platform;
         }
 
-        public override void AddItems(params string[] itemsFullPath)
+        private void AddItems(string projectPath, IEnumerable<string> filesToAdd)
         {
-            if (itemsFullPath == null || itemsFullPath.Length == 0)
+            var msbuildProj = FakeMsBuildProject.Load(projectPath);
+            if (msbuildProj != null)
             {
-                return;
-            }
-
-            var projects = ResolveProjectFiles(itemsFullPath, true);
-            var notCoreProjects = projects.Where(f => !IsCPSProject(f.Key));
-
-            foreach (var projectFile in notCoreProjects)
-            {
-                var msbuildProj = FakeMsBuildProject.Load(projectFile.Key);
-                if (msbuildProj != null)
+                foreach (var file in filesToAdd)
                 {
-                    foreach (var file in projectFile.Value)
-                    {
-                        msbuildProj.AddItem(file);
-                    }
-
-                    msbuildProj.Save();
+                    msbuildProj.AddItem(file);
                 }
+
+                msbuildProj.Save();
             }
         }
 
-        public override async Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences)
+        public override async Task AddContextItemsToSolutionAsync(ProjectInfo projectInfo)
         {
-            // First add references to existing projects
-            var groupedNugets = nugetReferences.Where(n => !projects.Any(p => p.ProjectPath == n.Project)).GroupBy(n => n.Project);
+            var filesByProject = ResolveProjectFiles(projectInfo.ProjectItems);
 
-            foreach (var nuget in groupedNugets)
+            var filesForExistingProjects = filesByProject.Where(k => !projectInfo.Projects.Any(p => p == k.Key));
+            var nugetsForExistingProjects = projectInfo.NugetReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
+            var sdksForExistingProjects = projectInfo.SdkReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
+
+            foreach (var files in filesForExistingProjects)
             {
-                var msbuildProj = FakeMsBuildProject.Load(nuget.Key);
-
-                var projectNugets = nugetReferences.Where(n => n.Project == nuget.Key);
-
-                foreach (var nugetPackages in projectNugets)
+                if (!IsCpsProject(files.Key))
                 {
-                    msbuildProj.AddNugetReference(nugetPackages);
+                     AddItems(files.Key, files.Value);
                 }
-
-                msbuildProj.Save();
             }
 
-            foreach (var project in projects)
+            foreach (var project in nugetsForExistingProjects)
             {
-                var msbuildProj = FakeMsBuildProject.Load(project.ProjectPath);
+                AddNugetsForProject(project.Key, project);
+            }
+
+            foreach (var sdk in sdksForExistingProjects)
+            {
+                AddSdksForProject(sdk.Key, sdk);
+            }
+
+            foreach (var project in projectInfo.Projects)
+            {
+                var msbuildProj = FakeMsBuildProject.Load(project);
                 var solutionFile = FakeSolution.LoadOrCreate(_platform, SolutionPath);
 
-                var projectRelativeToSolutionPath = project.ProjectPath.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
+                var projectRelativeToSolutionPath = project.Replace(Path.GetDirectoryName(SolutionPath) + Path.DirectorySeparatorChar, string.Empty);
 
-                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, project.IsCPSProject);
+                solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, IsCpsProject(project));
 
-                var projectNugets = nugetReferences.Where(n => n.Project == project.ProjectPath);
-
-                foreach (var nuget in projectNugets)
+                if (!IsCpsProject(project))
                 {
-                    msbuildProj.AddNugetReference(nuget);
+                    AddItems(project, filesByProject[project]);
                 }
 
-                msbuildProj.Save();
+                AddNugetsForProject(project, projectInfo.NugetReferences.Where(n => n.Project == project));
+                AddSdksForProject(project, projectInfo.SdkReferences.Where(n => n.Project == project));
             }
 
+            AddReferencesToProjects(projectInfo.ProjectReferences);
+
             await Task.CompletedTask;
+        }
+
+        private void AddNugetsForProject(string projectPath, IEnumerable<NugetReference> nugetReferences)
+        {
+            var msbuildProj = FakeMsBuildProject.Load(projectPath);
+
+            foreach (var nugetPackages in nugetReferences)
+            {
+                msbuildProj.AddNugetReference(nugetPackages);
+            }
+
+            msbuildProj.Save();
         }
 
         public override string GetActiveProjectNamespace()
@@ -236,48 +245,43 @@ namespace Microsoft.Templates.Fakes
         {
         }
 
-        public override void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences)
+        private void AddReferencesToProjects(IEnumerable<ProjectReference> projectReferences)
         {
             var solution = FakeSolution.LoadOrCreate(_platform, SolutionPath);
             var projectGuids = solution.GetProjectGuids();
 
-            foreach (var projectPath in projectReferences.Keys)
-            {
-                var parentProject = FakeMsBuildProject.Load(projectPath);
+            var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);
 
-                foreach (var referenceToAdd in projectReferences[projectPath])
+            foreach (var project in groupedReferences)
+            {
+                var parentProject = FakeMsBuildProject.Load(project.Key);
+
+                foreach (var referenceToAdd in project)
                 {
-                    var referenceProject = FakeMsBuildProject.Load(referenceToAdd);
+                    var referenceProject = FakeMsBuildProject.Load(referenceToAdd.ReferencedProject);
 
                     var name = referenceProject.Name;
                     var guid = projectGuids[name];
-                    parentProject.AddProjectReference(referenceToAdd, guid, name);
+                    parentProject.AddProjectReference(referenceToAdd.ReferencedProject, guid, name);
                 }
 
                 parentProject.Save();
             }
         }
 
-        public override void AddSdkReferencesToProjects(List<SdkReference> sdkReferences)
+        private void AddSdksForProject(string projectPath, IEnumerable<SdkReference> sdkReferences)
         {
-            var solution = FakeSolution.LoadOrCreate(_platform, SolutionPath);
+            var project = FakeMsBuildProject.Load(projectPath);
 
-            var groupedSdkReferences = sdkReferences.GroupBy(s => s.Project);
-
-            foreach (var sdkReference in groupedSdkReferences)
+            foreach (var referenceValue in sdkReferences)
             {
-                var project = FakeMsBuildProject.Load(sdkReference.Key);
-
-                foreach (var referenceValue in sdkReferences.Where(s => s.Project == sdkReference.Key))
-                {
-                    project.AddSDKReference(referenceValue);
-                }
-
-                project.Save();
+                project.AddSDKReference(referenceValue);
             }
+
+            project.Save();
         }
 
-        private bool IsCPSProject(string projectPath)
+        private bool IsCpsProject(string projectPath)
         {
             string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
             return targetFrameworkTags.Any(t => File.ReadAllText(projectPath).Contains(t));

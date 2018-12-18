@@ -72,7 +72,7 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public ObservableCollection<string> Themes { get; } = new ObservableCollection<string>();
 
-        public List<ProjectInfo> Projects { get; } = new List<ProjectInfo>();
+        public ProjectInfo ProjectInfo { get; } = new ProjectInfo();
 
         public List<SdkReference> SdkReferences { get; } = new List<SdkReference>();
 
@@ -431,9 +431,11 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void ClearContext()
         {
-            Projects.Clear();
-            ProjectReferences.Clear();
-            ProjectItems.Clear();
+            ProjectInfo.Projects.Clear();
+            ProjectInfo.ProjectReferences.Clear();
+            ProjectInfo.NugetReferences.Clear();
+            ProjectInfo.SdkReferences.Clear();
+            ProjectInfo.ProjectItems.Clear();
             MergeFilesFromProject.Clear();
             FailedMergePostActions.Clear();
             FilesToOpen.Clear();

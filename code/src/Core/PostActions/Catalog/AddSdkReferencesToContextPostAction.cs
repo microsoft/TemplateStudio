@@ -41,9 +41,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 Sdk = Args["sdk"],
             };
 
-            if (!GenContext.Current.SdkReferences.Any(n => n.Equals(sdkReference)))
+            if (!GenContext.Current.ProjectInfo.SdkReferences.Any(n => n.Equals(sdkReference)))
             {
-                GenContext.Current.SdkReferences.Add(sdkReference);
+                GenContext.Current.ProjectInfo.SdkReferences.Add(sdkReference);
             }
 
             await Task.CompletedTask;

@@ -24,13 +24,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void ShowStatusBarMessage(string message);
 
-        public abstract Task AddProjectsAndNugetsToSolutionAsync(List<ProjectInfo> projects, List<NugetReference> nugetReferences);
-
-        public abstract void AddItems(params string[] itemsFullPath);
-
-        public abstract void AddSdkReferencesToProjects(List<SdkReference> sdkReferences);
-
-        public abstract void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences);
+        public abstract Task AddContextItemsToSolutionAsync(ProjectInfo projectInfo);
 
         public abstract string GetActiveProjectNamespace();
 
@@ -89,7 +83,7 @@ namespace Microsoft.Templates.Core.Gen
             return result;
         }
 
-        protected static Dictionary<string, List<string>> ResolveProjectFiles(string[] itemsFullPath, bool workWithProjitemsFile = false)
+        protected static Dictionary<string, List<string>> ResolveProjectFiles(IEnumerable<string> itemsFullPath, bool workWithProjitemsFile = false)
         {
             Dictionary<string, List<string>> filesByProject = new Dictionary<string, List<string>>();
             foreach (var item in itemsFullPath)
