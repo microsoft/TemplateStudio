@@ -404,8 +404,10 @@ namespace Microsoft.Templates.Test
             var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework, genIdentities);
             var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, "SplitView", framework, genIdentities);
 
-            // TODO [ML] : Make this exclusion just from settings page
-            var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }");
+            var pageExclusions = new Dictionary<string, string>();
+            pageExclusions.Add("Settings", "new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f)");
+
+            var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, pageExclusions);
 
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -458,8 +460,10 @@ namespace Microsoft.Templates.Test
             {
                 var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework[0].ToString(), genIdentities);
 
-                // TODO [ML] : Make this exclusion just from settings page
-                var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }");
+                var pageExclusions = new Dictionary<string, string>();
+                pageExclusions.Add("Settings", "new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f)");
+
+                var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, pageExclusions);
 
                 var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -711,7 +715,7 @@ namespace Microsoft.Templates.Test
             return (projectFolder, imagesFolder);
         }
 
-        private (string projectFolder, string imagesFolder) SetUpTestProjectForAllNavViewPagesComparison(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null)
+        private (string projectFolder, string imagesFolder) SetUpTestProjectForAllNavViewPagesComparison(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, Dictionary<string, string> pageAreasToExclude = null)
         {
             var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
             var projectFolder = Path.Combine(rootFolder, "TestProject");
@@ -747,9 +751,19 @@ namespace Microsoft.Templates.Test
                 .Replace("***APP-NAME-2-GOES-HERE***", app2Details.ProjectName)
                 .Replace("***FOLDER-GOES-HERE***", imagesFolder);
 
-            if (!string.IsNullOrWhiteSpace(areasOfImageToExclude))
+            if (pageAreasToExclude != null)
             {
-                newAppInfoFileContents = newAppInfoFileContents.Replace("new ImageComparer.ExclusionArea[0]", areasOfImageToExclude);
+                var replacement = string.Empty;
+
+                foreach (var exclusion in pageAreasToExclude)
+                {
+                    replacement += $" {{ \"{exclusion.Key}\", {exclusion.Value} }},{Environment.NewLine}";
+                }
+
+                newAppInfoFileContents =
+                    newAppInfoFileContents.Replace(
+                        "PageSpecificExclusions = new Dictionary<string, ImageComparer.ExclusionArea>();",
+                        $"PageSpecificExclusions = new Dictionary<string, ImageComparer.ExclusionArea>{{{replacement}}};");
             }
 
             File.WriteAllText(appInfoFileName, newAppInfoFileContents, Encoding.UTF8);

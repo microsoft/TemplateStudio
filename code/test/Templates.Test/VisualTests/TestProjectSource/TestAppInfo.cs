@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
+using System.Collections.Generic;
 using System.Drawing;
 using WindowsTestHelpers;
 
@@ -18,5 +19,7 @@ namespace AutomatedUITests
         public const bool LongPauseAfterLaunch = false;
 
         public static ImageComparer.ExclusionArea[] ExclusionAreas => new ImageComparer.ExclusionArea[0];
+
+        public static Dictionary<string, ImageComparer.ExclusionArea> PageSpecificExclusions = new Dictionary<string, ImageComparer.ExclusionArea>();
     }
 }
