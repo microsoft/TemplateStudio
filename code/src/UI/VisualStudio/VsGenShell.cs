@@ -466,7 +466,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                     chrono.Stop();
                 }
 
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Add references between projects");
+                GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingProjectReferences);
 
                 AddReferencesToProjects(projectInfo.ProjectReferences);
 
