@@ -79,16 +79,9 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                     await _generationService.GenerateProjectAsync(_userSelection);
+                    PostGenerationActions();
 
                     AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
-                },
-                JoinableTaskCreationOptions.LongRunning);
-
-            SafeThreading.JoinableTaskFactory.Run(
-                async () =>
-                {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    PostGenerationActions();
                 },
                 JoinableTaskCreationOptions.LongRunning);
         }

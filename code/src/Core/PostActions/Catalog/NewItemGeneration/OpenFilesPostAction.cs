@@ -10,13 +10,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class OpenFilesPostAction : PostAction
     {
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusOpeningItems);
             GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
             GenContext.Current.FilesToOpen.Clear();
-
-            await Task.CompletedTask;
         }
     }
 }

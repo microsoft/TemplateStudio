@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             if (Regex.IsMatch(Config, MergeConfiguration.GlobalExtension))
             {
@@ -32,8 +32,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     GetFileFromProject();
                 }
             }
-
-            await Task.CompletedTask;
         }
 
         private void GetFileFromProject()

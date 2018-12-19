@@ -39,19 +39,19 @@ namespace Microsoft.Templates.Core.Gen
             TrackTelemetry(templateType, genItems, genResults, chrono.Elapsed.TotalSeconds, userSelection.ProjectType, userSelection.Framework, userSelection.Platform);
         }
 
-        public async Task UnsafeFinishGenerationAsync(UserSelection userSelection)
+        public void UnsafeFinishGeneration(UserSelection userSelection)
         {
             var compareResult = CompareTempGenerationWithProject();
             if (userSelection.ItemGenerationType == ItemGenerationType.GenerateAndMerge)
             {
                 // BackupProjectFiles
                 compareResult.SyncGeneration = true;
-                await ExecuteSyncGenerationPostActionsAsync(compareResult);
+                ExecuteSyncGenerationPostActions(compareResult);
             }
             else
             {
                 compareResult.SyncGeneration = false;
-                await ExecuteOutputGenerationPostActionsAsync(compareResult);
+                ExecuteOutputGenerationPostActions(compareResult);
             }
         }
 
@@ -116,23 +116,23 @@ namespace Microsoft.Templates.Core.Gen
             }
         }
 
-        private async Task ExecuteSyncGenerationPostActionsAsync(TempGenerationResult result)
+        private void ExecuteSyncGenerationPostActions(TempGenerationResult result)
         {
             var postActions = PostactionFactory.FindSyncGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
-                await postAction.ExecuteAsync();
+                postAction.Execute();
             }
         }
 
-        private async Task ExecuteOutputGenerationPostActionsAsync(TempGenerationResult result)
+        private void ExecuteOutputGenerationPostActions(TempGenerationResult result)
         {
             var postActions = PostactionFactory.FindOutputGenerationPostActions(result);
 
             foreach (var postAction in postActions)
             {
-                await postAction.ExecuteAsync();
+                postAction.Execute();
             }
         }
 

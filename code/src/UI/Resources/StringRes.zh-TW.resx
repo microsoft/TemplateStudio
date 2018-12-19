@@ -477,18 +477,6 @@
     <value>頁面 {0} 已新增成功</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>無法新增專案項目。</value>
-    <comment>Error message for unable add items to project</comment>
-  </data>
-  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>無法將專案新增至解決方案中。請確定您已安裝所需的 SDK。</value>
-    <comment>Error message for unable add project to solution</comment>
-  </data>
-  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>無法重新整理專案。請嘗試手動重新整理。</value>
-    <comment>Error message for unable to refresh project</comment>
-  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>收合解決方案樹狀結構時發生錯誤。範例：</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
@@ -706,5 +694,14 @@ Please verify the following list of packages needed by your project's code and m
   <data name="StatusAddingProject" xml:space="preserve">
     <value>Adding project {0} to solution...</value>
     <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Unable to add files and projects.</value>
+  </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Unable to find project {0}</value>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Adding references between projects...</value>
   </data>
 </root>

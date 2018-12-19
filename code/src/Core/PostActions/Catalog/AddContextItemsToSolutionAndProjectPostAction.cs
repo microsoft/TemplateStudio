@@ -12,9 +12,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 {
     public class AddContextItemsToSolutionAndProjectPostAction : PostAction
     {
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
-            await GenContext.ToolBox.Shell.AddContextItemsToSolutionAsync(GenContext.Current.ProjectInfo);
+            GenContext.ToolBox.Shell.AddContextItemsToSolution(GenContext.Current.ProjectInfo);
         }
     }
 }

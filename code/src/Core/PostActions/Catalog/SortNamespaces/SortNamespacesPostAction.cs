@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 
         public abstract bool SortMethod(List<string> classContent);
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             var classFiles = Directory
                 .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.GenerationOutputPath), FilesToSearch, SearchOption.AllDirectories)
@@ -33,8 +33,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
                     File.WriteAllLines(classFile, fileContent, Encoding.UTF8);
                 }
             }
-
-            await Task.CompletedTask;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class AddItemToContextPostActionTest
     {
         [Fact]
-        public async Task AddItemToContext_ExecuteAsync()
+        public void AddItemToContext_Execute()
         {
             var templateName = "Test";
             var relativeFile = @".\Source.cs";
@@ -36,13 +36,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             testPrimaryOutputs.Add(new FakeCreationPath() { Path = relativeFile });
 
             var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Assert.True(GenContext.Current.ProjectInfo.ProjectItems.Contains(finalFile));
         }
 
         [Fact]
-        public async Task AddItemToContext_Execute_ReplacementAsync()
+        public void AddItemToContext_Execute_Replacement()
         {
             var templateName = "Test";
             var relativeFile = @".\Param_ProjectName\Source.cs";
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             genParams.Add("wts.projectName", "Project");
 
             var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, genParams, destPath);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Assert.True(GenContext.Current.ProjectInfo.ProjectItems.Contains(finalFile));
         }

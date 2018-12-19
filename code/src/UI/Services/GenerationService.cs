@@ -48,11 +48,11 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
-        public async Task FinishGenerationAsync(UserSelection userSelection)
+        public void FinishGeneration(UserSelection userSelection)
         {
             try
             {
-                await NewItemGenController.Instance.UnsafeFinishGenerationAsync(userSelection);
+                NewItemGenController.Instance.UnsafeFinishGeneration(userSelection);
             }
             catch (Exception ex)
             {

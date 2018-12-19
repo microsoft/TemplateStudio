@@ -200,7 +200,7 @@ namespace Microsoft.Templates.Test
 
                 await NewItemGenController.Instance.UnsafeGenerateNewItemAsync(item.GetTemplateType(), newUserSelection);
 
-                await NewItemGenController.Instance.UnsafeFinishGenerationAsync(newUserSelection);
+                NewItemGenController.Instance.UnsafeFinishGeneration(newUserSelection);
             }
         }
 

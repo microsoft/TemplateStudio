@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class GetMergeFilesFromProjectPostActionTest
     {
         [Fact]
-        public async Task GetMergeFilesFromProject_Execute_PostactionAsync()
+        public void GetMergeFilesFromProject_Execute_Postaction()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Directory.Delete(Directory.GetParent(path).FullName, true);
 
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task GetMergeFilesFromProject_Execute_Postaction_FileFoundAsync()
+        public void GetMergeFilesFromProject_Execute_Postaction_FileFound()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
@@ -64,7 +64,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Directory.Delete(Directory.GetParent(outputPath).FullName, true);
             Directory.Delete(destPath, true);
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task GetMergeFilesFromProject_Execute_Postaction_LocallyAvailableAsync()
+        public void GetMergeFilesFromProject_Execute_Postaction_LocallyAvailable()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Directory.Delete(Directory.GetParent(outputPath).FullName, true);
 
@@ -101,7 +101,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task GetMergeFilesFromProject_Execute_GlobalPostactionAsync()
+        public void GetMergeFilesFromProject_Execute_GlobalPostaction()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
@@ -119,7 +119,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             };
 
             var mergePostAction = new GetMergeFilesFromProjectPostAction(templateName, mergeFile);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             Directory.Delete(Directory.GetParent(outputPath).FullName, true);
 

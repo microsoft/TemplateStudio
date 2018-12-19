@@ -477,18 +477,6 @@
     <value>Página {0} adicionada com êxito</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Não é possível adicionar itens do projeto.</value>
-    <comment>Error message for unable add items to project</comment>
-  </data>
-  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Não é possível adicionar o projeto à solução. Verifique se você tem o SDK esperado instalado.</value>
-    <comment>Error message for unable add project to solution</comment>
-  </data>
-  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>Não é possível atualizar o projeto. Tente atualizá-lo manualmente.</value>
-    <comment>Error message for unable to refresh project</comment>
-  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Erro ao recolher a árvore de solução. Ex.:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
@@ -706,5 +694,14 @@ Please verify the following list of packages needed by your project's code and m
   <data name="StatusAddingProject" xml:space="preserve">
     <value>Adding project {0} to solution...</value>
     <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Unable to add files and projects.</value>
+  </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Unable to find project {0}</value>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Adding references between projects...</value>
   </data>
 </root>
