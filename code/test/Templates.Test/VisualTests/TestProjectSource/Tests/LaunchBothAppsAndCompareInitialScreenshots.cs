@@ -61,7 +61,7 @@ namespace AutomatedUITests.Tests
 
                     if (TestAppInfo.LongPauseAfterLaunch)
                     {
-                        await Task.Delay(TimeSpan.FromSeconds(10));
+                        await Task.Delay(TimeSpan.FromSeconds(30)); // Because loading the first frame of the video can sometimes take this long
                     }
                     else
                     {

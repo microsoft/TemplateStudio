@@ -86,9 +86,20 @@ namespace Microsoft.Templates.Test
         }
 
         // Gets all the pages that are available (and testable) in both VB & C#
-        public static IEnumerable<object[]> GetAllSinglePageAppsVbAndCs()
+        public static IEnumerable<object[]> GetAllSinglePageAppsVbAndCsSimple()
         {
-            var pagesThatSupportUiTesting = AllVisuallyTestablePages();
+            var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTesting();
+
+            foreach (var page in pagesThatSupportUiTesting)
+            {
+                yield return new object[] { page };
+            }
+        }
+
+        // Gets all the pages that are available (and testable) in both VB & C#
+        public static IEnumerable<object[]> GetAllSinglePageAppsVbAndCsExtraLogic()
+        {
+            var pagesThatSupportUiTesting = AllPagesThatRequireExtraLogicForTesting();
 
             foreach (var page in pagesThatSupportUiTesting)
             {
@@ -173,83 +184,168 @@ namespace Microsoft.Templates.Test
             }
         }
 
+        // Note. There are multiple theories defined here but could be combined in a single one.
+        // However, it would be a lot tests being generated and some of the longer running and
+        // more complicated options are susceptible to false negatives.
+        // Splitting them up like this makes it easier to rerun and debug failed tests.
         [Theory]
-        [MemberData(nameof(GetAllSinglePageAppsVbAndCs))]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmBasic_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmBasic_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMBasic", page);
         }
 
         [Theory]
-        [MemberData(nameof(GetAllSinglePageAppsVbAndCs))]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmLight_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmBasic_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMBasic", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmLight_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMLight", page);
         }
 
         [Theory]
-        [MemberData(nameof(GetAllSinglePageAppsVbAndCs))]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_CodeBehind_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmLight_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMLight", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_CodeBehind_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "CodeBehind", page);
         }
 
         [Theory]
-        [MemberData(nameof(GetAllSinglePageAppsVbAndCs))]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmBasic_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_CodeBehind_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "CodeBehind", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmBasic_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMBasic", page);
         }
 
         [Theory]
-        [MemberData(nameof(GetAllSinglePageAppsVbAndCs))]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmLight_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmBasic_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMBasic", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmLight_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMLight", page);
         }
 
         [Theory]
-        [MemberData(nameof(GetAllSinglePageAppsVbAndCs))]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_CodeBehind_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmLight_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMLight", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_CodeBehind_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "CodeBehind", page);
         }
 
         [Theory]
-        [MemberData(nameof(GetAllSinglePageAppsVbAndCs))]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmBasic_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_CodeBehind_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "CodeBehind", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmBasic_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMBasic", page);
         }
 
         [Theory]
-        [MemberData(nameof(GetAllSinglePageAppsVbAndCs))]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmLight_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmBasic_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMBasic", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmLight_Simple_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMLight", page);
         }
 
         [Theory]
-        [MemberData(nameof(GetAllSinglePageAppsVbAndCs))]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_Async(string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmLight_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMLight", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "CodeBehind", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_ExtraLogic_Async(string page)
         {
             await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "CodeBehind", page);
         }
@@ -822,7 +918,8 @@ ForEach ($i in $dump)
                 }
             }
 
-            ChangeProjectToNotUseDotNetNativeToolchain(baseSetup, language); // So building release version is fast
+            // So building release version is fast
+            ChangeProjectToNotUseDotNetNativeToolchain(baseSetup, language);
 
             ////Build solution in release mode  // Building in release mode creates the APPX and certificate files we need
             var solutionFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}.sln";
