@@ -47,7 +47,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             _destinationPath = destinationPath;
         }
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             var parameterReplacements = new FileRenameParameterReplacements(_parameters);
             var projectPath = Path.Combine(_destinationPath, parameterReplacements.ReplaceInPath(Args["projectPath"]));
@@ -65,8 +65,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             {
                 GenContext.Current.ProjectInfo.ProjectReferences.Add(projectReference);
             }
-
-            await Task.CompletedTask;
         }
     }
 }

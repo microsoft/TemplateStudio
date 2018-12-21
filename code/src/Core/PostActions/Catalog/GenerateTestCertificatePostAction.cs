@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             _destinationPath = destinationPath;
         }
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             int targetProjectIndex = int.Parse(Args["files"]);
             var projectFile = _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters);
@@ -59,8 +59,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
             AddToProject(pfx, projectFileWithoutExtension);
             RemoveFromStore(pfx);
-
-            await Task.CompletedTask;
         }
 
         private void AddToProject(string base64Encoded, string projectFileWithoutExtension)

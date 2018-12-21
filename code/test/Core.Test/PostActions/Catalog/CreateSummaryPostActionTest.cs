@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task CreateSummary_Execute_SyncGenerationAsync()
+        public void CreateSummary_Execute_SyncGeneration()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
             var outputPath = Path.GetFullPath(@".\temp\Project");
@@ -67,7 +67,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             config.ConflictingFiles.Add("ConflictFile.cs");
 
             var mergePostAction = new CreateSummaryPostAction(config);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             var filePath = Path.Combine(Directory.GetParent(outputPath).FullName, "GenerationSummary.md");
 
@@ -84,7 +84,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task CreateSummary_Execute_NotSyncGenerationAsync()
+        public void CreateSummary_Execute_NotSyncGeneration()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
             var outputPath = Path.GetFullPath(@".\temp\Project");
@@ -119,7 +119,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             config.ConflictingFiles.Add("ConflictFile.cs");
 
             var mergePostAction = new CreateSummaryPostAction(config);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             var filePath = Path.Combine(Directory.GetParent(outputPath).FullName, "Steps to include new item generation.md");
 

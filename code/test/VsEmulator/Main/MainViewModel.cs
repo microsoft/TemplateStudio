@@ -217,7 +217,7 @@ namespace Microsoft.Templates.VsEmulator.Main
             SafeThreading.JoinableTaskFactory.Run(async () =>
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                await _generationService.FinishGenerationAsync(userSelection);
+                _generationService.FinishGeneration(userSelection);
             });
         }
 

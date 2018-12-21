@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
         }
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             string originalFilePath = GetFilePath();
             if (!File.Exists(originalFilePath))
@@ -62,8 +62,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             }
 
             File.Delete(Config.FilePath);
-
-            await Task.CompletedTask;
         }
 
         protected void AddFailedMergePostActions(string originalFilePath, MergeFailureType mergeFailureType, string description)

@@ -19,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class SearchAndReplacePostActionTest
     {
         [Fact]
-        public async Task SearchAndReplace_Execute_SuccessAsync()
+        public void SearchAndReplace_Execute_Success()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source.cs");
@@ -32,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             File.Copy(Path.Combine(Environment.CurrentDirectory, $"TestData\\SearchReplace\\Source_searchreplace.cs"), mergeFile, true);
 
             var mergePostAction = new SearchAndReplacePostAction(templateName, new MergeConfiguration(mergeFile, true));
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             var result = File.ReadAllText(sourceFile);
 
@@ -42,14 +42,14 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task Execute_FileNotFound_ErrorAsync()
+        public void Execute_FileNotFound_Error()
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\SearchReplace\NoSource_searchreplace.cs");
 
             var mergePostAction = new SearchAndReplacePostAction(templateName, new MergeConfiguration(mergeFile, true));
 
-            Exception ex = await Assert.ThrowsAsync<Exception>(async () => await mergePostAction.ExecuteAsync());
+            Exception ex = Assert.Throws<Exception>(() => mergePostAction.Execute());
 
             Assert.Equal(string.Format(StringRes.PostActionException, typeof(SearchAndReplacePostAction), templateName), ex.Message);
             Assert.Equal(typeof(FileNotFoundException), ex.InnerException.GetType());
@@ -57,7 +57,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public async Task SearchAndReplace_Execute_FileNotFound_NoErrorAsync()
+        public void SearchAndReplace_Execute_FileNotFound_NoError()
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\temp\NoSource_searchreplace.cs");
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var mergePostAction = new SearchAndReplacePostAction(templateName, new MergeConfiguration(mergeFile, false));
 
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
             var expected = new FailedMergePostActionInfo(
                     "temp\\NoSource.cs",
                     Path.Combine(path, "NoSource_searchreplace.cs"),

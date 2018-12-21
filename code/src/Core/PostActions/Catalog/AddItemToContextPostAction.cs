@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             _destinationPath = destinationPath;
         }
 
-        internal override async Task ExecuteInternalAsync()
+        internal override void ExecuteInternal()
         {
             // HACK: Template engine is not replacing fileRename parameters correctly in file names, when used together with sourceName
             var itemsToAdd = Config
@@ -32,8 +32,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                                 .ToList();
 
             GenContext.Current.ProjectInfo.ProjectItems.AddRange(itemsToAdd);
-
-            await Task.CompletedTask;
         }
     }
 }

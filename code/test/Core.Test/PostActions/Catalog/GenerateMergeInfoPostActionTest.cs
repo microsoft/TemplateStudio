@@ -18,7 +18,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class GenerateMergeInfoPostActionTest
     {
         [Fact]
-        public async Task GenerateMergeInfo_Execute_SuccessAsync()
+        public void GenerateMergeInfo_Execute_Success()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
@@ -39,7 +39,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             GenContext.Current.MergeFilesFromProject.Add(relSourceFilePath, new List<MergeInfo>());
 
             var mergePostAction = new GenerateMergeInfoPostAction(templateName, mergeFile);
-            await mergePostAction.ExecuteAsync();
+            mergePostAction.Execute();
 
             var expected = new MergeInfo()
             {
