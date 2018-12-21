@@ -14,11 +14,11 @@ Namespace ViewModels
         End Property
 '}]}
 
-        Private Sub OnsItemSelected(args As ItemClickEventArgs)
-            If item IsNot Nothing Then
+        Private Sub OnItemClick(clickedItem As SampleOrder)
+            If clickedItem IsNot Nothing Then
 '^^
 '{[{
-                NavigationService.Navigate(GetType(wts.ItemNameDetailViewModel).FullName, item.OrderId)
+                NavigationService.Navigate(GetType(wts.ItemNameDetailViewModel).FullName, clickedItem.OrderId)
 '}]}
             End If
         End Sub

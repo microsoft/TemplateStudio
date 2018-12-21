@@ -17,7 +17,7 @@ using WindowsTestHelpers;
 namespace AutomatedUITests.Tests
 {
     [TestClass]
-    public class LaunchBothAppsAndCompareInitialScreenshots : TestBase
+    public class LaunchBothAppsAndCompareInitialScreenshots
     {
         private string App1Filename { get; }
         private string App2Filename { get; }
@@ -31,8 +31,10 @@ namespace AutomatedUITests.Tests
         }
 
         [TestMethod]
-        public void CompareInitialScreenshots()
+        public async Task CompareInitialScreenshots()
         {
+            WinAppDriverHelper.StartIfNotRunning();
+
             if (!Directory.Exists(TestAppInfo.ScreenshotsFolder))
             {
                 Directory.CreateDirectory(TestAppInfo.ScreenshotsFolder);
@@ -41,52 +43,62 @@ namespace AutomatedUITests.Tests
             // Hide other apps to give a consistent backdrop for acrylic textures
             VirtualKeyboard.MinimizeAllWindows();
 
-            using (var appSession1 = base.GetAppSession(TestAppInfo.AppPfn1))
+            async Task GetScreenshot(string pfn, string fileName)
             {
-                //// See https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
-                //// ClickYesIfPermissionDialogShown(appSession1);
+                using (var session = WinAppDriverHelper.LaunchAppx(pfn))
+                {
+                    if (TestAppInfo.NoClickCount > 0)
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(2));
 
-                appSession1.Manage().Window.Maximize();
+                        for (var i = 0; i < TestAppInfo.NoClickCount; i++)
+                        {
+                            await ClickNoOnPopUpAsync(session);
+                        }
+                    }
 
-                Task.Delay(TimeSpan.FromMilliseconds(2500)).Wait();
+                    session.Manage().Window.Maximize();
 
-                var screenshot = appSession1.GetScreenshot();
-                screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App1Filename), ImageFormat.Png);
+                    if (TestAppInfo.LongPauseAfterLaunch)
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(30)); // Because loading the first frame of the video can sometimes take this long
+                    }
+                    else
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(2));
+                    }
 
-                // Don't leave the app maximized in case we want to open the app again.
-                // Some controls handle layout differently when the app is first opened maximized
-                VirtualKeyboard.RestoreMaximizedWindow();
+                    var screenshot = session.GetScreenshot();
+                    screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, fileName), ImageFormat.Png);
+
+                    // Don't leave the app maximized in case we want to open the app again.
+                    // Some controls handle layout differently when the app is first opened maximized
+                    VirtualKeyboard.RestoreMaximizedWindow();
+                }
             }
 
-            using (var appSession2 = base.GetAppSession(TestAppInfo.AppPfn2))
-            {
-                //// See https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
-                //// ClickYesIfPermissionDialogShown(appSession2);
-
-                appSession2.Manage().Window.Maximize();
-
-                Task.Delay(TimeSpan.FromMilliseconds(2500)).Wait();
-
-                var screenshot = appSession2.GetScreenshot();
-                screenshot.SaveAsFile(Path.Combine(TestAppInfo.ScreenshotsFolder, App2Filename), ImageFormat.Png);
-
-                // Don't leave the app maximized in case we want to open the app again.
-                // Some controls handle layout differently when the app is first opened maximized
-                VirtualKeyboard.RestoreMaximizedWindow();
-            }
+            await GetScreenshot(TestAppInfo.AppPfn1, App1Filename);
+            await GetScreenshot(TestAppInfo.AppPfn2, App2Filename);
 
             var imageCompareResult = CheckImagesAreTheSame(TestAppInfo.ScreenshotsFolder, App1Filename, App2Filename);
 
             Assert.IsTrue(imageCompareResult, $"Images do not match.{Environment.NewLine}App1: {App1Filename}{Environment.NewLine}App2: {App2Filename}{Environment.NewLine}See results in '{TestAppInfo.ScreenshotsFolder}'");
         }
 
-        private void ClickYesIfPermissionDialogShown(WindowsDriver<WindowsElement> session)
+        private async Task<bool> ClickNoOnPopUpAsync(WindowsDriver<WindowsElement> session)
         {
-            if (session.TryFindElementByName("Yes", out var yesButton))
+            await Task.Delay(TimeSpan.FromSeconds(1)); // Allow extra time for popup to be displayed
+            var popups = session.FindElementsByAccessibilityId("Popup Window");
+            if (popups.Count == 1)
             {
-                yesButton.Click();
-                Task.Delay(TimeSpan.FromSeconds(2)).Wait(); // Allow time for dialog to be dismissed
+                var no = popups[0].FindElementsByName("No");
+                if (no.Count == 1)
+                {
+                    no[0].Click();
+                    return true;
+                }
             }
+            return false;
         }
 
         private bool CheckImagesAreTheSame(string folder, string fileName1, string fileName2)
@@ -104,7 +116,6 @@ namespace AutomatedUITests.Tests
                 var diffImage = image1.GetDifferenceImage(image2, GetAllExclusionAreas());
 
                 diffImage.Save(Path.Combine(folder, DiffFilename), ImageFormat.Png);
-
                 return false;
             }
             else

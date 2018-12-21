@@ -38,6 +38,16 @@ namespace Microsoft.Templates.Test
             return result.ToArray();
         }
 
+        public static string[] AllVisuallyTestablePages()
+        {
+            var result = new List<string>();
+
+            result.AddRange(AllPagesThatSupportSimpleTesting());
+            result.AddRange(AllPagesThatRequireExtraLogicForTesting());
+
+            return result.ToArray();
+        }
+
         public static string[] AllPagesThatSupportSimpleTesting()
         {
             return new[]
@@ -62,7 +72,8 @@ namespace Microsoft.Templates.Test
             return new[]
             {
                 "wts.Page.Camera",
-                "wts.Page.Map",
+                "wts.Page.WebView",
+                "wts.Page.MediaPlayer",
             };
         }
 
@@ -70,26 +81,29 @@ namespace Microsoft.Templates.Test
         {
             return new[]
             {
-                "wts.Page.WebView",
-                "wts.Page.MediaPlayer",
+                "wts.Page.Map", // Map page cannot be relied on to load the same details on the screen (buildings, road names, etc.) and so cannot use screenshots to compare displayed output
             };
         }
 
         // Gets all the pages that are available (and testable) in both VB & C#
-        public static IEnumerable<object[]> GetAllSinglePageAppsVBAndCS()
+        public static IEnumerable<object[]> GetAllSinglePageAppsVbAndCsSimple()
         {
-            foreach (var projectType in GetAllProjectTypes())
-            {
-                foreach (var framework in GetAllFrameworksForBothVBAndCS())
-                {
-                    // For other pages see https://github.com/Microsoft/WindowsTemplateStudio/issues/1717
-                    var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTesting();
+            var pagesThatSupportUiTesting = AllPagesThatSupportSimpleTesting();
 
-                    foreach (var page in pagesThatSupportUiTesting)
-                    {
-                        yield return new object[] { projectType, framework[0].ToString(), page };
-                    }
-                }
+            foreach (var page in pagesThatSupportUiTesting)
+            {
+                yield return new object[] { page };
+            }
+        }
+
+        // Gets all the pages that are available (and testable) in both VB & C#
+        public static IEnumerable<object[]> GetAllSinglePageAppsVbAndCsExtraLogic()
+        {
+            var pagesThatSupportUiTesting = AllPagesThatRequireExtraLogicForTesting();
+
+            foreach (var page in pagesThatSupportUiTesting)
+            {
+                yield return new object[] { page };
             }
         }
 
@@ -119,7 +133,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        public static IEnumerable<object[]> GetAllFrameworksForBothVBAndCS()
+        public static IEnumerable<object[]> GetAllFrameworksForBothVbAndCs()
         {
             foreach (var framework in new[] { "CodeBehind", "MVVMBasic", "MVVMLight" })
             {
@@ -170,22 +184,197 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        // Note. Visual Studio MUST be running as Admin to run this test.
+        // Note. There are multiple theories defined here but could be combined in a single one.
+        // However, it would be a lot tests being generated and some of the longer running and
+        // more complicated options are susceptible to false negatives.
+        // Splitting them up like this makes it easier to rerun and debug failed tests.
         [Theory]
-        [MemberData(nameof(GetAllSinglePageAppsVBAndCS))]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
-        public async Task EnsureLanguageLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmBasic_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMBasic", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmBasic_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMBasic", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmLight_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMLight", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_MvvmLight_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "MVVMLight", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_CodeBehind_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "CodeBehind", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_Blank_CodeBehind_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("Blank", "CodeBehind", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmBasic_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMBasic", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmBasic_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMBasic", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmLight_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMLight", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_MvvmLight_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "MVVMLight", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_CodeBehind_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "CodeBehind", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_SplitView_CodeBehind_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("SplitView", "CodeBehind", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmBasic_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMBasic", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmBasic_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMBasic", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmLight_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMLight", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_MvvmLight_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "MVVMLight", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsSimple))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_Simple_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "CodeBehind", page);
+        }
+
+        [Theory]
+        [MemberData(nameof(GetAllSinglePageAppsVbAndCsExtraLogic))]
+        [Trait("ExecutionSet", "ManualOnly")]
+        [Trait("Type", "WinAppDriver")]
+        public async Task EnsureLaunchPageVisualAreTheSameInVbAndCs_TabbedNav_CodeBehind_ExtraLogic_Async(string page)
+        {
+            await EnsureLanguageLaunchPageVisualsAreEquivalentAsync("TabbedNav", "CodeBehind", page);
+        }
+
+        // There are tests with hardcoded projectType and framework values to make rerunning/debugging only some of the tests easier
+        private async Task EnsureLanguageLaunchPageVisualsAreEquivalentAsync(string projectType, string framework, string page)
         {
             var genIdentities = new[] { page };
 
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
 
-            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
-            var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities, lastPageIsHome: true);
+            var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true, createForScreenshots: true);
+            var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, projectType, framework, genIdentities, lastPageIsHome: true, createForScreenshots: true);
 
-            var testProjectDetails = SetUpTestProjectForInitialScreenshotComparison(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page));
+            var noClickCount = 0;
+
+            if (page == "wts.Page.Map")
+            {
+                noClickCount = 1;
+            }
+            else if (page == "wts.Page.Camera")
+            {
+                noClickCount = 2;
+            }
+
+            var longPause = page.EndsWith(".WebView") || page.EndsWith(".MediaPlayer");
+
+            var testProjectDetails = SetUpTestProjectForInitialScreenshotComparison(app1Details, app2Details, GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount, longPause);
 
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -228,11 +417,22 @@ namespace Microsoft.Templates.Test
         {
             var genIdentities = new[] { page };
 
+            var noClickCount = 0;
+
+            if (page == "wts.Page.Map")
+            {
+                noClickCount = 1;
+            }
+            else if (page == "wts.Page.Camera")
+            {
+                noClickCount = 2;
+            }
+
             ExecutionEnvironment.CheckRunningAsAdmin();
             WinAppDriverHelper.CheckIsInstalled();
 
             // MVVMBasic is considered the reference version. Compare generated apps with equivalent in other frameworks
-            var refAppDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, "MVVMBasic", genIdentities, lastPageIsHome: true);
+            var refAppDetails = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, "MVVMBasic", genIdentities, lastPageIsHome: true, createForScreenshots: true);
 
             var otherProjDetails = new VisualComparisonTestDetails[frameworks.Length];
 
@@ -243,9 +443,9 @@ namespace Microsoft.Templates.Test
             for (int i = 0; i < frameworks.Length; i++)
             {
                 string framework = frameworks[i];
-                otherProjDetails[i] = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true);
+                otherProjDetails[i] = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, projectType, framework, genIdentities, lastPageIsHome: true, createForScreenshots: true);
 
-                var testProjectDetails = SetUpTestProjectForInitialScreenshotComparison(refAppDetails, otherProjDetails[i], GetExclusionAreasForVisualEquivalencyTest(projectType, page));
+                var testProjectDetails = SetUpTestProjectForInitialScreenshotComparison(refAppDetails, otherProjDetails[i], GetExclusionAreasForVisualEquivalencyTest(projectType, page), noClickCount);
 
                 var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -287,7 +487,7 @@ namespace Microsoft.Templates.Test
         // Note. Visual Studio MUST be running as Admin to run this test.
         // Note that failing tests will leave the projects behind, plus the apps and test certificates installed
         [Theory]
-        [MemberData(nameof(GetAllFrameworksForBothVBAndCS))]
+        [MemberData(nameof(GetAllFrameworksForBothVbAndCs))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "WinAppDriver")]
         public async Task EnsureLanguagesProduceIdenticalOutputForEachPageInNavViewAsync(string framework)
@@ -300,8 +500,10 @@ namespace Microsoft.Templates.Test
             var app1Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework, genIdentities);
             var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.VisualBasic, "SplitView", framework, genIdentities);
 
-            // TODO [ML] : Make this exclusion just from settings page
-            var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }");
+            var pageExclusions = new Dictionary<string, string>();
+            pageExclusions.Add("Settings", "new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f)");
+
+            var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, pageExclusions);
 
             var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -354,8 +556,10 @@ namespace Microsoft.Templates.Test
             {
                 var app2Details = await SetUpProjectForUiTestComparisonAsync(ProgrammingLanguages.CSharp, "SplitView", framework[0].ToString(), genIdentities);
 
-                // TODO [ML] : Make this exclusion just from settings page
-                var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, "new[] { new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f) }");
+                var pageExclusions = new Dictionary<string, string>();
+                pageExclusions.Add("Settings", "new ImageComparer.ExclusionArea(new Rectangle(480, 360, 450, 40), 1.25f)");
+
+                var testProjectDetails = SetUpTestProjectForAllNavViewPagesComparison(app1Details, app2Details, pageExclusions);
 
                 var (testSuccess, testOutput) = RunWinAppDriverTests(testProjectDetails);
 
@@ -549,7 +753,7 @@ namespace Microsoft.Templates.Test
             return (result, outputText);
         }
 
-        private (string projectFolder, string imagesFolder) SetUpTestProjectForInitialScreenshotComparison(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null)
+        private (string projectFolder, string imagesFolder) SetUpTestProjectForInitialScreenshotComparison(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null, int noClickCount = 0, bool longPause = false)
         {
             var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
             var projectFolder = Path.Combine(rootFolder, "TestProject");
@@ -583,7 +787,13 @@ namespace Microsoft.Templates.Test
                 .Replace("***APP-PFN-2-GOES-HERE***", $"{app2Details.PackageFamilyName}!App")
                 .Replace("***APP-NAME-1-GOES-HERE***", app1Details.ProjectName)
                 .Replace("***APP-NAME-2-GOES-HERE***", app2Details.ProjectName)
-                .Replace("***FOLDER-GOES-HERE***", imagesFolder);
+                .Replace("***FOLDER-GOES-HERE***", imagesFolder)
+                .Replace("public const int NoClickCount = 0;", $"public const int NoClickCount = {noClickCount};");
+
+            if (longPause)
+            {
+                newAppInfoFileContents = newAppInfoFileContents.Replace("public const bool LongPauseAfterLaunch = false;", "public const bool LongPauseAfterLaunch = true;");
+            }
 
             if (!string.IsNullOrWhiteSpace(areasOfImageToExclude))
             {
@@ -601,7 +811,7 @@ namespace Microsoft.Templates.Test
             return (projectFolder, imagesFolder);
         }
 
-        private (string projectFolder, string imagesFolder) SetUpTestProjectForAllNavViewPagesComparison(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, string areasOfImageToExclude = null)
+        private (string projectFolder, string imagesFolder) SetUpTestProjectForAllNavViewPagesComparison(VisualComparisonTestDetails app1Details, VisualComparisonTestDetails app2Details, Dictionary<string, string> pageAreasToExclude = null)
         {
             var rootFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}UIT\\VIS\\{DateTime.Now:dd_HHmmss}\\";
             var projectFolder = Path.Combine(rootFolder, "TestProject");
@@ -637,9 +847,19 @@ namespace Microsoft.Templates.Test
                 .Replace("***APP-NAME-2-GOES-HERE***", app2Details.ProjectName)
                 .Replace("***FOLDER-GOES-HERE***", imagesFolder);
 
-            if (!string.IsNullOrWhiteSpace(areasOfImageToExclude))
+            if (pageAreasToExclude != null)
             {
-                newAppInfoFileContents = newAppInfoFileContents.Replace("new ImageComparer.ExclusionArea[0]", areasOfImageToExclude);
+                var replacement = string.Empty;
+
+                foreach (var exclusion in pageAreasToExclude)
+                {
+                    replacement += $" {{ \"{exclusion.Key}\", {exclusion.Value} }},{Environment.NewLine}";
+                }
+
+                newAppInfoFileContents =
+                    newAppInfoFileContents.Replace(
+                        "PageSpecificExclusions = new Dictionary<string, ImageComparer.ExclusionArea>();",
+                        $"PageSpecificExclusions = new Dictionary<string, ImageComparer.ExclusionArea>{{{replacement}}};");
             }
 
             File.WriteAllText(appInfoFileName, newAppInfoFileContents, Encoding.UTF8);
@@ -674,7 +894,7 @@ ForEach ($i in $dump)
             ExecutePowerShellScript($"Remove-AppxPackage -Package {packageFullName}");
         }
 
-        private async Task<VisualComparisonTestDetails> SetUpProjectForUiTestComparisonAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
+        private async Task<VisualComparisonTestDetails> SetUpProjectForUiTestComparisonAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false, bool createForScreenshots = false)
         {
             var result = new VisualComparisonTestDetails();
 
@@ -682,7 +902,24 @@ ForEach ($i in $dump)
 
             result.ProjectName = baseSetup.ProjectName;
 
-            ChangeProjectToNotUseDotNetNativeToolchain(baseSetup, language); // So building release version is fast
+            if (createForScreenshots)
+            {
+                var pages = genIdentities.ToArray();
+
+                if (pages.Count() == 1)
+                {
+                    var page = pages.First();
+
+                    if (page == "wts.Page.MediaPlayer")
+                    {
+                        // Change auto-play to false so not trying to compare images of screen-shot with video playing
+                        ReplaceInFiles("AutoPlay=\"True\"", "AutoPlay=\"False\"", baseSetup.ProjectPath, "*.xaml");
+                    }
+                }
+            }
+
+            // So building release version is fast
+            ChangeProjectToNotUseDotNetNativeToolchain(baseSetup, language);
 
             ////Build solution in release mode  // Building in release mode creates the APPX and certificate files we need
             var solutionFile = $"{baseSetup.ProjectPath}\\{baseSetup.ProjectName}.sln";
@@ -716,6 +953,17 @@ Write-Output $packageFullName";
             result.PackageFullName = response[1].ToString();
 
             return result;
+        }
+
+        private void ReplaceInFiles(string find, string replace, string rootDirectory, string fileFilter)
+        {
+            foreach (var file in Directory.GetFiles(rootDirectory, fileFilter, SearchOption.AllDirectories))
+            {
+                // open, replace, overwrite
+                var contents = File.ReadAllText(file);
+                var newContent = contents.Replace(find, replace);
+                File.WriteAllText(file, newContent);
+            }
         }
 
         private string InstallCertificate((string SolutionPath, string ProjectName) baseSetup)

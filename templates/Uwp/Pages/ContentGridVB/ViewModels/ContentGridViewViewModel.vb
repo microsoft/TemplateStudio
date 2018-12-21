@@ -17,12 +17,11 @@ Namespace ViewModels
         Public Sub New()
         End Sub
 
-        Public ReadOnly Property ItemSelectedCommand As ICommand = New RelayCommand(Of ItemClickEventArgs)(Sub(args) OnsItemSelected(args))
+        Public ReadOnly Property ItemClickCommand  As ICommand = New RelayCommand(Of SampleOrder)(Sub(order) OnItemClick(order))
 
-        Private Sub OnsItemSelected(args As ItemClickEventArgs)
-            Dim item = TryCast(args.ClickedItem, SampleOrder)
-            If item IsNot Nothing Then
-                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(item)
+        Private Sub OnItemClick(clickedItem As SampleOrder)
+            If clickedItem IsNot Nothing Then
+                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(clickedItem)
             End If
         End Sub
     End Class

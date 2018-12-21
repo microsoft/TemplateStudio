@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     mc:Ignorable="d">
-
+        
     <Grid
         x:Name="ContentArea"
         Margin="{StaticResource MediumLeftRightMargin}"
@@ -53,7 +53,7 @@
 
                 <TextBlock
                     x:Name="title"
-                    RelativePanel.AlignTopWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True"                    
                     RelativePanel.RightOf="itemHero"
                     Text="{x:Bind ViewModel.Item.Company, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}"
@@ -82,7 +82,7 @@
                         <TextBlock Text="{x:Bind ViewModel.Item.OrderTotal}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
                 </StackPanel>
-
+                
             </RelativePanel>
 
             <TextBlock Text="Note 1" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />
