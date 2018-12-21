@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
@@ -26,11 +27,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         internal override void ExecuteInternal()
         {
-            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
             var sourceFile = Regex.Replace(Config, PostactionRegex, ".");
             var mergeType = GetMergeType();
-            var relFilePath = sourceFile.Replace(parentGenerationOutputPath + Path.DirectorySeparatorChar, string.Empty);
+            var relFilePath = sourceFile.GetPathRelativeToGenerationParentPath();
 
             if (GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {

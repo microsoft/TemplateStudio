@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
@@ -36,33 +37,17 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private void GetFileFromProject()
         {
-            var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
-            var destinationParentPath = Directory.GetParent(GenContext.Current.DestinationPath).FullName;
-
-            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config.Replace(parentGenerationOutputPath, destinationParentPath)));
-            var relFilePath = GetRelativePath(filePath, destinationParentPath + Path.DirectorySeparatorChar);
+            var filePath = GetMergeFileFromDirectory(Path.GetDirectoryName(Config.GetDestinationPath()));
+            var relFilePath = filePath.GetPathRelativeToDestinationParentPath();
 
             if (!GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
             {
                 GenContext.Current.MergeFilesFromProject.Add(relFilePath, new List<MergeInfo>());
                 if (File.Exists(filePath))
                 {
-                    var destFile = filePath.Replace(destinationParentPath, parentGenerationOutputPath);
+                    var destFile = filePath.GetGenerationPath();
                     File.Copy(filePath, destFile, true);
                 }
-            }
-        }
-
-        private string GetRelativePath(string filePath, string rootPath)
-        {
-            var index = filePath.IndexOf(rootPath, StringComparison.OrdinalIgnoreCase);
-            if (index == 0)
-            {
-                return filePath.Remove(0, rootPath.Length);
-            }
-            else
-            {
-                return filePath;
             }
         }
 

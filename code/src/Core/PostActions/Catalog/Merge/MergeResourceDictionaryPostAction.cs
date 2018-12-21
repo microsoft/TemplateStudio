@@ -2,15 +2,14 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Resources;
 
@@ -32,12 +31,13 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         internal override void ExecuteInternal()
         {
-            string originalFilePath = GetFilePath();
+            string originalFilePath = Regex.Replace(Config.FilePath, MergeConfiguration.PostactionRegex, ".");
             if (!File.Exists(originalFilePath))
             {
+                // If original file does not exist, rename the postaction file, add it to projectitems and app.xamls mergedictionary
                 File.Copy(Config.FilePath, originalFilePath);
-                GenContext.Current.ProjectInfo.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.GenerationOutputPath, GenContext.Current.DestinationPath));
-                AddToMergeDictionary(originalFilePath);
+                GenContext.Current.ProjectInfo.ProjectItems.Add(originalFilePath.GetDestinationPath());
+                AddToAppMergeDictionary(originalFilePath);
             }
             else
             {
@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     var sourceNode = sourceRoot.Elements().FirstOrDefault(e => GetKey(e) == GetKey(node));
                     if (sourceNode == null)
                     {
-                        AddNodeToSource(sourceRoot, node);
+                        AddNode(sourceRoot, node);
                     }
                     else
                     {
@@ -62,8 +62,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                             }
                             else
                             {
-                                AddFailedMergePostActions(originalFilePath, MergeFailureType.KeyAlreadyDefined, errorMessage);
-                                File.Delete(Config.FilePath);
+                                var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
+                                HandleFailedMergePostActions(relativeFilePath, MergeFailureType.KeyAlreadyDefined, MergeConfiguration.Suffix, errorMessage);
                                 return;
                             }
                         }
@@ -81,15 +81,16 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             File.Delete(Config.FilePath);
         }
 
-        private void AddToMergeDictionary(string originalFilePath)
+        private void AddToAppMergeDictionary(string originalFilePath)
         {
-            var relPath = originalFilePath.Replace(GenContext.Current.GenerationOutputPath, string.Empty).Replace(@"\", @"/");
+            // Write postaction to include this file to mergedictionary
+            var relPath = originalFilePath.GetPathRelativeToGenerationPath().Replace(@"\", @"/");
             var postactionContent = MergeDictionaryPattern.Replace("{filePath}", relPath);
             var mergeDictionaryName = Path.GetFileNameWithoutExtension(originalFilePath);
             File.WriteAllText(GenContext.Current.GenerationOutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);
         }
 
-        private static void AddNodeToSource(XElement sourceRoot, XElement node)
+        private static void AddNode(XElement sourceRoot, XElement node)
         {
             if (node.PreviousNode != null && node.PreviousNode.NodeType == XmlNodeType.Comment)
             {
@@ -108,11 +109,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private IEnumerable<XElement> GetNodesToMerge(XElement rootNode)
         {
             return rootNode.Descendants().Where(e => e.Attributes().Any(a => a.Name.LocalName == "Key"));
-        }
-
-        private string GetFilePath()
-        {
-            return Regex.Replace(Config.FilePath, MergeConfiguration.PostactionRegex, ".");
         }
     }
 }

@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Resources;
@@ -148,11 +149,12 @@ namespace Microsoft.Templates.Core.Gen
 
             foreach (var file in files)
             {
-                var destFilePath = file.Replace(parentGenerationOutputPath, parentDestinationPath);
-                var fileName = file.Replace(parentGenerationOutputPath + Path.DirectorySeparatorChar, string.Empty);
+                var destFilePath = file.GetDestinationPath();
+                var fileName = file.GetPathRelativeToGenerationParentPath();
 
                 var projectFileName = Path.GetFullPath(Path.Combine(parentDestinationPath, fileName));
 
+                // TODO: is projectFilename and destfilename the same?
                 if (File.Exists(projectFileName))
                 {
                     if (GenContext.Current.MergeFilesFromProject.ContainsKey(fileName))
