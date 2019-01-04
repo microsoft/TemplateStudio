@@ -55,7 +55,7 @@ namespace TemplateValidator
             {
                 var fileContents = File.ReadAllText(configFilePath);
 
-                // The analyzer compares the JSON with the POCO type. It identifies discrepencies in types, missing or extra properties, etc.
+                // The analyzer compares the JSON with the POCO type. It identifies discrepancies in types, missing or extra properties, etc.
                 var analyzerResults = await Analyzer.AnalyzeJsonAsync(fileContents, typeof(ValidationTemplateInfo));
 
                 // The "other" checks are specific to what the wizard does with the config file and expectations of the content
