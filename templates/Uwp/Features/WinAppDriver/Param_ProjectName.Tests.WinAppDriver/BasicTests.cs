@@ -8,30 +8,31 @@ using OpenQA.Selenium.Remote;
 namespace Param_ProjectName.Tests.WinAppDriver
 {
     [TestClass]
-    public class UnitTest1
+    public class BasicTests
     {
         // TODO WTS: install WinAppDriver and start it before running tests: https://github.com/Microsoft/WinAppDriver
         protected const string WindowsApplicationDriverUrl = "http://127.0.0.1:4723";
 
         // TODO WTS: set the app launch ID
         // The part before "!App" will be in Package.Appxmanifest > Packaging > Package Family Name
+        // The app must also be installed (or launched for debugging) for WinAppDriver to be able to launch it.
         protected const string AppToLaunch = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX_XXXXXXXXXXXXX!App";
 
         protected static WindowsDriver<WindowsElement> AppSession;
 
-        private static string ScreenshotFolder;
+        private static string _screenshotFolder;
 
         [ClassInitialize]
         public static void Setup(TestContext context)
         {
             // TODO WTS: change the location where screenshots are saved
             // Create separate folders for saving the results of each test run
-            ScreenshotFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\Temp\\Screenshots\\{DateTime.Now.ToString("dd_HHmm")}\\";
+            _screenshotFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\Temp\\Screenshots\\{DateTime.Now.ToString("dd_HHmm")}\\";
 
             // Make sure the folder exists or saving screenshots will fail
-            if (!Directory.Exists(ScreenshotFolder))
+            if (!Directory.Exists(_screenshotFolder))
             {
-                Directory.CreateDirectory(ScreenshotFolder);
+                Directory.CreateDirectory(_screenshotFolder);
             }
         }
 
@@ -45,7 +46,7 @@ namespace Param_ProjectName.Tests.WinAppDriver
                 appCapabilities.SetCapability("deviceName", "WindowsPC");
                 AppSession = new WindowsDriver<WindowsElement>(new Uri(WindowsApplicationDriverUrl), appCapabilities);
 
-                Assert.IsNotNull(AppSession);
+                Assert.IsNotNull(AppSession, "Unable to launch app.");
 
                 AppSession.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(4));
 
@@ -58,7 +59,7 @@ namespace Param_ProjectName.Tests.WinAppDriver
         [TestMethod]
         public void TakeScreenshotOfLaunchPage()
         {
-            var screenshotFileName = Path.Combine(ScreenshotFolder, $"{Path.GetRandomFileName()}.png");
+            var screenshotFileName = Path.Combine(_screenshotFolder, $"{Path.GetRandomFileName()}.png");
 
             var screenshot = AppSession.GetScreenshot();
             screenshot.SaveAsFile(screenshotFileName, ImageFormat.Png);
