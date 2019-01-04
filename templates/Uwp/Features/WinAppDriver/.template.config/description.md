@@ -2,4 +2,4 @@
 
 Including this feature adds a new project to the solution that is set up for hosting UI tests of your UWP app that are powered by WinAppDriver.
 
-Learn more about the Windows Application Driver and creating tests with it at https://github.com/Microsoft/WinAppDriver
+[Learn more about the Windows Application Driver and creating tests with it.](https://github.com/Microsoft/WinAppDriver)
