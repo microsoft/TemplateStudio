@@ -104,7 +104,7 @@ namespace Microsoft.Templates.Fakes
 
                 solutionFile.AddProjectToSolution(_platform, msbuildProj.Name, msbuildProj.Guid, projectRelativeToSolutionPath, IsCpsProject(project));
 
-                if (!IsCpsProject(project))
+                if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
                 {
                     AddItems(project, filesByProject[project]);
                 }
