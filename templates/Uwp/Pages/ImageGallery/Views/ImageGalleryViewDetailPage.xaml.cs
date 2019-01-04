@@ -1,11 +1,11 @@
 ﻿using System;
+using Param_ItemNamespace.Core.Models;
+using Param_ItemNamespace.Services;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using Param_ItemNamespace.Models;
-using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.Views
 {
@@ -14,14 +14,12 @@ namespace Param_ItemNamespace.Views
         public ImageGalleryViewDetailPage()
         {
             InitializeComponent();
-            ViewModel.SetImage(previewImage);
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            await ViewModel.InitializeAsync(e.Parameter as SampleImage, e.NavigationMode);
-            showFlipView.Begin();
+            ViewModel.Initialize(e.Parameter as string, e.NavigationMode);
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -29,14 +27,11 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatingFrom(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                previewImage.Visibility = Visibility.Visible;
-                ViewModel.SetAnimation();
+                NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.SelectedImage);
             }
         }
 
-        private void OnShowFlipViewCompleted(object sender, object e) => flipView.Focus(FocusState.Programmatic);
-
-        private void OnKeyDown(object sender, KeyRoutedEventArgs e)
+        private void OnPageKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Escape && NavigationService.CanGoBack)
             {

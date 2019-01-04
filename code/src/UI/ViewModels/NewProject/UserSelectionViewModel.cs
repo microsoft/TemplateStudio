@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Resources;
@@ -22,7 +23,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     {
         Layout,
         UserSelection,
-        Dependency
+        Dependency,
     }
 
     public class UserSelectionViewModel : Observable
@@ -49,11 +50,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public ICommand EditPageCommand => _editPageCommand ?? (_editPageCommand = new RelayCommand<SavedTemplateViewModel>((page) => page.IsTextSelected = true, (page) => page != null));
 
-        public RelayCommand<SavedTemplateViewModel> DeletePageCommand => _deletePageCommand ?? (_deletePageCommand = new RelayCommand<SavedTemplateViewModel>(OnDeletePage, CanDeletePage));
+        public RelayCommand<SavedTemplateViewModel> DeletePageCommand => _deletePageCommand ?? (_deletePageCommand = new RelayCommand<SavedTemplateViewModel>((page) => OnDeletePageAsync(page).FireAndForget(), CanDeletePage));
 
         public ICommand EditFeatureCommand => _editFeatureCommand ?? (_editFeatureCommand = new RelayCommand<SavedTemplateViewModel>((feature) => feature.IsTextSelected = true, (feature) => feature != null));
 
-        public ICommand DeleteFeatureCommand => _deleteFeatureCommand ?? (_deleteFeatureCommand = new RelayCommand<SavedTemplateViewModel>((feature) => OnDeleteFeatureAsync(feature).FireAndForget(), (feature) => feature != null && !feature.IsHome));
+        public ICommand DeleteFeatureCommand => _deleteFeatureCommand ?? (_deleteFeatureCommand = new RelayCommand<SavedTemplateViewModel>((feature) => OnDeleteFeatureAsync(feature).FireAndForget()));
 
         public ICommand MovePageUpCommand => _movePageUpCommand ?? (_movePageUpCommand = new RelayCommand(() => OrderingService.MoveUp(SelectedPage)));
 
@@ -102,12 +103,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 }
             }
 
-            UpdateHomePage();
             _isInitialized = true;
         }
 
-        public IEnumerable<string> GetNames() => Pages.Select(t => t.Name)
-                                                    .Concat(Features.Select(f => f.Name));
+        public IEnumerable<string> GetNames()
+            => Pages.Select(t => t.Name).Concat(Features.Select(f => f.Name));
+
+        public IEnumerable<string> GetPageNames()
+            => Pages.Where(p => p.ItemNameEditable).Select(t => t.Name);
 
         public void Add(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null)
         {
@@ -131,11 +134,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 if (!string.IsNullOrEmpty(layoutName))
                 {
-                    savedTemplate.Name = layoutName;
+                    savedTemplate.SetName(layoutName, true);
                 }
                 else
                 {
-                    savedTemplate.Name = ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, template.ItemNameEditable);
+                    savedTemplate.SetName(ValidationService.InferTemplateName(template.Name, template.ItemNameEditable, template.ItemNameEditable), true);
                     if (savedTemplate.ItemNameEditable)
                     {
                         focus = true;
@@ -323,19 +326,15 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             HasItemsAddedByUser = false;
         }
 
-        private bool CanDeletePage(SavedTemplateViewModel page) => page != null && !page.IsHome;
-
-        private void OnDeletePage(SavedTemplateViewModel page)
+        private bool CanDeletePage(SavedTemplateViewModel page)
         {
-            OnDeletePageAsync(page).FireAndForget();
-        }
-
-        public void UpdateHomePage()
-        {
-            foreach (var page in Pages)
+            if (page.GenGroup == 0)
             {
-                page.IsHome = Pages.IndexOf(page) == 0;
+                // The page can be removed if it isn't a Settings Page and there are more than one pages added.
+                return Pages.Count(p => p.GenGroup == 0) > 1;
             }
+
+            return true;
         }
 
         public async Task OnDeletePageAsync(SavedTemplateViewModel page)

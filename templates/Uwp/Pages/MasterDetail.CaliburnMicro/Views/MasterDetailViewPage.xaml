@@ -17,8 +17,26 @@
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
-            <TextBlock x:Uid="MasterDetailView_NoSelection" Style="{StaticResource ListNoSelectionTextStyle}" />
+            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+                <TextBlock
+                    x:Uid="MasterDetailView_NoSelection"
+                    Style="{StaticResource SubtitleTextBlockStyle}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"/>
+            </Grid>
         </DataTemplate>
+
+        <DataTemplate x:Key="MasterHeaderTemplate">
+            <Grid Height="40">
+                <TextBlock
+                    x:Name="headerText"
+                    Text="{Binding}"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource ListTitleStyle}" />
+            </Grid>
+        </DataTemplate>
+
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
@@ -30,6 +48,9 @@
             DetailsTemplate="{StaticResource DetailsTemplate}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             Loaded="MasterDetailsViewControl_Loaded"
-            BorderBrush="Transparent" />
+            BorderBrush="Transparent"
+            MasterHeader="MasterDetail"
+            Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+            MasterHeaderTemplate="{StaticResource MasterHeaderTemplate}"/>
     </Grid>
 </Page>

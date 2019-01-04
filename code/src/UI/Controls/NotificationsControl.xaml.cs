@@ -33,40 +33,32 @@ namespace Microsoft.Templates.UI.Controls
         }
 
         public static async Task AddOrUpdateNotificationAsync(Notification notification)
-        {
-            await SafeInvokeAsync(async () =>
-            {
-                await _instance.InternalAddOrUpdateNotificationAsync(notification);
-            });
-        }
+            => await SafeInvokeAsync(async ()
+                => await _instance.InternalAddOrUpdateNotificationAsync(notification));
 
-        public static void UnsuscribeEventHandlers() => SafeInvoke(() => _instance.InternalUnsuscribeEventHandlers());
+        public static void UnsubscribeEventHandlers()
+            => SafeInvoke(()
+                => _instance.InternalUnsubscribeEventHandlers());
 
         public static async Task AddNotificationAsync(Notification notification)
-        {
-            await SafeInvokeAsync(async () =>
-            {
-                await _instance.InternalAddNotificationAsync(notification);
-            });
-        }
+            => await SafeInvokeAsync(async ()
+                => await _instance.InternalAddNotificationAsync(notification));
 
-        public static void RemoveNotification() => SafeInvoke(() => _instance.InternalRemoveNotification());
+        public static void RemoveNotification()
+            => SafeInvoke(()
+                => _instance.InternalRemoveNotification());
+
+        public static async Task CleanCategoryNotificationsAsync(Category category)
+            => await SafeInvokeAsync(async ()
+                => await _instance.InternalCleanCategoryNotificationsAsync(category));
 
         public static async Task CleanErrorNotificationsAsync(ErrorCategory replacementCategory)
-        {
-            await SafeInvokeAsync(async () =>
-            {
-                await _instance.InternalCleanErrorNotificationsAsync(replacementCategory);
-            });
-        }
+            => await SafeInvokeAsync(async ()
+                => await _instance.InternalCleanErrorNotificationsAsync(replacementCategory));
 
         public static async Task CloseAsync()
-        {
-            await SafeInvokeAsync(async () =>
-            {
-                await _instance.InternalCloseAsync();
-            });
-        }
+            => await SafeInvokeAsync(async ()
+                => await _instance.InternalCloseAsync());
 
         private static async Task SafeInvokeAsync(Func<Task> func)
         {
@@ -116,11 +108,11 @@ namespace Microsoft.Templates.UI.Controls
             }
         }
 
-        private void InternalUnsuscribeEventHandlers()
+        private void InternalUnsubscribeEventHandlers()
         {
             foreach (var notification in _notifications)
             {
-                notification.UnsuscribeEventHandlers();
+                notification.UnsubscribeEventHandlers();
             }
         }
 
@@ -166,6 +158,15 @@ namespace Microsoft.Templates.UI.Controls
         {
             RemoveErrorCategoryNotifications(replacementCategory);
             if (Notification?.ErrorCategory == replacementCategory)
+            {
+                await InternalCloseAsync();
+            }
+        }
+
+        private async Task InternalCleanCategoryNotificationsAsync(Category category)
+        {
+            RemoveCategoryNotifications(category);
+            if (Notification?.Category == category)
             {
                 await InternalCloseAsync();
             }

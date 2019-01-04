@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "DataGrid",
+  "description": "Страница, на которой отображается простая сетка данных.",
+  "identity": "wts.Page.DataGrid"
+}

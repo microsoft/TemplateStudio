@@ -1,0 +1,4 @@
+﻿Questa pagina contiene una tela e una barra degli strumenti relative all'input penna che consentono di disegnare con Windows Ink.
+Questa pagina utilizza InkAnalyzer e consente di selezionare i nodi per trasformarli in forme e testi. Puoi anche spostare i nodi o utilizzare la selezione Lazo per evidenziare una parte di un nodo e spostare solo quei tratti. Questa pagina supporta anche la fase di rollback/rollforward di tutte le azioni.
+ 
+Per maggiori informazioni sulla piattaforma Windows Ink, consulta [docs.microsoft.com](https://docs.microsoft.com//windows/uwp/design/input/pen-and-stylus-interactions)

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 using wts.DefaultProject.Activation;
 
@@ -39,15 +38,6 @@ namespace wts.DefaultProject.Services
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
                     Window.Current.Content = _shell?.Value ?? new Frame();
-                    NavigationService.NavigationFailed += (sender, e) =>
-                    {
-                        throw e.Exception;
-                    };
-                    NavigationService.Navigated += Frame_Navigated;
-                    if (SystemNavigationManager.GetForCurrentView() != null)
-                    {
-                        SystemNavigationManager.GetForCurrentView().BackRequested += ActivationService_BackRequested;
-                    }
                 }
             }
 
@@ -93,21 +83,6 @@ namespace wts.DefaultProject.Services
         private bool IsInteractive(object args)
         {
             return args is IActivatedEventArgs;
-        }
-
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ?
-                AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
-        }
-
-        private void ActivationService_BackRequested(object sender, BackRequestedEventArgs e)
-        {
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-                e.Handled = true;
-            }
         }
     }
 }

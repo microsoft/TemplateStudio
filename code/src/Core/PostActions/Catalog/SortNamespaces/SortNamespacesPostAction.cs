@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Templates.Core.Gen;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
 {
@@ -18,7 +20,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.SortNamespaces
         internal override void ExecuteInternal()
         {
             var classFiles = Directory
-                .EnumerateFiles(Gen.GenContext.Current.OutputPath, FilesToSearch, SearchOption.AllDirectories)
+                .EnumerateFiles(Path.GetDirectoryName(GenContext.Current.GenerationOutputPath), FilesToSearch, SearchOption.AllDirectories)
                 .ToList();
 
             foreach (var classFile in classFiles)

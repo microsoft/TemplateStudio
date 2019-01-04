@@ -10,23 +10,12 @@
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == Prism & $projectType == SplitView & wts.type == project"
+    "wts.compositionOrder": "2",
+    "wts.compositionFilter": "$framework == Prism & $projectType == SplitView & wts.type == project"    
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Helpers\\NavHelper.cs"
-    },
-    {
-      "path": ".\\ViewModels\\ShellViewModel.cs"
-    },
-    {
-      "path": ".\\Views\\ShellPage.xaml"
-    },
-    {
-      "path": ".\\Views\\ShellPage.xaml.cs"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

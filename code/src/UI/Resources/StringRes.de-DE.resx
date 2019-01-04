@@ -294,12 +294,12 @@
     <comment>New project: Navigation step two</comment>
   </data>
   <data name="NewProjectTitle" xml:space="preserve">
-    <value>Neue Universal Windows Platform-App</value>
+    <value>Neue UWP-App (Universelle Windows-Plattform)</value>
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>Sie können **{0}** nicht entfernen, da **{1}** hiervon abhängig ist.</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+    <value>Sie können **{0}** nicht entfernen, da diese Vorlagen davon abhängig sind: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>Fehler beim Aktualisieren von Vorlagen. Weitere Details finden Sie im Ausgabefenster.</value>
@@ -308,10 +308,6 @@
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
     <value>Es sind neue Vorlagen verfügbar (v{0}). Download wird ausgeführt... {1} %</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
-  </data>
-  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>Vorlagen werden kopiert (v{0})... {1}%</value>
-    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>Fehler beim Herunterladen der Vorlagen (v{0}). Der Vorgang wird zu einem späteren Zeitpunkt wiederholt.</value>
@@ -481,22 +477,6 @@
     <value>Die Seite {0} wurde erfolgreich hinzugefügt.</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Ausnahme für die Nachverfolgungstelemetrie während der Generierung.</value>
-    <comment>Exception tracking telemetry during generation.</comment>
-  </data>
-  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Es können keine Projektobjekte hinzugefügt werden. Stellen Sie sicher, dass Sie den erforderlichen SDK besitzen.</value>
-    <comment>Error message for unable add items to project</comment>
-  </data>
-  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Das Projekt kann der Lösung nicht hinzugefügt werden. Stellen Sie sicher, dass Sie den erwarteten SDK installiert haben.</value>
-    <comment>Error message for unable add project to solution</comment>
-  </data>
-  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>Das Projekt kann nicht aktualisiert werden. Versuchen Sie, es manuell zu aktualisieren.</value>
-    <comment>Error message for unable to refresh project</comment>
-  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Beim Ausblenden der Lösungsstruktur ist ein Fehler aufgetreten. Beispiel:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
@@ -512,50 +492,6 @@
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>Fehler beim Anzeigen der Statusmeldung. Beispiel:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>Es wurde eine Ringabhängigkeit für Vorlage {0} mit {1} entdeckt.</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>Die Abhängigkeitsvorlage {0} für die Benutzerauswahl wurde nicht gefunden.</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Ungültiges Abhängigkeitsobjekt {0}. Abhängigkeiten müssen als „multipleInstance = false“ konfiguriert werden.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Die Abhängigkeitsvorlage {0} für Framework framework {1} und Plattform {2} wurde nicht gefunden.</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>Ungültiges Abhängigkeitsobjekt {0}. Abhängigkeitsobjekte müssen den Typ „Seite“ oder „Feature“ besitzen.</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>Vorlage „{0}“, Name: „{1}“, Grund: '{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Die Layoutvorlage {0} für Framework framework {1} und Plattform {2} wurde nicht gefunden.</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>Ungültiges Layoutobjekt {0}. Layoutobjekte müssen den Typ „Seite“ oder „Feature“ besitzen.</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>Feature „{0}“ wird erstellt...</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>Seite „{0}“ wird erstellt...</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>Projekt „{0}“ wird erstellt...</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>Anwendung wird gestartet</value>
@@ -653,15 +589,16 @@
     <value>EINGABETASTE drücken, um {0} hinzuzufügen</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
-  <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
-    <value>Die HamburgerMenu-Steuerung ist veraltet und Windows Template Studio unterstützt jetzt NavigationView. </value>
-    <comment>Has navigation view validation error message</comment>
+  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
+    <value>Die HamburgerMenu-Steuerung ist veraltet, und Windows Template Studio unterstützt jetzt NavigationView. </value>
+    <comment>Has hamburger menu validation error message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>Windows Template Studio nutzt nun NavigationView aus der Windows-UI-Bibliothek.</value>
+    <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Zusammensetzungstool</value>
-  </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Plattform kann nicht aufgelöst werden.</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>Plattform auswählen</value>
@@ -675,13 +612,21 @@
     <value>Kein Inhalt verfügbar.</value>
     <comment>Message in no content panel</comment>
   </data>
-  <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
     <value>{0}projectTypes/updatetonavigationview.md</value>
-    <comment>Has navigation view validation link documentation</comment>
+    <comment>Has hamburger menu validation link documentation</comment>
   </data>
-  <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>Siehe die zu aktualisierende Dokumentation.</value>
-    <comment>Has navigation view validation link documentation message</comment>
+    <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
+    <value>Siehe die zu aktualisierende Dokumentation.</value>
+    <comment>Has old navigation view validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
     <value>Neueste Änderungen</value>
@@ -692,7 +637,71 @@
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Unable to set default solution configuration</value>
+    <value>Die Standardlösungskonfiguration kann nicht festgelegt werden.</value>
     <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Der Name darf nicht auf "Page" enden, da dieses Element automatisch hinzugefügt wird. [Weitere Informationen zur Benennung.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Beachten Sie, dass "Page" am Ende des angegebenen Namens hinzugefügt wird. [Weitere Informationen zur Benennung.]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
+    <value>Die MVVMLight ViewModelLocator-Implementierung wurde angepasst und unterstützt nun MultiView in MVVMLight. </value>
+    <comment>Has old MvvmLight Locator error message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+    <value>Siehe die zu aktualisierende Dokumentation.</value>
+    <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has pivot validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -Id {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
+Please verify the following list of packages needed by your project's code and manually add the missing packages: 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>Adding {0} to project ...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>Adding NuGet package {0} to project ...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>Adding project {0} to solution...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Unable to add files and projects.</value>
+  </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Unable to find project {0}</value>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Adding references between projects...</value>
   </data>
 </root>

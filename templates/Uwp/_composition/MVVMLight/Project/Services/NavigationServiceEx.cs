@@ -46,7 +46,16 @@ namespace Param_RootNamespace.Services
 
         public bool CanGoForward => Frame.CanGoForward;
 
-        public void GoBack() => Frame.GoBack();
+        public bool GoBack()
+        {
+            if (CanGoBack)
+            {
+                Frame.GoBack();
+                return true;
+            }
+
+            return false;
+        }
 
         public void GoForward() => Frame.GoForward();
 

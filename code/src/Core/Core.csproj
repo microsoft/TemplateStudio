@@ -47,6 +47,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>..\..\WtsRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -96,8 +97,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Threading, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.23\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.83\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Validation, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Validation.15.3.15\lib\net45\Microsoft.VisualStudio.Validation.dll</HintPath>
@@ -108,10 +108,6 @@
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -124,15 +120,6 @@
     </Reference>
     <Reference Include="System.IO.Packaging, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.IO.Packaging.4.3.0\lib\net46\System.IO.Packaging.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reflection.Metadata, Version=1.4.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Reflection.Metadata.1.4.2\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -188,12 +175,26 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Extensions\VersionExtensions.cs" />
+    <Compile Include="Gen\GenComposer.cs" />
+    <Compile Include="Gen\GenController.cs" />
+    <Compile Include="Gen\GenException.cs" />
+    <Compile Include="Gen\NewItemGenController.cs" />
+    <Compile Include="Gen\NewItemGenerationFileInfo.cs" />
+    <Compile Include="Gen\NewItemGenerationResult.cs" />
+    <Compile Include="Gen\NewProjectGenController.cs" />
     <Compile Include="Gen\GenInfo.cs" />
     <Compile Include="Gen\GenParams.cs" />
     <Compile Include="Gen\GenShell.cs" />
     <Compile Include="Gen\GenContext.cs" />
     <Compile Include="Gen\GenToolBox.cs" />
     <Compile Include="Gen\IContextProvider.cs" />
+    <Compile Include="Gen\ProjectReference.cs" />
+    <Compile Include="Gen\SdkReference.cs" />
+    <Compile Include="Gen\ProjectInfo.cs" />
+    <Compile Include="Gen\NugetReference.cs" />
+    <Compile Include="Gen\ProjectConfigInfo.cs" />
+    <Compile Include="Gen\UserSelection.cs" />
+    <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Locations\JunctionNativeMethods.cs" />
     <Compile Include="Locations\LocalTemplatesSource.cs" />
     <Compile Include="Locations\ProgressEventArgs.cs" />
@@ -205,8 +206,12 @@
     <Compile Include="Locations\TemplatesSource.cs" />
     <Compile Include="MetadataType.cs" />
     <Compile Include="Naming\DefaultNamesValidator.cs" />
+    <Compile Include="Naming\PageSuffixValidator.cs" />
     <Compile Include="Naming\ReservedNamesValidator.cs" />
     <Compile Include="Packaging\TemplatePackage.cs" />
+    <Compile Include="PostActions\Catalog\AddNugetReferenceToContextPostaction.cs" />
+    <Compile Include="PostActions\Catalog\AddSdkReferencesToContextPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectReferencesToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeMode.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeResourceDictionaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\PostactionFormatter.cs" />
@@ -234,7 +239,7 @@
     <Compile Include="PostActions\Catalog\SortNamespaces\SortUsingsPostAction.cs" />
     <Compile Include="PostActions\Catalog\SortNamespaces\UsingComparer.cs" />
     <Compile Include="PostActions\Catalog\Merge\SearchAndReplacePostAction.cs" />
-    <Compile Include="PostActions\Catalog\AddContextItemsToProjectPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddContextItemsToSolutionAndProjectPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergeFailureType.cs" />
     <Compile Include="PostActions\Catalog\NewItemGeneration\CreateSummaryPostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\GenerateMergeInfoPostAction.cs" />
@@ -316,6 +321,7 @@
     <Compile Include="PostActions\NewItemPostActionFactory.cs" />
     <Compile Include="PostActions\NewProjectPostActionFactory.cs" />
     <Compile Include="Gen\FileRenameParameterReplacements.cs" />
+    <Compile Include="Services\ProjectMetadataService.cs" />
     <Compile Include="Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="Locations\TemplatesSynchronization.cs" />
     <Compile Include="Packaging\SignCertNotFoundException.cs" />
@@ -323,7 +329,7 @@
     <Compile Include="Naming\Naming.cs" />
     <Compile Include="Templates\LayoutItem.cs" />
     <Compile Include="PostActions\Catalog\AddItemToContextPostAction.cs" />
-    <Compile Include="PostActions\Catalog\AddProjectToSolutionPostAction.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectToContextPostAction.cs" />
     <Compile Include="PostActions\Catalog\GenerateTestCertificatePostAction.cs" />
     <Compile Include="PostActions\Catalog\Merge\IEnumerableExtensions.cs" />
     <Compile Include="PostActions\Catalog\Merge\MergePostAction.cs" />
@@ -377,8 +383,8 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.0.240\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.0-beta009\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.0-beta009\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\StringRes.cs-CZ.resx">
@@ -391,6 +397,7 @@
       <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StringRes.en-US.resx" />
     <EmbeddedResource Include="Resources\StringRes.es-ES.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>

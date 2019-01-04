@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
-            string currentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder, source.Id);
+            string currentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder, source.Id, source.Platform, source.Language);
             _content = new TemplatesContent(WorkingFolder, source.Id, wizardVersion, source, currentContentFolder);
 
             CurrentWizardVersion = wizardVersion;
@@ -56,7 +56,6 @@ namespace Microsoft.Templates.Core.Locations
                         if (!_content.Exists() || force || CurrentContent.Version < CurrentWizardVersion)
                         {
                             _content.GetContentProgress += OnGetContentProgress;
-                            _content.CopyProgress += OnCopyProgress;
 
                             await ExtractInstalledContentAsync(ct);
                         }
@@ -66,7 +65,6 @@ namespace Microsoft.Templates.Core.Locations
                     finally
                     {
                         _content.GetContentProgress -= OnGetContentProgress;
-                        _content.CopyProgress -= OnCopyProgress;
 
                         UnlockSync();
                     }
@@ -87,7 +85,7 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     await UpdateTemplatesCacheAsync(force);
 
-                    PurgeContentAsync().FireAndForget();
+                    await PurgeContentAsync();
 
                     TelemetryService.Current.SetContentVersionToContext(CurrentContent.Version);
                 }
@@ -110,7 +108,6 @@ namespace Microsoft.Templates.Core.Locations
 
                     _content.NewVersionAcquisitionProgress += OnNewVersionAcquisitionProgress;
                     _content.GetContentProgress += OnGetContentProgress;
-                    _content.CopyProgress += OnCopyProgress;
 
                     if (_content.IsNewVersionAvailable(out var version))
                     {
@@ -129,7 +126,6 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     _content.NewVersionAcquisitionProgress -= OnNewVersionAcquisitionProgress;
                     _content.GetContentProgress -= OnGetContentProgress;
-                    _content.CopyProgress -= OnCopyProgress;
                     UnlockSync();
                 }
             }
@@ -147,26 +143,29 @@ namespace Microsoft.Templates.Core.Locations
         {
             bool notifyCheckingforUpdates = false;
 
-            Task[] downloadTasks = new Task[2];
-            downloadTasks[0] = _content.Source.LoadConfigAsync(ct);
-            downloadTasks[1] = Task.Delay(1000);
-
-            Task firstFinishedTask = await Task.WhenAny(downloadTasks);
-
-            if (firstFinishedTask.Id == downloadTasks[1].Id)
+            try
             {
-                notifyCheckingforUpdates = true;
-                SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckingForUpdates });
-                await downloadTasks[0];
+                Task[] downloadTasks = new Task[2];
+                downloadTasks[0] = _content.Source.LoadConfigAsync(ct);
+                downloadTasks[1] = Task.Delay(1000);
+
+                Task firstFinishedTask = await Task.WhenAny(downloadTasks);
+
+                if (firstFinishedTask.Id == downloadTasks[1].Id)
+                {
+                    notifyCheckingforUpdates = true;
+                    SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.CheckingForUpdates });
+                    await downloadTasks[0];
+                }
+
+                return notifyCheckingforUpdates;
             }
-
-            return notifyCheckingforUpdates;
-        }
-
-        private void OnCopyProgress(object sender, ProgressEventArgs eventArgs)
-        {
-            SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Copying, Version = eventArgs.Version, Progress = eventArgs.Progress });
-        }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorDownloadingConfig, ex).FireAndForget();
+                return notifyCheckingforUpdates;
+            }
+}
 
         private void OnGetContentProgress(object sender, ProgressEventArgs eventArgs)
         {
@@ -217,7 +216,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0 || CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _content.Source.Id) != _content.LatestContentFolder)
+                if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0 || CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _content.Source.Id, _content.Source.Platform, _content.Source.Language) != _content.LatestContentFolder)
                 {
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updating });
                     await Task.Run(() =>
@@ -227,7 +226,7 @@ namespace Microsoft.Templates.Core.Locations
 
                         CodeGen.Instance.Settings.SettingsLoader.Save();
 
-                        _content.RefreshContentFolder(CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _content.Source.Id));
+                        _content.RefreshContentFolder(CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _content.Source.Id, _content.Source.Platform, _content.Source.Language));
                     });
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updated });
                 }

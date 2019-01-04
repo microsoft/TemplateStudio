@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
@@ -95,7 +96,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public void LoadData(TemplateType templateType, string framework, string platform)
         {
-            DataService.LoadTemplatesGroups(Groups, templateType, framework, platform);
+            DataService.LoadTemplatesGroups(Groups, templateType, framework, platform, true);
 
             var group = Groups.FirstOrDefault();
             if (group != null)

@@ -1,0 +1,56 @@
+﻿    <Grid x:Name="ContentArea">
+        <!--{[{-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--}]}-->
+        <!--^^-->
+        <!--{[{-->
+        <RelativePanel>
+            <InkToolbar x:Name="toolbar" Background="Transparent" TargetInkCanvas="{x:Bind inkCanvas}" RelativePanel.AlignHorizontalCenterWithPanel="True">
+                <InkToolbarCustomToolButton x:Uid="wts.ItemName_LassoSelectionButton" Background="Transparent" IsChecked="{x:Bind ViewModel.EnableLassoSelection, Mode=TwoWay}">
+                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEF20;" />
+                    </InkToolbarCustomToolButton>
+                    <InkToolbarCustomToggleButton x:Uid="wts.ItemName_TouchInkingButton" Background="Transparent" IsChecked="{x:Bind ViewModel.EnableTouch, Mode=TwoWay}">
+                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xED5F;" />
+                    </InkToolbarCustomToggleButton>
+                    <InkToolbarCustomToggleButton x:Uid="wts.ItemName_MouseInkingButton" Background="Transparent" IsChecked="{x:Bind ViewModel.EnableMouse, Mode=TwoWay}">
+                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE962;" />
+                    </InkToolbarCustomToggleButton>
+                <InkToolbarCustomToggleButton x:Uid="wts.ItemName_PenInkingButton" IsChecked="{x:Bind ViewModel.EnablePen, Mode=TwoWay}">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEDC6;" />
+                </InkToolbarCustomToggleButton>
+            </InkToolbar>
+            <CommandBar x:Name="topCommandBar" Style="{StaticResource InkCommandBarStyle}" RelativePanel.RightOf="toolbar" RelativePanel.AlignRightWithPanel="True">
+                <CommandBar.PrimaryCommands>
+                        <AppBarButton x:Uid="wts.ItemName_TransformTextAndShapesButton" Command="{x:Bind ViewModel.TransformTextAndShapesCommand}" BorderBrush="Transparent" BorderThickness="0,0,0,0">
+                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEA80;" />
+                        </AppBarButton>
+                    </CommandBar.PrimaryCommands>
+                    <CommandBar.SecondaryCommands>
+                        <AppBarButton x:Uid="wts.ItemName_UndoButton" Icon="Undo" Command="{x:Bind ViewModel.UndoCommand}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                        <AppBarButton x:Uid="wts.ItemName_RedoButton" Icon="Redo" Command="{x:Bind ViewModel.RedoCommand}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                        <AppBarSeparator/>
+                        <AppBarButton x:Uid="wts.ItemName_LoadInkFileButton" Icon="OpenFile" Command="{x:Bind ViewModel.LoadInkFileCommand}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                        <AppBarButton x:Uid="wts.ItemName_SaveInkFileButton" Icon="Save" Command="{x:Bind ViewModel.SaveInkFileCommand}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                        <AppBarSeparator/>
+                        <AppBarButton x:Uid="wts.ItemName_ClearAllButton" Icon="Delete" Command="{x:Bind ViewModel.ClearAllCommand}" BorderBrush="Transparent" BorderThickness="0,0,0,0" />
+                    </CommandBar.SecondaryCommands>
+            </CommandBar>
+        </RelativePanel>
+        <!--}]}-->
+        <ScrollViewer
+            x:Name="canvasScroll"
+            <!--{[{-->
+            Grid.Row="1"
+            <!--}]}-->
+        </ScrollViewer>
+        <CommandBar
+            x:Name="bottomCommandBar"
+        <!--{[{-->
+            Grid.Row="2"
+        <!--}]}-->
+        </CommandBar>
+    </Grid>

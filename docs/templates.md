@@ -385,6 +385,20 @@ The postaction works in three steps:
 2. If the file is not found the whole resource dictionary contained in the postaction file is copied to the source file. 
 3. If the file is found, each element from _postaction file is copied if not already there. In case the key is already defined in the source resource dictionary and the elements are different, a warning is shown.
 
+## Supporting VB.Net and C# versions of Templates
+
+We aim to offer all functionality for apps created using C# and VB.Net. The exception to this rule is that we do not provide VB versions when a third party framework only offers documentation or support in C#.
+
+The expectation is that the C# version of a template will be created first and the VB.Net version created after.
+
+The script [List-CSharp-Templates-Without-VisualBasic-Equivalents.ps1](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/_utils/List-CSharp-Templates-Without-VisualBasic-Equivalents.ps1) can identify C# templates without VB.Net equivalents. For this to work it relies on the C# and VB versions having comparable template folder structures and that they follow the naming conventions already in use. This is particularly important for composition templates. Because VB.Net supports fewer frameworks it may be possible to produce the same output for the VB version of an item with fewer composition templates. This should be avoided as doing so will cause the above script to produce incorrect results.
+
+It is assumed that non-code files used by different language versions of the same template will be identical. If one needs to be modified, change the one in the C# template and then run the script [Synchronize-Files-Used-By-VisualBasic-Templates.ps1](https://github.com/Microsoft/WindowsTemplateStudio/blob/dev/_utils/Synchronize-Files-Used-By-VisualBasic-Templates.ps1) and this will copy the file to the equivalent VB locations.
+
+Additionally, there is an automated test called `EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync` that will generate an app using both language versions of supported templates and then use reflection of the generated apps to check for differences.
+
+Because AppVeyor does not support building VB apps, this test must be run manually. When testing VB versions of templates you should also run the test `GenerateAllPagesAndFeaturesAndCheckWithVBStyleAsync` which also must be run manually.
+
 ## Testing and verifying template contents
 
 The tool **TemplateValidator.exe** exists to help template authors verify their templates are correctly structured and to identify common errors. It can verify the contents of an individual `template.json` file or the contents of multiple directories containing templates.

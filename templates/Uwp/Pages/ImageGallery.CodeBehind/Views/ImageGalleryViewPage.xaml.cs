@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 
-using Windows.Storage;
-using Windows.UI.Xaml;
+using Microsoft.Toolkit.Uwp.UI.Animations;
+
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 using Param_ItemNamespace.Helpers;
-using Param_ItemNamespace.Models;
+using Param_ItemNamespace.Core.Models;
+using Param_ItemNamespace.Core.Services;
 using Param_ItemNamespace.Services;
 
 namespace Param_ItemNamespace.Views
@@ -18,8 +16,6 @@ namespace Param_ItemNamespace.Views
     public sealed partial class ImageGalleryViewPage : Page, System.ComponentModel.INotifyPropertyChanged
     {
         public const string ImageGalleryViewSelectedIdKey = "ImageGalleryViewSelectedIdKey";
-        public const string ImageGalleryViewAnimationOpen = "ImageGalleryView_AnimationOpen";
-        public const string ImageGalleryViewAnimationClose = "ImageGalleryView_AnimationClose";
 
         private ObservableCollection<SampleImage> _source;
 
@@ -36,32 +32,25 @@ namespace Param_ItemNamespace.Views
             InitializeComponent();
         }
 
-        private void ImagesGridView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var selected = e.ClickedItem as SampleImage;
-            ImagesGridView.PrepareConnectedAnimation(ImageGalleryViewAnimationOpen, selected, "galleryImage");
-            NavigationService.Navigate<ImageGalleryViewDetailPage>(e.ClickedItem);
-        }
-
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (e.NavigationMode == NavigationMode.Back)
             {
-                var selectedImageId = await ApplicationData.Current.LocalSettings.ReadAsync<string>(ImageGalleryViewSelectedIdKey);
+                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey);
                 if (!string.IsNullOrEmpty(selectedImageId))
                 {
-                    var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation(ImageGalleryViewAnimationClose);
-                    if (animation != null)
-                    {
-                        var item = ImagesGridView.Items.FirstOrDefault(i => ((SampleImage)i).ID == selectedImageId);
-                        ImagesGridView.ScrollIntoView(item);
-                        await ImagesGridView.TryStartConnectedAnimationAsync(animation, item, "galleryImage");
-                    }
-
-                    ApplicationData.Current.LocalSettings.SaveString(ImageGalleryViewSelectedIdKey, string.Empty);
+                    ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey);
                 }
             }
+        }
+
+        private void ImagesGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var selected = e.ClickedItem as SampleImage;
+            ImagesNavigationHelper.AddImageId(ImageGalleryViewSelectedIdKey, selected.ID);
+            NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(selected);
+            NavigationService.Navigate<ImageGalleryViewDetailPage>(selected.ID);
         }
     }
 }

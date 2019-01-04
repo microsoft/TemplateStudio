@@ -11,6 +11,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
+using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 
@@ -23,7 +24,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         private bool _itemNameEditable;
         private bool _isHidden;
         private bool _hasErrors;
-        private bool _isHome;
         private bool _isReorderEnabled;
         private bool _isDragging;
         private bool _isFocused;
@@ -70,12 +70,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
             get => _hasErrors;
             set => SetProperty(ref _hasErrors, value);
-        }
-
-        public bool IsHome
-        {
-            get => _isHome;
-            set => SetProperty(ref _isHome, value);
         }
 
         public bool IsDragging
@@ -139,7 +133,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             IsReorderEnabled = template.TemplateType == TemplateType.Page;
         }
 
-        private void SetName(string newName)
+        public void SetName(string newName, bool fromNewTemplate = false)
         {
             if (ItemNameEditable)
             {
@@ -157,6 +151,15 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             }
 
             SetProperty(ref _name, newName, nameof(Name));
+            if (ValidationService.HasAllPagesViewSuffix(fromNewTemplate, newName))
+            {
+                var notification = Notification.Warning(string.Format(StringRes.NotificationValidationWarning_ViewSuffix, Configuration.Current.GitHubDocsUrl), Category.ViewSufixValidation, TimerType.Large);
+                NotificationsControl.AddNotificationAsync(notification).FireAndForget();
+            }
+            else
+            {
+                NotificationsControl.CleanCategoryNotificationsAsync(Category.ViewSufixValidation).FireAndForget();
+            }
         }
 
         private void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs args)
@@ -185,8 +188,6 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public override int GetHashCode() => base.GetHashCode();
 
-#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
         public (string name, ITemplateInfo template) GetUserSelection() => (Name, Template);
-#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
     }
 }

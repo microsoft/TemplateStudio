@@ -109,8 +109,7 @@
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.TemplateWizardInterface.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Threading, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.23\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.83\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Utilities, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Utilities.15.0.26606\lib\net45\Microsoft.VisualStudio.Utilities.dll</HintPath>
@@ -164,8 +163,6 @@
     </Compile>
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="FailedMergePostAction.cs" />
-    <Compile Include="FakeContextProvider.cs" />
     <Compile Include="LoadProject\LoadProjectView.xaml.cs">
       <DependentUpon>LoadProjectView.xaml</DependentUpon>
     </Compile>
@@ -313,8 +310,8 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.0.240\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.0-beta009\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.0-beta009\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">

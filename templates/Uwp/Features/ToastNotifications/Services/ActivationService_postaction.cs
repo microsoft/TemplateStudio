@@ -5,7 +5,7 @@
 
 using System;
 //{[{
-using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Core.Helpers;
 using Param_RootNamespace.Services;
 //}]}
 

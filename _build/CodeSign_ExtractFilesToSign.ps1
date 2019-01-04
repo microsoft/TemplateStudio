@@ -30,7 +30,7 @@ foreach ($entry in $entries)
 
 
     [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $entryTargetFilePath, $true);
-    Write-Host "<file src=""__INPATHROOT__\$entryTargetFilePath"" signType=""401"" dest=""__OUTPATHROOT__\$entryTargetFilePath"" />"
+    Write-Host "<file src=""__INPATHROOT__\$entryTargetFilePath"" signType=""400"" dest=""__OUTPATHROOT__\$entryTargetFilePath"" />"
 }
 
 #free object

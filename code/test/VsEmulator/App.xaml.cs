@@ -73,6 +73,7 @@ namespace Microsoft.Templates.VsEmulator
                             new LocalTemplatesSource("0.0.0.0", string.Empty),
                             new FakeGenShell(Platforms.Uwp, progLanguage),
                             new Version("0.0.0.0"),
+                            Platforms.Uwp,
                             progLanguage);
 
                         await GenContext.ToolBox.Repo.RefreshAsync();
@@ -88,13 +89,8 @@ namespace Microsoft.Templates.VsEmulator
                         var context = new FakeContextProvider
                         {
                             ProjectName = newProjectName,
-                            ProjectPath = projectPath,
-                            OutputPath = Path.Combine(Path.GetTempPath(), newProjectName, newProjectName),
-                            FailedMergePostActions = new List<FailedMergePostAction>(),
-                            MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>(),
-                            FilesToOpen = new List<string>(),
-                            ProjectItems = new List<string>(),
-                            ProjectMetrics = new Dictionary<ProjectMetricsEnum, double>()
+                            DestinationPath = projectPath,
+                            GenerationOutputPath = Path.Combine(Path.GetTempPath(), newProjectName, newProjectName),
                         };
 
                         GenContext.Current = context;
@@ -106,19 +102,19 @@ namespace Microsoft.Templates.VsEmulator
                         {
                             case "PAGE":
                                 EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userPageSelection = NewItemGenController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
+                                var userPageSelection = NewItemController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
 
                             case "FEATURE":
                                 EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userFeatureSelection = NewItemGenController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
+                                var userFeatureSelection = NewItemController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
 
                             case "PROJECT":
                             default:
-                                var userSelectionIsNotUsed = NewProjectGenController.Instance.GetUserSelection(Platforms.Uwp, progLanguage, FakeStyleValuesProvider.Instance);
+                                var userSelectionIsNotUsed = NewProjectController.Instance.GetUserSelection(Platforms.Uwp, progLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
                         }

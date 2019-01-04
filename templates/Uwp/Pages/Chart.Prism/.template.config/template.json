@@ -14,29 +14,35 @@
     "wts.framework": "Prism",
 	"wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "7",
+    "wts.displayOrder": "9",
     "wts.licenses": "[Telerik.UI-For-UWP](https://github.com/telerik/UI-For-UWP/blob/master/LICENSE.md)",
     "wts.dependencies": "wts.Feat.SampleDataService.Prism",
     "wts.genGroup": "0",
-    "wts.rightClickEnabled":"true" 
+    "wts.rightClickEnabled":"true",
+    "wts.outputToParent": "true"
   },
   "sourceName": "ChartView",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": ".\\Views\\ChartViewPage.xaml"
+      "path": ".\\Param_ProjectName\\Views\\ChartViewPage.xaml"
     },
     {
-      "path": ".\\Views\\ChartViewPage.xaml.cs"
+      "path": ".\\Param_ProjectName\\Views\\ChartViewPage.xaml.cs"
     },
     {
-      "path": ".\\ViewModels\\ChartViewViewModel.cs"
+      "path": ".\\Param_ProjectName\\ViewModels\\ChartViewViewModel.cs"
     },
     {
-      "path": ".\\Models\\DataPoint.cs"
+      "path": ".\\Param_ProjectName.Core\\Models\\DataPoint.cs"
     }
   ],
   "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
@@ -53,5 +59,18 @@
       "type": "parameter",
       "replaces": "Param_Setter"
     }
-  }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Telerik.UI.for.UniversalWindowsPlatform",
+        "version" : "1.0.1.2",
+        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
 }

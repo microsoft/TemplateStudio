@@ -4,16 +4,10 @@
 
 using System;
 using System.IO;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Locations;
-using Microsoft.Templates.Core.Packaging;
-using Microsoft.Templates.Core.Resources;
-using Microsoft.Templates.UI.Threading;
-using Microsoft.VisualStudio.Threading;
 
 namespace Microsoft.Templates.Test
 {
@@ -21,11 +15,18 @@ namespace Microsoft.Templates.Test
     {
         public override string Id => "TestLegacy" + GetAgentName();
 
+        public LegacyTemplatesSourceV2(string language)
+           : base(Platforms.Uwp, language)
+        {
+        }
+
         public override async Task<TemplatesContentInfo> GetContentAsync(TemplatesPackageInfo packageInfo, string workingFolder, CancellationToken ct)
         {
             await AcquireAsync(packageInfo, ct);
 
-            return await base.GetContentAsync(packageInfo, workingFolder, ct);
+            var templatecontent = await base.GetContentAsync(packageInfo, workingFolder, ct);
+
+            return templatecontent;
         }
 
         private static string GetAgentName()

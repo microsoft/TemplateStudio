@@ -15,6 +15,7 @@
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
     "wts.displayOrder": "3",
+    "wts.dependencies":"wts.Feature.ThemeSelection",
     "wts.group": "ApplicationLifecycle",
     "wts.defaultInstance": "MultiView",
     "wts.multipleInstance": "false",

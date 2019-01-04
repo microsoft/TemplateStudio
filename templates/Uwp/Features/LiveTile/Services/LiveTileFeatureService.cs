@@ -26,17 +26,32 @@ namespace Param_RootNamespace.Services
 
         public void UpdateTile(TileNotification notification)
         {
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
+            try
+            {
+                TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
+            }
+            catch (Exception)
+            {
+                // TODO WTS: Updating LiveTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+            }
         }
 
         public async Task<bool> PinSecondaryTileAsync(SecondaryTile tile, bool allowDuplicity = false)
         {
-            if (!await IsAlreadyPinnedAsync(tile) || allowDuplicity)
+            try
             {
-                return await tile.RequestCreateAsync();
-            }
+                if (!await IsAlreadyPinnedAsync(tile) || allowDuplicity)
+                {
+                    return await tile.RequestCreateAsync();
+                }
 
-            return false;
+                return false;
+            }
+            catch (Exception)
+            {
+                // TODO WTS: Adding SecondaryTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                return false;
+            }
         }
 
         private async Task<bool> IsAlreadyPinnedAsync(SecondaryTile tile)

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "DataGrid",
+  "description": "Eine Seite mit einem einfachen Datenraster.",
+  "identity": "wts.Page.DataGrid.Prism"
+}

@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "DataGrid",
+  "description": "Basit bir veri kılavuzunun gösterildiği sayfa.",
+  "identity": "wts.Page.DataGrid.Prism"
+}

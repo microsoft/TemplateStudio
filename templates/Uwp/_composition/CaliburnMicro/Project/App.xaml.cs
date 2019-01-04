@@ -7,6 +7,7 @@ using Param_RootNamespace.Services;
 
 namespace Param_RootNamespace
 {
+    [Windows.UI.Xaml.Data.Bindable]
     public sealed partial class App
     {
         private Lazy<ActivationService> _activationService;

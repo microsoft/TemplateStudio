@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.Core.Validation;
 using Microsoft.Templates.UI.Validators;
 
@@ -16,7 +17,10 @@ namespace Microsoft.Templates.UI.Services
         // add breaking changes validators
         private static List<IBreakingChangeValidator> _validators = new List<IBreakingChangeValidator>
         {
-            new HasNavigationViewValidator()
+            new HasHamburgerMenuValidator(),
+            new HasOldMvvmLightLocatorValidator(),
+            new HasOldNavigationViewValidator(),
+            new HasPivotValidator(),
         };
 
         public static ValidationResult Validate()
@@ -33,7 +37,7 @@ namespace Microsoft.Templates.UI.Services
             return new ValidationResult
             {
                 IsValid = validations.All(v => v.IsValid),
-                ErrorMessages = validations.SelectMany(v => v.ErrorMessages).ToList()
+                ErrorMessages = validations.SelectMany(v => v.ErrorMessages).ToList(),
             };
         }
 

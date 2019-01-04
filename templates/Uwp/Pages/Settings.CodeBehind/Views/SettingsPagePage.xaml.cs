@@ -4,6 +4,7 @@ using Param_ItemNamespace.Services;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Param_ItemNamespace.Views
 {
@@ -32,6 +33,11 @@ namespace Param_ItemNamespace.Views
         public SettingsPagePage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Initialize();
         }
 
         private void Initialize()

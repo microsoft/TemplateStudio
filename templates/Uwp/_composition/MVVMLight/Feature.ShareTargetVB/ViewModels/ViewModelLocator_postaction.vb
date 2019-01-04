@@ -1,7 +1,6 @@
 ﻿Namespace ViewModels
     Public Class ViewModelLocator
-        Public Sub New()
-            ServiceLocator.SetLocatorProvider(Function() SimpleIoc.[Default])
+        Private Sub New()
             '{[{
             If SimpleIoc.[Default].IsRegistered(Of NavigationServiceEx)() Then
                 Return
@@ -18,7 +17,7 @@
 
         Public ReadOnly Property wts.ItemNameViewModel As wts.ItemNameViewModel
             Get
-                Return ServiceLocator.Current.GetInstance(Of wts.ItemNameViewModel)()
+                Return SimpleIoc.[Default].GetInstance(Of wts.ItemNameViewModel)()
             End Get
         End Property
         '}]}

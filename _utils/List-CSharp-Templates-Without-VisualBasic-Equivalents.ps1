@@ -1,7 +1,16 @@
-﻿# Get list of all templates
+﻿# This script will list all the C# template folders that do not have VB equivalents.
+# Any output indicates missing VB templates.
+
+# Get list of all templates
 $allTemplates = Get-ChildItem ..\templates\* -Recurse -include template.json | where { $_.FullName -notmatch "\\templates\\Uwp\\test\\" } | % { Write-Output $_.FullName }
 Foreach ($t in $allTemplates)
 {
+    if ($t -match "_shared\\Page.AddConnectedAnimationService")
+    {
+        # This is a shared template but only used by Prism & Caliburn.Micro so doesn't need a VB equivalent
+        break;
+    }
+
     # Ignore VB ones
     if ($t -notmatch "VB\\")
     {

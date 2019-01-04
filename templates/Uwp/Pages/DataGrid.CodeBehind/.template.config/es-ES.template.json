@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft Community",
+  "name": "DataGrid",
+  "description": "Página que muestra una cuadrícula de datos simple.",
+  "identity": "wts.Page.DataGrid.CodeBehind"
+}

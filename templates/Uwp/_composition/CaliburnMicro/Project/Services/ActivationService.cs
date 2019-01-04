@@ -4,10 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 using Param_RootNamespace.Activation;
 
@@ -56,16 +54,6 @@ namespace Param_RootNamespace.Services
                         NavigationService = _container.GetInstance<INavigationService>();
                         Window.Current.Content = _shell?.Value;
                     }
-
-                    if (NavigationService != null)
-                    {
-                        NavigationService.NavigationFailed += (sender, e) =>
-                        {
-                            throw e.Exception;
-                        };
-
-                        NavigationService.Navigated += OnFrameNavigated;
-                    }
                 }
             }
 
@@ -113,12 +101,6 @@ namespace Param_RootNamespace.Services
         private bool IsInteractive(object args)
         {
             return args is IActivatedEventArgs;
-        }
-
-        private void OnFrameNavigated(object sender, NavigationEventArgs e)
-        {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ?
-                AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
     }
 }

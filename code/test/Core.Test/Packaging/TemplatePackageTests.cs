@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await TemplatePackage.PackAsync(inFolder, outFile, MediaTypeNames.Text.Plain);
 
-            await TemplatePackage.ExtractAsync(outFile, extractDir, false);
+            await TemplatePackage.ExtractAsync(outFile, extractDir, null, CancellationToken.None, false);
 
             int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -53,7 +53,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             var outFile = await TemplatePackage.PackAsync(inFolder);
 
-            await TemplatePackage.ExtractAsync(outFile, extractDir, false);
+            await TemplatePackage.ExtractAsync(outFile, extractDir, null, CancellationToken.None, false);
 
             int filesInExtractionFolder = new DirectoryInfo(extractDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outDir = @"OutFolder\Extraction";
 
             string signedFile = await TemplatePackage.PackAndSignAsync(inFolder, cert);
-            await TemplatePackage.ExtractAsync(signedFile, outDir);
+            await TemplatePackage.ExtractAsync(signedFile, outDir, null, CancellationToken.None, true);
 
             int filesInExtractionFolder = new DirectoryInfo(outDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -93,7 +93,7 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outDir = @"C:\Temp\OutFolder\Extraction";
 
             string signedFile = await TemplatePackage.PackAndSignAsync(inFolder, cert);
-            await TemplatePackage.ExtractAsync(signedFile, outDir);
+            await TemplatePackage.ExtractAsync(signedFile, outDir, null, CancellationToken.None, true);
 
             int filesInExtractionFolder = new DirectoryInfo(outDir).GetFiles("*", SearchOption.AllDirectories).Count();
             Assert.Equal(filesInCurrentFolder, filesInExtractionFolder);
@@ -193,7 +193,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            await TemplatePackage.ExtractAsync(outFile, extractionDir);
+            await TemplatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None, true);
 
             Assert.True(Directory.Exists(extractionDir));
             Assert.True(File.Exists(Path.Combine(extractionDir, inFile)));
@@ -214,7 +214,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            await TemplatePackage.ExtractAsync(outFile, extractionDir);
+            await TemplatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None, true);
 
             Assert.True(Directory.Exists(extractionDir));
             Assert.True(File.Exists(Path.Combine(extractionDir, @"Packaging\SampleContent.txt")));
@@ -236,7 +236,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            await TemplatePackage.ExtractAsync(outFile, extractionDir);
+            await TemplatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None, true);
 
             Assert.True(Directory.Exists(extractionDir));
             Assert.True(File.Exists(Path.Combine(extractionDir, Path.GetFileName(inFile))));
@@ -256,7 +256,7 @@ namespace Microsoft.Templates.Core.Test.Locations
 
             await TemplatePackage.PackAndSignAsync(inFile, outFile, cert, MediaTypeNames.Text.Plain);
 
-            await TemplatePackage.ExtractAsync(outFile, extractionDir);
+            await TemplatePackage.ExtractAsync(outFile, extractionDir, null, CancellationToken.None, true);
 
             Assert.True(File.Exists(outFile));
 
@@ -270,8 +270,8 @@ namespace Microsoft.Templates.Core.Test.Locations
             var outDir1 = @"C:\Temp\OutFolder\Concurrent1";
             var outDir2 = @"C:\Temp\OutFolder\Concurrent2";
 
-            Task t1 = Task.Run(async () => await TemplatePackage.ExtractAsync(inFile, outDir1));
-            Task t2 = Task.Run(async () => await TemplatePackage.ExtractAsync(inFile, outDir2));
+            Task t1 = Task.Run(async () => await TemplatePackage.ExtractAsync(inFile, outDir1, null, CancellationToken.None, true));
+            Task t2 = Task.Run(async () => await TemplatePackage.ExtractAsync(inFile, outDir2, null, CancellationToken.None, true));
 
             await Task.WhenAll(t1, t2);
 
@@ -325,69 +325,6 @@ namespace Microsoft.Templates.Core.Test.Locations
         {
             var msSignedFile = @"Packaging\MsSigned\Templates.mstx";
             Assert.True(TemplatePackage.ValidateSignatures(msSignedFile));
-        }
-
-        // TODO: Refactor this methods to other class
-        [Fact]
-        public async Task TestRemoteSource_AcquireAsync()
-        {
-            RemoteTemplatesSource rts = new RemoteTemplatesSource();
-            CancellationTokenSource cts = new CancellationTokenSource();
-
-            await rts.LoadConfigAsync(cts.Token);
-            var package = rts.Config.Latest;
-
-            await rts.AcquireAsync(package, cts.Token);
-
-            string acquiredContentFolder = package.LocalPath;
-
-            Assert.NotNull(acquiredContentFolder);
-
-            // Ensure package is not downloaded again if already downloaded
-            await rts.AcquireAsync(package, cts.Token);
-            Assert.True(acquiredContentFolder == package.LocalPath);
-
-            // Reset localPath and ensure it is acquired again
-            if (Directory.Exists(Path.GetDirectoryName(package.LocalPath)))
-            {
-                Directory.Delete(Path.GetDirectoryName(package.LocalPath), true);
-            }
-
-            await rts.AcquireAsync(package, cts.Token);
-
-            Assert.True(package.LocalPath != acquiredContentFolder);
-
-            if (Directory.Exists(Path.GetDirectoryName(package.LocalPath)))
-            {
-                Directory.Delete(Path.GetDirectoryName(package.LocalPath), true);
-            }
-        }
-
-        [Fact]
-        public async Task TestRemoteSource_GetContentAsync()
-        {
-            string drive = Path.GetPathRoot(new Uri(typeof(TemplatePackageTests).Assembly.CodeBase).LocalPath);
-            string testDir = Path.Combine(drive, $@"Temp\TestRts{Process.GetCurrentProcess().Id}_{Thread.CurrentThread.ManagedThreadId}");
-
-            try
-            {
-                RemoteTemplatesSource rts = new RemoteTemplatesSource();
-                CancellationTokenSource cts = new CancellationTokenSource();
-                await rts.LoadConfigAsync(cts.Token);
-                var package = rts.Config.Latest;
-
-                await rts.AcquireAsync(package, cts.Token);
-                var contentInfo = await rts.GetContentAsync(package, testDir, cts.Token);
-
-                Assert.True(Directory.Exists(contentInfo.Path));
-            }
-            finally
-            {
-                if (Directory.Exists(testDir))
-                {
-                    Directory.Delete(testDir, true);
-                }
-            }
         }
 
         private void ModifyContent(string signedPack, string contentFile)

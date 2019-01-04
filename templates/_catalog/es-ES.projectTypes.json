@@ -10,8 +10,8 @@
     "summary": "Se incluye un panel de navegación (o 'menú de hamburguesa') para poder navegar entre las páginas."
   },
   {
-    "name": "TabbedPivot",
-    "displayName": "Pivot and Tabs",
-    "summary": "Las pestañas que aparecen en la parte superior permiten navegar rápidamente entre las páginas."
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Navigation Items across the top allow for quickly navigating between pages."
   }
 ]

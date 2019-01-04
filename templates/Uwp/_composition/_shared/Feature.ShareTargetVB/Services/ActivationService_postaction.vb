@@ -1,5 +1,5 @@
 ﻿'{[{
-Imports Param_RootNamespace.Helpers
+Imports Param_RootNamespace.Core.Helpers
 '}]}
 
 Namespace Services
@@ -9,7 +9,6 @@ Namespace Services
             yield Singleton(Of wts.ItemNameActivationHandler).Instance
             '}]}
 '{--{
-
             Exit Function
 '}--}
         End Function

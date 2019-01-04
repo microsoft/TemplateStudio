@@ -123,7 +123,7 @@ namespace Localization
         {
             var srcDirectory = _routesManager.GetDirectoryFromSource(Routes.TemplatesRootDirPath);
             var directories = srcDirectory.GetDirectories(patternPath, SearchOption.AllDirectories);
-            var templatesDirectories = directories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB")));
+            var templatesDirectories = directories.SelectMany(d => d.GetDirectories().Where(c => !c.Name.EndsWith("VB", StringComparison.OrdinalIgnoreCase)));
 
             foreach (var directory in templatesDirectories)
             {
@@ -153,7 +153,7 @@ namespace Localization
                         author = metadata.GetValue("author", StringComparison.Ordinal).Value<string>(),
                         name = metadata.GetValue("name", StringComparison.Ordinal).Value<string>(),
                         description = metadata.GetValue("description", StringComparison.Ordinal).Value<string>(),
-                        identity = metadata.GetValue("identity", StringComparison.Ordinal).Value<string>()
+                        identity = metadata.GetValue("identity", StringComparison.Ordinal).Value<string>(),
                     };
                     string content = JsonConvert.SerializeObject(con, Newtonsoft.Json.Formatting.Indented);
                     File.WriteAllText(filePath, content, Encoding.UTF8);
@@ -209,7 +209,7 @@ namespace Localization
             {
                 name = json.GetValue("name", StringComparison.Ordinal).Value<string>(),
                 displayName = json.GetValue("displayName", StringComparison.Ordinal).Value<string>(),
-                summary = json.GetValue("summary", StringComparison.Ordinal).Value<string>()
+                summary = json.GetValue("summary", StringComparison.Ordinal).Value<string>(),
             });
 
             var data = JsonConvert.SerializeObject(projects, Newtonsoft.Json.Formatting.Indented);

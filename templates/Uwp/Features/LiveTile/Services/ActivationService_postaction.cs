@@ -6,7 +6,7 @@
 
 using System;
 //{[{
-using Param_RootNamespace.Helpers;
+using Param_RootNamespace.Core.Helpers;
 //}]}
 
 namespace Param_ItemNamespace.Services
@@ -35,7 +35,6 @@ namespace Param_ItemNamespace.Services
             yield return Singleton<LiveTileFeatureService>.Instance;
 //}]}
 //{--{
-
             yield break;
 //}--}
         }

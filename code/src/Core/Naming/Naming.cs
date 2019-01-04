@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core
                 return new ValidationResult
                 {
                     IsValid = false,
-                    ErrorType = ValidationErrorType.Empty
+                    ErrorType = ValidationErrorType.Empty,
                 };
             }
 
@@ -56,7 +56,7 @@ namespace Microsoft.Templates.Core
                 return new ValidationResult
                 {
                     IsValid = false,
-                    ErrorType = ValidationErrorType.BadFormat
+                    ErrorType = ValidationErrorType.BadFormat,
                 };
             }
 
@@ -72,7 +72,7 @@ namespace Microsoft.Templates.Core
             return new ValidationResult
             {
                 IsValid = true,
-                ErrorType = ValidationErrorType.None
+                ErrorType = ValidationErrorType.None,
             };
         }
 

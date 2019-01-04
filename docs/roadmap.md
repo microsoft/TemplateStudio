@@ -6,41 +6,25 @@ In addition to the functionality listed below, each release will also include bu
 
 ## Next release
 
-**2.1 - April/May 2018**
+#### 3.0 - January 2019
 
-Major additions:
-
-* Support for new (RS4) SDK
-* More & improved documentation
-* Provisional support for 3rd party templates
+* Multi-project
+* Migrate Tab/Pivot to NavView with TopPane
 * +more
 
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.1)
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.0)
 
 ## Upcoming releases
 
-### 2.2 - June 2018
+### 3.1 - est. March 2019
 
-* Ink pages
-* Improved testing
+* Identity Login
+* Menubar project type
+* Azure Easy Table
+* Tooling improvements and cleanup
 * +more
 
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.2)
-
-### 2.3 - July 2018
-
-* Early multi-project support
-* Data sources
-* +more
-
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.3)
-
-### 2.5 - later in 2018
-
-* Xamarin
-* +more
-
-[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A2.5)
+[Track progress](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+milestone%3A3.1)
 
 ## Future Releases
 
@@ -48,7 +32,11 @@ You can see a list of other items we'd like to get to, and which will form part 
 
 
 ## Past releases
-
+* [2.5 - November 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.5)
+* [2.4 - September 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.4)
+* [2.3 - July 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.3)
+* [2.2 - June 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.2)
+* [2.1 - May 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.1)
 * [2.0 - April 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A2.0)
 * [1.7 - January 2018](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A1.7)
 * [1.6 - December 2017](https://github.com/Microsoft/WindowsTemplateStudio/issues?utf8=%E2%9C%93&q=is%3Aissue+milestone%3A1.6)

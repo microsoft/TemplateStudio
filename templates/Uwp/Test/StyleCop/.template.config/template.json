@@ -7,6 +7,7 @@
   "tags": {
     "language": "C#",
     "type": "item",
+    "wts.platform": "Uwp",
     "wts.type": "feature",
     "wts.version": "1.0.0",
     "wts.multipleInstance": "false",
@@ -21,6 +22,11 @@
     }
   ],
   "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
@@ -29,5 +35,18 @@
       "type": "parameter",
       "replaces": "Param_ItemNamespace"
     }
-  }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "StyleCop.Analyzers",
+        "version" : "1.0.2",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
 }

@@ -10,20 +10,12 @@
     "wts.type": "composition",
 	"wts.platform" : "Uwp",
     "wts.version": "1.0.0",
+    "wts.compositionOrder": "2",
     "wts.compositionFilter": "$framework == CodeBehind & $projectType == SplitView & wts.type == project"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
-    {
-      "path": ".\\Helpers\\NavHelper.vb"
-    },
-    {
-      "path": ".\\Views\\ShellPage.xaml"
-    },
-    {
-      "path": ".\\Views\\ShellPage.xaml.vb"
-    }
   ],
   "symbols": {
     "wts.rootNamespace": {

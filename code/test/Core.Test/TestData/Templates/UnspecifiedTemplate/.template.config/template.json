@@ -6,7 +6,8 @@
   "identity": "Microsoft.UWPTemplates.Test.UnspecifiedTemplate.CSharp",
   "tags": {
     "language": "C#",
-    "type": "project"
+    "wts.platform": "Uwp"
+
   },
   "sourceName": "App_Name",
   "preferNameDirectory": true

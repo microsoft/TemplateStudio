@@ -39,7 +39,7 @@ namespace Microsoft.Templates.UI.Extensions
                 To = to,
                 Duration = TimeSpan.FromMilliseconds(duration),
                 EasingFunction = easingFunction ?? new SineEase(),
-                FillBehavior = FillBehavior.HoldEnd
+                FillBehavior = FillBehavior.HoldEnd,
             };
 
             Storyboard.SetTarget(animation, target);

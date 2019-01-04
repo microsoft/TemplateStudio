@@ -212,9 +212,6 @@
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Wystąpił błąd podczas synchronizowania szablonów. Stan:</value>
   </data>
-  <data name="StatusAddingItems" xml:space="preserve">
-    <value>Dodawanie elementów do projektu…</value>
-  </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Otwieranie wygenerowanych plików…</value>
   </data>
@@ -443,5 +440,63 @@ Nie można zinterpretować następujących zmian: {2}
   <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
     <value>Nie można zmienić nazwy folderu {0}. Błąd: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
+  </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>Wystąpił błąd podczas pobierania pliku źródłowego konfiguracji.</value>
+  </data>
+  <data name="FsSafeMoveFileMessage" xml:space="preserve">
+    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>Nie znaleziono szablonu układu {0} dla struktury framework {1} i platformy {2}.</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>Nieprawidłowy element układu {0}. Elementy układu muszą być typu Strona lub Funkcja.</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>Nieprawidłowy element zależności {0}. Elementy zależności muszą być typu Strona lub Funkcja.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>Nie znaleziono szablonu zależności {0} dla struktury framework {1} i platformy {2}.</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>Nieprawidłowy element zależności {0}. Zależności muszą być skonfigurowane w formie multipleInstance = false.</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>Wykryto zależność cykliczną w szablonie {0} z {1}.</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>Nie znaleziono szablonu zależności {0} w opcjach wybranych przez użytkownika.</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>Tworzenie funkcji „{0}”…</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>Tworzenie strony „{0}”…</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>Tworzenie projektu „{0}”…</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>Szablon „{0}”, nazwa: „{1}”, przyczyna: '{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
+    <value>Podczas generowania wystąpił wyjątek dotyczący śledzenia danych telemetrycznych.</value>
+    <comment>Exception tracking telemetry during generation.</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>Nie można rozpoznać platformy.</value>
   </data>
 </root>

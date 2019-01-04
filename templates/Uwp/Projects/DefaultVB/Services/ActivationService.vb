@@ -1,4 +1,5 @@
-﻿Imports Windows.UI.Core
+﻿Imports Windows.System
+Imports Windows.UI.Core
 
 Imports wts.DefaultProject.Activation
 
@@ -25,13 +26,6 @@ Namespace Services
                 If Window.Current.Content Is Nothing Then
                     ' Create a Frame to act as the navigation context and navigate to the first page
                     Window.Current.Content = If(_shell?.Value, New Frame())
-                    AddHandler NavigationService.NavigationFailed, Function(sender, e)
-                        Throw e.Exception
-                                                                End Function
-                    AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
-                    If SystemNavigationManager.GetForCurrentView() IsNot Nothing Then
-                        AddHandler SystemNavigationManager.GetForCurrentView().BackRequested, AddressOf ActivationService_BackRequested
-                    End If
                 End If
             End If
 
@@ -71,16 +65,5 @@ Namespace Services
         Private Function IsInteractive(args As Object) As Boolean
             Return TypeOf args Is IActivatedEventArgs
         End Function
-
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = If((NavigationService.CanGoBack), AppViewBackButtonVisibility.Visible, AppViewBackButtonVisibility.Collapsed)
-        End Sub
-
-        Private Sub ActivationService_BackRequested(sender As Object, e As BackRequestedEventArgs)
-            If NavigationService.CanGoBack Then
-                NavigationService.GoBack()
-                e.Handled = True
-            End If
-        End Sub
     End Class
 End Namespace

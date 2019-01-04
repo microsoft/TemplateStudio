@@ -13,7 +13,7 @@ namespace Param_ItemNamespace.Services
 {
     public delegate void ViewClosedHandler(ViewLifetimeControl viewControl, EventArgs e);
 
-    // For instructions on testing this service see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/multiple-views.md
+    // For instructions on using this service see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/features/multiple-views.md
     // More details about showing multiple views at https://docs.microsoft.com/windows/uwp/design/layout/show-multiple-views
     public class WindowManagerService
     {
@@ -67,6 +67,7 @@ namespace Param_ItemNamespace.Services
                 viewControl.Title = windowTitle;
                 viewControl.StartViewInUse();
                 var frame = new Frame();
+                frame.RequestedTheme = ThemeSelectorService.Theme;
                 frame.Navigate(pageType, viewControl);
                 Window.Current.Content = frame;
                 Window.Current.Activate();

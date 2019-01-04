@@ -62,36 +62,6 @@ namespace Microsoft.Templates.Core
             return Directory.EnumerateFiles(configDir, "icon.*").FirstOrDefault();
         }
 
-        /*public static string GetLocalizedName(this ITemplateInfo ti)
-        {
-            var configDir = GetConfigDir(ti);
-            var metadataFileLocalized = Path.Combine(configDir, $"template.{CultureInfo.CurrentUICulture.IetfLanguageTag}.json");
-            if (File.Exists(metadataFileLocalized))
-            {
-                var metadataLocalized = JsonConvert.DeserializeObject<MetadataLocalizedInfo>(File.ReadAllText(metadataFileLocalized));
-                if (metadataLocalized != null)
-                {
-                    return metadataLocalized.DisplayName;
-                }
-            }
-            return ti.Name;
-        }
-
-        public static string GetLocalizedSummary(this ITemplateInfo ti)
-        {
-            var configDir = GetConfigDir(ti);
-            var metadataFileLocalized = Path.Combine(configDir, $"template.{CultureInfo.CurrentUICulture.IetfLanguageTag}.json");
-            if (File.Exists(metadataFileLocalized))
-            {
-                var metadataLocalized = JsonConvert.DeserializeObject<MetadataLocalizedInfo>(File.ReadAllText(metadataFileLocalized));
-                if (metadataLocalized != null)
-                {
-                    return metadataLocalized.Summary;
-                }
-            }
-            return ti.Description;
-        }*/
-
         public static string GetRichDescription(this ITemplateInfo ti)
         {
             var configDir = GetConfigDir(ti);
@@ -113,17 +83,6 @@ namespace Microsoft.Templates.Core
             }
 
             return null;
-        }
-
-        public static string GetSafeIdentity(this ITemplateInfo ti)
-        {
-            if (!string.IsNullOrEmpty(ti.GroupIdentity))
-            {
-                var identityChunks = ti.GroupIdentity.Split(".".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                return identityChunks.Last();
-            }
-
-            return ti.Identity;
         }
 
         public static string GetCompositionFilter(this ITemplateInfo ti)
@@ -157,7 +116,7 @@ namespace Microsoft.Templates.Core
                     result.Add(new TemplateLicense
                     {
                         Text = m.Groups["text"].Value,
-                        Url = m.Groups["url"].Value
+                        Url = m.Groups["url"].Value,
                     });
                 }
             }
@@ -193,9 +152,7 @@ namespace Microsoft.Templates.Core
 
             return ti.Tags
                         .Where(t => t.Key.Contains(TagPrefix + "export."))
-#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly - StyleCop can't handle Tuples
                         .Select(t => (t.Key.Replace(TagPrefix + "export.", string.Empty), t.Value.DefaultValue))
-#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
                         .ToList();
         }
 

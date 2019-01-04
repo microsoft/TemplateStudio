@@ -1,6 +1,6 @@
 ﻿Namespace ViewModels
     Public Class ViewModelLocator
-        Public Sub New()
+        Private Sub New()
             '^^
             '{[{
             Register(Of wts.ItemNameViewModel, wts.ItemNamePage)()
@@ -11,7 +11,7 @@
 
         Public ReadOnly Property wts.ItemNameViewModel As wts.ItemNameViewModel
             Get
-                Return ServiceLocator.Current.GetInstance(Of wts.ItemNameViewModel)()
+                Return SimpleIoc.[Default].GetInstance(Of wts.ItemNameViewModel)()
             End Get
         End Property
 '}]}

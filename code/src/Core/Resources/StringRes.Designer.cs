@@ -115,6 +115,96 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Circular dependency detected on template {0} with {1}..
+        /// </summary>
+        public static string ErrorDependencyCircularReference {
+            get {
+                return ResourceManager.GetString("ErrorDependencyCircularReference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dependency template {0} not found on user selection..
+        /// </summary>
+        public static string ErrorDependencyMissing {
+            get {
+                return ResourceManager.GetString("ErrorDependencyMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid dependency item {0}. Dependencies have to be configured as multipleInstance = false..
+        /// </summary>
+        public static string ErrorDependencyMultipleInstance {
+            get {
+                return ResourceManager.GetString("ErrorDependencyMultipleInstance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dependency template {0} not found for framework {1} and platform {2}..
+        /// </summary>
+        public static string ErrorDependencyNotFound {
+            get {
+                return ResourceManager.GetString("ErrorDependencyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid dependency item {0}. Dependency items must be of type Page or Feature..
+        /// </summary>
+        public static string ErrorDependencyType {
+            get {
+                return ResourceManager.GetString("ErrorDependencyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template &apos;{0}&apos;, name: &apos;{1}&apos;, reason: &apos;{2}&apos;.
+        /// </summary>
+        public static string ErrorGenerating {
+            get {
+                return ResourceManager.GetString("ErrorGenerating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layout template {0} not found for framework {1} and platform {2}..
+        /// </summary>
+        public static string ErrorLayoutNotFound {
+            get {
+                return ResourceManager.GetString("ErrorLayoutNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid layout item {0}. Layout items must be of type Page or Feature..
+        /// </summary>
+        public static string ErrorLayoutType {
+            get {
+                return ResourceManager.GetString("ErrorLayoutType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception tracking telemetry during generation..
+        /// </summary>
+        public static string ErrorTrackTelemetryException {
+            get {
+                return ResourceManager.GetString("ErrorTrackTelemetryException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to resolve platform..
+        /// </summary>
+        public static string ErrorUnableResolvePlatform {
+            get {
+                return ResourceManager.GetString("ErrorUnableResolvePlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception Info.
         /// </summary>
         public static string ExceptionInfoString {
@@ -219,6 +309,15 @@ namespace Microsoft.Templates.Core.Resources {
         public static string FsSafeMoveDirectoryMessage {
             get {
                 return ResourceManager.GetString("FsSafeMoveDirectoryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file {0} can&apos;t be moved to {1}. Error: {2}.
+        /// </summary>
+        public static string FsSafeMoveFileMessage {
+            get {
+                return ResourceManager.GetString("FsSafeMoveFileMessage", resourceCulture);
             }
         }
         
@@ -385,11 +484,29 @@ namespace Microsoft.Templates.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Adding items to project ....
+        ///   Looks up a localized string similar to Creating &apos;{0}&apos; feature ....
         /// </summary>
-        public static string StatusAddingItems {
+        public static string StatusBarGeneratingFeatureMessage {
             get {
-                return ResourceManager.GetString("StatusAddingItems", resourceCulture);
+                return ResourceManager.GetString("StatusBarGeneratingFeatureMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating &apos;{0}&apos; page ....
+        /// </summary>
+        public static string StatusBarGeneratingPageMessage {
+            get {
+                return ResourceManager.GetString("StatusBarGeneratingPageMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating project &apos;{0}&apos;....
+        /// </summary>
+        public static string StatusBarGeneratingProjectMessage {
+            get {
+                return ResourceManager.GetString("StatusBarGeneratingProjectMessage", resourceCulture);
             }
         }
         
@@ -735,6 +852,15 @@ namespace Microsoft.Templates.Core.Resources {
         public static string TemplatesSynchronizationErrorAcquiring {
             get {
                 return ResourceManager.GetString("TemplatesSynchronizationErrorAcquiring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error downloading source config file..
+        /// </summary>
+        public static string TemplatesSynchronizationErrorDownloadingConfig {
+            get {
+                return ResourceManager.GetString("TemplatesSynchronizationErrorDownloadingConfig", resourceCulture);
             }
         }
         

@@ -1,7 +1,6 @@
-﻿Imports Windows.UI.Xaml.Media.Animation
-Imports Microsoft.Toolkit.Uwp.UI.Controls
-Imports Param_ItemNamespace.Models
-Imports Param_ItemNamespace.Services
+﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
+Imports Param_ItemNamespace.Core.Models
+Imports Param_ItemNamespace.Core.Services
 
 Namespace Views
     Public NotInheritable Partial Class MasterDetailViewPage
@@ -36,7 +35,7 @@ Namespace Views
             Next
 
             If MasterDetailsViewControl.ViewState = MasterDetailsViewState.Both Then
-                Selected = SampleItems.First()
+                Selected = SampleItems.FirstOrDefault()
             End If
         End Sub
     End Class

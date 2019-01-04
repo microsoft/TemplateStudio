@@ -163,7 +163,7 @@ namespace Microsoft.Templates.Core.Test
 
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft España", template.Author);
-            Assert.Equal<string>("Página en Blanco", template.Name);
+            Assert.Equal<string>("PageTemplate", template.Name);
             Assert.Equal<string>("Está en Español...", template.Description);
             Assert.Equal<string>("Descripción del proyecto de prueba", template.GetRichDescription());
         }
@@ -178,7 +178,7 @@ namespace Microsoft.Templates.Core.Test
 
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft USA", template.Author);
-            Assert.Equal<string>("Blank US", template.Name);
+            Assert.Equal<string>("PageTemplate", template.Name);
             Assert.Equal<string>("US English...", template.Description);
             Assert.Equal<string>("US description", template.GetRichDescription());
         }
@@ -223,7 +223,7 @@ namespace Microsoft.Templates.Core.Test
 
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft España", template.Author);
-            Assert.Equal<string>("Feature de prueba", template.Name);
+            Assert.Equal<string>("FeatureTemplate", template.Name);
             Assert.Equal<string>("Está en Español (Feature)...", template.Description);
             Assert.Equal<string>("Descripción de la Feature de prueba", template.GetRichDescription());
         }
@@ -238,7 +238,7 @@ namespace Microsoft.Templates.Core.Test
 
             Assert.NotNull(template);
             Assert.Equal<string>("Microsoft USA", template.Author);
-            Assert.Equal<string>("Feature US", template.Name);
+            Assert.Equal<string>("FeatureTemplate", template.Name);
             Assert.Equal<string>("Feature US English...", template.Description);
             Assert.Equal<string>("US Feature description", template.GetRichDescription());
         }

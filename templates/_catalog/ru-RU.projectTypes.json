@@ -10,8 +10,8 @@
     "summary": "Панель навигации (или \"меню-гамбургер\") включена для навигации по страницам."
   },
   {
-    "name": "TabbedPivot",
-    "displayName": "Pivot and Tabs",
-    "summary": "Вкладки наверху позволяют быстро перемещаться по страницам."
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Navigation Items across the top allow for quickly navigating between pages."
   }
 ]

@@ -1,6 +1,6 @@
 # MVVM Basic
 
-MVVM Basic is not a framework but provides the minimum functionality necessary to create an app using the [Model-View-ViewModel (MVVM) pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel). It was created for people who can't or don't want to use a 3rd party MVVM Framework.
+MVVM Basic is not a framework but provides the minimum functionality necessary to create an app using the [Model-View-ViewModel (MVVM) pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel). It is unique to projects generated with Windows Template Studio and was created for people who can't or don't want to use a 3rd party MVVM Framework such as MVVM Light or Prism.
 
 MVVM Basic is not intended to be a fully featured MVVM Framework and does not include some features that other frameworks do. ViewModel-first navigation, IOC, and messaging being the most obvious ones. If you want these features we recommend choosing a framework that provides or supports them.  
 MVVM Basic can also serve as a basis for developers who want to create their own MVVM implementation. By providing only the most basic of extra functionality but still following common conventions it should be the easiest option if you want to modify the generated code to meet your preferred way of working.
@@ -14,7 +14,7 @@ Projects created with MVVM Basic contain two important classes:
 
 `Observable` contains an implementation of the `INotifyPropertyChanged` interface and is used as a base class for all ViewModels. This makes it easy to update bound properties on the View.
 
-`RelayCommand` contains an implementation of the `ICommand` interface to make it easy to have the View call commands on the ViewModel, rather than handle UI events directly. You can see examples of this being used in many of the pages that can be included as part of project generation including Camera, ImageGallery, Settings, and WebView.
+`RelayCommand` contains an implementation of the `ICommand` interface and allows the **View** to call commands on the **ViewModel**, rather than handle UI events directly. You can see examples of `RelayCommand` in use in the **Camera**, **ImageGallery**, **Settings**, and **WebView** pages included in a generated project.
 
 ## Navigation
 

@@ -12,15 +12,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public string FailedFileName { get; private set; }
 
+        public string FailedFilePath { get; private set; }
+
         public string FilePath { get; set; }
 
         public string Description { get; private set; }
 
-        public FailedMergePostActionInfo(string fileName, string filePath, string failedFileName, string description, MergeFailureType mergeFailureType)
+        public FailedMergePostActionInfo(string fileName, string filePath, string failedFileName, string failedFilePath, string description, MergeFailureType mergeFailureType)
         {
             FileName = fileName;
             FilePath = filePath;
             FailedFileName = failedFileName;
+            FailedFilePath = failedFilePath;
             Description = description;
             MergeFailureType = mergeFailureType;
         }

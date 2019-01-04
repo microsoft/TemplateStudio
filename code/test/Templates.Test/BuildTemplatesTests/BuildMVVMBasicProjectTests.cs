@@ -9,6 +9,7 @@ using Microsoft.Templates.Core;
 using Microsoft.TemplateEngine.Abstractions;
 
 using Xunit;
+using Microsoft.Templates.Fakes;
 
 namespace Microsoft.Templates.Test
 {
@@ -17,13 +18,12 @@ namespace Microsoft.Templates.Test
     public class BuildMVVMBasicProjectTests : BaseGenAndBuildTests
     {
         public BuildMVVMBasicProjectTests(BuildTemplatesTestFixture fixture)
+            : base(fixture, null, "MVVMBasic")
         {
-            _fixture = fixture;
-            _fixture.InitializeFixture(this, "MVVMBasic");
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "MVVMBasic")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMBasic")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
@@ -37,13 +37,13 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{ShortProjectType(projectType)}{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, null, false);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "MVVMBasic")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMBasic")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
@@ -55,15 +55,21 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && !t.GetIsHidden();
+
             var projectName = $"{ShortProjectType(projectType)}All{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "MVVMBasic", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimum")]
@@ -73,7 +79,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "MVVMBasic", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMBasic", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimumVB")]
@@ -82,7 +88,7 @@ namespace Microsoft.Templates.Test
             await BuildAllPagesAndFeaturesRandomNamesAsync(projectType, framework, platform, language);
         }
 
-        public async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
+        private async Task BuildAllPagesAndFeaturesRandomNamesAsync(string projectType, string framework, string platform, string language)
         {
             Func<ITemplateInfo, bool> selector =
                 t => t.GetTemplateType() == TemplateType.Project
@@ -92,15 +98,21 @@ namespace Microsoft.Templates.Test
                     && !t.GetIsHidden()
                     && t.GetLanguage() == language;
 
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                    && t.GetFrameworkList().Contains(framework)
+                    && t.GetPlatform() == platform
+                    && !t.GetIsHidden();
+
             var projectName = $"{ShortProjectType(projectType)}AllRandom{ShortLanguageName(language)}";
 
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetRandomName, false);
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetRandomName, false);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "MVVMBasic")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMBasic")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -112,7 +124,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "MVVMBasic")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "MVVMBasic")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -124,7 +136,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesForBuild", "MVVMBasic")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "MVVMBasic")]
         [Trait("Type", "BuildOneByOneMVVMBasic")]
         public async Task BuildMVVMBasicOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {

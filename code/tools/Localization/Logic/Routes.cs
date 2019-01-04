@@ -53,12 +53,12 @@ namespace Localization
         {
             "code\\src\\Core\\Resources",
             "code\\src\\Installer.2017\\Resources",
-            "code\\src\\UI\\Resources"
+            "code\\src\\UI\\Resources",
         };
 
         internal static string[] TemplatesPlatforms { get; } =
         {
-            "Uwp"
+            "Uwp",
         };
 
         // Validate Routes

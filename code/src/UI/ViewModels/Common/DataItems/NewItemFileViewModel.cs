@@ -50,7 +50,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
         {
         }
 
-        private NewItemFileViewModel(FileStatus fileStatus, string subject, Func<string, string> updateTextAction = null)
+        private NewItemFileViewModel(FileStatus fileStatus, string subject, string tempFile, string projectFile, Func<string, string> updateTextAction = null)
             : base(false)
         {
             FileStatus = fileStatus;
@@ -59,28 +59,28 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             UpdateTextAction = updateTextAction;
             FileExtension = GetFileExtension(subject);
             Subject = subject;
-            TempFile = Path.Combine(GenContext.Current.OutputPath, subject);
-            ProjectFile = Path.Combine(GenContext.Current.DestinationParentPath, subject);
+            TempFile = tempFile;
+            ProjectFile = projectFile;
         }
 
         public static NewItemFileViewModel NewFile(NewItemGenerationFileInfo file)
         {
-            return new NewItemFileViewModel(FileStatus.NewFile, file.Name);
+            return new NewItemFileViewModel(FileStatus.NewFile, file.Name, file.NewItemGenerationFilePath, file.ProjectFilePath);
         }
 
         public static NewItemFileViewModel ModifiedFile(NewItemGenerationFileInfo file)
         {
-            return new NewItemFileViewModel(FileStatus.ModifiedFile, file.Name);
+            return new NewItemFileViewModel(FileStatus.ModifiedFile, file.Name, file.NewItemGenerationFilePath, file.ProjectFilePath);
         }
 
         public static NewItemFileViewModel ConflictingFile(NewItemGenerationFileInfo file)
         {
-            return new NewItemFileViewModel(FileStatus.ConflictingFile, file.Name);
+            return new NewItemFileViewModel(FileStatus.ConflictingFile, file.Name, file.NewItemGenerationFilePath, file.ProjectFilePath);
         }
 
         public static NewItemFileViewModel UnchangedFile(NewItemGenerationFileInfo file)
         {
-            return new NewItemFileViewModel(FileStatus.UnchangedFile, file.Name);
+            return new NewItemFileViewModel(FileStatus.UnchangedFile, file.Name, file.NewItemGenerationFilePath, file.ProjectFilePath);
         }
 
         public static NewItemFileViewModel CompositionToolFile(string filePath)
@@ -89,23 +89,23 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 FileStatus = FileStatus.NewFile,
                 TempFile = filePath,
-                FileExtension = GetFileExtension(filePath)
+                FileExtension = GetFileExtension(filePath),
             };
         }
 
         public static NewItemFileViewModel ConflictingStylesFile(FailedMergePostActionInfo file)
         {
-            return new NewItemFileViewModel(FileStatus.ConflictingStylesFile, file.FileName, AsUserFriendlyPostAction)
+            return new NewItemFileViewModel(FileStatus.ConflictingStylesFile, file.FailedFileName, file.FilePath, string.Empty, AsUserFriendlyPostAction)
             {
-                FailedPostaction = Path.Combine(GenContext.Current.OutputPath, $"{file.FileName.Replace(".xaml", string.Empty)}_failedpostaction.xaml")
+                FailedPostaction = file.FailedFilePath,
             };
         }
 
         public static NewItemFileViewModel WarningFile(FailedMergePostActionInfo file)
         {
-            return new NewItemFileViewModel(FileStatus.WarningFile, file.FailedFileName, AsUserFriendlyPostAction)
+            return new NewItemFileViewModel(FileStatus.WarningFile, file.FailedFileName, file.FailedFilePath, string.Empty, AsUserFriendlyPostAction)
             {
-                Description = file.Description
+                Description = file.Description,
             };
         }
 

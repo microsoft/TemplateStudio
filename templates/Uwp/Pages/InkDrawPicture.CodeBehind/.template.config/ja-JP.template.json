@@ -1,0 +1,6 @@
+﻿{
+  "author": "Microsoft",
+  "name": "Ink Draw Picture",
+  "description": "画像を読み込んだり、Windows Ink で画像の上に線画を描いたりすることができるページです。",
+  "identity": "wts.Page.InkDrawPicture.CodeBehind"
+}

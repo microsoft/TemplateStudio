@@ -46,13 +46,13 @@ namespace Microsoft.Templates.Core
             Instance.Init();
         }
 
-        public string GetCurrentContentSource(string workingFolder, string sourceId)
+        public string GetCurrentContentSource(string workingFolder, string sourceId, string platform, string language)
         {
             var result = string.Empty;
 
             foreach (var mp in Instance?.Settings.SettingsLoader.MountPoints)
             {
-                if (mp != null && Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place) && (mp.Place.IndexOf(sourceId, StringComparison.OrdinalIgnoreCase) != -1))
+                if (mp != null && Directory.Exists(mp.Place) && IsHigherVersion(result, mp.Place) && (mp.Place.IndexOf(sourceId, StringComparison.OrdinalIgnoreCase) != -1) && (mp.Place.IndexOf(platform, StringComparison.OrdinalIgnoreCase) != -1) && (mp.Place.IndexOf(language, StringComparison.OrdinalIgnoreCase) != -1))
                 {
                     result = mp.Place;
                 }

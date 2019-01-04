@@ -23,19 +23,17 @@ namespace Microsoft.Templates.UI.VisualStudio
     {
         private UserSelection _userSelection;
         private Dictionary<string, string> _replacementsDictionary;
+        private string _platform;
         private string _language;
+        private GenerationService _generationService = GenerationService.Instance;
 
         public string ProjectName => _replacementsDictionary["$safeprojectname$"];
 
         public string DestinationPath => new DirectoryInfo(_replacementsDictionary["$destinationdirectory$"]).FullName;
 
-        public string DestinationParentPath => new DirectoryInfo(DestinationPath).Parent.FullName;
+        public string GenerationOutputPath => DestinationPath;
 
-        public string OutputPath { get; set; }
-
-        public string TempGenerationPath => string.Empty;
-
-        public List<string> ProjectItems { get; } = new List<string>();
+        public ProjectInfo ProjectInfo { get; } = new ProjectInfo();
 
         public List<FailedMergePostActionInfo> FailedMergePostActions { get; } = new List<FailedMergePostActionInfo>();
 
@@ -45,16 +43,17 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public Dictionary<ProjectMetricsEnum, double> ProjectMetrics { get; private set; } = new Dictionary<ProjectMetricsEnum, double>();
 
-        protected void Initialize(string language)
+        protected void Initialize(string platform, string language)
         {
+            _platform = platform;
             _language = language;
 
-            if (GenContext.CurrentLanguage != language)
+            if (GenContext.CurrentLanguage != language || GenContext.CurrentPlatform != platform)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), language);
+                GenContext.Bootstrap(new LocalTemplatesSource(), new VsGenShell(), platform, language);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(), new VsGenShell(), language);
+                GenContext.Bootstrap(new RemoteTemplatesSource(platform, language), new VsGenShell(), platform, language);
 #endif
             }
         }
@@ -73,32 +72,26 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void RunFinished()
         {
-            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
             SafeThreading.JoinableTaskFactory.Run(
                 async () =>
                 {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    await NewProjectGenController.Instance.GenerateProjectAsync(_userSelection);
-                },
-                JoinableTaskCreationOptions.LongRunning);
+                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
 
-            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
-
-            SafeThreading.JoinableTaskFactory.Run(
-                async () =>
-                {
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    await _generationService.GenerateProjectAsync(_userSelection);
                     PostGenerationActions();
+
+                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
                 },
                 JoinableTaskCreationOptions.LongRunning);
         }
 
         private static void PostGenerationActions()
         {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusBarRestoring);
-            GenContext.ToolBox.Shell.RestorePackages();
-
             GenContext.ToolBox.Shell.CollapseSolutionItems();
+            GenContext.ToolBox.Shell.OpenProjectOverview();
+            GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
+            GenContext.ToolBox.Shell.ShowTaskList();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
@@ -111,7 +104,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                     GenContext.Current = this;
 
-                    _userSelection = NewProjectGenController.Instance.GetUserSelection(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, new VSStyleValuesProvider());
+                    _userSelection = NewProjectController.Instance.GetUserSelection(_replacementsDictionary["$wts.platform$"], GenContext.CurrentLanguage, new VSStyleValuesProvider());
                 }
             }
             catch (WizardBackoutException)
@@ -146,6 +139,10 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 Fs.SafeDeleteDirectory(parentDir);
             }
+        }
+
+        public SolutionWizard()
+        {
         }
     }
 }

@@ -7,6 +7,7 @@
 *.userosscache
 *.sln.docstates
 *.*[Ss]ecrets
+*.*[Ss]ecret
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -255,7 +256,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
-templates/_composition/_shared/Page.Chart.SampleDataService/Services/SampleDataService_postaction.cs
 /myModel.vsdx
 /code/SynchronizeFilesUsedByVisualBasicTemplates.ps1
 /code/PrismTests.playlist

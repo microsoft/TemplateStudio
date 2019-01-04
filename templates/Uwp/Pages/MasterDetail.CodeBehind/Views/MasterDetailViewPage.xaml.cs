@@ -8,8 +8,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Param_ItemNamespace.Models;
-using Param_ItemNamespace.Services;
+using Param_ItemNamespace.Core.Models;
+using Param_ItemNamespace.Core.Services;
 
 namespace Param_ItemNamespace.Views
 {
@@ -44,7 +44,7 @@ namespace Param_ItemNamespace.Views
 
             if (MasterDetailsViewControl.ViewState == MasterDetailsViewState.Both)
             {
-                Selected = SampleItems.First();
+                Selected = SampleItems.FirstOrDefault();
             }
         }
     }

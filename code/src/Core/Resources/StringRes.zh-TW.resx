@@ -212,9 +212,6 @@
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>同步範本時發生錯誤。狀態：</value>
   </data>
-  <data name="StatusAddingItems" xml:space="preserve">
-    <value>正在新增項目至專案...</value>
-  </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>正在開啟產生的檔案...</value>
   </data>
@@ -443,5 +440,63 @@
   <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
     <value>無法重新命名資料夾 {0}。錯誤：{1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
+  </data>
+  <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
+    <value>下載來源組態檔時發生錯誤。</value>
+  </data>
+  <data name="FsSafeMoveFileMessage" xml:space="preserve">
+    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
+  </data>
+  <data name="ErrorLayoutNotFound" xml:space="preserve">
+    <value>找不到 framework {1} 和平台 {2} 的版面配置範本 {0}。</value>
+    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
+  </data>
+  <data name="ErrorLayoutType" xml:space="preserve">
+    <value>配置項目 {0} 無效。配置項目的類型必須是頁面或功能。</value>
+    <comment>Layout Type exception message. {0}: Layout template id</comment>
+  </data>
+  <data name="ErrorDependencyType" xml:space="preserve">
+    <value>相依性項目 {0} 無效。相依性項目的類型必須是頁面或功能。</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyNotFound" xml:space="preserve">
+    <value>找不到 framework {1} 和平台 {2} 的相依性範本 {0}。</value>
+    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
+  </data>
+  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
+    <value>相依性項目 {0} 無效。相依性必須設定為 multipleInstance = false。</value>
+    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
+  </data>
+  <data name="ErrorDependencyCircularReference" xml:space="preserve">
+    <value>已在包含 {1} 的範本 {0} 上偵測到循環相依性。</value>
+    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
+  </data>
+  <data name="ErrorDependencyMissing" xml:space="preserve">
+    <value>在使用者的選擇中找不到相依性範本 {0}。</value>
+    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
+  </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>正在建立 '{0}' 功能...</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>正在建立 '{0}' 頁面...</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>正在建立專案 '{0}'...</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="ErrorGenerating" xml:space="preserve">
+    <value>範本 '{0}'，名稱：'{1}'，原因：'{2}'</value>
+    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
+  </data>
+  <data name="ErrorTrackTelemetryException" xml:space="preserve">
+    <value>產生期間的例外狀況追蹤遙測。</value>
+    <comment>Exception tracking telemetry during generation.</comment>
+  </data>
+  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
+    <value>無法解決平台。</value>
   </data>
 </root>

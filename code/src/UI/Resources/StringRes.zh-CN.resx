@@ -298,8 +298,8 @@
     <comment>Wizard title on WizardShell page</comment>
   </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
-    <value>无法删除 **{0}**，因为 **{1}** 依赖于它。</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependency template name. Character * add bold to word</comment>
+    <value>无法删除 **{0}**，因为这些模板依赖于它:{1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>刷新模板时出错。有关更多详细信息，请参阅输出窗口。</value>
@@ -308,10 +308,6 @@
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
     <value>有可用的新模板 (v{0})。正在下载... {1}%</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
-  </data>
-  <data name="NotificationSyncStatus_Copying" xml:space="preserve">
-    <value>正在复制模板 (v{0})...{1}%</value>
-    <comment>Notification message for Sync Status: Copying, {0}:Version, {1}: Progress amount</comment>
   </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>下载模板 (v{0}) 时出错。我们将稍后重试。</value>
@@ -481,22 +477,6 @@
     <value>已成功添加页面 {0}</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>在生成过程中跟踪遥测时出现异常。</value>
-    <comment>Exception tracking telemetry during generation.</comment>
-  </data>
-  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>无法添加项目项。请确保你拥有必需的 SDK。</value>
-    <comment>Error message for unable add items to project</comment>
-  </data>
-  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>无法将项目添加到解决方案。请确保你已安装应有的 SDK。</value>
-    <comment>Error message for unable add project to solution</comment>
-  </data>
-  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>无法刷新项目。请尝试手动刷新该项目。</value>
-    <comment>Error message for unable to refresh project</comment>
-  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>折叠解决方案树时出错。例如:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
@@ -512,50 +492,6 @@
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>显示状态消息时出错。例如:</value>
     <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>在包含 {1} 的模板 {0} 中检测到循环依赖项。</value>
-    <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>在用户所选内容中未找到依赖项模板 {0}。</value>
-    <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>依赖项 {0} 无效。必须将依赖项配置为 multipleInstance = false。</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
-  </data>
-  <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>未找到 framework {1} 和平台 {2} 的依赖项模板 {0}。</value>
-    <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
-  </data>
-  <data name="ErrorDependencyType" xml:space="preserve">
-    <value>依赖项 {0} 无效。依赖项必须属于“页面”或“功能”类型。</value>
-    <comment>Invalid dependency exception message. {0}:Dependency Template id</comment>
-  </data>
-  <data name="ErrorGenerating" xml:space="preserve">
-    <value>模板“{0}”，名称:“{1}”，原因:'{2}'</value>
-    <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
-  </data>
-  <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>未找到 framework {1} 和平台 {2} 的布局模板 {0}。</value>
-    <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
-  </data>
-  <data name="ErrorLayoutType" xml:space="preserve">
-    <value>布局项 {0} 无效。布局项必须属于“页面”或“功能”类型。</value>
-    <comment>Layout Type exception message. {0}: Layout template id</comment>
-  </data>
-  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>正在创建“{0}”功能...</value>
-    <comment>Status bar message generating feature. {0}: Feature name</comment>
-  </data>
-  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>正在创建“{0}”页面...</value>
-    <comment>Status bar message generating page. {0}: Page name</comment>
-  </data>
-  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>正在创建项目“{0}”...</value>
-    <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>应用程序启动</value>
@@ -653,15 +589,16 @@
     <value>按 Enter 以添加 {0}</value>
     <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
   </data>
-  <data name="ValidatorHasNavigationViewMessage" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
     <value>HamburgerMenu 控件已过时，Windows Template Studio 现在支持 NavigationView。</value>
-    <comment>Has navigation view validation error message</comment>
+    <comment>Has hamburger menu validation error message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>Windows Template Studio 现在使用 Windows UI Library 提供的 NavigationView。</value>
+    <comment>Has old navigation view validation error message</comment>
   </data>
   <data name="ButtonCompositionTool" xml:space="preserve">
     <value>Composition 工具</value>
-  </data>
-  <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>无法解析平台。</value>
   </data>
   <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
     <value>选择平台</value>
@@ -675,24 +612,96 @@
     <value>无可用内容。</value>
     <comment>Message in no content panel</comment>
   </data>
-  <data name="ValidatorHasNavigationViewLink" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
     <value>{0}projectTypes/updatetonavigationview.md</value>
-    <comment>Has navigation view validation link documentation</comment>
+    <comment>Has hamburger menu validation link documentation</comment>
   </data>
-  <data name="ValidatorHasNavigationViewLinkMessage" xml:space="preserve">
+  <data name="ValidatorHasHamburgerMenuLinkMessage" xml:space="preserve">
     <value>请参阅文档进行更新。</value>
-    <comment>Has navigation view validation link documentation message</comment>
+    <comment>Has hamburger menu validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
+    <value>请参阅文档进行更新。</value>
+    <comment>Has old navigation view validation link documentation message</comment>
   </data>
   <data name="BreakingChanges" xml:space="preserve">
     <value>重大更改</value>
     <comment>Breaking changes title</comment>
   </data>
   <data name="BreakingChangesDialogMessage" xml:space="preserve">
-    <value>我们检测到你的项目与最新模板版本存在不兼容。请检查更改：</value>
+    <value>我们检测到你的项目与之前模板版本不兼容。请检查更改:</value>
     <comment>Breaking change window dialog message description</comment>
   </data>
   <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Unable to set default solution configuration</value>
+    <value>无法设置默认解决方案配置</value>
     <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>名称不能以“Page”结尾，因为其会自动添加到名称中。[有关命名的详细信息。]({0}WTSNaming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>请注意，“Page”将添加到指定名称的结尾。[有关命名的详细信息。]({0}WTSNaming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
+    <value>我们已更改 MVVMLight ViewModelLocator 实施，以在 MVVMLight 中支持 MultiView。</value>
+    <comment>Has old MvvmLight Locator error message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+    <value>请参阅文档进行更新。</value>
+    <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has pivot validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -Id {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
+Please verify the following list of packages needed by your project's code and manually add the missing packages: 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>Adding {0} to project ...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>Adding NuGet package {0} to project ...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>Adding project {0} to solution...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Unable to add files and projects.</value>
+  </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Unable to find project {0}</value>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Adding references between projects...</value>
   </data>
 </root>

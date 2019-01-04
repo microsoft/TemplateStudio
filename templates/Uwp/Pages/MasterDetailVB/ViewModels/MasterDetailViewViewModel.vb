@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
-Imports Param_ItemNamespace.Models
-Imports Param_ItemNamespace.Services
+Imports Param_ItemNamespace.Core.Models
+Imports Param_ItemNamespace.Core.Services
 
 Namespace ViewModels
     Public Class MasterDetailViewViewModel
@@ -32,7 +32,7 @@ Namespace ViewModels
             Next
 
             If viewState = MasterDetailsViewState.Both Then
-                Selected = SampleItems.First()
+                Selected = SampleItems.FirstOrDefault()
             End If
         End Function
     End Class

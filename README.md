@@ -14,15 +14,14 @@ I need an app that uses MVVM Light, uses master detail, can suspend and resume, 
 |master|[![Build status](https://ci.appveyor.com/api/projects/status/nf8r35r45o4yqbqs/branch/master?svg=true)](https://ci.appveyor.com/project/ralarcon/windowstemplatestudio/branch/master)|[![Prerelease Version](https://wtsrepository.blob.core.windows.net/badges/img.prerelease.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio) |[![Production Version](https://wtsrepository.blob.core.windows.net/badges/img.release.version.svg?maxAge=600)](https://marketplace.visualstudio.com/items?itemName=WASTeamAccount.WindowsTemplateStudio)|
 |dev|[![Build status](https://ci.appveyor.com/api/projects/status/nf8r35r45o4yqbqs/branch/dev?svg=true)](https://ci.appveyor.com/project/ralarcon/windowstemplatestudio/branch/dev)|[![Nightly Version](https://wtsrepository.blob.core.windows.net/badges/img.nightly.version.svg)](https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/getting-started-extension.md#nightly--pre-release-feeds-for-windows-template-studio)||
 
-|Branch   |Gen Tests        |Full Tests       |WACK Tests       |
-|:--------|:---------------:|:---------------:|:---------------:|
-|master|[![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/141/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/141.md)|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/129/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/129.md)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/144/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/144.md)
-|dev|[![Generation Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/135/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/135.md)|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/128/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/128.md)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/142/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/142.md)
+|Branch   |Full Tests       |WACK Tests       |
+|:--------|:---------------:|:---------------:|
+|master|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/129/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/129.md)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/144/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/144.md)
+|dev|[![Full Integration Tests](https://winappstudio.visualstudio.com/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/128/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/128.md)|[![Wack Tests](https://winappstudio.visualstudio.com/DefaultCollection/_apis/public/build/definitions/5c80cfe7-3bfb-4799-9d04-803c84df7a60/142/badge)](https://github.com/Microsoft/WindowsTemplateStudio/blob/vsts-builds/docs/vsts-builds/142.md)
 
 > The builds include test verifications to validate the contributions:
 > * *CI Build*: Includes all unit test + minimum integration verifications (minimum generation + build + code style rules). Runs every PR requested / PR accepted.
-> * *Gen Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view. Runs every PR accepted and takes a bit to complete.
-> * *Full Tests*: Includes `Gen Tests` and actually builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed.
+> * *Full Tests*: Includes tests to verify combinations and variations of templates from a project generation point of view and builds the solutions generated to ensure no build time issues found. Runs every PR accepted and takes longer to be completed.
 > * *Wack Tests*: Includes tests that run the App Certification Kit against the generated projects to ensure there are no issues blocking a submission to the store. Runs once nightly and takes quite a while to complete.
 
 ## Features
@@ -45,9 +44,9 @@ Once you select the attributes you want your new UWP app to have, you can quickl
 * [Authoring Templates](docs/templates.md)
 
 ## Known issues
-* Issue ([#1753](https://github.com/Microsoft/WindowsTemplateStudio/issues/1753)): Wack tests are currently failing in our build server due to a machine configuration issue. All tests pass correctly if locally executed. We are working on getting them back to green.
-* Issue ([#1629](https://github.com/Microsoft/WindowsTemplateStudio/issues/1629)): the Master-Detail view has an issue if you set the background to Transparent in the MastertDetailControl. We are actively working with the UWPCommunityTookit team to get this solved as soon as possible.
+* Issue ([#2487](https://github.com/Microsoft/WindowsTemplateStudio/issues/2487)): When using MultiView with MVVMLight the ViewModelLocator gets instantiated again when opening a page in a new window, which results in an exception. We're changing ViewModelLocators implementation to make this work correctly for version 2.5. You can find a reference implementation in the tracking issue. 
 * Issue ([#1532](https://github.com/Microsoft/WindowsTemplateStudio/issues/1532)): when uninstalling / upgrading where you may get an error of "A value for 'Component' needs to be specified in the catalog."  If you get this error, we need logs to help track this with the help of the Visual Studio team.  We don't know how to reproduce it but we know a few people have hit this scenario.  We have how to capture these logs in the [tracking issue on GitHub.](https://github.com/Microsoft/WindowsTemplateStudio/issues/1532)
+* Issue ([#2632](https://github.com/Microsoft/WindowsTemplateStudio/issues/2632)): When using Background Task with Prism the Unity container always gets recreated resulting in incorrect dependency resolving. We're putting a check around this line of code to make this work correctly for version 2.5. Meanwhile you can find the manual fix in the tracking issue. There's still a known issue where the in-process background task triggers an activation and this isn't handled anymore while the app is running. This will shortly activate the app to do its work and suspend again, resulting a NullReferenceException on suspending. This will be fixed in the next release of Prism. 
 * You can't have side-by-side versions (nightly/pre-release/release) of WindowsTemplateStudio VSPackage into a single instance of Visual Studio.
 
 ## Feedback, Requests and Roadmap
@@ -65,13 +64,13 @@ Do you want to contribute? We would love to have you help out. Here are our [con
 ## Principles
 
 1. Generated templates will be kept simple.
-1. Generated templates are a starting point, not a completed application.
-1. Generated templates once generated, must be able to be compiled and run.
-1. Generated templates should work on all device families.
-1. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
-1. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 Creators Update and Windows 10 Fall Creators Update.
-1. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
-1. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
+2. Generated templates are a starting point, not a completed application.
+3. Generated templates must be able to compile and run once generated.
+4. Generated templates should work on all device families.
+5. Templates should have comments to aid developers.  This includes links to signup pages for keys, MSDN, blogs and how-to's.  All guidance provide should be validated from either the framework/SDK/library’s creator.
+6. All features will be supported for two most recent RTM Windows 10 Updates. Those supported releases are Windows 10 Creators Update and Windows 10 Fall Creators Update.
+7. Templates released in production will try to adhere to the design language used in the current release of Windows 10.
+8. Code should follow [.NET Core coding style](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md).
 
 This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behavior in our community.
 For more information see the [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct).
@@ -82,8 +81,29 @@ This code is distributed under the terms and conditions of the [MIT license](LIC
 
 ## Privacy Statement
 
-The extension does [log basic telemetry](docs/telemetry.md) for what is being selected. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
+The extension does [log basic telemetry](docs/telemetry.md) for what is being selected. Our [Telemetry Data](docs/telemetryData.md) page has the trends from the telemetry. Please read the [Microsoft privacy statement](http://go.microsoft.com/fwlink/?LinkId=521839) for more information.
 
 ## .NET Foundation
 
 This project is supported by the [.NET Foundation](https://dotnetfoundation.org).
+
+## Projects we like and collaborate with
+
+- [Rapid Xaml Toolkit](https://github.com/Microsoft/Rapid-XAML-Toolkit)
+- [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)
+- [Fluent XAML Theme Editor](https://github.com/Microsoft/fluent-xaml-theme-editor)
+
+## Frameworks and libraries in generated code not created by our team
+**Frameworks**
+- [Caliburn.Micro](https://github.com/Caliburn-Micro/Caliburn.Micro)
+- [MVVMLight](https://github.com/lbugnion/mvvmlight)
+- [Prism](https://github.com/PrismLibrary/Prism)
+
+**Libraries**
+- [Microsoft AppCenter SDK](https://github.com/Microsoft/AppCenter-SDK-DotNet)
+- [Microsoft Store Services SDK](https://marketplace.visualstudio.com/items?itemName=AdMediator.MicrosoftStoreServicesSDK)
+- [Microsoft Win2D](https://github.com/Microsoft/Win2D)
+- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
+- [Telerik UI For UWP](https://github.com/telerik/UI-For-UWP)
+- [Windows Azure Messaging Managed](https://www.nuget.org/packages/WindowsAzure.Messaging.Managed)
+- [Windows Community Toolkit](https://github.com/Microsoft/WindowsCommunityToolkit)

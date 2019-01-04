@@ -3,6 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows.Controls;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 
 namespace Microsoft.Templates.UI.Views.NewItem

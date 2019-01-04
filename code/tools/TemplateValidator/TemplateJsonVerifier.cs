@@ -113,6 +113,8 @@ namespace TemplateValidator
                 EnsureAllDefinedGuidsAreUsed(template, templateRoot, results);
 
                 VerifySymbols(template, results);
+
+                VerifyLicensesAndProjPostactions(template, templateRoot, results);
             }
             catch (Exception ex)
             {
@@ -367,7 +369,7 @@ namespace TemplateValidator
             // This tag may contain a single value or multiple ones separated by the pipe character
             foreach (var projectType in tag.Value.Split('|'))
             {
-                if (!new[] { "Blank", "SplitView", "TabbedPivot" }.Contains(projectType))
+                if (!new[] { "Blank", "SplitView", "TabbedNav" }.Contains(projectType))
                 {
                     results.Add($"Invalid value '{tag.Value}' specified in the wts.projecttype tag.");
                 }
@@ -479,6 +481,24 @@ namespace TemplateValidator
                     {
                         results.Add($"Defined GUID '{templateGuid}' is not used.");
                     }
+                }
+            }
+        }
+
+        private static void VerifyLicensesAndProjPostactions(ValidationTemplateInfo template, string templateRoot, List<string> results)
+        {
+            if (template.TemplateTags.ContainsKey("wts.licenses") && !string.IsNullOrEmpty(template.TemplateTags["wts.licenses"]))
+            {
+                if (template.PostActions?.Count == 0)
+                {
+                    results.Add($"No postaction found for license defined on template {template.Identity}");
+                }
+            }
+            else
+            {
+                if (template.PostActions != null && template.PostActions.Any(p => p.ActionId == "0B814718-16A3-4F7F-89F1-69C0F9170EAD"))
+                {
+                    results.Add($"Missing license on template {template.Identity}");
                 }
             }
         }

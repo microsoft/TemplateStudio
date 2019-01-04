@@ -1,18 +1,28 @@
 ﻿//{[{
-using CommonServiceLocator;
+using Param_ItemNamespace.ViewModels;
 //}]}
 namespace Param_ItemNamespace.Services
 {
     internal class SuspendAndResumeService : ActivationHandler<LaunchActivatedEventArgs>
     {
-        private async Task RestoreStateAsync()
+        private const string StateFilename = "SuspendAndResumeState";
+
+        //{[{
+        // TODO WTS: Subscribe to the OnBackgroundEntering event from your current Page's ViewModel to save the current App data.
+        // Only one Page should subscribe to OnBackgroundEntering at a time, as the App will navigate to that Page on resume.
+        public event EventHandler<OnBackgroundEnteringEventArgs> OnBackgroundEntering;
+
+        // TODO WTS: Subscribe to the OnResuming event from the current Page's ViewModel
+        // if you need to refresh online data when the App resumes without being terminated.
+        public event EventHandler OnResuming;
+        //}]}
+        protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
             //^^
             //{[{
             if (saveState?.Target != null)
             {
-                var navigationService = ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-                navigationService.Navigate(saveState.Target.FullName, saveState.SuspensionState);
+                ViewModelLocator.Current.NavigationService.Navigate(saveState.Target.FullName, saveState.SuspensionState);
             }
             //}]}
         }

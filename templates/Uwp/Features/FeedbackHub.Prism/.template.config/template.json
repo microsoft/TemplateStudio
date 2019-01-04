@@ -18,13 +18,18 @@
     "wts.multipleInstance": "false",
     "wts.rightClickEnabled":"false",
     "wts.defaultInstance": "FeedbackHubFeature",
-    "wts.licenses": "[Microsoft Store Services SDK](https://marketplace.visualstudio.com/items?itemName=AdMediator.MicrosoftStoreServicesSDK)"
+    "wts.licenses": "[Microsoft.Services.Store.SDK](https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx)",
   },
   "sourceName": "FeedbackHubFeature",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
   ],
   "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
@@ -36,7 +41,42 @@
     "wts.Page.Settings.Prism": {
       "type": "parameter",
       "replaces": "Param_SettingsPageName",
-      "fileRename": "Param_SettingsPageName" 
+      "fileRename": "Param_SettingsPageName"
     }
-  }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Services.Store.Engagement",
+        "version" : "10.1711.28001",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add sdk Reference",
+      "manualInstructions": [ ],
+      "actionId": "9E683FB4-CE5B-4AAE-8A36-63CD8A5B4977",
+      "args": {
+        "name": "Microsoft Engagement Framework",
+        "sdk": "Microsoft.Services.Store.Engagement, version=10.0",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    },
+    {
+      "description": "Add sdk Reference",
+      "manualInstructions": [ ],
+      "actionId": "9E683FB4-CE5B-4AAE-8A36-63CD8A5B4977",
+      "args": {
+        "name": "Visual C++ 2015 Runtime for Universal Windows Platform Apps",
+        "sdk": "Microsoft.VCLibs, version=14.0",
+        "projectPath": "Param_ProjectName.csproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
 }

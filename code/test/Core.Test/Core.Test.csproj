@@ -132,8 +132,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Threading, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.23\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.83\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Utilities, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Utilities.15.0.26606\lib\net45\Microsoft.VisualStudio.Utilities.dll</HintPath>
@@ -197,11 +196,23 @@
     <Compile Include="Diagnostics\TelemetryServiceTest.cs" />
     <Compile Include="Diagnostics\TestHealthWriter.cs" />
     <Compile Include="Localization\LocalizationTest.cs" />
+    <Compile Include="Locations\TemplateSourceConfigTests.cs" />
+    <Compile Include="Locations\RemoteTemplateSourceTests.cs" />
     <Compile Include="Locations\UnitTestsTemplatesSource.cs" />
     <Compile Include="Packaging\TemplatePackageTests.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectReferenceToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddSdkReferenceToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddNugetReferenceToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\CreateSummaryPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddItemToContextPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\FakeCreationPath.cs" />
+    <Compile Include="PostActions\Catalog\CopyFilesToProjectPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\GetMergeFilesFromProjectPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\HandleRemovalsTest.cs" />
+    <Compile Include="PostActions\Catalog\GenerateMergeInfoPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\SearchAndReplacePostActionTest.cs" />
     <Compile Include="PostActions\Catalog\MergeResourceDictionaryPostactionTest.cs" />
+    <Compile Include="PostActions\Catalog\MergePostActionTest.cs" />
     <Compile Include="PostActions\Catalog\SortImportsTest.cs" />
     <Compile Include="PostActions\Catalog\SortUsingsTest.cs" />
     <Compile Include="PostActions\Catalog\FakeTemplateDefinedPostAction.cs" />
@@ -209,15 +220,46 @@
     <Compile Include="Naming\NamingTests.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidatorTests.cs" />
     <Compile Include="Composition\CompositionQueryTest.cs" />
+    <None Include="TestData\GenerationSummary_expected.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_gpostaction.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_expectedmergeinfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SearchReplace\Source.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SearchReplace\Source_expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SearchReplace\NoSource_searchreplace.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\SearchReplace\Source_searchreplace.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\NoSource_postaction.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_fail_postaction.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\Source_fail.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="..\..\TestCert.pfx">
       <Link>Packaging\TestCert.pfx</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
+    <None Include=".codeclonesettings" />
     <None Include="Packaging\MsSigned\Templates.mstx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestData\Merge\Source_expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -237,6 +279,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Templates\TemplatesFixture.cs" />
+    <None Include="Packaging\SampleConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="TestData\Templates\UnspecifiedTemplateVB\.template.config\template.json" />
     <Content Include="TestData\Templates\_catalog\en-US.frameworks.json" />
     <Content Include="TestData\Templates\_catalog\es-ES.frameworks.json" />
@@ -250,6 +295,7 @@
     <Content Include="TestData\Templates\_catalog\projectTypes\en-US.TestProjectType.md" />
     <Content Include="TestData\Templates\_catalog\projectTypes\es-ES.TestProjectType.md" />
     <Content Include="TestData\Templates\_catalog\projectTypes\TestProjectType.md" />
+    <Content Include="TestData\Templates\Hidden.FeatureTemplate\.template.config\template.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Core\Core.csproj">
@@ -274,6 +320,20 @@
     <Content Include="TestData\Templates\PageTemplateVB\.template.config\template.json" />
     <Content Include="TestData\Templates\Naming.DefaultNameTemplateVB\.template.config\template.json" />
     <Content Include="TestData\Templates\CompositionTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\FeatureTemplateVB\.template.config\description.md" />
+    <Content Include="TestData\Templates\FeatureTemplateVB\.template.config\en-US.description.md" />
+    <Content Include="TestData\Templates\CompositionTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\Dependencies.FeatureTemplateVB\.template.config\template.json" />
+    <None Include="TestData\Steps to include new item generation_expected.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Templates\FeatureTemplateVB\.template.config\en-US.template.json" />
+    <Content Include="TestData\Templates\FeatureTemplateVB\.template.config\es-ES.description.md" />
+    <None Include="TestData\Templates\FeatureTemplateVB\.template.config\es-ES.template.json" />
+    <Content Include="TestData\Templates\FeatureTemplateVB\.template.config\template.json" />
+    <Content Include="TestData\Templates\OutputToParent.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\TelemetryName.FeatureTemplate\.template.config\template.json" />
+    <Content Include="TestData\Templates\Dependencies.FeatureTemplate\.template.config\template.json" />
     <None Include="TestData\Templates\ProjectTemplateVB\.template.config\description.md" />
     <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\Layout.json" />
     <Content Include="TestData\Templates\ProjectTemplateVB\.template.config\template.json" />
@@ -326,8 +386,8 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.0.240\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.0-beta009\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.0-beta009\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TestData\Merge\Style.xaml">
@@ -339,7 +399,7 @@
     <None Include="TestData\Merge\Style_postaction.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

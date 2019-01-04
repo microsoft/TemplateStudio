@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
-
+using System.Threading.Tasks;
 using CERTENROLLLib;
 
 using Microsoft.TemplateEngine.Abstractions;
@@ -31,20 +31,22 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     // Remarks: this post action can work with single project templates or multi project templates.
     public class GenerateTestCertificatePostAction : TemplateDefinedPostAction
     {
-        public static readonly Guid Id = new Guid("65057255-BD7B-443C-8180-5D82B9DA9E22");
+        public const string Id = "65057255-BD7B-443C-8180-5D82B9DA9E22";
 
-        public override Guid ActionId { get => Id; }
+        public override Guid ActionId { get => new Guid(Id); }
 
         private Dictionary<string, string> _parameters;
         private string _publisherName;
         private IReadOnlyList<ICreationPath> _primaryOutputs;
+        private string _destinationPath;
 
-        public GenerateTestCertificatePostAction(string relatedTemplate, string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters)
+        public GenerateTestCertificatePostAction(string relatedTemplate, string publisherName, IPostAction templatePostAction, IReadOnlyList<ICreationPath> primaryOutputs, Dictionary<string, string> parameters, string destinationPath)
             : base(relatedTemplate, templatePostAction)
         {
             _parameters = parameters;
             _publisherName = publisherName;
             _primaryOutputs = primaryOutputs;
+            _destinationPath = destinationPath;
         }
 
         internal override void ExecuteInternal()
@@ -61,10 +63,10 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
         private void AddToProject(string base64Encoded, string projectFileWithoutExtension)
         {
-            var filePath = Path.Combine(GenContext.Current.OutputPath, projectFileWithoutExtension) + "_TemporaryKey.pfx";
+            var filePath = Path.Combine(_destinationPath, projectFileWithoutExtension) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
-            GenContext.ToolBox.Shell.AddItems(filePath);
+            GenContext.Current.ProjectInfo.ProjectItems.Add(filePath);
         }
 
         private static void RemoveFromStore(string base64Encoded)

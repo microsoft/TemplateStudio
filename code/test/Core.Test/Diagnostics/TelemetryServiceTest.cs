@@ -36,7 +36,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             {
                 { TelemetryProperties.TemplateName, "TestTelemetrySampleTemplate" },
                 { TelemetryProperties.Framework, "MVVMLight" },
-                { TelemetryProperties.ProjectType, "Blank" }
+                { TelemetryProperties.ProjectType, "Blank" },
             };
 
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);
@@ -49,7 +49,7 @@ namespace Microsoft.Templates.Core.Test.Diagnostics
             {
                 { TelemetryProperties.TemplateName, "TestTelemetrySampleTemplate" },
                 { TelemetryProperties.Framework, "MVVMLight" },
-                { TelemetryProperties.ProjectType, "Blank" }
+                { TelemetryProperties.ProjectType, "Blank" },
             };
 
             await _fixture.Telemetry.TrackEventAsync(TelemetryEvents.ProjectGen, props);

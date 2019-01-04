@@ -30,8 +30,6 @@ namespace Microsoft.Templates.UI.Extensions
                     return Notification.Warning(string.Format(StringRes.NotificationSyncStatus_NewWizardVersionAvailable, args.Version), Category.TemplatesSync, TimerType.None);
                 case SyncStatus.ErrorAcquiring:
                     return Notification.Warning(string.Format(StringRes.NotificationSyncStatus_ErrorAcquiring, args.Version), Category.TemplatesSyncError, TimerType.Large, CategoriesToOverride);
-                case SyncStatus.Copying:
-                    return Notification.Information(string.Format(StringRes.NotificationSyncStatus_Copying, args.Version, args.Progress), Category.TemplatesSync, TimerType.None, false);
                 case SyncStatus.Ready:
                     return null;
                 case SyncStatus.None:

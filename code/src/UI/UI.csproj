@@ -94,6 +94,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Composition, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Composition.15.3.38\lib\net45\Microsoft.VisualStudio.Composition.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.CoreUtility, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.CoreUtility.15.0.26606\lib\net45\Microsoft.VisualStudio.CoreUtility.dll</HintPath>
       <Private>True</Private>
@@ -105,6 +108,16 @@
     <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>..\..\packages\Microsoft.VisualStudio.OLE.Interop.7.10.6070\lib\Microsoft.VisualStudio.OLE.Interop.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.ProjectSystem, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.ProjectSystem.15.3.224\lib\net46\Microsoft.VisualStudio.ProjectSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.ProjectSystem.Interop, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.ProjectSystem.15.3.224\lib\net46\Microsoft.VisualStudio.ProjectSystem.Interop.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.ProjectSystem.VS, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.ProjectSystem.15.3.224\lib\net46\Microsoft.VisualStudio.ProjectSystem.VS.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Setup.Configuration.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Setup.Configuration.Interop.1.14.114\lib\net35\Microsoft.VisualStudio.Setup.Configuration.Interop.dll</HintPath>
@@ -157,8 +170,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Threading, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.23\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.83\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Utilities, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Utilities.15.0.26606\lib\net45\Microsoft.VisualStudio.Utilities.dll</HintPath>
@@ -180,6 +192,21 @@
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Composition.AttributedModel, Version=1.0.31.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Composition.AttributedModel.1.0.31\lib\portable-net45+win8+wp8+wpa81\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention, Version=1.0.31.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Composition.Convention.1.0.31\lib\portable-net45+win8+wp8+wpa81\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting, Version=1.0.31.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Composition.Hosting.1.0.31\lib\portable-net45+win8+wp8+wpa81\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime, Version=1.0.31.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Composition.Runtime.1.0.31\lib\portable-net45+win8+wp8+wpa81\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts, Version=1.0.31.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Composition.TypedParts.1.0.31\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -190,6 +217,9 @@
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
     </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
@@ -204,6 +234,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="VSLangProj, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="VSLangProj110, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\PublicAssemblies\VSLangProj110.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WriteableBitmapEx.Wpf, Version=1.5.0.0, Culture=neutral, PublicKeyToken=50375ca6144f1c69, processorArchitecture=MSIL">
@@ -220,14 +255,11 @@
     <Compile Include="Converters\TextToFlowDocumentConverter.cs" />
     <Compile Include="Extensions\WindowExtensions.cs" />
     <Compile Include="Extensions\AnimationExtensions.cs" />
-    <Compile Include="Generation\NewItemGenerationFileInfo.cs" />
-    <Compile Include="Generation\NewItemGenerationResult.cs" />
-    <Compile Include="Generation\ProjectConfigInfo.cs" />
     <Compile Include="..\..\GlobalSuppressions.cs">
       <Link>GlobalSuppressions.cs</Link>
     </Compile>
-    <Compile Include="Generation\NewProjectGenController.cs" />
-    <Compile Include="Generation\NewItemGenController.cs" />
+    <Compile Include="Generation\NewProjectController.cs" />
+    <Compile Include="Generation\NewItemController.cs" />
     <Compile Include="Mvvm\Observable.cs" />
     <Compile Include="Mvvm\RelayCommand.cs" />
     <Compile Include="Resources\StringRes.cs-CZ.Designer.cs">
@@ -296,7 +328,8 @@
       <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\BreakingChangesValidatorService.cs" />
-    <Compile Include="Services\ProjectMetadataService.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\GenerationService.cs" />
     <Compile Include="Services\Styles\UIStylesService.InfoBar.cs" />
     <Compile Include="Services\Styles\WindowsTemplateStudioColors.cs" />
     <Compile Include="Threading\SafeThreading.cs" />
@@ -362,7 +395,10 @@
     <Compile Include="TemplateSelectors\FileExtensionTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\FileStatusTemplateSelector.cs" />
     <Compile Include="TemplateSelectors\NotificationTemplateSelector.cs" />
-    <Compile Include="Validators\HasNavigationViewValidator.cs" />
+    <Compile Include="Validators\HasPivotValidator.cs" />
+    <Compile Include="Validators\HasHamburgerMenuValidator.cs" />
+    <Compile Include="Validators\HasOldMvvmLightLocatorValidator.cs" />
+    <Compile Include="Validators\HasOldNavigationViewValidator.cs" />
     <Compile Include="Validators\IBreakingChangeValidator.cs" />
     <Compile Include="ViewModels\Common\BaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Common\BaseMainViewModel.cs" />
@@ -439,9 +475,6 @@
     <Compile Include="Views\Common\TemplateInfoPage.xaml.cs">
       <DependentUpon>TemplateInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Generation\GenComposer.cs" />
-    <Compile Include="Generation\GenController.cs" />
-    <Compile Include="Generation\GenException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\NewProject\WizardShell.xaml.cs">
       <DependentUpon>WizardShell.xaml</DependentUpon>
@@ -453,7 +486,6 @@
     <Compile Include="VisualStudio\VsGenShell.cs" />
     <Compile Include="VisualStudio\VsOutputPane.cs" />
     <Compile Include="VisualStudio\VsShellExtensions.cs" />
-    <Compile Include="Generation\UserSelection.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\StyleCop.json">
@@ -462,7 +494,9 @@
     <None Include="..\..\TestKey.snk">
       <Link>TestKey.snk</Link>
     </None>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -724,8 +758,8 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.15.0.240\analyzers\cs\Microsoft.VisualStudio.Threading.Analyzers.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.0-beta009\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.1.0-beta009\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\DefaultIcon.png" />
@@ -929,5 +963,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.9\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.VisualStudio.SDK.EmbedInteropTypes.15.0.9\build\Microsoft.VisualStudio.SDK.EmbedInteropTypes.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.VisualStudio.SDK.VsixSuppression.14.1.32\build\Microsoft.VisualStudio.SDK.VsixSuppression.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.VisualStudio.SDK.VsixSuppression.14.1.32\build\Microsoft.VisualStudio.SDK.VsixSuppression.targets'))" />
   </Target>
+  <Import Project="..\..\packages\Microsoft.VisualStudio.SDK.VsixSuppression.14.1.32\build\Microsoft.VisualStudio.SDK.VsixSuppression.targets" Condition="Exists('..\..\packages\Microsoft.VisualStudio.SDK.VsixSuppression.14.1.32\build\Microsoft.VisualStudio.SDK.VsixSuppression.targets')" />
 </Project>

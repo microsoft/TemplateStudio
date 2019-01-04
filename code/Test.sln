@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Test", "test\Core.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization", "tools\Localization\Localization.csproj", "{84900DD1-8F31-4D6F-8C8A-0BAAC25829DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsTool", "tools\WtsTool\WtsTool.csproj", "{18FE7361-241E-4B1B-98F5-C4A4D17496A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WtsPackagingTool", "tools\WtsPackagingTool\WtsPackagingTool.csproj", "{18FE7361-241E-4B1B-98F5-C4A4D17496A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

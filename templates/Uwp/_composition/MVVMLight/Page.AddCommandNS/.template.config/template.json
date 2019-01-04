@@ -10,7 +10,7 @@
     "wts.type": "composition",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Page.Settings|wts.Page.Camera"
+    "wts.compositionFilter": "$framework == MVVMLight & identity == wts.Page.Settings|wts.Page.Camera|wts.Page.InkDraw|wts.Page.InkSmartCanvas|wts.Page.InkDrawPicture"
   },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,

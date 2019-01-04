@@ -6,18 +6,12 @@ namespace Param_ItemNamespace.Views
     public sealed partial class wts.ItemNameDetailPage : Page
     {
         //{[{
-        public NavigationServiceEx NavigationService
-        {
-            get
-            {
-                return CommonServiceLocator.ServiceLocator.Current.GetInstance<NavigationServiceEx>();
-            }
-        }
-
         private wts.ItemNameDetailViewModel ViewModel
         {
-            get { return DataContext as wts.ItemNameDetailViewModel; }
+            get { return ViewModelLocator.Current.wts.ItemNameDetailViewModel; }
         }
+
+        public NavigationServiceEx NavigationService => ViewModelLocator.Current.NavigationService;
 
         //}]}
     }

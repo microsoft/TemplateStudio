@@ -11,13 +11,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Fakes;
-using Microsoft.Templates.UI;
 
 namespace Microsoft.Templates.Test
 {
@@ -49,13 +46,13 @@ namespace Microsoft.Templates.Test
 
             foreach (var item in layouts)
             {
-                if (getName != null)
+                if (getName == BaseGenAndBuildFixture.GetDefaultName || getName == null)
                 {
-                    AddItem(userSelection, item.Template, getName);
+                    AddItem(userSelection, item.Layout.Name, item.Template);
                 }
                 else
                 {
-                    AddItem(userSelection, item.Layout.Name, item.Template);
+                    AddItem(userSelection, item.Template, getName);
                 }
             }
 
@@ -116,7 +113,6 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (int exitCode, string outputFile) BuildAppxBundle(string projectName, string outputPath, string projectExtension)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{projectName}.txt");
@@ -134,7 +130,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -146,7 +142,6 @@ namespace Microsoft.Templates.Test
             return (process.ExitCode, outputFile);
         }
 
-        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (int exitCode, string outputFile, string resultFile) RunWackTestOnAppxBundle(string bundleFilePath, string outputPath)
         {
             var outputFile = Path.Combine(outputPath, $"_wackOutput_{Path.GetFileName(bundleFilePath)}.txt");
@@ -162,7 +157,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -200,7 +195,6 @@ namespace Microsoft.Templates.Test
             throw new ApplicationException("No valid randomName could be generated");
         }
 
-        [SuppressMessage("StyleCop", "SA1008", Justification = "StyleCop doesn't understand C#7 tuple return types yet.")]
         public (int exitCode, string outputFile) BuildSolution(string solutionName, string outputPath, string platform)
         {
             var outputFile = Path.Combine(outputPath, $"_buildOutput_{solutionName}.txt");
@@ -222,7 +216,7 @@ namespace Microsoft.Templates.Test
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
-                WorkingDirectory = outputPath
+                WorkingDirectory = outputPath,
             };
 
             var process = Process.Start(startInfo);
@@ -264,11 +258,24 @@ namespace Microsoft.Templates.Test
         {
             if (Directory.Exists(GetTestRunPath()))
             {
+                CleanUpOldTests();
+
                 if ((!Directory.Exists(TestProjectsPath) || !Directory.EnumerateDirectories(TestProjectsPath).Any())
                  && (!Directory.Exists(TestNewItemPath) || !Directory.EnumerateDirectories(TestNewItemPath).Any()))
                 {
                     Directory.Delete(GetTestRunPath(), true);
                 }
+            }
+        }
+
+        private void CleanUpOldTests()
+        {
+            var rootDir = new DirectoryInfo(GetTestRunPath()).Parent;
+
+            var oldDirectories = rootDir.EnumerateDirectories().Where(d => d.CreationTime < DateTime.Now.AddDays(-7));
+            foreach (var dir in oldDirectories)
+            {
+                dir.Delete(true);
             }
         }
 
@@ -283,6 +290,57 @@ namespace Microsoft.Templates.Test
         {
             var fakeShell = GenContext.ToolBox.Shell as FakeGenShell;
             fakeShell.SetCurrentPlatform(platform);
+        }
+
+        protected static IEnumerable<object[]> GetPageAndFeatureTemplates(string frameworkFilter)
+        {
+            List<object[]> result = new List<object[]>();
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
+            {
+                SetCurrentLanguage(language);
+                foreach (var platform in Platforms.GetAllPlatforms())
+                {
+                    SetCurrentPlatform(platform);
+                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
+
+                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                                .Select(m => m.Name);
+
+                    foreach (var projectType in projectTypes)
+                    {
+                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
+
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
+                                                    .Where(m => projectFrameworks.Contains(m.Name) && m.Name == frameworkFilter)
+                                                    .Select(m => m.Name).ToList();
+
+                        foreach (var framework in targetFrameworks)
+                        {
+                            var itemTemplates = GenContext.ToolBox.Repo.GetAll().Where(t => t.GetFrameworkList().Contains(framework)
+                                                                 && (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                                                                 && t.GetPlatform() == platform
+                                                                 && t.GetLanguage() == language
+                                                                 && !t.GetIsHidden());
+
+                            foreach (var itemTemplate in itemTemplates)
+                            {
+                                result.Add(new object[]
+                                {
+                                    itemTemplate.Name,
+                                    projectType,
+                                    framework,
+                                    platform,
+                                    itemTemplate.Identity,
+                                    language,
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

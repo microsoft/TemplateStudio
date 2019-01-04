@@ -14,12 +14,12 @@
     "wts.framework": "MVVMBasic|MVVMLight",
     "wts.platform": "Uwp",
     "wts.version": "1.0.0",
-    "wts.displayOrder": "10",
-    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)",
-    "wts.dependencies": "wts.Feat.SampleDataService.VB|wts.Feat.SettingsStorage.VB",
+    "wts.displayOrder": "13",
+    "wts.dependencies": "wts.Feat.SampleDataService.VB",
     "wts.genGroup": "0",
     "wts.isHidden": "false",
-    "wts.rightClickEnabled":"true"
+    "wts.rightClickEnabled":"true",
+    "wts.licenses": "[Microsoft.Toolkit.Uwp](https://github.com/Microsoft/WindowsCommunityToolkit/blob/master/license.md)"
   },
   "sourceName": "ImageGalleryView",
   "preferNameDirectory": true,
@@ -29,7 +29,7 @@
     },
     {
       "path": ".\\Views\\ImageGalleryViewPage.xaml.vb"
-    },    
+    },
     {
       "path": ".\\Views\\ImageGalleryViewDetailPage.xaml"
     },
@@ -44,6 +44,11 @@
     }
   ],
   "symbols": {
+    "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
     "wts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
@@ -60,5 +65,18 @@
       "type": "parameter",
       "replaces": "Param_Setter"
     }
-  }
+  },
+  "postActions": [
+    {
+      "description": "Add nuget package",
+      "manualInstructions": [ ],
+      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+      "args": {
+        "packageId" : "Microsoft.Toolkit.Uwp.UI.Animations",
+        "version" : "5.0.0",
+        "projectPath": "Param_ProjectName.vbproj"
+      },
+      "continueOnError": "true"
+    }
+  ]
 }

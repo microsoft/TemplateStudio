@@ -1,6 +1,6 @@
 ﻿{
   "author": "Microsoft USA",
-  "name": "Feature US",
+  "name": "FeatureTemplate",
   "description": "Feature US English...",
   "identity": "Microsoft.UWPTemplates.Test.FeatureTemplate.CSharp"
 }

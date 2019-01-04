@@ -1,9 +1,9 @@
 ﻿{
-  "author": "Microsoft Community",
+  "author": "Microsoft",
   "classifications": [
     "Universal"
   ],
-  "name": "Feature.BackgroundTask.AddOnBackgroundNavigated.VB",
+  "name": "Feature.BackgroundTask.AddOnBackgroundNavigated.VB", 
   "tags": {
     "language": "VisualBasic",
     "type": "item",

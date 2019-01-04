@@ -28,9 +28,9 @@ namespace Microsoft.Templates.UI.Services
             _service.ProcessDrop += OnDrop;
         }
 
-        public static void UnsuscribeEventHandlers()
+        public static void UnsubscribeEventHandlers()
         {
-            _service.UnsuscribeEventHandlers();
+            _service.UnsubscribeEventHandlers();
             _service.ProcessDrop -= OnDrop;
         }
 
@@ -75,7 +75,6 @@ namespace Microsoft.Templates.UI.Services
             if (AreCompatibleItems(oldIndex, newIndex))
             {
                 Pages.Move(oldIndex, newIndex);
-                MainViewModel.Instance.UserSelection.UpdateHomePage();
 
                 if (_listView != null)
                 {

@@ -1,5 +1,6 @@
 ﻿'{[{
 Imports Param_RootNamespace.Views
+Imports Microsoft.Toolkit.Uwp.UI.Animations
 '}]}
 
 Namespace ViewModels
@@ -10,8 +11,9 @@ Namespace ViewModels
         '{[{
         Private Sub OnsItemSelected(args As ItemClickEventArgs)
             Dim selected = TryCast(args.ClickedItem, SampleImage)
-            _imagesGridView.PrepareConnectedAnimation(wts.ItemNameAnimationOpen, selected, "galleryImage")
-            NavigationService.Navigate(Of wts.ItemNameDetailPage)(args.ClickedItem)
+            ImagesNavigationHelper.AddImageId(wts.ItemNameSelectedIdKey, selected.ID)
+            NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(selected)
+            NavigationService.Navigate(Of wts.ItemNameDetailPage)(selected.ID)
         End Sub
         '}]}
     End Class

@@ -5,6 +5,7 @@
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewItem;
@@ -64,8 +65,8 @@ namespace Microsoft.Templates.UI.Views.NewItem
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.UnsuscribeEventHandlers();
-            NotificationsControl.UnsuscribeEventHandlers();
+            ViewModel.UnsubscribeEventHandlers();
+            NotificationsControl.UnsubscribeEventHandlers();
         }
     }
 }

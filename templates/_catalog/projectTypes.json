@@ -15,17 +15,18 @@
         "summary": "A navigation pane (or 'hamburger menu') is included for navigation between pages.",
         "author": "Microsoft",
         "order": "1",
+        "licenses": "[Windows UI Library](https://aka.ms/winui_license)",
         "platforms": ["Uwp"],
         "languages": [ "C#", "VisualBasic" ]
     },
-    {
-        "name": "TabbedPivot",
-        "displayName": "Pivot and Tabs",
-        "summary": "Tabs across the top allow for quickly navigating between pages.",
-        "author": "Microsoft",
-        "order": "3",
-        "licenses": "",
-        "platforms": ["Uwp"],
-        "languages": [ "C#", "VisualBasic" ]
-    }
+  {
+    "name": "TabbedNav",
+    "displayName": "Horizontal Navigation Pane",
+    "summary": "Navigation Items across the top allow for quickly navigating between pages.",
+    "author": "Microsoft",
+    "order": "3",
+    "licenses": "",
+    "platforms": [ "Uwp" ],
+    "languages": [ "C#", "VisualBasic" ]
+  }
 ]
