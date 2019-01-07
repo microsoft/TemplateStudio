@@ -20,7 +20,7 @@ Public Class BasicTests
     Private Shared _screenshotFolder As String
 
     <ClassInitialize>
-    Public Shared Sub Setup(ByVal context As TestContext)
+    Public Shared Sub Setup(context As TestContext)
         ' TODO WTS: change the location where screenshots are saved
         ' Create separate folders for saving the results of each test run
         _screenshotFolder = $"{Path.GetPathRoot(Environment.CurrentDirectory)}\\Temp\\Screenshots\\{DateTime.Now.ToString("dd_HHmm")}\\"
