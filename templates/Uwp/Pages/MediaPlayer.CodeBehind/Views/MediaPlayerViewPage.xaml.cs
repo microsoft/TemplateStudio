@@ -41,6 +41,9 @@ namespace Param_ItemNamespace.Views
             base.OnNavigatedFrom(e);
             mpe.MediaPlayer.Pause();
             mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
+            var mediaSource = mpe.Source as MediaSource;
+            mediaSource?.Dispose();
+            mpe.Source = null;
         }
 
         private async void PlaybackSession_PlaybackStateChanged(MediaPlaybackSession sender, object args)

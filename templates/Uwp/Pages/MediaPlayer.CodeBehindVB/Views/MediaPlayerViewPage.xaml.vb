@@ -36,6 +36,9 @@ Namespace Views
             MyBase.OnNavigatedFrom(e)
             mpe.MediaPlayer.Pause()
             RemoveHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, AddressOf PlaybackSession_PlaybackStateChanged
+            Dim mediaSource = TryCast(mpe.Source, MediaSource)
+            mediaSource?.Dispose()
+            mpe.Source = Nothing
         End Sub
 
         Private Async Sub PlaybackSession_PlaybackStateChanged(sender As MediaPlaybackSession, args As Object)

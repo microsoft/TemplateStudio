@@ -33,5 +33,12 @@ namespace Param_ItemNamespace.ViewModels
             Source = MediaSource.CreateFromUri(new Uri(DefaultSource));
             PosterSource = DefaultPoster;
         }
+
+        public void DisposeSource()
+        {
+            var mediaSource = Source as MediaSource;
+            mediaSource?.Dispose();
+            Source = null;
+        }
     }
 }
