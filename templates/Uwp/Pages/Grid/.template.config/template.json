@@ -10,7 +10,6 @@
   "tags": {
     "language": "C#",
     "type": "item",
-    "wts.telemName": "Grid",
     "wts.type": "page",
     "wts.framework": "MVVMBasic|MVVMLight|CaliburnMicro",
 	"wts.platform": "Uwp",
