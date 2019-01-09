@@ -14,11 +14,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
     public class GenerateMergeInfoPostAction : PostAction<string>
     {
-        private const string Suffix = "postaction";
-        private const string NewSuffix = "failedpostaction";
+        private const string UserFriendlyPostActionMacroStartGroup = "Block to be included";
 
-        public const string Extension = "_" + Suffix + ".";
-        public const string PostactionRegex = @"(\$\S*)?(_" + Suffix + "|_g" + Suffix + @")\.";
+        public const string PostactionRegex = @"(\$\S*)?(_" + MergeConfiguration.Suffix + "|_" + MergeConfiguration.SearchReplaceSuffix + "||_g" + MergeConfiguration.Suffix + @")\.";
 
         public GenerateMergeInfoPostAction(string relatedTemplate, string config)
             : base(relatedTemplate, config)
@@ -27,16 +25,25 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         internal override void ExecuteInternal()
         {
-            var postAction = File.ReadAllText(Config).AsUserFriendlyPostAction();
+            var postAction = File.ReadAllText(Config);
+            if (Regex.IsMatch(Config, MergeConfiguration.PostactionRegex))
+            {
+                postAction = postAction.AsUserFriendlyPostAction();
+            }
+
             var sourceFile = Regex.Replace(Config, PostactionRegex, ".");
             var mergeType = GetMergeType();
             var relFilePath = sourceFile.GetPathRelativeToGenerationParentPath();
 
-            if (GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
+            // Ignore postactions that only cleanup code
+            if (postAction.Contains(PostactionFormatter.UserFriendlyPostActionMacroStartGroup) || postAction.Contains(SearchAndReplacePostAction.Divider) || postAction.Contains(MergeConfiguration.ResourceDictionaryMatch))
             {
-                var mergeFile = GenContext.Current.MergeFilesFromProject[relFilePath];
+                if (GenContext.Current.MergeFilesFromProject.ContainsKey(relFilePath))
+                {
+                    var mergeFile = GenContext.Current.MergeFilesFromProject[relFilePath];
 
-                mergeFile.Add(new MergeInfo { Format = mergeType, PostActionCode = postAction });
+                    mergeFile.Add(new MergeInfo { Format = mergeType, PostActionCode = postAction });
+                }
             }
         }
 

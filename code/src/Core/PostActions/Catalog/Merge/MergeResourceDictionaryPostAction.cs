@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         private const string MergeDictionaryPattern = @"<ResourceDictionary.MergedDictionaries>
     <!--^^-->
     <!--{[{-->
-    <ResourceDictionary Source=""{filePath}""/>
+    <ResourceDictionary Source=""/{filePath}""/>
     <!--}]}-->
 </ResourceDictionary.MergedDictionaries>";
 
