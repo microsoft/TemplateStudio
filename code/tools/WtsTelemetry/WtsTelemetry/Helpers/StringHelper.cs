@@ -10,12 +10,13 @@ namespace WtsTelemetry.Helpers
         {
             { "SplitView", "Navigation View" },
             { "TabbedPivot", "Tabbed / Pivot" },
+            { "TabbedNav", "Horizontal Navigation View" },
             { "MVVMLight", "MVVM Light" },
             { "MVVMBasic", "MVVM Basic" },
             { "CaliburnMicro", "Caliburn.Micro" },
             { "NewProject", "New Project" },
             { "AddPage", "Add Page" },
-            { "AddFeature", "Add Feature" }
+            { "AddFeature", "Add Feature" },
         };
 
         public static IEnumerable<QueryData> ToQueryData(this string jsonData)
