@@ -34,19 +34,12 @@ Namespace Services
                     AddHandler NavigationService.NavigationFailed, Function(sender, e)
                         Throw e.Exception
                                                                 End Function
-                    AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
-                    If SystemNavigationManager.GetForCurrentView() IsNot Nothing Then
-                        AddHandler SystemNavigationManager.GetForCurrentView().BackRequested, AddressOf ActivationService_BackRequested
-                    End If
 '}]}
                 End If
             End If
         End Function
 
 '{[{
-        Private Sub Frame_Navigated(sender As Object, e As NavigationEventArgs)
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = If((NavigationService.CanGoBack), AppViewBackButtonVisibility.Visible, AppViewBackButtonVisibility.Collapsed)
-        End Sub
 
         Private Function BuildKeyboardAccelerator(key As VirtualKey, Optional modifiers As VirtualKeyModifiers? = Nothing) As KeyboardAccelerator
             Dim KeyboardAccelerator = New KeyboardAccelerator() With {
@@ -63,11 +56,6 @@ Namespace Services
         Private Sub OnKeyboardAcceleratorInvoked(sender As KeyboardAccelerator, args As KeyboardAcceleratorInvokedEventArgs)
             Dim result = NavigationService.GoBack()
             args.Handled = result
-        End Sub
-
-        Private Sub ActivationService_BackRequested(sender As Object, e As BackRequestedEventArgs)
-            Dim result = NavigationService.GoBack()
-            e.Handled = result
         End Sub
 '}]}
     End Class

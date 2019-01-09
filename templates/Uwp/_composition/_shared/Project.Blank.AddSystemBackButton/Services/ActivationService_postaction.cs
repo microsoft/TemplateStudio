@@ -1,8 +1,6 @@
 ﻿//{[{
 using Windows.System;
-using Windows.UI.Core;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
 //}]}
 namespace Param_RootNamespace.Services
 {
@@ -29,21 +27,10 @@ namespace Param_RootNamespace.Services
                     {
                         throw e.Exception;
                     };
-                    NavigationService.Navigated += Frame_Navigated;
-                    if (SystemNavigationManager.GetForCurrentView() != null)
-                    {
-                        SystemNavigationManager.GetForCurrentView().BackRequested += ActivationService_BackRequested;
-                    }
 //}]}
                 }
         }
 //{[{
-
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ?
-                AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
-        }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
         {
@@ -61,12 +48,6 @@ namespace Param_RootNamespace.Services
         {
             var result = NavigationService.GoBack();
             args.Handled = result;
-        }
-
-        private void ActivationService_BackRequested(object sender, BackRequestedEventArgs e)
-        {
-            var result = NavigationService.GoBack();
-            e.Handled = result;
         }
 //}]}
     }

@@ -1,8 +1,6 @@
 ﻿//{[{
 using Windows.System;
-using Windows.UI.Core;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
 //}]}
 namespace Param_RootNamespace.Services
 {
@@ -44,8 +42,6 @@ namespace Param_RootNamespace.Services
                         {
                             throw e.Exception;
                         };
-
-                        NavigationService.Navigated += OnFrameNavigated;
                     }
 //}]}
                 }
@@ -53,11 +49,6 @@ namespace Param_RootNamespace.Services
 
 //^^
 //{[{
-        private void OnFrameNavigated(object sender, NavigationEventArgs e)
-        {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = NavigationService.CanGoBack ?
-                AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
-        }
 
         private KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
         {
