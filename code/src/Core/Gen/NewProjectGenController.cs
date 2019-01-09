@@ -27,6 +27,8 @@ namespace Microsoft.Templates.Core.Gen
 
         public async Task UnsafeGenerateProjectAsync(UserSelection userSelection)
         {
+            VerifyGenContextPaths();
+
             var genItems = GenComposer.Compose(userSelection).ToList();
 
             var chrono = Stopwatch.StartNew();
