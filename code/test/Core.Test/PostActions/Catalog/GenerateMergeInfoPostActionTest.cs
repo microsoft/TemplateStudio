@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
@@ -17,7 +18,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class GenerateMergeInfoPostActionTest
     {
         [Fact]
-        public void Execute_Success()
+        public void GenerateMergeInfo_Execute_Success()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";

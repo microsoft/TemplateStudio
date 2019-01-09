@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 using Param_ItemNamespace.Helpers;
 using Param_ItemNamespace.Core.Models;
@@ -30,19 +29,6 @@ namespace Param_ItemNamespace.Views
             // TODO WTS: Replace this with your actual data
             Source = SampleDataService.GetGallerySampleData();
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            if (e.NavigationMode == NavigationMode.Back)
-            {
-                var selectedImageId = ImagesNavigationHelper.GetImageId(ImageGalleryViewSelectedIdKey);
-                if (!string.IsNullOrEmpty(selectedImageId))
-                {
-                    ImagesNavigationHelper.RemoveImageId(ImageGalleryViewSelectedIdKey);
-                }
-            }
         }
 
         private void ImagesGridView_ItemClick(object sender, ItemClickEventArgs e)

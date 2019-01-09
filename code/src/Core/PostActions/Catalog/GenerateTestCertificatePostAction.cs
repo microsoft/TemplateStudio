@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
-
+using System.Threading.Tasks;
 using CERTENROLLLib;
 
 using Microsoft.TemplateEngine.Abstractions;
@@ -31,9 +31,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     // Remarks: this post action can work with single project templates or multi project templates.
     public class GenerateTestCertificatePostAction : TemplateDefinedPostAction
     {
-        public static readonly Guid Id = new Guid("65057255-BD7B-443C-8180-5D82B9DA9E22");
+        public const string Id = "65057255-BD7B-443C-8180-5D82B9DA9E22";
 
-        public override Guid ActionId { get => Id; }
+        public override Guid ActionId { get => new Guid(Id); }
 
         private Dictionary<string, string> _parameters;
         private string _publisherName;
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             var filePath = Path.Combine(_destinationPath, projectFileWithoutExtension) + "_TemporaryKey.pfx";
             File.WriteAllBytes(filePath, Convert.FromBase64String(base64Encoded));
 
-            GenContext.ToolBox.Shell.AddItems(filePath);
+            GenContext.Current.ProjectInfo.ProjectItems.Add(filePath);
         }
 
         private static void RemoveFromStore(string base64Encoded)

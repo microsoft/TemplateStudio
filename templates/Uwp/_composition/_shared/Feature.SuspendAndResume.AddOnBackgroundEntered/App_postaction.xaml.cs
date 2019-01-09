@@ -6,6 +6,7 @@ using System;
 
 //{[{
 using Windows.ApplicationModel;
+using Param_RootNamespace.Core.Helpers;
 //}]}
 
 namespace Param_RootNamespace
@@ -27,13 +28,13 @@ namespace Param_RootNamespace
         private async void App_EnteredBackground(object sender, EnteredBackgroundEventArgs e)
         {
             var deferral = e.GetDeferral();
-            await Helpers.Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
+            await Singleton<SuspendAndResumeService>.Instance.SaveStateAsync();
             deferral.Complete();
         }
 
         private void App_Resuming(object sender, object e)
         {
-            Helpers.Singleton<SuspendAndResumeService>.Instance.ResumeApp();
+            Singleton<SuspendAndResumeService>.Instance.ResumeApp();
         }
 //}]}
     }

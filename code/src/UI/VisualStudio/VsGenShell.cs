@@ -4,9 +4,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Text;
 using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
@@ -16,6 +18,8 @@ using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.ProjectSystem;
+using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.Setup.Configuration;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Flavor;
@@ -60,55 +64,19 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private VsOutputPane OutputPane => _outputPane.Value;
 
-        public override void AddItems(params string[] itemsFullPath)
+        private void AddItems(string projPath, IEnumerable<string> projFiles)
         {
-            if (itemsFullPath == null || itemsFullPath.Length == 0)
+            var proj = GetProjectByPath(projPath);
+            if (proj != null && proj.ProjectItems != null)
             {
-                return;
-            }
-
-            var filesByProject = ResolveProjectFiles(itemsFullPath);
-
-            foreach (var projectFile in filesByProject)
-            {
-                var proj = GetProjectByPath(projectFile.Key);
-                if (proj != null && proj.ProjectItems != null)
+                foreach (var file in projFiles)
                 {
-                    var isSharedProject = Path.GetExtension(proj.FileName).Equals(".shproj", StringComparison.OrdinalIgnoreCase);
-                    foreach (var file in projectFile.Value)
-                    {
-                        var newItem = proj.ProjectItems.AddFromFile(file);
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingItem, Path.GetFileName(file)));
 
-                        if (isSharedProject && Path.GetExtension(file).Equals(".xaml", StringComparison.OrdinalIgnoreCase))
-                        {
-                            newItem.Properties.Item("ItemType").Value = "EmbeddedResource";
-                            newItem.Properties.Item("Generator").Value = "MSBuild:UpdateDesignTimeXaml";
-                        }
-                    }
-
-                    proj.Save();
+                    var newItem = proj.ProjectItems.AddFromFile(file);
                 }
-            }
-        }
 
-        public override void RefreshProject(string projectPath)
-        {
-            try
-            {
-                var proj = GetProjectByPath(projectPath);
-
-                if (proj != null)
-                {
-                    var path = proj.FullName;
-
-                    Dte.Solution.Remove(proj);
-                    Dte.Solution.AddFromFile(path);
-                }
-            }
-            catch (Exception)
-            {
-                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
-                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableToRefreshProject).FireAndForget();
+                proj.Save();
             }
         }
 
@@ -127,50 +95,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
-        {
-            foreach (SolutionConfiguration solConfiguration in Dte.Solution?.SolutionBuild?.SolutionConfigurations)
-            {
-                if (solConfiguration.Name == configurationName)
-                {
-                    foreach (SolutionContext context in solConfiguration.SolutionContexts)
-                    {
-                        if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
-                        {
-                            solConfiguration.Activate();
-                        }
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        private void SetStartupProject(Project project)
-        {
-            if (project != null)
-            {
-                var solution = GetSolution();
-                solution.Properties.Item("StartupProject").Value = project.Name;
-            }
-        }
-
-        public override void AddProjectsToSolution(List<string> projectPaths, bool usesAnyCpu)
-        {
-            try
-            {
-                foreach (var projectPath in projectPaths)
-                {
-                    Dte.Solution.AddFromFile(projectPath);
-                }
-            }
-            catch (Exception)
-            {
-                // WE GET AN EXCEPTION WHEN THERE ISN'T A SOLUTION LOADED
-                AppHealth.Current.Info.TrackAsync(StringRes.ErrorUnableAddProjectToSolution).FireAndForget();
-            }
-        }
-
         public override string GetActiveProjectNamespace()
         {
             var p = GetActiveProject();
@@ -181,16 +105,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return null;
-        }
-
-        public override void CleanSolution()
-        {
-            Dte.Solution.SolutionBuild.Clean();
-        }
-
-        public override void SaveSolution()
-        {
-            Dte.Solution.SaveAs(Dte.Solution.FullName);
         }
 
         public override void ShowStatusBarMessage(string message)
@@ -275,62 +189,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             return GetProjectTypeGuid(project);
         }
 
-        private string GetProjectTypeGuid(Project project)
-        {
-            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            if (project != null)
-            {
-                VSSolution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
-
-                if (hierarchy is IVsAggregatableProjectCorrected aggregatableProject)
-                {
-                    aggregatableProject.GetAggregateProjectTypeGuids(out string projTypeGuids);
-
-                    return projTypeGuids;
-                }
-            }
-
-            return string.Empty;
-        }
-
-        private Project GetProjectByGuid(string projectTypeGuid)
-        {
-            foreach (var p in Dte?.Solution?.Projects?.Cast<Project>())
-            {
-                var projectGuid = GetProjectTypeGuid(p);
-
-                if (projectGuid.ToUpperInvariant().Split(';').Contains($"{{{projectTypeGuid}}}"))
-                {
-                    return p;
-                }
-            }
-
-            return null;
-        }
-
-        protected override string GetSelectedItemPath()
-        {
-            if (Dte.SelectedItems.Count > 0)
-            {
-                var item = Dte.SelectedItems.Item(1);
-
-                if (item.Project != null)
-                {
-                    return Path.GetDirectoryName(item.Project.FullName);
-                }
-
-                if (item.ProjectItem != null)
-                {
-                    string fullPath = $"{item.ProjectItem.Properties.GetSafeValue("FullPath")}";
-
-                    return Path.GetDirectoryName(fullPath);
-                }
-            }
-
-            return GetActiveProjectPath();
-        }
-
         public override string GetActiveProjectName()
         {
             var p = GetActiveProject();
@@ -376,83 +234,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
         }
 
-        private Project GetActiveProject()
-        {
-            Project p = null;
-
-            try
-            {
-                if (_dte != null)
-                {
-                    Array projects = (Array)Dte.ActiveSolutionProjects;
-
-                    if (projects?.Length >= 1)
-                    {
-                        p = (Project)projects.GetValue(0);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
-                p = null;
-            }
-
-            return p;
-        }
-
-        private Project GetProjectByPath(string projFile)
-        {
-            Project p = null;
-            try
-            {
-                if (_dte != null)
-                {
-                    SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-
-                    VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
-                    ErrorHandler.ThrowOnFailure(hierarchy.GetProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ExtObject, out object obj));
-                    p = (Project)obj;
-                }
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddItemsToProject, ex).FireAndForget();
-            }
-
-            return p;
-        }
-
-        private Solution GetSolution()
-        {
-            Solution s = null;
-
-            try
-            {
-                if (_dte != null)
-                {
-                    s = Dte.Solution;
-                }
-            }
-            catch (Exception)
-            {
-                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
-                s = null;
-            }
-
-            return s;
-        }
-
-        private async System.Threading.Tasks.Task ShowTaskListAsync()
-        {
-            // JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
-            await System.Threading.Tasks.Task.Delay(1000);
-
-            var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
-
-            window.Activate();
-        }
-
         public override void WriteOutput(string data)
         {
             OutputPane.Write(data);
@@ -461,40 +242,6 @@ namespace Microsoft.Templates.UI.VisualStudio
         public override void CloseSolution()
         {
             Dte.Solution.Close();
-        }
-
-        public override void RestorePackages()
-        {
-            try
-            {
-                if (IsInternetAvailable())
-                {
-                    var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
-
-                    var installer = componentModel.GetService<IVsPackageInstaller>();
-                    var uninstaller = componentModel.GetService<IVsPackageUninstaller>();
-                    var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
-
-                    var installedPackages = installerServices.GetInstalledPackages().ToList();
-                    var activeProject = GetActiveProject();
-
-                    var p = installedPackages.FirstOrDefault();
-
-                    if (p != null)
-                    {
-                        uninstaller.UninstallPackage(activeProject, p.Id, false);
-                        installer.InstallPackage("All", activeProject, p.Id, p.VersionString, true);
-                    }
-                }
-                else
-                {
-                    AppHealth.Current.Warning.TrackAsync(StringRes.ErrorVsGenShellRestorePackagesWarningMessage).FireAndForget();
-                }
-            }
-            catch (Exception ex)
-            {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellRestorePackagesErrorMessage} {ex.ToString()}").FireAndForget();
-            }
         }
 
         public override void CollapseSolutionItems()
@@ -544,45 +291,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             }
 
             return projectGuid;
-        }
-
-        private void SolutionEvents_Opened()
-        {
-            Dte.ExecuteCommand("Project.Overview");
-            Dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
-        }
-
-        private void Collapse(UIHierarchyItem item)
-        {
-            foreach (UIHierarchyItem subitem in item.UIHierarchyItems)
-            {
-                Collapse(subitem);
-            }
-
-            item.UIHierarchyItems.Expanded = false;
-        }
-
-        private static bool IsInternetAvailable()
-        {
-            bool internet = NetworkInterface.GetIsNetworkAvailable();
-            if (internet)
-            {
-                try
-                {
-                    // Based on https://technet.microsoft.com/en-us/library/cc766017(v=ws.10).aspx
-                    using (var client = new System.Net.WebClient())
-                    {
-                        var ncsi = client.DownloadString("http://www.msftncsi.com/ncsi.txt");
-                        internet = ncsi == "Microsoft NCSI";
-                    }
-                }
-                catch
-                {
-                    internet = false;
-                }
-            }
-
-            return internet;
         }
 
         public override void OpenItems(params string[] itemsFullPath)
@@ -647,20 +355,377 @@ namespace Microsoft.Templates.UI.VisualStudio
             return _vsProductVersion;
         }
 
-        public override void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences)
+        private void AddReferencesToProjects(IEnumerable<ProjectReference> projectReferences)
         {
-            foreach (var projectPath in projectReferences.Keys)
-            {
-                var project = GetProjectByPath(projectPath);
-                var proj = (VSProject)project.Object;
+            var groupedReferences = projectReferences.GroupBy(n => n.Project, n => n);
 
-                foreach (var referenceToAdd in projectReferences[projectPath])
+            foreach (var project in groupedReferences)
+            {
+                var parentProject = GetProjectByPath(project.Key);
+                if (project != null)
                 {
-                    var referenceProject = GetProjectByPath(referenceToAdd);
-                    proj.References.AddProject(referenceProject);
+                    var proj = (VSProject)parentProject.Object;
+
+                    foreach (var referenceToAdd in project)
+                    {
+                        var referenceProject = GetProjectByPath(referenceToAdd.ReferencedProject);
+                        if (referenceProject != null)
+                        {
+                            proj.References.AddProject(referenceProject);
+                        }
+                    }
+
+                    parentProject.Save();
+                }
+            }
+        }
+
+        private void AddSdksForProject(string projectPath, IEnumerable<SdkReference> sdkReferences)
+        {
+            var project = GetProjectByPath(projectPath);
+            var proj = (VSProject)project.Object;
+
+            foreach (var referenceValue in sdkReferences)
+            {
+                var refs = proj.References as VSLangProj110.References2;
+                refs.AddSDK(referenceValue.Name, referenceValue.Sdk);
+            }
+
+            project.Save();
+        }
+
+        public override void AddContextItemsToSolution(ProjectInfo projectInfo)
+        {
+            try
+            {
+                var filesByProject = ResolveProjectFiles(projectInfo.ProjectItems);
+
+                var filesForExistingProjects = filesByProject.Where(k => !projectInfo.Projects.Any(p => p == k.Key));
+                var nugetsForExistingProjects = projectInfo.NugetReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
+                var sdksForExistingProjects = projectInfo.SdkReferences.Where(n => !projectInfo.Projects.Any(p => p == n.Project)).GroupBy(n => n.Project, n => n);
+
+                foreach (var files in filesForExistingProjects)
+                {
+                    if (!IsCpsProject(files.Key))
+                    {
+                        AddItems(files.Key, files.Value);
+                    }
                 }
 
-                project.Save();
+                foreach (var nuget in nugetsForExistingProjects)
+                {
+                    AddNugetsForProject(nuget.Key, nuget);
+                }
+
+                foreach (var sdk in sdksForExistingProjects)
+                {
+                    AddSdksForProject(sdk.Key, sdk);
+                }
+
+                // Ensure projectsToAdd are ordered correctly.
+                // projects from old project system should be added before project from CPS project system, as otherwise nuget restore will fail
+                var orderedProject = projectInfo.Projects.OrderBy(p => IsCpsProject(p));
+
+                double secAddProjects = 0;
+                double secAddFiles = 0;
+                double secAddNuget = 0;
+
+                foreach (var project in orderedProject)
+                {
+                    var chrono = Stopwatch.StartNew();
+
+                    GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project)));
+
+                    Dte.Solution.AddFromFile(project);
+
+                    secAddProjects += chrono.Elapsed.TotalSeconds;
+                    chrono.Restart();
+
+                    if (!IsCpsProject(project) && filesByProject.ContainsKey(project))
+                    {
+                        AddItems(project, filesByProject[project]);
+                    }
+
+                    secAddFiles += chrono.Elapsed.TotalSeconds;
+                    chrono.Restart();
+
+                    var projNugetReferences = projectInfo.NugetReferences.Where(n => n.Project == project);
+                    if (projNugetReferences.Any())
+                    {
+                        AddNugetsForProject(project, projNugetReferences);
+                    }
+
+                    secAddNuget += chrono.Elapsed.TotalSeconds;
+
+                    var projSdksReferences = projectInfo.SdkReferences.Where(n => n.Project == project);
+                    if (projSdksReferences.Any())
+                    {
+                        AddSdksForProject(project, projSdksReferences);
+                    }
+
+                    chrono.Stop();
+                }
+
+                GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusAddingProjectReferences);
+
+                AddReferencesToProjects(projectInfo.ProjectReferences);
+
+                GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddProjectToSolution] = secAddProjects;
+                GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddFilesToProject] = secAddFiles;
+                GenContext.Current.ProjectMetrics[ProjectMetricsEnum.AddNugetToProject] = secAddNuget;
+            }
+            catch (Exception ex)
+            {
+                // TODO: Handle this
+                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableAddFilesAndProjects, ex).FireAndForget();
+            }
+        }
+
+        private bool SetActiveConfigurationAndPlatform(string configurationName, string platformName, Project project)
+        {
+            foreach (SolutionConfiguration solConfiguration in Dte.Solution?.SolutionBuild?.SolutionConfigurations)
+            {
+                if (solConfiguration.Name == configurationName)
+                {
+                    foreach (SolutionContext context in solConfiguration.SolutionContexts)
+                    {
+                        if (context.PlatformName == platformName && context.ProjectName == project?.UniqueName)
+                        {
+                            solConfiguration.Activate();
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private void SetStartupProject(Project project)
+        {
+            if (project != null)
+            {
+                var solution = GetSolution();
+                solution.Properties.Item("StartupProject").Value = project.Name;
+            }
+        }
+
+        private string GetProjectTypeGuid(Project project)
+        {
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            if (project != null)
+            {
+                VSSolution.GetProjectOfUniqueName(project.FullName, out IVsHierarchy hierarchy);
+
+                if (hierarchy is IVsAggregatableProjectCorrected aggregatableProject)
+                {
+                    aggregatableProject.GetAggregateProjectTypeGuids(out string projTypeGuids);
+
+                    return projTypeGuids;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        private Project GetProjectByGuid(string projectTypeGuid)
+        {
+            foreach (var p in Dte?.Solution?.Projects?.Cast<Project>())
+            {
+                var projectGuid = GetProjectTypeGuid(p);
+
+                if (projectGuid.ToUpperInvariant().Split(';').Contains($"{{{projectTypeGuid}}}"))
+                {
+                    return p;
+                }
+            }
+
+            return null;
+        }
+
+        private Project GetActiveProject()
+        {
+            Project p = null;
+
+            try
+            {
+                if (_dte != null)
+                {
+                    Array projects = (Array)Dte.ActiveSolutionProjects;
+
+                    if (projects?.Length >= 1)
+                    {
+                        p = (Project)projects.GetValue(0);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                p = null;
+            }
+
+            return p;
+        }
+
+        private Project GetProjectByPath(string projFile)
+        {
+            Project p = null;
+            try
+            {
+                if (_dte != null)
+                {
+                    SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+                    VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
+                    ErrorHandler.ThrowOnFailure(hierarchy.GetProperty(VSConstants.VSITEMID_ROOT, (int)__VSHPROPID.VSHPROPID_ExtObject, out object obj));
+                    p = (Project)obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.ErrorUnableGetProjectByPath, projFile), ex).FireAndForget();
+            }
+
+            return p;
+        }
+
+        private Solution GetSolution()
+        {
+            Solution s = null;
+
+            try
+            {
+                if (_dte != null)
+                {
+                    s = Dte.Solution;
+                }
+            }
+            catch (Exception)
+            {
+                // WE GET AN EXCEPTION WHEN THERE ISN'T A PROJECT LOADED
+                s = null;
+            }
+
+            return s;
+        }
+
+        private async System.Threading.Tasks.Task ShowTaskListAsync()
+        {
+            // JAVIERS: DELAY THIS EXECUTION TO OPEN THE WINDOW AFTER EVERYTHING IS LOADED
+            await System.Threading.Tasks.Task.Delay(1000);
+
+            var window = Dte.Windows.Item(EnvDTE.Constants.vsWindowKindTaskList);
+
+            window.Activate();
+        }
+
+        private void SolutionEvents_Opened()
+        {
+            Dte.ExecuteCommand("Project.Overview");
+            Dte.Events.SolutionEvents.Opened -= SolutionEvents_Opened;
+        }
+
+        private void Collapse(UIHierarchyItem item)
+        {
+            foreach (UIHierarchyItem subitem in item.UIHierarchyItems)
+            {
+                Collapse(subitem);
+            }
+
+            item.UIHierarchyItems.Expanded = false;
+        }
+
+        private void AddNugetsForProject(string projectPath, IEnumerable<NugetReference> projectNugets)
+        {
+            try
+            {
+                var project = GetProjectByPath(projectPath);
+                if (IsCpsProject(projectPath))
+                {
+                    AddNugetToCPSProject(project, projectNugets);
+                }
+                else
+                {
+                    foreach (var reference in projectNugets)
+                    {
+                        var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
+                        var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
+                        var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
+
+                        if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
+                        {
+                            GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
+
+                            var installer = componentModel.GetService<IVsPackageInstaller>();
+
+                            installer.InstallPackage(null, project, reference.PackageId, reference.Version, true);
+                        }
+                    }
+
+                    project.Save();
+                }
+            }
+            catch (Exception)
+            {
+                WriteMissingNugetPackagesInfo(projectPath, projectNugets);
+            }
+        }
+
+        private static void AddNugetToCPSProject(Project project, IEnumerable<NugetReference> projectNugets)
+        {
+            if (project is IVsBrowseObjectContext browseObjectContext)
+            {
+                var threadingService = browseObjectContext.UnconfiguredProject.ProjectService.Services.ThreadingPolicy;
+
+                threadingService.ExecuteSynchronously(
+                async () =>
+                {
+                    var configuredProject = await browseObjectContext.UnconfiguredProject.GetSuggestedConfiguredProjectAsync().ConfigureAwait(false);
+
+                    foreach (var reference in projectNugets)
+                    {
+                        GenContext.ToolBox.Shell.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
+
+                        await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version).ConfigureAwait(false);
+                    }
+                });
+            }
+        }
+
+        private void WriteMissingNugetPackagesInfo(string projectPath, IEnumerable<NugetReference> projectNugets)
+        {
+            var relPath = projectPath.Replace(Directory.GetParent(GenContext.Current.DestinationPath).FullName, string.Empty);
+            var sb = new StringBuilder();
+
+            foreach (var nuget in projectNugets)
+            {
+                sb.AppendLine(string.Format(StringRes.ErrorMissingNugetPackagesInstallTemplate, nuget.PackageId, nuget.Version));
+            }
+
+            var missingNugetPackagesInfo = string.Format(StringRes.ErrorMissingNugetPackagesTemplate, relPath, sb.ToString());
+            var fileName = Path.Combine(GenContext.Current.DestinationPath, "ERROR_NugetPackages_Missing.txt");
+
+            File.AppendAllText(fileName, missingNugetPackagesInfo);
+            GenContext.Current.FilesToOpen.Add(fileName);
+        }
+
+        private bool IsCpsProject(string projFile)
+        {
+            string[] targetFrameworkTags = { "</TargetFramework>", "</TargetFrameworks>" };
+
+            SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            VSSolution.GetProjectOfUniqueName(projFile, out IVsHierarchy hierarchy);
+            if (hierarchy != null)
+            {
+                return hierarchy.IsCapabilityMatch("CPS");
+            }
+            else
+            {
+                // Detect if project is CPS project system based
+                // https://github.com/dotnet/project-system/blob/master/docs/opening-with-new-project-system.md
+                return targetFrameworkTags.Any(t => File.ReadAllText(projFile).Contains(t));
             }
         }
     }

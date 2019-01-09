@@ -101,7 +101,7 @@ Namespace Controls
                       Throw New NotSupportedException()
                   End If
 
-                  Dim device = _cameraDevices.FirstOrDefault(Function(camera) camera.EnclosureLocation?.Panel = Panel)
+                  Dim device = _cameraDevices.FirstOrDefault(Function(camera) camera.EnclosureLocation IsNot Nothing And camera.EnclosureLocation?.Panel = Panel)
 
                   Dim cameraId = If(device?.Id, _cameraDevices.First().Id)
 

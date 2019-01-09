@@ -94,9 +94,11 @@ namespace Microsoft.Templates.Core.Gen
         {
             GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
-            GenContext.Current.Projects.Clear();
-            GenContext.Current.ProjectReferences.Clear();
-            GenContext.Current.ProjectItems.Clear();
+            GenContext.Current.ProjectInfo.Projects.Clear();
+            GenContext.Current.ProjectInfo.NugetReferences.Clear();
+            GenContext.Current.ProjectInfo.SdkReferences.Clear();
+            GenContext.Current.ProjectInfo.ProjectReferences.Clear();
+            GenContext.Current.ProjectInfo.ProjectItems.Clear();
             GenContext.Current.FilesToOpen.Clear();
 
             var directory = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
@@ -121,13 +123,6 @@ namespace Microsoft.Templates.Core.Gen
             foreach (var postAction in postActions)
             {
                 postAction.Execute();
-            }
-
-            // New files aren't listed as project file modifications so any modifications should be new package references, etc.
-            if (result.ModifiedFiles.Any(f => Path.GetExtension(f).EndsWith("proj", StringComparison.OrdinalIgnoreCase)))
-            {
-                // Forcing a package restore so don't get warnings in the designer once addition is complete
-                GenContext.ToolBox.Shell.RestorePackages();
             }
         }
 

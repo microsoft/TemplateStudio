@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
@@ -19,7 +20,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class GenerateTestCertificatePostActionTest
     {
         [Fact]
-        public void Execute_Ok_SingleProjectGenConfigs()
+        public void GenerateTestCertificate_Execute_Ok_SingleProjectGenConfigs()
         {
             var projectName = "Test";
             var projectFile = $"{projectName}.csproj";
@@ -49,7 +50,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 new FakeCreationPath() { Path = projectFile },
             };
 
-            var templateDefinedPostAction = new FakeTemplateDefinedPostAction(GenerateTestCertificatePostAction.Id, testArgs, true);
+            var templateDefinedPostAction = new FakeTemplateDefinedPostAction(new Guid(GenerateTestCertificatePostAction.Id), testArgs, true);
             var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs as IReadOnlyList<ICreationPath>, new Dictionary<string, string>(), destinationPath);
             postAction.Execute();
 
@@ -60,7 +61,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_Ok_MultipleProjectGenConfig()
+        public void GenerateTestCertificate_Execute_Ok_MultipleProjectGenConfig()
         {
             var projectName = "Test";
             var projectFile = $@"TestProject\{projectName}.csproj";
@@ -90,36 +91,13 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 new FakeCreationPath() { Path = projectFile },
             };
 
-            var templateDefinedPostAction = new FakeTemplateDefinedPostAction(GenerateTestCertificatePostAction.Id, testArgs, true);
+            var templateDefinedPostAction = new FakeTemplateDefinedPostAction(new Guid(GenerateTestCertificatePostAction.Id), testArgs, true);
             var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", templateDefinedPostAction, testPrimaryOutputs, new Dictionary<string, string>(), destinationPath);
             postAction.Execute();
 
             var expectedCertFilePath = Path.Combine(destinationPath, "TestProject", $"{projectName}_TemporaryKey.pfx");
             Assert.True(File.Exists(expectedCertFilePath));
             Fs.SafeDeleteDirectory(destinationPath);
-        }
-
-        [Fact]
-        public void BadInstantiation_ContinueOnError()
-        {
-            var testArgs = new Dictionary<string, string>() { { "myArg", "myValue" } };
-            var inventedIdPostAction = new FakeTemplateDefinedPostAction(Guid.NewGuid(), testArgs, true);
-            var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", inventedIdPostAction, null, new Dictionary<string, string>(), string.Empty);
-
-            Assert.True(postAction.ContinueOnError);
-            Assert.NotEqual(inventedIdPostAction.ActionId, GenerateTestCertificatePostAction.Id);
-            Assert.Null(postAction.Args);
-        }
-
-        [Fact]
-        public void BadInstantiation_NoContinueOnError()
-        {
-            Assert.Throws<Exception>(() =>
-               {
-                   var testArgs = new Dictionary<string, string>() { { "myArg", "myValue" } };
-                   var inventedIdPostAction = new FakeTemplateDefinedPostAction(Guid.NewGuid(), testArgs, false);
-                   var postAction = new GenerateTestCertificatePostAction("TestTemplate", "TestUser", inventedIdPostAction, null, new Dictionary<string, string>(), string.Empty);
-               });
         }
     }
 }

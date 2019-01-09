@@ -70,6 +70,7 @@ namespace Param_ItemNamespace.Views
             if (e.NavigationMode == NavigationMode.Back)
             {
                 NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(SelectedImage);
+                ImagesNavigationHelper.RemoveImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey);
             }
         }
 

@@ -1,6 +1,0 @@
-﻿{
-    "author": "Microsoft Community",
-    "name": "Background Task",
-    "description": "This creates an in-process background task.  This will allow you to run code even while the app is not in the foreground.",
-    "identity": "wts.Feat.BackgroundTask.VB"
-}

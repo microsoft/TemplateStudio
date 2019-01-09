@@ -5,7 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Templates;
@@ -30,9 +31,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     //    - otherProjectPath -> The path to the project where the refrence will be added.
     public class AddProjectReferencesToContextPostAction : TemplateDefinedPostAction
     {
-        public static readonly Guid Id = new Guid("849AAEB8-487D-45B3-94B9-77FA74E83A01");
+        public const string Id = "849AAEB8-487D-45B3-94B9-77FA74E83A01";
 
-        public override Guid ActionId { get => Id; }
+        public override Guid ActionId { get => new Guid(Id); }
 
         private readonly Dictionary<string, string> _parameters;
         private readonly IReadOnlyList<ICreationPath> _primaryOutputs;
@@ -52,15 +53,17 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             var projectPath = Path.Combine(_destinationPath, parameterReplacements.ReplaceInPath(Args["projectPath"]));
 
             int targetProjectIndex = int.Parse(Args["fileIndex"]);
-            var referenceToAdd = Path.GetFullPath(Path.Combine(_destinationPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
+            var referencedProject = Path.GetFullPath(Path.Combine(_destinationPath, _primaryOutputs[targetProjectIndex].GetOutputPath(_parameters)));
 
-            if (GenContext.Current.ProjectReferences.ContainsKey(projectPath))
+            var projectReference = new ProjectReference
             {
-                GenContext.Current.ProjectReferences[projectPath].Add(referenceToAdd);
-            }
-            else
+                Project = projectPath,
+                ReferencedProject = referencedProject,
+            };
+
+            if (!GenContext.Current.ProjectInfo.ProjectReferences.Any(n => n.Equals(projectReference)))
             {
-                GenContext.Current.ProjectReferences.Add(projectPath, new List<string>() { referenceToAdd });
+                GenContext.Current.ProjectInfo.ProjectReferences.Add(projectReference);
             }
         }
     }

@@ -18,7 +18,6 @@
       "wts.isHidden": "true",
       "wts.genGroup": "0",
       "wts.rightClickEnabled":"true" ,
-      "wts.dependencies": "wts.Feat.CoreProject",
       "wts.outputToParent": "true"
     },
     "sourceName": "SampleDataServiceFeature",

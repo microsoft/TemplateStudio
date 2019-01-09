@@ -466,29 +466,41 @@ namespace Microsoft.Templates.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable add project items..
+        ///   Looks up a localized string similar to Install-Package -Id {0} -Version {1}.
         /// </summary>
-        public static string ErrorUnableAddItemsToProject {
+        public static string ErrorMissingNugetPackagesInstallTemplate {
             get {
-                return ResourceManager.GetString("ErrorUnableAddItemsToProject", resourceCulture);
+                return ResourceManager.GetString("ErrorMissingNugetPackagesInstallTemplate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to add the project to the solution. Make sure you have the expected SDK installed..
+        ///   Looks up a localized string similar to Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
+        ///Please verify the following list of packages needed by your project&apos;s code and manually add the missing packages: 
+        ///
+        ///{1}.
         /// </summary>
-        public static string ErrorUnableAddProjectToSolution {
+        public static string ErrorMissingNugetPackagesTemplate {
             get {
-                return ResourceManager.GetString("ErrorUnableAddProjectToSolution", resourceCulture);
+                return ResourceManager.GetString("ErrorMissingNugetPackagesTemplate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to refresh the project. Try to refresh it manually..
+        ///   Looks up a localized string similar to Unable to add files and projects..
         /// </summary>
-        public static string ErrorUnableToRefreshProject {
+        public static string ErrorUnableAddFilesAndProjects {
             get {
-                return ResourceManager.GetString("ErrorUnableToRefreshProject", resourceCulture);
+                return ResourceManager.GetString("ErrorUnableAddFilesAndProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to find project {0}.
+        /// </summary>
+        public static string ErrorUnableGetProjectByPath {
+            get {
+                return ResourceManager.GetString("ErrorUnableGetProjectByPath", resourceCulture);
             }
         }
         
@@ -1038,6 +1050,42 @@ namespace Microsoft.Templates.UI.Resources {
         public static string ReorderPageHelpText {
             get {
                 return ResourceManager.GetString("ReorderPageHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding {0} to project ....
+        /// </summary>
+        public static string StatusAddingItem {
+            get {
+                return ResourceManager.GetString("StatusAddingItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding NuGet package {0} to project ....
+        /// </summary>
+        public static string StatusAddingNuget {
+            get {
+                return ResourceManager.GetString("StatusAddingNuget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding project {0} to solution....
+        /// </summary>
+        public static string StatusAddingProject {
+            get {
+                return ResourceManager.GetString("StatusAddingProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding references between projects....
+        /// </summary>
+        public static string StatusAddingProjectReferences {
+            get {
+                return ResourceManager.GetString("StatusAddingProjectReferences", resourceCulture);
             }
         }
         

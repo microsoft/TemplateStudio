@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class AddItemToContextPostActionTest
     {
         [Fact]
-        public void Execute()
+        public void AddItemToContext_Execute()
         {
             var templateName = "Test";
             var relativeFile = @".\Source.cs";
@@ -37,11 +38,11 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, new Dictionary<string, string>(), destPath);
             mergePostAction.Execute();
 
-            Assert.True(GenContext.Current.ProjectItems.Contains(finalFile));
+            Assert.True(GenContext.Current.ProjectInfo.ProjectItems.Contains(finalFile));
         }
 
         [Fact]
-        public void Execute_Replacement()
+        public void AddItemToContext_Execute_Replacement()
         {
             var templateName = "Test";
             var relativeFile = @".\Param_ProjectName\Source.cs";
@@ -63,7 +64,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, genParams, destPath);
             mergePostAction.Execute();
 
-            Assert.True(GenContext.Current.ProjectItems.Contains(finalFile));
+            Assert.True(GenContext.Current.ProjectInfo.ProjectItems.Contains(finalFile));
         }
     }
 }

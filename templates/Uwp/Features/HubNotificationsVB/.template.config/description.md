@@ -1,3 +1,5 @@
 ﻿Azure Notification Hubs provide an easy-to-use, multi-platform, scaled-out push engine. With a single cross-platform API call, you can easily send targeted and personalized push notifications to any mobile platform from any cloud or on-premises backend.
 
-To find out more about getting started with Azure Notification Hubs with UWP, head to [docs.microsoft.com](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification).  For general information, head to the [main documentation page](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview).
+[Learn how to get started with Azure Notification Hubs and UWP UWP.](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification)
+
+[General information about notification hubs.](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-push-notification-overview)

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Templates.Core.Resources;
 
@@ -19,21 +20,11 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract string GetActiveProjectLanguage();
 
-        protected abstract string GetSelectedItemPath();
-
         public abstract void SetDefaultSolutionConfiguration(string configurationName, string platformName, string projectGuid);
 
         public abstract void ShowStatusBarMessage(string message);
 
-        public abstract void AddProjectsToSolution(List<string> projectFullPaths, bool usesAnyCpu);
-
-        public abstract void AddItems(params string[] itemsFullPath);
-
-        public abstract void CleanSolution();
-
-        public abstract void SaveSolution();
-
-        public abstract void AddReferencesToProjects(Dictionary<string, List<string>> projectReferences);
+        public abstract void AddContextItemsToSolution(ProjectInfo projectInfo);
 
         public abstract string GetActiveProjectNamespace();
 
@@ -61,15 +52,7 @@ namespace Microsoft.Templates.Core.Gen
 
         public abstract void OpenItems(params string[] itemsFullPath);
 
-        public virtual void RestorePackages()
-        {
-        }
-
         public virtual void CollapseSolutionItems()
-        {
-        }
-
-        public virtual void RefreshProject(string projectPath)
         {
         }
 
@@ -100,7 +83,7 @@ namespace Microsoft.Templates.Core.Gen
             return result;
         }
 
-        protected static Dictionary<string, List<string>> ResolveProjectFiles(string[] itemsFullPath, bool workWithProjitemsFile = false)
+        protected static Dictionary<string, List<string>> ResolveProjectFiles(IEnumerable<string> itemsFullPath, bool workWithProjitemsFile = false)
         {
             Dictionary<string, List<string>> filesByProject = new Dictionary<string, List<string>>();
             foreach (var item in itemsFullPath)

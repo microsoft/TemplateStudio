@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Resources;
 
@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     {
         private const string Divider = "^^^-searchabove-replacebelow-vvv";
 
-        public const string PostactionRegex = @"(\$\S*)?(_" + MergeConfiguration.SearchReplaceSuffix + @")\.";
+        public const string PostactionRegex = @"(\$\S*)?(_" + MergeConfiguration.SearchReplaceSuffix + @")\.\d?\.?";
 
         public SearchAndReplacePostAction(string relatedTemplate, MergeConfiguration config)
             : base(relatedTemplate, config)
@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         internal override void ExecuteInternal()
         {
-            string originalFilePath = GetFilePath();
+            string originalFilePath = Regex.Replace(Config.FilePath, PostactionRegex, ".");
 
             if (!File.Exists(originalFilePath))
             {
@@ -74,29 +74,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             File.WriteAllLines(originalFilePath, result.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
             File.Delete(Config.FilePath);
-
-            // REFRESH PROJECT TO UN-DIRTY IT
-            if (Path.GetExtension(originalFilePath).EndsWith("proj", StringComparison.OrdinalIgnoreCase))
-            {
-                GenContext.ToolBox.Shell.RefreshProject(originalFilePath);
-            }
-        }
-
-        private string GetFilePath()
-        {
-            if (Path.GetFileName(Config.FilePath).StartsWith(MergeConfiguration.SearchReplaceExtension, StringComparison.Ordinal))
-            {
-                var extension = Path.GetExtension(Config.FilePath);
-                var directory = Path.GetDirectoryName(Config.FilePath);
-
-                return Directory.EnumerateFiles(directory, $"*{extension}").FirstOrDefault(f => !f.Contains(MergeConfiguration.SearchReplaceSuffix));
-            }
-            else
-            {
-                var path = Regex.Replace(Config.FilePath, PostactionRegex, ".");
-
-                return path;
-            }
         }
 
         private void AddFailedMergePostActionsFileNotFound(string originalFilePath)

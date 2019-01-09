@@ -212,9 +212,6 @@
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Erro ao sincronizar modelos. Status:</value>
   </data>
-  <data name="StatusAddingItems" xml:space="preserve">
-    <value>Adicionando itens ao projeto...</value>
-  </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Abrindo arquivos gerados...</value>
   </data>
@@ -450,9 +447,6 @@ As seguintes alterações não puderam ser integradas: {2}
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
     <value>The file {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
-  </data>
-  <data name="StatusAddingProjects" xml:space="preserve">
-    <value>Adding projects to solution...</value>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
     <value>Modelo de layout {0} não encontrado para framework {1} e plataforma {2}.</value>

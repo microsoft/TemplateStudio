@@ -10,7 +10,7 @@
     "summary": "Um zwischen den Seiten navigieren zu können, ist ein Navigationsbereich („Hamburger-Menü“) enthalten."
   },
   {
-    "name": "TabbedPivot",
+    "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
     "summary": "Navigation Items across the top allow for quickly navigating between pages."
   }

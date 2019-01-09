@@ -4,8 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:models="using:Param_ItemNamespace.Core.Models"
@@ -14,6 +12,7 @@
     <Grid x:Name="ContentArea">
         <controls:AdaptiveGridView
             ItemsSource="{x:Bind ViewModel.Source,Mode=OneWay}"
+            ItemClickCommand="{x:Bind ViewModel.ItemClickCommand}"
             StretchContentForSingleRow="False"
             SelectionMode="None"
             IsItemClickEnabled="True"
@@ -22,11 +21,6 @@
             animations:Connected.ListItemKey="animationKeyContentGridView"
             DesiredWidth="180"
             ItemHeight="160">
-            <i:Interaction.Behaviors>
-                <ic:EventTriggerBehavior EventName="ItemClick">
-                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.ItemSelectedCommand}" />
-                </ic:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
             <controls:AdaptiveGridView.ItemTemplate>
                 <DataTemplate x:DataType="models:SampleOrder">
                     <Grid

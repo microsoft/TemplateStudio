@@ -28,7 +28,7 @@ namespace Microsoft.Templates.Test
         // This test is manual only as it will fail when C# templates are updated but their VB equivalents haven't been.
         // The VB versions should have equivalent changes made also but we don't want the CI to fail when just the VB changes are made.
         [Theory]
-        [MemberData("GetMultiLanguageProjectsAndFrameworks")]
+        [MemberData(nameof(GetMultiLanguageProjectsAndFrameworks))]
         [Trait("ExecutionSet", "ManualOnly")]
         [Trait("Type", "GenerationLanguageComparison")]
         public async Task EnsureProjectsGeneratedWithDifferentLanguagesAreEquivalentAsync(string projectType, string framework)
@@ -158,7 +158,7 @@ namespace Microsoft.Templates.Test
                 if (vbCommentLines.Length != csCommentLines.Length)
                 {
                     failures.Add(
-                        $"File '{allVbFiles[i].FullName}' does not have the same number of comments as its C# equivalent.");
+                        $"File '{allVbFiles[i].FullName}' does not have the same number of comments as its C# equivalent. C# version has {csCommentLines.Length} while VB version has {vbCommentLines.Length}.");
                     continue;
                 }
 

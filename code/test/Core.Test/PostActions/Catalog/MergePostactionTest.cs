@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Resources;
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class MergePostActionTest
     {
         [Fact]
-        public void Execute_Success()
+        public void MergePostAction_Execute_Success()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source.cs");
@@ -41,7 +42,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_LineNotFound_Error()
+        public void MergePostAction_Execute_LineNotFound_Error()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\Merge\Source_fail.cs");
@@ -59,7 +60,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_FileNotFound_Error()
+        public void Execute_FileNotFound_ErrorAsync()
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\Merge\NoSource_postaction.cs");
@@ -74,7 +75,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_LineNotFound_NoError()
+        public void MergePostAction_Execute_LineNotFound_NoError()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source_fail.cs");
@@ -121,7 +122,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_FileNotFound_NoError()
+        public void MergePostAction_Execute_FileNotFound_NoError()
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\temp\NoSource_postaction.cs");

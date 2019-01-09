@@ -130,7 +130,7 @@ namespace Microsoft.Templates.Core.Locations
                 {
                     var finalDestinationTemp = string.Concat(finalDest, _tmpExtension);
 
-                    await TemplatePackage.ExtractAsync(packageInfo.LocalPath, finalDestinationTemp, verifyPackageSignatures, ReportExtractionProgress, ct);
+                    await TemplatePackage.ExtractAsync(packageInfo.LocalPath, finalDestinationTemp, ReportExtractionProgress, ct);
                     Fs.SafeRenameDirectory(finalDestinationTemp, finalDest);
 
                     AppHealth.Current.Verbose.TrackAsync($"{StringRes.TemplatesContentExtractedToString} {finalDest}.").FireAndForget();

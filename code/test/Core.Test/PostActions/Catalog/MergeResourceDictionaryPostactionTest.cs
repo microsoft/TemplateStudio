@@ -20,7 +20,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class MergeResourceDictionaryPostactionTest
     {
         [Fact]
-        public void MergeResourceDictionaryPostaction()
+        public void MergeResourceDictionary_Execute()
         {
             var source = Path.GetFullPath(@".\TestData\Merge\Style.xaml");
             var postaction = Path.GetFullPath(@".\TestData\Merge\Style_postaction.xaml");

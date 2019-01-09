@@ -33,11 +33,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string GenerationOutputPath => DestinationPath;
 
-        public List<string> Projects { get; } = new List<string>();
-
-        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
-
-        public List<string> ProjectItems { get; } = new List<string>();
+        public ProjectInfo ProjectInfo { get; } = new ProjectInfo();
 
         public List<FailedMergePostActionInfo> FailedMergePostActions { get; } = new List<FailedMergePostActionInfo>();
 
@@ -76,33 +72,26 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void RunFinished()
         {
-            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
             SafeThreading.JoinableTaskFactory.Run(
                 async () =>
                 {
+                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarCreatingProject).FireAndForget();
+
                     await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                     await _generationService.GenerateProjectAsync(_userSelection);
-                },
-                JoinableTaskCreationOptions.LongRunning);
-
-            AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
-
-            SafeThreading.JoinableTaskFactory.Run(
-                async () =>
-                {
-                    await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                     PostGenerationActions();
+
+                    AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
                 },
                 JoinableTaskCreationOptions.LongRunning);
         }
 
         private static void PostGenerationActions()
         {
-            GenContext.ToolBox.Shell.ShowStatusBarMessage(StringRes.StatusBarRestoring);
-            GenContext.ToolBox.Shell.RestorePackages();
-
             GenContext.ToolBox.Shell.CollapseSolutionItems();
             GenContext.ToolBox.Shell.OpenProjectOverview();
+            GenContext.ToolBox.Shell.OpenItems(GenContext.Current.FilesToOpen.ToArray());
+            GenContext.ToolBox.Shell.ShowTaskList();
         }
 
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)

@@ -17,11 +17,7 @@ namespace Microsoft.Templates.Fakes
 
         public string DestinationPath { get; set; }
 
-        public List<string> Projects { get; } = new List<string>();
-
-        public Dictionary<string, List<string>> ProjectReferences { get; } = new Dictionary<string, List<string>>();
-
-        public List<string> ProjectItems { get; } = new List<string>();
+        public ProjectInfo ProjectInfo { get; set; } = new ProjectInfo();
 
         public List<string> FilesToOpen { get; } = new List<string>();
 

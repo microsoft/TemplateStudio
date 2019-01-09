@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using Microsoft.Templates.Core.Gen;
@@ -35,7 +36,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             if (!File.Exists(originalFilePath))
             {
                 File.Copy(Config.FilePath, originalFilePath);
-                GenContext.Current.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.GenerationOutputPath, GenContext.Current.DestinationPath));
+                GenContext.Current.ProjectInfo.ProjectItems.Add(originalFilePath.Replace(GenContext.Current.GenerationOutputPath, GenContext.Current.DestinationPath));
                 AddToMergeDictionary(originalFilePath);
             }
             else
@@ -82,7 +83,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         private void AddToMergeDictionary(string originalFilePath)
         {
-            var relPath = originalFilePath.Replace(GenContext.Current.DestinationPath, string.Empty).Replace(@"\", @"/");
+            var relPath = originalFilePath.Replace(GenContext.Current.GenerationOutputPath, string.Empty).Replace(@"\", @"/");
             var postactionContent = MergeDictionaryPattern.Replace("{filePath}", relPath);
             var mergeDictionaryName = Path.GetFileNameWithoutExtension(originalFilePath);
             File.WriteAllText(GenContext.Current.GenerationOutputPath + $"/App${mergeDictionaryName}_gpostaction.xaml", postactionContent);

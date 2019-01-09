@@ -9,16 +9,16 @@ Namespace ViewModels
 
         Public ReadOnly Property NavigationService As NavigationServiceEx
             Get
-                Return CommonServiceLocator.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()
+                Return ViewModelLocator.Current.NavigationService
             End Get
         End Property
 '}]}
 
-        Private Sub OnsItemSelected(args As ItemClickEventArgs)
-            If item IsNot Nothing Then
+        Private Sub OnItemClick(clickedItem As SampleOrder)
+            If clickedItem IsNot Nothing Then
 '^^
 '{[{
-                NavigationService.Navigate(GetType(wts.ItemNameDetailViewModel).FullName, item.OrderId)
+                NavigationService.Navigate(GetType(wts.ItemNameDetailViewModel).FullName, clickedItem.OrderId)
 '}]}
             End If
         End Sub

@@ -208,8 +208,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                 }
 
                 mergeString = mergeString.Remove(startIndex - commentIndicatorLength, lengthOfDeletion);
-                startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.InvariantCultureIgnoreCase);
-                endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.InvariantCultureIgnoreCase);
+                startIndex = mergeString.IndexOf(MacroStartDelete, StringComparison.OrdinalIgnoreCase);
+                endIndex = mergeString.IndexOf(MacroEndDelete, StringComparison.OrdinalIgnoreCase);
             }
 
             return mergeString.Split(new[] { Environment.NewLine }, StringSplitOptions.None).ToList();

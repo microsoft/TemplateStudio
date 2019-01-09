@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Gen;
 
@@ -31,7 +31,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                                 .Select(o => Path.GetFullPath(Path.Combine(_destinationPath, o.GetOutputPath(_genParameters))))
                                 .ToList();
 
-            GenContext.Current.ProjectItems.AddRange(itemsToAdd);
+            GenContext.Current.ProjectInfo.ProjectItems.AddRange(itemsToAdd);
         }
     }
 }

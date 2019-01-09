@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class CopyFilesToProjectPostActionTest
     {
         [Fact]
-        public void Execute_NewFile()
+        public void CopyFilesToProject_Execute_NewFile()
         {
             var tempFile = Path.GetFullPath(@".\temp\Source.cs");
             var path = Path.GetFullPath(@".\temp\Project");
@@ -51,7 +52,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_ModifiedFile()
+        public void CopyFilesToProject_Execute_ModifiedFile()
         {
             var tempFile = Path.GetFullPath(@".\temp\Source.cs");
             var path = Path.GetFullPath(@".\temp\Project");

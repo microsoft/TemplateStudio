@@ -30,11 +30,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public string DestinationPath { get; private set; }
 
-        public List<string> Projects { get; private set; }
-
-        public Dictionary<string, List<string>> ProjectReferences { get; private set; }
-
-        public List<string> ProjectItems { get; private set; }
+        public ProjectInfo ProjectInfo { get; private set; }
 
         public List<string> FilesToOpen { get; private set; }
 
@@ -66,10 +62,10 @@ namespace Microsoft.Templates.UI.VisualStudio
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                             _generationService.FinishGeneration(userSelection);
+
+                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                         },
                         JoinableTaskCreationOptions.LongRunning);
-
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
                     }
                 }
                 catch (WizardBackoutException)
@@ -95,10 +91,9 @@ namespace Microsoft.Templates.UI.VisualStudio
                         {
                             await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
                             _generationService.FinishGeneration(userSelection);
+                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                         },
                         JoinableTaskCreationOptions.LongRunning);
-
-                        _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
                     }
                 }
                 catch (WizardBackoutException)
@@ -145,9 +140,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 }
 
                 GenerationOutputPath = GenContext.GetTempGenerationPath(ProjectName);
-                Projects = new List<string>();
-                ProjectReferences = new Dictionary<string, List<string>>();
-                ProjectItems = new List<string>();
+                ProjectInfo = new ProjectInfo();
                 FilesToOpen = new List<string>();
                 FailedMergePostActions = new List<FailedMergePostActionInfo>();
                 MergeFilesFromProject = new Dictionary<string, List<MergeInfo>>();
@@ -159,18 +152,19 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void EnsureGenContextInitialized()
         {
-            if (GenContext.CurrentLanguage != _shell.GetActiveProjectLanguage())
+            var projectLanguage = _shell.GetActiveProjectLanguage();
+            if (GenContext.CurrentLanguage != projectLanguage)
             {
 #if DEBUG
-                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, Platforms.Uwp, _shell.GetActiveProjectLanguage());
+                GenContext.Bootstrap(new LocalTemplatesSource(), _shell, Platforms.Uwp, projectLanguage);
 #else
-                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, _shell.GetActiveProjectLanguage()), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
+                GenContext.Bootstrap(new RemoteTemplatesSource(Platforms.Uwp, projectLanguage), _shell,  Platforms.Uwp, _shell.GetActiveProjectLanguage());
 #endif
             }
 
-            if (GenContext.CurrentLanguage != _shell.GetActiveProjectLanguage())
+            if (GenContext.CurrentLanguage != projectLanguage)
             {
-                GenContext.SetCurrentLanguage(_shell.GetActiveProjectLanguage());
+                GenContext.SetCurrentLanguage(projectLanguage);
             }
         }
 

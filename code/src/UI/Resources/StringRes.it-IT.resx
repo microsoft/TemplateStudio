@@ -477,18 +477,6 @@
     <value>Pagina {0} aggiunta correttamente</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
-  <data name="ErrorUnableAddItemsToProject" xml:space="preserve">
-    <value>Impossibile aggiungere elementi di progetto.</value>
-    <comment>Error message for unable add items to project</comment>
-  </data>
-  <data name="ErrorUnableAddProjectToSolution" xml:space="preserve">
-    <value>Impossibile aggiungere il progetto alla soluzione. Assicurati di disporre dell'SDK previsto installato.</value>
-    <comment>Error message for unable add project to solution</comment>
-  </data>
-  <data name="ErrorUnableToRefreshProject" xml:space="preserve">
-    <value>Impossibile aggiornare il progetto. Prova ad aggiornarlo manualmente.</value>
-    <comment>Error message for unable to refresh project</comment>
-  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Errore di compressione dell'albero della soluzione. Es:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
@@ -683,5 +671,37 @@
   <data name="ValidatorHasPivotMessage" xml:space="preserve">
     <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
     <comment>Has pivot validation error message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -Id {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
+Please verify the following list of packages needed by your project's code and manually add the missing packages: 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>Adding {0} to project ...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>Adding NuGet package {0} to project ...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>Adding project {0} to solution...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>Unable to add files and projects.</value>
+  </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Unable to find project {0}</value>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Adding references between projects...</value>
   </data>
 </root>

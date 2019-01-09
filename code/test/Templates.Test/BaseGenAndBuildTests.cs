@@ -40,8 +40,8 @@ namespace Microsoft.Templates.Test
                     return "B";
                 case "SplitView":
                     return "SV";
-                case "TabbedPivot":
-                    return "TP";
+                case "TabbedNav":
+                    return "TN";
                 default:
                     return projectType;
             }
@@ -272,7 +272,7 @@ namespace Microsoft.Templates.Test
             }
         }
 
-        protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false)
+        protected async Task<(string ProjectPath, string ProjectName)> SetUpComparisonProjectAsync(string language, string projectType, string framework, IEnumerable<string> genIdentities, bool lastPageIsHome = false, bool includeMultipleInstances = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
             BaseGenAndBuildFixture.SetCurrentPlatform(Platforms.Uwp);
@@ -309,7 +309,7 @@ namespace Microsoft.Templates.Test
                 _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
 
                 // Add multiple pages if supported to check these are handled the same
-                if (itemTemplate.GetMultipleInstance())
+                if (includeMultipleInstances && itemTemplate.GetMultipleInstance())
                 {
                     _fixture.AddItem(userSelection, itemTemplate, BaseGenAndBuildFixture.GetDefaultName);
                 }
@@ -320,7 +320,7 @@ namespace Microsoft.Templates.Test
                 // Useful if creating a blank project type and want to change the start page
                 userSelection.HomeName = userSelection.Pages.Last().name;
 
-                if (projectType == "TabbedPivot")
+                if (projectType == "TabbedNav")
                 {
                     userSelection.Pages.Reverse();
                 }
@@ -341,7 +341,7 @@ namespace Microsoft.Templates.Test
 
         private const string NavigationPanel = "SplitView";
         private const string Blank = "Blank";
-        private const string TabsAndPivot = "TabbedPivot";
+        private const string TabbedNav = "TabbedNav";
         private const string MvvmBasic = "MVVMBasic";
         private const string MvvmLight = "MVVMLight";
         private const string CodeBehind = "CodeBehind";
@@ -355,9 +355,9 @@ namespace Microsoft.Templates.Test
             yield return new object[] { Blank, CodeBehind };
             yield return new object[] { Blank, MvvmBasic };
             yield return new object[] { Blank, MvvmLight };
-            yield return new object[] { TabsAndPivot, CodeBehind };
-            yield return new object[] { TabsAndPivot, MvvmBasic };
-            yield return new object[] { TabsAndPivot, MvvmLight };
+            yield return new object[] { TabbedNav, CodeBehind };
+            yield return new object[] { TabbedNav, MvvmBasic };
+            yield return new object[] { TabbedNav, MvvmLight };
         }
 
         // Gets a list of partial identities for page and feature templates supported by C# and VB
@@ -370,6 +370,7 @@ namespace Microsoft.Templates.Test
                 "wts.Page.TabbedPivot", "wts.Page.Map", "wts.Page.Camera",
                 "wts.Page.ImageGallery", "wts.Page.MasterDetail",
                 "wts.Page.InkDraw", "wts.Page.InkDrawPicture", "wts.Page.InkSmartCanvas",
+                "wts.Page.ContentGrid", "wts.Page.DataGrid",
                 "wts.Feat.SettingsStorage", "wts.Feat.SuspendAndResume", "wts.Feat.LiveTile",
                 "wts.Feat.DeepLinking", "wts.Feat.FirstRunPrompt", "wts.Feat.WhatsNewPrompt",
                 "wts.Feat.ToastNotifications", "wts.Feat.BackgroundTask", "wts.Feat.HubNotifications",

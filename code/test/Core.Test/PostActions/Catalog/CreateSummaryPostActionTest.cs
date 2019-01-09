@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
@@ -31,7 +32,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_SyncGeneration()
+        public void CreateSummary_Execute_SyncGeneration()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
             var outputPath = Path.GetFullPath(@".\temp\Project");
@@ -83,7 +84,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_NotSyncGeneration()
+        public void CreateSummary_Execute_NotSyncGeneration()
         {
             CultureInfo.CurrentUICulture = new CultureInfo("en-US");
             var outputPath = Path.GetFullPath(@".\temp\Project");

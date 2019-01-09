@@ -63,6 +63,9 @@ namespace Param_ItemNamespace.ViewModels
             base.OnNavigatingFrom(e, viewModelState, suspending);
             _mpe.MediaPlayer.Pause();
             _mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged -= PlaybackSession_PlaybackStateChanged;
+            var mediaSource = Source as MediaSource;
+            mediaSource?.Dispose();
+            Source = null;
         }
 
         private async void PlaybackSession_PlaybackStateChanged(MediaPlaybackSession sender, object args)

@@ -1,4 +1,7 @@
-﻿Namespace Activation
+﻿'{[{
+Imports Param_RootNamespace.ViewModels
+'}]}
+Namespace Activation
     Friend Class DefaultLaunchActivationHandler
         Inherits ActivationHandler(Of LaunchActivatedEventArgs)
 '{[{
@@ -7,7 +10,7 @@
 
         Private ReadOnly Property NavigationService As NavigationServiceEx
             Get
-                Return CommonServiceLocator.ServiceLocator.Current.GetInstance(Of NavigationServiceEx)()
+                Return ViewModelLocator.Current.NavigationService
             End Get
         End Property
 

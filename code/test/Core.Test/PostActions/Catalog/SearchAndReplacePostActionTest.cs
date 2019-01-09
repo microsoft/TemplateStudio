@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Resources;
@@ -18,7 +19,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class SearchAndReplacePostActionTest
     {
         [Fact]
-        public void Execute_Success()
+        public void SearchAndReplace_Execute_Success()
         {
             var templateName = "Test";
             var sourceFile = Path.GetFullPath(@".\TestData\temp\Source.cs");
@@ -56,7 +57,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_FileNotFound_NoError()
+        public void SearchAndReplace_Execute_FileNotFound_NoError()
         {
             var templateName = "Test";
             var mergeFile = Path.GetFullPath(@".\TestData\temp\NoSource_searchreplace.cs");

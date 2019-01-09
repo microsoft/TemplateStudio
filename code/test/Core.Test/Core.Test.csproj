@@ -132,8 +132,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Threading, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.23\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.15.3.83\lib\net45\Microsoft.VisualStudio.Threading.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Utilities, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.VisualStudio.Utilities.15.0.26606\lib\net45\Microsoft.VisualStudio.Utilities.dll</HintPath>
@@ -201,6 +200,9 @@
     <Compile Include="Locations\RemoteTemplateSourceTests.cs" />
     <Compile Include="Locations\UnitTestsTemplatesSource.cs" />
     <Compile Include="Packaging\TemplatePackageTests.cs" />
+    <Compile Include="PostActions\Catalog\AddProjectReferenceToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddSdkReferenceToContextPostActionTest.cs" />
+    <Compile Include="PostActions\Catalog\AddNugetReferenceToContextPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\CreateSummaryPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\AddItemToContextPostActionTest.cs" />
     <Compile Include="PostActions\Catalog\FakeCreationPath.cs" />
@@ -250,14 +252,14 @@
     </None>
     <Content Include="..\..\TestCert.pfx">
       <Link>Packaging\TestCert.pfx</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
     <None Include=".codeclonesettings" />
     <None Include="Packaging\MsSigned\Templates.mstx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestData\Merge\Source_expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

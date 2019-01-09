@@ -26,7 +26,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "LegacyFrameworks")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks")]
         [Trait("ExecutionSet", "BuildRightClickWithLegacy")]
         [Trait("Type", "BuildRightClickLegacy")]
         public async Task BuildEmptyLegacyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
@@ -51,6 +51,11 @@ namespace Microsoft.Templates.Test
 
             fixture.ChangeToLocalTemplatesSource(fixture.LocalSource, language, Platforms.Uwp);
 
+            // Add core project using test template.
+            // This is a temporary workaround to allow right clicks with multiproject on 2.5 templates. Remove when 3.0 is released
+            var coreTemplate = _fixture.Templates().Where(t => t.Name == "Testing.AddCoreProject" || t.Name == "Testing.AddCoreProject.VB");
+            await AddRightClickTemplatesAsync(GenContext.Current.DestinationPath, coreTemplate, projectName, projectType, framework, platform, language);
+
             var rightClickTemplates = _fixture.Templates().Where(
                                           t => (t.GetTemplateType() == TemplateType.Feature || t.GetTemplateType() == TemplateType.Page)
                                             && t.GetFrameworkList().Contains(framework)
@@ -65,10 +70,12 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "LegacyFrameworks")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "LegacyFrameworks")]
         [Trait("ExecutionSet", "ManualOnly")]
         ////This test sets up projects for further manual tests. It generates legacy projects with all pages and features.
+#pragma warning disable xUnit1026 // Theory methods should use all of their parameters
         public async Task GenerateLegacyProjectWithAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
+#pragma warning restore xUnit1026 // Theory methods should use all of their parameters
         {
             var projectName = $"{ShortProjectType(projectType)}{framework}AllLegacy";
 
@@ -79,9 +86,13 @@ namespace Microsoft.Templates.Test
                    && !t.GetIsHidden()
                    && t.GetLanguage() == language;
 
-            // var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, BaseGenAndBuildFixture.GetDefaultName, false);
-            // Temp workaround to be able to generate project from template without platform
-            var projectPath = await AssertGenerateProjectWithOutPlatformAsync(selector, projectName, projectType, framework, language, BaseGenAndBuildFixture.GetDefaultName, false);
+            Func<ITemplateInfo, bool> templateSelector =
+               t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                   && t.GetFrameworkList().Contains(framework)
+                   && t.GetPlatform() == platform
+                   && !t.GetIsHidden();
+
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName,  false);
         }
 
         protected async Task<string> AssertGenerateProjectWithOutPlatformAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string language, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)

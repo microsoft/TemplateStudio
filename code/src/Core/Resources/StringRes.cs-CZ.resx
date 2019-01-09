@@ -212,9 +212,6 @@
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Při synchronizaci šablon došlo k chybě. Stav:</value>
   </data>
-  <data name="StatusAddingItems" xml:space="preserve">
-    <value>Přidávání položek do projektu...</value>
-  </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Otevírání generovaných souborů...</value>
   </data>
@@ -450,9 +447,6 @@ Nemohly být integrovány následující změny: {2}
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
     <value>The file {0} can't be moved to {1}. Error: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
-  </data>
-  <data name="StatusAddingProjects" xml:space="preserve">
-    <value>Adding projects to solution...</value>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
     <value>Nebyla nalezena šablona rozložení {0} pro rámec (framework) {1} a platformu {2}.</value>

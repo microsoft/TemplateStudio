@@ -85,6 +85,7 @@ namespace Param_ItemNamespace.ViewModels
             if (e.NavigationMode == NavigationMode.Back)
             {
                 _connectedAnimationService.SetListDataItemForNextConnectedAnnimation(SelectedImage);
+                ImagesNavigationHelper.RemoveImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
             }
         }
     }

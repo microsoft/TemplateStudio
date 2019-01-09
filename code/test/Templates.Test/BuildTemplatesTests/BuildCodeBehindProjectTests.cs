@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "CodeBehind")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CodeBehind")]
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "CodeBehind")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CodeBehind")]
         [Trait("Type", "BuildAllPagesAndFeatures")]
         public async Task BuildAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
         {
@@ -69,7 +69,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "CodeBehind", ProgrammingLanguages.CSharp, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CodeBehind", ProgrammingLanguages.CSharp, Platforms.Uwp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimum")]
@@ -79,7 +79,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "CodeBehind", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CodeBehind", ProgrammingLanguages.VisualBasic, Platforms.Uwp)]
         [Trait("Type", "BuildRandomNames")]
         [Trait("ExecutionSet", "Minimum")]
         [Trait("ExecutionSet", "BuildMinimumVB")]
@@ -112,7 +112,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "CodeBehind")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CodeBehind")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildEmptyProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -124,7 +124,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetProjectTemplatesForBuild", "CodeBehind")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "CodeBehind")]
         [Trait("Type", "BuildRightClick")]
         public async Task BuildCompleteProjectWithAllRightClickItemsAsync(string projectType, string framework, string platform, string language)
         {
@@ -136,7 +136,7 @@ namespace Microsoft.Templates.Test
         }
 
         [Theory]
-        [MemberData("GetPageAndFeatureTemplatesForBuild", "CodeBehind")]
+        [MemberData(nameof(BaseGenAndBuildTests.GetPageAndFeatureTemplatesForBuild), "CodeBehind")]
         [Trait("Type", "BuildOneByOneCodeBehind")]
         public async Task BuildCodeBehindOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {

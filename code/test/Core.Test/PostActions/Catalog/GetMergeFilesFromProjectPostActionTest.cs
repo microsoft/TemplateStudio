@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
@@ -17,7 +18,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
     public class GetMergeFilesFromProjectPostActionTest
     {
         [Fact]
-        public void Execute_Postaction()
+        public void GetMergeFilesFromProject_Execute_Postaction()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
@@ -42,7 +43,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_Postaction_FileFound()
+        public void GetMergeFilesFromProject_Execute_Postaction_FileFound()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
@@ -72,7 +73,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_Postaction_LocallyAvailable()
+        public void GetMergeFilesFromProject_Execute_Postaction_LocallyAvailable()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";
@@ -100,7 +101,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
         }
 
         [Fact]
-        public void Execute_GlobalPostaction()
+        public void GetMergeFilesFromProject_Execute_GlobalPostaction()
         {
             var templateName = "Test";
             var relSourceFilePath = @"Source.cs";

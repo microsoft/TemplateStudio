@@ -65,8 +65,17 @@ namespace Vsts2git
                 log.Info($"Processing {buildInfo?.message?.text}");
 
                 var queryParams = req.RequestUri.ParseQueryString();
-                var repo = queryParams["repo"];
-                var owner = queryParams["owner"];
+                var id = buildInfo?.resource?.repository?.id?.ToString();
+
+                var owner = id.Split('/')[0];
+                var repo = id.Split('/')[1];
+
+                if (repo != "WindowsTemplateStudio" && repo != "Rapid-XAML-Toolkit")
+                {
+                    log.Info($"Invalid Repo {repo}.");
+                    return req.CreateErrorResponse(HttpStatusCode.BadRequest, $"Repo {repo} is not allowed");
+                }
+
                 bool.TryParse(queryParams["createIssue"], out var createIssue);
 
                 BuildContent content = await SetupBuildContent(buildInfo, repo, owner, binder);

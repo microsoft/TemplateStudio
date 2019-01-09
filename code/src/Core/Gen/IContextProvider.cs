@@ -16,11 +16,7 @@ namespace Microsoft.Templates.Core.Gen
 
         string DestinationPath { get; }
 
-        List<string> Projects { get; }
-
-        Dictionary<string, List<string>> ProjectReferences { get; }
-
-        List<string> ProjectItems { get; }
+        ProjectInfo ProjectInfo { get; }
 
         List<string> FilesToOpen { get; }
 
