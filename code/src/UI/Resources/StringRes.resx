@@ -453,10 +453,6 @@
     <value>Generation finished</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>Restoring packages...</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Creating Windows Template Studio project...</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -479,21 +475,15 @@
   </data>
   <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
     <value>Unable to find project {0}</value>
+    <comment>{0}: projectPath</comment>
   </data>
   <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
     <value>Unable to add files and projects.</value>
+    <comment>Error message for unable to add files and projects</comment>
   </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>There was an error collapsing the solution tree. Ex:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>There was an error restoring the packages. Ex:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Unable to automatically Restore NuGet Packages for the solution. Manually restore the NuGet packages.</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>There was an error showing status message. Ex:</value>
@@ -703,5 +693,18 @@ Please verify the following list of packages needed by your project's code and m
   </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
     <value>Adding references between projects...</value>
+    <comment>Status bar message for adding project references</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio is now adding a core project. </value>
+    <comment>Has no core project validation error message</comment>
   </data>
 </root>
