@@ -16,7 +16,7 @@ namespace Param_RootNamespace.Services
 //}]}
 
         public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
-        {            
+        {
         }
 
         public async Task ActivateAsync(object activationArgs)
