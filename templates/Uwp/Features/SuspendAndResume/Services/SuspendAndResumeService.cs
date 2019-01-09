@@ -25,17 +25,29 @@ namespace Param_ItemNamespace.Services
         // state data from the current subscriber and saves it to the local storage.
         public async Task SaveStateAsync()
         {
-            var suspensionState = new SuspensionState()
+            if (OnBackgroundEntering == null)
             {
-                SuspensionDate = DateTime.Now
-            };
+                return;
+            }
 
-            var target = OnBackgroundEntering?.Target.GetType();
-            var onBackgroundEnteringArgs = new OnBackgroundEnteringEventArgs(suspensionState, target);
+            try
+            {
+                var suspensionState = new SuspensionState()
+                {
+                    SuspensionDate = DateTime.Now
+                };
 
-            OnBackgroundEntering?.Invoke(this, onBackgroundEnteringArgs);
+                var target = OnBackgroundEntering?.Target.GetType();
+                var onBackgroundEnteringArgs = new OnBackgroundEnteringEventArgs(suspensionState, target);
 
-            await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs);
+                OnBackgroundEntering?.Invoke(this, onBackgroundEnteringArgs);
+
+                await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs);
+            }
+            catch (Exception)
+            {
+                // TODO WTS: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario. 
+            }
         }
 
         // This method allows subscribers to refesh data that might be outdated when the App is resuming from suspension.

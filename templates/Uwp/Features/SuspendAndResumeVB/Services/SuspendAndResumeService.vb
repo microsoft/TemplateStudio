@@ -20,21 +20,29 @@ Namespace Services
         ' This method saves the application state before entering background state. It fires the event OnBackgroundEntering to collect
         ' state data from the current subscriber and saves it to the local storage.
         Public Async Function SaveStateAsync() As Task
-            Dim suspensionState = New SuspensionState() With {
-                .SuspensionDate = DateTime.Now
-            }
-
-            Dim target As Type = Nothing
-            
-            If OnBackgroundEnteringEvent IsNot Nothing Then
-                target = OnBackgroundEnteringEvent.Target.GetType
+            If OnBackgroundEntering Is Nothing Then
+                Return
             End If
 
-            Dim onBackgroundEnteringArgs = New OnBackgroundEnteringEventArgs(suspensionState, target)
+            Try
+                Dim suspensionState = New SuspensionState() With {
+                    .SuspensionDate = DateTime.Now
+                }
 
-            RaiseEvent OnBackgroundEntering(Me, onBackgroundEnteringArgs)
+                Dim target As Type = Nothing
+                
+                If OnBackgroundEnteringEvent IsNot Nothing Then
+                    target = OnBackgroundEnteringEvent.Target.GetType
+                End If
 
-            Await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs)
+                Dim onBackgroundEnteringArgs = New OnBackgroundEnteringEventArgs(suspensionState, target)
+
+                RaiseEvent OnBackgroundEntering(Me, onBackgroundEnteringArgs)
+
+                Await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs)
+            Catch ex As Exception
+                'TODO WTS: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+            End Try
         End Function
 
         ' This method allows subscribers to refesh data that might be outdated when the App is resuming from suspension.
