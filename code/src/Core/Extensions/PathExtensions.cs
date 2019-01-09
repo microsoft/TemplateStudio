@@ -22,8 +22,8 @@ namespace Microsoft.Templates.Core.Extensions
 
         public static string GetPathRelativeToGenerationPath(this string filePath)
         {
-            var generationParentDirectory = GenContext.Current.GenerationOutputPath;
-            return GetRelativePath(filePath, generationParentDirectory);
+            var generationDirectory = GenContext.Current.GenerationOutputPath;
+            return GetRelativePath(filePath, generationDirectory);
         }
 
         public static string GetPathRelativeToDestinationParentPath(this string filePath)
