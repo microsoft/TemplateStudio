@@ -449,14 +449,6 @@
     <value>Windows Şablon Stüdyosu</value>
     <comment>Windows template studio label</comment>
   </data>
-  <data name="StatusBarGenerationFinished" xml:space="preserve">
-    <value>Oluşturma tamamlandı</value>
-    <comment>Status bar message generation finished</comment>
-  </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>Paketler geri yükleniyor...</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Windows Şablon Stüdyosu projesi oluşturuluyor...</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -480,14 +472,6 @@
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Çözüm ağacı daraltılırken bir hata oluştu. Ör:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>Paketler geri yüklenirken bir hata oluştu. Ör:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Çözüm için NuGet Paketlerini Geri Yükle işlemi otomatik olarak gerçekleştirilemiyor. NuGet paketlerini el ile geri yükleyin.</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>Durum iletisi gösterilirken bir hata oluştu. Ör:</value>
@@ -703,5 +687,21 @@ Please verify the following list of packages needed by your project's code and m
   </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
     <value>Adding references between projects...</value>
+  </data>
+  <data name="StatusBarGenerationFinished" xml:space="preserve">
+    <value>Oluşturma tamamlandı</value>
+    <comment>Status bar message generation finished</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio is now adding a core project. </value>
+    <comment>Has no core project validation error message</comment>
   </data>
 </root>
