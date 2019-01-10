@@ -44,8 +44,8 @@ Namespace Views
         Private Sub Initialize()
             NavigationService.Frame = shellFrame
             AddHandler NavigationService.NavigationFailed, Function(sender, e)
-                        Throw e.Exception
-                                                                End Function
+                                                                Throw e.Exception
+                                                            End Function
             AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
             AddHandler navigationView.BackRequested, AddressOf OnBackRequested
         End Sub
