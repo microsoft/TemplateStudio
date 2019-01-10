@@ -11,18 +11,15 @@ namespace Param_ItemNamespace.ViewModels
 //{[{
         private ICommand _goBackCommand;
 //}]}
-
         public ObservableCollection<SampleImage> Source
         {
             get => _source;
             set => SetProperty(ref _source, value);
         }
-
 //{[{
 
         public ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new DelegateCommand(OnGoBack));
 //}]}
-
         public wts.ItemNameDetailViewModel(INavigationService navigationServiceInstance, ISampleDataService sampleDataServiceInstance, IConnectedAnimationService connectedAnimationService)
         {
         }
