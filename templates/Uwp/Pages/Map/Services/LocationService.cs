@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 using Windows.Devices.Geolocation;
 using Param_ItemNamespace.Helpers;
 
@@ -87,7 +89,7 @@ namespace Param_ItemNamespace.Services
 
             CurrentPosition = args.Position;
 
-            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 PositionChanged?.Invoke(this, CurrentPosition);
             });
