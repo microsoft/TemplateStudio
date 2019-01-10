@@ -49,7 +49,6 @@ namespace Param_RootNamespace.Services
 
 //^^
 //{[{
-
         private KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
         {
             var keyboardAccelerator = new KeyboardAccelerator() { Key = key };

@@ -3,14 +3,14 @@
   "classifications": [
     "Universal"
   ],
-  "name": "MVVMLight.Project.Blank.AddSystemBackButton.VB",
+  "name": "CaliburnMicro.Project.Blank.AddKeyboardAccelerators",
   "tags": {
-    "language": "VisualBasic",
+    "language": "C#",
     "type": "item",
     "wts.type": "composition",
     "wts.platform" : "Uwp",
     "wts.version": "1.0.0",
-    "wts.compositionFilter": "$framework == MVVMLight & $projectType == Blank & wts.type == project"
+    "wts.compositionFilter": "$framework == CaliburnMicro & $projectType == Blank & wts.type == project"
  },
   "sourceName": "wts.ItemName",
   "preferNameDirectory": true,
