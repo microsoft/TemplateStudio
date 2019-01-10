@@ -306,10 +306,16 @@ namespace TemplateValidator
 
         private static void VerifyWtsLicensesTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
-            // This is a really crude regex designed to catch basic variation from a markdown URI link
-            if (!new Regex(@"^\[([\w .\-]){4,}\]\(http([\w ./?=\-:]){9,}\)$").IsMatch(tag.Value))
+            // Allow for multiple pipe separated links
+            var values = tag.Value.Split('|');
+
+            foreach (var value in values)
             {
-                results.Add($"'{tag.Value}' specified in the wts.licenses tag does not match the expected format.");
+                // This is a really crude regex designed to catch basic variation from a markdown URI link
+                if (!new Regex(@"^\[([\w .\-]){4,}\]\(http([\w ./?=\-:]){9,}\)$").IsMatch(value))
+                {
+                    results.Add($"'{value}' specified in the wts.licenses tag does not match the expected format.");
+                }
             }
         }
 
