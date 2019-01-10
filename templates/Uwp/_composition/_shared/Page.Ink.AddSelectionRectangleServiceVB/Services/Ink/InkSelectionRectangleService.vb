@@ -46,17 +46,17 @@ Namespace Services.Ink
 
         Private Function GetSelectionRectangle() As Rectangle
             Dim r As Rectangle = Nothing
-            Dim selectionRectange = TryCast(_selectionCanvas.Children.FirstOrDefault(Function(f)
+            Dim selectionRectangle = TryCast(_selectionCanvas.Children.FirstOrDefault(Function(f)
                                                                                          Dim rect As Rectangle = TryCast(f, Rectangle)
                                                                                          return rect IsNot Nothing AndAlso rect.Name = SelectionRectName
                                                                                      End Function), Rectangle)
 
-            If selectionRectange Is Nothing Then
-                selectionRectange = CreateNewSelectionRectangle()
-                _selectionCanvas.Children.Add(selectionRectange)
+            If selectionRectangle Is Nothing Then
+                selectionRectangle = CreateNewSelectionRectangle()
+                _selectionCanvas.Children.Add(selectionRectangle)
             End If
 
-            Return selectionRectange
+            Return selectionRectangle
         End Function
 
         Private Function CreateNewSelectionRectangle() As Rectangle
