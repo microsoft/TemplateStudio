@@ -9,7 +9,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
     public static class PostactionFormatter
     {
         private const string UserFriendlyPostActionMacroBeforeMode = "Include the following block at the end of the containing block.";
-        private const string UserFriendlyPostActionMacroStartGroup = "Block to be included";
+        public const string UserFriendlyPostActionMacroStartGroup = "Block to be included";
         private const string UserFriendlyPostActionMacroEndGroup = "End of block";
         private const string UserFriendlyPostActionMacroStartDocumentation = "***";
         private const string UserFriendlyPostActionMacroEndDocumentation = "***";
