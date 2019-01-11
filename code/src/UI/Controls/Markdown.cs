@@ -589,42 +589,33 @@ namespace Microsoft.Templates.UI.Controls
 
             var block = Create<Paragraph, Inline>(content);
 
-            switch (level)
+            Style newStyle = GetHeaderStyle(level);
+            if (newStyle != null)
             {
-                case 1:
-                    if (Heading1Style != null)
-                    {
-                        block.Style = Heading1Style;
-                    }
-
-                    break;
-
-                case 2:
-                    if (Heading2Style != null)
-                    {
-                        block.Style = Heading2Style;
-                    }
-
-                    break;
-
-                case 3:
-                    if (Heading3Style != null)
-                    {
-                        block.Style = Heading3Style;
-                    }
-
-                    break;
-
-                case 4:
-                    if (Heading4Style != null)
-                    {
-                        block.Style = Heading4Style;
-                    }
-
-                    break;
+                block.Style = newStyle;
             }
 
             return block;
+        }
+
+        private Style GetHeaderStyle(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    return Heading1Style;
+
+                case 2:
+                    return Heading2Style;
+
+                case 3:
+                    return Heading3Style;
+
+                case 4:
+                    return Heading4Style;
+                default:
+                    return null;
+            }
         }
 
         private static Regex _horizontalRules = new Regex(

@@ -16,6 +16,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
+using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.VsEmulator.Main;
@@ -102,19 +103,19 @@ namespace Microsoft.Templates.VsEmulator
                         {
                             case "PAGE":
                                 EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userPageSelection = NewItemController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
+                                var userPageSelection = WizardLauncher.Instance.StartAddPage(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
 
                             case "FEATURE":
                                 EnableRightClickSupportForProject(projectPath, progLanguage);
-                                var userFeatureSelection = NewItemController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
+                                var userFeatureSelection = WizardLauncher.Instance.StartAddFeature(GenContext.CurrentLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
 
                             case "PROJECT":
                             default:
-                                var userSelectionIsNotUsed = NewProjectController.Instance.GetUserSelection(Platforms.Uwp, progLanguage, FakeStyleValuesProvider.Instance);
+                                var userSelectionIsNotUsed = WizardLauncher.Instance.StartNewProject(Platforms.Uwp, progLanguage, FakeStyleValuesProvider.Instance);
 
                                 break;
                         }
