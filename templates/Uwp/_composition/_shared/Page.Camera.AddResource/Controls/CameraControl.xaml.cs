@@ -138,6 +138,14 @@ namespace Param_ItemNamespace.Controls
             {
                 errorMessage.Text = "Camera_Exception_NotSupported".GetLocalized();
             }
+            catch (TaskCanceledException)
+            {
+                errorMessage.Text = "Camera_Exception_InitializationCanceled".GetLocalized();
+            }
+            catch (Exception)
+            {
+                errorMessage.Text = "Camera_Exception_InitializationError".GetLocalized();
+            }
         }
 
         public async Task CleanupCameraAsync()
