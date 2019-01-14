@@ -8,10 +8,9 @@
     xmlns:prismMvvm="using:Prism.Windows.Mvvm"
     prismMvvm:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-        
+
     <Grid
         x:Name="ContentArea"
-        Margin="{StaticResource MediumLeftRightMargin}"
         animations:Connected.AnchorElement="{x:Bind itemHero}">
 
         <VisualStateManager.VisualStateGroups>
@@ -22,18 +21,18 @@
                         <AdaptiveTrigger MinWindowWidth="641" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="contentPanel.Margin" Value="0" />
-                        <Setter Target="propertiesGroup1.(RelativePanel.RightOf)" Value="itemHero"/>
-                        <Setter Target="propertiesGroup1.(RelativePanel.Below)" Value="title"/>
-                        <Setter Target="propertiesGroup2.(RelativePanel.RightOf)" Value="propertiesGroup1"/>
-                        <Setter Target="propertiesGroup2.(RelativePanel.Below)" Value="title"/>
-                        <Setter Target="propertiesGroup1.Width" Value="200"/>
+                        <Setter Target="propertiesGroup1.(RelativePanel.RightOf)" Value="itemHero" />
+                        <Setter Target="propertiesGroup1.(RelativePanel.Below)" Value="title" />
+                        <Setter Target="propertiesGroup2.(RelativePanel.RightOf)" Value="propertiesGroup1" />
+                        <Setter Target="propertiesGroup2.(RelativePanel.Below)" Value="title" />
+                        <Setter Target="propertiesGroup1.Width" Value="200" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <StackPanel x:Name="contentPanel" Margin="0,48,0,0">
+        <StackPanel
+            x:Name="contentPanel">
 
             <RelativePanel>
                 <Grid
@@ -55,7 +54,7 @@
 
                 <TextBlock
                     x:Name="title"
-                    RelativePanel.AlignTopWithPanel="True"                    
+                    RelativePanel.AlignTopWithPanel="True"
                     RelativePanel.RightOf="itemHero"
                     Text="{x:Bind ViewModel.Item.Company, Mode=OneWay}"
                     Style="{ThemeResource TitleTextBlockStyle}"
@@ -84,7 +83,7 @@
                         <TextBlock Text="{x:Bind ViewModel.Item.OrderTotal}" Style="{StaticResource DetailBodyBaseMediumStyle}" />
                     </StackPanel>
                 </StackPanel>
-                
+
             </RelativePanel>
 
             <TextBlock Text="Note 1" Style="{StaticResource DetailSubTitleStyle}" Margin="{StaticResource SmallTopMargin}" />

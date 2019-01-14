@@ -43,6 +43,10 @@ namespace wts.ItemName.ViewModels
         public void Initialize(Frame frame, WinUI.NavigationView navigationView)
         {
             _navigationView = navigationView;
+            frame.NavigationFailed += (sender, e) =>
+            {
+                throw e.Exception;
+            };
             frame.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
         }
