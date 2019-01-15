@@ -14,7 +14,9 @@ Namespace Services
             '{[{
             Await Singleton(Of StoreNotificationsFeatureService).Instance.InitializeAsync()
             '}]}
+            '{??{
             Await Task.CompletedTask
+            '}??}
         End Function
 
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)

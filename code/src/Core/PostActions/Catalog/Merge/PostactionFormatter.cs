@@ -21,7 +21,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                             .Replace(IEnumerableExtensions.MacroStartDocumentation, UserFriendlyPostActionMacroStartDocumentation)
                             .Replace(IEnumerableExtensions.MacroEndDocumentation, UserFriendlyPostActionMacroEndDocumentation)
                             .Replace(IEnumerableExtensions.MacroStartGroup, UserFriendlyPostActionMacroStartGroup)
-                            .Replace(IEnumerableExtensions.MacroEndGroup, UserFriendlyPostActionMacroEndGroup);
+                            .Replace(IEnumerableExtensions.MacroEndGroup, UserFriendlyPostActionMacroEndGroup)
+                            .Replace("//" + IEnumerableExtensions.MacroStartOptionalContext, string.Empty)
+                            .Replace("//" + IEnumerableExtensions.MacroEndOptionalContext, string.Empty)
+                            .Replace("'" + IEnumerableExtensions.MacroStartOptionalContext, string.Empty)
+                            .Replace("'" + IEnumerableExtensions.MacroEndOptionalContext, string.Empty);
 
             var cleanRemovals = output.Split(new[] { Environment.NewLine }, StringSplitOptions.None).RemoveRemovals();
             output = string.Join(Environment.NewLine, cleanRemovals);

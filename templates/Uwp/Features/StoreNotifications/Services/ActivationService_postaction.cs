@@ -18,7 +18,9 @@ namespace Param_ItemNamespace.Services
             //{[{
             await Singleton<StoreNotificationsFeatureService>.Instance.InitializeAsync();
             //}]}
+            //{??{
             await Task.CompletedTask;
+            //}??}
         }
 
         private IEnumerable<ActivationHandler> GetActivationHandlers()

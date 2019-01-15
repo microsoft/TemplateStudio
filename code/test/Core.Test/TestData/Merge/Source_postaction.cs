@@ -19,6 +19,10 @@ namespace TestData
         public App()
         {
             this.InitializeComponent();
+            //{??{
+            //This might be there or not
+            //This might also be there or not
+            //}??}
             //{[{
             //AFTER INITIALIZE!!
             //}]}
@@ -38,6 +42,10 @@ namespace TestData
             var s = "";
 
             //}]}
+            //{??{
+            //This might be there or not
+            //This might also be there or not
+            //}??}
         }
 
         //{[{

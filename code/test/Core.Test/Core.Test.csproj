@@ -220,6 +220,12 @@
     <Compile Include="Naming\NamingTests.cs" />
     <Compile Include="Naming\SuggestedDirectoryNameValidatorTests.cs" />
     <Compile Include="Composition\CompositionQueryTest.cs" />
+    <None Include="TestData\Merge\Source_expectedWithOptionalContextLines.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Merge\SourceWithOptionalContextLines.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\GenerationSummary_expected.md">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
