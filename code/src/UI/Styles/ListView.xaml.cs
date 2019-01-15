@@ -24,7 +24,7 @@ namespace Microsoft.Templates.UI.Styles
 
             if (sender is ListViewItem item)
             {
-                await SelectByItemAsync(item);
+                await SelectByItemAsync(item.Content);
                 e.Handled = true;
             }
         }
