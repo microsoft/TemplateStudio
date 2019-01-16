@@ -125,6 +125,7 @@
     <AdditionalFiles Include="..\..\StyleCop.json">
       <Link>StyleCop.json</Link>
     </AdditionalFiles>
+    <None Include=".codeclonesettings" />
     <None Include="App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

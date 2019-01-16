@@ -49,32 +49,7 @@ namespace Microsoft.Templates.Test
         public static IEnumerable<object[]> GetProjectTemplatesForVBStyle()
         {
             InitializeTemplates(new LocalTemplatesSource("VBStyle"));
-
-            List<object[]> result = new List<object[]>();
-
-            var platform = Platforms.Uwp;
-
-            var projectTemplates =
-               GenContext.ToolBox.Repo.GetAll().Where(
-                   t => t.GetTemplateType() == TemplateType.Project
-                    && t.GetLanguage() == ProgrammingLanguages.VisualBasic);
-
-            foreach (var projectTemplate in projectTemplates)
-            {
-                var projectTypeList = projectTemplate.GetProjectTypeList();
-
-                foreach (var projectType in projectTypeList)
-                {
-                    var frameworks = GenComposer.GetSupportedFx(projectType, platform);
-
-                    foreach (var framework in frameworks)
-                    {
-                        result.Add(new object[] { projectType, framework, platform });
-                    }
-                }
-            }
-
-            return result;
+            return GetVBProjectTemplates();
         }
     }
 }

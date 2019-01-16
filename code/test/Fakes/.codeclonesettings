@@ -1,5 +1,5 @@
 ﻿<CodeCloneSettings>  
   <Exclusions>
-    <Namespace>Microsoft.Templates.Core.Test*</Namespace>
+    <Namespace>Microsoft.Templates.Fakes*</Namespace>
   </Exclusions>  
 </CodeCloneSettings>  
