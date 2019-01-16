@@ -57,6 +57,7 @@ Namespace Views
             MyBase.OnNavigatingFrom(e)
             If e.NavigationMode = NavigationMode.Back Then
                 NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(SelectedImage)
+                ImagesNavigationHelper.RemoveImageId(ImageGalleryViewPage.ImageGalleryViewSelectedIdKey)
             End If
         End Sub
 

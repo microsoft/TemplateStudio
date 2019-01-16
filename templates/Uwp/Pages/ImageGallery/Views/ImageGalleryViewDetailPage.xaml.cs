@@ -1,6 +1,7 @@
 ﻿using System;
 using Param_ItemNamespace.Core.Models;
 using Param_ItemNamespace.Services;
+using Param_ItemNamespace.Helpers;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
@@ -28,6 +29,7 @@ namespace Param_ItemNamespace.Views
             if (e.NavigationMode == NavigationMode.Back)
             {
                 NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.SelectedImage);
+                ImagesNavigationHelper.RemoveImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey);
             }
         }
 

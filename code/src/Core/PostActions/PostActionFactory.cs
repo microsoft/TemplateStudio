@@ -45,7 +45,7 @@ namespace Microsoft.Templates.Core.PostActions
         {
             Directory
                 .EnumerateFiles(Path.GetDirectoryName(genInfo.GenerationPath), "*.*", SearchOption.AllDirectories)
-                .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionRegex))
+                .Where(f => Regex.IsMatch(f, MergeConfiguration.PostactionRegex) || Regex.IsMatch(f, MergeConfiguration.PostactionAndSearchReplaceRegex))
                 .ToList()
                 .ForEach(f => postActions.Add(new GenerateMergeInfoPostAction(genInfo.Template.Identity, f)));
         }

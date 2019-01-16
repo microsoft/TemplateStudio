@@ -453,10 +453,6 @@
     <value>생성 완료</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>패키지 복원 중...</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Windows Template Studio 프로젝트 생성 중...</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -480,14 +476,6 @@
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>솔루션 트리가 접히는 오류가 발생했습니다. 예:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>패키지를 복원하는 중 오류가 발생했습니다. 예:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>솔루션의 NuGet 패키지를 자동으로 복원할 수 없습니다. NuGet 패키지를 수동으로 복원하십시오.</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>상태 메시지를 표시하는 중에 오류가 발생했습니다. 예:</value>
@@ -703,5 +691,17 @@ Please verify the following list of packages needed by your project's code and m
   </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
     <value>Adding references between projects...</value>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio is now adding a core project. </value>
+    <comment>Has no core project validation error message</comment>
   </data>
 </root>

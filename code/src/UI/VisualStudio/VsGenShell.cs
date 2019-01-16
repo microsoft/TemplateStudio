@@ -13,6 +13,7 @@ using EnvDTE;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Threading;
@@ -695,7 +696,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         private void WriteMissingNugetPackagesInfo(string projectPath, IEnumerable<NugetReference> projectNugets)
         {
-            var relPath = projectPath.Replace(Directory.GetParent(GenContext.Current.DestinationPath).FullName, string.Empty);
+            var relPath = projectPath.GetPathRelativeToDestinationParentPath();
             var sb = new StringBuilder();
 
             foreach (var nuget in projectNugets)

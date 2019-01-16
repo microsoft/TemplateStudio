@@ -453,10 +453,6 @@
     <value>Создание завершено</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>Восстанавливаются пакеты…</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>Создается проект Windows Template Studio…</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -480,14 +476,6 @@
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Произошла ошибка при свертывании дерева решений. Пример:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>Произошла ошибка при восстановлении пакетов. Пример:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>Не удалось автоматически восстановить пакеты NuGet для решения. Сделайте это вручную.</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>Произошла ошибка при отображении сообщения о состоянии. Пример:</value>
@@ -703,5 +691,17 @@ Please verify the following list of packages needed by your project's code and m
   </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
     <value>Adding references between projects...</value>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio is now adding a core project. </value>
+    <comment>Has no core project validation error message</comment>
   </data>
 </root>

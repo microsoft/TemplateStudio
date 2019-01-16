@@ -141,5 +141,18 @@ namespace Microsoft.Templates.Core.Gen
                     return null;
             }
         }
+
+        internal static void VerifyGenContextPaths()
+        {
+            if (string.IsNullOrEmpty(GenContext.Current.GenerationOutputPath))
+            {
+                throw new ArgumentNullException(nameof(GenContext.Current.GenerationOutputPath));
+            }
+
+            if (string.IsNullOrEmpty(GenContext.Current.DestinationPath))
+            {
+                throw new ArgumentNullException(nameof(GenContext.Current.DestinationPath));
+            }
+        }
     }
 }

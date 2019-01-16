@@ -1,1 +1,1 @@
-﻿This is the most basic page. A blank canvas to mold into whatever you wish. The blank page leaves pretty much everything up to you.
+﻿This page allows you to add custom content in a GridView which is responsive to the screen size change. [Learn more about the Adaptive Grid View](https://docs.microsoft.com/windows/communitytoolkit/controls/adaptivegridview).

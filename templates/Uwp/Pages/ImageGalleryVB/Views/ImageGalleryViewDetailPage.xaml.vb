@@ -1,4 +1,5 @@
-﻿Imports Param_ItemNamespace.Services
+﻿Imports Param_ItemNamespace.Helpers
+Imports Param_ItemNamespace.Services
 Imports Windows.System
 Imports Microsoft.Toolkit.Uwp.UI.Animations
 
@@ -20,6 +21,7 @@ Namespace Views
             MyBase.OnNavigatingFrom(e)
             If e.NavigationMode = NavigationMode.Back Then
                 NavigationService.Frame.SetListDataItemForNextConnectedAnnimation(ViewModel.SelectedImage)
+                ImagesNavigationHelper.RemoveImageId(ImageGalleryViewViewModel.ImageGalleryViewSelectedIdKey)
             End If
         End Sub
 

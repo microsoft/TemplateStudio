@@ -453,10 +453,6 @@
     <value>已完成生成</value>
     <comment>Status bar message generation finished</comment>
   </data>
-  <data name="StatusBarRestoring" xml:space="preserve">
-    <value>正在还原程序包...</value>
-    <comment>Status bar message for restoring</comment>
-  </data>
   <data name="StatusBarCreatingProject" xml:space="preserve">
     <value>正在创建 Windows Template Studio 项目...</value>
     <comment>Status bar message for solution wizard run finished</comment>
@@ -480,14 +476,6 @@
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>折叠解决方案树时出错。例如:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesErrorMessage" xml:space="preserve">
-    <value>还原程序包时出错。例如:</value>
-    <comment>Error message for Vs GenShell restore packages error</comment>
-  </data>
-  <data name="ErrorVsGenShellRestorePackagesWarningMessage" xml:space="preserve">
-    <value>无法自动还原解决方案的 NuGet 程序包。请手动还原 NuGet 程序包。</value>
-    <comment>Error message for Vs GenShell restore packages warning</comment>
   </data>
   <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
     <value>显示状态消息时出错。例如:</value>
@@ -703,5 +691,17 @@ Please verify the following list of packages needed by your project's code and m
   </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
     <value>Adding references between projects...</value>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
+    <value>{0}updatetomultiproject.md</value>
+    <comment>Has no core project validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Has no core project validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
+    <value>Windows Template Studio is now adding a core project. </value>
+    <comment>Has no core project validation error message</comment>
   </data>
 </root>

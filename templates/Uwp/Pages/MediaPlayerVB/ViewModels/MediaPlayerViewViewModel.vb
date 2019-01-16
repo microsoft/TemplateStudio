@@ -37,5 +37,11 @@ Namespace ViewModels
             Source = MediaSource.CreateFromUri(New Uri(DefaultSource))
             PosterSource = DefaultPoster
         End Sub
+
+        Friend Sub DisposeSource()
+            Dim mediaSource = TryCast(Source, MediaSource)
+            mediaSource?.Dispose()
+            Source = Nothing
+        End Sub
     End Class
 End Namespace

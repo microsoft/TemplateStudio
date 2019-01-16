@@ -25,6 +25,7 @@ Namespace Views
             MyBase.OnNavigatedFrom(e)
             mpe.MediaPlayer.Pause()
             RemoveHandler mpe.MediaPlayer.PlaybackSession.PlaybackStateChanged, AddressOf PlaybackSession_PlaybackStateChanged
+            ViewModel.DisposeSource()
         End Sub
 
         Private Async Sub PlaybackSession_PlaybackStateChanged(sender As MediaPlaybackSession, args As Object)
