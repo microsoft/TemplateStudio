@@ -126,6 +126,10 @@ Namespace Controls
               errorMessage.Text = "Camera_Exception_UnauthorizedAccess".GetLocalized()
           Catch ex As NotSupportedException
                 errorMessage.Text = "Camera_Exception_NotSupported".GetLocalized()
+          Catch ex As TaskCanceledException
+                errorMessage.Text = "Camera_Exception_InitializationCanceled".GetLocalized()
+          Catch ex As Exception
+                errorMessage.Text = "Camera_Exception_InitializationError".GetLocalized()
           End Try
       End Function
 

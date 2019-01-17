@@ -16,6 +16,10 @@ namespace TestData
         public App()
         {
             this.InitializeComponent();
+            
+            //This might be there or not
+            //This might also be there or not
+            
             //Block to be included
             //AFTER INITIALIZE!!
             //End of block
@@ -35,6 +39,10 @@ namespace TestData
             var s = "";
 
             //End of block
+            
+            //This might be there or not
+            //This might also be there or not
+            
         }
 
         //Block to be included

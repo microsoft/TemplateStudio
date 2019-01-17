@@ -24,13 +24,6 @@ namespace Param_ItemNamespace.ViewModels
             set { SetProperty(ref _item, value); }
         }
 
-        public ContentGridViewDetailViewModel(ISampleDataService sampleDataServiceInstance, IConnectedAnimationService connectedAnimationService)
-        {
-            // TODO WTS: Replace this with your actual data
-            _sampleDataService = sampleDataServiceInstance;
-            _connectedAnimationService = connectedAnimationService;
-        }
-
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);

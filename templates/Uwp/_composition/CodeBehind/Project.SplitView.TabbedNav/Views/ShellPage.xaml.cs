@@ -44,6 +44,10 @@ namespace wts.ItemName.Views
         private void Initialize()
         {
             NavigationService.Frame = shellFrame;
+            NavigationService.NavigationFailed += (sender, e) =>
+            {
+                throw e.Exception;
+            };
             NavigationService.Navigated += Frame_Navigated;
             navigationView.BackRequested += OnBackRequested;
         }

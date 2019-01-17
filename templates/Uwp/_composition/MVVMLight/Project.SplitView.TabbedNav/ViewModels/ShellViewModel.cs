@@ -55,6 +55,10 @@ namespace wts.ItemName.ViewModels
             _navigationView = navigationView;
             _keyboardAccelerators = keyboardAccelerators;
             NavigationService.Frame = frame;
+            NavigationService.NavigationFailed += (sender, e) =>
+            {
+                throw e.Exception;
+            };
             NavigationService.Navigated += Frame_Navigated;
             _navigationView.BackRequested += OnBackRequested;
         }

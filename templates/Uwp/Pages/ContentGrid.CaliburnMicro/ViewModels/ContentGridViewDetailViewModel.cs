@@ -19,11 +19,6 @@ namespace Param_ItemNamespace.ViewModels
             set { Set(ref _item, value); }
         }
 
-        public ContentGridViewDetailViewModel(IConnectedAnimationService connectedAnimationService)
-        {
-            _connectedAnimationService = connectedAnimationService;
-        }
-
         public void Initialize(long orderId)
         {
             // TODO WTS: Replace this with your actual data
