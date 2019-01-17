@@ -23,11 +23,11 @@ namespace Param_ItemNamespace.Services
 
         // This method saves the application state before entering background state. It fires the event OnBackgroundEntering to collect
         // state data from the current subscriber and saves it to the local storage.
-        public async Task SaveStateAsync()
+        public async Task<bool> SaveStateAsync()
         {
             if (OnBackgroundEntering == null)
             {
-                return;
+                return false;
             }
 
             try
@@ -43,10 +43,12 @@ namespace Param_ItemNamespace.Services
                 OnBackgroundEntering?.Invoke(this, onBackgroundEnteringArgs);
 
                 await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs);
+                return true;
             }
             catch (Exception)
             {
                 // TODO WTS: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                return false;
             }
         }
 

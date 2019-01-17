@@ -19,9 +19,9 @@ Namespace Services
 
         ' This method saves the application state before entering background state. It fires the event OnBackgroundEntering to collect
         ' state data from the current subscriber and saves it to the local storage.
-        Public Async Function SaveStateAsync() As Task
-            If OnBackgroundEntering Is Nothing Then
-                Return
+        Public Async Function SaveStateAsync() As Task(Of Boolean)
+            If OnBackgroundEnteringEvent Is Nothing Then
+                Return False
             End If
 
             Try
@@ -40,8 +40,10 @@ Namespace Services
                 RaiseEvent OnBackgroundEntering(Me, onBackgroundEnteringArgs)
 
                 Await ApplicationData.Current.LocalFolder.SaveAsync(StateFilename, onBackgroundEnteringArgs)
+                Return True
             Catch ex As Exception
                 'TODO WTS: Save state can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                Return False
             End Try
         End Function
 
