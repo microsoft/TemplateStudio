@@ -9,7 +9,9 @@ Namespace Services
             '{[{
             Await WhatsNewDisplayService.ShowIfAppropriateAsync()
             '}]}
+            '{??{
             Await Task.CompletedTask
+            '}??}
         End Function
     End Class
 End Namespace

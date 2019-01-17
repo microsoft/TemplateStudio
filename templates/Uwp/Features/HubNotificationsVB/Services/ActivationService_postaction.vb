@@ -18,7 +18,9 @@ Namespace Services
             '  2. Uncomment the following line (an exception will be thrown if it is executed and the above information is not provided).
             ' Await Singleton(Of HubNotificationsFeatureService).Instance.InitializeAsync()
             '}]}
+            '{??{
             Await Task.CompletedTask
+            '}??}
         End Function
 
         Private Iterator Function GetActivationHandlers() As IEnumerable(Of ActivationHandler)

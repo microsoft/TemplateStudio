@@ -66,6 +66,9 @@ Namespace ViewModels
             _navigationView = navigationView
             _keyboardAccelerators = keyboardAccelerators
             NavigationService.Frame = frame
+            AddHandler NavigationService.NavigationFailed, Function(sender, e)
+                                                                Throw e.Exception
+                                                            End Function
             AddHandler NavigationService.Navigated, AddressOf Frame_Navigated
             AddHandler _navigationView.BackRequested, AddressOf OnBackRequested
         End Sub

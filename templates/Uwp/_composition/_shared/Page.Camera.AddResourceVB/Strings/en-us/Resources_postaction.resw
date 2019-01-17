@@ -11,6 +11,12 @@
   <data name="Camera_Exception_NotSupported" xml:space="preserve">
     <value>No video capture devices found.</value>
   </data>
+  <data name="Camera_Exception_InitializationError" xml:space="preserve">
+    <value>An error has occurred during camera control initialization.</value>
+  </data>
+  <data name="Camera_Exception_InitializationCanceled" xml:space="preserve">
+    <value>Camera control initialization has been canceled.</value>
+  </data>
   <data name="CameraControl_CameraButton.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">    
     <value>Take a photo</value>
     <comment>Camera control button automation name property</comment>

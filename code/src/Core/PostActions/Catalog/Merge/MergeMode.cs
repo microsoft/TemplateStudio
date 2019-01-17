@@ -11,5 +11,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         Remove,
         Documentation,
         Context,
+        OptionalContext,
     }
 }
