@@ -1,4 +1,6 @@
 ﻿Imports Windows.Devices.Geolocation
+Imports Windows.ApplicationModel.Core
+Imports Windows.UI.Core
 Imports Param_ItemNamespace.Helpers
 
 Namespace Services
@@ -67,7 +69,7 @@ Namespace Services
 
             CurrentPosition = args.Position
 
-            Await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, Sub() 
+            Await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub() 
                 RaiseEvent PositionChanged(Me, CurrentPosition)
             End Sub)
         End Sub

@@ -47,7 +47,7 @@ Namespace Services
             End Try
         End Function
 
-        ' This method allows subscribers to refesh data that might be outdated when the App is resuming from suspension.
+        ' This method allows subscribers to refresh data that might be outdated when the App is resuming from suspension.
         ' If the App was terminated during suspension this event will not fire, data restore is handled by the method HandleInternalAsync.
         Public Sub ResumeApp()
             RaiseEvent OnResuming(Me, EventArgs.Empty)         
