@@ -19,6 +19,7 @@ using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI;
+using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -113,9 +114,9 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         public RelayCommand ConfigureVersionsCommand => new RelayCommand(ConfigureVersions);
 
-        public RelayCommand AddNewFeatureCommand => new RelayCommand(AddNewFeature);
+        public RelayCommand AddNewFeatureCommand => new RelayCommand(() => AddNewItem(TemplateType.Feature));
 
-        public RelayCommand AddNewPageCommand => new RelayCommand(AddNewPage);
+        public RelayCommand AddNewPageCommand => new RelayCommand(() => AddNewItem(TemplateType.Page));
 
         private string _state;
 
@@ -268,7 +269,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                     GenerationOutputPath = destinationPath;
                     SolutionName = null;
 
-                    var userSelection = NewProjectController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
+                    var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, Services.FakeStyleValuesProvider.Instance);
 
                     if (userSelection != null)
                     {
@@ -312,7 +313,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 DestinationPath = destinationPath;
                 GenerationOutputPath = destinationPath;
 
-                var userSelection = NewProjectController.Instance.GetUserSelection(platform, language, Services.FakeStyleValuesProvider.Instance);
+                var userSelection = WizardLauncher.Instance.StartNewProject(platform, language, Services.FakeStyleValuesProvider.Instance);
 
                 if (userSelection != null)
                 {
@@ -402,33 +403,6 @@ namespace Microsoft.Templates.VsEmulator.Main
             }
         }
 
-        private void AddNewFeature()
-        {
-            GenerationOutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
-            ClearContext();
-
-            try
-            {
-                var userSelection = NewItemController.Instance.GetUserSelectionNewFeature(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
-
-                if (userSelection != null)
-                {
-                    FinishGeneration(userSelection);
-                    OnPropertyChanged(nameof(TempFolderAvailable));
-                    GenContext.ToolBox.Shell.ShowStatusBarMessage("Item created!!!");
-                }
-            }
-            catch (WizardBackoutException)
-            {
-                CleanUp();
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard back out");
-            }
-            catch (WizardCancelledException)
-            {
-                GenContext.ToolBox.Shell.ShowStatusBarMessage("Wizard cancelled");
-            }
-        }
-
         private void ClearContext()
         {
             ProjectInfo.Projects.Clear();
@@ -441,13 +415,28 @@ namespace Microsoft.Templates.VsEmulator.Main
             FilesToOpen.Clear();
         }
 
-        private void AddNewPage()
+        private UserSelection GetUserSelectionByType(TemplateType templateType)
+        {
+            if (templateType == TemplateType.Page)
+            {
+                return WizardLauncher.Instance.StartAddPage(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
+            }
+
+            if (templateType == TemplateType.Feature)
+            {
+                return WizardLauncher.Instance.StartAddFeature(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
+            }
+
+            return null;
+        }
+
+        private void AddNewItem(TemplateType templateType)
         {
             GenerationOutputPath = GenContext.GetTempGenerationPath(GenContext.Current.ProjectName);
             ClearContext();
             try
             {
-                var userSelection = NewItemController.Instance.GetUserSelectionNewPage(GenContext.CurrentLanguage, Services.FakeStyleValuesProvider.Instance);
+                var userSelection = GetUserSelectionByType(templateType);
 
                 if (userSelection != null)
                 {
