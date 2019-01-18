@@ -40,7 +40,7 @@ namespace Param_ItemNamespace.Services
         // For more info about adaptive cards see http://adaptivecards.io/
         private static IAdaptiveCard CreateAdaptiveCardSample(string displayText, string description, string imageUrl)
         {
-            var adaptiveCard = new AdaptiveCard();
+            var adaptiveCard = new AdaptiveCard("1.0");
             var columns = new AdaptiveColumnSet();
             var firstColumn = new AdaptiveColumn() { Width = "auto" };
             var secondColumn = new AdaptiveColumn() { Width = "*" };
