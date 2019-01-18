@@ -148,6 +148,7 @@
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Diagnostics\EditItemActionEnum.cs" />
     <Compile Include="Diagnostics\FormattedWriterMessages.cs" />
+    <Compile Include="Diagnostics\GenItemsTelemetryData.cs" />
     <Compile Include="Diagnostics\GenSourceEnum.cs" />
     <Compile Include="Diagnostics\GenStatusEnum.cs" />
     <Compile Include="Diagnostics\HealthWriters.cs" />

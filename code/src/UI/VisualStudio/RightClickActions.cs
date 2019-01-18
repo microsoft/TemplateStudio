@@ -10,6 +10,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
+using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Resources;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -47,59 +48,41 @@ namespace Microsoft.Templates.UI.VisualStudio
 
         public void AddNewPage()
         {
-            if (_shell.GetActiveProjectIsWts())
+            if (!_shell.GetActiveProjectIsWts())
+            {
+                return;
+            }
+
+            try
             {
                 SetContext();
-
-                try
-                {
-                    var userSelection = NewItemController.Instance.GetUserSelectionNewPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
-
-                    if (userSelection != null)
-                    {
-                        SafeThreading.JoinableTaskFactory.Run(
-                        async () =>
-                        {
-                            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            _generationService.FinishGeneration(userSelection);
-
-                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name));
-                        },
-                        JoinableTaskCreationOptions.LongRunning);
-                    }
-                }
-                catch (WizardBackoutException)
-                {
-                    _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddPageCancelled);
-                }
+                var userSelection = WizardLauncher.Instance.StartAddPage(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
+                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].name);
+                FinishGeneration(userSelection, statusBarMessage);
+            }
+            catch (WizardBackoutException)
+            {
+                _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddPageCancelled);
             }
         }
 
         public void AddNewFeature()
         {
-            if (_shell.GetActiveProjectIsWts())
+            if (!_shell.GetActiveProjectIsWts())
+            {
+                return;
+            }
+
+            try
             {
                 SetContext();
-                try
-                {
-                    var userSelection = NewItemController.Instance.GetUserSelectionNewFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
-
-                    if (userSelection != null)
-                    {
-                        SafeThreading.JoinableTaskFactory.Run(
-                        async () =>
-                        {
-                            await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                            _generationService.FinishGeneration(userSelection);
-                            _shell.ShowStatusBarMessage(string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name));
-                        },
-                        JoinableTaskCreationOptions.LongRunning);
-                    }
-                }
-                catch (WizardBackoutException)
-                {
-                    _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddFeatureCancelled);
-                }
+                var userSelection = WizardLauncher.Instance.StartAddFeature(_shell.GetActiveProjectLanguage(), new VSStyleValuesProvider());
+                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].name);
+                FinishGeneration(userSelection, statusBarMessage);
+            }
+            catch (WizardBackoutException)
+            {
+                _shell.ShowStatusBarMessage(StringRes.StatusBarNewItemAddFeatureCancelled);
             }
         }
 
@@ -148,6 +131,23 @@ namespace Microsoft.Templates.UI.VisualStudio
 
                 GenContext.Current = this;
             }
+        }
+
+        private void FinishGeneration(UserSelection userSelection, string statusBarMessage)
+        {
+            if (userSelection is null)
+            {
+                return;
+            }
+
+            SafeThreading.JoinableTaskFactory.Run(
+            async () =>
+            {
+                await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
+                _generationService.FinishGeneration(userSelection);
+                _shell.ShowStatusBarMessage(statusBarMessage);
+            },
+            JoinableTaskCreationOptions.LongRunning);
         }
 
         private void EnsureGenContextInitialized()

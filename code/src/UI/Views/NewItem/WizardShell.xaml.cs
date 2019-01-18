@@ -7,13 +7,14 @@ using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 using Microsoft.Templates.UI.Views.Common;
 
 namespace Microsoft.Templates.UI.Views.NewItem
 {
-    public partial class WizardShell : Window
+    public partial class WizardShell : Window, IWizardShell
     {
         private TemplateType _templateType;
         private string _language;

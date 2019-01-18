@@ -342,5 +342,69 @@ namespace Microsoft.Templates.Test
 
             return result;
         }
+
+        protected static IEnumerable<object[]> GetVBProjectTemplates()
+        {
+            List<object[]> result = new List<object[]>();
+
+            var platform = Platforms.Uwp;
+
+            var projectTemplates =
+               GenContext.ToolBox.Repo.GetAll().Where(
+                   t => t.GetTemplateType() == TemplateType.Project
+                    && t.GetLanguage() == ProgrammingLanguages.VisualBasic);
+
+            foreach (var projectTemplate in projectTemplates)
+            {
+                var projectTypeList = projectTemplate.GetProjectTypeList();
+
+                foreach (var projectType in projectTypeList)
+                {
+                    var frameworks = GenComposer.GetSupportedFx(projectType, platform);
+
+                    foreach (var framework in frameworks)
+                    {
+                        result.Add(new object[] { projectType, framework, platform });
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        protected static IEnumerable<object[]> GetAllProjectTemplates()
+        {
+            List<object[]> result = new List<object[]>();
+            foreach (var language in ProgrammingLanguages.GetAllLanguages())
+            {
+                SetCurrentLanguage(language);
+
+                foreach (var platform in Platforms.GetAllPlatforms())
+                {
+                    SetCurrentPlatform(platform);
+                    var templateProjectTypes = GenComposer.GetSupportedProjectTypes(platform);
+
+                    var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes(platform)
+                                .Where(m => templateProjectTypes.Contains(m.Name) && !string.IsNullOrEmpty(m.Description))
+                                .Select(m => m.Name);
+
+                    foreach (var projectType in projectTypes)
+                    {
+                        var projectFrameworks = GenComposer.GetSupportedFx(projectType, platform);
+
+                        var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks(platform)
+                                                    .Where(m => projectFrameworks.Contains(m.Name))
+                                                    .Select(m => m.Name).ToList();
+
+                        foreach (var framework in targetFrameworks)
+                        {
+                            result.Add(new object[] { projectType, framework, platform, language });
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }
