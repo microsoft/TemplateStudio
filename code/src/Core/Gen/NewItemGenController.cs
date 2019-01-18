@@ -156,7 +156,6 @@ namespace Microsoft.Templates.Core.Gen
 
                 var projectFileName = Path.GetFullPath(Path.Combine(parentDestinationPath, fileName));
 
-                // TODO: is projectFilename and destfilename the same?
                 if (File.Exists(projectFileName))
                 {
                     if (GenContext.Current.MergeFilesFromProject.ContainsKey(fileName))
