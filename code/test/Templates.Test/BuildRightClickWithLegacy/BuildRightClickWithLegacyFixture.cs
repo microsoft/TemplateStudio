@@ -39,16 +39,12 @@ namespace Microsoft.Templates.Test
 
                 InitializeTemplates(new LegacyTemplatesSourceV2(ProgrammingLanguages.CSharp), language);
 
-                // TODO: Re-enable for all platforms
-                ////foreach (var language in Platforms.GetAllPlarforms())
                 var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes()
                             .Where(m => !string.IsNullOrEmpty(m.Description))
                             .Select(m => m.Name);
 
                 foreach (var projectType in projectTypes)
                 {
-                    // TODO: Re-enable for all platforms
-                    // var projectFrameworks = GenComposer.GetSupportedFx(projectType, string.Empty);
                     var targetFrameworks = GenContext.ToolBox.Repo.GetFrameworks()
                                                 .Select(m => m.Name).ToList();
 
