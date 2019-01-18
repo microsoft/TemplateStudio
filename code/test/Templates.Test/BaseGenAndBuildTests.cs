@@ -437,7 +437,7 @@ namespace Microsoft.Templates.Test
             };
         }
 
-        // Need overload with different number of params to work with XUnit.MemeberData
+        // Need overload with different number of params to work with XUnit.MemberData
         public static IEnumerable<object[]> GetProjectTemplatesForBuild(string framework)
         {
             return GetProjectTemplatesForBuild(framework, string.Empty, string.Empty);
