@@ -57,7 +57,7 @@ namespace Microsoft.Templates.Test
 
             var projectName = $"{projectType}{framework}";
 
-            string projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, null, false);e
+            string projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, null, false);
 
             // Remove configuration from the manifest
             RemoveProjectConfigInfoFromProject();
