@@ -46,7 +46,7 @@ namespace Microsoft.Templates.Core
             Instance.Init();
         }
 
-        public string GetCurrentContentSource(string workingFolder, string sourceId, string platform, string language)
+        public string GetCurrentContentSource(string sourceId, string platform, string language)
         {
             var result = string.Empty;
 

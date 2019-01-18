@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Core.Locations
 
         public TemplatesSynchronization(TemplatesSource source, Version wizardVersion)
         {
-            string currentContentFolder = CodeGen.Instance?.GetCurrentContentSource(WorkingFolder, source.Id, source.Platform, source.Language);
+            string currentContentFolder = CodeGen.Instance?.GetCurrentContentSource(source.Id, source.Platform, source.Language);
             _content = new TemplatesContent(WorkingFolder, source.Id, wizardVersion, source, currentContentFolder);
 
             CurrentWizardVersion = wizardVersion;
@@ -216,7 +216,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0 || CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _content.Source.Id, _content.Source.Platform, _content.Source.Language) != _content.LatestContentFolder)
+                if (force || _content.RequiresContentUpdate() || CodeGen.Instance.Cache.TemplateInfo.Count == 0 || CodeGen.Instance.GetCurrentContentSource(_content.Source.Id, _content.Source.Platform, _content.Source.Language) != _content.LatestContentFolder)
                 {
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updating });
                     await Task.Run(() =>
@@ -226,7 +226,7 @@ namespace Microsoft.Templates.Core.Locations
 
                         CodeGen.Instance.Settings.SettingsLoader.Save();
 
-                        _content.RefreshContentFolder(CodeGen.Instance.GetCurrentContentSource(WorkingFolder, _content.Source.Id, _content.Source.Platform, _content.Source.Language));
+                        _content.RefreshContentFolder(CodeGen.Instance.GetCurrentContentSource(_content.Source.Id, _content.Source.Platform, _content.Source.Language));
                     });
                     SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Updated });
                 }

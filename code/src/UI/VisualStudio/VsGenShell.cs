@@ -652,7 +652,6 @@ namespace Microsoft.Templates.UI.VisualStudio
                     {
                         var componentModel = (IComponentModel)Package.GetGlobalService(typeof(SComponentModel));
                         var installerServices = componentModel.GetService<IVsPackageInstallerServices>();
-                        var packageSourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
 
                         if (!installerServices.IsPackageInstalledEx(project, reference.PackageId, reference.Version))
                         {

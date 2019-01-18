@@ -27,8 +27,6 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
         public bool FailOnError { get; private set; }
 
-        public bool OutputtingToParent { get; private set; }
-
         public MergeConfiguration(string fileName, bool failOnError)
         {
             FilePath = fileName;
