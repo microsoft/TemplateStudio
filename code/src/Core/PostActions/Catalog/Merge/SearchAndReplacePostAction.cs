@@ -29,19 +29,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (!File.Exists(originalFilePath))
             {
-                if (Config.FailOnError)
-                {
-                    throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, Config.FilePath, RelatedTemplate));
-                }
-                else
-                {
-                    var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
-                    var errorMessage = string.Format(StringRes.FailedMergePostActionFileNotFound, relativeFilePath, RelatedTemplate);
-
-                    HandleFailedMergePostActions(relativeFilePath, MergeFailureType.FileNotFound, MergeConfiguration.SearchReplaceSuffix, errorMessage);
-                    File.Delete(Config.FilePath);
-                    return;
-                }
+                HandleFileNotFound(originalFilePath, MergeConfiguration.SearchReplaceSuffix);
+                return;
             }
 
             var source = File.ReadAllLines(originalFilePath).ToList();

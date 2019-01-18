@@ -1,0 +1,5 @@
+﻿<CodeCloneSettings>  
+  <Exclusions>
+    <FunctionName>Localization.LocalizationTool.ExtractLocalizableItems</FunctionName>
+  </Exclusions>  
+</CodeCloneSettings>  

@@ -27,19 +27,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             string originalFilePath = GetFilePath();
             if (!File.Exists(originalFilePath))
             {
-                if (Config.FailOnError )
-                {
-                    var errorMessage = string.Format(StringRes.MergeFileNotFoundExceptionMessage, Config.FilePath, RelatedTemplate);
-                    throw new FileNotFoundException(errorMessage);
-                }
-                else
-                {
-                    var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
-                    var errorMessage = string.Format(StringRes.FailedMergePostActionFileNotFound, relativeFilePath, RelatedTemplate);
-
-                    HandleFailedMergePostActions(relativeFilePath, MergeFailureType.FileNotFound, MergeConfiguration.Suffix, errorMessage);
-                    return;
-                }
+                HandleFileNotFound(originalFilePath, MergeConfiguration.Suffix);
+                return;
             }
 
             var source = File.ReadAllLines(originalFilePath).ToList();
@@ -49,24 +38,12 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (errorLine != string.Empty)
             {
-                if (Config.FailOnError)
-                {
-                    throw new InvalidDataException(string.Format(StringRes.MergeLineNotFoundExceptionMessage, errorLine, originalFilePath, RelatedTemplate));
-                }
-                else
-                {
-                    var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
-                    var errorMessage = string.Format(StringRes.FailedMergePostActionLineNotFound, errorLine.Trim(), relativeFilePath, RelatedTemplate);
+                HandleLineNotFound(originalFilePath, errorLine);
+                return;
+            }
 
-                    HandleFailedMergePostActions(relativeFilePath, MergeFailureType.LineNotFound, MergeConfiguration.Suffix, errorMessage);
-                    return;
-                }
-            }
-            else
-            {
-                Fs.EnsureFileEditable(originalFilePath);
-                File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
-            }
+            Fs.EnsureFileEditable(originalFilePath);
+            File.WriteAllLines(originalFilePath, result, Encoding.UTF8);
 
             File.Delete(Config.FilePath);
         }
@@ -105,6 +82,32 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
                 return path;
             }
+        }
+
+        protected void HandleFileNotFound(string originalFilePath, string suffix)
+        {
+            if (Config.FailOnError)
+            {
+                throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, Config.FilePath, RelatedTemplate));
+            }
+
+            var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
+            var errorMessage = string.Format(StringRes.FailedMergePostActionFileNotFound, relativeFilePath, RelatedTemplate);
+
+            HandleFailedMergePostActions(relativeFilePath, MergeFailureType.FileNotFound, suffix, errorMessage);
+        }
+
+        private void HandleLineNotFound(string originalFilePath, string errorLine)
+        {
+            if (Config.FailOnError)
+            {
+                throw new InvalidDataException(string.Format(StringRes.MergeLineNotFoundExceptionMessage, errorLine, originalFilePath, RelatedTemplate));
+            }
+
+            var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
+            var errorMessage = string.Format(StringRes.FailedMergePostActionLineNotFound, errorLine.Trim(), relativeFilePath, RelatedTemplate);
+
+            HandleFailedMergePostActions(relativeFilePath, MergeFailureType.LineNotFound, MergeConfiguration.Suffix, errorMessage);
         }
     }
 }

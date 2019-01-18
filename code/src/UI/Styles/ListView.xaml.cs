@@ -22,53 +22,23 @@ namespace Microsoft.Templates.UI.Styles
                 return;
             }
 
-            var item = sender as ListViewItem;
-            if (item != null)
+            if (sender is ListViewItem item)
             {
-                switch (item.Content)
-                {
-                    case BasicInfoViewModel info:
-                        SelectItem(info);
-                        break;
-                    case Step step:
-                        await SelectStepAsync(step);
-                        break;
-                    case NewItemFileViewModel file:
-                        SelectFile(file);
-                        break;
-                    default:
-                        break;
-                }
-
+                await SelectByItemAsync(item.Content);
                 e.Handled = true;
             }
         }
 
         private async void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            var listView = sender as System.Windows.Controls.ListView;
-            if (listView != null && e.Key == Key.Enter)
+            if (e.OriginalSource is Hyperlink)
             {
-                if (e.OriginalSource is Hyperlink)
-                {
-                    return;
-                }
+                return;
+            }
 
-                switch (listView.SelectedItem)
-                {
-                    case BasicInfoViewModel info:
-                        SelectItem(info);
-                        break;
-                    case Step step:
-                        await SelectStepAsync(step);
-                        break;
-                    case NewItemFileViewModel file:
-                        SelectFile(file);
-                        break;
-                    default:
-                        break;
-                }
-
+            if (sender is System.Windows.Controls.ListView listView && e.Key == Key.Enter)
+            {
+                await SelectByItemAsync(listView.SelectedItem);
                 e.Handled = true;
             }
         }
@@ -115,6 +85,24 @@ namespace Microsoft.Templates.UI.Styles
             {
                 var command = textBox.Tag as ICommand;
                 command?.Execute(e);
+            }
+        }
+
+        private async Task SelectByItemAsync(object itemType)
+        {
+            switch (itemType)
+            {
+                case BasicInfoViewModel info:
+                    SelectItem(info);
+                    break;
+                case Step step:
+                    await SelectStepAsync(step);
+                    break;
+                case NewItemFileViewModel file:
+                    SelectFile(file);
+                    break;
+                default:
+                    break;
             }
         }
     }
