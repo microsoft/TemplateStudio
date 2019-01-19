@@ -230,6 +230,11 @@ namespace TemplateValidator
                         break;
                 }
             }
+
+            if (template.TemplateTags.ContainsKey("language") && template.TemplateTags.ContainsKey("wts.framework"))
+            {
+                VerifyFrameworksAreAppropriateForLanguage(template.TemplateTags["language"], template.TemplateTags["wts.framework"], results);
+            }
         }
 
         private static void VerifyWtsOutputToParentTagValue(KeyValuePair<string, string> tag, List<string> results)
@@ -376,14 +381,42 @@ namespace TemplateValidator
             }
         }
 
+        private static string[] VbFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind" };
+
+        private static string[] CsFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" };
+
+        private static string[] AllFrameworks { get; } = new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" };
+
         private static void VerifyWtsFrameworkTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             // This tag may contain a single value or multiple ones separated by the pipe character
             foreach (var frameworkValue in tag.Value.Split('|'))
             {
-                if (!new[] { "MVVMBasic", "MVVMLight", "CodeBehind", "CaliburnMicro", "Prism" }.Contains(frameworkValue))
+                if (!AllFrameworks.Contains(frameworkValue))
                 {
                     results.Add($"Invalid value '{tag.Value}' specified in the wts.type tag.");
+                }
+            }
+        }
+
+        private static void VerifyFrameworksAreAppropriateForLanguage(string language, string frameworks, List<string> results)
+        {
+            // This tag may contain a single value or multiple ones separated by the pipe character
+            foreach (var frameworkValue in frameworks.Split('|'))
+            {
+                if (language == ProgrammingLanguages.CSharp)
+                {
+                    if (!CsFrameworks.Contains(frameworkValue))
+                    {
+                        results.Add($"Invalid framework '{frameworkValue}' is not supported in templates for C# projects.");
+                    }
+                }
+                else if (language == ProgrammingLanguages.VisualBasic)
+                {
+                    if (!VbFrameworks.Contains(frameworkValue))
+                    {
+                        results.Add($"Invalid framework '{frameworkValue}' is not supported in templates for VB.Net projects.");
+                    }
                 }
             }
         }
