@@ -39,8 +39,8 @@ namespace Microsoft.Templates.Test
 
                 InitializeTemplates(new LegacyTemplatesSourceV2(ProgrammingLanguages.CSharp), language);
 
-                // TODO: Re-enable for all platforms
-                ////foreach (var language in Platforms.GetAllPlarforms())
+                // TODO: Re-enable for all platforms when there are more than just UWP which have legacy templates
+                ////foreach (var language in Platforms.GetAllPlatforms())
                 var projectTypes = GenContext.ToolBox.Repo.GetProjectTypes()
                             .Where(m => !string.IsNullOrEmpty(m.Description))
                             .Select(m => m.Name);
