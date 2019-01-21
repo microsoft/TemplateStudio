@@ -43,8 +43,8 @@ namespace Microsoft.Templates.Test
             EnsureContentsOfAssetsFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
             EnsureContentsOfStylesFolderIsIdentical(csResultPath, csProjectName, vbResultPath, vbProjectName);
             EnsureFileCommentsAreIdentical(vbResultPath);
-           // EnsureCodeFilesContainIdenticalElements(vbResultPath);
-           // EnsureEquivalentErrorHandling(vbResultPath);
+            EnsureCodeFilesContainIdenticalElements(vbResultPath);
+            EnsureEquivalentErrorHandling(vbResultPath);
 
             Fs.SafeDeleteDirectory(csResultPath);
             Fs.SafeDeleteDirectory(vbResultPath);
