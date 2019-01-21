@@ -7,9 +7,9 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-using wts.DefaultProject.Activation;
+using Param_RootNamespace.Activation;
 
-namespace wts.DefaultProject.Services
+namespace Param_RootNamespace.Services
 {
     // For more information on application activation see https://github.com/Microsoft/WindowsTemplateStudio/blob/master/docs/activation.md
     internal class ActivationService

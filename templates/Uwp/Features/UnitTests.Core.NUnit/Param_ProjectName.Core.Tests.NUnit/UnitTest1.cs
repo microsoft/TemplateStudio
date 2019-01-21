@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Param_ProjectName
+namespace Param_RootNamespace
 {
     // TODO WTS: Add appropriate unit tests
     public class Tests

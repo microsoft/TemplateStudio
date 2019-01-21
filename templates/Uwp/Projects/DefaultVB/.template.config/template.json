@@ -30,6 +30,11 @@
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
+    "wts.rootNamespace":
+    {
+      "type": "parameter",
+      "replaces": "Param_RootNamespace"
+    },
     "wts.userName":
     {
       "type": "parameter",

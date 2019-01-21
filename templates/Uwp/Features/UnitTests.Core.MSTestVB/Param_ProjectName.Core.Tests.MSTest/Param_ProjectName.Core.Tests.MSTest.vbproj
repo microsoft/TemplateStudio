@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+    <RootNamespace>Param_RootNamespace.Core.Tests.MSTest</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

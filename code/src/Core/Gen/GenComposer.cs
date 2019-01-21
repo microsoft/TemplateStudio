@@ -322,6 +322,10 @@ namespace Microsoft.Templates.Core.Gen
                 ns = GenContext.Current.ProjectName;
             }
 
+            // Project name can include a hyphen but it's not allowed in a namespace
+            // This is the same substitution as VS makes with new projects
+            ns = ns.Replace("-", "_");
+
             genInfo.Parameters.Add(GenParams.RootNamespace, ns);
 
             // TODO: THIS SHOULD BE THE ITEM IN CONTEXT

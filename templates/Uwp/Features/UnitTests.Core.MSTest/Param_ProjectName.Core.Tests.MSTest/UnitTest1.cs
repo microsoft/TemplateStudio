@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Param_ProjectName.Core.Tests.MSTest
+namespace Param_RootNamespace.Core.Tests.MSTest
 {
     // TODO WTS: Add appropriate unit tests 
     [TestClass]
