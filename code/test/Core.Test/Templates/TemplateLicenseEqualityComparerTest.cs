@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace Microsoft.Templates.Core.Test.Templates
+{
+    [Trait("ExecutionSet", "Minimum")]
+    public class TemplateLicenseEqualityComparerTest
+    {
+        [Fact]
+        public void Compare_EqualNull()
+        {
+            TemplateLicense license1 = null;
+            TemplateLicense license2 = null;
+
+            var comparer = new TemplateLicenseEqualityComparer();
+            var result = comparer.Equals(license1, license2);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Compare_EqualLicense()
+        {
+            TemplateLicense license1 = new TemplateLicense() { Text = "TestText", Url = "TestUrl" };
+            TemplateLicense license2 = new TemplateLicense() { Text = "TestText", Url = "TestUrl" };
+
+            var comparer = new TemplateLicenseEqualityComparer();
+            var result = comparer.Equals(license1, license2);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Compare_EqualLicenseDifferentText()
+        {
+            TemplateLicense license1 = new TemplateLicense() { Text = "TestText", Url = "TestUrl" };
+            TemplateLicense license2 = new TemplateLicense() { Text = "OtherText", Url = "TestUrl" };
+
+            var comparer = new TemplateLicenseEqualityComparer();
+            var result = comparer.Equals(license1, license2);
+
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Compare_DifferentNull()
+        {
+            TemplateLicense license1 = null;
+            TemplateLicense license2 = new TemplateLicense() { Text = "TestText", Url = "TestUrl" };
+
+            var comparer = new TemplateLicenseEqualityComparer();
+            var result = comparer.Equals(license1, license2);
+
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void Compare_DifferentLicenseText()
+        {
+            TemplateLicense license1 = new TemplateLicense() { Text = "TestText", Url = "TestUrl" };
+            TemplateLicense license2 = new TemplateLicense() { Text = "OtherText", Url = "OtherUrl" };
+
+            var comparer = new TemplateLicenseEqualityComparer();
+            var result = comparer.Equals(license1, license2);
+
+            Assert.False(result);
+        }
+    }
+}

@@ -10,7 +10,7 @@ namespace Microsoft.Templates.Core
     {
         public bool Equals(TemplateLicense x, TemplateLicense y)
         {
-            if (x == null && x == null)
+            if (x == null && y == null)
             {
                 return true;
             }
