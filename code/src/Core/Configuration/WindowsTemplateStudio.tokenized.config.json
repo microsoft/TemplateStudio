@@ -34,6 +34,10 @@
     {
       "Name": "HasPivot",
       "BreakingVersion": "###BreakingChangesHasPivotVersion###"
+    },
+    {
+      "Name": "HasNoCoreProject",
+      "BreakingVersion": "###BreakingChangesHasNoCoreProjectVersion###"
     }
   ]
 }
