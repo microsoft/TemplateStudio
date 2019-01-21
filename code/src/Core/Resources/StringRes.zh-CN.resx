@@ -150,7 +150,7 @@
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>在文件“{1}”中找不到应有的行“{0}”。请手动合并操作后文件中的内容。相关模板:'{2}'.</value>
+    <value>在文件“{1}”中找不到应有的行“{0}”。请手动合并 postaction 文件中的内容。相关模板:'{2}'.</value>
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
@@ -445,7 +445,7 @@
     <value>下载源配置文件时出错。</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>无法将文件 {0} 移到 {1}。错误:{2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">

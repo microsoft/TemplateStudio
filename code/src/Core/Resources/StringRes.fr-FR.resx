@@ -150,7 +150,7 @@
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Impossible de trouver la rangée « {0} » prévue dans le fichier « {1} ». Veuillez fusionner le contenu depuis le fichier de post-action manuellement. Modèle associé : '{2}'.</value>
+    <value>Impossible de trouver la rangée « {0} » prévue dans le fichier « {1} ». Veuillez fusionner le contenu depuis le fichier de postaction manuellement. Modèle associé : '{2}'.</value>
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
@@ -408,7 +408,7 @@ Les modifications suivantes n'ont pu être intégrées : {2}
     <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
   <data name="PostActionIdsNotMatchError" xml:space="preserve">
-    <value>Le '{0}' PostAction.ActionId défini dans le modèle ne correspond pas à la classe ActionId « {1} » attendue. Impossible de continuer. Modèle associé : {2}.</value>
+    <value>Le PostAction.ActionId « {0} » défini dans le modèle ne correspond pas à la classe ActionId « {1} » attendue. Impossible de continuer. Modèle associé : {2}.</value>
     <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
   </data>
   <data name="PostActionRelatedNone" xml:space="preserve">
@@ -445,7 +445,7 @@ Les modifications suivantes n'ont pu être intégrées : {2}
     <value>Une erreur est survenue lors du téléchargement du fichier de configuration source.</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>Le fichier {0} ne peut pas être déplacé vers {1}. Erreur : {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">

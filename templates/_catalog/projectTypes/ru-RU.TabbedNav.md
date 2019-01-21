@@ -1,2 +1,2 @@
-﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
-This is recommended if you have 5 or fewer top level navigation items that are equally important.
+﻿Вкладки в верхней части позволяют быстро перемещаться по страницам и предоставляют большой объем свободного места для содержимого приложения.
+Используйте их, если у вас не больше пяти одинаково важных элементов навигации верхнего уровня.

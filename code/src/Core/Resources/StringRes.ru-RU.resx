@@ -150,7 +150,7 @@
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Не удалось найти ожидаемую строку "{0}" в файле "{1}". Добавьте содержимое из файла завершающего действия вручную. Связанный шаблон: '{2}'.</value>
+    <value>Не удалось найти ожидаемую строку "{0}" в файле "{1}". Добавьте содержимое из файла postaction вручную. Связанный шаблон: '{2}'.</value>
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
@@ -206,17 +206,17 @@
     <value>Содержимое шаблона сейчас невозможно скачать; повторите попытку позже.</value>
   </data>
   <data name="RemoteTemplatesSourceDownloadContentOkMessage" xml:space="preserve">
-    <value>Содержимое шаблона скачано в {0} из {1}.</value>
+    <value>Содержимое шаблонов скачано в {0} из {1}.</value>
     <comment>{0}:Destination File, {1}: Url</comment>
   </data>
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
-    <value>Произошла ошибка при синхронизации шаблонов. Состояние:</value>
+    <value>Ошибка при синхронизации шаблонов. Состояние:</value>
   </data>
   <data name="StatusOpeningItems" xml:space="preserve">
-    <value>Открываются созданные файлы...</value>
+    <value>Открытие созданных файлов…</value>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
-    <value>Шаги для включения нового элемента generation.md</value>
+    <value>Действия для включения нового элемента generation.md</value>
   </data>
   <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
     <value>## Конфликтующие файлы:
@@ -404,11 +404,11 @@
     <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
   <data name="PostActionException" xml:space="preserve">
-    <value>Произошла ошибка при выполнении "{0}". Связанный шаблон: {1}.</value>
+    <value>Ошибка при выполнении "{0}". Связанный шаблон: {1}.</value>
     <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
   <data name="PostActionIdsNotMatchError" xml:space="preserve">
-    <value>PostAction.ActionId "{0}", заданный в шаблоне, не совпадает с ожидаемым ActionId "{1}" класса. Невозможно продолжить. Связанный шаблон: {2}.</value>
+    <value>Параметр PostAction.ActionId "{0}", заданный в шаблоне, не совпадает с ожидаемым ActionId "{1}" класса. Невозможно продолжить. Связанный шаблон: {2}.</value>
     <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
   </data>
   <data name="PostActionRelatedNone" xml:space="preserve">
@@ -438,14 +438,14 @@
     <value>Локальный путь к шаблонам пуст.</value>
   </data>
   <data name="FsSafeRenameDirectoryMessage" xml:space="preserve">
-    <value>Папку {0} невозможно переименовать. Ошибка: {1}</value>
+    <value>Переименовать папку {0} невозможно. Ошибка: {1}</value>
     <comment>{0}: Folder Name, {1}: Error</comment>
   </data>
   <data name="TemplatesSynchronizationErrorDownloadingConfig" xml:space="preserve">
-    <value>Произошла ошибка при скачивании исходного файла конфигурации.</value>
+    <value>Ошибка при скачивании исходного файла конфигурации.</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>Невозможно переместить файл {0} в {1}. Ошибка: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
@@ -465,7 +465,7 @@
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorDependencyMultipleInstance" xml:space="preserve">
-    <value>Недопустимый элемент зависимости {0}. Зависимости должны быть настроены с параметром multipleInstance = False.</value>
+    <value>Недопустимый элемент зависимости {0}. Зависимости должны быть настроены с параметром multipleInstance = false.</value>
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyCircularReference" xml:space="preserve">
@@ -477,26 +477,26 @@
     <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
-    <value>Создается компонент "{0}"…</value>
+    <value>Создание компонента "{0}"…</value>
     <comment>Status bar message generating feature. {0}: Feature name</comment>
   </data>
   <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
-    <value>Создается страница "{0}"…</value>
+    <value>Создание страницы "{0}"…</value>
     <comment>Status bar message generating page. {0}: Page name</comment>
   </data>
   <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
-    <value>Создается проект "{0}"…</value>
+    <value>Создание проекта "{0}"…</value>
     <comment>Status bar message generating project. {0}: Project name</comment>
   </data>
   <data name="ErrorGenerating" xml:space="preserve">
-    <value>Шаблон "{0}", имя: "{1}", причина: '{2}'</value>
+    <value>Шаблон "{0}". Имя: "{1}". Причина: '{2}'</value>
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>Возникло исключение при отслеживании телеметрии во время создания.</value>
+    <value>При отслеживании телеметрии в ходе создания возникло исключение.</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>Не удалось разрешить платформу.</value>
+    <value>Невозможно разрешить платформу.</value>
   </data>
 </root>

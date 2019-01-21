@@ -473,6 +473,14 @@
     <value>La página {0} se ha agregado correctamente</value>
     <comment>Status bar message for Page successfully added, {0}: Page name</comment>
   </data>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>No se puede encontrar el proyecto {0}</value>
+    <comment>{0}: projectPath</comment>
+  </data>
+  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
+    <value>No se pueden agregar archivos ni proyectos.</value>
+    <comment>Error message for unable to add files and projects</comment>
+  </data>
   <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
     <value>Error al contraer el árbol de la solución. Ejemplo:</value>
     <comment>Error message for VS GenShell collapse solution Items</comment>
@@ -581,6 +589,10 @@
     <value>El control HamburgerMenu es obsoleto y Windows Template Studio ahora admite NavigationView. </value>
     <comment>Has hamburger menu validation error message</comment>
   </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Windows Template Studio ahora usa NavigationView horizontal en proyectos Pivot. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
     <value>Windows Template Studio ahora usa la NavigationView de la Biblioteca de interfaces de usuario de Windows.</value>
     <comment>Has old navigation view validation error message</comment>
@@ -608,6 +620,14 @@
     <value>Consulta la documentación que se va actualizar.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>Consulta la documentación que se va actualizar.</value>
+    <comment>Has pivot validation link documentation message</comment>
+  </data>
   <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
     <value>{0}projectTypes/updatetowinuinavigationview.md</value>
     <comment>Has old navigation view validation link documentation</comment>
@@ -629,11 +649,11 @@
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
   <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
-    <value>El nombre no puede terminar en "Page" puesto que esto se agregará automáticamente. [Más información sobre la nomenclatura.]({0}WTSNaming.md)</value>
+    <value>El nombre no puede terminar en "Página" puesto que esto se agregará automáticamente. [Más información sobre la nomenclatura.]({0}WTSNaming.md)</value>
     <comment>Validation error message: Wrong Page Suffix</comment>
   </data>
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
-    <value>Ten en cuenta que "Page" se agregará al final del nombre especificado. [Más información sobre la nomenclatura.]({0}WTSNaming.md)</value>
+    <value>Ten en cuenta que "Página" se agregará al final del nombre especificado. [Más información sobre la nomenclatura.]({0}WTSNaming.md)</value>
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
@@ -648,60 +668,43 @@
     <value>Consulta la documentación que se va actualizar.</value>
     <comment>Has old MvvmLight Locator link documentation message</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
-  </data>
-  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
-    <comment>Has pivot validation link documentation message</comment>
-  </data>
-  <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>Windows Template Studio is now using horizontal NavigationView in Pivot projects. </value>
-    <comment>Has pivot validation error message</comment>
-  </data>
-  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
-    <value>Install-Package -Id {0} -Version {1}</value>
-    <comment>{0}: package id, {1}: version</comment>
-  </data>
   <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
-    <value>Some NuGet packages could not be added to your project {0}. This could have been caused if you were offline. 
-Please verify the following list of packages needed by your project's code and manually add the missing packages: 
+    <value>No se pudieron agregar algunos paquetes NuGet al proyecto {0}. Puede que se deba a que estaba sin conexión. 
+Comprueba la lista siguiente de paquetes que necesitan el código del proyecto y agrega manualmente los paquetes que falten: 
 
 {1}</value>
     <comment>{0}: projectPath, {1}: package Info</comment>
   </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Instalar-Paquete -Id {0} -Versión {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
   <data name="StatusAddingItem" xml:space="preserve">
-    <value>Adding {0} to project ...</value>
+    <value>Agregando {0} al proyecto...</value>
     <comment>Status bar message adding item to project. {0}: Item name</comment>
   </data>
   <data name="StatusAddingNuget" xml:space="preserve">
-    <value>Adding NuGet package {0} to project ...</value>
+    <value>Agregando paquete NuGet {0} al proyecto...</value>
     <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
   </data>
   <data name="StatusAddingProject" xml:space="preserve">
-    <value>Adding project {0} to solution...</value>
+    <value>Agregando proyecto {0} a la solución...</value>
     <comment>Status bar message adding project to solution. {0}: Project name</comment>
   </data>
-  <data name="ErrorUnableAddFilesAndProjects" xml:space="preserve">
-    <value>Unable to add files and projects.</value>
-  </data>
-  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
-    <value>Unable to find project {0}</value>
-  </data>
   <data name="StatusAddingProjectReferences" xml:space="preserve">
-    <value>Adding references between projects...</value>
+    <value>Agregando referencias entre proyectos...</value>
+    <comment>Status bar message for adding project references</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
     <value>{0}updatetomultiproject.md</value>
     <comment>Has no core project validation link documentation</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLinkMessage" xml:space="preserve">
-    <value>See documentation to update.</value>
+    <value>Consulta la documentación que se va actualizar.</value>
     <comment>Has no core project validation link documentation message</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectMessage" xml:space="preserve">
-    <value>Windows Template Studio is now adding a core project. </value>
+    <value>Windows Template Studio está agregando ahora un proyecto principal. </value>
     <comment>Has no core project validation error message</comment>
   </data>
 </root>

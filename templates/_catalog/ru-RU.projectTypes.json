@@ -2,16 +2,16 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Этот базовый проект является пустым холстом, на котором можно создать приложение."
+    "summary": "Этот базовый проект представляет собой пустой холст для создания приложения."
   },
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "Панель навигации (или \"меню-гамбургер\") включена для навигации по страницам."
+    "summary": "Включает панель навигации (или \"меню-гамбургер\") для перехода между страницами."
   },
   {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
-    "summary": "Navigation Items across the top allow for quickly navigating between pages."
+    "summary": "Элементы навигации в верхней части позволяют быстро перемещаться между страницами."
   }
 ]

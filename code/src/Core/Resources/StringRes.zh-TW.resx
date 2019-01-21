@@ -445,7 +445,7 @@
     <value>下載來源組態檔時發生錯誤。</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>檔案 {0} 無法移到 {1}。錯誤：{2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
@@ -497,6 +497,6 @@
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
-    <value>無法解決平台。</value>
+    <value>無法解析平台。</value>
   </data>
 </root>

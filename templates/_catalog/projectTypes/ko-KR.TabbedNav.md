@@ -1,2 +1,2 @@
-﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
-This is recommended if you have 5 or fewer top level navigation items that are equally important.
+﻿상단의 탭을 이용하면 페이지 간에 빠르게 탐색할 수 있으며, 앱 컨텐츠에 많은 공간을 둘 수 있습니다.
+이는 중요도가 동일한 탐색 상단 항목이 5개 이하일 경우 권장합니다.

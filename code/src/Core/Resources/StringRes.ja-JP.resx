@@ -150,7 +150,7 @@
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>予期された行 `{0}` (ファイル '{1}') が見つかりません。事後アクション ファイルからコンテンツを手動でマージしてください。関連するテンプレート: '{2}'.</value>
+    <value>ファイル '{1}' に、期待された行 '{0}' がありませんでした。手動で postaction ファイルのコンテンツをマージしてください。関連するテンプレート: '{2}'.</value>
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
@@ -400,15 +400,15 @@
     <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
   </data>
   <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
-    <value>Error executing '{0}' の実行中にエラーが発生しました。[エラーで続行] が有効なので、エラーを無視します。関連するテンプレート: {1}.</value>
+    <value>'{0}' の実行中にエラーが発生しました。[エラーで続行] が有効なので、エラーを無視します。関連するテンプレート: {1}.</value>
     <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
   <data name="PostActionException" xml:space="preserve">
-    <value>Error executing '{0}' の実行中にエラーが発生しました。関連するテンプレート: {1}.</value>
+    <value>'{0}' の実行中にエラーが発生しました。関連するテンプレート: {1}.</value>
     <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
   <data name="PostActionIdsNotMatchError" xml:space="preserve">
-    <value>テンプレートで定義された PostAction.ActionId '{0}' が予想されるクラス ActionId '{1}' と一致しません。続行できません。関連するテンプレート: {2}.</value>
+    <value>テンプレートに定義されている PostAction.ActionId '{0}' が、期待された ActionId '{1}' クラスと一致しません。続行できません。関連するテンプレート: {2}.</value>
     <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
   </data>
   <data name="PostActionRelatedNone" xml:space="preserve">
@@ -445,7 +445,7 @@
     <value>ソース構成ファイルをダウンロードする際のエラーです。</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>ファイル {0} を {1} に移動できません。エラー: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
@@ -469,11 +469,11 @@
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyCircularReference" xml:space="preserve">
-    <value>{1} で テンプレート {0} に循環依存関係が検出されました。</value>
+    <value>テンプレート {0} ({1}) に循環依存の関係が検出されました。</value>
     <comment>Circular dependency exception message. {0}:Template id, {1}: Dependency Template id</comment>
   </data>
   <data name="ErrorDependencyMissing" xml:space="preserve">
-    <value>依存関係テンプレート {0} がユーザーの選択の中に見つかりません。</value>
+    <value>ユーザーが選択した中に依存関係テンプレート {0} がありません。</value>
     <comment>Missing dependency exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
@@ -493,7 +493,7 @@
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorTrackTelemetryException" xml:space="preserve">
-    <value>生成中の例外追跡テレメトリ。</value>
+    <value>生成中のテレメトリの追跡処理で例外が発生しました。</value>
     <comment>Exception tracking telemetry during generation.</comment>
   </data>
   <data name="ErrorUnableResolvePlatform" xml:space="preserve">
