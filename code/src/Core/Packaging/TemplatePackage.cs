@@ -31,15 +31,6 @@ namespace Microsoft.Templates.Core.Packaging
             return source + DefaultExtension;
         }
 
-        public static async Task<string> PackAndSignAsync(string source, string certThumbprint, string mimeMediaType = MediaTypeNames.Text.Plain)
-        {
-            string outFile = CreateSourcePath(source);
-
-            await PackAndSignAsync(source, outFile, certThumbprint, mimeMediaType);
-
-            return outFile;
-        }
-
         public static async Task<string> PackAndSignAsync(string source, X509Certificate signingCert, string mimeMediaType = MediaTypeNames.Text.Plain)
         {
             string outFile = CreateSourcePath(source);
