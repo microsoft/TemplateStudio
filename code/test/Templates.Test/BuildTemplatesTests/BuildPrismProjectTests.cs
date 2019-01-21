@@ -28,18 +28,20 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildProjects")]
         public async Task BuildEmptyProjectAsync(string projectType, string framework, string platform, string language)
         {
-            Func<ITemplateInfo, bool> selector =
-                t => t.GetTemplateType() == TemplateType.Project
-                    && t.GetProjectTypeList().Contains(projectType)
-                    && t.GetFrameworkList().Contains(framework)
-                    && !t.GetIsHidden()
-                    && t.GetLanguage() == language;
-
-            var projectName = $"{ShortProjectType(projectType)}";
-
-            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, null, null, false);
+            var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
+        }
+
+        [Theory]
+        [MemberData(nameof(BaseGenAndBuildTests.GetProjectTemplatesForBuild), "Prism")]
+        [Trait("Type", "BuildProjects")]
+        public async Task BuildEmptyProjectAndInferConfigAsync(string projectType, string framework, string platform, string language)
+        {
+            var (projectName, projectPath) = await GenerateEmptyProjectAsync(projectType, framework, platform, language);
+            _fixture.BuildSolution(projectName, projectPath, platform);
+
+            EnsureCanInferConfigInfo(projectType, framework, platform, projectPath);
         }
 
         [Theory]
@@ -113,7 +115,7 @@ namespace Microsoft.Templates.Test
         {
             var projectName = $"{ShortProjectType(projectType)}AllRightClick2";
 
-            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform,  language, false, false);
+            var projectPath = await AssertGenerateRightClickAsync(projectName, projectType, framework, platform, language, false, false);
 
             AssertBuildProjectAsync(projectPath, projectName, platform);
         }
@@ -123,7 +125,7 @@ namespace Microsoft.Templates.Test
         [Trait("Type", "BuildOneByOnePrism")]
         public async Task BuildPrismOneByOneItemsAsync(string itemName, string projectType, string framework, string platform, string itemId, string language)
         {
-            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId,  language, false);
+            var result = await AssertGenerationOneByOneAsync(itemName, projectType, framework, platform, itemId, language, false);
 
             AssertBuildProjectAsync(result.ProjectPath, result.ProjecName, platform);
         }
