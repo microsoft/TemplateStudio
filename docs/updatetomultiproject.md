@@ -4,9 +4,9 @@ If you created your project with version 1.x or 2.x of WTS and have no core proj
 ## 1. Add a .NET Standard Class Library project to your solution
 From the context menu of your solution file click "Add -> New Project" and choose "Class Library (.Net Standard)" from the .Net Standard Category
 
-![](resources/multi-project/add-new-project-1.png)
+![](resources/multi-project/add-new-project-1.PNG)
 
-![](resources/multi-project/add-new-project-2.png)
+![](resources/multi-project/add-new-project-2.PNG)
 
 Name the project **YourAppName.Core**. If your project is called App1, the correct name would be App1.Core
 
@@ -14,9 +14,9 @@ Name the project **YourAppName.Core**. If your project is called App1, the corre
 
 From the context menu of your Uwp project choose "Add -> Reference" and check the YourAppName.Core project from the projects category.
 
-![](resources/multi-project/add-reference-1.png)
+![](resources/multi-project/add-reference-1.PNG)
 
-![](resources/multi-project/add-reference-2.png)
+![](resources/multi-project/add-reference-2.PNG)
 
 After adding the reference, save your changes.
 
