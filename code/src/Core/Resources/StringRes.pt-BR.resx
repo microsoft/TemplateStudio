@@ -150,7 +150,7 @@
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Não foi possível localizar a linha esperada `{0}` no arquivo '{1}'. Mescle o conteúdo do arquivo de pós-ação manualmente. Modelo relacionado: '{2}'.</value>
+    <value>Não foi possível localizar a linha esperada `{0}` no arquivo '{1}'. Mescle o conteúdo do arquivo de postaction manualmente. Modelo relacionado: '{2}'.</value>
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
@@ -408,7 +408,7 @@ As seguintes alterações não puderam ser integradas: {2}
     <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
   <data name="PostActionIdsNotMatchError" xml:space="preserve">
-    <value>O PostAction.ActionId '{0}' definido no modelo não corresponde ao ActionId de classe esperado '{1}'. Não é possível continuar. Modelo relacionado: {2}.</value>
+    <value>O PostAction.ActionId '{0}' definido no modelo não corresponde ao ActionId de '{1}' esperado. Não é possível continuar. Modelo relacionado: {2}.</value>
     <comment>{0}:Postaction Id, {1}: Expected postaction id, {2}: Template identity</comment>
   </data>
   <data name="PostActionRelatedNone" xml:space="preserve">
@@ -445,7 +445,7 @@ As seguintes alterações não puderam ser integradas: {2}
     <value>Erro ao baixar arquivo de configuração de origem.</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>O arquivo {0} não pode ser movido para {1}. Erro: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">

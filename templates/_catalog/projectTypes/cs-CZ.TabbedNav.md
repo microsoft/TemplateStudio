@@ -1,2 +1,2 @@
-﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
-This is recommended if you have 5 or fewer top level navigation items that are equally important.
+﻿Záložky podél horního okraje zajišťují rychlou navigaci mezi stránkami a poskytují dostatek místa pro obsah z aplikace.
+Tato šablona je vhodná v případě, že máte pět nebo méně navigačních položek nejvyšší úrovně se shodnou důležitostí.

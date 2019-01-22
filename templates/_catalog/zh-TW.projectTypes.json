@@ -7,11 +7,11 @@
   {
     "name": "SplitView",
     "displayName": "Navigation Pane",
-    "summary": "包含瀏覽窗格 (或「漢堡功能表」) 好讓您在不同頁面之間導覽。"
+    "summary": "包含導覽窗格 (或「漢堡功能表」) 好讓您在不同頁面之間導覽。"
   },
   {
     "name": "TabbedNav",
     "displayName": "Horizontal Navigation Pane",
-    "summary": "Navigation Items across the top allow for quickly navigating between pages."
+    "summary": "上方的導覽項目可讓您在不同頁面之間快速導覽。"
   }
 ]

@@ -1,3 +1,3 @@
 ﻿Ta funkcja pozwala dodać działania użytkownika z aplikacji do osi czasu Windows i wznowić aplikację z działania użytkownika przy użyciu linku bezpośredniego. Te działania mogą być tworzone przy użyciu kart adaptacyjnych lub tekstu i opisu.
 
-Aby dowiedzieć się więcej o działaniach użytkowników, przejdź na stronę [docs.microsoft.com](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities).
+[Dowiedz się więcej o działaniach użytkowników oraz o ich wznawianiu nawet na innych urządzeniach.](https://docs.microsoft.com/windows/uwp/launch-resume/useractivities)

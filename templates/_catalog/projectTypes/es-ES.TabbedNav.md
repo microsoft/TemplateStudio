@@ -1,2 +1,2 @@
-﻿Tabs across the top allow for quickly navigating between pages and leave a lot of space to the app content.
-This is recommended if you have 5 or fewer top level navigation items that are equally important.
+﻿Las pestañas que aparecen en la parte superior permiten navegar rápidamente entre las páginas y dejar mucho espacio para el contenido de la aplicación.
+Esto se recomienda si tienes 5 o menos elementos de navegación superiores igual de importantes.

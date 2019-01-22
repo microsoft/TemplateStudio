@@ -150,7 +150,7 @@
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
   </data>
   <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
-    <value>Nebyl nalezen očekávaný řádek {0} v souboru {1}. Slučte obsah z následně vytvořeného souboru ručně. Související šablona: '{2}'.</value>
+    <value>Nebyl nalezen očekávaný řádek {0} v souboru {1}. Slučte obsah z následně vytvořeného souboru (postaction) ručně. Související šablona: '{2}'.</value>
     <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
   </data>
   <data name="FsSafeCopyFileMessage" xml:space="preserve">
@@ -445,7 +445,7 @@ Nemohly být integrovány následující změny: {2}
     <value>Při stahování zdrojového konfiguračního souboru došlo k chybě.</value>
   </data>
   <data name="FsSafeMoveFileMessage" xml:space="preserve">
-    <value>The file {0} can't be moved to {1}. Error: {2}</value>
+    <value>Soubor {0} nelze přesunout do {1}. Chyba: {2}</value>
     <comment>{0}: Source File Path, {1}: Destination folder name, {2}: Error</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
