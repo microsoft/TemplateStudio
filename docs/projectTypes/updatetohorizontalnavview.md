@@ -53,15 +53,17 @@ Remove the code to manage back navigation from ActivationService, this code will
 
  - `KeyboardAccelerator` static members.
 
- - `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked`, `BackRequested` and `Navigated` methods.
+ - `BuildKeyboardAccelerator`, `OnKeyboardAcceleratorInvoked`, `ActivationService_BackRequested` and `Frame_Navigated` methods.
 
- - `SystemNavigationManager BackRequested` and `NavigationService NavigationFailed` and `Navigated` events handlers registration code inside `ActivateAsync` method.
+ - `SystemNavigationManager.BackRequested` and `NavigationService.NavigationFailed` and `NavigationService.Navigated` events handlers registration code inside `ActivateAsync` method.
 
  - Remove unused `using statements`.
 
 ## 7. Remove Pivot classes
- - Remove PivotPage.xaml and PivotPage.xaml.cs
- - Remove PivotBehavior.cs, IPivotActivationPage.cs, IPivotPage.cs, PivotItemExtensions.cs.
+ - Remove PivotPage.xaml and PivotPage.xaml.cs frow Views folder.
+ - Remove PivotViewModel.cs from ViewModels folder.
+ - Remove PivotBehavior.cs from Behavior folder.
+ - Remove IPivotPage.cs and PivotItemExtensions.cs from Helpers folder.
 
 ## 8. Add New ShellPage and ShellViewModel
 
@@ -275,6 +277,36 @@ namespace YourAppName.ViewModels
     }
 }
 ```
+**NavHelper.cs**
+
+```csharp
+using System;
+
+using Microsoft.UI.Xaml.Controls;
+
+using Windows.UI.Xaml;
+
+namespace YourAppName.Helpers
+{
+    public class NavHelper
+    {
+        public static Type GetNavigateTo(NavigationViewItem item)
+        {
+            return (Type)item.GetValue(NavigateToProperty);
+        }
+
+        public static void SetNavigateTo(NavigationViewItem item, Type value)
+        {
+            item.SetValue(NavigateToProperty, value);
+        }
+
+        public static readonly DependencyProperty NavigateToProperty =
+            DependencyProperty.RegisterAttached("NavigateTo", typeof(Type), typeof(NavHelper), new PropertyMetadata(null));
+    }
+}
+
+```
+**Note:** If your project hasn´t settings page, set `IsSettingsVisible="True"` in ShellPage.xaml and delete Settings page code in ShellViewModel.cs.
 
 ## 9. Update AppxManifest
 
