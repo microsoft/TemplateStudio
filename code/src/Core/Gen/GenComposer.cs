@@ -241,6 +241,8 @@ namespace Microsoft.Templates.Core.Gen
             {
                 new QueryableProperty("projecttype", userSelection.ProjectType),
                 new QueryableProperty("framework", userSelection.Framework),
+                new QueryableProperty("page", string.Join("|", userSelection.Pages.Select(p => p.template.Identity))),
+                new QueryableProperty("feature", string.Join("|", userSelection.Features.Select(p => p.template.Identity))),
             };
 
             var combinedQueue = new List<GenInfo>();
