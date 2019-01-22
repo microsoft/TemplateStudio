@@ -9,6 +9,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Packaging;
 using Microsoft.Templates.Core.Resources;
 

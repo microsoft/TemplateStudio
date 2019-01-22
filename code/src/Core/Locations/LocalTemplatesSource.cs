@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.Helpers;
 
 namespace Microsoft.Templates.Core.Locations
 {

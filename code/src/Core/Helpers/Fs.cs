@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Resources;
 
-namespace Microsoft.Templates.Core
+namespace Microsoft.Templates.Core.Helpers
 {
     public static class Fs
     {

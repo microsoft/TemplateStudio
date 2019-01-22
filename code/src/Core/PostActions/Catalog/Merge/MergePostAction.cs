@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
-
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Resources;

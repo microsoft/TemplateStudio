@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Packaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
