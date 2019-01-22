@@ -8,6 +8,7 @@ using System.IO;
 using System.Windows;
 
 using Microsoft.Templates.Core;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.UI.Mvvm;
 
 namespace Microsoft.Templates.VsEmulator.TemplatesContent

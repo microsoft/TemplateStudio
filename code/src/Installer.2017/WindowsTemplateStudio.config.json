@@ -27,6 +27,14 @@
     {
       "Name": "HasOldNavigationView",
       "BreakingVersion": "2.4.18260.1"
+    },
+    {
+      "Name": "HasPivot",
+      "BreakingVersion": "2.5.18319.1"
+    },
+    {
+      "Name": "HasNoCoreProject",
+      "BreakingVersion": "2.5.18319.1"
     }
   ]
 }

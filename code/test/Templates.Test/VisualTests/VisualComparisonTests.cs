@@ -16,6 +16,7 @@ using WindowsTestHelpers;
 using Microsoft.Templates.Core;
 using OpenQA.Selenium.Appium.Windows;
 using Xunit;
+using Microsoft.Templates.Core.Helpers;
 
 namespace Microsoft.Templates.Test
 {

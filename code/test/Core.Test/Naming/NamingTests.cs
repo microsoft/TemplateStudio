@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
-
+using System.IO;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test
@@ -88,6 +88,27 @@ namespace Microsoft.Templates.Core.Test
             var result = Naming.Infer("blank page", new List<Validator>());
 
             Assert.Equal("BlankPage", result);
+        }
+
+        [Fact]
+        public void Validate_SuccessfullyHandles_FileExistsValidator()
+        {
+            var testDirectory = Path.GetTempPath();
+            File.Create(Path.Combine(testDirectory, "TestFile"));
+            var result = Naming.Infer("TestFile", new List<Validator>() { new FileExistsValidator(testDirectory) });
+
+            Assert.Equal("TestFile1", result);
+        }
+
+        [Fact]
+        public void Validate_SuccessfullyHandles_SuggestedDirectoryNameValidator()
+        {
+            var testDirectory = Path.GetTempPath();
+
+            Directory.CreateDirectory(Path.Combine(testDirectory, "TestDir"));
+            var result = Naming.Infer("TestDir", new List<Validator>() { new SuggestedDirectoryNameValidator(testDirectory) });
+
+            Assert.Equal("TestDir1", result);
         }
 
         [Theory]
@@ -175,6 +196,30 @@ namespace Microsoft.Templates.Core.Test
 
             Assert.False(result.IsValid);
             Assert.Equal(ValidationErrorType.BadFormat, result.ErrorType);
+        }
+
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Validate_SuccessfullyIdentifies_InvalidPageSuffix(string language)
+        {
+            SetUpFixtureForTesting(language);
+
+            var result = Naming.Validate("BlankPage", new List<Validator>() { new PageSuffixValidator() });
+
+            Assert.False(result.IsValid);
+            Assert.Equal(ValidationErrorType.EndsWithPageSuffix, result.ErrorType);
+        }
+
+        [Theory]
+        [MemberData("GetAllLanguages")]
+        public void Validate_SuccessfullyIdentifies_ValidPageSuffix(string language)
+        {
+            SetUpFixtureForTesting(language);
+
+            var result = Naming.Validate("BlankView", new List<Validator>() { new PageSuffixValidator() });
+
+            Assert.True(result.IsValid);
+            Assert.Equal(ValidationErrorType.None, result.ErrorType);
         }
 
         private void SetUpFixtureForTesting(string language)

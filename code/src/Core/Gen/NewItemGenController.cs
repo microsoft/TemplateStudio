@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.PostActions;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Resources;
@@ -156,7 +157,6 @@ namespace Microsoft.Templates.Core.Gen
 
                 var projectFileName = Path.GetFullPath(Path.Combine(parentDestinationPath, fileName));
 
-                // TODO: is projectFilename and destfilename the same?
                 if (File.Exists(projectFileName))
                 {
                     if (GenContext.Current.MergeFilesFromProject.ContainsKey(fileName))

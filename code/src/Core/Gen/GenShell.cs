@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Resources;
 
 namespace Microsoft.Templates.Core.Gen

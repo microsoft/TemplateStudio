@@ -284,6 +284,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Templates\TemplateLicenseEqualityComparerTest.cs" />
     <Compile Include="Templates\TemplatesFixture.cs" />
     <None Include="Packaging\SampleConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

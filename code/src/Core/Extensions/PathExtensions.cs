@@ -55,7 +55,6 @@ namespace Microsoft.Templates.Core.Extensions
                 return filePath.Replace(folderName + Path.DirectorySeparatorChar, string.Empty);
             }
 
-            // TODO: Should this throw an exception?
             return filePath;
         }
     }
