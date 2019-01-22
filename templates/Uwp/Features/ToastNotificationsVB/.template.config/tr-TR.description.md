@@ -1,3 +1,5 @@
 ﻿Uyarlamalı ve etkileşimli bildirimler daha fazla içeriğe, isteğe bağlı satır içi görüntülere ve isteğe bağlı kullanıcı etkileşimine sahip esnek açılır pencere bildirimleri oluşturmanıza olanak tanır. Resimleri, düğmeleri, metin girişlerini, eylemleri ve çok daha fazlasını kullanabilirsiniz!
 
-Bildirimler hakkında daha fazla bilgi için [docs.microsoft.com](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-adaptive-interactive-toasts) adresine gidin. Ayrıca, uyarlamalı canlı kutucuklar ve bildirimler tasarlamaya yardımcı olmak için bildirim ekibi bir [görselleştirme uygulaması](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) geliştirdi.
+[Bildirimler hakkında daha fazla bilgi edinin.](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-adaptive-interactive-toasts)
+
+Uyarlamalı canlı kutucuklar ve bildirimler tasarlamaya yardımcı olmak için [görselleştirme uygulamasını](https://docs.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) kullanın.
