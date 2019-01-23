@@ -5,12 +5,13 @@ namespace Param_ItemNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService
     {
-//{[{
-        private static string _localResourcesPath;
-        private static ObservableCollection<SampleImage> _gallerySampleData;
-//}]}
 //^^
 //{[{
+
+        private static string _localResourcesPath;
+
+        private static ObservableCollection<SampleImage> _gallerySampleData;
+
         public void Initialize(string localResourcesPath)
         {
             _localResourcesPath = localResourcesPath;

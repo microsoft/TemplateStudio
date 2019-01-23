@@ -1,0 +1,5 @@
+﻿    <TargetFramework>netstandard2.0</TargetFramework>
+^^^-searchabove-replacebelow-vvv
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />

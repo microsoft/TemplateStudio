@@ -8,12 +8,11 @@ namespace Param_ItemNamespace.Core.Services
 {
     public class SampleDataService : ISampleDataService
     {
-//{[{
-        private static IEnumerable<SampleOrder> _allOrders;
-//}]}
-
 //^^
 //{[{
+
+        private static IEnumerable<SampleOrder> _allOrders;
+
         // TODO WTS: Remove this once your ContentGrid page is displaying real data
         public ObservableCollection<SampleOrder> GetContentGridData()
         {

@@ -10,6 +10,7 @@ namespace Param_ItemNamespace.Core.Services
     {
 //^^
 //{[{
+
         ObservableCollection<SampleOrder> GetContentGridData();
 //}]}
     }
