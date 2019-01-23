@@ -117,7 +117,8 @@ The replacements are done based on the configuration established in the `templat
     "wts.version": "1.0.0",
     "wts.displayOrder": "1",                      //This tag is used to order the templates in the wizard.
     "wts.rightClickEnabled":"true",               //If set to 'true' then this feature or page is available from right click on an existing project.
-    "wts.isHidden": "false"                       //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
+    "wts.isHidden": "false",                      //If set to 'true' then not shown in the wizard. Used for dependencies that can't be selected on their own.
+    "wts.outputToParent": "true"                  //If set to 'true' then this will be generated one folder above the usual outputfolder. Use Param_ProjectName to compose                                                      folder names
   },
   "sourceName": "BlankView",                      //The generation engine will replace any occurrence of "BlankView" by the parameter provided in the source file name.
   "preferNameDirectory": true,
@@ -133,6 +134,11 @@ The replacements are done based on the configuration established in the `templat
     }
   ],
   "symbols": {                                    //Symbols define a collection of replacements to be done while generating.
+     "wts.projectName": {
+      "type": "parameter",
+      "replaces": "Param_ProjectName",
+      "fileRename": "Param_ProjectName"
+    },
     "rootNamespace": {
       "type": "parameter",
       "replaces": "RootNamespace"                //Each instance of "RootNamespace" in the source files will be replaced by the actual value passed in the "rootNamespace" parameter.
@@ -252,12 +258,21 @@ Finally, all the templates (*Standard* and *Composition*) are generated using th
 Post-Actions are designed to complement the standard generation enabling certain actions to be executed over the generated files once the generation is done.
 
 Currently we support the following types of [Post-Actions](../code/src/Core/PostActions):
-* **Merge**: merges the source code from one file into another. This Post-Action requires a special (_postaction) configuration in the templates files.
-* **Sort Namespaces**: this post action re-orders the `using` statements at the top of the generated C# source files and the `import` statements in VB files.
-* **Add Item To Project**: this post-action is executed to add the "PrimaryOutputs" to the target Visual Studio project (.csproj). The "PrimaryOutputs" are defined in the template.json file.
-* **Add Project To Solution**: this post-action is executed to add the a generated project to the current Visual Studio solution.
-* **Generate Test Certificate**: generate the test certificate for the UWP application and configure it in the application manifest.
-* **Set Default Solution Configuration**: sets the default solution configuration in the Visual Studio sln file. With this post-action we change the default solution configuration from Debug|ARM to Debug|x86.
+- Defined by template output type:
+  * **Add Item To Project**: this post-action is executed for templates with outputtype item to add the "PrimaryOutputs" to the target Visual Studio project (.csproj). The "PrimaryOutputs" are defined in the template.json file.
+  * **Add Project To Solution**: this post-action is executed for templates with outputtype project to add the a generated project to the current Visual Studio solution.
+
+- Defined by the template:
+  * **Add Reference To Project** this post-action is executed to add a reference from one project to another project.
+  * **Add Nuget Reference To Project**: this post-action is executed to add a nuget reference to the project.
+  * **Generate Test Certificate**: generate the test certificate for the UWP application and configure it in the application manifest.
+
+- Other postactions:
+  * **Merge**: merges the source code from one file into another. This Post-Action requires a special (_postaction) configuration in the templates files.
+  * **SearchAndReplace**: searches for the source code defined in the postaction file and replaces it with the specified code. This Post-Action requires a special (_searchreplace) configuration in the templates files.
+  
+  * **Sort Namespaces**: this post action re-orders the `using` statements at the top of the generated C# source files and the `import` statements in VB files.
+  * **Set Default Solution Configuration**: sets the default solution configuration in the Visual Studio sln file. With this post-action we change the default solution configuration from Debug|ARM to Debug|x86.
 
 ### Merge Post-Action
 
