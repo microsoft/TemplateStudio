@@ -121,6 +121,7 @@ namespace TemplateValidator
                          && !file.Name.Contains("_gpostaction")
                          && !file.Name.Contains("_searchreplace")
                          && !file.FullName.Contains("\\Projects\\Default")
+                         && !file.FullName.Contains("\\Test\\")
                          && !file.FullName.Contains(".template.config"))
                         {
                             // Projects will include files that aren't directly referenced

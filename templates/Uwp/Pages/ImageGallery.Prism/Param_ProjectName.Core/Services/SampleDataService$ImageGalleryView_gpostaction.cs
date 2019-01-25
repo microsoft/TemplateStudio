@@ -17,7 +17,7 @@ namespace Param_ItemNamespace.Core.Services
             _localResourcesPath = localResourcesPath;
         }
 
-        // TODO WTS: Remove this once your image gallery page is displaying real data
+        // TODO WTS: Remove this once your image gallery page is displaying real data.
         public ObservableCollection<SampleImage> GetGallerySampleData()
         {
             if (_gallerySampleData == null)

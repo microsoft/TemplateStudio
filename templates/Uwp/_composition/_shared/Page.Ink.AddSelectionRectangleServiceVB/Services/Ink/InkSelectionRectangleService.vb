@@ -45,7 +45,6 @@ Namespace Services.Ink
         End Function
 
         Private Function GetSelectionRectangle() As Rectangle
-            Dim r As Rectangle = Nothing
             Dim selectionRectangle = TryCast(_selectionCanvas.Children.FirstOrDefault(Function(f)
                                                                                          Dim rect As Rectangle = TryCast(f, Rectangle)
                                                                                          return rect IsNot Nothing AndAlso rect.Name = SelectionRectName

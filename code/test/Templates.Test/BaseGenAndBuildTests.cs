@@ -69,6 +69,29 @@ namespace Microsoft.Templates.Test
             return (projectName, projectPath);
         }
 
+        protected async Task<(string projectName, string projectPath)> GenerateAllPagesAndFeaturesAsync(string projectType, string framework, string platform, string language)
+        {
+            Func<ITemplateInfo, bool> selector =
+                t => t.GetTemplateType() == TemplateType.Project
+                     && t.GetProjectTypeList().Contains(projectType)
+                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetPlatform() == platform
+                     && !t.GetIsHidden()
+                     && t.GetLanguage() == language;
+
+            Func<ITemplateInfo, bool> templateSelector =
+                t => (t.GetTemplateType() == TemplateType.Page || t.GetTemplateType() == TemplateType.Feature)
+                     && t.GetFrameworkList().Contains(framework)
+                     && t.GetPlatform() == platform
+                     && !t.GetIsHidden();
+
+            var projectName = $"{ShortProjectType(projectType)}All{ShortLanguageName(language)}";
+
+            var projectPath = await AssertGenerateProjectAsync(selector, projectName, projectType, framework, platform, language, templateSelector, BaseGenAndBuildFixture.GetDefaultName, false);
+
+            return (projectName, projectPath);
+        }
+
         protected async Task<string> AssertGenerateProjectAsync(Func<ITemplateInfo, bool> projectTemplateSelector, string projectName, string projectType, string framework, string platform, string language, Func<ITemplateInfo, bool> itemTemplatesSelector = null, Func<ITemplateInfo, string> getName = null, bool cleanGeneration = true)
         {
             BaseGenAndBuildFixture.SetCurrentLanguage(language);
@@ -173,6 +196,29 @@ namespace Microsoft.Templates.Test
             Assert.True(result.exitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(result.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(result.outputFile)} for more details.");
 
             // Clean
+            Fs.SafeDeleteDirectory(projectPath);
+        }
+
+        protected void AssertBuildProjectThenRunTestsAsync(string projectPath, string projectName, string platform)
+        {
+            var (buildExitCode, buildOutputFile) = _fixture.BuildSolution(projectName, projectPath, platform);
+
+            if (buildExitCode.Equals(0))
+            {
+                var (testExitCode, testOutputFile) = _fixture.RunTests(projectName, projectPath);
+
+                var summary = _fixture.GetTestSummary(testOutputFile);
+
+                Assert.True(
+                    summary.Contains("Failed: 0."),
+                    $"Tests failed. {Environment.NewLine}{summary}{Environment.NewLine}Please see {Path.GetFullPath(buildOutputFile)} for more details.");
+            }
+            else
+            {
+                Assert.True(buildExitCode.Equals(0), $"Solution {projectName} was not built successfully. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(buildOutputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(buildOutputFile)} for more details.");
+            }
+
+            // Tidy up if all tests passed
             Fs.SafeDeleteDirectory(projectPath);
         }
 

@@ -11,7 +11,7 @@ namespace Param_ItemNamespace.Core.Services
 //^^
 //{[{
 
-        // TODO WTS: Remove this once your MasterDetail pages are displaying real data
+        // TODO WTS: Remove this once your MasterDetail pages are displaying real data.
         public static async Task<IEnumerable<SampleOrder>> GetSampleModelDataAsync()
         {
             await Task.CompletedTask;

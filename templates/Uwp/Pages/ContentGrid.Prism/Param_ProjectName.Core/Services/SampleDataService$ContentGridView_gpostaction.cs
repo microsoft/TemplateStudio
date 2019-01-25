@@ -13,7 +13,7 @@ namespace Param_ItemNamespace.Core.Services
 
         private static IEnumerable<SampleOrder> _allOrders;
 
-        // TODO WTS: Remove this once your ContentGrid page is displaying real data
+        // TODO WTS: Remove this once your ContentGrid page is displaying real data.
         public ObservableCollection<SampleOrder> GetContentGridData()
         {
             if (_allOrders == null)

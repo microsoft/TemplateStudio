@@ -6,7 +6,7 @@ Namespace Services
         '^^
         '{[{
 
-        ' TODO WTS: Remove this once your MasterDetail pages are displaying real data
+        ' TODO WTS: Remove this once your MasterDetail pages are displaying real data.
         Public Async Function GetSampleModelDataAsync() As Task(Of IEnumerable(Of SampleOrder))
             Await Task.CompletedTask
 

@@ -3,17 +3,18 @@
 '**}
 Namespace Services
     Public Module SampleDataService
-'{[{
-        Private _localResourcesPath As String
-        Private _gallerySampleData As ObservableCollection(Of SampleImage)
-'}]}
 '^^
 '{[{
+
+        Private _localResourcesPath As String
+
+        Private _gallerySampleData As ObservableCollection(Of SampleImage)
+
         Public Sub Initialize(localResourcesPath As String)
             _localResourcesPath = localResourcesPath
         End Sub
 
-        ' TODO WTS: Remove this once your image gallery page is displaying real data
+        ' TODO WTS: Remove this once your image gallery page is displaying real data.
         Public Function GetGallerySampleData() As ObservableCollection(Of SampleImage)
             If _gallerySampleData Is Nothing Then
                 _gallerySampleData = New ObservableCollection(Of SampleImage)()
